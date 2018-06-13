@@ -1,6 +1,7 @@
 module BaseDatatype
 
 	C_CLASS_NAME = "BaseDatatype"
+  C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema"
 
 	C_STRING = "string"
 	C_INTEGER = "integer"
@@ -13,14 +14,14 @@ module BaseDatatype
 	
 	@@map = 
 		{ 
-			C_STRING => { :xsd_fragment => "string", :xsd => "http://www.w3.org/2001/XMLSchema#string", :label => "String", :short_label => "S", :odm => "text", :display => true},
-			C_INTEGER => { :xsd_fragment => "integer", :xsd => "http://www.w3.org/2001/XMLSchema#integer", :label => "Integer", :short_label => "I", :odm => "integer", :display => true},
-			C_POSITIVE_INTEGER => { :xsd_fragment => "positiveInteger", :xsd => "http://www.w3.org/2001/XMLSchema#positiveInteger", :label => "Integer", :short_label => "I", :odm => "integer", :display => false},
-			C_BOOLEAN => { :xsd_fragment => "boolean", :xsd => "http://www.w3.org/2001/XMLSchema#boolean", :label => "Boolean", :short_label => "B", :odm => "boolean", :display => true},
-			C_DATETIME => { :xsd_fragment => "dateTime", :xsd => "http://www.w3.org/2001/XMLSchema#dateTime", :label => "Datetime", :short_label => "D+T", :odm => "datetime", :display => true},
-			C_DATE => { :xsd_fragment => "date", :xsd => "http://www.w3.org/2001/XMLSchema#date", :label => "Date", :short_label => "D", :odm => "date", :display => true},
-			C_TIME => { :xsd_fragment => "time", :xsd => "http://www.w3.org/2001/XMLSchema#time", :label => "Time", :short_label => "T", :odm => "time", :display => true},
-			C_FLOAT => { :xsd_fragment => "float", :xsd => "http://www.w3.org/2001/XMLSchema#float", :label => "Float", :short_label => "F", :odm => "float", :display => true}
+			C_STRING => { :xsd_fragment => "string", :xsd => "#{C_XML_SCHEMA}#string", :label => "String", :short_label => "S", :odm => "text", :display => true},
+			C_INTEGER => { :xsd_fragment => "integer", :xsd => "#{C_XML_SCHEMA}#integer", :label => "Integer", :short_label => "I", :odm => "integer", :display => true},
+			C_POSITIVE_INTEGER => { :xsd_fragment => "positiveInteger", :xsd => "#{C_XML_SCHEMA}#positiveInteger", :label => "Integer", :short_label => "I", :odm => "integer", :display => false},
+			C_BOOLEAN => { :xsd_fragment => "boolean", :xsd => "#{C_XML_SCHEMA}#boolean", :label => "Boolean", :short_label => "B", :odm => "boolean", :display => true},
+			C_DATETIME => { :xsd_fragment => "dateTime", :xsd => "#{C_XML_SCHEMA}#dateTime", :label => "Datetime", :short_label => "D+T", :odm => "datetime", :display => true},
+			C_DATE => { :xsd_fragment => "date", :xsd => "#{C_XML_SCHEMA}#date", :label => "Date", :short_label => "D", :odm => "date", :display => true},
+			C_TIME => { :xsd_fragment => "time", :xsd => "#{C_XML_SCHEMA}#time", :label => "Time", :short_label => "T", :odm => "time", :display => true},
+			C_FLOAT => { :xsd_fragment => "float", :xsd => "#{C_XML_SCHEMA}#float", :label => "Float", :short_label => "F", :odm => "float", :display => true}
 		}
 
 	
@@ -48,7 +49,20 @@ module BaseDatatype
 		return C_STRING
 	end
 	
-	# Method to get the generic type given the short label
+	# Method to get the generic type given the xsd type using the fragment only
+  #
+  # @param [String] fragment the xsd fragment
+  # @return [String] The generic datatype
+  def self.from_xsd_fragment(fragment)
+    uri = UriV3.new(namespace: C_XML_SCHEMA, fragment: fragment)
+    results = @@map.select{|key, value| value[:xsd] == uri.to_s}
+    if results.length > 0
+      return results.keys.first.to_s
+    end
+    return C_STRING
+  end
+  
+  # Method to get the generic type given the short label
 	#
   # @param uri [string] The xsd base data type
   # @return [string] The generic datatype

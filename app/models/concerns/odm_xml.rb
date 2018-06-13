@@ -16,7 +16,7 @@ class OdmXml
   rescue => e
     msg = "Exception raised opening ODM XML file, filename=#{@filename}."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
-    @errors.add(:base, msg)
+    @errors.add(:base, "#{msg} #{e}")
   end
 
   def list
@@ -26,63 +26,21 @@ class OdmXml
   rescue => e
     msg = "Exception raised building form list."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
-    @errors.add(:base, msg)
+    @errors.add(:base, "#{msg} #{e}")
     return []
   end
 
   def form(identifier)
-    # Get the set of current terminologies
     thesauri = []
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
-    # Process form
-    form = OdmForm.new(self.list, identifier)
-    form.groups(@doc)
-    return form
-=begin
-        if item[:mapping].empty?
-        label = Form::Item::TextLabel.new
-        label.label = item[:label] 
-        label.ordinal = item[:ordinal]
-        label.label_text = item[:question_text] 
-        result.children.first.children << label
-      else
-        question = Form::Item::Question.new
-        question.label = item[:label]
-        dt_and_format = get_datatype_and_format(item)
-        question.datatype = dt_and_format[:datatype]
-        question.format = dt_and_format[:format]
-        question.mapping = item[:mapping]
-        question.question_text = item[:question_text]
-        question.ordinal = item[:ordinal]
-        question.note = ""
-        if !item[:code_list].empty? 
-          cl_result = get_cl(item[:code_list], thesauri)
-          if !cl_result[:cl].nil?
-            read_data_dictionary_entries_sheet(item[:code_list]).each do |entry|
-              cli = cl_result[:cl].children.find { |x| x.notation == entry[:code]}
-              if !cli.nil?
-                ref = OperationalReferenceV2.new
-                ref.ordinal = entry[:ordinal]
-                ref.subject_ref = cli.uri
-                question.tc_refs << ref
-              else
-                question.note += "* Failed to find item with \n" if !cl_result[:note].empty?
-              end
-            end
-          else
-            question.note += "* #{cl_result[:note]}\n" if !cl_result[:note].empty?
-          end
-        end
-        result.children.first.children << question
-      end
-    end
-=end
-    return result
+    odm_form = OdmForm.new(self.list, identifier, thesauri)
+    odm_form.groups(@doc)
+    return odm_form.form
   rescue => e
     msg = "Exception raised building form."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
-    @errors.add(:base, msg)
-    return nil
+    @errors.add(:base, "#{msg} #{e}")
+    return self
   end
 
   class OdmForm
@@ -92,7 +50,8 @@ class OdmXml
     attr_reader :oid
     attr_reader :form
 
-    def initialize(list, identifier)  
+    def initialize(list, identifier, thesauri)
+      @thesauri = thesauri
       @oid = identifier
       source_form = list.find { |f| f[:identifier] == identifier }
       if source_form.nil?
@@ -108,9 +67,11 @@ class OdmXml
 
     def groups(doc)
       results = []
-    byebug
-      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(self, doc, n) }
-      results.each { |r| @form.children << r.group }
+      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n, @thesauri) }
+      results.each do |r| 
+        @form.children << r.group 
+        r.items(doc)
+      end
       return results
     end
 
@@ -123,18 +84,26 @@ class OdmXml
     attr_reader :oid
     attr_reader :group
 
-    def initialize(form, doc, node)  
-      @oid = node.attributes["ItemGrouoOID"].value
-      group = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
+    def initialize(doc, node, thesauri)
+      @thesauri = thesauri
+      @oid = node.attributes["ItemGroupOID"].value
+      group_node = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
-      @group.label = group.attributes["Name"].value
-      @group.ordinal = node.attributes["OrderNumber"].value
+      @group.label = group_node.first.attributes["Name"].value
+      @group.ordinal = node.attributes["OrderNumber"].value.to_i
     end
 
     def items(doc)
       results = []
-      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(self, doc, n) }
-      results.each { |r| @group.children << r.item }
+      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n, @thesauri) }
+      ordinal = 1
+      results.each do |result|
+        result.items.each do |item| 
+          item.ordinal = ordinal
+          @group.children << item
+          ordinal += 1
+        end
+      end
       return results
     end
 
@@ -145,89 +114,119 @@ class OdmXml
     extend ActiveModel::Naming
 
     attr_reader :oid
-    attr_reader :item
+    attr_reader :items
 
-    def initialize(form, doc, node)  
+    def initialize(doc, node, thesauri)  
+      @items = []
+      @thesauri = thesauri
       @oid = node.attributes["ItemOID"].value
-      item = doc.xpath("//ItemDef[@OID = '#{@oid}']")
+      item_node = doc.xpath("//ItemDef[@OID = '#{@oid}']")
+      item = Form::Item::Question.new
+      item.note = ""
+      item.label = item_node.first.attributes["Name"].value
+      dt_and_format = get_datatype_and_format(item_node)
+      item.datatype = dt_and_format[:datatype]
+      item.format = dt_and_format[:format]
+      item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "" : item_node.first.attributes["SDSVarName"].value
+      item.ordinal = node.attributes["OrderNumber"].value.to_i
+      q_text_node = node.xpath("//ItemDef[@OID = '#{@oid}']/Question/TranslatedText[@lang = 'en']")
+      item.question_text = q_text_node.empty? ? "No question text found!" : parse_special(q_text_node.first.text.strip)
+      cl_ref_node = item_node.xpath("CodeListRef")
+      if !cl_ref_node.empty?
+        cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
+        cl_node = node.xpath("//CodeList[@OID = '#{cl_oid}']")
+        add_cl(cl_node.first, item)
+      end
+      @items << item
+      mu_nodes = item_node.xpath("MeasurementUnitRef")
+      if !mu_nodes.empty?
+        mu_item = Form::Item::Question.new
+        mu_item.note = ""
+        mu_item.label = "#{item.label} units"
+        mu_item.datatype = BaseDatatype::C_STRING
+        mu_item.format = "20"
+        mu_item.mapping = ""
+        mu_item.ordinal = item.ordinal
+        mu_item.question_text = "#{item.question_text} units"
+        add_mu(doc, mu_nodes, mu_item)
+        @items << mu_item
+      end
+    end
 
-      @item = Form::Item::Question.new
-      @item.label = group.attributes["Name"].value
-        #dt_and_format = get_datatype_and_format(item)
-        #question.datatype = dt_and_format[:datatype]
-        #question.format = dt_and_format[:format]
-      @item.mapping = group.attributes["SDSVarName"].value
-      @item.ordinal = node.attributes["OrderNumber"].value
-      @item.note = ""
-      q_text = node.xpath("//ItemDef[@OID = '#{@oid}']/Question/TranslatedText[@xml:lang = 'en']")
-      @item.question_text = q_text.first.text.strip
+  private
+
+    def parse_special(text)
+      return Nokogiri::HTML.parse(text).text
+    end
+
+    def get_datatype_and_format(node)
+      l_attrib = node.first.attributes["Length"]
+      dt_attrib = node.first.attributes["DataType"]
+      sd_attrib = node.first.attributes["SignificantDigits"]
+      length = l_attrib.nil? ? "20" : l_attrib.value
+      datatype = dt_attrib.nil? ? BaseDatatype::C_STRING : BaseDatatype.from_xsd_fragment(dt_attrib.value)
+      sig_digits = sd_attrib.nil? ? "0" : sd_attrib.value
+      case datatype
+        when BaseDatatype::C_DATE, BaseDatatype::C_TIME, BaseDatatype::C_DATETIME, BaseDatatype::C_BOOLEAN
+          return {datatype: datatype, format: ""}
+        when BaseDatatype::C_FLOAT
+          return {datatype: datatype, format: "#{length}.#{sig_digits}"}        
+        when BaseDatatype::C_INTEGER
+          return {datatype: datatype, format: "#{length}"}        
+        else
+          return {datatype: BaseDatatype::C_STRING, format: length}
+      end
+    end
+
+    def add_cl(node, question)
+      ordinal = 1
+      cli_nodes = node.xpath("CodeListItem")
+      cli_nodes.each do |cli_node|
+        result = get_cli(cli_node.attributes["CodedValue"].value)
+        if !result[:cli].nil?
+          ref = OperationalReferenceV2.new
+          ref.ordinal = ordinal
+          ref.subject_ref = result[:cli].uri
+          question.tc_refs << ref
+          ordinal += 1
+        else
+          question.note += "* #{result[:note]}\n" if !result[:note].empty?
+        end
+      end
+    end
+
+     def add_mu(doc, nodes, question)
+      ordinal = 1
+      nodes.each do |mu_ref_node|
+        oid = mu_ref_node.attributes["MeasurementUnitOID"].value
+        mu_node = doc.xpath("//MeasurementUnit[@OID = '#{oid}']/Symbol/TranslatedText[@lang = 'en']")
+        result = get_cli(mu_node.first.text.strip)
+        if !result[:cli].nil?
+          ref = OperationalReferenceV2.new
+          ref.ordinal = ordinal
+          ref.subject_ref = result[:cli].uri
+          question.tc_refs << ref
+          ordinal += 1
+        else
+          question.note += "* #{result[:note]}\n" if !result[:note].empty?
+        end
+      end
+    end
+
+    def get_cli(notation)   
+      thcs = []
+      @thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
+      if thcs.empty?
+        return {cli: nil, note: "No entries found for code list item '#{notation}'."}
+      elsif thcs.count == 1
+        return {cli: thcs.first, note: ""}
+      else
+        entries = thcs.map { |tc| tc.identifier }.join(',')
+        return {cli: nil, note: "Multiple entries [#{entries}] found for code list item '#{notation}', ignored." }
+      end
     end
 
   end
-
-private
-    
-=begin
-
-  def get_cl(notation, thesauri)   
-    thcs = []
-    thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
-    if thcs.empty?
-      return {cl: nil, note: "No entries found for code list #{notation}."}
-    elsif thcs.count == 1
-      return {cl: thcs.first, note: ""}
-    else
-      entries = thcs.map { |tc| tc.identifier }.join(',')
-      return {cl: nil, note: "Multiple entries [#{entries}] found for code list #{notation}, ignored." }
-    end
-  end
-
-  def get_datatype_and_format(params)
-    length = get_length(params)
-    return {datatype: BaseDatatype::C_STRING, format: length} if !params[:code_list].blank?
-    return {datatype: BaseDatatype::C_BOOLEAN, format: ""} if params[:control_type] == "CheckBox"
-    return {datatype: BaseDatatype::C_TIME, format: ""} if time_format?(params[:data_format])
-    return {datatype: BaseDatatype::C_DATE, format: ""} if date_format?(params[:data_format])
-    return {datatype: BaseDatatype::C_INTEGER, format: length} if integer_format?(params[:data_format])
-    return {datatype: BaseDatatype::C_FLOAT, format: params[:data_format]} if float_format?(params[:data_format])
-    return {datatype: BaseDatatype::C_STRING, format: length} if string_format?(params[:data_format])
-    return {datatype: BaseDatatype::C_STRING, format: length}
-  end
-
-  def integer_format?(format)
-    return get_format(format) == :integer
-  end
-
-  def float_format?(format)
-    return get_format(format) == :float
-  end
-
-  def string_format?(format)
-    return get_format(format) == :string
-  end
-
-  def date_format?(format)
-    return get_format(format.delete(' ')) == :date
-  end
-
-  def time_format?(format)
-    return get_format(format) == :time
-  end
-
-  def get_format(format)
-    return :time if format == "HH:nn"
-    return :date if format == "dd-MMM-yyyy" || format == "ddMMMyyyy" 
-    return :string if format.start_with?('$')
-    return :float if format.include?('.')
-    return :integer
-  end
-
-  def get_length(params)
-    return "" if params[:data_format].empty?
-    length = params[:data_format].dup
-    return length.delete("^0-9")
-  end
-=end
 
 end
 

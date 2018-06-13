@@ -158,7 +158,7 @@ class Form::Item::Question < Form::Item
     result = super
     result = result &&
       FieldValidation::valid_mapping?(:mapping, self.mapping, self) &&
-      FieldValidation::valid_format?(:question_text, self.format, self) &&
+      FieldValidation::valid_format?(:format, self.format, self) &&
       FieldValidation::valid_question?(:question_text, self.question_text, self) &&
       FieldValidation::valid_datatype?(:datatype, self.datatype, self)
     return result

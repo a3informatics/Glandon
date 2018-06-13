@@ -18,7 +18,7 @@ class Import::Odm
     odm = OdmXml.new(params[:filename])
     object = odm.form(params[:identifier])
     return odm if !odm.errors.empty?
-    object = Form.create(object.form.to_operation)
+    object = Form.create(object.to_operation)
     return object
     #job = Background.create
     #importer = importer.new

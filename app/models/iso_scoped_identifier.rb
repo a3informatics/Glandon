@@ -25,7 +25,7 @@ class IsoScopedIdentifier
   # @param identifier [String] the dirty identifier
   # @return [String] the clean identifier
   def self.clean_identifier(identifier)
-    identifier.gsub(/[^A-Z0-9a-z ]/i, ' ')
+    identifier.gsub(/[^A-Z0-9a-z ]/i, ' ').upcase
   end
 
   # Initialize the object (new)

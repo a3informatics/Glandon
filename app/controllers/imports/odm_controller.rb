@@ -26,12 +26,12 @@ class Imports::OdmController < ApplicationController
   def create
     odm = Import::Odm.new
     object = odm.import(the_params)
-    if params[:imports].blank?
+    if object.errors.empty?
+      flash[:success] = "The form was created."
+      redirect_to forms_path
+    else
       flash[:error] = object.errors.full_messages.to_sentence
       redirect_to imports_odm_index_path(imports: {files: [the_params[:filename]]})
-    else
-      flash[:success] = "The form was created."
-      redirect_to forms_path 
     end
   end
   
