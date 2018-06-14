@@ -8,11 +8,11 @@ class OdmXml
   attr_reader   :filename
   
   def initialize(filename)
+    @errors = ActiveModel::Errors.new(self)
     @filename = filename
     xml = PublicFile.read(filename)
     @doc = Nokogiri::XML(xml)
     @doc.remove_namespaces!
-    @errors = ActiveModel::Errors.new(self)
   rescue => e
     msg = "Exception raised opening ODM XML file, filename=#{@filename}."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
