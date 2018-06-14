@@ -51,9 +51,8 @@ class SdtmUserDomain < Tabular
   # @return [SdtmUserDomain] the domain object.
   def self.find(id, ns, children=true)
     object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
+    children_from_triples(object, object.triples, id) if children
+    object.triples = ""
     return object
   end
 
@@ -340,7 +339,7 @@ class SdtmUserDomain < Tabular
         "    :" + self.id + " bd:includesColumn ?col . \n" + 
         "    ?col bd:hasProperty ?s . \n" + 
         "    ?s bo:hasProperty ?property . \n" +  
-        "    #{uri.to_ref} (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem)%2B ?property . \n" +
+        "    #{uri.to_ref} (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?property . \n" +
         "    ?s ?p ?o . \n" +
         "  }\n" +
         "}"

@@ -116,6 +116,7 @@ class Form::Item::Question < Form::Item
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "format"}, {:literal => "#{self.format}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "question_text"}, {:literal => "#{self.question_text}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "mapping"}, {:literal => "#{self.mapping}", :primitive_type => "string"})
+    self.tc_refs.sort_by! {|u| u.ordinal}
     self.tc_refs.each do |tc_ref|
       ref_uri = tc_ref.to_sparql_v2(uri, "hasThesaurusConcept", 'TCR', tc_ref.ordinal, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasThesaurusConcept"}, {:uri => ref_uri})
@@ -138,6 +139,7 @@ class Form::Item::Question < Form::Item
     question = item_def.add_question()
     question.add_translated_text("#{self.question_text}")
     if tc_refs.length > 0
+      self.tc_refs.sort_by! {|u| u.ordinal}
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
       self.tc_refs.each do |tc_ref|
@@ -156,7 +158,7 @@ class Form::Item::Question < Form::Item
     result = super
     result = result &&
       FieldValidation::valid_mapping?(:mapping, self.mapping, self) &&
-      FieldValidation::valid_format?(:question_text, self.format, self) &&
+      FieldValidation::valid_format?(:format, self.format, self) &&
       FieldValidation::valid_question?(:question_text, self.question_text, self) &&
       FieldValidation::valid_datatype?(:datatype, self.datatype, self)
     return result

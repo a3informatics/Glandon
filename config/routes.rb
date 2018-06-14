@@ -31,8 +31,18 @@ Rails.application.routes.draw do
           get :parent
         end
     	end
+      resources :iso_managed, only: [:index]
+      resources :biomedical_concepts, only: [] do
+        member do
+          get :domains
+        end
+      end
       resources :sdtm_user_domains, only: [:show]
-      resources :sdtm_ig_domains, only: [:show]
+      resources :sdtm_ig_domains, only: [:show] do
+        member do
+          get :clones
+        end
+      end
   	end
   end
   resources :markdown_engines, only: [:create, :index]
@@ -51,6 +61,7 @@ Rails.application.routes.draw do
       get :impact
       get :impact_start
       get :impact_next
+      get :changes
     end
   end
   resources :iso_managed do
@@ -66,9 +77,11 @@ Rails.application.routes.draw do
       get :impact
       get :impact_start
       get :impact_next
+      get :changes
     end
     member do
       get :branches
+      get :export
     end
   end
   resources :dashboard, only: [:index] do
@@ -148,7 +161,19 @@ Rails.application.routes.draw do
   resources :imports, :only => [:index]
   namespace :imports do
     resources :als, :only => [:new, :index, :create]
+    resources :odm, :only => [:new, :index, :create]
     resources :terms, :only => [:new, :index, :create]
+  end
+
+  # Exports
+  resources :exports, :only => [:index] do
+    collection do
+      get :terminologies
+      get :biomedical_concepts
+      get :forms
+      get :start
+      get :download
+    end
   end
 
   resources :notepads do

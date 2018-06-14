@@ -44,8 +44,10 @@ describe Form::Item::Question do
     result.datatype = "S"
     result.format = "20"
     result.question_text = "Hello|"
+    result.ordinal = 1
     result.tc_refs = []
     expect(result.valid?).to eq(false)
+    expect(result.errors.full_messages.to_sentence).to eq("Datatype contains an invalid datatype")
   end
 
   it "does not validate an invalid object, format" do
@@ -53,8 +55,10 @@ describe Form::Item::Question do
     result.datatype = "S"
     result.format = "3#"
     result.question_text = "Hello|"
+    result.ordinal = 1
     result.tc_refs = []
     expect(result.valid?).to eq(false)
+    expect(result.errors.full_messages.to_sentence).to eq("Format contains invalid characters")
   end
 
   it "allows object to be initialized from triples" do

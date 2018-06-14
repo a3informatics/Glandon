@@ -827,47 +827,85 @@ class IsoConcept
     self.instance_variable_set("@#{name}", value)
   end
 
+  def self.changes(items, child_property, options={})
+    previous = nil
+    results = { child_property: child_property, child_keys: {}, changes:[] }
+    items.reverse_each do |current|
+      record = current.to_json
+      if current.respond_to?(:children)
+        record[:differences] = difference_with_children(previous, current, child_property, options)
+      else
+        record[:differences] = difference(previous, current, options)
+        record[:differences][:children] = []
+      end
+      results[:changes] << record
+      record[:differences][:children].each do |k, v|
+        if !results[:child_keys].has_key?(v[child_property.to_sym])
+          results[:child_keys][v[child_property.to_sym]] = { label: v[:label], ordinal: v[:ordinal], children: [] }
+        end
+        results[:child_keys][v[child_property.to_sym]][:children].unshift(UriV3.new(uri: k).to_id)
+      end  
+      previous = current
+    end
+    return results
+  end
+
   # Diff? Are two objects different
   #
-  # @previous [Object] The previous object being compared
-  # @current [Object] The current object being compared
+  # @param previous [Object] The previous object being compared
+  # @param current [Object] The current object being compared
+  # @param [Hash] options the options to use for the diff operation
+  # @option options [Array] :ignore An array of properties to be ignored
+  # @option options [Array] :include An array of properties to be included (:label and :rdf_type recognized)
   # @return [Boolean] True if different, false otherwise.
   def self.diff?(previous, current, options={})
     options[:ignore] = [] if options[:ignore].blank?
+    options[:include] = [] if options[:include].blank?
     return true if previous.nil?
     return true if current.nil?
     check_classes(previous, current, __method__.to_s)
     result = diff?(previous.reference, current.reference) if current.respond_to? :reference
     return true if result
-    current_set = property_set(current)
-    previous_set = property_set(previous)
+    current_set = property_set(current, options)
+    previous_set = property_set(previous, options)
     current_set.each { |k, v| return true if !property_equal?(k, previous_set[k][:value], v[:value], options) }
     return false
   end
 
   # Diff With Children? Are two objects and their children different.
   #
-  # @previous [Object] The previous object being compared
-  # @current [Object] The current object being compared
+  # @param previous [Object] The previous object being compared
+  # @param current [Object] The current object being compared
+  # @param identifier [String] The property to be used to indentify unique children
+  # @param [Hash] options the options to use for the diff operation
+  # @option options [Array] :ignore An array of properties to be ignored
+  # @option options [Array] :include An array of properties to be included (:label and :rdf_type recognized)
   # @return [Boolean] True if different, false otherwise.
   def self.diff_with_children?(previous, current, identifier, options={})
     options[:ignore] = [] if options[:ignore].blank?
-    diff?(previous, current, options)
+    options[:include] = [] if options[:include].blank?
+    return true if diff?(previous, current, options)
+    return false if !current.respond_to?(:children)
     current.children.each do |c_child|
       p_child = previous.children.find { |x| x.instance_variable_get("@#{identifier}") == c_child.instance_variable_get("@#{identifier}") }
       return true if p_child.nil?
       return true if diff?(p_child, c_child, options)
+      return true if diff_with_children?(p_child, c_child, identifier, options)
     end
     return false
   end
 
   # Difference between two objects.
   #
-  # @previous [Object] The previous object being compared
-  # @current [Object] The current object being compared
+  # @param previous [Object] The previous object being compared
+  # @param current [Object] The current object being compared
+  # @param [Hash] options the options to use for the diff operation
+  # @option options [Array] :ignore An array of properties to be ignored
+  # @option options [Array] :include An array of properties to be included (:label and :rdf_type recognized)
   # @return [Hash] The difference hash
   def self.difference(previous, current, options={})
     options[:ignore] = [] if options[:ignore].blank?
+    options[:include] = [] if options[:include].blank?
     results = {}
     status = :no_change
     if previous.nil? && current.nil?
@@ -887,82 +925,44 @@ class IsoConcept
 
   # Difference With Children. The difference between two objects and thir respective child objects.
   #
-  # @param [Object] previous the previous object being compared
-  # @param [Object] current the current object being compared
-  # @param [String] identifier the property ised to identify an object
+  # @param previous [Object] The previous object being compared
+  # @param current [Object] The current object being compared
+  # @param identifier [String] The property to be used to indentify unique children
+  # @param [Hash] options the options to use for the diff operation
+  # @option options [Array] :ignore An array of properties to be ignored
+  # @option options [Array] :include An array of properties to be included (:label and :rdf_type recognized)
   # @return [Hash] The differenc hash
   def self.difference_with_children(previous, current, identifier, options={})
     options[:ignore] = [] if options[:ignore].blank?
+    options[:include] = [] if options[:include].blank?
     results = difference(previous, current, options)
     children = {}
     if previous.nil? && current.nil?
       children = {}
     elsif previous.nil?
-      current.children.each { |child| difference_record(children, :created, child) }
+      current.children.each { |child| difference_record(children, :created, child, options) }
     elsif current.nil?
-      previous.children.each { |child| difference_record(children, :deleted, child) }
+      previous.children.each { |child| difference_record(children, :deleted, child, options) }
     else
       current_index = Hash[current.children.map{|x| [x.instance_variable_get("@#{identifier}"), x]}]
       previous_index = Hash[previous.children.map{|x| [x.instance_variable_get("@#{identifier}"), x]}]
       current.children.each do |child|
+        status = :no_change
         id = child.instance_variable_get("@#{identifier}")
-        diff = self.diff?(previous_index[id], child, options) 
+        diff = self.diff_with_children?(previous_index[id], child, identifier, options) 
         if diff && previous_index[id].nil? 
           status = :created
         elsif diff
           status = :updated
-        else
-          status = :no_change
         end
-        difference_record(children, status, child)
+        difference_record(children, status, child, options)
       end
-      deleted = current_index.reject { |k, _| previous_index.include? k }
-      deleted.each { |k, v| difference_record(children, :deleted, v) }
+      deleted = previous_index.reject { |k, _| current_index.include? k }
+      deleted.each { |k, v| difference_record(children, :deleted, v, options) }
     end
     results[:children] = children
     return results
   end
-
-=begin
-  # Different?
-  #
-  # @previous [Object] The previous object being compared
-  # @current [Object] The current object being compared
-  # @return [boolean] True if different, false otherwise.
-  def self.diff?(previous, current)
-    return true if previous.nil?
-    return true if current.nil?
-    result = diff_properties?(previous, previous.properties, current, current.properties)
-    result = diff_properties?(previous, previous.extension_properties, current, current.extension_properties ) if !result 
-    return result
-  end
-
-  # Difference between this and another object.
-  #
-  # @previous [Object] The previous object being compared
-  # @current [Object] The current object being compared
-  # @return [Hash] The differenc hash
-  def self.difference(previous, current)
-    results = {}
-    status = :no_change
-    if previous.nil? && current.nil?
-      status = :not_present
-    elsif previous.nil?
-      difference_properties(nil, [], current, current.properties, results)
-      difference_properties(nil, [], current, current.extension_properties, results)
-      status = :created
-    elsif current.nil?
-      difference_properties(previous, previous.properties, nil, [], results)
-      difference_properties(previous, previous.extension_properties, nil, [], results)
-      status = :deleted
-    else
-      changes1 = difference_properties(previous, previous.properties, current, current.properties, results)
-      changes2 = difference_properties(previous, previous.extension_properties, current, current.extension_properties, results)
-      status = :updated if changes1 || changes2
-    end
-    return {status: status, results: results}
-  end
-=end
 
   # Child Match, do the list of child objects match. The list are compared using
   # a single, specified, property. 
@@ -1025,16 +1025,17 @@ class IsoConcept
 private
 
   def self.property_equal?(name, previous, current, options)
-    return true if options[:ignore].include? name
+    return true if options[:ignore].include? name.to_sym
     return current == previous
   end
 
   def self.property_difference(previous, current, results, options)
     changes = false
     changes = property_difference(previous.reference, current.reference, results, options) if current.respond_to? :reference
-    previous_set = property_set(previous)
-    current_set = property_set(current)
+    previous_set = property_set(previous, options)
+    current_set = property_set(current, options)
     current_set.each do |k, v|
+      next if options[:ignore].include?(k.to_sym)
       status = :no_change
       status = :updated if !property_equal?(k, previous_set[k][:value], v[:value], options)
       property_record(results, v[:label].to_sym, status, previous_set[k][:value], v[:value])
@@ -1044,10 +1045,9 @@ private
   end
 
   def self.property_result(object, results, status, options)
-    changes = false
     changes = property_result(object.reference, results, status, options) if object.respond_to? :reference
-    set = property_set(object)
-    set.each do |k, v|
+    property_set(object, options).each do |k, v|
+      next if options[:ignore].include?(k.to_sym)
       a = b = ""
       status == :deleted ? a = v[:value] : b = v[:value]
       property_record(results, v[:label].to_sym, status, a, b)
@@ -1059,79 +1059,44 @@ private
     results[key] = {status: status, previous: previous, current: current, difference: Diffy::Diff.new(previous, current).to_s(:html)}
   end
 
-  def self.property_set(object)
-    set = []
+  def self.property_set(object, options)
+    set = include_properties(object, options)
     set += object.additional_properties if object.respond_to? :additional_properties
     set += property_set_values(object, object.properties)
     set += property_set_values(object, object.extension_properties)
     return set.map { |u| [u[:instance_variable], u] }.to_h
   end
   
+  def self.include_properties(object, options)
+    result = []
+    result << { instance_variable: "label", label: "Label", value: object.label } if options[:include].include?(:label)
+    result << { instance_variable: "rdf_type", label: "Type", value: object.rdf_type } if options[:include].include?(:rdf_type)
+    return result
+  end
+
   def self.property_set_values(object, properties)
     return properties.each { |p| p[:value] = object.instance_variable_get("@#{p[:instance_variable]}")}
   end
   
-  def self.difference_record(results, status, object)
+  def self.difference_record(results, status, object, options)
     record = { status: status }
-    difference_record_properties(record, object.reference) if object.respond_to? :reference 
-    difference_record_properties(record, object) 
+    difference_record_properties(record, object.reference, options) if object.respond_to? :reference 
+    difference_record_properties(record, object, options) 
     results[object.uri.to_s] = record
   end
 
-  def self.difference_record_properties(record, object)
-    set = property_set(object)
-    set.each { |k, v| record[v[:instance_variable].to_sym] = v[:value] }
+  def self.difference_record_properties(record, object, options)
+    set = property_set(object, options)
+    set.each do |k, v| 
+      next if options[:ignore].include?(k.to_sym)
+      record[v[:instance_variable].to_sym] = v[:value] 
+    end
   end
 
   def self.check_classes(previous, current, method)
     return if previous.class.name == current.class.name
     raise Exceptions::ApplicationLogicError.new(message: "Mismatch of class in #{method} within #{C_CLASS_NAME} object.") 
   end
-
-=begin   
-  def self.diff_properties?(previous, previous_properties, current, current_properties)
-    previous_labels = previous_properties.map{|x| x[:label]}
-    current_labels = current_properties.map{|x| x[:label]}
-    return true if current_labels - previous_labels != []
-    previous_values = Hash[previous_properties.map{|x| [x[:label], previous.instance_variable_get("@#{x[:instance_variable]}") ]}]
-    current_values = Hash[current_properties.map{|x| [x[:label],  current.instance_variable_get("@#{x[:instance_variable]}") ]}]
-    return true if current_values != previous_values
-    return false
-  end
-
-  def self.difference_properties(previous, previous_properties, current, current_properties, results)
-    check = {}
-    changes = false
-    current_properties.each do |current_prop|
-      current_value = current.instance_variable_get("@#{current_prop[:instance_variable]}")
-      l = previous_properties.select {|previous_prop| previous_prop[:instance_variable] == current_prop[:instance_variable] }
-      if l.length == 0
-        changes = true
-        results[current_prop[:label].to_sym] = {status: :created, previous: "", current: current_value, 
-          difference: Diffy::Diff.new("", current_value).to_s(:html) }
-      elsif l.length == 1
-        previous_value = previous.instance_variable_get("@#{current_prop[:instance_variable]}")
-        if previous_value == current_value
-          results[current_prop[:label].to_sym] = {status: :no_change, previous: previous_value, current: current_value, difference: "" }
-        else
-          changes = true
-          results[current_prop[:label].to_sym] = {status: :updated, previous: previous_value, current: current_value, 
-          	difference: Diffy::Diff.new(previous_value, current_value).to_s(:html) }
-        end
-      end
-      check[current_prop[:instance_variable]] = true
-    end
-    previous_properties.each do |previous_prop|
-      if !check.has_key?(previous_prop[:instance_variable])
-        changes = true
-        previous_value = previous.instance_variable_get("@#{previous_prop[:instance_variable]}")
-        results[previous_prop[:label].to_sym] = {status: :deleted, previous: previous_value, current: "", 
-          difference: Diffy::Diff.new(previous_value, "").to_s(:html) }
-      end
-    end
-    return changes
-  end
-=end
 
   # Set a class property depending on the content of the triple. Save the definition
   def set_class_property(triple, extension=false)

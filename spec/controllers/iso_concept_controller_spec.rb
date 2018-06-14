@@ -65,7 +65,7 @@ describe IsoConceptController do
       hash = JSON.parse(response.body, symbolize_names: true)
     #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
       results = read_yaml_file(sub_dir, "iso_concept_controller_example_1.yaml")
-      expect(hash).to match(results)
+      expect(hash).to hash_equal(results)
     end
 
     it "allows impact to be assessed" do

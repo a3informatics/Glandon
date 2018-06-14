@@ -54,7 +54,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
     end
     
     before :each do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       ua_curator_login
     end
 

@@ -104,6 +104,7 @@ class Form::Group::Normal < Form::Group
       ref_uri = self.bc_ref.to_sparql_v2(uri, "hasBiomedicalConcept", 'BCR', 1, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasBiomedicalConcept"}, {:uri => ref_uri})
     end
+    self.groups.sort_by! {|u| u.ordinal}
     self.groups.each do |child|
       if child.rdf_type == Form::Group::Common::C_RDF_TYPE_URI.to_s
         ref_uri = child.to_sparql_v2(uri, sparql)
@@ -124,6 +125,7 @@ class Form::Group::Normal < Form::Group
   # @return [void]
   def to_xml(metadata_version, form_def)
     if self.groups.length > 0
+      self.groups.sort_by! {|u| u.ordinal}
       self.groups.each { |group| group.to_xml(metadata_version, form_def) }
     end      
     super(metadata_version, form_def)

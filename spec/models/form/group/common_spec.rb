@@ -133,7 +133,8 @@ describe Form::Group::Common do
     item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
   #write_hash_to_yaml_file_2(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "find_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "allows an object to be created from JSON" do
@@ -146,7 +147,8 @@ describe Form::Group::Common do
   it "allows an object to be exported as JSON" do
     item = Form::Group::Common.find("F-ACME_VSBASELINE1_G1_G1","http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = read_yaml_file_to_hash_2(sub_dir, "to_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "allows an object to be exported as SPARQL" do

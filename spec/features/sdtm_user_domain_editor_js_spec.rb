@@ -345,6 +345,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       ui_click_back_button
+      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       expect(tokens).to match_array([])
     end  

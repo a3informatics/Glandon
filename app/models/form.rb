@@ -274,6 +274,7 @@ class Form < IsoManaged
     subject = {:uri => uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       ref_uri = child.to_sparql_v2(uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasGroup"}, {:uri => ref_uri})
@@ -298,6 +299,7 @@ class Form < IsoManaged
     study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")    
     study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
     form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|
       child.to_xml(metadata_version, form_def)
     end

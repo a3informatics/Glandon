@@ -827,7 +827,6 @@ describe "Form Editor", :type => :feature do
 
     it "allows common items to be moved up and down", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Date and Time (--DTC)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)"]')
       ui_click_node_key(key1)
@@ -846,7 +845,6 @@ describe "Form Editor", :type => :feature do
 
     it "allows BCs to have completion instructions and notes", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
@@ -862,7 +860,6 @@ describe "Form Editor", :type => :feature do
     
     it "allows a BC property to have enabled and optional, completion instructions and notes", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)", "Result Value (--ORRES)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
@@ -889,7 +886,6 @@ describe "Form Editor", :type => :feature do
     
     it "allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Supine Position"]')
       ui_click_node_key(key1)
       wait_for_ajax
@@ -904,7 +900,6 @@ describe "Form Editor", :type => :feature do
 
     it "allows the CL to be moved up and down for BC group", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)", "Result Units (--ORRESU)", "Gram"]')
       ui_click_node_key(key1)
       ui_check_node_ordinal(key1, 3)    
@@ -916,7 +911,6 @@ describe "Form Editor", :type => :feature do
 
     it "displays the CL Item Panel for BCs", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Standing"]')
       ui_click_node_key(key1)
       expect(page).to have_content("Code List Details")
@@ -926,7 +920,6 @@ describe "Form Editor", :type => :feature do
 
     it "allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY", js: true do 
       load_form("CRF TEST 1") 
-      wait_for_ajax(5)
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       ui_click_node_key(key1)
       wait_for_ajax
@@ -954,7 +947,6 @@ describe "Form Editor", :type => :feature do
 
     it "allows a BC to be deleted", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
@@ -965,7 +957,6 @@ describe "Form Editor", :type => :feature do
 
     it "handles common when BC deleted", js: true do
       load_form("CRF TEST 2")
-      wait_for_ajax
       key1 = ui_get_key_by_path('["CRF test Form 2", "Group", "Systolic Blood Pressure (BC C25298)"]')
       ui_click_node_key(key1)
       wait_for_ajax
@@ -977,19 +968,17 @@ describe "Form Editor", :type => :feature do
   
     it "loads current terminology", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       expect(page).to have_content 'Current Terminologies'
       expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
       fill_in 'searchTable_csearch_cl', with: 'C100129'
       ui_hit_return('searchTable_csearch_cl')
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'Showing 1 to 10 of 142 entries'
     end
 
     it "form edit timeout warnings and expiration", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_form("CRF TEST 1") 
-      wait_for_ajax
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
@@ -1011,7 +1000,6 @@ describe "Form Editor", :type => :feature do
     it "form edit timeout warnings and extend", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_form("CRF TEST 1") 
-      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
@@ -1039,11 +1027,11 @@ describe "Form Editor", :type => :feature do
     it "edit clears token on close", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_form("CRF TEST 1") 
-      wait_for_ajax
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Close'
+      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
     end  
@@ -1051,18 +1039,17 @@ describe "Form Editor", :type => :feature do
     it "edit clears token on back button", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       load_form("CRF TEST 1") 
-      wait_for_ajax
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       ui_click_back_button
+      wait_for_ajax(10)
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
     end  
 
     it "allows the fields to be valdated", js: true do
       load_form("CRF TEST 1") 
-      wait_for_ajax
       # Keys
       key_form = ui_get_key_by_path('["CRF Test Form"]')
       key_bc_group = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
@@ -1138,7 +1125,6 @@ describe "Form Editor", :type => :feature do
     it "allows the form to be saved", js: true do
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
-      wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label"
       ui_click_save
       wait_for_ajax
@@ -1151,7 +1137,6 @@ describe "Form Editor", :type => :feature do
     it "allows the edit session to be closed", js: true do
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
-      wait_for_ajax
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2"
       ui_click_close
       wait_for_ajax
@@ -1161,10 +1146,9 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows the edit session to be closed indirectly, saves data", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 
-      wait_for_ajax(10)
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
       ui_click_back_button
       wait_for_ajax(10)

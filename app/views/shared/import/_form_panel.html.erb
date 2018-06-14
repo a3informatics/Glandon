@@ -16,7 +16,7 @@
           <tr>
             <td><%= item[:identifier] %></td>
             <td><%= item[:label] %></td>
-            <td><%= link_to "Import", imports_als_path(imports: {identifier: item[:identifier], filename: item[:filename]}), :class => "btn btn-success btn-xs", method: :post %></td>
+            <td><%= link_to "Import", import_path.call(imports: {identifier: item[:identifier], filename: item[:filename]}), :class => "btn btn-success btn-xs", method: :post %></td>
           </tr>
         <% end %>
       <tbody>

@@ -38,25 +38,20 @@
     :previous: ''
     :current: ''
     :difference: <div class="diff"></div>
-  :Ordinal:
+  :Domain prefix:
     :status: :no_change
-    :previous: 1
-    :current: 1
-    :difference: <div class="diff"></div>
-  :Rule:
-    :status: :no_change
-    :previous: ''
-    :current: ''
+    :previous: DM
+    :current: DM
     :difference: <div class="diff"></div>
   :Domain structure:
     :status: :no_change
     :previous: One record per subject
     :current: One record per subject
     :difference: <div class="diff"></div>
-  :Domain prefix:
+  :Rule:
     :status: :no_change
-    :previous: DM
-    :current: DM
+    :previous: ''
+    :current: ''
     :difference: <div class="diff"></div>
 :children:
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_STUDYID:
@@ -64,95 +59,133 @@
     :datatype: Char
     :classification: Identifier
     :sub_classification: ''
-    :ordinal: 1
     :name: STUDYID
-    :rule: ''
-    :description: Unique identifier for a study.
     :prefixed: false
+    :description: Unique identifier for a study.
+    :rule: ''
     :compliance: Required
     :controlled_term_or_format: ''
     :notes: Unique identifier for a study.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DOMAIN:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :ordinal: 2
-    :name: DOMAIN
-    :rule: ''
-    :description: Two-character abbreviation for the domain most relevant to the observation.
-      The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
-      when datasets are merged.
-    :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: "(DOMAIN)"
-    :notes: Two-character abbreviation for the domain.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_USUBJID:
-    :status: :updated
-    :datatype: Char
-    :classification: Identifier
-    :sub_classification: ''
-    :ordinal: 3
-    :name: USUBJID
-    :rule: ''
-    :description: Identifier used to uniquely identify a subject across all studies
-      for all applications or submissions involving the product.
-    :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: ''
-    :notes: Identifier used to uniquely identify a subject across all studies for
-      all applications or submissions involving the product. This must be a unique
-      number, and could be a compound identifier formed by concatenating STUDYID-SITEID-SUBJID.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SUBJID:
-    :status: :no_change
-    :datatype: Char
-    :classification: Topic
-    :sub_classification: ''
-    :ordinal: 4
-    :name: SUBJID
-    :rule: ''
-    :description: Subject identifier, which must be unique within the study. Often
-      the ID of the subject as recorded on a CRF.
-    :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: ''
-    :notes: Subject identifier, which must be unique within the study. Often the ID
-      of the subject as recorded on a CRF.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFSTDTC:
-    :status: :no_change
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ACTARMCD:
+    :status: :created
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 5
-    :name: RFSTDTC
-    :rule: ''
-    :description: Reference Start Date/time for the subject in ISO 8601 character
-      format. Usually equivalent to date/time when subject was first exposed to study
-      treatment. Required for all randomized subjects; will be null for all subjects
-      who did not meet the milestone the date requires, such as screen failures or
-      unassigned subjects.
+    :name: ACTARMCD
     :prefixed: false
+    :description: Short name for the actual Arm in which the subject participated
+      during the trial, limited to 20 characters.
+    :rule: ''
+    :compliance: Required
+    :controlled_term_or_format: ''
+    :notes: |-
+      Code of actual Arm. When an Arm is not planned (not in Trial Arms), ACTARMCD will be UNPLAN. Randomized subjects who were not treated will be given a value of NOTTRT. Values should be "SCRNFAIL" for screen failures and "NOTASSGN" for subjects not assigned to treatment. Restricted to values in Trial Arms in all other cases.
+
+      ACTARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ACTARMCD is longer than for other short variables to accommodate the kind of values that are likely to be needed for crossover trials.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFXSTDTC:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: RFXSTDTC
+    :prefixed: false
+    :description: First date/time of exposure to any protocol-specified treatment
+      or therapy for the subject in ISO 8601 character format.
+    :rule: ''
     :compliance: Expected
     :controlled_term_or_format: ISO 8601
-    :notes: Reference Start Date/time for the subject in ISO 8601 character format.
-      Usually equivalent to date/time when subject was first exposed to study treatment.
-      Required for all randomized subjects; will be null for all subjects who did
-      not meet the milestone the date requires, such as screen failures or unassigned
-      subjects.
+    :notes: First date of exposure to any protocol-specified treatment or therapy,
+      equal to the earliest value of EXSTDTC.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFXENDTC:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: RFXENDTC
+    :prefixed: false
+    :description: Last date/time of exposure to any protocol-specified treatment or
+      therapy for the subject in ISO 8601 character format.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ISO 8601
+    :notes: Last date of exposure to any protocol-specified treatment or therapy,
+      equal to the latest value of EXENDTC (or the latest value of EXSTDTC if EXENDTC
+      was not collected or is missing).
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DMDY:
+    :status: :updated
+    :datatype: Num
+    :classification: Timing
+    :sub_classification: ''
+    :name: DMDY
+    :prefixed: true
+    :description: Actual study day of visit/collection/exam expressed in integer days
+      relative to the sponsor-defined RFSTDTC in Demographics.
+    :rule: ''
+    :compliance: Permissible
+    :controlled_term_or_format: ''
+    :notes: Study day of collection measured as integer days.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SEX:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: SEX
+    :prefixed: false
+    :description: Sex of the subject.
+    :rule: ''
+    :compliance: Required
+    :controlled_term_or_format: "(SEX)"
+    :notes: Sex of the subject.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SITEID:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: SITEID
+    :prefixed: false
+    :description: Unique identifier for a site within a study.
+    :rule: ''
+    :compliance: Required
+    :controlled_term_or_format: ''
+    :notes: Unique identifier for a site within a study.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_INVNAM:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: INVNAM
+    :prefixed: false
+    :description: Name of the investigator for a site.
+    :rule: ''
+    :compliance: Permissible
+    :controlled_term_or_format: ''
+    :notes: Name of the investigator for a site.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_AGE:
+    :status: :updated
+    :datatype: Num
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: AGE
+    :prefixed: false
+    :description: Age expressed in AGEU
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ''
+    :notes: Age expressed in AGEU. May be derived from RFSTDTC and BRTHDTC, but BRTHDTC
+      may not be available in all cases (due to subject privacy concerns).
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFENDTC:
     :status: :no_change
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 6
     :name: RFENDTC
-    :rule: ''
+    :prefixed: false
     :description: Reference End Date/time for the subject in ISO 8601 character format.
       Usually equivalent to the date/time when subject was determined to have ended
       the trial, and often equivalent to date/time of last exposure to study treatment.
       Required for all randomized subjects; null for screen failures or unassigned
       subjects.
-    :prefixed: false
+    :rule: ''
     :compliance: Expected
     :controlled_term_or_format: ISO 8601
     :notes: Reference End Date/time for the subject in ISO 8601 character format.
@@ -160,240 +193,46 @@
       the trial, and often equivalent to date/time of last exposure to study treatment.
       Required for all randomized subjects; null for screen failures or unassigned
       subjects.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFXSTDTC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 7
-    :name: RFXSTDTC
-    :rule: ''
-    :description: First date/time of exposure to any protocol-specified treatment
-      or therapy for the subject in ISO 8601 character format.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ISO 8601
-    :notes: First date of exposure to any protocol-specified treatment or therapy,
-      equal to the earliest value of EXSTDTC.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFXENDTC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 8
-    :name: RFXENDTC
-    :rule: ''
-    :description: Last date/time of exposure to any protocol-specified treatment or
-      therapy for the subject in ISO 8601 character format.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ISO 8601
-    :notes: Last date of exposure to any protocol-specified treatment or therapy,
-      equal to the latest value of EXENDTC (or the latest value of EXSTDTC if EXENDTC
-      was not collected or is missing).
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFICDTC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 9
-    :name: RFICDTC
-    :rule: ''
-    :description: Date/time of informed consent in ISO 8601 character format.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ISO 8601
-    :notes: Date/time of informed consent in ISO 8601 character format. This will
-      be the same as the date of informed consent in the Disposition domain, if that
-      protocol milestone is documented. Would be null only in studies not collecting
-      the date of informed consent.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFPENDTC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 10
-    :name: RFPENDTC
-    :rule: ''
-    :description: Date/time when subject ended participation or follow-up in a trial,
-      in ISO 8601 character format. Should correspond to the last known date of contact.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ISO 8601
-    :notes: Date/time when subject ended participation or follow-up in a trial, as
-      defined in the protocol, in ISO 8601 character format. Should correspond to
-      the last known date of contact. Examples include completion date, withdrawal
-      date, last follow-up, date recorded for lost to follow up, or death date.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DTHDTC:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 11
-    :name: DTHDTC
-    :rule: ''
-    :description: Date/time of death for any subject who died, in ISO 8601 format.
-      Should represent the date/time that is captured in the clinical-trial database.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ISO 8601
-    :notes: Date/time of death for any subject who died, in ISO 8601 format. Should
-      represent the date/time that is captured in the clinical-trial database.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DTHFL:
-    :status: :deleted
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 12
-    :name: DTHFL
-    :rule: ''
-    :description: A value of ‘Y’ indicates the subject died. Should be Y or null.
-      Should be populated even when the death date is unknown.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: "(NY)"
-    :notes: Indicates the subject died. Should be Y or null. Should be populated even
-      when the death date is unknown.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SITEID:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 13
-    :name: SITEID
-    :rule: ''
-    :description: Unique identifier for a site within a study.
-    :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: ''
-    :notes: Unique identifier for a site within a study.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_INVID:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 14
-    :name: INVID
-    :rule: ''
-    :description: An identifier to describe the Investigator for the study. May be
-      used in addition to the SITEID. Not needed if SITEID is equivalent to INVID.
-    :prefixed: false
-    :compliance: Permissible
-    :controlled_term_or_format: ''
-    :notes: An identifier to describe the Investigator for the study. May be used
-      in addition to SITEID. Not needed if SITEID is equivalent to INVID.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_INVNAM:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 15
-    :name: INVNAM
-    :rule: ''
-    :description: Name of the investigator for a site.
-    :prefixed: false
-    :compliance: Permissible
-    :controlled_term_or_format: ''
-    :notes: Name of the investigator for a site.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_BRTHDTC:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 16
-    :name: BRTHDTC
-    :rule: ''
-    :description: Date/time of birth of the subject in ISO 8601 character format.
-    :prefixed: false
-    :compliance: Permissible
-    :controlled_term_or_format: ISO 8601
-    :notes: Date/time of birth of the subject.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_AGE:
-    :status: :updated
-    :datatype: Num
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 17
-    :name: AGE
-    :rule: ''
-    :description: Age expressed in AGEU
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: ''
-    :notes: Age expressed in AGEU. May be derived from RFSTDTC and BRTHDTC, but BRTHDTC
-      may not be available in all cases (due to subject privacy concerns).
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_AGEU:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 18
-    :name: AGEU
-    :rule: ''
-    :description: Units associated with AGE.
-    :prefixed: false
-    :compliance: Expected
-    :controlled_term_or_format: "(AGEU)"
-    :notes: Units associated with AGE.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SEX:
-    :status: :updated
-    :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 19
-    :name: SEX
-    :rule: ''
-    :description: Sex of the subject.
-    :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: "(SEX)"
-    :notes: Sex of the subject.
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RACE:
     :status: :updated
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 20
     :name: RACE
-    :rule: ''
+    :prefixed: false
     :description: Race of the subject. Sponsors should refer to “Collection of Race
       and Ethnicity Data in Clinical Trials” (FDA, September 2005) for guidance regarding
       the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm)
-    :prefixed: false
+    :rule: ''
     :compliance: Expected
     :controlled_term_or_format: "(RACE)"
     :notes: Race of the subject. Sponsors should refer to "Collection of Race and
       Ethnicity Data in Clinical Trials" (FDA, September 2005) for guidance regarding
       the collection of race (http://www.fda.gov/cder/guidance/5656fnl.htm) See Assumption
       below regarding RACE.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ETHNIC:
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DMDTC:
     :status: :updated
     :datatype: Char
-    :classification: Qualifier
-    :sub_classification: Record Qualifier
-    :ordinal: 21
-    :name: ETHNIC
+    :classification: Timing
+    :sub_classification: ''
+    :name: DMDTC
+    :prefixed: true
+    :description: Collection date and time of an observation represented in IS0 8601
+      character format.
     :rule: ''
-    :description: The ethnicity of the subject. Sponsors should refer to “Collection
-      of Race and Ethnicity Data in Clinical Trials” (FDA, September 2005) for guidance
-      regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm).
-    :prefixed: false
     :compliance: Permissible
-    :controlled_term_or_format: "(ETHNIC)"
-    :notes: The ethnicity of the subject. Sponsors should refer to "Collection of
-      Race and Ethnicity Data in Clinical Trials" (FDA, September 2005) for guidance
-      regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm).
+    :controlled_term_or_format: ISO 8601
+    :notes: Date/time of demographic data collection.
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ARMCD:
     :status: :updated
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 22
     :name: ARMCD
-    :rule: ''
+    :prefixed: false
     :description: ARMCD is limited to 20 characters and does not have special character
       restrictions.
-    :prefixed: false
+    :rule: ''
     :compliance: Required
     :controlled_term_or_format: ''
     :notes: ARMCD is limited to 20 characters and does not have special character
@@ -402,47 +241,169 @@
       trials. For example, if ARMCD values for a seven-period crossover were constructed
       using two-character abbreviations for each treatment and separating hyphens,
       the length of ARMCD values would be 20.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_COUNTRY:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: COUNTRY
+    :prefixed: false
+    :description: Country of the investigational site at which the subject participated
+      in the trial in ISO 3166 three-character format.
+    :rule: ''
+    :compliance: Required
+    :controlled_term_or_format: |-
+      (COUNTRY)
+      ISO 3166
+    :notes: Country of the investigational site in which the subject participated
+      in the trial.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFICDTC:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: RFICDTC
+    :prefixed: false
+    :description: Date/time of informed consent in ISO 8601 character format.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ISO 8601
+    :notes: Date/time of informed consent in ISO 8601 character format. This will
+      be the same as the date of informed consent in the Disposition domain, if that
+      protocol milestone is documented. Would be null only in studies not collecting
+      the date of informed consent.
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ARM:
     :status: :updated
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 23
     :name: ARM
-    :rule: ''
-    :description: Name of the Arm to which the subject was assigned.
     :prefixed: false
+    :description: Name of the Arm to which the subject was assigned.
+    :rule: ''
     :compliance: Required
     :controlled_term_or_format: ''
     :notes: Name of the Arm to which the subject was assigned.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ACTARMCD:
-    :status: :deleted
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DTHDTC:
+    :status: :created
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 24
-    :name: ACTARMCD
-    :rule: ''
-    :description: Short name for the actual Arm in which the subject participated
-      during the trial, limited to 20 characters.
+    :name: DTHDTC
     :prefixed: false
+    :description: Date/time of death for any subject who died, in ISO 8601 format.
+      Should represent the date/time that is captured in the clinical-trial database.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ISO 8601
+    :notes: Date/time of death for any subject who died, in ISO 8601 format. Should
+      represent the date/time that is captured in the clinical-trial database.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ETHNIC:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: ETHNIC
+    :prefixed: false
+    :description: The ethnicity of the subject. Sponsors should refer to “Collection
+      of Race and Ethnicity Data in Clinical Trials” (FDA, September 2005) for guidance
+      regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm).
+    :rule: ''
+    :compliance: Permissible
+    :controlled_term_or_format: "(ETHNIC)"
+    :notes: The ethnicity of the subject. Sponsors should refer to "Collection of
+      Race and Ethnicity Data in Clinical Trials" (FDA, September 2005) for guidance
+      regarding the collection of ethnicity (http://www.fda.gov/cder/guidance/5656fnl.htm).
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DTHFL:
+    :status: :created
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: DTHFL
+    :prefixed: false
+    :description: A value of ‘Y’ indicates the subject died. Should be Y or null.
+      Should be populated even when the death date is unknown.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: "(NY)"
+    :notes: Indicates the subject died. Should be Y or null. Should be populated even
+      when the death date is unknown.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_BRTHDTC:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: BRTHDTC
+    :prefixed: false
+    :description: Date/time of birth of the subject in ISO 8601 character format.
+    :rule: ''
+    :compliance: Permissible
+    :controlled_term_or_format: ISO 8601
+    :notes: Date/time of birth of the subject.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_AGEU:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: AGEU
+    :prefixed: false
+    :description: Units associated with AGE.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: "(AGEU)"
+    :notes: Units associated with AGE.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_INVID:
+    :status: :updated
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: INVID
+    :prefixed: false
+    :description: An identifier to describe the Investigator for the study. May be
+      used in addition to the SITEID. Not needed if SITEID is equivalent to INVID.
+    :rule: ''
+    :compliance: Permissible
+    :controlled_term_or_format: ''
+    :notes: An identifier to describe the Investigator for the study. May be used
+      in addition to SITEID. Not needed if SITEID is equivalent to INVID.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_SUBJID:
+    :status: :no_change
+    :datatype: Char
+    :classification: Topic
+    :sub_classification: ''
+    :name: SUBJID
+    :prefixed: false
+    :description: Subject identifier, which must be unique within the study. Often
+      the ID of the subject as recorded on a CRF.
+    :rule: ''
     :compliance: Required
     :controlled_term_or_format: ''
-    :notes: |-
-      Code of actual Arm. When an Arm is not planned (not in Trial Arms), ACTARMCD will be UNPLAN. Randomized subjects who were not treated will be given a value of NOTTRT. Values should be "SCRNFAIL" for screen failures and "NOTASSGN" for subjects not assigned to treatment. Restricted to values in Trial Arms in all other cases.
-
-      ACTARMCD is limited to 20 characters and does not have special character restrictions. The maximum length of ACTARMCD is longer than for other short variables to accommodate the kind of values that are likely to be needed for crossover trials.
+    :notes: Subject identifier, which must be unique within the study. Often the ID
+      of the subject as recorded on a CRF.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DOMAIN:
+    :status: :updated
+    :datatype: Char
+    :classification: Identifier
+    :sub_classification: ''
+    :name: DOMAIN
+    :prefixed: false
+    :description: Two-character abbreviation for the domain most relevant to the observation.
+      The Domain abbreviation is also used as a prefix for variables to ensure uniqueness
+      when datasets are merged.
+    :rule: ''
+    :compliance: Required
+    :controlled_term_or_format: "(DOMAIN)"
+    :notes: Two-character abbreviation for the domain.
   http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_ACTARM:
-    :status: :deleted
+    :status: :created
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 25
     :name: ACTARM
-    :rule: ''
+    :prefixed: false
     :description: Description of the actual Arm in which the subject participated
       during the trial.
-    :prefixed: false
+    :rule: ''
     :compliance: Required
     :controlled_term_or_format: ''
     :notes: Description of actual Arm. When an Arm is not planned (not in Trial Arms),
@@ -450,48 +411,54 @@
       will be given a value of "Not Treated". Values should be "Screen Failure" for
       screen failures and "Not Assigned" for subjects not assigned to treatment. Restricted
       to values in Trial Arms in all other cases.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_COUNTRY:
-    :status: :updated
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFPENDTC:
+    :status: :created
     :datatype: Char
     :classification: Qualifier
     :sub_classification: Record Qualifier
-    :ordinal: 26
-    :name: COUNTRY
-    :rule: ''
-    :description: Country of the investigational site at which the subject participated
-      in the trial in ISO 3166 three-character format.
+    :name: RFPENDTC
     :prefixed: false
-    :compliance: Required
-    :controlled_term_or_format: |-
-      (COUNTRY)
-      ISO 3166
-    :notes: Country of the investigational site in which the subject participated
-      in the trial.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DMDTC:
+    :description: Date/time when subject ended participation or follow-up in a trial,
+      in ISO 8601 character format. Should correspond to the last known date of contact.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ISO 8601
+    :notes: Date/time when subject ended participation or follow-up in a trial, as
+      defined in the protocol, in ISO 8601 character format. Should correspond to
+      the last known date of contact. Examples include completion date, withdrawal
+      date, last follow-up, date recorded for lost to follow up, or death date.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_USUBJID:
     :status: :updated
     :datatype: Char
-    :classification: Timing
+    :classification: Identifier
     :sub_classification: ''
-    :ordinal: 27
-    :name: DMDTC
+    :name: USUBJID
+    :prefixed: false
+    :description: Identifier used to uniquely identify a subject across all studies
+      for all applications or submissions involving the product.
     :rule: ''
-    :description: Collection date and time of an observation represented in IS0 8601
-      character format.
-    :prefixed: true
-    :compliance: Permissible
-    :controlled_term_or_format: ISO 8601
-    :notes: Date/time of demographic data collection.
-  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_DMDY:
-    :status: :updated
-    :datatype: Num
-    :classification: Timing
-    :sub_classification: ''
-    :ordinal: 28
-    :name: DMDY
-    :rule: ''
-    :description: Actual study day of visit/collection/exam expressed in integer days
-      relative to the sponsor-defined RFSTDTC in Demographics.
-    :prefixed: true
-    :compliance: Permissible
+    :compliance: Required
     :controlled_term_or_format: ''
-    :notes: Study day of collection measured as integer days.
+    :notes: Identifier used to uniquely identify a subject across all studies for
+      all applications or submissions involving the product. This must be a unique
+      number, and could be a compound identifier formed by concatenating STUDYID-SITEID-SUBJID.
+  http://www.assero.co.uk/MDRSdtmIgD/CDISC/V2#IG-CDISC_SDTMIGDM_RFSTDTC:
+    :status: :no_change
+    :datatype: Char
+    :classification: Qualifier
+    :sub_classification: Record Qualifier
+    :name: RFSTDTC
+    :prefixed: false
+    :description: Reference Start Date/time for the subject in ISO 8601 character
+      format. Usually equivalent to date/time when subject was first exposed to study
+      treatment. Required for all randomized subjects; will be null for all subjects
+      who did not meet the milestone the date requires, such as screen failures or
+      unassigned subjects.
+    :rule: ''
+    :compliance: Expected
+    :controlled_term_or_format: ISO 8601
+    :notes: Reference Start Date/time for the subject in ISO 8601 character format.
+      Usually equivalent to date/time when subject was first exposed to study treatment.
+      Required for all randomized subjects; will be null for all subjects who did
+      not meet the milestone the date requires, such as screen failures or unassigned
+      subjects.

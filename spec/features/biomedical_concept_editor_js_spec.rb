@@ -40,7 +40,7 @@ describe "Biomedical Concept Editor", :type => :feature do
   end
 
   before :each do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       visit '/users/sign_in'
       fill_in 'Email', with: 'curator@example.com'
       fill_in 'Password', with: '12345678'
@@ -282,7 +282,7 @@ describe "Biomedical Concept Editor", :type => :feature do
 
     
     it "allows a property to be updated", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 51", "Test BC No. 51", "Obs PQR")
       scroll_to_editor_table
@@ -293,7 +293,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     it "ensures updates are saved", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 61", "Test BC No. 61", "Obs PQR")
       scroll_to_editor_table
@@ -313,7 +313,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     it "selects the terminology panel, I", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 71", "Test BC No. 71", "Obs CD")
       scroll_to_editor_table
@@ -339,7 +339,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     it "selects the terminology panel, II", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 81", "Test BC No. 81", "Obs CD")
       scroll_to_editor_table
@@ -369,7 +369,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     it "allows terminology to be added", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 82", "Test BC No. 82", "Obs CD")
       scroll_to_editor_table
@@ -447,7 +447,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     it "allows the edit session to be closed", js: true do
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 92", "Test BC No. 92", "Obs CD")
       scroll_to_all_bc_panel
@@ -457,7 +457,7 @@ describe "Biomedical Concept Editor", :type => :feature do
 
     it "edit clears token on close", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 101", "Test BC No. 101", "Obs CD")
       create_bc("TEST BC 102", "Test BC No. 102", "Obs CD")
@@ -476,7 +476,7 @@ describe "Biomedical Concept Editor", :type => :feature do
 
     it "edit clears token on back button", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 103", "Test BC No. 103", "Obs CD")
       create_bc("TEST BC 104", "Test BC No. 104", "Obs CD")
@@ -486,6 +486,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       page.find("#token_timer_1")[:class].include?("btn-warning")
       page.find("#token_timer_2")[:class].include?("btn-warning")
       ui_click_back_button
+      wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC103")
       expect(tokens).to match_array([])
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC104")
@@ -494,7 +495,7 @@ describe "Biomedical Concept Editor", :type => :feature do
 
     it "edit timeout warnings", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
-      set_screen_size(1500, 900)
+      #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 105", "Test BC No. 105", "Obs CD")
       create_bc("TEST BC 106", "Test BC No. 106", "Obs CD")

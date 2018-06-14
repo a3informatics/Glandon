@@ -87,6 +87,7 @@ class Form::Group < IsoConcept
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "optional"}, {:literal => "#{self.optional}", :primitive_type => "boolean"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "note"}, {:literal => "#{self.note}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "completion"}, {:literal => "#{self.completion}", :primitive_type => "string"})
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |item|
       ref_uri = item.to_sparql_v2(uri, sparql)
       sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "hasItem"}, {:uri => ref_uri})
@@ -103,6 +104,7 @@ class Form::Group < IsoConcept
   def to_xml(metadata_version, form_def)
     form_def.add_item_group_ref("#{self.id}", "#{self.ordinal}", "No", "")
     item_group_def = metadata_version.add_item_group_def("#{self.id}", "#{self.label}", "No", "", "", "", "", "", "")
+    self.children.sort_by! {|u| u.ordinal}
     self.children.each do |item|
       item.to_xml(metadata_version, form_def, item_group_def)
     end

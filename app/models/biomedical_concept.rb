@@ -281,6 +281,25 @@ class BiomedicalConcept < BiomedicalConceptCore
     return results
   end
 
+  # Domains: Find all domains the BC is linked with
+  #
+  # @return [Array] array of URis of the linked domains
+  def domains
+    results = []
+    query = UriManagement.buildNs(namespace, ["isoI", "isoC", "bd", "bo"]) +
+      "SELECT ?a WHERE \n" +
+      "{ \n" +
+      "  ?a rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} . \n" +
+      "  ?a bd:hasBiomedicalConcept ?or . \n" +
+      "  ?or bo:hasBiomedicalConcept #{self.uri.to_ref} . \n" +
+      "}"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each {|node| results << UriV3.new(uri: ModelUtility.getValue('a', true, node))}
+    return results
+  end
+
   # To JSON
   #
   # @return [hash] The object hash 

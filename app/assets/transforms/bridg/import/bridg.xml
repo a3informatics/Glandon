@@ -140,6 +140,8 @@
 		<BRIDGAttribute Name="description" DataType="ST" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="formCode" DataType="CD" Description="" Use="Optional"/>		
 	</BRIDGClass>
-	
+  <BRIDGClass Name="Material">
+    <BRIDGAttribute Name="formCode" DataType="CD" Description="" Use="Optional"/>   
+  </BRIDGClass>	
 </BRIDG>
 

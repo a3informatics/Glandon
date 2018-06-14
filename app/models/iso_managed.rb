@@ -517,6 +517,57 @@ class IsoManaged < IsoConcept
     return results
   end
 
+  # Find By Property. Find all managed items based on property
+  #
+  # @param [Hash] params a parameters hash
+  # @option params [String] :text the text to be used for the search
+  # @return [Array] the results in an array of hashes.
+  def self.find_by_property(params)
+    results = Array.new
+    query = UriManagement.buildNs("", ["isoI", "isoT", "isoR"]) +
+      "SELECT ?a ?b ?c ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
+      "{ \n" +
+      "  ?a rdfs:label ?b . \n" +
+      "  ?a isoI:hasIdentifier ?si . \n" +
+      "  ?si isoI:identifier ?e . \n" +
+      "  FILTER (regex(?b, '#{params[:text]}') || regex(?e, '#{params[:text]}')) . \n" +
+      "  ?a rdf:type ?h . \n" +
+      "  ?a isoT:creationDate ?c . \n" +
+      "  ?a isoT:lastChangeDate  ?d . \n" +
+      "  ?a isoR:hasState ?rs . \n" +
+      "  ?si isoI:version ?f . \n" +
+      "  ?rs isoR:registrationStatus ?g . \n" +
+      "} ORDER BY DESC(?f)"
+    response = CRUD.query(query)
+    xmlDoc = Nokogiri::XML(response.body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      uri = ModelUtility.getValue('a', true, node)
+      si = ModelUtility.getValue('si', true, node)
+      rs = ModelUtility.getValue('rs', true, node)
+      label = ModelUtility.getValue('b', false, node)
+      dateSet = ModelUtility.getValue('c', false, node)
+      lastSet = ModelUtility.getValue('d', false, node)
+      identifier = ModelUtility.getValue('e', false, node)
+      version = ModelUtility.getValue('f', false, node)
+      status = ModelUtility.getValue('g', false, node)
+      rdf_type = ModelUtility.getValue('h', true, node)
+      object = self.new
+      object.id = ModelUtility.extractCid(uri)
+      object.namespace = ModelUtility.extractNs(uri)
+      object.rdf_type = rdf_type
+      object.label = label
+      object.creationDate = dateSet.to_time_with_default
+      object.lastChangeDate = lastSet.to_time_with_default
+      si_uri = UriV2.new({:uri => si})
+      rs_uri = UriV2.new({:uri => rs})
+      object.scopedIdentifier = IsoScopedIdentifier.find(si_uri.id)
+      object.registrationState = IsoRegistrationState.find(rs_uri.id)
+      results << object
+    end
+    return results  
+  end
+
   # Find history for a given identifier
   # Return the object as JSON
   #
@@ -589,6 +640,15 @@ class IsoManaged < IsoConcept
     return results  
   end
 
+  def self.changes(klass, params, options={})
+    items = []
+    klass.history(params).each { |i| items << klass.find(i.id, i.namespace)}
+    result = IsoConcept.changes(items, params[:child_property], options)
+    result[:versions] = []
+    result[:changes].each { |r| result[:versions] << r[:scoped_identifier][:semantic_version] }
+    return result
+  end
+
   # Find all released item for all identifiers of a given type.
   #
   # @rdfType [string] The RDF type
@@ -627,7 +687,7 @@ class IsoManaged < IsoConcept
       identifier = ModelUtility.getValue('e', false, node)
       version = ModelUtility.getValue('f', false, node)
       status = ModelUtility.getValue('g', false, node)
-      scope = ModelUtility.getValue('h', true, node)
+      #scope = ModelUtility.getValue('h', true, node)
       #ConsoleLogger::log(C_CLASS_NAME,"list","node=" + node.to_s)
       if uri != "" 
         if status == IsoRegistrationState.releasedState

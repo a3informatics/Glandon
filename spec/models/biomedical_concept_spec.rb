@@ -61,27 +61,24 @@ it "allows a BC to be found" do
   end
 
   it "finds all entries" do
-    results = []
-    results[0] = {:id => "BC-ACME_BC_C25206"}
-    results[1] = {:id => "BC-ACME_BC_C49677"}
-    results[2] = {:id => "BC-ACME_BC_A00002"}
-    results[3] = {:id => "BC-ACME_BC_C98793"}
-    results[4] = {:id => "BC-ACME_BC_C49678"}
-    results[5] = {:id => "BC-ACME_BC_C25298"}
-    results[6] = {:id => "BC-ACME_BC_C25208"}
-    results[7] = {:id => "BC-ACME_BC_A00003"}
-    results[8] = {:id => "BC-ACME_BC_C25347"}
-    results[9] = {:id => "BC-ACME_BC_C16358"}
-    results[10] = {:id => "BC-ACME_BC_C81255"}
-    results[11] = {:id => "BC-ACME_BC_C25299"}
-    results[12] = {:id => "BC-ACME_BC_C98785"}
-    results[13] = {:id => ""}
-    results[14] = {:id => ""}
-    results[15] = {:id => ""}
-    results[15] = {:id => ""}
-    items = BiomedicalConcept.all
-    items.each_with_index do |item, index|
-      expect(items[index].id).to eq(results[index][:id])
+    expected = []
+    expected[0] = "BC-ACME_BC_C25206"
+    expected[1] = "BC-ACME_BC_C49677"
+    expected[2] = "BC-ACME_BC_A00002"
+    expected[3] = "BC-ACME_BC_C98793"
+    expected[4] = "BC-ACME_BC_C49678"
+    expected[5] = "BC-ACME_BC_C25298"
+    expected[6] = "BC-ACME_BC_C25208"
+    expected[7] = "BC-ACME_BC_A00003"
+    expected[8] = "BC-ACME_BC_C25347"
+    expected[9] = "BC-ACME_BC_C16358"
+    expected[10] = "BC-ACME_BC_C81255"
+    expected[11] = "BC-ACME_BC_C25299"
+    expected[12] = "BC-ACME_BC_C98785"
+    result = BiomedicalConcept.all
+    expect(result.count).to eq(expected.count)
+    result.each do |e| 
+      expect(expected.include?(e.id)).to be(true) 
     end
   end
 
@@ -290,6 +287,20 @@ it "allows a BC to be found" do
     expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
     expect(result).to eq(expected)
   end
+
+  it "returns domains linked, single" do
+    load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
+    load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    vs_uri = UriV3.new(fragment: "D-ACME_VSDomain", namespace: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    vs = SdtmUserDomain.find(vs_uri.fragment, vs_uri.namespace)
+    params = { :bcs => ["http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677"] }
+    vs.add(params)
+    bc = BiomedicalConcept.find("BC-ACME_BC_C49677", "http://www.assero.co.uk/MDRBCs/V1")
+    results = bc.domains
+    expect(results[0].to_s).to eq(vs_uri.to_s)
+  end
+
+  it "returns domains linked, multiple"
 
 end
   

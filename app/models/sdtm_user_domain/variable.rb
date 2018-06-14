@@ -16,6 +16,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   C_RDF_TYPE = "UserVariable"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
   C_IGV_REF_PREFIX = "IGV"
   C_VARIABLE_PREFIX = "V"

@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Form Import - ALS</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @als, url: imports_als_path, method: :get do |f| %>
+      <div class="form-group">
+        <%= label_tag :files, "Files:" %><br/>
+        <%= select_tag("imports[files][]", options_for_select(@files), class: "form-control", :size => 20 ) %>
+      </div>
+      <%= render partial: "shared/buttons/close", :locals => {small: false, link_path: imports_path } %>
+      <%= f.submit "List", class: "btn btn-default btn-success" %>
+    <% end %>
+  </div>
+</div>

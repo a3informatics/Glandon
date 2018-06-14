@@ -29,6 +29,14 @@ class IsoManagedController < ApplicationController
     @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end
 
+  def changes
+    authorize IsoManaged
+    klass = TypePathManagement.type_to_class(changes_params[:rdf_type])
+    @results = IsoManaged.changes(klass, changes_params, {include: [:label], ignore: [:extensible]})
+    @results[:identifier] = changes_params[:identifier]
+    @close_path = TypePathManagement.history_url(changes_params[:rdf_type], changes_params[:identifier], changes_params[:scope_id])
+  end
+
   def edit
     authorize IsoManaged
     @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
@@ -136,28 +144,6 @@ class IsoManagedController < ApplicationController
     render :json => results, :status => 200
   end
 
-  #def impact
-  #  authorize IsoManaged, :show?
-  #  map = {}
-  #  @item = IsoManaged.find(params[:id], params[:namespace], false)
-  #  managed_items = @item.find_links_from_to(from=false)
-  #  managed_items.each do |result|
-  #    result[:uri] = result[:uri].to_s
-  #  end
-  #  @results = {item: @item.to_json, children: managed_items}
-  #  respond_to do |format|
-  #    format.html do
-  #    	@index_label = this_params[:index_label]
-  #  		@index_path = this_params[:index_path]
-  #  		@history_path = TypePathManagement.history_url(@item.rdf_type, @item.identifier, @item.scopedIdentifier.namespace.id)
-  #  		@referer = request.referer
-  #    end
-  #    format.json do
-  #      render json: @results
-  #    end
-  #  end
-  #end
-
   def impact
     authorize IsoManaged, :show?
     @item = IsoManaged.find(params[:id], params[:namespace], false)
@@ -197,10 +183,23 @@ class IsoManagedController < ApplicationController
     redirect_to request.referer
   end
 
+  def export
+    authorize IsoManaged
+    uri = UriV3.new(id: params[:id]) # Uses new mechanism
+    item = IsoManaged::find(uri.fragment, uri.namespace)
+    filename = "#{item.owner}_#{item.identifier}_#{item.version}.ttl"
+    file_path = PublicFile.save("Exports", filename, item.triples)
+    render json: {file_path: file_path}, status: 200
+  end
+
 private
 
   def this_params
     params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer, :index_path, :index_label, :current_id)
+  end
+
+  def changes_params
+    params.require(:iso_managed).permit(:rdf_type, :child_property, :identifier, :scope_id)
   end
 
 end

@@ -7,7 +7,7 @@ module BackgroundHelpers
       versions.each { |version| objects << yield(version, check[:name], qualifier) }
       objects.each_with_index do |object, index|
         if index != 0
-          result = IsoConcept.difference(objects[index - 1], objects[index], {ignore: ["ordinal"]})
+          result = IsoConcept.difference(objects[index - 1], objects[index], {ignore: [:ordinal]})
           extra_1(index, check[:name], status_map[check[:result][index]], result[:status])
           expect(result[:status]).to eq(status_map[check[:result][index]])
           result[:results].each do |k, v|

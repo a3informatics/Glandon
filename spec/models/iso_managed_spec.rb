@@ -294,11 +294,6 @@ describe IsoManaged do
   end
 
   it "finds all entries" do
-    results = []
-    results[0] = {:id => "F-ACME_TEST"}
-    results[1] = {:id => "F-BBB_VSB2"}
-    results[2] = {:id => "F-BBB_VSB1"}
-    results[3] = {:id => "F-BBB_VSW"}
     items = IsoManaged.all
   #write_yaml_file(items, sub_dir, "iso_managed_all.yaml")
   	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
@@ -603,5 +598,31 @@ describe IsoManaged do
     expect(results[2].to_json).to eq(expected[2].to_json)
     expect(results[3].to_json).to eq(expected[3].to_json)
   end
+
+  it "finds by properties, empty text" do
+    all = IsoManaged.all # Empty search will find all items
+    results = []
+    IsoManaged.find_by_property({text: ""}).each { |x| results << x.to_json }
+  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_1a.yaml")
+  #write_yaml_file(all, sub_dir, "iso_managed_find_by_property_1b.yaml")
+    expect(results.count).to eq(all.count)
+  end
+
+  it "finds by properties, I" do
+    results = []
+    IsoManaged.find_by_property({text: "VSB"}).each { |x| results << x.to_json }
+  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
+    expect(results).to hash_equal(expected)
+  end
+
+  it "finds by properties, II" do
+    results = []
+    IsoManaged.find_by_property({text: "Baseline"}).each { |x| results << x.to_json }
+  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_3.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_3.yaml")
+    expect(results).to hash_equal(expected)
+  end
+
 
 end

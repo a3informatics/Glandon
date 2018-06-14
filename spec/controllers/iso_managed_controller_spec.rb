@@ -3,7 +3,9 @@ require 'rails_helper'
 describe IsoManagedController do
 
   include DataHelpers
-  
+  include PublicFileHelpers
+  include DownloadHelpers
+
   describe "Authrorized User" do
   	
     login_curator
@@ -220,6 +222,15 @@ describe IsoManagedController do
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
     end
+
+    it "export"
+      # @todo Not get this working yet
+      #item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      #uri = UriV3.new( uri: item.uri.to_s )
+      #get :export, { :id => uri.to_id }
+      #wait_for_download
+      #expect(public_file_exists?("Exports", "#{item.owner}_#{item.identifier}_#{item.version}.ttl")).to eq(true)
+    #end
 
   end
 

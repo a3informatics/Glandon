@@ -157,6 +157,7 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'Showing 1 to 10 of 11 entries'
 
       ui_table_row_double_click('searchTable', 'CDISC SDTM Race Terminology')
+      wait_for_ajax
 			expect(page).to have_content 'Showing 1 to 6 of 6 entries'
       
 			column_search(:definition, 'the')
@@ -166,7 +167,8 @@ describe "CDISC Terminology", :type => :feature do
 			expect(page).to have_content 'Showing 1 to 1 of 1 entries'
 
       ui_table_row_double_click('searchTable', 'CDISC SDTM Race Terminology')
-			expect(page).to have_content 'Showing 1 to 6 of 6 entries'
+			wait_for_ajax
+      expect(page).to have_content 'Showing 1 to 6 of 6 entries'
 
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'

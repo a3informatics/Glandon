@@ -59,7 +59,8 @@ describe Form do
     result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
   #write_hash_to_yaml_file_2(result.to_json, sub_dir, "form_example_vs_baseline_new.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_example_vs_baseline_new.yaml")
-    expect(result.to_json).to eq(expected)
+    #expect(result.to_json).to eq(expected)
+    expect(result.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "handles a form not being found" do
@@ -219,7 +220,8 @@ describe Form do
     item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_base_core_result.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "can serialize as json, BC form" do
@@ -227,7 +229,8 @@ describe Form do
   #write_hash_to_yaml_file_2(item.to_json, sub_dir, "form_base_bc_json.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "form_base_bc_json.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to eq(expected)
+    #expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "can create the sparql for core form" do
