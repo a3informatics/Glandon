@@ -5,6 +5,12 @@ GIT
     odm (1.0.4)
       nokogiri (~> 1.6.6.2)
 
+GIT
+  remote: https://github.com/daveih/sas_xpt
+  revision: 6ec887bd01dec78555ad4b4413427d1358be7d05
+  specs:
+    sas_xpt (0.2.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -336,6 +342,7 @@ DEPENDENCIES
   rolify
   roo (~> 2.4.0)
   rspec-rails
+  sas_xpt!
   sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   selenium-webdriver
@@ -350,4 +357,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

@@ -1,18 +1,11 @@
 source 'https://rubygems.org'
-#johannes ruby '2.3.1'
-ruby '2.2.3'
-
-#johannes
-gem 'ruby_dep', '~> 1.3.1'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 
 # Use PG as the database for Active Record
-#johannes
-# gem 'pg'
-# gem 'pg', '~> 0.9.0'
-gem 'pg', '~> 0.19.0'
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.5'
@@ -28,14 +21,7 @@ gem 'typhoeus'
 gem 'diffy'
 
 # XML
-#johannes gem 'nokogiri', '~> 1.6.6.2'
-gem 'nokogiri', '1.6.6.2'
-
-#johannes
-gem 'tzinfo-data'
-
-#johannes
-gem'coffee-script-source','1.8.0'
+gem 'nokogiri', '~> 1.6.6.2'
 
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
@@ -86,6 +72,9 @@ gem 'roo', '~> 2.4.0'
 gem 'odm', '~> 1.0.3', :git => 'https://github.com/daveih/odm.git'
 gem "font-awesome-rails"
 
+# SAS support
+gem 'sas_xpt', :git => 'https://github.com/daveih/sas_xpt'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -121,6 +110,3 @@ group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   gem 'daemons'
 end
-
-
-
