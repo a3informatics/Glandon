@@ -10,6 +10,17 @@ describe IsoScopedIdentifier do
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
   end
 
+  it "cleans an identifier" do
+    result = IsoScopedIdentifier.clean_identifier("ACD123^&*")
+    expect(result).to eq("ACD123")
+    result = IsoScopedIdentifier.clean_identifier("acd123^&*")
+    expect(result).to eq("ACD123")
+    result = IsoScopedIdentifier.clean_identifier("acd 123^")
+    expect(result).to eq("ACD 123")
+    result = IsoScopedIdentifier.clean_identifier("acd@123^&*")
+    expect(result).to eq("ACD 123")
+  end
+
   it "validates a valid object" do
     result = IsoScopedIdentifier.new
     result.identifier = "ABC"

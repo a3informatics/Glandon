@@ -1,0 +1,342 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Baseline Visit Form
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-06-14T12:10:35+01:00'
+:last_changed_date: '2018-06-14T12:10:35+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: F BASELINE
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Common
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Site Number
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: 'Site #'
+    :mapping: SITEID
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Subject ID
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '11'
+    :question_text: 'Subject ID #'
+    :mapping: USUBJID
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Visit Date
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Visit Date
+    :mapping: RFSTDTC
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Demographics
+  :extension_properties: []
+  :ordinal: 2
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Date of Birth
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of Birth
+    :mapping: BRTHDTC
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM - Sex
+    :extension_properties: []
+    :ordinal: 2
+    :note: |
+      * Multiple entries [C20197,C20197] found for code list item 'M', ignored.
+      * Multiple entries [C16576,C44277,C16576,C44277] found for code list item 'F', ignored.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Sex
+    :mapping: SEX
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM - Race
+    :extension_properties: []
+    :ordinal: 3
+    :note: |
+      * No entries found for code list item 'CAUCASIAN'.
+      * No entries found for code list item 'BLACK'.
+      * Multiple entries [C41260,C41260] found for code list item 'ASIAN', ignored.
+      * Multiple entries [C17649,C17649,C17649,C17649,C17649] found for code list item 'OTHER', ignored.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Race
+    :mapping: RACE
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Smoking History
+  :extension_properties: []
+  :ordinal: 3
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Smoking
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item 'LT10'.
+      * No entries found for code list item '10TO20'.
+      * No entries found for code list item 'GT20'.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Number of cigarettes per day
+    :mapping: SUDOSE
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Drinking History
+  :extension_properties: []
+  :ordinal: 4
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Drinking
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item 'LT1'.
+      * No entries found for code list item '1TO2'.
+      * No entries found for code list item 'GT2'.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Number of alcoholic drinks per day
+    :mapping: SUDOSE
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Physical Exam
+  :extension_properties: []
+  :ordinal: 5
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Height
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Height
+    :mapping: VSORRES
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Height units
+    :extension_properties: []
+    :ordinal: 2
+    :note: "* Multiple entries [C48500,C48500] found for code list item 'in', ignored.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Height units
+    :mapping: ''
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Weight
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Weight
+    :mapping: VSORRES
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Weight units
+    :extension_properties: []
+    :ordinal: 4
+    :note: "* No entries found for code list item 'lbs'.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Weight units
+    :mapping: ''
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Systolic BP
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Systolic BP
+    :mapping: VSORRES
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Systolic BP units
+    :extension_properties: []
+    :ordinal: 6
+    :note: "* No entries found for code list item 'mm Hg'.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Systolic BP units
+    :mapping: ''
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Diastolic BP
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Diastolic BP
+    :mapping: VSORRES
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Diastolic BP units
+    :extension_properties: []
+    :ordinal: 8
+    :note: "* No entries found for code list item 'mm Hg'.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Diastolic BP units
+    :mapping: ''
+    :children: []
+  :repeating: false
+  :bc_ref: {}

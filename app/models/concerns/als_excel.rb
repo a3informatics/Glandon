@@ -106,10 +106,8 @@ private
 
   # New form
   def new_form(identifier, label)
-    #new_identifier = identifier.dup
     object = Form.new 
-    #object.scopedIdentifier.identifier = new_identifier.gsub(/[^0-9a-z ]/i, ' ') # Make sure we remove anything nasty
-    object.scopedIdentifier.identifier = identifier.gsub(/[^0-9a-z ]/i, ' ') # Make sure we remove anything nasty
+    object.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
     object.label = label
     group = Form::Group::Normal.new
     group.label = "Main Group"

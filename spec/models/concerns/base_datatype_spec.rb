@@ -29,11 +29,11 @@ describe BaseDatatype do
   end
 
   it "obtain generic from xsd datatype - float" do
-    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#float")).to eq("float")
+    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#float")).to eq(BaseDatatype::C_FLOAT)
   end
 
   it "obtain generic from xsd datatype - string" do
-    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#string")).to eq("string")
+    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#string")).to eq(BaseDatatype::C_STRING)
   end
 
   it "obtain generic from xsd datatype - positive integer" do
@@ -41,7 +41,23 @@ describe BaseDatatype do
   end
 
   it "handles generic from xsd datatype - error" do
-    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#worm")).to eq("string")
+    expect(BaseDatatype.from_xsd("http://www.w3.org/2001/XMLSchema#worm")).to eq(BaseDatatype::C_STRING)
+  end
+
+  it "obtain generic from xsd datatype fragment - float" do
+    expect(BaseDatatype.from_xsd_fragment("float")).to eq(BaseDatatype::C_FLOAT)
+  end
+
+  it "obtain generic from xsd datatype fragment - string" do
+    expect(BaseDatatype.from_xsd_fragment("string")).to eq(BaseDatatype::C_STRING)
+  end
+
+  it "obtain generic from xsd datatype fragment - positive integer" do
+    expect(BaseDatatype.from_xsd_fragment("positiveInteger")).to eq(BaseDatatype::C_POSITIVE_INTEGER)
+  end
+
+  it "handles generic from xsd datatype fragment - error" do
+    expect(BaseDatatype.from_xsd_fragment("worm")).to eq(BaseDatatype::C_STRING)
   end
 
   it "obtain generic from short label - float" do

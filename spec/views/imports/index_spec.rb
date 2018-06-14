@@ -20,9 +20,9 @@ describe 'imports/index.html.erb', :type => :view do
 
   	#puts response.body
 
-    expect(rendered).to have_content("Import Form From ALS")
-    expect(rendered).to have_content("Import Form From ODM")
-    expect(rendered).to have_content("Import Terminology From Excel")
+    expect(rendered).to have_content("Form Import - ALS")
+    expect(rendered).to have_content("Form Import - ODM")
+    expect(rendered).to have_content("Import Terminology - Excel")
     expect(rendered).to have_link "Import ALS Form"
     expect(rendered).to have_link "Import ODM Form"
     expect(rendered).to have_link "Import Terminology"
