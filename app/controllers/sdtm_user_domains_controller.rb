@@ -1,5 +1,3 @@
-require 'xpt'
-
 class SdtmUserDomainsController < ApplicationController
   
   before_action :authenticate_user!
@@ -203,46 +201,10 @@ class SdtmUserDomainsController < ApplicationController
 
   def export_xpt_metadata
     authorize SdtmUserDomain
-    @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
-    # Prepare metadata for export
-    metadata = []
-    @sdtm_user_domain.children.each do |child|
-      if child.used then # Only select variables in use
-        variable = {}
-        # Mandatory content for creation of xpt file
-        variable[:name]   = child.name
-        variable[:label]  = child.label[0..39] # N.B: SDTMIG label is too long
-        variable[:type]   = child.datatype.label.downcase
-        if variable[:type] == "char" then
-          variable[:length] = child.length > 0 ? child.length : 200
-        else
-          variable[:length] = 8
-        end
-        # More info possible to add
-        # variable[:key_ordinal] = child.key_ordinal
-        # variable[:non_standard] = child.non_standard # Needs to be handled. SUPP--?
-        # variable[:ct] = child.ct
-        # variable[:format] = child.format
-        # variable[:used] = child.used
-        # variable[:comment] = child.comment
-        # variable[:notes] = child.notes
-        # variable[:compliance] = child.compliance
-        # variable[:classification] = child.classification 
-        # variable[:sub_classification] = child.sub_classification 
-        # variable[:variable_ref] = child.variable_ref
-        metadata << variable
-      end
-    end
-    xpt = Xpt.new("public/",@sdtm_user_domain.prefix)
-
-    cres = xpt.create_meta(@sdtm_user_domain.label,metadata, true)
-    if (cres[:status] < 0)
-            flash[:error] = "this is wrong"
-    end
-    send_file(xpt.directory+xpt.filename, :filename => xpt.filename)
-    STDERR.puts "Efter send_file"
+    sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
+    full_path = sdtm_user_domain.to_xpt
+    send_file(full_path, :filename => File.basename(full_path))
   end
-
 
   def full_report
     authorize SdtmUserDomain, :view?

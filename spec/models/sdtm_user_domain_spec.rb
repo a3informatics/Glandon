@@ -3,6 +3,7 @@ require 'rails_helper'
 describe SdtmUserDomain do
 
   include DataHelpers
+  include PublicFileHelpers
 
   def sub_dir
     return "models/sdtm_user_domain"
@@ -194,5 +195,16 @@ describe SdtmUserDomain do
   end
   
   it "allows a domain report to be generated"
+
+  it "exports the domain as a SAS XPT file - WILL CURRENTLY FAIL (TimeDate Stamp Issue)" do
+    delete_all_public_export_files
+    item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
+    full_path = item.to_xpt
+    filename = File.basename(full_path)
+  #copy_file_from_public_files("exports", filename, sub_dir)
+    expected = read_text_file_2(sub_dir, filename)
+    result = read_public_text_file("exports", filename)
+    expect(result).to eq(expected)
+  end
   
 end
