@@ -1,3 +1,5 @@
+require 'xpt'
+
 class SdtmUserDomain < Tabular
   
   include ActiveModel::Naming
@@ -236,6 +238,44 @@ class SdtmUserDomain < Tabular
       end
     end
     return object
+  end
+
+  # To XPT. Export domain as a SAS XPT file.
+  #
+  # @return [String] full path to the file created.
+  def to_xpt
+    metadata = []
+    self.children.each do |child|
+      if child.used then # Only select variables in use
+        variable = 
+        {
+          name: child.name,
+          label: child.label[0..39],
+          type: child.datatype.label.downcase
+        }
+        if variable[:type] == "char" then
+          variable[:length] = child.length > 0 ? child.length : 200
+        else
+          variable[:length] = 8
+        end
+        # More info possible to add
+        # variable[:key_ordinal] = child.key_ordinal
+        # variable[:non_standard] = child.non_standard # Needs to be handled. SUPP--?
+        # variable[:ct] = child.ct
+        # variable[:format] = child.format
+        # variable[:used] = child.used
+        # variable[:comment] = child.comment
+        # variable[:notes] = child.notes
+        # variable[:compliance] = child.compliance
+        # variable[:classification] = child.classification 
+        # variable[:sub_classification] = child.sub_classification 
+        # variable[:variable_ref] = child.variable_ref
+        metadata << variable
+      end
+    end
+    xpt = Xpt.new(APP_CONFIG['export_files'], self.prefix)
+    cres = xpt.create_meta(self.label, metadata, true)
+    return Rails.root.join "#{xpt.directory}#{xpt.filename}"
   end
 
   # To SPARQL

@@ -315,12 +315,19 @@ describe SdtmUserDomainsController do
       expect(response.body).to eq(expected)
     end
     
-    it "export_ttl" do
+    it "exports TTL" do
+      # @todo Needs improving
       get :export_ttl, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
-    it "export_json" do
+    it "exports JSON" do
+      # @todo Needs improving
       get :export_json, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+    end
+    
+    it "exports XPT" do
+      # @todo Needs improving
+      get :export_xpt_metadata, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
     it "full_report"

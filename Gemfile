@@ -72,6 +72,9 @@ gem 'roo', '~> 2.4.0'
 gem 'odm', '~> 1.0.3', :git => 'https://github.com/daveih/odm.git'
 gem "font-awesome-rails"
 
+# SAS support
+gem 'sas_xpt', :git => 'https://github.com/daveih/sas_xpt'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -107,6 +110,3 @@ group :production do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   gem 'daemons'
 end
-
-
-

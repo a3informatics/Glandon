@@ -199,6 +199,13 @@ class SdtmUserDomainsController < ApplicationController
       filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
+  def export_xpt_metadata
+    authorize SdtmUserDomain
+    sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
+    full_path = sdtm_user_domain.to_xpt
+    send_file(full_path, :filename => File.basename(full_path))
+  end
+
   def full_report
     authorize SdtmUserDomain, :view?
     domain = SdtmUserDomain.find(params[:id], the_params[:namespace])

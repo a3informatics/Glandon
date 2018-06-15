@@ -25,6 +25,10 @@ module PublicFileHelpers
     delete_all_files("report")
   end
 
+  def delete_all_public_export_files
+    delete_all_files("exports")
+  end
+
   def delete_public_file(sub_dir, filename)
     file = Rails.root.join "public/#{sub_dir}/#{filename}"
 		File.delete(file)
@@ -38,8 +42,8 @@ module PublicFileHelpers
   end
 
   def copy_file_from_public_files(source_sub_dir, filename, dest_sub_dir)
-  	source_file = Rails.root.join "public/#{dest_sub_dir}/#{filename}"
-  	dest_file = Rails.root.join "spec/fixtures/files/#{source_sub_dir}/#{filename}"
+  	source_file = Rails.root.join "public/#{source_sub_dir}/#{filename}"
+  	dest_file = Rails.root.join "spec/fixtures/files/#{dest_sub_dir}/#{filename}"
   	FileUtils.cp source_file, dest_file
   end
 
