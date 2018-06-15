@@ -28,7 +28,16 @@
               <div class="panel-heading"><h3 class="panel-title">Import Terminology - Excel</h3></div>
               <div class="panel-body">
                 <p>This facilty allow for a form to be imported from an Excel file</p>
-                <%= link_to "Import Terminology", new_imports_term_path, :class => "btn btn-success btn-block" %>
+                <%= link_to "Import Excel Terminology", new_imports_term_path({imports: {type: :excel}}), :class => "btn btn-success btn-block" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="panel panel-default">
+              <div class="panel-heading"><h3 class="panel-title">Import Terminology - ODM</h3></div>
+              <div class="panel-body">
+                <p>This facilty allow for a form to be imported from an ODM file</p>
+                <%= link_to "Import ODM Terminology", new_imports_term_path({imports: {type: :odm}}), :class => "btn btn-success btn-block" %>
               </div>
             </div>
           </div>
