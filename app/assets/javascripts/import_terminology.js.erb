@@ -48,6 +48,7 @@ function ImportCodeListPanel(callback) {
         d.imports = {};
         d.imports.filename = itFilename;
         d.imports.uri = itUri;
+        d.imports.file_type = itFileType;
       },
       error: function (xhr, status, error) {
         var html = alertError("An error has occurred loading the Code List table.");
@@ -99,7 +100,7 @@ ImportCodeListPanel.prototype.import = function(identifiers) {
   identifier = identifiers.pop();
   $.ajax({
     url: "/imports/terms",
-    data: { imports: { "filename": itFilename, "uri": itUri, "identifier": identifier} },
+    data: { imports: { "filename": itFilename, "uri": itUri, "identifier": identifier, "file_type": itFileType }},
     type: 'POST',
     dataType: 'json',
     success: function(result) {

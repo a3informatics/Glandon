@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'standard_datatable', 'import_terminology' %>
+<%= javascript_tag "var itFileType = \"#{@file_type}\";" %>
 <div class="row">
   <div class="col-md-6">
     <%= render partial: "shared/import/term_panel" %>  

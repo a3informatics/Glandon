@@ -46,6 +46,10 @@ class TermOdm
     return {}
   end
 
+  def self.clean_identifier(identifier)
+    identifier.gsub(/[^A-Z0-9a-z]/i, '').upcase.strip
+  end
+
 private
 
   # Exception
@@ -66,7 +70,7 @@ private
       @doc = doc
       @identifier = identifier
       @items = []
-      @record = { label: node.attributes["Name"].value, synonym: "", identifier: identifier, definition: C_NOT_SET, 
+      @record = { label: node.attributes["Name"].value, synonym: "", identifier: TermOdm.clean_identifier(identifier), definition: C_NOT_SET, 
         notation: node.attributes["SASFormatName"].value, preferredTerm: C_NOT_SET }
     end
 
@@ -92,7 +96,7 @@ private
       label = decode_nodes.empty? ? C_NO_LABEL : decode_nodes.first.text
       return if node.attributes["CodedValue"].nil?
       code = node.attributes["CodedValue"].value
-      @record = { label: label, synonym: "", identifier: code, definition: C_NOT_SET, notation: code, preferredTerm: C_NOT_SET }
+      @record = { label: label, synonym: "", identifier: TermOdm.clean_identifier(code), definition: C_NOT_SET, notation: code, preferredTerm: C_NOT_SET }
     end
 
   end
