@@ -30,7 +30,9 @@ class Imports::TermsController < ApplicationController
 private
  
   def files
-    @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
+    @file_type = the_params[:file_type].to_sym
+    ext = @file_type == :excel ?  "*.xlsx" : "*.xml" 
+    @files = Dir.glob(Rails.root.join("public", "upload") + ext)
   end
 
   def authenticate_and_authorized
@@ -39,7 +41,7 @@ private
   end
 
   def the_params
-    params.require(:imports).permit(:uri, :filename, :identifier)
+    params.require(:imports).permit(:uri, :filename, :identifier, :file_type)
   end
     
 end

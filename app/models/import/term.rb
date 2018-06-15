@@ -9,8 +9,8 @@ class Import::Term
   attr_reader :filename
   attr_reader :identifier
 
-  def list(params, source=:excel)
-    if source == :odm
+  def list(params)
+    if odm?(params)
       odm = TermOdm.new(params[:filename])
       return odm.list
     else
@@ -19,11 +19,11 @@ class Import::Term
     end
   end
 
-  def import(params, source=:excel)
+  def import(params)
     results = []
     uri = UriV2.new(uri: params[:uri])
     th = Thesaurus.find(uri.id, uri.namespace)
-    if source == :odm
+    if odm?(params)
       odm = TermOdm.new(params[:filename])
       return odm if !odm.errors.empty?
       results = odm.code_list(params[:identifier])
@@ -46,6 +46,12 @@ class Import::Term
   def add_params(params, namespace)
     params[:namespace] = namespace
     params[:type] = ThesaurusConcept::C_RDF_TYPE_URI.to_s
+  end
+
+private
+
+  def odm?(params)
+    params[:file_type].to_sym == :odm
   end
 
 end
