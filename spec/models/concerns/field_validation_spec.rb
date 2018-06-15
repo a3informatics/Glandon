@@ -521,6 +521,12 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("")
   end
 
+  it "checks a valid question, \"\\n\"" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_question?(:test, "\n", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+  end
+
   it "checks valid date, 1960-02-13" do
     object = IsoConcept.new
     expect(FieldValidation.valid_date?(:test, "1960-02-13", object)).to eq(true)

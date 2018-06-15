@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe OdmXml do
+describe TermOdm do
 	
 	include DataHelpers
 
 	def sub_dir
-    return "models/concerns/odm_xml"
+    return "models/concerns/term_odm"
   end
 
 	before :each do
@@ -32,21 +32,21 @@ describe OdmXml do
   it "initialize object, fails to read the odm file" do
     full_path = test_file_path(sub_dir, "odmXXX.xml") #dodgy filename
     error_msg = "Exception raised opening ODM XML file, filename=#{full_path}. No such file or directory @ rb_sysopen - #{full_path}"
-		object = OdmXml.new(full_path)
+		object = TermOdm.new(full_path)
 		expect(object.errors.count).to eq(1)
 		expect(object.errors.full_messages.to_sentence).to eq(error_msg)		
 	end
 
 	it "initialize object, success" do
 		full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
     expect(object.errors.full_messages.to_sentence).to eq("")    
 	end
 
-	it "gets form list" do
+	it "gets CL list" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
     result = object.list
   #write_yaml_file(result, sub_dir, "list_expected.yaml")
@@ -54,39 +54,39 @@ describe OdmXml do
 		expect(result).to eq(expected)
 	end
 
-  it "gets form, BASELINE example" do
+  it "gets CL, CL_SEX example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.form("F_BASELINE")
+    item = object.code_list("CL_SEX")
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_1.yaml")
+  write_yaml_file(result, sub_dir, "form_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_1.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
     expect(result).to eq(expected)
   end
 
-  it "gets form, AE example" do
+  it "gets CL, AE example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.form("F_AE")
+    item = object.code_list("CL_AE_SEVERITY")
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_2.yaml")
+  write_yaml_file(result, sub_dir, "form_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
     expect(result).to eq(expected)
   end
 
-  it "gets form, DM example" do
+  it "gets CL, CL_ORRES_ACQ02 example" do
     full_path = test_file_path(sub_dir, "odm_2.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.form("DM")
+    item = object.code_list("CL_ORRES_ACQ02")
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_3.yaml")
+  write_yaml_file(result, sub_dir, "form_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_3.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
@@ -95,9 +95,9 @@ describe OdmXml do
 
 	it "reads the odm fle, error I" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = OdmXml.new(full_path)
+    object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.form("F_ERROR")
+    item = object.code_list("CL_ERROR")
     expect(object.errors.count).to eq(1)
 		expect(object.errors.full_messages.to_sentence).to eq("Exception raised building form. undefined method `attributes' for nil:NilClass")	
 	end

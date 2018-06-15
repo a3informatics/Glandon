@@ -1,0 +1,546 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Demographics
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-06-15T13:12:41+01:00'
+:last_changed_date: '2018-06-15T13:12:41+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: DM
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG1
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: BRTHDAT
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of birthPlease select 'Day not known' from drop down box
+      before selecting only 'month' and 'year'
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ICDAT
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of Informed Consent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AGE
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Age at the time of Informed Consent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AGE units
+    :extension_properties: []
+    :ordinal: 4
+    :note: '* No entries found for code list item ''<span style="color: #a9a9a9; font-size:
+      1em;">years</span>''.
+
+'
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Age at the time of Informed Consent units
+    :mapping: ''
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM2
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AASSNTYN
+    :extension_properties: []
+    :ordinal: 6
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '0'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Is assent applicable for the subject?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AASSNTDAT
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of assent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG7
+  :extension_properties: []
+  :ordinal: 2
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: SEX
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '2'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Gender
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CHILDPOT
+    :extension_properties: []
+    :ordinal: 2
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '0'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Is the subject of childbearing potential?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM3
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: MENOSTAT
+    :extension_properties: []
+    :ordinal: 4
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '2'.
+      * No entries found for code list item '99'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Reason
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG2
+  :extension_properties: []
+  :ordinal: 3
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ETHNIC
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '2'.
+      * No entries found for code list item '3'.
+      * No entries found for code list item '98'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Ethnicity
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RACE
+    :extension_properties: []
+    :ordinal: 2
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '2'.
+      * No entries found for code list item '3'.
+      * No entries found for code list item '4'.
+      * No entries found for code list item '5'.
+      * No entries found for code list item '99'.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Race (Please check all that apply)
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM1
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: RACEOTH
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Specify
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG3
+  :extension_properties: []
+  :ordinal: 4
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: SMOKENCF
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '2'.
+      * No entries found for code list item '3'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Smoking history
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG6
+  :extension_properties: []
+  :ordinal: 5
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: PREVSCRYN
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '0'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Was this subject screened for this trial previously?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: PREVSUBJID
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: What was the previous subject ID?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: DMG5
+  :extension_properties: []
+  :ordinal: 6
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: PHGASSNTDAT
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of assent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM5
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IMMUNOICDAT
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of consent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IMMUNOASSNTDAT
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of assent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: VS311
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: VS411
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Consent for pharmacogenetic testing
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CBSPHGYN
+    :extension_properties: []
+    :ordinal: 7
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '0'.
+      * No entries found for code list item '97'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Did the subject consent to having a blood sample collected and
+      stored in the ALK Research Biobank for future pharmacogenetic testing?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DM4
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: PHGICDAT
+    :extension_properties: []
+    :ordinal: 9
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of consent
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CBSIMMUYN
+    :extension_properties: []
+    :ordinal: 10
+    :note: |
+      * No entries found for code list item '1'.
+      * No entries found for code list item '0'.
+      * No entries found for code list item '97'.
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '100'
+    :question_text: Did the subject consent to having blood and urine samples collected
+      and stored in the ALK Research Biobank for future immunological research?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}

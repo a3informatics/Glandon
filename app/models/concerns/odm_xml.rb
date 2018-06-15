@@ -1,7 +1,9 @@
 class OdmXml
 
   C_CLASS_NAME = self.name
-
+  C_NO_MAPPING = "[NO MAPPING]"
+  C_NO_Q_TEXT = "*** Set Question Text ***"
+  
   extend ActiveModel::Naming
 
   attr_reader   :errors
@@ -68,9 +70,13 @@ class OdmXml
     def groups(doc)
       results = []
       doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n, @thesauri) }
+      results.sort_by! {|r| r.group.ordinal}
+      ordinal = 1
       results.each do |r| 
+        r.group.ordinal = ordinal
         @form.children << r.group 
         r.items(doc)
+        ordinal += 1
       end
       return results
     end
@@ -90,12 +96,13 @@ class OdmXml
       group_node = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
       @group.label = group_node.first.attributes["Name"].value
-      @group.ordinal = node.attributes["OrderNumber"].value.to_i
+      @group.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
     end
 
     def items(doc)
       results = []
       doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n, @thesauri) }
+      results.sort_by! {|r| r.items.first.ordinal}
       ordinal = 1
       results.each do |result|
         result.items.each do |item| 
@@ -127,10 +134,10 @@ class OdmXml
       dt_and_format = get_datatype_and_format(item_node)
       item.datatype = dt_and_format[:datatype]
       item.format = dt_and_format[:format]
-      item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "" : item_node.first.attributes["SDSVarName"].value
-      item.ordinal = node.attributes["OrderNumber"].value.to_i
+      item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "#{C_NO_MAPPING}" : item_node.first.attributes["SDSVarName"].value
+      item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
       q_text_node = node.xpath("//ItemDef[@OID = '#{@oid}']/Question/TranslatedText[@lang = 'en']")
-      item.question_text = q_text_node.empty? ? "No question text found!" : parse_special(q_text_node.first.text.strip)
+      item.question_text = q_text_node.empty? ? "#{C_NO_Q_TEXT}" : parse_special(q_text_node.first.text.strip)
       cl_ref_node = item_node.xpath("CodeListRef")
       if !cl_ref_node.empty?
         cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
@@ -156,7 +163,9 @@ class OdmXml
   private
 
     def parse_special(text)
-      return Nokogiri::HTML.parse(text).text
+      temp = Nokogiri::HTML.parse(text).text
+      # @todo Better filtering and understand the issue a little more.
+      return temp.gsub("\n", " ")
     end
 
     def get_datatype_and_format(node)
