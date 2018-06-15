@@ -58,25 +58,19 @@ describe TermOdm do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.code_list("CL_SEX")
-    result = item.to_json
-  write_yaml_file(result, sub_dir, "form_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_1.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
+    result = object.code_list("CL_SEX")
+  #write_yaml_file(result, sub_dir, "code_list_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "code_list_expected_1.yaml")
     expect(result).to eq(expected)
   end
 
-  it "gets CL, AE example" do
+  it "gets CL, CL_AE_SEVERITY example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.code_list("CL_AE_SEVERITY")
-    result = item.to_json
-  write_yaml_file(result, sub_dir, "form_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
+    result = object.code_list("CL_AE_SEVERITY")
+  #write_yaml_file(result, sub_dir, "code_list_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "code_list_expected_2.yaml")
     expect(result).to eq(expected)
   end
 
@@ -84,12 +78,9 @@ describe TermOdm do
     full_path = test_file_path(sub_dir, "odm_2.xml")
     object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.code_list("CL_ORRES_ACQ02")
-    result = item.to_json
-  write_yaml_file(result, sub_dir, "form_expected_3.yaml")
-    expected = read_yaml_file(sub_dir, "form_expected_3.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
+    result = object.code_list("CL_ORRES_ACQ02")
+  #write_yaml_file(result, sub_dir, "code_list_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "code_list_expected_3.yaml")
     expect(result).to eq(expected)
   end
 
@@ -97,9 +88,8 @@ describe TermOdm do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = TermOdm.new(full_path)
     expect(object.errors.count).to eq(0)
-    item = object.code_list("CL_ERROR")
-    expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq("Exception raised building form. undefined method `attributes' for nil:NilClass")	
+    items = object.code_list("CL_ERROR")
+    expect(items).to eq({})
 	end
    
 end
