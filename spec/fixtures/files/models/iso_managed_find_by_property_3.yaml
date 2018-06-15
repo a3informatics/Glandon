@@ -1,5 +1,47 @@
 ---
 - :type: http://www.assero.co.uk/BusinessForm#Form
+  :id: F-BBB_VSB2
+  :namespace: http://www.assero.co.uk/X/V1
+  :label: Vital Signs Baseline
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-08-08T12:45:01+01:00'
+  :last_changed_date: '2016-08-08T12:46:42+01:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: RS-BBB_VSB2-2
+    :registration_authority:
+      :id: RA-123456789
+      :number: '123456789'
+      :scheme: DUNS
+      :owner: true
+      :namespace:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: NS-BBB
+        :name: BBB Pharma
+        :shortName: BBB
+    :registration_status: Incomplete
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00Z'
+    :until_date: '2016-01-01T00:00:00Z'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+  :scoped_identifier:
+    :id: SI-BBB_VSB2-2
+    :identifier: VSB
+    :version_label: ''
+    :version: 2
+    :semantic_version: 1.1.0
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-BBB
+      :name: BBB Pharma
+      :shortName: BBB
+- :type: http://www.assero.co.uk/BusinessForm#Form
   :id: F-BBB_VSB1
   :namespace: http://www.assero.co.uk/X/V1
   :label: Vital Signs Baseline
@@ -42,18 +84,18 @@
       :name: BBB Pharma
       :shortName: BBB
 - :type: http://www.assero.co.uk/BusinessForm#Form
-  :id: F-BBB_VSW
-  :namespace: http://www.assero.co.uk/X/V1
-  :label: Vital Signs Weekly
+  :id: F-ACME_VSBASELINE1
+  :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
+  :label: Vital Signs Baseline
   :extension_properties: []
   :origin: ''
   :change_description: ''
-  :creation_date: '2016-08-08T12:44:11+01:00'
-  :last_changed_date: '2018-05-18T14:14:13+01:00'
+  :creation_date: '2016-08-08T12:45:01+01:00'
+  :last_changed_date: '2016-08-08T12:46:42+01:00'
   :explanatory_comment: ''
   :registration_state:
     :namespace: http://www.assero.co.uk/MDRItems
-    :id: RS-BBB_VSW-1
+    :id: RS-ACME_VSBASELINE1-1
     :registration_authority:
       :id: RA-123456789
       :number: '123456789'
@@ -65,21 +107,21 @@
         :name: BBB Pharma
         :shortName: BBB
     :registration_status: Standard
-    :administrative_note: New note
-    :effective_date: '2016-01-06T00:00:00+00:00'
-    :until_date: '2100-01-01T00:00:00+00:00'
-    :current: true
-    :unresolved_issue: Unresolved issues
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00Z'
+    :until_date: '2016-01-01T00:00:00Z'
+    :current: false
+    :unresolved_issue: ''
     :administrative_status: ''
     :previous_state: Qualified
   :scoped_identifier:
-    :id: SI-BBB_VSW-1
-    :identifier: VSW
+    :id: SI-ACME_VSBASELINE1-1
+    :identifier: VS BASELINE
     :version_label: ''
     :version: 1
-    :semantic_version: 1.0.0
+    :semantic_version: 0.0.0
     :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-BBB
-      :name: BBB Pharma
-      :shortName: BBB
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''

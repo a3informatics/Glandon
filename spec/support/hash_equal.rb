@@ -6,11 +6,11 @@ RSpec::Matchers.define :hash_equal do |expected|
   match_when_negated { |actual| !match? actual, expected }
 
   failure_message do |actual|
-    "expected that #{actual} would be hash equal with #{expected}"
+    "expected that actual -->\n#{actual}\n would be hash equal with expected -->\n#{expected}"
   end
 
   failure_message_when_negated do |actual|
-    "expected that #{actual} would not be hash equal with #{expected}"
+    "expected that actual -->\n#{actual}\n would not be hash equal with expected -->\n#{expected}"
   end
 
   description do
@@ -20,6 +20,7 @@ RSpec::Matchers.define :hash_equal do |expected|
   def match?(actual, expected)
     return arrays_match?(actual, expected) if expected.is_a?(Array) && actual.is_a?(Array)
     return hashes_match?(actual, expected) if expected.is_a?(Hash) && actual.is_a?(Hash)
+    puts "***** a=#{actual}, e=#{expected} *****" if expected != actual
     expected == actual
   end
 
