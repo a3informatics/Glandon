@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe TermOdm do
+describe OdmXml::Terminology do
 	
 	include DataHelpers
 
 	def sub_dir
-    return "models/concerns/term_odm"
+    return "models/concerns/odm_xml/terminology"
   end
 
 	before :each do
@@ -32,22 +32,25 @@ describe TermOdm do
   it "initialize object, fails to read the odm file" do
     full_path = test_file_path(sub_dir, "odmXXX.xml") #dodgy filename
     error_msg = "Exception raised opening ODM XML file, filename=#{full_path}. No such file or directory @ rb_sysopen - #{full_path}"
-		object = TermOdm.new(full_path)
-		expect(object.errors.count).to eq(1)
-		expect(object.errors.full_messages.to_sentence).to eq(error_msg)		
+		parent = OdmXml.new(full_path)
+    object = parent.terminology
+		expect(parent.errors.count).to eq(1)
+		expect(parent.errors.full_messages.to_sentence).to eq(error_msg)		
 	end
 
 	it "initialize object, success" do
 		full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
-    expect(object.errors.full_messages.to_sentence).to eq("")    
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
+    expect(parent.errors.full_messages.to_sentence).to eq("")    
 	end
 
 	it "gets CL list" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
     result = object.list
   #write_yaml_file(result, sub_dir, "list_expected.yaml")
     expected = read_yaml_file(sub_dir, "list_expected.yaml")
@@ -56,8 +59,9 @@ describe TermOdm do
 
   it "gets CL, CL_SEX example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
     result = object.code_list("CL_SEX")
   #write_yaml_file(result, sub_dir, "code_list_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "code_list_expected_1.yaml")
@@ -66,8 +70,9 @@ describe TermOdm do
 
   it "gets CL, CL_AE_SEVERITY example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
     result = object.code_list("CL_AE_SEVERITY")
   #write_yaml_file(result, sub_dir, "code_list_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "code_list_expected_2.yaml")
@@ -76,8 +81,9 @@ describe TermOdm do
 
   it "gets CL, CL_ORRES_ACQ02 example" do
     full_path = test_file_path(sub_dir, "odm_2.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
     result = object.code_list("CL_ORRES_ACQ02")
   #write_yaml_file(result, sub_dir, "code_list_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "code_list_expected_3.yaml")
@@ -86,8 +92,9 @@ describe TermOdm do
 
 	it "reads the odm fle, error I" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = TermOdm.new(full_path)
-    expect(object.errors.count).to eq(0)
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
     items = object.code_list("CL_ERROR")
     expect(items).to eq({})
 	end
