@@ -9,48 +9,29 @@ class Import::Odm
   attr_reader :filename
   attr_reader :identifier
 
+  # List. List the forms
+  # 
+  # @param [Hash] params
+  # @option params [String] :filename the filename, full path.
+  # @return [Array] array of form entries, each a hash
   def list(params)
     odm = OdmXml.new(params[:filename])
-    return odm.list
+    return odm.forms.list
   end
 
+  # Import. Importa s specified form
+  # 
+  # @param [Hash] params
+  # @option params [String] :filename the filename, full path.
+  # @option params [String] :identifier the form identifier.
+  # @return [Form] the form object
   def import(params)
     odm = OdmXml.new(params[:filename])
-    object = odm.form(params[:identifier])
+    object = odm.forms.form(params[:identifier])
     return odm if !odm.errors.empty?
     object = Form.create(object.to_operation)
     return object
-    #job = Background.create
-    #importer = importer.new
-    #job.start("Load database", "Starting load ...") { importer.import(job, params) }
-    #return job
   end  
-
-=begin
-  class Importer
-    
-    def import(job, params)
-      job.running("Loading ALS file ...", 25)
-      als = OdmXml.new(params[:filename])
-      job.running("Loading form ...", 50)
-      object = als.form(params[:identifier])
-      if als.errors.empty?
-        object = Form.create(object.to_operation)
-        if object.errors.empty?
-          job.end("Form has been loaded.")
-        else
-          job.end("Form load failed. Errors: #{object.errors.full_messages.to_sentence}")
-        end
-      else
-        job.end("Form load failed. Errors: #{als.errors.full_messages.to_sentence}")
-      end
-    rescue => e
-      job.end("An exception was detected during form load.\nDetails: #{e}\n#{e.backtrace}")    
-    end  
-    #handle_asynchronously :load unless Rails.env.test?
-  
-  end
-=end
 
 end
 

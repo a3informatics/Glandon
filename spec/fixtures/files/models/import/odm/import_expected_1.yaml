@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-06-14T12:28:53+01:00'
-:last_changed_date: '2018-06-14T12:28:53+01:00'
+:creation_date: '2018-06-16T11:49:32+01:00'
+:last_changed_date: '2018-06-16T11:49:32+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -115,14 +115,14 @@
     :extension_properties: []
     :ordinal: 1
     :note: |
-      * No entries found for code list item '0'.
-      * No entries found for code list item '1'.
+      * No entries found for code list, parameters ['notation=NOYES'].
+      * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
     :datatype: integer
     :format: '1'
     :question_text: Has the subject experienced any adverse events
-    :mapping: ''
+    :mapping: "[NO MAPPING]"
     :children: []
   :repeating: false
   :bc_ref: {}
@@ -199,8 +199,8 @@
     :extension_properties: []
     :ordinal: 5
     :note: |
-      * No entries found for code list item '0'.
-      * No entries found for code list item '1'.
+      * No entries found for code list, parameters ['notation=NOYES'].
+      * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
     :datatype: integer
@@ -215,8 +215,8 @@
     :extension_properties: []
     :ordinal: 6
     :note: |
-      * No entries found for code list item '0'.
-      * No entries found for code list item '1'.
+      * No entries found for code list, parameters ['notation=NOYES'].
+      * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
     :datatype: integer
@@ -231,9 +231,9 @@
     :extension_properties: []
     :ordinal: 7
     :note: |
-      * No entries found for code list item '1'.
-      * No entries found for code list item '2'.
-      * No entries found for code list item '3'.
+      * No entries found in code list 'C66769' for item '1'.
+      * No entries found in code list 'C66769' for item '2'.
+      * No entries found in code list 'C66769' for item '3'.
     :completion: ''
     :optional: false
     :datatype: integer
@@ -248,8 +248,8 @@
     :extension_properties: []
     :ordinal: 8
     :note: |
-      * No entries found for code list item '0'.
-      * No entries found for code list item '1'.
+      * No entries found for code list, parameters ['notation=NOYES'].
+      * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
     :datatype: integer
@@ -265,10 +265,8 @@
     :extension_properties: []
     :ordinal: 9
     :note: |
-      * No entries found for code list item '1'.
-      * No entries found for code list item '2'.
-      * No entries found for code list item '3'.
-      * No entries found for code list item '4'.
+      * No entries found for code list, parameters ['notation=AEACTION'].
+      * No entries found for code list, parameters ['notation=CLAEACTION'].
     :completion: ''
     :optional: false
     :datatype: integer
@@ -283,10 +281,8 @@
     :extension_properties: []
     :ordinal: 10
     :note: |
-      * No entries found for code list item '1'.
-      * No entries found for code list item '2'.
-      * No entries found for code list item '3'.
-      * No entries found for code list item '4'.
+      * No entries found for code list, parameters ['notation=AEOUT'].
+      * No entries found for code list, parameters ['notation=CLAEOUTCOME'].
     :completion: ''
     :optional: false
     :datatype: integer

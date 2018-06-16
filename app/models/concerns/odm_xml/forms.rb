@@ -145,7 +145,7 @@ class OdmXml::Forms
         mu_item.label = "#{item.label} units"
         mu_item.datatype = BaseDatatype::C_STRING
         mu_item.format = "20"
-        mu_item.mapping = ""
+        mu_item.mapping = "#{C_NO_MAPPING}"
         mu_item.ordinal = item.ordinal
         mu_item.question_text = "#{item.question_text} units"
         add_mu(doc, mu_nodes, mu_item)
@@ -222,7 +222,7 @@ class OdmXml::Forms
         end
         return true
       else
-        question.note += "* No entries found for code list, parameters '#{params}'.\n"
+        question.note += "* No entries found for code list, parameters #{params_to_s(params)}.\n"
         return false
       end
     end
@@ -252,13 +252,19 @@ class OdmXml::Forms
         break if !thcs.empty?
       end
       if thcs.empty?
-        return {tc: nil, note: "No entries found for parameters '#{params}'."}
+        return {tc: nil, note: "No entries found for parameters #{params_to_s(params)}."}
       elsif thcs.count == 1
         return {tc: thcs.first, note: ""}
       else
         entries = thcs.map { |tc| tc.identifier }.join(',')
-        return {tc: nil, note: "Multiple entries [#{entries}] found for for parameters '#{params}', ignored." }
+        return {tc: nil, note: "Multiple entries [#{entries}] found for parameters #{params_to_s(params)}, ignored." }
       end
+    end
+
+    def params_to_s(params)
+      parts = []
+      params.each {|k,v| parts << "'#{k}=#{v}'"}
+      return "[#{parts.join(", ")}]"
     end
 
   end

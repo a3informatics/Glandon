@@ -11,8 +11,8 @@ class Import::Term
 
   def list(params)
     if odm?(params)
-      odm = TermOdm.new(params[:filename])
-      return odm.list
+      odm = OdmXml.new(params[:filename])
+      return odm.terminology.list
     else
       excel = TermExcel.new(params[:filename])
       return excel.list("SN") # @todo Bit naughty but will do for the moment
@@ -24,9 +24,9 @@ class Import::Term
     uri = UriV2.new(uri: params[:uri])
     th = Thesaurus.find(uri.id, uri.namespace)
     if odm?(params)
-      odm = TermOdm.new(params[:filename])
+      odm = OdmXml.new(params[:filename])
       return odm if !odm.errors.empty?
-      results = odm.code_list(params[:identifier])
+      results = odm.terminology.code_list(params[:identifier])
     else
       excel = TermExcel.new(params[:filename])
       return excel if !excel.errors.empty?

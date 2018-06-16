@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-06-16T11:13:41+01:00'
-:last_changed_date: '2018-06-16T11:13:41+01:00'
+:creation_date: '2018-06-16T11:55:36+01:00'
+:last_changed_date: '2018-06-16T11:55:36+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -208,8 +208,8 @@
     :extension_properties: []
     :ordinal: 1
     :note: |
-      * No entries found for code list, parameters '{:notation=>"SMOKE"}'.
-      * No entries found for code list, parameters '{:notation=>"CLSMOKING"}'.
+      * No entries found for code list, parameters ['notation=SMOKE'].
+      * No entries found for code list, parameters ['notation=CLSMOKING'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -236,8 +236,8 @@
     :extension_properties: []
     :ordinal: 1
     :note: |
-      * No entries found for code list, parameters '{:notation=>"DRINK"}'.
-      * No entries found for code list, parameters '{:notation=>"CLDRINKING"}'.
+      * No entries found for code list, parameters ['notation=DRINK'].
+      * No entries found for code list, parameters ['notation=CLDRINKING'].
     :completion: ''
     :optional: false
     :datatype: string
@@ -277,16 +277,14 @@
     :label: Height units
     :extension_properties: []
     :ordinal: 2
-    :note: '* Multiple entries [C48500,C48500] found for for parameters ''{:notation=>"in"}'',
-      ignored.
-
-'
+    :note: "* Multiple entries [C48500,C48500] found for parameters ['notation=in'],
+      ignored.\n"
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
     :question_text: Height units
-    :mapping: ''
+    :mapping: "[NO MAPPING]"
     :children: []
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
@@ -308,15 +306,13 @@
     :label: Weight units
     :extension_properties: []
     :ordinal: 4
-    :note: '* No entries found for parameters ''{:notation=>"lbs"}''.
-
-'
+    :note: "* No entries found for parameters ['notation=lbs'].\n"
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
     :question_text: Weight units
-    :mapping: ''
+    :mapping: "[NO MAPPING]"
     :children: []
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
@@ -338,15 +334,13 @@
     :label: Systolic BP units
     :extension_properties: []
     :ordinal: 6
-    :note: '* No entries found for parameters ''{:notation=>"mm Hg"}''.
-
-'
+    :note: "* No entries found for parameters ['notation=mm Hg'].\n"
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
     :question_text: Systolic BP units
-    :mapping: ''
+    :mapping: "[NO MAPPING]"
     :children: []
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
@@ -368,15 +362,13 @@
     :label: Diastolic BP units
     :extension_properties: []
     :ordinal: 8
-    :note: '* No entries found for parameters ''{:notation=>"mm Hg"}''.
-
-'
+    :note: "* No entries found for parameters ['notation=mm Hg'].\n"
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
     :question_text: Diastolic BP units
-    :mapping: ''
+    :mapping: "[NO MAPPING]"
     :children: []
   :repeating: false
   :bc_ref: {}

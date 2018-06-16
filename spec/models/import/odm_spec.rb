@@ -31,7 +31,7 @@ describe Odm do
   end
 
 	it "gets form list" do
-    full_path = test_file_path(sub_dir, "odm.xml")
+    full_path = test_file_path(sub_dir, "odm_1.xml")
     object = Import::Odm.new
     expect(object.errors.count).to eq(0)
     result = object.list({filename: full_path})
@@ -41,13 +41,28 @@ describe Odm do
 	end
 
   it "gets form, AE example" do
-    full_path = test_file_path(sub_dir, "odm.xml")
+    full_path = test_file_path(sub_dir, "odm_1.xml")
     object = Import::Odm.new
     expect(object.errors.count).to eq(0)
     item = object.import({identifier: "F_AE", filename: full_path})
+    expect(item.errors.count).to eq(0)
     result = item.to_json
   #write_yaml_file(result, sub_dir, "import_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_1.yaml")
+    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+    expected[:creation_date] = result[:creation_date]
+    expect(result).to eq(expected)
+  end
+
+  it "gets form, DM example" do
+    full_path = test_file_path(sub_dir, "odm_2.xml")
+    object = Import::Odm.new
+    expect(object.errors.count).to eq(0)
+    item = object.import({identifier: "DM", filename: full_path})
+    expect(item.errors.count).to eq(0)
+    result = item.to_json
+  #write_yaml_file(result, sub_dir, "import_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
     expect(result).to eq(expected)
