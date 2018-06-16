@@ -11,6 +11,9 @@ class OdmXml::Forms
     @doc = parent.doc
   end
 
+  # List. List all forms present in the file.
+  #
+  # @return [Array] array of hash entries containing the list of code lists (:identifier and :label).
   def list
     results = []
     @doc.xpath("//FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
@@ -20,6 +23,10 @@ class OdmXml::Forms
     return []
   end
 
+  # Form. Return the details for the specificed form.
+  #
+  # @param [String] identifier the identifier of the code list required. Form OID is used.
+  # @return [Form] object containing the form.
   def form(identifier)
     thesauri = []
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
@@ -28,7 +35,7 @@ class OdmXml::Forms
     return odm_form.form
   rescue => e
     @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form.")
-    return self
+    return nil
   end
 
   class OdmForm
@@ -174,32 +181,62 @@ class OdmXml::Forms
     end
 
     def add_cl(node, question)
-      ordinal = 1
       cli_nodes = node.xpath("CodeListItem")
-      cli_nodes.each do |cli_node|
-        result = get_cli(cli_node.attributes["CodedValue"].value)
-        if !result[:cli].nil?
-          ref = OperationalReferenceV2.new
-          ref.ordinal = ordinal
-          ref.subject_ref = result[:cli].uri
-          question.tc_refs << ref
-          ordinal += 1
-        else
-          question.note += "* #{result[:note]}\n" if !result[:note].empty?
+      return if cli_nodes.empty?
+      return if alias_cl(node, question, cli_nodes)
+      return if sas_format_cl(node, question, cli_nodes)
+      return if oid_cl(node, question, cli_nodes)
+    end
+
+    def alias_cl(node, question, cli_nodes)
+      alias_nodes = node.xpath("Alias[@Context='nci:ExtCodeID']")
+      return false if alias_nodes.empty?
+      return find_cl({identifier: alias_nodes.first.attributes["Name"].value}, question, cli_nodes)
+    end
+
+    def sas_format_cl(node, question, cli_nodes)
+      return false if node.attributes["SASFormatName"].nil?
+      return find_cl({notation: node.attributes["SASFormatName"].value}, question, cli_nodes)
+    end
+
+    def oid_cl(node, question, cli_nodes)
+      return find_cl({notation: OdmXml.clean_identifier(node.attributes["OID"].value)}, question,  cli_nodes)
+    end
+
+    def find_cl(params, question, cli_nodes)
+      result = get_tc(params)
+      if !result[:tc].nil?
+        ordinal = 1
+        cli_nodes.each do |cli_node|
+          notation = cli_node.attributes["CodedValue"].value
+          cli = result[:tc].children.find { |x| x.notation == notation}
+          if !cli.nil?
+            ref = OperationalReferenceV2.new
+            ref.ordinal = ordinal
+            ref.subject_ref = cli.uri
+            question.tc_refs << ref
+            ordinal += 1
+          else
+            question.note += "* No entries found in code list '#{result[:tc].identifier}' for item '#{notation}'.\n"
+          end
         end
+        return true
+      else
+        question.note += "* No entries found for code list, parameters '#{params}'.\n"
+        return false
       end
     end
 
-     def add_mu(doc, nodes, question)
+    def add_mu(doc, nodes, question)
       ordinal = 1
       nodes.each do |mu_ref_node|
         oid = mu_ref_node.attributes["MeasurementUnitOID"].value
         mu_node = doc.xpath("//MeasurementUnit[@OID = '#{oid}']/Symbol/TranslatedText[@lang = 'en']")
-        result = get_cli(mu_node.first.text.strip)
-        if !result[:cli].nil?
+        result = get_tc({notation: mu_node.first.text.strip})
+        if !result[:tc].nil?
           ref = OperationalReferenceV2.new
           ref.ordinal = ordinal
-          ref.subject_ref = result[:cli].uri
+          ref.subject_ref = result[:tc].uri
           question.tc_refs << ref
           ordinal += 1
         else
@@ -208,16 +245,19 @@ class OdmXml::Forms
       end
     end
 
-    def get_cli(notation)   
+    def get_tc(params)   
       thcs = []
-      @thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
+      @thesauri.each do |th| 
+        thcs = th.find_by_property(params)
+        break if !thcs.empty?
+      end
       if thcs.empty?
-        return {cli: nil, note: "No entries found for code list item '#{notation}'."}
+        return {tc: nil, note: "No entries found for parameters '#{params}'."}
       elsif thcs.count == 1
-        return {cli: thcs.first, note: ""}
+        return {tc: thcs.first, note: ""}
       else
         entries = thcs.map { |tc| tc.identifier }.join(',')
-        return {cli: nil, note: "Multiple entries [#{entries}] found for code list item '#{notation}', ignored." }
+        return {tc: nil, note: "Multiple entries [#{entries}] found for for parameters '#{params}', ignored." }
       end
     end
 

@@ -63,6 +63,7 @@ describe OdmXml::Forms do
     object = parent.forms
     expect(parent.errors.count).to eq(0)
     item = object.form("F_BASELINE")
+    expect(item).to_not be_nil
     result = item.to_json
   #write_yaml_file(result, sub_dir, "form_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_1.yaml")
@@ -77,6 +78,7 @@ describe OdmXml::Forms do
     object = parent.forms
     expect(parent.errors.count).to eq(0)
     item = object.form("F_AE")
+    expect(item).to_not be_nil
     result = item.to_json
   #write_yaml_file(result, sub_dir, "form_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
@@ -91,6 +93,7 @@ describe OdmXml::Forms do
     object = parent.forms
     expect(parent.errors.count).to eq(0)
     item = object.form("DM")
+    expect(item).to_not be_nil
     result = item.to_json
   #write_yaml_file(result, sub_dir, "form_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_3.yaml")

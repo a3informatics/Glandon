@@ -24,6 +24,7 @@ class OdmXml::Terminology
 
   # Code List. Return the details for the specificed code list.
   #
+  # @param [String] identifier the identifier of the code list required. CodeList OID is used.
   # @return [Hash] hash containing the code list details an darray of children items
   def code_list(identifier)
     nodes = @doc.xpath("//CodeList[@OID = '#{identifier}']")

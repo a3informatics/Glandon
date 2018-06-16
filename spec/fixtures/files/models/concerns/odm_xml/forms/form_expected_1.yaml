@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-06-14T12:10:35+01:00'
-:last_changed_date: '2018-06-14T12:10:35+01:00'
+:creation_date: '2018-06-16T11:13:41+01:00'
+:last_changed_date: '2018-06-16T11:13:41+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -128,16 +128,38 @@
     :label: DM - Sex
     :extension_properties: []
     :ordinal: 2
-    :note: |
-      * Multiple entries [C20197,C20197] found for code list item 'M', ignored.
-      * Multiple entries [C16576,C44277,C16576,C44277] found for code list item 'F', ignored.
+    :note: ''
     :completion: ''
     :optional: false
     :datatype: string
     :format: '1'
     :question_text: Sex
     :mapping: SEX
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C20197
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C16576
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -145,17 +167,28 @@
     :extension_properties: []
     :ordinal: 3
     :note: |
-      * No entries found for code list item 'CAUCASIAN'.
-      * No entries found for code list item 'BLACK'.
-      * Multiple entries [C41260,C41260] found for code list item 'ASIAN', ignored.
-      * Multiple entries [C17649,C17649,C17649,C17649,C17649] found for code list item 'OTHER', ignored.
+      * No entries found in code list 'C74457' for item 'CAUCASIAN'.
+      * No entries found in code list 'C74457' for item 'BLACK'.
+      * No entries found in code list 'C74457' for item 'OTHER'.
     :completion: ''
     :optional: false
     :datatype: string
     :format: '20'
     :question_text: Race
     :mapping: RACE
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41260
   :repeating: false
   :bc_ref: {}
 - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
@@ -175,9 +208,8 @@
     :extension_properties: []
     :ordinal: 1
     :note: |
-      * No entries found for code list item 'LT10'.
-      * No entries found for code list item '10TO20'.
-      * No entries found for code list item 'GT20'.
+      * No entries found for code list, parameters '{:notation=>"SMOKE"}'.
+      * No entries found for code list, parameters '{:notation=>"CLSMOKING"}'.
     :completion: ''
     :optional: false
     :datatype: string
@@ -204,9 +236,8 @@
     :extension_properties: []
     :ordinal: 1
     :note: |
-      * No entries found for code list item 'LT1'.
-      * No entries found for code list item '1TO2'.
-      * No entries found for code list item 'GT2'.
+      * No entries found for code list, parameters '{:notation=>"DRINK"}'.
+      * No entries found for code list, parameters '{:notation=>"CLDRINKING"}'.
     :completion: ''
     :optional: false
     :datatype: string
@@ -246,7 +277,10 @@
     :label: Height units
     :extension_properties: []
     :ordinal: 2
-    :note: "* Multiple entries [C48500,C48500] found for code list item 'in', ignored.\n"
+    :note: '* Multiple entries [C48500,C48500] found for for parameters ''{:notation=>"in"}'',
+      ignored.
+
+'
     :completion: ''
     :optional: false
     :datatype: string
@@ -274,7 +308,9 @@
     :label: Weight units
     :extension_properties: []
     :ordinal: 4
-    :note: "* No entries found for code list item 'lbs'.\n"
+    :note: '* No entries found for parameters ''{:notation=>"lbs"}''.
+
+'
     :completion: ''
     :optional: false
     :datatype: string
@@ -302,7 +338,9 @@
     :label: Systolic BP units
     :extension_properties: []
     :ordinal: 6
-    :note: "* No entries found for code list item 'mm Hg'.\n"
+    :note: '* No entries found for parameters ''{:notation=>"mm Hg"}''.
+
+'
     :completion: ''
     :optional: false
     :datatype: string
@@ -330,7 +368,9 @@
     :label: Diastolic BP units
     :extension_properties: []
     :ordinal: 8
-    :note: "* No entries found for code list item 'mm Hg'.\n"
+    :note: '* No entries found for parameters ''{:notation=>"mm Hg"}''.
+
+'
     :completion: ''
     :optional: false
     :datatype: string
