@@ -22,12 +22,13 @@ describe 'imports/terms/index.html.erb', :type => :view do
     assign(:term, Import::Term.new)
     assign(:files, ["fred.xlsx"])
     assign(:code_lists, [])
+    assign(:file_type, :excel)
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("Import Terminology - Excel")
+    expect(rendered).to have_content("Import Terminology - EXCEL")
     expect(rendered).to have_content("Code Lists")
     expect(rendered).to have_content("XXX Label")
     expect(rendered).to have_content("fred.xlsx")
