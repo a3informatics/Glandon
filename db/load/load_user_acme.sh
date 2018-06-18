@@ -21,6 +21,7 @@ curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_BC
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_BC_C100395_STD.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_BC_C100396_STD.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_BC_C100397_STD.ttl" $FileEndPoint
+curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_BC_C25208_V2.ttl" $FileEndPoint
 # Load Forms
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_DM1 01.ttl" $FileEndPoint
 curl -v -X POST -H "Content-Type:multipart/form-data" -F "filename=@data/ACME_AEPI1 03.ttl" $FileEndPoint
