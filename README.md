@@ -2,7 +2,7 @@
 
 This section provides details of the testing status. The lists provide a simple mechanism that can be used to ensure new releases do not increase the failing test count.
 
-##v2.19.1
+## v2.19.1
 ```
 Finished in 86 minutes 32 seconds (files took 7.22 seconds to load)
 2668 examples, 9 failures, 55 pending
