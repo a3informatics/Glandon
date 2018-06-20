@@ -2,6 +2,26 @@
 
 This section provides details of the testing status. The lists provide a simple mechanism that can be used to ensure new releases do not increase the failing test count.
 
+##v2.19.1
+```
+Finished in 86 minutes 32 seconds (files took 7.22 seconds to load)
+2668 examples, 9 failures, 55 pending
+
+Failed examples:
+
+rspec ./spec/features/form_editor_js_spec.rb:501 # Form Editor Curator User allows questions to be updated, check enable and disable on the panel - WILL FAIL CURRENTLY 
+rspec ./spec/features/form_editor_js_spec.rb:777 # Form Editor Curator User allows items to be made common and restored, items moved
+rspec ./spec/features/form_editor_js_spec.rb:887 # Form Editor Curator User allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY
+rspec ./spec/features/form_editor_js_spec.rb:921 # Form Editor Curator User allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY
+rspec ./spec/features/form_editor_js_spec.rb:1148 # Form Editor Curator User allows the edit session to be closed indirectly, saves data
+rspec ./spec/features/form_js_spec.rb:221 # Forms Forms allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY
+rspec ./spec/models/form_spec.rb:236 # Form can create the sparql for core form
+rspec ./spec/models/form_spec.rb:244 # Form can create the sparql for BC form
+rspec ./spec/models/sdtm_user_domain_spec.rb:199 # SdtmUserDomain exports the domain as a SAS XPT file - WILL CURRENTLY FAIL (TimeDate Stamp Issue)
+```
+
+Intermittent failures as per 2.19.0 also present
+
 ## v2.19.0
 ```
 Finished in 95 minutes 59 seconds (files took 6.25 seconds to load)
