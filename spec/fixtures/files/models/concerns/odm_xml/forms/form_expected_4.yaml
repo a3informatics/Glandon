@@ -1,0 +1,356 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Eligibility
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-06-18T13:57:55+01:00'
+:last_changed_date: '2018-06-18T13:57:55+01:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: IE
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: IEG1
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE1
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Is the subject meeting all the inclusion criteria and none of
+      the exclusion criteria assessed at this visit?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE2
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Is the subject meeting all the inclusion criteria and none of
+      the exclusion criteria assessed at this visit and at the previous visit?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IEORRES
+    :extension_properties: []
+    :ordinal: 3
+    :note: |
+      * No entries found for code list, parameters ['notation=YESNO'].
+      * No entries found for code list, parameters ['notation=CLFMTYESNO'].
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: ''
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE3
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Please-removed-discontinue the subject and complete the-removed-End
+      of Study form.
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: IEG5
+  :extension_properties: []
+  :ordinal: 2
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IECAT
+    :extension_properties: []
+    :ordinal: 1
+    :note: |
+      * No entries found in code list 'C66797' for item with submission value: '1' or preferred term: 'Inclusion'.
+      * No entries found in code list 'C66797' for item with submission value: '2' or preferred term: 'Exclusion'.
+      * No entries found in code list 'C66797' for item with submission value: '3' or preferred term: 'Both'.
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Criteria not met
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: IEG3
+  :extension_properties: []
+  :ordinal: 3
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE5
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: 'I1. Written informed consent obtained from parents / caregivers
+      before any trial related procedures are performed.I2. Male or female of any
+      race / ethnicity aged -removed- 4 to -removed- 17 years on the day informed
+      consent is obtained from the parent / caregiver. The subject must be -removed-
+      5 to -removed- 17 years old at the randomisation visit.I3. A female subject
+      of childbearing potential must have a negative pregnancy test and be willing
+      to practise appropriate contraceptive methods until the follow-up telephone
+      call (TC).I4. A clinical history of HDM allergic asthma of at least 1 year duration
+      diagnosed by a physician.I5. Use of low daily dose of ICS plus LABA or medium
+      / high daily dose of ICS with or without LABA for the control of asthma symptoms
+      within the past year prior to randomisation.I6. -removed- 3 clinically relevant
+      asthma exacerbations in the past two years or -removed- 2 clinically relevant
+      asthma exacerbations in the past year or -removed- 1 severe asthma exacerbation
+      in the past year prior to randomization while being on asthma controller medication
+      (low dose ICS plus LABA or medium / high dose ICS with or without LABA). The
+      asthma controller medication at the screening visit must be at a dose equivalent
+      to or below the dose the subject received before the last asthma exacerbation
+      occurred.I7. One or more of the following within the past 4 weeks prior to randomisation:
+      a. Daytime asthma symptoms more than twice/week.b. Any nocturnal awakening due
+      to asthma which require use of SABA rescue medication.c. SABA rescue medication
+      needed for treatment of asthma symptoms more than twice/week.d. Any activity
+      limitation due to asthma.I8. Lung function measured by forced expiratory volume
+      in 1 second (FEV1) -removed- 70-removed- of predicted value or according to
+      local requirements while on background treatment following at least a 6-hour
+      washout of SABA at screening and randomisation.I9. Clinical history of HDM AR
+      within the last year prior to randomisation.I10. An average TCRS > 0 during
+      the baseline period (period 2).I11. Positive specific immunoglobulin E (IgE)
+      (defined as -removed- class 2, -removed- 0.70 kU/l) against Dermatophagoides
+      pteronyssinus (D. pteronyssinus) and/or Dermatophagoides farinae (D. farinae)
+      at screening.I12. Positive skin prick test (SPT) (-removed- 3 mm) to D. pteronyssinus
+      and/or D. farinae at screening.I13. Subject willing and able to comply with
+      trial protocol.'
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE5_Copy1
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: 'I1. Written informed consent obtained from parents / caregivers
+      before any trial related procedures are performed. Consent or assent from the
+      subject must be obtained according to national requirements.I2. Male or female
+      of any race / ethnicity aged -removed- 4 to -removed- 17 years on the day informed
+      consent is obtained from the parent / caregiver. The subject must be -removed-
+      5 to -removed- 17 years old at the randomisation visit.I3. A female subject
+      of childbearing potential must have a negative pregnancy test and be willing
+      to practise appropriate contraceptive methods until the follow-up telephone
+      call (TC).I4. A clinical history of HDM allergic asthma of at least 1 year duration
+      diagnosed by a physician.I5. Use of low daily dose of ICS plus LABA or medium
+      / high daily dose of ICS with or without LABA for the control of asthma symptoms
+      within the past year prior to randomisation.I6. -removed- 3 clinically relevant
+      asthma exacerbations in the past two years or -removed- 2 clinically relevant
+      asthma exacerbations in the past year or -removed- 1 severe asthma exacerbation
+      in the past year prior to randomization while being on asthma controller medication
+      (low dose ICS plus LABA or medium / high dose ICS with or without LABA). The
+      asthma controller medication at the screening visit must be at a dose equivalent
+      to or below the dose the subject received before the last asthma exacerbation
+      occurred.I7. One or more of the following within the past 4 weeks prior to randomisation:
+      a. Daytime asthma symptoms more than twice/week.b. Any nocturnal awakening due
+      to asthma which require use of SABA rescue medication.c. SABA rescue medication
+      needed for treatment of asthma symptoms more than twice/week.d. Any activity
+      limitation due to asthma.I8. Lung function measured by forced expiratory volume
+      in 1 second (FEV1) -removed- 70-removed- of predicted value or according to
+      local requirements while on background treatment following at least a 6-hour
+      washout of SABA at screening and randomisation.I9. Clinical history of HDM AR
+      within the last year prior to randomisation.I10. An average TCRS > 0 during
+      the baseline period (period 2).I11. Positive specific immunoglobulin E (IgE)
+      (defined as -removed- class 2, -removed- 0.70 kU/l) against Dermatophagoides
+      pteronyssinus (D. pteronyssinus) and/or Dermatophagoides farinae (D. farinae)
+      at screening.I12. Positive skin prick test (SPT) (-removed- 3 mm) to D. pteronyssinus
+      and/or D. farinae at screening.I13. Subject willing and able to comply with
+      trial protocol.'
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IEINTESTCD
+    :extension_properties: []
+    :ordinal: 3
+    :note: |
+      * No entries found for code list, parameters ['notation=INCL'].
+      * No entries found for code list, parameters ['notation=CLIEINTESTCD'].
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Specify the inclusion criteria not met(Please check all that apply)
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: IEG4
+  :extension_properties: []
+  :ordinal: 4
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IE4
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: E1. Is sensitised and regularly exposed to animal dander, molds,
+      and/or cockroach (e.g., present in the home, job, daycare, etc.) or other perennial
+      allergen.E2. Has experienced a life-threatening asthma attack defined for this
+      protocol as an asthma episode that required intubation and/or was associated
+      with hypercapnia requiring non-invasive ventilator support.E3. Within the last
+      month before the randomisation visit (visit 3), has had an occurrence of any
+      clinical deterioration of asthma that resulted in emergency treatment, hospitalisation,
+      or treatment with systemic corticosteroids.E4. Within the last 3 months before
+      the randomisation visit (visit 3) while on high dose ICS treatment, has had
+      an occurrence of any clinical deterioration of asthma that resulted in emergency
+      treatment, hospitalisation, or treatment with systemic corticosteroids.E5. SLIT
+      treatment with D. pteronyssinus or D. farinae for more than 1 month within the
+      last 5 years. In addition, any SLIT treatment with D. pteronyssinus-removed-or
+      D. farinae within the previous 12 months.E6. SCIT treatment with D. pteronyssinus
+      or D. farinae reaching the maintenance dose within the last 5 years. In addition,
+      any subcutaneous immunotherapy (SCIT) treatment with D. pteronyssinus or D.
+      farinae within the previous 12 months.E7. Ongoing treatment with any allergy
+      immunotherapy product.E8. Severe chronic oral inflammation.E9. Any nasal or
+      naso / oropharyngeal condition that could confound the efficacy or safety assessments
+      (e.g., hypertrophy of the pharyngeal / palatine tonsils, clinically relevant
+      nasal polyps, a history of paranasal sinus surgery or surgery of nasal turbinates).E10.
+      Any clinically relevant chronic disease incl. malignancy that in the opinion
+      of the investigator would interfere with the trial evaluations or the safety
+      of the subject.E11. Has a diagnosis of eosinophilic oesophagitis.E12. A relevant
+      history of systemic allergic reaction e.g. anaphylaxis with cardiorespiratory
+      symptoms, generalised urticaria or severe facial angioedema that in the opinion
+      of the investigator may constitute an increased safety concern.E13. Active or
+      poorly controlled autoimmune diseases, immune defects, immunodeficiencies, immunosuppression
+      or malignant neoplastic diseases with current disease relevance.E14. Ongoing
+      treatment with OCS.E15. Treatment with restricted and prohibited concomitant
+      medication listed in Table 2.E16. Treatment with an investigational drug within
+      30 days / 5 half-lives of the drug (which ever longest) prior to screening.E17.
+      A history of allergy, hypersensitivity or intolerance to any of the excipients
+      or active substance of the IMP (except D. pteronyssinus and D. farinae) or to
+      any excipient of the rescue medication provided in this trial.E18. A business
+      or personal relationship with trial staff or sponsor who is directly involved
+      with the conduct of the trial.E19. A history of alcohol or drug abuse.E20. Has
+      previously been randomised into this trial, is participating in this trial at
+      another investigational site or is participating or planning to participate
+      in any other clinical trial during the duration of this study.E21. Has a history
+      or current evidence of any condition, treatment, laboratory values out of range
+      or other circumstance that in the opinion of the investigator are clinically
+      relevant and might expose the subject to risk by participating in the trial,
+      confound the results of the trial, or interfere with the subject-removed-s participation
+      for the full duration of the trial.E22. Has a condition or treatment that increase
+      the risk of the subject developing severe adverse reactions after adrenaline
+      administration.E23. Is unable to or will not comply with the use of adrenaline
+      auto-injectors.
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: IEEXTESTCD
+    :extension_properties: []
+    :ordinal: 2
+    :note: |
+      * No entries found for code list, parameters ['notation=EXCL'].
+      * No entries found for code list, parameters ['notation=CLIEEXTESTCD'].
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: Specify the exclusion criteria met(Please check all that apply)
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}

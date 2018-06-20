@@ -90,6 +90,17 @@ describe OdmXml::Terminology do
     expect(result).to eq(expected)
   end
 
+  it "gets CL, CL_AE_SEVERITY example" do
+    full_path = test_file_path(sub_dir, "odm_2.xml")
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
+    result = object.code_list("CL_ANNOTATION_TYPE")
+  #write_yaml_file(result, sub_dir, "code_list_expected_4.yaml")
+    expected = read_yaml_file(sub_dir, "code_list_expected_4.yaml")
+    expect(result).to eq(expected)
+  end
+
 	it "reads the odm fle, error I" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     parent = OdmXml.new(full_path)
@@ -99,4 +110,13 @@ describe OdmXml::Terminology do
     expect(items).to eq({})
 	end
    
+  it "reads the odm fle, error I" do
+    full_path = test_file_path(sub_dir, "odm_2.xml")
+    parent = OdmXml.new(full_path)
+    object = parent.terminology
+    expect(parent.errors.count).to eq(0)
+    result = object.code_list("CL_ANNOTATION_TYPEXXX")
+    expect(result).to eq({})
+  end
+
 end

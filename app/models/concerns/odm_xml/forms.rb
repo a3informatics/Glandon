@@ -1,3 +1,5 @@
+require 'cgi'
+
 class OdmXml::Forms
 
   C_CLASS_NAME = self.name
@@ -36,6 +38,22 @@ class OdmXml::Forms
   rescue => e
     @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form.")
     return nil
+  end
+
+  class Ordinal
+
+    def initialize
+      @counter = 1
+              end
+
+    def increment
+      @counter += 1
+    end
+
+    def value
+      return @counter
+    end
+
   end
 
   class OdmForm
@@ -133,6 +151,7 @@ class OdmXml::Forms
       item.question_text = q_text_node.empty? ? "#{C_NO_Q_TEXT}" : parse_special(q_text_node.first.text.strip)
       cl_ref_node = item_node.xpath("CodeListRef")
       if !cl_ref_node.empty?
+        item.datatype = BaseDatatype::C_STRING
         cl_oid = cl_ref_node.first.attributes["CodeListOID"].value
         cl_node = node.xpath("//CodeList[@OID = '#{cl_oid}']")
         add_cl(cl_node.first, item)
@@ -156,8 +175,10 @@ class OdmXml::Forms
   private
 
     def parse_special(text)
-      temp = Nokogiri::HTML.parse(text).text
+      temp = CGI.unescapeHTML(text)
+      temp = Nokogiri::HTML.parse(temp).text
       # @todo Better filtering and understand the issue a little more.
+      temp = temp.gsub(/[^0-9A-Za-z .!?,'"_\\\-\/\\ ()[\\]~#*+@=:;&|<>]/, "-removed-")
       return temp.gsub("\n", " ")
     end
 
@@ -206,19 +227,12 @@ class OdmXml::Forms
     def find_cl(params, question, cli_nodes)
       result = get_tc(params)
       if !result[:tc].nil?
-        ordinal = 1
+        ordinal = Ordinal.new
         cli_nodes.each do |cli_node|
-          notation = cli_node.attributes["CodedValue"].value
-          cli = result[:tc].children.find { |x| x.notation == notation}
-          if !cli.nil?
-            ref = OperationalReferenceV2.new
-            ref.ordinal = ordinal
-            ref.subject_ref = cli.uri
-            question.tc_refs << ref
-            ordinal += 1
-          else
-            question.note += "* No entries found in code list '#{result[:tc].identifier}' for item '#{notation}'.\n"
-          end
+          info = {notation: "", preferred_term: ""}
+          next if notation_cli(result, cli_node, question, ordinal, info)
+          next if preferred_term_cli(result, cli_node, question, ordinal, info)
+          question.note += "* No entries found in code list '#{result[:tc].identifier}' for item with submission value: '#{info[:notation]}' or preferred term: '#{info[:preferred_term]}'.\n"
         end
         return true
       else
@@ -227,18 +241,40 @@ class OdmXml::Forms
       end
     end
 
+    def notation_cli(result, cli_node, question, ordinal, info)
+      info[:notation] = cli_node.attributes["CodedValue"].value
+      cli = result[:tc].children.find { |x| x.notation == info[:notation]}
+      return false if cli.nil?
+      return add_op_ref(cli, question, ordinal)
+    end
+
+    def preferred_term_cli(result, cli_node, question, ordinal, info)
+      pt_nodes = cli_node.xpath("Decode/TranslatedText")
+      return false if pt_nodes.empty?
+      info[:preferred_term] = pt_nodes.first.text.strip
+      cli = result[:tc].children.find { |x| x.preferredTerm.upcase == info[:preferred_term].upcase}
+      return false if cli.nil?
+      add_op_ref(cli, question, ordinal)
+      return true
+    end
+
+    def add_op_ref(cli, question, ordinal)
+      ref = OperationalReferenceV2.new
+      ref.ordinal = ordinal.value
+      ref.subject_ref = cli.uri
+      question.tc_refs << ref
+      ordinal.increment
+      return true
+    end      
+
     def add_mu(doc, nodes, question)
-      ordinal = 1
+      ordinal = Ordinal.new
       nodes.each do |mu_ref_node|
         oid = mu_ref_node.attributes["MeasurementUnitOID"].value
         mu_node = doc.xpath("//MeasurementUnit[@OID = '#{oid}']/Symbol/TranslatedText[@lang = 'en']")
-        result = get_tc({notation: mu_node.first.text.strip})
+        result = get_tc({notation: parse_special(mu_node.first.text.strip)})
         if !result[:tc].nil?
-          ref = OperationalReferenceV2.new
-          ref.ordinal = ordinal
-          ref.subject_ref = result[:tc].uri
-          question.tc_refs << ref
-          ordinal += 1
+          add_op_ref(result[:tc], question, ordinal)
         else
           question.note += "* #{result[:note]}\n" if !result[:note].empty?
         end

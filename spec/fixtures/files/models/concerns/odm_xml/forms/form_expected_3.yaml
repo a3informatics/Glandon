@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-06-16T13:17:10+01:00'
-:last_changed_date: '2018-06-16T13:17:10+01:00'
+:creation_date: '2018-06-18T13:57:46+01:00'
+:last_changed_date: '2018-06-18T13:57:46+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -103,10 +103,7 @@
     :label: AGE units
     :extension_properties: []
     :ordinal: 4
-    :note: '* No entries found for parameters [''notation=<span style="color: #a9a9a9;
-      font-size: 1em;">years</span>''].
-
-'
+    :note: "* No entries found for parameters ['notation=years'].\n"
     :completion: ''
     :optional: false
     :datatype: string
@@ -139,7 +136,7 @@
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Is assent applicable for the subject?
     :mapping: "[NO MAPPING]"
@@ -176,16 +173,38 @@
     :label: SEX
     :extension_properties: []
     :ordinal: 1
-    :note: |
-      * No entries found in code list 'C66731' for item '1'.
-      * No entries found in code list 'C66731' for item '2'.
+    :note: ''
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Gender
     :mapping: "[NO MAPPING]"
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C20197
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C16576
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -197,7 +216,7 @@
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Is the subject of childbearing potential?
     :mapping: "[NO MAPPING]"
@@ -227,7 +246,7 @@
       * No entries found for code list, parameters ['notation=CLMENOSTAT'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Reason
     :mapping: "[NO MAPPING]"
@@ -250,38 +269,126 @@
     :label: ETHNIC
     :extension_properties: []
     :ordinal: 1
-    :note: |
-      * No entries found in code list 'C66790' for item '1'.
-      * No entries found in code list 'C66790' for item '2'.
-      * No entries found in code list 'C66790' for item '3'.
-      * No entries found in code list 'C66790' for item '98'.
+    :note: "* No entries found in code list 'C66790' for item with submission value:
+      '3' or preferred term: 'Not reported'.\n"
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Ethnicity
     :mapping: "[NO MAPPING]"
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C17459
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C41222
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C17998
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
     :label: RACE
     :extension_properties: []
     :ordinal: 2
-    :note: |
-      * No entries found in code list 'C74457' for item '1'.
-      * No entries found in code list 'C74457' for item '2'.
-      * No entries found in code list 'C74457' for item '3'.
-      * No entries found in code list 'C74457' for item '4'.
-      * No entries found in code list 'C74457' for item '5'.
-      * No entries found in code list 'C74457' for item '99'.
+    :note: "* No entries found in code list 'C74457' for item with submission value:
+      '99' or preferred term: 'Other'.\n"
     :completion: ''
     :optional: false
     :datatype: string
     :format: '100'
-    :question_text: Race (Please check all that apply)
+    :question_text: Race-removed-(Please check all that apply)
     :mapping: "[NO MAPPING]"
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C16352
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41259
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41260
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41219
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 5
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41261
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -328,17 +435,39 @@
     :label: SMOKENCF
     :extension_properties: []
     :ordinal: 1
-    :note: |
-      * No entries found in code list 'C78738' for item '1'.
-      * No entries found in code list 'C78738' for item '2'.
-      * No entries found in code list 'C78738' for item '3'.
+    :note: "* No entries found in code list 'C78738' for item with submission value:
+      '3' or preferred term: 'Former'.\n"
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Smoking history
     :mapping: "[NO MAPPING]"
-    :children: []
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C78738_C70543
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C78738_C25471
   :repeating: false
   :bc_ref: {}
 - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
@@ -362,7 +491,7 @@
       * No entries found for code list, parameters ['notation=CLFMTYESNO'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Was this subject screened for this trial previously?
     :mapping: "[NO MAPPING]"
@@ -488,7 +617,7 @@
       * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Did the subject consent to having a blood sample collected and
       stored in the ALK Research Biobank for future pharmacogenetic testing?
@@ -533,7 +662,7 @@
       * No entries found for code list, parameters ['notation=CLAUTOMREVYN1'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '100'
     :question_text: Did the subject consent to having blood and urine samples collected
       and stored in the ALK Research Biobank for future immunological research?

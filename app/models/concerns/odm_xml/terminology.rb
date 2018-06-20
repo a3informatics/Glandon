@@ -28,6 +28,7 @@ class OdmXml::Terminology
   # @return [Hash] hash containing the code list details an darray of children items
   def code_list(identifier)
     nodes = @doc.xpath("//CodeList[@OID = '#{identifier}']")
+    return {} if nodes.empty?
     cl = OdmCl.new(@doc, nodes.first, identifier)
     return cl.clis
   rescue => e
@@ -49,14 +50,16 @@ private
       @doc = doc
       @identifier = identifier
       @items = []
+      notation = node.attributes["SASFormatName"].nil? ? C_NOT_SET : node.attributes["SASFormatName"].value
       @record = { label: node.attributes["Name"].value, synonym: "", identifier: OdmXml.clean_identifier(identifier), definition: C_NOT_SET, 
-        notation: node.attributes["SASFormatName"].value, preferredTerm: C_NOT_SET }
+        notation: notation, preferredTerm: C_NOT_SET }
     end
 
     def clis
       children = []
       @doc.xpath("//CodeList[@OID = '#{@identifier}']/CodeListItem").each { |n| self.items << OdmCli.new(n) }
-      self.items.each {|i| children << i.record}
+      @doc.xpath("//CodeList[@OID = '#{@identifier}']/EnumeratedItem").each { |n| self.items << OdmCli.new(n) }
+      self.items.each {|i| children << i.record if i.record != {}}
       return {code_list: self.record, items: children}
     end
 
@@ -71,10 +74,10 @@ private
 
     def initialize(node)
       @record = {}
-      decode_nodes = node.xpath("Decode/TranslatedText[@lang = 'en']")
-      label = decode_nodes.empty? ? C_NO_LABEL : decode_nodes.first.text
       return if node.attributes["CodedValue"].nil?
       code = node.attributes["CodedValue"].value
+      decode_nodes = node.xpath("Decode/TranslatedText[@lang = 'en']")
+      label = decode_nodes.empty? ? code : decode_nodes.first.text
       @record = { label: label, synonym: "", identifier: OdmXml.clean_identifier(code), definition: C_NOT_SET, notation: code, preferredTerm: C_NOT_SET }
     end
 

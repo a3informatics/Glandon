@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-06-16T11:42:49+01:00'
-:last_changed_date: '2018-06-16T11:42:49+01:00'
+:creation_date: '2018-06-18T12:35:52+01:00'
+:last_changed_date: '2018-06-18T12:35:52+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -119,7 +119,7 @@
       * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Has the subject experienced any adverse events
     :mapping: "[NO MAPPING]"
@@ -203,7 +203,7 @@
       * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Mark if event is still continuing
     :mapping: AEENRF
@@ -219,7 +219,7 @@
       * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Was event serious
     :mapping: AESER
@@ -231,12 +231,12 @@
     :extension_properties: []
     :ordinal: 7
     :note: |
-      * No entries found in code list 'C66769' for item '1'.
-      * No entries found in code list 'C66769' for item '2'.
-      * No entries found in code list 'C66769' for item '3'.
+      * No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.
+      * No entries found in code list 'C66769' for item with submission value: '2' or preferred term: 'Moderate'.
+      * No entries found in code list 'C66769' for item with submission value: '3' or preferred term: 'Severe'.
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Severity
     :mapping: AESEV
@@ -252,7 +252,7 @@
       * No entries found for code list, parameters ['notation=CLNOYES'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Is there a reasonable possibility that the AE may have been caused
       by the study drug
@@ -269,7 +269,7 @@
       * No entries found for code list, parameters ['notation=CLAEACTION'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Action taken with study drug
     :mapping: AEACN
@@ -285,7 +285,7 @@
       * No entries found for code list, parameters ['notation=CLAEOUTCOME'].
     :completion: ''
     :optional: false
-    :datatype: integer
+    :datatype: string
     :format: '1'
     :question_text: Subject outcome
     :mapping: AEOUT
