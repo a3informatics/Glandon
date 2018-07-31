@@ -2,6 +2,29 @@
 
 This section provides details of the testing status. The lists provide a simple mechanism that can be used to ensure new releases do not increase the failing test count.
 
+## v2.20.0
+```
+Rails:
+
+Finished in 82 minutes 41 seconds (files took 4.49 seconds to load)
+2674 examples, 8 failures, 55 pending
+
+Failed examples:
+
+rspec ./spec/features/form_editor_js_spec.rb:501 # Form Editor Curator User allows questions to be updated, check enable and disable on the panel - WILL FAIL CURRENTLY 
+rspec ./spec/features/form_editor_js_spec.rb:887 # Form Editor Curator User allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY
+rspec ./spec/features/form_editor_js_spec.rb:921 # Form Editor Curator User allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY
+rspec ./spec/features/form_editor_js_spec.rb:1148 # Form Editor Curator User allows the edit session to be closed indirectly, saves data
+rspec ./spec/features/form_js_spec.rb:221 # Forms Forms allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY
+rspec ./spec/features/scenarios/scenario_2_js_spec.rb:60 # Secnario 2 - Life Cycle Curator User allows an item to move through the lifecyle
+rspec ./spec/features/scenarios/scenario_3_js_spec.rb:61 # Scenario 3 - Biomedical Concepts Curator User allows Biomedical Concepts to be created
+rspec ./spec/models/sdtm_user_domain_spec.rb:199 # SdtmUserDomain exports the domain as a SAS XPT file - WILL CURRENTLY FAIL (TimeDate Stamp Issue)
+
+Javascript:
+Finished in 0.39800 seconds
+114 examples, 0 failures, 2 pending
+```
+
 ## v2.19.1
 ```
 Finished in 86 minutes 32 seconds (files took 7.22 seconds to load)
