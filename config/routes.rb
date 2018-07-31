@@ -25,12 +25,14 @@ Rails.application.routes.draw do
     end
   end
   namespace :api do
-  	namespace :v2 do
-  		resources :thesaurus_concepts, only: [:index, :show] do
+    namespace :v2 do
+      resources :thesauri, only: [:show]
+      resources :thesaurus_concepts, only: [:index, :show] do
         member do
           get :parent
+          get :child
         end
-    	end
+      end
       resources :iso_managed, only: [:index]
       resources :biomedical_concepts, only: [] do
         member do
@@ -43,7 +45,7 @@ Rails.application.routes.draw do
           get :clones
         end
       end
-  	end
+    end
   end
   resources :markdown_engines, only: [:create, :index]
   resources :iso_namespaces
