@@ -450,8 +450,17 @@ describe ThesaurusConcept do
     expect(tc.exists?).to eq(false)
   end
 
-  it "does not allow a TC to be destroyed if it has children" do
+  it "does not allow a TC to be destroyed if it has children I, called with children=true" do
     tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expect(tc.exists?).to eq(true)
+    result = tc.destroy
+    expect(result).to eq(false)
+    expect(tc.errors.count).to eq(1)
+    expect(tc.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001, has children. It cannot be deleted.")
+  end
+
+  it "does not allow a TC to be destroyed if it has children II, called with children=false" do
+    tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1", false)
     expect(tc.exists?).to eq(true)
     result = tc.destroy
     expect(result).to eq(false)

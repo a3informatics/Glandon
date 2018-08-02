@@ -157,7 +157,8 @@ class ThesaurusConcept < IsoConcept
   # @return [boolean] True if object destroyed, otherwise false. If false object will contain the errors.
   def destroy()
     self.errors.clear
-    if self.children.length == 0
+    if !children?
+    #if self.children.length == 0
       update = UriManagement.buildNs(self.namespace, ["iso25964"]) +
         "DELETE \n" +
         "{\n" +
