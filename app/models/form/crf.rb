@@ -3,16 +3,14 @@ class Form::Crf
 	C_CLASS_NAME = "Form::Crf"
   C_DOMAIN_CLASS_COUNT = 5
 
-  @@domain_map = {}
-  @@common_map = {}
-
 	# Create CRF
 	#
 	# @param node [Hash] The root node of the JSON object
 	# @param annotations [] The form's annotations
 	# @return [Null]
 	def self.create(node, annotations, options)
-    #ConsoleLogger::debug(C_CLASS_NAME, "create", "node=#{node}\nannotations: #{annotations}\n options: #{options}")
+    @domain_map = {}
+    @common_map = {}
     html = "<style>"
     html += "table.crf-input-field { border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black;}\n"
     html += "table.crf-input-field tr td { font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif; font-size: 8pt; text-align: center; " 
@@ -33,7 +31,6 @@ class Form::Crf
     html += "</style>"
 		build_common_map(node)
     html += crf_node(node, annotations, options)
-		#ConsoleLogger::log(C_CLASS_NAME,"create","html=#{html}")
 		return html
 	end
 
@@ -58,7 +55,7 @@ private
           class_name = "domain-#{class_suffix}"
           html += "<h4 class=\"#{class_name}\">#{domain_annotation}</h4>"
           domain[:class] = class_name
-          @@domain_map[domain[:domain_prefix]] = domain
+          @domain_map[domain[:domain_prefix]] = domain
         end
         html += '</td>'
       else
@@ -123,8 +120,8 @@ private
       pa = ""
       node[:item_refs].each do |ref|
         uri = UriV2.new({:id => ref[:id], :namespace => ref[:namespace]})
-        if @@common_map.has_key?(uri.to_s)
-          other_node = @@common_map[uri.to_s]
+        if @common_map.has_key?(uri.to_s)
+          other_node = @common_map[uri.to_s]
           pa += property_annotations(other_node[:id], annotations, options)
           node[:datatype] = other_node[:simple_datatype]
           node[:question_text] = other_node[:question_text]
@@ -408,7 +405,7 @@ private
       if !first
         html += "<br/>"
       end
-      p_class = @@domain_map[entry[:domain_prefix]][:class]
+      p_class = @domain_map[entry[:domain_prefix]][:class]
       html += "<p class=\"#{p_class}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
       first = false
     end
@@ -425,7 +422,7 @@ private
         if !first
           html += "<br/>"
         end
-        p_class = @@domain_map[entry[:domain_prefix]][:class]
+        p_class = @domain_map[entry[:domain_prefix]][:class]
         html += "<p class=\"#{p_class}\">#{mapping}</p>"
         first = false
       end
@@ -441,7 +438,7 @@ private
         property_ref = node[:property_ref][:subject_ref]
         property = BiomedicalConceptCore::Property.find(property_ref[:id], property_ref[:namespace])
         node = property.to_json.merge(node)
-        @@common_map[property.uri.to_s] = node if !@@common_map.has_key?(property.uri.to_s)
+        @common_map[property.uri.to_s] = node if !@common_map.has_key?(property.uri.to_s)
       end
     end
     if !node[:children].blank?

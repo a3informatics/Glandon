@@ -6,7 +6,7 @@ describe IsoManagedController do
   include PublicFileHelpers
   include DownloadHelpers
 
-  describe "Authrorized User" do
+  describe "Curator User" do
   	
     login_curator
 
@@ -223,21 +223,118 @@ describe IsoManagedController do
       expect(Token.count).to eq(token_count)
     end
 
-    it "export"
-      # @todo Not get this working yet
-      #item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
-      #uri = UriV3.new( uri: item.uri.to_s )
-      #get :export, { :id => uri.to_id }
-      #wait_for_download
-      #expect(public_file_exists?("Exports", "#{item.owner}_#{item.identifier}_#{item.version}.ttl")).to eq(true)
-    #end
+  end
+
+  describe "Content Admin User" do
+    
+    login_content_admin
+
+    def sub_dir
+      return "controllers"
+    end
+
+    before :all do
+      clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Data.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("BusinessOperational.ttl")
+      load_schema_file_into_triple_store("BusinessForm.ttl")
+      load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_managed_data.ttl")
+      load_test_file_into_triple_store("iso_managed_data_2.ttl")
+      load_test_file_into_triple_store("iso_managed_data_3.ttl")
+      load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+      load_test_file_into_triple_store("form_example_general.ttl")
+      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
+      load_test_file_into_triple_store("BC.ttl")
+      load_test_file_into_triple_store("BCT.ttl")
+      load_test_file_into_triple_store("CT_V42.ttl")
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+    end
+
+    it "export" do
+      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      uri = UriV3.new( uri: item.uri.to_s )
+      allow_any_instance_of(IsoManaged).to receive(:triples).and_return("triples")
+      allow_any_instance_of(IsoManaged).to receive(:owner).and_return("ACME")
+      allow(controller).to receive(:to_turtle).with("triples").and_return("content")
+      expect(PublicFile).to receive(:save).with("Exports", "ACME_BC C25298_1.ttl", "content").and_return("filepath/a")
+      get :export, { :id => uri.to_id }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(response.body).to eq("{\"file_path\":\"filepath/a\"}")
+    end
 
   end
 
   describe "Unauthorized User" do
     
+    it "index" do
+      get :index
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "update"
+    
+    it "status" do
+      get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "changes"
+    it "edit" do
+       get :edit, {id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "edit_tags"
+    it "find_by_tag"
+    it "add_tag"
+    it "delete_tag"
+    it "tags"
+    
+    it "branches" do
+      get :branches, {id: "F-ACME_VSBASELINE1", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
     it "show an managed item" do
       get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "graph"
+    it "graph_links"
+    
+    it "impact" do
+      get :impact, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "impact_start" do
+      get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+    
+    it "impact_next" do
+      get :impact_next, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
+      expect(response).to redirect_to("/users/sign_in")
+    end
+    
+    it "destroy" do
+      delete :destroy, { :id => "F-ACME_TEST", iso_managed: { :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "export" do
+      get :export, {id: "XXXXXXX"} # Used new ID, can be anything
       expect(response).to redirect_to("/users/sign_in")
     end
 

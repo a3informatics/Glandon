@@ -299,22 +299,22 @@ describe Form do
   it "generates the form annotations" do
     item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     annotations = item.annotations
-    write_yaml_file(annotations, sub_dir, "form_annotations_1.yaml")
+  #write_yaml_file(annotations, sub_dir, "form_annotations_1.yaml")
     expected = read_yaml_file(sub_dir, "form_annotations_1.yaml")
     expect(annotations).to eq(expected)
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     annotations = item.annotations
-    write_yaml_file(annotations, sub_dir, "form_annotations_2.yaml")
+  #write_yaml_file(annotations, sub_dir, "form_annotations_2.yaml")
     expected = read_yaml_file(sub_dir, "form_annotations_2.yaml")
     expect(annotations).to eq(expected)
     item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
     annotations = item.annotations
-    write_yaml_file(annotations, sub_dir, "form_annotations_3.yaml")
+  #write_yaml_file(annotations, sub_dir, "form_annotations_3.yaml")
     expected = read_yaml_file(sub_dir, "form_annotations_3.yaml")
     expect(annotations).to eq(expected)
     item = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     annotations = item.annotations
-    write_yaml_file(annotations, sub_dir, "form_annotations_4.yaml")
+  #write_yaml_file(annotations, sub_dir, "form_annotations_4.yaml")
     expected = read_yaml_file(sub_dir, "form_annotations_4.yaml")
     expect(annotations).to eq(expected)
   end
