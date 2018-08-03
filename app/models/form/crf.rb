@@ -118,10 +118,12 @@ private
       end
     elsif node[:type] == Form::Item::Common::C_RDF_TYPE_URI.to_s
       pa = ""
-      node[:item_refs].each do |ref|
-        uri = UriV2.new({:id => ref[:id], :namespace => ref[:namespace]})
-        if @common_map.has_key?(uri.to_s)
-          other_node = @common_map[uri.to_s]
+      uris = []
+      node[:item_refs].each { |ref| uris << UriV2.new({:id => ref[:id], :namespace => ref[:namespace]}).to_s } # order to make test result predictable
+      uris.sort!
+      uris.each do |uri| 
+        if @common_map.has_key?(uri)
+          other_node = @common_map[uri]
           pa += property_annotations(other_node[:id], annotations, options)
           node[:datatype] = other_node[:simple_datatype]
           node[:question_text] = other_node[:question_text]

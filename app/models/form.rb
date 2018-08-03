@@ -425,7 +425,7 @@ private
       	?bc_topic_property cbc:hasThesaurusConcept ?valueRef .
       	?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj .     
       	?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub .     
-    	} ORDER BY ?gord ?pord
+    	} ORDER BY ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub
     )
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
@@ -469,7 +469,7 @@ private
       "      ?item bf:ordinal ?pord \n" + 
       "    } \n" +          
       "  } \n" +       
-      "} ORDER BY ?gord ?pord \n"   
+      "} ORDER BY ?domain ?var \n"   
     # Send the request, wait the resonse
     response = CRUD.query(query)
     # Process the response
