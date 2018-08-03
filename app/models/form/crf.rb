@@ -398,18 +398,13 @@ private
 
   def self.property_annotations(node_id, annotations, options)
     return "" if !options[:annotate]
-    html = ""
-    first = true
     entries = annotations.select {|item| item[:id] == node_id}
-    entries.each do |entry|
-      if !first
-        html += "<br/>"
-      end
-      p_class = @domain_map[entry[:domain_prefix]][:class]
-      html += "<p class=\"#{p_class}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
-      first = false
+    return "" if entries.empty?
+    parts = []
+    entries.each do |entry| 
+      parts << "<p class=\"#{@domain_map[entry[:domain_prefix]][:class]}\">#{entry[:sdtm_variable]} where #{entry[:sdtm_topic_variable]}=#{entry[:sdtm_topic_value]}</p>"
     end
-    return html
+    return parts.join("<br/>")
   end
 
   def self.question_annotations(node_id, mapping, annotations, options)
