@@ -16,7 +16,7 @@ function ImportTermPanel() {
     var uri = $('#thesaurus').val();
     var filename = $('#filename').val();
     if (uri === "" || filename === null) {
-      displayError("You need to seelct a terminology and a file.");
+      displayError("You need to select a terminology and a file.");
     } else {
       _this.iclp.refresh(uri, filename);
     }
@@ -36,6 +36,7 @@ function ImportCodeListPanel(callback) {
   this.filename = "";
   this.error_count = 0;
   $('#import_spinner').prop('disabled', true);
+  $('#import_button').prop('disabled', true);
   $('#error_table_div').hide();
   this.listTable = $('#list_table').DataTable( {
     "columns": [
@@ -55,7 +56,7 @@ function ImportCodeListPanel(callback) {
         displayAlerts(html);
       }
     },
-    select: { style: 'single' },
+    select: { style: 'multi' },
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
@@ -78,9 +79,13 @@ function ImportCodeListPanel(callback) {
     for (i=0; i<data.length; i++) {
       identifiers.push(data[i].identifier);
     }
-    _this.listTable.rows({ selected: true }).deselect();
-    _this.status(true);
-    _this.import(identifiers);
+    if (identifiers.length === 0) {
+      displayWarning("Please select at least one code list.")
+    } else {
+      _this.listTable.rows({ selected: true }).deselect();
+      _this.status(true);
+      _this.import(identifiers);
+    }
   });
 
 }
@@ -92,6 +97,7 @@ ImportCodeListPanel.prototype.refresh = function(uri, filename) {
   this.listTable.ajax.reload();
   this.errorTable.clear().draw();
   this.error_count = 0;
+  $('#import_button').prop('disabled', false);
   $('#error_table_div').hide();
 }
 
@@ -135,7 +141,10 @@ ImportCodeListPanel.prototype.status = function(operating) {
     spRemoveSpinner("#import_spinner");
     this.listTable.select.style('multi');
     if (this.error_count > 0) {
+      displayWarning("Code lists imported, some errors detected.") 
       $('#error_table_div').show();
+    } else  {
+      displaySuccess("Code lists imported, no errors detected.") 
     }
   }
 }

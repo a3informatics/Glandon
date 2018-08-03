@@ -31,10 +31,12 @@ describe 'imports/terms/index.html.erb', :type => :view do
     expect(rendered).to have_content("Import Terminology - EXCEL")
     expect(rendered).to have_content("Code Lists")
     expect(rendered).to have_content("XXX Label")
+    expect(rendered).to have_content("Select the target terminology (Status = 'Incomplete') ...")
     expect(rendered).to have_content("fred.xlsx")
     expect(rendered).to have_link "Close"
     expect(rendered).to have_button "List"
-    
+    expect(rendered).to have_button "Import"
+
   end
 
 end
