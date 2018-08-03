@@ -37,6 +37,10 @@ module ScenarioHelpers
     click_link 'main_nav_sd'
   end
 
+  def click_navbar_import
+    click_link 'main_nav_i'
+  end
+
   def expect_page(text)
     expect(page).to have_content(text)
   end

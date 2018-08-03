@@ -82,6 +82,19 @@ module UiHelpers
     expect(find("##{id}").text).to eq(text)
   end
 
+  def ui_select_check_selected(id, value)
+    expect(page).to have_select(id, selected: value)
+  end   
+
+  def ui_select_check_options(id, options)
+    expect(page).to have_select(id, with_options: options)
+  end   
+
+  # Check this, not used so far! :)
+  def ui_select_check_all_options(id, options)
+    expect(page).to have_select(id, options: options)
+  end   
+
   # Datatables
   #
   def ui_main_show_all
@@ -153,13 +166,12 @@ module UiHelpers
   end
 
   # Flash
-  # Not checked
   def ui_check_no_flash_message_present
-    expect(page).not_to have_selector(:css, "alert")
+    expect(page).not_to have_selector(:css, ".alert")
   end
 
   def ui_check_flash_message_present
-    expect(page).to have_selector(:css, "alert")
+    expect(page).to have_selector(:css, ".alert")
   end
 
   # Breadcrumb
