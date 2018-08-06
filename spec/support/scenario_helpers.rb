@@ -208,7 +208,7 @@ module ScenarioHelpers
   def bc_editor_field(row, column, field_name, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click
     fill_in "DTE_Field_#{field_name}", with: text if !field_name.nil?
-    wait_for_ajax
+    wait_for_ajax(5)
   end
 
   def bc_editor_add_terms(row, term_list)

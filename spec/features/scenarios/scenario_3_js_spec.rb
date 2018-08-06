@@ -75,8 +75,9 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       expect_page 'Edit: EQ-5D-3L Mobility BC C100392 (V0.1.0, 1, Incomplete)'
       wait_for_ajax(10) # Wait for everything to load
 
-      bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
+      bc_set_cat([{ cl: "C100129", cli: "C66957" }])
+      #bc_scroll_to_editor_table
       bc_set_test_code([{ cl: "C100136", cli: "C100392" }])
       bc_scroll_to_editor_table
       bc_set_test_name([{ cl: "C100135", cli: "C100392" }])

@@ -51,10 +51,18 @@ describe "Biomedical Concept Editor", :type => :feature do
     click_link 'logoff_button'
   end
 
+  def wait_for_ajax_long
+    wait_for_ajax(10)
+  end
+
+  def wait_for_ajax_short
+    wait_for_ajax(5)
+  end
+
   def open_edit_multiple
     click_link 'main_nav_bc'
     click_link 'Edit Multiple'
-    wait_for_ajax(10)
+    wait_for_ajax(15)
   end
 
   def create_bc(identifier, label, template)
@@ -63,7 +71,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     fill_in "biomedical_concept_label", with: label
     select template, from: "biomedical_concept_uri"
     click_button 'Create'
-    wait_for_ajax(3)
+    wait_for_ajax_short
     #expect(page).to have_content("The Biomedical Concept was succesfully created.") 
   end
 
@@ -102,35 +110,35 @@ describe "Biomedical Concept Editor", :type => :feature do
   def fill_question_text(row, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[2]").click
     fill_in "DTE_Field_question_text", with: text
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def fill_prompt_text(row, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[3]").click
     fill_in "DTE_Field_prompt_text", with: text
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def toggle_enabled(row)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[4]").click
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def toggle_collect(row)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[5]").click
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def fill_format(row, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[7]").click
     fill_in "DTE_Field_format", with: text
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def select_terminology(row)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[9]").click
-    wait_for_ajax
-  end
+    wait_for_ajax_short
+ end
 
   def fill_row (row, q_text, p_text, enabled, collect, format)
     fill_question_text(row, q_text)
@@ -194,7 +202,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       fill_in "biomedical_concept_label", with: "Fail BC"
       select "Obs PQR", from: "biomedical_concept_uri"
       click_button 'Create'
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content("") 
     end
 
@@ -211,13 +219,13 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Test BC No. 25")
       scroll_to_all_bc_panel
       ui_click_by_id "bc_previous"
-      wait_for_ajax(5)
+      wait_for_ajax_long
       expect(page).to have_content("Test BC No. 21")
       expect(page).to have_content("Test BC No. 22")
       expect(page).to have_content("Test BC No. 23")
       expect(page).to have_content("Test BC No. 24")
       ui_click_by_id "bc_next"
-      wait_for_ajax(5)
+      wait_for_ajax_long
       expect(page).to have_content("Test BC No. 22")
       expect(page).to have_content("Test BC No. 23")
       expect(page).to have_content("Test BC No. 24")
@@ -305,11 +313,11 @@ describe "Biomedical Concept Editor", :type => :feature do
       fill_row(3, "Q3\t", "P3\n", true, true, "8.4\n")
       scroll_to_all_bc_panel
       select_panel_header(1)
-      wait_for_ajax
-      expect(page).to have_content("BC 61 Question Text")
+      wait_for_ajax_short
+     expect(page).to have_content("BC 61 Question Text")
       select_panel_header(2)
-      wait_for_ajax
-      expect(page).to have_content("62 QTEXT")
+      wait_for_ajax_short
+     expect(page).to have_content("62 QTEXT")
     end
 
     it "selects the terminology panel, I", js: true do
@@ -323,17 +331,17 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
       select_terminology(5)
-      wait_for_ajax
-      expect(page).to have_content("Terminology: Laterality (--LAT)")
+      wait_for_ajax_short
+     expect(page).to have_content("Terminology: Laterality (--LAT)")
       ui_button_enabled('tfe_add_item')
       ui_button_enabled('tfe_delete_item')
       ui_button_enabled('tfe_delete_all_items')
       select_terminology(2)
-      wait_for_ajax
-      expect(page).to have_content("Terminology: Body Position (--POS)")
+      wait_for_ajax_short
+     expect(page).to have_content("Terminology: Body Position (--POS)")
       select_terminology(3)
-      wait_for_ajax
-      ui_button_disabled('tfe_add_item')
+      wait_for_ajax_short
+     ui_button_disabled('tfe_add_item')
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
     end
@@ -345,8 +353,8 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_editor_table
       fill_row(5, "Coded Question 1\t", "P1\n", true, true, "")
       select_terminology(5)
-      wait_for_ajax
-      expect(page).to have_content("Terminology: Laterality (--LAT)")
+      wait_for_ajax_short
+     expect(page).to have_content("Terminology: Laterality (--LAT)")
       ui_button_enabled('tfe_add_item')
       ui_button_enabled('tfe_delete_item')
       ui_button_enabled('tfe_delete_all_items')
@@ -356,8 +364,8 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
       select_terminology(5)
-      wait_for_ajax
-      expect(page).to have_content("Terminology: Laterality (--LAT)")
+      wait_for_ajax_short
+     expect(page).to have_content("Terminology: Laterality (--LAT)")
       ui_button_enabled('tfe_add_item')
       ui_button_enabled('tfe_delete_item')
       ui_button_enabled('tfe_delete_all_items')
@@ -379,11 +387,11 @@ describe "Biomedical Concept Editor", :type => :feature do
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
       ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
-      wait_for_ajax
-      ui_table_row_click('searchTable', 'C100760')
+      wait_for_ajax_short
+     ui_table_row_click('searchTable', 'C100760')
       ui_click_by_id 'tfe_add_item'
-      wait_for_ajax
-      
+      wait_for_ajax_short
+     
     end
 
     it "allows BC creation, form validation", js: true do
@@ -404,7 +412,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       
       fill_in 'Identifier', with: 'A12345'
       click_button 'Create'
-      wait_for_ajax(3)
+      wait_for_ajax_short
       expect(page).to have_content 'The Biomedical Concept was succesfully created.'
       
       fill_in "biomedical_concept_identifier", with: 'A12346'
@@ -419,7 +427,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       
       fill_in "biomedical_concept_label", with: vh_all_chars
       click_button 'Create'
-      wait_for_ajax(3)
+      wait_for_ajax_short
       #expect(page).to have_content "The Biomedical Concept was succesfully created."
       scroll_to_all_bc_panel
       click_button 'close_button'
@@ -430,21 +438,21 @@ describe "Biomedical Concept Editor", :type => :feature do
       create_bc("TEST BC 91", "Test BC No. 91", "Obs CD")
       scroll_to_editor_table
       fill_question_text(2, "±±±±\n")
-      wait_for_ajax
+      wait_for_ajax_short
       expect(page).to have_content("contains invalid characters")
       fill_in "DTE_Field_question_text", with: "good stuff\n"
-      wait_for_ajax
+      wait_for_ajax_short
       fill_prompt_text(2, "±±±±\t")
       expect(page).to have_content("contains invalid characters")
       fill_in "DTE_Field_prompt_text", with: "some really good stuff\n"
-      wait_for_ajax
+      wait_for_ajax_short
       fill_format(2, "1.0\n")
-      wait_for_ajax
+      wait_for_ajax_short
       fill_format(4, "vv\t")
       expect(page).to have_content("contains invalid characters")
       fill_in "DTE_Field_format", with: "1.0\t"
-      wait_for_ajax
-    end
+      wait_for_ajax_short
+   end
 
     it "allows the edit session to be closed", js: true do
       #set_screen_size(1500, 900)
@@ -486,7 +494,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       page.find("#token_timer_1")[:class].include?("btn-warning")
       page.find("#token_timer_2")[:class].include?("btn-warning")
       ui_click_back_button
-      wait_for_ajax
+      wait_for_ajax_short
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC103")
       expect(tokens).to match_array([])
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC104")
