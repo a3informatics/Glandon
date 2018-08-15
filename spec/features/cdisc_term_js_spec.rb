@@ -26,7 +26,7 @@ describe "CDISC Terminology", :type => :feature do
   end
 
   def wait_for_ajax_long
-    wait_for_ajax(10)
+    wait_for_ajax(15)
   end
 
   def wait_for_ajax_v_long
@@ -34,7 +34,7 @@ describe "CDISC Terminology", :type => :feature do
   end
 
   def wait_for_ajax_short
-    wait_for_ajax(5)
+    wait_for_ajax(7)
   end
 
   describe "Curator Search", :type => :feature do
