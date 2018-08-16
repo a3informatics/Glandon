@@ -191,11 +191,11 @@ module ScenarioHelpers
   end
 
   def bc_editor_enabled(row)
-    bc_editor_field(row, 4, nil, text)
+    bc_editor_click(row, 4)
   end
 
   def bc_editor_collect(row)
-    bc_editor_field(row, 5, nil, text)
+    bc_editor_click(row, 5)
   end
 
   def bc_editor_format(row, text)
@@ -203,16 +203,19 @@ module ScenarioHelpers
   end
 
   def bc_editor_select_terminology(row)
-    bc_editor_field(row, 9, nil, text)
+    bc_editor_click(row, 9)
   end
 
   def bc_editor_field(row, column, field_name, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    if !field_name.nil?
-      expect(page).to have_css("#DTE_Field_#{field_name}", wait: 15) 
-      fill_in "DTE_Field_#{field_name}", with: text
-      wait_for_ajax(5)
-    end
+    expect(page).to have_css("#DTE_Field_#{field_name}", wait: 15) 
+    fill_in "DTE_Field_#{field_name}", with: text
+    wait_for_ajax(5)
+  end
+
+  def bc_editor_click(row, column)
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
+    wait_for_ajax(5)
   end
 
   def bc_editor_add_terms(row, term_list)
