@@ -97,6 +97,7 @@ module ScenarioHelpers
   end
 
   def term_editor_field(name, text, exit_key)
+    expect(page).to have_css("#DTE_Field_#{name}", wait: 15) 
     fill_in "DTE_Field_#{name}", with: "#{text}\t" if exit_key == :tab
     fill_in "DTE_Field_#{name}", with: "#{text}\n" if exit_key == :return
   end
@@ -206,9 +207,12 @@ module ScenarioHelpers
   end
 
   def bc_editor_field(row, column, field_name, text)
-    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click
-    fill_in "DTE_Field_#{field_name}", with: text if !field_name.nil?
-    wait_for_ajax(5)
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
+    if !field_name.nil?
+      expect(page).to have_css("#DTE_Field_#{field_name}", wait: 15) 
+      fill_in "DTE_Field_#{field_name}", with: text
+      wait_for_ajax(5)
+    end
   end
 
   def bc_editor_add_terms(row, term_list)

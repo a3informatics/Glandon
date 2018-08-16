@@ -13,6 +13,16 @@ describe "Thesaurus", :type => :feature do
     return "features"
   end
 
+  def editor_table_fill_in(input, text)
+    expect(page).to have_css("##{input}", wait: 15) 
+    fill_in "#{input}", with: "#{text}"
+    wait_for_ajax(5)
+  end
+
+  def editor_table_click(row, col)
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
+  end
+      
   describe "Curator User", :type => :feature do
 
     before :all do
@@ -107,7 +117,7 @@ describe "Thesaurus", :type => :feature do
       ui_check_td_with_id("conceptNotation", "M")
     end
 
-    it "allows for a BC to be exported as TTL", js: true do
+    it "allows for terminology to be exported as TTL", js: true do
       clear_downloads
       visit '/users/sign_in'
       fill_in 'Email', with: 'curator@example.com'
@@ -142,43 +152,44 @@ describe "Thesaurus", :type => :feature do
       fill_in 'Identifier', with: 'A00030'
       click_button 'New'
       expect(page).to have_content 'A00030' # Note up version
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[2]").click
-      fill_in "DTE_Field_label", with: "Label text\t"
-      fill_in "DTE_Field_notation", with: "SUBMISSION\t"
-      fill_in "DTE_Field_preferredTerm", with: "The PT\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[5]").click
-      fill_in "DTE_Field_synonym", with: "Same as A; B\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[4]/td[6]").click
-      fill_in "DTE_Field_definition", with: "We never fill this in, too tricky!\n"
+      editor_table_click(4,2)
+      editor_table_fill_in("DTE_Field_label", "Label text\t")
+      editor_table_fill_in("DTE_Field_notation", "SUBMISSION\t")
+      editor_table_fill_in "DTE_Field_preferredTerm", "The PT\n"
+      editor_table_click(4,5)
+      editor_table_fill_in "DTE_Field_synonym", "Same as A; B\n"
+      editor_table_click(4,6)
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky!\n"
       find(:xpath, "//tr[contains(.,'Same as A; B')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: Label text A00030'
       fill_in 'Identifier', with: 'A00031'
       click_button 'New'
       expect(page).to have_content 'A00031'
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[2]").click
-      fill_in "DTE_Field_label", with: "Label text 31\t"
-      fill_in "DTE_Field_notation", with: "SUBMISSION 31\t"
-      fill_in "DTE_Field_preferredTerm", with: "The PT 31\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[5]").click
-      fill_in "DTE_Field_synonym", with: "Same as 31\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[6]").click
-      fill_in "DTE_Field_definition", with: "We never fill this in, too tricky 31!\n"
+      editor_table_click(1,2)
+      editor_table_fill_in "DTE_Field_label", "Label text 31\t"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 31\t"
+      editor_table_fill_in "DTE_Field_preferredTerm", "The PT 31\n"
+      editor_table_click(1,5)
+      editor_table_fill_in "DTE_Field_synonym", "Same as 31\n"
+      editor_table_click(1,6)
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 31!\n"
       fill_in 'Identifier', with: 'A00032'
       click_button 'New'
       expect(page).to have_content 'A00032'
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[2]/td[2]").click
-      fill_in "DTE_Field_label", with: "Label text 32\t"
-      fill_in "DTE_Field_notation", with: "SUBMISSION 32\t"
-      fill_in "DTE_Field_preferredTerm", with: "The PT 32\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[2]/td[5]").click
-      fill_in "DTE_Field_synonym", with: "Same as 32\n"
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[2]/td[6]").click
-      fill_in "DTE_Field_definition", with: "We never fill this in, too tricky 32!\n"
-      #pause
+      editor_table_click(2,2)
+      editor_table_fill_in "DTE_Field_label", "Label text 32\t"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 32\t"
+      editor_table_fill_in "DTE_Field_preferredTerm", "The PT 32\n"
+      editor_table_click(2,5)
+      editor_table_fill_in "DTE_Field_synonym", "Same as 32\n"
+      editor_table_click(2,6)
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 32!\n"
+    #pause
       find(:xpath, "//tr[contains(.,'Same as 32')]/td/button", :text => 'Delete').click
       ui_click_ok("Are you sure?")
       expect(page).to have_content 'A00031'
       expect(page).not_to have_content 'A00032'
+      click_button 'Close'
     end
 
     it "allows terminology to be edited, identifier check", js: true do
@@ -196,9 +207,9 @@ describe "Thesaurus", :type => :feature do
       fill_in 'Identifier', with: 'A00040'
       click_button 'New'
       expect(page).to have_content 'A00040' # Note up version
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[5]/td[2]").click
-      fill_in "DTE_Field_label", with: "A00040 Label text\t"
-      fill_in "DTE_Field_notation", with: "A00040SUBMISSION\t"
+      editor_table_click(5,2)
+      editor_table_fill_in "DTE_Field_label", "A00040 Label text\t"
+      editor_table_fill_in "DTE_Field_notation", "A00040SUBMISSION\t"
       wait_for_ajax
       find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: A00040 Label text'
@@ -206,9 +217,9 @@ describe "Thesaurus", :type => :feature do
       fill_in 'Identifier', with: 'A00001'
       click_button 'New'
       expect(page).to have_content 'A00040.A00001'
-      find(:xpath, "//table[@id='editor_table']/tbody/tr[1]/td[2]").click
-      fill_in "DTE_Field_label", with: "Label text for A00040.A00001\t"
-      fill_in "DTE_Field_notation", with: "A00040A00001SUBMISSION\t"
+      editor_table_click(1,2)
+      editor_table_fill_in "DTE_Field_label", "Label text for A00040.A00001\t"
+      editor_table_fill_in "DTE_Field_notation", "A00040A00001SUBMISSION\t"
       wait_for_ajax
       click_button 'Close'
     end
