@@ -1,0 +1,10 @@
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 
+rspec spec/features/scenarios/scenario_3_js_spec.rb 

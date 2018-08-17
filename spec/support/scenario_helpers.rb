@@ -208,14 +208,14 @@ module ScenarioHelpers
 
   def bc_editor_field(row, column, field_name, text)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    expect(page).to have_css("#DTE_Field_#{field_name}", wait: 15) 
+    expect(page).to have_css("#DTE_Field_#{field_name}", wait: 10) 
     fill_in "DTE_Field_#{field_name}", with: text
-    wait_for_ajax(5)
+    wait_for_ajax(10)
   end
 
   def bc_editor_click(row, column)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    wait_for_ajax(5)
+    wait_for_ajax(10)
   end
 
   def bc_editor_add_terms(row, term_list)
@@ -223,17 +223,17 @@ module ScenarioHelpers
     term_list.each do |term|
       bc_editor_find_term(term)
       ui_click_by_id 'tfe_add_item'
-      wait_for_ajax(3)
+      wait_for_ajax(10)
     end
   end
 
   def bc_editor_find_term(item_code)
     fill_in 'searchTable_csearch_cl', with: item_code[:cl]
     ui_hit_return('searchTable_csearch_cl')
-    wait_for_ajax
+    wait_for_ajax(10)
     fill_in 'searchTable_csearch_item', with: item_code[:cli]
     ui_hit_return('searchTable_csearch_item')
-    wait_for_ajax
+    wait_for_ajax(10)
     ui_table_row_click('searchTable', item_code[:cli])
   end
 
@@ -242,7 +242,7 @@ module ScenarioHelpers
     fill_in "biomedical_concept_label", with: label
     select template, from: "biomedical_concept_uri"
     click_button 'Create'
-    wait_for_ajax(3)
+    wait_for_ajax(10)
   end
 
   def bc_export_ttl(c_code, status)
