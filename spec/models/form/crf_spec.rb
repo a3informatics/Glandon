@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe Form::Crf do
   
-  sub_dir = "models/form"
-
   include DataHelpers
 
   def sub_dir
