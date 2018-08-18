@@ -7,7 +7,7 @@ describe Form::Crf do
   include DataHelpers
 
   def sub_dir
-    return "models/form"
+    return "models/form/crf"
   end
 
   before :all do
