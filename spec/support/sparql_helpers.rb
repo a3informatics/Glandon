@@ -15,6 +15,7 @@ module SparqlHelpers
     end
     results[:triples].each do |item|
       triple = expected[triple_key(item)]
+      expect(triple).to_not be_nil
       expect(item[:subject]).to eq(triple[:subject])
       expect(item[:predicate]).to eq(triple[:predicate])
       expect(item[:object]).to eq(triple[:object])

@@ -79,26 +79,34 @@ describe Helpers, type: :helper do
     check_sparql("to_sparql_result_1.txt", "to_sparql_expected.txt")
   end
 
-  # All the following tests are expected to fail. Used to test helper functions
-=begin
   it "compares sparql outputs II" do
+    check_sparql("to_sparql_result_7.txt", "to_sparql_expected.txt")
+  end
+
+=begin
+  # All the following tests are expected to fail. Used to test helper functions
+  it "compares sparql outputs III - EXPECTED TO FAIL" do
     check_sparql("to_sparql_result_2.txt", "to_sparql_expected.txt")
   end
 
-  it "compares sparql outputs III" do
+  it "compares sparql outputs IV - EXPECTED TO FAIL" do
     check_sparql("to_sparql_result_3.txt", "to_sparql_expected.txt")
   end
 
-  it "compares sparql outputs IV" do
+  it "compares sparql outputs V - EXPECTED TO FAIL" do
     check_sparql("to_sparql_result_4.txt", "to_sparql_expected.txt")
   end
 
-  it "compares sparql outputs V" do
+  it "compares sparql outputs VI - EXPECTED TO FAIL" do
     check_sparql("to_sparql_result_5.txt", "to_sparql_expected.txt")
   end
 
-  it "compares sparql outputs VI" do
+  it "compares sparql outputs VII - EXPECTED TO FAIL" do
     check_sparql("to_sparql_result_6.txt", "to_sparql_expected.txt")
+  end
+
+  it "compares sparql outputs VIII - EXPECTED TO FAIL" do
+    check_sparql("to_sparql_result_8.txt", "to_sparql_expected.txt")
   end
 =end
 
