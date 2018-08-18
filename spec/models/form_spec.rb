@@ -238,7 +238,9 @@ describe Form do
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
   #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_1.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_result_1.txt")
-    check_sparql("to_sparql_result_1.txt", "to_sparql_expected_1.txt")
+    actual = read_sparql_file("to_sparql_result_1.txt")
+    expected = read_sparql_file("to_sparql_expected_1.txt")
+    expect(actual).to sparql_results_equal(expected)
   end
 
   it "can create the sparql for BC form" do
@@ -246,7 +248,9 @@ describe Form do
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
   #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_2.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_result_2.txt")
-    check_sparql("to_sparql_result_2.txt", "to_sparql_expected_2.txt")
+    actual = read_sparql_file("to_sparql_result_2.txt")
+    expected = read_sparql_file("to_sparql_expected_2.txt")
+    expect(actual).to sparql_results_equal(expected)
   end
 
   it "to_xml, I" do

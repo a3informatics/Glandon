@@ -1,40 +1,18 @@
 module SparqlHelpers
-  
-  def check_sparql(results_filename, expected_filename)
-    results = read_sparql_file(test_file_path(sub_dir, results_filename))
-    raw_expected = read_sparql_file(test_file_path(sub_dir, expected_filename))
-    expect(results[:prefixes].count).to eq(raw_expected[:prefixes].count)
-    expect(results[:triples].count).to eq(raw_expected[:triples].count)
-    expected = {}
-    raw_expected[:triples].each do |triple|
-      expected[triple_key(triple)] = triple
-    end
-    results[:prefixes].each do |prefix|
-      found = raw_expected[:prefixes].select {|r| r == prefix}
-      expect(found.count).to eq(1)
-    end
-    results[:triples].each do |item|
-      triple = expected[triple_key(item)]
-      expect(triple).to_not be_nil
-      expect(item[:subject]).to eq(triple[:subject])
-      expect(item[:predicate]).to eq(triple[:predicate])
-      expect(item[:object]).to eq(triple[:object])
-    end
-  end
 
   def read_sparql_file(filename)
     @checks = {insert: false, open: false, close: false}
-    results = {prefixes: [], triples: []}
-    my_array = File.readlines(filename).map do |line|
+    results = {prefixes: [], triples: [], checks: true}
+    my_array = File.readlines(test_file_path(sub_dir, filename)).map do |line|
       x = line.squish
       if x.start_with?("PREFIX")
         results[:prefixes] << x.strip
       elsif x.start_with?("INSERT DATA")
-        check(:insert)
+        check(results, :insert)
       elsif x.start_with?("{")
-        check(:open)
+        check(results, :open)
       elsif x.start_with?("}")
-        check(:close)
+        check(results, :close)
       elsif x.empty?
         # ignore blank line
       else
@@ -42,16 +20,14 @@ module SparqlHelpers
         results[:triples] << {subject: items[0].strip, predicate: items[1].strip, object: items[2].strip}
       end
     end 
-    expect(@checks).to eq({insert: true, open: true, close: true})
+    @checks.each {|key,value| results[:checks] = false if !value}
     return results
   end
 
-  def triple_key(triple)
-    return "#{triple[:subject]}.#{triple[:predicate]}.#{triple[:object]}"
-  end
-
-  def check(type)
-    expect(@checks[type]).to eq(false)
+  def check(results, type)
+    results[:checks] = false if type == :insert && @checks != {insert: false, open: false, close: false}
+    results[:checks] = false if type == :open && @checks != {insert: true, open: false, close: false}
+    results[:checks] = false if type == :close && @checks != {insert: true, open: true, close: false}
     @checks[type] = true
   end
 
