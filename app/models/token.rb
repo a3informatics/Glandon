@@ -75,15 +75,6 @@ class Token < ActiveRecord::Base
 		end
 	end
 
-	# Update timeout
-	#
-	# @param timeout [Integer] Update timeout in seconds
-	# @return Null
-	def self.set_timeout(timeout)
-		initialize_timeout
-		@@token_timeout = timeout
-	end
-
 	# Get timeout
 	#
 	# @return [Integer] The current timeout value
@@ -108,6 +99,28 @@ class Token < ActiveRecord::Base
 		result = value > 0 ? value : 0
 		return result
 	end
+
+  if Rails.env.test?
+  
+    # Update timeout. Only to be used for testing
+    #
+    # @param timeout [Integer] Update timeout in seconds
+    # @return [Void] No return value
+    def self.set_timeout(timeout)
+      initialize_timeout
+      @@token_timeout = timeout
+    end
+
+    # Restore timeout. Only to be used for testing
+    #
+    # @return [Void] No return value
+    def self.restore_timeout
+      @@token_timeout = ENV['token_timeout'].to_i
+    rescue => e
+      @@token_timeout ||= 600   
+    end
+
+  end
 
 private
 

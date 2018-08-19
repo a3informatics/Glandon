@@ -50,6 +50,7 @@ describe "SDTM Models", :type => :feature do
 
     after :all do
       ua_destroy
+      Token.restore_timeout
     end
 
     before :each do

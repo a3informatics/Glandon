@@ -44,6 +44,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       ua_create
+      Token.restore_timeout
       Token.destroy_all
       AuditTrail.destroy_all
       clear_downloads

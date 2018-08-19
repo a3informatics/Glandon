@@ -43,6 +43,7 @@ describe "SDTM User Domain Editor", :type => :feature do
   after :all do
     user = User.where(:email => "domain_edit@example.com").first
     user.destroy
+    Token.restore_timeout
   end
 
   after :each do

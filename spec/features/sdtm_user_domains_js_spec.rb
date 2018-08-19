@@ -44,6 +44,7 @@ describe "SDTM User Domains", :type => :feature do
     after :all do
       user = User.where(:email => "curator@example.com").first
       user.destroy
+      Token.restore_timeout
     end
 
     before :each do

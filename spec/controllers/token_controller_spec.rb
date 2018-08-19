@@ -49,6 +49,7 @@ describe TokensController do
       @user1 = User.where(:email => "token@example.com")
       @user1[0].destroy
       Token.delete_all
+      Token.restore_timeout
     end
 
     it "provides index of the tokens" do

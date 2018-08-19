@@ -49,6 +49,7 @@ describe "Tokens", :type => :feature do
     user.destroy
     user = User.where(:email => "admin_user@example.com").first
     user.destroy
+    Token.restore_timeout
   end
 
   describe "System Admin User", :type => :feature do

@@ -42,6 +42,7 @@ describe "Form Editor", :type => :feature do
   after :all do
     user = User.where(:email => "form_edit@example.com").first
     user.destroy
+    Token.restore_timeout
   end
 
   describe "Curator User", :type => :feature do

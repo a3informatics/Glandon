@@ -50,6 +50,7 @@ describe "Thesaurus", :type => :feature do
     after :all do
       user = User.where(:email => "curator@example.com").first
       user.destroy
+      Token.restore_timeout
     end
   
     it "allows a thesaurus to be viewed, sponsor", js: true do

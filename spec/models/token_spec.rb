@@ -35,6 +35,7 @@ RSpec.describe Token, type: :model do
     user.destroy
     user = User.where(:email => "token_user2@example.com").first
     user.destroy
+    Token.restore_timeout
   end
 
 	it "allows a token to be obtained" do
@@ -134,6 +135,20 @@ RSpec.describe Token, type: :model do
     expect(Token.find_token(item1, @user).to_json).to eq(token1.to_json)
     sleep 6
     expect(Token.find_token(item1, @user)).to eq(nil)
+    Token.set_timeout(5)
+  end
+
+  it "allows the timeout to be restored" do
+    Token.restore_timeout
+    expect(Token.get_timeout).to eq(ENV['token_timeout'].to_i)
+    Token.set_timeout(10)
+    expect(Token.get_timeout).to eq(10)
+    Token.restore_timeout
+    expect(Token.get_timeout).to eq(ENV['token_timeout'].to_i)
+    Token.set_timeout(15)
+    expect(Token.get_timeout).to eq(15)
+    Token.restore_timeout
+    expect(Token.get_timeout).to eq(ENV['token_timeout'].to_i)
     Token.set_timeout(5)
   end
 
