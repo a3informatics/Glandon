@@ -109,6 +109,7 @@ module ScenarioHelpers
   def term_editor_concept(prefix, identifier, label, notation, preferred_term, synonym, definition)
     fill_in 'Identifier', with: identifier
     click_button 'New'
+    wait_for_ajax(10)
     expect_page identifier
     row = editor_get_row("#{prefix}.#{identifier}")
     term_editor_row_label(row, label, :tab)
@@ -123,7 +124,6 @@ module ScenarioHelpers
     page.all('#editor_table tbody tr').each do |tr|
       row += 1
       cell_text = find(:xpath, "//*[@id=\"editor_table\"]/tbody/tr[#{row}]/td[1]").text
-    #byebug
       return row if cell_text == identifier
     end
     return -1
@@ -215,7 +215,8 @@ module ScenarioHelpers
 
   def bc_editor_click(row, column)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    wait_for_ajax(10)
+    sleep 0.1 # Bit naughty but wait_for_ajax not playing the game. This is when we click on a true/false button.
+    # wait_for_ajax(10)
   end
 
   def bc_editor_add_terms(row, term_list)
