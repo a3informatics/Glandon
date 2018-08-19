@@ -97,7 +97,7 @@ module ScenarioHelpers
   end
 
   def term_editor_field(name, text, exit_key)
-    expect(page).to have_css("#DTE_Field_#{name}", wait: 15) 
+    expect(page).to have_css("#DTE_Field_#{name}", wait: 10) 
     fill_in "DTE_Field_#{name}", with: "#{text}\t" if exit_key == :tab
     fill_in "DTE_Field_#{name}", with: "#{text}\n" if exit_key == :return
   end
@@ -109,8 +109,7 @@ module ScenarioHelpers
   def term_editor_concept(prefix, identifier, label, notation, preferred_term, synonym, definition)
     fill_in 'Identifier', with: identifier
     click_button 'New'
-    wait_for_ajax(10)
-    expect_page identifier
+    expect(page).to have_xpath("//table[@id='editor_table']/tbody/tr/td", text: "#{prefix}.#{identifier}", wait: 10) 
     row = editor_get_row("#{prefix}.#{identifier}")
     term_editor_row_label(row, label, :tab)
     term_editor_notation(notation, :tab)
@@ -215,8 +214,7 @@ module ScenarioHelpers
 
   def bc_editor_click(row, column)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    sleep 0.1 # Bit naughty but wait_for_ajax not playing the game. This is when we click on a true/false button.
-    # wait_for_ajax(10)
+    wait_for_ajax(10)
   end
 
   def bc_editor_add_terms(row, term_list)

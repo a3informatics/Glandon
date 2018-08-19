@@ -76,6 +76,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       wait_for_ajax(15) # Wait for everything to load
 
       bc_scroll_to_editor_table
+      expect(page).to have_css("#editor_table", wait: 15) 
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_set_test_code([{ cl: "C100136", cli: "C100392" }])
       bc_scroll_to_editor_table
