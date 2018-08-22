@@ -174,6 +174,10 @@ class OdmXml::Forms
 
   private
 
+    def remove_trailing_special(text)
+      return text.gsub(/[^0-9A-Za-z ._\\\-\/\\]/, "")
+    end
+
     def parse_special(text)
       temp = CGI.unescapeHTML(text)
       temp = Nokogiri::HTML.parse(temp).text
@@ -217,7 +221,9 @@ class OdmXml::Forms
 
     def sas_format_cl(node, question, cli_nodes)
       return false if node.attributes["SASFormatName"].nil?
-      return find_cl({notation: node.attributes["SASFormatName"].value}, question, cli_nodes)
+      text = node.attributes["SASFormatName"].value
+      return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)      
+      return find_cl({notation: text}, question, cli_nodes)
     end
 
     def oid_cl(node, question, cli_nodes)
@@ -242,7 +248,7 @@ class OdmXml::Forms
     end
 
     def notation_cli(result, cli_node, question, ordinal, info)
-      info[:notation] = cli_node.attributes["CodedValue"].value
+      info[:notation] = remove_trailing_special(cli_node.attributes["CodedValue"].value) # Little extra to strip any nasty characters off the end
       cli = result[:tc].children.find { |x| x.notation == info[:notation]}
       return false if cli.nil?
       return add_op_ref(cli, question, ordinal)
