@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2018-08-22T19:16:22+01:00'
-:last_changed_date: '2018-08-22T19:16:22+01:00'
+:creation_date: '2018-08-22T19:54:41+01:00'
+:last_changed_date: '2018-08-22T19:54:41+01:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -65,7 +65,7 @@
     :optional: false
     :datatype: date
     :format: ''
-    :question_text: "*** Set Question Text ***"
+    :question_text: Date of birth
     :mapping: BRTHDTC
     :children: []
   :repeating: false
@@ -91,7 +91,7 @@
     :optional: false
     :datatype: integer
     :format: '3'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Age
     :mapping: QVAL
     :children: []
   - :type: http://www.assero.co.uk/BusinessForm#Question
@@ -105,7 +105,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Age unit
     :mapping: QVAL
     :children:
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
@@ -143,7 +143,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Sex
     :mapping: SEX
     :children:
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
@@ -181,7 +181,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Ethnicity
     :mapping: ETHNIC
     :children:
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
@@ -220,7 +220,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Race
     :mapping: RACE
     :children:
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
@@ -296,7 +296,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: Race
     :mapping: RACE
     :children:
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
@@ -382,7 +382,7 @@
     :optional: false
     :datatype: string
     :format: '20'
-    :question_text: "*** Set Question Text ***"
+    :question_text: "[If Other,  ]Specify"
     :mapping: QVAL
     :children: []
   :repeating: false

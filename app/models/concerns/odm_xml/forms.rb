@@ -147,8 +147,7 @@ class OdmXml::Forms
       item.format = dt_and_format[:format]
       item.mapping = item_node.first.attributes["SDSVarName"].nil? ? "#{C_NO_MAPPING}" : item_node.first.attributes["SDSVarName"].value
       item.ordinal = node.attributes["OrderNumber"].nil? ? 1 : node.attributes["OrderNumber"].value.to_i
-      q_text_node = node.xpath("//ItemDef[@OID = '#{@oid}']/Question/TranslatedText[@lang = 'en']")
-      item.question_text = q_text_node.empty? ? "#{C_NO_Q_TEXT}" : parse_special(q_text_node.first.text.strip)
+      add_question(item_node.first, item)      
       cl_ref_node = item_node.xpath("CodeListRef")
       if !cl_ref_node.empty?
         item.datatype = BaseDatatype::C_STRING
@@ -203,6 +202,26 @@ class OdmXml::Forms
         else
           return {datatype: BaseDatatype::C_STRING, format: length}
       end
+    end
+
+    def add_question(node, question)
+      question.question_text = "#{C_NO_Q_TEXT}"
+      q_text_node = node.xpath("Question/TranslatedText[@lang = 'en']")
+      return if question_normal(q_text_node, question)
+      return if question_name(node, question)
+    end
+
+    def question_normal(node, question)
+      return false if node.empty?
+      question.question_text = parse_special(node.first.text.strip)
+      return true
+    end
+
+    def question_name(node, question)
+      return false if node.nil?
+      return false if node.attributes["Name"].blank?
+      question.question_text = node.attributes["Name"].value
+      return true
     end
 
     def add_cl(node, question)
