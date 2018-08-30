@@ -241,6 +241,7 @@ describe Form do
     actual = read_sparql_file("to_sparql_result_1.txt")
     expected = read_sparql_file("to_sparql_expected_1.txt")
     expect(actual).to sparql_results_equal(expected)
+    delete_data_file(sub_dir, "to_sparql_result_1.txt")
   end
 
   it "can create the sparql for BC form" do
@@ -251,6 +252,7 @@ describe Form do
     actual = read_sparql_file("to_sparql_result_2.txt")
     expected = read_sparql_file("to_sparql_expected_2.txt")
     expect(actual).to sparql_results_equal(expected)
+    delete_data_file(sub_dir, "to_sparql_result_2.txt")
   end
 
   it "to_xml, I" do

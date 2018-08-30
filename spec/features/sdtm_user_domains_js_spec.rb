@@ -54,6 +54,10 @@ describe "SDTM User Domains", :type => :feature do
       click_button 'Log in'
     end
 
+    after :each do
+      clear_downloads
+    end
+
     it "allows for a domain to be deleted, cancel", js: true do
       visit '/sdtm_user_domains'
       expect(page).to have_content 'Index: Domains'
