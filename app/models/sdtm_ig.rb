@@ -145,10 +145,9 @@ class SdtmIg < Tabular
   # @return [Hash] the object hash 
   def to_json
     json = super
-    json[:domain_refs] = Array.new
-    self.domain_refs.each do |ref|
-      json[:domain_refs] << ref.to_json
-    end
+    json[:domain_refs] = []
+    self.domain_refs.sort_by! {|u| u.ordinal}
+    self.domain_refs.each {|ref| json[:domain_refs] << ref.to_json}
     return json
   end
 

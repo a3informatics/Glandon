@@ -69,7 +69,7 @@ describe "SDTM IG", :type => :feature do
       wait_for_ajax
       click_link 'Export JSON'
       file = download_content 
-    #write_text_file_2(file, sub_dir, "sdtm_ig_export.json")
+    #Xwrite_text_file_2(file, sub_dir, "sdtm_ig_export.json")
       expected = read_text_file_2(sub_dir, "sdtm_ig_export.json")
       expect(file).to eq(expected)
     end
