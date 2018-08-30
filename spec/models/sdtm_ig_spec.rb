@@ -58,7 +58,7 @@ describe SdtmIg do
 	it "allows the model to be created from JSON" do 
 		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIg.from_json(expected)
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
 	end
 
 	it "allows the object to be output as sparql" do
