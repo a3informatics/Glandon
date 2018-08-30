@@ -100,6 +100,7 @@ module ScenarioHelpers
     expect(page).to have_css("#DTE_Field_#{name}", wait: 10) 
     fill_in "DTE_Field_#{name}", with: "#{text}\t" if exit_key == :tab
     fill_in "DTE_Field_#{name}", with: "#{text}\n" if exit_key == :return
+    wait_for_ajax(10)
   end
 
   def term_editor_edit_children(unique_text)

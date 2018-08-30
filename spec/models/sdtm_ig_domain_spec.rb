@@ -67,9 +67,8 @@ describe SdtmIgDomain do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     result = item.compliance
     expect(result.count).to eq(3) 
-    expect(result[0].label).to eq("Permissible") 
-    expect(result[1].label).to eq("Expected") 
-    expect(result[2].label).to eq("Required") 
+    expected = ["Permissible","Expected","Required"]
+    result.each {|e| expect(expected.include? e.label).to eq(true)}
   end
   
   it "allows the domain to be exported as JSON" do

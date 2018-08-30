@@ -30,7 +30,7 @@ describe SdtmIg do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "allows a IG to be found, not found error" do
@@ -52,13 +52,13 @@ describe SdtmIg do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
   #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
 	it "allows the model to be created from JSON" do 
 		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIg.from_json(expected)
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
 	end
 
 	it "allows the object to be output as sparql" do

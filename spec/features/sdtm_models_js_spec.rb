@@ -88,6 +88,7 @@ describe "SDTM Models", :type => :feature do
       write_text_file_2(file, sub_dir, "sdtm_model_export_results.ttl")
       expected = read_text_file_2(sub_dir, "sdtm_model_export.ttl")
       check_ttl("sdtm_model_export_results.ttl", "sdtm_model_export.ttl")
+      delete_data_file(sub_dir, "sdtm_model_export_results.ttl")
     end
     
   end

@@ -1146,7 +1146,7 @@ describe "Form Editor", :type => :feature do
       ui_click_close
     end
 
-    it "allows the edit session to be closed indirectly, saves data", js: true do
+    it "allows the edit session to be closed indirectly, saves data - WILL CURRENTLY FAIL", js: true do
       #set_screen_size(1500, 900)
       Token.set_timeout(100) # Just make sure
       load_form("CRF TEST 1") 

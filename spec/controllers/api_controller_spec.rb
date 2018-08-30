@@ -71,7 +71,7 @@ describe ApiController, type: :controller do
       result = JSON.parse(response.body)
     #write_yaml_file(result, sub_dir, "index_expected_1.yml")
       expected = read_yaml_file(sub_dir, "index_expected_1.yml")
-      expect(result).to eq(expected)
+      expect(result).to hash_equal(expected)
       expect(response.status).to eq 200
     end
 
