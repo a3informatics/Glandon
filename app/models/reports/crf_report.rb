@@ -1,17 +1,20 @@
+# Generates the CRF Report
+#
+# @author Dave Iberson-Hurst
 class Reports::CrfReport
 
-  C_CLASS_NAME = "Report::CrfReport"
+  C_CLASS_NAME = "Reports::CrfReport"
 
   # Create the CRF report
   #
-  # @param form [Form] the form object
-  # @param options [Hash] the options
-  # @param user [User] the user
+  # @param [Form] form the form object
+  # @param [Hash] options the options for the report
+  # @param [User] user the user running the report
   # @return [String] the HTML
   def create(form, options, user)
     history = build_history(form)
     @report = Reports::WickedCore.new
-    @report.open("Case Report From", "#{form.identifier} #{form.version_label} (v#{form.semantic_version})", history, user) if options[:full]
+    @report.open("Case Report Form", "#{form.identifier} #{form.version_label} (v#{form.semantic_version})", history, user) if options[:full]
     crf_title(form) if options[:full]
     crf_body(form, options)
     completion_notes_and_term(form) if options[:full]
@@ -19,7 +22,7 @@ class Reports::CrfReport
     return @report.html
   end
 
-  if Rails.env == "test"
+  if Rails.env.test?
     # Return the current HTML. Only available for testing.
     #
     # @return [String] the HTML
