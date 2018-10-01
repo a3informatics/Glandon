@@ -265,7 +265,7 @@ describe IsoManagedController do
       allow_any_instance_of(IsoManaged).to receive(:triples).and_return("triples")
       allow_any_instance_of(IsoManaged).to receive(:owner).and_return("ACME")
       allow(controller).to receive(:to_turtle).with("triples").and_return("content")
-      expect(PublicFile).to receive(:save).with("Exports", "ACME_BC C25298_1.ttl", "content").and_return("filepath/a")
+      expect(ExportFileHelpers).to receive(:save).with("content", "ACME_BC C25298_1.ttl").and_return("filepath/a")
       get :export, { :id => uri.to_id }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

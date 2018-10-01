@@ -188,7 +188,7 @@ class IsoManagedController < ApplicationController
     uri = UriV3.new(id: params[:id]) # Uses new mechanism
     item = IsoManaged::find(uri.fragment, uri.namespace)
     filename = "#{item.owner}_#{item.identifier}_#{item.version}.ttl"
-    file_path = PublicFile.save("Exports", filename, to_turtle(item.triples))
+    file_path = ExportFileHelpers.save(to_turtle(item.triples), filename)
     render json: {file_path: file_path}, status: 200
   end
 
