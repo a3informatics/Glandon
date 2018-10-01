@@ -14,9 +14,10 @@ module ExportFileHelpers
     File.open(path_plus_filename, 'wb') do |file|
       file << data
     end
-    return path_plus_filename
+    return path_plus_filename.to_s
   end
 
+  # Following may be useful in the future
   #def self.read_export(filename)
   #  File.open(save_path(filename), 'rb') do |f|
   #    return f.read

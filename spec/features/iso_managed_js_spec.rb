@@ -7,10 +7,16 @@ describe "ISO Managed JS", :type => :feature do
   include UiHelpers
   include WaitForAjaxHelper
   include UserAccountHelpers
-  
+  include PublicFileHelpers
+  include DownloadHelpers
+  include TurtleHelpers
+
+  def sub_dir
+    return "features/iso_managed"
+  end
+
   before :all do
-    user = User.create :email => "curator@example.com", :password => "12345678" 
-    user.add_role :curator
+    ua_create
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Basic.ttl")
@@ -24,16 +30,21 @@ describe "ISO Managed JS", :type => :feature do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("CT_V42.ttl")
+    load_test_file_into_triple_store("CT_ACME_TEST.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline.ttl")
     clear_iso_concept_object
   end
 
   after :all do
-    user = User.where(:email => "curator@example.com").first
-    user.destroy
+    ua_destroy
+    delete_all_public_test_files
   end
 
+  before :each do
+    delete_all_public_test_files
+  end
+  
   describe "Curator User", :type => :feature do
 
     it "allows the metadata graph to be viewed", js: true do
@@ -206,6 +217,34 @@ describe "ISO Managed JS", :type => :feature do
       ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
       ui_check_table_row("version_info", 2, ["Version Label:", "Draft Form"])
       ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
+      ua_logoff
+    end
+
+    it "allows items to be exported", js: true do
+      ua_content_admin_login
+      click_link 'Export'
+      expect(page).to have_content 'Export Centre'
+      click_link 'Export Forms'
+      expect(page).to have_content 'Exports'
+      expect(page).to have_content 'Showing 1 to 2 of 2 entries' # New form added in previous test
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
+      public_file_exists?("test", "ACME_VS BASELINE_1.ttl")
+      file = download_content
+    #Xwrite_text_file_2(file, sub_dir, "form_export_expected.ttl")
+      write_text_file_2(file, sub_dir, "form_export_results.ttl")
+      check_ttl("form_export_results.ttl", "form_export_expected.ttl")
+      delete_data_file(sub_dir, "form_export_results.ttl")
+      click_link 'Close'
+      expect(page).to have_content 'Export Centre'
+      click_link 'Export Terminologies'
+      expect(page).to have_content 'Exports'
+      expect(page).to have_content 'Showing 1 to 1 of 1 entries'
+      click_link 'Close'
+      expect(page).to have_content 'Export Centre'
+      click_link 'Export Biomedical Concepts'
+      wait_for_ajax(10)
+      expect(page).to have_content 'Showing 1 to 10 of 13 entries'
+      click_link 'Close'
       ua_logoff
     end
 
