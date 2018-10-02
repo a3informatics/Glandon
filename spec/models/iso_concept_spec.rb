@@ -11,14 +11,8 @@ describe IsoConcept do
   end
 
   def compare_link_to_results(results, expected)
-		expect(results.length).to eq(expected.length)
-		results.each do |r|
-			found = false
-			expected.each do |e|
-				found = true if e.to_json == r.to_json
-			end
-			expect(r.to_json).to eq(expected.to_json) if !found
-		end
+		results.each {|x| x[:uri] = x[:uri].to_json}
+		expect(results).to hash_equal(expected)
 	end
 
   def compare_cross_references(result, expected)
@@ -655,14 +649,13 @@ describe IsoConcept do
 	    expected = 
 	    [ 
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME_value"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      }
 	    ]
-      #expect(results).to eq(expected)
-	    expect(results.to_json).to eq(expected.to_json)
+      compare_link_to_results(results, expected)
 	  end
 
 	  it "allows the links to a concept to be determined, BC Property Ref" do
@@ -670,19 +663,19 @@ describe IsoConcept do
 	    expected = 
 	    [ 
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2_I1"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
           label: "Date and Time (--DTC)",
 	        local: false  
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25347_PerformedObservation_dateRange_IVL_TS_DATETIME_low_TS_DATETIME"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
           label: "",
 	        local: true
 	      }
 	    ]
-	    expect(results.to_json).to eq(expected.to_json)
+      compare_link_to_results(results, expected)
 	  end
 
 	  it "allows the links from a concept to be determined, internal to managed item hierarchy" do
@@ -690,19 +683,19 @@ describe IsoConcept do
 	    expected = 
 	    [ 
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I2"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
           label: "Common Item",
 	        local: true
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G1_I1"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#CommonItem",
           label: "Common Item",
 	        local: true 
 	      }
 	    ]
-	    expect(results.to_json).to eq(expected.to_json)
+      compare_link_to_results(results, expected)
 	  end
 
 	  it "allows the links to a concept to be determined, BC Property Ref" do
@@ -710,13 +703,13 @@ describe IsoConcept do
 	    expected = 
 	    [
 	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#Form",
           label: "Vital Signs Baseline",
 	        local: true
 	      }
 	    ]
-	    expect(results.to_json).to eq(expected.to_json)
+      compare_link_to_results(results, expected)
 	  end
 
 	  it "allows the links from a concept to be determined, TC Ref" do
@@ -724,31 +717,31 @@ describe IsoConcept do
 	    expected = 
 	    [ 
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
           label: "Sitting",
 	        local: false  
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
           label: "Standing",
 	        local: false 
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
           label: "Supine Position",
 	        local: false  
 	      },
 	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      }
 	    ]
-	    expect(results.to_json).to eq(expected.to_json)
+      compare_link_to_results(results, expected)
 	  end
 
 		it "allows the links to a concept to be determined, BC Property Ref" do
@@ -756,43 +749,43 @@ describe IsoConcept do
 	    expected = 
 	    [ 
 	      {
-          uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CL-C71148"}),
+          uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CL-C71148"}).to_json,
           rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
           label: "Position",
           local: true
         },
         { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003_PerformedObservation_bodyPositionCode_CD_code"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      },
 	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      },
 	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}),
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
 	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
           label: "",
 	        local: false 
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5_I4"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5_I4"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
           label: "Body Position (--POS)",
 	        local: false  
 	      },
 	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4_I4"}), 
+	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4_I4"}).to_json, 
 	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
           label: "Body Position (--POS)",
 	        local: false  
