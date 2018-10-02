@@ -19,23 +19,23 @@ module DownloadHelpers
   end
 
   def wait_for_specific_download(filename)
-    Timeout.timeout(TIMEOUT) do
-      sleep 0.1 until download_contains?(filename)
-    end
-  end
-
-  def wait_for_download
-    Timeout.timeout(TIMEOUT) do
-    # Repleace timeout mechanism wiht simple loop.
-    #max = TIMEOUT * 10
-    #(1..max).each do
-      break if downloaded?
+    max = TIMEOUT * 10
+    (1..max).each do
+      break if download_contains?(filename)
       sleep 0.1 
     end
   end
 
+  def wait_for_download
+    max = TIMEOUT * 10
+    (1..max).each do
+      break if downloaded?
+      sleep 0.1 
+    end
+  puts "Download complete."
+  end
+
   def downloaded?
-    #!downloading? && downloads.any?
     b = downloads.any? # Do this check first. Think there may have been a race condition.
     a = downloading? 
   puts "Downloading: #{a}. Downloads: #{b}. File: #{downloads.first}"
