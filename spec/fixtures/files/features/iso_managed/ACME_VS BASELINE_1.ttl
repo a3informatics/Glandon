@@ -1,10 +1,10 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Vital Signs Baseline" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2016-08-08T12:46:42 01:00" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2018-10-02T09:04:18+01:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"I am a comment" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2016-08-08T12:45:01 01:00" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"Hello world. This is a change description" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"Origin" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
@@ -408,14 +408,14 @@
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"0.0.0" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"Draft 1" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"VS BASELINE" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Standard" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Superseded" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00Z" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Qualified" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Standard" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"Good text" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"Very good text" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00Z" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_VSBASELINE1-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 

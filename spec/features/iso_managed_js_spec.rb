@@ -43,6 +43,7 @@ describe "ISO Managed JS", :type => :feature do
 
   before :each do
     delete_all_public_test_files
+    clear_downloads
   end
   
   describe "Curator User", :type => :feature do
@@ -225,14 +226,16 @@ describe "ISO Managed JS", :type => :feature do
       click_link 'Export'
       expect(page).to have_content 'Export Centre'
       click_link 'Export Forms'
+      wait_for_ajax(10)
       expect(page).to have_content 'Exports'
       expect(page).to have_content 'Showing 1 to 2 of 2 entries' # New form added in previous test
-      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
       public_file_exists?("test", "ACME_VS BASELINE_1.ttl")
+    #copy_file_from_public_files("test", "ACME_VS BASELINE_1.ttl", sub_dir) # Setup results.
+      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
       file = download_content
-    #Xwrite_text_file_2(file, sub_dir, "form_export_expected.ttl")
       write_text_file_2(file, sub_dir, "form_export_results.ttl")
-      check_ttl("form_export_results.ttl", "form_export_expected.ttl")
+      #check_ttl("form_export_results.ttl", "ACME_VS BASELINE_1.ttl") # Old method. The last change date gets modified by prev test.
+      check_ttl_fix("form_export_results.ttl", "ACME_VS BASELINE_1.ttl", {last_change_date: true})
       delete_data_file(sub_dir, "form_export_results.ttl")
       click_link 'Close'
       expect(page).to have_content 'Export Centre'
