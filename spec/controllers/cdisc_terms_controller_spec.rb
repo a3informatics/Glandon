@@ -195,18 +195,21 @@ describe CdiscTermsController do
     end
     
     it "calculates the submission changes results, no file" do
-      file = CdiscCtChanges.dir_path + "CDISC_CT_Submission_Changes.yaml"
-      File.delete(file) if File.exist?(file)
+      delete_all_public_test_files
       get :submission_calc
       expect(response).to redirect_to("/backgrounds")
     end
 
     it "calculates the submission changes results, file" do
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
       get :submission_calc
       expect(response).to redirect_to("/cdisc_terms/submission")
     end
 
     it "obtains the submission change results" do
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
       get :submission
       expect(assigns(:previous_version)).to eq(nil)
       expect(assigns(:next_version)).to eq(nil)
@@ -214,9 +217,13 @@ describe CdiscTermsController do
     end
 
     it "submission_report" do
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :submission_report
       expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"cdisc_submission.pdf\"")
+      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, orientation: 'Landscape', lowquality: true, basic_auth: nil})
     end
     
   end
@@ -282,6 +289,10 @@ describe CdiscTermsController do
     end
 
     it "provides a list of the CDISC files" do
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
+      copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
       expected = 
       [
         "public/test/CDISC_CT_40_39_Changes.yaml", 
@@ -294,6 +305,10 @@ describe CdiscTermsController do
     end
 
     it "allows a file to be deleted" do
+      delete_all_public_test_files
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
+      copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
+      copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
       expected = 
       [
         "public/test/CDISC_CT_Changes.yaml", 
