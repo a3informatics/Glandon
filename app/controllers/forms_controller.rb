@@ -200,7 +200,8 @@ class FormsController < ApplicationController
       end
       format.pdf do
         @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => true}, current_user)
-        render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
+        @render_args = {pdf: "#{@form.owner}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
+        render @render_args
       end
     end
   end
@@ -215,7 +216,8 @@ class FormsController < ApplicationController
       end
       format.pdf do
         @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
-        render pdf: "#{@form.owner}_#{@form.identifier}_CRF.pdf", page_size: current_user.paper_size
+        @render_args = {pdf: "#{@form.owner}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
+        render @render_args
       end
     end
   end

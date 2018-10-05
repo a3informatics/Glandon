@@ -56,7 +56,7 @@ describe SdtmUserDomainsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
+    #Xwrite_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -330,7 +330,13 @@ describe SdtmUserDomainsController do
       get :export_xpt_metadata, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
     end
     
-    it "full_report"
+    it "full_report" do
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :full_report, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
+      expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"ACME_DM Domain.pdf\"")
+      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
+    end
 
   end
 

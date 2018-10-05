@@ -242,6 +242,8 @@ describe FormsController do
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :acrf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"ACME_DM1 01_CRF.pdf\"")
+      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
     end
 
     it "presents acrf as pdf" do
@@ -253,6 +255,8 @@ describe FormsController do
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :crf, { :id => "F-ACME_DM101", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }
       expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"ACME_DM1 01_CRF.pdf\"")
+      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
     end
 
     it "presents acrf as pdf" do
