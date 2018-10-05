@@ -166,7 +166,8 @@ class ThesauriController < ApplicationController
   	respond_to do |format|
       format.pdf do
         @html =Reports::ThesaurusImpactReport.new.create(thesaurus, results, current_user)
-        render pdf: "impact_analysis.pdf", page_size: current_user.paper_size
+        @render_args = {pdf: 'impact_analysis', page_size: current_user.paper_size, lowquality: true}
+        render @render_args
       end
     end
   end

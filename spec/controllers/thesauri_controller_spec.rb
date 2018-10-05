@@ -403,7 +403,9 @@ describe ThesauriController do
     	th = Thesaurus.find(params[:id], params[:namespace])  	
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :impact_report, params
-	  	expect(response.content_type).to eq("application/pdf")
+      expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"impact_analysis.pdf\"")
+      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
 	  end
 
   end
