@@ -212,7 +212,8 @@ class SdtmUserDomainsController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::DomainReport.new.create(domain, {}, current_user)
-        render pdf: "#{domain.owner}_#{domain.identifier}.pdf", page_size: current_user.paper_size
+        @render_args = {pdf: "#{domain.owner}_#{domain.identifier}", page_size: current_user.paper_size, lowquality: true}
+        render @render_args
       end
     end
   end
