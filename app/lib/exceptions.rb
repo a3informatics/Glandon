@@ -1,3 +1,8 @@
+# Manages the exceptions raised by the application
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.1
+# @deprecated Use the Errors class
 module Exceptions
 
   class DestroyError < StandardError
