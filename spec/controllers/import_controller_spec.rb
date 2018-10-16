@@ -5,7 +5,7 @@ describe ImportsController do
   include DataHelpers
   include PauseHelpers
 
-  describe "background as content admin" do
+  describe "import as content admin" do
   	
     login_content_admin
    
