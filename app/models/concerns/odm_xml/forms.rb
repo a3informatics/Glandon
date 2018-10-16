@@ -1,17 +1,12 @@
 require 'cgi'
 
-class OdmXml::Forms
+class OdmXml::Forms < OdmXml
 
   C_CLASS_NAME = self.name
   C_NO_MAPPING = "[NO MAPPING]"
   C_NO_Q_TEXT = "*** Set Question Text ***"
   
   extend ActiveModel::Naming
-
-  def initialize(parent)
-    @parent = parent
-    @doc = parent.doc
-  end
 
   # List. List all forms present in the file.
   #
@@ -21,7 +16,7 @@ class OdmXml::Forms
     @doc.xpath("//FormDef").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
     return results
   rescue => e
-    @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
+    exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
     return []
   end
 
@@ -36,7 +31,7 @@ class OdmXml::Forms
     odm_form.groups(@doc)
     return odm_form.form
   rescue => e
-    @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form.")
+    exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form.")
     return nil
   end
 

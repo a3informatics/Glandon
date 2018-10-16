@@ -1,41 +1,37 @@
 class BackgroundsController < ApplicationController
 
-	before_action :authenticate_user!
+	before_action :authenticate_and_authorized
 
 	def index
-		authorize Background
 		@jobs = Background.all
   end
 
-=begin
-	def running
-		authorize Background
-	    jobs = Background.all
-	    results = {}
-	    results[:data] = []
-	    jobs.each do |job|
-	      results[:data] << job
-	    end
-	    render :json => results, :status => 200
-	end
-=end
+	def destroy
+    Background.find(params[:id]).destroy
+    redirect_to backgrounds_path
+  end
 
-	def clear
-		authorize Background
-    jobs = Background.all
-		jobs.each do |job|
-			job.destroy
-		end
+  def destroy_multiple
+    case the_params[:items].to_sym
+    when :completed
+      Background.where(complete: true).destroy_all
+    when :all
+      Background.destroy_all
+    else
+      flash[:error] = "Requested delete operation not recognized."
+    end
 		redirect_to backgrounds_path
 	end
 
-	def clear_completed
-		authorize Background
-    jobs = Background.where(complete: true).find_each
-		jobs.each do |job|
-			job.destroy
-		end
-		redirect_to backgrounds_path
-	end
+private
+ 
+  def the_params()
+    params.require(:backgrounds).permit(:items)
+  end
+
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize Import
+  end
 
 end

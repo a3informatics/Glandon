@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title"><%= item[:title] %></h3></div>
+  <div class="panel-body">
+    <p><%= item[:description] %></p>
+    <%= link_to item[:link_path], :class => "btn btn-success btn-block" do %>
+      <span class="fa fa-upload fa-lg"></span><%= " #{item[:link_text]}" %>          
+    <% end %> 
+  </div>
+</div>
+

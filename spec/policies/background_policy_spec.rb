@@ -21,7 +21,7 @@ describe BackgroundPolicy do
     let (:user) { @user_tr }
 
     it "denies access" do
-      deny_list [:index, :running, :clear, :clear_completed]
+      deny_list [:index, :destroy, :destroy_multiple]
     end
 
   end
@@ -31,7 +31,7 @@ describe BackgroundPolicy do
     let (:user) { @user_tc }
 
     it "denies access" do
-      deny_list [:index, :running, :clear, :clear_completed]
+      deny_list [:index, :destroy, :destroy_multiple]
     end
 
   end
@@ -41,7 +41,7 @@ describe BackgroundPolicy do
     let (:user) { @user_r }
 
     it "denies access" do
-      deny_list [:index, :running, :clear, :clear_completed]
+      deny_list [:index, :destroy, :destroy_multiple]
     end
 
   end
@@ -51,7 +51,7 @@ describe BackgroundPolicy do
     let (:user) { @user_c }
 
     it "denies access" do
-      deny_list [:index, :running, :clear, :clear_completed]
+      deny_list [:index, :destroy, :destroy_multiple]
     end
 
   end
@@ -61,7 +61,7 @@ describe BackgroundPolicy do
     let (:user) { @user_ca }
 
     it "allows access" do
-      allow_list [:index, :running, :clear, :clear_completed]
+      allow_list [:index, :destroy, :destroy_multiple]
     end
 
   end
@@ -71,7 +71,7 @@ describe BackgroundPolicy do
     let (:user) { @user_sa }
 
     it "allows access" do
-      allow_list [:index, :running, :clear, :clear_completed]
+      allow_list [:index, :destroy, :destroy_multiple]
     end
 
   end

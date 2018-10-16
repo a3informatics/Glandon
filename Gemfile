@@ -96,6 +96,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem "teaspoon-mocha"
+  gem 'thin'
 end
 
 group :test do

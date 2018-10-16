@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag 'concerns/check_box' %>
+<div id="items_panel_div" class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Import Items</h3>
+  </div>
+  <div class="panel-body">
+    <div id="items_table_spinner_div">
+      <p class="text-center"><img src="<%= asset_path('processing_medium_2.gif') %>"></p> 
+    </div>
+    <div id="items_table_div">
+      <div class="row">
+        <div class="col-md-12"> 
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= label_tag :auto_load, "Auto load:" %><br/>
+              <div class="material-switch pull-left">
+                <input id="imports_auto_load" name="imports[auto_load]" type="checkbox" value="true" checked/>
+                <label for="imports_auto_load" class="label-success"></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group">
+              <%= label_tag :version, "File selected:" %><br/>
+              <p id="imports_filename"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="col-md-12"> 
+          <table id="items_table" class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                  <th class="col-md-2">Identifier</th>
+                  <th>Label</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"> 
+          <button type="button" id="import_button" class="btn btn-success">Import</button>
+          <button type="button" id="import_index_button" class="btn btn-primary">Imports</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

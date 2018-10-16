@@ -160,13 +160,27 @@ Rails.application.routes.draw do
   resources :uploads
 
   # Imports
-  resources :imports, :only => [:index]
   namespace :imports do
-    resources :als, :only => [:new, :index, :create]
-    resources :odm, :only => [:new, :index, :create]
-    resources :terms, :only => [:new, :index, :create]
+    resources :adam_models, :only => [:new, :create]
+    resources :adam_igs, :only => [:new, :create]
+    resources :crfs, :only => [:new, :create] do
+      collection do
+        get :items
+      end
+    end
+    resources :terms, :only => [:new, :create] do
+      collection do
+        get :items
+      end
+    end
   end
-
+  resources :imports, :only => [:index, :show, :destroy] do # Make sure this is after the namespace to avoid the :index/:show clash
+    collection do
+      get :list
+      delete :destroy_multiple
+    end
+  end 
+  
   # Exports
   resources :exports, :only => [:index] do
     collection do
@@ -277,11 +291,9 @@ Rails.application.routes.draw do
     resources :groups
     resources :items, :only => [:show]
   end
-  resources :backgrounds do
+  resources :backgrounds, :only => [:index, :destroy] do
     collection do
-      get :running
-      post :clear
-      post :clear_completed
+      delete :destroy_multiple
     end
   end
   resources :sdtm_models do

@@ -201,20 +201,25 @@ class Form < IsoManaged
   # @param params [hash] {data:} The operational hash
   # @return [oject] The form object. Valid if no errors set.
   def self.create(params)
+    object = create_no_load(params)
+    if object.errors.empty?
+      response = CRUD.update(object.to_sparql_v2.to_s)
+      Errors.object_create_error(C_CLASS_NAME, __method__.to_s, object) if !response.success?
+    end
+    return object
+  end
+
+  # Create a form but dont load
+  #
+  # @param params [hash] {data:} The operational hash
+  # @return [oject] The form object. Valid if no errors set.
+  def self.create_no_load(params)
     operation = params[:operation]
     managed_item = params[:managed_item]
     object = Form.from_json(managed_item)
     object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
-    if object.valid? then
-      if object.create_permitted?
-        sparql = object.to_sparql_v2
-        response = CRUD.update(sparql.to_s)
-        if !response.success?
-          ConsoleLogger.info(C_CLASS_NAME, "create", "Failed to create object.")
-          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-        end
-      end
-    end
+    return object unless object.valid?
+    return object unless object.create_permitted?
     return object
   end
 

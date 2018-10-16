@@ -1,14 +1,9 @@
-class OdmXml::Terminology
+class OdmXml::Terminology < OdmXml
 
   C_CLASS_NAME = self.name
   C_NOT_SET = "-"
     
   extend ActiveModel::Naming
-
-  def initialize(parent)
-    @parent = parent
-    @doc = parent.doc
-  end
 
   # List. List all code lists present in the file.
   #
@@ -18,7 +13,7 @@ class OdmXml::Terminology
     @doc.xpath("//CodeList").each { |n| results << { identifier: n.attributes["OID"].value, label: n.attributes["Name"].value } }
     return results
   rescue => e
-    @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
+    exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form list.")
     return []
   end
 
@@ -32,7 +27,7 @@ class OdmXml::Terminology
     cl = OdmCl.new(@doc, nodes.first, identifier)
     return cl.clis
   rescue => e
-    @parent.exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building code list.")
+    exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building code list.")
     return {}
   end
 

@@ -1,0 +1,10 @@
+<%= javascript_include_tag 'standard_datatable', 'import/crfs/new', 'shared/import/crf_files_panel', 'shared/import/items_panel' %>
+<%= javascript_tag "var file_type = \"#{@file_type}\";" %>
+<div class="row">
+  <div class="col-md-6">
+    <%= render partial: "shared/import/crf_files_panel" %>  
+  </div>
+  <div class="col-md-6">
+    <%= render partial: "shared/import/items_panel" %>
+  </div>
+</div>

@@ -9,9 +9,10 @@
 	    	<th class="col-sm-4">Description</th>
 	    	<th class="col-sm-2">Status</th>
 	    	<th class="col-sm-2">Started At</th>
-	    	<th>Progress</th>
-	    	<th>Complete</th>
+	    	<th class="fit">% Complete</th>
+	    	<th class="fit">Complete</th>
 	    	<th class="col-sm-2">Completed At</th>
+        <th class="fit"></th>
 	  	</tr>
 		</thead>
 		<tbody>
@@ -21,12 +22,19 @@
 	    		<td><%= job.status %></td>
 	    		<td><%= Timestamp.new(job.started).to_datetime %></td>
 	    		<td><%= job.percentage %></td>
-	    		<td><%= job.complete %></td>
+	    		<%= true_false_glyphicon(job.complete) %>
 	    		<td><%= Timestamp.new(job.completed).to_datetime %></td>
+          <td>
+            <%= render partial: "shared/buttons/delete", locals: {link_path: background_path(job), small: true, 
+              id: "delete_button_#{job.id}", label: "Delete"} %>
+          </td>
 	    	</tr>
 			<% end %>
 	  </tbody>
 	</table>
-	<%= link_to "Clear Completed Jobs", clear_completed_backgrounds_path, :method => :post, :class => "btn btn-danger" %>
-	<%= link_to "Clear All Jobs", clear_backgrounds_path, :method => :post, :class => "btn btn-danger" %>
+  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}), 
+    small: false, id: "clear_button", label: "Delete Completed"} %>
+  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}), 
+    small: false, id: "clear_button", label: "Delete All"} %>
+  
 </div>
