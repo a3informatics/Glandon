@@ -1,3 +1,7 @@
+# Background Controller.
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class BackgroundsController < ApplicationController
 
 	before_action :authenticate_and_authorized

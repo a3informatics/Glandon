@@ -1,3 +1,7 @@
+# Import Controller.
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class ImportsController < ApplicationController
   
   before_action :authenticate_and_authorized
@@ -18,8 +22,8 @@ class ImportsController < ApplicationController
   end
 
   def destroy_multiple
-    # Only implements all currently
-    Import.all.each {|item| item.destroy}
+    # Only currently implements all
+    Import.destroy_all
     redirect_to imports_path
   end
 
