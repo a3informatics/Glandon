@@ -1,20 +1,23 @@
 class Imports::BaseController < ApplicationController
   
+  include ControllerHelpers
+
   before_action :authenticate_and_authorized
-  before_action :get_file_type, only: [:new, :items]
 
   @@extension_map = ["*.xlsx", "*.xml", "*.xlsx"]
 
   def new
+    get_file_type
     @model = new_model
     files
   end
 
   def items
-    @model = new_model
     if params[:imports].blank?
       render :json => {data: []}, :status => 200
     else
+      @model = new_model
+      get_file_type
       filename = get_filename(the_params)
       @items = @model.list({filename: filename, file_type: @file_type})
       @items.each {|x| x[:filename] = filename}
@@ -35,7 +38,7 @@ class Imports::BaseController < ApplicationController
 private
  
   def new_model
-    "Import::#{controller_name.classify}".constantize.new # Having to fiddle this to get singular form of namespace root.
+    "Import::#{controller_name.classify}".constantize.new # They may be some better ways of doing this but it works.
   end
 
   def authenticate_and_authorized
@@ -48,10 +51,7 @@ private
   end
 
   def files
-    ext = @@extension_map[@file_type]
-    @files = Dir.glob(Rails.root.join("public", "upload") + ext)
-  rescue => e
-    @files = []
+    @files = upload_files(@@extension_map[@file_type])
   end
 
   def the_params(additional=[])

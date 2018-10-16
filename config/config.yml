@@ -8,7 +8,7 @@ defaults: &defaults
   ad_hoc_report_files: public/reports/  # Ad Hoc Reports directory
   export_files: public/exports/  # Exports directory 
   import_files: public/imports/  # Exports directory 
-  upload_files: public/uploads/  # Upload directory 
+  upload_files: public/upload/  # Upload directory 
   max_impact_hops: 3 # Maximum hops for impact assesment
   bridg_path_coded:
    - CD.originalText.ED.value
