@@ -55,6 +55,7 @@ module ApplicationHelper
 
 	# True/False Glyphicon in Table Cell
   #
+  # @deprecated Use {#true_false_cell} instead of this method as it includes alignment flexibility
   # @param [Boolean] data the desired setting
   # @return [String] contains the HTML for the setting
   def true_false_glyphicon(data)
