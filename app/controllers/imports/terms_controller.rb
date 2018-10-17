@@ -1,3 +1,7 @@
+# Imports Terminology Controller.
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Imports::TermsController < Imports::BaseController
   
   def new

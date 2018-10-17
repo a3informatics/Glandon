@@ -1,3 +1,7 @@
+# Imports Base Controller. The core controller for imports
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Imports::BaseController < ApplicationController
   
   include ControllerHelpers
