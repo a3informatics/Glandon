@@ -13,7 +13,7 @@ module ImportFileHelpers
   def self.save(data, filename)
     path_plus_filename = full_path(filename)
     File.open(path_plus_filename, 'wb') do |file|
-      File.extname(path_plus_filename).to_sym == :yml ? file << data.to_yaml : file << data
+      File.extname(path_plus_filename) == ".yml" ? file << data.to_yaml : file << data
     end
     return path_plus_filename.to_s
   end
