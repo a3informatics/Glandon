@@ -27,19 +27,20 @@ class OdmXml::Forms < OdmXml
   def form(identifier)
     thesauri = []
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
-    odm_form = OdmForm.new(self.list, identifier, thesauri)
+    odm_form = OdmForm.new(self.list, identifier, thesauri, self)
+    return self if self.errors.any?
     odm_form.groups(@doc)
     return odm_form.form
   rescue => e
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised building form.")
-    return nil
+    return self
   end
 
   class Ordinal
 
     def initialize
       @counter = 1
-              end
+    end
 
     def increment
       @counter += 1
@@ -58,18 +59,16 @@ class OdmXml::Forms < OdmXml
     attr_reader :oid
     attr_reader :form
 
-    def initialize(list, identifier, thesauri)
+    def initialize(list, identifier, thesauri, parent)
       @thesauri = thesauri
       @oid = identifier
       source_form = list.find { |f| f[:identifier] == identifier }
       if source_form.nil?
-        parent.error("Failed to find the form, possible identifier mismatch.") 
-        return
+        parent.error(self.class.name, __method__.to_s, "Failed to find the form, possible identifier mismatch.") 
       else
         @form = Form.new 
         @form.scopedIdentifier.identifier = IsoScopedIdentifier.clean_identifier(identifier) # Make sure we remove anything nasty
         @form.label = source_form[:label]
-        return
       end
     end
 

@@ -3,28 +3,11 @@ require 'rails_helper'
 describe Import do
 
 	include DataHelpers
+  include ImportHelpers
+  include PublicFileHelpers
 
   def sub_dir
     return "models/import"
-  end
-
-  def object_hash(object)
-    object.attributes.except!("created_at", "updated_at")
-  end
-
-  def compare_object_hash(result, expected, options={})
-    default_options = {error_file: false}
-    default_options = {output_file: false}
-    options.reverse_merge(default_options)
-    expected["background_id"] = result.background_id
-    expected["id"] = result.id
-    expected["error_file"].sub!(extract_filename(expected["error_file"], "errors"), extract_filename(result.error_file, "errors")) if options[:error_file]
-    expected["output_file"].sub!(extract_filename(expected["output_file"], "load"), extract_filename(result.output_file, "load")) if options[:output_file]
-    expect(object_hash(result)).to hash_equal(expected)
-  end
-
-  def extract_filename(text, type)
-    return text[/#{ImportTest::C_IMPORT_TYPE}_\d+_#{type}/]
   end
 
   def simple_import
@@ -58,6 +41,13 @@ describe Import do
   before :each do
     clear_triple_store
     Import.destroy_all
+    delete_all_public_test_files
+    import_type(ImportTest::C_IMPORT_TYPE)
+  end
+
+  after :each do
+    Import.destroy_all
+    delete_all_public_test_files
   end
 
   it "generates the import list" do
@@ -73,9 +63,9 @@ describe Import do
     expect(item).to receive(:import).with(params, an_instance_of(Background))
     item.create(params)
     result = Import.find(item.id)
-  #Xwrite_yaml_file(object_hash(result), sub_dir, "create_import_1.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_1.yaml")
     expected = read_yaml_file(sub_dir, "create_import_1.yaml")
-    compare_object_hash(result, expected)
+    compare_import_hash(result, expected)
     background = Background.find(item.background_id)
     expect(background.description).to eq("DESCRIPTION from ODM. Identifier: AAA, Owner: OWNER")
     expect(background.complete).to eq(false)    
@@ -87,9 +77,9 @@ describe Import do
     expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
     item.create(params)
     result = Import.find(item.id)
-  #Xwrite_yaml_file(object_hash(result), sub_dir, "create_import_2.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_2.yaml")
     expected = read_yaml_file(sub_dir, "create_import_2.yaml")
-    compare_object_hash(result, expected, error_file: true)
+    compare_import_hash(result, expected, error_file: true)
     background = Background.find(item.background_id)  
     expect(background.complete).to eq(true)  
   end
@@ -100,9 +90,9 @@ describe Import do
     item = simple_import
     item.save_error_file(worker)
     result = Import.find(item.id)
-  #Xwrite_yaml_file(object_hash(result), sub_dir, "save_error_file_expected_1.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_1.yaml")
-    compare_object_hash(result, expected, error_file: true)
+    compare_import_hash(result, expected, error_file: true)
   end
 
   it "loads the error file" do
@@ -129,9 +119,9 @@ describe Import do
     expect(CRUD).to receive(:update).with("{:s=>\"subject\", :p=>\"predicate\", :o=>\"object\"}")
     item.save_load_file(object)
     result = Import.find(item.id)
-  #write_yaml_file(object_hash(result), sub_dir, "save_load_file_expected_1.yaml")
+  #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
-    compare_object_hash(result, expected, output_file: true)
+    compare_import_hash(result, expected, output_file: true)
   end
 
   it "saves the load file, no auto load" do
@@ -144,9 +134,9 @@ describe Import do
     expect(object).to receive(:to_sparql_v2).and_return({s: "subject", p: "predicate", o: "object"})
     item.save_load_file(object)
     result = Import.find(item.id)
-  #Xwrite_yaml_file(object_hash(result), sub_dir, "save_error_file_expected_2.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_2.yaml")
-    compare_object_hash(result, expected, output_file: true)
+    compare_import_hash(result, expected, output_file: true)
   end
 
   it "saves the result" do
@@ -158,9 +148,9 @@ describe Import do
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
     item.save_result(object)
     result = Import.find(item.id)
-  #Xwrite_yaml_file(object_hash(result), sub_dir, "save_result_expected_1.yaml")
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "save_result_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_result_expected_1.yaml")
-    compare_object_hash(result, expected)
+    compare_import_hash(result, expected)
   end
 
   it "provides a description" do

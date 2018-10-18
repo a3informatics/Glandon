@@ -25,7 +25,7 @@ class Import::Crf < Import
   rescue => e
     job.exception("An exception was detected during the form import processes.", e)
   end 
-  #handle_asynchronously :import unless Rails.env.test?
+  handle_asynchronously :import unless Rails.env.test?
 
 private
   
