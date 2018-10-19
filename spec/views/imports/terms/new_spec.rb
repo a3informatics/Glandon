@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'imports/terms/index.html.erb', :type => :view do
+describe 'imports/terms/new.html.erb', :type => :view do
 
   include UiHelpers
   include UserAccountHelpers
