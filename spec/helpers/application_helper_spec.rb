@@ -79,6 +79,12 @@ describe ApplicationHelper do
 			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
 		end
 
+    it "true false cell" do
+      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>")
+      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
+      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
+    end
+
 		it "column ordering" do
 		  expect(column_order(1, :asc)).to eq("[[1, 'asc']]")
 		  expect(column_order(2, :desc)).to eq("[[2, 'desc']]")

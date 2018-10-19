@@ -55,15 +55,23 @@ module ApplicationHelper
 
 	# True/False Glyphicon in Table Cell
   #
-  # @param data [Boolean] the desired setting
+  # @deprecated Use {#true_false_cell} instead of this method as it includes alignment flexibility
+  # @param [Boolean] data the desired setting
   # @return [String] contains the HTML for the setting
   def true_false_glyphicon(data)
-		if data
-			return raw("<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>")
-		else
-			return raw("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
-		end
+		true_false_cell(data, :center)
 	end
+
+  # True/False Cell
+  #
+  # @param [Boolean] data the desired setting
+  # @param [Symbol] alignment the desired alignment, either :left, :right or :center
+  # @return [String] returns the HTML for the setting
+  def true_false_cell(data, alignment)
+    span_class = "glyphicon " # Note space at end
+    span_class += data ? "glyphicon-ok text-success" : "glyphicon-remove text-danger"
+    return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
+  end
 
 	# Return the datatable settings for column ordering
   #

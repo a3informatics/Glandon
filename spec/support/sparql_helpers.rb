@@ -24,11 +24,31 @@ module SparqlHelpers
     return results
   end
 
+  def fix_last_change_date(results, expected)
+    set_date(results[:triples], extract_last_change_date(expected[:triples], "isoT:lastChangeDate"), "isoT:lastChangeDate")
+  end
+
+  def fix_creation_date(results, expected)
+    set_date(results[:triples], extract_last_change_date(expected[:triples], "isoT:lastChangeDate"), "isoT:creationDate")
+  end
+
+private
+
   def check(results, type)
     results[:checks] = false if type == :insert && @checks != {insert: false, open: false, close: false}
     results[:checks] = false if type == :open && @checks != {insert: true, open: false, close: false}
     results[:checks] = false if type == :close && @checks != {insert: true, open: true, close: false}
     @checks[type] = true
+  end
+
+  def extract_last_change_date(triples, predicate)
+    triple = triples.select{|x| x[:predicate] == predicate}
+    return triple.first[:object]
+  end
+
+  def set_date(triples, new_date, predicate)
+    triple = triples.select{|x| x[:predicate] == predicate}
+    triple.first[:object] = new_date
   end
 
 end

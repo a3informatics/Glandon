@@ -241,21 +241,14 @@ defaults: &defaults
       reader: false
       curator: false
       content_admin: true
-    running:
+    destroy:
       sys_admin: true
       term_reader: false
       term_curator: false
       reader: false
       curator: false
       content_admin: true
-    clear:
-      sys_admin: true
-      term_reader: false
-      term_curator: false
-      reader: false
-      curator: false
-      content_admin: true
-    clear_completed:
+    destroy_multiple:
       sys_admin: true
       term_reader: false
       term_curator: false
@@ -675,6 +668,13 @@ defaults: &defaults
       curator: false
       content_admin: true
   ImportPolicy:
+    new:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
     index:
       sys_admin: false
       term_reader: false
@@ -682,7 +682,42 @@ defaults: &defaults
       reader: false
       curator: false
       content_admin: true
+    show:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
     create:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    destroy:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    destroy_multiple:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    items:
+      sys_admin: false
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: true
+    list:
       sys_admin: false
       term_reader: false
       term_curator: false

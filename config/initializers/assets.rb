@@ -24,7 +24,6 @@ Rails.application.config.assets.version = '1.0'
   ad_hoc_report_results
   markdown_editor
   background_index 
-  import_terminology
 	biomedical_concepts_editor biomedical_concept_template_new
 	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel
@@ -34,3 +33,6 @@ Rails.application.config.assets.version = '1.0'
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
 end
+Rails.application.config.assets.precompile += %w( shared/import/term_files_panel.js shared/import/crf_files_panel.js shared/import/items_panel.js )
+Rails.application.config.assets.precompile += %w( concerns/check_box.css )
+Rails.application.config.assets.precompile += %w( import/crfs/new.js import/terms/new.js )

@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Import Terminology from <%= Import.file_type_humanize(@file_type) %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @model, url: imports_terms_path, method: :get do |f| %>
+      <div class="form-group">
+        <%= label_tag :thesaurus, "Import to Terminology:" %><br/>
+        <%= select_tag(:thesaurus, options_for_select(@th.map{ |t| [t.label, t.uri] }), include_blank: "Select the target terminology (Status = 'Incomplete') ...", 
+          class: "form-control" ) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag :filename, "Files:" %><br/>
+        <%= select_tag(:filename, options_for_select(@files), class: "form-control", :size => 20 ) %>
+      </div>
+      <%= render partial: "shared/buttons/close", :locals => {small: false, link_path: list_imports_path } %>
+      <button type="button" id="list_button" class="btn btn-success">List</button>
+    <% end %>
+  </div>
+</div>

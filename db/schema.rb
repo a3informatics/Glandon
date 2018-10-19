@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028141719) do
+ActiveRecord::Schema.define(version: 20181009095809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,24 @@ ActiveRecord::Schema.define(version: 20171028141719) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "imports", force: :cascade do |t|
+    t.string   "type"
+    t.string   "input_file"
+    t.string   "output_file"
+    t.string   "error_file"
+    t.string   "success_path"
+    t.string   "error_path"
+    t.boolean  "success",       default: false
+    t.integer  "background_id"
+    t.integer  "token_id"
+    t.boolean  "auto_load",     default: false
+    t.string   "identifier"
+    t.string   "owner"
+    t.integer  "file_type",     default: 0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "notepads", force: :cascade do |t|
     t.string   "identifier"

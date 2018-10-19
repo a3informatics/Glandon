@@ -19,11 +19,15 @@
 /public/results/*
 /public/reports/*
 /public/exports/*
+/public/imports/*
 /public/test/*
 /public/assets/*
 
 # But keep any with keep files
-!*.keep
+!/public/results/.keep
+!/public/reports/.keep
+!/public/exports/.keep
+!/public/imports/.keep
 
 # Ignore local environment config file
 /config/local_env.yml
@@ -39,6 +43,3 @@ test_form.sh
 test_sdtm.sh
 app/assets/transforms/biomedicalConcepts/import/BC.ttl
 app/assets/transforms/biomedicalConcepts/import/BCT.ttl
-
-.idea/
-**/.idea/

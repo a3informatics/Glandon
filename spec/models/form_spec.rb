@@ -148,6 +148,20 @@ describe Form do
     expect(item.errors.count).to eq(0)
   end
 
+  it "allows a form to be created from operation JSON, no load" do
+    operation = read_yaml_file_to_hash_2(sub_dir, "example_simple_placeholder_with_operation.yaml")
+    item = Form.create_no_load(operation)
+    expect(item.errors.full_messages.to_sentence).to eq("")
+    expect(item.errors.count).to eq(0)
+  #Xwrite_text_file_2(item.to_sparql_v2.to_s, sub_dir, "create_no_load_expected_1.ttl")
+    expected = read_sparql_file("create_no_load_expected_1.ttl")
+    write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "create_no_load_actual_1.ttl")
+    actual = read_sparql_file("create_no_load_actual_1.ttl")
+    fix_last_change_date(actual, expected)
+    expect(actual).to sparql_results_equal(expected)
+    delete_data_file(sub_dir, "create_no_load_actual_1.ttl")
+  end
+
   it "allows a form to be created from operation JSON, base core form" do
     # Leave these lines in, used to build initial test file, might be useful
     #text = read_text_file_2(sub_dir, "base_core.txt")
@@ -184,7 +198,7 @@ describe Form do
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)
     expect(ConsoleLogger).to receive(:info)
-    expect{Form.create(json[:form])}.to raise_error(Exceptions::CreateError)
+    expect{Form.create(json[:form])}.to raise_error(Errors::CreateError, "Failed to create Form. .")
   end
 
   it "allows a form to be updated" do

@@ -1,0 +1,120 @@
+<%= javascript_include_tag 'background_index'%>
+<%= javascript_include_tag 'standard_datatable' %>
+<% second_level_breadcrumb("Imports", imports_path, "Import") %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Import Status</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4">
+            <% if @import.complete %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Details</h3>
+                </div>
+                <div class="panel-body">
+                  <table class="table table-striped table-condensed">
+                    <tbody>
+                      <tr>
+                        <td><strong>Description:</strong></td>
+                        <td><%= @import.description %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Identifier:</strong></td>
+                        <td><%= @import[:identifier] %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Owner:</strong></td>
+                        <td><%= @import.owner %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Success:</strong></td>
+                        <%= true_false_cell(@import.success, :left) %>
+                      </tr>
+                      <tr>
+                        <td><strong>Started At:</strong></td>
+                        <td><%= Timestamp.new(@job.started).to_datetime %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <% if @import.success %>
+                    <div class="alert alert-success">No errors were detected with the import.</div>
+                    <% if @import.auto_load %>
+                      <%= link_to "Go to history", @import.success_path, :class => "btn btn-primary btn-block" %>
+                    <% else %>
+                      <div class="alert alert-warning">Auto load was not set so the item was not imported.</div>
+                    <% end %>  
+                  <% else %>
+                    <div class="alert alert-danger">Errors were detected during the processing of the import file. See the error table to the right.</div>
+                  <% end %>
+                </div>
+              </div>
+            <% else %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Background Job</h3>
+                </div>
+                <div class="panel-body">
+                  <table class="table table-striped table-condensed">
+                    <tbody>
+                      <tr>
+                        <td><strong>Description:</strong></td>
+                        <td><%= @job.description %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Status:</strong></td>
+                        <td><%= @job.status %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Started At:</strong></td>
+                        <td><%= Timestamp.new(@job.started).to_datetime %></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Percentage:</strong></td>
+                        <td><%= @job.percentage %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div>
+                    <p class="text-center"><img src="<%= asset_path('processing_medium_2.gif') %>"></p> 
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <%= link_to "Close", imports_path, :class => "btn btn-primary" %>
+          </div>
+          <div class="col-md-8">
+            <% if @job.complete %>
+              <% if !@import.success %>
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Errors</h3>
+                  </div>
+                  <div class="panel-body">
+                    <table id="main" class="table table-striped table-bordered table-condensed">
+                      <thead>
+                        <td class="fit">Index</td>
+                        <td>Error</td>
+                      </thead>
+                      <tbody>
+                        <% @errors.each_with_index do |error, index| %>
+                          <tr>
+                            <td><%= index + 1 %></td>
+                            <td><%= error %></td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

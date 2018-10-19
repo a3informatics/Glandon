@@ -7,6 +7,8 @@ defaults: &defaults
   cdisc_ct_files: public/results/  # CDISC CT file directory
   ad_hoc_report_files: public/reports/  # Ad Hoc Reports directory
   export_files: public/exports/  # Exports directory 
+  import_files: public/imports/  # Exports directory 
+  upload_files: public/upload/  # Upload directory 
   max_impact_hops: 3 # Maximum hops for impact assesment
   bridg_path_coded:
    - CD.originalText.ED.value
@@ -86,3 +88,5 @@ test:
   cdisc_ct_files: public/test/
   ad_hoc_report_files: public/test/
   export_files: public/test/
+  import_files: public/test/
+  upload_files: public/test/

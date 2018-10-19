@@ -1,0 +1,23 @@
+// Import Term Panel
+function ImportTermFilesPanel() {
+  this.iip = new ImportItemsPanel(this.status, 
+    "<%= Rails.application.routes.url_helpers.items_imports_terms_path %>", 
+    "<%= Rails.application.routes.url_helpers.imports_terms_path %>");
+
+  var _this = this;
+  
+  $('#list_button').click(function() {
+    var uri = $('#thesaurus').val();
+    var filename = $('#filename').val();
+    if (uri === "" || filename === null) {
+      displayError("You need to select a terminology and a file.");
+    } else {
+      _this.iip.refresh(uri, filename);
+    }
+  });
+ 
+}
+
+ImportTermFilesPanel.prototype.status = function(operating) {
+  $('#list_button').prop('disabled', operating);
+}

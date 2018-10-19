@@ -45,6 +45,7 @@ module Glandon
     config.iso_registration_state = config_for(:iso_registration_state)
     config.roles = config_for(:roles)
     config.policy = config_for(:policy)
+    config.imports = config_for(:imports).deep_symbolize_keys
 
     # Rspec additions
     config.generators do |g|

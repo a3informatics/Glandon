@@ -6,8 +6,6 @@ class OdmXml
 
   attr_reader :errors
   attr_reader :filename
-  attr_reader :forms
-  attr_reader :terminology
   attr_reader :doc
   
   # Initialize. Initialize the class
@@ -20,8 +18,6 @@ class OdmXml
     xml = PublicFile.read(filename)
     @doc = Nokogiri::XML(xml)
     @doc.remove_namespaces!
-    @forms = OdmXml::Forms.new(self)
-    @terminology = OdmXml::Terminology.new(self)
   rescue => e
     exception(C_CLASS_NAME, __method__.to_s, e, "Exception raised opening ODM XML file, filename=#{@filename}.")
   end

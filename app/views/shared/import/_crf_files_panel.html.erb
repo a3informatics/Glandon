@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Import Forms from <%= Import.file_type_humanize(@file_type) %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @model, url: imports_crfs_path, method: :get do |f| %>
+      <div class="form-group">
+        <%= label_tag :files, "Files:" %><br/>
+        <%= select_tag("imports[files][]", options_for_select(@files), class: "form-control", :size => 20 ) %>
+      </div>
+      <%= render partial: "shared/buttons/close", :locals => {small: false, link_path: list_imports_path } %>
+      <button type="button" id="list_button" class="btn btn-success">List</button>
+    <% end %>
+  </div>
+</div>
