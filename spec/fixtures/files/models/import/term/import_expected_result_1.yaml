@@ -1,0 +1,53 @@
+---
+:type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+:id: TH-CDISC_CDISCTerminology_CLSMOKING
+:namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+:label: Smoking
+:extension_properties: []
+:identifier: CLSMOKING
+:notation: SMOKE
+:synonym: ''
+:definition: "-"
+:preferredTerm: "-"
+:topLevel: false
+:parentIdentifier: ''
+:children:
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: TH-CDISC_CDISCTerminology_CLSMOKING_10TO20
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+  :label: 10 to 20 cigarettes per day
+  :extension_properties: []
+  :identifier: CLSMOKING.10TO20
+  :notation: 10TO20
+  :synonym: ''
+  :definition: "-"
+  :preferredTerm: "-"
+  :topLevel: false
+  :parentIdentifier: CLSMOKING
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: TH-CDISC_CDISCTerminology_CLSMOKING_GT20
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+  :label: Greater Than 20 cigarettes per day
+  :extension_properties: []
+  :identifier: CLSMOKING.GT20
+  :notation: GT20
+  :synonym: ''
+  :definition: "-"
+  :preferredTerm: "-"
+  :topLevel: false
+  :parentIdentifier: CLSMOKING
+  :children: []
+- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
+  :id: TH-CDISC_CDISCTerminology_CLSMOKING_LT10
+  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+  :label: Less Than 10 cigarettes per day
+  :extension_properties: []
+  :identifier: CLSMOKING.LT10
+  :notation: LT10
+  :synonym: ''
+  :definition: "-"
+  :preferredTerm: "-"
+  :topLevel: false
+  :parentIdentifier: CLSMOKING
+  :children: []

@@ -1,12 +1,23 @@
 require 'rails_helper'
-require_dependency 'import/odm' # Needed becuase Odm is alos name of a gem.
 
-describe Odm do
+describe Import::Term do
 	
 	include DataHelpers
+  include ImportHelpers
+  include PublicFileHelpers
+  include TurtleHelpers
+  include SparqlHelpers
 
 	def sub_dir
-    return "models/import/odm"
+    return "models/import/term"
+  end
+
+  def simple_setup
+    @object = Import::Term.new
+    @job = Background.new
+    @job.save
+    @object.background_id = @job.id
+    @object.save
   end
 
 	before :each do
@@ -26,60 +37,67 @@ describe Odm do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    th = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
-    IsoRegistrationState.make_current(th.registrationState.id)
+    @th = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
+    IsoRegistrationState.make_current(@th.registrationState.id)
+    Import.destroy_all
+    delete_all_public_test_files
   end
 
-	it "gets form list" do
+  after :each do
+    Import.destroy_all
+    delete_all_public_test_files
+    import_type(Import::Term::C_IMPORT_TYPE)
+  end
+
+  it "gets term list, odm" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = Import::Odm.new
+    object = Import::Term.new
     expect(object.errors.count).to eq(0)
-    result = object.list({filename: full_path})
-  #write_yaml_file(result, sub_dir, "list_expected.yaml")
-    expected = read_yaml_file(sub_dir, "list_expected.yaml")
+    result = object.list({filename: full_path, file_type: "1"})
+  #write_yaml_file(result, sub_dir, "list_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "list_expected_1.yaml")
 		expect(result).to eq(expected)
 	end
 
-  it "gets form, AE example" do
+  it "gets term list, excel" do
+    full_path = test_file_path(sub_dir, "term_1.xlsx")
+    object = Import::Term.new
+    expect(object.errors.count).to eq(0)
+    result = object.list({filename: full_path, file_type: "0"})
+  #write_yaml_file(result, sub_dir, "list_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "list_expected_2.yaml")
+    expect(result).to eq(expected)
+  end
+
+  it "gets code list, AE example, ODM" do
+    simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    object = Import::Odm.new
-    expect(object.errors.count).to eq(0)
-    item = object.import({identifier: "F_AE", filename: full_path})
-    expect(item.errors.count).to eq(0)
-    result = item.to_json
-  #write_yaml_file(result, sub_dir, "import_expected_1.yaml")
+    @object.import({identifier: "CL_SMOKING", filename: full_path, file_type: "1", uri: @th.uri.to_s}, @job)
+    result = Import.find(@object.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_1.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
+    compare_import_hash(result, expected)
+    tcs = @th.find_by_property({identifier: "CLSMOKING"})
+    expect(tcs.count).to eq(1)
+  #Xwrite_yaml_file(tcs[0].to_json, sub_dir, "import_expected_result_1.yaml")
+    expected = read_yaml_file(sub_dir, "import_expected_result_1.yaml")
+    expect(tcs[0].to_json).to eq(expected)
+    delete_data_file(sub_dir, File.basename(result.output_file))
   end
 
-  it "gets form, DM example" do
-    full_path = test_file_path(sub_dir, "odm_2.xml")
-    object = Import::Odm.new
-    expect(object.errors.count).to eq(0)
-    item = object.import({identifier: "DM", filename: full_path})
-    expect(item.errors.count).to eq(0)
-    result = item.to_json
-  #write_yaml_file(result, sub_dir, "import_expected_2.yaml")
+  it "gets code list, fail" do
+    simple_setup
+    full_path = test_file_path(sub_dir, "odm_1.xml")
+    @object.import({identifier: "CL_SMOKINGx", filename: full_path, file_type: "1", uri: @th.uri.to_s}, @job)
+    result = Import.find(@object.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
-  end
-
-  it "gets form, IE example" do
-    full_path = test_file_path(sub_dir, "odm_2.xml")
-    object = Import::Odm.new
-    expect(object.errors.count).to eq(0)
-    item = object.import({identifier: "IE", filename: full_path})
-    expect(item.errors.count).to eq(0)
-    result = item.to_json
-  #write_yaml_file(result, sub_dir, "import_expected_3.yaml")
-    expected = read_yaml_file(sub_dir, "import_expected_3.yaml")
-    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
-    expected[:creation_date] = result[:creation_date]
-    expect(result).to eq(expected)
+    compare_import_hash(result, expected, error_file: true)
+    copy_file_from_public_files("test", File.basename(result.error_file), sub_dir)
+    expected = read_yaml_file(sub_dir, "import_expected_errors_2.yaml")
+    actual = read_yaml_file(sub_dir, File.basename(result.error_file))
+    expect(actual).to hash_equal(expected)
+    delete_data_file(sub_dir, File.basename(result.error_file))
   end
 
 end

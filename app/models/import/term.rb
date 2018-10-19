@@ -13,7 +13,7 @@ class Import::Term < Import
     # @todo Bit naughty (the SN bit) but will do for the moment
   end
 
-  def import(params)
+  def import(params, job)
     results = []
     uri = UriV2.new(uri: params[:uri])
     th = Thesaurus.find(uri.id, uri.namespace)
@@ -22,22 +22,33 @@ class Import::Term < Import
       results = model.code_list(params[:identifier])
       cl = add_cl(th, results)
       cl = add_cli(cl, results) if cl.errors.empty?
-      cl.errors.empty? ? save_result(cl) : save_error_file(cl) 
+      cl.errors.empty? ? save_result(th) : save_error_file(cl) 
     else
       save_error_file(model)
     end
     job.end("Complete")   
   rescue => e
-    job.exception("An exception was detected during the terminology import processes.", e)
+    msg = "An exception was detected during the terminology import processes."
+    save_exception(e, msg)
+    job.exception(msg, e)
   end 
-  #handle_asynchronously :import unless Rails.env.test?
+  handle_asynchronously :import unless Rails.env.test?
 
 
 private
 
   def add_cl(parent, results)
+    cl = empty_results(results)
+    return cl if cl.errors.any?
     add_params(results[:code_list], parent.namespace)
     return parent.add_child(results[:code_list])
+  end
+
+  def empty_results(results)
+    cl = ThesaurusConcept.new
+    return cl if !results.empty?
+    cl.errors.add(:base, "Failed to find the code list, possible identifier mismatch.")
+    return cl
   end
 
   def add_cli(parent, results)

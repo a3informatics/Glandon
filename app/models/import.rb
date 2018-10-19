@@ -100,6 +100,17 @@ class Import < ActiveRecord::Base
     self.update(output_file: "", error_file: "", success: true, success_path: path)
   end
 
+  # Save Exception. Saves an exception
+  #
+  # @param [Exception] e the exception raised
+  # @param [String] msg additinal message
+  # @return [Void] no return
+  def save_exception(e, msg)
+    text = "#{msg}\n#{e}\n#{e.backtrace}"
+    self.update(output_file: "", error_file: ImportFileHelpers.save([text], "#{self.class::C_IMPORT_TYPE}_#{self.id}_errors.yml"), success: false)
+    ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
+  end
+
   # Description. Formatted description of the import
   #
   # @return [String] the description
