@@ -108,14 +108,14 @@ describe Tabular do
 
   it "finds all items" do
     expected = ["A", "B"]
-    expect(IsoManaged).to receive(:all_by_type).with(TabularSubClass::C_RDF_TYPE_URI.to_s, TabularSubClass::C_SCHEMA_NS).and_return(expected)
+    expect(IsoManaged).to receive(:all_by_type).with(TabularSubClass::C_RDF_TYPE, TabularSubClass::C_SCHEMA_NS).and_return(expected)
     results = TabularSubClass.all
     expect(results).to eq(expected)
   end
 
   it "lists all items" do
     expected = ["A", "B"]
-    expect(IsoManaged).to receive(:list).with(TabularSubClass::C_RDF_TYPE_URI.to_s, TabularSubClass::C_SCHEMA_NS).and_return(expected)
+    expect(IsoManaged).to receive(:list).with(TabularSubClass::C_RDF_TYPE, TabularSubClass::C_SCHEMA_NS).and_return(expected)
     results = TabularSubClass.list
     expect(results).to eq(expected)
   end
@@ -123,7 +123,7 @@ describe Tabular do
   it "finds the history of an item" do
     expected = ["A", "B"]
     params = {identifier: "XXXX", scope_id: "123"}
-    expect(IsoManaged).to receive(:history).with(TabularSubClass::C_RDF_TYPE_URI.to_s, TabularSubClass::C_SCHEMA_NS, params).and_return(expected)
+    expect(IsoManaged).to receive(:history).with(TabularSubClass::C_RDF_TYPE, TabularSubClass::C_SCHEMA_NS, params).and_return(expected)
     results = TabularSubClass.history(params)
     expect(results).to eq(expected)
   end

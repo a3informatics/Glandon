@@ -14,6 +14,7 @@ class SdtmModelDomain < Tabular
   C_RDF_TYPE = "ClassDomain"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
   
   C_EVENTS_LABEL = "Events"
   C_FINDINGS_LABEL = "Findings"
@@ -54,27 +55,29 @@ class SdtmModelDomain < Tabular
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmModelDomain] the domain object.
   def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    return object
+    uri = UriV3.new(fragment: id, namespace: ns)
+    super(uri.to_id)
+    #object = super(id, ns)
+    #if children
+    #  children_from_triples(object, object.triples, id)
+    #end
+    #return object
   end
 
   # Find all model domains.
   #
   # @return [Array] array of objects found
-  def self.all
-    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-  end
+  #def self.all
+  #  return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+  #end
 
   # Find all released model domains.
   #
   # @return [Array] An array of objects
-  def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
+  #def self.list
+  #  results = super(C_RDF_TYPE, C_SCHEMA_NS)
+  #  return results
+  #end
 
 	# Build the object from the operational hash and gemnerate the SPARQL.
   #
@@ -132,6 +135,10 @@ class SdtmModelDomain < Tabular
     return json
   end
 
+  def children_from_triples
+    self.children = SdtmModelDomain::Variable.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))
+  end
+
 private
 
 	def self.variable_references(params, model)
@@ -144,9 +151,5 @@ private
 			child[:variable_ref] = ref.to_json
 		end
 	end
-
-  def self.children_from_triples(object, triples, id)
-    object.children = SdtmModelDomain::Variable.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesColumn"))
-  end
 
 end

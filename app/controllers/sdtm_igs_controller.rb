@@ -4,7 +4,7 @@ class SdtmIgsController < ApplicationController
   
   def history
     authorize SdtmIg
-    @history = SdtmIg.history()
+    @history = SdtmIg.history
   end
   
   def import
@@ -37,7 +37,7 @@ class SdtmIgsController < ApplicationController
     end
   end
   
-def export_ttl
+  def export_ttl
     authorize SdtmIg
     @sdtm_ig = IsoManaged::find(params[:id], the_params[:namespace])
     send_data to_turtle(@sdtm_ig.triples), filename: "#{@sdtm_ig.owner}_#{@sdtm_ig.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'

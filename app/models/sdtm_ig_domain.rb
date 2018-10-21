@@ -41,27 +41,29 @@ class SdtmIgDomain < Tabular
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmIgDomain] the domain object.
   def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    return object
+    uri = UriV3.new(fragment: id, namespace: ns)
+    super(uri.to_id)
+    #object = super(id, ns)
+    #if children
+    #  children_from_triples(object, object.triples, id)
+    #end
+    #return object
   end
 
   # Find all the IG domains
   #
   # @return [Array] array of objects found
-  def self.all
-    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-  end
+  #def self.all
+  #  return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+  #end
 
   # Find all released IG domains
   #
   # @return [Array] An array of objects
-  def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
+  #def self.list
+  #  results = super(C_RDF_TYPE, C_SCHEMA_NS)
+  #  return results
+  #end
 
 	# Build the object from the operational hash and gemnerate the SPARQL.
 	#
@@ -164,6 +166,13 @@ class SdtmIgDomain < Tabular
     return results
   end
 
+  # Children from triples.
+  def children_from_triples
+    self.children = SdtmIgDomain::Variable.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))
+    model_refs = OperationalReferenceV2.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
+    self.model_ref = model_refs[0] if model_refs.length > 0 
+  end
+
 private
 
   # Build Class Reference
@@ -209,13 +218,5 @@ private
     return SdtmUtility.add_prefix(name_minus)
   end   
 
-  # Children from triples.
-  def self.children_from_triples(object, triples, id)
-    object.children = SdtmIgDomain::Variable.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesColumn"))
-    model_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
-    if model_refs.length > 0 
-      object.model_ref = model_refs[0]
-    end
-  end
 
 end

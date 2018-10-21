@@ -5,7 +5,7 @@ describe ImportPolicy do
   include UserAccountHelpers
   include PermissionsHelpers
 
-  subject { described_class.new(user, export) }
+  subject { described_class.new(user, import) }
   let (:import) { Import.new }
 
   after :all do

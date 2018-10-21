@@ -47,37 +47,38 @@ class SdtmModel < Tabular
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmModelDomain] the domain object.
   def self.find(id, ns, children=true)
-    object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
-    object.triples = ""
-    return object
+    uri = UriV3.new(fragment: id, namespace: ns)
+    super(uri.to_id)
+    #object = super(id, ns)
+    #if children
+    #  children_from_triples(object, object.triples, id)
+    #end
+    #object.triples = ""
+    #return object
   end
 
   # Find all the models
   #
   # @return [Array] array of objects found
-  def self.all()
-    results = IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
+  #def self.all()
+  #  results = IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+  #  return results
+  #end
 
   # Find all the released models
   #
   # @return [Array] An array of objects
-  def self.list
-    results = super(C_RDF_TYPE, C_SCHEMA_NS)
-    return results
-  end
+  #def self.list
+  #  results = super(C_RDF_TYPE, C_SCHEMA_NS)
+  #  return results
+  #end
 
   # Find the Model history
   #
-  # @return [array] An array of objects.
-  def self.history()
+  # @return [Array] An array of SdtmModel objects.
+  def self.history
     @@cdiscNamespace ||= IsoNamespace.findByShortName("CDISC")
-    results = super(C_RDF_TYPE, C_SCHEMA_NS, { :identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id })
-    return results
+    return super({:identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id})
   end
 
   # Create a new version. This is an import and runs in the background.
@@ -207,6 +208,11 @@ class SdtmModel < Tabular
     return result
   end
 
+  def children_from_triples
+    self.children =  SdtmModel::Variable.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesVariable"))
+    self.class_refs = OperationalReferenceV2.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesTabulation"))
+  end      
+
 private
 
   # Update Variables. Update the variables with common references
@@ -267,10 +273,5 @@ private
   #  result2 = FieldValidation::valid_label?(:label, params[:label], object)
   #  return result1 && result2 
   #end
-
-  def self.children_from_triples(object, triples, id, bc=nil)
-    object.children =  SdtmModel::Variable.find_for_parent(object.triples, object.get_links(C_SCHEMA_PREFIX, "includesVariable"))
-    object.class_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesTabulation"))
-  end      
 
 end

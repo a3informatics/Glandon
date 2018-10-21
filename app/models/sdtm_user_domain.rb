@@ -52,18 +52,19 @@ class SdtmUserDomain < Tabular
   # @param children [Boolean] find all child objects. Defaults to true.
   # @return [SdtmUserDomain] the domain object.
   def self.find(id, ns, children=true)
-    object = super(id, ns)
-    children_from_triples(object, object.triples, id) if children
-    object.triples = ""
-    return object
+    uri = UriV3.new(fragment: id, namespace: ns)
+    super(uri.to_id)
+    #children_from_triples(object, object.triples, id) if children
+    #object.triples = ""
+    #return object
   end
 
   # Find all managed items based on their type.
   #
   # @return [Array] array of objects found
-  def self.all
-    return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-  end
+  #def self.all
+  #  return IsoManaged.all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
+  #end
 
   # Find list of managed items of a given type.
   #
@@ -75,17 +76,17 @@ class SdtmUserDomain < Tabular
   # Find all released item for all identifiers of a given type.
   #
   # @return [Array] An array of objects
-  def self.list
-    return super(C_RDF_TYPE, C_SCHEMA_NS)
-  end
+  #def self.list
+  #  return super(C_RDF_TYPE, C_SCHEMA_NS)
+  #end
 
   # Find history for a given identifier
   #
   # @params [Hash] {:identifier, :scope_id}
   # @return [Array] an array of objects
-  def self.history(params)
-    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
-  end
+  #def self.history(params)
+  #  return super(C_RDF_TYPE, C_SCHEMA_NS, params)
+  #end
 
   # Create a clone based on a specified IG domain
   #
@@ -457,6 +458,22 @@ class SdtmUserDomain < Tabular
     return result
   end
 
+  def children_from_triples
+    self.children = SdtmUserDomain::Variable.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))
+    self.bc_refs = OperationalReferenceV2.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "hasBiomedicalConcept"))
+    refs = OperationalReferenceV2.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
+    if refs.length > 0
+      refs.each do |ref|
+        item = IsoManaged.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
+        if item.rdf_type == "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => SdtmIgDomain::C_RDF_TYPE})}"
+          self.ig_ref = ref
+        else
+          self.model_ref = ref
+        end
+      end
+    end
+  end
+
 private
 
   def find_variable_by_name(prefix, name)
@@ -482,20 +499,5 @@ private
     return ordinal + 1
   end
 
-  def self.children_from_triples(object, triples, id)
-    object.children = SdtmUserDomain::Variable.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesColumn"))
-    object.bc_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "hasBiomedicalConcept"))
-    refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
-    if refs.length > 0
-      refs.each do |ref|
-        item = IsoManaged.find(ref.subject_ref.id, ref.subject_ref.namespace, false)
-        if item.rdf_type == "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => SdtmIgDomain::C_RDF_TYPE})}"
-          object.ig_ref = ref
-        else
-          object.model_ref = ref
-        end
-      end
-    end
-  end
 
 end

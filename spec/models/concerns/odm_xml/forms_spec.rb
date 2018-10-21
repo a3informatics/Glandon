@@ -32,25 +32,22 @@ describe OdmXml::Forms do
   it "initialize object, fails to read the odm file" do
     full_path = test_file_path(sub_dir, "odmXXX.xml") #dodgy filename
     error_msg = "Exception raised opening ODM XML file, filename=#{full_path}. No such file or directory @ rb_sysopen - #{full_path}"
-		parent = OdmXml.new(full_path)
-    object = parent.forms
-		expect(parent.errors.count).to eq(1)
-		expect(parent.errors.full_messages.to_sentence).to eq(error_msg)		
+		object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq(error_msg)		
 	end
 
 	it "initialize object, success" do
 		full_path = test_file_path(sub_dir, "odm_1.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
-    expect(parent.errors.full_messages.to_sentence).to eq("")    
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
+    expect(object.errors.full_messages.to_sentence).to eq("")    
 	end
 
 	it "gets form list" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     result = object.list
   #write_yaml_file(result, sub_dir, "list_expected.yaml")
     expected = read_yaml_file(sub_dir, "list_expected.yaml")
@@ -59,9 +56,8 @@ describe OdmXml::Forms do
 
   it "gets form, BASELINE example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("F_BASELINE")
     expect(item).to_not be_nil
     result = item.to_json
@@ -74,9 +70,8 @@ describe OdmXml::Forms do
 
   it "gets form, AE example" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("F_AE")
     expect(item).to_not be_nil
     result = item.to_json
@@ -89,9 +84,8 @@ describe OdmXml::Forms do
 
   it "gets form, DM example" do
     full_path = test_file_path(sub_dir, "odm_2.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("DM")
     expect(item).to_not be_nil
     result = item.to_json
@@ -104,9 +98,8 @@ describe OdmXml::Forms do
 
   it "gets form, IE example" do
     full_path = test_file_path(sub_dir, "odm_2.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("IE")
     expect(item).to_not be_nil
     result = item.to_json
@@ -119,9 +112,8 @@ describe OdmXml::Forms do
 
   it "gets form, another DM example" do
     full_path = test_file_path(sub_dir, "odm_3.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("f.dm")
     expect(item).to_not be_nil
     result = item.to_json
@@ -134,12 +126,11 @@ describe OdmXml::Forms do
 
 	it "reads the odm fle, error I" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    parent = OdmXml.new(full_path)
-    object = parent.forms
-    expect(parent.errors.count).to eq(0)
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
     item = object.form("F_ERROR")
-    expect(parent.errors.count).to eq(1)
-		expect(parent.errors.full_messages.to_sentence).to eq("Exception raised building form. undefined method `attributes' for nil:NilClass")	
+    expect(object.errors.count).to eq(1)
+		expect(object.errors.full_messages.to_sentence).to eq("Exception raised building form. undefined method `attributes' for nil:NilClass")	
 	end
    
 end

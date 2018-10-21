@@ -50,14 +50,14 @@ class Tabular < IsoManaged
   #
   # @return [Array] array of objects found
   def self.all
-    return IsoManaged.all_by_type(self::C_RDF_TYPE_URI.to_s, self::C_SCHEMA_NS)
+    return IsoManaged.all_by_type(self::C_RDF_TYPE, self::C_SCHEMA_NS)
   end
 
   # Find all the released models
   #
   # @return [Array] array of objects found
   def self.list
-    return super(self::C_RDF_TYPE_URI.to_s, self::C_SCHEMA_NS)
+    return super(self::C_RDF_TYPE, self::C_SCHEMA_NS)
   end
 
   # Find history for a given identifier within a specified scope.
@@ -67,7 +67,7 @@ class Tabular < IsoManaged
   # @option params [String] :scope_id the id of the scoping namespace (namespace within which the identifier is unique)
   # @return [Array] An array of objects found.
   def self.history(params)    
-    return super(self::C_RDF_TYPE_URI.to_s, self::C_SCHEMA_NS, params)
+    return super(self::C_RDF_TYPE, self::C_SCHEMA_NS, params)
   end
 
   # To JSON
