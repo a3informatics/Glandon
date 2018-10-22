@@ -8,6 +8,9 @@ describe Excel do
     return "models/concerns/excel"
   end
 
+  class TestMi < IsoManaged
+  end
+
 	before :each do
     clear_triple_store
   end
@@ -126,6 +129,16 @@ describe Excel do
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
     expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name, indicates format error.")    
+  end
+
+  it "returns a filled operation hash" do
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.operation_hash(TestMi, {label: "xxx", identifier: "IDENT", semantic_version: "6.2.1", version_label: "some label", version: "1", date: "2018-01-01"})
+  #Xwrite_hash_to_yaml_file_2(result, sub_dir, "operation_hash_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "operation_hash_expected.yaml")
+    expected[:managed_item][:last_changed_date] = result[:managed_item][:last_changed_date]
+    expect(result).to eq(expected)
   end
 
 end

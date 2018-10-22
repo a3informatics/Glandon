@@ -82,6 +82,30 @@ class Excel
     return false
   end
 
+  # Operation Hash. Builds a managed item operaitonal hash
+  #
+  # @param [Object] klass the class to be used
+  # @param [Hash] params the params hash
+  # @option params [String] :label the items's label
+  # @option params [String] :identifier the items's identifier
+  # @option params [String] :version_label the items's version label
+  # @option params [String] :version the items's version (integer as a string)
+  # @option params [String] :date the items's release date
+  # @return [Boolean] retruns true if sheet check pass, false otherwise with errors added.
+  def operation_hash(klass, params)
+    object = klass.new
+    object.label = params[:label]
+    object.scopedIdentifier.identifier = params[:identifier]
+    object.scopedIdentifier.versionLabel = params[:version_label]
+    operation = object.to_operation
+    operation[:operation][:new_version] = params[:version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(params[:semantic_version]).to_s
+    operation[:operation][:new_state] = IsoRegistrationState.releasedState
+    operation[:managed_item][:creation_date] = params[:date]
+    operation[:managed_item][:ordinal] = 1
+    return operation
+  end        
+
 private
 
   # Check the allow empty array for the flag.
