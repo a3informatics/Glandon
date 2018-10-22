@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'imports/crfs/index.html.erb', :type => :view do
+describe 'imports/crfs/new.html.erb', :type => :view do
 
   include UiHelpers
   include UserAccountHelpers
@@ -16,16 +16,35 @@ describe 'imports/crfs/index.html.erb', :type => :view do
 
   it 'displays the ALS import screen' do 
 
-    assign(:als, Import::Als.new)
+    assign(:model, Import::Crf.new)
     assign(:files, ["fred.xlsx"])
     assign(:forms, [])
+    assign(:file_type, 2)
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("Form Import - ALS")
-    expect(rendered).to have_content("Forms")
+    expect(rendered).to have_content("Import Forms from ALS Files")
+    expect(rendered).to have_content("fred.xlsx")
+    expect(rendered).to have_link "Close"
+    expect(rendered).to have_button "List"
+    
+  end
+
+  it 'displays the ODM import screen' do 
+
+    assign(:model, Import::Crf.new)
+    assign(:files, ["fred.xlsx"])
+    assign(:forms, [])
+    assign(:file_type, 1)
+
+    render
+
+    #puts response.body
+
+    expect(rendered).to have_content("Import Forms from ODM Files")
+    expect(rendered).to have_content("fred.xlsx")
     expect(rendered).to have_link "Close"
     expect(rendered).to have_button "List"
     
