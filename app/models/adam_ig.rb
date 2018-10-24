@@ -17,6 +17,12 @@ class AdamModel < Tabular
   # Class-wide variables
   @@cdiscNamespace = nil # CDISC Organization identifier
   
+  C_ADSL_LABEL = "Subject Level Analysis Dataset"
+  C_BDS_LABEL = "Basic Data Structure"
+  
+  C_ADSL_IDENTIFIER = "ADAMMODEL ADSL"
+  C_BDS_IDENTIFIER = "ADAMMODEL BDS"
+
   # Initialize
   #
   # @params [Hash] triples the triples to be used to initialize the object. Can be nil.

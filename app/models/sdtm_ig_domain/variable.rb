@@ -46,7 +46,7 @@ class SdtmIgDomain::Variable < Tabular::Column
     return compliance.nil? ? "" : compliance.label
   end
 
-  # Format. Formatis anythign that is not a CT ref, see below.
+  # Format. Format is anything that is not a CT ref, see below.
   #
   # @return [String] the format from the CT or Format field
   def format

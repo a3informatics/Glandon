@@ -38,7 +38,7 @@ class Import < ActiveRecord::Base
   #
   # @return [Array] array of hash each containing an import entry.
   def self.list
-    return Rails.configuration.imports[:imports]
+    return Rails.configuration.imports[:imports].values
   end
 
   # Create. Create the import starting the execution of the background job.
