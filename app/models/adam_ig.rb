@@ -1,4 +1,4 @@
-class AdamModel < Tabular
+class AdamIg < Tabular
   
   # Attributes
   attr_accessor :children, :class_refs, :datatypes, :classifications
@@ -7,11 +7,11 @@ class AdamModel < Tabular
   C_CLASS_NAME = self.name
   C_SCHEMA_PREFIX = UriManagement::C_BD
   #C_INSTANCE_PREFIX = UriManagement::C_MDR_M
-  C_RDF_TYPE = "Model"
-  C_CID_PREFIX = "M"
+  C_RDF_TYPE = "ImplementationGuide"
+  C_CID_PREFIX = "IG"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   #C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  C_IDENTIFIER = "ADAM MODEL"
+  C_IDENTIFIER = "ADAM IG"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
   # Class-wide variables

@@ -1189,6 +1189,30 @@ class IsoManaged < IsoConcept
     return result
   end
 
+  # Import Operation. Builds a managed item operaitonal hash for an import using a blank object.
+  #
+  # @param [Hash] params the params hash
+  # @option params [String] :label the items's label
+  # @option params [String] :identifier the items's identifier
+  # @option params [String] :version_label the items's version label
+  # @option params [String] :semantic_version the items's semantic version
+  # @option params [String] :version the items's version (integer as a string)
+  # @option params [String] :date the items's release date
+  # @option params [Integer] :ordinal the ordinal for the item
+  # @return [Boolean] retruns true if sheet check pass, false otherwise with errors added.
+  def import_operation(params)
+    self.label = params[:label] if self.label.blank?
+    self.scopedIdentifier.identifier = params[:identifier]
+    self.scopedIdentifier.versionLabel = params[:version_label]
+    operation = self.to_operation
+    operation[:operation][:new_version] = params[:version]
+    operation[:operation][:new_semantic_version] = SemanticVersion.from_s(params[:semantic_version]).to_s
+    operation[:operation][:new_state] = IsoRegistrationState.releasedState
+    operation[:managed_item][:creation_date] = params[:date]
+    operation[:managed_item][:ordinal] = params[:ordinal]
+    return operation
+  end 
+
   # To Clone. Clones the object to allow for an item copy to be created.
   # 
   # @return [hash] The JSON structure

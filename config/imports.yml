@@ -1,6 +1,6 @@
 defaults: &defaults
-  imports:
-    adam_ig:
+  imports: &default_imports
+    adam_ig: 
       title: ADaM IG Import - Excel
       background: true
       description: This facilty allows for the ADaM Implementation Guide to be imported from an MS Excel file.
@@ -30,46 +30,99 @@ defaults: &defaults
       description: This facilty allows for a form to be imported from an ODM XML file.
       link_text: "Import Terminology form ODM"
       link_path: "/imports/terms/new?imports[file_type]=1"
-  processing:
-    adam_ig:
+  processing: &default_processing
+    adam_ig: 
       sheets: 
         main:
           label: Main
           columns: 
           - 
             label: "Data Structure Name"
-            map:
-              SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
-              BASIC DATA STRUCTURE: Basic Data Structure
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: AdamIgDataset
+                map:
+                  SUBJECT LEVEL ANALYSIS DATASET: ADAMIG ADSL
+                  BASIC DATA STRUCTURE: ADAMIG BDS
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  SUBJECT LEVEL ANALYSIS DATASET: Subject Level Analysis Dataset
+                  BASIC DATA STRUCTURE: Basic Data Structure
           - 
             label: "Dataset Name"
-            map: []
+            actions: []
           - 
             label: "Variable Group"
-            map: []
+            actions: []
           - 
             label: "Variable Name" 
-            map: []
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: AdamIgDataset::Variable
+                map: []
+              -
+                method: set_property
+                object: child
+                property: name
+                map: []
           - 
             label: "Variable Label"
-            map: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: label
+                map: []
           - 
             label: "Type"
-            map: 
-              Char: Character
-              Num: Numeric
+            actions:
+              -
+                method: datatype_classification
+                object: child
+                property: datatype
+                map:
+                  Char: Character
+                  Num: Numeric
           - 
             label: "Codelist/Controlled Terms"
-            map: []
+            actions:
+              - 
+                method: ct_reference
+                object: child
+                property: ct
+                map: []
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+                map: []
           - 
             label: "Core"
-            map: 
-              Req: Required
-              Perm: Permissible
-              Cond: Conditional
+            actions:
+              -
+                method: core_classification
+                object: child
+                property: compliance
+                map:
+                  Req: Required
+                  Perm: Permissible
+                  Cond: Conditional
           - 
             label: "CDISC Notes"
-            map: []
+            actions:
+              -
+                method: set_property
+                object: child
+                property: notes
+                map: []
+
 
 development:
   <<: *defaults
@@ -78,4 +131,155 @@ production:
   <<: *defaults
   
 test: 
-  <<: *defaults
+  imports:
+    <<: *default_imports
+    test_1:
+      title: Test 1 - Excel
+      background: true
+      description: A test
+      link_text: "Import ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+    test_2:
+      title: Test 2 - Excel
+      background: true
+      description: A test
+      link_text: "Import ADaM IG"
+      link_path: "/imports/adam_igs/new?imports[file_type]=0"
+  processing:
+    <<: *default_processing
+    test_1:
+      sheets: 
+        sheet_1:
+          label: Sheet1
+          columns: 
+          - 
+            label: "PARENT"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: ParentClass
+                map:
+                  P1: P1
+                  P2: P2
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  P1: Parent One
+                  P2: Parent Two
+          - 
+            label: CHILD
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: ChildClass
+                map: []
+              -
+                method: set_property
+                object: child
+                property: label
+                map: []
+          - 
+            label: CT
+            actions:
+              - 
+                method: ct_reference
+                object: child
+                property: ct
+                map: []
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+                map: []
+          - 
+            label: DATATYPE
+            actions:
+              -
+                method: datatype_classification
+                object: child
+                property: datatype
+                map:
+                  CHAR: Character
+                  NUM: Numeric
+          - 
+            label: CORE
+            actions:
+              -
+                method: core_classification
+                object: child
+                property: compliance
+                map:
+                  R: Required
+                  P: Permissible
+                  E: Conditional
+    test_2:
+      sheets: 
+        sheet_1:
+          label: Sheet1
+          columns: 
+          - 
+            label: "PARENT"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: ParentClass
+                map: []
+              -
+                method: set_property
+                object: parent
+                property: label
+                map:
+                  P1: Parent One
+                  P2: Parent Two
+          - 
+            label: CHILD
+            actions:
+              -
+                method: create_child
+                object: child
+                klass: ChildClass
+                map: []
+              -
+                method: set_property
+                object: child
+                property: label
+                map: []
+          - 
+            label: CT
+            actions:
+              - 
+                method: ct_reference
+                object: child
+                property: ct
+                map: []
+              -
+                method: ct_other
+                object: child
+                property: ct_notes
+                map: []
+          - 
+            label: DATATYPE
+            actions:
+              -
+                method: datatype_classification
+                object: child
+                property: datatype
+                map:
+                  CHAR: Character
+                  NUM: Numeric
+          - 
+            label: CORE
+            actions:
+              -
+                method: core_classification
+                object: child
+                property: compliance
+                map:
+                  R: Required
+                  P: Permissible
+                  E: Conditional

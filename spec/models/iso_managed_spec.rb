@@ -624,5 +624,14 @@ describe IsoManaged do
     expect(results).to hash_equal(expected)
   end
 
+  it "builds an import operation" do
+    object = IsoManaged.new
+    result = object.import_operation({label: "xxx", identifier: "IDENT", semantic_version: "6.2.1", version_label: "some label", version: "1", 
+      date: "2018-01-01", ordinal: 4})
+  #Xwrite_hash_to_yaml_file_2(result, sub_dir, "import_operation_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "import_operation_expected.yaml")
+    expected[:managed_item][:last_changed_date] = result[:managed_item][:last_changed_date]
+    expect(result).to eq(expected)
+  end
 
 end

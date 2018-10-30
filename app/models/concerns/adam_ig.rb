@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.20.3
-class AdamModel
+class AdamIg
 
   C_CLASS_NAME = self.name
 
