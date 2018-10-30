@@ -83,14 +83,14 @@ class AdamIgDataset::Variable < Tabular::Column
     json[:name] = self.name
     #json[:ordinal] = self.ordinal
     json[:notes] = self.notes
-    json[:controlled_term_or_format] = self.controlled_term_or_format
+    json[:ct] = self.ct
+    json[:ct_notes] = self.ct_notes
     json[:compliance] = self.compliance.to_json
-    if !self.variable_ref.nil? 
-      json[:variable_ref] = self.variable_ref.to_json
-    end
     return json
   end
 
+  alias to_hash to_json
+  
   # From JSON
   #
   # @param [Hash] json the hash of values for the object 
@@ -99,13 +99,9 @@ class AdamIgDataset::Variable < Tabular::Column
     object = super(json)
     object.name = json[:name]
     object.notes = json[:notes]
-    object.controlled_term_or_format = json[:controlled_term_or_format]
+    object.ct = json[:ct]
+    object.ct_notes = json[:ct_notes]
     object.compliance = SdtmModelCompliance.from_json(json[:compliance])
-    if !json[:variable_ref].blank?
-    	object.variable_ref = OperationalReferenceV2.from_json(json[:variable_ref])
-    else
-    	ConsoleLogger.info(C_CLASS_NAME, "from_json", "Missing variable ref for: #{object.name}.")
-    end
     return object
   rescue => e
   	#byebug

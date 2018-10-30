@@ -100,7 +100,6 @@ class AdamIgDataset < Tabular
     json = super
     json[:prefix] = self.prefix
     json[:structure] = self.structure
-    json[:model_ref] = self.model_ref.to_json
     json[:children] = []
     self.children.sort_by! {|u| u.ordinal}
     self.children.each do |child|

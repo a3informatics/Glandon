@@ -1,7 +1,7 @@
 # Excel. Base class for reading and processing excel files
 #
 # @author Dave Iberson-Hurst
-# @since 2.20.3
+# @since 2.21.0
 # @!attribute errors
 #   @return [ActiveModel::Errors] Active Model errors class
 # @!attribute full_path
