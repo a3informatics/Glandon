@@ -52,7 +52,7 @@ describe Import do
 
   it "generates the import list" do
     results = Import.list
-  #write_yaml_file(results, sub_dir, "import_list_1.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "import_list_1.yaml")
     expected = read_yaml_file(sub_dir, "import_list_1.yaml")
     expect(results).to hash_equal(expected)
   end
@@ -88,7 +88,7 @@ describe Import do
     worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
     item = simple_import
-    item.save_error_file(worker)
+    item.save_error_file({parent: worker, children: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_1.yaml")
@@ -99,7 +99,7 @@ describe Import do
     worker = Worker.new
     worker.errors.add(:base, "Bad things happened!")
     item = simple_import
-    item.save_error_file(worker)
+    item.save_error_file({parent: worker, children:[]})
     result = item.load_error_file
   #Xwrite_yaml_file(result, sub_dir, "load_error_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "load_error_file_expected_1.yaml")
@@ -117,7 +117,7 @@ describe Import do
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
     expect(object).to receive(:to_sparql_v2).and_return({s: "subject", p: "predicate", o: "object"})
     expect(CRUD).to receive(:update).with("{:s=>\"subject\", :p=>\"predicate\", :o=>\"object\"}")
-    item.save_load_file(object)
+    item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
   #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "save_load_file_expected_1.yaml")
@@ -132,7 +132,7 @@ describe Import do
     item = simple_import
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
     expect(object).to receive(:to_sparql_v2).and_return({s: "subject", p: "predicate", o: "object"})
-    item.save_load_file(object)
+    item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "save_error_file_expected_2.yaml")

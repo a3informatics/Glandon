@@ -61,7 +61,7 @@ class Excel
     end 
     return true
   rescue => e
-    @errors.add(:base, "Unexpected exception. Possibly an empty #{sheet_info[:label]} sheet.")
+    @errors.add(:base, "Unexpected exception '#{e}', possibly an empty sheet for import #{:import} using sheet #{:sheet}.")
     return false
   end       
 

@@ -13,7 +13,7 @@ class Import::Term < Import
     # @todo Bit naughty (the SN bit) but will do for the moment
   end
 
-  def import(params, job)
+  def import(params)
     results = []
     uri = UriV2.new(uri: params[:uri])
     th = Thesaurus.find(uri.id, uri.namespace)
@@ -22,18 +22,29 @@ class Import::Term < Import
       results = model.code_list(params[:identifier])
       cl = add_cl(th, results)
       cl = add_cli(cl, results) if cl.errors.empty?
-      cl.errors.empty? ? save_result(th) : save_error_file(cl) 
+      cl.errors.empty? ? save_result(th) : save_error_file(result_hash(cl)) 
     else
-      save_error_file(model)
+      save_error_file(result_hash(model))
     end
-    job.end("Complete")   
+    params[:job].end("Complete")   
   rescue => e
     msg = "An exception was detected during the terminology import processes."
     save_exception(e, msg)
-    job.exception(msg, e)
+    params[:job].exception(msg, e)
   end 
   handle_asynchronously :import unless Rails.env.test?
 
+  def description
+    "Import of Terminology"
+  end
+
+  def owner
+    IsoRegistrationAuthority.owner.namespace.name
+  end
+
+  def import_type
+    :term
+  end
 
 private
 

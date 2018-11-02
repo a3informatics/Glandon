@@ -52,27 +52,32 @@ class Import < ActiveRecord::Base
   # @return [Void] no return.
   def create(params)
     job = Background.create
+    params[:identifier] = self.identifier if !params.key?(:identifier)
     self.update(input_file: params[:filename], auto_load: params[:auto_load], identifier: params[:identifier], 
-      owner: self.class::C_IMPORT_OWNER, background_id: job.id, file_type: params[:file_type].to_i)
+      owner: self.owner, background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
-    job.start(self.description, "Starting ...") {self.import(params, job)} 
+    params[:job] = job
+    job.start(self.description, "Starting ...") {self.import(params)} 
   rescue => e
-    save_error_file(self)
+    save_error_file({parent: self, children:[]})
     job.exception("An exception was detected the import processes.", e)
   end  
   
   # Save Error File. Will save the errors in a YAML file as an array of errors 
   #
-  # @param [Object] object an object with an errors (active record) property
+  # @param [Hash] objects a hash containing the object(s) being imported
+  # @option objects [Object] :parent the parent object
+  # @option objects [Object] :children array of children objects, may be empty
   # @return [Void] no return
-  def save_error_file(object)
-    self.update(output_file: "", error_file: ImportFileHelpers.save(object.errors.full_messages, 
-      "#{self.class::C_IMPORT_TYPE}_#{self.id}_errors.yml"), success: false)
+  def save_error_file(objects)
+    parent = merge_errors(objects)
+    self.update(output_file: "", error_file: ImportFileHelpers.save(parent.errors.full_messages, 
+      "#{self.import_type}_#{self.id}_errors.yml"), success: false)
   end
 
   # Load Error File. 
   #
-  # @return [Array] array of error messages. Will be empty if no file of import a success.
+  # @return [Array] array of error messages. Will be empty if no file or import a success.
   def load_error_file
     return [] if self.error_file.blank?
     return [] if self.success
@@ -81,13 +86,16 @@ class Import < ActiveRecord::Base
 
   # Save Load File. Will save the import load file and load if auto load set
   #
-  # @param [Object] object to be loaded. Should be error free.
+  # @param [Hash] objects a hash containing the object(s) being imported
+  # @option objects [Object] :parent the parent object
+  # @option objects [Object] :children array of children objects, may be empty
   # @return [Void] no return
-  def save_load_file(object)
-    path = TypePathManagement.history_url(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
-    triples = object.to_sparql_v2
+  def save_load_file(objects)
+    parent = objects[:parent]
+    path = TypePathManagement.history_url(parent.rdf_type, parent.identifier, parent.scopedIdentifier.namespace.id)
+    triples = parent.to_sparql_v2 # Will build parent and children
     response = CRUD.update(triples.to_s) if self.auto_load
-    self.update(output_file: ImportFileHelpers.save(triples.to_s, "#{self.class::C_IMPORT_TYPE}_#{self.id}_load.ttl"), 
+    self.update(output_file: ImportFileHelpers.save(triples.to_s, "#{self.import_type}_#{self.id}_load.ttl"), 
       error_file: "", success: true, success_path: path)
   end
 
@@ -107,7 +115,7 @@ class Import < ActiveRecord::Base
   # @return [Void] no return
   def save_exception(e, msg)
     text = "#{msg}\n#{e}\n#{e.backtrace}"
-    self.update(output_file: "", error_file: ImportFileHelpers.save([text], "#{self.class::C_IMPORT_TYPE}_#{self.id}_errors.yml"), success: false)
+    self.update(output_file: "", error_file: ImportFileHelpers.save([text], "#{self.import_type}_#{self.id}_errors.yml"), success: false)
     ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
   end
 
@@ -143,6 +151,18 @@ class Import < ActiveRecord::Base
   end
 
 private
+
+  def result_hash(object)
+    return {parent: object, children: []}
+  end
+  
+  def merge_errors(objects)
+    parent = objects[:parent]
+    objects[:children].each do |child|
+      child.errors.full_messages.each {|msg| parent.errors[:base] << "#{child.label}: #{msg}"}
+    end
+    return parent
+  end
 
   def locked?
     false

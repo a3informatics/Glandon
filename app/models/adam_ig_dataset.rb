@@ -40,28 +40,7 @@ class AdamIgDataset < Tabular
     super(uri.to_id)
   end
 
-	# Build the object from the operational hash and gemnerate the SPARQL.
-	#
-  # @param [Hash] params the operational hash
-  # @param [SdtmModel] model the SDTM Model.
-  # @param [SdtmIg] ig the SDTM IG.
-  # @return [SdtmIgDomain] The created object. Valid if no errors set.
-  def self.build(params, model, ig, sparql)
-    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    map = model.classes
-    build_class_reference(map, params[:managed_item])
-    build_variable_references(map, params[:managed_item])
-    build_compliance(ig, params[:managed_item])
-    object = SdtmIgDomain.from_json(params[:managed_item])
-    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
-    object.adjust_next_version # Versions are assumed, may not be so
-    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-    if object.valid? && object.create_permitted?
-			object.to_sparql_v2(sparql)
-    end
-    return object
-  end
-
+=begin
   # To SPARQL
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
@@ -181,6 +160,6 @@ private
     return name if name == name_minus
     return SdtmUtility.add_prefix(name_minus)
   end   
-
+=end
 
 end

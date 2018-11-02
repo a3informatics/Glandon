@@ -115,4 +115,15 @@ class Tabular < IsoManaged
     return result
   end
   
+  def self.build(params)
+    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    object = from_json(params[:managed_item])
+    yield(object) if block_given?
+    object.from_operation(params[:operation], self::C_CID_PREFIX, self::C_INSTANCE_NS, cdisc_ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
+    object.valid?
+    object.create_permitted?
+    return object
+  end
+
 end

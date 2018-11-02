@@ -1,4 +1,4 @@
-# AdamModel. Class for processing ADaM Model Excel Files
+# AdamIgReader. Class for processing ADaM IG Excel Files
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
@@ -16,7 +16,7 @@ class Excel::AdamIgReader < Excel::TabularReader
   def read(params)
     super(AdamIg, {identifier: AdamIg::C_IDENTIFIER, label: "ADaM IG #{params[:date]}", semantic_version: params[:version_label], 
       version_label: params[:version_label], version: params[:version], date: params[:date],
-      extra: {parent: "ADAM IG", child: "ADAM IG DATASET", import: :adam_ig, sheet: :main}})
+      excel: {import: :adam_ig, sheet: :main}})
   end
 
 end

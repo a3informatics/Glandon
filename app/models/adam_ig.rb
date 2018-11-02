@@ -44,44 +44,18 @@ class AdamIg < Tabular
     return super({identifier: C_IDENTIFIER, scope_id: @@cdiscNamespace.id})
   end
 
-=begin
-  # Create a new version. This is an import and runs in the background.
-  #
-  # @param [Hash] params the parameters
-  # @option params [String] :date The release date of the version being created
-  # @option params [String] :version The version being created
-  # @option params [String] :version_label The label for the version being created
-  # @option params [String] :files Array of files being used 
-  # @return [Hash] A hash containing the object with any errors and the background job reference.
-  def self.create(params)
-    job = nil
-    object = self.new
-    if import_params_valid?(params, object)
-      params[:files].reject!(&:blank?)
-			job = Background.create
-  	 	job.import_cdisc_sdtm_model(params)
-    end
-    return { :object => object, :job => job }
+  def self.child_klass
+    ::AdamIgDataset
   end
 
-  # Build the object from the operational hash and gemnerate the SPARQL.
-	#
-  # @param [Hash] params the operational hash
-  # @param [SparqlUpdateV2] sparql the SPARQL object to add triples to.
-  # @return [SdtmModel] The created object. Valid if no errors set.
-  def self.build(params, sparql)
-    cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-    object = SdtmModel.from_json(params[:managed_item])
-    build_datatypes(object.datatypes, params[:managed_item])
-    build_classifications(object.classifications, params[:managed_item])
-    update_variables(object.children, object.datatypes, object.classifications)
-    object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
-    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
-   	if object.valid? && object.create_permitted?
-			object.to_sparql_v2(sparql, false)
-    end
-    return object
+  def add_child(child)
   end
+
+  def to_sparql_v2
+  end
+  
+=begin
+
 
   # To SPARQL
   #

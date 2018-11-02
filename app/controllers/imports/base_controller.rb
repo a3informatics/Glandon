@@ -31,7 +31,7 @@ class Imports::BaseController < ApplicationController
 
   def create
     model = new_model
-    model.create(the_params)
+    model.create(check_filename(the_params))
     if request.format.json?
       render json: {data: []}, :status => 200
     else
@@ -61,6 +61,12 @@ private
   def the_params(additional=[])
     list = additional + [:identifier, :filename, :file_type, :auto_load, :files => []]
     params.require(:imports).permit(list)
+  end
+
+  def check_filename(params)
+    return params if params.key?(:filename)
+    params[:filename] = get_filename(params)
+    return params
   end
 
   def get_filename(params)

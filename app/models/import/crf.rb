@@ -1,33 +1,39 @@
 class Import::Crf < Import
 
   C_CLASS_NAME = self.name
-  C_IMPORT_DESC = "Import of form"
-  C_IMPORT_OWNER = IsoRegistrationAuthority.owner.namespace.name
-  C_IMPORT_TYPE = "form"
-
-  #attr_reader :filename
-  #attr_reader :identifier
 
   def list(params)
     odm?(params[:file_type]) ? OdmXml::Forms.new(params[:filename]).list : AlsExcel.new(params[:filename]).list
   end
 
-  def import(params, job)
+  def import(params)
     model = odm?(params[:file_type]) ? OdmXml::Forms.new(params[:filename]) : AlsExcel.new(params[:filename])
     if model.errors.empty? 
       object = model.form(params[:identifier]) # , job) @todo progress
       object = do_import(object)
-      object.errors.empty? ? save_load_file(object) : save_error_file(object)
+      object.errors.empty? ? save_load_file(result_hash(object)) : save_error_file(result_hash(object))
     else
-      save_error_file(model)
+      save_error_file(result_hash(model))
     end
-    job.end("Complete")   
+    params[:job].end("Complete")   
   rescue => e
     msg = "An exception was detected during the CRF import processes."
     save_exception(e, msg)
-    job.exception(msg, e)
+    params[:job].exception(msg, e)
   end 
   handle_asynchronously :import unless Rails.env.test?
+
+  def description
+    "Import of CRF"
+  end
+
+  def owner
+    IsoRegistrationAuthority.owner.namespace.name
+  end
+
+  def import_type
+    :form
+  end
 
 private
   

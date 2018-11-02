@@ -15,20 +15,19 @@ class Excel::TabularReader < Excel
   # @option [String] :version_label the version label
   # @option [String] :version the version
   # @option [String] :date the date of issue
-  # @option [Hash] :extra set of extra information including the keys for the parent and child records and the 
-  #  import and sheet names
+  # @option [Hash] :excel the import and sheet names
   # @return [Hash] hash of result structures
   def read(klass, params)
     ordinal = 1
-    results = []
+    results = {parent: {}, children: []}
     parent = klass.new
     instance = parent.import_operation(identifier: params[:identifier], label: params[:label], semantic_version: params[:semantic_version], 
       version_label: params[:version_label], version: params[:version], date: params[:date], ordinal: 1)
-    results << {:type => params[:extra][:parent], :order => 1, :instance => instance}
-    check_sheet(params[:extra][:import], params[:extra][:sheet])
-    process_sheet(params[:extra][:import], params[:extra][:sheet])
+    results[:parent] = {:order => 1, :instance => instance}
+    check_sheet(params[:excel][:import], params[:excel][:sheet])
+    process_sheet(params[:excel][:import], params[:excel][:sheet])
     self.engine.parent_set.each do |key, item| 
-      results << {type: params[:extra][:child], order: ordinal, instance: child(item, instance, ordinal)}
+      results[:children] << {order: ordinal, instance: child(item, instance, ordinal)}
       ordinal += 1
     end
     return results
