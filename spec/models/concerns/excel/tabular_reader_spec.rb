@@ -10,7 +10,7 @@ describe Excel::TabularReader do
 
 	before :each do
     clear_triple_store
-    @child_object = ChildClass.new
+    @child_object = TrChildClass.new
   end
 
   class ScopedIdentifierClass
@@ -27,7 +27,7 @@ describe Excel::TabularReader do
 
   end
 
-  class ChildClass
+  class TrChildClass
     extend ActiveModel::Naming
     attr_accessor :compliance
     attr_accessor :datatype
@@ -53,7 +53,7 @@ describe Excel::TabularReader do
 
   end
 
-  class ParentClass < IsoManaged
+  class TrParentClass < IsoManaged
 
     attr_accessor :children
 
@@ -70,7 +70,7 @@ describe Excel::TabularReader do
 
   end
 
-  class TopClass < IsoManaged
+  class TrTopClass < IsoManaged
 
     attr_accessor :children
 
@@ -102,7 +102,7 @@ describe Excel::TabularReader do
     }
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel::TabularReader.new(full_path) 
-    result = object.read(TopClass, params)
+    result = object.read(TrTopClass, params)
   #Xwrite_yaml_file(result, sub_dir, "read_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "read_expected_1.yaml")
     expect(result).to operation_hash_equal(expected)

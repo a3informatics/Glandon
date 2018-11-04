@@ -10,46 +10,46 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> rdfs:label "Placeholder 1"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> rdf:type isoR:RegistrationState . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:byAuthority mdrItems:RA-123456789 . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:administrativeNote ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:unresolvedIssue ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:administrativeStatus ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> isoR:previousState "Incomplete"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> isoI:identifier "P1"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> rdf:type isoI:ScopedIdentifier . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> isoI:version "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> isoI:versionLabel ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> isoI:semantic_version "0.0.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> isoI:hasScope mdrItems:NS-ACME . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_P1-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_P1-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoT:creationDate "2016-11-07T14:28:57%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoT:lastChangeDate "2018-10-19T09:00:01%2B01:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoT:changeDescription ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoT:explanatoryComment ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> isoT:origin ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> rdfs:label "Placeholder Group"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> rdf:type <http://www.assero.co.uk/BusinessForm#Placeholder> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> rdfs:label "Placeholder"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> bf:completion "Textual false value **in bold**"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> bf:free_text "cccccc"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> bf:repeating "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P1_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> rdfs:label "Placeholder 1"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:byAuthority mdrItems:RA-123456789 . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> isoI:identifier "P2"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> isoI:version "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> isoI:versionLabel ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> isoI:semantic_version "0.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> isoI:hasScope mdrItems:NS-ACME . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_P2-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_P2-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoT:creationDate "2016-11-07T14:28:57%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoT:lastChangeDate "2018-11-04T09:05:58%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> bf:completion ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> bf:note ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> rdfs:label "Placeholder Group"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:note ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:completion ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> rdf:type <http://www.assero.co.uk/BusinessForm#Placeholder> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> rdfs:label "Placeholder"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> bf:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> bf:note ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> bf:completion "Textual false value **in bold**"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> bf:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> bf:free_text "cccccc"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> bf:repeating "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_P2_G1> . 
 }

@@ -149,7 +149,7 @@ describe Form do
   end
 
   it "allows a form to be created from operation JSON, no load" do
-    operation = read_yaml_file_to_hash_2(sub_dir, "example_simple_placeholder_with_operation.yaml")
+    operation = read_yaml_file_to_hash_2(sub_dir, "no_load_input_1.yaml")
     item = Form.create_no_load(operation)
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe AdamModel do
+describe AdamIg do
 
   include DataHelpers
 
   def sub_dir
-    return "models/adam_model"
+    return "models/adam_ig"
   end
 
   before :all do
@@ -37,7 +37,7 @@ describe AdamModel do
 =end
 
   it "validates a valid object" do
-    item = AdamModel.new
+    item = AdamIg.new
     ra = IsoRegistrationAuthority.new
     ra.number = "123456789"
     ra.scheme = "DUNS"
