@@ -61,7 +61,7 @@ describe SdtmModelDatatype do
 
   it "allows all labels to be returned" do
     results = SdtmModelDatatype.all("http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
-  write_yaml_file(results, sub_dir, "all_expected.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "all_expected.yaml")
     expected = read_yaml_file(sub_dir, "all_expected.yaml")
     results.each do |result|
       found = expected.find { |x| x.id == result.id }
@@ -89,7 +89,7 @@ describe SdtmModelDatatype do
     item = SdtmModelDatatype.new
     item.label = "NEW LABEL"
     result = item.to_sparql_v2(parent_uri, sparql)
-  write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     expect(sparql.to_s).to eq(expected)
   end
