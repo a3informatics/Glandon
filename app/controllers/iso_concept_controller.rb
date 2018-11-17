@@ -53,6 +53,8 @@ class IsoConceptController < ApplicationController
       map[uri_s] = true
     end
     render json: { item: @item.to_json, children: managed_items }, status: 200
+  rescue => e
+    render json: { item: nil, children: [] }, status: 200
   end
 
   def changes

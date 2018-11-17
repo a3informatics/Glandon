@@ -98,6 +98,14 @@ describe IsoConceptController do
       expect(hash).to match(results)
     end
 
+    it "allows impact to be assessed, exception" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_next, {id: "", namespace: ""}
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      expect(response.body).to eq("{\"item\":null,\"children\":[]}")
+    end
+
     it "allows cross references to be found" do
       item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
     end
