@@ -1,4 +1,8 @@
-class Tabular::Collection
+# Tabular Standard Collection. Base class for handling collections wihtin tabular standards
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
+class TabularStandard::Collection
   
   # Constants
   C_CLASS_NAME = self.name
@@ -9,6 +13,7 @@ class Tabular::Collection
   # @option [Class] :klass the klass for the collection
   # @return [Void] no return
   def initialize(args)
+    check_args(args)
     @set = {}
     @klass = args[:klass]
   end
@@ -35,12 +40,28 @@ class Tabular::Collection
     return nil
   end
   
+  # To SPARQL
+  #
+  # @param [UriV3] parent_uri the uri for the parent subject
+  # @param [SparqlUpdateV2] sparql the SPARQL object
+  # @return [Void] no return
+  def to_sparql(parent_uri, sparql)
+    @set.each {|k, v| v.to_sparql_v2(parent_uri, sparql)}
+  end
+
   # Test only
   #
   if Rails.env.test?
     def set
       @set
     end
+  end
+
+private
+
+  def check_args(args)
+    return if args[:klass].present?
+    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Missing arguments detected.")
   end
 
 end
