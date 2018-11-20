@@ -5,7 +5,7 @@ describe Tabular::Datatype do
   include DataHelpers
 
   def sub_dir
-    return "models/tabular/datatype"
+    return "models/tabular_standard/datatype"
   end
 
   class Test
