@@ -1,4 +1,4 @@
-# Import Rectangular. Import a rectabgular structure
+# Import Rectangular. Import a rectangular structure
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
@@ -26,10 +26,9 @@ class Import::Rectangular < Import
   end 
   handle_asynchronously :import unless Rails.env.test?
 
+private
+
   # Process. Process the results structre to convert to objects
-  #
-  # @param [Hash] the parent child json results structure
-  # @return [Hash] the parent child objects structure
   def process(json)
     results = {parent: nil, children: []}
     parent = self.parent_klass.build(json[:parent][:instance])
@@ -44,8 +43,6 @@ class Import::Rectangular < Import
     results[:children].each {|child| child.update_variables(parent.collections)}
     return results
   end
-
-private
 
   # Check no errors in the objects structure.
   def object_errors?(objects)
