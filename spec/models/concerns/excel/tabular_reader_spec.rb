@@ -98,14 +98,15 @@ describe Excel::TabularReader do
     params = 
     {
       label: "label", identifier: "XXX", semantic_version: "1.1.1", version_label: "version label", version: 1, date: "2018-01-01", 
-      extra: {parent: "PARENT", child: "CHILD", import: :test_1, sheet: :sheet_1}
+      excel: {import: :test_1, sheet: :sheet_1}
     }
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel::TabularReader.new(full_path) 
     result = object.read(TrTopClass, params)
-  #Xwrite_yaml_file(result, sub_dir, "read_expected_1.yaml")
+  write_yaml_file(result, sub_dir, "read_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "read_expected_1.yaml")
     expect(result).to operation_hash_equal(expected)
+byebug
     expect(object.errors.count).to eq(0)
   end
 

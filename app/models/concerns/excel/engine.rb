@@ -2,10 +2,10 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-# @!attribute errors
-#   @return [ActiveModel::Errors] Active Model errors class
-# @!attribute full_path
-#   @return [Pathname] the pathname for the file being read
+# @!attribute parent_set
+#   @return [Hash] set of parent items created
+# @!attribute classification 
+#   @return [Pathname] the classifications found
 class Excel::Engine
 
   C_CLASS_NAME = self.name
