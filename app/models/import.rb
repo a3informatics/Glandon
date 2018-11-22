@@ -94,7 +94,6 @@ class Import < ActiveRecord::Base
     sparql = SparqlUpdateV2.new
     parent = objects[:parent]
     path = TypePathManagement.history_url(parent.rdf_type, parent.identifier, parent.scopedIdentifier.namespace.id)
-byebug
     parent.to_sparql_v2(sparql)
     objects[:children].each {|c| c.to_sparql_v2(sparql)}
     triples = sparql.to_s

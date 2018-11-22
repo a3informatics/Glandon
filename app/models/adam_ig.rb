@@ -50,8 +50,7 @@ class AdamIg < TabularStandard
   # @param [SparqlUpdateV2] sparql the SPARQL object
   # @return [UriV2] The URI
   def to_sparql_v2(sparql)
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    return self.uri
+    super(sparql, C_SCHEMA_PREFIX)
   end
 
   # From JSON
