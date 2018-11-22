@@ -10,7 +10,6 @@ describe Excel::TabularReader do
 
 	before :each do
     clear_triple_store
-    @child_object = TrChildClass.new
   end
 
   class ScopedIdentifierClass
@@ -27,13 +26,14 @@ describe Excel::TabularReader do
 
   end
 
-  class TrChildClass
+  class ChildClass
     extend ActiveModel::Naming
     attr_accessor :compliance
     attr_accessor :datatype
     attr_accessor :ct
     attr_accessor :ct_notes
     attr_accessor :label
+    attr_accessor :ordinal
 
     def initialize
       @compliance = nil
@@ -42,10 +42,11 @@ describe Excel::TabularReader do
       @ct_notes = ""
       @label = ""
       @children = []
+      @ordinal = 0
     end
 
     def to_hash
-      result = {ct: self.ct, ct_notes: self.ct_notes, label: self.label}
+      result = {ct: self.ct, ct_notes: self.ct_notes, label: self.label, ordinal: self.ordinal}
       result[:datatype] = datatype.to_json
       result[:compliance] = compliance.to_json
       return result
@@ -53,7 +54,7 @@ describe Excel::TabularReader do
 
   end
 
-  class TrParentClass < IsoManaged
+  class ParentClass < IsoManaged
 
     attr_accessor :children
 
@@ -70,7 +71,7 @@ describe Excel::TabularReader do
 
   end
 
-  class TrTopClass < IsoManaged
+  class TopClass < IsoManaged
 
     attr_accessor :children
 
@@ -102,11 +103,10 @@ describe Excel::TabularReader do
     }
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel::TabularReader.new(full_path) 
-    result = object.read(TrTopClass, params)
-  write_yaml_file(result, sub_dir, "read_expected_1.yaml")
+    result = object.read(TopClass, params)
+  #Xwrite_yaml_file(result, sub_dir, "read_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "read_expected_1.yaml")
     expect(result).to operation_hash_equal(expected)
-byebug
     expect(object.errors.count).to eq(0)
   end
 

@@ -17,7 +17,7 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2018-01-01'
-      :last_changed_date: '2018-11-22T09:53:12+00:00'
+      :last_changed_date: '2018-11-22T10:24:12+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
@@ -52,7 +52,193 @@
           :name: ''
           :shortName: ''
       :ordinal: 1
-:children: []
+:children:
+- :order: 1
+  :instance:
+    :operation:
+      :action: CREATE
+      :new_version: 1
+      :new_semantic_version: 1.1.1
+      :new_state: Standard
+      :identifier_edit: true
+    :managed_item:
+      :type: ''
+      :id: ''
+      :namespace: ''
+      :label: Parent One
+      :extension_properties: []
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2018-01-01'
+      :last_changed_date: '2018-11-22T10:24:12+00:00'
+      :explanatory_comment: ''
+      :registration_state:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: ''
+        :registration_authority:
+          :id: ''
+          :number: "<Not Set>"
+          :scheme: DUNS
+          :owner: false
+          :namespace:
+            :namespace: ''
+            :id: ''
+            :name: ''
+            :shortName: ''
+        :registration_status: Not_Set
+        :administrative_note: ''
+        :effective_date: '2016-01-01T00:00:00+00:00'
+        :until_date: '2016-01-01T00:00:00+00:00'
+        :current: false
+        :unresolved_issue: ''
+        :administrative_status: ''
+        :previous_state: Not_Set
+      :scoped_identifier:
+        :id: ''
+        :identifier: P1
+        :version_label: version label
+        :version: 0
+        :semantic_version: 0.0.0
+        :namespace:
+          :namespace: ''
+          :id: ''
+          :name: ''
+          :shortName: ''
+      :ordinal: 1
+      :children:
+      - :ct: ''
+        :ct_notes: CT Other 1
+        :label: C1
+        :ordinal: 1
+        :datatype:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableType
+          :id: ''
+          :namespace: ''
+          :label: Character
+          :extension_properties: []
+        :compliance:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+          :id: ''
+          :namespace: ''
+          :label: Required
+          :extension_properties: []
+      - :ct: AAA
+        :ct_notes: ''
+        :label: C2
+        :ordinal: 2
+        :datatype:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableType
+          :id: ''
+          :namespace: ''
+          :label: Numeric
+          :extension_properties: []
+        :compliance:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+          :id: ''
+          :namespace: ''
+          :label: Conditional
+          :extension_properties: []
+- :order: 2
+  :instance:
+    :operation:
+      :action: CREATE
+      :new_version: 1
+      :new_semantic_version: 1.1.1
+      :new_state: Standard
+      :identifier_edit: true
+    :managed_item:
+      :type: ''
+      :id: ''
+      :namespace: ''
+      :label: Parent Two
+      :extension_properties: []
+      :origin: ''
+      :change_description: ''
+      :creation_date: '2018-01-01'
+      :last_changed_date: '2018-11-22T10:24:12+00:00'
+      :explanatory_comment: ''
+      :registration_state:
+        :namespace: http://www.assero.co.uk/MDRItems
+        :id: ''
+        :registration_authority:
+          :id: ''
+          :number: "<Not Set>"
+          :scheme: DUNS
+          :owner: false
+          :namespace:
+            :namespace: ''
+            :id: ''
+            :name: ''
+            :shortName: ''
+        :registration_status: Not_Set
+        :administrative_note: ''
+        :effective_date: '2016-01-01T00:00:00+00:00'
+        :until_date: '2016-01-01T00:00:00+00:00'
+        :current: false
+        :unresolved_issue: ''
+        :administrative_status: ''
+        :previous_state: Not_Set
+      :scoped_identifier:
+        :id: ''
+        :identifier: P2
+        :version_label: version label
+        :version: 0
+        :semantic_version: 0.0.0
+        :namespace:
+          :namespace: ''
+          :id: ''
+          :name: ''
+          :shortName: ''
+      :ordinal: 2
+      :children:
+      - :ct: ''
+        :ct_notes: ''
+        :label: C3
+        :ordinal: 1
+        :datatype:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableType
+          :id: ''
+          :namespace: ''
+          :label: Numeric
+          :extension_properties: []
+        :compliance:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+          :id: ''
+          :namespace: ''
+          :label: Permissible
+          :extension_properties: []
+      - :ct: ''
+        :ct_notes: CT Other 2
+        :label: C4
+        :ordinal: 2
+        :datatype:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableType
+          :id: ''
+          :namespace: ''
+          :label: Character
+          :extension_properties: []
+        :compliance:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+          :id: ''
+          :namespace: ''
+          :label: Permissible
+          :extension_properties: []
+      - :ct: ''
+        :ct_notes: CT Other 2
+        :label: C5
+        :ordinal: 3
+        :datatype:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableType
+          :id: ''
+          :namespace: ''
+          :label: Character
+          :extension_properties: []
+        :compliance:
+          :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+          :id: ''
+          :namespace: ''
+          :label: Permissible
+          :extension_properties: []
 :classifications:
   :datatype: true
   :core: true
