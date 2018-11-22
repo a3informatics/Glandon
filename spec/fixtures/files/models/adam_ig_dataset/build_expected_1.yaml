@@ -1,0 +1,2439 @@
+---
+:type: http://www.assero.co.uk/BusinessDomain#IgDomain
+:id: IG-CDISC_ADAMIGADSL
+:namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V1
+:label: Subject Level Analysis Dataset
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-11-21T00:00:00+00:00'
+:last_changed_date: '2018-11-21T00:00:00+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: RS-CDISC_ADAMIGADSL-1
+  :registration_authority:
+    :id: RA-084433759
+    :number: 084433759
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: http://www.assero.co.uk/MDRItems
+      :id: NS-CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :shortName: CDISC
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+:scoped_identifier:
+  :id: SI-CDISC_ADAMIGADSL-1
+  :identifier: ADAMIG ADSL
+  :version_label: 
+  :version: 1
+  :semantic_version: 1.1.1
+  :namespace:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: NS-CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :shortName: CDISC
+:ordinal: 1
+:rule: ''
+:prefix: "--"
+:structure: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Study Identifier
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: STUDYID
+  :notes: DM.STUDYID
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Unique Subject Identifier
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: USUBJID
+  :notes: DM.USUBJID
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Subject Identifier for the Study
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SUBJID
+  :notes: DM.SUBJID. SUBJID is required in ADSL, but permissible in other datasets.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Study Site Identifier
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SITEID
+  :notes: DM.SITEID. SITEID is required in ADSL, but permissible in other datasets.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Site Group y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SITEGRy
+  :notes: Character description of a grouping or pooling of clinical sites for analysis
+    purposes. For example, SITEGR3 is the name of a variable containing site group
+    (pooled site) names, where the grouping has been done according to the third site
+    grouping algorithm, defined in variable metadata; SITEGR3 does not mean the third
+    group of sites.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Site Group y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SITEGRyN
+  :notes: The numeric code for SITEGRy. One-to-one mapping to SITEGRy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Geographic Region y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: REGIONy
+  :notes: Character description of geographical region. For example, REGION1 might
+    have values of ‘Asia’, ‘Europe’, ‘North America’, ‘Rest of World’; REGION2 might
+    have values of ‘United States’, ‘Rest of World’.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Geographic Region y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: REGIONyN
+  :notes: The numeric code for REGIONy. Orders REGIONy for analysis and reporting.
+    One-to-one mapping to REGIONy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Age
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: AGE
+  :notes: DM.AGE. If analysis needs require a derived age that does not match DM.AGE,
+    then AAGE must be added
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Age Units
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: AGEU
+  :notes: DM.AGEU
+  :ct: AGEU
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Age Group y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: AGEGRy
+  :notes: Character description of a grouping or pooling of the subject's age for
+    analysis purposes. For example, AGEGR1 might have values of "<18", "18-65", and
+    ">65"; AGEGR2 might have values of "Less than 35 y old" and "At least 35 y old".
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Age Group y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: AGEGRyN
+  :notes: The numeric code for AGEGRy. Orders the grouping or pooling of subject age
+    for analysis and reporting. One-to-one mapping to AGEGRy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Analysis Age
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: AAGE
+  :notes: Age used for analysis that is derived differently from DM.AGE. AAGE is required
+    if age is calculated differently than in SDTM.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Sex
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SEX
+  :notes: The sex of the subject is a required variable in ADSL; must be identical
+    to DM.SEX.
+  :ct: SEX
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Race
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RACE
+  :notes: The race of the subject is a required variable in ADSL; must be identical
+    to DM.RACE.
+  :ct: RACE
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Race Group y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RACEGRy
+  :notes: Character description of a grouping or pooling of the subject's race for
+    analysis purposes.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Pooled Race Group y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RACEGRyN
+  :notes: The numeric code for RACEGRy. Orders the grouping or pooling of subject
+    race for analysis and reporting. One-to-one mapping to RACEGRy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Full Analysis Set Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: FASFL
+  :notes: These flags identify whether or not the subject is included in the specified
+    population. A minimum of one subject-level population flag variable is required
+    in ADSL.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Safety Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: SAFFL
+  :notes: Not all of the indicators listed here need to be included in ADSL. As stated
+    in Section 3.1.4, Item 2, only those indicators corresponding to populations defined
+    in the statistical analysis plan or populations used as a basis for analysis need
+    be included in ADSL.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Intent-To-Treat Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ITTFL
+  :notes: This list of flags is not meant to be all-inclusive. Additional population
+    flags may be added.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Per-Protocol Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PPROTFL
+  :notes: The values of subject-level population flags cannot be blank. If a flag
+    is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the
+    population flag can also be included. Please also refer to Section 3.1.4.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Completers Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: COMPLFL
+  :notes: The values of subject-level population flags cannot be blank. If a flag
+    is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the
+    population flag can also be included. Please also refer to Section 3.1.4.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Randomized Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RANDFL
+  :notes: The values of subject-level population flags cannot be blank. If a flag
+    is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the
+    population flag can also be included. Please also refer to Section 3.1.4.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Enrolled Population Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ENRLFL
+  :notes: The values of subject-level population flags cannot be blank. If a flag
+    is used, the corresponding numeric version (*FN, where 0=no and 1=yes) of the
+    population flag can also be included. Please also refer to Section 3.1.4.
+  :ct: ''
+  :ct_notes: Y, N
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Description of Planned Arm
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ARM
+  :notes: DM.ARM
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Description of Actual Arm
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ACTARM
+  :notes: DM.ACTARM
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Treatment for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTxxP
+  :notes: Subject-level identifier that represents the planned treatment for period
+    xx. In a one-period randomized trial, TRT01P would be the treatment to which the
+    subject was randomized. TRTxxP might be derived from the SDTM DM variable ARM.
+    At least TRT01P is required.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Required
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Treatment for Period xx (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTxxPN
+  :notes: The numeric code variable for TRTxxP. One-to-one mapping to TRTxxP within
+    a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Treatment for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTxxA
+  :notes: Subject-level identifier that represents the actual treatment for the subject
+    for period xx. Required when actual treatment does not match planned and there
+    is an analysis of the data as treated.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Treatment for Period xx (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTxxAN
+  :notes: The numeric code variable for TRTxxA. One-to-one mapping to TRTxxA within
+    a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Sequence of Treatments
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSEQP
+  :notes: Required when there is an analysis based on the sequence of treatments,
+    for example in a crossover design. TRTSEQP is not necessarily equal to ARM, for
+    example if ARM contains elements that are not relevant to analysis of treatments
+    or ARM is not fully descriptive (e.g., “GROUP 1,” “GROUP 2”). When analyzing based
+    on the sequence of treatments, TRTSEQP is required even if identical to ARM.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Sequence of Treatments (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSEQPN
+  :notes: Numeric version of TRTSEQP. One-to-one mapping to TRTSEQP within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Sequence of Treatments
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSEQA
+  :notes: TRTSEQA is required if a situation occurred in the conduct of the trial
+    where a subject received a sequence of treatments other than what was planned
+    and there is an analysis based on the sequence of treatments.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Sequence of Treatments (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSEQAN
+  :notes: Numeric version of TRTSEQA. One-to-one mapping to TRTSEQA within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Pooled Treatment y for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxPGy
+  :notes: Planned pooled treatment y for period xx. Useful when planned treatments
+    (TRTxxP) in the specified period xx are pooled together for analysis according
+    to pooling algorithm y. For example when in period 2 the first pooling algorithm
+    dictates that all doses of Drug A (TR02PG1=“All doses of Drug A”) are pooled together
+    for comparison to all doses of Drug B (TR02PG1=“All doses of Drug B”). Each value
+    of TRTxxP is pooled within at most one value of TRxxPGy.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Pooled Trt y for Period xx (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxPGyN
+  :notes: The numeric code for TRxxPGy. One-to-one mapping to TRxxPGy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Pooled Treatment y for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxAGy
+  :notes: Actual pooled treatment y for period xx. Required when TRxxPGy is present
+    and TRTxxA is present.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Pooled Trt y for Period xx (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxAGyN
+  :notes: The numeric code for TRxxAGy. One-to-one mapping to TRxxAGy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Pooled Treatment Sequence y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TSEQPGy
+  :notes: Planned pooled treatment sequence y. Useful when planned treatment sequences
+    (TRTSEQP) are pooled together for analysis according to pooling algorithm y. For
+    example, this might be used in an analysis of an extension study when the analysis
+    is based on what the subject received in the parent study as well as in the extension
+    study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Pooled Treatment Sequence y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TSEQPGyN
+  :notes: Numeric version of TSEQPGy. One-to-one mapping to TSEQPGy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Pooled Treatment Sequence y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TSEQAGy
+  :notes: Actual pooled treatment sequence y. Required when TSEQPGy is present and
+    TRTSEQA is present.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Pooled Treatment Sequence y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TSEQAGyN
+  :notes: Numeric version of TSEQAGy. One-to-one mapping to TSEQAGy within a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Planned Treatment Dose for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DOSExxP
+  :notes: Subject-level identifier that represents the planned treatment dosage for
+    period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Actual Treatment Dose for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DOSExxA
+  :notes: Subject-level identifier that represents the actual treatment dosage for
+    period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Units for Dose for Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DOSExxU
+  :notes: The units for DOSExxP and DOSExxA. It is permissible to use suffixes such
+    as “P” and “A” if needed, with labels modified accordingly.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of First Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSDT
+  :notes: Date of first exposure to treatment for a subject in a study. TRTSDT and/or
+    TRTSDTM are required if there is an investigational product. Note that TRTSDT
+    is not required to have the same value as the SDTM DM variable RFXSTDTC. While
+    both of these dates reflect the concept of first exposure, the ADaM date may be
+    derived to support the analysis which may not necessarily be the very first date
+    in the SDTM EX domain.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of First Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSTM
+  :notes: Time of first exposure to treatment for a subject in a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Datetime of First Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSDTM
+  :notes: Datetime of first exposure to treatment for a subject in a study. TRTSDT
+    and/or TRTSDTM are required if there is an investigational product.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of First Exposure Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSDTF
+  :notes: The level of imputation of date of first exposure to treatment. If TRTSDT
+    (or the date part of TRTSDTM) was imputed, TRTSDTF must be populated and is required.
+    See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of First Exposure Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTSTMF
+  :notes: The level of imputation of time of first exposure to treatment. If TRTSTM
+    (or the time part of TRTSDTM) was imputed, TRTSTMF must be populated and is required.
+    See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Last Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTEDT
+  :notes: Date of last exposure to treatment for a subject in a study. TRTEDT and/or
+    TRTEDTM are required if there is an investigational product. Note that TRTEDT
+    is not required to have the same value as the SDTM DM variable RFXENDTC. While
+    both of these dates reflect the concept of last exposure, the ADaM date may be
+    derived to support the analysis which may not necessarily be the very last date
+    in the SDTM EX domain.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of Last Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTETM
+  :notes: Time of last exposure to treatment for a subject in a study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Datetime of Last Exposure to Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTEDTM
+  :notes: Datetime of last exposure to treatment for a subject in a study. TRTEDT
+    and/or TRTEDTM are required if there is an investigational product.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Last Exposure Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTEDTF
+  :notes: The level of imputation of date of last exposure to treatment. If TRTEDT
+    (or the date part of TRTEDTM) was imputed, TRTEDTF must be populated and is required.
+    See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of Last Exposure Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTETMF
+  :notes: The level of imputation of time of last exposure to treatment. If TRTETM
+    (or the time part of TRTEDTM) was imputed, TRTETMF must be populated and is required.
+    See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of First Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxSDT
+  :notes: Date of first exposure to treatment in period xx. TRxxSDT and/or TRxxSDTM
+    are only required in trial designs where multiple treatments are given to the
+    same subject, such as a crossover design, but are permissible for other trial
+    designs. Also useful in designs where multiple periods exist for the same treatment
+    (i.e., multiple cycles of the same study treatment).
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of First Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxSTM
+  :notes: The starting time of exposure to treatment in period xx. TRxxSTM and/or
+    TRxxSDTM are only required in trial designs where multiple treatments are given
+    to the same subject, such as a crossover design (but are permissible for other
+    trial designs), and time is important to the analysis.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Datetime of First Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxSDTM
+  :notes: Datetime of first exposure to treatment in period xx. TRxxSDT and/or TRxxSDTM
+    are only required in trial designs where multiple treatments are given to the
+    same subject, such as a crossover design, but are permissible for other trial
+    designs.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date 1st Exposure Period xx Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxSDTF
+  :notes: The level of imputation of date of first exposure to treatment in period
+    xx. If TRxxSDT (or the date part of TRxxSDTM) was imputed, TRxxSDTF must be populated
+    and is required. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time 1st Exposure Period xx Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxSTMF
+  :notes: The level of imputation of time of first exposure to treatment in period
+    xx. If TRxxSTM (or the time part of TRxxSDTM) was imputed, TRxxSTMF must be populated
+    and is required. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Last Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxEDT
+  :notes: Date of last exposure to treatment in period xx. TRxxEDT and/or TRxxEDTM
+    are only required in trial designs where multiple treatments are given to the
+    same subject, such as a crossover design, but are permissible for other trial
+    designs.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time of Last Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxETM
+  :notes: The ending time of exposure to treatment in period xx. TRxxETM and/or TRxxEDTM
+    are only required in trial designs where multiple treatments are given to the
+    same subject, such as a crossover design, and ending time is important to the
+    analysis, but are permissible for other trial designs.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Datetime of Last Exposure in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxEDTM
+  :notes: The datetime of last exposure to treatment in period xx. TRxxEDT and/or
+    TRxxEDTM are only required in trial designs where multiple treatments are given
+    to the same subject, such as a crossover design, but are permissible for other
+    trial designs.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date Last Exposure Period xx Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxEDTF
+  :notes: The level of imputation of date of last exposure to treatment in period
+    xx. If TRxxEDT (or the date part of TRxxEDTM) was imputed, TRxxEDTF must be populated
+    and is required. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Time Last Exposure Period xx Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxETMF
+  :notes: The level of imputation of time of last exposure to treatment in period
+    xx. If TRxxETM (or the time part of TRxxEDTM) was imputed, TRxxETMF must be populated
+    and is required. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Start Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxSDT
+  :notes: The starting date of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Start Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxSTM
+  :notes: The starting time of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Start Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxSDTM
+  :notes: The starting datetime of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Start Date Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxSDTF
+  :notes: The level of imputation of period xx start date. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Start Time Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxSTMF
+  :notes: The level of imputation of period xx start time. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx End Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxEDT
+  :notes: The ending date of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx End Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxETM
+  :notes: The ending time of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx End Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxEDTM
+  :notes: The ending datetime of period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx End Date Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxEDTF
+  :notes: The level of imputation of period xx end date. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx End Time Imput. Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APxxETMF
+  :notes: The level of imputation of period xx end time. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Description of  Period xx Subperiod w
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSw
+  :notes: Description of analysis subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w Start Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwSDT
+  :notes: The starting date of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w Start Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwSTM
+  :notes: The starting time of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w Start Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwSDM
+  :notes: The starting datetime of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subper w Start Date Imput Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwSDF
+  :notes: The level of imputation of the start date for subperiod w within period
+    xx. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subper w Start Time Imput Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwSTF
+  :notes: The level of imputation of the start time for subperiod w within period
+    xx. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w End Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwEDT
+  :notes: The ending date of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w End Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwETM
+  :notes: The ending time of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subperiod w End Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwEDM
+  :notes: The ending datetime of subperiod w within period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subper w End Date Imput Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwEDF
+  :notes: The level of imputation of the end date for subperiod w within period xx.
+    See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Period xx Subper w End Time Imput Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PxxSwETF
+  :notes: The level of imputation of the end time for subperiod w within period xx.
+    See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Description of Phase w
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: APHASEw
+  :notes: Description of analysis phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w Start Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwSDT
+  :notes: The starting date of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w Start Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwSTM
+  :notes: The starting time of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w Start Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwSDTM
+  :notes: The starting datetime of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w Start Date Imputation Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwSDTF
+  :notes: The level of imputation of the start date for phase w. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w Start Time Imputation Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwSTMF
+  :notes: The level of imputation of the start time for phase w. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w End Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwEDT
+  :notes: The ending date of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w End Time
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwETM
+  :notes: The ending time of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w End Datetime
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwEDTM
+  :notes: The ending datetime of phase w.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w End Date Imputation Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwEDTF
+  :notes: The level of imputation of the end date for phase w. See Section 3.1.3.
+  :ct: DATEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Phase w End Time Imputation Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: PHwETMF
+  :notes: The level of imputation of the end time for phase w. See Section 3.1.3.
+  :ct: TIMEFL
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: End of Study Status
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: EOSSTT
+  :notes: 'The subject’s status as of the end of study or data cutoff. Examples: COMPLETED,
+    DISCONTINUED, ONGOING.'
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: End of Study Date
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: EOSDT
+  :notes: Date subject ended the study – either date of completion or date of discontinuation
+    or data cutoff date for interim analyses.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason for Discontinuation from Study
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCSREAS
+  :notes: Reason for subject’s discontinuation from study. The source would most likely
+    be the SDTM DS dataset. Null for subjects who completed the study.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason Spec for Discont from Study
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCSREASP
+  :notes: Additional detail regarding subject’s discontinuation from study (e.g.,
+    description of “other”).
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: End of Treatment Status
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: EOTSTT
+  :notes: 'The subject’s status as of the end of treatment or data cutoff. Examples:
+    COMPLETED, DISCONTINUED, ONGOING.'
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason for Discontinuation of Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCTREAS
+  :notes: If a subject discontinued treatment in the study, then this variable indicates
+    the reason for discontinuation. This is for discontinuation of treatment in the
+    overall study and not to be used for discontinuation reason within individual
+    treatment periods.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason Specify for Discont of Treatment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCTREASP
+  :notes: Additional detail regarding subject’s discontinuation from treatment (e.g.,
+    description of “other”).
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: End of Treatment Status in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: EOTxxSTT
+  :notes: 'The subject’s treatment status as of the end of period xx, or data cutoff
+    if within period xx. Examples: COMPLETED, DISCONTINUED, ONGOING.'
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason for Discont of Treat in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCTxxRS
+  :notes: Reason for discontinuing treatment in period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason Spec for Disc of Trt in Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCTxxRSP
+  :notes: Additional detail regarding subject’s discontinuation of treatment in period
+    xx (e.g., description of “other”).
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: End of Period xx Status
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: EOPxxSTT
+  :notes: 'The subject’s status as of the end of period xx, or data cutoff if within
+    period xx. Examples: COMPLETED, DISCONTINUED, ONGOING.'
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason for Discont from Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCPxxRS
+  :notes: Reason for discontinuing analysis period xx.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Reason Spec for Discont from Period xx
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DCPxxRSP
+  :notes: Additional detail regarding subject’s discontinuation from period xx (e.g.,
+    description of “other”).
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Informed Consent
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RFICDT
+  :notes: Date subject gave informed consent. Generally equivalent to DM.RFICDTC.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Enrollment
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ENRLDT
+  :notes: Date of subject’s enrollment into trial.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Randomization
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RANDDT
+  :notes: Required in randomized trials.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Informed Consent y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RFICyDT
+  :notes: This variable may be used in the case where there are multiple consent dates
+    within a study. This date does not need to repeat the date in RFICDT. ‘y’ can
+    start with 1 but it is not required to start with 1.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Enrollment y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: ENRLyDT
+  :notes: This variable may be used in the case where there are multiple enrollment
+    dates within a study. This date does not need to repeat the date in ENRLDT. ‘y’
+    can start with 1 but it is not required to start with 1.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Randomization y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: RANDyDT
+  :notes: This variable may be used in the case where there are multiple randomization
+    dates within a study. This date does not need to repeat the date in RANDDT. ‘y’
+    can start with 1 but it is not required to start with 1.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date Last Known Alive
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: LSTALVDT
+  :notes: If this variable is included in ADSL, the best practice is to populate it
+    for everyone. If the derivation for subjects who died differs from the derivation
+    for subjects who are not known to have died, the differences should be noted in
+    metadata.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Compliance (%)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRCMP
+  :notes: Overall percent compliance with treatment in the trial. TRCMP may be useful
+    for inclusion in ADSL for reasons such as defining subgroups and/or populations.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Compliance (%) Group y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRCMPGy
+  :notes: Grouping ‘y’ of TRCMP, treatment compliance percentage.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Compliance (%) Group y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRCMPGyN
+  :notes: Numeric version of treatment compliance (%) grouping ‘y’. Must have a one-to-one
+    mapping to TRCMPGy.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Duration in Period xx (Days)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxDURD
+  :notes: Treatment duration for period xx as measured in days. More than one of TRxxDURD,
+    TRxxDURM, and TRxxDURY can be populated, but each represents the entire duration
+    in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Duration in Period xx (Months)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxDURM
+  :notes: Treatment duration for period xx, as measure in months. More than one of
+    TRxxDURD, TRxxDURM, and TRxxDURY can be populated, but each represents the entire
+    duration in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Treatment Duration in Period xx (Years)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRxxDURY
+  :notes: Treatment duration for period xx, as measured in years. More than one of
+    TRxxDURD, TRxxDURM, and TRxxDURY can be populated, but each represents the entire
+    duration in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Total Treatment Duration (Days)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTDURD
+  :notes: Total treatment duration, as measured in days. More than one of TRTDURD,
+    TRTDURM, and TRTDURY can be populated, but each represents the entire duration
+    in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Total Treatment Duration (Months)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTDURM
+  :notes: Total treatment duration, as measured in months. More than one of TRTDURD,
+    TRTDURM, and TRTDURY can be populated, but each represents the entire duration
+    in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Total Treatment Duration (Years)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: TRTDURY
+  :notes: Total treatment duration, as measured in years. More than one of TRTDURD,
+    TRTDURM, and TRTDURY can be populated, but each represents the entire duration
+    in its respective units.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Death
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHDT
+  :notes: Date of subject’s death. Derived from DM.DTHDTC.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Date of Death Imputation Flag
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHDTF
+  :notes: Imputation flag for date of subject’s death. If DTHDT was imputed, DTHDTF
+    must be populated and is required. See Section 3.1.3.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Conditional
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Cause of Death
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHCAUS
+  :notes: Cause of Death.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Cause of Death (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHCAUSN
+  :notes: Numeric representation of cause of death. Must have a one-to-one mapping
+    to DTHCAUS.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Cause of Death Group y
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHCGRy
+  :notes: Grouping ‘y’ of DTHCAUS, the subject’s cause of death.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: ''
+  :namespace: ''
+  :label: Cause of Death Group y (N)
+  :extension_properties: []
+  :ordinal: 0
+  :rule: ''
+  :name: DTHCGRyN
+  :notes: Numeric version of grouping ‘y’ of the subject’s cause of death. Must have
+    a one-to-one mapping to DTHCGRy.
+  :ct: ''
+  :ct_notes: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: ''
+    :namespace: ''
+    :label: Permissible
+    :extension_properties: []

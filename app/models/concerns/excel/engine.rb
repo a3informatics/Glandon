@@ -12,7 +12,7 @@ class Excel::Engine
 
   extend ActiveModel::Naming
 
-  attr_reader :parent_set
+  attr_reader :parent_set, :classifications
 
   # Initialize. Opens the workbook ready for processing.
   #
@@ -23,9 +23,8 @@ class Excel::Engine
     @owner = owner
     @workbook = workbook
     @errors = owner.errors
-    @compliance_set = {}
-    @datatype_set = {}
     @parent_set = {}
+    @classifications = {datatype: false, core: false, compliance: false}
   end
 
   # Process. Process a sheet according to the configuration
@@ -52,6 +51,8 @@ class Excel::Engine
               self.send(action[:method], *params) {|result| parent = result}
             elsif action_method == :create_child
               self.send(action[:method], *params) {|result| child = result; parent.children << result}
+            elsif action_method == :ordinal
+              params[2].send("#{action[:property]}=", parent.children.count)
             else
               self.send(action[:method], *params)
             end
@@ -114,7 +115,8 @@ class Excel::Engine
   # @param [String] property the name of the property
   # @return [Void] no return
   def core_classification(row, col, object, map, property)
-   object.instance_variable_set("@#{property}", object_create(SdtmModelCompliance, @compliance_set, check_mapped(row, col, map)))
+    @classifications[:core] = true
+   object.instance_variable_set("@#{property}", object_create(SdtmModelCompliance, check_mapped(row, col, map)))
   end
 
   # Datatype Classification
@@ -126,7 +128,8 @@ class Excel::Engine
   # @param [String] property the name of the property
   # @return [Void] no return
   def datatype_classification(row, col, object, map, property)
-    object.instance_variable_set("@#{property}", object_create(SdtmModelDatatype, @datatype_set, check_mapped(row, col, map)))
+    @classifications[:datatype] = true
+    object.instance_variable_set("@#{property}", object_create(SdtmModelDatatype, check_mapped(row, col, map)))
   end
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped
@@ -201,12 +204,10 @@ private
   end
 
   # Find or build an object and set label
-  def object_create(klass, set, value)
+  def object_create(klass, value)
     return nil if value.blank?
-    return set[value] if set.has_key?(value)
     item = klass.new
     item.label = value
-    set[value] = item
     return item
   end
 

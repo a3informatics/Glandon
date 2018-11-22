@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe AdamIg do
+describe AdamIgDataset do
 
   include DataHelpers
 
   def sub_dir
-    return "models/adam_ig"
+    return "models/adam_ig_dataset"
   end
 
   before :all do
@@ -37,7 +37,7 @@ describe AdamIg do
 =end
 
   it "validates a valid object" do
-    item = AdamIg.new
+    item = AdamIgDataset.new
     ra = IsoRegistrationAuthority.new
     ra.number = "123456789"
     ra.scheme = "DUNS"
@@ -48,14 +48,14 @@ describe AdamIg do
     item.scopedIdentifier = si
     item.ordinal = 1
     result = item.valid?
-    expect(item.rdf_type).to eq("http://www.assero.co.uk/BusinessDomain#Model")
+    expect(item.rdf_type).to eq("http://www.assero.co.uk/BusinessDomain#IgDomain")
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(result).to eq(true)
   end
 
   it "builds an object" do
     input = read_yaml_file(sub_dir, "build_input_1.yaml")
-    result = AdamIgDataset(input)
+    result = AdamIgDataset.build(input)
   write_yaml_file(result.to_json, sub_dir, "build_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "build_expected_1.yaml")
     expect(result.to_json).to eq(expected)

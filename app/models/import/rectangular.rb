@@ -18,11 +18,16 @@ class Import::Rectangular < Import
 
   def process(params, json)
     results = {parent: nil, children: []}
-    results[:parent] = self.parent_klass.build(json[:parent][:instance])
-    json[:children].each do |child_item|
-      child = self.parent_klass.child_klass.build(child_item[:instance])
+    parent = self.parent_klass.build(json[:parent][:instance])
+    results[:parent] = parent 
+    json[:children].each do |child|
+      child = self.parent_klass.child_klass.build(child[:instance])
       results[:children] << child
       results[:parent].add_child(child)
+    end
+    parent.collections = {datatype: TabularStandard::Datatype.new, compliance: TabularStandard::Compliance.new}
+    results[:children].each do |child|
+      child.update_variables(parent.collections)
     end
     return results
   end

@@ -19,7 +19,7 @@ class Excel::TabularReader < Excel
   # @return [Hash] hash of result structures
   def read(klass, params)
     ordinal = 1
-    results = {parent: {}, children: []}
+    results = {parent: {}, children: [], classifications: {}}
     parent = klass.new
     instance = parent.import_operation(identifier: params[:identifier], label: params[:label], semantic_version: params[:semantic_version], 
       version_label: params[:version_label], version: params[:version], date: params[:date], ordinal: 1)
@@ -30,6 +30,7 @@ class Excel::TabularReader < Excel
       results[:children] << {order: ordinal, instance: child(item, instance, ordinal)}
       ordinal += 1
     end
+    results[:classifications] = self.engine.classifications
     return results
   end
 
@@ -38,7 +39,7 @@ private
   # Build the associated datasets
   def child(dataset, parent, ordinal)
     instance = dataset.import_operation(identifier: dataset.identifier, label: parent[:managed_item][:label], 
-      semantic_version: parent[:operation][:new_semantic_version], version_label: parent[:managed_item][:version_label], 
+      semantic_version: parent[:operation][:new_semantic_version], version_label: parent[:managed_item][:scoped_identifier][:version_label], 
       version: parent[:operation][:new_version], date: parent[:managed_item][:creation_date], ordinal: ordinal)
     instance[:managed_item][:children] = []
     dataset.children.each {|v| instance[:managed_item][:children] << v.to_hash}

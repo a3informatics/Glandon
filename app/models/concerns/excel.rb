@@ -23,9 +23,6 @@ class Excel
   # @return [Void] no return value
   def initialize(full_path)
     @errors = ActiveModel::Errors.new(self)
-    @compliance_set = {}
-    @datatype_set = {}
-    @parent_set = {}
     @full_path = full_path
     @workbook = Roo::Spreadsheet.open(@full_path.to_s, extension: :xlsx) 
     @engine = Excel::Engine.new(self, @workbook) # Needs to be after workbook setup
@@ -35,11 +32,6 @@ class Excel
     @errors.add(:base, msg)
     @workbook = nil
   end
-
-
-  # Move sheet
-  # @workbook.default_sheet = @workbook.sheets[0]
-    
 
   # Check Sheet
   #
@@ -65,9 +57,13 @@ class Excel
     return false
   end       
 
+  # Process Sheet
+  #
+  # @param [Symbol] import the import
+  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
+  # @return [Void] no return
   def process_sheet(import, sheet)
     @engine.process(import, sheet)
-    return @engine.parent_set
   end
 
 end    

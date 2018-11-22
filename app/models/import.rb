@@ -91,11 +91,15 @@ class Import < ActiveRecord::Base
   # @option objects [Object] :children array of children objects, may be empty
   # @return [Void] no return
   def save_load_file(objects)
+    sparql = SparqlUpdateV2.new
     parent = objects[:parent]
     path = TypePathManagement.history_url(parent.rdf_type, parent.identifier, parent.scopedIdentifier.namespace.id)
-    triples = parent.to_sparql_v2 # Will build parent and children
-    response = CRUD.update(triples.to_s) if self.auto_load
-    self.update(output_file: ImportFileHelpers.save(triples.to_s, "#{self.import_type}_#{self.id}_load.ttl"), 
+byebug
+    parent.to_sparql_v2(sparql)
+    objects[:children].each {|c| c.to_sparql_v2(sparql)}
+    triples = sparql.to_s
+    response = CRUD.update(triples) if self.auto_load
+    self.update(output_file: ImportFileHelpers.save(triples, "#{self.import_type}_#{self.id}_load.ttl"), 
       error_file: "", success: true, success_path: path)
   end
 

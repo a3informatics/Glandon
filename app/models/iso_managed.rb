@@ -1058,6 +1058,19 @@ class IsoManaged < IsoConcept
     return object
   end
 
+  # Build
+  #
+  # @param params [Hash] thre operational hash
+  # return [Object] the build object
+  def self.build(params, ra)
+    object = from_json(params[:managed_item])
+    object.from_operation(params[:operation], self::C_CID_PREFIX, self::C_INSTANCE_NS, ra)
+    object.lastChangeDate = object.creationDate # Make sure we don't set current time.
+    object.valid?
+    object.create_permitted?
+    return object
+  end
+
   # Update the object as directed by the operation
   #
   # @param json [Hash] The JSON hash.

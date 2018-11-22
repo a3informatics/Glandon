@@ -1,7 +1,7 @@
 class AdamIgDataset::Variable < Tabular::Column
   
   # Attributes
-  attr_accessor :name, :notes, :ct, :ct_notes, :compliance
+  attr_accessor :name, :notes, :ct, :ct_notes, :compliance, :datatype
 
   # Constants
   C_CLASS_NAME = self.name
@@ -67,11 +67,11 @@ class AdamIgDataset::Variable < Tabular::Column
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "name"}, {:literal => "#{self.name}", :primitive_type => "string"})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "controlled_term_or_format"}, {:literal => "#{self.controlled_term_or_format}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ct"}, {:literal => "#{self.ct}", :primitive_type => "string"})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ct_notes"}, {:literal => "#{self.ct_notes}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
 		sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => self.compliance.uri})
-		ref_uri = self.variable_ref.to_sparql_v2(self.uri, OperationalReferenceV2::C_PARENT_LINK_VC, 'VR', 1, sparql)
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_VC}, {:uri => ref_uri})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "datatype"}, {:uri => self.datatype.uri})
     return self.uri
   end
 
@@ -81,11 +81,11 @@ class AdamIgDataset::Variable < Tabular::Column
   def to_json
     json = super
     json[:name] = self.name
-    #json[:ordinal] = self.ordinal
     json[:notes] = self.notes
     json[:ct] = self.ct
     json[:ct_notes] = self.ct_notes
     json[:compliance] = self.compliance.to_json
+    json[:datatype] = self.datatype.to_json
     return json
   end
 
@@ -102,6 +102,7 @@ class AdamIgDataset::Variable < Tabular::Column
     object.ct = json[:ct]
     object.ct_notes = json[:ct_notes]
     object.compliance = SdtmModelCompliance.from_json(json[:compliance])
+    object.datatype = SdtmModelDatatype.from_json(json[:datatype])
     return object
   rescue => e
   	#byebug
@@ -114,13 +115,15 @@ class AdamIgDataset::Variable < Tabular::Column
   # @param [Hash] compliances a hash of compliances index by the datatype (label)
   # @return [void] no return
   def update_compliance(compliances)
-  	if compliances.has_key?(self.compliance.label)
-  		self.compliance = compliances[self.compliance.label] 
-  	else
-  		raise Exceptions::ApplicationLogicError.new(message: "Compliance #{self.compliance.label} not found. Variable #{self.name} in #{C_CLASS_NAME} object.")
-  	end
+  	self.compliance = compliances.match(self.compliance.label)
+    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Compliance #{self.compliance.label} not found. Variable #{self.name}.") if self.compliance.nil?
   end
   
+  def update_datatype(datatypes)
+    self.datatype = datatypes.match(self.datatype.label)
+    Errors.application_error(C_CLASS_NAME, __method__.to_s, "Datatype #{self.datatype.label} not found. Variable #{self.name}.") if self.compliance.nil?
+  end
+
   def additional_properties
     [ 
       { instance_variable: "compliance", label: "Compliance", value: self.compliance.label }

@@ -128,5 +128,10 @@ describe Tabular do
     expect(results).to eq(expected)
   end
 
+  it "builds an item" do
+    # Tested as part of ADaM IG Dataset testing
+    expect(true).to be(true)
+  end
+  
 end
   

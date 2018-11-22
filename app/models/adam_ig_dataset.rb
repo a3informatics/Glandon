@@ -1,3 +1,13 @@
+# AdamModel. Class for processing ADaM Model Excel Files
+#
+# @!attribute children
+#   @return [Array] the array of child variables
+# @!attribute prefix
+#   @return [String] @todo not sure needed
+# @!attribute structure
+#   @return [String] @todo not sure needed
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class AdamIgDataset < Tabular
   
   attr_accessor :children, :prefix, :structure
@@ -20,7 +30,7 @@ class AdamIgDataset < Tabular
   def initialize(triples=nil, id=nil)
     self.prefix = SdtmUtility::C_PREFIX
     self.structure = ""
-    self.children = Array.new
+    self.children = []
     if triples.nil?
       super
       self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
@@ -40,7 +50,16 @@ class AdamIgDataset < Tabular
     super(uri.to_id)
   end
 
-=begin
+  # Update Variables.
+  #
+  # @return [Void] no return
+  def update_variables(args)
+    self.children.each do |child|
+      child.datatype = args[:datatype].add(child.datatype.label)
+      child.compliance = args[:compliance].add(child.compliance.label)
+    end
+  end
+
   # To SPARQL
   #
   # @param [SparqlUpdateV2] sparql the SPARQL object
@@ -50,8 +69,6 @@ class AdamIgDataset < Tabular
     subject = {:uri => self.uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "prefix"}, {:literal => "#{self.prefix}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "structure"}, {:literal => "#{self.structure}", :primitive_type => "string"})
-    ref_uri = self.model_ref.to_sparql_v2(uri, OperationalReferenceV2::C_PARENT_LINK_DT, 'CLR', 1, sparql)
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => OperationalReferenceV2::C_PARENT_LINK_DT}, {:uri => ref_uri})
 		self.children.each do |child|
     	ref_uri = child.to_sparql_v2(self.uri, sparql)
     	sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesColumn"}, {:uri => ref_uri})
@@ -67,8 +84,7 @@ class AdamIgDataset < Tabular
     object = super(json)
     object.prefix = json[:prefix]
     object.structure = json[:structure]
-    object.model_ref = OperationalReferenceV2.from_json(json[:model_ref])
-    json[:children].each { |c| object.children << SdtmIgDomain::Variable.from_json(c) } if !json[:children].blank?
+    json[:children].each {|c| object.children << AdamIgDataset::Variable.from_json(c)} if !json[:children].blank?
     return object
   end
 
@@ -87,37 +103,15 @@ class AdamIgDataset < Tabular
     return json
   end
 
-  # Compliance
+  # Build. Build an object from the operational hash
   #
-  # @return [Array] set of compliances for the domain
-  def compliance()
-    results = Array.new
-    # Build the query. Note the full namespace reference, doesnt seem to work with a default namespace. Needs checking.
-    query = UriManagement.buildNs(self.namespace, ["bd", "bo"])  +
-      "SELECT DISTINCT ?b ?c WHERE \n" +
-      "{ \n " +
-      "  :#{self.id} bd:includesColumn ?a . \n " +
-      "  ?a bd:compliance ?b . \n" +
-      "  ?b rdfs:label ?c . \n" +
-      "}\n"
-    # Send the request, wait the resonse
-    response = CRUD.query(query)
-    # Process the response
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      uri = ModelUtility.getValue('b', true, node)
-      label = ModelUtility.getValue('c', false, node)
-      if uri != "" && label != ""
-        object = SdtmModelCompliance.new
-        object.id = ModelUtility.extractCid(uri)
-        object.namespace = ModelUtility.extractNs(uri)
-        object.label = label
-        results << object
-      end
-    end
-    return results
+  # @param [Hash] params the operational hash (see IsoManaged)
+  # @return [AdamIgDataset] the object created
+  def self.build(params)
+    super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))
   end
+
+=begin
 
   # Children from triples.
   def children_from_triples
@@ -125,41 +119,6 @@ class AdamIgDataset < Tabular
     model_refs = OperationalReferenceV2.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
     self.model_ref = model_refs[0] if model_refs.length > 0 
   end
-
-private
-
-  # Build Variable References. Update the variables with their references
- 	def self.build_variable_references(map, params)
- 		domain_class = map[params[:domain_class]]
- 		params[:children].each do |child|
- 			generic_name = generic_variable_name(child[:name], child[:variable_name_minus])
- 			if !domain_class[:children][generic_name].nil?
-				child[:variable_ref][:subject_ref] = domain_class[:children][generic_name].to_json
-			else
-				msg = "Reference for variable #{child[:name]} not found in #{C_CLASS_NAME}."
-	 			raise Exceptions::ApplicationLogicError.new(message: msg)
-			end
-  	end
- 	end
-
-  # Build Compliance. Update the variables with their references
-  def self.build_compliance(ig, params)
- 		params[:children].each do |child|
- 			if ig.compliance.has_key?(child[:compliance][:label])
-	 			object = ig.compliance[child[:compliance][:label]]
-				child[:compliance] = object.to_json
-	  	else
-  			msg = "Compliance #{child[:compliance][:label]} not found. Variable #{child[:name]} in #{C_CLASS_NAME}."
-  			raise Exceptions::ApplicationLogicError.new(message: msg)
-  		end
-  	end
- 	end
-
- 	# Build generic variable reference.
-  def self.generic_variable_name(name, name_minus)
-    return name if name == name_minus
-    return SdtmUtility.add_prefix(name_minus)
-  end   
 =end
 
 end

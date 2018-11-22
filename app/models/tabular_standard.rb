@@ -9,14 +9,10 @@
 #   @return [String] the identifier for the managed item
 # @!attribute cid_prefix
 #   @return [String] the CID prefix used in constructing instance URIs
-class Tabular < IsoManaged
-  
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
+class TabularStandard < IsoManaged
   
   # Attributes
-  attr_accessor :rule, :ordinal
+  attr_accessor :references, :collections
   
   # Constants
   C_CLASS_NAME = self.name
@@ -27,8 +23,8 @@ class Tabular < IsoManaged
   # @params [String] the id of the object to be initialized
   # @return [Void] no return
   def initialize(triples=nil, id=nil)
-    self.rule = ""
-    self.ordinal = 0
+    self.references = []
+    self.collections = []
     super(triples, id)
     self.rdf_type = self.class::C_RDF_TYPE_URI.to_s if triples.nil?
   end
@@ -46,7 +42,7 @@ class Tabular < IsoManaged
     return object
   end
 
-  # Find all the models
+  # Find all the tabular standards
   #
   # @return [Array] array of objects found
   def self.all
@@ -70,25 +66,32 @@ class Tabular < IsoManaged
     return super(self::C_RDF_TYPE, self::C_SCHEMA_NS, params)
   end
 
-  # To JSON
+  def add_child(child)
+    ref = OperationalReferenceV2.new
+    ref.subject_ref = child.uri
+    self.references << ref
+    ref.ordinal = self.references.count 
+  end
+
+  # From Json
+  #
+  # @param [Hash] json the hash of values for the object 
+  # @return [SdtmIg] the object created
+  def self.from_json(json)
+    object = super(json)
+    json[:references].each {|r| object.domain_refs << OperationalReferenceV2.from_json(r) } if !json[:references].blank?
+    return object
+  end
+
+  # To Json
   #
   # @return [Hash] the object hash 
   def to_json
     json = super
-    json[:ordinal] = self.ordinal
-    json[:rule] = self.rule
+    json[:references] = []
+    self.references.sort_by! {|u| u.ordinal}
+    self.references.each {|r| json[:references] << r.to_json}
     return json
-  end
-
-  # From JSON
-  #
-  # @param json [Hash] the hash of values for the object 
-  # @return [Tabular] the object created
-  def self.from_json(json)
-    object = super(json)
-    object.ordinal = json[:ordinal]
-    object.rule = json[:rule]
-    return object
   end
 
   # To SPARQL
@@ -97,10 +100,13 @@ class Tabular < IsoManaged
   # @param sparql [SparqlUpdateV2] The SPARQL object
   # @return [UriV2] The URI
   def to_sparql_v2(sparql, schema_prefix)
-    super(sparql, schema_prefix)
     subject = {:uri => self.uri}
-    sparql.triple(subject, {:prefix => schema_prefix, :id => "ordinal"}, {:literal => "#{self.ordinal}", :primitive_type => "positiveInteger"})
-    sparql.triple(subject, {:prefix => schema_prefix, :id => "rule"}, {:literal => "#{self.rule}", :primitive_type => "string"})
+    self.collections.each {|k, c| c.to_sparql(self.uri, sparql)}
+    super(sparql, schema_prefix)
+    self.references.each do |ref|
+      ref_uri = ref.to_sparql_v2(self.uri, "includesTabulation", 'TR', ref.ordinal, sparql)
+      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+    end
     return self.uri
   end
 
@@ -108,20 +114,7 @@ class Tabular < IsoManaged
   #
   # @return [Boolean] returns true if valid, false otherwise.
   def valid?
-    result = super
-    result = result &&
-      FieldValidation::valid_positive_integer?(:ordinal, self.ordinal, self) &&
-      FieldValidation::valid_label?(:rule, self.rule, self)
-    return result
-  end
-
-  # Build. Build an object from the operational hash
-  #
-  # @param [Hash] params the operational hash (see IsoManaged)
-  # @param [IsoRegistrationAuthority] ra the registration authority object
-  # @return [AdamIgDataset] the object created
-  def self.build(params, ra)
     super
   end
-
+  
 end

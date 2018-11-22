@@ -1,0 +1,420 @@
+---
+ADAMIG ADSL:
+  :type: http://www.assero.co.uk/BusinessDomain#IgDomain
+  :id: ''
+  :namespace: ''
+  :label: Subject Level Analysis Dataset
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2018-11-20T13:36:52+00:00'
+  :last_changed_date: '2018-11-20T13:36:52+00:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: ''
+    :registration_authority:
+      :id: ''
+      :number: "<Not Set>"
+      :scheme: DUNS
+      :owner: false
+      :namespace:
+        :namespace: ''
+        :id: ''
+        :name: ''
+        :shortName: ''
+    :registration_status: Not_Set
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Not_Set
+  :scoped_identifier:
+    :id: ''
+    :identifier: ADAMIG ADSL
+    :version_label: ''
+    :version: 0
+    :semantic_version: 0.0.0
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :ordinal: 0
+  :rule: ''
+  :prefix: "--"
+  :structure: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X26
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X26
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X12
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X12
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Permissible
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X13
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X13
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Conditional
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X14
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X14
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X15
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X15
+    :notes: blah blah blah
+    :ct: CL1
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X16
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X16
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X17
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X17
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X18
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X18
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X19
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X19
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X20
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X20
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X21
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X21
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X22
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X22
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X23
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X23
+    :notes: blah blah blah
+    :ct: CL1
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X24
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X24
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X25
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X25
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X11
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X11
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+ADAMIG BDS:
+  :type: http://www.assero.co.uk/BusinessDomain#IgDomain
+  :id: ''
+  :namespace: ''
+  :label: Basic Data Structure
+  :extension_properties: []
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2018-11-20T13:36:52+00:00'
+  :last_changed_date: '2018-11-20T13:36:52+00:00'
+  :explanatory_comment: ''
+  :registration_state:
+    :namespace: http://www.assero.co.uk/MDRItems
+    :id: ''
+    :registration_authority:
+      :id: ''
+      :number: "<Not Set>"
+      :scheme: DUNS
+      :owner: false
+      :namespace:
+        :namespace: ''
+        :id: ''
+        :name: ''
+        :shortName: ''
+    :registration_status: Not_Set
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :current: false
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Not_Set
+  :scoped_identifier:
+    :id: ''
+    :identifier: ADAMIG BDS
+    :version_label: ''
+    :version: 0
+    :semantic_version: 0.0.0
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :ordinal: 0
+  :rule: ''
+  :prefix: "--"
+  :structure: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X21
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X21
+    :notes: blah blah blah
+    :ct: CL2
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X22
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X22
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []
+  - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+    :id: ''
+    :namespace: ''
+    :label: Label for X23
+    :extension_properties: []
+    :ordinal: 0
+    :rule: ''
+    :name: X23
+    :notes: blah blah blah
+    :ct: ''
+    :ct_notes: ''
+    :compliance:
+      :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+      :id: ''
+      :namespace: ''
+      :label: Required
+      :extension_properties: []

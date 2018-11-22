@@ -68,6 +68,11 @@ defaults: &defaults
                 klass: AdamIgDataset::Variable
                 map: []
               -
+                method: ordinal
+                object: child
+                property: ordinal
+                map: []
+              -
                 method: set_property
                 object: child
                 property: name
@@ -178,6 +183,11 @@ test:
                 klass: ChildClass
                 map: []
               -
+                method: ordinal
+                object: child
+                property: ordinal
+                map: []
+              -
                 method: set_property
                 object: child
                 property: label
@@ -243,6 +253,11 @@ test:
                 method: create_child
                 object: child
                 klass: ChildClass
+                map: []
+              -
+                method: ordinal
+                object: child
+                property: ordinal
                 map: []
               -
                 method: set_property

@@ -34,6 +34,7 @@ describe Excel do
     attr_accessor :ct
     attr_accessor :ct_notes
     attr_accessor :label
+    attr_accessor :ordinal
 
     def initialize
       @compliance = nil
@@ -41,11 +42,12 @@ describe Excel do
       @ct = ""
       @ct_notes = ""
       @label = ""
+      @ordinal = 0
       @children = []
     end
 
     def to_hash
-      result = {ct: self.ct, ct_notes: self.ct_notes, label: self.label}
+      result = {ct: self.ct, ct_notes: self.ct_notes, label: self.label, ordinal: self.ordinal}
       result[:datatype] = datatype.to_json
       result[:compliance] = compliance.to_json
       return result
@@ -301,8 +303,8 @@ describe Excel do
   #Xwrite_yaml_file(result, sub_dir, "process_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "process_expected_2.yaml")
     expect(result).to eq(expected)
-    expect(parent.errors.count).to eq(12)
-  write_yaml_file(parent.errors.full_messages.to_yaml, sub_dir, "process_errors_2.yaml")
+    expect(parent.errors.count).to eq(16)
+  #Xwrite_yaml_file(parent.errors.full_messages.to_yaml, sub_dir, "process_errors_2.yaml")
     expected = read_yaml_file(sub_dir, "process_errors_2.yaml")
     expect(parent.errors.full_messages.to_yaml).to eq(expected)
   end

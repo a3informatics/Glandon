@@ -9,7 +9,7 @@ module ControllerHelpers
   # @param [String] ext the extension in *.xxx format
   # @return [Array] array of full path filenames.
   def upload_files(ext)
-    return Dir.glob(Rails.root.join(APP_CONFIG['upload_files']) + ext)
+    return Dir.glob(Rails.root.join(APP_CONFIG['upload_files']) + ext).sort!
   rescue => e
     return []
   end

@@ -7,6 +7,9 @@
   - Process error undefined method `children' for nil:NilClass when processing action
     '{:method=>"create_child", :object=>"child", :klass=>"ChildClass", :map=>[]}' on
     row 2 column 2.
+  - Process error undefined method `children' for nil:NilClass when processing action
+    '{:method=>"ordinal", :object=>"child", :property=>"ordinal", :map=>[]}' on row
+    2 column 2.
   - No create map detected in row 3 column 1.
   - Process error can't modify frozen NilClass when processing action '{:method=>"set_property",
     :object=>"parent", :property=>"label", :map=>{:P1=>"Parent One", :P2=>"Parent Two"}}'
@@ -14,6 +17,9 @@
   - Process error undefined method `children' for nil:NilClass when processing action
     '{:method=>"create_child", :object=>"child", :klass=>"ChildClass", :map=>[]}' on
     row 3 column 2.
+  - Process error undefined method `children' for nil:NilClass when processing action
+    '{:method=>"ordinal", :object=>"child", :property=>"ordinal", :map=>[]}' on row
+    3 column 2.
   - No create map detected in row 4 column 1.
   - Process error can't modify frozen NilClass when processing action '{:method=>"set_property",
     :object=>"parent", :property=>"label", :map=>{:P1=>"Parent One", :P2=>"Parent Two"}}'
@@ -21,6 +27,9 @@
   - Process error undefined method `children' for nil:NilClass when processing action
     '{:method=>"create_child", :object=>"child", :klass=>"ChildClass", :map=>[]}' on
     row 4 column 2.
+  - Process error undefined method `children' for nil:NilClass when processing action
+    '{:method=>"ordinal", :object=>"child", :property=>"ordinal", :map=>[]}' on row
+    4 column 2.
   - No create map detected in row 5 column 1.
   - Process error can't modify frozen NilClass when processing action '{:method=>"set_property",
     :object=>"parent", :property=>"label", :map=>{:P1=>"Parent One", :P2=>"Parent Two"}}'
@@ -28,3 +37,6 @@
   - Process error undefined method `children' for nil:NilClass when processing action
     '{:method=>"create_child", :object=>"child", :klass=>"ChildClass", :map=>[]}' on
     row 5 column 2.
+  - Process error undefined method `children' for nil:NilClass when processing action
+    '{:method=>"ordinal", :object=>"child", :property=>"ordinal", :map=>[]}' on row
+    5 column 2.
