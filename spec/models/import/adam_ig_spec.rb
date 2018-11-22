@@ -56,7 +56,10 @@ describe Import::AdamIg do
       job: @job
     }
     result = @object.import(params)
+    filename = "adam_ig_#{@object.id}_errors.yml"
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
     filename = "adam_ig_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
   #results = read_text_file_2(sub_dir, filename)
   #write_text_file_2(results, sub_dir, "import_expected_1.txt")
@@ -67,7 +70,7 @@ describe Import::AdamIg do
     delete_data_file(sub_dir, filename)
 	end
 
-  it "import, no errors" do
+  it "import, errors" do
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = 
     {
@@ -77,7 +80,10 @@ describe Import::AdamIg do
       job: @job
     }
     result = @object.import(params)
+    filename = "adam_ig_#{@object.id}_load.ttl"
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
     filename = "adam_ig_#{@object.id}_errors.yml"
+    expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
   #Xwrite_yaml_file(actual, sub_dir, "import_expected_2.yaml")
