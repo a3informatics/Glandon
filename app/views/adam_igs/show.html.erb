@@ -53,7 +53,8 @@
       	  		<% end %>
       		</tbody>
       	</table>
-      	<%= link_to "Export JSON", export_json_sdtm_ig_path(:id => @adam_ig.to_id), :class => "btn btn-info" %>
+      	<%= render partial: "shared/buttons/close_v2", :locals => {small: false, id: "close_button", link_path: history_adam_igs_path } %>
+        <%= link_to "Export JSON", export_json_sdtm_ig_path(:id => @adam_ig.to_id), :class => "btn btn-info" %>
       	<%= link_to "Export Turtle", export_ttl_sdtm_ig_path(:id => @adam_ig.to_id), :class => "btn btn-info" %>
       	<br/><br/>
       </div>

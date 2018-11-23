@@ -1,0 +1,7 @@
+<% classes = "btn btn-primary" %>
+<% if small %>
+  <% classes += " btn-xs" %>
+<% end %>
+<%= link_to link_path, class: classes, id: id do %>
+  <span class="glyphicon glyphicon-arrow-left"></span> Close                
+<% end %> 
