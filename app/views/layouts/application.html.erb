@@ -208,6 +208,12 @@
          					link_path: sdtm_user_domains_path, link_text: "Domains"} %>
               </ul>
             <% end %>  
+            <% if link_group_on_role([AdamIg]) %>
+              <ul class="nav"> 
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_ig", 
+                  link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs"} %>
+              </ul>
+            <% end %>  
           </div>
         </div>
 				<div id="main_area" class="col-md-10">

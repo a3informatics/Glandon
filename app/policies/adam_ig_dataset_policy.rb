@@ -1,0 +1,2 @@
+class AdamIgDatasetPolicy < ApplicationPolicy
+end

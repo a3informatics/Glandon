@@ -39,17 +39,6 @@ class AdamIgDataset < Tabular
     end
   end
 
-  # Find a given IG domain.
-  #
-  # @param id [String] the id of the domain
-  # @param namespace [String] the namespace of the domain
-  # @param children [Boolean] find all child objects. Defaults to true.
-  # @return [SdtmIgDomain] the domain object.
-  def self.find(id, ns, children=true)
-    uri = UriV3.new(fragment: id, namespace: ns)
-    super(uri.to_id)
-  end
-
   # Update Variables.
   #
   # @return [Void] no return
@@ -111,14 +100,8 @@ class AdamIgDataset < Tabular
     super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))
   end
 
-=begin
-
-  # Children from triples.
   def children_from_triples
-    self.children = SdtmIgDomain::Variable.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))
-    model_refs = OperationalReferenceV2.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "basedOnDomain"))
-    self.model_ref = model_refs[0] if model_refs.length > 0 
+    self.children = AdamIgDataset::Variable.find_for_parent(triples, self.get_links(C_SCHEMA_PREFIX, "includesColumn"))
   end
-=end
 
 end

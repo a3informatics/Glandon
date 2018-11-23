@@ -105,7 +105,7 @@ class TabularStandard < IsoManaged
     super(sparql, schema_prefix)
     self.references.each do |ref|
       ref_uri = ref.to_sparql_v2(self.uri, "includesTabulation", 'TR', ref.ordinal, sparql)
-      sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "includesTabulation"}, {:uri => ref_uri})
+      sparql.triple(subject, {:prefix => schema_prefix, :id => "includesTabulation"}, {:uri => ref_uri})
     end
     return self.uri
   end

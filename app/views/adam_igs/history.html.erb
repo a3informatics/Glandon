@@ -1,0 +1,31 @@
+<%= javascript_include_tag 'standard_datatable' %>
+<% top_level_breadcrumb ("CDISC ADaM IGs") %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">History: CDISC ADaM Implementation Guide</h3>
+      </div>
+      <div class="panel-body">
+        <table id="main" class="table table-striped table-bordered table-condensed">
+          <%= render partial: "shared/stdInstanceHeader" %>
+          <tbody>
+            <% current_item = get_current_item(@history) %>
+            <%  @history.each do |item| %>
+              <%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
+                  :current_item => current_item, 
+                  :showPath => adam_ig_path(:id => UriV3.new(uri: item.uri.to_s).to_id), 
+                  :searchPath => "", 
+                  :viewPath => "",
+                  :editPath => "",
+                  :deletePath => "",
+                  :index_label => "",
+                  :index_path => "",
+                  :mi_class => SdtmIg } %>
+            <% end %>       
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

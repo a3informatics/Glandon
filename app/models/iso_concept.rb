@@ -30,6 +30,13 @@ class IsoConcept
     return UriV2.new({:namespace => self.namespace, :id => self.id})
   end
 
+  # Method to get the unique uuid for the concept
+  #
+  # @return [String] the uuid for the concept
+  def to_id
+    return UriV3.new({:namespace => self.namespace, :fragment => self.id}).to_id
+  end
+
   # Method to get the fragment of the concept type
   #
   # @return [string] The fragment of the concept type

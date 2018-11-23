@@ -68,19 +68,18 @@ class AdamIg < TabularStandard
     super
   end
 
+  def children_from_triples
+    self.references = OperationalReferenceV2.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesTabulation"))
+  end      
+
 private
 
-  def self.import_params_valid?(params, object)
-    result1 = FieldValidation::valid_version?(:version, params[:version], object)
-    result2 = FieldValidation::valid_date?(:date, params[:date], object)
-    result3 = FieldValidation::valid_files?(:files, params[:files], object)
-    result4 = FieldValidation::valid_label?(:version_label, params[:version_label], object)
-    return result1 && result2 && result3 && result4
-  end
-
-  def self.children_from_triples(object, triples, id, bc=nil)
-    object.children =  SdtmModel::Variable.find_for_parent(object.triples, object.get_links(C_SCHEMA_PREFIX, "includesVariable"))
-    object.class_refs = OperationalReferenceV2.find_for_parent(triples, object.get_links(C_SCHEMA_PREFIX, "includesTabulation"))
-  end      
+#  def self.import_params_valid?(params, object)
+#    result1 = FieldValidation::valid_version?(:version, params[:version], object)
+#    result2 = FieldValidation::valid_date?(:date, params[:date], object)
+#    result3 = FieldValidation::valid_files?(:files, params[:files], object)
+#    result4 = FieldValidation::valid_label?(:version_label, params[:version_label], object)
+#    return result1 && result2 && result3 && result4
+#  end
 
 end
