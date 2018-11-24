@@ -319,9 +319,9 @@ class Thesaurus <  IsoManaged
 				  ?ctc_p iso25964:hasChild ?ctc .
 				  ?ctc_p iso25964:identifier ?i_p .
 				  ?ntc iso25964:identifier ?i .
-				  ?ntc_p iso25964:hasChild ?ntc .
-				  ?ntc_p iso25964:identifier ?i_p .
 				  FILTER(CONTAINS(STR(?ntc), "#{self.namespace}"))
+          ?ntc_p iso25964:hasChild ?ntc .
+				  ?ntc_p iso25964:identifier ?i_p .
 				  ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
 				  ?ctc_t isoI:hasIdentifier ?csi .
 				  ?csi isoI:version ?cv .
@@ -354,7 +354,7 @@ class Thesaurus <  IsoManaged
 			    {
 			      #{self.uri.to_ref} iso25964:hasConcept+ ?ntc_p .
 			    	?ntc_p iso25964:identifier ?i_p . 			  
-			        ?ntc_p iso25964:hasChild%2B ?ntc .
+            ?ntc_p iso25964:hasChild ?ntc .
 			    	?ntc iso25964:identifier ?i . 			  
 			    } 
 			  }
