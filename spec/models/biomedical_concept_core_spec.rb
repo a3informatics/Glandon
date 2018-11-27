@@ -4,6 +4,7 @@ require 'biomedical_concept_core'
 describe BiomedicalConceptCore do
   
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models"
@@ -38,7 +39,7 @@ describe BiomedicalConceptCore do
     expect(result.valid?).to eq(false)
   end
 
-    it "allows validity of the object to be checked" do
+  it "allows validity of the object to be checked" do
     result = BiomedicalConceptCore.new
     result.registrationState.registrationAuthority.namespace.shortName = "AAA"
     result.registrationState.registrationAuthority.namespace.name = "USER AAA"
@@ -57,9 +58,9 @@ describe BiomedicalConceptCore do
   it "allows the properties to be returned" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
-    #write_yaml_file(json, sub_dir, "bc_core_properties_find.yaml")
+  #Xwrite_yaml_file(json, sub_dir, "bc_core_properties_find.yaml")
     properties_json = read_yaml_file(sub_dir, "bc_core_properties_find.yaml")
-    expect(json).to eq(properties_json)
+    expect(json).to hash_equal(properties_json)
   end
 
   it "allows the properties to be update the object" do
@@ -67,23 +68,25 @@ describe BiomedicalConceptCore do
     json = item.get_properties
     json[:children][3][:question_text] = "Updated Question text"
     item.set_properties(json)
-    json = item.get_properties
-    #write_yaml_file(json, sub_dir, "bc_core_properties_update.yaml")
-    properties_json = read_yaml_file(sub_dir, "bc_core_properties_update.yaml")
-    expect(json).to eq(properties_json)
+    actual = item.get_properties
+  #Xwrite_yaml_file(actual, sub_dir, "bc_core_properties_update.yaml")
+    expected = read_yaml_file(sub_dir, "bc_core_properties_update.yaml")
+    actual[:children].sort_by! {|x| x[:id]}
+    expected[:children].sort_by! {|x| x[:id]}
+    expect(actual).to hash_equal(expected)
   end
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-    #write_yaml_file(item.to_json, sub_dir, "bc_core_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_core_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_core_json.yaml")
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "allows the object to be created from JSON" do
     hash = read_yaml_file(sub_dir, "bc_core_json.yaml")
     item = BiomedicalConceptCore.from_json(hash)
-    #write_yaml_file(item.to_json, sub_dir, "bc_core_from_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_core_from_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_core_from_json.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -92,9 +95,12 @@ describe BiomedicalConceptCore do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     sparql = SparqlUpdateV2.new
     item.to_sparql_v2(sparql)
-    write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
-    expected = read_text_file_2(sub_dir, "bc_core_sparql.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
+    write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql_result_1.txt")
+    actual = read_sparql_file("bc_core_sparql_result_1.txt")
+    expected = read_sparql_file("bc_core_sparql.txt")
+    expect(actual).to sparql_results_equal(expected)
+    delete_data_file(sub_dir, "bc_core_sparql_result_1.txt")
   end
   
 end
