@@ -69,11 +69,11 @@ gem 'redcarpet'
 gem 'roo', '~> 2.4.0'
 
 # ODM support
-gem 'odm', '~> 1.0.3', :git => 'https://github.com/daveih/odm.git'
+gem 'odm', '~> 1.0.3', :git => 'git@github.com:daveih/odm.git'
 gem "font-awesome-rails"
 
 # SAS support
-gem 'sas_xpt', :git => 'https://github.com/daveih/sas_xpt'
+gem 'sas_xpt', :git => 'git@github.com:daveih/sas_xpt'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

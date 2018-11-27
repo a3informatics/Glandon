@@ -1,62 +1,59 @@
+# CRUD. CRUD operations for the semantic database
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.1
+
 require "rest"
 require "json"
 
 module CRUD
 
-    # Constants
-    C_CLASS_NAME = "CRUD"
-    
-    # Method sends the sparql query to the configured triple store endpoint.
-    # Results are returned in XML format.
-    #
-    # * *Args*    :
-    #   - +sparql+ -> The sparql query
-    # * *Returns* :
-    #   - The HTTP response object
-    def CRUD.query (sparql)
-        db = SEMANTIC_DB_CONFIG['dbType']
-        key = SEMANTIC_DB_CONFIG['apiKey'] 
-        secret = SEMANTIC_DB_CONFIG['secret']
-        endpoint = SEMANTIC_DB_CONFIG['queryEndpoint']
-        headers = {"Accept" => "application/sparql-results+xml", "Content-type" => "application/x-www-form-urlencoded"}
-        data = "query=" + sparql
-        response = Rest.sendRequest(endpoint,:post,key,secret,data,headers)
-    end
+  # Query. Sends the sparql query to the configured triple store endpoint.
+  #
+  # @param [String] sparql the sparql query
+  # @return [Object] The HTTP response object in XML
+  def CRUD.query (sparql)
+    headers = {"Accept" => "application/sparql-results+xml", "Content-type" => "application/x-www-form-urlencoded"}
+    response = Rest.sendRequest(endpoint(:query), :post, api_key, api_secret, "query=#{sparql}", headers)
+  end
 
-    # Method sends the sparql update query to the configured triple store endpoint.
-    # Results are returned in XML format.
-    #
-    # * *Args*    :
-    #   - +sparql+ -> The sparql query
-    # * *Returns* :
-    #   - The HTTP response object
-    def CRUD.update (sparql)
-        db = SEMANTIC_DB_CONFIG['dbType']
-        key = SEMANTIC_DB_CONFIG['apiKey'] 
-        secret = SEMANTIC_DB_CONFIG['secret']
-        endpoint = SEMANTIC_DB_CONFIG['updateEndpoint']
-        headers = {"Content-type" => "application/x-www-form-urlencoded"}
-        data = "update=" + sparql
-        response = Rest.sendRequest(endpoint,:post,key,secret,data,headers)
-    end
-  
-    # Method sends the file to the configured triple store endpoint.
-    #
-    # * *Args*    :
-    #   - +file+ -> The file. Full path.
-    # * *Returns* :
-    #   - The HTTP response object
-    def CRUD.file (file)
-        db = SEMANTIC_DB_CONFIG['dbType']
-        key = SEMANTIC_DB_CONFIG['apiKey'] 
-        secret = SEMANTIC_DB_CONFIG['secret']
-        endpoint = SEMANTIC_DB_CONFIG['fileEndpoint']
-        headers = {"Content-type" => "multipart/form-data"}
-        data = { "filename" => file}
-        jsonData = data.to_json
-        response = Rest.sendFile(endpoint,:post,key,secret,jsonData,file,headers)
-    end
-  
+  # Update. Sends the sparql update to the configured triple store endpoint.
+  #
+  # @param [String] sparql the sparql query
+  # @return [Object] The HTTP response object in XML
+  def CRUD.update (sparql)
+    headers = {"Content-type" => "application/x-www-form-urlencoded"}
+    response = Rest.sendRequest(endpoint(:update), :post, api_key, api_secret, "update=#{sparql}", headers)
+  end
+
+  # Method 
+  # File. Uploads the file to the configured triple store endpoint.
+  #
+  # @param [String] sparql the sparql query
+  # @return [Object] The HTTP response object in XML
+  def CRUD.file (file)
+    headers = {"Content-type" => "multipart/form-data"}
+    response = Rest.sendFile(endpoint(:upload), :post, api_key, api_secret, {"filename" => file}.to_json, file, headers)
+  end
+
+private
+
+  # Get the end point
+  def self.endpoint(type)
+    # protocol :// host_name : port_name / dataset / endpoint_type
+    return "#{ENV["SEMANTIC_DB_PROTOCOL"]}://#{ENV["SEMANTIC_DB_HOST"]}:#{ENV["SEMANTIC_DB_PORT"]}/#{ENV["SEMANTIC_DB_DATASET"]}/#{type}"
+  end
+
+  # Get the API key
+  def self.api_key
+    return ENV["SEMANTIC_DB_API_KEY"]
+  end
+
+  # Het the API password
+  def self.api_secret
+    return ENV["SEMANTIC_DB_API_SECRET"]
+  end
+   
 end
 
     
