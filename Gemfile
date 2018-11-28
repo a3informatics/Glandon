@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.10'
 
 # Use PG as the database for Active Record
 gem 'pg', '~> 0.21.0'
@@ -21,7 +21,7 @@ gem 'typhoeus'
 gem 'diffy'
 
 # XML
-gem 'nokogiri', '~> 1.6.6.2'
+gem 'nokogiri', '~> 1.8.5'
 
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
@@ -66,10 +66,10 @@ gem 'pundit'
 gem 'redcarpet'
 
 # Excel support
-gem 'roo', '~> 2.4.0'
+gem 'roo', '~> 2.7.0'
 
 # ODM support
-gem 'odm', '~> 1.0.3', :git => 'git@github.com:daveih/odm.git'
+gem 'odm', "1.0.5", :git => 'git@github.com:daveih/odm.git'
 gem "font-awesome-rails"
 
 # SAS support
@@ -96,6 +96,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem "teaspoon-mocha"
+  gem 'thin'
 end
 
 group :test do
