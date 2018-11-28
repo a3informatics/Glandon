@@ -201,9 +201,9 @@ describe SdtmUserDomain do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     full_path = item.to_xpt
     filename = File.basename(full_path)
-  #copy_file_from_public_files("exports", filename, sub_dir)
+  #Xcopy_file_from_public_files("test", filename, sub_dir)
     expected = read_text_file_2(sub_dir, filename)
-    result = read_public_text_file("exports", filename)
+    result = read_public_text_file("test", filename)
     expect(result).to eq(expected)
   end
   
