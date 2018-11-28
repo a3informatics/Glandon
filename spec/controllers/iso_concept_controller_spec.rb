@@ -95,7 +95,15 @@ describe IsoConceptController do
       hash = JSON.parse(response.body, symbolize_names: true)
     #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_2.yaml")
       results = read_yaml_file(sub_dir, "iso_concept_controller_example_2.yaml")
-      expect(hash).to match(results)
+      expect(hash).to hash_equal(results)
+    end
+
+    it "allows impact to be assessed, exception" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :impact_next, {id: "", namespace: ""}
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      expect(response.body).to eq("{\"item\":null,\"children\":[]}")
     end
 
     it "allows cross references to be found" do

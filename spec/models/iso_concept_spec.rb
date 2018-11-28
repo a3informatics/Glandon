@@ -236,6 +236,10 @@ describe IsoConcept do
 			expect(concept.uri.to_s).to eq("http://www.assero.co.uk/X/V1#F-AE_G1_I2")   
 		end
 
+    it "raises exception if item not found" do
+      expect{IsoConcept.find("", "")}.to raise_error("Failed to find # in IsoConcept object.")   
+    end
+
 		it "allows for the type fragment to be returned" do
 			concept = IsoConcept.find("F-AE_G1_I2", "http://www.assero.co.uk/X/V1")
 			expect(concept.rdf_type_fragment).to eq("Question")   

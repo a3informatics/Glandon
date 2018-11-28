@@ -3,6 +3,7 @@ require 'rails_helper'
 describe BiomedicalConcept do
   
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models"
@@ -156,7 +157,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
   #write_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_to_json.yaml")
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "creates an object based on a template" do
@@ -168,7 +169,7 @@ it "allows a BC to be found" do
     expected = read_yaml_file(sub_dir, "bc_simple.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "creates an object based on a template, template missing, I" do
@@ -194,7 +195,7 @@ it "allows a BC to be found" do
     expected = read_yaml_file(sub_dir, "bc_clone.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "creates an object based on the standard operation JSON" do
@@ -252,15 +253,18 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.from_json(json)
   #write_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_from_json.yaml")
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "allows an object to be exported as SPARQL" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.to_sparql_v2
   #write_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
-    expected = read_text_file_2(sub_dir, "bc_sparql.txt")
-    expect(result.to_s).to eq(expected)
+    write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "bc_sparql_result_1.txt")
+    actual = read_sparql_file("bc_sparql_result_1.txt")
+    expected = read_sparql_file("bc_sparql.txt")
+    expect(actual).to sparql_results_equal(expected)
+    delete_data_file(sub_dir, "bc_sparql_result_1.txt")
   end
 
   it "get the properties, no references" do
@@ -268,7 +272,7 @@ it "allows a BC to be found" do
     result = item.get_properties(false)
   #write_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_no_ref.yaml")
-    expect(result).to eq(expected)
+    expect(result).to hash_equal(expected)
   end
     
   it "get the properties with references" do
@@ -276,7 +280,7 @@ it "allows a BC to be found" do
     result = item.get_properties(true)
   #write_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
-    expect(result).to eq(expected)
+    expect(result).to hash_equal(expected)
   end
     
   it "get unique references" do
@@ -285,7 +289,7 @@ it "allows a BC to be found" do
     result = BiomedicalConcept.get_unique_references(items)
   #write_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
-    expect(result).to eq(expected)
+    expect(result).to hash_equal(expected)
   end
 
   it "returns domains linked, single" do
