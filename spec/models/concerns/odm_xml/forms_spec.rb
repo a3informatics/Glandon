@@ -124,6 +124,20 @@ describe OdmXml::Forms do
     expect(result).to eq(expected)
   end
 
+  it "gets form, another DM-ish example" do
+    full_path = test_file_path(sub_dir, "odm_4.xml")
+    object = OdmXml::Forms.new(full_path)
+    expect(object.errors.count).to eq(0)
+    item = object.form("f.screenid")
+    expect(item).to_not be_nil
+    result = item.to_json
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_6.yaml")
+    expected = read_yaml_file(sub_dir, "form_expected_6.yaml")
+    expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
+    expected[:creation_date] = result[:creation_date]
+    expect(result).to eq(expected)
+  end
+
 	it "reads the odm fle, error I" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = OdmXml::Forms.new(full_path)

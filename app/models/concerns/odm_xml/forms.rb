@@ -235,12 +235,14 @@ class OdmXml::Forms < OdmXml
     def sas_format_cl(node, question, cli_nodes)
       return false if node.attributes["SASFormatName"].nil?
       text = node.attributes["SASFormatName"].value
+      text = text.gsub(/[^0-9A-Za-z]/, "") # Remove any non-alphanumeric, e.g. $
+      text = text.upcase # Make sure it has a chance of matching 
       return find_cl({identifier: text}, question, cli_nodes) if NciThesaurusUtility.c_code?(text)      
       return find_cl({notation: text}, question, cli_nodes)
     end
 
     def oid_cl(node, question, cli_nodes)
-      return find_cl({notation: OdmXml.clean_identifier(node.attributes["OID"].value)}, question,  cli_nodes)
+      return find_cl({notation: OdmXml.clean_identifier(node.attributes["OID"].value)}, question, cli_nodes)
     end
 
     def find_cl(params, question, cli_nodes)

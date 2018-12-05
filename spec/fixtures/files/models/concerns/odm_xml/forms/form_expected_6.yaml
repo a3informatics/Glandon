@@ -1,0 +1,450 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Patient Identification
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2018-12-05T10:34:37+00:00'
+:last_changed_date: '2018-12-05T10:34:37+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: F SCREENID
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Screening, Informed Consent, DNA Informed consent
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Site
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '4'
+    :question_text: Site
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Country
+    :extension_properties: []
+    :ordinal: 2
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '3'
+    :question_text: Country
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Screening number
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '10'
+    :question_text: Screening number
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: What was the date the patient signed informed consent?
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: What was the date the patient signed informed consent?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Version of informed consent form
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: float
+    :format: '4.2'
+    :question_text: Version of informed consent form
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Informed Consent Form Version Date
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Informed consent form version date
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DNA Informed Consent
+    :extension_properties: []
+    :ordinal: 7
+    :note: |
+      * No entries found for code list, parameters ['notation=YN'].
+      * No entries found for code list, parameters ['notation=CYN'].
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Did the patient sign DNA informed consent form?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Version of DNA Consent Form
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: float
+    :format: '4.2'
+    :question_text: Version of DNA consent form
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DNA Consent Form Version Date
+    :extension_properties: []
+    :ordinal: 9
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: DNA consent form version date
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: What was the first day of screening?
+    :extension_properties: []
+    :ordinal: 10
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: What was the first day of screening?
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Demographics
+  :extension_properties: []
+  :ordinal: 2
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Date of birth
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Date of birth
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Birth month
+    :extension_properties: []
+    :ordinal: 2
+    :note: |
+      * No entries found for code list, parameters ['notation=MTH'].
+      * No entries found for code list, parameters ['notation=CMONTH'].
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '2'
+    :question_text: Start month
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Birth year
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '4'
+    :question_text: Birth year
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Age
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '3'
+    :question_text: Age
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Age units
+    :extension_properties: []
+    :ordinal: 5
+    :note: "* Multiple entries [C29848,C29848] found for parameters ['notation=YEARS'],
+      ignored.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '20'
+    :question_text: Age units
+    :mapping: "[NO MAPPING]"
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Sex
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Sex
+    :mapping: "[NO MAPPING]"
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C20197
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66731_C16576
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Ethnicity
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '35'
+    :question_text: Ethnicity
+    :mapping: "[NO MAPPING]"
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C17459
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C66790_C41222
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Race
+    :extension_properties: []
+    :ordinal: 8
+    :note: "* No entries found in code list 'C74457' for item with submission value:
+      'OTHER' or preferred term: 'OTHER'.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: Race
+    :mapping: "[NO MAPPING]"
+    :children:
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 1
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41261
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 2
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C16352
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 3
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41219
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 4
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41260
+    - :type: http://www.assero.co.uk/BusinessOperational#Reference
+      :id: ''
+      :namespace: ''
+      :label: ''
+      :extension_properties: []
+      :enabled: true
+      :optional: false
+      :ordinal: 5
+      :local_label: ''
+      :subject_ref:
+        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
+        :id: CLI-C74457_C41259
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: Other race
+    :extension_properties: []
+    :ordinal: 9
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Other race, specify
+    :mapping: "[NO MAPPING]"
+    :children: []
+  :repeating: false
+  :bc_ref: {}
