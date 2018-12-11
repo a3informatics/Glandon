@@ -55,7 +55,7 @@ describe Excel do
 
   end
 
-  class ParentClass
+  class ParentClass < IsoManaged
     extend ActiveModel::Naming
     attr_accessor :label
     attr_accessor :children

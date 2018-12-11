@@ -2,7 +2,13 @@ require 'rails_helper'
 
 describe SparqlUpdateV2 do
 	
-	it "allows for the class to be created" do
+	include DataHelpers
+
+  before :each do
+    clear_triple_store
+  end
+
+  it "allows for the class to be created" do
 		sparql = SparqlUpdateV2.new()
     expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_set\":[],\"prefix_used\":{},\"triples\":\"\"}")
 	end
@@ -224,6 +230,38 @@ describe SparqlUpdateV2 do
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
     expect(sparql.update(s_uri)).to eq(result)
+  end
+
+  it "encodes updates and loads and reads back" do
+    sparql = SparqlUpdateV2.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
+    sparql_result = 
+"<html>
+<head>
+</head>
+<body>
+<h1>Success</h1>
+<p>
+Update succeeded
+</p>
+</body>
+</html>\n"
+    expect(CRUD.update(sparql.to_s).body).to eq(sparql_result)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      pre = ModelUtility.getValue('p', true, node)
+      next if pre != "http://www.example.com/default#ooo4"
+      obj = ModelUtility.getValue('o', false, node)
+      expect(obj).to eq("+/%aaa&\n\r\t")
+    end
   end
 
 end

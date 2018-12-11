@@ -54,7 +54,7 @@ describe Excel::TabularReader do
 
   end
 
-  class ParentClass < IsoManaged
+  class TrsParentClass < IsoManaged
 
     attr_accessor :children
 

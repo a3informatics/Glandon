@@ -23,7 +23,8 @@ module Glandon
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.initialize_on_precompile = false
-    
+    config.assets.check_precompiled_asset = false # Needed for Teaspoon.
+
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'

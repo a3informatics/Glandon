@@ -47,10 +47,11 @@ class AdamIg < TabularStandard
   
   # To SPARQL
   #
-  # @param [SparqlUpdateV2] sparql the SPARQL object
   # @return [UriV2] The URI
-  def to_sparql_v2(sparql)
+  def to_sparql_v2
+    sparql = SparqlUpdateV2.new
     super(sparql, C_SCHEMA_PREFIX)
+    return sparql
   end
 
   # From JSON

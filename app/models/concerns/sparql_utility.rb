@@ -1,13 +1,13 @@
 module SparqlUtility
 
-  C_CLASS_NAME = "SparqlUtility"
+  C_CLASS_NAME = self.name
 
-  # Method replace special characters in the query string.
+  # Replace Special Characters. Replace special characters in the query string.
   #
   # @param text [string] The query string
   # @return [stirng] Updated string
   def self.replace_special_chars(text)
-    # TODO: Compare with ApplicationController::to_turtle 
+=begin    
     text.gsub!("\r", "<LINEFEED>")
     text.gsub!("\n", "<CARRIAGERETURN>")
     text.gsub!("&", "%26")
@@ -17,6 +17,12 @@ module SparqlUtility
     text.gsub!("<CARRIAGERETURN>", "\\n")
     text.gsub!("\"", "\\\"")
     return text
+=end
+    text.gsub!("\n", "\\n")
+    text.gsub!("\r", "\\r")
+    text.gsub!("\t", "\\t")
+    text.gsub!("\"", "\\\"")
+    return CGI.escape(text)
   end
 
 end
