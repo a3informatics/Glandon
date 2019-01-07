@@ -419,6 +419,7 @@ private
         ?si isoI:identifier ?bcIdent .     
         ?var bd:name ?sdtmVarName .              
         ?dataset bd:includesColumn ?var .              
+        ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} .              
         ?dataset bd:prefix ?domain .              
         ?dataset bd:includesColumn ?topic_var .              
         ?topic_var bd:classifiedAs ?classification .              
@@ -461,7 +462,8 @@ private
       "SELECT DISTINCT ?var ?domain ?item WHERE \n" +       
       "{ \n" +         
       "  ?col bd:name ?var .  \n" +        
-      "  ?dataset bd:includesColumn ?col . \n" +         
+      "  ?dataset bd:includesColumn ?col . \n" + 
+      "  ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} . \n" +                    
       "  ?dataset bd:prefix ?domain . \n " +              
       #"  ?dataset rdfs:label ?domain . \n" +         
       "  { \n" +           

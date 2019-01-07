@@ -60,6 +60,12 @@
   rdfs:subClassOf :Tabulation ;
   skos:definition "A domain as defined within an implementation guide."^^xsd:string ;
 .
+:IgDataset
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide Dataset"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A dataset as defined within an implementation guide."^^xsd:string ;
+.
 :IgVariable
   rdf:type owl:Class ;
   rdfs:label "Implementation Guide Variable"^^xsd:string ;
@@ -71,6 +77,12 @@
   rdfs:label "User Domain"^^xsd:string ;
   rdfs:subClassOf :Tabulation ;
   skos:definition "A domain as deployed by a user."^^xsd:string ;
+.
+:UserDataset
+  rdf:type owl:Class ;
+  rdfs:label "User Dataset"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A dataset as deployed by a user."^^xsd:string ;
 .
 :UserVariable
   rdf:type owl:Class ;

@@ -17,7 +17,7 @@ class AdamIgDataset < Tabular
   C_SCHEMA_PREFIX = UriManagement::C_BD
   C_INSTANCE_PREFIX = UriManagement::C_MDR_IGD
   C_CID_PREFIX = AdamIg::C_CID_PREFIX
-  C_RDF_TYPE = "IgDomain"
+  C_RDF_TYPE = "IgDataset"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
