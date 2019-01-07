@@ -876,14 +876,23 @@ describe FieldValidation do
   it "checks a valid semantic version" do
     object = IsoConcept.new
     expect(FieldValidation.valid_semantic_version?(:test, "1.1.1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
     expect(FieldValidation.valid_semantic_version?(:test, "1.1", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
     expect(FieldValidation.valid_semantic_version?(:test, "1111.111", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
     expect(FieldValidation.valid_semantic_version?(:test, "1111.111.222", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
   end
 
   it "detects an invalid semantic version" do
     object = IsoConcept.new
+    expect(FieldValidation.valid_semantic_version?(:test, "", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    object = IsoConcept.new
     expect(FieldValidation.valid_semantic_version?(:test, "1", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
+    object = IsoConcept.new
     expect(FieldValidation.valid_semantic_version?(:test, "A", object)).to eq(false)
     expect(FieldValidation.valid_semantic_version?(:test, "1.A", object)).to eq(false)
     expect(FieldValidation.valid_semantic_version?(:test, "1.1.A", object)).to eq(false)
