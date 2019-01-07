@@ -6,16 +6,16 @@
   <div class="panel-body">
     <%= form_for @model, url: create_path do |f| %>
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-1">
           <div class="form-group">
             <%= label_tag :version, "Version:" %><br/>
-            <%= text_field_tag "imports[version]", "#{@next_version}", class: "form-control" %>
+            <%= text_field_tag "imports[version]", "#{@next_version}", class: "form-control", readonly: true %>
           </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <div class="form-group">
-            <%= label_tag :version_label, "Version Label:" %><br/>
-            <%= text_field_tag "imports[version_label]", "", class: "form-control" %>
+            <%= label_tag :semantic_version, "Semantic Version:" %><br/>
+            <%= text_field_tag "imports[semantic_version]", "", class: "form-control" %>
           </div>
         </div>
         <div class="col-md-2">

@@ -26,4 +26,8 @@ class Import::AdamIg < Import::Rectangular
     ::AdamIg::C_IDENTIFIER
   end
 
+  def self.next_version
+    ::AdamIg.next_version
+  end
+
 end

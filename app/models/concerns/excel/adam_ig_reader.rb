@@ -14,8 +14,8 @@ class Excel::AdamIgReader < Excel::TabularReader
   # @option [String] :date the data of issue
   # @return [Hash] Import hash containing the import items
   def read(params)
-    super(AdamIg, {identifier: AdamIg::C_IDENTIFIER, label: "ADaM IG #{params[:date]}", semantic_version: params[:version_label], 
-      version_label: params[:version_label], version: params[:version], date: params[:date],
+    super(AdamIg, {identifier: AdamIg::C_IDENTIFIER, label: "ADaM IG #{params[:date]}", semantic_version: params[:semantic_version], 
+      version_label: params[:semantic_version], version: params[:version], date: params[:date],
       excel: {import: :adam_ig, sheet: :main}})
   end
 

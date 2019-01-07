@@ -42,7 +42,11 @@ class Imports::BaseController < ApplicationController
 private
  
   def new_model
-    "Import::#{controller_name.classify}".constantize.new # They may be some better ways of doing this but it works.
+    klass.new
+  end
+
+  def klass
+    "Import::#{controller_name.classify}".constantize # They may be some better ways of doing this but it works.
   end
 
   def authenticate_and_authorized
@@ -67,22 +71,13 @@ private
     return params if params.key?(:filename)
     params[:filename] = get_filename(params)
     return params
+  rescue => e
+    return params
   end
 
   def get_filename(params)
     params[:files].reject!(&:blank?)
     return params[:files].first
-  end
-
-  def no_file_error
-    flash[:error] = "A file must be selected."
-    @items = []
-    respond_to do |format|
-      format.html 
-      format.json do
-        render json: { data: @items }
-      end
-    end
   end
 
 end

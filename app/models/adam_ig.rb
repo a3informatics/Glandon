@@ -37,6 +37,13 @@ class AdamIg < TabularStandard
     return super({identifier: C_IDENTIFIER, scope_id: @@cdiscNamespace.id})
   end
 
+  # Get the next version
+  #
+  # @return [integet] the integer version
+  def self.next_version
+    return super(C_IDENTIFIER, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+  end
+
   def self.child_klass
     ::AdamIgDataset
   end
@@ -72,15 +79,5 @@ class AdamIg < TabularStandard
   def children_from_triples
     self.references = OperationalReferenceV2.find_for_parent(self.triples, self.get_links(C_SCHEMA_PREFIX, "includesTabulation"))
   end      
-
-private
-
-#  def self.import_params_valid?(params, object)
-#    result1 = FieldValidation::valid_version?(:version, params[:version], object)
-#    result2 = FieldValidation::valid_date?(:date, params[:date], object)
-#    result3 = FieldValidation::valid_files?(:files, params[:files], object)
-#    result4 = FieldValidation::valid_label?(:version_label, params[:version_label], object)
-#    return result1 && result2 && result3 && result4
-#  end
 
 end
