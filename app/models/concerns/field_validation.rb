@@ -261,6 +261,20 @@ module FieldValidation
     return false
   end
 
+  # Valid Semantic Version
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_semantic_version?(symbol, value, object)
+    return false if value.empty?
+    result = value.match /^\A^\d+.\d+(\.\d+)?\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
+  end
+
   # Valid Generic Datatype
   #
   # @param symbol [String] The item being checked
