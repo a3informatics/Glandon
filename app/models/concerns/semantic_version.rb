@@ -52,6 +52,16 @@ class SemanticVersion
     @patch = 0
   end
   
+  # >
+  #
+  # @return [Boolean] true if greated
+  def >(other)
+    return true if self.major > other.major
+    return true if self.minor > other.minor
+    return true if self.patch > other.patch
+    return false
+  end
+  
   # To String
   #
   # @param type [Symbol] either :full for all three fields or :partial for majoe and minor only.

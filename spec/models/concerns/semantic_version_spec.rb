@@ -108,4 +108,20 @@ describe SemanticVersion do
     expect(result.to_s(:partial)).to eq("1.2")
   end
 
+  it "checks greater than" do
+    a = SemanticVersion.from_s("2.2.3")
+    b = SemanticVersion.from_s("2.2.4")
+    expect(b>a).to eq(true)
+    b = SemanticVersion.from_s("2.3.3")
+    expect(b>a).to eq(true)
+    b = SemanticVersion.from_s("3.2.3")
+    expect(b>a).to eq(true)
+    b = SemanticVersion.from_s("2.2.2")
+    expect(b>a).to eq(false)
+    b = SemanticVersion.from_s("2.1.3")
+    expect(b>a).to eq(false)
+    b = SemanticVersion.from_s("1.2.3")
+    expect(b>a).to eq(false)
+  end
+
 end
