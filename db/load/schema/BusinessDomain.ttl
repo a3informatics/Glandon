@@ -122,9 +122,21 @@
 .
 :ImplementationGuide
   rdf:type owl:Class ;
-  rdfs:label "Implementaiton Guide"^^xsd:string ;
+  rdfs:label "Implementation Guide"^^xsd:string ;
   rdfs:subClassOf :StandardDocument ;
-  skos:definition "A document published as a implementaiton guide."^^xsd:string ;
+  skos:definition "A document published as a implementation guide."^^xsd:string ;
+.
+:ADaMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "ADaM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a SDTM implementation guide."^^xsd:string ;
+.
+:SDTMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a implementation guide."^^xsd:string ;
 .
 :TAGuide
   rdf:type owl:Class ;

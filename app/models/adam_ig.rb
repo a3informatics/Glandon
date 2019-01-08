@@ -4,8 +4,8 @@ class AdamIg < TabularStandard
   C_CLASS_NAME = self.name
   C_SCHEMA_PREFIX = UriManagement::C_BD
   #C_INSTANCE_PREFIX = UriManagement::C_MDR_M
-  C_RDF_TYPE = "ImplementationGuide"
-  C_CID_PREFIX = "IG"
+  C_RDF_TYPE = "ADaMImplementationGuide"
+  C_CID_PREFIX = "AIG"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
   #C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_IDENTIFIER = "ADAM IG"

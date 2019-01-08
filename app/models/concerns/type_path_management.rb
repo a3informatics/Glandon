@@ -27,7 +27,7 @@ module TypePathManagement
       Form::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
       SdtmModel::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_models_path, strong: "sdtm_model" },
       SdtmIg::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_igs_path, strong: "sdtm_ig" },
-      #SdtmIgDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_ig_domains_path, strong: "sdtm_ig_domain" },
+      AdamIg::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_adam_igs_path, strong: "adam_ig" },
       SdtmUserDomain::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_sdtm_user_domains_path, strong: "sdtm_user_domain" }
     }
 
@@ -37,7 +37,6 @@ module TypePathManagement
   # @return [String] the class
   def self.type_to_class(rdf_type)
     return @@type_to_class[rdf_type][:klass] if @@type_to_class.has_key?(rdf_type)
-  byebug
     raise Exceptions::ApplicationLogicError.new(message: "Class for #{rdf_type} not found in #{C_CLASS_NAME} object.")
   end
 
