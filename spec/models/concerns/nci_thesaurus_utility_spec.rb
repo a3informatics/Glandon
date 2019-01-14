@@ -2,8 +2,16 @@ require 'rails_helper'
 
 describe NciThesaurusUtility do
 	
+  it "checks valid 2 digit C Code" do
+    expect(NciThesaurusUtility.c_code?("C12")).to eq(false)
+  end
+
+  it "checks valid 3 digit C Code" do
+    expect(NciThesaurusUtility.c_code?("C123")).to eq(true)
+  end
+
   it "checks valid 4 digit C Code" do
-    expect(NciThesaurusUtility.c_code?("C1234")).to eq(false)
+    expect(NciThesaurusUtility.c_code?("C1234")).to eq(true)
   end
 
 	it "checks valid 5 digit C Code" do

@@ -39,8 +39,8 @@ class Excel
   # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
   # @return [Boolean] true if sheet check pass, false otherwise with errors added.
   def check_sheet(import, sheet)
-    info = @engine.sheet_info(import, sheet)
     headers = []
+    info = select_sheet(import, sheet)
     @workbook.row(1).each_with_index {|value, i| headers[i] = value}
     if headers.length != info[:columns].length
       @errors.add(:base, "#{info[:label]} sheet in the excel file, incorrect column count, indicates format error.")
@@ -53,7 +53,9 @@ class Excel
     end 
     return true
   rescue => e
-    @errors.add(:base, "Unexpected exception '#{e}', possibly an empty sheet for import #{:import} using sheet #{:sheet}.")
+    msg = "Exception raised checking worksheet for import #{:import} using sheet #{:sheet}."
+    ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
+    @errors.add(:base, msg)
     return false
   end       
 
@@ -64,6 +66,15 @@ class Excel
   # @return [Void] no return
   def process_sheet(import, sheet)
     @engine.process(import, sheet)
+  end
+
+private
+
+  # Select a sheet and return the sheet info
+  def select_sheet(import, sheet)
+    info = @engine.sheet_info(import, sheet)
+    @workbook.sheets.each {|s| @workbook.default_sheet = s if s.include?(info[:label])}
+    return info
   end
 
 end    

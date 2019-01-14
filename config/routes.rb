@@ -163,6 +163,7 @@ Rails.application.routes.draw do
   namespace :imports do
     resources :adam_models, :only => [:new, :create]
     resources :adam_igs, :only => [:new, :create]
+    resources :cdisc_terms, :only => [:new, :create]
     resources :crfs, :only => [:new, :create] do
       collection do
         get :items

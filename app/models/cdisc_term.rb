@@ -31,6 +31,17 @@ class CdiscTerm < Thesaurus
     end
   end
 
+  # Get the next version
+  #
+  # @return [integet] the integer version
+  def self.next_version
+    return super(C_IDENTIFIER, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+  end
+
+  def self.child_klass
+    ::CdiscCl
+  end
+
   # Find
   #
   # @param id [string] The id of the form.
@@ -170,7 +181,11 @@ class CdiscTerm < Thesaurus
     end
     return { :object => object, :job => job }
   end
-  
+
+  def self.build(params)
+    super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+  end
+    
   # Initiate background job to create cross references
   #
   # @param params [Hash] The parameters

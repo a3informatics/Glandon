@@ -1,4 +1,4 @@
-# AdamModel. Class for processing ADaM Model Excel Files
+# Excel Tabular Reader. Class for processing Excel Files
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
@@ -26,9 +26,13 @@ class Excel::TabularReader < Excel
     results[:parent] = {:order => 1, :instance => instance}
     check_sheet(params[:excel][:import], params[:excel][:sheet])
     process_sheet(params[:excel][:import], params[:excel][:sheet])
-    self.engine.parent_set.each do |key, item| 
-      results[:children] << {order: ordinal, instance: child(item, instance, ordinal)}
-      ordinal += 1
+    if klass.child_klass.is_a? IsoManaged
+      self.engine.parent_set.each do |key, item| 
+        results[:children] << {order: ordinal, instance: child(item, instance, ordinal)}
+        ordinal += 1
+      end
+    else
+      self.engine.parent_set.each {|key, item| instance[:managed_item][:children] << item.to_hash}
     end
     results[:classifications] = self.engine.classifications
     return results

@@ -117,21 +117,4 @@ class TabularStandard < IsoManaged
     super
   end
   
-  # Import Params Valid. Check the import parameters.
-  #
-  # @params [Hash] params a hash of parameters
-  # @option params [String] :version the version, integer
-  # @option params [String] :date, a valid date
-  # @option params [String] :files, at least one file
-  # @option params [String] :semantic_version, a valid semantic version
-  # @return [Errors] active record errors class
-  def self.import_params_valid?(params)
-    object = self.new
-    FieldValidation::valid_version?(:version, params[:version], object)
-    FieldValidation::valid_date?(:date, params[:date], object)
-    FieldValidation::valid_files?(:files, params[:files], object)
-    FieldValidation::valid_semantic_version?(:semantic_version, params[:semantic_version], object)
-    return object
-  end
-
 end

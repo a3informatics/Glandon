@@ -40,21 +40,22 @@ class Excel::Engine
         col = col_index + 1
         column[:actions].each do |action| 
           begin
+            next unless process_action?(action[:condition], row)
             action_object = action[:object].to_sym
             action_method = action[:method].to_sym
-            params = [row, col]
-            action_object == :parent ? params << parent : params << child
-            params << action[:map]
-            params << action[:klass] if !action[:klass].blank?
-            params << action[:property] if !action[:property].blank?
+            params = action.slice(:map, :klass, :property, :can_be_empty)
+            params.merge!({row: row, col: col})
+            action_object == :parent ? params[:object] = parent : params[:object] = child
             if action_method == :create_parent
-              self.send(action[:method], *params) {|result| parent = result}
+              create_parent(params) {|result| parent = result}
             elsif action_method == :create_child
-              self.send(action[:method], *params) {|result| child = result; parent.children << result}
+              create_child(params) {|result| child = result; parent.children << result}
             elsif action_method == :ordinal
-              params[2].send("#{action[:property]}=", parent.children.count)
+              params[:object].send("#{action[:property]}=", parent.children.count)
+            elsif action_method == :c_code?
+              c_code?(row, col)
             else
-              self.send(action[:method], *params)
+              self.send(action[:method], params)
             end
           rescue => e
             @errors.add(:base, "Process error #{e} when processing action '#{action}' on row #{row} column #{col}.")
@@ -62,6 +63,38 @@ class Excel::Engine
         end
       end
     end
+  end
+
+  # Process Action?
+  #
+  # @param [Hash] condition the condition
+  # @option condition [String] :column the column on which the condition is to be tested
+  # @option condition [String] :method the method testing the condition
+  # @param [Integer] row the cell row on which the condition is being tested
+  # @return [Boolean] true if the condition is met, false otherwise
+  def process_action?(condition, row)
+    return true if condition.blank?
+    return self.send(condition[:method], {row: row, col: condition[:column]})
+  end
+
+  # Column Blank?
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @return [Boolean] true if blank/empty, false otherwise
+  def column_blank?(params)
+    check_params(__method__.to_s, params, [:row, :col])
+    return cell_empty?(params[:row], params[:col])
+  end
+
+  # Column Not Blank?
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @return [Boolean] true if not blank/empty, false otherwise
+  def column_not_blank?(params)
+    check_params(__method__.to_s, params, [:row, :col])
+    return !column_blank?(params)
   end
 
   # Create Parent
@@ -72,11 +105,11 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] klass the class name for the object being created
   # @return [Void] no return
-  def create_parent(row, col, object, map, klass)
-    return if !check_create_map(row, col, map)
-    identifier = check_mapped(row, col, map)
+  def create_parent(params)
+    check_params(__method__.to_s, params, [:row, :col, :map, :klass])
+    identifier = params[:map].any? ? check_mapped(params[:row], params[:col], params[:map]) : check_value(params[:row], params[:col])
     return if identifier.blank?
-    result = parent_create(klass.constantize, identifier)
+    result = parent_create(params[:klass].constantize, identifier)
     yield(result) if block_given?
   end
 
@@ -88,8 +121,9 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] klass the class name for the object being created
   # @return [Void] no return
-  def create_child(row, col, object, map, klass)
-    result = klass.constantize.new
+  def create_child(params)
+    check_params(__method__.to_s, params, [:row, :col, :klass])
+    result = params[:klass].constantize.new
     yield(result) if block_given?
   end
 
@@ -100,10 +134,12 @@ class Excel::Engine
   # @param [Object] object the object in which the property is being set
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] property the name of the property
+  # @param [Boolean] can_be_empty if true property can be blank.
   # @return [Void] no return
-  def set_property(row, col, object, map, property)
-    x = map.empty? ? check_value(row, col) : check_mapped(row, col, map)
-    object.instance_variable_set("@#{property}", x)
+  def set_property(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty])
+    x = params[:map].empty? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
+    params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
   # Core Classification
@@ -114,9 +150,11 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] property the name of the property
   # @return [Void] no return
-  def core_classification(row, col, object, map, property)
+  def core_classification(params)
+    check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
     @classifications[:core] = true
-   object.instance_variable_set("@#{property}", object_create(SdtmModelCompliance, check_mapped(row, col, map)))
+    params[:object].instance_variable_set("@#{params[:property]}", object_create(SdtmModelCompliance, 
+      check_mapped(params[:row], params[:col], params[:map])))
   end
 
   # Datatype Classification
@@ -127,9 +165,11 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] property the name of the property
   # @return [Void] no return
-  def datatype_classification(row, col, object, map, property)
+  def datatype_classification(params)
+    check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
     @classifications[:datatype] = true
-    object.instance_variable_set("@#{property}", object_create(SdtmModelDatatype, check_mapped(row, col, map)))
+    params[:object].instance_variable_set("@#{params[:property]}", object_create(SdtmModelDatatype, 
+      check_mapped(params[:row], params[:col], params[:map])))
   end
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped
@@ -140,8 +180,9 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] property the name of the property
   # @return [Void] no return
-  def ct_reference(row, col, object, map, property)
-    object.instance_variable_set("@#{property}", check_ct(row, col))
+  def ct_reference(params)
+    check_params(__method__.to_s, params, [:row, :col, :property, :object])
+    params[:object].instance_variable_set("@#{params[:property]}", check_ct(params[:row], params[:col]))
   end
 
   # CT Other. Return text that is not a CT reference
@@ -152,9 +193,10 @@ class Excel::Engine
   # @param [Hash] map the mapping from spreadsheet values to internal values
   # @param [String] property the name of the property
   # @return [Void] no return
-  def ct_other(row, col, object, map, property)
-    value = check_ct(row, col).empty? ? check_value(row, col, true) : ""
-    object.instance_variable_set("@#{property}", value)
+  def ct_other(params)
+    check_params(__method__.to_s, params, [:row, :col, :property, :object])
+    value = check_ct(params[:row], params[:col]).empty? ? check_value(params[:row], params[:col], true) : ""
+    params[:object].instance_variable_set("@#{params[:property]}", value)
   end
 
   # Check Value
@@ -170,6 +212,15 @@ class Excel::Engine
     return "#{value}".strip
   end
 
+  # Cell Empty
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @return [Boolean] true if blank
+  def cell_empty?(row, col)
+    return @workbook.cell(row, col).blank?
+  end
+
   # Sheet Info
   #
   # @param [Symbol] import the import type
@@ -183,6 +234,17 @@ class Excel::Engine
  
 private
 
+  # Check params
+  def check_params(method, params, args)
+    missing = false
+    args.all? do |a| 
+      next if params.key?(a)
+      @errors.add(:base, "Argument '#{a}' missing from method #{method} and is required.")
+      missing = true
+    end
+    raise Errors::ApplicationLogicError.new(message) if missing
+  end
+
   # Check CT cell
   def check_ct(row, col)
     temp = check_value(row, col, true)
@@ -192,6 +254,13 @@ private
     return temp
   rescue => e 
     return ""
+  end
+
+  # Check C Code
+  def c_code?(row, col)
+    value = check_value(row, col)
+    return if NciThesaurusUtility.c_code?(value)
+    @errors.add(:base, "C Code '#{value}' error detected in row #{row} column #{col}.")
   end
 
   # Check mapped cell
@@ -211,18 +280,11 @@ private
     return item
   end
 
-  # Check create map
-  def check_create_map(row, col, map)
-    return true if map.any?
-    @errors.add(:base, "No create map detected in row #{row} column #{col}.")
-    return false
-  end
-
   # Find or build an object and set label
   def parent_create(klass, identifier)
     return @parent_set[identifier] if @parent_set.has_key?(identifier)
     item = klass.new
-    item.scopedIdentifier.identifier = identifier
+    item.scopedIdentifier.identifier = identifier if item.is_a? IsoManaged
     @parent_set[identifier] = item
     return item
   end

@@ -177,4 +177,32 @@ class CdiscCl < ThesaurusConcept
     return results
   end
 
+  def to_json
+    json = super
+    json[:extensible] = self.extensible
+    return json
+  end
+
+  alias :to_hash :to_json
+
+  def self.from_json(json)
+    object = super(json)
+    object.extensible = json[:extensible].to_bool
+    return object
+  end
+
+  class << self
+    alias :from_hash :from_json
+  end
+
+    # To SPARQL
+  #
+  # @return [object] The SPARQL object created.
+  def to_sparql_v2(parent_uri, sparql)
+    super(sparql, C_SCHEMA_PREFIX)
+    subject = {:uri => self.uri}
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_25964, :id => "extensible"}, {:literal => "#{self.extensible}", :primitive_type => "boolean"})
+    return self.uri
+  end
+
 end

@@ -24,7 +24,7 @@ class Import::Rectangular < Import
     save_exception(e, msg)
     params[:job].exception(msg, e)
   end 
-  handle_asynchronously :import unless Rails.env.test?
+  #handle_asynchronously :import unless Rails.env.test?
 
 private
 
@@ -33,14 +33,16 @@ private
     results = {parent: nil, children: []}
     parent = self.parent_klass.build(json[:parent][:instance])
     results[:parent] = parent 
-    json[:children].each do |child|
-      child = self.parent_klass.child_klass.build(child[:instance])
-      results[:children] << child
-      results[:parent].add_child(child)
+    if parent_klass.child_klass.is_a? IsoManaged
+      json[:children].each do |child|
+        child = self.parent_klass.child_klass.build(child[:instance])
+        results[:children] << child
+        results[:parent].add_child(child)
+      end
+      # @todo need to add the other collections in the future in line below
+      parent.collections = {datatype: TabularStandard::Datatype.new, compliance: TabularStandard::Compliance.new} 
+      results[:children].each {|child| child.update_variables(parent.collections)}
     end
-    # @todo need to add the other collections in the future in line below
-    parent.collections = {datatype: TabularStandard::Datatype.new, compliance: TabularStandard::Compliance.new} 
-    results[:children].each {|child| child.update_variables(parent.collections)}
     return results
   end
 

@@ -67,10 +67,19 @@ describe Excel do
     expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name, indicates format error.")    
   end
 
+  it "checks a sheet, include the name check" do
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "irs", columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test, :something)
+    expect(result).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "process engine" do
     full_path = test_file_path(sub_dir, "process_input_2.xlsx")
     object = Excel.new(full_path)
-    object.process_sheet(:adam_ig, :main)
+    object.process_sheet(:cdisc_adam_ig, :main)
     result = object.engine.parent_set
     result.each {|k,v| result[k] = v.to_json}
   #write_yaml_file(result, sub_dir, "process_expected_2.yaml")

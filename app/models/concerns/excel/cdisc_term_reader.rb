@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Excel::AdamIgReader < Excel::TabularReader
+class Excel::CdiscTermReader < Excel::TabularReader
 
   C_CLASS_NAME = self.name
 
@@ -14,9 +14,9 @@ class Excel::AdamIgReader < Excel::TabularReader
   # @option [String] :date the data of issue
   # @return [Hash] Import hash containing the import items
   def read(params)
-    super(AdamIg, {identifier: AdamIg::C_IDENTIFIER, label: "ADaM IG #{params[:date]}", semantic_version: params[:semantic_version], 
-      version_label: params[:semantic_version], version: params[:version], date: params[:date],
-      excel: {import: :cdisc_adam_ig, sheet: :main}})
+    super(CdiscTerm, {identifier: CdiscTerm::C_IDENTIFIER, label: "CDISC Terminology #{params[:date]}", semantic_version: params[:semantic_version], 
+      version_label: params[:date], version: params[:version], date: params[:date],
+      excel: {import: :cdisc_term, sheet: :main}})
   end
 
 end

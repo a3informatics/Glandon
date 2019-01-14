@@ -1,7 +1,7 @@
 module NciThesaurusUtility
 
   C_CLASS_NAME = self.name
-  C_C_CODE = "C[0-9]{5,6}"
+  C_C_CODE = "C[0-9]{3,6}"
 
   # C Code? Is the text a valid NCIt c code
   #

@@ -141,13 +141,64 @@ describe Excel do
     expect(parent.errors.count).to eq(0)
   end
 
+  it "checks a cell for empty" do
+    full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = Test.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.cell_empty?(4, 1)
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.cell_empty?(4, 2)
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+  end
+
+  it "checks a cell for blank and not blank" do
+    full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = Test.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.column_blank?({row: 4, col: 1})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_not_blank?({row: 4, col: 1})
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 4, col: 2})
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_not_blank?({row: 4, col: 2})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+  end
+
+  it "checks a condition" do
+    full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = Test.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.process_action?({method: :column_blank?, column: 1}, 4)
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.process_action?({method: :column_not_blank?, column: 1}, 4)
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.process_action?({method: :column_blank?, column: 2}, 4)
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.process_action?({method: :column_not_blank?, column: 2}, 4)
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+  end
+
   it "creates parent" do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.create_parent(2, 1, nil, {P1: "IDENT_1", P2: "IDENT_2"}, "ParentClass") {|result| the_result = result}
+    object.create_parent({row: 2, col: 1, map: {P1: "IDENT_1", P2: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
     expect(the_result).to be_a(ParentClass)
     result = parent_set_hash(object)
   #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_1.yaml")
@@ -162,7 +213,7 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.create_parent(2, 1, nil, {}, "ParentClass") {|result| the_result = result}
+    object.create_parent({row: 2, col: 1, map: {}, klass: "ParentClass"}) {|result| the_result = result}
     result = parent_set_hash(object)
   #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "process_parent_expected_2.yaml")
@@ -177,7 +228,7 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.create_parent(6, 1, nil, {P1: "IDENT_1", P2: "IDENT_2"}, "ParentClass") {|result| the_result = result}
+    object.create_parent({row: 6, col: 1, map: {P1: "IDENT_1", P2: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
     result = parent_set_hash(object)
   #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "process_parent_expected_3.yaml")
@@ -192,7 +243,7 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.create_child(2, 1, nil, {}, "ChildClass") {|result| the_result = result}
+    object.create_child({row: 2, col: 1, map: {}, klass: "ChildClass"}) {|result| the_result = result}
     expect(the_result).to be_a(ChildClass)
     expect(parent.errors.count).to eq(0)
   end
@@ -202,15 +253,15 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.core_classification(2, 1, @child_object, {A: "This is A", B: "This is B", C: "This is C"}, "compliance")
+    object.core_classification({row: 2, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
     expect(@child_object.compliance).to be_a(SdtmModelCompliance)
     expect(@child_object.compliance.label).to eq("This is A")
     expect(parent.errors.any?).to eq(false)
-    object.core_classification(4, 1, @child_object, {A: "This is A", B: "This is B", C: "This is C"}, "compliance")
+    object.core_classification({row: 4, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
     expect(@child_object.compliance).to be_a(SdtmModelCompliance)
     expect(@child_object.compliance.label).to eq("This is C")
     expect(parent.errors.any?).to eq(false)
-    object.core_classification(5, 1, @child_object, {A: "This is A", B: "This is B", C: "This is C"}, "compliance")
+    object.core_classification({row: 5, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
     expect(@child_object.compliance).to be_nil
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
@@ -222,15 +273,15 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.datatype_classification(2, 2, @child_object, {X: "This is X", Y: "This is Y"}, "datatype")
+    result = object.datatype_classification({row: 2, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
     expect(result).to be_a(SdtmModelDatatype)
     expect(result.label).to eq("This is X")
     expect(parent.errors.any?).to eq(false)
-    result = object.datatype_classification(3, 2, @child_object, {X: "This is X", Y: "This is Y"}, "datatype")
+    result = object.datatype_classification({row: 3, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
     expect(result).to be_a(SdtmModelDatatype)
     expect(result.label).to eq("This is Y")
     expect(parent.errors.any?).to eq(false)
-    result = object.datatype_classification(4, 2, @child_object, {X: "This is X", Y: "This is Y"}, "datatype")
+    result = object.datatype_classification({row: 4, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
     expect(result).to be_nil
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
@@ -242,15 +293,15 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.ct_reference(2, 3, @child_object, {}, "ct")
+    object.ct_reference({row: 2, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("X1X")
-    object.ct_reference(3, 3, @child_object, {}, "ct")
+    object.ct_reference({row: 3, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("")
-    object.ct_reference(4, 3, @child_object, {}, "ct")
+    object.ct_reference({row: 4, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("")
-    object.ct_reference(5, 3, @child_object, {}, "ct")
+    object.ct_reference({row: 5, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("")
-    object.ct_reference(6, 3, @child_object, {}, "ct")
+    object.ct_reference({row: 6, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("")
   end
 
@@ -259,13 +310,13 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    object.ct_other(2, 3, @child_object, {}, "ct_notes")
+    object.ct_other({row: 2, col: 3, object: @child_object, map: {}, property: "ct_notes"})
     expect(@child_object.ct_notes).to eq("")
-    object.ct_other(3, 3, @child_object, {}, "ct_notes")
+    object.ct_other({row: 3, col: 3, object: @child_object, map: {}, property: "ct_notes"})
     expect(@child_object.ct_notes).to eq("(X1")
-    object.ct_other(4, 3, @child_object, {}, "ct_notes")
+    object.ct_other({row: 4, col: 3, object: @child_object, map: {}, property: "ct_notes"})
     expect(@child_object.ct_notes).to eq("X1)")
-    object.ct_other(5, 3, @child_object, {}, "ct_notes")
+    object.ct_other({row: 5, col: 3, object: @child_object, map: {}, property: "ct_notes"})
     expect(@child_object.ct_notes).to eq("X1")
   end
 
@@ -274,7 +325,7 @@ describe Excel do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.sheet_info(:adam_ig, :main)
+    result = object.sheet_info(:cdisc_adam_ig, :main)
   #Xwrite_yaml_file(result, sub_dir, "sheet_info_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "sheet_info_expected_1.yaml")
     expect(result).to eq(expected)
@@ -294,7 +345,7 @@ describe Excel do
   end
 
   it "process engine, parent map missing" do
-    full_path = test_file_path(sub_dir, "process_input_1.xlsx")
+    full_path = test_file_path(sub_dir, "process_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = Test.new
     object = Excel::Engine.new(parent, workbook) 
@@ -307,6 +358,19 @@ describe Excel do
   #Xwrite_yaml_file(parent.errors.full_messages.to_yaml, sub_dir, "process_errors_2.yaml")
     expected = read_yaml_file(sub_dir, "process_errors_2.yaml")
     expect(parent.errors.full_messages.to_yaml).to eq(expected)
+  end
+
+  it "process engine, no errors with conditional" do
+    full_path = test_file_path(sub_dir, "process_input_3.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = Test.new
+    object = Excel::Engine.new(parent, workbook) 
+    object.process(:test_3, :sheet_1)
+    result = parent_set_hash(object)
+  #Xwrite_yaml_file(result, sub_dir, "process_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "process_expected_3.yaml")
+    expect(result).to eq(expected)
+    expect(parent.errors.count).to eq(0)
   end
 
 end
