@@ -21,28 +21,29 @@ describe ImportFileHelpers do
     #delete_all_public_test_files
   end
 
-  it "saves an import file, txt extension" do
-    content = "<A><B></B></A>"
-    result = ImportFileHelpers.save(content, "export_1.txt")
-    expect(result).to eq(public_path("test", "export_1.txt").to_s)
-    result = read_public_text_file("test", "export_1.txt")
-    expect(result).to eq(content)
-  end
-
-  it "saves an import file, yml extension" do
+  it "saves an import error file" do
     content = {a: "xxx", b: "YYY"}
-    result = ImportFileHelpers.save(content, "export_2.yml")
+    result = ImportFileHelpers.save_errors(content, "export_2.yml")
     expect(result).to eq(public_path("test", "export_2.yml").to_s)
-    result = ImportFileHelpers.read(public_path("test", "export_2.yml").to_s)
+    result = ImportFileHelpers.read_errors(public_path("test", "export_2.yml").to_s)
     expect(result).to eq(content)
   end
 
   it "reads an import file, yml extension" do
     content = {a: "xxx", b: "YYY"}
-    result = ImportFileHelpers.save(content, "export_3.yml")
+    result = ImportFileHelpers.save_errors(content, "export_3.yml")
     expect(result).to eq(public_path("test", "export_3.yml").to_s)
-    result = ImportFileHelpers.read(public_path("test", "export_3.yml").to_s)
+    result = ImportFileHelpers.read_errors(public_path("test", "export_3.yml").to_s)
     expect(result).to eq(content)
   end
+
+  it "moves a file" do
+    content = {a: "xxx", b: "YYY"}
+    result = ImportFileHelpers.save_errors(content, "export_1.yml")
+    result = ImportFileHelpers.move(public_path("test", "export_1.yml").to_s, "export_1_moved.yml")
+    result = ImportFileHelpers.read_errors(public_path("test", "export_1_moved.yml").to_s)
+    expect(result).to eq(content)
+  end
+
 
 end
