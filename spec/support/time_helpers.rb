@@ -1,6 +1,5 @@
 module TimeHelpers
 
-
   def time_now(text)
     puts "#{Time.now()}: #{text}"
   end

@@ -6,7 +6,7 @@ class SparqlUpdateV2
     @default_namespace = ""
     @prefix_set = []
     @prefix_used = {}
-    @triples = ""
+    @triples = []
   end
 
   # Set default namespace
@@ -32,11 +32,7 @@ class SparqlUpdateV2
   #
   # @return [Null] Nothing returned
   def triple(subject, predicate, object)
-    triple = ""
-    triple = process_part(subject)
-    triple += " #{process_part(predicate)}"
-    triple += " #{process_part(object, true)} . \n"
-    @triples += triple
+    @triples << [process_part(subject), process_part(predicate), process_part(object, true)]
   end
 
   # Create Update
@@ -51,7 +47,7 @@ class SparqlUpdateV2
       "}\n" +
       "INSERT \n" +
       "{\n" +
-      "#{@triples}" +
+      "#{triples_to_s}" +
       "}\n" +
       "WHERE \n" + 
       "{\n" +
@@ -74,15 +70,44 @@ class SparqlUpdateV2
     update = UriManagement.buildNs(@default_namespace, @prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +
-      @triples +
+      "#{triples_to_s}" +
       "}"
     return update 
   end
 
+  # To File
+  #
+  # @return [String] the full_path of the created file
+  def to_file
+    triples_to_file
+  end
+
 private
 
-  # Always builds fully qualified triples. Default namespace is filled in
-  # automatically.
+  # Puts the triples to a string
+  def triples_to_s
+    result = ""
+    @triples.each {|triple| result += triple_to_s(triple)}
+    return result
+  end
+
+  # Puts the triples to a file
+  def triples_to_file
+    output_file = ImportFileHelpers.pathname("SPARQL_#{DateTime.now.strftime('%Q')}.ttl")
+    File.open(output_file, "wb") do |f|
+      @triples.each do |triple| 
+        f.write(triple_to_s(triple))
+      end
+    end
+    return output_file
+  end
+
+  # Format triple
+  def triple_to_s(triple)
+    "#{triple.join(" ")} . \n"
+  end
+
+  # Always builds fully qualified triples. Default namespace is filled in automatically.
   def process_part(args, object_literal=false)
     part = ""
     if args.has_key?(:uri) 

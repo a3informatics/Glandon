@@ -45,5 +45,9 @@ describe ImportFileHelpers do
     expect(result).to eq(content)
   end
 
+  it "return full path" do
+    result = ImportFileHelpers.pathname("export_1.yml")
+    expect(result).to eq(public_path("test", "export_1.yml"))
+  end
 
 end

@@ -47,6 +47,12 @@ module PublicFileHelpers
   	FileUtils.cp source_file, dest_file
   end
 
+  def copy_file_from_public_files_rename(source_sub_dir, filename, dest_sub_dir, new_filename)
+    source_file = Rails.root.join "public/#{source_sub_dir}/#{filename}"
+    dest_file = Rails.root.join "spec/fixtures/files/#{dest_sub_dir}/#{new_filename}"
+    FileUtils.cp source_file, dest_file
+  end
+
 private
 
   def delete_all_files(sub_dir)

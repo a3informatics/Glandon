@@ -34,6 +34,14 @@ module ImportFileHelpers
     FileUtils.mv(src, full_path(filename))
   end
 
+  # Pathname
+  #
+  # @param [String] filename the filename for which the full path is required.
+  # @return [Pathname] the full path
+  def self.pathname(filename)
+    full_path(filename)
+  end
+
 private
 
   # Build the full path for the file.

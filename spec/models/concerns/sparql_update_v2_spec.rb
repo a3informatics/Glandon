@@ -3,6 +3,12 @@ require 'rails_helper'
 describe SparqlUpdateV2 do
 	
 	include DataHelpers
+  include PublicFileHelpers
+  include TimeHelpers
+
+  def sub_dir
+    return "models/concerns/sparql_update_v2"
+  end
 
   before :each do
     clear_triple_store
@@ -10,7 +16,7 @@ describe SparqlUpdateV2 do
 
   it "allows for the class to be created" do
 		sparql = SparqlUpdateV2.new()
-    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_set\":[],\"prefix_used\":{},\"triples\":\"\"}")
+    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_set\":[],\"prefix_used\":{},\"triples\":[]}")
 	end
 
   it "allows a URI triple to be added" do
@@ -82,7 +88,7 @@ describe SparqlUpdateV2 do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello+world\"^^xsd:string . \n" +
       "}"
     sparql = SparqlUpdateV2.new()
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
@@ -106,8 +112,8 @@ describe SparqlUpdateV2 do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12:34:56%2B01:00\"^^xsd:dateTime . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12%3A34%3A56%2B01%3A00\"^^xsd:dateTime . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello+world\"^^xsd:string . \n" +
       "}"
     sparql = SparqlUpdateV2.new()
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
@@ -264,4 +270,24 @@ Update succeeded
     end
   end
 
+  it "saves triples to a file, large" do
+    sparql = SparqlUpdateV2.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
+    count = 200000
+    (1..count).each {|c| sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}
+    timer_start    
+    full_path = sparql.to_file
+    timer_stop("#{count} triple file took: ")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "to_file_expected_1.txt")
+    actual = read_text_file_full_path(full_path)
+    expected = read_text_file_2(sub_dir, "to_file_expected_1.txt")
+    expect(actual).to eq(expected)
+  end
 end

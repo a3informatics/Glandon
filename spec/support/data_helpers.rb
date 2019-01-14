@@ -78,6 +78,14 @@ module DataHelpers
     return text
   end
 
+  def read_text_file_full_path(full_path)
+    text = ""
+    File.open(full_path, "r") do |f|
+      text = f.read
+    end
+    return text
+  end
+
   def write_text_file(item, filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
     File.open(full_path, "w+") do |f|
