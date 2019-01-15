@@ -4,6 +4,8 @@
 # @since 2.20.3
 # @!attribute errors
 #   @return [ActiveModel::Errors] Active Model errors class
+# @!attribute engine
+#   @return [Excel::Engine] the reader engine
 # @!attribute full_path
 #   @return [Pathname] the pathname for the file being read
 class Excel
@@ -31,6 +33,13 @@ class Excel
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
     @workbook = nil
+  end
+
+  # Label
+  #
+  # @return [String] class label based on the inpout file name.
+  def label
+    File.basename(@full_path)
   end
 
   # Check Sheet

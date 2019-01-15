@@ -51,11 +51,10 @@ class Import < ActiveRecord::Base
   def create(params)
     job = Background.create
     klass = self.configuration[:parent_klass]
-    params[:identifier] = klass.configuration[:identifier] if !params.key?(:identifier)
+    update_params(params, klass, job)
     self.update(input_file: params[:filename], auto_load: params[:auto_load], identifier: params[:identifier], 
       owner: klass.owner.short_name, background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
-    params[:job] = job
     job.start(self.description, "Starting ...") {self.import(params)} 
   rescue => e
     save_error_file({parent: self, children:[]})
@@ -154,17 +153,26 @@ class Import < ActiveRecord::Base
 
 private
 
+  def update_params(params, klass, job)
+    params[:job] = job
+    params[:identifier] = klass.configuration[:identifier] if !params.key?(:identifier)
+    params[:version_label] = params[:semantic_version] if configuration[:version_label] == :semantic_version
+    params[:version_label] = params[:date] if configuration[:version_label] == :date
+    params[:label] = configuration[:label]
+  end
+
   def result_hash(object)
     return {parent: object, children: []}
   end
   
   def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:children].each {|child| merge_errors(from, parent)}
+    objects[:children].each {|child| merge_errors(child, parent)}
     return parent
   end
 
   def merge_errors(from, to)
+    return if from.errors.empty?
     from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.label}: #{msg}"}
   end
 

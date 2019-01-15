@@ -50,7 +50,32 @@ describe Import do
         parent_klass: Other,
         reader_klass: Excel::AdamIgReader,
         import_type: :TYPE,
-        sheet_name: :main
+        sheet_name: :main,
+        version_label: :semantic_version,
+        label: "XXX Implementation Guide"
+      }
+    end
+
+    def configuration
+      self.class.configuration
+    end
+
+  end
+
+  class ImportTest2 < Import
+    
+    def import(params)
+    end
+
+    def self.configuration
+      {
+        description: "Import of Something",
+        parent_klass: Other,
+        reader_klass: Excel::AdamIgReader,
+        import_type: :TYPE,
+        sheet_name: :main,
+        version_label: :date,
+        label: "XXX Implementation Guide"
       }
     end
 
@@ -90,10 +115,14 @@ describe Import do
     expect(results).to hash_equal(expected)
   end
   
-  it "creates an import" do
+  it "creates an import I" do
     item = ImportTest.new
-    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
-    expect(item).to receive(:import).with(params) #, an_instance_of(Background))
+    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3"}
+    expected = params.dup
+    expected[:version_label] = "3.3.3"
+    expected[:label] = "XXX Implementation Guide"
+    expected[:job] = an_instance_of(Background)
+    expect(item).to receive(:import).with(expected) #, an_instance_of(Background))
     item.create(params)
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_1.yaml")
@@ -104,6 +133,24 @@ describe Import do
     expect(background.complete).to eq(false)    
   end
   
+  it "creates an import II" do
+    item = ImportTest2.new
+    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3", date: "2018-11-11"}
+    expected = params.dup
+    expected[:version_label] = "2018-11-11"
+    expected[:label] = "XXX Implementation Guide"
+    expected[:job] = an_instance_of(Background)
+    expect(item).to receive(:import).with(expected) #, an_instance_of(Background))
+    item.create(params)
+    result = Import.find(item.id)
+  #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_3.yaml")
+    expected = read_yaml_file(sub_dir, "create_import_3.yaml")
+    compare_import_hash(result, expected)
+    background = Background.find(item.background_id)
+    expect(background.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
+    expect(background.complete).to eq(false)    
+  end
+
   it "creates an import, exception" do
     item = ImportTest.new
     params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}

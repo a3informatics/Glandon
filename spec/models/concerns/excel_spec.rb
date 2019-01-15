@@ -28,6 +28,13 @@ describe Excel do
     expect(object.errors.count).to eq(0)
   end
 
+  it "returns label" do
+    full_path = test_file_path(sub_dir, "new_input_1.xlsx")
+    object = Excel.new(full_path)
+    expect(object.full_path).to eq(full_path)
+    expect(object.label).to eq(File.basename(full_path))
+  end
+
   it "checks a sheet, success" do
     expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "First", columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
@@ -82,7 +89,7 @@ describe Excel do
     object.process_sheet(:cdisc_adam_ig, :main)
     result = object.engine.parent_set
     result.each {|k,v| result[k] = v.to_json}
-  #write_yaml_file(result, sub_dir, "process_expected_2.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "process_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "process_expected_2.yaml")
     result.each do |k,v|
       expected[k][:creation_date] = v[:creation_date]
