@@ -59,6 +59,16 @@ class Excel
     return false
   end       
 
+  # Check and Process Sheet
+  #
+  # @param [Symbol] import the import
+  # @param [Symbol] sheet the sheet key as a symbol used in the configuration file
+  # @return [Void] no return  
+  def check_and_process_sheet(import, sheet)
+    check_sheet(import, sheet)
+    @engine.process(import, sheet)
+  end
+
   # Process Sheet
   #
   # @param [Symbol] import the import

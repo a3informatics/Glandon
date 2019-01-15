@@ -1,24 +1,9 @@
-# AdamIgReader. Class for processing ADaM IG Excel Files
+# CdiscTermReader. Class for processing CDISC Terminology Excel Files
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Excel::CdiscTermReader < Excel::TabularReader
+class Excel::CdiscTermReader < Excel
 
   C_CLASS_NAME = self.name
 
-  # Read. Reads the excel file for ADaM IG.
-  #
-  # @params [Hash] params a parameter hash
-  # @option [String] :version_label the version label. Will be used as the semantic version
-  # @option [String] :version the version
-  # @option [String] :date the data of issue
-  # @return [Hash] Import hash containing the import items
-  def read(params)
-    super(CdiscTerm, {identifier: CdiscTerm::C_IDENTIFIER, label: "CDISC Terminology #{params[:date]}", semantic_version: params[:semantic_version], 
-      version_label: params[:date], version: params[:version], date: params[:date],
-      excel: {import: :cdisc_term, sheet: :main}})
-  end
-
 end
-
-    

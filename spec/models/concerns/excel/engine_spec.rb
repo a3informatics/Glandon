@@ -207,7 +207,7 @@ describe Excel do
     expect(parent.errors.count).to eq(0)
   end
 
-  it "creates parent, mapping error" do
+  it "creates parent, no mapping" do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
@@ -218,8 +218,22 @@ describe Excel do
   #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "process_parent_expected_2.yaml")
     expect(result).to eq(expected)
+    expect(parent.errors.count).to eq(0)
+  end
+
+  it "creates parent, mapping error" do
+    the_result = nil
+    full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = Test.new
+    object = Excel::Engine.new(parent, workbook) 
+    object.create_parent({row: 2, col: 1, map: {PX: "IDENT_1", PY: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
+    result = parent_set_hash(object)
+  #Xwrite_yaml_file(result, sub_dir, "process_parent_expected_4.yaml")
+    expected = read_yaml_file(sub_dir, "process_parent_expected_4.yaml")
+    expect(result).to eq(expected)
     expect(parent.errors.count).to eq(1)
-    expect(parent.errors.full_messages.to_sentence).to eq("No create map detected in row 2 column 1.")
+    expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'P1' error detected in row 2 column 1.")
   end
 
   it "creates parent, identifier error" do
@@ -354,7 +368,7 @@ describe Excel do
   #Xwrite_yaml_file(result, sub_dir, "process_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "process_expected_2.yaml")
     expect(result).to eq(expected)
-    expect(parent.errors.count).to eq(16)
+    expect(parent.errors.count).to eq(20)
   #Xwrite_yaml_file(parent.errors.full_messages.to_yaml, sub_dir, "process_errors_2.yaml")
     expected = read_yaml_file(sub_dir, "process_errors_2.yaml")
     expect(parent.errors.full_messages.to_yaml).to eq(expected)
