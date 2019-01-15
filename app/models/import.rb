@@ -81,7 +81,7 @@ class Import < ActiveRecord::Base
   def load_error_file
     return [] if self.error_file.blank?
     return [] if self.success
-    return ImportFileHelpers.read(self.error_file)
+    return ImportFileHelpers.read_errors(self.error_file)
   end
 
   # Save Load File. Will save the import load file and load if auto load set
@@ -95,9 +95,9 @@ class Import < ActiveRecord::Base
     path = TypePathManagement.history_url(parent.rdf_type, parent.identifier, parent.scopedIdentifier.namespace.id)
     sparql = parent.to_sparql_v2
     objects[:children].each {|c| c.to_sparql_v2(sparql)}
-    triples = sparql.to_s
-    response = CRUD.update(triples) if self.auto_load
-    self.update(output_file: ImportFileHelpers.save(triples, "#{self.import_type}_#{self.id}_load.ttl"), 
+    filename = sparql.to_file
+    response = CRUD.file(filename) if self.auto_load
+    self.update(output_file: ImportFileHelpers.move(filename, "#{self.import_type}_#{self.id}_load.ttl"), 
       error_file: "", success: true, success_path: path)
   end
 
@@ -117,7 +117,7 @@ class Import < ActiveRecord::Base
   # @return [Void] no return
   def save_exception(e, msg)
     text = "#{msg}\n#{e}\n#{e.backtrace}"
-    self.update(output_file: "", error_file: ImportFileHelpers.save([text], "#{self.import_type}_#{self.id}_errors.yml"), success: false)
+    self.update(output_file: "", error_file: ImportFileHelpers.save_errors([text], "#{self.import_type}_#{self.id}_errors.yml"), success: false)
     ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
   end
 

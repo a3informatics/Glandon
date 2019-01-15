@@ -92,6 +92,8 @@ class AdamIgDataset < Tabular
     return json
   end
 
+  alias :to_hash :to_json
+  
   # Build. Build an object from the operational hash
   #
   # @param [Hash] params the operational hash (see IsoManaged)

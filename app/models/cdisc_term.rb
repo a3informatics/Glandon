@@ -146,6 +146,7 @@ class CdiscTerm < Thesaurus
   # @option opts [String] :version The version being created
   # @option opts [String] :files Array of files being used 
   # @return [Hash] A hash containing any errors and the background job reference.
+=begin  
   def self.create(params)
     job = nil
     object = self.new
@@ -181,6 +182,7 @@ class CdiscTerm < Thesaurus
     end
     return { :object => object, :job => job }
   end
+=end
 
   def self.build(params)
     super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))

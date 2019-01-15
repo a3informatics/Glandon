@@ -260,20 +260,12 @@ class Thesaurus <  IsoManaged
   #
   # @return [object] The SPARQL object created.
   def to_sparql_v2
-
-count = 0
-puts "SPARQL Starting ..."
-
     sparql = SparqlUpdateV2.new
     uri = super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => uri}
     self.children.sort_by! {|u| u.identifier}
     self.children.each do |child|
       ref_uri = child.to_sparql_v2(uri, sparql)
-
-count += 1
-puts "SPARQL Count=#{count}"
-
       sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasConcept"}, {:uri => ref_uri})
     end
     return sparql

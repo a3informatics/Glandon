@@ -33,7 +33,7 @@ private
     results = {parent: nil, children: []}
     parent = self.parent_klass.build(json[:parent][:instance])
     results[:parent] = parent 
-    if parent_klass.child_klass.is_a? IsoManaged
+    if parent_klass.child_klass.ancestors.include?(IsoManaged)
       json[:children].each do |child|
         child = self.parent_klass.child_klass.build(child[:instance])
         results[:children] << child

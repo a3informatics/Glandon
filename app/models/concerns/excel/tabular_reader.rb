@@ -26,7 +26,7 @@ class Excel::TabularReader < Excel
     results[:parent] = {:order => 1, :instance => instance}
     check_sheet(params[:excel][:import], params[:excel][:sheet])
     process_sheet(params[:excel][:import], params[:excel][:sheet])
-    if klass.child_klass.is_a? IsoManaged
+    if klass.child_klass.ancestors.include?(IsoManaged)
       self.engine.parent_set.each do |key, item| 
         results[:children] << {order: ordinal, instance: child(item, instance, ordinal)}
         ordinal += 1
