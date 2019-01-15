@@ -50,9 +50,11 @@ class IsoRegistrationAuthority
   # Get the short name
   #
   # @return [string] The authority short name
-  def shortName
+  def short_name
     return namespace.shortName
   end
+
+  alias :shortName :short_name
 
   # Find if the authority with identifier number exists.
   #

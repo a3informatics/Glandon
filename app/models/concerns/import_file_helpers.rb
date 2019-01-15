@@ -8,13 +8,13 @@ module ImportFileHelpers
   #
   # @param [String] data the data structure to be saved
   # @param [String] filename the filename to be used.
-  # @return [String] the full file path of the file saved.
+  # @return [Pathname] the full file path of the file saved.
   def self.save_errors(errors, filename)
     path_plus_filename = full_path(filename)
     File.open(path_plus_filename, 'wb') do |file|
       file << errors.to_yaml
     end
-    return path_plus_filename.to_s
+    return path_plus_filename
   end
       
   # Read an error file. Assumed to be a YAML file.
@@ -29,9 +29,11 @@ module ImportFileHelpers
   #
   # @param [String] src the full path of the file to be moved.
   # @param [String] filename the filename for the destination file.
-  # @return [String] the data read.
+  # @return [Pathname] the destination filename
   def self.move(src, filename)
-    FileUtils.mv(src, full_path(filename))
+    path_plus_filename = full_path(filename)
+    FileUtils.mv(src, path_plus_filename)
+    return path_plus_filename
   end
 
   # Pathname

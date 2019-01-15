@@ -401,14 +401,16 @@ test:
                 method: create_parent
                 object: parent
                 klass: ParentClass
-                map: {}
+                map:
+                  X1: Parent One
+                  X2: Parent Two
               -
                 method: set_property
                 object: parent
                 property: label
                 map:
-                  P1: Parent One
-                  P2: Parent Two
+                  X1: Parent One
+                  X2: Parent Two
           - 
             label: CHILD
             actions:

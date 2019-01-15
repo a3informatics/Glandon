@@ -24,7 +24,7 @@ describe ImportFileHelpers do
   it "saves an import error file" do
     content = {a: "xxx", b: "YYY"}
     result = ImportFileHelpers.save_errors(content, "export_2.yml")
-    expect(result).to eq(public_path("test", "export_2.yml").to_s)
+    expect(result.to_s).to eq(public_path("test", "export_2.yml").to_s)
     result = ImportFileHelpers.read_errors(public_path("test", "export_2.yml").to_s)
     expect(result).to eq(content)
   end
@@ -32,7 +32,7 @@ describe ImportFileHelpers do
   it "reads an import file, yml extension" do
     content = {a: "xxx", b: "YYY"}
     result = ImportFileHelpers.save_errors(content, "export_3.yml")
-    expect(result).to eq(public_path("test", "export_3.yml").to_s)
+    expect(result.to_s).to eq(public_path("test", "export_3.yml").to_s)
     result = ImportFileHelpers.read_errors(public_path("test", "export_3.yml").to_s)
     expect(result).to eq(content)
   end
@@ -41,6 +41,7 @@ describe ImportFileHelpers do
     content = {a: "xxx", b: "YYY"}
     result = ImportFileHelpers.save_errors(content, "export_1.yml")
     result = ImportFileHelpers.move(public_path("test", "export_1.yml").to_s, "export_1_moved.yml")
+    expect(result.to_s).to eq(public_path("test", "export_1_moved.yml").to_s)
     result = ImportFileHelpers.read_errors(public_path("test", "export_1_moved.yml").to_s)
     expect(result).to eq(content)
   end

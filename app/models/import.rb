@@ -46,21 +46,20 @@ class Import < ActiveRecord::Base
   # @params [Hash] params on optiona hash
   # @option [String] :filename the input filename 
   # @option [Boolean] :autoload autoload the import if all checks and processing pass if true.
-  # @option [String] :identifier the identifier for the import
-  # @option [String] :owner the owner
   # @option [String] :filetype the file_type as an integer string
   # @return [Void] no return.
   def create(params)
     job = Background.create
-    params[:identifier] = self.identifier if !params.key?(:identifier)
+    klass = self.configuration[:parent_klass]
+    params[:identifier] = klass.configuration[:identifier] if !params.key?(:identifier)
     self.update(input_file: params[:filename], auto_load: params[:auto_load], identifier: params[:identifier], 
-      owner: self.owner, background_id: job.id, file_type: params[:file_type].to_i)
+      owner: klass.owner.short_name, background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
     params[:job] = job
     job.start(self.description, "Starting ...") {self.import(params)} 
   rescue => e
     save_error_file({parent: self, children:[]})
-    job.exception("An exception was detected the import processes.", e)
+    job.exception("An exception was detected during the import processes.", e)
   end  
   
   # Save Error File. Will save the errors in a YAML file as an array of errors 
@@ -70,9 +69,9 @@ class Import < ActiveRecord::Base
   # @option objects [Object] :children array of children objects, may be empty
   # @return [Void] no return
   def save_error_file(objects)
-    parent = merge_errors(objects)
-    self.update(output_file: "", error_file: ImportFileHelpers.save(parent.errors.full_messages, 
-      "#{self.import_type}_#{self.id}_errors.yml"), success: false)
+    parent = merge_all_errors(objects)
+    self.update(output_file: "", error_file: ImportFileHelpers.save_errors(parent.errors.full_messages, 
+      "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
   end
 
   # Load Error File. 
@@ -97,7 +96,7 @@ class Import < ActiveRecord::Base
     objects[:children].each {|c| c.to_sparql_v2(sparql)}
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
-    self.update(output_file: ImportFileHelpers.move(filename, "#{self.import_type}_#{self.id}_load.ttl"), 
+    self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"), 
       error_file: "", success: true, success_path: path)
   end
 
@@ -117,7 +116,7 @@ class Import < ActiveRecord::Base
   # @return [Void] no return
   def save_exception(e, msg)
     text = "#{msg}\n#{e}\n#{e.backtrace}"
-    self.update(output_file: "", error_file: ImportFileHelpers.save_errors([text], "#{self.import_type}_#{self.id}_errors.yml"), success: false)
+    self.update(output_file: "", error_file: ImportFileHelpers.save_errors([text], "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
     ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
   end
 
@@ -125,7 +124,8 @@ class Import < ActiveRecord::Base
   #
   # @return [String] the description
   def description
-    "#{self.class::C_IMPORT_DESC} from #{self.file_type_humanize}. Identifier: #{self.identifier}, Owner: #{self.owner}"
+    klass = self.configuration[:parent_klass]
+    "#{configuration[:description]} from #{self.file_type_humanize}. Identifier: #{klass.configuration[:identifier]}, Owner: #{klass.owner.short_name}"
   end
 
   # Complete. Is the background job complete
@@ -158,12 +158,14 @@ private
     return {parent: object, children: []}
   end
   
-  def merge_errors(objects)
+  def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:children].each do |child|
-      child.errors.full_messages.each {|msg| parent.errors[:base] << "#{child.label}: #{msg}"}
-    end
+    objects[:children].each {|child| merge_errors(from, parent)}
     return parent
+  end
+
+  def merge_errors(from, to)
+    from.errors.full_messages.each {|msg| to.errors[:base] << "#{from.label}: #{msg}"}
   end
 
   def locked?

@@ -701,8 +701,8 @@ describe IsoRegistrationState do
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus \"Retired\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote \"X1\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00%3A00%3A00%2B00%3A00\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00%3A00%3A00%2B00%3A00\"^^xsd:dateTime . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolvedIssue \"X2\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeStatus \"\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previousState \"Standard\"^^xsd:string . \n" +

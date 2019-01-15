@@ -13,17 +13,51 @@ describe Import do
   def simple_import
     item = ImportTest.new
     params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
-    expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
+    #expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
+    expect(item).to receive(:import).with(params).and_raise(StandardError.new("error"))
     item.create(params)
     return item
   end
 
-  class ImportTest < Import
-    C_IMPORT_OWNER = "OWNER"
-    C_IMPORT_TYPE = "TYPE"
-    C_IMPORT_DESC = "DESCRIPTION"
-    def import(params, test)
+  class Owner
+
+    def short_name
+      return "OWNER"
     end
+
+  end
+
+  class Other
+  
+    def self.owner
+      return Owner.new
+    end
+  
+    def self.configuration
+      {identifier: "XXX"}
+    end
+
+  end
+
+  class ImportTest < Import
+    
+    def import(params)
+    end
+
+    def self.configuration
+      {
+        description: "Import of Something",
+        parent_klass: Other,
+        reader_klass: Excel::AdamIgReader,
+        import_type: :TYPE,
+        sheet_name: :main
+      }
+    end
+
+    def configuration
+      self.class.configuration
+    end
+
   end
 
   class Worker
@@ -42,7 +76,6 @@ describe Import do
     clear_triple_store
     Import.destroy_all
     delete_all_public_test_files
-    import_type(ImportTest::C_IMPORT_TYPE)
   end
 
   after :each do
@@ -60,21 +93,22 @@ describe Import do
   it "creates an import" do
     item = ImportTest.new
     params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
-    expect(item).to receive(:import).with(params, an_instance_of(Background))
+    expect(item).to receive(:import).with(params) #, an_instance_of(Background))
     item.create(params)
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_1.yaml")
     expected = read_yaml_file(sub_dir, "create_import_1.yaml")
     compare_import_hash(result, expected)
     background = Background.find(item.background_id)
-    expect(background.description).to eq("DESCRIPTION from ODM. Identifier: AAA, Owner: OWNER")
+    expect(background.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
     expect(background.complete).to eq(false)    
   end
   
   it "creates an import, exception" do
     item = ImportTest.new
     params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
-    expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
+    #expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
+    expect(item).to receive(:import).with(params).and_raise(StandardError.new("error"))
     item.create(params)
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "create_import_2.yaml")
@@ -115,8 +149,8 @@ describe Import do
     item.auto_load = true
     item.save
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
-    expect(object).to receive(:to_sparql_v2).and_return({s: "subject", p: "predicate", o: "object"})
-    expect(CRUD).to receive(:update).with("{:s=>\"subject\", :p=>\"predicate\", :o=>\"object\"}")
+    expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
+    expect(CRUD).to receive(:file)
     item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
   #write_yaml_file(import_hash(result), sub_dir, "save_load_file_expected_1.yaml")
@@ -131,7 +165,7 @@ describe Import do
     object.scopedIdentifier.namespace.id = 111
     item = simple_import
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
-    expect(object).to receive(:to_sparql_v2).and_return({s: "subject", p: "predicate", o: "object"})
+    expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
     item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_error_file_expected_2.yaml")
@@ -155,7 +189,7 @@ describe Import do
 
   it "provides a description" do
     item = simple_import
-    expect(item.description).to eq("DESCRIPTION from ODM. Identifier: AAA, Owner: OWNER")
+    expect(item.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
   end
 
   it "indicates if the background job is complete" do
