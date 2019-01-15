@@ -180,7 +180,15 @@ defaults: &defaults
                   column: 2
           - 
             label: "Codelist Code"
-            actions: []
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
           - 
             label: "Codelist Extensible (Yes/No)"
             actions: 
