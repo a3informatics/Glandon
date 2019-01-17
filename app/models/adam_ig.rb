@@ -12,7 +12,7 @@ class AdamIg < TabularStandard
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
   # Class-wide variables
-  @@cdiscNamespace = nil # CDISC Organization identifier
+  @@cdisc_ra = nil # CDISC Reg Auth
   
   C_ADSL_LABEL = "Subject Level Analysis Dataset"
   C_BDS_LABEL = "Basic Data Structure"
@@ -29,19 +29,33 @@ class AdamIg < TabularStandard
     super(triples, id)
   end
 
+  def self.configuration
+    #schema_namespace = Namespaces.namespace(:iso25964)
+    { 
+      #schema_namespace: schema_namespace,
+      #instance_namespace: Namespaces.namespace(:mdrTH),
+      #cid_prefix: "TH",
+      #rdf_type: Uri.new({namespace: schema_namespace, fragment: "Thesaurus"})
+      identifier: C_IDENTIFIER
+    }
+  end
+
+  def configuration
+    self.class.configuration
+  end
+
   # History. Get the item's history
   #
   # @return [array] An array of objects.
   def self.history
-    @@cdiscNamespace ||= IsoNamespace.findByShortName("CDISC")
-    return super({identifier: C_IDENTIFIER, scope_id: @@cdiscNamespace.id})
+    return super({identifier: C_IDENTIFIER, scope_id: IsoNamespace.findByShortName("CDISC")})
   end
 
   # Get the next version
   #
   # @return [integet] the integer version
   def self.next_version
-    return super(C_IDENTIFIER, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+    return super(C_IDENTIFIER, owner)
   end
 
   def self.child_klass
@@ -49,9 +63,13 @@ class AdamIg < TabularStandard
   end
 
   def self.build(params)
-    super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+    super(params, owner)
   end
   
+  def self.owner
+    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
+  end
+
   # To SPARQL
   #
   # @return [UriV2] The URI

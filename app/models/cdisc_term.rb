@@ -31,11 +31,26 @@ class CdiscTerm < Thesaurus
     end
   end
 
+  def self.configuration
+    #schema_namespace = Namespaces.namespace(:iso25964)
+    { 
+      #schema_namespace: schema_namespace,
+      #instance_namespace: Namespaces.namespace(:mdrTH),
+      #cid_prefix: "TH",
+      #rdf_type: Uri.new({namespace: schema_namespace, fragment: "Thesaurus"})
+      identifier: C_IDENTIFIER
+    }
+  end
+
+  def configuration
+    self.class.configuration
+  end
+
   # Get the next version
   #
   # @return [integet] the integer version
   def self.next_version
-    return super(C_IDENTIFIER, IsoRegistrationAuthority.find_by_short_name("CDISC"))
+    super(C_IDENTIFIER, owner)
   end
 
   def self.child_klass
@@ -437,12 +452,11 @@ private
 	end
 
   def self.cdisc_namespace
-    return cdisc_ra.namespace
+    return owner.namespace
   end
 
-  def self.cdisc_ra
-    @@cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC") if @@cdisc_ra.nil?
-    return @@cdisc_ra
+  def self.owner
+    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
   end
 
   def self.processNode(node, results)
