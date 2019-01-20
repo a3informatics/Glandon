@@ -40,7 +40,8 @@ defaults: &defaults
     cdisc_adam_ig: 
       sheets: 
         main:
-          label: Main
+          selection:
+            label: Main
           columns: 
           - 
             label: "Data Structure Name"
@@ -135,8 +136,349 @@ defaults: &defaults
                 map: {}
     cdisc_term: 
       sheets: 
-        main:
-          label: Terminology
+        version_1:
+          selection:
+            label: SDTM
+            #first: true
+            #date: true
+          columns: 
+          - 
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+              -
+                method: create_parent
+                object: parent
+                klass: CdiscCl
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: CdiscCli
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+          - 
+            label: "Codelist Extensible (Yes/No)"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+          - 
+            label: "Codelist Name" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+          - 
+            label: "CDISC Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: preferredTerm
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: preferredTerm
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: definition
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          -
+            label: "CDISC Synonym(s) (where applicable)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: synonym
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          -
+            label: Pre-release/ Production
+            actions: []
+        version_2:
+          selection:
+            label: SDTM
+          columns: 
+          - 
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+              -
+                method: create_parent
+                object: parent
+                klass: CdiscCl
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: CdiscCli
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+          - 
+            label: "Codelist Extensible (Yes/No)"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+          - 
+            label: "Codelist Name" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+          - 
+            label: "CDISC Submission Valuee"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "CDISC Preferred Term"
+            actions: []
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: synonym
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: definition
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: preferredTerm
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: preferredTerm
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          -
+            label: Pre-release/ Production
+            actions: []
+          -
+            label: Notes (Reference for CDISC PT)
+            actions: []
+        version_3:
+          selection:
+            date: true
           columns: 
           - 
             label: "Code"
@@ -199,6 +541,7 @@ defaults: &defaults
                 map: 
                   "Yes": true
                   "No": false
+                  "NA": false
                 condition: 
                   method: column_blank?
                   column: 2
@@ -326,7 +669,8 @@ test:
     test_1:
       sheets: 
         sheet_1:
-          label: Sheet1
+          selection:
+            label: Sheet1
           columns: 
           - 
             label: "PARENT"
@@ -400,7 +744,8 @@ test:
     test_2:
       sheets: 
         sheet_1:
-          label: Sheet1
+          selection:
+            label: Sheet1
           columns: 
           - 
             label: "PARENT"
@@ -474,7 +819,8 @@ test:
     test_3:
       sheets: 
         sheet_1:
-          label: hee # Note short name
+          selection:
+            label: hee # Note short name
           columns: 
           - 
             label: "PARENT"
@@ -548,3 +894,27 @@ test:
                   R: Required
                   P: Permissible
                   E: Conditional
+    test_4:
+      sheets: 
+        sheet_1:
+          selection:
+            label: hee # Note short name
+          columns: [] 
+    test_5:
+      sheets: 
+        sheet_1:
+          selection:
+            date: true
+          columns: [] 
+    test_6:
+      sheets: 
+        sheet_1:
+          selection:
+            first: true
+          columns: [] 
+    test_7:
+      sheets: 
+        sheet_1:
+          selection:
+            wrong: method
+          columns: [] 

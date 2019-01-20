@@ -36,7 +36,7 @@ describe Excel do
   end
 
   it "checks a sheet, success" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "First", columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
@@ -45,42 +45,89 @@ describe Excel do
   end
 
   it "checks a sheet, error length, more" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "First", columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect column count, indicates format error.")    
+    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect column count. Expected 4, found 3.")    
   end
 
   it "checks a sheet, error length, less" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "First", columns: ["NOT EMPTY", "CAN BE EMPTY"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect column count, indicates format error.")    
+    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect column count. Expected 2, found 3.")    
   end
 
   it "checks a sheet, error mismatch" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "First", columns: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "First"}, columns: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name, indicates format error.")    
+    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name. Expected NOT EMPTYXXX, found NOT EMPTY.")    
   end
 
   it "checks a sheet, include the name check" do
-    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({label: "irs", columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "irs"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
     expect(result).to eq(true)
     expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a sheet, sheet not found label" do
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test_4, :sheet_1)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'Failed to find sheet with name containing 'hee'.' checking worksheet for import 'import' using sheet 'sheet'.")
+  end
+
+  it "checks a sheet, sheet not found date" do
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test_5, :sheet_1)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'Failed to find sheet with name including a date.' checking worksheet for import 'import' using sheet 'sheet'.")
+  end
+
+  it "checks a sheet, sheet not found first" do
+    expect_any_instance_of(Roo::Excelx).to receive(:sheets).and_raise(StandardError)
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test_6, :sheet_1)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'Failed to find the first sheet.' checking worksheet for import 'import' using sheet 'sheet'.")
+  end
+
+  it "checks a sheet, sheet not found, invalid mechanism" do
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test_7, :sheet_1)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'Invalid mechanism to find sheet.' checking worksheet for import 'import' using sheet 'sheet'.")
+  end
+
+  it "checks a sheet, exception" do
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_raise(StandardError)
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test, :something)
+    expect(result).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'StandardError' checking worksheet for import 'import' using sheet 'sheet'.")
   end
 
   it "process engine" do

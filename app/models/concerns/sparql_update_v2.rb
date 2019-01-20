@@ -4,7 +4,6 @@ class SparqlUpdateV2
 
   def initialize()  
     @default_namespace = ""
-    @prefix_set = []
     @prefix_used = {}
     @triples = []
   end
@@ -32,7 +31,7 @@ class SparqlUpdateV2
   #
   # @return [Null] Nothing returned
   def triple(subject, predicate, object)
-    @triples << [process_part(subject), process_part(predicate), process_part(object, true)]
+    @triples << SparqlUpdateV2::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
   end
 
   # Create Update
@@ -40,7 +39,8 @@ class SparqlUpdateV2
   # @param uri [Object] The subject uri
   # @return [String] The sparql update string
   def update(uri)
-    update = UriManagement.buildNs(@default_namespace, @prefix_set) +
+    prefix_set = @prefix_used.map{|k,v| v}
+    update = UriManagement.buildNs(@default_namespace, prefix_set) +
       "DELETE \n" +
       "{\n" +
       "#{uri.to_ref} ?p ?o . \n" +
@@ -67,7 +67,8 @@ class SparqlUpdateV2
   #
   # @return [String] The sparql update string
   def to_s
-    update = UriManagement.buildNs(@default_namespace, @prefix_set) +
+    prefix_set = @prefix_used.map{|k,v| v}
+    update = UriManagement.buildNs(@default_namespace, prefix_set) +
       "INSERT DATA \n" +
       "{ \n" +
       "#{triples_to_s}" +
@@ -84,10 +85,10 @@ class SparqlUpdateV2
 
 private
 
-  # Puts the triples to a string
+  # Puts the triples to a using prefixed notation
   def triples_to_s
     result = ""
-    @triples.each {|triple| result += triple_to_s(triple)}
+    @triples.each {|triple| result += triple.to_s}
     return result
   end
 
@@ -95,67 +96,12 @@ private
   def triples_to_file
     output_file = ImportFileHelpers.pathname("SPARQL_#{DateTime.now.strftime('%Q')}.ttl")
     File.open(output_file, "wb") do |f|
+      f.write("@prefix xsd: <#{UriManagement.getNs("xsd")}#> .\n\n")
       @triples.each do |triple| 
-        f.write(triple_to_s(triple))
+        f.write(triple.to_ref)
       end
     end
     return output_file
-  end
-
-  # Format triple
-  def triple_to_s(triple)
-    "#{triple.join(" ")} . \n"
-  end
-
-  # Always builds fully qualified triples. Default namespace is filled in automatically.
-  def process_part(args, object_literal=false)
-    part = ""
-    if args.has_key?(:uri) 
-      part = args[:uri].to_ref
-    elsif args.has_key?(:namespace) && args.has_key?(:id)
-      uri = nil
-      if args[:namespace] == ""
-        if @default_namespace.empty?
-          raise "Default namespace used (namespace) but not set. Args: #{args.to_s}"
-        else
-          uri = UriV2.new({:namespace => @default_namespace, :id => args[:id]})    
-        end
-      else
-        uri = UriV2.new(args)      
-      end
-      part = uri.to_ref
-    elsif args.has_key?(:prefix) && args.has_key?(:id)
-      # Note that :prefix can be empty (default namespace).
-      if args[:prefix] == ""
-        if @default_namespace.empty?
-          raise "Default namespace used (prefix) but not set. Args: #{args.to_s}"
-        else
-          uri = UriV2.new({:namespace => @default_namespace, :id => args[:id]})    
-          part = uri.to_ref
-        end
-      else
-        part = "#{args[:prefix]}:#{args[:id]}"
-        add_prefix (args[:prefix])
-      end
-    elsif args.has_key?(:literal) && args.has_key?(:primitive_type) && object_literal
-      literal = args[:literal]
-      if args[:primitive_type] == BaseDatatype.to_xsd(BaseDatatype::C_STRING) || BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) 
-        literal = SparqlUtility::replace_special_chars(args[:literal])
-      end
-      part = "\"#{literal}\"^^xsd:#{args[:primitive_type]}"
-    else
-      raise "Invalid triple part detected. Args: #{args.to_s}"
-    end
-    return part
-  end
-
-  def add_prefix(prefix)
-    if prefix != ""
-      if !@prefix_used.has_key?(prefix)
-        @prefix_set << prefix
-        @prefix_used[prefix] = prefix
-      end
-    end
   end
 
 end

@@ -2,10 +2,8 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-# @!attribute parent_set
-#   @return [Hash] set of parent items created
-# @!attribute classification 
-#   @return [Pathname] the classifications found
+# @attr_reader [Hash] parent_set set of parent items created
+# @attr_reader [Pathname] classification the classifications found
 class Excel::Engine
 
   C_CLASS_NAME = self.name
@@ -227,7 +225,7 @@ class Excel::Engine
   # @param [Symbol] sheet the import sheet
   # @return [Hash] the sheet info in a hash
   def sheet_info(import, sheet)
-    result = {label: Rails.configuration.imports[:processing][import][:sheets][sheet][:label], columns: []}
+    result = {selection: Rails.configuration.imports[:processing][import][:sheets][sheet][:selection], columns: []}
     result[:columns] = Rails.configuration.imports[:processing][import][:sheets][sheet][:columns].map {|x| x[:label]}
     return result
   end
