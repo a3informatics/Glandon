@@ -12,7 +12,7 @@ describe Import do
 
   def simple_import
     item = ImportTest.new
-    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
+    params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1"}
     #expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
     expect(item).to receive(:import).with(params).and_raise(StandardError.new("error"))
     item.create(params)
@@ -117,7 +117,7 @@ describe Import do
   
   it "creates an import I" do
     item = ImportTest.new
-    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3"}
+    params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3"}
     expected = params.dup
     expected[:version_label] = "3.3.3"
     expected[:label] = "XXX Implementation Guide"
@@ -129,13 +129,13 @@ describe Import do
     expected = read_yaml_file(sub_dir, "create_import_1.yaml")
     compare_import_hash(result, expected)
     background = Background.find(item.background_id)
-    expect(background.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
+    expect(background.description).to eq("Import of Something from ODM. Identifier: AAA, Owner: OWNER")
     expect(background.complete).to eq(false)    
   end
   
   it "creates an import II" do
     item = ImportTest2.new
-    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3", date: "2018-11-11"}
+    params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1", semantic_version: "3.3.3", date: "2018-11-11"}
     expected = params.dup
     expected[:version_label] = "2018-11-11"
     expected[:label] = "XXX Implementation Guide"
@@ -147,13 +147,13 @@ describe Import do
     expected = read_yaml_file(sub_dir, "create_import_3.yaml")
     compare_import_hash(result, expected)
     background = Background.find(item.background_id)
-    expect(background.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
+    expect(background.description).to eq("Import of Something from ODM. Identifier: AAA, Owner: OWNER")
     expect(background.complete).to eq(false)    
   end
 
   it "creates an import, exception" do
     item = ImportTest.new
-    params = {filename: "xxx.txt", auto_load: false, identifier: "AAA", file_type: "1"}
+    params = {files: ["xxx.txt"], auto_load: false, identifier: "AAA", file_type: "1"}
     #expect(item).to receive(:import).with(params, an_instance_of(Background)).and_raise(StandardError.new("error"))
     expect(item).to receive(:import).with(params).and_raise(StandardError.new("error"))
     item.create(params)
@@ -236,7 +236,7 @@ describe Import do
 
   it "provides a description" do
     item = simple_import
-    expect(item.description).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
+    expect(item.description({identifier: "XXX"})).to eq("Import of Something from ODM. Identifier: XXX, Owner: OWNER")
   end
 
   it "indicates if the background job is complete" do

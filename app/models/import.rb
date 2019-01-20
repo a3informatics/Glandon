@@ -52,10 +52,10 @@ class Import < ActiveRecord::Base
     job = Background.create
     klass = self.configuration[:parent_klass]
     update_params(params, klass, job)
-    self.update(input_file: params[:filename], auto_load: params[:auto_load], identifier: params[:identifier], 
+    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: params[:identifier], 
       owner: klass.owner.short_name, background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
-    job.start(self.description, "Starting ...") {self.import(params)} 
+    job.start(self.description(params), "Starting ...") {self.import(params)} 
   rescue => e
     save_error_file({parent: self, children:[]})
     job.exception("An exception was detected during the import processes.", e)
@@ -121,10 +121,12 @@ class Import < ActiveRecord::Base
 
   # Description. Formatted description of the import
   #
+  # @param [Hash] params a hash of parameters
+  # @option [String] :identifier the identifier of the item being imported
   # @return [String] the description
-  def description
+  def description(params)
     klass = self.configuration[:parent_klass]
-    "#{configuration[:description]} from #{self.file_type_humanize}. Identifier: #{klass.configuration[:identifier]}, Owner: #{klass.owner.short_name}"
+    "#{configuration[:description]} from #{self.file_type_humanize}. Identifier: #{params[:identifier]}, Owner: #{klass.owner.short_name}"
   end
 
   # Complete. Is the background job complete
@@ -152,6 +154,10 @@ class Import < ActiveRecord::Base
   end
 
 private
+
+  def file_list(params)
+    params[:files].map{|x| File.basename(x)}.join(", ")
+  end
 
   def update_params(params, klass, job)
     params[:job] = job

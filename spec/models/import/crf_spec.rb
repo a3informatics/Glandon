@@ -48,6 +48,17 @@ describe Import::Crf do
     delete_all_public_test_files
   end
 
+  it "returns the configuration" do
+    expected = {
+      description: "Import of CRF",
+      parent_klass: ::Form,
+      import_type: :form
+    }
+    expect(Import::Crf.configuration).to eq(expected)
+    object = Import::Crf.new
+    expect(object.configuration).to eq(expected)
+  end
+
   it "gets form list, odm" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = Import::Crf.new
