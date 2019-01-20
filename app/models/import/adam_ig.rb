@@ -8,10 +8,14 @@ class Import::AdamIg < Import::Rectangular
       parent_klass: ::AdamIg,
       reader_klass: Excel::AdamIgReader,
       import_type: :cdisc_adam_ig,
-      sheet_name: :main,
+      sheet_name: :format,
       version_label: :semantic_version,
       label: "ADaM Implementation Guide"
     }
   end
 
+  def format
+    return :main
+  end
+  
 end

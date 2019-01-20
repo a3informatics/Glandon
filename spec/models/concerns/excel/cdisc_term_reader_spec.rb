@@ -21,7 +21,7 @@ describe Excel::CdiscTermReader do
   it "process engine, no errors" do
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel::CdiscTermReader.new(full_path) 
-    object.check_and_process_sheet(:cdisc_term, :main)
+    object.check_and_process_sheet(:cdisc_term, :version_3)
     result = object.engine.parent_set
   #Xwrite_yaml_file(result, sub_dir, "read_expected_1.yaml")
     #expected = read_yaml_file(sub_dir, "read_expected_1.yaml")
@@ -32,7 +32,7 @@ describe Excel::CdiscTermReader do
   it "process engine, various errors" do
     full_path = test_file_path(sub_dir, "read_input_2.xlsx")
     object = Excel::CdiscTermReader.new(full_path) 
-    object.check_and_process_sheet(:cdisc_term, :main)
+    object.check_and_process_sheet(:cdisc_term, :version_3)
     result = object.engine.parent_set
   #Xwrite_yaml_file(result, sub_dir, "read_expected_2.yaml")
     #expected = read_yaml_file(sub_dir, "read_expected_2.yaml")
