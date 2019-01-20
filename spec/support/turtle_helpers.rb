@@ -9,7 +9,8 @@ module TurtleHelpers
   def check_ttl_fix(results_filename, expected_filename, options)
     results = read_ttl_file(test_file_path(sub_dir, results_filename))
     raw_expected = read_ttl_file(test_file_path(sub_dir, expected_filename))
-    fix_extract_last_change_date(results, raw_expected) if options[:last_change_date]  
+    fix_predicate(results, raw_expected, "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>") if options[:last_change_date]  
+    fix_predicate(results, raw_expected,  "<http://www.assero.co.uk/ISO11179Types#creationDate>") if options[:creation_date]  
     check_ttl_data(results, raw_expected)
   end
 
@@ -44,18 +45,17 @@ module TurtleHelpers
     return "#{triple[:subject]}.#{triple[:predicate]}.#{triple[:object]}"
   end
 
-  def extract_last_change_date(triples)
-    triple = triples.select{|x| x[:predicate] == "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>"}
-    return triple.first[:object]
+  def extract_predicate(triples, predicate)
+    triples.select{|x| x[:predicate] == predicate}.first[:object]
   end
 
-  def set_last_change_date(triples, new_date)
-    triple = triples.select{|x| x[:predicate] == "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>"}
+  def set_predicate(triples, predicate, new_date)
+    triple = triples.select{|x| x[:predicate] == predicate}
     triple.first[:object] = new_date
   end
 
-  def fix_extract_last_change_date(results, expected)
-    set_last_change_date(results, extract_last_change_date(expected))
+  def fix_predicate(results, expected, predicate)
+    set_predicate(results, predicate, extract_predicate(expected, predicate))
   end
 
 end

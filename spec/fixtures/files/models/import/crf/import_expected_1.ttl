@@ -1,217 +1,204 @@
-PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>
-PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
-PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
-PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
-PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
-PREFIX bf: <http://www.assero.co.uk/BusinessForm#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-INSERT DATA 
-{ 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> rdfs:label "Adverse Event Form (ACRO)"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> rdf:type isoR:RegistrationState . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:byAuthority mdrItems:RA-123456789 . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:administrativeNote ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:unresolvedIssue ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:administrativeStatus ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> isoR:previousState "Incomplete"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> isoI:identifier "F AE"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> rdf:type isoI:ScopedIdentifier . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> isoI:version "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> isoI:versionLabel ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> isoI:semantic_version "0.1.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> isoI:hasScope mdrItems:NS-ACME . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoT:creationDate "2018-10-18T10:05:22%2B01:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoT:lastChangeDate "2018-10-18T10:05:22%2B01:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoT:changeDescription ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoT:explanatoryComment ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> isoT:origin ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> rdfs:label "Common"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> rdfs:label "Site Number"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:format "3"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:question_text "Site #"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> bf:mapping "SITEID"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> rdfs:label "Subject ID"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:format "11"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:question_text "Subject ID #"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> bf:mapping "USUBJID"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> rdfs:label "Visit Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:datatype "date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:format ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:question_text "Visit Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> bf:mapping "RFSTDTC"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> bf:repeating "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> rdfs:label "Adverse Events Occurred"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> rdfs:label "Adverse Event Experienced"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:question_text "Has the subject experienced any adverse events"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> bf:mapping "[NO MAPPING]"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> bf:repeating "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> rdfs:label "Adverse Event"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> rdfs:label "Adverse Event Number"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:datatype "integer"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:format "3"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:question_text "Event No."^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> bf:mapping "AESPID"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> rdfs:label "Adverse Event Term"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:ordinal "2"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:format "255"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:question_text "Adverse event"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> bf:mapping "AETERM"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> rdfs:label "Adverse Event Start Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:ordinal "3"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:datatype "date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:format ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:question_text "Start Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> bf:mapping "AESTDTC"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> rdfs:label "Adverse Event Stop Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:ordinal "4"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:note ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:datatype "date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:format ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:question_text "Stop Date"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> bf:mapping "AEENDTC"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> rdfs:label "Adverse Event Continues"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:ordinal "5"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:question_text "Mark if event is still continuing"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> bf:mapping "AEENRF"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> rdfs:label "Adverse Event Serious"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:ordinal "6"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:question_text "Was event serious"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> bf:mapping "AESER"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> rdfs:label "Adverse Event Severity"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:ordinal "7"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:note "* No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.\n* No entries found in code list 'C66769' for item with submission value: '2' or preferred term: 'Moderate'.\n* No entries found in code list 'C66769' for item with submission value: '3' or preferred term: 'Severe'.\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:question_text "Severity"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> bf:mapping "AESEV"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> rdfs:label "Adverse Event Related"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:ordinal "8"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:note "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:question_text "Is there a reasonable possibility that the AE may have been caused by the study drug"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> bf:mapping "AEREL"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> rdfs:label "Adverse Event Action Taken"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:ordinal "9"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:note "* No entries found for code list, parameters ['notation=AEACTION'].\n* No entries found for code list, parameters ['notation=CLAEACTION'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:question_text "Action taken with study drug"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> bf:mapping "AEACN"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> rdf:type <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> rdfs:label "Adverse Event Subject Outcome"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:ordinal "10"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:note "* No entries found for code list, parameters ['notation=AEOUT'].\n* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\n"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:completion ""^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:optional "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:datatype "string"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:format "1"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:question_text "Subject outcome"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> bf:mapping "AEOUT"^^xsd:string . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:hasItem <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> bf:repeating "false"^^xsd:boolean . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> bf:hasGroup <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> . 
-}
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Form (ACRO)" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#byAuthority> <http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#registrationStatus> "Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#administrativeNote> "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#effectiveDate> "2016-01-01T00:00:00%2B00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#untilDate> "2016-01-01T00:00:00%2B00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#administrativeStatus> "" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Registration#previousState> "Incomplete" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Identification#identifier> "F AE" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Identification#version> "1" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Identification#versionLabel> "" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Identification#semantic_version> "0.1.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> <http://www.assero.co.uk/ISO11179Identification#hasScope> <http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Identification#hasIdentifier> <http://www.assero.co.uk/MDRItems#SI-ACME_FAE-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Registration#hasState> <http://www.assero.co.uk/MDRItems#RS-ACME_FAE-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Types#creationDate> "2019-01-20T15:59:49%2B00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Types#lastChangeDate> "2019-01-20T15:59:49%2B00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Types#changeDescription> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Types#explanatoryComment> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/ISO11179Types#origin> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.w3.org/2000/01/rdf-schema#label> "Common" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Site Number" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#format> "3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Site #" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> <http://www.assero.co.uk/BusinessForm#mapping> "SITEID" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Subject ID" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#format> "11" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#question_text> "Subject ID #" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> <http://www.assero.co.uk/BusinessForm#mapping> "USUBJID" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.w3.org/2000/01/rdf-schema#label> "Visit Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#datatype> "date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#format> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#question_text> "Visit Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> <http://www.assero.co.uk/BusinessForm#mapping> "RFSTDTC" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Events Occurred" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Experienced" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Has the subject experienced any adverse events" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> <http://www.assero.co.uk/BusinessForm#mapping> "[NO MAPPING]" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Number" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#datatype> "integer" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#format> "3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Event No." . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> <http://www.assero.co.uk/BusinessForm#mapping> "AESPID" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Term" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#format> "255" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#question_text> "Adverse event" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> <http://www.assero.co.uk/BusinessForm#mapping> "AETERM" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Start Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#datatype> "date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#format> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#question_text> "Start Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> <http://www.assero.co.uk/BusinessForm#mapping> "AESTDTC" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I3> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Stop Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#ordinal> "4" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#note> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#datatype> "date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#format> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#question_text> "Stop Date" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> <http://www.assero.co.uk/BusinessForm#mapping> "AEENDTC" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I4> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Continues" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#ordinal> "5" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#question_text> "Mark if event is still continuing" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> <http://www.assero.co.uk/BusinessForm#mapping> "AEENRF" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I5> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Serious" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#ordinal> "6" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#question_text> "Was event serious" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> <http://www.assero.co.uk/BusinessForm#mapping> "AESER" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I6> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Severity" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#ordinal> "7" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#note> "* No entries found in code list 'C66769' for item with submission value: '1' or preferred term: 'Mild'.\n* No entries found in code list 'C66769' for item with submission value: '2' or preferred term: 'Moderate'.\n* No entries found in code list 'C66769' for item with submission value: '3' or preferred term: 'Severe'.\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#question_text> "Severity" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> <http://www.assero.co.uk/BusinessForm#mapping> "AESEV" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I7> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Related" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#ordinal> "8" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=NOYES'].\n* No entries found for code list, parameters ['notation=CLNOYES'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#question_text> "Is there a reasonable possibility that the AE may have been caused by the study drug" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> <http://www.assero.co.uk/BusinessForm#mapping> "AEREL" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I8> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Action Taken" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#ordinal> "9" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=AEACTION'].\n* No entries found for code list, parameters ['notation=CLAEACTION'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#question_text> "Action taken with study drug" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> <http://www.assero.co.uk/BusinessForm#mapping> "AEACN" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I9> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.w3.org/2000/01/rdf-schema#label> "Adverse Event Subject Outcome" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#ordinal> "10" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=AEOUT'].\n* No entries found for code list, parameters ['notation=CLAEOUTCOME'].\n" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#completion> "" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#format> "1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#question_text> "Subject outcome" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> <http://www.assero.co.uk/BusinessForm#mapping> "AEOUT" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3_I10> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FAE_G3> . 

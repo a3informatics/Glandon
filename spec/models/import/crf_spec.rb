@@ -46,14 +46,13 @@ describe Import::Crf do
   after :each do
     Import.destroy_all
     delete_all_public_test_files
-    import_type(Import::Crf::C_IMPORT_TYPE)
   end
 
   it "gets form list, odm" do
     full_path = test_file_path(sub_dir, "odm_1.xml")
     object = Import::Crf.new
     expect(object.errors.count).to eq(0)
-    result = object.list({filename: full_path, file_type: "1"})
+    result = object.list({files: [full_path], file_type: "1"})
   #write_yaml_file(result, sub_dir, "list_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "list_expected_1.yaml")
 		expect(result).to eq(expected)
@@ -63,7 +62,7 @@ describe Import::Crf do
     full_path = test_file_path(sub_dir, "als_1.xlsx")
     object = Import::Crf.new
     expect(object.errors.count).to eq(0)
-    result = object.list({filename: full_path, file_type: "2"})
+    result = object.list({files: [full_path], file_type: "2"})
   #write_yaml_file(result, sub_dir, "list_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "list_expected_2.yaml")
     expect(result).to eq(expected)
@@ -72,41 +71,37 @@ describe Import::Crf do
   it "gets form, AE example, ODM" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    @object.import({identifier: "F_AE", filename: full_path, file_type: "1"}, @job)
+    @object.import({identifier: "F_AE", files: [full_path], file_type: "1", job: @job})
     result = Import.find(@object.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_1.yaml")
     compare_import_hash(result, expected, output_file: true)
-    copy_file_from_public_files("test", File.basename(result.output_file), sub_dir)
-    expected = read_sparql_file("import_expected_1.ttl")
-    actual = read_sparql_file(File.basename(result.output_file))
-    fix_last_change_date(actual, expected)
-    fix_creation_date(actual, expected)
-    expect(actual).to sparql_results_equal(expected)
-    delete_data_file(sub_dir, File.basename(result.output_file))
+    filename = File.basename(result.output_file)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.ttl")
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl_fix(filename, "import_expected_1.ttl", {last_change_date: true, creation_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
   it "gets form, BASELINE example" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    @object.import({identifier: "F_BASELINE", filename: full_path, file_type: "1"}, @job)
+    @object.import({identifier: "F_BASELINE", files: [full_path], file_type: "1", job: @job})
     result = Import.find(@object.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_2.yaml")
     compare_import_hash(result, expected, output_file: true)
-    copy_file_from_public_files("test", File.basename(result.output_file), sub_dir)
-    expected = read_sparql_file("import_expected_2.ttl")
-    actual = read_sparql_file(File.basename(result.output_file))
-    fix_last_change_date(actual, expected)
-    fix_creation_date(actual, expected)
-    expect(actual).to sparql_results_equal(expected)
-    delete_data_file(sub_dir, File.basename(result.output_file))
+    filename = File.basename(result.output_file)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_2.ttl")
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl_fix(filename, "import_expected_2.ttl", {last_change_date: true, creation_date: true})
+    delete_data_file(sub_dir, filename)
   end
 
   it "gets form, fail" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
-    @object.import({identifier: "F_DM", filename: full_path, file_type: "1"}, @job)
+    @object.import({identifier: "F_DM", files: [full_path], file_type: "1", job: @job})
     result = Import.find(@object.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "import_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "import_expected_3.yaml")

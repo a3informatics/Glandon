@@ -46,6 +46,20 @@ describe Import::AdamIg do
     delete_all_public_test_files
   end
 
+  it "returns the configuation" do
+    expected =
+    {
+      description: "Import of ADaM Implementation Guide",
+      parent_klass: ::AdamIg,
+      reader_klass: Excel::AdamIgReader,
+      import_type: :cdisc_adam_ig,
+      sheet_name: :format,
+      version_label: :semantic_version,
+      label: "ADaM Implementation Guide"
+    }
+    expect(Import::AdamIg.configuration).to eq(expected)
+  end
+
   it "import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
     params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "ADaM IG", semantic_version: "1.1.1", job: @job}

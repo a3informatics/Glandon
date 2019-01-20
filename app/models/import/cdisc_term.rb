@@ -1,3 +1,7 @@
+# Adam IG Importer
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Import::CdiscTerm < Import::Rectangular
 
   C_CLASS_NAME = self.name
@@ -8,6 +12,9 @@ class Import::CdiscTerm < Import::Rectangular
   C_SHEET_MAP = [{range: (C_V1...C_V2), sheet: :version_1}, {range: (C_V2...C_V3), sheet: :version_2}, {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
   C_DEFAULT = :version_3
 
+  # Configuration. Sets the parameters for the import
+  # 
+  # @return [Hash] the configuration hash
   def self.configuration
     {
       description: "Import of CDISC Terminology",

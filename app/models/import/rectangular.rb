@@ -9,20 +9,12 @@ class Import::Rectangular < Import
   # Import. Import the rectangular structure
   #
   # @param [Hash] params a parameter hash
-
-
-  # @params [Hash] params a parameter hash
-  # @option [String] :label the label
-  # @option [String] :identifier the identifier
-  # @option [String] :semantic_version the semantic version
-  # @option [String] :version_label the version label
-  # @option [String] :version the version
-  # @option [String] :date the date of issue
-  # @option [Hash] :excel the import and sheet names
-  # @return [Hash] hash of result structures
-
+  # @option params [String] :identifier the identifier
+  # @option params [String] :semantic_version the semantic version
+  # @option params [String] :version_label the version label
+  # @option params [String] :version the version
+  # @option params [String] :date the date of issue
   # @option params [Array] :files
-  # @option params [String] :filename the full path of the file to be read
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
@@ -51,7 +43,7 @@ private
   def read_all_excel(params)
     params[:files].each do |file|
       reader = configuration[:reader_klass].new(file)
-      reader.check_and_process_sheet(configuration[:import_type], configuration[:sheet_name])
+      reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
       merge_errors(reader, self)
       merge_parent_set(reader)
       merge_classification_set(reader)
