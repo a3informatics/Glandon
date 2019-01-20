@@ -26,6 +26,11 @@ describe SparqlUtility do
     expect(SparqlUtility.replace_special_chars("&")).to eq("%26")
   end
 
+  it "replaces & characters" do
+    #expect(SparqlUtility.replace_special_chars("&%+")).to eq("%26%25%2B")
+    expect(SparqlUtility.replace_special_chars("&%+")).to eq("%26%%2B")
+  end
+
   it "replaces + characters" do
     expect(SparqlUtility.replace_special_chars("2012-10-11T14:34:34+00:00")).to eq("2012-10-11T14:34:34%2B00:00")
   end
