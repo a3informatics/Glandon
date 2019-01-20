@@ -30,5 +30,5 @@ module SparqlUtility
     return URI.escape(text, "&+%")
 =end
   end
-
+  
 end
