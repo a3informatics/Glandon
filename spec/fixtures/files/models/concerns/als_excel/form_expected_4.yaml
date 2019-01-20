@@ -1,0 +1,775 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Adverse Events
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2019-01-20T11:50:08+00:00'
+:last_changed_date: '2019-01-20T11:50:08+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: AE
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Main Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: SGSAENO_DRV
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '10'
+    :question_text: SAE record number (for Safety Gateway use only)
+    :mapping: SGSAENO_DRV
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AETERM
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Adverse Event
+    :mapping: AETERM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTDAT
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Onset Date
+    :mapping: AESTDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTTIM
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: Onset Time
+    :mapping: AESTTIM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEENDAT
+    :extension_properties: []
+    :ordinal: 6
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: date
+    :format: ''
+    :question_text: Resolution Date
+    :mapping: AEENDAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEENTIM
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: time
+    :format: ''
+    :question_text: Resolution Time
+    :mapping: AEENTIM
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEONGO
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: boolean
+    :format: ''
+    :question_text: Ongoing
+    :mapping: AEONGO
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESEV
+    :extension_properties: []
+    :ordinal: 9
+    :note: "* No entries found for code list AE_SEVERITY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '11'
+    :question_text: Severity
+    :mapping: AESEV
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AETOXGR
+    :extension_properties: []
+    :ordinal: 10
+    :note: "* No entries found for code list CTC_GRADE.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: CTC Grade
+    :mapping: AETOXGR
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEREL
+    :extension_properties: []
+    :ordinal: 11
+    :note: "* No entries found for code list CAUSALITY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: Relationship to Study Treatment
+    :mapping: AEREL
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACN
+    :extension_properties: []
+    :ordinal: 13
+    :note: "* No entries found for code list AE_ACTION_TAKEN.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: Action Taken with Study Treatment
+    :mapping: AEACN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ACNON
+    :extension_properties: []
+    :ordinal: 14
+    :note: "* No entries found for code list YESONLY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Was any other action taken? If None, check Yes. Otherwise, select
+      applicable responses below.
+    :mapping: ACNON
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ACNMED
+    :extension_properties: []
+    :ordinal: 15
+    :note: "* No entries found for code list YESONLY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Medication given
+    :mapping: ACNMED
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ACNNONTX
+    :extension_properties: []
+    :ordinal: 16
+    :note: "* No entries found for code list YESONLY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Non-drug therapy
+    :mapping: ACNNONTX
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: ACNOTH
+    :extension_properties: []
+    :ordinal: 17
+    :note: "* No entries found for code list YESONLY.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Other
+    :mapping: ACNOTH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEACOTSP
+    :extension_properties: []
+    :ordinal: 18
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: If Other, specify
+    :mapping: AEACOTSP
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AECAT
+    :extension_properties: []
+    :ordinal: 19
+    :note: "* No entries found for code list AE_CAT.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '25'
+    :question_text: Is AE Immune Mediated?
+    :mapping: AECAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AECAT1
+    :extension_properties: []
+    :ordinal: 20
+    :note: "* No entries found for code list AE_CAT1.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '25'
+    :question_text: Is AE Infusion Related?
+    :mapping: AECAT1
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AECAT2
+    :extension_properties: []
+    :ordinal: 21
+    :note: "* No entries found for code list AE_CAT2.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '25'
+    :question_text: Is AE related to Surgery?
+    :mapping: AECAT2
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: NMCSP1
+    :extension_properties: []
+    :ordinal: 22
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: CSP-Potential Immune Mediated Event
+    :mapping: NMCSP1
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: NMCSP2
+    :extension_properties: []
+    :ordinal: 23
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: CSP-Potential IMAE (NSAE)
+    :mapping: NMCSP2
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: NMCSP3
+    :extension_properties: []
+    :ordinal: 24
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: CSP-Potential IMAE (SAE)
+    :mapping: NMCSP3
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESER
+    :extension_properties: []
+    :ordinal: 25
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Was AE Serious?
+    :mapping: AESER
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CASEID
+    :extension_properties: []
+    :ordinal: 26
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '80'
+    :question_text: 'Case ID (Remember to complete the following forms for the SAE:
+      Relevant Laboratory Tests, Relevant Procedures, Investigator Assessment of Study
+      Drug and SAE Summary)'
+    :mapping: CASEID
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEOUT
+    :extension_properties: []
+    :ordinal: 27
+    :note: "* No entries found for code list AE_OUTCOME.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: Outcome
+    :mapping: AEOUT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESDTH
+    :extension_properties: []
+    :ordinal: 28
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: For Serious AEs, select the response for each criteria...Fatal?
+    :mapping: AESDTH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESHOSP
+    :extension_properties: []
+    :ordinal: 29
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Hospitalization/Prolongation?"
+    :mapping: AESHOSP
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESLIFE
+    :extension_properties: []
+    :ordinal: 30
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Life threatening?"
+    :mapping: AESLIFE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESCONG
+    :extension_properties: []
+    :ordinal: 31
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Congenital anomaly?"
+    :mapping: AESCONG
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESDISAB
+    :extension_properties: []
+    :ordinal: 32
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Persistent/significant disability?"
+    :mapping: AESDISAB
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESMIE
+    :extension_properties: []
+    :ordinal: 33
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Important medical event?"
+    :mapping: AESMIE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESCAN
+    :extension_properties: []
+    :ordinal: 34
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Involves Cancer?"
+    :mapping: AESCAN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESDRAB
+    :extension_properties: []
+    :ordinal: 35
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Drug Dependency/Abuse?"
+    :mapping: AESDRAB
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESOTH
+    :extension_properties: []
+    :ordinal: 37
+    :note: "* No entries found for code list Yes_No.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: "...Other? (please specify below)"
+    :mapping: AESOTH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESOTH_SP
+    :extension_properties: []
+    :ordinal: 38
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '25'
+    :question_text: If Other, specify
+    :mapping: AESOTH_SP
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEMODIFY
+    :extension_properties: []
+    :ordinal: 42
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Modified Verbatim
+    :mapping: AEMODIFY
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AELLT
+    :extension_properties: []
+    :ordinal: 43
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Lowest Level Term
+    :mapping: AELLT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AELLTCD
+    :extension_properties: []
+    :ordinal: 44
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Lowest Level Term Code
+    :mapping: AELLTCD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEDECOD
+    :extension_properties: []
+    :ordinal: 45
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Dictionary-Derived Term
+    :mapping: AEDECOD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEPTCD
+    :extension_properties: []
+    :ordinal: 46
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Preferred Term Code
+    :mapping: AEPTCD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEHLT
+    :extension_properties: []
+    :ordinal: 47
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: High Level Term
+    :mapping: AEHLT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEHLTCD
+    :extension_properties: []
+    :ordinal: 48
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: High Level Term Code
+    :mapping: AEHLTCD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEHLGT
+    :extension_properties: []
+    :ordinal: 49
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: High Level Group Term
+    :mapping: AEHLGT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEHLGTCD
+    :extension_properties: []
+    :ordinal: 50
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: High Level Group Term Code
+    :mapping: AEHLGTCD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESOC
+    :extension_properties: []
+    :ordinal: 51
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Primary System Organ Class
+    :mapping: AESOC
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESOCCD
+    :extension_properties: []
+    :ordinal: 52
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '200'
+    :question_text: Primary System Organ Class Code
+    :mapping: AESOCCD
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEVER
+    :extension_properties: []
+    :ordinal: 53
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '100'
+    :question_text: AE MedDRA Version
+    :mapping: AEVER
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AESTDAT_SDY_DRV
+    :extension_properties: []
+    :ordinal: 54
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '5'
+    :question_text: AE Onset SDY Derivation
+    :mapping: AESTDAT_SDY_DRV
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AEENDAT_SDY_DRV
+    :extension_properties: []
+    :ordinal: 55
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: '5'
+    :question_text: AE Resolution SDY Derivation
+    :mapping: AEENDAT_SDY_DRV
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: NMSAEMAIL
+    :extension_properties: []
+    :ordinal: 56
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: SAE Mail Flag
+    :mapping: NMSAEMAIL
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: AE_NOW
+    :extension_properties: []
+    :ordinal: 57
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: ''
+    :question_text: HIDDEN DATE FOR CUSTOM FUNCTION USE ONLY
+    :mapping: AE_NOW
+    :children: []
+  :repeating: false
+  :bc_ref: {}

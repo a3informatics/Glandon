@@ -1,3 +1,7 @@
+# ALS Excel Reader
+#
+# @author Dave Iberson-Hurst
+# @since 2.19.0
 class AlsExcel
 
   C_CLASS_NAME = self.name
@@ -10,11 +14,15 @@ class AlsExcel
   
   @@sheet_info =
   {
-    forms: { length: 19, name: "Forms", first_column_name: "OID"},
-    fields: { length: 53, name: "Fields", first_column_name: "FormOID"},
-    data_dictionary_entries: { length: 6, name: "", first_column_name: "DataDictionaryName"}
+    forms: { length: 18, name: "Forms", first_column_name: "OID"},
+    fields: { length: 51, name: "Fields", first_column_name: "FormOID"},
+    data_dictionary_entries: { length: 5, name: "", first_column_name: "DataDictionaryName"}
   }
     
+  # Initialize
+  #
+  # @param [String] filename full path to excel file
+  # @return [AlsExcel] the object
   def initialize(filename)
     @errors = ActiveModel::Errors.new(self)
     @filename = filename
@@ -26,6 +34,9 @@ class AlsExcel
     @workbook = nil
   end
 
+  # List. List forms within file
+  #
+  # @return [Array] Array of hash form info
   def list
     results = []
     worksheets = @workbook.sheets
@@ -38,6 +49,10 @@ class AlsExcel
     return []
   end
 
+  # Form. Read a specified form
+  #
+  # @param [String] identifier the identifier of the desired form
+  # @return [Array] Array of hash form info
   def form(identifier)
     # Get the set of current terminologies
     thesauri = []
@@ -137,7 +152,7 @@ private
   def check_sheet(sheet_name)
     headers = {}
     @workbook.row(1).each_with_index { |header, i| headers[header] = i }
-    if headers.length != @@sheet_info[sheet_name][:length]
+    if headers.length < @@sheet_info[sheet_name][:length]
       @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect column count, indicates format error.")
       return 
     end
