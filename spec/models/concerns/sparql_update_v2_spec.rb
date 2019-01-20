@@ -88,7 +88,8 @@ describe SparqlUpdateV2 do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      #"<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\" . \n" +
       "}"
     sparql = SparqlUpdateV2.new()
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
@@ -112,8 +113,10 @@ describe SparqlUpdateV2 do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12:34:56%2B01:00\"^^xsd:dateTime . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      #"<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12:34:56%2B01:00\"^^xsd:dateTime . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"2012-01-01T12:34:56%2B01:00\" . \n" +
+      #"<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\"^^xsd:string . \n" +
+      "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\" . \n" +
       "}"
     sparql = SparqlUpdateV2.new()
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})

@@ -16,25 +16,29 @@ describe SparqlUpdateV2::StatementLiteral do
 
   it "allows for the class to be created" do
 		result = SparqlUpdateV2::StatementLiteral.new({:literal => "hello world", :primitive_type => "string"})
-    expect("#{result}").to eq("\"hello world\"^^xsd:string")
+    #expect("#{result}").to eq("\"hello world\"^^xsd:string")
+    expect("#{result}").to eq("\"hello world\"")
 	end
 
   it "allows for the class to be created, special characters" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = SparqlUpdateV2::StatementLiteral.new(args)
-    expect("#{result}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
+    #expect("#{result}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
+    expect("#{result}").to eq("\"hello %2B%2B%2B%2B world\"")    
   end
 
   it "allows for the class to be created, special characters, prefixed form" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = SparqlUpdateV2::StatementLiteral.new(args)
-    expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
+    #expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
+    expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"")    
   end
 
   it "allows for the class to be created, special characters" do
     args = {:literal => "2018-01-01T00:00:00+01:00", :primitive_type => "dateTime"}
     result = SparqlUpdateV2::StatementLiteral.new(args)
-    expect("#{result}").to eq("\"2018-01-01T00:00:00%2B01:00\"^^xsd:dateTime")    
+    #expect("#{result}").to eq("\"2018-01-01T00:00:00%2B01:00\"^^xsd:dateTime")    
+    expect("#{result}").to eq("\"2018-01-01T00:00:00%2B01:00\"")    
   end
 
   it "allows for the class to be created, type error" do

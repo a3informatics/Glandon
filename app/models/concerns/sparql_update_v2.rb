@@ -96,7 +96,7 @@ private
   def triples_to_file
     output_file = ImportFileHelpers.pathname("SPARQL_#{DateTime.now.strftime('%Q')}.ttl")
     File.open(output_file, "wb") do |f|
-      f.write("@prefix xsd: <#{UriManagement.getNs("xsd")}#> .\n\n")
+      #f.write("@prefix xsd: <#{UriManagement.getNs("xsd")}#> .\n\n")
       @triples.each do |triple| 
         f.write(triple.to_ref)
       end

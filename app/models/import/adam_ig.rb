@@ -1,7 +1,14 @@
+# Adam IG Importer
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 class Import::AdamIg < Import::Rectangular
 
   C_CLASS_NAME = self.name
   
+  # Configuration. Sets the parameters for the import
+  # 
+  # @return [Hash] the configuration hash
   def self.configuration
     {
       description: "Import of ADaM Implementation Guide",
@@ -14,7 +21,10 @@ class Import::AdamIg < Import::Rectangular
     }
   end
 
-  def format
+  # Format. Returns info about the sheet name. Specific to the import
+  # 
+  # @return [Hash] the configuration hash
+  def format(params)
     return :main
   end
   
