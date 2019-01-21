@@ -29,11 +29,18 @@ class SparqlUpdateV2::StatementLiteral
     "\"#{literal_value}\"^^xsd:#{@type}"
   end
 
-  # To String
+  # To Ref
   #
-  # @return [String] string representation of the object
+  # @return [String] fully qualified version of the object (note no type being added currently)
   def to_ref
     "\"#{literal_value}\""
+  end
+
+  # To Tutle
+  #
+  # @return [String] turtle string representation of the object
+  def to_turtle
+    to_s
   end
 
 private

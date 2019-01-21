@@ -5,7 +5,7 @@ class SparqlUpdateV2
   def initialize()  
     @default_namespace = ""
     @prefix_used = {}
-    @triples = []
+    @triples = Hash.new {|h,k| h[k] = [] }
   end
 
   # Set default namespace
@@ -31,7 +31,8 @@ class SparqlUpdateV2
   #
   # @return [Null] Nothing returned
   def triple(subject, predicate, object)
-    @triples << SparqlUpdateV2::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
+    s = SparqlUpdateV2::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
+    @triples[s.subject.to_s] << s
   end
 
   # Create Update
@@ -88,7 +89,7 @@ private
   # Puts the triples to a using prefixed notation
   def triples_to_s
     result = ""
-    @triples.each {|triple| result += triple.to_s}
+    @triples.each {|key, subject| subject.each{|triple| result += triple.to_s}}
     return result
   end
 
@@ -96,12 +97,30 @@ private
   def triples_to_file
     output_file = ImportFileHelpers.pathname("SPARQL_#{DateTime.now.strftime('%Q')}.ttl")
     File.open(output_file, "wb") do |f|
-      #f.write("@prefix xsd: <#{UriManagement.getNs("xsd")}#> .\n\n")
-      @triples.each do |triple| 
-        f.write(triple.to_ref)
-      end
+      turtle_header(f)
+      turtle_body(f)
     end
     return output_file
+  end
+
+  def turtle_header(f)
+    f.write("@prefix : <#{@default_namespace}#> .\n")
+    @prefix_used.map do |k,v|
+      f.write("@prefix #{UriManagement.getPrefix(namespace)}: <#{v}#> .\n")
+    end
+    f.write("\n<#{@default_namespace}>\n")
+    f.write("\trdf:type\towl:Ontology ;\n")
+  end
+
+  def turtle_body(f)
+    current_subject = ""
+    @triples.each do |key, subject|
+      subject.each do |triple| 
+        f.write(triple.to_turtle(current_subject))
+        current_subject = key
+      end
+    end
+    f.write(".")
   end
 
 end

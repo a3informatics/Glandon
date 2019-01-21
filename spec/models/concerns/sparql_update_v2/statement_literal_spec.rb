@@ -16,8 +16,8 @@ describe SparqlUpdateV2::StatementLiteral do
 
   it "allows for the class to be created, string" do
 		result = SparqlUpdateV2::StatementLiteral.new({:literal => "hello world", :primitive_type => "string"})
-    #expect("#{result}").to eq("\"hello world\"^^xsd:string")
     expect("#{result}").to eq("\"hello world\"^^xsd:string")
+    expect("#{result.to_turtle}").to eq("\"hello world\"^^xsd:string")
 	end
 
   it "allows for the class to be created, ref" do
@@ -31,6 +31,7 @@ describe SparqlUpdateV2::StatementLiteral do
     result = SparqlUpdateV2::StatementLiteral.new(args)
     expect("#{result}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
     expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"")    
+    expect("#{result.to_turtle}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
   end
 
   it "allows for the class to be created, special characters, prefixed form" do

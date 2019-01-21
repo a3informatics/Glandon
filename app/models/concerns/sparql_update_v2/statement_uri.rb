@@ -25,7 +25,7 @@ class SparqlUpdateV2::StatementUri
   #
   # @return [SparqlUpdateV2::StatementLiteral] the object
   def initialize(args, default_namespace, prefix_set)
-    @prefix = "" 
+    @prefix = ""
     if args.has_key?(:uri) 
       @uri = args[:uri]
     elsif args.has_key?(:namespace) && args.has_key?(:id)
@@ -38,6 +38,14 @@ class SparqlUpdateV2::StatementUri
     else
       raise Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid triple part detected. Args: #{args}") 
     end
+    @default = default_namespace == @uri.namespace
+  end
+
+  # URI
+  #
+  # @return [UriV2] obtain the uri
+  def uri
+    @uri
   end
 
   # To String. Output in the prefixed form
@@ -55,6 +63,16 @@ class SparqlUpdateV2::StatementUri
     @uri.to_ref
   end
 
+  # To Tutle
+  #
+  # @return [String] turtle string representation of the object
+  def to_turtle
+    # Order important
+    return ":#{@uri.id}" if @default
+    return "#{@prefix}:#{@uri.id}" if !@prefix.empty?
+    @uri.to_ref
+  end
+
 private
 
   # Check namespace args and set to default if necessary
@@ -66,8 +84,7 @@ private
   # Check prefix args and set to default if necessary
   def check_prefix(args, default_namespace)
     check_default_namespace(args, :prefix, default_namespace)
-    args[:namespace] = UriManagement.getNs(args[:prefix]) if !args[:prefix].empty?
-    args[:namespace] = default_namespace if args[:prefix].empty?
+    args[:namespace] = args[:prefix].empty? ? default_namespace : UriManagement.getNs(args[:prefix])
   end
 
   # Check if both empty
