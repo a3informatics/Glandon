@@ -91,4 +91,12 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
+
+# Thin server
+Capybara.register_server :thin do |app, port, host|
+  require 'rack/handler/thin'
+  Rack::Handler::Thin.run(app, :Port => port, :Host => host)
+end
+
+Capybara.server = :thin
 #Capybara.default_max_wait_time = 10
