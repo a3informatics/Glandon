@@ -37,6 +37,12 @@ describe Form do
     clear_iso_registration_state_object
   end
 
+  it "returns the owner" do
+    expected = IsoRegistrationAuthority.owner.to_json
+    ra = Form.owner
+    expect(ra.to_json).to eq(expected)
+  end    
+
   it "validates a valid object" do
     result = Form.new
     ra = IsoRegistrationAuthority.new

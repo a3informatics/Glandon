@@ -24,7 +24,7 @@ describe SparqlUpdateV2::Statement do
   it "allows for the class to be created, namespace and fragment" do
     uri = UriV2.new(uri: "http://www.example.com/www#fragment")
     result = SparqlUpdateV2::Statement.new({subject: {uri: uri}, predicate: {uri: uri}, object: {:literal => "hello world", :primitive_type => "string"}}, "", {})
-    #expect("#{result.to_ref}").to eq("<http://www.example.com/www#fragment> <http://www.example.com/www#fragment> \"hello world\"^^xsd:string . \n")
+    expect("#{result}").to eq("<http://www.example.com/www#fragment> <http://www.example.com/www#fragment> \"hello world\"^^xsd:string . \n")
     expect("#{result.to_ref}").to eq("<http://www.example.com/www#fragment> <http://www.example.com/www#fragment> \"hello world\" . \n")
   end
 
@@ -33,8 +33,8 @@ describe SparqlUpdateV2::Statement do
     uri = UriV2.new(uri: "http://www.example.com/www#fragment")
     triple = {subject: {prefix: "iso25964", id: "xxx"}, predicate: {prefix: "iso25964", id: "type"}, object: {:literal => "hello world", :primitive_type => "string"}}
     result = SparqlUpdateV2::Statement.new(triple, "", prefix)
-    #expect("#{result}").to eq("iso25964:xxx iso25964:type \"hello world\"^^xsd:string . \n")
-    expect("#{result}").to eq("iso25964:xxx iso25964:type \"hello world\" . \n")
+    expect("#{result}").to eq("iso25964:xxx iso25964:type \"hello world\"^^xsd:string . \n")
+    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/ISO25964#xxx> <http://www.assero.co.uk/ISO25964#type> \"hello world\" . \n")
   end
 
   it "raises error for illegal formats" do

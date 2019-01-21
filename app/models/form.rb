@@ -119,6 +119,13 @@ class Form < IsoManaged
     end
   end
 
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
+  def self.owner
+    IsoRegistrationAuthority.owner
+  end
+
   # Find a given form
   #
   # @param id [string] The id of the form.

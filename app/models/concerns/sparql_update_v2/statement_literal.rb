@@ -26,12 +26,15 @@ class SparqlUpdateV2::StatementLiteral
   #
   # @return [String] string representation of the object
   def to_s
-    #"\"#{literal_value}\"^^xsd:#{@type}"
-    "\"#{literal_value}\""
+    "\"#{literal_value}\"^^xsd:#{@type}"
   end
 
-  # To Prefixed, alias for To String
-  alias :to_ref :to_s 
+  # To String
+  #
+  # @return [String] string representation of the object
+  def to_ref
+    "\"#{literal_value}\""
+  end
 
 private
 
