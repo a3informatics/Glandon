@@ -5,7 +5,6 @@ describe Import::CdiscTerm do
 	include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
-  include TurtleHelpers
   include SparqlHelpers
 
 	def sub_dir
@@ -228,6 +227,22 @@ describe Import::CdiscTerm do
   #Xwrite_yaml_file(actual, sub_dir, "import_version_2010-12-21.yaml")
     expected = read_yaml_file(sub_dir, "import_version_2010-12-21.yaml")
     expect(actual).to eq(expected)
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, CDISC Compare with previous method" do
+    load_test_file_into_triple_store("CT_V38.ttl")
+    full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2014-12-19.xlsx")
+    full_path_2 = test_file_path(sub_dir, "COA Terminology 2014-12-19.xlsx")
+    params = {version: "39", date: "2014-12-19", files: [full_path_1, full_path_2], version_label: "2014-12-19", label: "CDISC Terminology 2014-12-19", semantic_version: "39.0.0", job: @job}
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+    check_ttl(filename, "import_version_2014-12-19.ttl")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end

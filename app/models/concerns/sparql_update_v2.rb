@@ -4,7 +4,7 @@ class SparqlUpdateV2
 
   def initialize()  
     @default_namespace = ""
-    @prefix_used = {}
+    @prefix_used = {UriManagement::C_OWL => UriManagement::C_OWL}
     @triples = Hash.new {|h,k| h[k] = [] }
   end
 
@@ -103,15 +103,20 @@ private
     return output_file
   end
 
+  # Write the header part
   def turtle_header(f)
     f.write("@prefix : <#{@default_namespace}#> .\n")
+    UriManagement.required.map do |k,v|
+      @prefix_used[k] = k if !@prefix_used.key?(k)
+    end
     @prefix_used.map do |k,v|
-      f.write("@prefix #{UriManagement.getPrefix(namespace)}: <#{v}#> .\n")
+      f.write("@prefix #{v}: <#{UriManagement.getNs(v)}#> .\n")
     end
     f.write("\n<#{@default_namespace}>\n")
-    f.write("\trdf:type\towl:Ontology ;\n")
+    f.write("\trdf:type owl:Ontology ;\n")
   end
 
+  # Write the body
   def turtle_body(f)
     current_subject = ""
     @triples.each do |key, subject|

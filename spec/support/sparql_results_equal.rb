@@ -20,20 +20,29 @@ RSpec::Matchers.define :sparql_results_equal do |expected|
   def match?(actual, expected)
     processed = {}
     return false if !actual[:checks]
+    puts "***** Warning, prefix count mismatch. a=#{actual[:prefixes].count} versus e=#{expected[:prefixes].count}*****" if actual[:prefixes].count != expected[:prefixes].count
     return false if actual[:prefixes].count != expected[:prefixes].count
+    puts "***** Warning, triple count mismatch. a=#{actual[:triples].count} versus e=#{expected[:triples].count} *****" if actual[:triples].count != expected[:triples].count
     return false if actual[:triples].count != expected[:triples].count
     processed = {}
-    expected[:triples].each do |triple|
+    actual[:triples].each do |triple|
       processed[triple_key(triple)] = triple
     end
-    actual[:prefixes].each do |prefix|
-      found = expected[:prefixes].select {|r| r == prefix}
+    expected[:prefixes].each do |prefix|
+      found = actual[:prefixes].select {|r| r == prefix}
+      puts "***** Prefix not found: #{prefix}. *****" if found.count != 1
       return false if found.count != 1
     end
-    actual[:triples].each do |item|
+    expected[:triples].each do |item|
       triple = processed[triple_key(item)]
+      puts "***** Triple not found: #{triple_key(item)}. *****" if triple.nil?
       return false if triple.nil?
-      [:subject, :predicate, :object].each {|t| return false if item[t] != triple[t]}
+      [:subject, :predicate, :object].each do |t| 
+        if item[t] != triple[t]
+          puts "***** Triple mismatch. Key: #{triple_key(item)}. Values: #{item[t]} <> #{triple[t]}. *****"
+          return false 
+        end
+      end
     end
   end
 

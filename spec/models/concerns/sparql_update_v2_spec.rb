@@ -16,11 +16,12 @@ describe SparqlUpdateV2 do
 
   it "allows for the class to be created" do
 		sparql = SparqlUpdateV2.new()
-    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{}}")
+    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{\"owl\":\"owl\"},\"triples\":{}}")
 	end
 
   it "allows a URI triple to be added" do
-    result = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+    result = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
@@ -37,7 +38,8 @@ describe SparqlUpdateV2 do
   end
 
   it "allows a Namespace Id triple to be added" do
-    result = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+    result = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
@@ -161,6 +163,7 @@ describe SparqlUpdateV2 do
 
   it "allows triples with a default namespace" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -184,6 +187,7 @@ describe SparqlUpdateV2 do
 
   it "creates new (overloaded name)" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -207,6 +211,7 @@ describe SparqlUpdateV2 do
 
   it "creates an update" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
+      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -270,19 +275,23 @@ Update succeeded
 
   it "saves triples to a file, large" do
     sparql = SparqlUpdateV2.new()
-    sparql.default_namespace("http://www.example.com/default")
-    s1_uri = UriV2.new({:uri => "http://www.example.com/test#sss1"})
+    sparql.default_namespace("http://www.example.com/def")
+    s1_uri = UriV2.new({:uri => "http://www.example.com/def#sss1"})
     s2_uri = UriV2.new({:uri => "http://www.example.com/test#sss2"})
     s3_uri = UriV2.new({:uri => "http://www.example.com/test#sss3"})
     s4_uri = UriV2.new({:uri => "http://www.example.com/test#sss4"})
     s5_uri = UriV2.new({:uri => "http://www.example.com/test#sss5"})
-    s6_uri = UriV2.new({:uri => "http://www.example.com/test#sss5"})
+    s6_uri = UriV2.new({:uri => "http://www.example.com/test#sss6"})
+    s7_uri = UriV2.new({:uri => "http://www.example.com/test#sss7"})
     o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
     p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
     sparql.triple({:uri => s1_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
+    sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo5"}, {:literal => "A string 1", :primitive_type => "string"})
+    sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo6"}, {:literal => "A string 2", :primitive_type => "string"})
+    sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo7"}, {:literal => "A string 3", :primitive_type => "string"})
     bulk = 200000
     count = bulk + 40
     (1..10).each {|c| sparql.triple({:uri => s2_uri}, {:namespace => "", :id => "#o#{c}"}, {:literal => "literal #{c}", :primitive_type => "string"})}

@@ -41,8 +41,8 @@ class SparqlUpdateV2::Statement
   # @param [String] current the current URI as a string
   # @return [String] turtle string representation of the object
   def to_turtle(current)
-    text = @item[0].uri.to_s == current ? "" : ".\n:#{@item[0].uri.id}\n"
-    return "#{text}\t#{@item[1].to_turtle}\t#{@item[2].to_turtle} ;\n"
+    text = @item[0].uri.to_s == current ? "" : ".\n#{@item[0].to_turtle}\n"
+    return "#{text}\t#{@item[1].to_turtle} #{@item[2].to_turtle} ;\n"
   end
 
   # Subject
