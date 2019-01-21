@@ -27,6 +27,10 @@ describe UriManagement do
   C_MDR_ISO21090 = "mdrIso21090"
   C_MDR_C = "mdrConcepts"
   C_MDR_TH =  "mdrTh"
+  C_RDF = "rdf"
+  C_RDFS = "rdfs"
+  C_XSD = "xsd"
+  C_SKOS = "skos"
   C_OWL = "owl"
 
   it "provides a list of optinal namespaces" do
@@ -61,6 +65,17 @@ describe UriManagement do
       }
 		expect(UriManagement.get()).to eq(optional_set)
 	end
+
+  it "provides the required set" do
+    required_set = 
+    { 
+      C_RDF => "http://www.w3.org/1999/02/22-rdf-syntax-ns" ,
+      C_RDFS => "http://www.w3.org/2000/01/rdf-schema" ,
+      C_XSD => "http://www.w3.org/2001/XMLSchema" ,
+      C_SKOS => "http://www.w3.org/2004/02/skos/core" 
+    }
+    expect(UriManagement.required).to eq(required_set)
+  end
 
   it "allows the prefix to be obtained for a namespace" do
     expect(UriManagement.getPrefix("http://www.assero.co.uk/BusinessDomain")).to eq("bd")

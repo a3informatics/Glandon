@@ -81,6 +81,13 @@ module UriManagement
     return @@optional
   end
 
+  # Get the required namespaces
+  #
+  # @return [Hash] the set of required namespaces
+  def UriManagement.required
+    return @@required
+  end
+
   # Get Prefix for a namespace
   #
   # @param namespace [string] The namespace
