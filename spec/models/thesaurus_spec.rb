@@ -30,6 +30,12 @@ describe Thesaurus do
     clear_iso_registration_state_object
   end
 
+  it "returns the owner" do
+    expected = IsoRegistrationAuthority.owner.to_json
+    ra = Form.owner
+    expect(ra.to_json).to eq(expected)
+  end    
+
   it "allows an object to be initialised" do
     th =Thesaurus.new
     result =     
