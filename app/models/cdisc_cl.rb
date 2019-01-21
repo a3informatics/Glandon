@@ -177,19 +177,23 @@ class CdiscCl < ThesaurusConcept
     return results
   end
 
+=begin
   def to_json
     json = super
     json[:extensible] = self.extensible
     return json
   end
+=end
 
   alias :to_hash :to_json
 
+=begin
   def self.from_json(json)
     object = super(json)
     object.extensible = json[:extensible].to_bool
     return object
   end
+=end
 
   class << self
     alias :from_hash :from_json

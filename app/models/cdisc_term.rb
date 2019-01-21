@@ -31,6 +31,16 @@ class CdiscTerm < Thesaurus
     end
   end
 
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
+  def self.owner
+    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
+  end
+
+  # Configuration
+  #
+  # @return [Hash] the configuration hash
   def self.configuration
     #schema_namespace = Namespaces.namespace(:iso25964)
     { 
@@ -42,6 +52,9 @@ class CdiscTerm < Thesaurus
     }
   end
 
+  # Configuration
+  #
+  # @return [Hash] the configuration hash
   def configuration
     self.class.configuration
   end
@@ -161,7 +174,6 @@ class CdiscTerm < Thesaurus
   # @option opts [String] :version The version being created
   # @option opts [String] :files Array of files being used 
   # @return [Hash] A hash containing any errors and the background job reference.
-=begin  
   def self.create(params)
     job = nil
     object = self.new
@@ -177,7 +189,7 @@ class CdiscTerm < Thesaurus
       operation = object.to_operation
       operation[:new_version] = params[:version]
       operation[:new_state] = IsoRegistrationState.releasedState
-      object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
+      object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, owner)
       # Check the full object
       if object.valid? then
         ConsoleLogger.debug(C_CLASS_NAME, "create", "Valid 2")
@@ -197,7 +209,6 @@ class CdiscTerm < Thesaurus
     end
     return { :object => object, :job => job }
   end
-=end
 
   def self.build(params)
     super(params, IsoRegistrationAuthority.find_by_short_name("CDISC"))
@@ -451,12 +462,9 @@ private
 		end
 	end
 
+  # CDISC namespace
   def self.cdisc_namespace
     return owner.namespace
-  end
-
-  def self.owner
-    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
   end
 
   def self.processNode(node, results)

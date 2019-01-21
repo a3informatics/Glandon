@@ -5,7 +5,7 @@ describe CdiscCl do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/cdisc_cl"
   end
 
   before :all do
@@ -153,8 +153,8 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     tc2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
     result = CdiscCl.difference(tc1, tc2)
-  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_1.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_1.yaml")
+  #write_yaml_file(result, sub_dir, "differences_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "differences_expected_1.yaml")
     expect(result).to eq(expected) 
   end
 
@@ -162,8 +162,8 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
     tc2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
     result = CdiscCl.difference(tc1, tc2)
-  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_2.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_2.yaml")
+  #write_yaml_file(result, sub_dir, "differences_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "differences_expected_2.yaml")
     expect(result).to eq(expected) 
   end
 
@@ -171,8 +171,8 @@ describe CdiscCl do
     tc1 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
     tc2 = CdiscCl.find("CL-C105137", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
     result = CdiscCl.difference(tc1, tc2)
-  #write_yaml_file(result, sub_dir, "cdisc_cl_differences_3.yaml")
-    expected = read_yaml_file(sub_dir, "cdisc_cl_differences_3.yaml")
+  #write_yaml_file(result, sub_dir, "differences_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "differences_expected_3.yaml")
     expect(result).to eq(expected) 
   end
 
@@ -185,6 +185,21 @@ describe CdiscCl do
   	result = CdiscCl.child_identifiers(cl)
   	expected = ["C16576", "C17998", "C20197", "C45908"] # SEX
     expect(result).to match_array(expected) 
+  end
+
+  it "generates a hash" do
+    cl = CdiscCl.find("CL-C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47", false)
+  #Xwrite_yaml_file(cl.to_hash, sub_dir, "to_hash_expected.yaml")
+    expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
+    expect(cl.to_hash).to eq(expected)
+  end
+
+  it "creates from a hash" do
+    input = read_yaml_file(sub_dir, "from_hash_input.yaml")    
+    cl = CdiscCl.from_hash(input)
+  #Xwrite_yaml_file(cl.to_hash, sub_dir, "from_hash_expected.yaml")
+    expected = read_yaml_file(sub_dir, "from_hash_expected.yaml")
+    expect(cl.to_hash).to eq(expected)
   end
 
 end

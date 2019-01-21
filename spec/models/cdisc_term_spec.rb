@@ -63,6 +63,19 @@ describe CdiscTerm do
       expect(th.to_json).to eq(result)
     end
 
+    it "returns the owner" do
+      expected =IsoRegistrationAuthority.find_by_short_name("CDISC").to_json
+      ra = CdiscTerm.owner
+      expect(ra.to_json).to eq(expected)
+    end    
+
+    it "returns the configuration" do
+      expected = {identifier: "CDISC Terminology"}
+      expect(CdiscTerm.configuration).to eq(expected)
+      th = CdiscTerm.new
+      expect(th.configuration).to eq(expected)
+    end    
+
     it "allows validity of the object to be checked - error" do
       th = CdiscTerm.new
       valid = th.valid?
