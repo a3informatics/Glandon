@@ -11,27 +11,27 @@ class Imports::BaseController < ApplicationController
   @@extension_map = ["*.xlsx", "*.xml", "*.xlsx"]
 
   def new
-    get_file_type
+    @file_type = get_file_type
     @model = new_model
-    files
+    @files = upload_files(@@extension_map[@file_type])
   end
 
   def items
     if params[:imports].blank?
       render :json => {data: []}, :status => 200
     else
+      check_params
       @model = new_model
-      get_file_type
-      filename = get_filename(the_params)
-      @items = @model.list({filename: filename, file_type: @file_type})
-      @items.each {|x| x[:filename] = filename}
+      @file_type = get_file_type
+      @items = @model.list(the_params)
       render :json => {data: @items}, :status => 200
     end
   end
 
   def create
+    check_params
     model = new_model
-    model.create(check_filename(the_params))
+    model.create(the_params)
     if request.format.json?
       render json: {data: []}, :status => 200
     else
@@ -54,12 +54,12 @@ private
     authorize Import
   end
 
-  def get_file_type
-    @file_type = the_params[:file_type].to_i
+  def check_params
+    the_params[:files].reject!(&:blank?)
   end
 
-  def files
-    @files = upload_files(@@extension_map[@file_type])
+  def get_file_type
+    the_params[:file_type].to_i
   end
 
   def the_params(additional=[])
@@ -67,17 +67,8 @@ private
     params.require(:imports).permit(list)
   end
 
-  def check_filename(params)
-    return params if params.key?(:filename)
-    params[:filename] = get_filename(params)
-    return params
-  rescue => e
-    return params
-  end
-
-  def get_filename(params)
-    params[:files].reject!(&:blank?)
-    return params[:files].first
+  def single_filename()
+    return the_params[:files].first
   end
 
 end

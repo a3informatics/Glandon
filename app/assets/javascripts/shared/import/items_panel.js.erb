@@ -57,7 +57,7 @@ ImportItemsPanel.prototype.refresh = function(uri, filename) {
         },
         error: function (xhr, status, error) {
           _this.processing(false);
-          displayError("An error has occurred loading the Code List table.");
+          displayError("An error has occurred loading the table.");
         }
       },
       select: { style: 'multi' },
@@ -84,7 +84,7 @@ ImportItemsPanel.prototype.import = function(identifiers) {
   identifier = identifiers.pop();
   $.ajax({
     url: this.create_url,
-    data: { imports: {"filename": this.filename, "uri": this.uri, "identifier": identifier, "file_type": _this.fileType, "auto_load": autoLoad}},
+    data: { imports: {"files":[ _this.filename ], "uri": this.uri, "identifier": identifier, "file_type": _this.fileType, "auto_load": autoLoad}},
     type: 'POST',
     dataType: 'json',
     success: function(result) {

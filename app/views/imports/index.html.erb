@@ -7,8 +7,9 @@
 		<thead>
 	  	<tr>
 	    	<th class="fit"></th>
-        <th class="col-sm-4">Details</th>
-	    	<th class="col-sm-3">Input File</th>
+        <th class="col-sm-1">Owner</th>
+	    	<th class="col-sm-2">Identifier</th>
+        <th class="col-sm-3">Input File</th>
         <th class="fit">Complete</th>
 	    	<th class="fit">Succesful</th>
         <th class="fit">Auto Load</th>
@@ -20,7 +21,8 @@
 			<% @items.each do |item| %>
 	    	<tr>
 					<td><%= item.id %></td>
-          <td><%= item.description %></td>
+          <td><%= item.owner %></td>
+          <td><%= item.identifier %></td>
           <td><%= item.input_file %></td>
 	    		<%= true_false_glyphicon(item.complete) %>
           <%= true_false_glyphicon(item.success) %>
