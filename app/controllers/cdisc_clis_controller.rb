@@ -20,8 +20,8 @@ class CdiscClisController < ApplicationController
     
 private
 
-    def this_params
-      params.require(:cdisc_cli).permit(:namespace)
-    end
+  def this_params
+    params.require(:cdisc_cli).permit(:namespace)
+  end
       
 end
