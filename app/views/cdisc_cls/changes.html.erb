@@ -97,7 +97,7 @@
 							<td class="text-center"><%=[status]%></td>
 						<% end %>
 					<% end %>
-					<td><%= link_to "Changes", changes_cdisc_clis_path(:id => cli[:id]), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Changes", changes_cdisc_clis_path(id: cli[:id], cdisc_cli: {namespace: cli[:namespace]}), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>
@@ -105,12 +105,11 @@
 	<% button_class = "btn btn-primary" %>
 	<% previous_class = @previous_version.nil? ? button_class + " disabled" : button_class %>
 	<% next_class = @next_version.nil? ? button_class + " disabled" : button_class %>
-	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: { version: @previous_version }), class: "#{previous_class}" do %>
+	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: {version: @previous_version, namespace: @namespace}), class: "#{previous_class}" do %>
   	<span class="glyphicon glyphicon-chevron-left"></span>
 	<% end %>
-	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: { version: @next_version }), class: "#{next_class}" do %>
+	<%= link_to changes_cdisc_cls_path(id: @id, cdisc_cl: {version: @next_version, namespace: @namespace}), class: "#{next_class}" do %>
   	<span class="glyphicon glyphicon-chevron-right"></span>
 	<% end %>
-	<!--<%= link_to "Close", changes_cdisc_terms_path, :class => "btn btn-primary" %>-->
 	<%= back_close_button %>
 </div>

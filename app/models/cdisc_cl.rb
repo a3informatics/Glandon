@@ -177,7 +177,7 @@ class CdiscCl < ThesaurusConcept
     query_and_result(query).each {|node| results << ModelUtility.getValue('cl', true, node)}
     return nil if results.empty?
     uri = UriV3.new(uri: results.first)
-    return CdiscCl.find(uri.fragment, uri.namespace, false)
+    return CdiscCl.find(uri.fragment, uri.namespace)
   end
 
   # Differences between this and another code list. Details for the code lists

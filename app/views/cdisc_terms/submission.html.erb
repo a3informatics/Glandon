@@ -35,7 +35,7 @@
 							<td class="text-center">&nbsp;</td>
 						<% end %>
 					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_clis_path(:id => id), :class => "btn btn-primary btn-xs" %></td>
+					<td><%=link_to "Changes", changes_cdisc_clis_path(id: id, cdisc_cli: {namespace: cli[:namespace]}), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

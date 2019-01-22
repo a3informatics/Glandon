@@ -34,7 +34,7 @@ describe CdiscClisController do
     end
 
     it "calculates all changes for a code list item" do
-      params = { :id => "CLI-C66741_C12472" }
+      params = {id: "CLI-C66741_C12472", cdisc_cli: {namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39"}}
       get :changes, params
       results = assigns(:results)
     #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_1.yaml")
@@ -43,7 +43,7 @@ describe CdiscClisController do
     end
     
     it "calculates all changes for a code list item" do
-      params = { :id => "CLI-C120521_C120601" }
+      params = {id: "CLI-C120521_C120601", cdisc_cli: {namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}}
       get :changes, params
       results = assigns(:results)
     #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_2.yaml")
@@ -52,7 +52,7 @@ describe CdiscClisController do
     end
     
     it "calculates all changes for a code list item" do
-      params = { :id => "CLI-C100145_C120601" }
+      params = {id: "CLI-C100145_C120601", cdisc_cli: {namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39"}}
       get :changes, params
       results = assigns(:results)
     #write_yaml_file(results, sub_dir, "cdisc_cli_controller_changes_3.yaml")
@@ -61,7 +61,7 @@ describe CdiscClisController do
     end
     
     it "shows a given code list item" do
-      params = {:id => "CLI-C66741_C12472", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}
+      params = {id: "CLI-C66741_C12472", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V40"}
       get :show, params
       results = assigns(:cdiscCli)
     #write_yaml_file(results.to_json, sub_dir, "cdisc_cli_controller_show.yaml")

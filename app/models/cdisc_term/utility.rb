@@ -30,16 +30,19 @@ class CdiscTerm::Utility
 
   # Code List Item Changes for given id
   #
-  # @param id [String] the id of the code list item to be compared for changes
+  # @param [UriV3] uri the uri for the code list item 
   # @return [Hash] a hash containing the identifier, title and the changes across all the versions
-  def self.cli_changes(id)
+  def self.cli_changes(uri)
     data = []
     results = []
     identifier = ""
     title = ""
+    root_cli = CdiscCli.find(uri.fragment, uri.namespace)
+    root_cli.set_parent if !root_cli.nil?
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each do |ct|
-      cli = CdiscCli.find(id, ct.namespace)
+      #cli = CdiscCli.find(id, ct.namespace)
+      cli = root_cli.nil? ? nil : CdiscCl.find_child(root_cli.parentIdentifier, root_cli.identifier, ct.namespace)
       data << {:term => ct, :cli => cli}
     end
     set = false
@@ -61,16 +64,18 @@ class CdiscTerm::Utility
 
   # Code List Changes for given id
   #
-  # @param id [String] the id of the code list item to be compared for changes
+  # @param [UriV3] uri the uri for the code list item 
   # @return [Hash] a hash containing the identifier, title and the changes across all the versions
-  def self.cl_changes(id)
+  def self.cl_changes(uri)
     data = []
     results = []
     identifier = ""
     title = ""
+    root_cl = CdiscCl.find(uri.fragment, uri.namespace, false)
     cdisc_terms = CdiscTerm.all()
     cdisc_terms.each do |ct|
-      cl = CdiscCl.find(id, ct.namespace)
+      #cl = CdiscCl.find(id, ct.namespace)
+      cl = root_cl.nil? ? nil : CdiscCl.find_by_identifier(root_cl.identifier, ct.namespace)
       data << {:term => ct, :cl => cl}
     end
     set = false
@@ -170,18 +175,18 @@ class CdiscTerm::Utility
       list = list | children.keys
     end
     list.each do |key|
-      new_results[key] = { preferred_term: "", identifier: "", notation: "", id: "", status: Array.new(results.length, :not_present)}
+      new_results[key] = { preferred_term: "", identifier: "", notation: "", id: "", namespace: "", 
+        status: Array.new(results.length, :not_present)}
     end
     index = 0
     results.each do |result|
       result[:children].each do |key, child|
         new_results[key][:status][index] = child[:status]
-        #if child[:status] == :created
-          new_results[key][:identifier] = child[:identifier]
-          new_results[key][:preferred_term] = child[:preferred_term]
-          new_results[key][:notation] = child[:notation]
-          new_results[key][:id] = child[:id]
-        #end
+        new_results[key][:identifier] = child[:identifier]
+        new_results[key][:preferred_term] = child[:preferred_term]
+        new_results[key][:notation] = child[:notation]
+        new_results[key][:id] = child[:id]
+        new_results[key][:namespace] = child[:namespace]
       end
       index += 1
       result[:children] = {}

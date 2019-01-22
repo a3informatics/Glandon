@@ -53,6 +53,6 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Changes", changes_cdisc_cls_path(:id => @cdiscCl.id, :namespace => @cdiscCl.namespace), :class => "btn btn-primary" %>
+	<%= link_to "Changes", changes_cdisc_cls_path(:id => @cdiscCl.id, cdisc_cl: {namespace: @cdiscCl.namespace}), :class => "btn btn-primary" %>
 	<%= back_close_button %>
 </div>

@@ -19,6 +19,6 @@
 	    <td><%= @cdiscCli.definition %></td>
 	  </tr>
 	</table>
-	<%= link_to "Changes", changes_cdisc_clis_path(:id => @cdiscCli.id, :namespace => @cdiscCli.namespace), :class => "btn btn-primary" %>
+	<%= link_to "Changes", changes_cdisc_clis_path(id: @cdiscCli.id, cdisc_cli: {namespace: @cdiscCli.namespace}), :class => "btn btn-primary" %>
 	<%= back_close_button %>
 </div>

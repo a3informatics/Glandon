@@ -12,9 +12,10 @@ class CdiscClsController < ApplicationController
   def changes    
     authorize CdiscCl, :view?
     version = get_version
-    data = CdiscTerm::Utility.cl_changes(params[:id])
+    data = CdiscTerm::Utility.cl_changes(UriV3.new({fragment: params[:id], namespace: this_params[:namespace]}))
     @results = data[:results]
     @id = params[:id]
+    @namespace = this_params[:namespace]
     @trimmed_results = CdiscTerm::Utility.trim_results(@results, version, current_user.max_term_display.to_i)
     @previous_version = CdiscTerm::Utility.previous_version(@results, @trimmed_results.first[:version])
     @next_version = CdiscTerm::Utility.next_version(@results, @trimmed_results.first[:version], 
@@ -32,6 +33,7 @@ private
   
   def get_version
   	return nil if params[:cdisc_cl].blank? 
+    return nil if !this_params.key?(:version)
   	return this_params[:version].to_i
   end
 

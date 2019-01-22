@@ -117,4 +117,58 @@ describe CdiscTerm do
   	check_cli_result(old_version, new_version, "C120528", "C128982", updated: [:Notation, :Definition, :Synonym])
 	end
 
+  it "compares V50 to V49" do
+    old_version = 49
+    new_version = 50
+    load_term(old_version, new_version)
+    # Compare code lists
+    results = compare_term(old_version, new_version)
+    check_cl_result(results, "C101846", :updated)
+    check_cl_result(results, "C101847", :updated)
+    check_cl_result(results, "C138221", :created)
+    check_cl_result(results, "C138225", :created)
+    check_cl_result(results, "C67154", :updated)
+    check_cl_result(results, "C65047", :updated) 
+    check_cl_result(results, "C74456", :updated)
+    check_cl_result(results, "C120528", :updated)
+    check_cl_result(results, "C101848", :updated)
+    check_cl_result(results, "C96782", :updated)
+    # Compare code list items
+    check_cli_result(old_version, new_version, "C101846", "C127573", updated: [:Definition])
+    check_cli_result(old_version, new_version, "C101847", "C127575", updated: [:Definition])
+    check_cli_result(old_version, new_version, "C101847", "C139051", created: true)
+    check_cli_result(old_version, new_version, "C138221", "C138436", created: true)
+    check_cli_result(old_version, new_version, "C138225", "C138462", created: true)
+    check_cli_result(old_version, new_version, "C67154", "C139090", created: true)
+    check_cli_result(old_version, new_version, "C65047", "C64606", updated: [:Definition, :Synonym])
+    check_cli_result(old_version, new_version, "C65047", "C114218", deleted: true)
+    check_cli_result(old_version, new_version, "C74456", "C12774", updated: [:Notation])
+    check_cli_result(old_version, new_version, "C120528", "C128982", updated: [:Notation, :Definition, :Synonym])
+  end
+
+  it "compares V55 to V54" do
+    v1 = 53
+    v2 = 54
+    v3 = 55
+    load_term(v1, v2)
+    load_test_file_into_triple_store("CT_V#{v3}.ttl")
+
+    v1_cl = CdiscCl.find("CL-C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V53")
+    v2_cl = CdiscCl.find("CL-C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V54")
+    v3_cl = CdiscCl.find("TH-CDISC_CDISCTerminology_C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V55")
+    result = CdiscCl.difference(v1_cl, v2_cl)
+byebug
+    result = CdiscCl.difference(v2_cl, v3_cl)
+byebug
+
+    # Compare code lists
+    results = compare_term(old_version, new_version)
+    check_cl_result(results, "C65047", :updated)
+    check_cl_result(results, "C67154", :updated)
+
+    # Compare code list items
+    check_cli_result(old_version, new_version, "C65047", "C81958", updated: [:Notation])
+    check_cli_result(old_version, new_version, "C67154", "C81958", updated: [:Notation])
+  end
+    
 end

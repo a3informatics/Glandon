@@ -40,7 +40,7 @@
 							<td class="text-center"><%=[status]%></td>
 						<% end %>
 					<% end %>
-					<td><%= link_to "Changes", changes_cdisc_cls_path(:id => cl[:id]), :class => "btn btn-primary btn-xs" %></td>
+					<td><%= link_to "Changes", changes_cdisc_cls_path(id: cl[:id], cdisc_cl: {namespace: cl[:namespace]}), :class => "btn btn-primary btn-xs" %></td>
 				</tr>	
 			<% end %>
 		</tbody>

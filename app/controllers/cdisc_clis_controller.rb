@@ -11,7 +11,7 @@ class CdiscClisController < ApplicationController
   
   def changes
     authorize CdiscCli, :view?
-    data = CdiscTerm::Utility.cli_changes(params[:id])
+    data = CdiscTerm::Utility.cli_changes(UriV3.new({fragment: params[:id], namespace: this_params[:namespace]}))
     @results = data[:results]
     @identifier = data[:identifier]
     @title = data[:title]
@@ -21,7 +21,7 @@ class CdiscClisController < ApplicationController
 private
 
     def this_params
-      params.require(:cdisc_term).permit(:id, :namespace)
+      params.require(:cdisc_cli).permit(:namespace)
     end
       
 end
