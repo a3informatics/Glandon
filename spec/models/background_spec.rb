@@ -4,9 +4,21 @@ describe Background do
 
   include DataHelpers
   include PublicFileHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/background"
+  end
+
+  def check_ttl_local(actual, expected)
+    copy_file_from_public_files("test", actual, sub_dir)
+    check_ttl(actual, expected)
+    delete_data_file(sub_dir, actual)
+  end
+
+  def save_results(actual, expected)
+    results = read_public_text_file("test", actual)
+    write_text_file_2(results, sub_dir, expected)
   end
 
   def check_model(results)
@@ -89,16 +101,18 @@ describe Background do
 	    terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
 	    job = Background.create
 	    job.compare_cdisc_term(terms)
-	    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_two_expected.yaml")
 	    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, {new_version: 36, old_version: 35})
+    #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_two_expected.yaml")
+      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_two_expected.yaml")
 	    expect(results).to eq(expected)
 	  end
 
 	  it "compares all CDISC terminology" do
 	    job = Background.create
 	    job.changes_cdisc_term()
-	    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_all_expected.yaml")
 	    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+    #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_all_expected.yaml")
+      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_all_expected.yaml")
 	    expect(results).to eq(expected)
 	  end
 
@@ -107,6 +121,8 @@ describe Background do
 	    job.submission_changes_cdisc_term()
 	    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
 	    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+    #Xwrite_yaml_file(results, sub_dir, "cdisc_submission_difference_expected.yaml")
+      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
 	    expect(results).to eq(expected)
 	  end
 
@@ -158,10 +174,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
 	  	params = {version: "1", version_label: "1.2", date: "2008-11-12", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-      results = read_public_text_file("test", "SDTM_Model_1-2.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_Model_V1.txt")
-      expected = read_text_file_2(sub_dir, "SDTM_Model_V1.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_Model_1-2.txt", "SDTM_Model_V1.txt")
+      check_ttl_local("SDTM_Model_1-2.txt", "SDTM_Model_V1.txt")
       expect(job.status).to eq("Complete. Successful import.")
       model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V1")
       check = read_yaml_file(sub_dir, "sdtm_model_v1_check.yaml")
@@ -174,10 +188,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-2-excel.xlsx")
 	  	params = {version: "1", version_label: "3.1.2", date: "2008-11-12", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-      results = read_public_text_file("test", "SDTM_IG_3-1-2.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_IG_V1.txt")
-      expected = read_text_file_2(sub_dir, "SDTM_IG_V1.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_IG_3-1-2.txt", "SDTM_IG_V1.txt")
+      check_ttl_local("SDTM_IG_3-1-2.txt", "SDTM_IG_V1.txt")
       expect(job.status).to eq("Complete. Successful import.")
       check = read_yaml_file(sub_dir, "sdtm_ig_v1_check.yaml")
       check_ig(check)
@@ -188,10 +200,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
 	  	params = {version: "2", version_label: "1.3", date: "2012-07-16", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-      results = read_public_text_file("test", "SDTM_Model_1-3.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_Model_V2.txt")
-      expected = read_text_file_2(sub_dir, "SDTM_Model_V2.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_Model_1-3.txt", "SDTM_Model_V2.txt")
+      check_ttl_local("SDTM_Model_1-3.txt", "SDTM_Model_V2.txt")
       expect(job.status).to eq("Complete. Successful import.")
       check = read_yaml_file(sub_dir, "sdtm_model_v2_check.yaml")
       check_model(check)
@@ -203,10 +213,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-1-3-excel.xlsx")
 	  	params = {version: "2", version_label: "3.1.3", date: "2012-07-16", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-      results = read_public_text_file("test", "SDTM_IG_3-1-3.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_IG_V2.txt")
-      expected = read_text_file_2(sub_dir, "SDTM_IG_V2.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_IG_3-1-3.txt", "SDTM_IG_V2.txt")
+      check_ttl_local("SDTM_IG_3-1-3.txt", "SDTM_IG_V2.txt")
       expect(job.status).to eq("Complete. Successful import.")
       check = read_yaml_file(sub_dir, "sdtm_ig_v2_check.yaml")
       check_ig(check)
@@ -217,10 +225,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
 	  	params = {version: "3", version_label: "1.4", date: "2013-11-26", files: ["#{filename}"]}
 	  	job.import_cdisc_sdtm_model(params)
-      results = read_public_text_file("test", "SDTM_Model_1-4.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_Model_V3.txt")
-	  	expected = read_text_file_2(sub_dir, "SDTM_Model_V3.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_Model_1-4.txt", "SDTM_Model_V3.txt")
+      check_ttl_local("SDTM_Model_1-4.txt", "SDTM_Model_V3.txt")
       expect(job.status).to eq("Complete. Successful import.")
       check = read_yaml_file(sub_dir, "sdtm_model_v3_check.yaml")
       check_model(check)
@@ -232,10 +238,8 @@ describe Background do
 	  	filename = db_load_file_path("cdisc", "sdtm-3-2-excel.xlsx")
 	  	params = {version: "3", version_label: "3.2", date: "2013-11-26", files: ["#{filename}"], model_uri: model.uri.to_s}
 	  	job.import_cdisc_sdtm_ig(params)
-      results = read_public_text_file("test", "SDTM_IG_3-2.txt")
-    #write_text_file_2(results, sub_dir, "SDTM_IG_V3.txt")
-      expected = read_text_file_2(sub_dir, "SDTM_IG_V3.txt")
-      expect(results).to eq(expected) 
+    #save_results("SDTM_IG_3-2.txt", "SDTM_IG_V3.txt")
+      check_ttl_local("SDTM_IG_3-2.txt", "SDTM_IG_V3.txt")
       expect(job.status).to eq("Complete. Successful import.")
       check = read_yaml_file(sub_dir, "sdtm_ig_v3_check.yaml")
       check_ig(check)
@@ -277,10 +281,9 @@ describe Background do
 	  	job.import_cdisc_term_changes(params)
 		#puts job.status
 	  	expect(job.status).to eq("Complete. Successful import.")  
-	  	results = read_public_text_file("test", "CDISC_CT_Instructions_V44.txt")
+	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V44.txt")
 	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
-	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_2.txt")
-	  	expect(results).to eq(expected)	
+      check_ttl_local("CDISC_CT_Instructions_V44.txt", "cdisc_term_changes_expected_2.txt")
 	  end
 
 	  it "import cdisc term changes, June 2017" do
@@ -293,10 +296,9 @@ describe Background do
 	  	job.import_cdisc_term_changes(params)
 		#puts job.status
 	  	expect(job.status).to eq("Complete. Successful import.")  
-	  	results = read_public_text_file("test", "CDISC_CT_Instructions_V49.txt")
+	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V49.txt")
 	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
-	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_1.txt")
-	  	expect(results).to eq(expected)	
+      check_ttl_local("CDISC_CT_Instructions_V49.txt", "cdisc_term_changes_expected_1.txt")
 	  end
 
 	  it "import cdisc term changes, September 2017" do
@@ -309,10 +311,9 @@ describe Background do
 	  	job.import_cdisc_term_changes(params)
 		#puts job.status
 	  	expect(job.status).to eq("Complete. Successful import.")  
-	  	results = read_public_text_file("test", "CDISC_CT_Instructions_V50.txt")
+	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V50.txt")
 	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_3.txt")
-	  	expected = read_text_file_2(sub_dir, "cdisc_term_changes_expected_3.txt")
-	  	expect(results).to eq(expected)	
+      check_ttl_local("CDISC_CT_Instructions_V50.txt", "cdisc_term_changes_expected_3.txt")
 	  end
 
 	  it "import cdisc term changes, errors 1" do

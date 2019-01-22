@@ -305,6 +305,7 @@ class Background < ActiveRecord::Base
           transformed_results[key][:notation] = child[:result][:previous]
           transformed_results[key][:preferred_term] = child[:preferred_term]
           transformed_results[key][:id] = child[:previous_uri].id
+          transformed_results[key][:namespace] = child[:previous_uri].namespace
           check[CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier])] = true
         end      
         transformed_results[key][:result][index] = child[:result]
