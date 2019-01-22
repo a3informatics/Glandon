@@ -4,7 +4,7 @@ class SparqlUpdateV2
 
   def initialize()  
     @default_namespace = ""
-    @prefix_used = {UriManagement::C_OWL => UriManagement::C_OWL}
+    @prefix_used = {}
     @triples = Hash.new {|h,k| h[k] = [] }
   end
 
@@ -81,6 +81,7 @@ class SparqlUpdateV2
   #
   # @return [String] the full_path of the created file
   def to_file
+    add_owl_namespace # Add because we will add the OWL namespace for a file.
     triples_to_file
   end
 
@@ -126,6 +127,12 @@ private
       end
     end
     f.write(".")
+  end
+
+  # Add OWL namespace if not already included
+  def add_owl_namespace
+    return if @prefix_used.key?(UriManagement::C_OWL)
+    @prefix_used[UriManagement::C_OWL] = UriManagement::C_OWL 
   end
 
 end

@@ -16,12 +16,11 @@ describe SparqlUpdateV2 do
 
   it "allows for the class to be created" do
 		sparql = SparqlUpdateV2.new()
-    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{\"owl\":\"owl\"},\"triples\":{}}")
+    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{}}")
 	end
 
   it "allows a URI triple to be added" do
-    result = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+    result = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
@@ -38,8 +37,7 @@ describe SparqlUpdateV2 do
   end
 
   it "allows a Namespace Id triple to be added" do
-    result = "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+    result = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
@@ -163,7 +161,6 @@ describe SparqlUpdateV2 do
 
   it "allows triples with a default namespace" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
-      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -187,7 +184,6 @@ describe SparqlUpdateV2 do
 
   it "creates new (overloaded name)" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
-      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -211,7 +207,6 @@ describe SparqlUpdateV2 do
 
   it "creates an update" do
     result = "PREFIX : <http://www.example.com/default#>\n" +
-      "PREFIX owl: <http://www.w3.org/2002/07/owl#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -241,7 +236,7 @@ describe SparqlUpdateV2 do
     expect(sparql.update(s_uri)).to eq(result)
   end
 
-  it "encodes updates and loads and reads back" do
+  it "encodes update query and reads back" do
     sparql = SparqlUpdateV2.new()
     sparql.default_namespace("http://www.example.com/default")
     s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
@@ -250,7 +245,7 @@ describe SparqlUpdateV2 do
     sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
-    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/aaa&\n\r\t", :primitive_type => "string"})
     sparql_result = 
 "<html>
 <head>
@@ -269,7 +264,49 @@ Update succeeded
       pre = ModelUtility.getValue('p', true, node)
       next if pre != "http://www.example.com/default#ooo4"
       obj = ModelUtility.getValue('o', false, node)
-      expect(obj).to eq("+/%aaa&\n\r\t")
+      expect(obj).to eq("+/aaa&\n\r\t")
+    end
+  end
+
+  it "encodes updates and loads file and reads back" do
+    sparql = SparqlUpdateV2.new()
+    sparql.default_namespace("http://www.example.com/default")
+    s_uri = UriV2.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = UriV2.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = UriV2.new({:uri => "http://www.example.com/test#ppp"})
+    sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/\'aaa\'\\ & \n\r\t", :primitive_type => "string"})
+    sparql_result = 
+"<html>
+<head>
+</head>
+<body>
+<h1>Success</h1>
+<p>
+Triples = 5
+
+<p>
+</p>
+<button onclick=\"timeFunction()\">Back to Fuseki</button>
+</p>
+<script type=\"text/javascript\">
+function timeFunction(){
+window.location.href = \"/fuseki.html\";}
+</script>
+</body>
+</html>\n"
+    file = sparql.to_file
+    result_body = CRUD.file(file).body
+    expect(result_body).to eq(sparql_result)
+    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc.remove_namespaces!
+    xmlDoc.xpath("//result").each do |node|
+      pre = ModelUtility.getValue('p', true, node)
+      next if pre != "http://www.example.com/default#ooo4"
+      obj = ModelUtility.getValue('o', false, node)
+      expect(obj).to eq("%2B/'aaa'\\ %26 \n\r\t")
     end
   end
 

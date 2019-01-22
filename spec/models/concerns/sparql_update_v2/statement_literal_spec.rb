@@ -34,6 +34,14 @@ describe SparqlUpdateV2::StatementLiteral do
     expect("#{result.to_turtle}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
   end
 
+  it "allows for the class to be created, special characters" do
+    args = {:literal => "hello \r\n\t\\\"\' world", :primitive_type => "string"}
+    result = SparqlUpdateV2::StatementLiteral.new(args)
+    expect("#{result}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"^^xsd:string")    
+    expect("#{result.to_ref}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"")    
+    expect("#{result.to_turtle}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"^^xsd:string")    
+  end
+
   it "allows for the class to be created, special characters, prefixed form" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = SparqlUpdateV2::StatementLiteral.new(args)
