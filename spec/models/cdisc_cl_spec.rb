@@ -34,6 +34,7 @@ describe CdiscCl do
       {
         :children => [],
         :definition => "",
+        :extensible => false,
         :extension_properties => [],
         :id => "",
         :identifier => "",
@@ -192,6 +193,7 @@ describe CdiscCl do
   #Xwrite_yaml_file(cl.to_hash, sub_dir, "to_hash_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
     expect(cl.to_hash).to eq(expected)
+    expect(cl.to_json).to eq(expected)
   end
 
   it "creates from a hash" do
@@ -200,6 +202,8 @@ describe CdiscCl do
   #Xwrite_yaml_file(cl.to_hash, sub_dir, "from_hash_expected.yaml")
     expected = read_yaml_file(sub_dir, "from_hash_expected.yaml")
     expect(cl.to_hash).to eq(expected)
+    cl = CdiscCl.from_json(input)
+    expect(cl.to_json).to eq(expected)
   end
 
 end
