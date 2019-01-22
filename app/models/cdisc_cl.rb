@@ -1,3 +1,8 @@
+# CDISC Code List
+#
+# @attribute [Boolean] extensible the code list extensibel flag
+# @author Dave Iberson-Hurst
+# @since 0.0.1
 require "diffy"
 
 class CdiscCl < ThesaurusConcept
