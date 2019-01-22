@@ -133,6 +133,47 @@ class CdiscCl < ThesaurusConcept
     return results
   end
 
+  # Find child. Based on a parent and child identifier find the equivalent item in another namespace
+  #
+  # @param [String] parent_identifier the parent identifier
+  # @param [String] child_identifier the child identifier
+  # @param [String] namespace the mamespace
+  # @return [CdiscCl] the object found or nil
+  def self.find_child(parent_identifier, child_identifier, namespace)
+    results = []
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT ?cli WHERE \n" +
+      "{ \n" +
+      "  ?cl iso25964:identifier \"#{parent_identifier}\" . \n" +
+      "  FILTER(STRSTARTS(STR(?cl), \"#{namespace}\")) . \n" + 
+      "  ?cl iso25964:hasChild ?cli . \n" +   
+      "  ?cli iso25964:identifier \"#{child_identifier}\" . \n" +   
+      "}"
+    query_and_result(query).each {|node| results << ModelUtility.getValue('cli', true, node)}
+    return nil if results.empty?
+    uri = UriV3.new(uri: results.first)
+    return CdiscCli.find(uri.fragment, uri.namespace)
+  end
+
+  # Find by identifier
+  #
+  # @param [String] identifier the required identifier
+  # @param [String] namespace the mamespace
+  # @return [CdiscCl] the object found or nil
+  def self.find_by_identifier(identifier, namespace)
+    results = []
+    query = UriManagement.buildPrefix("", ["iso25964"]) +
+      "SELECT ?cl WHERE \n" +
+      "{ \n" +
+      "  ?cl iso25964:identifier \"#{identifier}\" . \n" +
+      "  FILTER(STRSTARTS(STR(?cl), \"#{namespace}\")) . \n" + 
+      "  ?cl iso25964:hasChild ?cli . \n" +   
+      "}"
+    query_and_result(query).each {|node| results << ModelUtility.getValue('cl', true, node)}
+    return nil if results.empty?
+    uri = UriV3.new(uri: results.first)
+    return CdiscCl.find(uri.fragment, uri.namespace, false)
+  end
 
   # Differences between this and another code list. Details for the code lists
   # and a staus on the children.

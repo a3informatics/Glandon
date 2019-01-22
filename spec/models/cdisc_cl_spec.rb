@@ -206,4 +206,39 @@ describe CdiscCl do
     expect(cl.to_json).to eq(expected)
   end
 
+  it "finds a child by parent and child identifier" do
+    cl_1 = CdiscCl.find_child("C74457", "C41219", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    cl_2 = CdiscCl.find_child("C74457", "C41219", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    expect(cl_1.identifier).to eq(cl_2.identifier)
+  #Xwrite_yaml_file(cl_1.to_json, sub_dir, "find_child_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "find_child_expected_1.yaml")
+    expect(cl_1.to_json).to eq(expected)
+  #Xwrite_yaml_file(cl_2.to_json, sub_dir, "find_child_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "find_child_expected_2.yaml")
+    expect(cl_2.to_json).to eq(expected)
+  end
+
+  it "finds a child by parent and child identifier, not found" do
+    cl_1 = CdiscCl.find_child("C74457", "C41219XXX", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    expect(cl_1).to be_nil
+  end
+
+  it "finds a code list by identifier" do
+    cl_1 = CdiscCl.find_by_identifier("C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    cl_2 = CdiscCl.find_by_identifier("C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
+    expect(cl_1.identifier).to eq(cl_2.identifier)
+  #Xwrite_yaml_file(cl_1.to_json, sub_dir, "find_by_identifier_1.yaml")
+    expected = read_yaml_file(sub_dir, "find_by_identifier_1.yaml")
+    expect(cl_1.to_json).to eq(expected)
+  #Xwrite_yaml_file(cl_2.to_json, sub_dir, "find_by_identifier_2.yaml")
+    expected = read_yaml_file(sub_dir, "find_by_identifier_2.yaml")
+    expect(cl_2.to_json).to eq(expected)
+  end    
+
+  it "finds a child by parent and child identifier, not found" do
+    cl_1 = CdiscCl.find_by_identifier("C74457XXX", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+    expect(cl_1).to be_nil
+  end
+
+
 end
