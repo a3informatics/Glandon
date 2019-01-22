@@ -48,7 +48,7 @@ class AdamIg < TabularStandard
   #
   # @return [array] An array of objects.
   def self.history
-    return super({identifier: C_IDENTIFIER, scope_id: IsoNamespace.findByShortName("CDISC")})
+    return super({identifier: C_IDENTIFIER, scope_id: IsoNamespace.findByShortName("CDISC").id})
   end
 
   # Get the next version

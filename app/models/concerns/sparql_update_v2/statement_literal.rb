@@ -58,18 +58,15 @@ private
   end
 
   def turtle_escape
-    return literal_value # Temporary
-=begin
     return @value if @type != BaseDatatype.to_xsd(BaseDatatype::C_STRING)
     text = @value.dup
-    text.gsub!("\r", "\u000D")
-    text.gsub!("\n", "\u000A")
-    text.gsub!("\t", "\u0009")
-    text.gsub!("\\", "\u005C")
-    text.gsub!("\"", "\u0022")
-    text.gsub!("\'", "\u0027")
+    text.gsub!("\r", "<LINEFEED>")
+    text.gsub!("\n", "<CARRIAGERETURN>")
+    text.gsub!("\\", "\\\\\\\\")
+    text.gsub!("<LINEFEED>", "\\r")
+    text.gsub!("<CARRIAGERETURN>", "\\n")
+    text.gsub!("\"", "\\\"")
     return text
-=end
   end
 
 end

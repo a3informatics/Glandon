@@ -277,7 +277,7 @@ Update succeeded
     sparql.triple({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
     sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
-    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/\'aaa\'\\ & \n\r\t", :primitive_type => "string"})
+    sparql.triple({:uri => s_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / & \n\r\t", :primitive_type => "string"})
     sparql_result = 
 "<html>
 <head>
@@ -306,7 +306,7 @@ window.location.href = \"/fuseki.html\";}
       pre = ModelUtility.getValue('p', true, node)
       next if pre != "http://www.example.com/default#ooo4"
       obj = ModelUtility.getValue('o', false, node)
-      expect(obj).to eq("%2B/'aaa'\\ %26 \n\r\t")
+      expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / & \n\r\t")
     end
   end
 
@@ -326,7 +326,7 @@ window.location.href = \"/fuseki.html\";}
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo2"}, {:uri => o_uri})
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo3"}, {:prefix => "", :id => "#ooo4"})
     sparql.triple({:uri => s1_uri}, {:namespace => "", :id => "#ooo4"}, {:literal => "+/%aaa&\n\r\t", :primitive_type => "string"})
-    sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo5"}, {:literal => "A string 1", :primitive_type => "string"})
+    sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo5"}, {:literal => "A \"string\" 1", :primitive_type => "string"})
     sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo6"}, {:literal => "A string 2", :primitive_type => "string"})
     sparql.triple({:uri => s7_uri}, {:prefix => "bd", :id => "#ooo7"}, {:literal => "A string 3", :primitive_type => "string"})
     bulk = 200000
