@@ -443,6 +443,17 @@ class CdiscTerm < Thesaurus
     super
   end
 
+  # From JSON
+  #
+  # @param json [hash] The hash of values for the object 
+  # @return [object] The object
+  def self.from_json(json)
+    object = super(json)
+    object.children = []
+    json[:children].each {|child| object.children << CdiscCl.from_json(child)} if !json[:children].blank?
+    return object
+  end
+
 private
 
 	# Check Params Valid

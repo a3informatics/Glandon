@@ -112,7 +112,7 @@ describe CdiscTerm do
 
     it "allows a CDISC Term to be found" do
       th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    #write_yaml_file(th.to_json, sub_dir, "find_expected_1.yaml")
+    #Xwrite_yaml_file(th.to_json, sub_dir, "find_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_expected_1.yaml")
       expect(th.to_json).to eq(result_th)
     end
@@ -355,6 +355,15 @@ describe CdiscTerm do
       public_file_exists?("test", "CDISC_CT_Instructions_V44.txt")
       delete_public_file("test", "CDISC_CT_Instructions_V44.txt")
       delete_public_file("test", "create_cross_reference_1.xlsx")
+    end
+
+    it "allows a terminology to be built from json" do
+      th = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    #Xwrite_yaml_file(th.to_json, sub_dir, "from_json_input_1.yaml")
+      input = read_yaml_file(sub_dir, "from_json_input_1.yaml")
+      expected = input
+      result = CdiscTerm.from_json(input)
+      expect(result.to_json).to eq(expected)
     end
 
   end
