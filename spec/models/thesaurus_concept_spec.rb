@@ -4,6 +4,7 @@ describe ThesaurusConcept do
 
   include DataHelpers
   include ValidationHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models"

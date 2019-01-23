@@ -3,6 +3,7 @@ require 'rails_helper'
 describe SdtmModelDomain do
 
   include DataHelpers
+  include SparqlHelpers
   
   def sub_dir
     return "models/sdtm_model_domain"
@@ -81,8 +82,9 @@ describe SdtmModelDomain do
     item = SdtmModelDomain.from_json(json)
     result = item.to_sparql_v2(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmMd/CDISC/V3#M-CDISC_SDTMMODELINTERVENTIONS")
   end
 
@@ -104,8 +106,9 @@ describe SdtmModelDomain do
   	domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
 		result = SdtmModelDomain.build(domains[0][:instance], model, sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
 	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
 		expect(result.to_json).to eq(expected)

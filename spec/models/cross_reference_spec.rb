@@ -3,6 +3,7 @@ require 'rails_helper'
 describe CrossReference do
 	
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/cross_reference"
@@ -68,8 +69,9 @@ describe CrossReference do
 		sparql = SparqlUpdateV2.new
 		result.to_sparql_v2(parent_uri, sparql)
 	#write_text_file_2(sparql.to_s, sub_dir, "to_sparql_1.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_1.txt")
-		expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_1.txt")
+		#expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_1.txt")
 	end
   
 end

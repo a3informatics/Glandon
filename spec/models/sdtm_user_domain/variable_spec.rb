@@ -3,6 +3,7 @@ require 'rails_helper'
 describe SdtmUserDomain::Variable do
 
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/sdtm_user_domain/variable"
@@ -174,8 +175,9 @@ describe SdtmUserDomain::Variable do
     item.variable_ref.subject_ref = UriV2.new({:id => "variableReference", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_1.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_1.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_1.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_1.txt")
   end
 
   it "allows object to be initialized from triples, PR" do
@@ -242,8 +244,9 @@ describe SdtmUserDomain::Variable do
     item.property_refs[1].subject_ref = UriV2.new({:id => "propertyReference2", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_2.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_2.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_2.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_2.txt")
   end
 
   it "allows an object to be found, PR" do

@@ -3,6 +3,7 @@ require 'rails_helper'
 describe SdtmModelDatatype do
 	
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/sdtm_model_datatype"
@@ -90,8 +91,9 @@ describe SdtmModelDatatype do
     item.label = "NEW LABEL"
     result = item.to_sparql_v2(parent_uri, sparql)
   #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
 
 end

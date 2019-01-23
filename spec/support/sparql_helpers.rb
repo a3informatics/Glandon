@@ -6,6 +6,21 @@ module SparqlHelpers
       creation_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#creationDate>", prefixed: "isoT#creationDate"}
     }
 
+  def check_sparql(results_filename, expected_filename)
+    actual = read_sparql_file(results_filename)
+    expected = read_sparql_file(expected_filename)
+    expect(actual).to sparql_results_equal(expected)
+  end
+
+  def check_sparql_no_file(sparql, expected_filename)
+    actual_filename = "CHECK_SPARQL_#{DateTime.now.strftime('%Q')}.ttl"
+    write_text_file_2(sparql, sub_dir, actual_filename)
+    actual = read_sparql_file(actual_filename)
+    expected = read_sparql_file(expected_filename)
+    delete_data_file(sub_dir, actual_filename)
+    expect(actual).to sparql_results_equal(expected)
+  end
+
   def check_ttl(results_filename, expected_filename)
     actual = read_ttl_file(results_filename)
     expected = read_ttl_file(expected_filename)
@@ -41,17 +56,6 @@ module SparqlHelpers
     fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
     expect(actual).to sparql_results_equal(expected)
   end
-
-=begin
-  def check_sparql_no_file(sparql, expected_filename)
-    actual_filename = "CHECK_SPARQL_#{DateTime.now.strftime('%Q')}.ttl"
-    write_text_file_2(sparql, sub_dir, actual_filename)
-    actual = read_ttl_file(test_file_path(sub_dir, results_filename))
-    expected = read_ttl_file(test_file_path(sub_dir, expected_filename))
-    delete_data_file(sub_dir, actual_filename)
-    expect(actual).to sparql_results_equal(expected)
-  end
-=end
 
   def read_sparql_file(filename)
     @checks = {insert: false, open: false, close: false}

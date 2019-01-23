@@ -4,6 +4,7 @@ describe SdtmUserDomain do
 
   include DataHelpers
   include PublicFileHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/sdtm_user_domain"
@@ -137,8 +138,9 @@ describe SdtmUserDomain do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     sparql = item.to_sparql_v2
   #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
   
   it "allows BC to be associated with a domain" do
