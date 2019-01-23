@@ -23,7 +23,9 @@ module UriManagement
   C_MDR_M = "mdrSDTMM"
   C_MDR_MD = "mdrSDTMMD"
   C_MDR_IG = "mdrSDTMIg"
+  C_MDR_AIG = "mdrADaMIg"
   C_MDR_IGD = "mdrSDTMIgD"
+  C_MDR_AIGT = "mdrADaMIgT"
   C_MDR_UD = "mdrSDTMUD"
   C_MDR_BRIDG = "mdrBridg"
   C_MDR_ISO21090 = "mdrIso21090"
@@ -61,7 +63,9 @@ module UriManagement
       C_MDR_M => "http://www.assero.co.uk/MDRSdtmM" ,
       C_MDR_MD => "http://www.assero.co.uk/MDRSdtmMd" ,
       C_MDR_IG => "http://www.assero.co.uk/MDRSdtmIg" ,
+      C_MDR_AIG => "http://www.assero.co.uk/MDRAdamIg" ,
       C_MDR_IGD => "http://www.assero.co.uk/MDRSdtmIgD" ,
+      C_MDR_AIGT => "http://www.assero.co.uk/MDRAdamIgT" ,
       C_MDR_UD => "http://www.assero.co.uk/MDRSdtmUD" ,
       C_MDR_TH => "http://www.assero.co.uk/MDRThesaurus",
       C_OWL => "http://www.w3.org/2002/07/owl"

@@ -32,6 +32,9 @@ describe UriManagement do
   C_XSD = "xsd"
   C_SKOS = "skos"
   C_OWL = "owl"
+  C_MDR_AIG = "mdrADaMIg"
+  C_MDR_AIGT = "mdrADaMIgT"
+ 
 
   it "provides a list of optinal namespaces" do
     optional_set = 
@@ -61,7 +64,9 @@ describe UriManagement do
         C_MDR_IGD => "http://www.assero.co.uk/MDRSdtmIgD" ,
         C_MDR_UD => "http://www.assero.co.uk/MDRSdtmUD" ,
         C_MDR_TH => "http://www.assero.co.uk/MDRThesaurus",
-        C_OWL => "http://www.w3.org/2002/07/owl"
+        C_OWL => "http://www.w3.org/2002/07/owl",
+        C_MDR_AIG => "http://www.assero.co.uk/MDRAdamIg",
+        C_MDR_AIGT => "http://www.assero.co.uk/MDRAdamIgT"
       }
 		expect(UriManagement.get()).to eq(optional_set)
 	end
