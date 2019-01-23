@@ -32,7 +32,7 @@ class Import::Rectangular < Import
     save_exception(e, msg)
     params[:job].exception(msg, e)
   end 
-  #handle_asynchronously :import unless Rails.env.test?
+  handle_asynchronously :import unless Rails.env.test?
 
   def configuration
     self.class.configuration
