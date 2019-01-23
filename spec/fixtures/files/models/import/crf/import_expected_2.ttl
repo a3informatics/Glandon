@@ -1,266 +1,336 @@
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Form> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.w3.org/2000/01/rdf-schema#label> "Baseline Visit Form" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#byAuthority> <http://www.assero.co.uk/MDRItems#RA-123456789> . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#registrationStatus> "Incomplete" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#administrativeNote> "" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#effectiveDate> "2016-01-01T00:00:00%2B00:00" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#untilDate> "2016-01-01T00:00:00%2B00:00" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> "" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#administrativeStatus> "" . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Registration#previousState> "Incomplete" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Identification#identifier> "F BASELINE" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Identification#version> "1" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Identification#versionLabel> "" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Identification#semantic_version> "0.1.0" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> <http://www.assero.co.uk/ISO11179Identification#hasScope> <http://www.assero.co.uk/MDRItems#NS-ACME> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Identification#hasIdentifier> <http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Registration#hasState> <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Types#creationDate> "2019-01-20T15:59:57%2B00:00" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Types#lastChangeDate> "2019-01-20T15:59:57%2B00:00" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Types#changeDescription> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Types#explanatoryComment> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/ISO11179Types#origin> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.w3.org/2000/01/rdf-schema#label> "Common" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Site Number" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#format> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Site #" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> <http://www.assero.co.uk/BusinessForm#mapping> "SITEID" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Subject ID" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#format> "11" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#question_text> "Subject ID #" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> <http://www.assero.co.uk/BusinessForm#mapping> "USUBJID" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.w3.org/2000/01/rdf-schema#label> "Visit Date" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#datatype> "date" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#format> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#question_text> "Visit Date" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> <http://www.assero.co.uk/BusinessForm#mapping> "RFSTDTC" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1_I3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.w3.org/2000/01/rdf-schema#label> "Demographics" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Date of Birth" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#datatype> "date" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#format> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Date of Birth" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> <http://www.assero.co.uk/BusinessForm#mapping> "BRTHDTC" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.w3.org/2000/01/rdf-schema#label> "DM - Sex" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#format> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#question_text> "Sex" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#mapping> "SEX" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C20197> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C16576> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#enabled> "true" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#ordinal> "2" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> <http://www.assero.co.uk/BusinessOperational#local_label> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2_TCR2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.w3.org/2000/01/rdf-schema#label> "DM - Race" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#note> "* No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.\n* No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#question_text> "Race" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#mapping> "RACE" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessOperational#TcReference> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.w3.org/2000/01/rdf-schema#label> "Thesaurus Concept Reference" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#hasThesaurusConcept> <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74457_C41260> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#enabled> "true" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> <http://www.assero.co.uk/BusinessOperational#local_label> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> <http://www.assero.co.uk/BusinessForm#hasThesaurusConcept> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3_TCR1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2_I3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.w3.org/2000/01/rdf-schema#label> "Smoking History" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Smoking" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Number of cigarettes per day" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> <http://www.assero.co.uk/BusinessForm#mapping> "SUDOSE" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.w3.org/2000/01/rdf-schema#label> "Drinking History" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#ordinal> "4" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Drinking" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Number of alcoholic drinks per day" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> <http://www.assero.co.uk/BusinessForm#mapping> "SUDOSE" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G4> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#NormalGroup> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.w3.org/2000/01/rdf-schema#label> "Physical Exam" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#ordinal> "5" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.w3.org/2000/01/rdf-schema#label> "Height" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#ordinal> "1" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#datatype> "integer" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#format> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#question_text> "Height" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> <http://www.assero.co.uk/BusinessForm#mapping> "VSORRES" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.w3.org/2000/01/rdf-schema#label> "Height units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#ordinal> "2" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#note> "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], ignored.\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#question_text> "Height units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> <http://www.assero.co.uk/BusinessForm#mapping> "[NO MAPPING]" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I2> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.w3.org/2000/01/rdf-schema#label> "Weight" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#ordinal> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#datatype> "integer" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#format> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#question_text> "Weight" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> <http://www.assero.co.uk/BusinessForm#mapping> "VSORRES" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I3> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.w3.org/2000/01/rdf-schema#label> "Weight units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#ordinal> "4" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for parameters ['notation=lbs'].\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#question_text> "Weight units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> <http://www.assero.co.uk/BusinessForm#mapping> "[NO MAPPING]" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I4> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.w3.org/2000/01/rdf-schema#label> "Systolic BP" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#ordinal> "5" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#datatype> "integer" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#format> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#question_text> "Systolic BP" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> <http://www.assero.co.uk/BusinessForm#mapping> "VSORRES" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I5> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.w3.org/2000/01/rdf-schema#label> "Systolic BP units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#ordinal> "6" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for parameters ['notation=mm Hg'].\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#question_text> "Systolic BP units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> <http://www.assero.co.uk/BusinessForm#mapping> "[NO MAPPING]" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I6> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.w3.org/2000/01/rdf-schema#label> "Diastolic BP" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#ordinal> "7" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#note> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#datatype> "integer" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#format> "3" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#question_text> "Diastolic BP" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> <http://www.assero.co.uk/BusinessForm#mapping> "VSORRES" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I7> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.assero.co.uk/BusinessForm#Question> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.w3.org/2000/01/rdf-schema#label> "Diastolic BP units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#ordinal> "8" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#note> "* No entries found for parameters ['notation=mm Hg'].\n" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#completion> "" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#optional> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#datatype> "string" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#format> "20" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#question_text> "Diastolic BP units" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> <http://www.assero.co.uk/BusinessForm#mapping> "[NO MAPPING]" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#hasItem> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5_I8> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> <http://www.assero.co.uk/BusinessForm#repeating> "false" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE> <http://www.assero.co.uk/BusinessForm#hasGroup> <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_FBASELINE_G5> . 
+@prefix : <http://www.assero.co.uk/MDRForms/ACME/V1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix bf: <http://www.assero.co.uk/BusinessForm#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/MDRForms/ACME/V1>
+	rdf:type owl:Ontology ;
+.
+:F-ACME_FBASELINE
+	rdf:type <http://www.assero.co.uk/BusinessForm#Form> ;
+	rdfs:label "Baseline Visit Form"^^xsd:string ;
+	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> ;
+	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> ;
+	isoT:creationDate "2019-01-23T12:06:40+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-01-23T12:06:40+00:00"^^xsd:dateTime ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	isoT:origin ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:note ""^^xsd:string ;
+	bf:hasGroup :F-ACME_FBASELINE_G1 ;
+	bf:hasGroup :F-ACME_FBASELINE_G2 ;
+	bf:hasGroup :F-ACME_FBASELINE_G3 ;
+	bf:hasGroup :F-ACME_FBASELINE_G4 ;
+	bf:hasGroup :F-ACME_FBASELINE_G5 ;
+.
+<http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1>
+	rdf:type isoR:RegistrationState ;
+	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+.
+<http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1>
+	isoI:identifier "F BASELINE"^^xsd:string ;
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:semantic_version "0.1.0"^^xsd:string ;
+	isoI:hasScope mdrItems:NS-ACME ;
+.
+:F-ACME_FBASELINE_G1
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Common"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FBASELINE_G1_I1 ;
+	bf:hasItem :F-ACME_FBASELINE_G1_I2 ;
+	bf:hasItem :F-ACME_FBASELINE_G1_I3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FBASELINE_G1_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Site Number"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Site #"^^xsd:string ;
+	bf:mapping "SITEID"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G1_I2
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Subject ID"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "11"^^xsd:string ;
+	bf:question_text "Subject ID #"^^xsd:string ;
+	bf:mapping "USUBJID"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G1_I3
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Visit Date"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:question_text "Visit Date"^^xsd:string ;
+	bf:mapping "RFSTDTC"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G2
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Demographics"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FBASELINE_G2_I1 ;
+	bf:hasItem :F-ACME_FBASELINE_G2_I2 ;
+	bf:hasItem :F-ACME_FBASELINE_G2_I3 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FBASELINE_G2_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Date of Birth"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "date"^^xsd:string ;
+	bf:format ""^^xsd:string ;
+	bf:question_text "Date of Birth"^^xsd:string ;
+	bf:mapping "BRTHDTC"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G2_I2
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "DM - Sex"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "1"^^xsd:string ;
+	bf:question_text "Sex"^^xsd:string ;
+	bf:mapping "SEX"^^xsd:string ;
+	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I2_TCR1 ;
+	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I2_TCR2 ;
+.
+:F-ACME_FBASELINE_G2_I2_TCR1
+	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
+	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
+	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C20197> ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:local_label ""^^xsd:string ;
+.
+:F-ACME_FBASELINE_G2_I2_TCR2
+	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
+	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
+	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C66731_C16576> ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:local_label ""^^xsd:string ;
+.
+:F-ACME_FBASELINE_G2_I3
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "DM - Race"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:note "* No entries found in code list 'C74457' for item with submission value: 'CAUCASIAN' or preferred term: 'Caucasian'.\n* No entries found in code list 'C74457' for item with submission value: 'BLACK' or preferred term: 'Black'.\n* No entries found in code list 'C74457' for item with submission value: 'OTHER' or preferred term: 'Other'.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Race"^^xsd:string ;
+	bf:mapping "RACE"^^xsd:string ;
+	bf:hasThesaurusConcept :F-ACME_FBASELINE_G2_I3_TCR1 ;
+.
+:F-ACME_FBASELINE_G2_I3_TCR1
+	rdf:type <http://www.assero.co.uk/BusinessOperational#TcReference> ;
+	rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
+	bo:hasThesaurusConcept <http://www.assero.co.uk/MDRThesaurus/CDISC/V49#CLI-C74457_C41260> ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:local_label ""^^xsd:string ;
+.
+:F-ACME_FBASELINE_G3
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Smoking History"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FBASELINE_G3_I1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FBASELINE_G3_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Smoking"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=SMOKE'].\n* No entries found for code list, parameters ['notation=CLSMOKING'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Number of cigarettes per day"^^xsd:string ;
+	bf:mapping "SUDOSE"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G4
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Drinking History"^^xsd:string ;
+	bf:ordinal "4"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FBASELINE_G4_I1 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FBASELINE_G4_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Drinking"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note "* No entries found for code list, parameters ['notation=DRINK'].\n* No entries found for code list, parameters ['notation=CLDRINKING'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Number of alcoholic drinks per day"^^xsd:string ;
+	bf:mapping "SUDOSE"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5
+	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
+	rdfs:label "Physical Exam"^^xsd:string ;
+	bf:ordinal "5"^^xsd:positiveInteger ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I1 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I2 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I3 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I4 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I5 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I6 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I7 ;
+	bf:hasItem :F-ACME_FBASELINE_G5_I8 ;
+	bf:repeating "false"^^xsd:boolean ;
+.
+:F-ACME_FBASELINE_G5_I1
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Height"^^xsd:string ;
+	bf:ordinal "1"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Height"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I2
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Height units"^^xsd:string ;
+	bf:ordinal "2"^^xsd:positiveInteger ;
+	bf:note "* Multiple entries [C48500,C48500] found for parameters ['notation=in'], ignored.\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Height units"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I3
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Weight"^^xsd:string ;
+	bf:ordinal "3"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Weight"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I4
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Weight units"^^xsd:string ;
+	bf:ordinal "4"^^xsd:positiveInteger ;
+	bf:note "* No entries found for parameters ['notation=lbs'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Weight units"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I5
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Systolic BP"^^xsd:string ;
+	bf:ordinal "5"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Systolic BP"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I6
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Systolic BP units"^^xsd:string ;
+	bf:ordinal "6"^^xsd:positiveInteger ;
+	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Systolic BP units"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I7
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Diastolic BP"^^xsd:string ;
+	bf:ordinal "7"^^xsd:positiveInteger ;
+	bf:note ""^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "integer"^^xsd:string ;
+	bf:format "3"^^xsd:string ;
+	bf:question_text "Diastolic BP"^^xsd:string ;
+	bf:mapping "VSORRES"^^xsd:string ;
+.
+:F-ACME_FBASELINE_G5_I8
+	rdf:type <http://www.assero.co.uk/BusinessForm#Question> ;
+	rdfs:label "Diastolic BP units"^^xsd:string ;
+	bf:ordinal "8"^^xsd:positiveInteger ;
+	bf:note "* No entries found for parameters ['notation=mm Hg'].\n"^^xsd:string ;
+	bf:completion ""^^xsd:string ;
+	bf:optional "false"^^xsd:boolean ;
+	bf:datatype "string"^^xsd:string ;
+	bf:format "20"^^xsd:string ;
+	bf:question_text "Diastolic BP units"^^xsd:string ;
+	bf:mapping "[NO MAPPING]"^^xsd:string ;
+.

@@ -5,8 +5,6 @@ describe Import::Term do
 	include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
-  include TurtleHelpers
-  include SparqlHelpers
 
 	def sub_dir
     return "models/import/term"

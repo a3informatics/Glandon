@@ -7,7 +7,7 @@ describe "Biomedical Concepts", :type => :feature do
   include PauseHelpers
   include UserAccountHelpers
   include DownloadHelpers
-  include TurtleHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "features"
@@ -75,7 +75,7 @@ describe "Biomedical Concepts", :type => :feature do
     #write_text_file_2(file, sub_dir, "bc_export.ttl")
       write_text_file_2(file, sub_dir, "bc_export_results.ttl")
       expected = read_text_file_2(sub_dir, "bc_export.ttl")
-      check_ttl("bc_export_results.ttl", "bc_export.ttl")
+      check_triples("bc_export_results.ttl", "bc_export.ttl")
       delete_data_file(sub_dir, "bc_export_results.ttl")
     end
 

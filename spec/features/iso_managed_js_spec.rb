@@ -9,7 +9,7 @@ describe "ISO Managed JS", :type => :feature do
   include UserAccountHelpers
   include PublicFileHelpers
   include DownloadHelpers
-  include TurtleHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "features/iso_managed"
@@ -234,8 +234,7 @@ describe "ISO Managed JS", :type => :feature do
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
       file = download_content
       write_text_file_2(file, sub_dir, "form_export_results.ttl")
-      #check_ttl("form_export_results.ttl", "ACME_VS BASELINE_1.ttl") # Old method. The last change date gets modified by prev test.
-      check_ttl_fix("form_export_results.ttl", "ACME_VS BASELINE_1.ttl", {last_change_date: true})
+      check_triples_fix("form_export_results.ttl", "ACME_VS BASELINE_1.ttl", {last_change_date: true})
       delete_data_file(sub_dir, "form_export_results.ttl")
       click_link 'Close'
       expect(page).to have_content 'Export Centre'

@@ -1,18 +1,57 @@
 module SparqlHelpers
 
+  @@predicate_map = 
+    {
+      last_change_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>", prefixed: "isoT#lastChangeDate"},
+      creation_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#creationDate>", prefixed: "isoT#creationDate"}
+    }
+
   def check_ttl(results_filename, expected_filename)
     actual = read_ttl_file(results_filename)
     expected = read_ttl_file(expected_filename)
     expect(actual).to sparql_results_equal(expected)
   end
 
-  def check_ttl_fix(results_filename, expected_filename, options)
-    actual = read_ttl_file(test_file_path(sub_dir, results_filename))
-    expected = read_ttl_file(test_file_path(sub_dir, expected_filename))
-    fix_predicate(actual, expected, :last_change_date) if options[:last_change_date]  
-    fix_predicate(actual, expected, :creation_date) if options[:creation_date]  
+=begin
+  def check_ttl_versus_triples(results_filename, expected_filename)
+    actual = read_ttl_file(results_filename)
+    expected = read_triple_file(expected_filename)
     expect(actual).to sparql_results_equal(expected)
   end
+=end
+
+  def check_triples(results_filename, expected_filename)
+    actual = read_triple_file(results_filename)
+    expected = read_triple_file(expected_filename)
+    expect(actual).to sparql_results_equal(expected)
+  end
+
+  def check_triples_fix(results_filename, expected_filename, options)
+    actual = read_triple_file(results_filename)
+    expected = read_triple_file(expected_filename)
+    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
+    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
+    expect(actual).to sparql_results_equal(expected)
+  end
+
+  def check_ttl_fix(results_filename, expected_filename, options)
+    actual = read_ttl_file(results_filename)
+    expected = read_ttl_file(expected_filename)
+    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
+    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
+    expect(actual).to sparql_results_equal(expected)
+  end
+
+=begin
+  def check_sparql_no_file(sparql, expected_filename)
+    actual_filename = "CHECK_SPARQL_#{DateTime.now.strftime('%Q')}.ttl"
+    write_text_file_2(sparql, sub_dir, actual_filename)
+    actual = read_ttl_file(test_file_path(sub_dir, results_filename))
+    expected = read_ttl_file(test_file_path(sub_dir, expected_filename))
+    delete_data_file(sub_dir, actual_filename)
+    expect(actual).to sparql_results_equal(expected)
+  end
+=end
 
   def read_sparql_file(filename)
     @checks = {insert: false, open: false, close: false}
@@ -62,9 +101,18 @@ module SparqlHelpers
     return results
   end
 
+  def read_triple_file(filename)
+    results = []
+    my_array = File.readlines(test_file_path(sub_dir, filename)).map do |line|
+      x = line.squish
+      items = x.split(" ")
+      results << {subject: items[0].strip, predicate: items[1].strip, object: items[2].strip}
+    end 
+    return results = {prefixes: [], triples: results, checks: true}
+  end
+
   def fix_predicate(results, r_field, expected, e_field)
-    map = {last_change_date: "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>", creation_date: "<http://www.assero.co.uk/ISO11179Types#creationDate>"}
-    set_predicate(results, map[r_field], extract_predicate(expected, map[e_field]))
+    set_predicate(results[:triples], r_field, extract_predicate(expected[:triples], e_field))
   end
 
 private
@@ -76,12 +124,15 @@ private
     @checks[type] = true
   end
 
-  def extract_predicate(triples, predicate)
-    triples.select{|x| x[:predicate] == predicate}.first[:object]
+  def extract_predicate(triples, predicate_type)
+    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
+    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triple.empty?
+    triple.first[:object]
   end
 
-  def set_predicate(triples, predicate, new_date)
-    triple = triples.select{|x| x[:predicate] == predicate}
+  def set_predicate(triples, predicate_type, new_date)
+    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
+    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triple.empty?
     triple.first[:object] = new_date
   end
 
