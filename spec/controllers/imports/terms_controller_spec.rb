@@ -71,7 +71,7 @@ describe Imports::TermsController do
     it "create, json request" do
       request.env['HTTP_ACCEPT'] = "application/json"
       expect_any_instance_of(Import::Term).to receive(:create)
-      post :create, {imports: {identifier: "AAA", filename: @file_1}}
+      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(response.body).to eq("{\"data\":[]}")
@@ -83,7 +83,7 @@ describe Imports::TermsController do
         arg.id = id
         arg.save
       end
-      post :create, {imports: {identifier: "AAA", filename: @file_1}}
+      post :create, {imports: {identifier: "AAA", files: [@file_1]}}
       expect(response).to redirect_to(import_path(id))
     end
 
