@@ -7,10 +7,10 @@ describe 'imports/crfs/new.html.erb', :type => :view do
   include DataHelpers
 
   def sub_dir
-    return "views/imports/als"
+    return "views/imports/crfs"
   end
 
-  before :all do
+  before :each do
     clear_triple_store
   end
 
@@ -25,7 +25,7 @@ describe 'imports/crfs/new.html.erb', :type => :view do
 
   	#puts response.body
 
-    expect(rendered).to have_content("Import Forms from ALS Files")
+    expect(rendered).to have_content("Import Forms from ALS")
     expect(rendered).to have_content("fred.xlsx")
     expect(rendered).to have_link "Close"
     expect(rendered).to have_button "List"
@@ -43,7 +43,7 @@ describe 'imports/crfs/new.html.erb', :type => :view do
 
     #puts response.body
 
-    expect(rendered).to have_content("Import Forms from ODM Files")
+    expect(rendered).to have_content("Import Forms from ODM")
     expect(rendered).to have_content("fred.xlsx")
     expect(rendered).to have_link "Close"
     expect(rendered).to have_button "List"
