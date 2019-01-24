@@ -241,4 +241,18 @@ describe CdiscCl do
     expect(cl_1).to be_nil
   end
 
+  it "generates a CSV record with no header" do
+    cl = CdiscCl.find_by_identifier("C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+  #Xwrite_yaml_file(cl.to_csv_no_header(cl.identifier), sub_dir, "to_csv_no_header_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "to_csv_no_header_expected_1.yaml")
+    expect(cl.to_csv_no_header(cl.identifier)).to eq(expected)
+  end
+
+  it "generates a CSV 'file'" do
+    cl = CdiscCl.find_by_identifier("C74457", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+  #Xwrite_text_file_2(cl.to_csv, sub_dir, "to_csv_expected_1.txt")
+    expected = read_text_file_2(sub_dir, "to_csv_expected_1.txt")
+    expect(cl.to_csv).to eq(expected)
+  end
+
 end

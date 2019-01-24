@@ -454,6 +454,20 @@ class CdiscTerm < Thesaurus
     return object
   end
 
+  def to_csv_no_header
+    results = []  
+    children.each do |c|
+      results += CdiscCl.find(c.id, c.namespace).to_csv_no_header(c.identifier)
+    end
+    return results
+  end
+
+  def to_csv
+    headers = ["Code","Codelist Code","Codelist Extensible (Yes/No)","Codelist Name","CDISC Submission Value","CDISC Synonym(s)","CDISC Definition","NCI Preferred Term"]
+    data = to_csv_no_header
+    generate_csv(headers, data)
+  end
+
 private
 
 	# Check Params Valid

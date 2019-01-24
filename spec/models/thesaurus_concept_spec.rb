@@ -529,5 +529,14 @@ describe ThesaurusConcept do
 		expect(object.parentIdentifier).to eq("A00001")
   end
 
+  it "generates a CSV record with no header" do
+    tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    expected = 
+    [ 
+      "A00001", "Vital Sign Test Codes Extension", 
+      "VSTEST", "", "A set of additional Vital Sign Test Codes to extend the CDISC set.", ""
+    ]
+    expect(tc.to_csv_no_header).to eq(expected)
+   end
 
 end

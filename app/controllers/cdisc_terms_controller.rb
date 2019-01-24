@@ -219,6 +219,13 @@ class CdiscTermsController < ApplicationController
   	@cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
   end
 
+  def export_csv
+    authorize CdiscTerm, :show?
+    uri = UriV3.new(id: params[:id]) # Using new mechanism
+    ct = CdiscTerm.find(uri.fragment, uri.namespace)
+    send_data ct.to_csv, filename: "CDISC_Term_#{ct.version_label}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
 private
 
   def this_params

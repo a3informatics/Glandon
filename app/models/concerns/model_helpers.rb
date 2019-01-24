@@ -126,4 +126,34 @@ module ModelHelpers
   	self.class.query_and_result(query)
   end
 
+  # Generate CSV
+  #
+  # @param [Array] headers the headers for row 1
+  # @param [Array] data array of array of rows
+  # @return [Array] the csv structure
+  def generate_csv(headers, data)
+    csv_data = CSV.generate do |csv|
+      csv << headers
+      data.each {|d| csv << d}
+    end
+    return csv_data
+  end
+
+  # To Hash By Key. Get a hash using specific keys
+  #
+  # @param [String] parent a "parent" string placed at the start of the CSV record
+  # @param [Array] keys the set of keys required
+  # @return [Array] the resulting array of strings
+  def to_csv_by_key(*keys)
+    to_hash_by_key(*keys).collect{|k,v| v}
+  end
+
+  # To Hash By Key. Get a hash using specific keys
+  #
+  # @param [Array] keys the set of keys required
+  # @return [Hash] the resulting hash
+  def to_hash_by_key(*keys)
+    instance_values.symbolize_keys.slice(*keys)
+  end
+
 end

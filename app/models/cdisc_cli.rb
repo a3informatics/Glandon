@@ -15,7 +15,7 @@ class CdiscCli < ThesaurusConcept
   #
   # @param id [string] The id of the form.
   # @param namespace [hash] The raw triples keyed by id.
-  # @return [object] The CDISC CL object.
+  # @return [CdiscCli] the resulting object if found, otherwise nil
   def self.find(id, namespace)
     return super(id, namespace)
   rescue Exceptions::NotFoundError => e

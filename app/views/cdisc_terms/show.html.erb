@@ -85,7 +85,8 @@
 			<% end %>
 		</tbody>
 	</table>
-	<% if policy(CdiscTerm).import? %>
+	<%= link_to "Export CSV", export_csv_cdisc_term_path(:id => @cdiscTerm.to_id), :class => "btn btn-info" %>
+  <% if policy(CdiscTerm).import? %>
 		<%= link_to "Import Change Instructions", import_cross_reference_cdisc_term_path(id: @cdiscTerm.id, cdisc_term: { namespace: @cdiscTerm.namespace }), :class => "btn btn-success" %>
 	<% end %>
 	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>

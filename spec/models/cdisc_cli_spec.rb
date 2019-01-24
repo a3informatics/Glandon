@@ -85,4 +85,19 @@ describe CdiscCli do
     expect(result).to eq(true)    
   end
 
+  it "generates a CSV record with no header" do
+    tc = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+    expected = 
+    [
+      "C84372", 
+      "Knee to Heel Length Measurement", 
+      "KNEEHEEL", 
+      "Knee to Heel Length; Lower Leg Length", 
+      "A measurement of the length of the lower leg from the top of the knee to the bottom of the heel. " + 
+        "This measurement may be taken with a knemometer or calipers. (NCI)",
+      "Knee to Heel Length Measurement"
+    ]
+    expect(tc.to_csv_no_header).to eq(expected)
+  end
+
 end

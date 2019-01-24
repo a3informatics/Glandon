@@ -277,6 +277,13 @@ class ThesaurusConcept < IsoConcept
     return result
   end
 
+  # To CSV No Header. A CSV record with no header
+  #
+  # @return [Array] the CSV record
+  def to_csv_no_header
+    to_csv_by_key(:identifier, :label, :notation, :synonym, :definition, :preferredTerm)
+  end
+
 private
 
   def self.children_from_triples(object, triples, id)

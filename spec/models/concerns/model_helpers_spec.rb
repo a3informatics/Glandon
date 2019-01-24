@@ -120,4 +120,25 @@ describe ModelHelpers do
     expect(nodes.to_s).to eq(expected)
   end
 
+  it "returns a hash by key" do
+    a = IsoConcept.new
+    a.label = "AAA"
+    a.rdf_type = "XXX"
+    expect(a.to_hash_by_key(:label, :rdf_type)).to eq({label: "AAA", rdf_type: "XXX"})
+  end
+
+  it "returns a CSV record selected by keys" do
+    a = IsoConcept.new
+    a.label = "AAA"
+    a.rdf_type = "XXX"
+    expect(a.to_csv_by_key(:label, :rdf_type)).to eq(["AAA", "XXX"])
+  end
+
+  it "generates a CSV 'file'" do
+    a = IsoConcept.new
+    a.label = "AAA"
+    a.rdf_type = "XXX"
+    expect(a.generate_csv(["Label", "RDF Type"], [["AAA", "BBB"], ["DDDDDDD", "DDDDD"]])).to eq("Label,RDF Type\nAAA,BBB\nDDDDDDD,DDDDD\n")
+  end
+
 end

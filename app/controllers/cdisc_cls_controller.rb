@@ -25,6 +25,13 @@ class CdiscClsController < ApplicationController
     @title = data[:title]
   end
   
+  def export_csv
+    authorize CdiscCl, :view?
+    uri = UriV3.new(id: params[:id]) # Using new mechanism
+    cl = CdiscCl.find(uri.fragment, uri.namespace)
+    send_data cl.to_csv, filename: "CDISC_CL_#{cl.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
+
 private
 
   def this_params

@@ -223,9 +223,13 @@ Rails.application.routes.draw do
       get :cross_reference
       get :import_cross_reference
       post :create_cross_reference
+      get :export_csv
     end
   end
   resources :cdisc_cls, :only => [:show] do
+    member do
+      get :export_csv
+    end
     collection do
       get :changes
     end

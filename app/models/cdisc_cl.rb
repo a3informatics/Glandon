@@ -258,4 +258,30 @@ class CdiscCl < ThesaurusConcept
     return self.uri
   end
 
+  # To CSV No Header. A CSV record with no header
+  #
+  # @param [String] parent a "parent" string placed at the start of the CSV record
+  # @return [Array] the CSV record
+  def to_csv_no_header(parent)
+    this = to_csv_by_key(:identifier, :extensible, :label, :notation, :synonym, :definition, :preferredTerm)
+    results = [this.insert(1, parent)]
+    children.each do |c|
+      data = c.to_csv_no_header
+      data.insert(1, self.identifier)
+      data.insert(2, "") 
+      data[3] = ""
+      results << data
+    end
+    return results
+  end
+
+  # To CSV. The code list as a set of CSV record with a header.
+  #
+  # @return [Array] the set of CSV record, each is an array of stirngs
+  def to_csv
+    headers = ["Code","Codelist Code","Codelist Extensible (Yes/No)","Codelist Name","CDISC Submission Value","CDISC Synonym(s)","CDISC Definition","NCI Preferred Term"]
+    data = to_csv_no_header(self.identifier)
+    generate_csv(headers, data)
+  end
+
 end
