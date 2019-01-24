@@ -12,7 +12,8 @@ describe Import::AdamIg do
   end
 
   def setup
-    @object = Import::AdamIg.new
+    #@object = Import::AdamIg.new
+    @object = Import.new(:type => "Import::AdamIg") # Use this rather than above.
     @job = Background.new
     @job.save
     @object.background_id = @job.id
