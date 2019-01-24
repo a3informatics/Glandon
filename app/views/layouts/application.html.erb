@@ -202,7 +202,7 @@
               <ul class="nav"> 
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm", 
          					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model"} %>
-                <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_ig", 
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_sig", 
          					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs"} %>
                 <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmUserDomain, link_id: "main_nav_sd", 
          					link_path: sdtm_user_domains_path, link_text: "Domains"} %>
@@ -210,7 +210,7 @@
             <% end %>  
             <% if link_group_on_role([AdamIg]) %>
               <ul class="nav"> 
-                <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_ig", 
+                <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_aig", 
                   link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs"} %>
               </ul>
             <% end %>  

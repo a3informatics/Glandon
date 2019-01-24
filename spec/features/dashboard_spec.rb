@@ -34,7 +34,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to_not have_link("main_nav_bc")
     expect(page).to_not have_link("main_nav_f")
     expect(page).to_not have_link("main_nav_sm")
-    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sig")
+    expect(page).to_not have_link("main_nav_aig")
     expect(page).to_not have_link("main_nav_sd")
   end
 
@@ -54,7 +55,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_bc")
     expect(page).to have_link("main_nav_f")
     expect(page).to have_link("main_nav_sm")
-    expect(page).to have_link("main_nav_ig")
+    expect(page).to have_link("main_nav_sig")
+    expect(page).to have_link("main_nav_aig")
     expect(page).to have_link("main_nav_sd")
   end
 
@@ -71,7 +73,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_bc")
     expect(page).to have_link("main_nav_f")
     expect(page).to have_link("main_nav_sm")
-    expect(page).to have_link("main_nav_ig")
+    expect(page).to have_link("main_nav_sig")
+    expect(page).to have_link("main_nav_aig")
     expect(page).to have_link("main_nav_sd")
 
 		expect(page).to_not have_link("main_nav_bj")
@@ -89,7 +92,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to have_link("main_nav_bc")
     expect(page).to have_link("main_nav_f")
     expect(page).to have_link("main_nav_sm")
-    expect(page).to have_link("main_nav_ig")
+    expect(page).to have_link("main_nav_sig")
+    expect(page).to have_link("main_nav_aig")
     expect(page).to have_link("main_nav_sd")
 
 		expect(page).to_not have_link("main_nav_bj")
@@ -114,7 +118,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to_not have_link("main_nav_bc")
     expect(page).to_not have_link("main_nav_f")
     expect(page).to_not have_link("main_nav_sm")
-    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sig")
+    expect(page).to_not have_link("main_nav_aig")
     expect(page).to_not have_link("main_nav_sd")
   end
 
@@ -134,7 +139,8 @@ describe "Dashboard", :type => :feature do
     expect(page).to_not have_link("main_nav_bc")
     expect(page).to_not have_link("main_nav_f")
     expect(page).to_not have_link("main_nav_sm")
-    expect(page).to_not have_link("main_nav_ig")
+    expect(page).to_not have_link("main_nav_sig")
+    expect(page).to_not have_link("main_nav_aig")
     expect(page).to_not have_link("main_nav_sd")
   end
 

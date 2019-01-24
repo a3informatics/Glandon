@@ -30,7 +30,11 @@ module ScenarioHelpers
   end
 
   def click_navbar_ig_domain
-    click_link 'main_nav_ig'
+    click_link 'main_nav_sig'
+  end
+
+  def click_navbar_adam_ig_domain
+    click_link 'main_nav_aig'
   end
 
   def click_navbar_sponsor_domain

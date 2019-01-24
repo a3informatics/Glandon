@@ -374,7 +374,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Markdown Preview'
       fill_in 'placeholderText', with: "# Header 1\n## Header 2\n### Header 3"
       click_button 'markdown_preview'
-      ui_check_div_text('genericCompletion', "Header 1 Header 2 Header 3")
+      ui_check_div_text('genericCompletion', "Header 1\nHeader 2\nHeader 3")
       click_button 'markdown_hide'
       expect(page).to have_no_content 'Markdown Preview'
       ui_set_focus('placeholderText')
@@ -396,7 +396,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Markdown Preview'
       fill_in 'groupNote', with: "1. Numbered\n2. Numbered\n"
       click_button 'markdown_preview'
-      ui_check_div_text('genericCompletion', "Numbered Numbered")
+      ui_check_div_text('genericCompletion', "Numbered\nNumbered")
       click_button 'markdown_hide'
       expect(page).to have_content 'Biomedical Concept Selection'
       expect(page).to have_no_content 'Markdown Preview'

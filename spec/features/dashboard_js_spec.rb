@@ -4,6 +4,7 @@ describe "Dashboard JS", :type => :feature do
   
   include DataHelpers
   include PauseHelpers
+  include UiHelpers
   
   before :all do
     user = User.create :email => "reader@example.com", :password => "12345678" 
@@ -39,11 +40,10 @@ describe "Dashboard JS", :type => :feature do
       click_button 'Log in'
       #pause
       click_link 'Biomedical Concepts'
-      #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
+      ui_main_search("C16358")
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC  C16358'
-      #pause
+      expect(page).to have_content 'History: BC C16358'
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
@@ -77,7 +77,7 @@ describe "Dashboard JS", :type => :feature do
       #pause
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC  C16358'
+      expect(page).to have_content 'History: BC C16358'
       #pause
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => /\AT\z/).click
       expect(page).to have_content 'Triple Store View'
@@ -110,7 +110,7 @@ describe "Dashboard JS", :type => :feature do
       click_button 'Log in'
       #pause
       find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
-      expect(page).to have_content 'History: BC  A00002'
+      expect(page).to have_content 'History: BC A00002'
     end
 
     it "displays the organization name", js: true do
