@@ -172,7 +172,7 @@ describe Background do
      	File.delete(file) if File.exist?(file)
       CdiscTerm.submission_changes
       results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    #write_yaml_file(results, sub_dir, "submission_changes_expected.yaml")
+    #Xwrite_yaml_file(results, sub_dir, "submission_changes_expected.yaml")
       expected = read_yaml_file(sub_dir, "submission_changes_expected.yaml")
       submission_comparison(results, expected) # New method
     end
