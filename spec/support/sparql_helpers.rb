@@ -27,6 +27,14 @@ module SparqlHelpers
     expect(actual).to sparql_results_equal(expected)
   end
 
+  def check_ttl_fix(results_filename, expected_filename, options)
+    actual = read_ttl_file(results_filename)
+    expected = read_ttl_file(expected_filename)
+    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
+    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
+    expect(actual).to sparql_results_equal(expected)
+  end
+
 =begin
   def check_ttl_versus_triples(results_filename, expected_filename)
     actual = read_ttl_file(results_filename)
@@ -44,14 +52,6 @@ module SparqlHelpers
   def check_triples_fix(results_filename, expected_filename, options)
     actual = read_triple_file(results_filename)
     expected = read_triple_file(expected_filename)
-    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
-    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
-    expect(actual).to sparql_results_equal(expected)
-  end
-
-  def check_ttl_fix(results_filename, expected_filename, options)
-    actual = read_ttl_file(results_filename)
-    expected = read_ttl_file(expected_filename)
     fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
     fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
     expect(actual).to sparql_results_equal(expected)

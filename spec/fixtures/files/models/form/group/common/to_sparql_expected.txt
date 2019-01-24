@@ -1,0 +1,28 @@
+PREFIX bf: <http://www.assero.co.uk/BusinessForm#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.example.com/path#parent_G1> rdf:type <http://www.example.com/path#rdf_test_type> . 
+<http://www.example.com/path#parent_G1> rdfs:label "test label"^^xsd:string . 
+<http://www.example.com/path#parent_G1> bf:ordinal "1"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_G1> bf:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_G1> bf:note "Note"^^xsd:string . 
+<http://www.example.com/path#parent_G1> bf:completion "Completion"^^xsd:string . 
+<http://www.example.com/path#parent_G1_I1> rdf:type <http://www.assero.co.uk/BusinessForm#CommonItem> . 
+<http://www.example.com/path#parent_G1_I1> rdfs:label ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I1> bf:ordinal "1"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_G1_I1> bf:note ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I1> bf:completion ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I1> bf:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_G1> bf:hasItem <http://www.example.com/path#parent_G1_I1> . 
+<http://www.example.com/path#parent_G1_I2> rdf:type <http://www.assero.co.uk/BusinessForm#CommonItem> . 
+<http://www.example.com/path#parent_G1_I2> rdfs:label ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I2> bf:ordinal "2"^^xsd:positiveInteger . 
+<http://www.example.com/path#parent_G1_I2> bf:note ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I2> bf:completion ""^^xsd:string . 
+<http://www.example.com/path#parent_G1_I2> bf:optional "false"^^xsd:boolean . 
+<http://www.example.com/path#parent_G1> bf:hasItem <http://www.example.com/path#parent_G1_I2> . 
+}

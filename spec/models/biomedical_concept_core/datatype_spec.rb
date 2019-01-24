@@ -4,6 +4,7 @@ require 'biomedical_concept_core/datatype'
 describe BiomedicalConceptCore::Datatype do
   
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/biomedical_concept_core"
@@ -284,9 +285,10 @@ describe BiomedicalConceptCore::Datatype do
     item = BiomedicalConceptCore::Datatype.from_json(result)
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    #write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex.txt")
-    expected = read_text_file_2(sub_dir, "datatype_sparql_complex.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex.txt")
+    #expected = read_text_file_2(sub_dir, "datatype_sparql_complex.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "datatype_sparql_complex.txt")
   end
 
   it "allows an object to be exported as SPARQL, complex II" do
@@ -367,9 +369,10 @@ describe BiomedicalConceptCore::Datatype do
     item = BiomedicalConceptCore::Datatype.from_json(result)
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    write_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex_II.txt")
-    expected = read_text_file_2(sub_dir, "datatype_sparql_complex_II.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "datatype_sparql_complex_II.txt")
+    #expected = read_text_file_2(sub_dir, "datatype_sparql_complex_II.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "datatype_sparql_complex_II.txt")
   end
 
 end

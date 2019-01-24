@@ -3,7 +3,8 @@ require 'rails_helper'
 describe IsoManaged do
 
 	include DataHelpers
-
+  include SparqlHelpers
+  
   def sub_dir
     return "models"
   end
@@ -60,7 +61,8 @@ describe IsoManaged do
     result_uri = branch.to_sparql_v2(sparql, "bf")
   #write_text_file_2(sparql.to_s, sub_dir, "iso_managed_branch_sparql_1.txt")
     expected = read_text_file_2(sub_dir, "iso_managed_branch_sparql_1.txt")
-    expect(sparql.to_s).to eq(expected)
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "iso_managed_branch_sparql_1.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_BRANCH")
   end
 

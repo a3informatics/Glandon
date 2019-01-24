@@ -4,6 +4,7 @@ describe Form::Item::BcProperty do
 
   include DataHelpers
   include OdmHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/form/item/bc_property"
@@ -210,6 +211,7 @@ describe Form::Item::BcProperty do
       "<http://www.example.com/path#XXXX_I1_PR0> bo:local_label \"\"^^xsd:string . \n" + 
       "<http://www.example.com/path#XXXX_I1> bf:hasProperty <http://www.example.com/path#XXXX_I1_PR0> . \n" +
       "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     item = Form::Item::BcProperty.new
     item.property_ref = OperationalReferenceV2.new
     item.property_ref.subject_ref = UriV2.new({:id => "test", :namespace => "http://www.example.com/path"})
@@ -218,7 +220,8 @@ describe Form::Item::BcProperty do
     item.is_common = true
     item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "XXXX", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
   
   it "allows an object to be exported as XML" do

@@ -138,7 +138,7 @@ describe CdiscTerm do
 
     # Compare code list items
     check_cli_result(old_version, new_version, "C66741", "C156606", created: true)
-    check_cli_result(old_version, new_version, "C67154", "C41255", created: true)
+    check_cli_result(old_version, new_version, "C67153", "C41255", created: true)
     check_cli_result(old_version, new_version, "C67152", "C156604", created: true)
     check_cli_result(old_version, new_version, "C96778", "C147488", updated: [:Definition])
     check_cli_result(old_version, new_version, "C124298", "C126036", updated: [:Synonym])

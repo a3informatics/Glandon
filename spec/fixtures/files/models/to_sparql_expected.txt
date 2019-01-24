@@ -1,0 +1,36 @@
+PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
+PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdfs:label "Iso Concept Test Form"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:byAuthority mdrItems:RA-123456789 . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:registrationStatus "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:untilDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:identifier "TEST"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:version "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:versionLabel "0.1"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:semantic_version "1.2.3"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:hasScope mdrItems:NS-BBB . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:creationDate "2016-06-15T21:06:10%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:lastChangeDate "2016-06-16T13:14:24%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:changeDescription "Creation"^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:origin ""^^xsd:string . 
+}

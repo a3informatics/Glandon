@@ -4,6 +4,7 @@ require 'biomedical_concept_core/property'
 describe BiomedicalConceptCore::Property do
   
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/biomedical_concept_core"
@@ -436,9 +437,10 @@ describe BiomedicalConceptCore::Property do
     item.bridg_path = "ddd.eee.fff"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    #write_text_file_2(sparql.to_s, sub_dir, "property_sparql_simple.txt")
-    expected = read_text_file_2(sub_dir, "property_sparql_simple.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "property_sparql_simple.txt")
+    #expected = read_text_file_2(sub_dir, "property_sparql_simple.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "property_sparql_simple.txt")
   end
   
   it "allows an object to be exported as SPARQL, complex datatype" do
@@ -486,9 +488,10 @@ describe BiomedicalConceptCore::Property do
     item = BiomedicalConceptCore::Property.from_json(result)
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    #write_text_file_2(sparql.to_s, sub_dir, "property_sparql_complex.txt")
-    expected = read_text_file_2(sub_dir, "property_sparql_complex.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "property_sparql_complex.txt")
+    #expected = read_text_file_2(sub_dir, "property_sparql_complex.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "property_sparql_complex.txt")
   end
 
   it "allows the property to be updated" do
@@ -542,7 +545,7 @@ describe BiomedicalConceptCore::Property do
     refs << { :subject_ref => {id: "new_2", namespace: "http://example.com/term" }, ordinal: 6}
     property.add({ tc_refs: refs })
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    #write_yaml_file(property.to_json, sub_dir, "property_add_term.yaml")
+  #Xwrite_yaml_file(property.to_json, sub_dir, "property_add_term.yaml")
     expected = read_yaml_file(sub_dir, "property_add_term.yaml")
     expect(property.tc_refs.count).to eq(6)
     expect(property.to_json).to eq(expected)
@@ -563,7 +566,7 @@ describe BiomedicalConceptCore::Property do
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
     property.remove
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    #write_yaml_file(property.to_json, sub_dir, "property_remove_term.yaml")
+  #Xwrite_yaml_file(property.to_json, sub_dir, "property_remove_term.yaml")
     expected = read_yaml_file(sub_dir, "property_remove_term.yaml")
     expect(property.tc_refs.count).to eq(0)
     expect(property.to_json).to eq(expected)

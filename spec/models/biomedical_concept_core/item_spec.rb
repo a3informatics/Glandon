@@ -4,6 +4,7 @@ require 'biomedical_concept_core/item'
 describe BiomedicalConceptCore::Item do
   
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/biomedical_concept_core"
@@ -163,6 +164,7 @@ describe BiomedicalConceptCore::Item do
       "<http://www.example.com/path#XXX_I1_DT1> cbc:iso21090_datatype \"\"^^xsd:string . \n" + 
       "<http://www.example.com/path#XXX_I1> cbc:hasDatatype <http://www.example.com/path#XXX_I1_DT1> . \n" +
       "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     item = BiomedicalConceptCore::Item.new
     item.id = "123"
     item.namespace = "http://www.example.com/path"
@@ -173,7 +175,8 @@ describe BiomedicalConceptCore::Item do
     item.bridg_attribute = "Attribute"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
   
 end

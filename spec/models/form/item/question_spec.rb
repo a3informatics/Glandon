@@ -4,6 +4,7 @@ describe Form::Item::Question do
   
   include DataHelpers
   include OdmHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/form/item/question"
@@ -240,6 +241,7 @@ describe Form::Item::Question do
       "<http://www.example.com/path#parent_I1> bf:question_text \"****free****\"^^xsd:string . \n" +
       "<http://www.example.com/path#parent_I1> bf:mapping \"X=Y\"^^xsd:string . \n" +
       "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected_1.txt")
     item = Form::Item::Question.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "label"
@@ -249,7 +251,8 @@ describe Form::Item::Question do
     item.mapping = "X=Y"
     item.ordinal = 1
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
   end
   
   it "allows an object to be exported as SPARQL, with child" do
@@ -292,9 +295,10 @@ describe Form::Item::Question do
     result = Form::Item::Question.from_json(json)
     sparql = SparqlUpdateV2.new
     result.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
-    expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
-    expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
+    #expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
+    #expect(sparql.to_s).to eq(expected)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
   end
 
   it "allows an object to be exported as XML" do

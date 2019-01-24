@@ -154,17 +154,14 @@ describe Form do
     expect(item.errors.count).to eq(0)
   end
 
-  it "allows a form to be created from operation JSON, no load" do
+  it "allows a form to be created from operation SPARQL, no load" do
     operation = read_yaml_file_to_hash_2(sub_dir, "no_load_input_1.yaml")
     item = Form.create_no_load(operation)
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
   #Xwrite_text_file_2(item.to_sparql_v2.to_s, sub_dir, "create_no_load_expected_1.ttl")
-    expected = read_sparql_file("create_no_load_expected_1.ttl")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "create_no_load_actual_1.ttl")
-    actual = read_sparql_file("create_no_load_actual_1.ttl")
-    fix_last_change_date(actual, expected)
-    expect(actual).to sparql_results_equal(expected)
+    check_ttl_fix("create_no_load_actual_1.ttl", "create_no_load_expected_1.ttl", {last_changed_date: true})
     delete_data_file(sub_dir, "create_no_load_actual_1.ttl")
   end
 
@@ -189,7 +186,7 @@ describe Form do
     #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "base_bc.yaml")
     parameters = read_yaml_file_to_hash_2(sub_dir, "base_bc.yaml")
     item = Form.create(parameters[:form])
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_result.yaml")
+  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_result.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_bc_result.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.errors.count).to eq(0)

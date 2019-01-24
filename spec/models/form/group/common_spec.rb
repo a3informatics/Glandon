@@ -4,6 +4,7 @@ describe Form::Group::Common do
   
   include DataHelpers
   include OdmHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/form/group/common"
@@ -182,6 +183,7 @@ describe Form::Group::Common do
       "<http://www.example.com/path#parent_G1_I2> bf:optional \"false\"^^xsd:boolean . \n" +
       "<http://www.example.com/path#parent_G1> bf:hasItem <http://www.example.com/path#parent_G1_I2> . \n" +
       "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     item = Form::Group::Common.new
     item.rdf_type = "http://www.example.com/path#rdf_test_type"
     item.label = "test label"
@@ -195,7 +197,8 @@ describe Form::Group::Common do
     common_item.ordinal = 2
     item.children << common_item
     item.to_sparql_v2(UriV2.new({:id => "parent", :namespace => "http://www.example.com/path"}), sparql)
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
 
   it "allows an object to be exported as XML" do

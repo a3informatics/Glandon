@@ -4,9 +4,10 @@ describe IsoRegistrationState do
   
   include DataHelpers
   include PauseHelpers
+  include SparqlHelpers
 
   def sub_dir
-    return "models"
+    return "models/iso_registration_state"
   end
 
   before :all do
@@ -701,14 +702,16 @@ describe IsoRegistrationState do
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus \"Retired\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote \"X1\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00%3A00%3A00%2B00%3A00\"^^xsd:dateTime . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00%3A00%3A00%2B00%3A00\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolvedIssue \"X2\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeStatus \"\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previousState \"Standard\"^^xsd:string . \n" +
       "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     IsoRegistrationState.find("RS-TEST_3-4").to_sparql_v2(sparql)
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
   
   it "handles a bad response error - update" do

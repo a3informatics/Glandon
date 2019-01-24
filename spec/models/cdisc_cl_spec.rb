@@ -3,6 +3,7 @@ require 'rails_helper'
 describe CdiscCl do
 
   include DataHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models/cdisc_cl"
@@ -239,6 +240,5 @@ describe CdiscCl do
     cl_1 = CdiscCl.find_by_identifier("C74457XXX", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
     expect(cl_1).to be_nil
   end
-
 
 end

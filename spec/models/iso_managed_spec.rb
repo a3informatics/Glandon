@@ -4,6 +4,7 @@ describe IsoManaged do
 
 	include DataHelpers
   include ValidationHelpers
+  include SparqlHelpers
 
   def sub_dir
     return "models"
@@ -109,7 +110,7 @@ describe IsoManaged do
 
   it "allows an item to be found, II" do
     item = IsoManaged.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-  write_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_th.yaml")
     expect(item.to_json).to eq(expected)   
   end
@@ -331,14 +332,14 @@ describe IsoManaged do
 
   it "allows the current set to be found, terminology" do
     items = IsoManaged.current_set("Thesaurus", "http://www.assero.co.uk/ISO25964")
-    #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_term.yaml")
+  #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_term.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_current_set_term.yaml")
     expect(items.to_json).to eq(expected)
   end
 
   it "allows the current set to be found, Forms" do
     items = IsoManaged.current_set("Form", "http://www.assero.co.uk/BusinessForm")
-    #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_form.yaml")
+  #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_form.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_current_set_form.yaml")
     expect(items.to_json).to eq(expected)
   end
@@ -463,10 +464,12 @@ describe IsoManaged do
        "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:explanatoryComment \"\"^^xsd:string . \n" +
        "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:origin \"\"^^xsd:string . \n" +
        "}"
+  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     sparql = SparqlUpdateV2.new
     result_uri = item.to_sparql_v2(sparql, "bf")
-    expect(sparql.to_s).to eq(result)
+    #expect(sparql.to_s).to eq(result)
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end
 

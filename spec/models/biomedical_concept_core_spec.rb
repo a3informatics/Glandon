@@ -96,11 +96,12 @@ describe BiomedicalConceptCore do
     sparql = SparqlUpdateV2.new
     item.to_sparql_v2(sparql)
   #Xwrite_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
-    write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql_result_1.txt")
-    actual = read_sparql_file("bc_core_sparql_result_1.txt")
-    expected = read_sparql_file("bc_core_sparql.txt")
-    expect(actual).to sparql_results_equal(expected)
-    delete_data_file(sub_dir, "bc_core_sparql_result_1.txt")
+    #write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql_result_1.txt")
+    #actual = read_sparql_file("bc_core_sparql_result_1.txt")
+    #expected = read_sparql_file("bc_core_sparql.txt")
+    #expect(actual).to sparql_results_equal(expected)
+    #delete_data_file(sub_dir, "bc_core_sparql_result_1.txt")
+    check_sparql_no_file(sparql.to_s, "bc_core_sparql.txt")
   end
   
 end
