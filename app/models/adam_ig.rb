@@ -3,11 +3,11 @@ class AdamIg < TabularStandard
   # Constants
   C_CLASS_NAME = self.name
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  #C_INSTANCE_PREFIX = UriManagement::C_MDR_M
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_AIG
   C_RDF_TYPE = "ADaMImplementationGuide"
   C_CID_PREFIX = "AIG"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  #C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
+  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
   C_IDENTIFIER = "ADAM IG"
   C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
 
@@ -29,6 +29,9 @@ class AdamIg < TabularStandard
     super(triples, id)
   end
 
+  # Configuration
+  #
+  # @return [Hash] the configuration hash
   def self.configuration
     #schema_namespace = Namespaces.namespace(:iso25964)
     { 
@@ -40,6 +43,9 @@ class AdamIg < TabularStandard
     }
   end
 
+  # Configuration
+  #
+  # @return [Hash] the configuration hash
   def configuration
     self.class.configuration
   end
@@ -66,6 +72,9 @@ class AdamIg < TabularStandard
     super(params, owner)
   end
   
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
   def self.owner
     @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
   end

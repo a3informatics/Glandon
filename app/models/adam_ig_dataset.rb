@@ -15,7 +15,7 @@ class AdamIgDataset < Tabular
   # Constants
   C_CLASS_NAME = self.name
   C_SCHEMA_PREFIX = UriManagement::C_BD
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_IGD
+  C_INSTANCE_PREFIX = UriManagement::C_MDR_AIGT
   C_CID_PREFIX = AdamIg::C_CID_PREFIX
   C_RDF_TYPE = "IgDataset"
   C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)

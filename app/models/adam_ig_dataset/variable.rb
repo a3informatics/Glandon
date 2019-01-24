@@ -71,7 +71,7 @@ class AdamIgDataset::Variable < Tabular::Column
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ct_notes"}, {:literal => "#{self.ct_notes}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "notes"}, {:literal => "#{self.notes}", :primitive_type => "string"})
 		sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "compliance"}, {:uri => self.compliance.uri})
-    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "datatype"}, {:uri => self.datatype.uri})
+    sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "typedAs"}, {:uri => self.datatype.uri})
     return self.uri
   end
 
@@ -109,6 +109,7 @@ class AdamIgDataset::Variable < Tabular::Column
   	return object
   end
 
+=begin
   # Update Compliance. Amend the reference. Done so references are made common
   #
   # @raise [Exceptions::ApplicationLogicError] if compliance label not present in compliances
@@ -129,14 +130,15 @@ class AdamIgDataset::Variable < Tabular::Column
       { instance_variable: "compliance", label: "Compliance", value: self.compliance.label }
     ]
   end
+=end
 
 private
 
   def self.children_from_triples(object, triples, id)
     links = object.get_links_v2(C_SCHEMA_PREFIX, "compliance")
-    if links.length > 0
-      object.compliance = SdtmModelCompliance.find(links[0].id, links[0].namespace)
-    end
+    object.compliance = SdtmModelCompliance.find(links[0].id, links[0].namespace) if links.length > 0
+    links = object.get_links_v2(C_SCHEMA_PREFIX, "typedAs")
+    object.datatype = SdtmModelDatatype.find(links[0].id, links[0].namespace) if links.length > 0
   end
 
 end

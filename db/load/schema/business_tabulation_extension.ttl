@@ -1,0 +1,50 @@
+# baseURI: http://www.assero.co.uk/BusinessDomain
+
+@prefix : <http://www.assero.co.uk/BusinessDomain#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/BusinessDomain>
+  rdf:type owl:Ontology ;
+.
+:IgDataset
+  rdf:type owl:Class ;
+  rdfs:label "Implementation Guide Dataset"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A dataset as defined within an implementation guide."^^xsd:string ;
+.
+:UserDataset
+  rdf:type owl:Class ;
+  rdfs:label "User Dataset"^^xsd:string ;
+  rdfs:subClassOf :Tabulation ;
+  skos:definition "A dataset as deployed by a user."^^xsd:string ;
+.
+:ADaMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "ADaM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a SDTM implementation guide."^^xsd:string ;
+.
+:SDTMImplementationGuide
+  rdf:type owl:Class ;
+  rdfs:label "SDTM Implementation Guide"^^xsd:string ;
+  rdfs:subClassOf :ImplementationGuide ;
+  skos:definition "A document published as a implementation guide."^^xsd:string ;
+.
+:ct_notes
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "CT Notes"^^xsd:string ;
+  rdfs:subPropertyOf isoC:property ;
+  rdf:type owl:FunctionalProperty ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UserVariable :IGVariable)
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Notes on the controlled terminology use etc."^^xsd:string ;
+.

@@ -37,8 +37,7 @@
       		  		<th>Datatype</th>
       		  		<th>CT</th>
       		  		<th>CT Notes</th>
-                <th>Role</th>
-      		  		<th>Notes</th>
+                <th>Notes</th>
       		  		<th>Core</th>
       		  	</tr>
       		</thead>
@@ -48,16 +47,15 @@
       		    	<td><%= item.ordinal %></td>
       		    	<td><%= item.name %></td>
       		  		<td><%= item.label %></td>
-      		  		<td></td>
+      		  		<td><%= item.datatype.label %></td>
       		  		<td>
       			  		<% if item.ct? %>
       			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
       			  		<% end %>
       		  		</td>
       		  		<td><%= item.ct_notes %></td>
-                <td></td>
                 <td><%= item.notes %></td>
-                <td></td>
+                <td><%= item.compliance.label %></td>
       		  	</tr>
       			<% end %>
       		</tbody>

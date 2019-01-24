@@ -10,6 +10,8 @@ INSERT DATA
 <http://www.example.com/path#XXX_DT1> cbc:ordinal "1"^^xsd:positiveInteger . 
 <http://www.example.com/path#XXX_DT1> cbc:alias ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1> cbc:iso21090_datatype "CD"^^xsd:string . 
+<http://www.example.com/path#XXX_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P1> . 
+<http://www.example.com/path#XXX_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P2> . 
 <http://www.example.com/path#XXX_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.example.com/path#XXX_DT1_P1> rdfs:label ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
@@ -21,16 +23,17 @@ INSERT DATA
 <http://www.example.com/path#XXX_DT1_P1> cbc:collect "false"^^xsd:boolean . 
 <http://www.example.com/path#XXX_DT1_P1> cbc:bridg_path "DefinedObservation.nameCode.CD.code"^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P1> cbc:simple_datatype "string"^^xsd:string . 
-<http://www.example.com/path#XXX_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P1> . 
 <http://www.example.com/path#XXX_DT1_P2> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.example.com/path#XXX_DT1_P2> rdfs:label ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P2> cbc:ordinal "2"^^xsd:positiveInteger . 
 <http://www.example.com/path#XXX_DT1_P2> cbc:alias "Name"^^xsd:string . 
+<http://www.example.com/path#XXX_DT1_P2> cbc:hasComplexDatatype <http://www.example.com/path#XXX_DT1_P2_DT1> . 
 <http://www.example.com/path#XXX_DT1_P2_DT1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype> . 
 <http://www.example.com/path#XXX_DT1_P2_DT1> rdfs:label ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P2_DT1> cbc:ordinal "1"^^xsd:positiveInteger . 
 <http://www.example.com/path#XXX_DT1_P2_DT1> cbc:alias ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P2_DT1> cbc:iso21090_datatype "ED"^^xsd:string . 
+<http://www.example.com/path#XXX_DT1_P2_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P2_DT1_P1> . 
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Property> . 
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> rdfs:label ""^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> cbc:ordinal "1"^^xsd:positiveInteger . 
@@ -42,7 +45,4 @@ INSERT DATA
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> cbc:collect "false"^^xsd:boolean . 
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> cbc:bridg_path "DefinedObservation.nameCode.CD.originalText.ED.value"^^xsd:string . 
 <http://www.example.com/path#XXX_DT1_P2_DT1_P1> cbc:simple_datatype "string"^^xsd:string . 
-<http://www.example.com/path#XXX_DT1_P2_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P2_DT1_P1> . 
-<http://www.example.com/path#XXX_DT1_P2> cbc:hasComplexDatatype <http://www.example.com/path#XXX_DT1_P2_DT1> . 
-<http://www.example.com/path#XXX_DT1> cbc:hasProperty <http://www.example.com/path#XXX_DT1_P2> . 
 }
