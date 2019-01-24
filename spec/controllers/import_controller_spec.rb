@@ -59,7 +59,7 @@ describe ImportsController do
 
     it "list" do
       get :list
-      expect(assigns(:items)).to match_array(Rails.configuration.imports[:imports])
+      expect(assigns(:items)).to match_array(Rails.configuration.imports[:imports].values)
       expect(response.code).to eq("200")
       expect(response).to render_template("list")
     end
