@@ -73,13 +73,13 @@ class TabularStandard < IsoManaged
     ref.ordinal = self.references.count 
   end
 
-  # From Json
+  # From JSON
   #
   # @param [Hash] json the hash of values for the object 
   # @return [SdtmIg] the object created
   def self.from_json(json)
     object = super(json)
-    json[:references].each {|r| object.domain_refs << OperationalReferenceV2.from_json(r) } if !json[:references].blank?
+    json[:references].each {|r| object.references << OperationalReferenceV2.from_json(r) } if !json[:references].blank?
     return object
   end
 

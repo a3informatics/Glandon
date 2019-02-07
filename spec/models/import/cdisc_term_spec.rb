@@ -13,7 +13,7 @@ describe Import::CdiscTerm do
 
   def setup
     #@object = Import::CdiscTerm.new
-    @object = Import.new(:type => "Import::CdiscTerm")
+    @object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
     @job = Background.new
     @job.save
     @object.background_id = @job.id
