@@ -1,0 +1,166 @@
+---
+:type: http://www.assero.co.uk/BusinessForm#Form
+:id: ''
+:namespace: ''
+:label: Disposition - End of Study (Follow Up)
+:extension_properties: []
+:origin: ''
+:change_description: ''
+:creation_date: '2019-02-12T08:32:56+00:00'
+:last_changed_date: '2019-02-12T08:32:56+00:00'
+:explanatory_comment: ''
+:registration_state:
+  :namespace: http://www.assero.co.uk/MDRItems
+  :id: ''
+  :registration_authority:
+    :id: ''
+    :number: "<Not Set>"
+    :scheme: DUNS
+    :owner: false
+    :namespace:
+      :namespace: ''
+      :id: ''
+      :name: ''
+      :shortName: ''
+  :registration_status: Not_Set
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :current: false
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Not_Set
+:scoped_identifier:
+  :id: ''
+  :identifier: DS3
+  :version_label: ''
+  :version: 0
+  :semantic_version: 0.0.0
+  :namespace:
+    :namespace: ''
+    :id: ''
+    :name: ''
+    :shortName: ''
+:completion: ''
+:note: ''
+:children:
+- :type: http://www.assero.co.uk/BusinessForm#NormalGroup
+  :id: ''
+  :namespace: ''
+  :label: Main Group
+  :extension_properties: []
+  :ordinal: 1
+  :optional: false
+  :completion: ''
+  :note: ''
+  :children:
+  - :type: http://www.assero.co.uk/BusinessForm#TextLabel
+    :id: ''
+    :namespace: ''
+    :label: LABEL
+    :extension_properties: []
+    :ordinal: 1
+    :note: ''
+    :completion: ''
+    :optional: false
+    :label_text: "<b/>DISPOSITION - END OF STUDY (FOLLOW UP)"
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DSFUYN
+    :extension_properties: []
+    :ordinal: 2
+    :note: "* No entries found for code list NOYES.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '1'
+    :question_text: Did the subject complete the Follow Up
+    :mapping: DSFUYN
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DSSTDAT
+    :extension_properties: []
+    :ordinal: 3
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: ''
+    :question_text: Date of Completion / Discontinuation
+    :mapping: DATE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DSCAT
+    :extension_properties: []
+    :ordinal: 4
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '18'
+    :question_text: Disposition Category
+    :mapping: DSCAT
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: EPOCH
+    :extension_properties: []
+    :ordinal: 5
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '30'
+    :question_text: Epoch
+    :mapping: EPOCH
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: DSDECOD
+    :extension_properties: []
+    :ordinal: 6
+    :note: "* No entries found for code list DISC_REASON2.\n"
+    :completion: ''
+    :optional: false
+    :datatype: string
+    :format: '50'
+    :question_text: "<html>If No, specify the <b><u>main</u></b> reason for discontinuation.</html>"
+    :mapping: DSDECOD4
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CTMSCOMP
+    :extension_properties: []
+    :ordinal: 7
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: ''
+    :question_text: Date of Study Completion (For CTMS)
+    :mapping: DATE
+    :children: []
+  - :type: http://www.assero.co.uk/BusinessForm#Question
+    :id: ''
+    :namespace: ''
+    :label: CTMSET
+    :extension_properties: []
+    :ordinal: 8
+    :note: ''
+    :completion: ''
+    :optional: false
+    :datatype: integer
+    :format: ''
+    :question_text: Date of Study Early Termination (For CTMS)
+    :mapping: DATE
+    :children: []
+  :repeating: false
+  :bc_ref: {}

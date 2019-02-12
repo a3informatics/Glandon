@@ -24,6 +24,7 @@ class AlsExcel
   # @param [String] filename full path to excel file
   # @return [AlsExcel] the object
   def initialize(filename)
+    @blank = false
     @errors = ActiveModel::Errors.new(self)
     @filename = filename
     open_workbook
@@ -59,7 +60,7 @@ class AlsExcel
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
     # Process form
     label = get_label(identifier)
-    return if !@errors.empty?
+    return self if !@errors.empty?
     result = new_form(identifier, label)
     read_fields_sheet(identifier).each do |item|
       if item[:mapping].empty?
@@ -77,7 +78,7 @@ class AlsExcel
         question.mapping = item[:mapping]
         question.question_text = item[:question_text]
         question.ordinal = item[:ordinal]
-        question.note = ""
+        question.note = item[:note]
         if !item[:code_list].empty? 
           cl_result = get_cl(item[:code_list], thesauri)
           if !cl_result[:cl].nil?
@@ -105,7 +106,7 @@ class AlsExcel
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
     @workbook = nil
-    return nil
+    return self
   end
 
 private
@@ -115,7 +116,7 @@ private
     forms = self.list
     form = forms.find { |f| f[:identifier] == identifier }
     return form[:label] if !form.nil?
-    @errors.add(:base, "Failed to find the form label, possible identifier mismatch.")
+    @errors.add(:base, "Failed to find the form label, possible identifier mismatch")
     return ""
   end
 
@@ -136,13 +137,29 @@ private
     @workbook = Roo::Spreadsheet.open(@filename, extension: :xlsx) 
   end
 
+  # Blanks row
+  def blank_row?(row)
+    value = @workbook.cell(row, 1) # Will always check column 1
+    if !value.blank? and @blank
+      @errors.add(:base, "Blank line detected before row #{row}, row ignored")
+      return true
+    elsif value.blank? and @blank
+      return true
+    elsif !value.blank? and !@blank
+      return false
+    else
+      @blank = true
+      return true
+    end
+  end
+  
   # Check a cell
   def check_cell(row, col, allow_blank=false)
     value = @workbook.cell(row, col)
     if value.blank? and allow_blank
       value = ""
     elsif value.blank?
-      @errors.add(:base, "Empty cell detected in row #{row}, column #{col}.")
+      @errors.add(:base, "Empty cell detected in row #{row}, column #{col}")
     end
     # Return value as string, strip leading and trailing spaces.
     return "#{value}".strip
@@ -153,32 +170,38 @@ private
     headers = {}
     @workbook.row(1).each_with_index { |header, i| headers[header] = i }
     if headers.length < @@sheet_info[sheet_name][:length]
-      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect column count, indicates format error.")
+      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect column count, indicates format error")
       return 
     end
     if !headers.has_key?(@@sheet_info[sheet_name][:first_column_name]) 
-      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect 1st column name, indicates format error.")
+      @errors.add(:base, "#{@@sheet_info[sheet_name][:name]} sheet in the excel file, incorrect 1st column name, indicates format error")
       return 
     end 
   rescue => e
-    @errors.add(:base, "Unexpected exception. Possibly an empty #{@@sheet_info[sheet_name][:name]} sheet.")
+    @errors.add(:base, "Unexpected exception. Possibly an empty #{@@sheet_info[sheet_name][:name]} sheet")
   end
 
   def read_forms_sheet
+    @blank = false
     results = []
     @workbook.default_sheet = @workbook.sheets[1]
     check_sheet(:forms)
     return [] if !@errors.empty?
-    ((@workbook.first_row + 1) .. @workbook.last_row).each { |row| results << { identifier: check_cell(row, 1), label: check_cell(row, 3) } }
+    ((@workbook.first_row + 1) .. @workbook.last_row).each do |row| 
+      next if blank_row?(row)
+      results << { identifier: check_cell(row, 1), label: check_cell(row, 3) }
+    end
     return results
   end
 
   def read_fields_sheet(identifier)
+    @blank = false
     results = []
     @workbook.default_sheet = @workbook.sheets[2]
     check_sheet(:fields)
     return results if !@errors.empty?
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
+      next if blank_row?(row)
       next if check_cell(row, 1) != identifier
       ordinal = check_cell(row, 3).to_i
       label = check_cell(row, 5)            
@@ -186,19 +209,22 @@ private
       data_format = check_cell(row, 8, true)            
       code_list = check_cell(row, 9, true)            
       control_type = check_cell(row, 12)            
-      question_text = check_cell(row, 15)            
+      question_text = check_cell(row, 15, true)
+      note = question_text.blank? ? "* No question text found *" : ""
       results << {label: label, ordinal: ordinal, mapping: mapping, data_format: data_format, 
-        control_type: control_type, code_list: code_list, question_text: question_text}
+        control_type: control_type, code_list: code_list, question_text: question_text, note: note}
     end
     return results
   end
     
   def read_data_dictionary_entries_sheet(identifier)
+    @blank = false
     results = []
     @workbook.default_sheet = @workbook.sheets[5]
     check_sheet(:data_dictionary_entries)
     return results if !@errors.empty?
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
+      next if blank_row?(row)
       next if check_cell(row, 1) != identifier
       code = check_cell(row, 2)            
       ordinal = check_cell(row, 3).to_i            
