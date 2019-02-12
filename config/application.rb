@@ -47,6 +47,7 @@ module Glandon
     config.roles = config_for(:roles)
     config.policy = config_for(:policy)
     config.imports = config_for(:imports).deep_symbolize_keys
+    config.namespaces = config_for(:namespaces).deep_symbolize_keys
 
     # Rspec additions
     config.generators do |g|
