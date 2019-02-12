@@ -35,6 +35,10 @@ module UiHelpers
     end
   end
 
+  def ui_table_row_col_link_click(table_id, row, col)
+    find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/a").click
+  end
+
   # Note: Won't work if field disabled
   def ui_check_input(id, value)
     expect(find_field("#{id}").value).to eq "#{value}"

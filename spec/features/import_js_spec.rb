@@ -16,6 +16,24 @@ describe "Imports", :type => :feature do
     return "features/import"
   end
 
+  def delete_all_imports
+    click_link 'Delete All'
+    ui_click_ok "Are you sure?"
+  end
+
+  def check_successful_import(row)
+    ui_table_row_col_link_click("main", row, 8)
+    expect_page "No errors were detected with the import."
+    expect_page "Auto load was not set so the item was not imported."
+    click_link 'Close'
+  end
+
+  def check_unsuccessful_import(row)
+    ui_table_row_col_link_click("main", row, 8)
+    expect_page 'Errors were detected during the processing of the import file. See the error table to the right.'
+    click_link 'Close'
+  end
+
   def flash_cleared
     sleep 6 # allow flash message to disappear
     ui_check_no_flash_message_present
@@ -50,8 +68,8 @@ describe "Imports", :type => :feature do
 
   def get_code_lists(type, path)
     click_navbar_import
-    click_link 'Import Excel Terminology' if type == :excel
-    click_link 'Import ODM Terminology' if type == :odm
+    click_link 'Import Terminology from Excel' if type == :excel
+    click_link 'Import Terminology from ODM' if type == :odm
     select "#{path}", from: "filename"
     select "Import Terminology", from: "thesaurus"
     click_button 'List'
@@ -77,26 +95,30 @@ describe "Imports", :type => :feature do
       ua_create
       Token.destroy_all
       AuditTrail.destroy_all
+      Import.delete_all
       clear_downloads
-      copy_file_to_public_files(sub_dir, "import_1.xlsx", "upload")
-      copy_file_to_public_files(sub_dir, "import_2.xlsx", "upload")
-      @path_1 = public_path("upload", "import_1.xlsx")
-      @path_2 = public_path("upload", "import_2.xlsx")
+      copy_file_to_public_files(sub_dir, "import_1.xlsx", "test")
+      copy_file_to_public_files(sub_dir, "import_2.xlsx", "test")
+      @path_1 = public_path("test", "import_1.xlsx")
+      @path_2 = public_path("test", "import_2.xlsx")
     end
 
     after :all do
       ua_destroy
-      delete_public_file("upload", "import_1.xlsx")
-      delete_public_file("upload", "import_2.xlsx")
+      delete_public_file("test", "import_1.xlsx")
+      delete_public_file("test", "import_2.xlsx")
+      Import.delete_all
     end
     
     before :each do
       ua_content_admin_login
       create_terminology("IMPORT 1")
+      Import.delete_all
     end
 
     after :each do
       delete_terminology("IMPORT 1")
+      Import.delete_all
     end
 
     it "import into terminolgy, initial setup", scenario: true, js: true do
@@ -104,19 +126,19 @@ describe "Imports", :type => :feature do
       expect_page "History: IMPORT 1"
       click_navbar_import
       expect_page 'Import Centre'
-      click_link 'Import Excel Terminology'
-      expect_page 'Import Terminology - EXCEL'
+      click_link 'Import Terminology from Excel'
+      expect_page 'Import Terminology from Excel'
       ui_select_check_selected("thesaurus", "Select the target terminology (Status = 'Incomplete') ...")
       ui_select_check_options("thesaurus", ["Import Terminology"])
       ui_button_enabled('list_button')
-      ui_button_disabled('import_button')
+      #ui_button_disabled('import_button')
       expect(page).to have_link "Close"
       ui_select_check_options("filename", ["#{@path_1}", "#{@path_2}"])
     end
 
     it "import into terminolgy, no selections", scenario: true, js: true do
       click_navbar_import
-      click_link 'Import Excel Terminology'
+      click_link 'Import Terminology from Excel'
       click_button 'List'
       ui_check_flash_message_present
       expect_page 'You need to select a terminology and a file.'
@@ -127,8 +149,8 @@ describe "Imports", :type => :feature do
       select "Import Terminology", from: "thesaurus"
       click_button 'List'
       wait_for_ajax(10)
-      ui_check_table_cell("list_table", 1, 1, "SN667XX1")
-      ui_check_table_cell("list_table", 2, 1, "SN667XX2")
+      ui_check_table_cell("items_table", 1, 1, "SN667XX1")
+      ui_check_table_cell("items_table", 2, 1, "SN667XX2")
       ui_button_enabled('import_button')
     end
 
@@ -136,51 +158,62 @@ describe "Imports", :type => :feature do
 
     it "import into terminolgy, import, single", scenario: true, js: true do
       get_excel_code_lists
-      ui_table_row_click("list_table", "SN667XX1")
+      ui_table_row_click("items_table", "SN667XX1")
     #pause
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
+      ui_check_table_cell("main", 1, 3, "SN667XX1")
+      check_successful_import(1)
+      delete_all_imports
     end
 
     it "import into terminolgy, re-import check", scenario: true, js: true do
       get_excel_code_lists
-      ui_table_row_click("list_table", "SN667XX2")
+      ui_table_row_click("items_table", "SN667XX2")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
-      ui_table_row_click("list_table", "SN667XX2")
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
+      get_excel_code_lists
+      ui_table_row_click("items_table", "SN667XX2")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, some errors detected.'
-      expect_page 'The Thesaurus Concept, identifier SN667XX2, already exists in the database.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
+      ui_check_table_cell("main", 1, 3, "SN667XX2")
+      ui_check_table_cell("main", 2, 3, "SN667XX2")
+      check_successful_import(1)
+      check_unsuccessful_import(2)
+      delete_all_imports
     end
 
     it "import into terminolgy, import, multiple, clear terminology, re-import", scenario: true, js: true do
       get_excel_code_lists
-      ui_table_row_click("list_table", "SN667XX1")
-      ui_table_row_click("list_table", "SN667XX2")
+      ui_table_row_click("items_table", "SN667XX1")
+      ui_table_row_click("items_table", "SN667XX2")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
       delete_terminology("IMPORT 1")
       create_terminology("IMPORT 1")
       get_excel_code_lists
-      ui_table_row_click("list_table", "SN667XX1")
-      ui_table_row_click("list_table", "SN667XX2")
+      ui_table_row_click("items_table", "SN667XX1")
+      ui_table_row_click("items_table", "SN667XX2")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
+      ui_check_table_cell("main", 1, 3, "SN667XX2")
+      ui_check_table_cell("main", 2, 3, "SN667XX1")
+      ui_check_table_cell("main", 3, 3, "SN667XX2")
+      ui_check_table_cell("main", 4, 3, "SN667XX1")
+      check_successful_import(1)
+      check_successful_import(2)
+      check_successful_import(3)
+      check_successful_import(4)
+      delete_all_imports
     end
 
   end
@@ -204,47 +237,49 @@ describe "Imports", :type => :feature do
       ua_create
       Token.destroy_all
       AuditTrail.destroy_all
+      Import.delete_all
       clear_downloads
-      copy_file_to_public_files(sub_dir, "import_3.xml", "upload")
-      copy_file_to_public_files(sub_dir, "import_4.xml", "upload")
-      @path_3 = public_path("upload", "import_3.xml")
-      @path_4 = public_path("upload", "import_4.xml")
+      copy_file_to_public_files(sub_dir, "import_3.xml", "test")
+      copy_file_to_public_files(sub_dir, "import_4.xml", "test")
+      @path_3 = public_path("test", "import_3.xml")
+      @path_4 = public_path("test", "import_4.xml")
     end
 
     after :all do
       ua_destroy
-      delete_public_file("upload", "import_3.xml")
-      delete_public_file("upload", "import_4.xml")
+      Import.delete_all
+      delete_public_file("test", "import_3.xml")
+      delete_public_file("test", "import_4.xml")
     end
     
     before :each do
+      Import.delete_all
       ua_content_admin_login
       create_terminology("IMPORT 1")
     end
 
     after :each do
+      Import.delete_all
       delete_terminology("IMPORT 1")
     end
 
     it "import into terminolgy, import, multiple, clear terminology, re-import", scenario: true, js: true do
       get_odm_code_lists
-      ui_table_row_click("list_table", "cl_ethnic")
-      ui_table_row_click("list_table", "c_cbp")
+      ui_table_row_click("items_table", "cl_ethnic")
+      ui_table_row_click("items_table", "c_cbp")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
       delete_terminology("IMPORT 1")
       create_terminology("IMPORT 1")
       get_odm_code_lists
-      ui_table_row_click("list_table", "cl_ethnic")
-      ui_table_row_click("list_table", "c_cbp")
+      ui_table_row_click("items_table", "cl_ethnic")
+      ui_table_row_click("items_table", "c_cbp")
       click_button 'Import'
-      wait_for_ajax(20)
-      ui_check_flash_message_present
-      expect_page 'Code lists imported, no errors detected.'
-      flash_cleared
+      wait_for_ajax
+      ui_button_enabled('import_index_button')
+      click_button 'import_index_button'
     end
 
   end
