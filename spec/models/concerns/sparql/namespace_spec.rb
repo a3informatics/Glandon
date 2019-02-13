@@ -25,6 +25,10 @@ describe Sparql::Namespace do
     expect(namespace_from_prefix(:isoC)).to eq("http://www.assero.co.uk/ISO11179Concepts")
   end
 
+  it "allows the namespace to be obtained for a prefix, protect from strings" do
+    expect(namespace_from_prefix("isoC")).to eq("http://www.assero.co.uk/ISO11179Concepts")
+  end
+
   it "handles the error for prefix that does not exist" do
     expect(namespace_from_prefix(:sss)).to eq(nil)
   end

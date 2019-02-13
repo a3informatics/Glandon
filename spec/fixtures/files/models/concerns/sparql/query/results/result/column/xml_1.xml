@@ -1,0 +1,265 @@
+<root>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator</uri>
+    </binding>
+    <binding name="o">
+      <literal>DUNS</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#organizationIdentifier</uri>
+    </binding>
+    <binding name="o">
+      <literal>123456789</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#raNamespace</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#NS-BBB</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#owner</uri>
+    </binding>
+    <binding name="o">
+      <literal datatype="http://www.w3.org/2001/XMLSchema#boolean">true</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-123456789</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#hasAuthorityIdentifier</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-123456789</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#NS-BBB</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Identification#Namespace</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#NS-BBB</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Identification#ofOrganization</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#O-BBB</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-BBB</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Basic#Organization</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-BBB</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#shortName</uri>
+    </binding>
+    <binding name="o">
+      <literal>BBB</literal>
+    </binding>
+  </result><result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-BBB</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#name</uri>
+    </binding>
+    <binding name="o">
+      <literal>BBB Pharma</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#raNamespace</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#NS-AAA</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#owner</uri>
+    </binding>
+    <binding name="o">
+      <literal datatype="http://www.w3.org/2001/XMLSchema#boolean">false</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RA-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Registration#hasAuthorityIdentifier</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-111111111</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator</uri>
+    </binding>
+    <binding name="o">
+      <literal>DUNS</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#RAI-111111111</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#organizationIdentifier</uri>
+    </binding>
+    <binding name="o">
+      <literal>111111111</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#NS-AAA</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Identification#Namespace</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#NS-AAA</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Identification#ofOrganization</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/MDRItems#O-AAA</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-AAA</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.w3.org/1999/02/22-rdf-syntax-ns#type</uri>
+    </binding>
+    <binding name="o">
+      <uri>http://www.assero.co.uk/ISO11179Basic#Organization</uri>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-AAA</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#shortName</uri>
+    </binding>
+    <binding name="o">
+      <literal>AAA</literal>
+    </binding>
+  </result>
+  <result>
+    <binding name="s">
+      <uri>http://www.assero.co.uk/MDRItems#O-AAA</uri>
+    </binding>
+    <binding name="p">
+      <uri>http://www.assero.co.uk/ISO11179Basic#name</uri>
+    </binding>
+    <binding name="o">
+      <literal>AAA Long</literal>
+    </binding>
+  </result>
+</root>

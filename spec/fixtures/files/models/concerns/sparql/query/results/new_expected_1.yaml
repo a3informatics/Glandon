@@ -1,0 +1,145 @@
+---
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-123456789
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-123456789
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator
+  - :name: o
+    :value: DUNS
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-123456789
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#organizationIdentifier
+  - :name: o
+    :value: '123456789'
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-123456789
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-123456789
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#raNamespace
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#NS-BBB
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-123456789
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#owner
+  - :name: o
+    :value: 'true'
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-123456789
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#hasAuthorityIdentifier
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#RAI-123456789
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#NS-BBB
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Identification#Namespace
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#NS-BBB
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Identification#ofOrganization
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#O-BBB
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-BBB
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Basic#Organization
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-BBB
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#shortName
+  - :name: o
+    :value: BBB
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-BBB
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#name
+  - :name: o
+    :value: BBB Pharma
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-111111111
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-111111111
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#raNamespace
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#NS-AAA
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-111111111
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#owner
+  - :name: o
+    :value: 'false'
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RA-111111111
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Registration#hasAuthorityIdentifier
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#RAI-111111111
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-111111111
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-111111111
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator
+  - :name: o
+    :value: DUNS
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#RAI-111111111
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#organizationIdentifier
+  - :name: o
+    :value: '111111111'
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#NS-AAA
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Identification#Namespace
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#NS-AAA
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Identification#ofOrganization
+  - :name: o
+    :value: http://www.assero.co.uk/MDRItems#O-AAA
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-AAA
+  - :name: p
+    :value: http://www.w3.org/1999/02/22-rdf-syntax-ns#type
+  - :name: o
+    :value: http://www.assero.co.uk/ISO11179Basic#Organization
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-AAA
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#shortName
+  - :name: o
+    :value: AAA
+- - :name: s
+    :value: http://www.assero.co.uk/MDRItems#O-AAA
+  - :name: p
+    :value: http://www.assero.co.uk/ISO11179Basic#name
+  - :name: o
+    :value: AAA Long

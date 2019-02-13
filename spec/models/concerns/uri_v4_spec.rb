@@ -69,6 +69,11 @@ describe UriV4 do
     expect(uri.to_s).to eq("http://www.example.com/path1/path2#AAAA__-11aaa")
   end
 
+  it "prevents namespace including invalid content" do
+    uri = UriV4.new({namespace: "http://www.example.com/path1/P?£$ath2", fragment: "AAAA"})
+    expect(uri.to_s).to eq("http://www.example.com/path1/Path2#AAAA")
+  end
+
   it "prevents identifers including invalid content, identifier" do
     uri = UriV4.new({namespace: "http://www.example.com/path1/path2", identifier: "XXX@£$-_XXX", version: "1"})
     expect(uri.to_ref).to eq("<http://www.example.com/path1/path2/XXX___-_XXX/V1>")
