@@ -16,8 +16,19 @@ module Sparql
     # @param prefixes [Array] an array of prefixes for building the namespaces
     # @return [Array] array of nokogiri nodes containiing the results.
     def query(query, default, prefixes)
-      response = CRUD.query("#{build_clauses(default, prefixes)}#{query}")
+      sparql = "#{build_clauses(default, prefixes)}#{query}"
+      response = CRUD.query(sparql)
+      raise_error(sparql) if !response.success?
       Sparql::Query::Results.new(response.body)
+    end
+
+  private
+
+    def raise_error(sparql)
+      base = "Failed to query the database. SPARQL query failed."
+      message = "#{base}\nSPARQL: #{sparql}"
+      ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
+      raise Errors::ReadError.new(base)
     end
 
   end

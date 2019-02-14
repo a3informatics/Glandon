@@ -43,6 +43,10 @@ describe Sparql::Update do
     clear_triple_store
   end
 
+  after :all do
+    delete_all_public_test_files
+  end
+  
   it "allows for the class to be created" do
 		sparql = Sparql::Update.new()
     expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{}}")
