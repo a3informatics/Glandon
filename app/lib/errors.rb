@@ -76,6 +76,9 @@ module Errors
   class CreateError < StandardError
   end
 
+  class ReadError < StandardError
+  end
+
   class NotFoundError < StandardError  
   end
 

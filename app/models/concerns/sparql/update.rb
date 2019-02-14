@@ -41,32 +41,50 @@ module Sparql
     #
     # @return [Null] Nothing returned
     def add(subject, predicate, object)
-      s = Sparql::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
+      s = Sparql::Update::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
       @triples[s.subject.to_s] << s
     end
 
     # Update. Generate an update query
     #
     # @param uri [UriV4] The subject uri
-    # @return [String] The sparql update string
+    # @raise [Errors::UpdateError] if update fails
+    # @return [Void] no return
     def update(uri)
-      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{uri.to_ref} ?p ?o . \n}\n" + 
-      "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{uri.to_ref} ?p ?o . \n}"
+      execute_update(:update, to_update_sparql(uri))
     end
 
     # Create. Generate a insert query
     #
-    # @return [String] The sparql update string
+    # @raise [Errors::CreateError] if create fails
+    # @return [Void] no return
     def create
-      "#{build_clauses(@default_namespace, prefix_set)}INSERT DATA \n{ \n#{triples_to_s}}"
+      execute_update(:create, to_create_sparql)
     end
 
-    # To String. String version
+    # Upload
     #
-    # @return [String] String representation of the prefixes and triples
-    #def to_s
-    #  %Q{#{build_clauses(@default_namespace, prefix_set)}\n#{triples_to_s}}
-    #end
+    # @raise [Errors::CreateError] if update fails
+    # @return [String] the full_path of the created file
+    def upload
+      execute_upload(to_file)
+    end
+
+    # To Update Sparql. Build the sparql for an update
+    #
+    # @param uri [UriV4] the uri for the subject being modified
+    # @return [String] the sparql update or create as a string
+    def to_update_sparql(uri)
+      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{uri.to_ref} ?p ?o . \n}\n" + 
+        "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{uri.to_ref} ?p ?o . \n}"  
+    end
+
+    # To Create Sparql. Build the sparql for an create
+    #
+    # @return [String] the sparql update or create as a string
+    def to_create_sparql
+      "#{build_clauses(@default_namespace, prefix_set)}INSERT DATA \n{ \n#{triples_to_s}}"
+    end
 
     # To File
     #
@@ -77,6 +95,29 @@ module Sparql
     end
 
   private
+
+    # Execute update/create
+    def execute_update(type, sparql)
+      response = CRUD.update(sparql)
+      if !response.success?
+        base = "Failed to #{type} an item in the database. SPARQL #{type} failed."
+        message = "#{base}\nSPARQL: #{sparql}"
+        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
+        raise Errors::CreateError.new(base) if type == :create
+        raise Errors::UpdateError.new(base)
+      end
+    end
+
+    # Execute upload
+    def execute_upload(file)
+      response = CRUD.file(file)
+      if !response.success?
+        base = "Failed to upload and create an item in the database."
+        message = "#{base}\nFilename: #{file}"
+        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
+        raise Errors::CreateError.new(base)
+      end
+    end
 
     # Prefixes as an array
     def prefix_set

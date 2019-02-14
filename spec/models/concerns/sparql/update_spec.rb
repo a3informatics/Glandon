@@ -7,7 +7,36 @@ describe Sparql::Update do
   include TimeHelpers
 
   def sub_dir
-    return "models/concerns/sparql_update_v2"
+    return "models/concerns/sparql/update"
+  end
+
+
+  def create_simple_triple
+    sparql = Sparql::Update.new()
+    @s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
+    @p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    @o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => @o_uri},)
+    return sparql
+  end
+
+  def check_simple_triple(s_uri, p_uri, o_uri, ontology=false)
+    triples = [
+      [s_uri.to_s, p_uri.to_s, o_uri.to_s],
+      ["http://www.example.com/test", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "http://www.w3.org/2002/07/owl#Ontology"]
+    ]
+    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc.remove_namespaces!
+    count = ontology ? 2 : 1
+    expect(xmlDoc.xpath("//result").count). to eq(count) 
+    xmlDoc.xpath("//result").each_with_index do |node, index|
+      sub = ModelUtility.getValue('s', true, node)
+      expect(sub.to_s).to eq(triples[index][0])
+      pre = ModelUtility.getValue('p', true, node)
+      expect(pre.to_s).to eq(triples[index][1])
+      obj = ModelUtility.getValue('o', true, node)
+      expect(obj.to_s).to eq(triples[index][2])
+    end
   end
 
   before :each do
@@ -33,7 +62,7 @@ describe Sparql::Update do
     o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
     p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "allows a Namespace Id triple to be added" do
@@ -52,7 +81,7 @@ describe Sparql::Update do
     p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "allows a Prefix Id triple to be added" do
@@ -74,7 +103,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "allows a literal triple to be added" do
@@ -99,7 +128,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => "string"})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "allows a literal triple to be added, dateTime" do
@@ -127,7 +156,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "2012-01-01T12:34:56+01:00", :primitive_type => "dateTime"})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:literal => "hello world", :primitive_type => "string"})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "put a literal triple in the predicate position" do
@@ -179,7 +208,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "creates new (overloaded name)" do
@@ -202,7 +231,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
-    expect(sparql.create).to eq(result)
+    expect(sparql.to_create_sparql).to eq(result)
   end
 
   it "creates an update" do
@@ -233,7 +262,7 @@ describe Sparql::Update do
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
-    expect(sparql.update(s_uri)).to eq(result)
+    expect(sparql.to_update_sparql(s_uri)).to eq(result)
   end
 
   it "encodes update query and reads back" do
@@ -257,7 +286,7 @@ Update succeeded
 </p>
 </body>
 </html>\n"
-    expect(CRUD.update(sparql.create).body).to eq(sparql_result)
+    expect(CRUD.update(sparql.to_create_sparql).body).to eq(sparql_result)
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
@@ -344,4 +373,59 @@ window.location.href = \"/fuseki.html\";}
     expected = read_text_file_2(sub_dir, "to_file_expected_1.txt")
     expect(actual).to eq(expected)
   end
+
+  it "executes an create" do
+    sparql = create_simple_triple
+    sparql.create
+    check_simple_triple(@s_uri, @p_uri, @o_uri)
+  end
+
+  it "executes an create, error" do
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    sparql = create_simple_triple
+    expect(ConsoleLogger).to receive(:info)
+    expect{sparql.create}.to raise_error(Errors::CreateError, "Failed to create an item in the database. SPARQL create failed.")
+  end
+
+  it "executes an update" do
+    sparql = create_simple_triple
+    sparql.create
+    sparql = Sparql::Update.new()
+    o_uri_new = UriV4.new({:uri => "http://www.example.com/test#oooNEW"})
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
+    sparql.update(@s_uri)
+    check_simple_triple(@s_uri, @p_uri, o_uri_new)
+  end
+
+  it "executes an update, error" do
+    sparql = create_simple_triple
+    sparql.create
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    sparql = Sparql::Update.new()
+    o_uri_new = UriV4.new({:uri => "http://www.example.com/test#oooNEW"})
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
+    expect(ConsoleLogger).to receive(:info)
+    expect{sparql.update(@s_uri)}.to raise_error(Errors::UpdateError, "Failed to update an item in the database. SPARQL update failed.")
+  end
+
+  it "executes an file upload" do
+    sparql = create_simple_triple
+    sparql.default_namespace("http://www.example.com/test")
+    sparql.upload
+    check_simple_triple(@s_uri, @p_uri, @o_uri, true)
+  end
+
+  it "executes an file upload, error" do
+    sparql = create_simple_triple
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendFile).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect(ConsoleLogger).to receive(:info)
+    expect{sparql.upload}.to raise_error(Errors::CreateError, "Failed to upload and create an item in the database.")
+  end
+
 end
