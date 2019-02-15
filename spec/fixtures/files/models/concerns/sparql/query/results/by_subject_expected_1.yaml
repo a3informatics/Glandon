@@ -1,327 +1,327 @@
 ---
 http://www.assero.co.uk/MDRItems#RAI-123456789:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: RegistrationAuthorityIdentifier
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: internationalCodeDesignator
   :object: DUNS
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: organizationIdentifier
   :object: '123456789'
 http://www.assero.co.uk/MDRItems#RA-123456789:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: RegistrationAuthority
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: raNamespace
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-BBB
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: owner
   :object: 'true'
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-123456789
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: hasAuthorityIdentifier
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-123456789
 http://www.assero.co.uk/MDRItems#NS-BBB:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-BBB
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Identification
     fragment: Namespace
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-BBB
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Identification
     fragment: ofOrganization
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-BBB
 http://www.assero.co.uk/MDRItems#O-BBB:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-BBB
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: Organization
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-BBB
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: shortName
   :object: BBB
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-BBB
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: name
   :object: BBB Pharma
 http://www.assero.co.uk/MDRItems#RA-111111111:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: RegistrationAuthority
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: raNamespace
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-AAA
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: owner
   :object: 'false'
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RA-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: hasAuthorityIdentifier
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-111111111
 http://www.assero.co.uk/MDRItems#RAI-111111111:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: RegistrationAuthorityIdentifier
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: internationalCodeDesignator
   :object: DUNS
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: RAI-111111111
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: organizationIdentifier
   :object: '111111111'
 http://www.assero.co.uk/MDRItems#NS-AAA:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-AAA
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Identification
     fragment: Namespace
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: NS-AAA
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Identification
     fragment: ofOrganization
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-AAA
 http://www.assero.co.uk/MDRItems#O-AAA:
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-AAA
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.w3.org
     path: 1999/02/22-rdf-syntax-ns
     fragment: type
-  :object: !ruby/object:UriV4
+  :object: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: Organization
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-AAA
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic
     fragment: shortName
   :object: AAA
-- :subject: !ruby/object:UriV4
+- :subject: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: MDRItems
     fragment: O-AAA
-  :predicate: !ruby/object:UriV4
+  :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Basic

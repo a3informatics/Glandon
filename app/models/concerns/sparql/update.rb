@@ -6,7 +6,6 @@ module Sparql
 
   class Update
 
-    include Sparql::Namespace
     include Sparql::PrefixClauses
 
      
@@ -34,7 +33,7 @@ module Sparql
     #
     # where each can be
     # 
-    # {:uri => UriV4 class}
+    # {:uri => Uri class}
     # {:namespace => string, :id => string} - Namespace can be "" but default namepace must be set
     # {:prefix => string, :id => string} - Prefix can be "" but default namepace must be set
     # {:literal => string, primitive_type => xsd:type as string} - Only valid for objects
@@ -47,7 +46,7 @@ module Sparql
 
     # Update. Generate an update query
     #
-    # @param uri [UriV4] The subject uri
+    # @param uri [Uri] The subject uri
     # @raise [Errors::UpdateError] if update fails
     # @return [Void] no return
     def update(uri)
@@ -72,7 +71,7 @@ module Sparql
 
     # To Update Sparql. Build the sparql for an update
     #
-    # @param uri [UriV4] the uri for the subject being modified
+    # @param uri [Uri] the uri for the subject being modified
     # @return [String] the sparql update or create as a string
     def to_update_sparql(uri)
       "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{uri.to_ref} ?p ?o . \n}\n" + 

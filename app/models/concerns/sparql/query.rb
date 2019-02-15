@@ -6,7 +6,6 @@ module Sparql
 
   class Query
 
-    include Sparql::Namespace
     include Sparql::PrefixClauses
     
     # Execute Query

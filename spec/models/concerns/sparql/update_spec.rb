@@ -13,9 +13,9 @@ describe Sparql::Update do
 
   def create_simple_triple
     sparql = Sparql::Update.new()
-    @s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    @p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
-    @o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
+    @s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    @p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
+    @o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
     sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => @o_uri},)
     return sparql
   end
@@ -62,9 +62,9 @@ describe Sparql::Update do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ppp> <http://www.example.com/test#ooo> . \n" +
       "}"
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     expect(sparql.to_create_sparql).to eq(result)
   end
@@ -80,9 +80,9 @@ describe Sparql::Update do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> <http://www.example.com/test#ooo> . \n" +
       "}"
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     expect(sparql.to_create_sparql).to eq(result)
@@ -101,9 +101,9 @@ describe Sparql::Update do
       "<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> owl:ooo3 . \n" +
       "}"
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
@@ -125,9 +125,9 @@ describe Sparql::Update do
       #"<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\" . \n" +
       "}"
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
@@ -152,9 +152,9 @@ describe Sparql::Update do
       #"<http://www.example.com/test#sss> <http://www.example.com/test#ooo2> \"hello world\" . \n" +
       "}"
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
@@ -165,15 +165,15 @@ describe Sparql::Update do
 
   it "put a literal triple in the predicate position" do
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
     expect{sparql.add({:uri => s_uri}, {:literal => "error", :primitive_type => "string"}, {:literal => "hello world", :primitive_type => "string"})}.to raise_error(Errors::ApplicationLogicError, "Invalid triple part detected. Args: {:literal=>\"error\", :primitive_type=>\"string\"}")
   end
 
   it "put a empty namespace in the predicate position with no default namespace" do
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "#ooo2"}, {:prefix => "owl", :fragment => "ooo3"})
@@ -183,9 +183,9 @@ describe Sparql::Update do
 
   it "put a empty prefix in the object position with no default namespace" do
     sparql = Sparql::Update.new()
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "http://www.example.com/test", :fragment => "ooo2"}, {:uri => o_uri})
     literal = {:prefix => "", :fragment => "ooo3"}
@@ -206,9 +206,9 @@ describe Sparql::Update do
       "}"
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
@@ -229,9 +229,9 @@ describe Sparql::Update do
       "}"
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
@@ -260,9 +260,9 @@ describe Sparql::Update do
       "}"
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
@@ -272,9 +272,9 @@ describe Sparql::Update do
   it "encodes update query and reads back" do
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
@@ -304,9 +304,9 @@ Update succeeded
   it "encodes updates and loads file and reads back" do
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")
-    s_uri = UriV4.new({:uri => "http://www.example.com/test#sss"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s_uri = Uri.new({:uri => "http://www.example.com/test#sss"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo3"}, {:prefix => "", :fragment => "#ooo4"})
@@ -346,15 +346,15 @@ window.location.href = \"/fuseki.html\";}
   it "saves triples to a file, large" do
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/def")
-    s1_uri = UriV4.new({:uri => "http://www.example.com/def#sss1"})
-    s2_uri = UriV4.new({:uri => "http://www.example.com/test#sss2"})
-    s3_uri = UriV4.new({:uri => "http://www.example.com/test#sss3"})
-    s4_uri = UriV4.new({:uri => "http://www.example.com/test#sss4"})
-    s5_uri = UriV4.new({:uri => "http://www.example.com/test#sss5"})
-    s6_uri = UriV4.new({:uri => "http://www.example.com/test#sss6"})
-    s7_uri = UriV4.new({:uri => "http://www.example.com/test#sss7"})
-    o_uri = UriV4.new({:uri => "http://www.example.com/test#ooo"})
-    p_uri = UriV4.new({:uri => "http://www.example.com/test#ppp"})
+    s1_uri = Uri.new({:uri => "http://www.example.com/def#sss1"})
+    s2_uri = Uri.new({:uri => "http://www.example.com/test#sss2"})
+    s3_uri = Uri.new({:uri => "http://www.example.com/test#sss3"})
+    s4_uri = Uri.new({:uri => "http://www.example.com/test#sss4"})
+    s5_uri = Uri.new({:uri => "http://www.example.com/test#sss5"})
+    s6_uri = Uri.new({:uri => "http://www.example.com/test#sss6"})
+    s7_uri = Uri.new({:uri => "http://www.example.com/test#sss7"})
+    o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
+    p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s1_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s1_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "ooo4"})
@@ -397,7 +397,7 @@ window.location.href = \"/fuseki.html\";}
     sparql = create_simple_triple
     sparql.create
     sparql = Sparql::Update.new()
-    o_uri_new = UriV4.new({:uri => "http://www.example.com/test#oooNEW"})
+    o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
     sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
     sparql.update(@s_uri)
     check_simple_triple(@s_uri, @p_uri, o_uri_new)
@@ -410,7 +410,7 @@ window.location.href = \"/fuseki.html\";}
     expect(Rest).to receive(:sendRequest).and_return(response)
     expect(response).to receive(:success?).and_return(false)
     sparql = Sparql::Update.new()
-    o_uri_new = UriV4.new({:uri => "http://www.example.com/test#oooNEW"})
+    o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
     sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
     expect(ConsoleLogger).to receive(:info)
     expect{sparql.update(@s_uri)}.to raise_error(Errors::UpdateError, "Failed to update an item in the database. SPARQL update failed.")

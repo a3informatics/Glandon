@@ -12,7 +12,7 @@ module ModelHelpers
 	  # @option namespace [String] the namespace
 	  # @return [String] the URI as a string
 	  def klass.uri_to_s(params)
-		  uri = Uri.new({id: params[:id], namespace: params[:namespace]})
+		  uri = UriV2.new({id: params[:id], namespace: params[:namespace]})
 		  return uri.to_s
 		end
 

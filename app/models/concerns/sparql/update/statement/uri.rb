@@ -10,20 +10,18 @@ module Sparql
 
       class Uri
 
-        include Sparql::Namespace
-
         C_CLASS_NAME = self.name
 
         # Initialize
         #
         # @param [Hash] args the hash of arguments
-        # @option [UriV4] :uri a complete uri
+        # @option [Uri] :uri a complete uri
         # @option [String] :namespace the namespace
         # @option [String] :prefix the namespace prefix
         # @option [String] :fragment the fragment
         #
         # @example full URI
-        #   {:uri => UriV4 class}
+        #   {:uri => Uri class}
         #
         # @example namespace and fragement
         # {:namespace => string, :fragment => string} - Namespace can be "" but default namepace must be set
@@ -38,10 +36,10 @@ module Sparql
             @uri = args[:uri]
           elsif args.has_key?(:namespace) && args.has_key?(:fragment)
             check_namespace(args, default_namespace)
-            @uri = UriV4.new(args)      
+            @uri = ::Uri.new(args)      
           elsif args.has_key?(:prefix) && args.has_key?(:fragment)
             check_prefix(args, default_namespace)
-            @uri = UriV4.new(args)      
+            @uri = ::Uri.new(args)      
             add_prefix(args[:prefix], prefix_set)
           else
             raise Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid triple part detected. Args: #{args}") 
@@ -51,7 +49,7 @@ module Sparql
 
         # URI
         #
-        # @return [UriV4] obtain the uri
+        # @return [Uri] obtain the uri
         def uri
           @uri
         end
@@ -92,7 +90,7 @@ module Sparql
         # Check prefix args and set to default if necessary
         def check_prefix(args, default_namespace)
           check_default_namespace(args, :prefix, default_namespace)
-          args[:namespace] = args[:prefix].empty? ? default_namespace : namespace_from_prefix(args[:prefix]) 
+          args[:namespace] = args[:prefix].empty? ? default_namespace : ::Uri.namespaces.namespace_from_prefix(args[:prefix]) 
         end
 
         # Check if both empty

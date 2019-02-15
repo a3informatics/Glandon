@@ -6,21 +6,20 @@ module Sparql
 
   module PrefixClauses
 
-    include Sparql::Namespace
-
     # Build Clauses. Build the prefix clauses
     #
     # @param default [String|Symbol] either the namespace (string) or the prefix (symbol) for the default namespace.
     # @param prefixes [Array] array of prefixes (symbols)
     # @return [String] the prefix clauses as a string
     def build_clauses(default, prefixes)
+      namespaces = Uri.namespaces
       result = default_namespace_clause(default)
       prefixes.each do |key| 
-        namespace = namespace_from_prefix(key)
+        namespace = namespaces.namespace_from_prefix(key)
         next if namespace.nil?
         result += prefix_clause(key, namespace) 
       end
-      required_namespaces.each {|key, value| result += prefix_clause(key, value)}
+      namespaces.required_namespaces.each {|key, value| result += prefix_clause(key, value)}
       return result
     end
 
@@ -28,8 +27,9 @@ module Sparql
 
     # Set default namespace, either quoted or using prefix
     def default_namespace_clause(default)
+      namespaces = Uri.namespaces
       return "" if default.blank?
-      return prefix_clause("", namespace_from_prefix(default)) if default.is_a? Symbol
+      return prefix_clause("", namespaces.namespace_from_prefix(default)) if default.is_a? Symbol
       return prefix_clause("", default)  
     end
 

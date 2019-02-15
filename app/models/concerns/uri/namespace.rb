@@ -1,12 +1,10 @@
-# Namespace
-#
-# Handles the various namespaces and prefixes.
+# URI Namespace. Handles the various namespaces and prefixes.
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-module Sparql
+class Uri
 
-  module Namespace
+  class Namespace
 
     # Get the optional namespaces
     #

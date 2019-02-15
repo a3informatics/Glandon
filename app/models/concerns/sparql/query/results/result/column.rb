@@ -49,7 +49,7 @@ module Sparql
           # URI Literal. Extract single value
           def uri_literal(node)
             result = uri_from_node(node)
-            return result if result.instance_of? UriV4
+            return result if result.instance_of? Uri
             return literal_from_node(node)
           end
 
@@ -57,7 +57,7 @@ module Sparql
           def uri_from_node(node)
             result = value_from_node(node, "uri")
             return nil if result.nil?
-            return UriV4.new(uri: result)
+            return Uri.new(uri: result)
           end
 
           # Get the literal result
