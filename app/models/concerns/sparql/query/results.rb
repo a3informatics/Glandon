@@ -26,6 +26,13 @@ module Sparql
         end
       end
 
+      # Empty? Empty results
+      #
+      # @return [Boolean] returns true if empty, false otherwise
+      def empty?
+        @results.empty?
+      end
+
       # By Subject. Extract results by subject URI from the node set
       #
       # @param [Hash] args the hash of arguments

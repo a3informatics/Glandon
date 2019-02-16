@@ -48,4 +48,11 @@ describe Sparql::Query::Results do
     expect(result).to triples_equal(expected)
   end
 
+  it "determines if results empty" do
+    results = Sparql::Query::Results.new("")
+    expect(results.empty?).to eq(true)
+    results = Sparql::Query::Results.new(@xml)
+    expect(results.empty?).to eq(false)
+  end
+
 end
