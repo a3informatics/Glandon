@@ -11,7 +11,8 @@ module Fuseki
     end
 
     def object_property(name, opts = {})
-      setup(name, [])
+      initial = opts[:cardinality] == :one ? "" : [] 
+      setup(name, initial)
     end
 
     def data_property(name, opts = {})
@@ -20,9 +21,13 @@ module Fuseki
 
     def setup(name, initial)
       self.send(:attr_accessor, "#{name}")
-      #self.class.class_variable_get(:@@properties)[name] = initial
+      @properties ||= {}
+      @properties[name] = initial
     end
-      
+    
+    def properties
+      @properties ||= {}
+    end
   end
 
 end

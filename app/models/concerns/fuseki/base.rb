@@ -15,13 +15,19 @@ module Fuseki
 
     extend Resource
     include Persistence
+    include Schema
 
     def initialize
       @@schema ||= read_schema
       @uri = nil
-      #@@properties.each do |name, value|
-      #  self.instance_variable_set("@#{name}", value)
-      #end
+      klass_ancestors = self.class.ancestors.grep(Fuseki::Resource).reverse
+      klass_ancestors.delete(Fuseki::Base) # Remove the base class
+      klass_ancestors.each do |klass|
+        properties = klass.instance_variable_get(:@properties)
+        properties.each do |name, value|
+          self.instance_variable_set("@#{name}", value)
+        end
+      end
     end
 
   end

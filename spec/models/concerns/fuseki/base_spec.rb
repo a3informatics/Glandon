@@ -30,16 +30,24 @@ describe Fuseki::Base do
 
   class Test2 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
-    object_property :ra_namespace
-    object_property :has_authority_identifier
+    object_property :ra_namespace, cardinality: :one
+    object_property :has_authority_identifier, cardinality: :one
     data_property :owner
+  end
 
-    def initialize
-      @ra_namespace = []
-      @has_authority_identifier = []
-      super
-    end
+  class Test3 < Fuseki::Base
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
+    object_property :ra_namespace, cardinality: :many
+  end
 
+  class Test4 < Test3
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
+    object_property :has_authority_identifier, cardinality: :one
+  end
+
+  class Test5 < Test4
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
+    data_property :owner
   end
 
   it "allows for the class to be created, uri" do
@@ -62,8 +70,32 @@ describe Fuseki::Base do
     item = Test2.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.owner).to eq(true)
+    expect(item.ra_namespace.to_s).to eq("http://www.assero.co.uk/MDRItems#NS-BBB")
+    expect(item.has_authority_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#RAI-123456789")
+  end
+
+  it "allows for the class to be read, simple and URI results" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RA-123456789")
+    item = Test3.find(uri)
+    expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/MDRItems#NS-BBB")
-    expect(item.has_authority_identifier.first.to_s).to eq("http://www.assero.co.uk/MDRItems#RAI-123456789")
+  end
+
+  it "allows for the class to be read, simple and URI results" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RA-123456789")
+    item = Test4.find(uri)
+    expect(item.uri.to_s).to eq(uri.to_s)
+    expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/MDRItems#NS-BBB")
+    expect(item.has_authority_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#RAI-123456789")
+  end
+
+  it "allows for the class to be read, simple and URI results" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RA-123456789")
+    item = Test5.find(uri)
+    expect(item.uri.to_s).to eq(uri.to_s)
+    expect(item.owner).to eq(true)
+    expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/MDRItems#NS-BBB")
+    expect(item.has_authority_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#RAI-123456789")
   end
 
 end
