@@ -15,12 +15,12 @@ module Fuseki
 
     extend Resource
     include Persistence
-    include Schema
+    extend Schema
     include Properties
 
     def initialize
       @uri = nil
-      @@schema ||= read_schema
+      @@schema ||= self.class.read_schema
       properties_inherit
       properties_predicate
     end

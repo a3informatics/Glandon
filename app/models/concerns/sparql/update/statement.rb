@@ -1,3 +1,6 @@
+require "sparql/update/statement/uri"     # Ensure loaded so that raisl resolves corrently against Uri class
+require "sparql/update/statement/literal"
+
 # Sparql Statement
 #
 # @author Dave Iberson-Hurst

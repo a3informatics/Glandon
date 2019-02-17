@@ -7,7 +7,6 @@ module Sparql
   class Update
 
     include Sparql::PrefixClauses
-
      
     C_CLASS_NAME = self.name
 

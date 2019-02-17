@@ -8,6 +8,7 @@ module Fuseki
   
     extend ActiveSupport::Concern
     include Fuseki::Persistence::Property
+    include Fuseki::Naming
 
     module ClassMethods
 
@@ -26,6 +27,26 @@ module Fuseki
         from_results(uri, results.by_subject)
       end
 
+=begin
+      def where(params)
+        properties = self.instance_variable_get(:@properties)
+        schema = self.read_schema
+        sparql = Sparql::Query.new()
+        query_string = "SELECT ?s ?p ?o WHERE {" +
+          "  ?s rdf:type #{properties[:@rdf_type][:default].to_ref} ."
+        params.each do |name, value|
+          predicate = properties["@#{name}".to_sym][:predicate]
+          query_string += "  ?s #{predicate.to_ref} \"#{value}\"^^xsd:#{schema.range(predicate)} ." +
+          "  ?s ?p ?o ." +
+          "}"
+        end
+        results = Sparql::Query.new.query(query_string, "", [])
+        raise Exceptions::NotFoundError.new("Failed to find where #{params} in #{self.class.name} object.") if results.empty?
+        subject = results.by_subject
+        from_results(subject.values.first.first[:subject], subject)
+      end
+=end
+
       def from_results(uri, results)
         object = new
         object.instance_variable_set("@uri", uri)
@@ -36,17 +57,6 @@ module Fuseki
         object
       end
 
-      #def where(properties)
-      #  sparql = Sparql::Query.new()
-      #  query_string = "SELECT ?s ?p ?o WHERE {" +
-      #    "  ?s rdf:type #{@rdf_type.to_ref} ."
-      #  properties.each do |property|
-      #    qruery_string += "  ?s (#{uri.to_ref} as ?s) ." +
-      #    "}"
-      #  end
-      #  results = Sparql::Query.new.query(query_string, uri.namespace, [])
-      #end
-
     end
 
     def id
@@ -54,20 +64,38 @@ module Fuseki
     end
 
     def create
+      create_or_update(:create)
+    end
+
+    def update
+      create_or_update(:update)
+    end
+
+  private
+
+    def create_or_update(operation)
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
       properties = self.class.instance_variable_get(:@properties)
+      schema = self.class.class_variable_get(:@@schema)
+      sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: @rdf_type})
       instance_variables.each do |name|
-        next if name == :@uri
+        next if name == :@uri || name == :@rdf_type
         next if !properties.key?(name) # Ignore variables if no property declared.
-        predicate = properties[name][:predicate]
-        object = instance_variable_get(name)
-byebug
-        sparql.add({:uri => @uri}, {:uri => predicate}, object)
+        property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name))
       end
-  byebug
+      operation == :create ? sparql.create : sparql.update(@uri)
+    end
+
+    def property_to_triple(sparql, property, schema, subject, predicate, objects)
+      objects = [objects] if !objects.is_a? Array
+      objects.each do |object|
+        statement = object.is_a?(Uri) ? {uri: object} : {literal: "#{object}", primitive_type: schema.range(predicate)}
+        sparql.add({:uri => subject}, {:uri => predicate}, statement)
+      end
     end
 
   end
+
 
 end

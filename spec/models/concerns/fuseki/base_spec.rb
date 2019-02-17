@@ -112,14 +112,47 @@ describe Fuseki::Base do
     end
   end
 
-  it "allows for the class to be read, simple and URI results, multiple instancess" do
+  it "allows for create" do
     item = Test5.new
-byebug
     item.uri = Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX")
     item.owner = false
-    item.ra_namespace << Uri.new(uri: "http://www.assero.co.uk/MDRItems#NS-BBB")
-    item.has_authority_identifier = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RAI-123456789")
+    item.organization_identifier = "1234567891234"
+    item.international_code_designator = "DUNS_NEW"
     item.create
+    item_1 = Test5.find(item.uri)
+    expect(item.uri).to eq(item_1.uri)
+    expect(item.owner).to eq(item_1.owner)
+    expect(item.organization_identifier).to eq(item_1.organization_identifier)
+    expect(item.international_code_designator).to eq(item_1.international_code_designator)
   end
+
+  it "allows for update" do
+    item = Test5.new
+    item.uri = Uri.new(uri: "http://www.assero.co.uk/RA#1111")
+    item.owner = false
+    item.organization_identifier = "1234567891234"
+    item.international_code_designator = "DUNS_NEW"
+    item.create
+    item_1 = Test5.find(item.uri)
+    item_1.international_code_designator = "DUNS_OLD"
+    item_1.update
+    item_2 = Test5.find(item.uri)
+    expect(item.uri).to eq(item_2.uri)
+    expect(item.owner).to eq(item_2.owner)
+    expect(item.organization_identifier).to eq(item_2.organization_identifier)
+    expect(item.international_code_designator).to_not eq(item_2.international_code_designator)
+    expect(item_2.international_code_designator).to eq("DUNS_OLD")
+  end
+
+=begin
+  it "allows for where" do
+    item = Test5.where({organization_identifier: "123456789"})
+    expect(item.uri.to_s).to eq(uri.to_s)
+    expect(item.organization_identifier).to eq("123456789")
+    expect(item.international_code_designator).to eq("DUNS")
+    expect(item.owner).to eq(true)
+    expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/NS#BBB")
+  end
+=end
 
 end

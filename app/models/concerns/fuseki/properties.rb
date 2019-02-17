@@ -6,6 +6,8 @@ module Fuseki
   
   module Properties
 
+    include Fuseki::Naming
+
     def properties_inherit
       merged = {}
       klass_ancestors = self.class.ancestors.grep(Fuseki::Resource).reverse
@@ -20,9 +22,9 @@ module Fuseki
       type = properties[:@rdf_type][:default]
       properties.each do |name, entry|
         next if name == :@rdf_type
-        temp = name[1..-1].camelcase(:lower) # Remove the '@' and to camelcase with lower first char
-        properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: temp)
+        properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: to_schema(name))
       end
+      properties = self.class.instance_variable_set(:@properties, properties)
     end
 
   end
