@@ -45,7 +45,7 @@ module Fuseki
     def create(name, initial)
       self.send(:attr_accessor, "#{name}")
       @properties ||= {}
-      @properties[name] = initial
+      @properties["@#{name}".to_sym] = {default: initial}
     end
     
   end

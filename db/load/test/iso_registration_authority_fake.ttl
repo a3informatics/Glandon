@@ -1,0 +1,22 @@
+@prefix : <http://www.assero.co.uk/RA#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:DUNS123456789
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#BBB> ;
+  isoR:owner "true"^^xsd:boolean ;   
+  isoR:organizationIdentifier "123456789"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 
+.
+:DUNS111111111
+  rdf:type isoR:RegistrationAuthority ;
+  isoR:raNamespace <http://www.assero.co.uk/NS#AAA> ;
+  isoR:owner "false"^^xsd:boolean ;  
+  isoR:organizationIdentifier "111111111"^^xsd:string ;
+  isoR:internationalCodeDesignator "DUNS"^^xsd:string ; 

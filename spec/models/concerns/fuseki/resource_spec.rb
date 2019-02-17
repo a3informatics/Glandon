@@ -28,7 +28,7 @@ describe Fuseki::Base do
 
   it "RDF type configured" do
     Test.configure({rdf_type: "http://www.example.com/A#XXX"})
-    expect(Test.instance_variable_get(:@properties)[:rdf_type].to_s).to eq("http://www.example.com/A#XXX")
+    expect(Test.instance_variable_get(:@properties)[:rdf_type][:default].to_s).to eq("http://www.example.com/A#XXX")
   end
 
   it "error if cardinality not configured" do
@@ -37,14 +37,14 @@ describe Fuseki::Base do
 
   it "Object property configured" do
     Test.object_property(:fred, {cardinality: :one})
-    expect(Test.instance_variable_get(:@properties)).to eq({fred: ""})
+    expect(Test.instance_variable_get(:@properties)).to eq({fred: {default: ""}})
     Test.object_property(:sid, {cardinality: :many})
-    expect(Test.instance_variable_get(:@properties)).to eq({fred: "", sid: []})
+    expect(Test.instance_variable_get(:@properties)).to eq({fred: {default: ""}, sid: {default: []}})
   end
 
   it "Data property configured" do
     Test.data_property(:fred1)
-    expect(Test.instance_variable_get(:@properties)).to eq({fred1: ""})
+    expect(Test.instance_variable_get(:@properties)).to eq({fred1: {default: ""}})
   end
 
 end

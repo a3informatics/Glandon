@@ -1,3 +1,7 @@
+# Fuseki Resource. Handles the methods to create properties in a class
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.0
 module Fuseki
   
   module Persistence
@@ -9,13 +13,8 @@ module Fuseki
 
       # Find
       #
-      # @param [Symbol, ID] scope
-      #   scope can be :all, :first or an ID
-      # @param [Hash] args
-      #   args can contain:
-      #     :conditions - Hash of properties and values
-      #     :limit      - Fixnum, limiting the amount of returned records
-      # @return [Spira::Base, Array]
+      # @param [UriV4|id] the identifier, either a URI or the id
+      # @return [Object] a class object.
       def find(id)
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
         query_string = "SELECT ?s ?p ?o WHERE {" +
@@ -37,10 +36,36 @@ module Fuseki
         object
       end
 
+      #def where(properties)
+      #  sparql = Sparql::Query.new()
+      #  query_string = "SELECT ?s ?p ?o WHERE {" +
+      #    "  ?s rdf:type #{@rdf_type.to_ref} ."
+      #  properties.each do |property|
+      #    qruery_string += "  ?s (#{uri.to_ref} as ?s) ." +
+      #    "}"
+      #  end
+      #  results = Sparql::Query.new.query(query_string, uri.namespace, [])
+      #end
+
     end
 
     def id
       self.uri.to_id
+    end
+
+    def create
+      sparql = Sparql::Update.new()
+      sparql.default_namespace(@uri.namespace)
+      properties = self.class.instance_variable_get(:@properties)
+      instance_variables.each do |name|
+        next if name == :@uri
+        next if !properties.key?(name) # Ignore variables if no property declared.
+        predicate = properties[name][:predicate]
+        object = instance_variable_get(name)
+byebug
+        sparql.add({:uri => @uri}, {:uri => predicate}, object)
+      end
+  byebug
     end
 
   end

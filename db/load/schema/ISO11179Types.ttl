@@ -101,3 +101,17 @@
   rdfs:range xsd:string ;
   skos:definition "Identifier for the concept system."^^xsd:string ;
 .
+:hasIdentifier
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain isoT:IdentifiedItem ;
+  rdfs:label "Identifer Relationship"^^xsd:string ;
+  rdfs:range :ScopedIdentifier ;
+  skos:definition "Identifies the set of Scope_Identifiers for the Identified_Item that defines an identifier within a specific namespace"^^xsd:string ;
+.
+.:hasState
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:domain isoT:AdministeredItem ;
+  rdfs:label "Item Registration Relationship"^^xsd:string ;
+  rdfs:range :RegistrationState ;

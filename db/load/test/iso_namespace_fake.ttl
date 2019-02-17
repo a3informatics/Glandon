@@ -1,4 +1,4 @@
-@prefix : <http://www.assero.co.uk/MDRItems#> .
+@prefix : <http://www.assero.co.uk/NS#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
@@ -9,43 +9,15 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:O-AAA 
-	rdf:type isoB:Organization ;
-  isoB:name "AAA Long"^^xsd:string ;
-  isoB:shortName "AAA"^^xsd:string ; 
-.
-:NS-AAA
+:AAA
   rdf:type isoI:Namespace ;
-  isoI:ofOrganization :O-AAA ; 
+  isoI:name "AAA Long"^^xsd:string ;
+  isoI:shortName "AAA"^^xsd:string ; 
+  isoI:authority "www.aaa.com"^^xsd:string ;
 .
-:O-BBB 
-	rdf:type isoB:Organization ;
-  isoB:name "BBB Pharma"^^xsd:string ; 
-  isoB:shortName "BBB"^^xsd:string ; 
-.
-:NS-BBB
+:BBB
   rdf:type isoI:Namespace ;
-  isoI:ofOrganization :O-BBB ;
-.
-:RAI-123456789 
-	rdf:type isoB:RegistrationAuthorityIdentifier ; 
-  isoB:organizationIdentifier "123456789"^^xsd:string ;
-  isoB:internationalCodeDesignator "DUNS"^^xsd:string ; 
-.
-:RA-123456789
-  rdf:type isoR:RegistrationAuthority ;
-  isoR:raNamespace :NS-BBB ;
-  isoR:hasAuthorityIdentifier :RAI-123456789 ;
-  isoR:owner "true"^^xsd:boolean ;   
-.
-:RAI-111111111 
-  rdf:type isoB:RegistrationAuthorityIdentifier ; 
-  isoB:organizationIdentifier "111111111"^^xsd:string ;
-  isoB:internationalCodeDesignator "DUNS"^^xsd:string ; 
-.
-:RA-111111111
-  rdf:type isoR:RegistrationAuthority ;
-  isoR:raNamespace :NS-AAA ;
-  isoR:hasAuthorityIdentifier :RAI-111111111 ; 
-  isoR:owner "false"^^xsd:boolean ;  
+  isoI:name "BBB Pharma"^^xsd:string ; 
+  isoI:shortName "BBB"^^xsd:string ; 
+  isoI:authority "www.bbb.com"^^xsd:string ;
 .

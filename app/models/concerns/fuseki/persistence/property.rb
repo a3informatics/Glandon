@@ -4,26 +4,33 @@ module Fuseki
   
     module Property
 
+      include Fuseki::Naming
+
       def set_property(triple)
-        name = rails_name(triple[:predicate].fragment)
+        # Get the rails names and map to the schema defintions via the class properties.
+        name = to_rails(triple[:predicate].fragment)
+        properties = self.class.instance_variable_get(:@properties)
+        return if !properties.key?(name) # Ignore values if no property declared.
+        #properties[name][:predicate] = triple[:predicate] # No longer required?
         return if set_uri(name, triple)
         set_simple(name, triple)
       end
 
       def set_uri(name, triple)
-        return if !triple[:object].is_a? Uri
-        if instance_variable_get("@#{name}").is_a? Array 
-          instance_variable_get("@#{name}").push(triple[:object])
+        return false if !triple[:object].is_a? Uri
+        if instance_variable_get(name).is_a? Array 
+          instance_variable_get(name).push(triple[:object])
         else
-          instance_variable_set("@#{name}", triple[:object])
+          instance_variable_set(name, triple[:object])
         end
+        return true
       end
 
       def set_simple(name, triple)
-        instance_variable_set("@#{name}", convert_value(triple))
+        instance_variable_set(name, to_typed(triple))
       end
 
-      def convert_value(triple)
+      def to_typed(triple)
         value = triple[:object]
         return value if value.is_a? Uri
         schema = self.class.class_variable_get(:@@schema)
@@ -41,10 +48,6 @@ module Fuseki
         else
           "#{value}"
         end
-      end
-
-      def rails_name(name)
-        return name.underscore
       end
 
     end
