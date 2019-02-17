@@ -10,21 +10,20 @@ module Fuseki
 
     def properties_inherit
       merged = {}
-      klass_ancestors = self.class.ancestors.grep(Fuseki::Resource).reverse
+      klass_ancestors = self.ancestors.grep(Fuseki::Resource).reverse
       klass_ancestors.delete(Fuseki::Base) # Remove the base class
       klass_ancestors.each {|klass| merged.merge!(klass.instance_variable_get(:@properties))}
-      self.class.instance_variable_set(:@properties, merged)
-      self.class.instance_variable_get(:@properties).each {|name, value| self.instance_variable_set(name, value[:default])}
+      self.instance_variable_set(:@properties, merged)
     end
 
     def properties_predicate
-      properties = self.class.instance_variable_get(:@properties)
+      properties = self.instance_variable_get(:@properties)
       type = properties[:@rdf_type][:default]
       properties.each do |name, entry|
         next if name == :@rdf_type
         properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: to_schema(name))
       end
-      properties = self.class.instance_variable_set(:@properties, properties)
+      properties = self.instance_variable_set(:@properties, properties) # @todo Required? Check.
     end
 
   end

@@ -16,13 +16,15 @@ module Fuseki
     extend Resource
     include Persistence
     extend Schema
-    include Properties
+    extend Properties
 
     def initialize
       @uri = nil
       @@schema ||= self.class.read_schema
-      properties_inherit
-      properties_predicate
+      self.class.properties_inherit
+      self.class.properties_predicate
+      # Set the instance variables
+      self.class.instance_variable_get(:@properties).each {|name, value| instance_variable_set(name, value[:default])}
     end
 
   end

@@ -144,15 +144,15 @@ describe Fuseki::Base do
     expect(item_2.international_code_designator).to eq("DUNS_OLD")
   end
 
-=begin
   it "allows for where" do
-    item = Test5.where({organization_identifier: "123456789"})
-    expect(item.uri.to_s).to eq(uri.to_s)
+    items = Test5.where({organization_identifier: "123456789"})
+    expect(items.count).to eq(1)
+    item = items.first
+    expect(item.uri.to_s).to eq("http://www.assero.co.uk/RA#DUNS123456789")
     expect(item.organization_identifier).to eq("123456789")
     expect(item.international_code_designator).to eq("DUNS")
     expect(item.owner).to eq(true)
     expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/NS#BBB")
   end
-=end
 
 end

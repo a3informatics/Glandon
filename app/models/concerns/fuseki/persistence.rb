@@ -24,13 +24,14 @@ module Fuseki
           "}"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
         raise Exceptions::NotFoundError.new("Failed to find #{uri} in #{self.class.name} object.") if results.empty?
-        from_results(uri, results.by_subject)
+        from_results(uri, results.by_subject[uri.to_s])
       end
 
-=begin
       def where(params)
-        properties = self.instance_variable_get(:@properties)
         schema = self.read_schema
+        self.properties_inherit
+        self.properties_predicate
+        properties = self.instance_variable_get(:@properties)
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
           "  ?s rdf:type #{properties[:@rdf_type][:default].to_ref} ."
@@ -42,15 +43,17 @@ module Fuseki
         end
         results = Sparql::Query.new.query(query_string, "", [])
         raise Exceptions::NotFoundError.new("Failed to find where #{params} in #{self.class.name} object.") if results.empty?
-        subject = results.by_subject
-        from_results(subject.values.first.first[:subject], subject)
+        objects = []
+        results.by_subject.each do |subject, triples|
+          objects << from_results(Uri.new(uri: subject), triples)
+        end
+        objects
       end
-=end
 
-      def from_results(uri, results)
+      def from_results(uri, triples)
         object = new
         object.instance_variable_set("@uri", uri)
-        results[uri.to_s].each do |triple|
+        triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
           object.set_property(triple)
         end

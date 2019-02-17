@@ -11,7 +11,6 @@ module Fuseki
         name = to_rails(triple[:predicate].fragment)
         properties = self.class.instance_variable_get(:@properties)
         return if !properties.key?(name) # Ignore values if no property declared.
-        #properties[name][:predicate] = triple[:predicate] # No longer required?
         return if set_uri(name, triple)
         set_simple(name, triple)
       end
