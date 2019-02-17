@@ -120,4 +120,12 @@ describe Uri do
     expect(namespaces_2).to be_a Uri::Namespace
   end
 
+  it "compares two URIs" do
+    uri_1 = Uri.new({uri: "http://www.example.com/path1/path2#1"})
+    uri_2 = Uri.new({uri: "http://www.example.com/path1/path2#2"})
+    uri_3 = Uri.new({uri: "http://www.example.com/path1/path2#1"})
+    expect(uri_1==uri_2).to eq(false)
+    expect(uri_1==uri_3).to eq(true)
+  end
+
 end

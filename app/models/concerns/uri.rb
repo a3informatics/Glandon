@@ -146,6 +146,14 @@ class Uri
     @fragment = @fragment.blank? ? extension : "#{@fragment}#{C_FRAGMENT_EXTENDER}#{extension}"
   end
 
+  # Equal
+  #
+  # @param other [Uri] the other URI
+  # @return [Boolean] true if equal, false otherwise
+  def ==(other)
+    return self.to_s == other.to_s
+  end
+
 private
 
   # Prefixed?  
