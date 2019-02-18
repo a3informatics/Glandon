@@ -3,59 +3,14 @@ require "uri"
 
 class IsoRegistrationAuthority
 
-  include CRUD
-  include ModelUtility
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
+  include Fuseli::Base
       
-  attr_accessor :id, :number, :scheme, :namespace, :owner
+  configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
+  data_property :organization_identifier
+  data_property :international_code_designator
+  data_property :owner
+  object_property :ra_namespace, cardinality: :one
   
-  # Constants
-  C_NS_PREFIX = "mdrItems"
-  C_CLASS_RA_PREFIX = "RA"
-  C_CLASS_RAI_PREFIX = "RAI"
-  C_DUNS = "DUNS"
-  C_CLASS_NAME = "IsoRegistrationAuthority"
-      
-  #Class variables
-  @@baseNs = UriManagement.getNs(C_NS_PREFIX)
-  @@repositoryOwner = nil
-  @@id_map = Hash.new
-  @@name_map = Hash.new
-
-  def persisted?
-    id.present?
-  end
- 
-  # Initialize
-  #
-  # @return [object] The initialized object
-  def initialize()
-    self.id = ""
-    self.number = "<Not Set>"
-    self.scheme = C_DUNS
-    self.namespace = IsoNamespace.new
-    self.owner = false
-    @@baseNs ||= UriManagement.getNs(C_NS_PREFIX)
-  end
-
-  # Get the name
-  #
-  # @return [string] The authority name
-  def name
-    return namespace.name
-  end
-
-  # Get the short name
-  #
-  # @return [string] The authority short name
-  def short_name
-    return namespace.shortName
-  end
-
-  alias :shortName :short_name
-
   # Find if the authority with identifier number exists.
   #
   # @return [boolean] True if the item exists, False otherwise.
