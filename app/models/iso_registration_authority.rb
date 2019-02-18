@@ -29,50 +29,6 @@ class IsoRegistrationAuthority
     return false
   end
 
-  # Find an authroity
-  #
-  # @param id [string] the id required.
-  # @return [IsoRegistrationAuthority, nil] The authority if found, otherwise nil.
-  def self.find(id)
-    ra = self.new
-    if @@id_map.has_key?(id)
-      ra = @@id_map[id]
-    else
-      # Create the query
-      query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-        "SELECT ?c ?d ?e ?f WHERE \n" +
-        "{ \n" +
-        "	 :" + id + " rdf:type isoR:RegistrationAuthority . \n" +
-        "  :" + id + " isoR:hasAuthorityIdentifier ?b . \n" +
-        "  :" + id + " isoR:raNamespace ?e . \n" +
-        "  :" + id + " isoR:owner ?f . \n" +
-        "	 ?b isoB:organizationIdentifier ?c . \n" +
-        "	 ?b isoB:internationalCodeDesignator ?d . \n" +
-        "}"
-      # Send the request, wait the resonse
-      response = CRUD.query(query)
-      # Process the response
-      xmlDoc = Nokogiri::XML(response.body)
-      xmlDoc.remove_namespaces!
-      xmlDoc.xpath("//result").each do |node|
-        oSet = node.xpath("binding[@name='c']/literal")
-        sSet = node.xpath("binding[@name='d']/literal")
-        siSet = node.xpath("binding[@name='e']/uri")
-        owner = ModelUtility.getValue('f', false, node).to_bool
-        if oSet.length == 1 
-          ra.id = id
-          ra.number = oSet[0].text
-          ra.scheme = sSet[0].text
-          ra.owner = owner
-          ra.namespace = IsoNamespace.find(ModelUtility.extractCid(siSet[0].text))
-          @@id_map[ra.id] = ra
-          @@name_map[ra.namespace.shortName] = ra
-        end
-      end
-    end
-    return ra
-  end
-
   # Find an authroity by the short name
   #
   # @param short_name [string] The short name required.
@@ -153,72 +109,6 @@ class IsoRegistrationAuthority
       @@repositoryOwner = self.new if @@repositoryOwner == nil
     end
     return @@repositoryOwner
-  end
-
-  # Create an authority
-  #
-  # @param params [hash] Hash holding {:number the authority DUNS number, :namespaceId the id of the namespace object}
-  # @return [object] The object holding the authority that owns the repository
-  def self.create(params)
-    ra = self.new
-    ra.namespace = IsoNamespace.find(params[:namespaceId])
-    ra.number = params[:number]
-    uid = ra.number
-    if ra.valid?
-      if !ra.exists?
-        uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RA_PREFIX, :org_name => C_DUNS, :identifier => uid})  
-        rai_uri = UriV2.new({:namespace => @@baseNs, :prefix => C_CLASS_RAI_PREFIX, :org_name => C_DUNS, :identifier => uid}) 
-        ra.id = uri.id
-        ConsoleLogger.debug(C_CLASS_NAME, "create", "RA=#{ra.to_json}")
-        update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-          "INSERT DATA \n" +
-          "{ \n" +
-          "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-          "	:" + rai_uri.id + " isoB:organizationIdentifier \"#{ra.number}\"^^xsd:string . \n" +
-          "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"#{ra.scheme}\"^^xsd:string . \n" +
-          "	:" + uri.id + " rdf:type isoR:RegistrationAuthority . \n" +
-          " :" + uri.id + " isoR:raNamespace :#{ra.namespace.id} . \n" +
-          "	:" + uri.id + " isoR:hasAuthorityIdentifier :#{rai_uri.id} . \n" +
-          " :" + uri.id + " isoR:owner \"#{ra.owner}\"^^xsd:boolean . \n" +
-          "}"
-        response = CRUD.update(update)
-        if !response.success?
-          ConsoleLogger.info(C_CLASS_NAME,"create", "Failed to create object.")
-          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-        end
-      else
-        ra.errors.add(:base, "The registration authority already exists.")
-      end
-    end
-    return ra
-  end
-
-  # Destroy an authority
-  #
-  # @return [null]
-  # @raise [ExceptionClass] DestroyError if object not destroyed
-  def destroy
-    # Create the query
-    rai_uri = IsoUtility.uri(@@baseNs, self.id)
-    rai_uri.update_prefix(C_CLASS_RAI_PREFIX)
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "DELETE DATA \n" +
-      "{ \n" +
-      "	:" + rai_uri.id + " rdf:type isoB:RegistrationAuthorityIdentifier . \n" +
-      "	:" + rai_uri.id + " isoB:organizationIdentifier \"" + self.number.to_s + "\"^^xsd:string . \n" +
-      "	:" + rai_uri.id + " isoB:internationalCodeDesignator \"DUNS\"^^xsd:string . \n" +
-      "	:" + self.id + " rdf:type isoR:RegistrationAuthority . \n" +
-      " :" + self.id + " isoR:raNamespace :" + self.namespace.id + " . \n" +
-      "	:" + self.id + " isoR:hasAuthorityIdentifier :" + rai_uri.id + " . \n" +
-      " :" + self.id + " isoR:owner \"#{self.owner}\"^^xsd:boolean . \n" +
-      "}"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Process the response
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME,"destroy", "Failed to destroy object.")
-      raise Exceptions::DestroyError.new(message: "Failed to destroy " + C_CLASS_NAME + " object.")
-    end
   end
 
   # To JSON
