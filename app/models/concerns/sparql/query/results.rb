@@ -33,6 +33,17 @@ module Sparql
         @results.empty?
       end
 
+      def subject_map(args={})
+        triples = Hash.new {|h,k| h[k] = []}
+        s_var = args.key?(:subject) ? args[:subject] : :s 
+        e_var = args.key?(:other) ? args[:other] : :e
+        @results.each do |result|
+          s_uri = result.column(s_var).value
+          triples[s_uri.to_s] = result.column(e_var).value
+        end
+        return triples
+      end
+
       # By Subject. Extract results by subject URI from the node set
       #
       # @param [Hash] args the hash of arguments

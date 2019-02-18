@@ -112,8 +112,8 @@ class Uri
   # To Hash
   #
   # @return [Hash] The uri in a hash
-  def to_hash
-    return {:uri => self.to_s}
+  def to_h
+    return self.to_s
   end
 
   # Namespace

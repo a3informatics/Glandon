@@ -6,6 +6,13 @@ module Fuseki
 
       include Fuseki::Naming
 
+      def uri?(name)
+        properties = self.class.instance_variable_get(:@properties)
+        Errors.application_error(self.name, __method__.to_s, "Calling method on non-object property.") if !properties[name][:type] == :object
+        value = instance_variable_get(name)
+        value.is_a?(Array) ? value.first.is_a?(Uri) : value.is_a?(Uri)
+      end
+
       def set_property(triple)
         # Get the rails names and map to the schema defintions via the class properties.
         name = to_rails(triple[:predicate].fragment)

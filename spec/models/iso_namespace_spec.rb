@@ -16,7 +16,8 @@ describe IsoNamespace do
     result.name = "XXX Long"
     result.short_name = "XXX"
     result.authority = "www.a3.com"
-    expect(IsoNamespace.from_json({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"}).to_json).to eq(result.to_json)
+byebug
+    expect(IsoNamespace.from_h({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"}).to_h).to eq(result.to_h)
   end
 
 	it "can be returned as JSON" do
@@ -25,7 +26,7 @@ describe IsoNamespace do
     result.name = "XXX Long"
     result.short_name = "XXX"
     result.authority = "www.a3.com"
-    expect(result.to_json).to eq({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"})
+    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"})
   end
 
   it "determines namespace exists" do
@@ -42,94 +43,70 @@ describe IsoNamespace do
     result.name = "AAA Long"
     result.short_name = "AAA"
     result.authority = "www.aaa.com"
-    expect(IsoNamespace.find_by_short_name("AAA").to_json).to eq(result.to_json)   
+    expect(IsoNamespace.find_by_short_name("AAA").to_h).to eq(result.to_h)   
   end
 
-	it "determines namespace exists without query" do
-    namespace = IsoNamespace.new
-    namespace.short_name = "AAA"
-    expect(namespace.exists?).to eq(true) 
-  end
-
-  it "finds namespace by short name without query" do
-    result = IsoNamespace.new
-    result.id = "NS-AAA"
-    result.namespace = "http://www.assero.co.uk/MDRItems"
-    result.name = "AAA Long"
-    result.short_name = "AAA"
-    expect(IsoNamespace.findByShortName("AAA").to_json).to eq(result.to_json)  
-  end
-
-	it "finds namespace" do
+  it "finds namespace" do
     result = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
     expected = {uri: "http://www.assero.co.uk/NS#AAA", name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"}
-    expect(result.to_hash).to eq(expected)   
+    expect(result.to_h).to eq(expected)   
   end
 
-	it "finds namespace without query" do
-    result = IsoNamespace.new
-    result.id = "NS-AAA"
-    result.namespace = "http://www.assero.co.uk/MDRItems"
-    result.name = "AAA Long"
-    result.short_name = "AAA"
-    expect(IsoNamespace.find("NS-AAA").to_json).to eq(result.to_json)  
-  end
+  it "needs caching tests"
 
 	it "all namespaces" do
     expected = [
       {uri: "http://www.assero.co.uk/NS#AAA", name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"},
-      {uri: "http://www.assero.co.uk/NS#BBB", name: "BBB Long", short_name: "BBB", authority: "www.bbb.com"},
+      {uri: "http://www.assero.co.uk/NS#BBB", name: "BBB Pharma", short_name: "BBB", authority: "www.bbb.com"},
     ]
-    result = IsoNamespace.all
+    items = IsoNamespace.all
+    result = items.map{|x| x.to_h}
     expect(result).to eq(expected)   
   end
 
 	it "create a namespace" do
-    expected = {uri: "http://www.assero.co.uk/NS#AAA", name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"},
-    result = IsoNamespace.new
-    result.name = "CCC Long"
-    result.short_name = "CCC"
-    result.authority = "www.ccc.com"
-    ns = result.create
-    expect(ns.to_json).to eq(expected)  
+    expected = {uri: "http://www.assero.co.uk/NS#CCC", name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"}
+    result = IsoNamespace.create({name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"})
+byebug
+    expect(result.to_h).to eq(expected)  
 	end
 
-  it "does not create a namespace with an invalid shortname" do
-    result = IsoNamespace.new
-    result.name = "CCC Long"
-    result.short_name = "CCC%$£@"
-    result.authority = "www.ccc.com"
-    result.create
-    expect(result.errors.messages[:short_name]).to include("contains invalid characters") 
+  it "passes a valid check" do
+    result = IsoNamespace.new(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD Long", short_name: "DDD", authority: "www.ddd.com")
+    expect(result.valid?).to be(true)
+  end
+
+  it "does not create a namespace with an invalid short name" do
+    result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD", short_name: "DDD%$£@", authority: "www.ddd.com")
+    expect(result.valid?).to be(false)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("Short name is invalid") 
   end
 
   it "does not create a namespace with an invalid name" do
-    result = IsoNamespace.new
-    result.name = "CCC%$£@ Long"
-    result.short_name = "CCC"
-    result.authority = "www.ccc.com"
-    result.create
-    expect(result.errors.messages[:name]).to include("contains invalid characters or is empty") 
+    result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD%$£@", short_name: "DDD", authority: "www.ddd.com")
+    expect(result.valid?).to be(false)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("Name is invalid") 
   end
 
   it "does not create a namespace that already exists" do
-    result = IsoNamespace.new
-    result.name = "AAA XXX"
-    result.short_name = "AAA"
-    result.authority = "www.aaa.com"
-    result.create
-    expect(result.errors.messages[:name]).to include("contains invalid characters or is empty") 
+    result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "CCC111", short_name: "AAA", authority: "www.ccc111.com")
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
   end
     
   it "destroy a namespace" do
     object = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
     object.delete
-    expect{IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))}.to raise_error(Exceptions::NotFoundError, "Failed to find http://www.assero.co.uk/NS#AAA in Class object.")
+    expect{IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))}.to raise_error(Exceptions::NotFoundError, "Failed to find http://www.assero.co.uk/NS#AAA " + 
+      "in Class object.")
   end
 
-  it "determines if the namespace is valid" do
+  it "determines if the namespace is valid except for presence" do
     result = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
-    expect(result.valid?).to eq(true)   
+    expect(result.valid?).to eq(false)   
+    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
   end
 
   it "determines the namespace is invalid with a invalid short name" do
