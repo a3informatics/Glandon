@@ -42,12 +42,18 @@ module Fuseki
           "}"
         end
         results = Sparql::Query.new.query(query_string, "", [])
-        raise Exceptions::NotFoundError.new("Failed to find where #{params} in #{self.class.name} object.") if results.empty?
         objects = []
         results.by_subject.each do |subject, triples|
           objects << from_results(Uri.new(uri: subject), triples)
         end
         objects
+      end
+
+      # Find all objects
+      #
+      # @return [Array] Array of objects
+      def all
+        where({})
       end
 
       def from_results(uri, triples)
@@ -66,12 +72,16 @@ module Fuseki
       self.uri.to_id
     end
 
-    def create
-      create_or_update(:create)
-    end
-
     def update
       create_or_update(:update)
+    end
+
+    def delete
+      Sparql::Update.new.delete(self.uri)
+    end
+
+    def create
+      create_or_update(:create)
     end
 
   private

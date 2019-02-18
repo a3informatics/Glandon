@@ -52,12 +52,21 @@ module Sparql
       execute_update(:update, to_update_sparql(uri))
     end
 
-    # Create. Generate a insert query
+    # Create. Generate a create query
     #
     # @raise [Errors::CreateError] if create fails
     # @return [Void] no return
     def create
       execute_update(:create, to_create_sparql)
+    end
+
+    # Delete. Generate a delete query
+    #
+    # @param uri [Uri] The subject uri
+    # @raise [Errors::DestroyError] if delete fails
+    # @return [Void] no return
+    def delete(uri)
+      execute_update(:delete, to_delete_sparql(uri))
     end
 
     # Upload
@@ -71,17 +80,25 @@ module Sparql
     # To Update Sparql. Build the sparql for an update
     #
     # @param uri [Uri] the uri for the subject being modified
-    # @return [String] the sparql update or create as a string
+    # @return [String] the sparql update as a string
     def to_update_sparql(uri)
       "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{uri.to_ref} ?p ?o . \n}\n" + 
         "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{uri.to_ref} ?p ?o . \n}"  
     end
 
-    # To Create Sparql. Build the sparql for an create
+    # To Create Sparql. Build the sparql for a create
     #
-    # @return [String] the sparql update or create as a string
+    # @return [String] the sparql create as a string
     def to_create_sparql
       "#{build_clauses(@default_namespace, prefix_set)}INSERT DATA \n{ \n#{triples_to_s}}"
+    end
+
+    # To Delete Sparql. Build the sparql for a delete
+    #
+    # @param uri [Uri] the uri for the subject being deleted
+    # @return [String] the sparql update or create as a string
+    def to_delete_sparql(uri)
+      "DELETE { #{uri.to_ref} ?p ?o . } WHERE { #{uri.to_ref} ?p ?o . }"
     end
 
     # To File
@@ -102,7 +119,8 @@ module Sparql
         message = "#{base}\nSPARQL: #{sparql}"
         ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
         raise Errors::CreateError.new(base) if type == :create
-        raise Errors::UpdateError.new(base)
+        raise Errors::UpdateError.new(base) if type == :update
+        raise Errors::DestroyError.new(base)
       end
     end
 

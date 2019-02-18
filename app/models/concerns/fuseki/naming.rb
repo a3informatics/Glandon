@@ -10,6 +10,10 @@ module Fuseki
       "#{name}"[1..-1].camelcase(:lower) # From symbol, remove the '@' and then to camelcase with lower first char
     end
 
+    def from_rails(name)
+      "#{name}"[1..-1].to_sum # From symbol, remove the '@'
+    end
+
   end
 
 end

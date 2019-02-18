@@ -39,6 +39,12 @@ describe Sparql::Update do
     end
   end
 
+  def check_deleted
+    xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
+    xmlDoc.remove_namespaces!
+    expect(xmlDoc.xpath("//result").count). to eq(0) 
+  end
+
   before :each do
     clear_triple_store
   end
@@ -416,6 +422,28 @@ window.location.href = \"/fuseki.html\";}
     expect{sparql.update(@s_uri)}.to raise_error(Errors::UpdateError, "Failed to update an item in the database. SPARQL update failed.")
   end
 
+  it "executes an delete" do
+    sparql = create_simple_triple
+    sparql.create
+    sparql = Sparql::Update.new()
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => @o_uri},)
+    sparql.delete(@s_uri)
+    check_deleted
+  end
+
+  it "executes an delete, error" do
+    sparql = create_simple_triple
+    sparql.create
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    sparql = Sparql::Update.new()
+    o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
+    sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
+    expect(ConsoleLogger).to receive(:info)
+    expect{sparql.delete}.to raise_error(Errors::DestroyError, "Failed to delete an item in the database. SPARQL delete failed.")
+  end
+
   it "executes an file upload" do
     sparql = create_simple_triple
     sparql.default_namespace("http://www.example.com/test")
@@ -430,6 +458,13 @@ window.location.href = \"/fuseki.html\";}
     expect(response).to receive(:success?).and_return(false)
     expect(ConsoleLogger).to receive(:info)
     expect{sparql.upload}.to raise_error(Errors::CreateError, "Failed to upload and create an item in the database.")
+  end
+
+  it "returns delete sparql" do
+    expected = "DELETE { <http://www.example.com/test#oooNEW> ?p ?o . } WHERE { <http://www.example.com/test#oooNEW> ?p ?o . }"
+    sparql = Sparql::Update.new()
+    result = sparql.to_delete_sparql(Uri.new({:uri => "http://www.example.com/test#oooNEW"}))
+    expect(result).to eq(expected)
   end
 
 end

@@ -17,6 +17,7 @@ module Fuseki
     include Persistence
     extend Schema
     extend Properties
+    #include Utility
 
     def initialize
       @uri = nil
