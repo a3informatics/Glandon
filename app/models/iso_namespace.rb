@@ -1,3 +1,7 @@
+# ISO Namespace. 
+#
+# @author Dave Iberson-Hurst
+# @since 2.21.1
 class IsoNamespace < Fuseki::Base
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace",

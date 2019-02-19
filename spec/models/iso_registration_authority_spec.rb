@@ -4,177 +4,115 @@ describe IsoRegistrationAuthority do
 	
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179IdentificationSimplified.ttl")
+    load_schema_file_into_triple_store("ISO11179RegistrationSimplified.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
   end
 
   it "validates a valid object" do
     result = IsoRegistrationAuthority.new
-    result.number = "123456789"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-BBB")
+    result.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    result.organization_identifier = "123456777"
+    result.international_code_designator = "DUNS"
+    result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object" do
     result = IsoRegistrationAuthority.new
-    result.number = "12345678"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-BBB")
+    result.organization_identifier = "1234567890123"
+    result.international_code_designator = "DUNS"
+    result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
     expect(result.valid?).to eq(false)
   end
 
   it "does not validate an invalid object" do
     result = IsoRegistrationAuthority.new
-    result.number = "123456789"
-    result.scheme = "DUS"
-    result.namespace = IsoNamespace.find("NS-BBB")
+    result.organization_identifier = "123456777"
+    result.international_code_designator = "DUS"
+    result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
     expect(result.valid?).to eq(false)
   end
 
   it "can be filled from JSON" do
-    result = IsoRegistrationAuthority.new
-    result.id = "NS-XXX"
-    result.number = "123456789"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.new
-    result.owner = false
-    expect(IsoRegistrationAuthority.from_json({id: "NS-XXX", number: "123456789", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json }).to_json).to eq(result.to_json)
+    input = {uri: "http://www.assero.co.uk/MDRItems#XXX", organization_identifier: "123456777", 
+      international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h}
+    result = IsoRegistrationAuthority.from_h(input)
+    expect(result.uri.to_s).to eq("http://www.assero.co.uk/MDRItems#XXX")
+    expect(result.international_code_designator).to eq("DUNS")
   end
 
 	it "can be returned as JSON" do
     result = IsoRegistrationAuthority.new
-    result.id = "NS-XXX"
-    result.number = "123456789"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.new
+    result.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
+    result.organization_identifier = "123456777"
+    result.international_code_designator = "DUNS"
+    result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
-    expect(result.to_json).to eq({id: "NS-XXX", number: "123456789", scheme: "DUNS", owner: false, namespace: IsoNamespace.new.to_json })
+    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#XXX", organization_identifier: "123456777", 
+      international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h })
   end
 
   it "finds authority" do
-    org = IsoNamespace.find("NS-AAA")
-    result = {:id=>"RA-111111111", :number=>"111111111", :scheme=>"DUNS", :owner=>false, :namespace=> org.to_json}
-    expect(IsoRegistrationAuthority.find("RA-111111111").to_json).to eq(result)   
+    result = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789", 
+      ra_namespace: "http://www.assero.co.uk/NS#BBB",}
+    expect(IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")).to_h).to eq(result)   
   end
 
 	it "finds all authorities" do
-    results = []
-    result = IsoRegistrationAuthority.new
-    result.id = "RA-123456789"
-    result.number = "123456789"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-BBB")
-    result.owner = true
-    results << result
-    result = IsoRegistrationAuthority.new
-    result.id = "RA-111111111"
-    result.number = "111111111"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-AAA")
-    result.owner = false
-    results << result
-    expect(IsoRegistrationAuthority.all.to_json).to eq(results.to_json)   
+    results = [
+      { 
+        organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789", 
+        ra_namespace: "http://www.assero.co.uk/NS#BBB"
+      },
+      {
+        organization_identifier: "111111111", international_code_designator: "DUNS", owner: false, uri: "http://www.assero.co.uk/RA#DUNS111111111", 
+        ra_namespace: "http://www.assero.co.uk/NS#AAA"
+      }
+    ]
+    expect(IsoRegistrationAuthority.all.map{|x| x.to_h}).to eq(results)   
   end
 
   it "finds authority by short name" do
-    result = IsoRegistrationAuthority.new
-    result.id = "RA-111111111"
-    result.number = "111111111"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-AAA")
-    result.owner = false
-    expect(IsoRegistrationAuthority.find_by_short_name("AAA").to_json).to eq(result.to_json)   
+    result = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    expect(IsoRegistrationAuthority.find_by_short_name("BBB").to_h).to eq(result.to_h)   
   end
 
 	it "determines if authority exists" do
-    result = IsoRegistrationAuthority.new
-    result.number = "111111111"
-    expect(result.exists?).to eq(true)   
+    expect(IsoRegistrationAuthority.exists?("AAA")).to eq(true)    
   end
 
   it "determines if authority does not exist" do
-    result = IsoRegistrationAuthority.new
-    result.number = "111111122"
-    expect(result.exists?).to eq(false)   
+    expect{IsoRegistrationAuthority.exists?("AAA1")}.to raise_error(Exceptions::NotFoundError, "Failed to find short name AAA1 in IsoRegistrationAuthority object.")
   end
 
   it "create an authority" do
-    org = IsoNamespace.new
-    org.id = "NS-CCC_NS"
-    org.namespace = "http://www.assero.co.uk/MDRItems"
-    org.name = "CCC Long"
-    org.shortName = "CCC"
-    expect(IsoNamespace.create({shortName: "CCC", name: "CCC Long"}).to_json).to eq(org.to_json) 
-    result = IsoRegistrationAuthority.new
-    result.id = "RA-DUNS_222233334"
-    result.number = "222233334"
-    result.scheme = "DUNS"
-    result.namespace = IsoNamespace.find("NS-DDD")
-    result.owner = false
-    ra = IsoRegistrationAuthority.create({number: "222233334", namespaceId: org.id})
-    expect(ra.errors.count).to eq(0)
+    result = IsoRegistrationAuthority.create(organization_identifier: "222233334", international_code_designator: "DUNS", owner: false)
+    expect(result.errors.count).to eq(0)
 	end
 
   it "prevents an invalid authority from being created" do
-    org = IsoNamespace.new
-    org.id = "NS-CCC_NS"
-    org.namespace = "http://www.assero.co.uk/MDRItems"
-    org.name = "CCC Long"
-    org.shortName = "CCC"
-    ra = IsoRegistrationAuthority.create({number: "2222333344", namespaceId: org.id})
-    expect(ra.errors.count).to eq(1)
-    expect(ra.errors.full_messages.to_sentence).to eq("Number does not contains 9 digits")
+    result = IsoRegistrationAuthority.create(organization_identifier: "123456AAA", international_code_designator: "DUNS", owner: false)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("Organization identifier is invalid")
   end
 
   it "prevents an existing authority from being created" do
-    org = IsoNamespace.new
-    org.id = "NS-CCC_NS"
-    org.namespace = "http://www.assero.co.uk/MDRItems"
-    org.name = "CCC Long"
-    org.shortName = "CCC"
-    ra = IsoRegistrationAuthority.create({number: "222233334", namespaceId: org.id})
-    expect(ra.errors.count).to eq(1)
-    expect(ra.errors.full_messages.to_sentence).to eq("The registration authority already exists.")
-  end
-
-  it "handles a bad response error - destroy" do
-    object = IsoRegistrationAuthority.find("RA-DUNS_222233334")
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect{object.destroy}.to raise_error(Exceptions::DestroyError)
-  end
-
-  it "handles a bad response error - create" do
-    org = IsoNamespace.new
-    org.id = "NS-CCC_NS"
-    org.namespace = "http://www.assero.co.uk/MDRItems"
-    org.name = "CCC Long"
-    org.shortName = "CCC"
-    allow_any_instance_of(IsoRegistrationAuthority).to receive(:exists?).and_return(false)
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(IsoNamespace).to receive(:find).and_return(org)
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect{IsoRegistrationAuthority.create({number: "222233334", namespaceId: org.id})}.to raise_error(Exceptions::CreateError)
+    result = IsoRegistrationAuthority.create(organization_identifier: "123456789", 
+      international_code_designator: "DUNS", owner: false)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
   end
 
   it "destroy a authority" do
-    object = IsoRegistrationAuthority.find("RA-DUNS_222233334")
-    object.destroy
+    object = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    object.delete
   end
 
-  it "clears triple store and loads test data" do
-    clear_triple_store
-    load_test_file_into_triple_store("iso_namespace_duplicate.ttl")
-  end
-
-  it "finds all authorities - duplicate error" do
-    expect{IsoRegistrationAuthority.all}.to raise_error(Exceptions::MultipleOwnerError)
-  end
 end

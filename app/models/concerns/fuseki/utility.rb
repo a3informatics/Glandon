@@ -24,10 +24,10 @@ module Fuseki
         params.each do |name, value|
           variable = Variable.new(name)
           if value.is_a?(Hash)
-            result = properties[name][:model_class].constantize.from_h(value)
+            result = properties[variable.for_instance][:model_class].constantize.from_h(value)
             object.instance_variable_set(variable.for_instance, result)
           elsif value.is_a?(Array)
-            klass = properties[name][:model_class].constantize
+            klass = properties[variable.for_instance][:model_class].constantize
             value.each do |x|
               object.instance_variable_set(variable.for_instance, klass.from_h(value))
             end
