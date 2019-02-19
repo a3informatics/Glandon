@@ -7,7 +7,8 @@ module Fuseki
   module Utility
 
     include Fuseki::Naming
-  
+    include Fuseki::Properties
+
     def self.included(base)
       base.extend(ClassMethods)
     end
@@ -15,11 +16,10 @@ module Fuseki
     module ClassMethods
 
       include Fuseki::Naming
+      include Fuseki::Properties
 
       def from_h(params)
-        self.properties_inherit
-        self.properties_predicate
-        properties = self.instance_variable_get(:@properties)
+        properties = properties_read(:class)
         object = self.new
         params.each do |name, value|
           variable = Variable.new(name)
@@ -31,6 +31,8 @@ module Fuseki
             value.each do |x|
               object.instance_variable_set(variable.for_instance, klass.from_h(value))
             end
+          elsif name == :uri
+            object.instance_variable_set(:@uri, Uri.new(uri: value))
           else
             object.instance_variable_set(variable.for_instance, value)
           end
@@ -41,8 +43,9 @@ module Fuseki
     end
 
     def to_h
-      result = {}
-      instance_variables.each do |name|
+      result = {uri: instance_variable_get(:@uri).to_h}
+      properties = properties_read(:instance)
+      properties.each do |name, property|
         variable = Variable.new(name).for_rails
         object = instance_variable_get(name)
         if object.is_a?(Array)

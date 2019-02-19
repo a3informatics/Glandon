@@ -45,34 +45,4 @@ class IsoRegistrationAuthority
     where_only({owner: true})
   end
 
-  # To JSON
-  #
-  # @return [hash] The object hash 
-  def to_json
-    json = 
-    { 
-      :id => self.id, 
-      :number => self.number,
-      :scheme => self.scheme,
-      :owner => self.owner,
-      :namespace => self.namespace.to_json
-    }
-    return json
-  end
-
-  # From JSON
-  #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = self.new
-    #ConsoleLogger::log(C_CLASS_NAME,"from_json", "Json=#{json}")
-    object.id = json[:id]
-    object.number = json[:number]
-    object.scheme = json[:scheme]
-    object.owner = json[:owner]
-    object.namespace = IsoNamespace.from_json(json[:namespace])
-    return object
-  end
-
 end

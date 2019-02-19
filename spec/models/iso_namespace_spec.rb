@@ -12,17 +12,16 @@ describe IsoNamespace do
 
 	it "can be filled from JSON" do
     result = IsoNamespace.new
-    result.uri = "http://www.assero.co.uk/MDRItems#NS-XXX"
+    result.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#NS-XXX")
     result.name = "XXX Long"
     result.short_name = "XXX"
     result.authority = "www.a3.com"
-byebug
     expect(IsoNamespace.from_h({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"}).to_h).to eq(result.to_h)
   end
 
 	it "can be returned as JSON" do
     result = IsoNamespace.new
-    result.uri = "http://www.assero.co.uk/MDRItems#NS-XXX"
+    result.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#NS-XXX")
     result.name = "XXX Long"
     result.short_name = "XXX"
     result.authority = "www.a3.com"
@@ -39,7 +38,7 @@ byebug
 
   it "finds namespace by short name" do
     result = IsoNamespace.new
-    result.uri = "http://www.assero.co.uk/NS#AAA"
+    result.uri =  Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     result.name = "AAA Long"
     result.short_name = "AAA"
     result.authority = "www.aaa.com"
@@ -67,7 +66,6 @@ byebug
 	it "create a namespace" do
     expected = {uri: "http://www.assero.co.uk/NS#CCC", name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"}
     result = IsoNamespace.create({name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"})
-byebug
     expect(result.to_h).to eq(expected)  
 	end
 

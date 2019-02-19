@@ -18,13 +18,18 @@ module Fuseki
 
     def properties_predicate
       properties = self.instance_variable_get(:@properties)
-      #type = properties[:@rdf_type][:default]
       type = self.rdf_type
-      properties.each do |name, entry|
-        #next if name == :@rdf_type
-        properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: to_schema(name))
-      end
+      properties.each {|name, entry| properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: to_schema(name))}
       properties = self.instance_variable_set(:@properties, properties) # @todo Required? Check.
+    end
+
+    def properties_read(scope)
+      base = scope == :class ? self : self.class
+      if scope == :class
+        base.properties_inherit
+        base.properties_predicate
+      end
+      base.instance_variable_get(:@properties)
     end
 
   end

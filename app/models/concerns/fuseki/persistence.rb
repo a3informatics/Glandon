@@ -9,6 +9,7 @@ module Fuseki
     extend ActiveSupport::Concern
     include Fuseki::Persistence::Property
     include Fuseki::Naming
+    include Fuseki::Properties
 
     module ClassMethods
 
@@ -36,9 +37,7 @@ module Fuseki
         klass_map = {}
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
         schema = self.read_schema
-        self.properties_inherit
-        self.properties_predicate
-        properties = self.instance_variable_get(:@properties)
+        properties = properties_read(:class)
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
           #next if name == :@rdf_type
@@ -67,9 +66,7 @@ module Fuseki
 
       def where(params)
         schema = self.read_schema
-        self.properties_inherit
-        self.properties_predicate
-        properties = self.instance_variable_get(:@properties)
+        properties = properties_read(:class)
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
           "  ?s rdf:type #{rdf_type.to_ref} ."
@@ -135,7 +132,7 @@ module Fuseki
 
     def generic_objects(name, klass)
       objects = []
-      properties = self.class.instance_variable_get(:@properties)
+      properties = properties_read(:instance)
       predicate = properties["@#{name}".to_sym][:predicate]  
       klass = properties["@#{name}".to_sym][:model_class].constantize
       cardinality = properties["@#{name}".to_sym][:cardinality]
@@ -160,7 +157,7 @@ module Fuseki
     def create_or_update(operation)
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
-      properties = self.class.instance_variable_get(:@properties)
+      properties = properties_read(:instance)
       schema = self.class.class_variable_get(:@@schema)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       instance_variables.each do |name|
