@@ -63,6 +63,18 @@ module Sparql
         return triples
       end
 
+      # By Object. Extract results as single array of object
+      #
+      # @param o_var [String|Symbol] the object column name. Defaults to :o
+      # @result [Hash] a hash of [subject, predicate, object] hash records
+      def by_object(o_var=:o)
+        values = []
+        @results.each do |result|
+          values << result.column(o_var).value
+        end
+        values
+      end
+
       # To Hash
       # 
       # @return [Hash] a hash representation of the class content

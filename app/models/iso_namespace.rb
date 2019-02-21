@@ -10,12 +10,10 @@ class IsoNamespace < Fuseki::Base
   data_property :name
   data_property :authority
 
-  validates :name, presence: true
-  validates_format_of :name, with: /\A[a-zA-Z0-9 ]+\Z/i
-  validates :short_name, presence: true
-  validates_format_of :short_name, with: /\A[a-zA-Z0-9 ]+\Z/i
+  validates_with Validator::Field, attribute: :short_name, method: :valid_short_name?
+  validates_with Validator::Field, attribute: :name, method: :valid_label?
   validates :authority, presence: true
-  validates_with SubjectUniquenessValidator, attribute: :short_name
+  validates_with Validator::Uniqueness, attribute: :short_name
 
   C_CLASS_NAME = self.name
   

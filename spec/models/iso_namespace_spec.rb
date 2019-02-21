@@ -6,7 +6,7 @@ describe IsoNamespace do
 
   before :each do
     clear_triple_store
-    load_schema_file_into_triple_store("ISO11179IdentificationSimplified.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
   end
 
@@ -78,14 +78,14 @@ describe IsoNamespace do
     result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD", short_name: "DDD%$£@", authority: "www.ddd.com")
     expect(result.valid?).to be(false)
     expect(result.errors.count).to eq(1)
-    expect(result.errors.full_messages.to_sentence).to eq("Short name is invalid") 
+    expect(result.errors.full_messages.to_sentence).to eq("Short name contains invalid characters") 
   end
 
   it "does not create a namespace with an invalid name" do
     result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD%$£@", short_name: "DDD", authority: "www.ddd.com")
     expect(result.valid?).to be(false)
     expect(result.errors.count).to eq(1)
-    expect(result.errors.full_messages.to_sentence).to eq("Name is invalid") 
+    expect(result.errors.full_messages.to_sentence).to eq("Name contains invalid characters") 
   end
 
   it "does not create a namespace that already exists" do
@@ -97,8 +97,8 @@ describe IsoNamespace do
   it "destroy a namespace" do
     object = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
     object.delete
-    expect{IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))}.to raise_error(Exceptions::NotFoundError, "Failed to find http://www.assero.co.uk/NS#AAA " + 
-      "in Class object.")
+    expect{IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/NS#AAA " + 
+      "in IsoNamespace.")
   end
 
   it "determines if the namespace is valid except for presence" do

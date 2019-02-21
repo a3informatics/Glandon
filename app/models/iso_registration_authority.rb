@@ -14,12 +14,13 @@ class IsoRegistrationAuthority < Fuseki::Base
 
   SCHEMES = %w(DUNS)
 
+  # @todo probably add these to field. Not used anywhere selse at the moment so not worth it.
   validates :organization_identifier, presence: true
   validates_format_of :organization_identifier, with: /\A[0-9]{9}\Z/i
   validates :international_code_designator, presence: true
   validates :international_code_designator, :inclusion => {in: SCHEMES, message: "%{value} is not a valid scheme" }
   validates :owner, inclusion: { in: [ true, false ] }
-  validates_with SubjectUniquenessValidator, attribute: :organization_identifier
+  validates_with Validator::Uniqueness, attribute: :organization_identifier
 
   # Find by the short name.
   #

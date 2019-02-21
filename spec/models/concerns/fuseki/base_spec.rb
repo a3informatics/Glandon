@@ -11,8 +11,8 @@ describe Fuseki::Base do
 
   before :each do
     clear_triple_store
-    load_schema_file_into_triple_store("ISO11179IdentificationSimplified.ttl")
-    load_schema_file_into_triple_store("ISO11179RegistrationSimplified.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
   end

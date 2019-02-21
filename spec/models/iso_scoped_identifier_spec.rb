@@ -4,9 +4,12 @@ describe IsoScopedIdentifier do
   
   include DataHelpers
 
-  before :all do
+  before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
   end
 
@@ -63,18 +66,18 @@ describe IsoScopedIdentifier do
         :semantic_version => "1.2.4",
         :namespace => 
           {
-            :namespace => "http://www.assero.co.uk/MDRItems",
-            :id => "NS-AAA",
+            :uri => "http://www.assero.co.uk/NS#AAA",
             :name => "AAA Long",
-            :shortName => "AAA"
+            :short_name => "AAA",
+            authority: "www.aaa.com"  
           }
       }
     triples = [ 
       { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier" },
-      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#hasScope", object: "http://www.assero.co.uk/MDRItems#NS-AAA" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#hasScope", object: "http://www.assero.co.uk/NS#AAA" },
       { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#identifier", object: "TEST" },
       { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#version", object: "1" },
-      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#semantic_version", object: "1.2.4" },
+      { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#semanticVersion", object: "1.2.4" },
       { subject: "http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Identification#versionLabel", object: "0.1" }
     ]
     expect(IsoScopedIdentifier.new(triples).to_json).to eq(result)    
@@ -82,11 +85,11 @@ describe IsoScopedIdentifier do
 
   it "returns a list of all identifiers" do
     expected = Array.new
-    expected << {:identifier => "TESTSV 1", :label => "Test Item SV 1", :owner_id => "NS-BBB", :owner => "BBB"}
-    expected << {:identifier => "TESTSV 2", :label => "Test Item SV 2", :owner_id => "NS-BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST3", :label => "Test Item 3", :owner_id => "NS-BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST2", :label => "Test Item 2", :owner_id => "NS-BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST1", :label => "Test Item 1", :owner_id => "NS-BBB", :owner => "BBB"}
+    expected << {:identifier => "TESTSV 1", :label => "Test Item SV 1", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
+    expected << {:identifier => "TESTSV 2", :label => "Test Item SV 2", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
+    expected << {:identifier => "TEST3", :label => "Test Item 3", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
+    expected << {:identifier => "TEST2", :label => "Test Item 2", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
+    expected << {:identifier => "TEST1", :label => "Test Item 1", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
     results = IsoScopedIdentifier.allIdentifier("TestItem", "http://www.assero.co.uk/MDRItems")
     expect(results.count).to eq(5)
     results.each do |result|
@@ -100,9 +103,9 @@ describe IsoScopedIdentifier do
     expect(result.owner).to eq("BBB")
   end
 
-  it "allows the owner id to be retrieved" do
+  it "allows the scoping namespace to be retrieved" do
     result = IsoScopedIdentifier.find("SI-TEST_1-1")
-    expect(result.owner_id).to eq("NS-BBB")
+    expect(result.scoping_namespace.uri).to eq("http://www.assero.co.uk/NS#BBB")
   end
 
   it "allows the next version to be retrieved" do
@@ -155,7 +158,7 @@ describe IsoScopedIdentifier do
   end
 
   it "detects if a identifier with version exists" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.new
     si.identifier = "TEST3"
     si.version = 3
@@ -164,7 +167,7 @@ describe IsoScopedIdentifier do
   end
 
   it "detects if a identifier with version does not exist" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.new
     si.identifier = "TEST3"
     si.version = 2
@@ -173,7 +176,7 @@ describe IsoScopedIdentifier do
   end
 
   it "detects if a identifier exists" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.new
     si.identifier = "TEST3"
     si.namespace = org
@@ -181,7 +184,7 @@ describe IsoScopedIdentifier do
   end
 
   it "detects if a identifier does not exist" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.new
     si.identifier = "TEST3x"
     si.namespace = org
@@ -189,7 +192,7 @@ describe IsoScopedIdentifier do
   end
 
   it "finds a given id" do
-    iso_namespace = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    iso_namespace = IsoNamespace.find_by_short_name("BBB")
     result = 
     {
       :id => "SI-TEST_1-1", 
@@ -197,13 +200,13 @@ describe IsoScopedIdentifier do
       :version => 1, 
       :version_label => "0.1", 
       :semantic_version => "0.0.0", 
-      :namespace => iso_namespace.to_json
+      :namespace => iso_namespace.to_h
     }
     expect(IsoScopedIdentifier.find("SI-TEST_1-1").to_json).to eq(result)
   end
 
   it "finds a given id, semantic version" do
-    iso_namespace = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    iso_namespace = IsoNamespace.find_by_short_name("BBB")
     result = 
     {
       :id => "SI-TEST_SV1-5", 
@@ -211,7 +214,7 @@ describe IsoScopedIdentifier do
       :version => 7, 
       :version_label => "0.7", 
       :semantic_version => "0.0.7", 
-      :namespace => iso_namespace.to_json
+      :namespace => iso_namespace.to_h
     }
     expect(IsoScopedIdentifier.find("SI-TEST_SV1-5").to_json).to eq(result)
   end
@@ -222,14 +225,14 @@ describe IsoScopedIdentifier do
 
   it "allows all records to be returned" do
     expected = Array.new
-    iso_namespace = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_1-1", :identifier => "TEST1", :version => 1, :version_label => "0.1", :semantic_version => "0.0.0", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-3", :identifier => "TEST3", :version => 3, :version_label => "0.3", :semantic_version => "0.0.0", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_2-2", :identifier => "TEST2", :version => 2, :version_label => "0.2", :semantic_version => "0.0.0", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :semantic_version => "0.0.0", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-5", :identifier => "TEST3", :version => 5, :version_label => "0.5", :semantic_version => "0.0.0", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_SV1-5", :identifier => "TESTSV 1", :version => 7, :version_label => "0.7", :semantic_version => "0.0.7", :namespace => iso_namespace.to_json})
-    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_SV2-5", :identifier => "TESTSV 2", :version => 6, :version_label => "0.6", :semantic_version => "3.1.6", :namespace => iso_namespace.to_json})
+    iso_namespace = IsoNamespace.find_by_short_name("BBB")
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_1-1", :identifier => "TEST1", :version => 1, :version_label => "0.1", :semantic_version => "0.0.0", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-3", :identifier => "TEST3", :version => 3, :version_label => "0.3", :semantic_version => "0.0.0", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_2-2", :identifier => "TEST2", :version => 2, :version_label => "0.2", :semantic_version => "0.0.0", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :semantic_version => "0.0.0", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_3-5", :identifier => "TEST3", :version => 5, :version_label => "0.5", :semantic_version => "0.0.0", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_SV1-5", :identifier => "TESTSV 1", :version => 7, :version_label => "0.7", :semantic_version => "0.0.7", :namespace => iso_namespace.to_h})
+    expected << IsoScopedIdentifier.from_json({:id=>"SI-TEST_SV2-5", :identifier => "TESTSV 2", :version => 6, :version_label => "0.6", :semantic_version => "3.1.6", :namespace => iso_namespace.to_h})
     results = IsoScopedIdentifier.all
     expect(results.count).to eq(7)
     results.each do |result|
@@ -239,22 +242,23 @@ describe IsoScopedIdentifier do
   end
 
   it "allows an object to be created" do
-    org = IsoNamespace.find("NS-BBB")
-    result = {:id=>"SI-BBB_NEW1-1", :identifier => "NEW 1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", :namespace => org.to_json}
+    org = IsoNamespace.find_by_short_name("BBB")
+    result = {:id=>"SI-BBB_NEW1-1", :identifier => "NEW 1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", :namespace => org.to_h}
     si = IsoScopedIdentifier.create("NEW 1", 1, "0.1", "1.2.3", org)
     expect(si.to_json).to eq(result)
     expect(si.errors.count).to eq(0)
   end
 
   it "does not allow a duplicate object to be created" do
-    org = IsoNamespace.find("NS-BBB")
-    si = IsoScopedIdentifier.create("NEW 1", 1, "0.1", "4.5.6", org)
-    expect(si.errors.count).to eq(1)
-    expect(si.errors.full_messages.to_sentence).to eq("The scoped identifier is already in use.")
+    org = IsoNamespace.find_by_short_name("BBB")
+    si1 = IsoScopedIdentifier.create("NEW 1", 1, "0.1", "1.2.3", org)
+    si2 = IsoScopedIdentifier.create("NEW 1", 1, "0.1", "4.5.6", org)
+    expect(si2.errors.count).to eq(1)
+    expect(si2.errors.full_messages.to_sentence).to eq("The scoped identifier is already in use.")
   end
 
   it "does not allow an invalid object to be created" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW@@@@ 1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
     si = IsoScopedIdentifier.create("NEW@@@@ 1", 1, "0.1", "4.5.6", org)
     expect(si.errors.count).to eq(1)
@@ -262,36 +266,36 @@ describe IsoScopedIdentifier do
   end
 
   it "does not allow an invalid object to be created" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.create("NEW_1", 1, "0.1", "4.5.6", org)
     expect(si.errors.count).to eq(1)
     expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
   end
 
   it "does not allow an invalid object to be created" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     si = IsoScopedIdentifier.create("NEW-1", 1, "0.1", "4.5.6", org)
     expect(si.errors.count).to eq(1)
     expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")
   end
 
   it "allows an object to be created from data" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     sv = SemanticVersion.new major: 2, minor: 3
-    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "2.3.0", :namespace => org.to_json}
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "2.3.0", :namespace => org.to_h}
     expect(IsoScopedIdentifier.from_data("NEW_1", 1, "0.1", sv, org).to_json).to eq(result)
   end
   
   it "allows an object to be created from JSON" do
-    org = IsoNamespace.find("NS-BBB")
-    result = {:id=>"SI-NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "0.0.0", :namespace => org.to_json}
-    json = { :id => "SI-NEW_1-1", :identifier => "NEW_1", :version_label => "0.1", :version => 1, :namespace => org.to_json }
+    org = IsoNamespace.find_by_short_name("BBB")
+    result = {:id=>"SI-NEW_1-1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "0.0.0", :namespace => org.to_h}
+    json = { :id => "SI-NEW_1-1", :identifier => "NEW_1", :version_label => "0.1", :version => 1, :namespace => org.to_h }
     expect(IsoScopedIdentifier.from_json(json).to_json).to eq(result)
   end
   
   it "allows an object to be exported as JSON" do
-    org = IsoNamespace.find("NS-BBB")
-    result = {:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :semantic_version => "0.0.0", :namespace => org.to_json}
+    org = IsoNamespace.find_by_short_name("BBB")
+    result = {:id=>"SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", :semantic_version => "0.0.0", :namespace => org.to_h}
     expect(IsoScopedIdentifier.find("SI-TEST_3-4").to_json).to eq(result)
   end
 
@@ -299,7 +303,6 @@ describe IsoScopedIdentifier do
     sparql = SparqlUpdateV2.new
     result = 
       "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-      "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -310,8 +313,8 @@ describe IsoScopedIdentifier do
       "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> rdf:type isoI:ScopedIdentifier . \n" +
       "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:version \"4\"^^xsd:positiveInteger . \n" + 
       "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:versionLabel \"0.4\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:semantic_version \"0.0.0\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:hasScope mdrItems:NS-BBB . \n" +
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:semanticVersion \"0.0.0\"^^xsd:string . \n" +
+      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:hasScope <http://www.assero.co.uk/NS#BBB> . \n" +
       "}"
     IsoScopedIdentifier.find("SI-TEST_3-4").to_sparql_v2(sparql)
     expect(sparql.to_s).to eq(result)
@@ -338,7 +341,7 @@ describe IsoScopedIdentifier do
     object.update({semantic_version: :major, versionLabel: "0.20"})
     object = IsoScopedIdentifier.find("SI-TEST_3-4")
     expect(object.versionLabel).to eq("0.20")
-    expect(object.semantic_version.to_s).to eq("2.0.0")
+    expect(object.semantic_version.to_s).to eq("1.0.0")
     expect(object.errors.count).to eq(0)
   end
   
@@ -362,7 +365,7 @@ describe IsoScopedIdentifier do
   end
 
   it "handles a bad response error - create" do
-    org = IsoNamespace.find("NS-BBB")
+    org = IsoNamespace.find_by_short_name("BBB")
     allow_any_instance_of(IsoScopedIdentifier).to receive(:exists?).and_return(false)
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(Rest).to receive(:sendRequest).and_return(response)
@@ -384,18 +387,18 @@ describe IsoScopedIdentifier do
   end
 
   it "obtains the next version, does not exist" do
-  	org = IsoNamespace.find("NS-BBB")
-  	version = IsoScopedIdentifier.next_version("XXXXXTEST1", org.id)
+  	org = IsoNamespace.find_by_short_name("BBB")
+  	version = IsoScopedIdentifier.next_version("XXXXXTEST1", org)
   	expect(version).to eq(1)
   end
 
   it "obtains the next version, exists" do
-  	org = IsoNamespace.find("NS-BBB")
-  	version = IsoScopedIdentifier.next_version("TEST1", org.id)
+  	org = IsoNamespace.find_by_short_name("BBB")
+  	version = IsoScopedIdentifier.next_version("TEST1", org)
   	expect(version).to eq(2)
-  	version = IsoScopedIdentifier.next_version("TEST2", org.id)
+  	version = IsoScopedIdentifier.next_version("TEST2", org)
   	expect(version).to eq(3)
-  	version = IsoScopedIdentifier.next_version("TEST3", org.id)
+  	version = IsoScopedIdentifier.next_version("TEST3", org)
   	expect(version).to eq(6)
   end
 

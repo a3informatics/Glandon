@@ -4,6 +4,8 @@
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix mdrBridg: <http://www.assero.co.uk/MDRBRIDG#> .
 @prefix mdrIso21090: <http://www.assero.co.uk/MDRISO21090#> .
+@prefix ra: <http://www.assero.co.uk/RA#> .
+@prefix ns: <http://www.assero.co.uk/NS#> .
 @prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix mdrBcts: <http://www.assero.co.uk/MDRBCTs/V1#> .
 @prefix cCt: <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#> .
@@ -29,7 +31,7 @@ mdrItems:SI-TEST_1-1
 	isoI:identifier "TEST1"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_1-1
 	rdf:type isoR:RegistrationState ;
@@ -40,7 +42,7 @@ mdrItems:RS-TEST_1-1
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_2
 	rdf:type :TestItem ;
@@ -58,7 +60,7 @@ mdrItems:SI-TEST_2-2
 	isoI:identifier "TEST2"^^xsd:string ;
 	isoI:versionLabel "0.2"^^xsd:string ;
 	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_2-2
 	rdf:type isoR:RegistrationState ;
@@ -69,7 +71,7 @@ mdrItems:RS-TEST_2-2
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_3
 	rdf:type :TestItem ;
@@ -87,7 +89,7 @@ mdrItems:SI-TEST_3-3
 	isoI:identifier "TEST3"^^xsd:string ;
 	isoI:versionLabel "0.3"^^xsd:string ;
 	isoI:version "3"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_3-3
 	rdf:type isoR:RegistrationState ;
@@ -98,7 +100,7 @@ mdrItems:RS-TEST_3-3
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_3B
 	rdf:type :TestItem ;
@@ -116,7 +118,7 @@ mdrItems:SI-TEST_3-4
 	isoI:identifier "TEST3"^^xsd:string ;
 	isoI:versionLabel "0.4"^^xsd:string ;
 	isoI:version "4"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_3-4
 	rdf:type isoR:RegistrationState ;
@@ -127,7 +129,7 @@ mdrItems:RS-TEST_3-4
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_3C
 	rdf:type :TestItem ;
@@ -145,7 +147,7 @@ mdrItems:SI-TEST_3-5
 	isoI:identifier "TEST3"^^xsd:string ;
 	isoI:versionLabel "0.5"^^xsd:string ;
 	isoI:version "5"^^xsd:positiveInteger ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_3-5
 	rdf:type isoR:RegistrationState ;
@@ -156,7 +158,7 @@ mdrItems:RS-TEST_3-5
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_SV1
 	rdf:type :TestItem ;
@@ -174,8 +176,8 @@ mdrItems:SI-TEST_SV1-5
 	isoI:identifier "TESTSV 1"^^xsd:string ;
 	isoI:versionLabel "0.7"^^xsd:string ;
 	isoI:version "7"^^xsd:positiveInteger ;
-	isoI:semantic_version "0.0.7"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:semanticVersion "0.0.7"^^xsd:string ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_SV1-5
 	rdf:type isoR:RegistrationState ;
@@ -186,7 +188,7 @@ mdrItems:RS-TEST_SV1-5
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .
 :BC-TEST_SV2
 	rdf:type :TestItem ;
@@ -204,8 +206,8 @@ mdrItems:SI-TEST_SV2-5
 	isoI:identifier "TESTSV 2"^^xsd:string ;
 	isoI:versionLabel "0.6"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
-	isoI:semantic_version "3.1.6"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-BBB ;
+	isoI:semanticVersion "3.1.6"^^xsd:string ;
+	isoI:hasScope ns:BBB ;
 .
 mdrItems:RS-TEST_SV2-5
 	rdf:type isoR:RegistrationState ;
@@ -216,5 +218,5 @@ mdrItems:RS-TEST_SV2-5
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Qualified"^^xsd:string ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority ra:DUNS123456789 ;
 .

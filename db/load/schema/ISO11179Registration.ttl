@@ -1,15 +1,9 @@
 # baseURI: http://www.assero.co.uk/ISO11179Registration
-# imports: http://purl.org/dc/elements/1.1/
-# imports: http://purl.org/dc/terms/
 # imports: http://www.assero.co.uk/ISO11179Identification
-# imports: http://www.assero.co.uk/ISO11179Types
 # imports: http://www.w3.org/2004/02/skos/core
 
 @prefix : <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix isoB: <http://www.assero.co.uk/ISO11179Basic#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
-@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
-@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -18,17 +12,8 @@
 
 <http://www.assero.co.uk/ISO11179Registration>
   rdf:type owl:Ontology ;
-  owl:imports <http://purl.org/dc/elements/1.1/> ;
-  owl:imports <http://purl.org/dc/terms/> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Types> ;
-  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
   owl:imports <http://www.w3.org/2004/02/skos/core> ;
   owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
-.
-:RegistrationState
-  rdf:type owl:Class ;
-  rdfs:label "Registration"^^xsd:string ;
-  rdfs:subClassOf owl:Thing ;
 .
 :RegistrationAuthority
   rdf:type owl:Class ;
@@ -36,17 +21,19 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "The organisation responsible for the registry who shall determine which metadata items should become IdentifiedItems, RegisteredItems, Designatable_Items and/or ClassifiableItems."^^xsd:string ;
 .
-:raNamespace
-  rdf:type owl:ObjectProperty ;
+:internationalCodeDesignator
+  rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationAuthority ;
-  rdfs:label "Scope Relationship"^^xsd:string ;
-  rdfs:range isoI:Namespace ;
+  rdfs:label "International Code Designator"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The scheme used to identify this authorty."^^xsd:string ;
 .
-:hasAuthorityIdentifier
-  rdf:type owl:ObjectProperty ;
-  rdfs:label "Authority Identifier Relationship"^^xsd:string ;
+:organizationIdentifier
+  rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationAuthority ;
-  rdfs:range isoB:RegistrationAuthorityIdentifier ;
+  rdfs:label "Organization Identifier"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The identifier under the scheme used to identify the authority."^^xsd:string ;
 .
 :owner
   rdf:type owl:DatatypeProperty ;
@@ -55,37 +42,32 @@
   rdfs:range xsd:boolean ;
   skos:definition "Defines the RA that is owner of the repository."^^xsd:string ;
 .
-:isStateOf
+:RegistrationState
+  rdf:type owl:Class ;
+  rdfs:label "Registration"^^xsd:string ;
+  rdfs:subClassOf owl:Thing ;
+  skos:definition "The state of an item registered within the repository."^^xsd:string ;
+.
+:raNamespace
   rdf:type owl:ObjectProperty ;
-  rdfs:domain :RegistrationState ;
-  rdfs:label "administeredItem"^^xsd:string ;
-  rdfs:range isoT:AdministeredItem ;
+  rdfs:domain :RegistrationAuthority ;
+  rdfs:label "Scope Relationship"^^xsd:string ;
+  rdfs:range isoI:Namespace ;
+  skos:definition "The namespace used by the authrity to uniquely identifier items within the authorities scope."^^xsd:string ;
 .
 :byAuthority
   rdf:type owl:ObjectProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Authority Relationship"^^xsd:string ;
   rdfs:range :RegistrationAuthority ;
-.
-:hasState
-  rdf:type owl:ObjectProperty ;
-  rdfs:subPropertyOf isoC:link ;
-  rdfs:domain isoT:AdministeredItem ;
-  rdfs:label "Item Registration Relationship"^^xsd:string ;
-  rdfs:range :RegistrationState ;
-.
-:administers
-  rdf:type owl:ObjectProperty ;
-  rdfs:domain :RegistrationAuthority ;
-  rdfs:label "Registration Authority Registration Relationship"^^xsd:string ;
-  rdfs:range :RegistrationState ;
+  skos:definition "The authority managing the registration status.."^^xsd:string ;
 .
 :registrationStatus
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Registration Status"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "The current state of the registration"^^xsd:string ;
 .
 :effectiveDate
   rdf:type owl:DatatypeProperty ;
@@ -106,27 +88,25 @@
   rdfs:domain :RegistrationState ;
   rdfs:label "Administrative Note§"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "Any notes regarding the registration status."^^xsd:string ;
 .
 :unresolvedIssue
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Unresolved Issue"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "Any unresolved issues regarding the registration."^^xsd:string ;
 .
 :administrativeStatus
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Administrative Status"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
+  skos:definition "The administrative status"^^xsd:string ;
 .
 :previousState
   rdf:type owl:DatatypeProperty ;
   rdfs:domain :RegistrationState ;
   rdfs:label "Previous State"^^xsd:string ;
   rdfs:range xsd:string ;
-  skos:definition "???"^^xsd:string ;
-.
-
+  skos:definition "The previous registration state."^^xsd:string ;

@@ -24,7 +24,7 @@ module Fuseki
           "  BIND (#{uri.to_ref} as ?s) ." +
           "}"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
-        raise Exceptions::NotFoundError.new("Failed to find #{uri} in #{self.class.name} object.") if results.empty?
+        raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results(uri, results.by_subject[uri.to_s])
       end
 
@@ -49,7 +49,7 @@ module Fuseki
         end
         query_string = "SELECT ?s ?p ?o ?e WHERE { #{parts.join(" UNION\n")} }"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
-        raise Exceptions::NotFoundError.new("Failed to find #{uri} in #{self.class.name} object.") if results.empty?
+        raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         objects = []
         map = results.subject_map
         parent = from_results(uri, results.by_subject[uri.to_s])
@@ -101,10 +101,15 @@ module Fuseki
 
       def create(params)
         object = new(params)
-        object.create_or_update(:create) if object.valid?
+        object.create_or_update(:create) if object.valid?(:create)
         object
       end
 
+      def object_results(query_string, params)
+        default_namespace = params.key?(:default_namespace) ? params[:default_namespace] : ""
+        prefixes = params.key?(:prefixes) ? params[:prefixes] : []
+        Sparql::Query.new.query(query_string, default_namespace, prefixes)
+      end
 
       def from_results(uri, triples)
         object = new
@@ -123,7 +128,7 @@ module Fuseki
     end
 
     def update
-      create_or_update(:update)
+      create_or_update(:update) if valid?(:update)
     end
 
     def delete
@@ -166,6 +171,7 @@ module Fuseki
         property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name))
       end
       operation == :create ? sparql.create : sparql.update(@uri)
+      self
     end
 
   private
@@ -173,7 +179,7 @@ module Fuseki
     def property_to_triple(sparql, property, schema, subject, predicate, objects)
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        statement = object.is_a?(Uri) ? {uri: object} : {literal: "#{object}", primitive_type: schema.range(predicate)}
+        statement = object.respond_to?(:uri) ? {uri: object.uri} : {literal: "#{object}", primitive_type: schema.range(predicate)}
         sparql.add({:uri => subject}, {:uri => predicate}, statement)
       end
     end
