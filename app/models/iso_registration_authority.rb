@@ -20,7 +20,7 @@ class IsoRegistrationAuthority < Fuseki::Base
   validates :international_code_designator, presence: true
   validates :international_code_designator, :inclusion => {in: SCHEMES, message: "%{value} is not a valid scheme" }
   validates :owner, inclusion: { in: [ true, false ] }
-  validates_with Validator::Uniqueness, attribute: :organization_identifier
+  validates_with Validator::Uniqueness, attribute: :organization_identifier, on: :create
 
   # Find by the short name.
   #

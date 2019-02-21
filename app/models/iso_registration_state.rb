@@ -55,8 +55,7 @@ class IsoRegistrationState
       self.registrationAuthority = nil
       if Triples.link_exists?(triples, UriManagement::C_ISO_R, "byAuthority")
         links = Triples.get_links(triples, UriManagement::C_ISO_R, "byAuthority")
-        cid = ModelUtility.extractCid(links[0])
-        self.registrationAuthority  = IsoRegistrationAuthority.find(cid)
+        self.registrationAuthority  = IsoRegistrationAuthority.find(Uri.new(uri: links.first))
       end
       self.registrationStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
       self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")
@@ -239,7 +238,7 @@ class IsoRegistrationState
       psSet = node.xpath("binding[@name='h']/literal")
       if raSet.length == 1
         object.id = id
-        object.registrationAuthority = IsoRegistrationAuthority.find(ModelUtility.extractCid(raSet[0].text))
+        object.registrationAuthority = IsoRegistrationAuthority.find(Uri.new(uri: raSet.first.text))
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = anSet[0].text
         #object.set_current_datetimes(edSet[0].text, unSet[0].text)
@@ -325,7 +324,7 @@ class IsoRegistrationState
           "INSERT DATA \n" +
           "{ \n" +
           "	:#{object.id} rdf:type isoR:RegistrationState . \n" +
-          "	:#{object.id} isoR:byAuthority :#{object.registrationAuthority.id} . \n" +
+          "	:#{object.id} isoR:byAuthority #{object.registrationAuthority.uri.to_ref} . \n" +
           "	:#{object.id} isoR:registrationStatus \"#{object.registrationStatus}\"^^xsd:string . \n" +
           "	:#{object.id} isoR:administrativeNote \"#{object.administrativeNote}\"^^xsd:string . \n" +
           "	:#{object.id} isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(object.effective_date.iso8601)}\"^^xsd:dateTime . \n" +
@@ -477,7 +476,7 @@ class IsoRegistrationState
   # @param ra [object] The registration authority
   # @return [object] The created object.
   def self.from_data(identifier, version, ra)
-    uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => ra.namespace.shortName, :identifier => identifier, :version => version})
+    uri = UriV2.new({:namespace => @@base_namespace, :prefix => C_CID_PREFIX, :org_name => ra.ra_namespace.short_name, :identifier => identifier, :version => version})
     object = self.new
     object.id = uri.id
     object.registrationStatus = :Incomplete.to_s
@@ -496,7 +495,7 @@ class IsoRegistrationState
   def self.from_json(json)
     object = self.new
     object.id = json[:id]
-    object.registrationAuthority = IsoRegistrationAuthority.from_json(json[:registration_authority])
+    object.registrationAuthority = IsoRegistrationAuthority.from_h(json[:registration_authority])
     object.registrationStatus = json[:registration_status]
     object.administrativeNote = json[:administrative_note]
     object.effective_date = json[:effective_date].to_time_with_default
@@ -516,7 +515,7 @@ class IsoRegistrationState
     { 
       :namespace => C_INSTANCE_NS, 
       :id => self.id, 
-      :registration_authority => self.registrationAuthority.to_json,
+      :registration_authority => self.registrationAuthority.to_h,
       :registration_status => self.registrationStatus,
       :administrative_note => self.administrativeNote,
       :effective_date => "#{self.effective_date.iso8601}",

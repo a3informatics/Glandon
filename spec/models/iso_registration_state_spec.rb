@@ -10,9 +10,12 @@ describe IsoRegistrationState do
     return "models/iso_registration_state"
   end
 
-  before :all do
+  before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
   end
 
@@ -68,7 +71,7 @@ describe IsoRegistrationState do
   it "does not validate an invalid object, RA" do
     object = IsoRegistrationState.new
     object.registrationAuthority = IsoRegistrationAuthority.find_by_short_name("AAA")
-    object.registrationAuthority.scheme = "DUS"
+    object.registrationAuthority.international_code_designator = "DUS"
     object.registrationStatus = "Incomplete"
     object.administrativeNote = "Note"
     object.effective_date = "XXX"
@@ -107,22 +110,16 @@ describe IsoRegistrationState do
         :current => false,
         :registration_authority => 
           {
-            :id=>"RA-123456789", 
-            :number=>"123456789", 
-            :scheme=>"DUNS", 
+            :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+            :organization_identifier=>"123456789", 
+            :international_code_designator=>"DUNS", 
             :owner=>true, 
-            :namespace=>
-              {
-                :namespace=>"http://www.assero.co.uk/MDRItems", 
-                :id=>"NS-BBB", 
-                :name=>"BBB Pharma", 
-                :shortName=>"BBB"
-              }
+            :ra_namespace=>"http://www.assero.co.uk/NS#BBB"
           }
       }
     triples =[
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
-      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/MDRItems#RA-123456789"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/RA#DUNS123456789"},
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#registrationStatus", object: "Incomplete" },
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", object:"2016-01-01T00:00:00+00:00" },
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#untilDate", object:"2016-01-01T00:00:00+00:00" },
@@ -149,22 +146,16 @@ describe IsoRegistrationState do
         :current => false,
         :registration_authority => 
           {
-            :id=>"RA-123456789", 
-            :number=>"123456789", 
-            :scheme=>"DUNS", 
+            :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+            :organization_identifier=>"123456789", 
+            :international_code_designator=>"DUNS", 
             :owner=>true, 
-            :namespace=>
-              {
-                :namespace=>"http://www.assero.co.uk/MDRItems", 
-                :id=>"NS-BBB", 
-                :name=>"BBB Pharma", 
-                :shortName=>"BBB"
-              }
+            :ra_namespace=>"http://www.assero.co.uk/NS#BBB"
           }
       }
     triples =[
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
-      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/MDRItems#RA-123456789"},
+      { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/RA#DUNS123456789"},
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#registrationStatus", object: "Incomplete" },
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", object:"" },
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#untilDate", object:"2016-01-01T00:00:00+00:00" },
@@ -298,12 +289,12 @@ describe IsoRegistrationState do
   end
 
   it "checks if an item does not exist" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     rs = IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_1-1x", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -317,12 +308,12 @@ describe IsoRegistrationState do
   end
 
   it "finds a given id" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id=>"RS-TEST_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -342,13 +333,12 @@ describe IsoRegistrationState do
   # self.all
   it "allows all records to be returned" do
     expected = []
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    #ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
-    ra = IsoRegistrationAuthority.new
-    expected << IsoRegistrationState.from_json(
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    expected = [
       {
         :id=>"RS-TEST_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -357,11 +347,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id=>"RS-TEST_3-3", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00", 
@@ -370,11 +359,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id=>"RS-TEST_2-2", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -383,11 +371,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id=>"RS-TEST_3-5", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -396,11 +383,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id=>"RS-TEST_3-4", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -409,11 +395,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id => "RS-TEST_SV1-5",
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "",
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -422,11 +407,10 @@ describe IsoRegistrationState do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified"
-      })
-    expected << IsoRegistrationState.from_json(
+      },
       {
         :id => "RS-TEST_SV2-5",
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "",
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -435,22 +419,22 @@ describe IsoRegistrationState do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified"
-      })
+      }]
     results = IsoRegistrationState.all
     expect(results.count).to eq(7)
     results.each do |result|
-      compare = expected.find{|x| x.id == result.id}
-      expect(result.to_json).to eq(compare.to_json)
+      compare = expected.find{|x| x[:id] == result.id}
+      expect(result.to_json).to eq(compare)
     end
   end
 
   it "allows an object to be created" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-BBB_NEW_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -464,12 +448,12 @@ describe IsoRegistrationState do
   end
 
   it "prevents a duplicate object being created" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-BBB_NEW_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -479,19 +463,20 @@ describe IsoRegistrationState do
         :administrative_status => "", 
         :previous_state => "Incomplete"
       })
-    rs = IsoRegistrationState.create("NEW_1", 1, ra)
-    expect(rs.errors.count).to eq(1)
-    expect(rs.errors.full_messages.to_sentence).to eq("The registration state is already in use.")
+    rs1 = IsoRegistrationState.create("NEW_1", 1, ra)
+    rs2 = IsoRegistrationState.create("NEW_1", 1, ra)
+    expect(rs2.errors.count).to eq(1)
+    expect(rs2.errors.full_messages.to_sentence).to eq("The registration state is already in use.")
   end
 
   it "prevents an invalid object being created" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
-    ra.number = "1234567890"
+    org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    ra.organization_identifier = "1234567890"
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-BBB_NEW2-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -503,7 +488,7 @@ describe IsoRegistrationState do
       })
      rs = IsoRegistrationState.create("NEW2", 1, ra)
     expect(rs.errors.count).to eq(1)
-    expect(rs.errors.full_messages.to_sentence).to eq("Registration authority error: Number does not contains 9 digits")
+    expect(rs.errors.full_messages.to_sentence).to eq("Registration authority error: Organization identifier is invalid")
   end
 
   it "provides a count of registration status" do
@@ -615,12 +600,12 @@ describe IsoRegistrationState do
   
   # self.from_data(identifier, version, ra)
   it "allows an object to be created from data" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.from_h({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-BBB_NEW_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -635,12 +620,12 @@ describe IsoRegistrationState do
   
   # self.from_json(json)
   it "allows an object to be created from JSON" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.from_h({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-BBB_NEW_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -653,7 +638,7 @@ describe IsoRegistrationState do
     json = 
       {
         :id =>"RS-BBB_NEW_1-1", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
         :effective_date=> "2016-01-01T00:00:00+00:00",
@@ -668,12 +653,12 @@ describe IsoRegistrationState do
   
   # to_json
   it "allows an object to be exported as JSON" do
-    org = IsoNamespace.from_json({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
-    ra = IsoRegistrationAuthority.from_json({id: "RA-123456789", number: "123456789", scheme: "DUNS", owner: true, namespace: org.to_json})
+    org = IsoNamespace.from_h({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     result = IsoRegistrationState.from_json(
       {
         :id =>"RS-TEST_3-4", 
-        :registration_authority => ra.to_json, 
+        :registration_authority => ra.to_h, 
         :registration_status => "Retired",
         :administrative_note => "X1", 
         :effective_date => "2016-01-01T00:00:00+00:00", 
