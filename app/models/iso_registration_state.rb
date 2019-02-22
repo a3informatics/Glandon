@@ -238,7 +238,7 @@ class IsoRegistrationState
       psSet = node.xpath("binding[@name='h']/literal")
       if raSet.length == 1
         object.id = id
-        object.registrationAuthority = IsoRegistrationAuthority.find(Uri.new(uri: raSet.first.text))
+        object.registrationAuthority = IsoRegistrationAuthority.find_children(Uri.new(uri: raSet.first.text))
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = anSet[0].text
         #object.set_current_datetimes(edSet[0].text, unSet[0].text)
@@ -536,7 +536,7 @@ class IsoRegistrationState
     subject_uri = UriV2.new({id: self.id, namespace: @@base_namespace})
     subject = {uri: subject_uri}
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_R, :id => "RegistrationState"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => self.registrationAuthority.id})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => self.registrationAuthority.uri.fragment})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "#{self.administrativeNote}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => "#{self.effective_date.iso8601}", :primitive_type => "dateTime"})

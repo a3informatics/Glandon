@@ -309,10 +309,11 @@ describe IsoRegistrationState do
 
   it "finds a given id" do
     org = IsoNamespace.find_by_short_name("BBB")
-    ra = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-    result = IsoRegistrationState.from_json(
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    result = 
       {
         :id=>"RS-TEST_1-1", 
+        :namespace => "http://www.assero.co.uk/MDRItems",
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -322,8 +323,8 @@ describe IsoRegistrationState do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified"
-      })
-    expect(IsoRegistrationState.find("RS-TEST_1-1").to_json).to eq(result.to_json)
+      }
+    expect(IsoRegistrationState.find("RS-TEST_1-1").to_json).to eq(result)
   end
 
   it "does not find an unknown id" do
@@ -333,11 +334,12 @@ describe IsoRegistrationState do
   # self.all
   it "allows all records to be returned" do
     expected = []
-    org = IsoNamespace.find_by_short_name("BBB")
-    ra = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    #org = IsoNamespace.find_by_short_name("BBB")
+    ra = IsoRegistrationAuthority.new
     expected = [
       {
         :id=>"RS-TEST_1-1", 
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -350,6 +352,7 @@ describe IsoRegistrationState do
       },
       {
         :id=>"RS-TEST_3-3", 
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -362,6 +365,7 @@ describe IsoRegistrationState do
       },
       {
         :id=>"RS-TEST_2-2", 
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -374,6 +378,7 @@ describe IsoRegistrationState do
       },
       {
         :id=>"RS-TEST_3-5", 
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -386,6 +391,7 @@ describe IsoRegistrationState do
       },
       {
         :id=>"RS-TEST_3-4", 
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -398,6 +404,7 @@ describe IsoRegistrationState do
       },
       {
         :id => "RS-TEST_SV1-5",
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -410,6 +417,7 @@ describe IsoRegistrationState do
       },
       {
         :id => "RS-TEST_SV2-5",
+        :namespace=>"http://www.assero.co.uk/MDRItems", 
         :registration_authority => ra.to_h, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -492,6 +500,9 @@ describe IsoRegistrationState do
   end
 
   it "provides a count of registration status" do
+    IsoRegistrationState.new
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    IsoRegistrationState.create("NEW_1", 1, ra)
     result = 
       {
         "Standard" => "7",
@@ -653,11 +664,21 @@ describe IsoRegistrationState do
   
   # to_json
   it "allows an object to be exported as JSON" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
+        administrativeNote: "X1", 
+        unresolvedIssue: "X2", 
+        effectiveDate: "Wont Change" 
+      })
     org = IsoNamespace.from_h({id: "NS-BBB", namespace: "http://www.assero.co.uk/MDRItems", name: "BBB Pharma", shortName: "BBB"})
     ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-    result = IsoRegistrationState.from_json(
+    result =
       {
         :id =>"RS-TEST_3-4", 
+        :namespace => "http://www.assero.co.uk/MDRItems",
         :registration_authority => ra.to_h, 
         :registration_status => "Retired",
         :administrative_note => "X1", 
@@ -667,12 +688,21 @@ describe IsoRegistrationState do
         :unresolved_issue => "X2", 
         :administrative_status => "", 
         :previous_state => "Standard"
-      })
-    expect(IsoRegistrationState.find("RS-TEST_3-4").to_json).to eq(result.to_json)
+      }
+    expect(IsoRegistrationState.find("RS-TEST_3-4").to_json).to eq(result)
   end
 
   # to_sparql_v2(sparql, ra, identifier, version)
   it "allows an object to be exported as SPARQL" do
+    object = IsoRegistrationState.find("RS-TEST_3-4")
+    object.update( 
+      {
+        registrationStatus: "Retired", 
+        previousState: "Standard", 
+        administrativeNote: "X1", 
+        unresolvedIssue: "X2", 
+        effectiveDate: "Wont Change" 
+      })
     sparql = SparqlUpdateV2.new
     result = 
       "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
@@ -684,7 +714,7 @@ describe IsoRegistrationState do
       "INSERT DATA \n" +
       "{ \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> rdf:type isoR:RegistrationState . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:DUNS123456789 . \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus \"Retired\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote \"X1\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
