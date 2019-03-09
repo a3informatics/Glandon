@@ -8,7 +8,6 @@ module Fuseki
   
     extend ActiveSupport::Concern
     include Fuseki::Persistence::Property
-    include Fuseki::Naming
     include Fuseki::Properties
 
     module ClassMethods
