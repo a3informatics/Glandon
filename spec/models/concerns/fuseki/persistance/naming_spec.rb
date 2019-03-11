@@ -30,6 +30,13 @@ describe Fuseki::Persistence::Naming do
     expect(item.as_instance).to eq(:@xxx_aaa)    
   end
 
+  it "initialize with symbol" do
+    item = Fuseki::Persistence::Naming.new(:xxx_aaa)
+    expect(item.as_symbol).to eq(:xxx_aaa)
+    expect(item.as_schema).to eq("xxxAaa")
+    expect(item.as_instance).to eq(:@xxx_aaa)    
+  end
+
   it "initialize with instance" do
     item = Fuseki::Persistence::Naming.new(:@xxx_aaa)
     expect(item.as_symbol).to eq(:xxx_aaa)

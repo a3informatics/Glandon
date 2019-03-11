@@ -20,7 +20,7 @@ module Fuseki
         if "#{name}".first == "@"
           @name = "#{name}"[1..-1] 
         else
-          @name = name.underscore
+          @name = "#{name}".underscore
         end
       end
 

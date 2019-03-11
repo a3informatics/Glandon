@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class IsoScopedIdentifierV2 < Fuseki::Base
+class IsoRegistrationStateV2 < Fuseki::Base
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
             base_uri: "http://www.assero.co.uk/RS" 
@@ -13,48 +13,52 @@ class IsoScopedIdentifierV2 < Fuseki::Base
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state
-  object_property :regsitration_authority, cardinality: :one, model_class: "IsoRegsistrationAuthority"
+  object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
 
-  validates_with Validator::Field, attribute: :identifier, method: :valid_identifier?
-  validates_with Validator::Field, attribute: :version_label, method: :valid_label?
-  validates_with Validator::Field, attribute: :version, method: :valid_version?
-  validates_with Validator::Field, attribute: :semantic_version, method: :valid_semantic_version?
-  validates_with Validator::ScopedIdentifier, on: :create
-
-  attr_accessor :current, :unresolvedIssue , :administrativeStatus, :previousState
+  #validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
+  #validates_with Validator::Field, attribute: :previous_state, method: :valid_registration_state?
+  validates_with Validator::Field, attribute: :administrative_note, method: :valid_label?
+  validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
+  validates_with Validator::Field, attribute: :administrative_status, method: :valid_label?
   
   # Constants
   C_CLASS_NAME = self.name
   C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
   C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
+  C_NOT_SET = "Not_Set"
 
-  def initialize
+  def initialize(attributes = {})
+    self.registration_status = C_NOT_SET
+    self.previous_state = C_NOT_SET
     super
-    if date_time >= self.effective_date && date_time <= self.until_date
-      self.current = true
-    end
+  end
+
+  # Current?
+  # 
+  # @return [Boolean] returns true if the item is current
+  def current?
+    Time.now.between?(self.effective_date, self.until_date)
   end
 
   # Test if registered
   # 
-  # @return [boolean] True if a registration state present
+  # @return [Boolean] True if a registration state present
   def registered?()
-  	return false if self.registration_status == "" # Preserve backwards compatibility
-    return false if self.registration_status == :Not_Set.to_s
+  	return false if ["", C_NOT_SET].include?(self.registration_status) # Keep empty string to preserve backwards compatibility
     return true
   end
 
   # Get the No State status
   # 
-  # @return [string] The no state string
+  # @return [String] The no state string
   def self.no_state()
-    return :Not_Set.to_s
+    return C_NOT_SET
   end
 
   # Get the next state
   # 
-  # @param state [string] The current state
-  # @return [string] The next state
+  # @param state [String] The current state
+  # @return [String] The next state
   def self.next_state(state)
     info = Rails.configuration.iso_registration_state[state.to_sym]
     nextState = info[:next_state]
@@ -64,7 +68,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
 
   # Get the human readable label for a state
   #
-  # @return [string] The label
+  # @return [String] The label
   def self.state_label(state)
     info = Rails.configuration.iso_registration_state[state.to_sym]
     return info[:label]
@@ -72,7 +76,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
 
   # Get the definition for a state
   #
-  # @return [string] The definition
+  # @return [String] The definition
   def self.state_definition(state)
     info = Rails.configuration.iso_registration_state[state.to_sym]
     return info[:definition]
@@ -80,125 +84,132 @@ class IsoScopedIdentifierV2 < Fuseki::Base
 
   # Get the released state
   #
-  # @return [string] The released state
+  # @return [String] The released state
   def self.released_state
     return :Standard.to_s
   end
   
   # Is the item at the released state
   #
-  # @return [boolean] True if in the released state, false otherwise
+  # @return [Boolean] True if in the released state, false otherwise
   def released_state?
-    self.registrationStatus == :Standard.to_s
+    self.registration_status == :Standard.to_s
   end
   
   # Has the item been at the released state
   #
   # @return [Boolean] true if it has been in the released state, false otherwise
   def has_been_released_state?
-    self.registrationStatus == :Retired.to_s || self.registrationStatus == :Superseded.to_s
+    self.registration_status == :Retired.to_s || self.registration_status == :Superseded.to_s
   end
   
   # Can the item be edited
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def edit?
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:edit_enabled]
   end
 
   # Can the item be deleted
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def delete?
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:delete_enabled]
   end
 
   # Returns the new state after the item has been edited
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def state_on_edit
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:state_on_edit]
   end
 
   # Returns true if the version needs to be updated after an edit
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def new_version?
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:edit_up_version]
   end
 
   # Returns true if the item can be the current item
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def can_be_current?
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
     return info[:can_be_current]
   end
 
   # Returns true if the state can be changed
   #
-  # @return [string] The next state
+  # @return [String] The next state
   def can_be_changed?
-    info = Rails.configuration.iso_registration_state[self.registrationStatus.to_sym]
-    return info[:next_state] != self.registrationStatus
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
+    return info[:next_state] != self.registration_status
   end
 
-  # Create the object in the triple store.
+  # Create
   #
-  def self.make_current(id)  
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "DELETE \n" +
-      "{ \n" +
-      " :" + id + " isoR:effectiveDate ?a . \n" +
-      " :" + id + " isoR:untilDate ?b . \n" +
-      "} \n" +
-      "INSERT \n" +
-      "{ \n" +
-      " :" + id + " isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
-      " :" + id + " isoR:untilDate \"#{SparqlUtility.replace_special_chars(C_UNTIL_DATETIME)}\"^^xsd:dateTime . \n" +
-      "} \n" +
-      "WHERE \n" +
-      "{ \n" +
-      " :" + id + " isoR:effectiveDate ?a . \n" +
-      " :" + id + " isoR:untilDate ?b . \n" +
-      "}"
-    ConsoleLogger.debug(C_CLASS_NAME, "make_current", "Update=#{update}")
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME, "make_current", "Failed to update object.")
-      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
-    end
+  # @param attributes [Hash] the set of properties
+  # @return [IsoNamespace] the object. Contains errors if it fails
+  def self.create(attributes)
+    identifier = attributes[:identifier].gsub(/[^0-9A-Za-z]/, '-')
+    uri = Uri.new(namespace: base_uri.namespace, fragment: "")
+    uri.extend_path("#{attributes[:by_authority].ra_namespace.short_name}/#{identifier}")
+    attributes[:uri] = uri
+    super
+  end 
+
+  # Make current
+  #
+  # @return [Void] no return
+  def make_current
+    Sparql::Update.new.sparql_update(make_current_query, self.rdf_type.namespace, [:isoR])
   end
 
-  # Create the object in the triple store.
+  # Make not current
   #
-  def self.make_not_current(id)  
-    update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
-      "DELETE \n" +
-      "{ \n" +
-      " :" + id + " isoR:untilDate ?a . \n" +
-      "} \n" +
-      "INSERT \n" +
-      "{ \n" +
-      " :" + id + " isoR:untilDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
-      "} \n" +
-      "WHERE \n" +
-      "{ \n" +
-      " :" + id + " isoR:untilDate ?a . \n" +
-      "}"
-    # Send the request, wait the resonse
-    response = CRUD.update(update)
-    # Response
-    if !response.success?
-      ConsoleLogger.info(C_CLASS_NAME, "make_not_current", "Failed to update object.")
-      raise Exceptions::UpdateError.new(message: "Failed to update " + C_CLASS_NAME + " object.")
-    end
+  # @return [Void] no return
+  def make_not_current  
+    Sparql::Update.new.sparql_update(make_not_current_query, self.rdf_type.namespace, [:isoR])
+  end
+
+private
+
+  def make_current_query
+    "DELETE \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
+    "} \n" +
+    "INSERT \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{SparqlUtility.replace_special_chars(C_UNTIL_DATETIME)}\"^^xsd:dateTime . \n" +
+    "} \n" +
+    "WHERE \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
+    "}"
+  end
+
+  def make_not_current_query
+    "DELETE \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    "} \n" +
+    "INSERT \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
+    "} \n" +
+    "WHERE \n" +
+    "{ \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    "}"
   end
 
 end

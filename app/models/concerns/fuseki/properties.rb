@@ -6,8 +6,6 @@ module Fuseki
   
   module Properties
 
-    include Fuseki::Naming
-
     def properties_inherit
       merged = {}
       klass_ancestors = self.ancestors.grep(Fuseki::Resource).reverse
@@ -16,10 +14,14 @@ module Fuseki
       self.instance_variable_set(:@properties, merged)
     end
 
+    # Move to persistence
     def properties_predicate
       properties = self.instance_variable_get(:@properties)
       type = self.rdf_type
-      properties.each {|name, entry| properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: to_schema(name))}
+      properties.each do |name, entry| 
+        property_name = Fuseki::Persistence::Naming.new(name)
+        properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: property_name.as_schema)
+      end
       properties = self.instance_variable_set(:@properties, properties) # @todo Required? Check.
     end
 

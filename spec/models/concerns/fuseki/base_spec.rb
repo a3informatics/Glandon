@@ -21,36 +21,36 @@ describe Fuseki::Base do
     delete_all_public_test_files
   end
 
-  class Test1 < Fuseki::Base
+  class TestFb1 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace"
     data_property :short_name
     data_property :name
   end
 
-  class Test2 < Fuseki::Base
+  class TestFb2 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace"
     data_property :short_name
     data_property :name
     data_property :authority
   end
 
-  class Test3 < Fuseki::Base
+  class TestFb3 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
     object_property :ra_namespace, cardinality: :many, model_class: "IsoNamespace"
   end
 
-  class Test4 < Test3
+  class TestFb4 < TestFb3
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
     data_property :organization_identifier
     data_property :international_code_designator
   end
 
-  class Test5 < Test4
+  class TestFb5 < TestFb4
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
     data_property :owner
   end
 
-  class Test6 < Fuseki::Base
+  class TestFb6 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
     object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
     data_property :organization_identifier
@@ -59,14 +59,14 @@ describe Fuseki::Base do
   end
 
   it "allows for the class to be created, uri" do
-    item = Test1.new
+    item = TestFb1.new
     item.short_name = "AAA"
     expect(item.short_name).to eq("AAA")
   end
 
   it "find, simple results" do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
-    item = Test2.find(uri)
+    item = TestFb2.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.id).to eq(Base64.strict_encode64(uri.to_s))
     expect(item.short_name).to eq("AAA")
@@ -76,21 +76,21 @@ describe Fuseki::Base do
 
   it "find, simple and URI results" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test3.find(uri)
+    item = TestFb3.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/NS#BBB")
   end
 
   it "find, simple and URI results" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test3.find(uri)
+    item = TestFb3.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/NS#BBB")
   end
 
   it "find, simple and URI results, inheritence I" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test4.find(uri)
+    item = TestFb4.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.ra_namespace.first.to_s).to eq("http://www.assero.co.uk/NS#BBB")
     expect(item.organization_identifier).to eq("123456789")
@@ -99,7 +99,7 @@ describe Fuseki::Base do
 
   it "find, simple and URI results, inheritence II" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test5.find(uri)
+    item = TestFb5.find(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.organization_identifier).to eq("123456789")
     expect(item.international_code_designator).to eq("DUNS")
@@ -109,7 +109,7 @@ describe Fuseki::Base do
 
   it "allows for the children class to be read I, array" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test5.find(uri)
+    item = TestFb5.find(uri)
     expect(item.ra_namespace_objects?).to eq(false)
     expect(item.ra_namespace_objects.count).to eq(1)
     expect(item.ra_namespace_objects?).to eq(true)
@@ -123,7 +123,7 @@ describe Fuseki::Base do
 
   it "allows for the children class to be read II, non array" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test6.find(uri)
+    item = TestFb6.find(uri)
     expect(item.ra_namespace_objects?).to eq(false)
     expect(item.ra_namespace_objects.count).to eq(1)
     expect(item.ra_namespace_objects?).to eq(true)
@@ -137,7 +137,7 @@ describe Fuseki::Base do
 
   it "find with children" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item = Test6.find_children(uri)
+    item = TestFb6.find_children(uri)
     expect(item.uri.to_s).to eq(uri.to_s)
     expect(item.organization_identifier).to eq("123456789")
     expect(item.international_code_designator).to eq("DUNS")
@@ -149,8 +149,8 @@ describe Fuseki::Base do
   
   it "find, simple and URI results, multiple instancess" do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
-    item_1 = Test5.find(uri)
-    item_2 = Test5.find(uri)
+    item_1 = TestFb5.find(uri)
+    item_2 = TestFb5.find(uri)
     [item_1, item_2].each do |item|
       expect(item.uri.to_s).to eq(uri.to_s)
       expect(item.owner).to eq(true)
@@ -161,9 +161,9 @@ describe Fuseki::Base do
   end
 
   it "allows for create" do
-    item = Test5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
+    item = TestFb5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
       international_code_designator: "DUNS_NEW")
-    item_1 = Test5.find(item.uri)
+    item_1 = TestFb5.find(item.uri)
     expect(item.uri).to eq(item_1.uri)
     expect(item.owner).to eq(item_1.owner)
     expect(item.organization_identifier).to eq(item_1.organization_identifier)
@@ -171,12 +171,12 @@ describe Fuseki::Base do
   end
 
   it "allows for update" do
-    item = Test5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
+    item = TestFb5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
       international_code_designator: "DUNS_NEW")
-    item_1 = Test5.find(item.uri)
+    item_1 = TestFb5.find(item.uri)
     item_1.international_code_designator = "DUNS_OLD"
     item_1.update
-    item_2 = Test5.find(item.uri)
+    item_2 = TestFb5.find(item.uri)
     expect(item.uri).to eq(item_2.uri)
     expect(item.owner).to eq(item_2.owner)
     expect(item.organization_identifier).to eq(item_2.organization_identifier)
@@ -185,7 +185,7 @@ describe Fuseki::Base do
   end
 
   it "allows for where" do
-    items = Test5.where({organization_identifier: "123456789"})
+    items = TestFb5.where({organization_identifier: "123456789"})
     expect(items.count).to eq(1)
     item = items.first
     expect(item.uri.to_s).to eq("http://www.assero.co.uk/RA#DUNS123456789")
@@ -196,10 +196,10 @@ describe Fuseki::Base do
   end
 
   it "ensures model class specified" do
-    class Test6 < Fuseki::Base
+    expect{class TestFb7 < Fuseki::Base
       configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
       object_property :ra_namespace, cardinality: :many
-    end
+    end}.to raise_error(Errors::ApplicationLogicError, "No model class specified for object property.")
   end
 
 

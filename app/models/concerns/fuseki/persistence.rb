@@ -115,7 +115,7 @@ module Fuseki
         object.instance_variable_set("@uri", uri)
         triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-          object.set_property(triple)
+          object.from_triple(triple)
         end
         object
       end
@@ -123,7 +123,7 @@ module Fuseki
     end
 
     def id
-      self.uri.to_id
+      self.uri.nil? ? nil : self.uri.to_id
     end
 
     def update

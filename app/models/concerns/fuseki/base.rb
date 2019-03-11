@@ -28,9 +28,9 @@ module Fuseki
       # Set the instance variables
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       self.class.instance_variable_get(:@properties).each do |name, definition| 
-        variable = Variable.new(name)
-        value = attributes.key?(variable.for_rails) ? attributes[variable.for_rails] : definition[:default]
-        instance_variable_set(variable.for_instance, value)
+        variable = Fuseki::Persistence::Naming.new(name)
+        value = attributes.key?(variable.as_symbol) ? attributes[variable.as_symbol] : definition[:default]
+        from_value(variable.as_instance, value)
       end
     end
 

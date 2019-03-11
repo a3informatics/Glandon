@@ -109,6 +109,10 @@ module Sparql
       triples_to_file
     end
 
+    def sparql_update(sparql, default_namespace, prefixes)
+      execute_update(:update, "#{build_clauses(default_namespace, prefixes)}\n#{sparql}")
+    end
+
   private
 
     # Execute update/create

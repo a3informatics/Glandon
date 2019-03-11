@@ -34,7 +34,14 @@ describe Fuseki::Persistence::Property do
 
     def initialize
       @@schema = Fuseki::Schema::SchemaMap.new({})
-      self.class.instance_variable_set(:@properties, {registration_authority: {}})
+      props = 
+      {
+        "@registration_authority".to_sym => {type: :object}, 
+        "@owner".to_sym => {type: :data},
+        "@organization_identifier".to_sym => {type: :data},
+        "@effective_date".to_sym => {type: :data}
+      }
+      self.class.instance_variable_set(:@properties, props)
     end
 
     def from_uri_test(name, uri)
@@ -49,13 +56,15 @@ describe Fuseki::Persistence::Property do
       from_triple(triple)
     end
 
-    def rdf_type
-      @rdf_type
+    def self.rdf_type
+      self::C_URI
     end
 
   end 
 
-  class Test1 < BaseTest
+  class TestFpp1 < BaseTest
+
+    C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority")
 
     attr_accessor :owner
     attr_accessor :organization_identifier
@@ -63,27 +72,29 @@ describe Fuseki::Persistence::Property do
     def initialize
       @owner = false
       @organization_identifier = ""
-      @rdf_type = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority")
+      @rdf_type = C_URI
       super
     end
 
   end
 
-  class Test2 < BaseTest
+  class TestFpp2 < BaseTest
     
+    C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationState")
+
     attr_accessor :effective_date
     attr_accessor :registration_authority
 
     def initialize
       @effective_date = "".to_time_with_default
       @registration_authority = []
-      @rdf_type = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationState")
+      @rdf_type = C_URI
       super
     end
 
   end 
 
-  class Test3 < BaseTest
+  class TestFpp3 < BaseTest
     
     attr_accessor :effective_date
     attr_accessor :registration_authority
@@ -98,7 +109,7 @@ describe Fuseki::Persistence::Property do
   end 
 
   it "allows for simple update" do
-    item = Test1.new
+    item = TestFpp1.new
     expect(item.owner).to eq(false)
     expect(item.organization_identifier).to eq("")
     allow_any_instance_of(Fuseki::Schema::SchemaMap).to receive(:range).and_return("boolean")
@@ -107,7 +118,7 @@ describe Fuseki::Persistence::Property do
     allow_any_instance_of(Fuseki::Schema::SchemaMap).to receive(:range).and_return("string")
     item.from_simple_test(:@organization_identifier, "1234567890")
     expect(item.organization_identifier).to eq("1234567890")
-    item = Test2.new
+    item = TestFpp2.new
     allow_any_instance_of(Fuseki::Schema::SchemaMap).to receive(:range).and_return("dateTime")
     expect(item.effective_date.iso8601.to_s).to eq("2016-01-01T00:00:00+00:00")
     expect(item.registration_authority).to eq([])
@@ -116,7 +127,7 @@ describe Fuseki::Persistence::Property do
   end
 
   it "allows for URI update" do
-    item = Test2.new
+    item = TestFpp2.new
     uri = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test")
     expect(item.registration_authority.count).to eq(0)
     item.from_uri_test(:@registration_authority, uri)
@@ -128,7 +139,7 @@ describe Fuseki::Persistence::Property do
   end
 
   it "allows for Triple updat, array" do
-    item = Test2.new
+    item = TestFpp2.new
     uri = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test")
     triple = 
     {
@@ -153,7 +164,7 @@ describe Fuseki::Persistence::Property do
       predicate: Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#registrationAuthority"), 
       object: uri
     }
-    item = Test3.new
+    item = TestFpp3.new
     expect(item.registration_authority).to be_nil
     item.from_triple_test(triple)
     expect(item.registration_authority.to_s).to eq(uri.to_s)

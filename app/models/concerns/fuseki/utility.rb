@@ -6,7 +6,6 @@ module Fuseki
   
   module Utility
 
-    include Fuseki::Naming
     include Fuseki::Properties
 
     def self.included(base)
@@ -15,26 +14,25 @@ module Fuseki
 
     module ClassMethods
 
-      include Fuseki::Naming
       include Fuseki::Properties
 
       def from_h(params)
         properties = properties_read(:class)
         object = self.new
         params.each do |name, value|
-          variable = Variable.new(name)
+          variable = Fuseki::Persistence::Naming.new(name)
           if value.is_a?(Hash)
-            result = properties[variable.for_instance][:model_class].constantize.from_h(value)
-            object.instance_variable_set(variable.for_instance, result)
+            result = properties[variable.as_instance][:model_class].constantize.from_h(value)
+            object.instance_variable_set(variable.as_instance, result)
           elsif value.is_a?(Array)
-            klass = properties[variable.for_instance][:model_class].constantize
+            klass = properties[variable.as_instance][:model_class].constantize
             value.each do |x|
-              object.instance_variable_set(variable.for_instance, klass.from_h(value))
+              object.instance_variable_set(variable.as_instance, klass.from_h(value))
             end
           elsif name == :uri
             object.instance_variable_set(:@uri, Uri.new(uri: value))
           else
-            object.instance_variable_set(variable.for_instance, value)
+            object.instance_variable_set(variable.as_instance, value)
           end
         end
         object
@@ -46,18 +44,29 @@ module Fuseki
       result = {uri: instance_variable_get(:@uri).to_h}
       properties = properties_read(:instance)
       properties.each do |name, property|
-        variable = Variable.new(name).for_rails
+        variable = Fuseki::Persistence::Naming.new(name).as_symbol
         object = instance_variable_get(name)
         if object.is_a?(Array)
-          result[variable.for_rails] = []
+          result[variable] = []
           object.each {|x| result[variable] << x.to_h}
         elsif object.respond_to? :to_h 
           result[variable] = object.to_h
         else
-          result[variable] = object
+          result[variable] = from_typed(object)
         end
       end
       result
+    end
+    
+  private
+
+    # Set a simple typed value
+    def from_typed(value)
+      if value.is_a?(Time)
+        "#{value.iso8601}"
+      else
+        value
+      end
     end
 
   end

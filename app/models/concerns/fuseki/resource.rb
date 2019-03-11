@@ -17,10 +17,17 @@ module Fuseki
       Errors.application_error(self.name, __method__.to_s, "No RDF type specified when configuring class.") if !opts.key?(:rdf_type)
       #add_to_properties(:rdf_type, {default: Uri.new(uri: opts[:rdf_type]), cardinality: :one, model_class: "", type: :object})
 
+      # Define class method for the RDF Type
       define_singleton_method :rdf_type do
         Uri.new(uri: opts[:rdf_type])
       end
 
+      # Define instance method for the RDF Type
+      define_method :rdf_type do
+        self.class.rdf_type
+      end
+
+      # Save the base URI
       if opts[:base_uri]
         define_singleton_method :base_uri do
           Uri.new(uri: opts[:base_uri])
@@ -34,6 +41,7 @@ module Fuseki
     # @param name [Symbol] the property name
     # @param opts [Hash] the option hash
     # @option opts [Symbol] :cardinality the cardinality, either :one or :many
+    # @option opts [Symbol] :model_class the model class handling the other end of the relationship
     # @return [Void] no return
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
