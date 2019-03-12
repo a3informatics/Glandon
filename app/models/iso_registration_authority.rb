@@ -66,7 +66,8 @@ class IsoRegistrationAuthority < Fuseki::Base
   #
   # @return [IsoRegistrationAuthority] the object
   def self.owner
-    where_only({owner: true})
+    object = where_only({owner: true})
+    find_children(object.uri)
   end
 
     # Create

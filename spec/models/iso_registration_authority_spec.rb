@@ -55,12 +55,14 @@ describe IsoRegistrationAuthority do
     result.international_code_designator = "DUNS"
     result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
-    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#XXX", organization_identifier: "123456777", 
+    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#XXX", organization_identifier: "123456777",
+      rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
       international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h })
   end
 
   it "finds authority" do
-    result = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789", 
+    result = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
+      rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
       ra_namespace: "http://www.assero.co.uk/NS#BBB",}
     expect(IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")).to_h).to eq(result)   
   end
@@ -68,11 +70,13 @@ describe IsoRegistrationAuthority do
 	it "finds all authorities" do
     results = [
       { 
-        organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789", 
+        organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
+        rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
         ra_namespace: "http://www.assero.co.uk/NS#BBB"
       },
       {
         organization_identifier: "111111111", international_code_designator: "DUNS", owner: false, uri: "http://www.assero.co.uk/RA#DUNS111111111", 
+        rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
         ra_namespace: "http://www.assero.co.uk/NS#AAA"
       }
     ]
@@ -113,6 +117,20 @@ describe IsoRegistrationAuthority do
   it "destroy a authority" do
     object = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     object.delete
+  end
+
+  it "returns the owner" do
+    result = IsoRegistrationAuthority.owner
+    expected = 
+    {
+      uri: "http://www.assero.co.uk/RA#DUNS123456789", 
+      organization_identifier: "123456789",
+      rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
+      international_code_designator: "DUNS", 
+      owner: true, 
+      ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h 
+    }
+    expect(result.to_h).to eq(expected)
   end
 
 end
