@@ -16,19 +16,14 @@ describe IsoRegistrationAuthority do
     result = IsoRegistrationAuthority.new
     result.uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#XXX")
     result.organization_identifier = "123456777"
-    result.international_code_designator = "DUNS"
     result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
-    result.owner = false
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object" do
     result = IsoRegistrationAuthority.new
-    result.organization_identifier = "1234567890123"
-    result.international_code_designator = "DUNS"
     result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
-    result.owner = false
-    expect(result.valid?).to eq(false)
+    expect(result.valid?).to eq(false) # organization_identifier set to "<Not_Set>" by default.
   end
 
   it "does not validate an invalid object" do

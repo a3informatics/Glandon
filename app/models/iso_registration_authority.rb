@@ -4,21 +4,21 @@
 # @since 2.21.1
 class IsoRegistrationAuthority < Fuseki::Base
       
+  C_SCHEMES = %w(DUNS)
+
   configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
             base_uri: "http://www.assero.co.uk/RA" 
 
-  data_property :organization_identifier
-  data_property :international_code_designator
-  data_property :owner
+  data_property :organization_identifier, default: "<Not Set>" 
+  data_property :international_code_designator, default: C_SCHEMES.first
+  data_property :owner, default: false
   object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
-
-  SCHEMES = %w(DUNS)
 
   # @todo probably add these to field. Not used anywhere selse at the moment so not worth it.
   validates :organization_identifier, presence: true
   validates_format_of :organization_identifier, with: /\A[0-9]{9}\Z/i
   validates :international_code_designator, presence: true
-  validates :international_code_designator, :inclusion => {in: SCHEMES, message: "%{value} is not a valid scheme" }
+  validates :international_code_designator, :inclusion => {in: C_SCHEMES, message: "%{value} is not a valid scheme" }
   validates :owner, inclusion: { in: [ true, false ] }
   validates_with Validator::Uniqueness, attribute: :organization_identifier, on: :create
 
