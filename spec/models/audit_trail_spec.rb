@@ -12,10 +12,8 @@ describe AuditTrail do
     clear_triple_store
     AuditTrail.delete_all
     load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Basic.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")

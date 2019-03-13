@@ -6,6 +6,10 @@ describe Validator::Uniqueness do
 
   before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
   end
 
   class TestVU < Fuseki::Base
@@ -18,7 +22,7 @@ describe Validator::Uniqueness do
     x = TestVU.new
     x.uri = "something"
     x.identifier = "SSS1"
-    expect(Test).to receive(:where).with({:identifier=>"SSS1"}).and_return([])
+    expect(TestVU).to receive(:where).with({:identifier=>"SSS1"}).and_return([])
     x.valid?
     expect(x.errors.count).to eq(0)
   end
@@ -27,7 +31,7 @@ describe Validator::Uniqueness do
     x = TestVU.new
     x.uri = "something"
     x.identifier = "SSS2"
-    expect(Test).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])
+    expect(TestVU).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])
     x.valid?
     expect(x.errors.count).to eq(1)
     expect(x.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")

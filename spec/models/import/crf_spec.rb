@@ -22,10 +22,8 @@ describe Import::Crf do
 	before :each do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Basic.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")

@@ -101,7 +101,6 @@ describe ModelHelpers do
   	a = KlassA
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Basic.ttl")
     query = %Q{
     	#{UriManagement.buildNs("", [])}
       SELECT ?a ?b ?c WHERE

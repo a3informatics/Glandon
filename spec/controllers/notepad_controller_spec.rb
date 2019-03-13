@@ -11,10 +11,8 @@ describe NotepadsController do
     it "clears triple store and loads test data" do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Basic.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Data.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("CDISCTerm.ttl")
