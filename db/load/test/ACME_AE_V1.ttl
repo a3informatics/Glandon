@@ -5,8 +5,8 @@
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Types#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO11179Types#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO25964#hasConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE_SN000730> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO25964#hasConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE_SN000612> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE> 			<http://www.assero.co.uk/ISO25964#hasConcept> 			<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE_SN000008> . 
@@ -376,13 +376,13 @@
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE_SN000008_SC66911> 			<http://www.assero.co.uk/ISO25964#preferredTerm> 			"Unstable Angina" . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_SANOFIAE_SN000008_SC66911> 			<http://www.assero.co.uk/ISO25964#synonym> 			"" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/NS#ACME> . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"SANOFI AE" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"1.0.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#semanticVersion> 			"1.0.0" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Standard" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2018-01-19T07:01:31+00:00" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_SANOFIAE-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2100-01-01T00:00:00+00:00" . 

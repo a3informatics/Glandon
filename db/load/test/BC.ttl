@@ -35,8 +35,8 @@
 	cbc:hasItem :BC-ACME_BC_C25347_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C25347_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Height (BC C25347)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25347-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25347-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C25347-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C25347-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -57,7 +57,7 @@ mdrItems:SI-ACME_BC_C25347-1
 	isoI:identifier "BC C25347"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C25347-1
@@ -444,8 +444,8 @@ mdrItems:RS-ACME_BC_C25347-1
 	cbc:hasItem :BC-ACME_BC_C25208_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C25208_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Weight (BC C25208)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25208-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25208-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C25208-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C25208-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -466,7 +466,7 @@ mdrItems:SI-ACME_BC_C25208-1
 	isoI:identifier "BC C25208"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C25208-1
@@ -853,8 +853,8 @@ mdrItems:RS-ACME_BC_C25208-1
 	cbc:hasItem :BC-ACME_BC_C16358_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C16358_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Body Mass Index (BC C16358)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C16358-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C16358-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C16358-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C16358-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -875,7 +875,7 @@ mdrItems:SI-ACME_BC_C16358-1
 	isoI:identifier "BC C16358"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C16358-1
@@ -1232,8 +1232,8 @@ mdrItems:RS-ACME_BC_C16358-1
 	cbc:hasItem :BC-ACME_BC_C49677_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C49677_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Heart Rate (BC C49677)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C49677-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C49677-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C49677-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C49677-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -1254,7 +1254,7 @@ mdrItems:SI-ACME_BC_C49677-1
 	isoI:identifier "BC C49677"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C49677-1
@@ -1641,8 +1641,8 @@ mdrItems:RS-ACME_BC_C49677-1
 	cbc:hasItem :BC-ACME_BC_C25298_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C25298_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Systolic Blood Pressure (BC C25298)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25298-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25298-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C25298-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C25298-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -1663,7 +1663,7 @@ mdrItems:SI-ACME_BC_C25298-1
 	isoI:identifier "BC C25298"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C25298-1
@@ -2050,8 +2050,8 @@ mdrItems:RS-ACME_BC_C25298-1
 	cbc:hasItem :BC-ACME_BC_C25299_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C25299_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Diastolic Blood Pressure (BC C25299)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25299-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25299-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C25299-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C25299-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -2072,7 +2072,7 @@ mdrItems:SI-ACME_BC_C25299-1
 	isoI:identifier "BC C25299"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C25299-1
@@ -2459,8 +2459,8 @@ mdrItems:RS-ACME_BC_C25299-1
 	cbc:hasItem :BC-ACME_BC_C98793_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C98793_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Triceps Skinfold Thickness (BC C98793)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C98793-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C98793-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C98793-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C98793-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -2481,7 +2481,7 @@ mdrItems:SI-ACME_BC_C98793-1
 	isoI:identifier "BC C98793"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C98793-1
@@ -2838,8 +2838,8 @@ mdrItems:RS-ACME_BC_C98793-1
 	cbc:hasItem :BC-ACME_BC_A00003_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_A00003_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Mid Upper Arm Circumference (BC A00003)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_A00003-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_A00003-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_A00003-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_A00003-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -2860,7 +2860,7 @@ mdrItems:SI-ACME_BC_A00003-1
 	isoI:identifier "BC A00003"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_A00003-1
@@ -3267,8 +3267,8 @@ mdrItems:RS-ACME_BC_A00003-1
 	cbc:hasItem :BC-ACME_BC_C81255_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C81255_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Head Circumference (BC C81255)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C81255-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C81255-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C81255-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C81255-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -3289,7 +3289,7 @@ mdrItems:SI-ACME_BC_C81255-1
 	isoI:identifier "BC C81255"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C81255-1
@@ -3646,8 +3646,8 @@ mdrItems:RS-ACME_BC_C81255-1
 	cbc:hasItem :BC-ACME_BC_C49678_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C49678_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Respiratory Rate (BC C49678)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C49678-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C49678-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C49678-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C49678-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -3668,7 +3668,7 @@ mdrItems:SI-ACME_BC_C49678-1
 	isoI:identifier "BC C49678"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C49678-1
@@ -4025,8 +4025,8 @@ mdrItems:RS-ACME_BC_C49678-1
 	cbc:hasItem :BC-ACME_BC_C98785_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C98785_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Subscapular Skinfold Thickness (BC C98785)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C98785-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C98785-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C98785-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C98785-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -4047,7 +4047,7 @@ mdrItems:SI-ACME_BC_C98785-1
 	isoI:identifier "BC C98785"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C98785-1
@@ -4424,8 +4424,8 @@ mdrItems:RS-ACME_BC_C98785-1
 	cbc:hasItem :BC-ACME_BC_C25206_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "Temperature (BC C25206)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_C25206-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_C25206-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_C25206-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_C25206-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -4446,7 +4446,7 @@ mdrItems:SI-ACME_BC_C25206-1
 	isoI:identifier "BC C25206"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_C25206-1
@@ -4803,8 +4803,8 @@ mdrItems:RS-ACME_BC_C25206-1
 	cbc:hasItem :BC-ACME_BC_A00002_PerformedClinicalResult_value ;
 	cbc:hasItem :BC-ACME_BC_A00002_PerformedClinicalResult_baselineIndicator ;
 	rdfs:label "APGAR Score (BC A00002)"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-ACME_BC_A00002-1 ;
-	isoR:hasState mdrItems:RS-ACME_BC_A00002-1 ;
+	isoT:hasIdentifier mdrItems:SI-ACME_BC_A00002-1 ;
+	isoT:hasState mdrItems:RS-ACME_BC_A00002-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -4825,7 +4825,7 @@ mdrItems:SI-ACME_BC_A00002-1
 	isoI:identifier "BC A00002"^^xsd:string ;
 	isoI:versionLabel "0.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semantic_version "1.0.0"^^xsd:string ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-ACME ;
 .
 mdrItems:RS-ACME_BC_A00002-1

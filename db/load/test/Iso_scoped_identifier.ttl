@@ -18,8 +18,8 @@
 :BC-TEST_1
 	rdf:type :TestItem ;
 	rdfs:label "Test Item 1"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_1-1 ;
-	isoR:hasState mdrItems:RS-TEST_1-1 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_1-1 ;
+	isoT:hasState mdrItems:RS-TEST_1-1 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -47,8 +47,8 @@ mdrItems:RS-TEST_1-1
 :BC-TEST_2
 	rdf:type :TestItem ;
 	rdfs:label "Test Item 2"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_2-2 ;
-	isoR:hasState mdrItems:RS-TEST_2-2 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_2-2 ;
+	isoT:hasState mdrItems:RS-TEST_2-2 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -76,8 +76,8 @@ mdrItems:RS-TEST_2-2
 :BC-TEST_3
 	rdf:type :TestItem ;
 	rdfs:label "Test Item 3"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_3-3 ;
-	isoR:hasState mdrItems:RS-TEST_3-3 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_3-3 ;
+	isoT:hasState mdrItems:RS-TEST_3-3 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -105,8 +105,8 @@ mdrItems:RS-TEST_3-3
 :BC-TEST_3B
 	rdf:type :TestItem ;
 	rdfs:label "Test Item 3"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_3-4 ;
-	isoR:hasState mdrItems:RS-TEST_3-4 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_3-4 ;
+	isoT:hasState mdrItems:RS-TEST_3-4 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -134,8 +134,8 @@ mdrItems:RS-TEST_3-4
 :BC-TEST_3C
 	rdf:type :TestItem ;
 	rdfs:label "Test Item 3"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_3-5 ;
-	isoR:hasState mdrItems:RS-TEST_3-5 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_3-5 ;
+	isoT:hasState mdrItems:RS-TEST_3-5 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -163,8 +163,8 @@ mdrItems:RS-TEST_3-5
 :BC-TEST_SV1
 	rdf:type :TestItem ;
 	rdfs:label "Test Item SV 1"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_SV1-5 ;
-	isoR:hasState mdrItems:RS-TEST_SV1-5 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_SV1-5 ;
+	isoT:hasState mdrItems:RS-TEST_SV1-5 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;
@@ -193,8 +193,8 @@ mdrItems:RS-TEST_SV1-5
 :BC-TEST_SV2
 	rdf:type :TestItem ;
 	rdfs:label "Test Item SV 2"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-TEST_SV2-5 ;
-	isoR:hasState mdrItems:RS-TEST_SV2-5 ;
+	isoT:hasIdentifier mdrItems:SI-TEST_SV2-5 ;
+	isoT:hasState mdrItems:RS-TEST_SV2-5 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01"^^xsd:date ;

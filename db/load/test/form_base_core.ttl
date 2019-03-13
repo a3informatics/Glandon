@@ -5,8 +5,8 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"" . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> . 
-<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Types#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/ISO11179Types#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1> . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"Some form completion instructions" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1> 			<http://www.assero.co.uk/BusinessForm#note> 			"Some form notes" . 
@@ -80,12 +80,12 @@
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I5> 			<http://www.assero.co.uk/BusinessForm#free_text> 			"Placeholder text with some **sharp** *text* action" . 
 <http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST1_G1_I5> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"5" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/NS#ACME> . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"TEST 1" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"1" . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
-<http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00+00:00" . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_TEST1-1> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00+00:00" . 
