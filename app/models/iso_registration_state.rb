@@ -37,7 +37,7 @@ class IsoRegistrationState
   # @return [string] The owner's short name
   def initialize(triples=nil)
     @@base_namespace ||= UriManagement.getNs(C_NS_PREFIX)
-    @@owner ||= IsoRegistrationAuthority.owner()
+    @@owner ||= IsoRegistrationAuthority.owner
     date_time = Time.now
     if triples.nil?
       self.id = ""
@@ -55,7 +55,7 @@ class IsoRegistrationState
       self.registrationAuthority = nil
       if Triples.link_exists?(triples, UriManagement::C_ISO_R, "byAuthority")
         links = Triples.get_links(triples, UriManagement::C_ISO_R, "byAuthority")
-        self.registrationAuthority  = IsoRegistrationAuthority.find(Uri.new(uri: links.first))
+        self.registrationAuthority  = IsoRegistrationAuthority.find_children(Uri.new(uri: links.first))
       end
       self.registrationStatus = Triples.get_property_value(triples, UriManagement::C_ISO_R, "registrationStatus")
       self.administrativeNote = Triples.get_property_value(triples, UriManagement::C_ISO_R, "administrativeNote")

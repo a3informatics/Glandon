@@ -13,15 +13,17 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_TEST-1
   :registration_authority:
-    :id: RA-123456789
-    :number: '123456789'
-    :scheme: DUNS
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
     :owner: true
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-BBB
+    :ra_namespace:
+      :uri: http://www.assero.co.uk/NS#BBB
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: BBB
       :name: BBB Pharma
-      :shortName: BBB
+      :authority: www.bbb.com
   :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
@@ -34,10 +36,11 @@
   :id: SI-ACME_TEST-1
   :identifier: TEST
   :version_label: '0.1'
-  :semantic_version: '1.2.3'
   :version: 1
+  :semantic_version: 1.2.3
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-BBB
+    :uri: http://www.assero.co.uk/NS#BBB
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: BBB
     :name: BBB Pharma
-    :shortName: BBB
+    :authority: www.bbb.com

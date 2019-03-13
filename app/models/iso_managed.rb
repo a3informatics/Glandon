@@ -37,11 +37,11 @@ class IsoManaged < IsoConcept
     else
       self.triples = triples
       super(triples, id)
-      if self.link_exists?(UriManagement::C_ISO_I, "hasIdentifier")
-        links = self.get_links_v2(UriManagement::C_ISO_I, "hasIdentifier")
+      if self.link_exists?(UriManagement::C_ISO_T, "hasIdentifier")
+        links = self.get_links_v2(UriManagement::C_ISO_T, "hasIdentifier")
         self.scopedIdentifier = IsoScopedIdentifier.new(triples[links[0].id])
-        if self.link_exists?(UriManagement::C_ISO_R, "hasState")
-          links = self.get_links_v2(UriManagement::C_ISO_R, "hasState")
+        if self.link_exists?(UriManagement::C_ISO_T, "hasState")
+          links = self.get_links_v2(UriManagement::C_ISO_T, "hasState")
           self.registrationState= IsoRegistrationState.new(triples[links[0].id])
         end
       end
@@ -117,14 +117,14 @@ class IsoManaged < IsoConcept
   #
   # @return [object] The owner namespace object.
   def owner
-    return self.scopedIdentifier.owner
+    return self.registrationState.registrationAuthority.owner
   end
 
   # Return the owner id
   #
   # @return [string] The id.
   def owner_id
-    return self.scopedIdentifier.owner_id
+    return owner.uri.fragment
   end
 
   # Determine if the object is owned by this repository
@@ -300,7 +300,7 @@ class IsoManaged < IsoConcept
     # Initialise.
     object = nil
     # Create the query and action.
-    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_I, UriManagement::C_ISO_R]) +
+    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_T]) +
       "SELECT ?s ?p ?o WHERE \n" +
       "{ \n" +
       "  { \n"
@@ -316,10 +316,10 @@ class IsoManaged < IsoConcept
     end
     query +=  
       "  } UNION {\n" +
-      "    :" + id + " isoI:hasIdentifier ?s . \n" +
+      "    :" + id + " isoT:hasIdentifier ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  } UNION {\n" +
-      "    :" + id + " isoR:hasState ?s . \n" +
+      "    :" + id + " isoT:hasState ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  }\n" +
       "}"
@@ -372,9 +372,9 @@ class IsoManaged < IsoConcept
       "  ?a rdf:type :" + rdfType + " . \n" +
       "  ?a rdfs:label ?i . \n" +
       "  OPTIONAL { \n" +
-      "    ?a isoI:hasIdentifier ?h . \n" +
+      "    ?a isoT:hasIdentifier ?h . \n" +
       "    OPTIONAL { \n" +
-      "      ?a isoR:hasState ?b . \n" +
+      "      ?a isoT:hasState ?b . \n" +
       "      ?a isoT:origin ?c . \n" +
       "      ?a isoT:changeDescription ?d . \n" +
       "      ?a isoT:creationDate ?e . \n" +
@@ -440,8 +440,8 @@ class IsoManaged < IsoConcept
       "SELECT ?a ?l ?i ?sv ?s ?ra WHERE \n" +
       "{ \n" +
       "  ?a rdfs:label ?l . \n" +
-      "  ?a isoI:hasIdentifier ?si . \n" +
-      "  ?a isoR:hasState ?rs . \n" +
+      "  ?a isoT:hasIdentifier ?si . \n" +
+      "  ?a isoT:hasState ?rs . \n" +
       "  ?si isoI:identifier ?i . \n" +
       "  ?si isoI:semantic_version ?sv . \n" +
       "  ?rs isoR:registrationStatus ?s . \n" +
@@ -491,7 +491,7 @@ class IsoManaged < IsoConcept
       "{ \n" +
       "  ?a rdfs:label ?b . \n" +
       "  ?a isoC:hasMember #{uri.to_ref} . \n" +
-      "  ?a isoI:hasIdentifier ?d . \n" +
+      "  ?a isoT:hasIdentifier ?d . \n" +
       "  ?a rdf:type ?e . \n" +
       "}"
     # Send the request, wait the resonse
@@ -528,13 +528,13 @@ class IsoManaged < IsoConcept
       "SELECT ?a ?b ?c ?si ?rs ?d ?e ?f ?g ?h WHERE \n" +
       "{ \n" +
       "  ?a rdfs:label ?b . \n" +
-      "  ?a isoI:hasIdentifier ?si . \n" +
+      "  ?a isoT:hasIdentifier ?si . \n" +
       "  ?si isoI:identifier ?e . \n" +
       "  FILTER (regex(?b, '#{params[:text]}') || regex(?e, '#{params[:text]}')) . \n" +
       "  ?a rdf:type ?h . \n" +
       "  ?a isoT:creationDate ?c . \n" +
       "  ?a isoT:lastChangeDate  ?d . \n" +
-      "  ?a isoR:hasState ?rs . \n" +
+      "  ?a isoT:hasState ?rs . \n" +
       "  ?si isoI:version ?f . \n" +
       "  ?rs isoR:registrationStatus ?g . \n" +
       "} ORDER BY DESC(?f)"
@@ -586,12 +586,12 @@ class IsoManaged < IsoConcept
       "{ \n" +
       "  ?a rdf:type :" + rdfType.to_s + " . \n" +
       "  ?a rdfs:label ?i . \n" +
-      "  ?a isoI:hasIdentifier ?h . \n" +
+      "  ?a isoT:hasIdentifier ?h . \n" +
       "  ?h isoI:identifier \"" + identifier.to_s + "\" . \n" +
       "  ?h isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
       "  ?h isoI:version ?j . \n" +
       "  OPTIONAL { \n" +
-      "    ?a isoR:hasState ?b . \n" +
+      "    ?a isoT:hasState ?b . \n" +
       "    ?a isoT:origin ?c . \n" +
       "    ?a isoT:changeDescription ?d . \n" +
       "    ?a isoT:creationDate ?e . \n" +
@@ -666,8 +666,8 @@ class IsoManaged < IsoConcept
       "  ?a rdfs:label ?b . \n" +
       "  ?a isoT:creationDate ?c . \n" +
       "  ?a isoT:lastChangeDate  ?d . \n" +
-      "  ?a isoI:hasIdentifier ?si . \n" +
-      "  ?a isoR:hasState ?rs . \n" +
+      "  ?a isoT:hasIdentifier ?si . \n" +
+      "  ?a isoT:hasState ?rs . \n" +
       "  ?si isoI:identifier ?e . \n" +
       "  ?si isoI:version ?f . \n" +
       "  ?rs isoR:registrationStatus ?g . \n" +
@@ -725,8 +725,8 @@ class IsoManaged < IsoConcept
       "SELECT ?a WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdf_type.to_s + " . \n" +
-      "  ?a isoI:hasIdentifier ?b . \n" +
-      "  ?a isoR:hasState ?c . \n" +
+      "  ?a isoT:hasIdentifier ?b . \n" +
+      "  ?a isoT:hasState ?c . \n" +
       "  ?b isoI:identifier \"" + identifier.to_s + "\" . \n" +
       "  ?b isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
       "  ?c isoR:effectiveDate ?d . \n" +
@@ -766,7 +766,7 @@ class IsoManaged < IsoConcept
       "SELECT ?a WHERE \n" +
       "{ \n" +
       "  ?a rdf:type :" + rdf_type.to_s + " . \n" +
-      "  ?a isoR:hasState ?c . \n" +
+      "  ?a isoT:hasState ?c . \n" +
       "  ?c isoR:effectiveDate ?d . \n" +
       "  ?c isoR:untilDate ?e . \n" +
       "  FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) . \n" +
@@ -793,19 +793,19 @@ class IsoManaged < IsoConcept
       "{ \n" +
       "  { \n" +
       "    ?s (iso25964:hasConcept|iso25964:hasChild)* :#{id} . \n" +      
-      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s isoT:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
       "    ?s (bf:hasGroup|bf:hasSubGroup|bf:hasItem|bf:hasCommon|bf:hasCommonItem)* :#{id} . \n" +      
-      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s isoT:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
       "    ?s (cbc:hasItem|cbc:hasDatatype|cbc:hasProperty|cbc:hasComplexDatatype)* :#{id} . \n" +      
-      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s isoT:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  } UNION {\n" +
       "    ?s (bd:includesColumn)* :#{id} . \n" +      
-      "    ?s isoI:hasIdentifier ?si . \n" +      
+      "    ?s isoT:hasIdentifier ?si . \n" +      
       "    ?s rdf:type ?o . \n" +      
       "  }\n" +   
       "}"
@@ -1017,10 +1017,10 @@ class IsoManaged < IsoConcept
       "    ?s ?p ?o . \n" +
       "    FILTER(STRSTARTS(STR(?s), \"" + self.namespace + "\"))" +
       "  } UNION {\n" + 
-      "    :" + self.id + " isoI:hasIdentifier ?s . \n" +
+      "    :" + self.id + " isoT:hasIdentifier ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  } UNION {\n" + 
-      "    :" + self.id + " isoR:hasState ?s . \n" +
+      "    :" + self.id + " isoT:hasState ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  }\n" + 
       "}\n"

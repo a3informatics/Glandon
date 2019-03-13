@@ -69,7 +69,8 @@ describe IsoScopedIdentifier do
             :uri => "http://www.assero.co.uk/NS#AAA",
             :name => "AAA Long",
             :short_name => "AAA",
-            authority: "www.aaa.com"  
+            authority: "www.aaa.com",
+            rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace" 
           }
       }
     triples = [ 

@@ -13,16 +13,15 @@ describe IsoManaged do
 	before :all do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Basic.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Data.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
@@ -104,6 +103,7 @@ describe IsoManaged do
 
 	it "allows an item to be found" do
 		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_form.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
     expect(item.to_json).to eq(expected)   
 	end

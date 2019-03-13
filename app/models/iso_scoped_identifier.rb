@@ -67,19 +67,19 @@ class IsoScopedIdentifier
     return self.namespace.short_name
   end
   
+  # Access the id for the owner (namespace)
+  #
+  # @return [string] The owner's id
+  #def owner_id
+  #  return self.namespace.uri.fragment
+  #end
+  
   # Obtain the scoping namespace
   # 
   # @return [IsoNamespace] the namespace object
   def scoping_namespace
     return self.namespace
   end
-  
-  # Access the id for the owner (namespace)
-  #
-  # @return [string] The owner's id
-  #def owner_id
-  #  return self.namespace.id
-  #end
   
   # Get the next version
   #
