@@ -63,10 +63,12 @@ module Fuseki
     # Data Property
     #
     # @param name [Symbol] the property name
-    # @param opts [Hash] the option hash. Currently empty
+    # @param opts [Hash] the option hash.
+    # @option opts [Symbol] :default the default value. Optional
     # @return [Void] no return
     def data_property(name, opts = {})
-      add_to_properties(name, {default: "", cardinality: :one, model_class: "", type: :data})
+      default = opts[:default] ? opts[:default] : ""
+      add_to_properties(name, {default: default, cardinality: :one, model_class: "", type: :data})
     end
 
   private

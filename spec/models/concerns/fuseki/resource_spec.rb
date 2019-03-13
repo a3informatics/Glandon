@@ -36,6 +36,10 @@ describe Fuseki::Resource do
     extend Fuseki::Resource
   end
 
+  class TestR6
+    extend Fuseki::Resource
+  end
+
   it "error if RDF type not configured" do
     expect{TestR1.configure({})}.to raise_error(Errors::ApplicationLogicError, "No RDF type specified when configuring class.")
   end
@@ -65,11 +69,18 @@ describe Fuseki::Resource do
     expect(TestR4.instance_variable_get(:@properties)).to eq({:@fred => fred_expected, :@sid => sid_expected}) 
   end
 
-  it "Data property configured" do
+  it "Data property configured, no default" do
     TestR5.configure({rdf_type: "http://www.example.com/C#YYY"})
     fred1_expected = {:cardinality=>:one, :default=>"", :model_class=>"", :name=>:fred1, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred1")}
     TestR5.data_property(:fred1)
-    expect(TestR5.instance_variable_get(:@properties)).to eq({:@fred1 => fred1_expected})
+    expect(TestR5.instance_variable_get(:@properties)).to eq({:@fred1 => fred1_expected})    
+  end
+
+  it "Data property configured, default" do
+    TestR6.configure({rdf_type: "http://www.example.com/C#YYY"})
+    fred2_expected = {:cardinality=>:one, :default=>"default value", :model_class=>"", :name=>:fred2, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred2")}
+    TestR6.data_property(:fred2, {default: "default value"})
+    expect(TestR6.instance_variable_get(:@properties)).to eq({:@fred2 => fred2_expected})    
   end
 
 end
