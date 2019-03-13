@@ -1,0 +1,89 @@
+---
+:@label:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :label
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Concepts
+    fragment: label
+:@has_state:
+  :cardinality: :one
+  :model_class: IsoRegistrationStateV2
+  :default: 
+  :type: :object
+  :name: :has_state
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: hasState
+:@has_identifier:
+  :cardinality: :one
+  :model_class: IsoScopedIdentifierV2
+  :default: 
+  :type: :object
+  :name: :has_identifier
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: hasIdentifier
+:@origin:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :origin
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: origin
+:@change_description:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :change_description
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: changeDescription
+:@creation_date:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :creation_date
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: creationDate
+:@last_change_date:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :last_change_date
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: lastChangeDate
+:@explanatory_comment:
+  :default: ''
+  :cardinality: :one
+  :model_class: ''
+  :type: :data
+  :name: :explanatory_comment
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Types
+    fragment: explanatoryComment

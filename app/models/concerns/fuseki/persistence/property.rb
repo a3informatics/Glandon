@@ -27,17 +27,12 @@ module Fuseki
         # Get the rails names and map to the schema defintions via the class properties.
         property_name = Fuseki::Persistence::Naming.new(triple[:predicate].fragment)
         from_value(property_name.as_instance, triple[:object])
-        #properties = self.class.instance_variable_get(:@properties)
-        #return if !properties.key?(property_name.as_instance) # Ignore values if no property declared.
-        #return if from_uri(property_name.as_instance, triple[:object])
-        #from_simple(property_name.as_instance, triple[:object])
       end
 
       def from_value(name, value)
         properties = self.class.instance_variable_get(:@properties)
         return if !properties.key?(name) # Ignore values if no property declared.
-        return if from_uri(name, value)
-        from_simple(name, value)
+        properties[name][:type] ==:object ? from_uri(name, value) : from_simple(name, value)
       end
 
       # From URI. Sets the named property with the specified URI
@@ -46,9 +41,7 @@ module Fuseki
       # @param object [Object] the object. Might be a Uri, Fuseki::base or a scalar
       # @return [Void] no return
       def from_uri(name, object)
-        return false if !object.is_a?(Uri) && !object.is_a?(Fuseki::Base)
         instance_variable_get(name).is_a?(Array) ? instance_variable_get(name).push(object) : instance_variable_set(name, object)
-        return true
       end
 
       # From Simple. Sets the named property with the specified scalar value
@@ -58,10 +51,9 @@ module Fuseki
       # @return [Void] no return
       def from_simple(name, value)
         properties = self.class.instance_variable_get(:@properties)
-        return if properties[name][:type] != :data
         property_name = Fuseki::Persistence::Naming.new(name)
         schema = self.class.class_variable_get(:@@schema)
-        base_type = schema.range(Uri.new(namespace: self.class.rdf_type.namespace, fragment: property_name.as_schema))
+        base_type = schema.range(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
       end
 

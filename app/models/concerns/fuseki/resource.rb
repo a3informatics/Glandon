@@ -76,6 +76,7 @@ module Fuseki
       self.send(:attr_accessor, "#{name}")
       @properties ||= {}
       opts[:name] = name
+      opts[:predicate] = Uri.new(namespace: self.rdf_type.namespace, fragment: Fuseki::Persistence::Naming.new(name).as_schema)
       @properties["@#{name}".to_sym] = opts
     end
     

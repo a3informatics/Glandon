@@ -68,7 +68,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
   def self.first_version
     return C_FIRST_VERSION
   end
-  
+
   # Find if the object with identifier exists within the specified scope (ISO Namespace).
   #
   # @param identifier [String] The identifer being checked.

@@ -25,7 +25,9 @@ describe IsoNamespace do
     result.name = "XXX Long"
     result.short_name = "XXX"
     result.authority = "www.a3.com"
-    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#NS-XXX", name: "XXX Long", short_name: "XXX", authority: "www.a3.com"})
+    expected = {uri: "http://www.assero.co.uk/MDRItems#NS-XXX", rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace", 
+      name: "XXX Long", short_name: "XXX", authority: "www.a3.com"}
+    expect(result.to_h).to eq(expected)
   end
 
   it "determines namespace exists" do
@@ -47,7 +49,8 @@ describe IsoNamespace do
 
   it "finds namespace" do
     result = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
-    expected = {uri: "http://www.assero.co.uk/NS#AAA", name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"}
+    expected = {uri: "http://www.assero.co.uk/NS#AAA", rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace", 
+      name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"}
     expect(result.to_h).to eq(expected)   
   end
 
@@ -55,8 +58,14 @@ describe IsoNamespace do
 
 	it "all namespaces" do
     expected = [
-      {uri: "http://www.assero.co.uk/NS#AAA", name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"},
-      {uri: "http://www.assero.co.uk/NS#BBB", name: "BBB Pharma", short_name: "BBB", authority: "www.bbb.com"},
+      {
+        uri: "http://www.assero.co.uk/NS#AAA", rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace", 
+        name: "AAA Long", short_name: "AAA", authority: "www.aaa.com"
+      },
+      {
+        uri: "http://www.assero.co.uk/NS#BBB", rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace", 
+        name: "BBB Pharma", short_name: "BBB", authority: "www.bbb.com"
+      }
     ]
     items = IsoNamespace.all
     result = items.map{|x| x.to_h}
@@ -64,7 +73,8 @@ describe IsoNamespace do
   end
 
 	it "create a namespace" do
-    expected = {uri: "http://www.assero.co.uk/NS#CCC", name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"}
+    expected = {uri: "http://www.assero.co.uk/NS#CCC", rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace", 
+      name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"}
     result = IsoNamespace.create({name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"})
     expect(result.to_h).to eq(expected)  
 	end

@@ -8,14 +8,14 @@ describe Validator::Uniqueness do
     clear_triple_store
   end
 
-  class Test < Fuseki::Base
+  class TestVU < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
     data_property :identifier
     validates_with Validator::Uniqueness, attribute: :identifier
   end
 
 	it "validates a field" do
-    x = Test.new
+    x = TestVU.new
     x.uri = "something"
     x.identifier = "SSS1"
     expect(Test).to receive(:where).with({:identifier=>"SSS1"}).and_return([])
@@ -24,7 +24,7 @@ describe Validator::Uniqueness do
   end
 
   it "validates a field, error" do
-    x = Test.new
+    x = TestVU.new
     x.uri = "something"
     x.identifier = "SSS2"
     expect(Test).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])

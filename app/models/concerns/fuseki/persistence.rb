@@ -14,7 +14,7 @@ module Fuseki
 
       # Find
       #
-      # @param [UriV4|id] the identifier, either a URI or the id
+      # @param [Uri|id] the identifier, either a URI or the id
       # @return [Object] a class object.
       def find(id)
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
@@ -116,6 +116,28 @@ module Fuseki
         triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
           object.from_triple(triple)
+        end
+        object
+      end
+
+      def from_results_recurse(uri, triples)
+        object = from_results(uri, triples[uri.to_s])
+        schema = self.read_schema
+        properties = self.properties_read(:class)
+        properties.each do |name, value|
+          next if properties[name][:type] != :object
+          klass = properties[name][:model_class].constantize
+          if properties[name][:cardinality] == :one
+            child_uri = object.instance_variable_get(name)
+            object.instance_variable_set(name, klass.new.class.from_results_recurse(child_uri, triples))
+          else
+            links = object.instance_variable_get(name)
+            children = []
+            links.each do |child_uri|
+              children << klass.new.class.from_results_recurse(child_uri, triples)
+            end
+            object.instance_variable_set(name, children)
+          end
         end
         object
       end
