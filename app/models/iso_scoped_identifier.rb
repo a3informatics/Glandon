@@ -340,7 +340,7 @@ class IsoScopedIdentifier
       "SELECT DISTINCT ?d ?e ?f ?g WHERE \n" +
       "{\n" +
       "  ?a rdf:type :" + rdfType + " . \n" +
-      "  ?a isoI:hasIdentifier ?c . \n" +
+      "  ?a isoT:hasIdentifier ?c . \n" +
       "  ?a rdfs:label ?e . \n" +
       "  ?c isoI:identifier ?d . \n" +
       "  ?c isoI:version ?g . \n" +

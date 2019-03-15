@@ -20,8 +20,8 @@ describe IsoManaged do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
@@ -137,8 +137,8 @@ describe IsoManaged do
 
   it "allows owner, owner_id and owned? to be determined" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    expect(item.owner).to eq("BBB")   
-    expect(item.owner_id).to eq("NS-BBB")   
+    expect(item.owner.ra_namespace.short_name).to eq("ACME")   
+    expect(item.owner_id).to eq("DUNS123456789")   
     expect(item.owned?).to eq(true)
   end
 
@@ -170,11 +170,11 @@ describe IsoManaged do
   end
 
   it "allows next version for an indentifier to be determned" do
-  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.owner)
+  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.owner.ra_namespace)
   	expect(next_version).to eq(2)
-  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.find_by_short_name("AAA"))
-  	expect(next_version).to eq(1)
-  	next_version = IsoManaged.next_version("TESTxxxxx", IsoRegistrationAuthority.owner)
+  	next_version = IsoManaged.next_version("TEST", IsoRegistrationAuthority.find_by_short_name("ACME").ra_namespace)
+  	expect(next_version).to eq(2)
+  	next_version = IsoManaged.next_version("TESTxxxxx", IsoRegistrationAuthority.owner.ra_namespace)
   	expect(next_version).to eq(1)
   end
 
@@ -258,28 +258,10 @@ describe IsoManaged do
   end
 
   it "finds all unique entries" do
-    result = 
-      [
-        {
-          :identifier=>"VSB",
-          :label=>"Vital Signs Baseline",
-          :owner_id=>"NS-BBB",
-          :owner=>"BBB"
-        },
-        {
-          :identifier=>"TEST",
-          :label=>"Iso Concept Test Form",
-          :owner_id=>"NS-BBB",
-          :owner=>"BBB"
-        },
-        {
-          :identifier=>"VSW",
-          :label=>"Vital Signs Weekly",
-          :owner_id=>"NS-BBB",
-          :owner=>"BBB"
-        }
-      ]
-    expect(IsoManaged.unique("Form", "http://www.assero.co.uk/BusinessForm")).to eq (result)
+    result = IsoManaged.unique("Form", "http://www.assero.co.uk/BusinessForm")
+  #Xwrite_yaml_file(result, sub_dir, "iso_managed_all_unique_expected.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_all_unique_expected.yaml")
+    expect(result).to eq(expected)
   end
 
   it "finds all entries by type" do
@@ -296,7 +278,7 @@ describe IsoManaged do
 
   it "finds all entries" do
     items = IsoManaged.all
-  #write_yaml_file(items, sub_dir, "iso_managed_all.yaml")
+  #Xwrite_yaml_file(items, sub_dir, "iso_managed_all.yaml")
   	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
     expect(items).to match_array(expected)
   end
@@ -305,7 +287,7 @@ describe IsoManaged do
     results = []
     results[0] = {:id => "F-BBB_VSB2", :scoped_identifier_version => 2}
     results[1] = {:id => "F-BBB_VSB1", :scoped_identifier_version => 1}
-    items = IsoManaged.history("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSB", :scope_id => "NS-BBB"})
+    items = IsoManaged.history("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSB", :scope => IsoRegistrationAuthority.owner.ra_namespace})
     items.each_with_index do |item, index|
       expect(results[index][:id]).to eq(items[index].id)
       expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
@@ -316,7 +298,7 @@ describe IsoManaged do
     results = []
     items = IsoManaged.list("Form", "http://www.assero.co.uk/BusinessForm")
     items.each { |x| results << x.to_json }
-  #write_yaml_file(results, sub_dir, "iso_managed_list.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_list.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_list.yaml")
     i = items.find { |x| x.id == "F-BBB_VSW" } # We know this got edited in an above test, modify time
     e = expected.find { |x| x[:id] == "F-BBB_VSW" }
@@ -325,7 +307,7 @@ describe IsoManaged do
   end
 
   it "allows the current item to be found" do
-    item = IsoManaged.current("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSW", :scope_id => IsoRegistrationAuthority.owner.namespace.id})
+    item = IsoManaged.current("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSW", :scope => IsoRegistrationAuthority.owner.ra_namespace})
     expect(item.scopedIdentifier.identifier).to eq("VSW")    
     expect(item.scopedIdentifier.version).to eq(1)    
   end
@@ -410,12 +392,12 @@ describe IsoManaged do
         :identifier_edit => true
       }
     new_item.from_operation(operation, "F", "http://www.assero.co.uk/NewNamespace", IsoRegistrationAuthority.owner)
-    old_item.id = "F-BBB_TEST"
-    old_item.namespace = "http://www.assero.co.uk/NewNamespace/BBB/V1"
+    old_item.id = "F-ACME_TEST"
+    old_item.namespace = "http://www.assero.co.uk/NewNamespace/ACME/V1"
     old_item.lastChangeDate = date_check_now(new_item.lastChangeDate)
-    old_item.scopedIdentifier.id = "SI-BBB_TEST-1"
+    old_item.scopedIdentifier.id = "SI-ACME_TEST-1"
     old_item.scopedIdentifier.semantic_version = SemanticVersion.from_s("2.2.2")
-    old_item.registrationState.id = "RS-BBB_TEST-1"
+    old_item.registrationState.id = "RS-ACME_TEST-1"
     old_item.registrationState.registrationStatus = "Standard"
     expect(new_item.to_json).to eq(old_item.to_json)
   end
@@ -614,7 +596,7 @@ describe IsoManaged do
   it "finds by properties, I" do
     results = []
     IsoManaged.find_by_property({text: "VSB"}).each { |x| results << x.to_json }
-  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
     expect(results).to hash_equal(expected)
   end
@@ -622,7 +604,7 @@ describe IsoManaged do
   it "finds by properties, II" do
     results = []
     IsoManaged.find_by_property({text: "Baseline"}).each { |x| results << x.to_json }
-  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_3.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_3.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_3.yaml")
     expect(results).to hash_equal(expected)
   end

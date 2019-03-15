@@ -113,16 +113,16 @@ class IsoManaged < IsoConcept
     return self.scopedIdentifier.same_version?(version)
   end
   
-  # Return the owner
+  # Return the owner of the managed item
   #
   # @return [object] The owner namespace object.
   def owner
-    return self.registrationState.registrationAuthority.owner
+    return self.registrationState.registrationAuthority
   end
 
   # Return the owner id
   #
-  # @return [string] The id.
+  # @return [String] The owner id.
   def owner_id
     return owner.uri.fragment
   end
@@ -131,8 +131,8 @@ class IsoManaged < IsoConcept
   #
   # @return [boolean] True if owned, false otherwise
   def owned?
-    owner = IsoRegistrationAuthority.owner
-    return self.owner_id == owner.namespace.id
+    respository_owner = IsoRegistrationAuthority.owner
+    return self.owner.uri == respository_owner.uri
   end
 
   # Determine if the object is a branch, i.e. a child
@@ -240,8 +240,8 @@ class IsoManaged < IsoConcept
   # Return the next version
   #
   # @return [integer] the next version
-  def self.next_version(identifier, ra)
-    IsoScopedIdentifier.next_version(identifier, ra.namespace.id)
+  def self.next_version(identifier, scope)
+    IsoScopedIdentifier.next_version(identifier, scope)
   end
 
   # Return the next semantic version
@@ -443,7 +443,7 @@ class IsoManaged < IsoConcept
       "  ?a isoT:hasIdentifier ?si . \n" +
       "  ?a isoT:hasState ?rs . \n" +
       "  ?si isoI:identifier ?i . \n" +
-      "  ?si isoI:semantic_version ?sv . \n" +
+      "  ?si isoI:semanticVersion ?sv . \n" +
       "  ?rs isoR:registrationStatus ?s . \n" +
       "  ?rs isoR:byAuthority ?ra . \n" +
       "}"
@@ -459,8 +459,8 @@ class IsoManaged < IsoConcept
   	    identifier = ModelUtility.getValue('i', false, node)
     	  semantic_version = ModelUtility.getValue('sv', false, node)
       	status = ModelUtility.getValue('s', false, node)
-        ra_uri = UriV2.new({uri: ModelUtility.getValue('ra', true, node)})
-        ra = IsoRegistrationAuthority.find(ra_uri.id)
+        ra_uri = Uri.new({uri: ModelUtility.getValue('ra', true, node)})
+        ra = IsoRegistrationAuthority.find_children(ra_uri)
         object_uri = UriV2.new({:uri => uri})
         results << 
         	{ id: object_uri.id, 
@@ -469,7 +469,7 @@ class IsoManaged < IsoConcept
         		identifier: identifier, 
         		semantic_version: semantic_version, 
         		status: status, 
-        		owner: ra.shortName 
+        		owner: ra.ra_namespace.short_name 
         	}
       end
     end
@@ -486,7 +486,7 @@ class IsoManaged < IsoConcept
     results = Array.new
     # Create the query
     uri = UriV2.new({:id => id, :namespace => namespace})
-    query = UriManagement.buildNs(namespace, ["isoI", "isoC"]) +
+    query = UriManagement.buildNs(namespace, ["isoT", "isoC"]) +
       "SELECT ?a ?b ?c ?d ?e WHERE \n" +
       "{ \n" +
       "  ?a rdfs:label ?b . \n" +
@@ -569,15 +569,15 @@ class IsoManaged < IsoConcept
   end
 
   # Find history for a given identifier
-  # Return the object as JSON
   #
-  # @rdfType [string] The RDF type
-  # @ns [string] The namespace
-  # @params [hash] {:identifier, :scope_id}
-  # @return [array] An array of objects.
+  # @rdfType [String] The RDF type
+  # @ns [String] The namespace
+  # @param params [Hash] the options
+  # @option params [String] :identifier the scoped identifier
+  # @option params [Uri] :scope the scope
+  # @return [Array] An array of objects.
   def self.history(rdfType, ns, params)    
     identifier = params[:identifier]
-    namespace_id = params[:scope_id]
     type_uri = UriV2.new({:id => rdfType, :namespace => ns})
     results = Array.new
     # Create the query
@@ -588,7 +588,7 @@ class IsoManaged < IsoConcept
       "  ?a rdfs:label ?i . \n" +
       "  ?a isoT:hasIdentifier ?h . \n" +
       "  ?h isoI:identifier \"" + identifier.to_s + "\" . \n" +
-      "  ?h isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
+      "  ?h isoI:hasScope #{params[:scope].uri.to_ref} . \n" +
       "  ?h isoI:version ?j . \n" +
       "  OPTIONAL { \n" +
       "    ?a isoT:hasState ?b . \n" +
@@ -713,11 +713,12 @@ class IsoManaged < IsoConcept
   #
   # @param rdf_type [string] RDF type
   # @param namespace [string] The schema namespace
-  # @param params [hash] {:identifier, :scope_id}
+  # @param params [Hash] the options
+  # @option params [String] :identifier the scoped identifier
+  # @option params [Uri] :scope the scope
   # @return [object] The object or nil if no current version.
   def self.current(rdf_type, namespace, params)    
     identifier = params[:identifier]
-    namespace_id = params[:scope_id]
     date_time = Time.now.iso8601.gsub('+',"%2B")
     results = Array.new
     # Create the query
@@ -728,7 +729,7 @@ class IsoManaged < IsoConcept
       "  ?a isoT:hasIdentifier ?b . \n" +
       "  ?a isoT:hasState ?c . \n" +
       "  ?b isoI:identifier \"" + identifier.to_s + "\" . \n" +
-      "  ?b isoI:hasScope mdrItems:" + namespace_id.to_s + " . \n" +
+      "  ?b isoI:hasScope #{params[:scope].uri.to_ref} . \n" +
       "  ?c isoR:effectiveDate ?d . \n" +
       "  ?c isoR:untilDate ?e . \n" +
       "  FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) . \n" +
@@ -788,7 +789,7 @@ class IsoManaged < IsoConcept
   # @return [URI] The URI of the managed item
   def self.find_managed(id, namespace)
     result = {}
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_I, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]) +
+    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_T, UriManagement::C_ISO_I, UriManagement::C_ISO_25964, UriManagement::C_BF, UriManagement::C_CBC, UriManagement::C_BD]) +
       "SELECT DISTINCT ?s ?o WHERE \n" +
       "{ \n" +
       "  { \n" +
@@ -1005,7 +1006,7 @@ class IsoManaged < IsoConcept
   # @return [Null]
   def destroy
     # Create the query
-    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX, "isoI", "isoR"]) +
+    update = UriManagement.buildNs(self.namespace, [C_SCHEMA_PREFIX, "isoI", "isoR", "isoT"]) +
       "DELETE \n" +
       "{\n" +
       "  ?s ?p ?o . \n" +
@@ -1083,14 +1084,14 @@ class IsoManaged < IsoConcept
     new_version = json[:new_version].to_i
     semantic_version = SemanticVersion.from_s(json[:new_semantic_version])
     # Ensure base RS and SI set.
-    self.scopedIdentifier = IsoScopedIdentifier.from_data(self.identifier, new_version, self.versionLabel, semantic_version, ra.namespace)
+    self.scopedIdentifier = IsoScopedIdentifier.from_data(self.identifier, new_version, self.versionLabel, semantic_version, ra.ra_namespace)
     self.registrationState = IsoRegistrationState.from_data(self.identifier, self.version, ra)
     # Now update the version and state based on the operation. Done after base RS and SI created.
     self.registrationState.previousState = self.registrationState.registrationStatus
     self.registrationState.registrationStatus = json[:new_state]
     self.lastChangeDate = Time.now
     # Build the uri. Extend with version, save in the object.
-    org_name = ra.namespace.shortName
+    org_name = ra.ra_namespace.short_name
     uri = UriV2.new(:namespace => instance_namespace, :prefix => prefix, :org_name => org_name, :identifier => self.identifier)  
     uri.extend_path("#{org_name}/V#{self.version}")
     self.namespace = uri.namespace
@@ -1102,7 +1103,7 @@ class IsoManaged < IsoConcept
   #
   # @return [null]
   def adjust_next_version
-  	self.scopedIdentifier.version = IsoScopedIdentifier.next_version(self.identifier, self.registrationState.registrationAuthority.namespace.id)
+  	self.scopedIdentifier.version = IsoScopedIdentifier.next_version(self.identifier, self.registrationState.registrationAuthority.ra_namespace)
   end
 
   # Return the object as SPARQL
