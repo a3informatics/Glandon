@@ -423,4 +423,16 @@ module FieldValidation
   	return false
   end
 
+  # Valid Registration State
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_registration_state?(field, value, object)
+    return true if Rails.configuration.iso_registration_state.has_key?(value.to_sym)
+    object.errors.add(field, "is invalid")
+    return false  
+  end
+
 end

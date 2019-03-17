@@ -899,4 +899,18 @@ describe FieldValidation do
     expect(FieldValidation.valid_semantic_version?(:test, "1A.1A.1A", object)).to eq(false)
   end
 
+  it "detects a valid registration state" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_registration_state?(:test, "Standard", object)).to eq(true)
+    expect(FieldValidation.valid_registration_state?(:test, "Incomplete", object)).to eq(true)
+    expect(FieldValidation.valid_registration_state?(:test, "Retired", object)).to eq(true)
+    expect(FieldValidation.valid_registration_state?(:test, :Superseded, object)).to eq(true)
+  end
+
+  it "detects a invalid registration state" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_registration_state?(:test, "Retiredxx", object)).to eq(false)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is invalid")
+  end
+
 end

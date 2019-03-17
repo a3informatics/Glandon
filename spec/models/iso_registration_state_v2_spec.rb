@@ -66,6 +66,7 @@ describe IsoRegistrationStateV2 do
     object.administrative_status = "Administrative status"
     object.previous_state   = "Standard"
     object.uri = "na"
+byebug
     expect(object.valid?).to eq(false)
   end
 
