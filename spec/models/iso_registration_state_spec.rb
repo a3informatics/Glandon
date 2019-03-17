@@ -96,27 +96,35 @@ describe IsoRegistrationState do
   end
 
   it "allows object to be initialized from triples" do
-    result = 
+    expected = 
+    {
+      :id=>"RS-ACME_TEST-1", 
+      :namespace => "http://www.assero.co.uk/MDRItems",
+      :administrative_note => "",
+      :administrative_status => "",
+      :previous_state => "Incomplete",
+      :registration_status => "Incomplete",
+      :unresolved_issue => "",
+      :effective_date => "2016-01-01T00:00:00+00:00",
+      :until_date => "2016-01-01T00:00:00+00:00",
+      :current => false,
+      :registration_authority => 
       {
-        :id=>"RS-ACME_TEST-1", 
-        :namespace => "http://www.assero.co.uk/MDRItems",
-        :administrative_note => "",
-        :administrative_status => "",
-        :previous_state => "Incomplete",
-        :registration_status => "Incomplete",
-        :unresolved_issue => "",
-        :effective_date => "2016-01-01T00:00:00+00:00",
-        :until_date => "2016-01-01T00:00:00+00:00",
-        :current => false,
-        :registration_authority => 
-          {
-            :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
-            :organization_identifier=>"123456789", 
-            :international_code_designator=>"DUNS", 
-            :owner=>true, 
-            :ra_namespace=>"http://www.assero.co.uk/NS#BBB"
-          }
+        :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+        :organization_identifier=>"123456789", 
+        :international_code_designator=>"DUNS", 
+        :owner=>true, 
+        :rdf_type=>"http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
+        :ra_namespace =>
+        {
+          :authority=>"www.bbb.com", 
+          :name=>"BBB Pharma", 
+          :rdf_type=>"http://www.assero.co.uk/ISO11179Identification#Namespace", 
+          :short_name=>"BBB", 
+          :uri=>"http://www.assero.co.uk/NS#BBB",
+        }
       }
+    }
     triples =[
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#byAuthority", object: "http://www.assero.co.uk/RA#DUNS123456789"},
@@ -128,7 +136,7 @@ describe IsoRegistrationState do
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#administrativeStatus", object:"" },
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.assero.co.uk/ISO11179Registration#previousState", object:"Incomplete" }
     ]
-    expect(IsoRegistrationState.new(triples).to_json).to eq(result)    
+    expect(IsoRegistrationState.new(triples).to_json).to eq(expected)    
   end
 
   it "allows object to be initialized from triples - error effective date" do
@@ -145,13 +153,21 @@ describe IsoRegistrationState do
         :until_date => "2016-01-01T00:00:00+00:00",
         :current => false,
         :registration_authority => 
+        {
+          :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+          :organization_identifier=>"123456789", 
+          :international_code_designator=>"DUNS", 
+          :owner=>true, 
+          :rdf_type=>"http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
+          :ra_namespace=>
           {
-            :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
-            :organization_identifier=>"123456789", 
-            :international_code_designator=>"DUNS", 
-            :owner=>true, 
-            :ra_namespace=>"http://www.assero.co.uk/NS#BBB"
+            :authority=>"www.bbb.com", 
+            :name=>"BBB Pharma", 
+            :rdf_type=>"http://www.assero.co.uk/ISO11179Identification#Namespace", 
+            :short_name=>"BBB", 
+            :uri=>"http://www.assero.co.uk/NS#BBB"
           }
+        }
       }
     triples =[
       { subject: "http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1", predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", object: "http://www.assero.co.uk/ISO11179Registration#RegistrationState"},
