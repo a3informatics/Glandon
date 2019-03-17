@@ -302,7 +302,7 @@ describe IsoManaged do
     expected = read_yaml_file(sub_dir, "iso_managed_list.yaml")
     i = items.find { |x| x.id == "F-BBB_VSW" } # We know this got edited in an above test, modify time
     e = expected.find { |x| x[:id] == "F-BBB_VSW" }
-    e[:last_changed_date] = date_check_now(i.lastChangeDate).iso8601
+    e[:last_changed_date] = date_check_now(i.lastChangeDate, 5).iso8601
     expect(results).to eq(expected)
   end
 
@@ -410,47 +410,10 @@ describe IsoManaged do
   end
 
 	it "permits the item to be exported as SPARQL" do
-    result = "PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>\n" +
-       "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
-       "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
-       "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-       "PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\n" +
-       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-       "INSERT DATA \n" + 
-       "{ \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdfs:label \"Iso Concept Test Form\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> rdf:type isoR:RegistrationState . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:registrationStatus \"Incomplete\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeNote \"\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:unresolvedIssue \"\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeStatus \"\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:previousState \"Incomplete\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:identifier \"TEST\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> rdf:type isoI:ScopedIdentifier . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:version \"1\"^^xsd:positiveInteger . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:versionLabel \"0.1\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:semantic_version \"1.2.3\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:hasScope mdrItems:NS-BBB . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:creationDate \"2016-06-15T21:06:10%2B01:00\"^^xsd:dateTime . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:lastChangeDate \"2016-06-16T13:14:24%2B01:00\"^^xsd:dateTime . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:changeDescription \"Creation\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:explanatoryComment \"\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:origin \"\"^^xsd:string . \n" +
-       "}"
-  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     sparql = SparqlUpdateV2.new
     result_uri = item.to_sparql_v2(sparql, "bf")
-    #expect(sparql.to_s).to eq(result)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
     check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end

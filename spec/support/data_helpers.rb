@@ -115,8 +115,8 @@ module DataHelpers
   rescue => e
   end
 
-  def date_check_now(item)
-    expect(item).to be_within(2.second).of Time.now
+  def date_check_now(item, within=2)
+    expect(item).to be_within(within.second).of Time.now
     return item
 	end
 
