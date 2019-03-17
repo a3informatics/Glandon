@@ -4,32 +4,30 @@
 # @since 2.21.1
 class IsoRegistrationStateV2 < Fuseki::Base
 
-  configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-            base_uri: "http://www.assero.co.uk/RS" 
-  data_property :registration_status
-  data_property :administrative_note
-  data_property :effective_date
-  data_property :until_date
-  data_property :unresolved_issue
-  data_property :administrative_status
-  data_property :previous_state
-  object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
-
-  #validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
-  #validates_with Validator::Field, attribute: :previous_state, method: :valid_registration_state?
-  validates_with Validator::Field, attribute: :administrative_note, method: :valid_label?
-  validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
-  validates_with Validator::Field, attribute: :administrative_status, method: :valid_label?
-  
   # Constants
   C_CLASS_NAME = self.name
   C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
   C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
   C_NOT_SET = "Not_Set"
 
+  configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+            base_uri: "http://www.assero.co.uk/RS" 
+  data_property :registration_status, default: C_NOT_SET
+  data_property :administrative_note
+  data_property :effective_date
+  data_property :until_date
+  data_property :unresolved_issue
+  data_property :administrative_status
+  data_property :previous_state, default: C_NOT_SET
+  object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
+
+  validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
+  validates_with Validator::Field, attribute: :previous_state, method: :valid_registration_state?
+  validates_with Validator::Field, attribute: :administrative_note, method: :valid_label?
+  validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
+  validates_with Validator::Field, attribute: :administrative_status, method: :valid_label?
+  
   def initialize(attributes = {})
-    self.registration_status = C_NOT_SET
-    self.previous_state = C_NOT_SET
     super
   end
 
@@ -177,7 +175,24 @@ class IsoRegistrationStateV2 < Fuseki::Base
     Sparql::Update.new.sparql_update(make_not_current_query, self.rdf_type.namespace, [:isoR])
   end
 
+  # Get a set of counts for each registration state
+  #
+  # @return [Hash] Hash keyed by state containing the count
+  def self.count
+    results = {}
+    query_results = Sparql::Query.new.query(count_query, self.rdf_type.namespace, [:isoR])
+    query_results.results.each {|result| results[result.column(:s).value] = result.column(:c).value}
+    return results
+  end
+  
 private
+
+  def self.count_query
+    "SELECT ?s (COUNT(?s) as ?c ) WHERE \n" +
+    "{\n" +
+    "  ?a isoR:registrationStatus ?s . \n" +
+    "} GROUP BY ?s"
+  end
 
   def make_current_query
     "DELETE \n" +

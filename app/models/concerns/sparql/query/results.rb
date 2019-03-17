@@ -26,6 +26,13 @@ module Sparql
         end
       end
 
+      # Results
+      #
+      # @return [Array] retruns the result array
+      def results
+        @results
+      end
+
       # Empty? Empty results
       #
       # @return [Boolean] returns true if empty, false otherwise

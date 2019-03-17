@@ -66,7 +66,6 @@ describe IsoRegistrationStateV2 do
     object.administrative_status = "Administrative status"
     object.previous_state   = "Standard"
     object.uri = "na"
-byebug
     expect(object.valid?).to eq(false)
   end
 
@@ -251,7 +250,7 @@ byebug
 
   it "does not find an unknown id" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1x")
-    expect{IsoRegistrationStateV2.find(uri)}.to raise_error
+    expect{IsoRegistrationStateV2.find(uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRItems#RS-TEST_1-1x in IsoRegistrationStateV2.")
   end
 
   it "allows all records to be returned" do
@@ -382,12 +381,14 @@ byebug
   end
 
   it "provides a count of registration status" do
-    result = 
-      {
-        "Standard" => "7",
-        "Incomplete" => "1"
-      }
-    expect(IsoRegistrationStateV2.count.to_json).to eq(result.to_json)
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    result = IsoRegistrationStateV2.create(identifier: "NEW", registration_status: "Incomplete", previous_state: "Incomplete", by_authority: ra)
+    expected = 
+    {
+      "Standard" => "7",
+      "Incomplete" => "1"
+    }
+    expect(IsoRegistrationStateV2.count).to eq(expected)
   end
 
   it "allows for an object to be updated" do

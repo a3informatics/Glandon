@@ -558,20 +558,12 @@ class IsoRegistrationState
       end
     end
     result = ra_valid &&
-      valid_registration_state?(:registrationStatus, self.registrationStatus.to_sym) && 
-      valid_registration_state?(:previousState, self.previousState.to_sym) && 
+      FieldValidation.valid_registration_state?(:registrationStatus, self.registrationStatus.to_sym, self) && 
+      FieldValidation.valid_registration_state?(:previousState, self.previousState.to_sym, self) && 
       FieldValidation.valid_label?(:administrativeNote, self.administrativeNote, self) &&
       FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
       FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
     return result
-  end
-
-private
-
-  def valid_registration_state?(field, value)
-    return true if Rails.configuration.iso_registration_state.has_key?(value)
-    self.errors.add(field, "is invalid")
-    return false  
   end
 
 end
