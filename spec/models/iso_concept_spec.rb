@@ -60,6 +60,8 @@ describe IsoConcept do
 	    load_test_file_into_triple_store("CT_V47.ttl")
 	    load_test_file_into_triple_store("BC.ttl")
 	    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
 	    clear_iso_concept_object
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
@@ -1024,7 +1026,9 @@ describe IsoConcept do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("CDISCTerm.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("CT_V39.ttl")
       load_test_file_into_triple_store("CT_V40.ttl")
       load_test_file_into_triple_store("CT_V41.ttl")
@@ -1245,7 +1249,9 @@ describe IsoConcept do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_data_file_into_triple_store("SDTM_Model_1-2.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-3.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-4.ttl")
@@ -1461,7 +1467,9 @@ describe IsoConcept do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("form_example_dm1.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
       load_test_file_into_triple_store("form_example_general.ttl")
@@ -1653,7 +1661,9 @@ describe IsoConcept do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("ACME_AE_V1.ttl")
       load_test_file_into_triple_store("ACME_AE_V1-1.ttl")
       clear_iso_concept_object
