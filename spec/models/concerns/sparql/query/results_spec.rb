@@ -55,4 +55,9 @@ describe Sparql::Query::Results do
     expect(results.empty?).to eq(false)
   end
 
+  it "returns results" do
+    results = Sparql::Query::Results.new("")
+    expect(results.results).to eq([])
+  end
+
 end
