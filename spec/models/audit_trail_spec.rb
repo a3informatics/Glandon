@@ -16,7 +16,8 @@ describe AuditTrail do
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
@@ -149,13 +150,13 @@ describe AuditTrail do
     expect(items.count).to eq(90)
   	items = AuditTrail.where({:identifier => item.identifier})
     expect(items.count).to eq(180)
-  	items = AuditTrail.where({:owner => item.owner})
+  	items = AuditTrail.where({:owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(180)
   	items = AuditTrail.where({:event => 2})
     expect(items.count).to eq(90)
     items = AuditTrail.where({:event => 4})
     expect(items.count).to eq(10)
-  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.identifier, :event => 2, :owner => item.owner})
+  	items = AuditTrail.where({:user => "UserName1@example.com", :identifier => item.identifier, :event => 2, :owner => item.owner.ra_namespace.short_name})
     expect(items.count).to eq(20)
     items = AuditTrail.where({:user => "UserName4@example.com"})
     expect(items.count).to eq(10)
@@ -206,8 +207,8 @@ describe AuditTrail do
       AuditTrail.user_event(user, "Any old text#{index}")
     end
     items = AuditTrail.order(:id)
-  #csv = AuditTrail.to_csv
-  #write_text_file_2(csv, sub_dir, "audit_export.csv")
+  #Xcsv = AuditTrail.to_csv
+  #Xwrite_text_file_2(csv, sub_dir, "audit_export.csv")
     keys = ["datetime", "user", "owner", "identifier", "version", "event", "details"]
     results = CSV.read(test_file_path(sub_dir, 'audit_export.csv')).map {|a| Hash[ keys.zip(a) ]}
     items.each_with_index do |item, index|
