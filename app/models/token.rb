@@ -11,7 +11,7 @@ class Token < ActiveRecord::Base
 	def self.obtain(managed_item, user)
 		token = nil
 		tokens = self.where(item_uri: managed_item.uri.to_s)
-		item_info = "[#{managed_item.owner}, #{managed_item.identifier}, #{managed_item.version}]"
+		item_info = "[#{managed_item.owner.ra_namespace.short_name}, #{managed_item.identifier}, #{managed_item.version}]"
 		if tokens.length == 0
 			token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)
 		elsif tokens.length == 1
