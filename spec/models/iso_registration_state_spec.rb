@@ -722,7 +722,6 @@ describe IsoRegistrationState do
     sparql = SparqlUpdateV2.new
     result = 
       "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
-      "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
@@ -730,7 +729,7 @@ describe IsoRegistrationState do
       "INSERT DATA \n" +
       "{ \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> rdf:type isoR:RegistrationState . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:DUNS123456789 . \n" + 
+      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . \n" + 
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus \"Retired\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote \"X1\"^^xsd:string . \n" +
       "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
@@ -741,7 +740,6 @@ describe IsoRegistrationState do
       "}"
   #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
     IsoRegistrationState.find("RS-TEST_3-4").to_sparql_v2(sparql)
-    #expect(sparql.to_s).to eq(result)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
   end
   

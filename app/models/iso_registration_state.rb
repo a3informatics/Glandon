@@ -536,7 +536,7 @@ class IsoRegistrationState
     subject_uri = UriV2.new({id: self.id, namespace: @@base_namespace})
     subject = {uri: subject_uri}
     sparql.triple(subject, {:prefix => UriManagement::C_RDF, :id => "type"}, {:prefix => UriManagement::C_ISO_R, :id => "RegistrationState"})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:prefix => C_NS_PREFIX, :id => self.registrationAuthority.uri.fragment})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "byAuthority"}, {:uri => self.registrationAuthority.uri})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "registrationStatus"}, {:literal => "#{self.registrationStatus}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "administrativeNote"}, {:literal => "#{self.administrativeNote}", :primitive_type => "string"})
     sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "effectiveDate"}, {:literal => "#{self.effective_date.iso8601}", :primitive_type => "dateTime"})

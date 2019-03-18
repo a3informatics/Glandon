@@ -21,16 +21,17 @@ module Fuseki
         object = self.new
         params.each do |name, value|
           variable = Fuseki::Persistence::Naming.new(name)
-          if value.is_a?(Hash)
-            result = properties[variable.as_instance][:model_class].constantize.from_h(value)
+          property = properties[variable.as_instance]
+          if name == :uri
+            object.instance_variable_set(:@uri, Uri.new(uri: value))
+          elsif value.is_a?(Hash)
+            next if property.nil?
+            result = property[:model_class].constantize.from_h(value)
             object.instance_variable_set(variable.as_instance, result)
           elsif value.is_a?(Array)
-            klass = properties[variable.as_instance][:model_class].constantize
-            value.each do |x|
-              object.instance_variable_set(variable.as_instance, klass.from_h(value))
-            end
-          elsif name == :uri
-            object.instance_variable_set(:@uri, Uri.new(uri: value))
+            next if property.nil?
+            klass = property[:model_class].constantize
+            value.each {|x| object.instance_variable_set(variable.as_instance, klass.from_h(value))}
           else
             object.instance_variable_set(variable.as_instance, value)
           end

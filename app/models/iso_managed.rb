@@ -1118,8 +1118,8 @@ class IsoManaged < IsoConcept
     si_uri = self.scopedIdentifier.to_sparql_v2(sparql)
     # And the object.
     subject = {:namespace => self.namespace, :id => self.id}
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_I, :id => "hasIdentifier"}, {:uri => si_uri})
-    sparql.triple(subject, {:prefix => UriManagement::C_ISO_R, :id => "hasState"}, {:uri => rs_uri})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "hasIdentifier"}, {:uri => si_uri})
+    sparql.triple(subject, {:prefix => UriManagement::C_ISO_T, :id => "hasState"}, {:uri => rs_uri})
     if !branched_from_ref.nil?
       ref_uri = branched_from_ref.to_sparql_v2(self.uri, "branchedFrom", "BFR", 1, sparql)
       sparql.triple(subject, {:prefix => UriManagement::C_BO, :id => "branchedFrom"}, {:uri => ref_uri})

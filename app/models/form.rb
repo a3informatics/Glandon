@@ -409,7 +409,7 @@ private
 
     # New faster query
     query = %Q(
-    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoI", "iso25964"])} 
+    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoT", "isoI", "iso25964"])} 
     	SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE 
     	{ 
 	      :#{self.id} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group .     
@@ -422,7 +422,7 @@ private
         ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty .
         ?bcRoot rdf:type cbc:BiomedicalConceptInstance .
         ?bcProperty cbc:ordinal ?pord .     
-        ?bcRoot isoI:hasIdentifier ?si .     
+        ?bcRoot isoT:hasIdentifier ?si .     
         ?si isoI:identifier ?bcIdent .     
         ?var bd:name ?sdtmVarName .              
         ?dataset bd:includesColumn ?var .              

@@ -41,9 +41,11 @@ class Uri
     @authority = "" 
     @path = ""
     @fragment = ""
+    return if args.blank?
     if args.has_key?(:id)
       from_uri(Base64.strict_decode64(args[:id]))
     elsif args.has_key?(:uri)
+      return if args[:uri].blank?
       prefixed?(args[:uri]) ? from_prefixed(args[:uri]) : from_uri(args[:uri])
     elsif args.has_key?(:fragment) && args.has_key?(:namespace)
       @fragment = args[:fragment].gsub(/[^0-9A-Za-z_\-]/, '_')

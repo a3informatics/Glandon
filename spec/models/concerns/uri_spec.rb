@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Uri do
 	
-  it "can create a blank uri" do
+  it "can create a blank args" do
     uri = Uri.new({})
     expect(uri.to_s).to eq("")
     expect(uri.to_ref).to eq("")
@@ -22,6 +22,11 @@ describe Uri do
   it "can create a uri from a uri" do
     uri = Uri.new({uri: "http://www.example.com/path1/path2#fragment"})
     expect(uri.to_s).to eq("http://www.example.com/path1/path2#fragment")
+  end
+  
+  it "can handle a blank uri" do
+    uri = Uri.new({uri: {}})
+    expect(uri.to_s).to eq("")
   end
   
   it "can create a uri from a uri, no fragment, clear end separator" do
@@ -56,7 +61,7 @@ describe Uri do
 
   it "allows the uri to be retrieved as a hash" do
     uri = Uri.new({namespace: "http://www.example.com/path1/path2", identifier: "YYYYYY", version: 2})
-    expect(uri.to_hash).to eq({ uri: "http://www.example.com/path1/path2/YYYYYY/V2"})
+    expect(uri.to_h).to eq("http://www.example.com/path1/path2/YYYYYY/V2")
   end
 
   it "allows the uri to be retrieved in a prefixed form" do
