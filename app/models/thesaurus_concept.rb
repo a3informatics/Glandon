@@ -228,7 +228,7 @@ class ThesaurusConcept < IsoConcept
   def to_sparql_v2(parent_uri, sparql)
     cid_extension = self.identifier.split('.').last
     #self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension.gsub(/[^0-9A-Za-z\.]/, '')}"
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{cid_extension}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{cid_extension}"
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}

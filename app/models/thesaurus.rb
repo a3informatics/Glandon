@@ -46,7 +46,7 @@ class Thesaurus <  IsoManaged
   # @return [object] The form object.
   def self.find(id, ns, children=true)   
     object = nil
-    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_I, UriManagement::C_ISO_R, UriManagement::C_ISO_25964]) +
+    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_T, UriManagement::C_ISO_25964]) +
       "SELECT ?s ?p ?o WHERE \n" +
       "{ \n" +
       "  { \n" +
@@ -58,10 +58,10 @@ class Thesaurus <  IsoManaged
       "    ?s ?p ?o .\n" + 
       "    FILTER(!CONTAINS(STR(?p), \"hasChild\"))  \n" +
       "  } UNION {\n" +
-      "    :" + id + " isoI:hasIdentifier ?s . \n" +
+      "    :" + id + " isoT:hasIdentifier ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  } UNION {\n" +
-      "    :" + id + " isoR:hasState ?s . \n" +
+      "    :" + id + " isoT:hasState ?s . \n" +
       "    ?s ?p ?o . \n" +
       "  }\n" +
       "} ORDER BY (?s)"
@@ -315,7 +315,7 @@ class Thesaurus <  IsoManaged
   # @return [Array] of thesaurus concepts that have an impact
   def impact()
   	results = []
-  	query = UriManagement.buildNs(UriManagement.getNs(UriManagement::C_BO), [UriManagement::C_ISO_25964, UriManagement::C_ISO_I])
+  	query = UriManagement.buildNs(UriManagement.getNs(UriManagement::C_BO), [UriManagement::C_ISO_25964, UriManagement::C_ISO_I, UriManagement::C_ISO_T])
   	query += %Q{
   		SELECT DISTINCT ?ctc WHERE    
 			{     
@@ -330,10 +330,10 @@ class Thesaurus <  IsoManaged
           ?ntc_p iso25964:hasChild ?ntc .
 				  ?ntc_p iso25964:identifier ?i_p .
 				  ?ctc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ctc .
-				  ?ctc_t isoI:hasIdentifier ?csi .
+				  ?ctc_t isoT:hasIdentifier ?csi .
 				  ?csi isoI:version ?cv .
 				  ?ntc_t (iso25964:hasConcept|iso25964:hasChild)%2B ?ntc .
-				  ?ntc_t isoI:hasIdentifier ?nsi .
+				  ?ntc_t isoT:hasIdentifier ?nsi .
 				  ?nsi isoI:version ?nv .
 				  FILTER(?nv > ?cv)
 	  			?ntc iso25964:notation ?ntc_n .
