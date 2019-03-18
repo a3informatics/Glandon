@@ -125,7 +125,7 @@ class CdiscTerm < Thesaurus
     results = Array.new
     tSet = super
     tSet.each do |thesaurus|
-      if thesaurus.scopedIdentifier.namespace.shortName == cdisc_namespace.shortName
+      if thesaurus.scopedIdentifier.namespace.short_name == cdisc_namespace.short_name
         results << thesaurus
       end
     end
@@ -137,7 +137,7 @@ class CdiscTerm < Thesaurus
   #
   # @return [array] An array of objects.
   def self.history
-    return super({ :identifier => C_IDENTIFIER, :scope_id => cdisc_namespace.id })
+    return super({ :identifier => C_IDENTIFIER, :scope => cdisc_namespace })
   end
 
   # Find all except the specified version.
@@ -164,7 +164,7 @@ class CdiscTerm < Thesaurus
   #
   # @return [object] The object or nil if no current version.
   def self.current
-    return super({ :identifier => C_IDENTIFIER, :scope_id => cdisc_namespace.id })
+    return super({ :identifier => C_IDENTIFIER, :scope => cdisc_namespace })
   end
   
   # Create a new version. This is an import and runs in the background.
@@ -489,7 +489,7 @@ private
 
   # CDISC namespace
   def self.cdisc_namespace
-    return owner.namespace
+    return owner.ra_namespace
   end
 
   def self.processNode(node, results)

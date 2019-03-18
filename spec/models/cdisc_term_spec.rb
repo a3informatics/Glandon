@@ -29,6 +29,7 @@ describe CdiscTerm do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("CDISCTerm.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V35.ttl")
       load_test_file_into_triple_store("CT_V34.ttl")
@@ -79,16 +80,19 @@ describe CdiscTerm do
       valid = th.valid?
       expect(valid).to eq(false)
       expect(th.errors.count).to eq(3)
-      expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
-      expect(th.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
+      expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
+      expect(th.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
       expect(th.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     end 
 
     it "allows validity of the object to be checked" do
       th =CdiscTerm.new
-      th.registrationState.registrationAuthority.namespace.shortName = "AAA"
-      th.registrationState.registrationAuthority.namespace.name = "USER AAA"
-      th.registrationState.registrationAuthority.number = "123456789"
+      ra = IsoRegistrationAuthority.new
+      ra.uri = "na" # Bit naughty
+      ra.organization_identifier = "123456789"
+      ra.international_code_designator = "DUNS"
+      ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
+      th.registrationState.registrationAuthority = ra
       th.scopedIdentifier.identifier = "hello"
       valid = th.valid?
       expect(th.errors.count).to eq(0)
@@ -97,9 +101,12 @@ describe CdiscTerm do
 
     it "allows validity of the object to be checked, version" do
       th =CdiscTerm.new
-      th.registrationState.registrationAuthority.namespace.shortName = "AAA"
-      th.registrationState.registrationAuthority.namespace.name = "USER AAA"
-      th.registrationState.registrationAuthority.number = "123456789"
+      ra = IsoRegistrationAuthority.new
+      ra.uri = "na" # Bit naughty
+      ra.organization_identifier = "123456789"
+      ra.international_code_designator = "DUNS"
+      ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
+      th.registrationState.registrationAuthority = ra
       th.scopedIdentifier.identifier = "hello"
       th.scopedIdentifier.version = "hello"
       valid = th.valid?
@@ -122,7 +129,7 @@ describe CdiscTerm do
 
     it "Find only the root object" do
       th =CdiscTerm.find_only("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    #write_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
+    #Xwrite_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_only_expected_1.yaml")
       expect(th.to_json).to eq(result_th)
     end
@@ -130,7 +137,7 @@ describe CdiscTerm do
     it "Find the CL with a submission value" do
       th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
       cl = th.find_submission("SKINTYP")
-    #write_yaml_file(cl.to_json, sub_dir, "find_submission_expected_1.yaml")
+    #Xwrite_yaml_file(cl.to_json, sub_dir, "find_submission_expected_1.yaml")
       result_cl = read_yaml_file(sub_dir, "find_submission_expected_1.yaml")
       expect(cl.to_json).to eq(result_cl)
     end
@@ -144,7 +151,7 @@ describe CdiscTerm do
     it "finds all items" do
       results = CdiscTerm.all
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_expected_1.yaml")
       expect(results_json).to eq(results_ct)
     end
@@ -167,7 +174,7 @@ describe CdiscTerm do
     it "finds all except" do
       results = CdiscTerm.all_except(34)
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_except_expected_1.yaml")
       expect(results_json).to eq(results_ct)
     end
@@ -175,7 +182,7 @@ describe CdiscTerm do
     it "find all previous" do
       results = CdiscTerm.all_previous(36)
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_previous_expected_1.yaml")
       expect(results_json).to eq(results_ct)
     end
@@ -252,7 +259,7 @@ describe CdiscTerm do
       old_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
       new_ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
       results = CdiscTerm.submission_difference(old_ct, new_ct)
-    #write_yaml_file(results, sub_dir, "submission_difference_expected_2.yaml")
+    #Xwrite_yaml_file(results, sub_dir, "submission_difference_expected_2.yaml")
       expected = read_yaml_file(sub_dir, "submission_difference_expected_2.yaml")
       results.each do |key, result|
         found = expected[key]
@@ -264,7 +271,7 @@ describe CdiscTerm do
       term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
       term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
       results = CdiscTerm.difference(term1, term2)
-    #write_yaml_file(results, sub_dir, "difference_expected_1.yaml")
+    #Xwrite_yaml_file(results, sub_dir, "difference_expected_1.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
       check_term_differences(results, expected)
     end
@@ -273,7 +280,7 @@ describe CdiscTerm do
       term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
       term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
       results = CdiscTerm.difference(term1, term2)
-    #write_yaml_file(results, sub_dir, "difference_expected_2.yaml")
+    #Xwrite_yaml_file(results, sub_dir, "difference_expected_2.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
       check_term_differences(results, expected)
     end
@@ -283,7 +290,7 @@ describe CdiscTerm do
       term1 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48")
       term2 = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
       results = CdiscTerm.difference(term1, term2)
-    #write_yaml_file(results, sub_dir, "difference_expected_3.yaml")
+    #Xwrite_yaml_file(results, sub_dir, "difference_expected_3.yaml")
       expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
       check_term_differences(results, expected)
     end
@@ -377,7 +384,9 @@ describe CdiscTerm do
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("CT_V48.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object

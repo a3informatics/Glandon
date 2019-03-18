@@ -27,7 +27,9 @@ describe CdiscTerm do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("CT_V#{old_version}.ttl")
     load_test_file_into_triple_store("CT_V#{new_version}.ttl")
   end
