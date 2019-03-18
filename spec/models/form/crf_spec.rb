@@ -40,6 +40,8 @@ describe Form::Crf do
     load_test_file_into_triple_store("ACME_VS Domain.ttl")
     load_test_file_into_triple_store("ACME_LB Domain.ttl")
     load_test_file_into_triple_store("ACME_Topic.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object

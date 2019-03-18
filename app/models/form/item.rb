@@ -85,7 +85,7 @@ class Form::Item < IsoConcept
   # @return [object] The URI
   def to_sparql_v2(parent_uri, sparql)
     self.namespace = parent_uri.namespace
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_CID_SUFFIX}#{self.ordinal}"
     uri = super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => uri}
     sparql.triple(subject, {:prefix => C_SCHEMA_PREFIX, :id => "ordinal"}, {:literal => "#{self.ordinal}", :primitive_type => "positiveInteger"})
