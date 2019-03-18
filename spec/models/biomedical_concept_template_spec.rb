@@ -12,6 +12,7 @@ describe BiomedicalConceptTemplate do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("BCT.ttl")
     clear_iso_concept_object
@@ -24,17 +25,20 @@ describe BiomedicalConceptTemplate do
     result = BiomedicalConceptTemplate.new
     result.valid?
     expect(result.errors.count).to eq(3)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
-    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
     expect(result.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     expect(result.valid?).to eq(false)
   end
 
   it "allows validity of the object to be checked" do
     result = BiomedicalConceptTemplate.new
-    result.registrationState.registrationAuthority.namespace.shortName = "AAA"
-    result.registrationState.registrationAuthority.namespace.name = "USER AAA"
-    result.registrationState.registrationAuthority.number = "123456789"
+    ra = IsoRegistrationAuthority.new
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
+    result.registrationState.registrationAuthority = ra
     result.scopedIdentifier.identifier = "HELLO WORLD"
     valid = result.valid?
     expect(result.errors.count).to eq(0)
@@ -63,7 +67,7 @@ describe BiomedicalConceptTemplate do
   it "finds the history of an item" do
     results = []
     results[0] = {:id => "BCT-Obs_PQR", :scoped_identifier_version => 1}
-    params = {:identifier => "Obs PQR", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
+    params = {:identifier => "Obs PQR", :scope => IsoRegistrationAuthority.owner}
     items = BiomedicalConceptTemplate.history(params)
     items.each_with_index do |item, index|
       expect(items[index].id).to eq(results[index][:id])
