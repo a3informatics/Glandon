@@ -17,6 +17,7 @@ describe SdtmIgDomain do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
     clear_iso_concept_object
@@ -27,7 +28,7 @@ describe SdtmIgDomain do
 
   it "creates a new domain" do
   	item = SdtmIgDomain.new
-  #write_yaml_file(item.to_json, sub_dir, "new_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "new_expected.yaml")
     expected = read_yaml_file(sub_dir, "new_expected.yaml")
     expected[:creation_date] = item.creationDate.iso8601 # Timestamps wont match
     expected[:last_changed_date] = item.lastChangeDate.iso8601
@@ -36,7 +37,7 @@ describe SdtmIgDomain do
 
   it "allows a domain to be found" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
@@ -48,7 +49,7 @@ describe SdtmIgDomain do
 
   it "allows all domains to be found" do
     results = SdtmIgDomain.all
-  #write_yaml_file(results, sub_dir, "all_expected.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "all_expected.yaml")
     expected = read_yaml_file(sub_dir, "all_expected.yaml")
     expect(results.count).to eq(41)
     results.each do |result|
@@ -72,15 +73,17 @@ describe SdtmIgDomain do
   
   it "allows the domain to be exported as JSON" do
     item = SdtmIgDomain.find("IG-CDISC_SDTMIGPR", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
   end
 
   	it "allows the domain class to be created from JSON" do 
-		expected = read_yaml_file(sub_dir, "from_json_input.yaml")
-    item = SdtmIgDomain.from_json(expected)
+		input = read_yaml_file(sub_dir, "from_json_input.yaml")
+    item = SdtmIgDomain.from_json(input)
+  #Xwrite_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(item.to_json).to eq(expected)
 	end
@@ -90,7 +93,7 @@ describe SdtmIgDomain do
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIgDomain.from_json(json)
     result = item.to_sparql_v2(sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
     #expected = read_text_file_2(sub_dir, "to_sparql_expected.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
@@ -105,6 +108,7 @@ describe SdtmIgDomain do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("sdtm_model.ttl")
     model = SdtmModel.find("M-CDISC_SDTMMODEL", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
@@ -113,11 +117,11 @@ describe SdtmIgDomain do
     ig = SdtmIg.build(results, sparql)
   	domains = results.select { |hash| hash[:type]=="IG_DOMAIN" }
 		result = SdtmIgDomain.build(domains[0][:instance], model, ig, sparql)
-  #(sparql.to_s, sub_dir, "build_sparql_expected.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "build_sparql_expected.txt")
     #expected = read_text_file_2(sub_dir, "build_sparql_expected.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "build_sparql_expected.txt")
-	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
+	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
 		expect(result.to_json).to eq(expected)

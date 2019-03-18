@@ -1,6 +1,5 @@
 PREFIX : <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#>
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
-PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
 PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
@@ -12,8 +11,17 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> rdf:type <http://www.assero.co.uk/BusinessDomain#Model> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> rdfs:label "SDTM Implementation Guide 2017-01-01"^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:creationDate "2017-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:lastChangeDate "2017-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:changeDescription ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> bd:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> bd:rule ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> rdf:type isoR:RegistrationState . 
-<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> isoR:byAuthority mdrItems:RA-084433759 . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> isoR:registrationStatus "Standard"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> isoR:administrativeNote ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
@@ -25,17 +33,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> rdf:type isoI:ScopedIdentifier . 
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:version "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:versionLabel "Version Label"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:semantic_version "0.1.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:hasScope mdrItems:NS-CDISC . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:creationDate "2017-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:lastChangeDate "2017-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:changeDescription ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:explanatoryComment ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> isoT:origin ""^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> bd:ordinal "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG> bd:rule ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:semanticVersion "0.1.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> isoI:hasScope <http://www.assero.co.uk/NS#CDISC> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_REQUIRED> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_REQUIRED> rdfs:label "Required"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_PERMISSIBLE> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> . 

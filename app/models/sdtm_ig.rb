@@ -66,8 +66,8 @@ class SdtmIg < Tabular
   #
   # @return [Array] An array of SdtmIg objects.
   def self.history
-    @@cdiscNamespace ||= IsoNamespace.findByShortName("CDISC")
-    return super({:identifier => C_IDENTIFIER, :scope_id => @@cdiscNamespace.id})
+    @@cdiscNamespace ||= IsoNamespace.find_by_short_name("CDISC")
+    return super({:identifier => C_IDENTIFIER, :scope => @@cdiscNamespace})
   end
 
 # Create a new version. This is an import and runs in the background.

@@ -17,6 +17,7 @@ describe SdtmModelDomain do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
     clear_iso_concept_object
@@ -27,7 +28,7 @@ describe SdtmModelDomain do
 
   it "creates a new domain" do
   	item = SdtmIgDomain.new
-  #write_yaml_file(item.to_json, sub_dir, "new_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "new_expected.yaml")
     expected = read_yaml_file(sub_dir, "new_expected.yaml")
     expected[:creation_date] = item.creationDate.iso8601 # Timestamps wont match
     expected[:last_changed_date] = item.lastChangeDate.iso8601
@@ -36,7 +37,7 @@ describe SdtmModelDomain do
 
 	it "allows a domain to be found" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODELINTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -63,7 +64,7 @@ describe SdtmModelDomain do
   
   it "allows the domain class to be exported as JSON" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODELINTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -79,7 +80,7 @@ describe SdtmModelDomain do
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmModelDomain.from_json(json)
     result = item.to_sparql_v2(sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
     #expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
@@ -94,18 +95,20 @@ describe SdtmModelDomain do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     sparql = SparqlUpdateV2.new
 		results = read_yaml_file(sub_dir, "build_input.yaml")
 		models = results.select { |hash| hash[:type]=="MODEL" }
     model = SdtmModel.build(models[0][:instance], sparql)
   	domains = results.select { |hash| hash[:type]=="MODEL_DOMAIN" }
 		result = SdtmModelDomain.build(domains[0][:instance], model, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
     #expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
-	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
+	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
 		expect(result.to_json).to eq(expected)
 		expect(result.errors.count).to eq(0)

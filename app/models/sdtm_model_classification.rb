@@ -176,7 +176,7 @@ class SdtmModelClassification < EnumeratedLabel
   # @return [UriV2] The URI
  	def to_sparql_v2(parent_uri, sparql)
  		suffix = self.parent ? C_CID_SUFFIX_PARENT : C_CID_PARENT_CHILD 
- 		self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{Uri::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
+ 		self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{suffix}#{UriV2::C_UID_SECTION_SEPARATOR}#{self.label.upcase.gsub(/\s+/, "")}"
     self.namespace = parent_uri.namespace
     uri = super(sparql, C_SCHEMA_PREFIX)
   	subject = {uri: uri}

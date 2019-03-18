@@ -13,15 +13,17 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-CDISC_SDTMIGPR-3
   :registration_authority:
-    :id: RA-084433759
-    :number: 084433759
-    :scheme: DUNS
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
     :owner: false
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-CDISC
+    :ra_namespace:
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
       :name: Clinical Data Interchange Standards Consortium
-      :shortName: CDISC
+      :authority: www.cdisc.org
   :registration_status: Standard
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
@@ -37,10 +39,11 @@
   :version: 1
   :semantic_version: 3.2.0
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-CDISC
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
     :name: Clinical Data Interchange Standards Consortium
-    :shortName: CDISC
+    :authority: www.cdisc.org
 :ordinal: 1
 :rule: ''
 :prefix: PR
@@ -60,24 +63,24 @@
     :id: M-CDISC_SDTMMODELINTERVENTIONS
 :children:
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDIR
+  :id: IG-CDISC_SDTMIGPR_STUDYID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Directionality
+  :label: Study Identifier
   :extension_properties: []
-  :ordinal: 25
+  :ordinal: 1
   :rule: ''
-  :name: PRDIR
-  :notes: Qualifier for anatomical location or specimen further detailing directionality.
-  :controlled_term_or_format: "(DIR)"
+  :name: STUDYID
+  :notes: Unique identifier for a study.
+  :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
     :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
+    :label: Required
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDIR_VR1
+    :id: IG-CDISC_SDTMIGPR_STUDYID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -87,17 +90,105 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDIR
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_STUDYID
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSTDY
+  :id: IG-CDISC_SDTMIGPR_DOMAIN
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Study Day of Start of Procedure
+  :label: Domain Abbreviation
   :extension_properties: []
-  :ordinal: 32
+  :ordinal: 2
   :rule: ''
-  :name: PRSTDY
-  :notes: Study day of start of procedure expressed in integer days relative to the
-    sponsor-defined RFSTDTC in Demographics.
+  :name: DOMAIN
+  :notes: Two-character abbreviation for the domain.
+  :controlled_term_or_format: "(DOMAIN)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_DOMAIN_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_DOMAIN
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_USUBJID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Unique Subject Identifier
+  :extension_properties: []
+  :ordinal: 3
+  :rule: ''
+  :name: USUBJID
+  :notes: Identifier used to uniquely identify a subject across all studies for all
+    applications or submissions involving the product.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_USUBJID_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_USUBJID
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRSEQ
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Sequence Number
+  :extension_properties: []
+  :ordinal: 4
+  :rule: ''
+  :name: PRSEQ
+  :notes: Sequence number to ensure uniqueness of records within a dataset for a subject.
+    Should be assigned to be in a consistent chronological order.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Required
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRSEQ_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSEQ
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRGRPID
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Group ID
+  :extension_properties: []
+  :ordinal: 5
+  :rule: ''
+  :name: PRGRPID
+  :notes: Used to link together a block of related records within a subject in a domain.
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
@@ -107,7 +198,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTDY_VR1
+    :id: IG-CDISC_SDTMIGPR_PRGRPID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -117,7 +208,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxGRPID
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRSPID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -149,43 +240,14 @@
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSPID
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSTDTC
+  :id: IG-CDISC_SDTMIGPR_PRLNKID
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Start Date/Time of Procedure
+  :label: Link ID
   :extension_properties: []
-  :ordinal: 30
+  :ordinal: 7
   :rule: ''
-  :name: PRSTDTC
-  :notes: Start date/time of the procedure represented in ISO 8601 character format.
-  :controlled_term_or_format: ISO 8601
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_EXPECTED
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Expected
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTDTC_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDTC
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRINDC
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Indication
-  :extension_properties: []
-  :ordinal: 15
-  :rule: ''
-  :name: PRINDC
-  :notes: Denotes the indication for the procedure (e.g., why the procedure was performed).
+  :name: PRLNKID
+  :notes: Used to facilitate identification of relationships between records.
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
@@ -195,7 +257,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRINDC_VR1
+    :id: IG-CDISC_SDTMIGPR_PRLNKID_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -205,214 +267,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxINDC
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDOSTXT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Dose Description
-  :extension_properties: []
-  :ordinal: 17
-  :rule: ''
-  :name: PRDOSTXT
-  :notes: 'Dosing information collected in text form. Examples: <1, 200-400. Not populated
-    when PRDOSE is populated.'
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSTXT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTXT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRLOC
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Location of Procedure
-  :extension_properties: []
-  :ordinal: 23
-  :rule: ''
-  :name: PRLOC
-  :notes: Anatomical location of a procedure.
-  :controlled_term_or_format: "(LOC)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLOC_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOC
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSTTPT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Start Reference Time Point
-  :extension_properties: []
-  :ordinal: 41
-  :rule: ''
-  :name: PRSTTPT
-  :notes: 'Description or date/time in ISO 8601 character format of the sponsor-defined
-    reference point referred to by PRSTRTPT. Examples: “2003-12-15” or “VISIT 1”.'
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTTPT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTTPT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSTRTPT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Start Relative to Reference Time Point
-  :extension_properties: []
-  :ordinal: 40
-  :rule: ''
-  :name: PRSTRTPT
-  :notes: Identifies the start of the observation as being before or after the sponsor-defined
-    reference time point defined by variable PRSTTPT.
-  :controlled_term_or_format: "(STRTPT)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSTRTPT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRTPT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_VISITNUM
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Visit Number
-  :extension_properties: []
-  :ordinal: 27
-  :rule: ''
-  :name: VISITNUM
-  :notes: Clinical encounter number. Numeric version of VISIT, used for sorting.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISITNUM_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITNUM
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRTPTREF
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Time Point Reference
-  :extension_properties: []
-  :ordinal: 38
-  :rule: ''
-  :name: PRTPTREF
-  :notes: Description of the fixed reference point referred to by PRELTM, PRTPTNUM,
-    and PRTPT.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPTREF_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTREF
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRCAT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Category
-  :extension_properties: []
-  :ordinal: 11
-  :rule: ''
-  :name: PRCAT
-  :notes: Used to define a category of procedure values.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRCAT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCAT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKID
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRLNKGRP
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -443,332 +298,6 @@
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKGRP
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDOSFRQ
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Dosing Frequency per Interval
-  :extension_properties: []
-  :ordinal: 20
-  :rule: ''
-  :name: PRDOSFRQ
-  :notes: Usually expressed as the number of doses given per a specific interval.
-  :controlled_term_or_format: "(FRQ)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSFRQ_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRQ
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRPORTOT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Portion or Totality
-  :extension_properties: []
-  :ordinal: 26
-  :rule: ''
-  :name: PRPORTOT
-  :notes: Qualifier for anatomical location or specimen further detailing the distribution,
-    which means arrangement of, apportioning of.
-  :controlled_term_or_format: "(PORTOT)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRPORTOT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPORTOT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRGRPID
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Group ID
-  :extension_properties: []
-  :ordinal: 5
-  :rule: ''
-  :name: PRGRPID
-  :notes: Used to link together a block of related records within a subject in a domain.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRGRPID_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxGRPID
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_STUDYID
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Study Identifier
-  :extension_properties: []
-  :ordinal: 1
-  :rule: ''
-  :name: STUDYID
-  :notes: Unique identifier for a study.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Required
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_STUDYID_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_STUDYID
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDOSU
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Dose Units
-  :extension_properties: []
-  :ordinal: 18
-  :rule: ''
-  :name: PRDOSU
-  :notes: Units for PRDOSE, PRDOSTOT, or PRDOSTXT.
-  :controlled_term_or_format: "(UNIT)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSU_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSU
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSCAT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Subcategory
-  :extension_properties: []
-  :ordinal: 12
-  :rule: ''
-  :name: PRSCAT
-  :notes: Used to define a further categorization of PRCAT values.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSCAT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSCAT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRELTM
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Planned Elapsed Time from Time Point Ref
-  :extension_properties: []
-  :ordinal: 37
-  :rule: ''
-  :name: PRELTM
-  :notes: Planned elapsed time in ISO 8601 format relative to a planned fixed reference
-    (PRTPTREF). This variable is useful where there are repetitive measures. Not a
-    clock time or a date/time variable, but an interval, represented as ISO duration.
-  :controlled_term_or_format: ISO 8601
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRELTM_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxELTM
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PROCCUR
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Occurrence
-  :extension_properties: []
-  :ordinal: 14
-  :rule: ''
-  :name: PROCCUR
-  :notes: Used to record whether a pre-specified procedure occurred when information
-    about the occurrence of a specific procedure is solicited.
-  :controlled_term_or_format: "(NY)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PROCCUR_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxOCCUR
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRTPT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Planned Time Point Name
-  :extension_properties: []
-  :ordinal: 35
-  :rule: ''
-  :name: PRTPT
-  :notes: Text description of time when a procedure should be performed. This may
-    be represented as an elapsed time relative to a fixed reference point, such as
-    time of last dose. See PRTPTNUM and PRTPTREF.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_VISIT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Visit Name
-  :extension_properties: []
-  :ordinal: 28
-  :rule: ''
-  :name: VISIT
-  :notes: Protocol-defined description of a clinical encounter.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISIT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISIT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDUR
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Duration of Procedure
-  :extension_properties: []
-  :ordinal: 34
-  :rule: ''
-  :name: PRDUR
-  :notes: Collected duration of a procedure represented in ISO 8601 character format.
-    Used only if collected on the CRF and not derived from start and end date/times.
-  :controlled_term_or_format: ISO 8601
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDUR_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDUR
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRTRT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
   :label: Reported Name of Procedure
@@ -797,36 +326,6 @@
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTRT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRRFTDTC
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Date/Time of Reference Time Point
-  :extension_properties: []
-  :ordinal: 39
-  :rule: ''
-  :name: PRRFTDTC
-  :notes: Date/time for a fixed reference time point defined by PRTRTREF in ISO 8601
-    character format.
-  :controlled_term_or_format: ISO 8601
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRRFTDTC_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxRFTDTC
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDECOD
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -860,15 +359,14 @@
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDECOD
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRENDY
+  :id: IG-CDISC_SDTMIGPR_PRCAT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Study Day of End of Procedure
+  :label: Category
   :extension_properties: []
-  :ordinal: 33
+  :ordinal: 11
   :rule: ''
-  :name: PRENDY
-  :notes: Study day of end of procedure expressed in integer days relative to the
-    sponsor-defined RFSTDTC in Demographics.
+  :name: PRCAT
+  :notes: Used to define a category of procedure values.
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
@@ -878,7 +376,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENDY_VR1
+    :id: IG-CDISC_SDTMIGPR_PRCAT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -888,45 +386,16 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxCAT
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRROUTE
+  :id: IG-CDISC_SDTMIGPR_PRSCAT
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Route of Administration
+  :label: Subcategory
   :extension_properties: []
-  :ordinal: 22
+  :ordinal: 12
   :rule: ''
-  :name: PRROUTE
-  :notes: Route of administration for PRTRT.
-  :controlled_term_or_format: "(ROUTE)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRROUTE_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxROUTE
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDOSE
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Dose
-  :extension_properties: []
-  :ordinal: 16
-  :rule: ''
-  :name: PRDOSE
-  :notes: Amount of PRTRT administered. Not populated when PRDOSTXT is populated.
+  :name: PRSCAT
+  :notes: Used to define a further categorization of PRCAT values.
   :controlled_term_or_format: ''
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
@@ -936,7 +405,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSE_VR1
+    :id: IG-CDISC_SDTMIGPR_PRSCAT_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -946,272 +415,7 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSE
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRTPTNUM
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Planned Time Point Number
-  :extension_properties: []
-  :ordinal: 36
-  :rule: ''
-  :name: PRTPTNUM
-  :notes: Numerical version of planned time point used in sorting.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRTPTNUM_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTNUM
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRSEQ
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Sequence Number
-  :extension_properties: []
-  :ordinal: 4
-  :rule: ''
-  :name: PRSEQ
-  :notes: Sequence number to ensure uniqueness of records within a dataset for a subject.
-    Should be assigned to be in a consistent chronological order.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Required
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRSEQ_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSEQ
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_USUBJID
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Unique Subject Identifier
-  :extension_properties: []
-  :ordinal: 3
-  :rule: ''
-  :name: USUBJID
-  :notes: Identifier used to uniquely identify a subject across all studies for all
-    applications or submissions involving the product.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_REQUIRED
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Required
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_USUBJID_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_USUBJID
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRENTPT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: End Reference Time Point
-  :extension_properties: []
-  :ordinal: 43
-  :rule: ''
-  :name: PRENTPT
-  :notes: 'Description or date/time in ISO 8601 character format of the sponsor-defined
-    reference point referred to by PRENRTPT. Examples: “2003-12-25” or “VISIT 2”.'
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENTPT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENTPT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRDOSRGM
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Intended Dose Regimen
-  :extension_properties: []
-  :ordinal: 21
-  :rule: ''
-  :name: PRDOSRGM
-  :notes: Text description of the intended schedule or regimen for the procedure.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRDOSRGM_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSRGM
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRENDTC
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: End Date/Time of Procedure
-  :extension_properties: []
-  :ordinal: 31
-  :rule: ''
-  :name: PRENDTC
-  :notes: End date/time of the procedure represented in ISO 8601 character format.
-  :controlled_term_or_format: ISO 8601
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENDTC_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDTC
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRLNKID
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Link ID
-  :extension_properties: []
-  :ordinal: 7
-  :rule: ''
-  :name: PRLNKID
-  :notes: Used to facilitate identification of relationships between records.
-  :controlled_term_or_format: ''
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLNKID_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLNKID
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRENRTPT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: End Relative to Reference Time Point
-  :extension_properties: []
-  :ordinal: 42
-  :rule: ''
-  :name: PRENRTPT
-  :notes: Identifies the end of the observation as being before or after the sponsor-defined
-    reference time point defined by variable PRENTPT.
-  :controlled_term_or_format: "(ENRTPT)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRENRTPT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRTPT
-- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_PRLAT
-  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Laterality
-  :extension_properties: []
-  :ordinal: 24
-  :rule: ''
-  :name: PRLAT
-  :notes: Qualifier for anatomical location or specimen further detailing laterality.
-  :controlled_term_or_format: "(LAT)"
-  :compliance:
-    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
-    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Permissible
-    :extension_properties: []
-  :variable_ref:
-    :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_PRLAT_VR1
-    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-    :label: Based on Variable Reference
-    :extension_properties: []
-    :enabled: true
-    :optional: false
-    :ordinal: 1
-    :local_label: ''
-    :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLAT
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSCAT
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRPRESP
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1243,15 +447,16 @@
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPRESP
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_VISITDY
+  :id: IG-CDISC_SDTMIGPR_PROCCUR
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Planned Study Day of Visit
+  :label: Occurrence
   :extension_properties: []
-  :ordinal: 29
+  :ordinal: 14
   :rule: ''
-  :name: VISITDY
-  :notes: Planned study day of VISIT. Should be an integer.
-  :controlled_term_or_format: ''
+  :name: PROCCUR
+  :notes: Used to record whether a pre-specified procedure occurred when information
+    about the occurrence of a specific procedure is solicited.
+  :controlled_term_or_format: "(NY)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
     :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
@@ -1260,7 +465,7 @@
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_VISITDY_VR1
+    :id: IG-CDISC_SDTMIGPR_PROCCUR_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1270,7 +475,124 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITDY
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxOCCUR
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRINDC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Indication
+  :extension_properties: []
+  :ordinal: 15
+  :rule: ''
+  :name: PRINDC
+  :notes: Denotes the indication for the procedure (e.g., why the procedure was performed).
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRINDC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxINDC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDOSE
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Dose
+  :extension_properties: []
+  :ordinal: 16
+  :rule: ''
+  :name: PRDOSE
+  :notes: Amount of PRTRT administered. Not populated when PRDOSTXT is populated.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDOSE_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSE
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDOSTXT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Dose Description
+  :extension_properties: []
+  :ordinal: 17
+  :rule: ''
+  :name: PRDOSTXT
+  :notes: 'Dosing information collected in text form. Examples: <1, 200-400. Not populated
+    when PRDOSE is populated.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDOSTXT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSTXT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDOSU
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Dose Units
+  :extension_properties: []
+  :ordinal: 18
+  :rule: ''
+  :name: PRDOSU
+  :notes: Units for PRDOSE, PRDOSTOT, or PRDOSTXT.
+  :controlled_term_or_format: "(UNIT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDOSU_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSU
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
   :id: IG-CDISC_SDTMIGPR_PRDOSFRM
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
@@ -1301,24 +623,24 @@
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
       :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRM
 - :type: http://www.assero.co.uk/BusinessDomain#IgVariable
-  :id: IG-CDISC_SDTMIGPR_DOMAIN
+  :id: IG-CDISC_SDTMIGPR_PRDOSFRQ
   :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
-  :label: Domain Abbreviation
+  :label: Dosing Frequency per Interval
   :extension_properties: []
-  :ordinal: 2
+  :ordinal: 20
   :rule: ''
-  :name: DOMAIN
-  :notes: Two-character abbreviation for the domain.
-  :controlled_term_or_format: "(DOMAIN)"
+  :name: PRDOSFRQ
+  :notes: Usually expressed as the number of doses given per a specific interval.
+  :controlled_term_or_format: "(FRQ)"
   :compliance:
     :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
-    :id: IG-CDISC_SDTMIG_C_REQUIRED
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
     :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
-    :label: Required
+    :label: Permissible
     :extension_properties: []
   :variable_ref:
     :type: http://www.assero.co.uk/BusinessOperational#CReference
-    :id: IG-CDISC_SDTMIGPR_DOMAIN_VR1
+    :id: IG-CDISC_SDTMIGPR_PRDOSFRQ_VR1
     :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
     :label: Based on Variable Reference
     :extension_properties: []
@@ -1328,4 +650,685 @@
     :local_label: ''
     :subject_ref:
       :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
-      :id: M-CDISC_SDTMMODELINTERVENTIONS_DOMAIN
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSFRQ
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDOSRGM
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Intended Dose Regimen
+  :extension_properties: []
+  :ordinal: 21
+  :rule: ''
+  :name: PRDOSRGM
+  :notes: Text description of the intended schedule or regimen for the procedure.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDOSRGM_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDOSRGM
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRROUTE
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Route of Administration
+  :extension_properties: []
+  :ordinal: 22
+  :rule: ''
+  :name: PRROUTE
+  :notes: Route of administration for PRTRT.
+  :controlled_term_or_format: "(ROUTE)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRROUTE_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxROUTE
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRLOC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Location of Procedure
+  :extension_properties: []
+  :ordinal: 23
+  :rule: ''
+  :name: PRLOC
+  :notes: Anatomical location of a procedure.
+  :controlled_term_or_format: "(LOC)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRLOC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLOC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRLAT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Laterality
+  :extension_properties: []
+  :ordinal: 24
+  :rule: ''
+  :name: PRLAT
+  :notes: Qualifier for anatomical location or specimen further detailing laterality.
+  :controlled_term_or_format: "(LAT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRLAT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxLAT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDIR
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Directionality
+  :extension_properties: []
+  :ordinal: 25
+  :rule: ''
+  :name: PRDIR
+  :notes: Qualifier for anatomical location or specimen further detailing directionality.
+  :controlled_term_or_format: "(DIR)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDIR_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDIR
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRPORTOT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Portion or Totality
+  :extension_properties: []
+  :ordinal: 26
+  :rule: ''
+  :name: PRPORTOT
+  :notes: Qualifier for anatomical location or specimen further detailing the distribution,
+    which means arrangement of, apportioning of.
+  :controlled_term_or_format: "(PORTOT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRPORTOT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxPORTOT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_VISITNUM
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Visit Number
+  :extension_properties: []
+  :ordinal: 27
+  :rule: ''
+  :name: VISITNUM
+  :notes: Clinical encounter number. Numeric version of VISIT, used for sorting.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_VISITNUM_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITNUM
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_VISIT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Visit Name
+  :extension_properties: []
+  :ordinal: 28
+  :rule: ''
+  :name: VISIT
+  :notes: Protocol-defined description of a clinical encounter.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_VISIT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISIT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_VISITDY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Planned Study Day of Visit
+  :extension_properties: []
+  :ordinal: 29
+  :rule: ''
+  :name: VISITDY
+  :notes: Planned study day of VISIT. Should be an integer.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_VISITDY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_VISITDY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRSTDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Start Date/Time of Procedure
+  :extension_properties: []
+  :ordinal: 30
+  :rule: ''
+  :name: PRSTDTC
+  :notes: Start date/time of the procedure represented in ISO 8601 character format.
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_EXPECTED
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Expected
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRSTDTC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDTC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRENDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: End Date/Time of Procedure
+  :extension_properties: []
+  :ordinal: 31
+  :rule: ''
+  :name: PRENDTC
+  :notes: End date/time of the procedure represented in ISO 8601 character format.
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRENDTC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDTC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRSTDY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Study Day of Start of Procedure
+  :extension_properties: []
+  :ordinal: 32
+  :rule: ''
+  :name: PRSTDY
+  :notes: Study day of start of procedure expressed in integer days relative to the
+    sponsor-defined RFSTDTC in Demographics.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRSTDY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTDY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRENDY
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Study Day of End of Procedure
+  :extension_properties: []
+  :ordinal: 33
+  :rule: ''
+  :name: PRENDY
+  :notes: Study day of end of procedure expressed in integer days relative to the
+    sponsor-defined RFSTDTC in Demographics.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRENDY_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENDY
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRDUR
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Duration of Procedure
+  :extension_properties: []
+  :ordinal: 34
+  :rule: ''
+  :name: PRDUR
+  :notes: Collected duration of a procedure represented in ISO 8601 character format.
+    Used only if collected on the CRF and not derived from start and end date/times.
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRDUR_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxDUR
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Planned Time Point Name
+  :extension_properties: []
+  :ordinal: 35
+  :rule: ''
+  :name: PRTPT
+  :notes: Text description of time when a procedure should be performed. This may
+    be represented as an elapsed time relative to a fixed reference point, such as
+    time of last dose. See PRTPTNUM and PRTPTREF.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRTPTNUM
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Planned Time Point Number
+  :extension_properties: []
+  :ordinal: 36
+  :rule: ''
+  :name: PRTPTNUM
+  :notes: Numerical version of planned time point used in sorting.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRTPTNUM_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTNUM
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRELTM
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Planned Elapsed Time from Time Point Ref
+  :extension_properties: []
+  :ordinal: 37
+  :rule: ''
+  :name: PRELTM
+  :notes: Planned elapsed time in ISO 8601 format relative to a planned fixed reference
+    (PRTPTREF). This variable is useful where there are repetitive measures. Not a
+    clock time or a date/time variable, but an interval, represented as ISO duration.
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRELTM_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxELTM
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRTPTREF
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Time Point Reference
+  :extension_properties: []
+  :ordinal: 38
+  :rule: ''
+  :name: PRTPTREF
+  :notes: Description of the fixed reference point referred to by PRELTM, PRTPTNUM,
+    and PRTPT.
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRTPTREF_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxTPTREF
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRRFTDTC
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Date/Time of Reference Time Point
+  :extension_properties: []
+  :ordinal: 39
+  :rule: ''
+  :name: PRRFTDTC
+  :notes: Date/time for a fixed reference time point defined by PRTRTREF in ISO 8601
+    character format.
+  :controlled_term_or_format: ISO 8601
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRRFTDTC_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxRFTDTC
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRSTRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Start Relative to Reference Time Point
+  :extension_properties: []
+  :ordinal: 40
+  :rule: ''
+  :name: PRSTRTPT
+  :notes: Identifies the start of the observation as being before or after the sponsor-defined
+    reference time point defined by variable PRSTTPT.
+  :controlled_term_or_format: "(STRTPT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRSTRTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTRTPT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRSTTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: Start Reference Time Point
+  :extension_properties: []
+  :ordinal: 41
+  :rule: ''
+  :name: PRSTTPT
+  :notes: 'Description or date/time in ISO 8601 character format of the sponsor-defined
+    reference point referred to by PRSTRTPT. Examples: “2003-12-15” or “VISIT 1”.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRSTTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxSTTPT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRENRTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: End Relative to Reference Time Point
+  :extension_properties: []
+  :ordinal: 42
+  :rule: ''
+  :name: PRENRTPT
+  :notes: Identifies the end of the observation as being before or after the sponsor-defined
+    reference time point defined by variable PRENTPT.
+  :controlled_term_or_format: "(ENRTPT)"
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRENRTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENRTPT
+- :type: http://www.assero.co.uk/BusinessDomain#IgVariable
+  :id: IG-CDISC_SDTMIGPR_PRENTPT
+  :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+  :label: End Reference Time Point
+  :extension_properties: []
+  :ordinal: 43
+  :rule: ''
+  :name: PRENTPT
+  :notes: 'Description or date/time in ISO 8601 character format of the sponsor-defined
+    reference point referred to by PRENRTPT. Examples: “2003-12-25” or “VISIT 2”.'
+  :controlled_term_or_format: ''
+  :compliance:
+    :type: http://www.assero.co.uk/BusinessDomain#VariableCompliance
+    :id: IG-CDISC_SDTMIG_C_PERMISSIBLE
+    :namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V3
+    :label: Permissible
+    :extension_properties: []
+  :variable_ref:
+    :type: http://www.assero.co.uk/BusinessOperational#CReference
+    :id: IG-CDISC_SDTMIGPR_PRENTPT_VR1
+    :namespace: http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3
+    :label: Based on Variable Reference
+    :extension_properties: []
+    :enabled: true
+    :optional: false
+    :ordinal: 1
+    :local_label: ''
+    :subject_ref:
+      :namespace: http://www.assero.co.uk/MDRSdtmMd/CDISC/V3
+      :id: M-CDISC_SDTMMODELINTERVENTIONS_xxENTPT

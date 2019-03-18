@@ -17,6 +17,7 @@ describe SdtmIg do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
     clear_iso_concept_object
@@ -27,7 +28,7 @@ describe SdtmIg do
 
   it "allows a IG to be found" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "find_input.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "find_input.yaml")
     expected = read_yaml_file(sub_dir, "find_input.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -49,7 +50,7 @@ describe SdtmIg do
   
   it "allows the model to be exported as JSON" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -65,7 +66,7 @@ describe SdtmIg do
   	json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIg.from_json(json)
     result = item.to_sparql_v2(sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
     #expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
@@ -92,15 +93,16 @@ describe SdtmIg do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     sparql = SparqlUpdateV2.new
   	json = read_yaml_file(sub_dir, "build_input.yaml")
 		result = SdtmIg.build(json, sparql)
-	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
+	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
 		expect(result.to_json).to eq(expected)
 		expect(result.errors.count).to eq(0)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
   end
 
