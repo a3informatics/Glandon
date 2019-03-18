@@ -11,35 +11,33 @@
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
-  :id: RS-ACME_VSDomain-1
+  :id: ''
   :registration_authority:
-    :id: RA-123456789
-    :number: '123456789'
-    :scheme: DUNS
-    :owner: true
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-ACME
-      :name: ACME Pharma
-      :shortName: ACME
-  :registration_status: Incomplete
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: "<Not Set>"
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace: {}
+  :registration_status: Not_Set
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
   :until_date: '2016-01-01T00:00:00+00:00'
   :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Incomplete
+  :previous_state: Not_Set
 :scoped_identifier:
-  :id: SI-ACME_VSDomain-1
-  :identifier: VS Domain
+  :id: ''
+  :identifier: ''
   :version_label: ''
-  :version: 1
-  :semantic_version: "3.2.1"
+  :version: 0
+  :semantic_version: 0.0.0
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-ACME
-    :name: ACME Pharma
-    :shortName: ACME
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ''
+    :name: ''
+    :authority: ''
 :ordinal: 0
 :rule: ''

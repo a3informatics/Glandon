@@ -13,15 +13,12 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_XXDomain-1
   :registration_authority:
-    :id: RA-123456789
-    :number: '123456789'
-    :scheme: DUNS
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: "<Not Set>"
+    :international_code_designator: DUNS
     :owner: true
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-ACME
-      :name: ACME Pharma
-      :shortName: ACME
+    :ra_namespace: {}
   :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
@@ -37,10 +34,11 @@
   :version: 1
   :semantic_version: 0.0.0
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-ACME
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
     :name: ACME Pharma
-    :shortName: ACME
+    :authority: ''
 :ordinal: 1
 :rule: ''
 :prefix: XX

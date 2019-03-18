@@ -17,7 +17,9 @@ describe BiomedicalConcept do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("CT_V41.ttl")
@@ -33,17 +35,20 @@ describe BiomedicalConcept do
     result = BiomedicalConcept.new
     result.valid?
     expect(result.errors.count).to eq(3)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
-    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
     expect(result.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     expect(result.valid?).to eq(false)
   end
 
   it "allows validity of the object to be checked" do
     result = BiomedicalConcept.new
-    result.registrationState.registrationAuthority.namespace.shortName = "AAA"
-    result.registrationState.registrationAuthority.namespace.name = "USER AAA"
-    result.registrationState.registrationAuthority.number = "123456789"
+    ra = IsoRegistrationAuthority.new
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
+    result.registrationState.registrationAuthority= ra
     result.scopedIdentifier.identifier = "hello"
     valid = result.valid?
     expect(result.errors.count).to eq(0)
@@ -84,7 +89,7 @@ it "allows a BC to be found" do
   it "finds the history of an item" do
     results = []
     results[0] = {:id => "BC-ACME_BC_C25347", :scoped_identifier_version => 1}
-    params = {:identifier => "BC C25347", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
+    params = {:identifier => "BC C25347", :scope => IsoRegistrationAuthority.owner.ra_namespace}
     items = BiomedicalConcept.history(params)
     expect(items.count).to eq(1)
     items.each_with_index do |item, index|
@@ -153,7 +158,7 @@ it "allows a BC to be found" do
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #write_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_to_json.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -163,7 +168,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
-  #write_yaml_file(item.to_json, sub_dir, "bc_simple.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_simple.yaml")
     expected = read_yaml_file(sub_dir, "bc_simple.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
@@ -189,7 +194,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.create_clone({:bc_id => bc.id, :bc_namespace => bc.namespace, :identifier => "NEW BC TWO", :label => "New BC Two"})
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
-  #write_yaml_file(item.to_json, sub_dir, "bc_clone.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_clone.yaml")
     expected = read_yaml_file(sub_dir, "bc_clone.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
@@ -199,7 +204,7 @@ it "allows a BC to be found" do
   it "creates an object based on the standard operation JSON" do
     json = read_yaml_file(sub_dir, "bc_operation.yaml")
     item = BiomedicalConcept.create(json)
-  #write_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
     expected = read_yaml_file(sub_dir, "bc_create.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
@@ -230,7 +235,7 @@ it "allows a BC to be found" do
     updated_bc = BiomedicalConcept.update(op)
     expect(updated_bc.errors.full_messages.to_sentence).to eq("")
     expect(updated_bc.errors.count).to eq(0)
-    #write_yaml_file(updated_bc.to_json, sub_dir, "bc_update_result.yaml")
+  #Xwrite_yaml_file(updated_bc.to_json, sub_dir, "bc_update_result.yaml")
     expected = read_yaml_file(sub_dir, "bc_update_result.yaml")
     expected[:last_changed_date] = date_check_now(updated_bc.lastChangeDate).iso8601
     expect(updated_bc.to_json).to eq(expected)
@@ -249,7 +254,7 @@ it "allows a BC to be found" do
   it "allows the object to be created from JSON" do
     json = read_yaml_file(sub_dir, "bc_to_json.yaml")
     item = BiomedicalConcept.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_from_json.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -257,7 +262,7 @@ it "allows a BC to be found" do
   it "allows an object to be exported as SPARQL" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.to_sparql_v2
-  #write_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
+  #Xwrite_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "bc_sparql_result_1.txt")
     actual = read_sparql_file("bc_sparql_result_1.txt")
     expected = read_sparql_file("bc_sparql.txt")
@@ -268,7 +273,7 @@ it "allows a BC to be found" do
   it "get the properties, no references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(false)
-  #write_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_no_ref.yaml")
     expect(result).to hash_equal(expected)
   end
@@ -276,7 +281,7 @@ it "allows a BC to be found" do
   it "get the properties with references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(true)
-  #write_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
     expect(result).to hash_equal(expected)
   end
@@ -285,7 +290,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     items = item.get_properties(true)
     result = BiomedicalConcept.get_unique_references(items)
-  #write_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
     expect(result).to hash_equal(expected)
   end

@@ -147,7 +147,7 @@ class SdtmUserDomain::Variable < Tabular::Column
   # @param sparql [SparqlUpdateV2] the SPARQL object
   # @return [UriV2] the item's URI
   def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{C_VARIABLE_PREFIX}#{self.ordinal}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{C_VARIABLE_PREFIX}#{self.ordinal}"
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}
