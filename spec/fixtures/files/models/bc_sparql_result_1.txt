@@ -28,6 +28,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:hasItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I7> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:hasItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I3> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:hasItem <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> cbc:basedOnTemplate <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_BC_C25206-1> rdf:type isoR:RegistrationState . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_BC_C25206-1> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.assero.co.uk/MDRItems#RS-ACME_BC_C25206-1> isoR:registrationStatus "Standard"^^xsd:string . 
@@ -344,4 +345,11 @@ INSERT DATA
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P1> cbc:collect "true"^^xsd:boolean . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P1> cbc:bridg_path "PerformedClinicalResult.value.PQR.value"^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I8_DT1_P1> cbc:simple_datatype "float"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> rdf:type <http://www.assero.co.uk/BusinessOperational#BctReference> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> rdfs:label "Based on Template Reference"^^xsd:string . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> bo:basedOnTemplate <http://www.assero.co.uk/MDRBCTs/V1#BCT-Obs_PQR> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> bo:enabled "true"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> bo:optional "false"^^xsd:boolean . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> bo:ordinal "1"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_TPR1> bo:local_label ""^^xsd:string . 
 }

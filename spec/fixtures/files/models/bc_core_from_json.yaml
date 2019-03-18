@@ -13,15 +13,17 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_BC_C25206-1
   :registration_authority:
-    :id: RA-123456789
-    :number: '123456789'
-    :scheme: DUNS
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
     :owner: true
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-ACME
+    :ra_namespace:
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
       :name: ACME Pharma
-      :shortName: ACME
+      :authority: www.acme-pharma.com
   :registration_status: Standard
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00Z'
@@ -37,10 +39,11 @@
   :version: 1
   :semantic_version: 1.0.0
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-ACME
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
     :name: ACME Pharma
-    :shortName: ACME
+    :authority: www.acme-pharma.com
 :children:
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
   :id: BC-ACME_BC_C25206_DefinedObservation_nameCode
