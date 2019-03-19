@@ -46,24 +46,25 @@ describe Background do
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_data_file_into_triple_store("CT_V35.ttl")
-      load_data_file_into_triple_store("CT_V36.ttl")
-      load_data_file_into_triple_store("CT_V37.ttl")
-      load_data_file_into_triple_store("CT_V38.ttl")
-      load_data_file_into_triple_store("CT_V39.ttl")
-      load_data_file_into_triple_store("CT_V40.ttl")
-      load_data_file_into_triple_store("CT_V41.ttl")
-      load_data_file_into_triple_store("CT_V42.ttl")
-      load_data_file_into_triple_store("CT_V43.ttl")
-      load_data_file_into_triple_store("CT_V44.ttl")
-      load_data_file_into_triple_store("CT_V45.ttl")
-      load_data_file_into_triple_store("CT_V46.ttl")
-      load_data_file_into_triple_store("CT_V47.ttl")
-      load_data_file_into_triple_store("CT_V48.ttl")
-      load_data_file_into_triple_store("CT_V49.ttl")
-      load_data_file_into_triple_store("CT_V50.ttl")
-      load_data_file_into_triple_store("CT_V51.ttl")
+      load_test_file_into_triple_store("CT_V35.ttl")
+      load_test_file_into_triple_store("CT_V36.ttl")
+      load_test_file_into_triple_store("CT_V37.ttl")
+      load_test_file_into_triple_store("CT_V38.ttl")
+      load_test_file_into_triple_store("CT_V39.ttl")
+      load_test_file_into_triple_store("CT_V40.ttl")
+      load_test_file_into_triple_store("CT_V41.ttl")
+      load_test_file_into_triple_store("CT_V42.ttl")
+      load_test_file_into_triple_store("CT_V43.ttl")
+      load_test_file_into_triple_store("CT_V44.ttl")
+      load_test_file_into_triple_store("CT_V45.ttl")
+      load_test_file_into_triple_store("CT_V46.ttl")
+      load_test_file_into_triple_store("CT_V47.ttl")
+      load_test_file_into_triple_store("CT_V48.ttl")
+      load_test_file_into_triple_store("CT_V49.ttl")
+      load_test_file_into_triple_store("CT_V50.ttl")
+      load_test_file_into_triple_store("CT_V51.ttl")
       time_now("All files loaded") # Queues the first file
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -77,7 +78,7 @@ describe Background do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       time_now("Ended") # Queues the first file
-      [Boolean]    end
+    end
 
     def date
       dates = 

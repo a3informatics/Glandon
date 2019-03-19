@@ -125,9 +125,7 @@ class CdiscTerm < Thesaurus
     results = Array.new
     tSet = super
     tSet.each do |thesaurus|
-      if thesaurus.scopedIdentifier.namespace.short_name == cdisc_namespace.short_name
-        results << thesaurus
-      end
+      results << thesaurus if thesaurus.owner.ra_namespace.uri == cdisc_namespace.uri
     end
     results.sort_by! {|u| u.version}
     return results  

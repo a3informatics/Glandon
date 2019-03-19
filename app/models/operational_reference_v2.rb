@@ -157,7 +157,7 @@ class OperationalReferenceV2 < IsoConcept
   # @return [object] The URI
   def to_sparql_v2(parent_uri, ref_type, suffix, ordinal, sparql)
     self.namespace = parent_uri.namespace
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{suffix}#{ordinal}"
     self.rdf_type = "#{UriV2.new({ :namespace => C_SCHEMA_NS, :id => C_TO_TYPE_MAP[ref_type]})}"
     self.label = C_TO_LABEL_MAP[ref_type]
     uri = super(sparql, C_SCHEMA_PREFIX)
