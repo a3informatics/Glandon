@@ -25,7 +25,8 @@ private
 
   # Build the list
   def collection(item_list)
-    item_list = item_list.select { |th| th.owner == IsoRegistrationAuthority.owner.shortName } # Don't export non-owner items
+    repos_owner = IsoRegistrationAuthority.owner
+    item_list = item_list.select { |th| th.owner.uri.to_s == repos_owner.uri.to_s } # Don't export non-owner items
     item_list.each_with_object([]) do |l, results| 
       uri = UriV3.new(fragment: l.id, namespace: l.namespace)
       results << { identifier: l.identifier, label: l.label, semantic_version: l.semantic_version.to_s, version: l.version, 
