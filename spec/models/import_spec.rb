@@ -99,6 +99,12 @@ describe Import do
 
   before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
     Import.destroy_all
     delete_all_public_test_files
   end
@@ -191,7 +197,7 @@ describe Import do
     object = Thesaurus.new
     object.rdf_type = "XXX"
     object.scopedIdentifier.identifier = "YYY"
-    object.scopedIdentifier.namespace.id = 111
+    #object.scopedIdentifier.namespace.id = 111
     item = simple_import
     item.auto_load = true
     item.save
@@ -209,7 +215,7 @@ describe Import do
     object = Thesaurus.new
     object.rdf_type = "XXX"
     object.scopedIdentifier.identifier = "YYY"
-    object.scopedIdentifier.namespace.id = 111
+    #object.scopedIdentifier.namespace.id = 111
     item = simple_import
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
     expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
@@ -224,7 +230,7 @@ describe Import do
     object = Thesaurus.new
     object.rdf_type = "XXX"
     object.scopedIdentifier.identifier = "YYY"
-    object.scopedIdentifier.namespace.id = 111
+    #object.scopedIdentifier.namespace.id = 111
     item = simple_import
     expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
     item.save_result(object)
