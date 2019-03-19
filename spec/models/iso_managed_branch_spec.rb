@@ -18,6 +18,7 @@ describe IsoManaged do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("iso_managed_parent.ttl")
     load_test_file_into_triple_store("iso_managed_branch.ttl")
@@ -57,9 +58,8 @@ describe IsoManaged do
   #write_yaml_file(branch.triples, sub_dir, "iso_managed_branch_triples.yaml")
     sparql = SparqlUpdateV2.new
     result_uri = branch.to_sparql_v2(sparql, "bf")
-  #write_text_file_2(sparql.to_s, sub_dir, "iso_managed_branch_sparql_1.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "iso_managed_branch_sparql_1.txt")
     expected = read_text_file_2(sub_dir, "iso_managed_branch_sparql_1.txt")
-    #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "iso_managed_branch_sparql_1.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_BRANCH")
   end
@@ -68,7 +68,7 @@ describe IsoManaged do
     triples = read_yaml_file(sub_dir, "iso_managed_branch_triples.yaml")
     item = IsoManaged.new(triples, "F-ACME_BRANCH")
     expect(item.is_a_branch?).to eq(true)
-  #write_yaml_file(item.to_json, sub_dir, "iso_managed_branch_from_triples.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_branch_from_triples.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_branch_from_triples.yaml") # Note the branch info is not included in the JSON export.
     expect(item.to_json).to eq(expected)
   end
@@ -77,13 +77,13 @@ describe IsoManaged do
     items = IsoManaged.branches("F-ACME_BRANCHPARENT", "http://www.assero.co.uk/MDRForms/ACME/V1")
     results = []
     items.each { |x| results << x.to_json}
-    #write_yaml_file(results, sub_dir, "iso_managed_branch_parents_1.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_branch_parents_1.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_branch_parents_1.yaml")
     expect(results).to eq(expected)
     items = IsoManaged.branches("F-ACME_BRANCH", "http://www.assero.co.uk/MDRForms/ACME/V1")
     results = []
     items.each { |x| results << x.to_json}
-  #write_yaml_file(results, sub_dir, "iso_managed_branch_parents_2.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_branch_parents_2.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_branch_parents_2.yaml")
     expect(results).to eq(expected)    
   end
