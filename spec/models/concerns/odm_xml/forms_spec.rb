@@ -17,7 +17,9 @@ describe OdmXml::Forms do
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("CT_V49.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
@@ -59,7 +61,7 @@ describe OdmXml::Forms do
     item = object.form("F_BASELINE")
     expect(item).to_not be_nil
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_1.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_1.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
@@ -73,7 +75,7 @@ describe OdmXml::Forms do
     item = object.form("F_AE")
     expect(item).to_not be_nil
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_2.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_2.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
@@ -87,7 +89,7 @@ describe OdmXml::Forms do
     item = object.form("DM")
     expect(item).to_not be_nil
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_3.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_3.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_3.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
@@ -101,7 +103,7 @@ describe OdmXml::Forms do
     item = object.form("IE")
     expect(item).to_not be_nil
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_4.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_4.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_4.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]
@@ -115,7 +117,7 @@ describe OdmXml::Forms do
     item = object.form("f.dm")
     expect(item).to_not be_nil
     result = item.to_json
-  #write_yaml_file(result, sub_dir, "form_expected_5.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_5.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_5.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]

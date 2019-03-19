@@ -16,6 +16,7 @@ describe AdamIg do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("adam_ig.ttl")
     clear_iso_concept_object
@@ -27,9 +28,10 @@ describe AdamIg do
   it "validates a valid object" do
     item = AdamIg.new
     ra = IsoRegistrationAuthority.new
-    ra.number = "123456789"
-    ra.scheme = "DUNS"
-    ra.namespace = IsoNamespace.find("NS-ACME")
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
     item.registrationState.registrationAuthority = ra
     si = IsoScopedIdentifier.new
     si.identifier = "X FACTOR"
@@ -67,9 +69,9 @@ describe AdamIg do
   end
 
   it "returns the owner" do
-    expected =IsoRegistrationAuthority.find_by_short_name("CDISC").to_json
+    expected =IsoRegistrationAuthority.find_by_short_name("CDISC").to_h
     ra = AdamIg.owner
-    expect(ra.to_json).to eq(expected)
+    expect(ra.to_h).to eq(expected)
   end    
 
   it "allows the model to be exported as JSON" do
@@ -80,8 +82,9 @@ describe AdamIg do
   end
 
 	it "allows the model to be created from JSON" do 
-		expected = read_yaml_file(sub_dir, "from_json_input_1.yaml")
-    item = AdamIg.from_json(expected)
+		item = AdamIg.from_json(read_yaml_file(sub_dir, "from_json_input_1.yaml"))
+  #Xwrite_yaml_file(item.to_json, sub_dir, "from_json_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "from_json_expected_1.yaml")
     expect(item.to_json).to eq(expected)
 	end
 

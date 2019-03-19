@@ -20,6 +20,7 @@ describe Form do
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
@@ -44,14 +45,14 @@ describe Form do
   it "validates a valid object" do
     result = Form.new
     ra = IsoRegistrationAuthority.new
-    ra.number = "123456789"
-    ra.scheme = "DUNS"
-    ra.namespace = IsoNamespace.find("NS-ACME")
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
     result.registrationState.registrationAuthority = ra
     si = IsoScopedIdentifier.new
     si.identifier = "X FACTOR"
     result.scopedIdentifier = si
-    result.valid?
     expect(result.valid?).to eq(true)
   end
   
@@ -62,9 +63,8 @@ describe Form do
 
   it "allows a form to be found, BC based" do
     result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(result.to_json, sub_dir, "example_vs_baseline_new.yaml")
+  #Xwrite_hash_to_yaml_file_2(result.to_json, sub_dir, "example_vs_baseline_new.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "example_vs_baseline_new.yaml")
-    #expect(result.to_json).to eq(expected)
     expect(result.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
@@ -91,19 +91,19 @@ describe Form do
         {
           :identifier=>"T2",
           :label=>"Test 2",
-          :owner_id=>"NS-ACME",
+          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
           :owner=>"ACME"
         },
         {
           :identifier=>"DM1 01",
           :label=>"Demographics",
-          :owner_id=>"NS-ACME",
+          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
           :owner=>"ACME"
         },
         {
           :identifier=>"VS BASELINE",
           :label=>"Vital Signs Baseline",
-          :owner_id=>"NS-ACME",
+          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
           :owner=>"ACME"
         }
       ]
@@ -130,7 +130,7 @@ describe Form do
     new_item = Form.create(operation)
     expect(new_item.errors.full_messages.to_sentence).to eq("")
     expect(new_item.errors.count).to eq(0)
-    params = {:identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
+    params = {:identifier => "DM1 01", :scope => IsoRegistrationAuthority.owner.ra_namespace}
     items = Form.history(params)
     expect(items.count).to eq(2)
     items.each_with_index do |item, index|
@@ -170,7 +170,7 @@ describe Form do
     #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "base_core.yaml")
     parameters = read_yaml_file_to_hash_2(sub_dir, "base_core.yaml")
     item = Form.create(parameters[:form])
-    #write_hash_to_yaml_file_2(item.to_json, sub_dir, "base_core_result.yaml")
+  #Xwrite_hash_to_yaml_file_2(item.to_json, sub_dir, "base_core_result.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_core_result.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.errors.count).to eq(0)
@@ -184,7 +184,7 @@ describe Form do
     #write_hash_to_yaml_file_2(hash.deep_symbolize_keys, sub_dir, "base_bc.yaml")
     parameters = read_yaml_file_to_hash_2(sub_dir, "base_bc.yaml")
     item = Form.create(parameters[:form])
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_result.yaml")
+  #Xwrite_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_result.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_bc_result.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.errors.count).to eq(0)
@@ -207,10 +207,10 @@ describe Form do
     old_item.label = "New Label"
     Form.update(old_item.to_operation)
     item = Form.find("F-ACME_PLACENEW", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "update.yaml")
+  #Xwrite_hash_to_yaml_file_2(item.to_json, sub_dir, "update.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "update.yaml")
-    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expected[:creation_date] = date_check_now(item.creationDate).iso8601
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate,5).iso8601
+    expected[:creation_date] = date_check_now(item.creationDate,5).iso8601
     expect(item.errors.count).to eq(0)
     expect(item.to_json).to eq(expected)
   end
@@ -235,14 +235,14 @@ describe Form do
   it "can serialize as json, core form" do
     item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_core_result.yaml")
-    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+    expected[:last_changed_date] = date_check_now(item.lastChangeDate,5).iso8601
     #expect(item.to_json).to eq(expected)
     expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
   end
 
   it "can serialize as json, BC form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #write_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_json.yaml")
+  #Xwrite_hash_to_yaml_file_2(item.to_json, sub_dir, "base_bc_json.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_bc_json.yaml")
     expected[:last_changed_date] = item.lastChangeDate # Last changed data is dynamic
     expect(item.to_json).to hash_equal(expected) 
@@ -251,7 +251,7 @@ describe Form do
   it "can create the sparql for core form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
-  #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_1.txt")
+  #Xwrite_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_1.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_result_1.txt")
     actual = read_sparql_file("to_sparql_result_1.txt")
     expected = read_sparql_file("to_sparql_expected_1.txt")
@@ -262,7 +262,7 @@ describe Form do
   it "can create the sparql for BC form" do
     item = Form.find("F-ACME_TEST2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item.lastChangeDate = "2016-12-23T15:14:09+00:00".to_time_with_default # Fix the time to match the test time
-  #write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_2.txt")
+  #Xwrite_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_expected_2.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "to_sparql_result_2.txt")
     actual = read_sparql_file("to_sparql_result_2.txt")
     expected = read_sparql_file("to_sparql_expected_2.txt")

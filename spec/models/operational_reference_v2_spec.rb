@@ -14,6 +14,7 @@ describe OperationalReferenceV2 do
     load_schema_file_into_triple_store("business_operational_extension.ttl")
     load_schema_file_into_triple_store("business_cross_reference.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_dm1.ttl")
     clear_iso_concept_object

@@ -16,6 +16,7 @@ describe SdtmExcel do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
@@ -40,7 +41,7 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_model(params, object.errors)
-	#write_yaml_file(result, sub_dir, "model_build_expected.yaml")
+	#Xwrite_yaml_file(result, sub_dir, "model_build_expected.yaml")
     expected = read_yaml_file(sub_dir, "model_build_expected.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
@@ -60,7 +61,7 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_ig(params, object.errors)
-	#write_yaml_file(result, sub_dir, "ig_build_expected.yaml")
+	#Xwrite_yaml_file(result, sub_dir, "ig_build_expected.yaml")
     expected = read_yaml_file(sub_dir, "ig_build_expected.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|
@@ -80,7 +81,7 @@ describe SdtmExcel do
 			:files => ["#{filename}"]
 		}
 		result = SdtmExcel.read_ig(params, object.errors)
-	#write_yaml_file(result, sub_dir, "ig_build_expected_2.yaml")
+	#Xwrite_yaml_file(result, sub_dir, "ig_build_expected_2.yaml")
     expected = read_yaml_file(sub_dir, "ig_build_expected_2.yaml")
     # Need to align the timestamps to allow simple comparison to work
     expected.each_with_index do |x, index|

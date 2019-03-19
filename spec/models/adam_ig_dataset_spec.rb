@@ -16,7 +16,9 @@ describe AdamIgDataset do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -37,9 +39,10 @@ describe AdamIgDataset do
   it "validates a valid object" do
     item = AdamIgDataset.new
     ra = IsoRegistrationAuthority.new
-    ra.number = "123456789"
-    ra.scheme = "DUNS"
-    ra.namespace = IsoNamespace.find("NS-ACME")
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
     item.registrationState.registrationAuthority = ra
     si = IsoScopedIdentifier.new
     si.identifier = "X FACTOR"
@@ -54,7 +57,7 @@ describe AdamIgDataset do
   it "builds an object" do
     input = read_yaml_file(sub_dir, "build_input_1.yaml")
     result = AdamIgDataset.build(input)
-  #Xwrite_yaml_file(result.to_json, sub_dir, "build_expected_1.yaml")
+  write_yaml_file(result.to_json, sub_dir, "build_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "build_expected_1.yaml")
     expect(result.to_json).to eq(expected)
   end
