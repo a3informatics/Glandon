@@ -16,6 +16,7 @@ describe IsoConceptSystem::Node do
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
@@ -160,8 +161,7 @@ describe IsoConceptSystem::Node do
         :children => []
       }
     response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
+    expect(CRUD).to receive(:update).and_return(response)
     expect{concept.add(json)}.to raise_error(Exceptions::CreateError)
   end
 

@@ -84,7 +84,7 @@ class IsoConceptSystemGeneric < IsoConcept
   def to_sparql_v2(cid_prefix)
     sparql = SparqlUpdateV2.new
     ra = IsoRegistrationAuthority.owner
-    uri = UriV2.new({:prefix => cid_prefix, :org_name => ra.namespace.shortName, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
+    uri = UriV2.new({:prefix => cid_prefix, :org_name => ra.ra_namespace.short_name, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
     self.id = uri.id
     self.namespace = uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
