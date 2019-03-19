@@ -17,21 +17,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:26+01:00'
+      :last_changed_date: '2019-03-19T10:24:44+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -47,10 +44,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :domain_refs: []
@@ -72,21 +70,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -102,10 +97,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: AE
@@ -1927,21 +1923,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -1957,10 +1950,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: CE
@@ -2945,21 +2939,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -2975,10 +2966,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: CM
@@ -4320,21 +4312,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -4350,10 +4339,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: CO
@@ -4777,21 +4767,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -4807,10 +4794,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: DA
@@ -5654,21 +5642,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -5684,10 +5669,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: DD
@@ -6145,21 +6131,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -6175,10 +6158,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: DM
@@ -7209,21 +7193,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -7239,10 +7220,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: DS
@@ -7802,21 +7784,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -7832,10 +7811,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: DV
@@ -8322,21 +8302,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -8352,10 +8329,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: EG
@@ -9668,21 +9646,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -9698,10 +9673,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: EX
@@ -10988,21 +10964,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -11018,10 +10991,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: FA
@@ -12012,21 +11986,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -12042,10 +12013,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: HO
@@ -12985,21 +12957,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -13015,10 +12984,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: IE
@@ -13616,21 +13586,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -13646,10 +13613,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: IS
@@ -14665,21 +14633,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -14695,10 +14660,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: LB
@@ -16331,21 +16297,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -16361,10 +16324,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: MB
@@ -17716,21 +17680,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -17746,10 +17707,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: MH
@@ -18628,21 +18590,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -18658,10 +18617,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: MI
@@ -19894,21 +19854,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -19924,10 +19881,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: MO
@@ -21408,21 +21366,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -21438,10 +21393,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: MS
@@ -22654,21 +22610,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -22684,10 +22637,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: PC
@@ -24064,21 +24018,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -24094,10 +24045,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: PE
@@ -25017,21 +24969,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -25047,10 +24996,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: PP
@@ -25825,21 +25775,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -25855,10 +25802,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: PR
@@ -27387,21 +27335,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -27417,10 +27362,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: QS
@@ -28568,21 +28514,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -28598,10 +28541,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: RP
@@ -29520,21 +29464,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -29550,10 +29491,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: RS
@@ -30510,21 +30452,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -30540,10 +30479,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: SC
@@ -31248,21 +31188,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -31278,10 +31215,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: SE
@@ -31699,21 +31637,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -31729,10 +31664,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: SR
@@ -32991,21 +32927,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -33021,10 +32954,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: SU
@@ -34293,21 +34227,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -34323,10 +34254,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: SV
@@ -34742,21 +34674,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -34772,10 +34701,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TA
@@ -35165,21 +35095,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -35195,10 +35122,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TE
@@ -35477,21 +35405,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -35507,10 +35432,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TI
@@ -35828,21 +35754,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -35858,10 +35781,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TR
@@ -36928,21 +36852,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -36958,10 +36879,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TS
@@ -37384,21 +37306,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -37414,10 +37333,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TU
@@ -38415,21 +38335,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -38445,10 +38362,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: TV
@@ -38804,21 +38722,18 @@
       :origin: ''
       :change_description: ''
       :creation_date: '2017-01-01'
-      :last_changed_date: '2017-10-23T20:30:27+01:00'
+      :last_changed_date: '2019-03-19T10:24:46+00:00'
       :explanatory_comment: ''
       :registration_state:
         :namespace: http://www.assero.co.uk/MDRItems
         :id: ''
         :registration_authority:
-          :id: ''
-          :number: "<Not Set>"
-          :scheme: DUNS
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+          :organization_identifier: "<Not Set>"
+          :international_code_designator: DUNS
           :owner: false
-          :namespace:
-            :namespace: ''
-            :id: ''
-            :name: ''
-            :shortName: ''
+          :ra_namespace: {}
         :registration_status: Not_Set
         :administrative_note: ''
         :effective_date: '2016-01-01T00:00:00+00:00'
@@ -38834,10 +38749,11 @@
         :version: 0
         :semantic_version: 0.0.0
         :namespace:
-          :namespace: ''
-          :id: ''
+          :uri: {}
+          :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+          :short_name: ''
           :name: ''
-          :shortName: ''
+          :authority: ''
       :ordinal: 1
       :rule: ''
       :prefix: VS
