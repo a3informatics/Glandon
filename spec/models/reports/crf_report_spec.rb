@@ -18,6 +18,7 @@ describe Reports::CrfReport do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("form_example_general.ttl")
     load_test_file_into_triple_store("BCT.ttl")

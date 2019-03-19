@@ -35,7 +35,7 @@ private
 
   def build_history(form)
     doc_history = []
-    history = IsoManaged::history(Form::C_RDF_TYPE, Form::C_SCHEMA_NS, {:identifier => form.identifier, :scope_id => form.owner_id})
+    history = IsoManaged::history(Form::C_RDF_TYPE, Form::C_SCHEMA_NS, {:identifier => form.identifier, :scope => form.owner.ra_namespace})
     history.each do |item|
       if form.same_version?(item.version) || form.later_version?(item.version)
         doc_history << item.to_json
