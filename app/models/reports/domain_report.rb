@@ -30,7 +30,7 @@ private
 
   def build_history(domain)
     doc_history = []
-    history = IsoManaged::history(SdtmUserDomain::C_RDF_TYPE, SdtmUserDomain::C_SCHEMA_NS, {:identifier => domain.identifier, :scope_id => domain.owner_id})
+    history = IsoManaged::history(SdtmUserDomain::C_RDF_TYPE, SdtmUserDomain::C_SCHEMA_NS, {:identifier => domain.identifier, :scope => domain.owner.ra_namespace})
     history.each do |item|
       if domain.same_version?(item.version) || domain.later_version?(item.version)
         doc_history << item.to_json

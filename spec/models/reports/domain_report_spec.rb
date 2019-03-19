@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Reports::CrfReport do
+describe Reports::DomainReport do
 
   include DataHelpers
   include ReportHelpers
@@ -18,6 +18,7 @@ describe Reports::CrfReport do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
     load_schema_file_into_triple_store("ISO25964.ttl")
     load_schema_file_into_triple_store("CDISCTerm.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
     load_test_file_into_triple_store("BCT.ttl")
     load_test_file_into_triple_store("BC.ttl")
@@ -35,7 +36,7 @@ describe Reports::CrfReport do
     domain = SdtmUserDomain.find("D-ACME_DMDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
     report = Reports::DomainReport.new
     html = report.create(domain, {}, user)
-  #write_text_file_2(html, sub_dir, "domain_report_simple.txt")
+  #Xwrite_text_file_2(html, sub_dir, "domain_report_simple.txt")
     expected = read_text_file_2(sub_dir, "domain_report_simple.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
