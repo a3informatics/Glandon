@@ -62,7 +62,7 @@ class AdamIgDataset::Variable < Tabular::Column
 	# @param [SparqlUpdateV2] sparql the SPARQL object
 	# @return [UriV2] The URI
   def to_sparql_v2(parent_uri, sparql)
-    self.id = "#{parent_uri.id}#{Uri::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
+    self.id = "#{parent_uri.id}#{UriV2::C_UID_SECTION_SEPARATOR}#{SdtmUtility.replace_prefix(self.name)}"
     self.namespace = parent_uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
     subject = {:uri => self.uri}

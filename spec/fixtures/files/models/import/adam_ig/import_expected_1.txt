@@ -2,7 +2,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
@@ -37,8 +36,8 @@
 :AIG-CDISC_ADAMIG
 	rdf:type <http://www.assero.co.uk/BusinessDomain#ADaMImplementationGuide> ;
 	rdfs:label "ADaM IG"^^xsd:string ;
-	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> ;
-	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> ;
+	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> ;
+	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:changeDescription ""^^xsd:string ;
@@ -49,7 +48,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -63,8 +62,8 @@
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
-	isoI:semantic_version "1.1.1"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIG_TR1
 	rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> ;
@@ -87,8 +86,8 @@
 :AIG-CDISC_ADAMIGADSL
 	rdf:type <http://www.assero.co.uk/BusinessDomain#IgDataset> ;
 	rdfs:label "Subject Level Analysis Dataset"^^xsd:string ;
-	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGADSL-1> ;
-	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGADSL-1> ;
+	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGADSL-1> ;
+	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGADSL-1> ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:changeDescription ""^^xsd:string ;
@@ -233,7 +232,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGADSL-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -247,8 +246,8 @@
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
-	isoI:semantic_version "1.1.1"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIGADSL_STUDYID
 	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
@@ -1837,8 +1836,8 @@
 :AIG-CDISC_ADAMIGBDS
 	rdf:type <http://www.assero.co.uk/BusinessDomain#IgDataset> ;
 	rdfs:label "Basic Data Structure"^^xsd:string ;
-	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGBDS-1> ;
-	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGBDS-1> ;
+	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIGBDS-1> ;
+	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGBDS-1> ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:changeDescription ""^^xsd:string ;
@@ -2029,7 +2028,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIGBDS-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-084433759 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -2043,8 +2042,8 @@
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel "1.1.1"^^xsd:string ;
-	isoI:semantic_version "1.1.1"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-CDISC ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :AIG-CDISC_ADAMIGBDS_STUDYID
 	rdf:type <http://www.assero.co.uk/BusinessDomain#IgVariable> ;
