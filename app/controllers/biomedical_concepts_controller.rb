@@ -54,7 +54,7 @@ class BiomedicalConceptsController < ApplicationController
   def history
     authorize BiomedicalConcept
     @identifier = the_params[:identifier]
-    @bc = BiomedicalConcept.history(the_params)
+    @bc = BiomedicalConcept.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
     redirect_to biomedical_concepts_path if @bc.count == 0
   end
 

@@ -9,7 +9,9 @@ describe "Audit Trail", :type => :feature do
   
   before :all do
     clear_triple_store
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     ua_create
     user1 = User.create :email => "audit_trail_user_1@example.com", :password => "changeme" 
     user2 = User.create :email => "audit_trail_user_2@example.com", :password => "changeme" 

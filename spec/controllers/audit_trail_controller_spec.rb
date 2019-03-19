@@ -11,7 +11,9 @@ describe AuditTrailController do
    
     before :all do
       clear_triple_store
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       AuditTrail.delete_all
       User.delete_all
       ar = AuditTrail.create(date_time: Time.now, user: "user1@example.com", owner: "CDISC", identifier: "I1", version: "1", event: 1, description: "description")

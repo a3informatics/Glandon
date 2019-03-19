@@ -29,7 +29,7 @@ class FormsController < ApplicationController
     authorize Form
     @identifier = params[:identifier]
     @scope_id = params[:scope_id]
-    @forms = Form.history(params)
+    @forms = Form.history({identifier: params[:identifier], scope: IsoNamespace.find(params[:scope_id])})
     redirect_to forms_path if @forms.count == 0
   end
 
@@ -64,7 +64,7 @@ class FormsController < ApplicationController
   	else
   		@operation = @form.to_operation
   	end
-  	@close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
+  	@close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.id)
   end
 
   def clone
@@ -175,19 +175,19 @@ class FormsController < ApplicationController
   def export_ttl
     authorize Form
     @form = IsoManaged::find(params[:id], params[:namespace])
-    send_data to_turtle(@form.triples), filename: "#{@form.owner}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+    send_data to_turtle(@form.triples), filename: "#{@form.owner_short_name}_#{@form.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
-    send_data @form.to_json.to_json, filename: "#{@form.owner}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @form.to_json.to_json, filename: "#{@form.owner_short_name}_#{@form.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def export_odm
     authorize Form, :export_json?
     @form = Form.find(params[:id], params[:namespace])
-    send_data @form.to_xml, filename: "#{@form.owner}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
+    send_data @form.to_xml, filename: "#{@form.owner_short_name}_#{@form.identifier}_ODM.xml", :type => 'application/xhtml+xml; header=present', disposition: "attachment"
   end
 
   def acrf
@@ -200,7 +200,7 @@ class FormsController < ApplicationController
       end
       format.pdf do
         @html = Reports::CrfReport.new.create(@form, {:annotate => true, :full => true}, current_user)
-        @render_args = {pdf: "#{@form.owner}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
+        @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
         render @render_args
       end
     end
@@ -216,7 +216,7 @@ class FormsController < ApplicationController
       end
       format.pdf do
         @html = Reports::CrfReport.new.create(@form, {:annotate => false, :full => true}, current_user)
-        @render_args = {pdf: "#{@form.owner}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
+        @render_args = {pdf: "#{@form.owner_short_name}_#{@form.identifier}_CRF", page_size: current_user.paper_size, lowquality: true}
         render @render_args
       end
     end

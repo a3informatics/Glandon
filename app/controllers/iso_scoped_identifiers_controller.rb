@@ -17,7 +17,7 @@ class IsoScopedIdentifiersController < ApplicationController
   
   def create
     authorize IsoScopedIdentifier
-    namespace = IsoNamespace.find(this_params[:namespaceId])
+    namespace = IsoNamespace.find(this_params[:scope_id])
     @scoped_identifier = IsoScopedIdentifier.create(this_params[:identifier], this_params[:version], this_params[:versionLabel], "0.0.0", namespace)
     if @scoped_identifier.errors.empty?
       redirect_to iso_scoped_identifiers_path
@@ -52,7 +52,7 @@ class IsoScopedIdentifiersController < ApplicationController
   
   private
     def this_params
-      params.require(:iso_scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :namespaceId)
+      params.require(:iso_scoped_identifier).permit(:identifier, :version, :versionLabel, :itemType, :scope_id)
     end
 
 end

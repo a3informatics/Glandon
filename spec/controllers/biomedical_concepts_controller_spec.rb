@@ -23,6 +23,7 @@ describe BiomedicalConceptsController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
       load_test_file_into_triple_store("BCT.ttl")
@@ -49,7 +50,7 @@ describe BiomedicalConceptsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "bc_controller_index.txt")
+   #Xwrite_text_file_2(response.body, sub_dir, "bc_controller_index.txt")
       expected = read_text_file_2(sub_dir, "bc_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -59,20 +60,20 @@ describe BiomedicalConceptsController do
       get :list
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_yaml_file(response.body, sub_dir, "bc_controller_list.yaml")
+    write_yaml_file(response.body, sub_dir, "bc_controller_list.yaml")
       expected = read_yaml_file(sub_dir, "bc_controller_list.yaml")
       expect(response.body).to eq(expected)
     end
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :biomedical_concept => { :identifier => "BC C49677", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept => { :identifier => "BC C49677", :scope_id => ra.ra_namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :biomedical_concept => { :identifier => "BC C49678x", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept => { :identifier => "BC C49678x", :scope_id => ra.ra_namespace.id }}
       expect(response).to redirect_to("/biomedical_concepts")
     end
 

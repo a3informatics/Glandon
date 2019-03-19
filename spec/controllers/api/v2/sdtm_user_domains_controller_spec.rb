@@ -26,7 +26,9 @@ describe Api::V2::SdtmUserDomainsController, type: :controller do
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
       load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
@@ -47,7 +49,7 @@ describe Api::V2::SdtmUserDomainsController, type: :controller do
       item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
       get :show, id: Base64.strict_encode64(item.uri.to_s)
       result = JSON.parse(response.body)
-    #write_yaml_file(result, sub_dir, "show_expected_1.yaml")  
+    write_yaml_file(result, sub_dir, "show_expected_1.yaml")  
       expected = read_yaml_file(sub_dir, "show_expected_1.yaml")
       expect(result).to eq(expected)
       expect(response.status).to eq 200

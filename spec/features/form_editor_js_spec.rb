@@ -25,7 +25,9 @@ describe "Form Editor", :type => :feature do
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("CT_V43.ttl")
     load_test_file_into_triple_store("CT_ACME_V1.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_crf_test_1.ttl")
     load_test_file_into_triple_store("form_crf_test_2.ttl")

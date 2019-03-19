@@ -10,7 +10,13 @@ describe IsoNamespacesController do
 
     before :each do
       clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+      load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
     end
 
     it "index namespaces" do
@@ -29,23 +35,23 @@ describe IsoNamespacesController do
 
     it 'creates namespace' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "XXX Pharma", shortName: "XXX" }
+      post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX" }
       expect(IsoNamespace.all.count).to eq(3)
       expect(response).to redirect_to("/iso_namespaces")
     end
 
     it 'fails to create an existing namespace' do
       expect(IsoNamespace.all.count).to eq(2)
-      post :create, iso_namespace: { name: "YYY Pharma", shortName: "YYY" }
+      post :create, iso_namespace: { name: "YYY Pharma", short_name: "YYY" }
       expect(IsoNamespace.all.count).to eq(3)
-      post :create, iso_namespace: { name: "YYY Pharma", shortName: "YYY" }
+      post :create, iso_namespace: { name: "YYY Pharma", short_name: "YYY" }
       expect(IsoNamespace.all.count).to eq(3)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/iso_namespaces/new")
     end
 
     it 'deletes namespace' do
-      ns = IsoNamespace.findByShortName("XXX")
+      ns = IsoNamespace.find_by_short_name("XXX")
       delete :destroy, :id => ns.id
       expect(IsoNamespace.all.count).to eq(2)
     end

@@ -20,7 +20,9 @@ describe "ISO Concept JS", :type => :feature do
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessForm.ttl")
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("CT_V42.ttl")
     load_test_file_into_triple_store("BC.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline.ttl")

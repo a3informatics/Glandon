@@ -45,7 +45,9 @@ describe IsoRegistrationStatesController do
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("form_example_general.ttl")
       load_test_file_into_triple_store("BC.ttl")
     end

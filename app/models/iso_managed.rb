@@ -120,11 +120,18 @@ class IsoManaged < IsoConcept
     return self.registrationState.registrationAuthority
   end
 
+  # Return the owner of the managed item
+  #
+  # @return [object] The owner namespace object.
+  def owner_short_name
+    return owner.ra_namespace.short_name
+  end
+
   # Return the owner id
   #
-  # @return [String] The owner id.
+  # @return [String] The owner id. Note new UUID.
   def owner_id
-    return owner.uri.fragment
+    return owner.id
   end
 
   # Determine if the object is owned by this repository
@@ -132,7 +139,7 @@ class IsoManaged < IsoConcept
   # @return [boolean] True if owned, false otherwise
   def owned?
     respository_owner = IsoRegistrationAuthority.owner
-    return self.owner.uri == respository_owner.uri
+    return owner.uri == respository_owner.uri
   end
 
   # Determine if the object is a branch, i.e. a child

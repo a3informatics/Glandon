@@ -11,7 +11,9 @@ describe BackgroundsController do
    
     before :each do
       clear_triple_store
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       Background.delete_all
       @b1 = Background.create(description: "job 1", complete: true, percentage: 100, status: "Doing something", started: Time.now, completed: Time.now)
       @b2 = Background.create(description: "job 2", complete: false, percentage: 50, status: "Doing something", started: Time.now, completed: Time.now)

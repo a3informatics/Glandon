@@ -59,7 +59,9 @@ describe "Ad Hoc Reports", :type => :feature do
   
     before :all do
       clear_triple_store
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       @user = User.create :email => "content_admin@example.com", :password => "12345678" 
       @user.add_role :content_admin
       AdHocReport.delete_all

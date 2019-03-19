@@ -20,7 +20,9 @@ describe 'forms/history.html.erb', :type => :view do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
     load_schema_file_into_triple_store("BusinessOperational.ttl")
     load_schema_file_into_triple_store("BusinessDomain.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
+
     load_test_file_into_triple_store("form_example_dm1.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     load_test_file_into_triple_store("form_example_general.ttl")

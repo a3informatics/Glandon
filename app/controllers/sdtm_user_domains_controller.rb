@@ -20,7 +20,7 @@ class SdtmUserDomainsController < ApplicationController
     authorize SdtmUserDomain
     @identifier = the_params[:identifier]
     @scope_id = the_params[:scope_id]
-    @history = SdtmUserDomain.history(the_params)
+    @history = SdtmUserDomain.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
     redirect_to sdtm_user_domains_path if @history.count == 0
   end
   
@@ -212,7 +212,7 @@ class SdtmUserDomainsController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::DomainReport.new.create(domain, {}, current_user)
-        @render_args = {pdf: "#{domain.owner}_#{domain.identifier}", page_size: current_user.paper_size, lowquality: true}
+        @render_args = {pdf: "#{domain.owner_short_name}_#{domain.identifier}", page_size: current_user.paper_size, lowquality: true}
         render @render_args
       end
     end

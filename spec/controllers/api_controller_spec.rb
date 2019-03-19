@@ -25,6 +25,7 @@ describe ApiController, type: :controller do
 	    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 	    load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("form_example_dm1.ttl")
       load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
@@ -67,7 +68,7 @@ describe ApiController, type: :controller do
       set_http_request
       get :index, {label: "Form"}
       result = JSON.parse(response.body)
-    #write_yaml_file(result, sub_dir, "index_expected_1.yml")
+    #Xwrite_yaml_file(result, sub_dir, "index_expected_1.yml")
       expected = read_yaml_file(sub_dir, "index_expected_1.yml")
       expect(result).to hash_equal(expected)
       expect(response.status).to eq 200
@@ -86,7 +87,7 @@ describe ApiController, type: :controller do
       set_http_request
       get :list, {label: "Form"}
       result = JSON.parse(response.body)
-    #write_yaml_file(result, sub_dir, "list_expected_1.yml")
+    #Xwrite_yaml_file(result, sub_dir, "list_expected_1.yml")
       expected = read_yaml_file(sub_dir, "list_expected_1.yml")
       expect(result).to eq(expected)
       expect(response.status).to eq 200
@@ -96,7 +97,7 @@ describe ApiController, type: :controller do
       set_http_request
       get :show, {id: "F-ACME_T2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
       result = JSON.parse(response.body)
-    #write_yaml_file(result, sub_dir, "show_expected_1.yml")
+    #Xwrite_yaml_file(result, sub_dir, "show_expected_1.yml")
       expected = read_yaml_file(sub_dir, "show_expected_1.yml")
       expect(result).to eq(expected)
       expect(response.status).to eq 200

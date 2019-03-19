@@ -21,7 +21,9 @@ describe BiomedicalConceptTemplatesController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
       load_test_file_into_triple_store("BCT.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -40,7 +42,7 @@ describe BiomedicalConceptTemplatesController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "bct_controller_index.txt")
+    write_text_file_2(response.body, sub_dir, "bct_controller_index.txt")
       expected = read_text_file_2(sub_dir, "bct_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -50,7 +52,7 @@ describe BiomedicalConceptTemplatesController do
       get :list
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "bct_controller_list.txt")
+    write_text_file_2(response.body, sub_dir, "bct_controller_list.txt")
       expected = read_text_file_2(sub_dir, "bct_controller_list.txt")
       expect(response.body).to eq(expected)
     end
@@ -60,20 +62,20 @@ describe BiomedicalConceptTemplatesController do
       get :all
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "bct_controller_all.txt")
+    write_text_file_2(response.body, sub_dir, "bct_controller_all.txt")
       expected = read_text_file_2(sub_dir, "bct_controller_all.txt")
       expect(response.body).to eq(expected)
     end
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept_template => { :identifier => "Obs PQR", :scope_id => ra.ra_namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
-      get :history, { :biomedical_concept_template => { :identifier => "Obs PQRx", :scope_id => ra.namespace.id }}
+      get :history, { :biomedical_concept_template => { :identifier => "Obs PQRx", :scope_id => ra.ra_namespace.id }}
       expect(response).to redirect_to("/biomedical_concept_templates")
     end
 

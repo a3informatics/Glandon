@@ -19,6 +19,7 @@ describe IsoConceptSystemsController do
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
       load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
       clear_iso_concept_object
     end

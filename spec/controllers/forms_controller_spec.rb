@@ -23,6 +23,7 @@ describe FormsController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("form_example_dm1.ttl")
       load_test_file_into_triple_store("form_example_dm1_branch.ttl")
@@ -63,19 +64,19 @@ describe FormsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "forms_controller_index.txt")
+    #write_text_file_2(response.body, sub_dir, "forms_controller_index.txt")
       expected = read_text_file_2(sub_dir, "forms_controller_index.txt")
       expect(response.body).to eq(expected)
 
     end
 
     it "shows the history" do
-      get :history, { :identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
+      get :history, { :identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.ra_namespace.id }
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
-      get :history, { :identifier => "DM1 01X", :scope_id => IsoRegistrationAuthority.owner.namespace.id }
+      get :history, { :identifier => "DM1 01X", :scope_id => IsoRegistrationAuthority.owner.ra_namespace.id }
       expect(response).to redirect_to("/forms")
     end
 

@@ -24,6 +24,7 @@ describe SdtmUserDomainsController do
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
@@ -54,7 +55,7 @@ describe SdtmUserDomainsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #Xwrite_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
+    write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -63,13 +64,13 @@ describe SdtmUserDomainsController do
 
     it "shows the history" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :sdtm_user_domain => { :identifier => "DM Domain", :scope_id => ra.namespace.id }}
+      get :history, { :sdtm_user_domain => { :identifier => "DM Domain", :scope_id => ra.ra_namespace.id }}
       expect(response).to render_template("history")
     end
 
     it "shows the history, redirects when empty" do
       ra = IsoRegistrationAuthority.find_by_short_name("ACME")
-      get :history, { :sdtm_user_domain => { :identifier => "DM Domainx", :scope_id => ra.namespace.id }}
+      get :history, { :sdtm_user_domain => { :identifier => "DM Domainx", :scope_id => ra.ra_namespace.id }}
       expect(response).to redirect_to("/sdtm_user_domains")
     end
 

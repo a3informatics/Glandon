@@ -10,6 +10,11 @@ describe IsoScopedIdentifiersController do
 
     it "sets database" do
       clear_triple_store
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
+      load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
       load_test_file_into_triple_store("iso_scoped_identifier.ttl")
     end
@@ -25,21 +30,26 @@ describe IsoScopedIdentifiersController do
       scoped_identifier = IsoScopedIdentifier.new
       namespaces = IsoNamespace.all
       get :new
-      expect(assigns(:namespaces)).to eq([["BBB Pharma","NS-BBB"],["AAA Long","NS-AAA"]])
+      expected = 
+      [
+        ["BBB Pharma", IsoRegistrationAuthority.find_by_short_name("BBB").id],
+        ["AAA Long", IsoRegistrationAuthority.find_by_short_name("AAA").id]
+      ]
+      expect(assigns(:namespaces)).to match_array(expected)
       expect(assigns(:scoped_identifier).to_json).to eq(scoped_identifier.to_json)
       expect(response).to render_template("new")
     end
 
     it 'creates scoped identifier' do
       count = IsoScopedIdentifier.all.count
-      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1" }
+      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1", scope_id: IsoRegistrationAuthority.find_by_short_name("BBB").id }
       expect(IsoScopedIdentifier.all.count).to eq(count  + 1)
       expect(response).to redirect_to("/iso_scoped_identifiers")
     end
 
     it 'fails to create an existing scoped identifier' do
       count = IsoScopedIdentifier.all.count
-      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1" }
+      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1", scope_id: IsoRegistrationAuthority.find_by_short_name("BBB").id }
       expect(IsoScopedIdentifier.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/iso_scoped_identifiers/new")

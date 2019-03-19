@@ -40,7 +40,7 @@ class IsoNamespacesController < ApplicationController
 private
 
   def this_params
-    params.require(:iso_namespace).permit(:name, :shortName)
+    params.require(:iso_namespace).permit(:name, :short_name)
   end
     
 end
