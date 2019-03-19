@@ -54,14 +54,14 @@ class AdamIg < TabularStandard
   #
   # @return [array] An array of objects.
   def self.history
-    return super({identifier: C_IDENTIFIER, scope_id: IsoNamespace.findByShortName("CDISC").id})
+    return super({identifier: C_IDENTIFIER, scope: owner.ra_namespace})
   end
 
   # Get the next version
   #
   # @return [integet] the integer version
   def self.next_version
-    return super(C_IDENTIFIER, owner)
+    return super(C_IDENTIFIER, owner.ra_namespace)
   end
 
   def self.child_klass
