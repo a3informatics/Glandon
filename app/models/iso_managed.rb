@@ -574,7 +574,7 @@ class IsoManaged < IsoConcept
   # @ns [String] The namespace
   # @param params [Hash] the options
   # @option params [String] :identifier the scoped identifier
-  # @option params [Uri] :scope the scope
+  # @option params [IsoNamespace] :scope the scoping namespace
   # @return [Array] An array of objects.
   def self.history(rdfType, ns, params)    
     identifier = params[:identifier]
