@@ -64,7 +64,7 @@ describe FormsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "forms_controller_index.txt")
+    #Xwrite_text_file_2(response.body, sub_dir, "forms_controller_index.txt")
       expected = read_text_file_2(sub_dir, "forms_controller_index.txt")
       expect(response.body).to eq(expected)
 
