@@ -14,9 +14,9 @@ describe 'thesauri/index.html.erb', :type => :view do
     allow(view).to receive(:policy).and_return double(new?: true)
 
     thesauri = []
-    thesauri << { :owner => "ABC", :identifier => "ID1", :label => "Number 1", :owner_id => "ABC_ID" }
-    thesauri << { :owner => "ABC", :identifier => "ID2", :label => "Number 2", :owner_id => "ABC_ID" } 
-    thesauri << { :owner => "XYZ", :identifier => "ID3", :label => "Number 3", :owner_id => "XYZ_ID" } 
+    thesauri << { :owner => "ABC", :identifier => "ID1", :label => "Number 1", :scope_id => "ABC_ID" }
+    thesauri << { :owner => "ABC", :identifier => "ID2", :label => "Number 2", :scope_id => "ABC_ID" } 
+    thesauri << { :owner => "XYZ", :identifier => "ID3", :label => "Number 3", :scope_id => "XYZ_ID" } 
     assign(:thesauri, thesauri)
 
     render
@@ -45,9 +45,9 @@ describe 'thesauri/index.html.erb', :type => :view do
     allow(view).to receive(:policy).and_return double(new?: false)
 
     thesauri = []
-    thesauri << { :owner => "ABC", :identifier => "ID1", :label => "Number 1", :owner_id => "ABC_ID" }
-    thesauri << { :owner => "ABC", :identifier => "ID2", :label => "Number 2", :owner_id => "ABC_ID" } 
-    thesauri << { :owner => "XYZ", :identifier => "ID3", :label => "Number 3", :owner_id => "XYZ_ID" } 
+    thesauri << { :owner => "ABC", :identifier => "ID1", :label => "Number 1", :scope_id => "ABC_ID" }
+    thesauri << { :owner => "ABC", :identifier => "ID2", :label => "Number 2", :scope_id => "ABC_ID" } 
+    thesauri << { :owner => "XYZ", :identifier => "ID3", :label => "Number 3", :scope_id => "XYZ_ID" } 
     assign(:thesauri, thesauri)
 
     render
