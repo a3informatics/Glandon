@@ -9,8 +9,7 @@ class BiomedicalConceptsController < ApplicationController
     results = {:data => []}
     bcs = BiomedicalConcept.unique
     bcs.each do |bc|
-      bc[:scope] = IsoNamespace.find(bc[:scope_id])
-      history = BiomedicalConcept.history(bc)
+      history = BiomedicalConcept.history({identifier: bc[:identifier], scope: IsoNamespace.find(bc[:scope_id])})
       if history.length > 0
         results[:data] << history[0].to_json if history[0].edit?
       end
