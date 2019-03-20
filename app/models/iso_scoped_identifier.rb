@@ -360,7 +360,7 @@ class IsoScopedIdentifier
         scope_namespace = IsoNamespace.find(Uri.new(uri: scope))
         key = scope_namespace.short_name + "_" + identifier
         if !check.has_key?(key)
-          results << {:identifier => identifier, :label => label, :owner_uri => scope, :owner => scope_namespace.short_name}
+          results << {:identifier => identifier, :label => label, :scope_id => scope_namespace.id, :owner => scope_namespace.short_name}
           check[key] = key
         end
       end

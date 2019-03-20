@@ -85,12 +85,13 @@ describe IsoScopedIdentifier do
   end
 
   it "returns a list of all identifiers" do
+    scope = IsoNamespace.find_by_short_name("BBB")
     expected = Array.new
-    expected << {:identifier => "TESTSV 1", :label => "Test Item SV 1", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
-    expected << {:identifier => "TESTSV 2", :label => "Test Item SV 2", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST3", :label => "Test Item 3", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST2", :label => "Test Item 2", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
-    expected << {:identifier => "TEST1", :label => "Test Item 1", :owner_uri => "http://www.assero.co.uk/NS#BBB", :owner => "BBB"}
+    expected << {:identifier => "TESTSV 1", :label => "Test Item SV 1", :scope_id => scope.id, :owner => "BBB"}
+    expected << {:identifier => "TESTSV 2", :label => "Test Item SV 2", :scope_id => scope.id, :owner => "BBB"}
+    expected << {:identifier => "TEST3", :label => "Test Item 3", :scope_id => scope.id, :owner => "BBB"}
+    expected << {:identifier => "TEST2", :label => "Test Item 2", :scope_id => scope.id, :owner => "BBB"}
+    expected << {:identifier => "TEST1", :label => "Test Item 1", :scope_id => scope.id, :owner => "BBB"}
     results = IsoScopedIdentifier.allIdentifier("TestItem", "http://www.assero.co.uk/MDRItems")
     expect(results.count).to eq(5)
     results.each do |result|
