@@ -25,8 +25,7 @@ describe "Biomedical Concepts", :type => :feature do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
       load_test_file_into_triple_store("BCT.ttl")
       load_test_file_into_triple_store("BC.ttl")
@@ -57,7 +56,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
       click_link 'Export JSON'
       file = download_content 
-    #write_text_file_2(file, sub_dir, "bc_export.json")
+    #Xwrite_text_file_2(file, sub_dir, "bc_export.json")
       expected = read_text_file_2(sub_dir, "bc_export.json")
       expect(file).to eq(expected)
     end
@@ -72,7 +71,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
       click_link 'Export Turtle'
       file = download_content
-    #write_text_file_2(file, sub_dir, "bc_export.ttl")
+    #Xwrite_text_file_2(file, sub_dir, "bc_export.ttl")
       write_text_file_2(file, sub_dir, "bc_export_results.ttl")
       expected = read_text_file_2(sub_dir, "bc_export.ttl")
       check_triples("bc_export_results.ttl", "bc_export.ttl")
