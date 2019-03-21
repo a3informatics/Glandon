@@ -22,7 +22,6 @@ describe 'forms/history.html.erb', :type => :view do
     load_schema_file_into_triple_store("BusinessDomain.ttl")
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-
     load_test_file_into_triple_store("form_example_dm1.ttl")
     load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
     load_test_file_into_triple_store("form_example_general.ttl")
@@ -46,7 +45,7 @@ describe 'forms/history.html.erb', :type => :view do
 
     allow(view).to receive(:policy).and_return double(edit?: true, destroy?: true)
 
-    params = {:identifier => "DM1 01", :scope_id => IsoRegistrationAuthority.owner.namespace.id}
+    params = {:identifier => "DM1 01", :scope => IsoRegistrationAuthority.owner.ra_namespace}
     forms = Form.history(params)
     assign(:forms, forms)
     assign(:identifier, "DM1 01")
