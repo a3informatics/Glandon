@@ -75,7 +75,7 @@ describe "SDTM Model Domains", :type => :feature do
       expect(page).to have_content 'Show: '
       click_link 'Export JSON'
       file = download_content 
-    write_text_file_2(file, sub_dir, "sdtm_model_domain_export.json")
+    #Xwrite_text_file_2(file, sub_dir, "sdtm_model_domain_export.json")
       expected = read_text_file_2(sub_dir, "sdtm_model_domain_export.json")
       expect(file).to eq(expected)
     end
@@ -91,7 +91,7 @@ describe "SDTM Model Domains", :type => :feature do
       expect(page).to have_content 'Show: '
       click_link 'Export Turtle'
       file = download_content
-    #write_text_file_2(file, sub_dir, "sdtm_model_domain_export.ttl")
+    #Xwrite_text_file_2(file, sub_dir, "sdtm_model_domain_export.ttl")
       write_text_file_2(file, sub_dir, "sdtm_model_domain_export_results.ttl")
       expected = read_text_file_2(sub_dir, "sdtm_model_domain_export.ttl")
       check_triples("sdtm_model_domain_export_results.ttl", "sdtm_model_domain_export.ttl")
