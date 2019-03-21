@@ -2,6 +2,7 @@ require 'rails_helper'
 describe ThesaurusConceptsController do
 
   include DataHelpers
+  include IsoHelpers
   
   def sub_dir
     return "controllers/thesaurus_concepts"
@@ -46,7 +47,7 @@ describe ThesaurusConceptsController do
       expect(result.preferredTerm).to eq("")
       expect(result.synonym).to eq("")
       expect(referer_path).to eq("/thesauri/TH-SPONSOR_CT-1/edit?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FACME%2FV1")
-      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{CGI.escape(th.owner_id)}")
+      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
       expect(response).to render_template("edit")
     end
 
@@ -68,7 +69,7 @@ describe ThesaurusConceptsController do
       expect(result.preferredTerm).to eq("")
       expect(result.synonym).to eq("")
       expect(referer_path).to eq("/thesaurus_concepts/THC-A00001/edit?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FACME%2FV1")
-      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{CGI.escape(th.owner_id)}")
+      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
       expect(response).to render_template("edit")
     end
 
@@ -80,7 +81,7 @@ describe ThesaurusConceptsController do
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
       }
       get :edit, params
-      expect(response).to redirect_to("/thesauri/history?identifier=CDISC+EXT&scope_id=#{CGI.escape(th.owner_id)}")
+      expect(response).to redirect_to("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
     end
 
     it "gets children" do
@@ -212,7 +213,7 @@ describe ThesaurusConceptsController do
       put :update, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(response.body).to eq("{\"data\":null,\"link\":\"/thesauri/history?identifier=CDISC+EXT\\u0026scope_id=#{CGI.escape(th.owner_id)}\"}")
+      expect(response.body).to eq("{\"data\":null,\"link\":\"/thesauri/history?identifier=CDISC+EXT\\u0026scope_id=#{IsoHelpers.escape_id(th.owner_id)}\"}")
     end
 
     it "adds child concept" do
