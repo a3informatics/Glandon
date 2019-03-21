@@ -145,7 +145,7 @@ module Fuseki
     end
 
     def persisted?
-      self.uri.nil?
+      !self.uri.nil?
     end
       
     def id
