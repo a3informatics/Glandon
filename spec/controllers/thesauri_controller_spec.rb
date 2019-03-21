@@ -156,6 +156,7 @@ describe ThesauriController do
       new_th = Form.new
       new_th.id = "TH-ACME_CDISCEXT" # Note the change of fragment, uses the identifier and thus changes
       new_th.namespace = "http://www.assero.co.uk/MDRThesaurus/ACME/V2" # Note the V2, the expected new version.
+      new_th.registrationState.registrationAuthority = IsoRegistrationAuthority.owner
       new_token = Token.obtain(new_th, @lock_user)
       # Attempt to edit
       params = 

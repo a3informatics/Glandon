@@ -133,6 +133,7 @@ describe FormsController do
       new_form = Form.new
       new_form.id = "F-ACME_VSBASELINE"
       new_form.namespace = "http://www.assero.co.uk/MDRForms/ACME/V2" # Note the V2, the expected new version.
+      new_form.registrationState.registrationAuthority = IsoRegistrationAuthority.owner
       new_token = Token.obtain(new_form, @lock_user)
       # Attempt to edit
       get :edit, { :id => "F-ACME_VSBASELINE1", :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1" }

@@ -192,6 +192,7 @@ describe SdtmUserDomainsController do
       new_form = SdtmUserDomain.new
       new_form.id = "D-ACME_PEDomain"
       new_form.namespace = "http://www.assero.co.uk/MDRSdtmUD/ACME/V2" # Note the V4, the expected new version.
+      new_form.registrationState.registrationAuthority = IsoRegistrationAuthority.owner
       new_token = Token.obtain(new_form, @lock_user)
       get :edit, { id: "D-ACME_PEDomain", sdtm_user_domain: { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(flash[:error]).to be_present

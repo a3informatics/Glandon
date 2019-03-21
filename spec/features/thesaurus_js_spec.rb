@@ -136,6 +136,7 @@ describe "Thesaurus", :type => :feature do
     #write_text_file_2(file, sub_dir, "thesaurus_export.ttl")
       expected = read_text_file_2(sub_dir, "thesaurus_export.ttl")
       check_triples("thesaurus_export_results.ttl", "thesaurus_export.ttl")
+      delete_data_file(sub_dir, "thesaurus_export_results.ttl")
     end
 
     it "allows terminology to be edited", js: true do
