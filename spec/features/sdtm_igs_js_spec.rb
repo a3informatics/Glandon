@@ -83,7 +83,7 @@ describe "SDTM IG", :type => :feature do
       wait_for_ajax
       click_link 'Export Turtle'
       file = download_content
-    #write_text_file_2(file, sub_dir, "sdtm_ig_export.ttl")
+    #Xwrite_text_file_2(file, sub_dir, "sdtm_ig_export.ttl")
       write_text_file_2(file, sub_dir, "sdtm_ig_export_results.ttl")
       expected = read_text_file_2(sub_dir, "sdtm_ig_export.ttl")
       check_triples("sdtm_ig_export_results.ttl", "sdtm_ig_export.ttl")
