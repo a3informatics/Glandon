@@ -184,6 +184,18 @@ module Fuseki
       !uri?("@#{name}".to_sym)
     end
 
+    def not_used?
+      query_string = "SELECT ?s WHERE {" +
+          "  ?s ?p #{instance_variable_get(:@uri).to_ref} ." +
+          "}"
+      results = Sparql::Query.new.query(query_string, "", [])
+      results.empty? 
+    end
+
+    def used?
+      !not_used?
+    end
+
     def create_or_update(operation)
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)

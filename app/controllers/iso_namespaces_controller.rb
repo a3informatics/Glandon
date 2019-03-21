@@ -1,21 +1,18 @@
 class IsoNamespacesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
   
-  C_CLASS_NAME = "IsoNamespacesController"
+  C_CLASS_NAME = self.name
 
   def index
-    authorize IsoNamespace
     @namespaces = IsoNamespace.all
   end
   
   def new
-    authorize IsoNamespace
     @namespace = IsoNamespace.new
   end
   
   def create
-    authorize IsoNamespace
     @namespace = IsoNamespace.create(this_params)
     if @namespace.errors.empty?
       redirect_to iso_namespaces_path
@@ -26,21 +23,20 @@ class IsoNamespacesController < ApplicationController
   end
 
   def destroy
-    authorize IsoNamespace
-    @namespace = IsoNamespace.find(params[:id])
-    @namespace.destroy
+    namespace = IsoNamespace.find(params[:id])
+    namespace.delete if namespace.not_used?
     redirect_to iso_namespaces_path
   end
 
-  def show
-    authorize IsoNamespace
-    redirect_to namespaces_path
-  end
-  
 private
 
   def this_params
-    params.require(:iso_namespace).permit(:name, :short_name)
+    params.require(:iso_namespace).permit(:name, :short_name, :authority)
   end
-    
+   
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize IsoNamespace
+  end
+
 end

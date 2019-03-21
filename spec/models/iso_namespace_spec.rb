@@ -79,6 +79,21 @@ describe IsoNamespace do
     expect(result.to_h).to eq(expected)  
 	end
 
+  it "determines if namesapce used" do
+    items = IsoNamespace.all
+    sparql = %Q{INSERT DATA
+      { 
+        <http://example/book1> <http://example/is> #{items.first.uri.to_ref} .
+        <http://example/book1> <http://example/is> #{items.last.uri.to_ref} .
+      }
+    }
+    Sparql::Update.new.sparql_update(sparql, "", []) # Link to the two scopes so they are used.
+    expect(items.first.not_used?).to eq(false)
+    expect(items.last.not_used?).to eq(false)
+    result = IsoNamespace.create({name: "CCC Long", short_name: "CCC", authority: "www.ccc.com"})
+    expect(result.not_used?).to eq(true)
+  end
+
   it "passes a valid check" do
     result = IsoNamespace.new(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD Long", short_name: "DDD", authority: "www.ddd.com")
     expect(result.valid?).to be(true)
