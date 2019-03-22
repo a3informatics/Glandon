@@ -15,16 +15,15 @@
   :registration_authority:
     :uri: http://www.assero.co.uk/RA#DUNS084433759
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: "084433759"
+    :organization_identifier: '084433759'
     :international_code_designator: DUNS
     :owner: false
     :ra_namespace:
       :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification##Namespace
-      :namespace: http://www.assero.co.uk/NS
-      :id: CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
       :name: Clinical Data Interchange Standards Consortium
-      :shortName: CDISC
+      :authority: ''
   :registration_status: Standard
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
@@ -41,11 +40,10 @@
   :semantic_version: 1.4.0
   :namespace:
     :uri: http://www.assero.co.uk/NS#CDISC
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification##Namespace
-    :namespace: http://www.assero.co.uk/NS
-    :id: CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
     :name: Clinical Data Interchange Standards Consortium
-    :shortName: CDISC
+    :authority: ''
 :ordinal: 1
 :rule: ''
 :children:
