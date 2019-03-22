@@ -215,9 +215,7 @@ it "allows a BC to be found" do
     allow_any_instance_of(BiomedicalConcept).to receive(:valid?).and_return(true) 
     allow_any_instance_of(BiomedicalConcept).to receive(:create_permitted?).and_return(true) 
     response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect(ConsoleLogger).to receive(:info)
+    expect(CRUD).to receive(:update).and_return(response)
     expect{BiomedicalConcept.create(json)}.to raise_error(Exceptions::CreateError)
   end
 
