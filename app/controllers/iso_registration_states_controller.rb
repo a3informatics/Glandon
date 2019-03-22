@@ -1,9 +1,8 @@
 class IsoRegistrationStatesController < ApplicationController
   
-  before_action :authenticate_user!
-  
+  before_action :authenticate_and_authorized
+    
   def update
-    authorize IsoRegistrationState
     referer = request.referer
     @managed_item = IsoManaged.find(the_params[:mi_id], the_params[:mi_namespace])
     @managed_item.update_status(the_params)
@@ -14,7 +13,6 @@ class IsoRegistrationStatesController < ApplicationController
   end
 
   def current
-    authorize IsoRegistrationState
     referer = request.referer
     old_id = params[:old_id]
     new_id = params[:new_id]
@@ -30,6 +28,11 @@ private
   def the_params
     params.require(:iso_registration_state).permit(:registrationAuthority, :registrationStatus, :administrativeNote, :unresolvedIssue, :administrativeStatus, 
       :previousState, :referer, :mi_id, :mi_namespace)
+  end
+
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize IsoRegistrationState
   end
 
 end
