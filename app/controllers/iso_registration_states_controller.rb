@@ -2,11 +2,6 @@ class IsoRegistrationStatesController < ApplicationController
   
   before_action :authenticate_user!
   
-  def index
-    authorize IsoRegistrationState
-    @registration_states = IsoRegistrationState.all
-  end
-  
   def update
     authorize IsoRegistrationState
     referer = request.referer
