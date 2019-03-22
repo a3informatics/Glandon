@@ -8,7 +8,8 @@ describe IsoScopedIdentifiersController do
   	
     login_curator
 
-    it "sets database" do
+    
+    before :each do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -17,49 +18,6 @@ describe IsoScopedIdentifiersController do
       load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
       load_test_file_into_triple_store("iso_scoped_identifier.ttl")
-    end
-
-    it "index scoped_identifiers" do
-      scoped_identifiers = IsoScopedIdentifier.all
-      get :index
-      expect(assigns(:scoped_identifiers).to_json).to eq(scoped_identifiers.to_json)
-      expect(response).to render_template("index")
-    end
-
-    it "new scoped identifier" do
-      scoped_identifier = IsoScopedIdentifier.new
-      namespaces = IsoNamespace.all
-      get :new
-      expected = 
-      [
-        ["BBB Pharma", IsoRegistrationAuthority.find_by_short_name("BBB").id],
-        ["AAA Long", IsoRegistrationAuthority.find_by_short_name("AAA").id]
-      ]
-      expect(assigns(:namespaces)).to match_array(expected)
-      expect(assigns(:scoped_identifier).to_json).to eq(scoped_identifier.to_json)
-      expect(response).to render_template("new")
-    end
-
-    it 'creates scoped identifier' do
-      count = IsoScopedIdentifier.all.count
-      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1", scope_id: IsoRegistrationAuthority.find_by_short_name("BBB").id }
-      expect(IsoScopedIdentifier.all.count).to eq(count  + 1)
-      expect(response).to redirect_to("/iso_scoped_identifiers")
-    end
-
-    it 'fails to create an existing scoped identifier' do
-      count = IsoScopedIdentifier.all.count
-      post :create, iso_scoped_identifier: { identifier: "XXX SI", version: "1", versionLabel: "draft 1", scope_id: IsoRegistrationAuthority.find_by_short_name("BBB").id }
-      expect(IsoScopedIdentifier.all.count).to eq(count)
-      expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/iso_scoped_identifiers/new")
-    end
-
-    it 'deletes scoped_identifier' do
-      count = IsoScopedIdentifier.all.count
-      scoped_identifiers = IsoScopedIdentifier.all
-      delete :destroy, :id => scoped_identifiers[0].id
-      expect(IsoScopedIdentifier.all.count).to eq(count - 1)
     end
 
     it 'updates a scoped identifier' do
@@ -77,10 +35,11 @@ describe IsoScopedIdentifiersController do
       count = IsoScopedIdentifier.all.count
       @request.env['HTTP_REFERER'] = 'http://test.host/iso_scoped_identifiers'
       scoped_identifier = IsoScopedIdentifier.all.first
+      vl = scoped_identifier.versionLabel
       patch :update, { id: "#{scoped_identifier.id}", iso_scoped_identifier: { versionLabel: "update to label@@@£±£±" }}
       updated_scoped_identifier = IsoScopedIdentifier.find(scoped_identifier.id)
       expect(IsoScopedIdentifier.all.count).to eq(count)
-      expect(updated_scoped_identifier.versionLabel).to eq("update to label")
+      expect(updated_scoped_identifier.versionLabel).to eq(vl)
       expect(response).to redirect_to("/iso_scoped_identifiers")
     end 
 
@@ -90,22 +49,8 @@ describe IsoScopedIdentifiersController do
     
     login_sys_admin
 
-    it "index registration authority" do
-      get :index
-      expect(response).to redirect_to("/")
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
-    end
-
-    it "new registration authority" do
-      get :new
-      expect(response).to redirect_to("/")
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
-    end
-
-    it 'creates namespace' do
-      post :create, iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+    it 'update' do
+      patch :update, id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -115,18 +60,8 @@ describe IsoScopedIdentifiersController do
 
   describe "Not logged in" do
     
-    it "index scoped identifier" do
-      get :index
-      expect(response).to redirect_to("/users/sign_in")
-    end
-
-    it "new scoped identifier" do
-      get :new
-      expect(response).to redirect_to("/users/sign_in")
-    end
-
-    it 'creates scoped_identifier' do
-      post :create, iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
+    it "update" do
+      patch :update, id: "XXX", iso_scoped_identifier: { name: "XXX Pharma", shortName: "XXX" }
       expect(response).to redirect_to("/users/sign_in")
     end
 
