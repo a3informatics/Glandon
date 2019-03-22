@@ -86,28 +86,29 @@ describe Form do
   end
 
   it "finds all unique entries" do
-    result = 
+    ns = IsoNamespace.find_by_short_name("ACME")
+    expected = 
       [
         {
           :identifier=>"T2",
           :label=>"Test 2",
-          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
+          :scope_id=>ns.id,
           :owner=>"ACME"
         },
         {
           :identifier=>"DM1 01",
           :label=>"Demographics",
-          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
+          :scope_id=>ns.id,
           :owner=>"ACME"
         },
         {
           :identifier=>"VS BASELINE",
           :label=>"Vital Signs Baseline",
-          :owner_uri=>"http://www.assero.co.uk/NS#ACME",
+          :scope_id=>ns.id,
           :owner=>"ACME"
         }
       ]
-    expect(Form.unique).to eq (result)
+    expect(Form.unique).to eq (expected)
   end
 
   it "finds list of all released entries" do
@@ -196,9 +197,7 @@ describe Form do
     allow_any_instance_of(Form).to receive(:valid?).and_return(true) 
     allow_any_instance_of(Form).to receive(:create_permitted?).and_return(true) 
     response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect(ConsoleLogger).to receive(:info)
+    expect(CRUD).to receive(:update).and_return(response)
     expect{Form.create(json[:form])}.to raise_error(Errors::CreateError, "Failed to create Form. .")
   end
 
