@@ -39,9 +39,10 @@ describe SdtmModel do
   it "validates a valid object" do
     item = SdtmModel.new
     ra = IsoRegistrationAuthority.new
-    ra.number = "123456789"
-    ra.scheme = "DUNS"
-    ra.namespace = IsoNamespace.find("NS-ACME")
+    ra.uri = "na" # Bit naughty
+    ra.organization_identifier = "123456789"
+    ra.international_code_designator = "DUNS"
+    ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
     item.registrationState.registrationAuthority = ra
     si = IsoScopedIdentifier.new
     si.identifier = "X FACTOR"
@@ -125,9 +126,7 @@ describe SdtmModel do
   	json = read_yaml_file(sub_dir, "from_json_input_1.yaml")
     item = SdtmModel.from_json(json)
     result = item.to_sparql_v2(sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
-    #expected = read_text_file_2(sub_dir, "to_sparql_expected_1.txt")
-    #expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_1.txt")
     check_sparql_no_file(sparql.to_s, "to_sparql_expected_1.txt")
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL")
   end
@@ -138,8 +137,6 @@ describe SdtmModel do
     item = SdtmModel.from_json(json)
     result = item.domain_refs_to_sparql(sparql)
   #write_text_file_2(sparql.to_s, sub_dir, "class_refs_to_sparql_expected_1.txt")
-    #expected = read_text_file_2(sub_dir, "class_refs_to_sparql_expected_1.txt")
-    #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "class_refs_to_sparql_expected_1.txt")
     expect(result.to_s).to eq("http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL")
   end
@@ -148,14 +145,8 @@ describe SdtmModel do
   	sparql = SparqlUpdateV2.new
 		json = read_yaml_file(sub_dir, "build_input.yaml")
 		result = SdtmModel.build(json, sparql)
-  #write_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
-    #expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
-    #expect(sparql.to_s).to eq(expected)
-    check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
-	#write_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
+	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
-		expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
     expect(result.to_json).to eq(expected)
 		expect(result.errors.full_messages.to_sentence).to eq("")
 		expect(result.errors.count).to eq(0)
