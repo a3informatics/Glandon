@@ -10,10 +10,8 @@ describe IsoNamespacesController do
 
     before :each do
       clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
       load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     end
@@ -52,6 +50,18 @@ describe IsoNamespacesController do
     it 'deletes namespace, used, not deleted' do
       ns = IsoNamespace.find_by_short_name("AAA")
       delete :destroy, :id => ns.id
+      expect(flash[:error]).to be_present
+      expect(IsoNamespace.all.count).to eq(2)
+    end
+
+    it 'deletes namespace, not found' do
+      expect(IsoNamespace.all.count).to eq(2)
+      post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }
+      ns = IsoNamespace.find_by_short_name("XXX")
+      delete :destroy, :id => ns.id
+      expect(IsoNamespace.all.count).to eq(2)
+      delete :destroy, :id => ns.id # Delete again! Should fail.
+      expect(flash[:error]).to be_present
       expect(IsoNamespace.all.count).to eq(2)
     end
 

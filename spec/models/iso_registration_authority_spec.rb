@@ -92,19 +92,22 @@ describe IsoRegistrationAuthority do
   end
 
   it "create an authority" do
-    result = IsoRegistrationAuthority.create(organization_identifier: "222233334", international_code_designator: "DUNS", owner: false)
+    ns = IsoNamespace.find_by_short_name("BBB")
+    result = IsoRegistrationAuthority.create(organization_identifier: "222233334", international_code_designator: "DUNS", owner: false, namespace_id: ns.id)
     expect(result.errors.count).to eq(0)
 	end
 
   it "prevents an invalid authority from being created" do
-    result = IsoRegistrationAuthority.create(organization_identifier: "123456AAA", international_code_designator: "DUNS", owner: false)
+    ns = IsoNamespace.find_by_short_name("BBB")
+    result = IsoRegistrationAuthority.create(organization_identifier: "123456AAA", international_code_designator: "DUNS", owner: false, namespace_id: ns.id)
     expect(result.errors.count).to eq(1)
     expect(result.errors.full_messages.to_sentence).to eq("Organization identifier is invalid")
   end
 
   it "prevents an existing authority from being created" do
+    ns = IsoNamespace.find_by_short_name("BBB")
     result = IsoRegistrationAuthority.create(organization_identifier: "123456789", 
-      international_code_designator: "DUNS", owner: false)
+      international_code_designator: "DUNS", owner: false, namespace_id: ns.id)
     expect(result.errors.count).to eq(1)
     expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
   end

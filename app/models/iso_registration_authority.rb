@@ -70,13 +70,15 @@ class IsoRegistrationAuthority < Fuseki::Base
     find_children(object.uri)
   end
 
-    # Create
+  # Create
   #
   # @param attributes [Hash] the set of properties
   # @return [IsoNamespace] the object. Contains errors if it fails
   def self.create(attributes)
     attributes[:uri] = Uri.new(namespace: base_uri.namespace, fragment: attributes[:organization_identifier])
-    super
+    object = super
+    object.ra_namespace = IsoNamespace.find(attributes[:namespace_id])
+    object
   end 
 
 end

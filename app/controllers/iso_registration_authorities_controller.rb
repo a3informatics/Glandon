@@ -1,22 +1,20 @@
 class IsoRegistrationAuthoritiesController < ApplicationController
   
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
   
   def index
-    authorize IsoRegistrationAuthority
     @registrationAuthorities = IsoRegistrationAuthority.all
+    @registrationAuthorities.each {|ra| ra.ra_namespace_objects}
     @owner = IsoRegistrationAuthority.owner
   end
   
   def new
-    authorize IsoRegistrationAuthority
     @namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
     @registrationAuthority = IsoRegistrationAuthority.new
   end
   
   def create
-    authorize IsoRegistrationAuthority
-    @registrationAuthority = IsoRegistrationAuthority.create(ra_params)
+    @registrationAuthority = IsoRegistrationAuthority.create(the_params)
     if @registrationAuthority.errors.empty?
       redirect_to iso_registration_authorities_path
     else
@@ -26,24 +24,24 @@ class IsoRegistrationAuthoritiesController < ApplicationController
   end
 
   def destroy
-    authorize IsoRegistrationAuthority
-    @registration_authority = IsoRegistrationAuthority.find(params[:id])
-    if !@registration_authority.id.empty?
-      @registration_authority.destroy
-    else
-      flash[:error] = "Unable to delete Registration Authority."
+    begin 
+      registration_authority = IsoRegistrationAuthority.find(params[:id])
+      registration_authority.not_used? ? registration_authority.delete : flash[:error] = "Registration Authority is in use and cannot be deleted."
+    rescue => e
+      flash[:error] = "Unable to delete Scope Namespace."
     end
     redirect_to iso_registration_authorities_path
   end
 
-  def show
-    authorize IsoRegistrationAuthority
-    redirect_to iso_registration_authorities_path
+private
+
+  def the_params
+    params.require(:iso_registration_authority).permit(:namespace_id, :organization_identifier)
   end
-  
-  private
-    def ra_params
-      params.require(:iso_registration_authority).permit(:namespaceId, :number)
-    end
+
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize IsoRegistrationAuthority
+  end
 
 end

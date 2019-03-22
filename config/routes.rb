@@ -48,10 +48,9 @@ Rails.application.routes.draw do
     end
   end
   resources :markdown_engines, only: [:create, :index]
-  resources :iso_namespaces
-  resources :iso_registration_authorities
-  resources :iso_scoped_identifiers, only: [:index, :new, :create, :destroy] do
-  end
+  resources :iso_namespaces, only: [:index, :new, :create, :destroy]
+  resources :iso_registration_authorities, only: [:index, :new, :create, :destroy]
+  resources :iso_scoped_identifiers, only: [:index, :new, :create, :destroy]
   resources :iso_registration_states, only: [:update] do
     collection do
       get :current

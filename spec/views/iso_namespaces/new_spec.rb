@@ -8,11 +8,8 @@ describe 'iso_namespaces/new.html.erb', :type => :view do
 
   before :all do
     clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
   end
       
   it 'displays the form' do 

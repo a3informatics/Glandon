@@ -5,14 +5,12 @@ describe 'iso_namespaces/index.html.erb', :type => :view do
   include UiHelpers
   include UserAccountHelpers
   include DataHelpers
+  include IsoHelpers
 
   before :all do
     clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
   end
       
   it 'displays the form' do 
@@ -26,14 +24,8 @@ describe 'iso_namespaces/index.html.erb', :type => :view do
     namespaces.last.name = "BBB Long Name"
     assign(:namespaces, namespaces)
 
-    # Ensure namespace used.
-    sparql = %Q{INSERT DATA
-      { 
-        <http://example/book1> <http://example/is> #{namespaces.first.uri.to_ref} .
-      }
-    }
-    Sparql::Update.new.sparql_update(sparql, "", []) # Link to the two scopes so they are used.
- 
+    IsoHelpers.mark_as_used(namespaces.first.uri)
+    
     render
     
     expect(rendered).to have_content("Namespaces")

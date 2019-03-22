@@ -1,32 +1,47 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Registration Authorities") %>
-<h3>Registration Authorities</h3>
-<div class="col-md-12">
-	<h4>Owner:</h4>Repository owner is <%= @owner.ra_namespace.short_name %></p>
-	<h4>Details:</h4>
-	<table id="main" class="table table-striped table-bordered table-condensed">
-		<thead>
-			<tr>
-			    <th>Number</th>
-			    <th>Scheme</th>
-			    <th>Name</th>
-			    <th>Short Name</th>
-			    <th>Owner</th>
-			    <th></th>
-		  	</tr>
-		</thead>
-	  	<tbody>
-			<% @registrationAuthorities.each do |registrationAuthority| %>
-		  		<tr>
-				    <td><%= registrationAuthority.organization_identifier %></td>
-				    <td><%= registrationAuthority.international_code_designator %></td>
-				    <td><%= registrationAuthority.ra_namespace.name %></td>
-				    <td><%= registrationAuthority.ra_namespace.short_name %></td>
-				    <td><%= registrationAuthority.owner %></td>
-				    <td><%= link_to "Delete", iso_registration_authority_path(registrationAuthority.ra_namespace.id), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<%= link_to "New Authority", new_iso_registration_authority_path, :class => "btn btn-success" %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <h3 class="panel-title">Registration Authorities</h3>
+      </div>
+      <div class="panel-body">
+      	<h4>Owner:</h4>Repository owner is <%= @owner.ra_namespace.short_name %></p>
+      	<h4>Details:</h4>
+      	<table id="main" class="table table-striped table-bordered table-condensed">
+      		<thead>
+      			<tr>
+      			    <th>Number</th>
+      			    <th>Scheme</th>
+      			    <th>Name</th>
+      			    <th>Short Name</th>
+      			    <th>Owner</th>
+      			    <th></th>
+      		  	</tr>
+      		</thead>
+      	  	<tbody>
+      			<% @registrationAuthorities.each do |ra| %>
+      		  		<tr>
+      				    <td><%= ra.organization_identifier %></td>
+      				    <td><%= ra.international_code_designator %></td>
+      				    <td><%= ra.ra_namespace.name %></td>
+      				    <td><%= ra.ra_namespace.short_name %></td>
+      				    <%= true_false_glyphicon(ra.owner) %>
+                  <td>
+                    <% if ra.not_used? %>
+                      <%= render partial: "shared/buttons/delete", locals: {link_path: iso_registration_authority_path(ra), small: true, id: "delete_button_#{ra.id}", label: "Delete"} %>
+                    <% else %>
+                      &nbsp;
+                    <% end %>
+                  </td>
+      				</tr>
+      			<% end %>
+      		</tbody>
+      	</table>
+      	<%= link_to "New", new_iso_registration_authority_path, :class => "btn btn-success" %>
+        <%= render partial: "shared/close_button", locals: { path: root_path } %> 
+      </div>
+    </div>
+  </div>
 </div>

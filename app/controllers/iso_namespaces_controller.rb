@@ -23,8 +23,12 @@ class IsoNamespacesController < ApplicationController
   end
 
   def destroy
-    namespace = IsoNamespace.find(params[:id])
-    namespace.delete if namespace.not_used?
+    begin
+      namespace = IsoNamespace.find(params[:id])
+      namespace.not_used? ? namespace.delete : flash[:error] = "Scope Namespace is in use and cannot be deleted."
+    rescue => e
+      flash[:error] = "Unable to delete Scope Namespace."
+    end
     redirect_to iso_namespaces_path
   end
 
