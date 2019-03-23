@@ -189,14 +189,14 @@ class SdtmUserDomainsController < ApplicationController
     authorize SdtmUserDomain
     @sdtm_user_domain = IsoManaged::find(params[:id], the_params[:namespace])
     send_data to_turtle(@sdtm_user_domain.triples), 
-      filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+      filename: "#{@sdtm_user_domain.owner_short_name}_#{@sdtm_user_domain.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize SdtmUserDomain
     @sdtm_user_domain = SdtmUserDomain.find(params[:id], the_params[:namespace])
     send_data @sdtm_user_domain.to_json.to_json, 
-      filename: "#{@sdtm_user_domain.owner}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+      filename: "#{@sdtm_user_domain.owner_short_name}_#{@sdtm_user_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def export_xpt_metadata

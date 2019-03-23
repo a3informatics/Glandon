@@ -28,13 +28,13 @@ class SdtmIgDomainsController < ApplicationController
   def export_ttl
     authorize SdtmIgDomain
     @sdtm_ig_domain = IsoManaged::find(params[:id], the_params[:namespace])
-    send_data to_turtle(@sdtm_ig_domain.triples), filename: "#{@sdtm_ig_domain.owner}_#{@sdtm_ig_domain.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+    send_data to_turtle(@sdtm_ig_domain.triples), filename: "#{@sdtm_ig_domain.owner_short_name}_#{@sdtm_ig_domain.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize SdtmIgDomain
     @sdtm_ig_domain = SdtmIgDomain.find(params[:id], the_params[:namespace])
-    send_data @sdtm_ig_domain.to_json.to_json, filename: "#{@sdtm_ig_domain.owner}_#{@sdtm_ig_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @sdtm_ig_domain.to_json.to_json, filename: "#{@sdtm_ig_domain.owner_short_name}_#{@sdtm_ig_domain.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
   
 private

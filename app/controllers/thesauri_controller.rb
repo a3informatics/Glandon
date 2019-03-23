@@ -143,7 +143,7 @@ class ThesauriController < ApplicationController
    def export_ttl
     authorize Thesaurus
     item = IsoManaged::find(params[:id], params[:namespace])
-    send_data to_turtle(item.triples), filename: "#{item.owner}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+    send_data to_turtle(item.triples), filename: "#{item.owner_short_name}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
 
   def impact

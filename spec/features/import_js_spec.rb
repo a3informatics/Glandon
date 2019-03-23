@@ -86,8 +86,7 @@ describe "Imports", :type => :feature do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -159,11 +158,11 @@ describe "Imports", :type => :feature do
     it "import into terminolgy, import, single", scenario: true, js: true do
       get_excel_code_lists
       ui_table_row_click("items_table", "SN667XX1")
-    #pause
       click_button 'Import'
       wait_for_ajax
       ui_button_enabled('import_index_button')
       click_button 'import_index_button'
+    #pause
       ui_check_table_cell("main", 1, 3, "SN667XX1")
       check_successful_import(1)
       delete_all_imports

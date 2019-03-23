@@ -191,13 +191,13 @@ class BiomedicalConceptsController < ApplicationController
   def export_ttl
     authorize BiomedicalConcept
     @bc = IsoManaged.find(params[:id], the_params[:namespace])
-    send_data to_turtle(@bc.triples), filename: "#{@bc.owner}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+    send_data to_turtle(@bc.triples), filename: "#{@bc.owner_short_name}_#{@bc.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
   end
   
   def export_json
     authorize BiomedicalConcept
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
-    send_data @bc.to_json.to_json, filename: "#{@bc.owner}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
+    send_data @bc.to_json.to_json, filename: "#{@bc.owner_short_name}_#{@bc.identifier}.json", :type => 'application/json; header=present', disposition: "attachment"
   end
 
   def upgrade
