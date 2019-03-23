@@ -8,7 +8,10 @@ describe "ISO Registration Authority JS", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")  
     ua_create
   end 
 
@@ -26,7 +29,7 @@ describe "ISO Registration Authority JS", :type => :feature do
 
   describe "valid user", :type => :feature, js: true do
 
-    it "deletes namespace" do
+    it "deletes registration authority" do
       click_link 'Registration Authorities'
       expect(page).to have_content 'Registration Authorities'
       find(:xpath, "//tr[contains(.,'111111111')]/td/a", :text => 'Delete').click

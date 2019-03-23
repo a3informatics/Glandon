@@ -8,7 +8,10 @@ describe "ISO Registration Authority", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")  
     ua_create
   end 
 
@@ -36,10 +39,10 @@ describe "ISO Registration Authority", :type => :feature do
     it "allows a new namespace to be added" do
       click_link 'Registration Authorities'
       expect(page).to have_content 'Registration Authorities'
-      click_link 'New Authority'
+      click_link 'New'
       expect(page).to have_content 'Registration Authority'
       fill_in 'DUNS Number', with: '111122223'
-      select 'AAA Long', from: "iso_registration_authority_namespaceId"
+      select 'AAA Long', from: "iso_registration_authority_namespace_id"
       click_button 'Submit'
       expect(page).to have_content 'Registration Authorities'
       expect(page).to have_content '111122223'   

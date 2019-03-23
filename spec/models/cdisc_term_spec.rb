@@ -341,7 +341,7 @@ describe CdiscTerm do
     	object = CdiscTerm.new
     	params = { version: "48", date: "2017-06-05", files: ["file1", "file2"]}
     	result = CdiscTerm.params_valid?(object, params)
-    	puts object.errors.full_messages.to_sentence
+    #puts object.errors.full_messages.to_sentence
     	expect(result).to eq(true)
     	expect(object.errors.count).to eq(0)    
     end

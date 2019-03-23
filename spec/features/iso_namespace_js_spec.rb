@@ -8,7 +8,10 @@ describe "ISO Namespace JS", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")  
     ua_create
   end 
 
@@ -29,6 +32,7 @@ describe "ISO Namespace JS", :type => :feature do
     it "deletes namespace" do
       click_link 'Namespace'
       expect(page).to have_content 'Namespaces'
+#pause
       find(:xpath, "//tr[contains(.,'AAA')]/td/a", :text => 'Delete').click
       page.accept_alert
       sleep(1)

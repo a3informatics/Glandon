@@ -8,7 +8,11 @@ describe "ISO Namespace", :type => :feature do
 
   before :all do
     clear_triple_store
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    load_test_file_into_triple_store("iso_namespace_fake.ttl")  
     ua_create
   end 
 
@@ -35,10 +39,11 @@ describe "ISO Namespace", :type => :feature do
 
     it "allows a new namespace to be added" do
       click_link 'Namespaces'
-      click_link 'New Namespace'
-      expect(page).to have_content 'New Namespace'
-      fill_in 'iso_namespace_shortName', with: 'NEWORG'
+      click_link 'New'
+      expect(page).to have_content 'New Scope Namespace'
+      fill_in 'iso_namespace_short_name', with: 'NEWORG'
       fill_in 'iso_namespace_name', with: 'New Organisation'
+      fill_in 'iso_namespace_authority', with: 'www.example.com'
       click_button 'Submit'
       expect(page).to have_content 'Namespaces'
       expect(page).to have_content 'New Organisation'  
