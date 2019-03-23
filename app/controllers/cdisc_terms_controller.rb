@@ -76,7 +76,7 @@ class CdiscTermsController < ApplicationController
     authorize CdiscTerm, :view?
     @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
-    @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.owner_id)
+    @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.scope.id)
   end
   
   def search_results

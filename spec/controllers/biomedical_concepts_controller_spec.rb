@@ -196,7 +196,7 @@ describe BiomedicalConceptsController do
       bc = BiomedicalConcept.find("BC-ACME_BC_C49678", "http://www.assero.co.uk/MDRBCs/V1") 
       get :upgrade, { :id => "BC-ACME_BC_C49678", :biomedical_concept => { :namespace => "http://www.assero.co.uk/MDRBCs/V1" }}
       expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/biomedical_concepts/history?biomedical_concept%5Bidentifier%5D=BC+C49678&biomedical_concept%5Bscope_id%5D=#{IsoHelpers.escape_id(bc.owner_id)}")
+      expect(response).to redirect_to("/biomedical_concepts/history?biomedical_concept%5Bidentifier%5D=BC+C49678&biomedical_concept%5Bscope_id%5D=#{IsoHelpers.escape_id(bc.scope.id)}")
     end
 
     it "allows the BC to be viewed" do

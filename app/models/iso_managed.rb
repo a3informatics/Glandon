@@ -88,7 +88,7 @@ class IsoManaged < IsoConcept
   #
   # @return [boolean] Returns true of latest
   def latest?
-    latest_version = IsoScopedIdentifier.latest(self.identifier, self.owner_id)
+    latest_version = IsoScopedIdentifier.latest(self.identifier, self.scope)
     return self.version == latest_version
   end
 
@@ -113,6 +113,20 @@ class IsoManaged < IsoConcept
     return self.scopedIdentifier.same_version?(version)
   end
   
+  # Return the scope of the managed item
+  #
+  # @return [IsoScopedIdentifier] the scoping namespace
+  def scope
+    return self.registrationState.registrationAuthority.ra_namespace
+  end
+
+  # Return the short name of the scope of the managed item
+  #
+  # @return [IsoScopedIdentifier] the scoping namespace
+  def scope_short_name
+    return scope.short_name
+  end
+
   # Return the owner of the managed item
   #
   # @return [object] The owner namespace object.
@@ -130,9 +144,9 @@ class IsoManaged < IsoConcept
   # Return the owner id
   #
   # @return [String] The owner id. Note new UUID.
-  def owner_id
-    return owner.id
-  end
+  #def owner_id
+  #  return owner.id
+  #end
 
   # Determine if the object is owned by this repository
   #

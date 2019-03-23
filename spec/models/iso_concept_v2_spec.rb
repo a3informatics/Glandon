@@ -20,6 +20,7 @@ describe IsoConceptV2 do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_concept_data_3.ttl")
       IsoHelpers.clear_schema_cache
+      IsoHelpers.clear_cache
 	  end
 
 		it "validates a valid object" do

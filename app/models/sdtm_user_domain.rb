@@ -395,7 +395,7 @@ class SdtmUserDomain < Tabular
   def report(options, user)
     doc_history = Array.new
     if options[:full]
-      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.owner_id})
+      history = IsoManaged::history(C_RDF_TYPE, C_SCHEMA_NS, {:identifier => self.identifier, :scope_id => self.scope.id})
       history.each do |item|
         if self.same_version?(item.version) || self.later_version?(item.version)
           doc_history << item.to_json

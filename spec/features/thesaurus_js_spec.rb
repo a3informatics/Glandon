@@ -33,8 +33,7 @@ describe "Thesaurus", :type => :feature do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("thesaurus_concept.ttl")
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("CT_ACME_TEST.ttl")
@@ -133,7 +132,7 @@ describe "Thesaurus", :type => :feature do
       click_link 'Export Turtle'
       file = download_content
       write_text_file_2(file, sub_dir, "thesaurus_export_results.ttl")
-    #write_text_file_2(file, sub_dir, "thesaurus_export.ttl")
+    #Xwrite_text_file_2(file, sub_dir, "thesaurus_export.ttl")
       expected = read_text_file_2(sub_dir, "thesaurus_export.ttl")
       check_triples("thesaurus_export_results.ttl", "thesaurus_export.ttl")
       delete_data_file(sub_dir, "thesaurus_export_results.ttl")

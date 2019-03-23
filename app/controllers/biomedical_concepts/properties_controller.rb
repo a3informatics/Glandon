@@ -34,7 +34,7 @@ class BiomedicalConcepts::PropertiesController < ApplicationController
       end
     else
       flash[:error] = "The edit lock has timed out."
-      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.owner_id })}, 
+      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.scope.id })}, 
         :status => 422
     end
   end
@@ -60,7 +60,7 @@ class BiomedicalConcepts::PropertiesController < ApplicationController
       end
     else
       flash[:error] = "The edit lock has timed out."
-      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.owner_id })}, 
+      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.scope.id })}, 
         :status => 422
     end
   end
@@ -77,7 +77,7 @@ class BiomedicalConcepts::PropertiesController < ApplicationController
       render :json => {:data => [ property.to_json_with_references ]}, :status => 200
     else
       flash[:error] = "The edit lock has timed out."
-      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.owner_id })}, 
+      render :json => {:data => [], :link => history_biomedical_concepts_path( :biomedical_concept => { identifier: bc.identifier, scope_id: bc.scope.id })}, 
         :status => 422
     end
   end

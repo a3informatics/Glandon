@@ -20,8 +20,7 @@ describe ThesaurusConceptsController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("thesaurus_concept.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -47,7 +46,7 @@ describe ThesaurusConceptsController do
       expect(result.preferredTerm).to eq("")
       expect(result.synonym).to eq("")
       expect(referer_path).to eq("/thesauri/TH-SPONSOR_CT-1/edit?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FACME%2FV1")
-      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
+      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.scope.id)}")
       expect(response).to render_template("edit")
     end
 
@@ -69,7 +68,7 @@ describe ThesaurusConceptsController do
       expect(result.preferredTerm).to eq("")
       expect(result.synonym).to eq("")
       expect(referer_path).to eq("/thesaurus_concepts/THC-A00001/edit?namespace=http%3A%2F%2Fwww.assero.co.uk%2FMDRThesaurus%2FACME%2FV1")
-      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
+      expect(close_path).to eq("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.scope.id)}")
       expect(response).to render_template("edit")
     end
 
@@ -81,7 +80,7 @@ describe ThesaurusConceptsController do
         :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
       }
       get :edit, params
-      expect(response).to redirect_to("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.owner_id)}")
+      expect(response).to redirect_to("/thesauri/history?identifier=CDISC+EXT&scope_id=#{IsoHelpers.escape_id(th.scope.id)}")
     end
 
     it "gets children" do
@@ -213,7 +212,7 @@ describe ThesaurusConceptsController do
       put :update, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(response.body).to eq("{\"data\":null,\"link\":\"/thesauri/history?identifier=CDISC+EXT\\u0026scope_id=#{IsoHelpers.escape_id(th.owner_id)}\"}")
+      expect(response.body).to eq("{\"data\":null,\"link\":\"/thesauri/history?identifier=CDISC+EXT\\u0026scope_id=#{IsoHelpers.escape_id(th.scope.id)}\"}")
     end
 
     it "adds child concept" do

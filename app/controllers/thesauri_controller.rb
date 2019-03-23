@@ -57,7 +57,7 @@ class ThesauriController < ApplicationController
       @token.release
 	    @token = get_token(@thesaurus)
 	  end
-  	@close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+  	@close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
     @tc_identifier_prefix = ""
   end
 
@@ -105,7 +105,7 @@ class ThesauriController < ApplicationController
   def show
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
     respond_to do |format|
       format.html
       format.json do
@@ -118,14 +118,14 @@ class ThesauriController < ApplicationController
   def view
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
   end
 
   def search
     authorize Thesaurus, :view?
     @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
     @items = Notepad.where(user_id: current_user).find_each
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
   end
   
   def search_current

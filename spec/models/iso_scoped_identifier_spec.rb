@@ -3,6 +3,7 @@ require 'rails_helper'
 describe IsoScopedIdentifier do
   
   include DataHelpers
+  include IsoHelpers
 
   before :each do
     clear_triple_store
@@ -11,6 +12,7 @@ describe IsoScopedIdentifier do
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_scoped_identifier.ttl")
+    IsoHelpers.clear_cache
   end
 
   it "cleans an identifier" do

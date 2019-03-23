@@ -50,7 +50,7 @@ class BiomedicalConceptTemplatesController < ApplicationController
     respond_to do |format|
       format.html do
         @items = @bct.get_properties
-        @close_path = history_biomedical_concept_templates_path(:biomedical_concept_template => { identifier: @bct.identifier, scope_id: @bct.owner_id })
+        @close_path = history_biomedical_concept_templates_path(:biomedical_concept_template => { identifier: @bct.identifier, scope_id: @bct.scope.id })
       end
       format.json do
         @items = @bct.get_properties

@@ -120,7 +120,7 @@ class ThesaurusConceptsController < ApplicationController
 private
 
   def edit_lock_lost_link(thesaurus)
-    return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.owner_id)
+    return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
   end
 
   def audit_and_respond(thesaurus, thesaurus_concept, token)

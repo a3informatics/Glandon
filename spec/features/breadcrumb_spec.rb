@@ -71,13 +71,13 @@ describe "Breadcrumb", :type => :feature do
 
     it "has Registration Authorities breadcrumbs" do
       next_link('Registration Authorities', 'Registration Authorities', "Registration Authorities", "", "")
-      next_link('New Authority', 'New Registration Authority', "Registration Authorities", "New", "")
+      next_link('New', 'New Registration Authority', "Registration Authorities", "New", "")
       next_link_crumb(1, 'Registration Authorities', "Registration Authorities", "", "")
     end
 
     it "has Namespaces breadcrumbs" do
       next_link('Namespaces', 'Namespaces', "Namespaces", "", "")
-      next_link('New', 'New Namespace', "Namespaces", "New", "")
+      next_link('New', 'New Scope Namespace', "Namespaces", "New", "")
       next_link_crumb(1, 'Namespaces', "Namespaces", "", "")
     end
 

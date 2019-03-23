@@ -103,7 +103,7 @@ class BiomedicalConceptsController < ApplicationController
       new_bc = BiomedicalConcept.create(json)
       @bc = BiomedicalConcept.find(new_bc.id, new_bc.namespace)
     end
-    @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.owner_id })
+    @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.scope.id })
     @token = Token.obtain(@bc, current_user)
     if @token.nil?
       flash[:error] = "The item is locked for editing by another user."
@@ -173,7 +173,7 @@ class BiomedicalConceptsController < ApplicationController
       format.html do
         @items = @bc.get_properties(true)
         @references = BiomedicalConcept.get_unique_references(@items)
-        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.owner_id })
+        @close_path = history_biomedical_concepts_path(:biomedical_concept => { identifier: @bc.identifier, scope_id: @bc.scope.id })
       end
       format.json do
         @items = @bc.get_properties(true)
@@ -205,7 +205,7 @@ class BiomedicalConceptsController < ApplicationController
     @bc = BiomedicalConcept.find(params[:id], the_params[:namespace])
     #@bc.upgrade
     flash[:error] = "The operation is currently disabled"
-    redirect_to history_biomedical_concepts_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.owner_id })
+    redirect_to history_biomedical_concepts_path(:biomedical_concept => { :identifier => @bc.identifier, :scope_id => @bc.scope.id })
   end
   
 private

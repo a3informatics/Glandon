@@ -37,7 +37,7 @@ class SdtmUserDomainsController < ApplicationController
       end
       @ig_variables << ig_variable
     end
-    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
+    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
     @sdtm_user_domain.bc_refs.each do |child|
       bc = IsoManaged.find(child.subject_ref.id, child.subject_ref.namespace, false)
       @bcs << bc
@@ -93,7 +93,7 @@ class SdtmUserDomainsController < ApplicationController
   	else
   		@operation = @sdtm_user_domain.to_operation
     end
-    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
+    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
 		if @sdtm_user_domain.children.length > 0
       @defaults = {}
       variable = @sdtm_user_domain.children[0]   
@@ -116,7 +116,7 @@ class SdtmUserDomainsController < ApplicationController
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
     end
-    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
+    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
     @bcs = BiomedicalConcept.list
   end
 
@@ -146,7 +146,7 @@ class SdtmUserDomainsController < ApplicationController
     @sdtm_user_domain.bc_refs.each do |child|
       @bcs << IsoManaged.find(child.subject_ref.id, child.subject_ref.namespace, false)
     end
-    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.owner_id })
+    @close_path = history_sdtm_user_domains_path(sdtm_user_domain: { identifier: @sdtm_user_domain.identifier, scope_id: @sdtm_user_domain.scope.id })
   end
 
   def update_remove

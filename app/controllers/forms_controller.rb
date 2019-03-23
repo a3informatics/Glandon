@@ -163,13 +163,13 @@ class FormsController < ApplicationController
   def show 
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
-    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
+    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
   
   def view 
     authorize Form
     @form = Form.find(params[:id], params[:namespace])
-    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id)
+    @close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
   
   def export_ttl

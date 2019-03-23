@@ -22,7 +22,6 @@ describe IsoManaged do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_managed_data.ttl")
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
@@ -137,11 +136,17 @@ describe IsoManaged do
     expect(item.same_version?(2)).to eq(false)   
   end
 
-  it "allows owner, owner_id and owned? to be determined" do
+  it "allows owner, owner short name, owned? to be determined" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    expect(item.owner.ra_namespace.short_name).to eq("ACME")   
-    expect(item.owner_id).to eq("DUNS123456789")   
+    expect(item.owner.uri.to_s).to eq(item.registrationState.registrationAuthority.uri.to_s)   
+    expect(item.owner_short_name).to eq("ACME")   
     expect(item.owned?).to eq(true)
+  end
+
+  it "allows scope and scope short name to be determined" do
+    item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(item.scope.uri.to_s).to eq(item.registrationState.registrationAuthority.ra_namespace.uri.to_s)   
+    expect(item.scope_short_name).to eq("ACME")   
   end
 
   it "allows registration status and registered to be determined" do
@@ -415,8 +420,8 @@ describe IsoManaged do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     sparql = SparqlUpdateV2.new
     result_uri = item.to_sparql_v2(sparql, "bf")
-  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
-    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "iso_managed_to_sparql_expected.txt")
+    check_sparql_no_file(sparql.to_s, "iso_managed_to_sparql_expected.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end
 

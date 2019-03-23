@@ -46,7 +46,6 @@ class IsoScopedIdentifier
       self.namespace = nil
       if Triples.link_exists?(triples, UriManagement::C_ISO_I, "hasScope")
         links = Triples.get_links(triples, UriManagement::C_ISO_I, "hasScope")
-        #cid = ModelUtility.extractCid(links[0])
         self.namespace = IsoNamespace.find(Uri.new(uri: links.first.to_s))
       end
       self.identifier = Triples.get_property_value(triples, UriManagement::C_ISO_I, "identifier")
@@ -189,10 +188,10 @@ class IsoScopedIdentifier
 
   # Find the latest version for a given identifier within the specified scope (namespace).
   #
-  # @param identifier [string] The identifer being checked.
-  # @param scope_id [string] The id of the scope namespace (IsoNamespace object).
-  # @return [boolean] True if the item exists, False otherwise.
-  def self.latest(identifier, scope_id)   
+  # @param identifier [String] The identifer being checked.
+  # @param scope [IsoNamespace] the scope (IsoNamespace object).
+  # @return [Integer] the latest version
+  def self.latest(identifier, scope)   
     result = false
     # Create the query
     query = UriManagement.buildPrefix(C_NS_PREFIX, ["isoI", "isoB"]) +
@@ -201,7 +200,7 @@ class IsoScopedIdentifier
       "  ?a rdf:type isoI:ScopedIdentifier . \n" +
       "  ?a isoI:identifier \"#{identifier}\" . \n" +
       "  ?a isoI:version ?b . \n" +
-      "  ?a isoI:hasScope :#{scope_id} . \n" +
+      "  ?a isoI:hasScope #{scope.uri.to_ref} . \n" +
       "} ORDER BY DESC(?b)"
     # Send the request, wait the resonse
     response = CRUD.query(query)
@@ -220,8 +219,8 @@ class IsoScopedIdentifier
 
   # Next Version. Obtain the next version for a given identifier within the specified scope (namespace).
   #
-  # @param [String] identifier the identifer being checked.
-  # @param [IsoNamespace] scope the scope namespace (IsoNamespace object).
+  # @param identifier [String] The identifer being checked.
+  # @param scope [IsoNamespace] the scope (IsoNamespace object).
   # @return [Integer] the next version.
   def self.next_version(identifier, scope)   
     # Create the query

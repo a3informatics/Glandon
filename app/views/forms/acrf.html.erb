@@ -1,4 +1,4 @@
-<% fourth_level_managed_item_breadcrumb(@form, "Forms", forms_path, history_forms_path(identifier: @form.identifier, scope_id: @form.owner_id), "View:", 
+<% fourth_level_managed_item_breadcrumb(@form, "Forms", forms_path, history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id), "View:", 
   view_forms_path(id: @form.id, namespace: @form.namespace), "aCRF") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Annotated CRF:", :item => @form} %>
 <div class="col-md-8">

@@ -388,7 +388,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax
       click_link 'Export JSON'
       file = download_content 
-    #write_text_file_2(file, sub_dir, "form_export.json")
+    #Xwrite_text_file_2(file, sub_dir, "form_export.json")
       expected = read_text_file_2(sub_dir, "form_export.json")
       expect(file).to eq(expected)
     end
@@ -404,7 +404,7 @@ describe "Forms", :type => :feature do
       wait_for_ajax
       click_link 'Export Turtle'
       file = download_content
-    #write_text_file_2(file, sub_dir, "form_export.ttl")
+    #Xwrite_text_file_2(file, sub_dir, "form_export.ttl")
       write_text_file_2(file, sub_dir, "form_export_results.ttl")
       expected = read_text_file_2(sub_dir, "form_export.ttl")
       check_triples("form_export_results.ttl", "form_export.ttl")

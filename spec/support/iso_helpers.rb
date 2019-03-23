@@ -17,4 +17,8 @@ module IsoHelpers
     Rails.cache.delete(:schema)
   end
 
+  def self.clear_cache
+    Rails.cache.clear
+  end
+
 end

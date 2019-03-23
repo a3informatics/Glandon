@@ -20,6 +20,7 @@ describe IsoManagedV2 do
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data_4.ttl")
     IsoHelpers.clear_schema_cache
+    IsoHelpers.clear_cache
   end
 
 	it "validates a valid object, general" do
