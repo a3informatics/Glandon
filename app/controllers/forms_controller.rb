@@ -64,7 +64,7 @@ class FormsController < ApplicationController
   	else
   		@operation = @form.to_operation
   	end
-  	@close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.id)
+  	@close_path = history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id)
   end
 
   def clone
