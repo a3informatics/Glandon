@@ -45,13 +45,17 @@ describe IsoRegistrationAuthoritiesController do
       expect(IsoRegistrationAuthority.all.count).to eq(1)
     end
 
-    it "deletes registration authority, doesn't exist" do
-      id = IsoRegistrationAuthority.all.first.id
+    it "deletes registration authority, not found" do
+      namespaces = IsoNamespace.all
       expect(IsoRegistrationAuthority.all.count).to eq(2)
-      delete :destroy, :id => id
-      expect(IsoRegistrationAuthority.all.count).to eq(1)
-      delete :destroy, :id => id
+      post :create, iso_registration_authority: { :namespace_id => namespaces[0].id, :organization_identifier => "222233334" }
+      expect(IsoRegistrationAuthority.all.count).to eq(3)
+      ra = IsoRegistrationAuthority.where(organization_identifier:"222233334")
+      delete :destroy, :id => ra.first.id
+      expect(IsoRegistrationAuthority.all.count).to eq(2)
+      delete :destroy, :id => ra.first.id
       expect(flash[:error]).to be_present
+      expect(IsoRegistrationAuthority.all.count).to eq(2)
     end
 
     it "deletes registration authority, used" do

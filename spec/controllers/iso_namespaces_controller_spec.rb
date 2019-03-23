@@ -57,6 +57,7 @@ describe IsoNamespacesController do
     it 'deletes namespace, not found' do
       expect(IsoNamespace.all.count).to eq(2)
       post :create, iso_namespace: { name: "XXX Pharma", short_name: "XXX", authority: "www.example.com" }
+      expect(IsoNamespace.all.count).to eq(3)
       ns = IsoNamespace.find_by_short_name("XXX")
       delete :destroy, :id => ns.id
       expect(IsoNamespace.all.count).to eq(2)
