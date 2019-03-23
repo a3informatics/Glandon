@@ -74,7 +74,8 @@ describe SdtmModelDomain do
     item = SdtmModelDomain.from_json(input)
   #Xwrite_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
     expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-    expect(item.to_json).to eq(expected)	end
+    expect(item.to_json).to eq(expected)	
+  end
 
 	it "allows the object to be output as sparql" do
   	sparql = SparqlUpdateV2.new
