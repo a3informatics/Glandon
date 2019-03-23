@@ -5,6 +5,7 @@ describe IsoConceptV2 do
 	include DataHelpers
   include PauseHelpers
   include TimeHelpers
+  include IsoHelpers
 
 	def sub_dir
     return "models/iso_concept"
@@ -18,6 +19,7 @@ describe IsoConceptV2 do
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_concept_data_3.ttl")
+      IsoHelpers.clear_schema_cache
 	  end
 
 		it "validates a valid object" do

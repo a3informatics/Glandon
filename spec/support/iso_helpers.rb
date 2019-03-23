@@ -13,4 +13,8 @@ module IsoHelpers
     Sparql::Update.new.sparql_update(sparql, "", []) 
   end
 
+  def self.clear_schema_cache
+    Rails.cache.delete(:schema)
+  end
+
 end

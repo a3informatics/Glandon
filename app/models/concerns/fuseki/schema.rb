@@ -3,19 +3,21 @@ module Fuseki
   module Schema
   
     def read_schema
-      sparql_query = "SELECT ?s ?p ?o WHERE\n" +
-        "{\n" +
-        "  {\n" + 
-        "    ?s rdf:type :ObjectProperty .\n" +
-        "    ?s ?p ?o .\n" +
-        "  }\n" +
-        "  UNION\n" +
-        "  {\n" + 
-        "    ?s rdf:type :DatatypeProperty .\n" +
-        "    ?s ?p ?o .\n" +
-        "  }\n" +
-        "}"
-      results = Sparql::Query.new.query(sparql_query, Uri.namespaces.namespace_from_prefix(:owl), [])
+      results = Rails.cache.fetch(:schema, expires_in: 24.hours) do
+        sparql_query = "SELECT ?s ?p ?o WHERE\n" +
+          "{\n" +
+          "  {\n" + 
+          "    ?s rdf:type :ObjectProperty .\n" +
+          "    ?s ?p ?o .\n" +
+          "  }\n" +
+          "  UNION\n" +
+          "  {\n" + 
+          "    ?s rdf:type :DatatypeProperty .\n" +
+          "    ?s ?p ?o .\n" +
+          "  }\n" +
+          "}"
+        Sparql::Query.new.query(sparql_query, Uri.namespaces.namespace_from_prefix(:owl), [])
+      end
       SchemaMap.new(results.by_subject)
     end
 

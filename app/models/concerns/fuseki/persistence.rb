@@ -18,11 +18,13 @@ module Fuseki
       # @return [Object] a class object.
       def find(id)
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-        query_string = "SELECT ?s ?p ?o WHERE {" +
+        results = Rails.cache.fetch(uri.to_s, expires_in: 24.hours) do
+          query_string = "SELECT ?s ?p ?o WHERE {" +
           "  #{uri.to_ref} ?p ?o ." +
           "  BIND (#{uri.to_ref} as ?s) ." +
           "}"
-        results = Sparql::Query.new.query(query_string, uri.namespace, [])
+          Sparql::Query.new.query(query_string, uri.namespace, [])
+        end
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results(uri, results.by_subject[uri.to_s])
       end
@@ -197,6 +199,7 @@ module Fuseki
     end
 
     def create_or_update(operation)
+      Rails.cache.delete(@uri.to_s) if self.class.cache?
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
       properties = properties_read(:instance)

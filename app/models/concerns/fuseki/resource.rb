@@ -34,6 +34,10 @@ module Fuseki
         end
       end
 
+      define_singleton_method :cache? do
+        opts[:cache] ? opts[:cache] : false
+      end
+      
     end
 
     # Object Property
