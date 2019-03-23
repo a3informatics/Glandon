@@ -34,9 +34,9 @@ $(document).ready(function () {
         {"data" : "owner", "width" : "10%"},
         {"data" : "label", "width" : "70%"},
         {"data" : "identifier", "render": function(data,type,full,meta) { 
-          var query_string = 'identifier='+ data +'&scope_id=' + full.owner_id;
+          var query_string = 'identifier='+ data +'&scope_id=' + full.scope_id;
           if(safe_parameter !== "") {
-            query_string = safe_parameter + '[identifier]=' + data + '&' + safe_parameter + '[scope_id]=' + full.owner_id;
+            query_string = safe_parameter + '[identifier]=' + data + '&' + safe_parameter + '[scope_id]=' + full.scope_id;
           }
           return '<a href="' + url + '/history?' + query_string  + '"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
         }}
