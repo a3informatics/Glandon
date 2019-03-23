@@ -24,7 +24,7 @@ class IsoManagedController < ApplicationController
     @registration_state = @managed_item.registrationState
     @scoped_identifier = @managed_item.scopedIdentifier
     @current_id = this_params[:current_id]
-    @owner = IsoRegistrationAuthority.owner.shortName == @managed_item.owner
+    @owner = @managed_item.owned?
     @referer = request.referer
     @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end

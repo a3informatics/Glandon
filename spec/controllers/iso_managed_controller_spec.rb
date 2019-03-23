@@ -41,7 +41,7 @@ describe IsoManagedController do
 
     it "index of items" do 
       get :index
-    #write_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
+    #Xwrite_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
     	expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
       expect(assigns(:managed_items)).to match_array(expected)
       expect(response).to render_template("index")
@@ -76,7 +76,7 @@ describe IsoManagedController do
       expect(assigns(:scoped_identifier).to_json).to eq(managed_item.scopedIdentifier.to_json)
       expect(assigns(:current_id)).to eq("test")
       expect(assigns(:owner)).to eq(true)
-      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=NS-BBB")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
       expect(response).to render_template("status")
     end
 
@@ -85,7 +85,7 @@ describe IsoManagedController do
       managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       get :edit, {id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
-      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=NS-BBB")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
       expect(response).to render_template("edit")
     end
 
@@ -168,7 +168,7 @@ describe IsoManagedController do
       get :branches, {id: "F-ACME_DM1BRANCH", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "iso_managed_branches_json_1.txt")
+    #Xwrite_text_file_2(response.body, sub_dir, "iso_managed_branches_json_1.txt")
       expected = read_text_file_2(sub_dir, "iso_managed_branches_json_1.txt")
       expect(response.body).to eq(expected)
     end
@@ -206,7 +206,7 @@ describe IsoManagedController do
       expect(response.code).to eq("200")
       expect(response.content_type).to eq("application/json")
       hash = JSON.parse(response.body, symbolize_names: true)
-    #write_yaml_file(hash, sub_dir, "iso_managed_impact_next.yaml")
+    #Xwrite_yaml_file(hash, sub_dir, "iso_managed_impact_next.yaml")
       results = read_yaml_file(sub_dir, "iso_managed_impact_next.yaml")
       expect(hash).to match(results)
     end
@@ -240,7 +240,8 @@ describe IsoManagedController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_managed_data.ttl")
       load_test_file_into_triple_store("iso_managed_data_2.ttl")
       load_test_file_into_triple_store("iso_managed_data_3.ttl")
