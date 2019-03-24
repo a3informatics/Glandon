@@ -230,7 +230,7 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'Exports'
       expect(page).to have_content 'Showing 1 to 2 of 2 entries' # New form added in previous test
       public_file_exists?("test", "ACME_VS BASELINE_1.ttl")
-    #copy_file_from_public_files("test", "ACME_VS BASELINE_1.ttl", sub_dir) # Setup results.
+    #Xcopy_file_from_public_files("test", "ACME_VS BASELINE_1.ttl", sub_dir) # Setup results.
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
       file = download_content
       write_text_file_2(file, sub_dir, "form_export_results.ttl")
