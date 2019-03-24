@@ -57,7 +57,7 @@ describe AdamIgDataset do
   it "builds an object" do
     input = read_yaml_file(sub_dir, "build_input_1.yaml")
     result = AdamIgDataset.build(input)
-  write_yaml_file(result.to_json, sub_dir, "build_expected_1.yaml")
+  #Xwrite_yaml_file(result.to_json, sub_dir, "build_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "build_expected_1.yaml")
     expect(result.to_json).to eq(expected)
   end

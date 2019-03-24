@@ -13,14 +13,15 @@ describe IsoConceptV2 do
 
 	context "Main Tests" do
 
-	  before :all do
+	  before :each do
+      IsoHelpers.clear_cache
+      IsoHelpers.clear_schema_cache
 	    clear_triple_store
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_test_file_into_triple_store("iso_concept_data_3.ttl")
-      IsoHelpers.clear_schema_cache
-      IsoHelpers.clear_cache
 	  end
 
 		it "validates a valid object" do

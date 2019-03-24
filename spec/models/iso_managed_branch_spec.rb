@@ -4,12 +4,15 @@ describe IsoManaged do
 
 	include DataHelpers
   include SparqlHelpers
+  include IsoHelpers
   
   def sub_dir
     return "models"
   end
     
 	before :all do
+    IsoHelpers.clear_cache
+    IsoHelpers.clear_schema_cache
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")

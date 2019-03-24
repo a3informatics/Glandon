@@ -13,9 +13,11 @@ describe 'iso_managed/status.html.erb', :type => :view do
 
     rs = mi.registrationState
     rs.registrationStatus = "Candidate"
+    rs.id = "YYY"
     assign(:registration_state, rs)
 
     si = IsoScopedIdentifier.new
+    si.id = "XXX"
     assign(:scoped_identifier, si)
 
     render

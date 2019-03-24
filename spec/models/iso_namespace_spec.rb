@@ -5,10 +5,11 @@ describe IsoNamespace do
   include DataHelpers
 
   before :each do
+    IsoHelpers.clear_cache
+    IsoHelpers.clear_schema_cache
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
-    IsoHelpers.clear_cache
   end
 
 	it "can be filled from JSON" do

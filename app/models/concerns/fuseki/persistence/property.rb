@@ -55,6 +55,9 @@ module Fuseki
         schema = self.class.class_variable_get(:@@schema)
         base_type = schema.range(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
+      rescue => e
+        puts "FronSimple: Error #{name}=#{value}"
+        puts schema.to_yaml
       end
 
     private

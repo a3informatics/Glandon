@@ -53,7 +53,7 @@
 	          </tr>
 	        </tbody>
 	      </table>
-				<%= form_for @scoped_identifier do |f| %>
+				<%= form_for @scoped_identifier, uri: iso_scoped_identifier_path(@scoped_identifier.id) do |f| %>
 					<div class="form-group">
 					    <%= f.label :versionLabel, "Version Label:" %><br />
 					    <%= f.text_field :versionLabel, autofocus: true, class: "form-control" %>
@@ -82,7 +82,7 @@
 						<div class="panel-heading"><strong>New Status: <%= IsoRegistrationState.stateLabel(nextState) %></strong></div>
 						<div class="panel-body"><%= IsoRegistrationState.stateDefinition(nextState) %></div>
 					</div>
-					<%= form_for @registration_state do |f| %>
+					<%= form_for @registration_state, uri:  iso_registration_state_path(@registration_state.id) do |f| %>
 						<div class="form-group">
 						    <%= f.label :administrativeNote, "Administrative Note:" %><br />
 						    <%= f.text_area :administrativeNote, autofocus: true, class: "form-control", rows:5 %>

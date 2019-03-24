@@ -1,6 +1,5 @@
 PREFIX : <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#>
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
-PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
 PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
@@ -13,8 +12,8 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> rdf:type <http://www.assero.co.uk/BusinessDomain#ADaMImplementationGuide> . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> rdfs:label "ADaM Implementation Guide"^^xsd:string . 
-<http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> . 
-<http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> . 
+<http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems> . 
+<http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoT:creationDate "2019-01-23T00:00:00%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoT:lastChangeDate "2019-01-23T00:00:00%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> isoT:changeDescription ""^^xsd:string . 
@@ -23,7 +22,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> bd:includesTabulation <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG_TR1> . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG> bd:includesTabulation <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG_TR2> . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> rdf:type isoR:RegistrationState . 
-<http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:byAuthority mdrItems:RA-084433759 . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:registrationStatus "Standard"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:administrativeNote ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
@@ -31,12 +30,12 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:unresolvedIssue ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:administrativeStatus ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_ADAMIG-1> isoR:previousState "Incomplete"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> isoI:identifier "ADAM IG"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> rdf:type isoI:ScopedIdentifier . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> isoI:version "1"^^xsd:positiveInteger . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> isoI:versionLabel "1.0.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> isoI:semantic_version "1.0.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_ADAMIG-1> isoI:hasScope mdrItems:NS-CDISC . 
+<http://www.assero.co.uk/MDRItems> isoI:identifier "ADAMIG ADSL"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems> rdf:type isoI:ScopedIdentifier . 
+<http://www.assero.co.uk/MDRItems> isoI:version "0"^^xsd:positiveInteger . 
+<http://www.assero.co.uk/MDRItems> isoI:versionLabel ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems> isoI:semanticVersion "0.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems> isoI:hasScope <http://www.assero.co.uk/NS#CDISC> . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG_TR1> rdf:type <http://www.assero.co.uk/BusinessOperational#TReference> . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG_TR1> rdfs:label "Tabulation Reference"^^xsd:string . 
 <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIG_TR1> bo:hasTabulation <http://www.assero.co.uk/MDRAdamIgT/CDISC/V1#AIG-CDISC_ADAMIGADSL> . 

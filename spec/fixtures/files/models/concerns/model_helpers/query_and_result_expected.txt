@@ -10,6 +10,26 @@
       </binding>
     </result><result>
       <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#administrativeNote</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Administrative Note&#xA7;</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#administrativeStatus</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Administrative Status</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
         <uri>http://www.assero.co.uk/ISO11179Types#AttachedItem</uri>
       </binding>
       <binding name="b">
@@ -17,6 +37,16 @@
       </binding>
       <binding name="c">
         <literal>Attached item</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#byAuthority</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Authority Relationship</literal>
       </binding>
     </result><result>
       <binding name="a">
@@ -30,6 +60,56 @@
       </binding>
     </result><result>
       <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#Concept</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Concept</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#ConceptSystem</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Concept System</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Concept System Node</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#extensionProperty</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Concept extension property</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#description</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Concept system node description.</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
         <uri>http://www.assero.co.uk/ISO11179Types#creationDate</uri>
       </binding>
       <binding name="b">
@@ -40,6 +120,16 @@
       </binding>
     </result><result>
       <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#effectiveDate</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Effective Date</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
         <uri>http://www.assero.co.uk/ISO11179Types#explanatoryComment</uri>
       </binding>
       <binding name="b">
@@ -47,6 +137,66 @@
       </binding>
       <binding name="c">
         <literal>Explanatory Comment</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#Extension</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Extension</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#extensionDatatype</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Extension Datatype</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#extensionDefault</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Extension Default Value</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#extensionName</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Extension Name</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#hasMember</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Has member relationship.</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Types#hasIdentifier</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Identifer Relationship</literal>
       </binding>
     </result><result>
       <binding name="a">
@@ -70,13 +220,53 @@
       </binding>
     </result><result>
       <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#internationalCodeDesignator</uri>
+        <uri>http://www.assero.co.uk/ISO11179Registration#internationalCodeDesignator</uri>
       </binding>
       <binding name="b">
         <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
       </binding>
       <binding name="c">
         <literal>International Code Designator</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#extended</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Is extended relationship.</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#tagged</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Is tagged with relationship.</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Types#hasState</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Item Registration Relationship</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#label</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Label</literal>
       </binding>
     </result><result>
       <binding name="a">
@@ -90,7 +280,17 @@
       </binding>
     </result><result>
       <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#name</uri>
+        <uri>http://www.assero.co.uk/ISO11179Concepts#link</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Link</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#authority</uri>
       </binding>
       <binding name="b">
         <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
@@ -100,13 +300,33 @@
       </binding>
     </result><result>
       <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#shortName</uri>
+        <uri>http://www.assero.co.uk/ISO11179Identification#name</uri>
       </binding>
       <binding name="b">
         <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
       </binding>
       <binding name="c">
         <literal>Name</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#shortName</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Name</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#Namespace</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Namespace</literal>
       </binding>
     </result><result>
       <binding name="a">
@@ -120,23 +340,33 @@
       </binding>
     </result><result>
       <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#Organization</uri>
-      </binding>
-      <binding name="b">
-        <uri>http://www.w3.org/2002/07/owl#Class</uri>
-      </binding>
-      <binding name="c">
-        <literal>Organization</literal>
-      </binding>
-    </result><result>
-      <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#oganizationIdentifier</uri>
+        <uri>http://www.assero.co.uk/ISO11179Registration#organizationIdentifier</uri>
       </binding>
       <binding name="b">
         <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
       </binding>
       <binding name="c">
         <literal>Organization Identifier</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#previousState</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Previous State</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#property</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Property</literal>
       </binding>
     </result><result>
       <binding name="a">
@@ -160,13 +390,133 @@
       </binding>
     </result><result>
       <binding name="a">
-        <uri>http://www.assero.co.uk/ISO11179Basic#RegistrationAuthorityIdentifier</uri>
+        <uri>http://www.assero.co.uk/ISO11179Registration#RegistrationState</uri>
       </binding>
       <binding name="b">
         <uri>http://www.w3.org/2002/07/owl#Class</uri>
       </binding>
       <binding name="c">
-        <literal>Registration Authority Identifier</literal>
+        <literal>Registration</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#registrationStatus</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Registration Status</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Registration authority</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#owner</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Repository owner.</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#hasScope</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Scope Relationship</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#raNamespace</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Scope Relationship</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#Class</uri>
+      </binding>
+      <binding name="c">
+        <literal>Scoped identifier</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#semanticVersion</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Semantic Version</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#unresolvedIssue</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Unresolved Issue</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Registration#untilDate</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Until Date</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#version</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Version</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#versionLabel</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Version Label</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Identification#identifier</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>identifier</literal>
       </binding>
     </result><result>
       <binding name="a">

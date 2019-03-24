@@ -5,12 +5,15 @@ describe IsoManagedV2 do
 	include DataHelpers
   include ValidationHelpers
   include SparqlHelpers
+  include IsoHelpers
 
   def sub_dir
     return "models/iso_managed_v2"
   end
     
-	before :all do
+	before :each do
+    IsoHelpers.clear_cache
+    IsoHelpers.clear_schema_cache
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -19,8 +22,6 @@ describe IsoManagedV2 do
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data_4.ttl")
-    IsoHelpers.clear_schema_cache
-    IsoHelpers.clear_cache
   end
 
 	it "validates a valid object, general" do

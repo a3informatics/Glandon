@@ -13,13 +13,16 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-CDISC_ADAMIG-1
   :registration_authority:
-    :id: RA-084433759
-    :number: '084433759'
-    :scheme: DUNS
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: "084433759"
+    :international_code_designator: DUNS
     :owner: false
-    :namespace:
-      :namespace: http://www.assero.co.uk/MDRItems
-      :id: NS-CDISC
+    :ra_namespace:
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification##Namespace
+      :namespace: http://www.assero.co.uk/NS
+      :id: CDISC
       :name: Clinical Data Interchange Standards Consortium
       :shortName: CDISC
   :registration_status: Standard
@@ -31,14 +34,16 @@
   :administrative_status: ''
   :previous_state: Incomplete
 :scoped_identifier:
-  :id: SI-CDISC_ADAMIG-1
-  :identifier: ADAM IG
-  :version_label: 1.0.0
-  :version: 1
-  :semantic_version: 1.0.0
+  :id: ''
+  :identifier: ADAMIG ADSL
+  :version_label: 
+  :version: 0
+  :semantic_version: 0.0.0
   :namespace:
-    :namespace: http://www.assero.co.uk/MDRItems
-    :id: NS-CDISC
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification##Namespace
+    :namespace: http://www.assero.co.uk/NS
+    :id: CDISC
     :name: Clinical Data Interchange Standards Consortium
     :shortName: CDISC
 :references:
