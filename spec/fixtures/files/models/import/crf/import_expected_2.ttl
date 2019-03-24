@@ -2,7 +2,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
-@prefix mdrItems: <http://www.assero.co.uk/MDRItems#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix bf: <http://www.assero.co.uk/BusinessForm#> .
@@ -17,10 +16,10 @@
 :F-ACME_FBASELINE
 	rdf:type <http://www.assero.co.uk/BusinessForm#Form> ;
 	rdfs:label "Baseline Visit Form"^^xsd:string ;
-	isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> ;
-	isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> ;
-	isoT:creationDate "2019-01-23T12:06:40+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-01-23T12:06:40+00:00"^^xsd:dateTime ;
+	isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_FBASELINE-1> ;
+	isoT:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1> ;
+	isoT:creationDate "2019-03-24T06:54:55+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-03-24T06:54:55+00:00"^^xsd:dateTime ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	isoT:origin ""^^xsd:string ;
@@ -34,7 +33,7 @@
 .
 <http://www.assero.co.uk/MDRItems#RS-ACME_FBASELINE-1>
 	rdf:type isoR:RegistrationState ;
-	isoR:byAuthority mdrItems:RA-123456789 ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 	isoR:registrationStatus "Incomplete"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
@@ -48,8 +47,8 @@
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:version "1"^^xsd:positiveInteger ;
 	isoI:versionLabel ""^^xsd:string ;
-	isoI:semantic_version "0.1.0"^^xsd:string ;
-	isoI:hasScope mdrItems:NS-ACME ;
+	isoI:semanticVersion "0.1.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 :F-ACME_FBASELINE_G1
 	rdf:type <http://www.assero.co.uk/BusinessForm#NormalGroup> ;
