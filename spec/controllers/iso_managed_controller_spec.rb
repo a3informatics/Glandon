@@ -261,7 +261,7 @@ describe IsoManagedController do
       item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
       uri = UriV3.new( uri: item.uri.to_s )
       allow_any_instance_of(IsoManaged).to receive(:triples).and_return("triples")
-      allow_any_instance_of(IsoManaged).to receive(:owner).and_return("ACME")
+      allow_any_instance_of(IsoManaged).to receive(:owner_short_name).and_return("ACME")
       allow(controller).to receive(:to_turtle).with("triples").and_return("content")
       expect(ExportFileHelpers).to receive(:save).with("content", "ACME_BC C25298_1.ttl").and_return("filepath/a")
       get :export, { :id => uri.to_id }

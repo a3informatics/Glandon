@@ -317,7 +317,7 @@ describe IsoManagedV2 do
   it "permits the item to be exported as JSON" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-  write_text_file_2(item.to_h, sub_dir, "to_json_1.yaml")
+  #write_text_file_2(item.to_h, sub_dir, "to_json_1.yaml")
     expected = read_yaml_file(sub_dir, "to_json_1.yaml")
     expect(item.to_h).to eq(expected)
   end
