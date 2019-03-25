@@ -9,7 +9,8 @@ describe IsoConceptSystemGeneric do
     return "models"
   end
 
-    before :all do
+  before :all do
+    IsoHelpers.clear_cache
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")

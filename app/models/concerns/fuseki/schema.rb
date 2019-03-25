@@ -2,8 +2,9 @@ module Fuseki
   
   module Schema
   
-    def read_schema
-      results = Rails.cache.fetch(:schema, expires_in: 24.hours) do
+    def get_schema(source)
+      if Fuseki::Base.class_variable_get(:@@schema).nil?
+puts "***** READING SCHEMA #{source} *****"
         sparql_query = "SELECT ?s ?p ?o WHERE\n" +
           "{\n" +
           "  {\n" + 
@@ -16,9 +17,10 @@ module Fuseki
           "    ?s ?p ?o .\n" +
           "  }\n" +
           "}"
-        Sparql::Query.new.query(sparql_query, Uri.namespaces.namespace_from_prefix(:owl), [])
+        results = Sparql::Query.new.query(sparql_query, Uri.namespaces.namespace_from_prefix(:owl), [])
+        Fuseki::Base.class_variable_set(:@@schema, SchemaMap.new(results.by_subject))
       end
-      SchemaMap.new(results.by_subject)
+      Fuseki::Base.class_variable_get(:@@schema)
     end
 
     class SchemaMap

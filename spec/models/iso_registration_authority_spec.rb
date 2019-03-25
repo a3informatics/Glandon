@@ -4,9 +4,11 @@ describe IsoRegistrationAuthority do
 	
   include DataHelpers
 
-  before :each do
+  before :all do
     IsoHelpers.clear_cache
-    IsoHelpers.clear_schema_cache
+  end
+
+  before :each do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")

@@ -21,11 +21,10 @@ module Fuseki
     extend Properties
     include Utility
 
+
     def initialize(attributes = {})
-      @@schema ||= self.class.read_schema
+      self.class.get_schema(:initialize)
       self.class.properties_inherit
-      #self.class.properties_predicate
-      # Set the instance variables
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       self.class.instance_variable_get(:@properties).each do |name, definition| 
         variable = Fuseki::Persistence::Naming.new(name)

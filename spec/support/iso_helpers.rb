@@ -13,12 +13,9 @@ module IsoHelpers
     Sparql::Update.new.sparql_update(sparql, "", []) 
   end
 
-  def self.clear_schema_cache
-    Rails.cache.delete(:schema)
-  end
-
   def self.clear_cache
-    Rails.cache.clear
+    Fuseki::Base.class_variable_set(:@@schema, nil)
+    Fuseki::Base.class_variable_set(:@@subjects, nil)
   end
 
 end

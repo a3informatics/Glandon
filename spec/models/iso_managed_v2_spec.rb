@@ -11,14 +11,16 @@ describe IsoManagedV2 do
     return "models/iso_managed_v2"
   end
     
-	before :each do
+	before :all  do
     IsoHelpers.clear_cache
-    IsoHelpers.clear_schema_cache
+  end
+
+  before :each do
     clear_triple_store
+    load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
     load_schema_file_into_triple_store("ISO11179Registration.ttl")
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
     load_test_file_into_triple_store("iso_managed_data_4.ttl")

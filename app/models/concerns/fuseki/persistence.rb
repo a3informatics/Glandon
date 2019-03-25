@@ -10,6 +10,10 @@ module Fuseki
     include Fuseki::Persistence::Property
     include Fuseki::Properties
 
+    # -------------
+    # Class Methods
+    # -------------
+
     module ClassMethods
 
       # Find
@@ -18,7 +22,7 @@ module Fuseki
       # @return [Object] a class object.
       def find(id)
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-        results = find_cache(uri)
+        results = subject_cache(uri)
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
         from_results(uri, results.by_subject[uri.to_s])
       end
@@ -31,7 +35,7 @@ module Fuseki
         parts = [0]
         klass_map = {}
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-        schema = self.read_schema
+        #schema = self.read_schema
         properties = properties_read(:class)
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
@@ -60,7 +64,7 @@ module Fuseki
       end
 
       def where(params)
-        schema = self.read_schema
+        schema = self.get_schema(:where)
         properties = properties_read(:class)
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
@@ -118,7 +122,6 @@ module Fuseki
 
       def from_results_recurse(uri, triples)
         object = from_results(uri, triples[uri.to_s])
-        schema = self.read_schema
         properties = self.properties_read(:class)
         properties.each do |name, value|
           next if properties[name][:type] != :object
@@ -138,15 +141,24 @@ module Fuseki
         object
       end
 
-      def find_cache(uri)
+      def subject_cache(uri)
+puts "***** SUBJECT CACHE #{uri} *****"
         query_string = "SELECT ?s ?p ?o WHERE {#{uri.to_ref} ?p ?o . BIND (#{uri.to_ref} as ?s) .}"
         return Sparql::Query.new.query(query_string, uri.namespace, []) if !cache?
-        return Rails.cache.fetch(uri.to_s, expires_in: 24.hours) do
-          Sparql::Query.new.query(query_string, uri.namespace, [])
-        end
+        Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if Fuseki::Base.class_variable_get(:@@subjects).nil?
+        uri_as_s = uri.to_s
+        cache = Fuseki::Base.class_variable_get(:@@subjects)
+        return cache[uri_as_s] if cache.key?(uri_as_s) 
+        results = Sparql::Query.new.query(query_string, uri.namespace, [])
+        cache[uri_as_s] = results if !results.empty?
+        results
       end
 
     end
+
+    # ----------------
+    # Instance Methods
+    # ----------------
 
     def persisted?
       !self.uri.nil?
@@ -161,7 +173,7 @@ module Fuseki
     end
 
     def delete
-      cache_clear
+      clear_cache
       Sparql::Update.new.delete(self.uri)
     end
 
@@ -202,11 +214,11 @@ module Fuseki
     end
 
     def create_or_update(operation)
-      cache_clear
+      clear_cache
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
       properties = properties_read(:instance)
-      schema = self.class.class_variable_get(:@@schema)
+      schema = self.class.get_schema(:create_or_update)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       instance_variables.each do |name|
         next if name == :@uri #|| name == :@rdf_type
@@ -219,8 +231,10 @@ module Fuseki
 
   private
 
-    def cache_clear
-      Rails.cache.delete(self.uri.to_s) if self.class.cache?
+    def clear_cache
+      return if !self.class.cache?
+puts "***** CLEARING CACHE #{self.uri} *****"
+      Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
     def property_to_triple(sparql, property, schema, subject, predicate, objects)
