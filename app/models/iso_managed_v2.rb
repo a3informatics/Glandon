@@ -223,14 +223,14 @@ class IsoManagedV2 < IsoConceptV2
   def self.history(params)    
     identifier = params[:identifier]
     namespace = params[:scope]
+    parts = []
     parts[0] = "  { ?s rdf:type #{rdf_type.to_ref} . ?s ?p ?o }" 
     parts[1] = "  { ?ref rdf:type #{rdf_type.to_ref} . ?ref isoI:hasIdentifier ?s . ?s isoC:identifier '#{params[:identifier]}' . ?s isoC:hasScope #{params[:scope].uri.to_ref} . " + 
       " ?s ?p ?o }" 
-    parts[2] = "  #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
+    parts[2] = "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts[3] = "  { ?ref rdf:type #{rdf_type.to_ref} . ?ref isoI:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o WHERE { #{parts.join(" UNION\n")} }"
-    results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR, :isoC])
-    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
+    results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC])
     from_results_recurse(uri, results.by_subject)
   end
 

@@ -201,7 +201,7 @@ describe IsoManagedV2 do
     results = []
     results[0] = {:id => "F-BBB_VSB2", :scoped_identifier_version => 2}
     results[1] = {:id => "F-BBB_VSB1", :scoped_identifier_version => 1}
-    items = IsoManagedV2.history("Form", "http://www.assero.co.uk/BusinessForm", {:identifier => "VSB", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+    items = IsoManagedV2.history({:identifier => "VSB", :scope => IsoRegistrationAuthority.owner.ra_namespace})
     items.each_with_index do |item, index|
       expect(results[index][:id]).to eq(items[index].id)
       expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
@@ -262,14 +262,15 @@ describe IsoManagedV2 do
   end
 =end
 
-  it "allows the next version of an object to be adjusted" do
-    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    item = IsoManagedV2.find(uri, false)
-    expected = item.version + 1
-    item.adjust_next_version
-    expect(item.version).to eq(expected)
-  end
+  #it "allows the next version of an object to be adjusted" do
+  #  uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+  #  item = IsoManagedV2.find(uri, false)
+  #  expected = item.version + 1
+  #  item.adjust_next_version
+  #  expect(item.version).to eq(expected)
+  #end
 
+=begin
 	it "permits the item to be exported as SPARQL" do
     result = "PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>\n" +
        "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
@@ -316,11 +317,12 @@ describe IsoManagedV2 do
     check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end
+=end
 
   it "permits the item to be exported as JSON" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-  #write_text_file_2(item.to_h, sub_dir, "to_json_1.yaml")
+  #Xwrite_text_file_2(item.to_h.to_yaml, sub_dir, "to_json_1.yaml")
     expected = read_yaml_file(sub_dir, "to_json_1.yaml")
     expect(item.to_h).to eq(expected)
   end
@@ -381,27 +383,26 @@ describe IsoManagedV2 do
   end
 =end
 
-  it "where, empty text" do
+  it "gets all" do
     all = IsoManagedV2.all # Empty search will find all items
-    results = []
-    IsoManagedV2.where({text: ""}).each { |x| results << x.to_json }
-    expect(results.count).to eq(all.count)
+    expect(all.count).to eq(1)
   end
 
   it "where, I" do
     results = []
-    IsoManagedV2.where({text: "VSB"}).each { |x| results << x.to_json }
-  write_yaml_file(results, sub_dir, "where_2.yaml")
+    IsoManagedV2.where({label: "VSB"}).each { |x| results << x.to_json }
+  #Xwrite_yaml_file(results, sub_dir, "where_2.yaml")
     expected = read_yaml_file(sub_dir, "where_2.yaml")
     expect(results).to hash_equal(expected)
   end
 
   it "where, II" do
     results = []
-    IsoManagedV2.where({text: "Baseline"}).each { |x| results << x.to_json }
-  write_yaml_file(results, sub_dir, "where_3.yaml")
+    IsoManagedV2.where({label: "Concept Test"}).each { |x| results << x.to_json }
+  #Xwrite_yaml_file(results, sub_dir, "where_3.yaml")
     expected = read_yaml_file(sub_dir, "where_3.yaml")
     expect(results).to hash_equal(expected)
+    expect(true).to eq(false)
   end
 
 end

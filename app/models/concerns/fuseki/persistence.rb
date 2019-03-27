@@ -145,7 +145,7 @@ module Fuseki
 puts "***** SUBJECT CACHE #{uri} *****"
         query_string = "SELECT ?s ?p ?o WHERE {#{uri.to_ref} ?p ?o . BIND (#{uri.to_ref} as ?s) .}"
         return Sparql::Query.new.query(query_string, uri.namespace, []) if !cache?
-        Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if Fuseki::Base.class_variable_get(:@@subjects).nil?
+        Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
         uri_as_s = uri.to_s
         cache = Fuseki::Base.class_variable_get(:@@subjects)
         return cache[uri_as_s] if cache.key?(uri_as_s) 

@@ -21,7 +21,6 @@ module Fuseki
     extend Properties
     include Utility
 
-
     def initialize(attributes = {})
       self.class.get_schema(:initialize)
       self.class.properties_inherit

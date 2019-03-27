@@ -137,6 +137,7 @@ describe CdiscTerm do
     it "Find the CL with a submission value" do
       th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
       cl = th.find_submission("SKINTYP")
+byebug
     #Xwrite_yaml_file(cl.to_json, sub_dir, "find_submission_expected_1.yaml")
       result_cl = read_yaml_file(sub_dir, "find_submission_expected_1.yaml")
       expect(cl.to_json).to eq(result_cl)

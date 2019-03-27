@@ -3,7 +3,7 @@ module Fuseki
   module Schema
   
     def get_schema(source)
-      if Fuseki::Base.class_variable_get(:@@schema).nil?
+      if !Fuseki::Base.class_variable_defined?(:@@schema) || Fuseki::Base.class_variable_get(:@@schema).nil?
 puts "***** READING SCHEMA #{source} *****"
         sparql_query = "SELECT ?s ?p ?o WHERE\n" +
           "{\n" +
