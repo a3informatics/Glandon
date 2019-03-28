@@ -207,7 +207,7 @@ private
 
   # Filter the namespace for nasty characters
   def filter_namespace(namespace)
-    namespace.gsub(/[^0-9A-Za-z.:\/]/, '')
+    namespace.gsub(/[^0-9A-Za-z.:\/\-]/, '')
   end
 
   # Filter the version for nasty characters

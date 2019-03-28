@@ -20,6 +20,13 @@ class Uri
       return Rails.configuration.namespaces[:required]
     end
 
+    # Prefix a required one?
+    #
+    # @return [Boolean] true if a required namespace
+    def required_prefix?(prefix)
+      !Rails.configuration.namespaces[:required][prefix.to_sym].nil?
+    end
+
     # Get Prefix for a namespace
     #
     # @param namespace [String] The namespace

@@ -31,12 +31,15 @@ module Sparql
         #
         # @return [SparqlUpdateV2::StatementLiteral] the object
         def initialize(args, default_namespace, prefix_set)
+          @namespaces = ::Uri.namespaces
           @prefix = ""
           if args.has_key?(:uri) 
             @uri = args[:uri]
+            convert_to_prefix(prefix_set)
           elsif args.has_key?(:namespace) && args.has_key?(:fragment)
             check_namespace(args, default_namespace)
             @uri = ::Uri.new(args)      
+            convert_to_prefix(prefix_set)
           elsif args.has_key?(:prefix) && args.has_key?(:fragment)
             check_prefix(args, default_namespace)
             @uri = ::Uri.new(args)      
@@ -81,6 +84,12 @@ module Sparql
 
       private
 
+        # Turn namespace into prefix if possible
+        def convert_to_prefix(prefix_set)
+          prefix = @namespaces.prefix_from_namespace(@uri.namespace)
+          add_prefix(prefix, prefix_set)
+        end
+
         # Check namespace args and set to default if necessary
         def check_namespace(args, default_namespace)
           check_default_namespace(args, :namespace, default_namespace)
@@ -90,7 +99,7 @@ module Sparql
         # Check prefix args and set to default if necessary
         def check_prefix(args, default_namespace)
           check_default_namespace(args, :prefix, default_namespace)
-          args[:namespace] = args[:prefix].empty? ? default_namespace : ::Uri.namespaces.namespace_from_prefix(args[:prefix]) 
+          args[:namespace] = args[:prefix].empty? ? default_namespace : @namespaces.namespace_from_prefix(args[:prefix]) 
         end
 
         # Check if both empty
@@ -101,9 +110,11 @@ module Sparql
 
         # Add a prefix to the set, save locally
         def add_prefix(prefix, prefix_set)
-          return if prefix.empty?
-          prefix_set[prefix] = prefix if !prefix_set.key?(prefix)
+          return if prefix.blank?
           @prefix = prefix
+          return if @namespaces.required_prefix?(prefix) 
+          return if prefix_set.key?(prefix)
+          prefix_set[prefix] = prefix
         end
 
       end

@@ -14,9 +14,19 @@ describe Uri do
     expect(uri.to_s).to eq("http://www.example.com/path1/path2#fragment")
   end
   
-  it "can create a uri from a prefixed uri" do
+  it "can create a uri from a prefixed uri I" do
     uri = Uri.new({uri: "isoC:fragment"})
     expect(uri.to_s).to eq("http://www.assero.co.uk/ISO11179Concepts#fragment")
+  end
+  
+  it "can create a uri from a prefixed uri II" do
+    uri = Uri.new({uri: "rdf:fragment"})
+    expect(uri.to_s).to eq("http://www.w3.org/1999/02/22-rdf-syntax-ns#fragment")
+  end
+  
+  it "can create a uri from namespace and fragment, character set issue" do
+    uri = Uri.new({namespace: "http://www.w3.org/1999/02/22-rdf-syntax-ns", fragment: "fragment"})
+    expect(uri.to_s).to eq("http://www.w3.org/1999/02/22-rdf-syntax-ns#fragment")
   end
   
   it "can create a uri from a uri" do

@@ -40,4 +40,9 @@ describe Uri::Namespace do
     expect(Uri.namespaces.namespace_from_prefix(:sss)).to eq(nil)
   end
 
+  it "required prefix" do
+    expect(Uri.namespaces.required_prefix?("isoC")).to eq(false)
+    expect(Uri.namespaces.required_prefix?("rdf")).to eq(true)
+  end
+
 end

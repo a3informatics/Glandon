@@ -3,6 +3,11 @@ require 'rails_helper'
 describe IsoScopedIdentifierV2 do
   
   include DataHelpers
+  include SparqlHelpers
+
+  def sub_dir
+    return "models/iso_scoped_identifier_v2"
+  end
 
   before :each do
     clear_triple_store
@@ -302,24 +307,10 @@ describe IsoScopedIdentifierV2 do
   end
 
   it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:identifier \"TEST3\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> rdf:type isoI:ScopedIdentifier . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:version \"4\"^^xsd:positiveInteger . \n" + 
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:version_label \"0.4\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:semantic_version \"0.0.0\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#SI-TEST_3-4> isoI:hasScope <http://www.assero.co.uk/NS#BBB> . \n" +
-      "}"
-    IsoScopedIdentifierV2.find(Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4")).to_sparql_v2(sparql)
-    expect(sparql.to_s).to eq(result)
+    sparql = Sparql::Update.new
+    IsoScopedIdentifierV2.find(Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4")).to_sparql(sparql)
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_create_sparql_expected.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
   end
   
   it "allows for an object to be updated, version label" do

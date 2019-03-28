@@ -1,0 +1,17 @@
+PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> rdf:type isoR:RegistrationState . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus "Standard"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate "2016-01-01 00:00:00 %2B0000"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate "2016-01-01 00:00:00 %2B0000"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolvedIssue ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeStatus ""^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previousState "Qualified"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
+}

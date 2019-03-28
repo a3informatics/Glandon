@@ -7,7 +7,7 @@ describe IsoRegistrationStateV2 do
   include SparqlHelpers
 
   def sub_dir
-    return "models/iso_registration_state"
+    return "models/iso_registration_state_v2"
   end
 
   before :each do
@@ -481,32 +481,12 @@ describe IsoRegistrationStateV2 do
 
   # to_sparql_v2(sparql, ra, identifier, version)
   it "allows an object to be exported as SPARQL" do
-    sparql = SparqlUpdateV2.new
-    result = 
-      "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
-      "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
-      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-      "INSERT DATA \n" +
-      "{ \n" + 
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> rdf:type isoR:RegistrationState . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registration_status \"Retired\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrative_note \"X1\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolved_issue \"X2\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrative_status \"\"^^xsd:string . \n" +
-      "<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previous_state  \"Standard\"^^xsd:string . \n" +
-      "}"
-  #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
+    sparql = Sparql::Update.new
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_3-4")
     object = IsoRegistrationStateV2.find(uri)
-    object.to_sparql_v2(sparql)
-    #expect(sparql.to_s).to eq(result)
-    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
+    object.to_sparql(sparql)
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt")
   end
   
   it "handles a bad response error - make_current" do

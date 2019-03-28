@@ -80,6 +80,10 @@ class IsoRegistrationAuthority < Fuseki::Base
     attributes[:ra_namespace] = IsoNamespace.find(attributes[:namespace_id])
     object = super
     object
+  end
+
+  def sparql_recurse?
+    return false
   end 
 
 end

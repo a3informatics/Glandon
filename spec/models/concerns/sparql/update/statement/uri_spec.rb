@@ -34,6 +34,22 @@ describe Sparql::Update::Statement::Uri do
     expect(@prefixes).to eq({})
   end
 
+  it "allows for the class to be created, namespace and fragment, matches prefix, required" do
+    result = Sparql::Update::Statement::Uri.new({namespace: "http://www.w3.org/1999/02/22-rdf-syntax-ns", fragment: "fragment"}, "", @prefixes)
+    expect("#{result.to_turtle}").to eq("rdf:fragment")
+    expect("#{result.to_ref}").to eq("<http://www.w3.org/1999/02/22-rdf-syntax-ns#fragment>")
+    expect("#{result.to_turtle}").to eq("rdf:fragment")
+    expect(@prefixes).to eq({})
+  end
+
+  it "allows for the class to be created, namespace and fragment, matches prefix, optional" do
+    result = Sparql::Update::Statement::Uri.new({namespace: "http://www.assero.co.uk/BusinessDomain", fragment: "fragment"}, "", @prefixes)
+    expect("#{result}").to eq("bd:fragment")
+    expect("#{result.to_ref}").to eq("<http://www.assero.co.uk/BusinessDomain#fragment>")
+    expect("#{result.to_turtle}").to eq("bd:fragment")
+    expect(@prefixes).to eq({bd: :bd})
+  end
+
   it "allows for the class to be created, namespace and fragment" do
     result = Sparql::Update::Statement::Uri.new({namespace: "", fragment: "fragment"}, "http://www.example.com/www", @prefixes)
     expect("#{result}").to eq("<http://www.example.com/www#fragment>")

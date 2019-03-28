@@ -217,6 +217,12 @@ puts "***** SUBJECT CACHE #{uri} *****"
       clear_cache
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
+      to_sparql(sparql)
+      operation == :create ? sparql.create : sparql.update(@uri)
+      self
+    end
+
+    def to_sparql(sparql, recurse=false)
       properties = properties_read(:instance)
       schema = self.class.get_schema(:create_or_update)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
@@ -224,9 +230,12 @@ puts "***** SUBJECT CACHE #{uri} *****"
         next if name == :@uri #|| name == :@rdf_type
         next if !properties.key?(name) # Ignore variables if no property declared.
         property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name))
+        object_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name)) if recurse
       end
-      operation == :create ? sparql.create : sparql.update(@uri)
-      self
+    end      
+
+    def sparql_recurse?
+      return true
     end
 
   private
@@ -241,9 +250,22 @@ puts "***** CLEARING CACHE #{self.uri} *****"
     def property_to_triple(sparql, property, schema, subject, predicate, objects)
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        statement = object.respond_to?(:uri) ? {uri: object.uri} : {literal: "#{object}", primitive_type: schema.range(predicate)}
+        statement = property[:type] == :object ? {uri: object_uri(object)} : {literal: "#{object}", primitive_type: schema.range(predicate)}
         sparql.add({:uri => subject}, {:uri => predicate}, statement)
       end
+    end
+
+    def object_to_triple(sparql, property, schema, subject, predicate, objects)
+      objects = [objects] if !objects.is_a? Array
+      objects.each do |object|
+        next if object.respond_to?(:sparql_recurse?) ? object.sparql_recurse? : false
+        object.to_sparql(sparql, true)
+      end
+    end
+
+    def object_uri(object)
+      return object if object.is_a? Uri
+      object.uri if object.respond_to?(:uri)
     end
 
   end
