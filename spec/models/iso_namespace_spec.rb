@@ -130,12 +130,6 @@ describe IsoNamespace do
       "in IsoNamespace.")
   end
 
-  it "determines if the namespace is valid except for presence" do
-    result = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
-    expect(result.valid?).to eq(false)   
-    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
-  end
-
   it "determines the namespace is invalid with a invalid short name" do
     result = IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#AAA"))
     result.short_name = "AAAaaa123^"

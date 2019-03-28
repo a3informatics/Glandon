@@ -234,6 +234,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
     def clear_cache
       return if !self.class.cache?
 puts "***** CLEARING CACHE #{self.uri} *****"
+      Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 

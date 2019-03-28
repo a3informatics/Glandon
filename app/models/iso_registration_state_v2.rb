@@ -25,8 +25,8 @@ class IsoRegistrationStateV2 < Fuseki::Base
   validates_with Validator::Field, attribute: :previous_state, method: :valid_registration_state?
   validates_with Validator::Field, attribute: :administrative_note, method: :valid_label?
   validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
-  validates_with Validator::Field, attribute: :administrative_status, method: :valid_label?
-  
+  validates_with Validator::Klass, property: :by_authority, level: :uri
+
   def initialize(attributes = {})
     super
   end

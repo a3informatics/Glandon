@@ -24,13 +24,13 @@ describe IsoRegistrationAuthority do
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object" do
+  it "does not validate an invalid object, identifier" do
     result = IsoRegistrationAuthority.new
     result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     expect(result.valid?).to eq(false) # organization_identifier set to "<Not_Set>" by default.
   end
 
-  it "does not validate an invalid object" do
+  it "does not validate an invalid object, scheme" do
     result = IsoRegistrationAuthority.new
     result.organization_identifier = "123456777"
     result.international_code_designator = "DUS"

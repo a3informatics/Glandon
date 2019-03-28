@@ -9,6 +9,10 @@ describe Fuseki::Persistence::Property do
     return "models/concerns/fuseki/persistence/property"
   end
 
+  before :all do
+    IsoHelpers.clear_cache
+  end
+
   before :each do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -21,7 +25,7 @@ describe Fuseki::Persistence::Property do
     delete_all_public_test_files
   end
 
-  class BaseTest
+  class BaseTestFpp
  
     include ActiveModel::Naming
     include ActiveModel::Conversion
@@ -33,7 +37,7 @@ describe Fuseki::Persistence::Property do
     #extend Fuseki::Properties
 
     def initialize
-      @@schema = Fuseki::Schema::SchemaMap.new({})
+      self.class.class_variable_set(:@@schema, Fuseki::Schema::SchemaMap.new({}))
       props = 
       {
         "@registration_authority".to_sym => {type: :object}, 
@@ -62,7 +66,7 @@ describe Fuseki::Persistence::Property do
 
   end 
 
-  class TestFpp1 < BaseTest
+  class TestFpp1 < BaseTestFpp
 
     C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority")
 
@@ -78,7 +82,7 @@ describe Fuseki::Persistence::Property do
 
   end
 
-  class TestFpp2 < BaseTest
+  class TestFpp2 < BaseTestFpp
     
     C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#RegistrationState")
 
@@ -94,7 +98,7 @@ describe Fuseki::Persistence::Property do
 
   end 
 
-  class TestFpp3 < BaseTest
+  class TestFpp3 < BaseTestFpp
     
     attr_accessor :effective_date
     attr_accessor :registration_authority

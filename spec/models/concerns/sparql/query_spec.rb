@@ -12,6 +12,7 @@ describe Sparql::Query do
   before :each do
     clear_triple_store
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
   end
 
   after :all do
@@ -22,12 +23,12 @@ describe Sparql::Query do
     item = Sparql::Query.new
     query = %Q{ SELECT ?a WHERE\n
       {\n
-        ?a isoI:ofOrganization ?b . \n
-        ?b isoB:shortName "AAA"^^xsd:string . \n
+        ?a isoR:raNamespace ?b . \n
+        ?b :shortName "AAA"^^xsd:string . \n
       }\n
     }
-    expected = [[{:name=>"a", :value=>"http://www.assero.co.uk/MDRItems#NS-AAA"}]]
-    result = item.query(query, "http://www.assero.co.uk/MDRItems", [:isoI, :isoB])
+    expected = [[{:name=>"a", :value=>"http://www.assero.co.uk/RA#DUNS111111111"}]]
+    result = item.query(query, "http://www.assero.co.uk/ISO11179Identification", [:isoR])
     expect(result.to_hash).to eq(expected)  
   end
 
@@ -35,12 +36,12 @@ describe Sparql::Query do
     item = Sparql::Query.new
     query = %Q{ SELECT ?a WHERE\n
       {\n
-        ?a :ofOrganization ?b . \n
-        ?b isoB:shortName "AAA"^^xsd:string . \n
+        ?a isoR:raNamespace ?b . \n
+        ?b :shortName "AAA"^^xsd:string . \n
       }\n
     }
-    expected = [[{:name=>"a", :value=>"http://www.assero.co.uk/MDRItems#NS-AAA"}]]
-    result = item.query(query, :isoI, [:isoB])
+    expected = [[{:name=>"a", :value=>"http://www.assero.co.uk/RA#DUNS111111111"}]]
+    result = item.query(query, :isoI, [:isoR])
     expect(result.to_hash).to eq(expected)  
   end
 
@@ -51,12 +52,12 @@ describe Sparql::Query do
     item = Sparql::Query.new
     query = %Q{ SELECT ?a WHERE\n
       {\n
-        ?a :ofOrganization ?b . \n
-        ?b isoB:shortName "AAA"^^xsd:string . \n
+        ?a isoI:hasScope ?b . \n
+        ?b isoI:shortName "AAA"^^xsd:string . \n
       }\n
     }
     expect(ConsoleLogger).to receive(:info)
-    expect{item.query(query, :isoI, [:isoB])}.to raise_error(Errors::ReadError, "Failed to query the database. SPARQL query failed.")
+    expect{item.query(query, :isoI, [])}.to raise_error(Errors::ReadError, "Failed to query the database. SPARQL query failed.")
   end
 
 end

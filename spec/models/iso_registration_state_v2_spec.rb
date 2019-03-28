@@ -69,11 +69,9 @@ describe IsoRegistrationStateV2 do
     expect(object.valid?).to eq(false)
   end
 
-  it "does not validate an invalid object, RA" do
+  it "does not validate an invalid object, RA URI" do
     object = IsoRegistrationStateV2.new
-    object.by_authority = IsoRegistrationAuthority.find_by_short_name("AAA")
-    object.by_authority.international_code_designator = "DUS"
-    object.registration_status = "Incomplete"
+    object.by_authority = nil
     object.administrative_note = "Note"
     object.effective_date = "XXX"
     object.until_date = Time.now
@@ -374,10 +372,9 @@ describe IsoRegistrationStateV2 do
   it "prevents an invalid object being created" do
     org = IsoNamespace.find_by_short_name("BBB")
     ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-    ra.organization_identifier = "1234567890"
-    rs = IsoRegistrationStateV2.create(identifier: "NEW 2", by_authority: ra)
+    rs = IsoRegistrationStateV2.create(identifier: "NEW 2", previous_state: "X", by_authority: ra)
     expect(rs.errors.count).to eq(1)
-    expect(rs.errors.full_messages.to_sentence).to eq("Registration authority error: Organization identifier is invalid")
+    expect(rs.errors.full_messages.to_sentence).to eq("Previous state is invalid")
   end
 
   it "provides a count of registration status" do
@@ -393,7 +390,7 @@ describe IsoRegistrationStateV2 do
 
   it "allows for an object to be updated" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_3-4")
-    object = IsoRegistrationStateV2.find(uri)
+    object = IsoRegistrationStateV2.find_children(uri)
     object.administrative_note = "X1"
     object.update
     object = IsoRegistrationStateV2.find(uri)

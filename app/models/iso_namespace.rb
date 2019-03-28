@@ -14,7 +14,7 @@ class IsoNamespace < Fuseki::Base
   validates_with Validator::Field, attribute: :short_name, method: :valid_short_name?
   validates_with Validator::Field, attribute: :name, method: :valid_label?
   validates :authority, presence: true
-  validates_with Validator::Uniqueness, attribute: :short_name
+  validates_with Validator::Uniqueness, attribute: :short_name, on: :create
 
   C_CLASS_NAME = self.name
   

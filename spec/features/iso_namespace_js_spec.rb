@@ -30,15 +30,24 @@ describe "ISO Namespace JS", :type => :feature do
   describe "valid user", :type => :feature, js: true do
 
     it "deletes namespace" do
-      click_link 'Namespace'
+      click_link 'Namespaces'
+      click_link 'New'
+      expect(page).to have_content 'New Scope Namespace'
+      fill_in 'iso_namespace_short_name', with: 'NEWORG'
+      fill_in 'iso_namespace_name', with: 'New Organisation'
+      fill_in 'iso_namespace_authority', with: 'www.example.com'
+      click_button 'Submit'
       expect(page).to have_content 'Namespaces'
-#pause
-      find(:xpath, "//tr[contains(.,'AAA')]/td/a", :text => 'Delete').click
+      expect(page).to have_content 'BBB Pharma'
+      expect(page).to have_content 'AAA Long'
+      expect(page).to have_content 'New Organisation'
+    #pause
+      find(:xpath, "//tr[contains(.,'NEWORG')]/td/a", :text => 'Delete').click
       page.accept_alert
       sleep(1)
       expect(page).to have_content 'BBB Pharma'
-      expect(page).to have_no_content 'AAA Long'
-      #pause
+      expect(page).to have_content 'AAA Long'
+      expect(page).to have_no_content 'New Organisation'
     end
 
   end

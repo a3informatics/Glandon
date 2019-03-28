@@ -10,6 +10,10 @@ describe Fuseki::Persistence do
     return "models/concerns/fuseki/persistence"
   end
 
+  before :all do
+    IsoHelpers.clear_cache
+  end
+
   before :each do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -21,7 +25,7 @@ describe Fuseki::Persistence do
   after :each do
   end
 
-  class BaseTest
+  class BaseTestFp
  
     include ActiveModel::Naming
     include ActiveModel::Conversion
@@ -34,7 +38,7 @@ describe Fuseki::Persistence do
     include DataHelpers
 
     def initialize
-      @@schema ||= self.class.read_schema
+      @@schema ||= self.class.get_schema(:initialize)
       @@props = read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") 
       self.class.instance_variable_set(:@properties, @@props)
     end
@@ -45,7 +49,7 @@ describe Fuseki::Persistence do
 
   end 
 
-  class TestFp1 < BaseTest
+  class TestFp1 < BaseTestFp
 
     C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Types#AdministeredItem")
 

@@ -21,6 +21,7 @@ class IsoRegistrationAuthority < Fuseki::Base
   validates :international_code_designator, :inclusion => {in: C_SCHEMES, message: "%{value} is not a valid scheme" }
   validates :owner, inclusion: { in: [ true, false ] }
   validates_with Validator::Uniqueness, attribute: :organization_identifier, on: :create
+  validates_with Validator::Klass, property: :ra_namespace, level: :uri
 
   # Find by the short name.
   #
@@ -76,8 +77,8 @@ class IsoRegistrationAuthority < Fuseki::Base
   # @return [IsoNamespace] the object. Contains errors if it fails
   def self.create(attributes)
     attributes[:uri] = Uri.new(namespace: base_uri.namespace, fragment: attributes[:organization_identifier])
+    attributes[:ra_namespace] = IsoNamespace.find(attributes[:namespace_id])
     object = super
-    object.ra_namespace = IsoNamespace.find(attributes[:namespace_id])
     object
   end 
 

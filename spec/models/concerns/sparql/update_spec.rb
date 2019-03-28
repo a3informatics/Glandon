@@ -441,7 +441,7 @@ window.location.href = \"/fuseki.html\";}
     o_uri_new = Uri.new({:uri => "http://www.example.com/test#oooNEW"})
     sparql.add({:uri => @s_uri}, {:uri => @p_uri}, {:uri => o_uri_new},)
     expect(ConsoleLogger).to receive(:info)
-    expect{sparql.delete}.to raise_error(Errors::DestroyError, "Failed to delete an item in the database. SPARQL delete failed.")
+    expect{sparql.delete(@s_uri)}.to raise_error(Errors::DestroyError, "Failed to delete an item in the database. SPARQL delete failed.")
   end
 
   it "executes an file upload" do
