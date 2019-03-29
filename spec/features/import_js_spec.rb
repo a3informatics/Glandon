@@ -162,7 +162,6 @@ describe "Imports", :type => :feature do
       wait_for_ajax
       ui_button_enabled('import_index_button')
       click_button 'import_index_button'
-    #pause
       ui_check_table_cell("main", 1, 3, "SN667XX1")
       check_successful_import(1)
       delete_all_imports

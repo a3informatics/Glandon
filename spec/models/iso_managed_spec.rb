@@ -35,6 +35,7 @@ describe IsoManaged do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
+    test_query
   end
 
 	it "validates a valid object, general" do

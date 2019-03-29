@@ -10,13 +10,14 @@ describe IsoRegistrationStateV2 do
     return "models/iso_registration_state_v2"
   end
 
+  before :all do
+    IsoHelpers.clear_cache
+  end
+
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
-    load_test_file_into_triple_store("iso_scoped_identifier.ttl")
+    schema_files = ["ISO11179Identification.ttl", "ISO11179Registration.ttl"]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_scoped_identifier.ttl"]
+    load_files(schema_files, data_files)
   end
 
  	it "check the state table" do

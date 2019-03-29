@@ -53,7 +53,7 @@ class Import < ActiveRecord::Base
     klass = self.configuration[:parent_klass]
     update_params(params, klass, job)
     self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: params[:identifier], 
-      owner: klass.owner.short_name, background_id: job.id, file_type: params[:file_type].to_i)
+      owner: owner_short_name(klass), background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
     job.start(self.description(params), "Starting ...") {self.import(params)} 
   rescue => e
@@ -126,7 +126,7 @@ class Import < ActiveRecord::Base
   # @return [String] the description
   def description(params)
     klass = self.configuration[:parent_klass]
-    "#{configuration[:description]} from #{self.file_type_humanize}. Identifier: #{params[:identifier]}, Owner: #{klass.owner.short_name}"
+    "#{configuration[:description]} from #{self.file_type_humanize}. Identifier: #{params[:identifier]}, Owner: #{owner_short_name(klass)}"
   end
 
   # Complete. Is the background job complete
@@ -154,6 +154,10 @@ class Import < ActiveRecord::Base
   end
 
 private
+
+  def owner_short_name(klass)
+    klass.owner.ra_namespace.short_name
+  end
 
   def file_list(params)
     params[:files].map{|x| File.basename(x)}.join(", ")

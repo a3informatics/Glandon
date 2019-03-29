@@ -9,9 +9,9 @@ describe IsoNamespace do
   end
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
+    schema_files = ["ISO11179Identification.ttl"]
+    data_files = ["iso_namespace_fake.ttl"]
+    load_files(schema_files, data_files)
   end
 
 	it "can be filled from JSON" do

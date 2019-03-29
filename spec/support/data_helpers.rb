@@ -1,6 +1,21 @@
 module DataHelpers
 
-	def clear_triple_store
+  def load_files(schema_files, test_files)
+    ConsoleLogger.debug("DataHelpers", "load_files", "***** Next Test ***** #{self.class.metadata[:location]}")
+    clear_triple_store
+    schema_files.each {|f| load_schema_file_into_triple_store(f)}
+    test_files.each {|f| load_test_file_into_triple_store(f)}
+    #sleep 0.25
+    test_query # Make sure any loading has finished.
+  end
+  
+  def test_query
+    # Query to just check the triple store.
+    query_string = "SELECT ?s WHERE {?s <http://www.something.com> \"should never be found\"^^xsd:string }"
+    results = Sparql::Query.new.query(query_string, "", []) 
+  end
+
+  def clear_triple_store
 		#sparql_query = "PREFIX tst: <http://www.assero.co.uk/test/>\n" +
     #  "PREFIX dc: <http://purl.org/dc/elements/1.1/>\n" +
     #  "DELETE { ?a ?b ?c } WHERE { ?a ?b ?c }"
