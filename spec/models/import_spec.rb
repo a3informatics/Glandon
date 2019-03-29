@@ -19,10 +19,18 @@ describe Import do
     return item
   end
 
-  class Owner
+  class NS
 
     def short_name
       return "OWNER"
+    end
+
+  end
+
+  class Owner
+
+    def ra_namespace
+      return NS.new
     end
 
   end

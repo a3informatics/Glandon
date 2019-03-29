@@ -31,8 +31,7 @@ describe "SDTM IG", :type => :feature do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("CT_ACME_V1.ttl")
@@ -109,8 +108,7 @@ describe "SDTM IG", :type => :feature do
       load_schema_file_into_triple_store("BusinessForm.ttl")
       load_schema_file_into_triple_store("BusinessDomain.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_test_file_into_triple_store("CT_V42.ttl")
       load_test_file_into_triple_store("CT_V43.ttl")
       load_test_file_into_triple_store("CT_ACME_V1.ttl")
@@ -149,6 +147,7 @@ describe "SDTM IG", :type => :feature do
       select 'sdtm-3-2-excel.xlsx', from: "sdtm_ig_files_"
       click_button 'Create'
       expect(page).to have_content 'Background Jobs'
+    #pause
     	ui_check_table_cell("main", 1, 1, "Import CDISC SDTM Implementation Guide. Date: 2017-10-24 Internal Version: 4.")
     	# Note that we expect the actual import to fail because we are trying to link to an SDTM model that does not have an FA class.
     	# The test is about the pages linking together etc not about the import. The import is tested elsewhere.
