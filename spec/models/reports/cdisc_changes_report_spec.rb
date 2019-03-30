@@ -20,7 +20,6 @@ describe Reports::CdiscChangesReport do
     load_schema_file_into_triple_store("CDISCTerm.ttl")
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-
     load_test_file_into_triple_store("CT_V34.ttl")
     load_test_file_into_triple_store("CT_V35.ttl")
     load_test_file_into_triple_store("CT_V36.ttl")
