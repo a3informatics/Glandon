@@ -221,17 +221,20 @@ class IsoManagedV2 < IsoConceptV2
   # @params [hash] {:identifier, :scope_id}
   # @return [array] An array of objects.
   def self.history(params)    
-    identifier = params[:identifier]
-    namespace = params[:scope]
     parts = []
-    parts[0] = "  { ?s rdf:type #{rdf_type.to_ref} . ?s ?p ?o }" 
-    parts[1] = "  { ?ref rdf:type #{rdf_type.to_ref} . ?ref isoI:hasIdentifier ?s . ?s isoC:identifier '#{params[:identifier]}' . ?s isoC:hasScope #{params[:scope].uri.to_ref} . " + 
-      " ?s ?p ?o }" 
+    results = []
+    base =  "?e rdf:type #{rdf_type.to_ref} . " +
+            "?e isoT:hasIdentifier ?si . " +
+            "?si isoI:identifier '#{params[:identifier]}' . " +
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
+    parts[0] = "  { ?e ?p ?o . BIND (?e as ?s) }" 
+    parts[1] = "  { ?si ?p ?o . BIND (?si as ?s) }"  
     parts[2] = "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
-    parts[3] = "  { ?ref rdf:type #{rdf_type.to_ref} . ?ref isoI:hasState ?s . ?s ?p ?o }" 
-    query_string = "SELECT ?s ?p ?o WHERE { #{parts.join(" UNION\n")} }"
-    results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC])
-    from_results_recurse(uri, results.by_subject)
+    parts[3] = "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
+    query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    query_results.subject_map.values.uniq{|x| x.to_s}.each {|uri| results << from_results_recurse(uri, query_results.by_subject)}
+    results
   end
 
 
@@ -273,7 +276,11 @@ private
 
   # Relationship set, array of predicates.
   def self.subject_set(full)
-    set = [IsoRegistrationStateV2.rdf_type.to_ref, IsoScopedIdentifierV2.rdf_type.to_ref, IsoNamespace.rdf_type.to_ref, IsoRegistrationAuthority.rdf_type.to_ref, self.rdf_type.to_ref]
+    set = 
+    [
+      IsoRegistrationStateV2.rdf_type.to_ref, IsoScopedIdentifierV2.rdf_type.to_ref, 
+      IsoNamespace.rdf_type.to_ref, IsoRegistrationAuthority.rdf_type.to_ref, self.rdf_type.to_ref
+    ]
     config = self.class.instance_variable_get(:@configuration)
     set = set + config[:relationships] if full && !config.nil?
     set.join(",")

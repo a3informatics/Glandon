@@ -258,7 +258,7 @@ describe Thesaurus do
     expect(th.children.count).to eq(1)      
   end
 
-  it "allows the impact to be assessed" do
+  it "allows the impact to be assessed - WILL CURRENTLY FAIL" do
   	th = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
   	result = th.impact
   #Xwrite_yaml_file(result, sub_dir, "thesaurus_impact.yaml")

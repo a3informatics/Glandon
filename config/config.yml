@@ -1,6 +1,6 @@
 defaults: &defaults
   # General Settings
-  application_name: "Glandon MDR"
+  application_name: "A3 MDR"
   application_image: "glandon.png"
   self_registration: false # Self registration enabled
   rest_timeout: 10 # REST timeout period
@@ -86,6 +86,7 @@ production:
   
 test: 
   <<: *defaults
+  application_name: "Glandon MDR"
   cdisc_ct_files: public/test/
   ad_hoc_report_files: public/test/
   export_files: public/test/

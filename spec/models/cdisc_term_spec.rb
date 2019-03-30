@@ -63,9 +63,9 @@ describe CdiscTerm do
     end
 
     it "returns the owner" do
-      expected =IsoRegistrationAuthority.find_by_short_name("CDISC").to_json
+      expected =IsoRegistrationAuthority.find_by_short_name("CDISC")
       ra = CdiscTerm.owner
-      expect(ra.to_json).to eq(expected)
+      expect(ra.uri).to eq(expected.uri)
     end    
 
     it "returns the configuration" do

@@ -193,13 +193,13 @@ describe IsoManagedV2 do
   end
 
   it "finds history of an item entries" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     results = []
-    results[0] = {:id => "F-BBB_VSB2", :scoped_identifier_version => 2}
-    results[1] = {:id => "F-BBB_VSB1", :scoped_identifier_version => 1}
-    items = IsoManagedV2.history({:identifier => "VSB", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+    results[0] = {:id => uri_1.to_id, :scoped_identifier_version => 1}
+    items = IsoManagedV2.history({:identifier => "TEST", :scope => IsoRegistrationAuthority.owner.ra_namespace})
     items.each_with_index do |item, index|
       expect(results[index][:id]).to eq(items[index].id)
-      expect(results[index][:scoped_identifier_version]).to eq(items[index].scopedIdentifier.version)
+      expect(results[index][:scoped_identifier_version]).to eq(items[index].has_identifier.version)
     end
   end
 
@@ -393,11 +393,10 @@ describe IsoManagedV2 do
 
   it "where, II" do
     results = []
-    IsoManagedV2.where({label: "Concept Test"}).each { |x| results << x.to_json }
-  #Xwrite_yaml_file(results, sub_dir, "where_3.yaml")
+    IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
+  write_yaml_file(results, sub_dir, "where_3.yaml")
     expected = read_yaml_file(sub_dir, "where_3.yaml")
     expect(results).to hash_equal(expected)
-    expect(true).to eq(false)
   end
 
 end
