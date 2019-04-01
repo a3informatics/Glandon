@@ -73,7 +73,7 @@ describe IsoNamespace do
     ]
     items = IsoNamespace.all
     result = items.map{|x| x.to_h}
-    expect(result).to eq(expected)   
+    expect(result).to match_array(expected)   
   end
 
 	it "create a namespace" do
