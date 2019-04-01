@@ -5,14 +5,35 @@ module DataHelpers
     clear_triple_store
     schema_files.each {|f| load_schema_file_into_triple_store(f)}
     test_files.each {|f| load_test_file_into_triple_store(f)}
-    #sleep 0.25
     test_query # Make sure any loading has finished.
   end
   
   def test_query
     # Query to just check the triple store.
-    query_string = "SELECT ?s WHERE {?s <http://www.something.com> \"should never be found\"^^xsd:string }"
-    results = Sparql::Query.new.query(query_string, "", []) 
+    i = 0
+    begin
+      i += 1
+      query_string = "SELECT ?o WHERE {<http://www.assero.co.uk/ISO11179Identification#Namespace> <http://www.w3.org/2000/01/rdf-schema#label> ?o}"
+      triples = Sparql::Query.new.query(query_string, "", []) 
+      raise if triples.results.empty?
+      raise if triples.results.first.column(:o).value != "Namespace"
+    rescue
+      sleep 1
+      puts colourize(puts "***** !!!!! DB Check Failed, Attempt #{i} !!!!! *****", "red")
+      retry if i < 5 
+    end
+  end
+
+  def colourize(text, color = "default", bgColor = "default")
+    colors = {"default" => "38","black" => "30","red" => "31","green" => "32","brown" => "33", "blue" => "34", "purple" => "35",
+     "cyan" => "36", "gray" => "37", "dark gray" => "1;30", "light red" => "1;31", "light green" => "1;32", "yellow" => "1;33",
+      "light blue" => "1;34", "light purple" => "1;35", "light cyan" => "1;36", "white" => "1;37"}
+    bgColors = {"default" => "0", "black" => "40", "red" => "41", "green" => "42", "brown" => "43", "blue" => "44",
+     "purple" => "45", "cyan" => "46", "gray" => "47", "dark gray" => "100", "light red" => "101", "light green" => "102",
+     "yellow" => "103", "light blue" => "104", "light purple" => "105", "light cyan" => "106", "white" => "107"}
+    color_code = colors[color]
+    bgColor_code = bgColors[bgColor]
+    return "\033[#{bgColor_code};#{color_code}m#{text}\033[0m"
   end
 
   def clear_triple_store
@@ -25,22 +46,35 @@ module DataHelpers
 
   def load_test_file_into_triple_store(filename)
 		full_path = Rails.root.join "db/load/test/#{filename}"
-  	CRUD.file(full_path)
+  	load_file_into_triple_store(full_path)
   end
 
   def load_test_temp_file_into_triple_store(filename)
 		full_path = Rails.root.join "db/load/tmp/#{filename}"
-  	CRUD.file(full_path)
+  	load_file_into_triple_store(full_path)
   end
 
   def load_schema_file_into_triple_store(filename)
     full_path = Rails.root.join "db/load/schema/#{filename}"
-    CRUD.file(full_path)
+    load_file_into_triple_store(full_path)
   end
 
   def load_data_file_into_triple_store(filename)
     full_path = Rails.root.join "db/load/data/#{filename}"
-    CRUD.file(full_path)
+    load_file_into_triple_store(full_path)
+  end
+
+  def load_file_into_triple_store(full_path)
+    i = 1
+    begin
+      response = CRUD.file(full_path)
+      raise if !response.success?
+      i += 1
+    rescue
+      sleep 1
+      puts colourize("***** File load failed #{full_path} *****", "red")
+      retry if i < 3
+    end
   end
 
   def read_yaml_file_to_hash(filename)

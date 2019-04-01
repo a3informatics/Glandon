@@ -4,8 +4,7 @@
 # @since 2.21.1
 class IsoConceptV2 < Fuseki::Base
 
-  configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
-            base_uri: "http://www.assero.co.uk/IC" 
+  configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
   data_property :label
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?

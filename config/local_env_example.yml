@@ -1,0 +1,60 @@
+defaults: &defaults
+  # Email options
+  EMAIL_DOMAIN: gmail.com
+  EMAIL_SMTP: smtp.gmail.com
+  EMAIL_PORT: '587'
+  EMAIL_USERNAME: glandon.development@gmail.com
+  EMAIL_PASSWORD: Swiss74$Zermatt11%
+  EMAIL_AUTHENTICATION: plain # Set to either 'plain' or 'login'
+  # Host Name
+  HOST_NAME: localhost
+  HOST_PORT: "3000"
+  # API details
+  api_username: "mdr_api_base_45edfwedhn"
+  api_password: "a12password"
+  # Other installation parameters
+  organization_navbar: 'Dev ' # Installation navbar title. Note should have space at the end.
+  organization_title: A3 Informatics # Installation organisation title
+  organization_image_file: a3.jpg # File in images directory for orgnaization image
+  token_timeout: '600' # Edit lock timeout in seconds. Note must be a string
+  # Semantic Triple Store: Fuseki 
+  SEMANTIC_DB_API_KEY: ""
+  SEMANTIC_DB_API_SECRET: ""
+  SEMANTIC_DB_PROTOCOL: "http"
+  SEMANTIC_DB_HOST: "localhost"
+  SEMANTIC_DB_PORT: "3030"
+  SEMANTIC_DB_DATASET: "mdr"
+  # RDBMS: Postgresql
+  RDBMS_HOST_NAME: localhost
+  RDBMS_PASSWORD: ""
+  # Base URL authority
+  url_authority: "www.assero.co.uk"
+
+development:
+  <<: *defaults
+  organization_navbar: 'Demo ' # Installation navbar title
+  token_timeout: '1200' # Edit lock timeout in seconds. Note must be a string
+  # API details
+  api_username: "mdr_api_dev_34efgdwsde"
+  api_password: "a12passwordIsSetItIs3456tg"
+
+production:
+  <<: *defaults
+  organization_navbar: 'Demo ' # Installation navbar title
+  token_timeout: '1200' # Edit lock timeout in seconds. Note must be a string
+  #HOST_NAME: www.assero-demo.co.uk
+  
+test:
+  <<: *defaults
+  organization_title: 'ACME Test' # Changing these upsets results files
+  organization_image_file: acme.jpg # Changing these upsets results files
+  organization_navbar: 'TEST ' # Installation navbar title
+  token_timeout: '300' # Edit lock timeout in seconds. Note must be a string
+  # API details
+  api_username: "mdr_api_test_12e54rtscf"
+  api_password: "a12passwordIsSetItIs45tghy"
+  # Triple Store
+  SEMANTIC_DB_DATASET: "test"
+  # Base URL authority
+  url_authority: "www.assero.co.uk" # Changing upsets results files
+
