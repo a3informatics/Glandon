@@ -6,6 +6,9 @@
 
     <xsl:import href="../../utility/utility.xsl" />
     
+    <xsl:param name="UseDate"/>
+    <xsl:param name="UseComment"/>
+
     <!-- Constants -->
     <xsl:variable name="LT">&lt;</xsl:variable>
     <xsl:variable name="GT">&gt;</xsl:variable>
@@ -59,8 +62,8 @@
         <xsl:text>&#xa;</xsl:text>
 
         <!-- Header and imports-->
-        <xsl:variable name="BasePrefix" select="concat($LT,$BaseURI,$GT)"/>
-        <xsl:value-of select="$BasePrefix"/>
+        <xsl:variable name="BasePrefix1" select="concat($LT,$BaseURI,$GT)"/>
+        <xsl:value-of select="$BasePrefix1"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;rdf:type owl:Ontology ;&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">&#009;owl:imports &lt;http://www.assero.co.uk/CDISCBiomedicalConcept&gt; ;&#xa;</xsl:text>
@@ -109,8 +112,9 @@
             <xsl:with-param name="pPredicateName" select="'isoR:hasState'" /> 
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
         </xsl:call-template>
-        <xsl:call-template name="CommonFields">
-            <xsl:with-param name="pDate" select="'2016-01-01'"/>
+        <xsl:call-template name="CommonFieldsV2">
+            <xsl:with-param name="pDate" select="$UseDate"/>
+            <xsl:with-param name="pComment" select="$UseComment"/>
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/> 
         

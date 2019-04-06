@@ -1,4 +1,4 @@
-<BiomedicalConceptTemplates Version="2">
+<BiomedicalConceptTemplates Version="3">
 	<BiomedicalConceptTemplate Id="BCT LB PQR"
 		Name="Simple Laboratory PQR Biomedical Research Concept Template">
 		<Class Name="DefinedObservation">
@@ -51,6 +51,11 @@
 			<Attribute Alias="Result" Name="value" Datatype="PQR">
 				<Property Alias="Result Value (--ORRES)" Name="value"/>
 				<Property Alias="Result Units (--ORRESU)" Name="code"/>
+			</Attribute>
+		</Class>
+		<Class Name="PerformedClinicalInterpretation"> 
+			<Attribute Alias="Clinically Significant" Name="clinicallySignificantIndicator" Datatype="CD">
+				<Property Alias="Clinically Significant (--CLSIG)"  Name="code"/>
 			</Attribute>
 		</Class>
 	</BiomedicalConceptTemplate>
