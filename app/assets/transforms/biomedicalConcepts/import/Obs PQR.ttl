@@ -1,7 +1,7 @@
-# baseURI: http://www.assero.co.uk/MDRBCTs/V3
+# baseURI: http://www.assero.co.uk/MDRBCTs/V4
 # imports: http://www.assero.co.uk/ISO21090
 
-@prefix : <http://www.assero.co.uk/MDRBCTs/V3#> .
+@prefix : <http://www.assero.co.uk/MDRBCTs/V4#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
@@ -14,7 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRBCTs/V3>
+<http://www.assero.co.uk/MDRBCTs/V4>
 	rdf:type owl:Ontology ;
 	owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
 .
@@ -31,24 +31,28 @@
 	cbc:hasItem :BCT-Obs_PQR_PerformedObservation_negationIndicator ;
 	cbc:hasItem :BCT-Obs_PQR_PerformedObservation_negationReason ;
 	cbc:hasItem :BCT-Obs_PQR_PerformedObservationResult_value ;
+	cbc:hasItem :BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator ;
+	cbc:hasItem :BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode ;
+	cbc:hasItem :BCT-Obs_PQR_Performer_typeCode ;
+	cbc:hasItem :BCT-Obs_PQR_Performer_evaluatorAlias ;
 	rdfs:label "Simple Observation PQR Biomedical Research Concept Template"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-Obs_PQR-3 ;
-	isoR:hasState mdrItems:RS-Obs_PQR-3 ;
+	isoI:hasIdentifier mdrItems:SI-Obs_PQR-4 ;
+	isoR:hasState mdrItems:RS-Obs_PQR-4 ;
 	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2016-01-01"^^xsd:date ;
-	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:changeDescription "Updated for clinical significance"^^xsd:string ;
+	isoT:creationDate "2019-04-05"^^xsd:date ;
+	isoT:lastChangeDate "2019-04-05"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
 .
-mdrItems:SI-Obs_PQR-3
+mdrItems:SI-Obs_PQR-4
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "Obs PQR"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
-	isoI:version "3"^^xsd:positiveInteger ;
-	isoI:semantic_version "3.0.0"^^xsd:string ;
+	isoI:version "4"^^xsd:positiveInteger ;
+	isoI:semantic_version "4.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrItems:RS-Obs_PQR-3
+mdrItems:RS-Obs_PQR-4
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -338,4 +342,81 @@ mdrItems:RS-Obs_PQR-3
 	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservationResult.value.PQR.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
+.
+:BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "12"^^xsd:positiveInteger ;
+	cbc:bridg_class "PerformedClinicalInterpretation"^^xsd:string ;
+	cbc:bridg_attribute "PerformedClinicalInterpretation_clinicallySignificantIndicator"^^xsd:string ;
+	cbc:alias "Clinically Significant"^^xsd:string ;
+	cbc:hasDatatype :BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD ;
+.
+:BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD
+	rdf:type cbc:Datatype ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
+	cbc:hasProperty :BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD_code ;
+.
+:BCT-Obs_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD_code
+	rdf:type cbc:Property ;
+	cbc:alias "Clinically Significant (--CLSIG)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
+	cbc:bridg_path "PerformedClinicalInterpretation.clinicallySignificantIndicator.CD.code"^^xsd:string ;
+	cbc:simple_datatype "string"^^xsd:string ;
+.
+:BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "13"^^xsd:positiveInteger ;
+	cbc:bridg_class "PerformedProcedure"^^xsd:string ;
+	cbc:bridg_attribute "PerformedProcedure_targetAnatomicSiteDirectionalityCode"^^xsd:string ;
+	cbc:alias "Directionality"^^xsd:string ;
+	cbc:hasDatatype :BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode_CD ;
+.
+:BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
+	cbc:hasProperty :BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode_CD_code ;
+.
+:BCT-Obs_PQR_PerformedProcedure_targetAnatomicSiteDirectionalityCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:alias "Directionality (--DIR)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
+	cbc:bridg_path "PerformedProcedure.targetAnatomicSiteDirectionalityCode.CD.code"^^xsd:string ;
+	cbc:simple_datatype "string"^^xsd:string ;
+.
+:BCT-Obs_PQR_Performer_typeCode
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "14"^^xsd:positiveInteger ;
+	cbc:bridg_class "Performer"^^xsd:string ;
+	cbc:bridg_attribute "Performer_typeCode"^^xsd:string ;
+	cbc:alias "Evaluator Role"^^xsd:string ;
+	cbc:hasDatatype :BCT-Obs_PQR_Performer_typeCode_CD ;
+.
+:BCT-Obs_PQR_Performer_typeCode_CD
+	rdf:type cbc:Datatype ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
+	cbc:hasProperty :BCT-Obs_PQR_Performer_typeCode_CD_code ;
+.
+:BCT-Obs_PQR_Performer_typeCode_CD_code
+	rdf:type cbc:Property ;
+	cbc:alias "Evaluator Role (--EVAL)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
+	cbc:bridg_path "Performer.typeCode.CD.code"^^xsd:string ;
+	cbc:simple_datatype "string"^^xsd:string ;
+.
+:BCT-Obs_PQR_Performer_evaluatorAlias
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-Obs_PQR ;
+	cbc:ordinal "15"^^xsd:positiveInteger ;
+	cbc:bridg_class "Performer"^^xsd:string ;
+	cbc:bridg_attribute "Performer_evaluatorAlias"^^xsd:string ;
+	cbc:alias "Evaluator Identity"^^xsd:string ;
+	cbc:hasDatatype :BCT-Obs_PQR_Performer_evaluatorAlias_ST ;
+.
+:BCT-Obs_PQR_Performer_evaluatorAlias_ST
+	rdf:type cbc:Datatype ;
+	cbc:iso21090_datatype "ST"^^xsd:string ;
+	cbc:hasProperty :BCT-Obs_PQR_Performer_evaluatorAlias_ST_code ;
 .
