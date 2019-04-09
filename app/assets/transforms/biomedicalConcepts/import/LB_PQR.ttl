@@ -1,7 +1,7 @@
-# baseURI: http://www.assero.co.uk/MDRBCTs/V2
+# baseURI: http://www.assero.co.uk/MDRBCTs/V3
 # imports: http://www.assero.co.uk/ISO21090
 
-@prefix : <http://www.assero.co.uk/MDRBCTs/V2#> .
+@prefix : <http://www.assero.co.uk/MDRBCTs/V3#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
@@ -14,7 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRBCTs/V2>
+<http://www.assero.co.uk/MDRBCTs/V3>
 	rdf:type owl:Ontology ;
 	owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
 .
@@ -32,24 +32,25 @@
 	cbc:hasItem :BCT-BCT_LB_PQR_PerformedObservation_negationReason ;
 	cbc:hasItem :BCT-BCT_LB_PQR_Material_formCode ;
 	cbc:hasItem :BCT-BCT_LB_PQR_PerformedObservationResult_value ;
+	cbc:hasItem :BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator ;
 	rdfs:label "Simple Laboratory PQR Biomedical Research Concept Template"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-BCT_LB_PQR-2 ;
-	isoR:hasState mdrItems:RS-BCT_LB_PQR-2 ;
+	isoI:hasIdentifier mdrItems:SI-BCT_LB_PQR-3 ;
+	isoR:hasState mdrItems:RS-BCT_LB_PQR-3 ;
 	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2016-01-01"^^xsd:date ;
-	isoT:lastChangeDate "2016-01-01"^^xsd:date ;
+	isoT:changeDescription "Updated for clinical significance"^^xsd:string ;
+	isoT:creationDate "2019-04-05"^^xsd:date ;
+	isoT:lastChangeDate "2019-04-05"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
 .
-mdrItems:SI-BCT_LB_PQR-2
+mdrItems:SI-BCT_LB_PQR-3
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "BCT LB PQR"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semantic_version "2.0.0"^^xsd:string ;
+	isoI:version "3"^^xsd:positiveInteger ;
+	isoI:semantic_version "3.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrItems:RS-BCT_LB_PQR-2
+mdrItems:RS-BCT_LB_PQR-3
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -359,5 +360,26 @@ mdrItems:RS-BCT_LB_PQR-2
 	cbc:alias "Result Units (--ORRESU)"^^xsd:string ;
 	cbc:ordinal "2"^^xsd:positiveInteger ;
 	cbc:bridg_path "PerformedObservationResult.value.PQR.code"^^xsd:string ;
+	cbc:simple_datatype "string"^^xsd:string ;
+.
+:BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator
+	rdf:type cbc:Item ;
+	cbc:isItemOf :BCT-BCT_LB_PQR ;
+	cbc:ordinal "13"^^xsd:positiveInteger ;
+	cbc:bridg_class "PerformedClinicalInterpretation"^^xsd:string ;
+	cbc:bridg_attribute "PerformedClinicalInterpretation_clinicallySignificantIndicator"^^xsd:string ;
+	cbc:alias "Clinically Significant"^^xsd:string ;
+	cbc:hasDatatype :BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD ;
+.
+:BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD
+	rdf:type cbc:Datatype ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
+	cbc:hasProperty :BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD_code ;
+.
+:BCT-BCT_LB_PQR_PerformedClinicalInterpretation_clinicallySignificantIndicator_CD_code
+	rdf:type cbc:Property ;
+	cbc:alias "Clinically Significant (--CLSIG)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
+	cbc:bridg_path "PerformedClinicalInterpretation.clinicallySignificantIndicator.CD.code"^^xsd:string ;
 	cbc:simple_datatype "string"^^xsd:string ;
 .

@@ -1,5 +1,5 @@
 <BiomedicalConceptTemplates Version="3">
-	<BiomedicalConceptTemplate Id="Obs CD" Name="Simple Observation CD Biomedical Research Concept Template" >
+	<BiomedicalConceptTemplate Id="BCT LB CD" Name="Simple Laboratory CD Biomedical Research Concept Template" >
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
 				<Property Alias="Test Code (--TESTCD)" Name="code"/>
@@ -41,11 +41,20 @@
 				</Property>
 			</Attribute>
 		</Class>
+		<Class Name="Material"> 
+			<Attribute Alias="Position" Name="formCode">
+				<Property Alias="Specimen (--SPEC)" Name="code"/>
+			</Attribute>
+		</Class>
 		<Class Name="PerformedClinicalResult"> 
 			<Attribute Alias="Result" Name="value" Datatype="CD">
 				<Property Alias="Result Value (--ORRES)"  Name="code"/>
 			</Attribute>
 		</Class>
+		<Class Name="PerformedClinicalInterpretation"> 
+			<Attribute Alias="Clinically Significant" Name="clinicallySignificantIndicator" Datatype="CD">
+				<Property Alias="Clinically Significant (--CLSIG)"  Name="code"/>
+			</Attribute>
+		</Class>
 	</BiomedicalConceptTemplate>
 </BiomedicalConceptTemplates>
-

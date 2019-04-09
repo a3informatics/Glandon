@@ -49,6 +49,32 @@
         </xsl:call-template>
     </xsl:template>
     
+    <!-- Managed Items common fields -->
+    <xsl:template name="CommonFieldsV2">
+        <xsl:param name="pDate"/>
+        <xsl:param name="pComment"/>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:origin'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:changeDescription'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pComment,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:creationDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pDate,$quote,'^^xsd:date')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:lastChangeDate'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$pDate,$quote,'^^xsd:date')"/>
+        </xsl:call-template>
+        <xsl:call-template name="PredicateObject">
+            <xsl:with-param name="pPredicateName" select="'isoT:explanatoryComment'"/>
+            <xsl:with-param name="pObjectName" select="concat($quote,$quote,'^^xsd:string')"/>
+        </xsl:call-template>
+    </xsl:template>
+    
     <!-- Create ScopedIdentifier -->
     <xsl:template name="ScopedIdentifier">
         <xsl:param name="pCID"/>
