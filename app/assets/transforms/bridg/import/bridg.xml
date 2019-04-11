@@ -148,7 +148,7 @@
   </BRIDGClass>
   <BRIDGClass Name="Performer" Description="">
     <BRIDGAttribute Name="typeCode" DataType="CD" Description="A coded value specifying the kind of performer." Use="Optional"/>   
-    <BRIDGAttribute Name="evaluatorAlias" DataType="ST" Description="A non-unique textual identifier for the performer." Use="Optional"/>   
+    <BRIDGAttribute Name="evaluatorAlias" DataType="CD" Description="A non-unique textual identifier for the performer." Use="Optional"/>   
   </BRIDGClass>
   <BRIDGClass Name="PerformedClinicalInterpretation" Description="An assessment which involves determining the meaning of one or more other observation results.">
     <BRIDGAttribute Name="clinicallySignificantIndicator" DataType="CD" Description="Specifies whether a subject's clinical condition is important based on judgment." Use="Optional"/>   
