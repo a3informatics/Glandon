@@ -9,6 +9,7 @@
       <primitiveType Name="TEL.URL" Map="string"/>
       <primitiveType Name="CodingRationale" Map="string"/>
       <primitiveType Name="Decimal" Map="float"/>
+      <primitiveType Name="Integer" Map="integer"/>
       <primitiveType Name="Compression" Map="string"/>
       <primitiveType Name="Octet" Map="string"/>
       <primitiveType Name="IntegrityCheckAlgorithm" Map="string"/>
@@ -104,6 +105,27 @@
       <ISO21090Property Name="translation" DataType="SET(CD)" Use="Prohibited"/>
       <ISO21090Property Name="source" DataType="CD"/>
       <ISO21090Property Name="value" DataType="Decimal"/>
+   </ISO21090DataType>
+   <ISO21090DataType Name="PQR_INT">
+      <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
+      <ISO21090Property Name="validTimeHigh" DataType="characterstring" Use="Prohibited"/>
+      <ISO21090Property Name="controlInformationRoot" DataType="characterstring" Use="Prohibited"/>
+      <ISO21090Property Name="controlInformationExtension" DataType="characterstring" Use="Prohibited"/>
+      <ISO21090Property Name="nullFlavor" DataType="NullFlavor" Use="Prohibited"/>
+      <ISO21090Property Name="updateMode" DataType="UpdateMode" Use="Prohibited"/>
+      <ISO21090Property Name="flavorId" DataType="SET(characterstring)" Use="Prohibited"/>
+      <ISO21090Property Name="code" DataType="characterstring"/>
+      <ISO21090Property Name="codeSystem" DataType="characterstring"/>
+      <ISO21090Property Name="codeSystemName" DataType="characterstring"/>
+      <ISO21090Property Name="codeSystemVersion" DataType="characterstring"/>
+      <ISO21090Property Name="valueSet" DataType="characterstring"/>
+      <ISO21090Property Name="valueSetVersion" DataType="characterstring"/>
+      <ISO21090Property Name="displayName" DataType="ST"/>
+      <ISO21090Property Name="originalText" DataType="ED"/>
+      <ISO21090Property Name="codingRationale" DataType="CodingRationale"/>
+      <ISO21090Property Name="translation" DataType="SET(CD)" Use="Prohibited"/>
+      <ISO21090Property Name="source" DataType="CD"/>
+      <ISO21090Property Name="value" DataType="Integer"/>
    </ISO21090DataType>
    <ISO21090DataType Name="INT">
       <ISO21090Property Name="validTimeLow" DataType="characterstring" Use="Prohibited"/>
@@ -293,6 +315,5 @@
       <ISO21090Property Name="codingRationale" DataType="CodingRationale"/>
       <ISO21090Property Name="unit" DataType="characterstring"/>
       <ISO21090Property Name="translation" DataType="Set(PQR)"/>
-   </ISO21090DataType>
-   
+   </ISO21090DataType> 
 </ISO21090DataTypes>
