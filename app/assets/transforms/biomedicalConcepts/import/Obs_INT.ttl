@@ -1,7 +1,7 @@
-# baseURI: http://www.assero.co.uk/MDRBCTs/V2
+# baseURI: http://www.assero.co.uk/MDRBCTs/V3
 # imports: http://www.assero.co.uk/ISO21090
 
-@prefix : <http://www.assero.co.uk/MDRBCTs/V2#> .
+@prefix : <http://www.assero.co.uk/MDRBCTs/V3#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
@@ -14,7 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRBCTs/V2>
+<http://www.assero.co.uk/MDRBCTs/V3>
 	rdf:type owl:Ontology ;
 	owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
 .
@@ -36,23 +36,23 @@
 	cbc:hasItem :BCT-Obs_INT_Performer_typeCode ;
 	cbc:hasItem :BCT-Obs_INT_Performer_evaluatorAlias ;
 	rdfs:label "Simple Observation INT Biomedical Research Concept Template"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-Obs_INT-2 ;
-	isoR:hasState mdrItems:RS-Obs_INT-2 ;
+	isoI:hasIdentifier mdrItems:SI-Obs_INT-3 ;
+	isoR:hasState mdrItems:RS-Obs_INT-3 ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription "Updated for clinical significance and evaluator"^^xsd:string ;
 	isoT:creationDate "2019-04-05"^^xsd:date ;
 	isoT:lastChangeDate "2019-04-05"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
 .
-mdrItems:SI-Obs_INT-2
+mdrItems:SI-Obs_INT-3
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "Obs INT"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semantic_version "2.0.0"^^xsd:string ;
+	isoI:version "3"^^xsd:positiveInteger ;
+	isoI:semantic_version "3.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrItems:RS-Obs_INT-2
+mdrItems:RS-Obs_INT-3
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
@@ -413,10 +413,17 @@ mdrItems:RS-Obs_INT-2
 	cbc:bridg_class "Performer"^^xsd:string ;
 	cbc:bridg_attribute "Performer_evaluatorAlias"^^xsd:string ;
 	cbc:alias "Evaluator Identity"^^xsd:string ;
-	cbc:hasDatatype :BCT-Obs_INT_Performer_evaluatorAlias_ST ;
+	cbc:hasDatatype :BCT-Obs_INT_Performer_evaluatorAlias_CD ;
 .
-:BCT-Obs_INT_Performer_evaluatorAlias_ST
+:BCT-Obs_INT_Performer_evaluatorAlias_CD
 	rdf:type cbc:Datatype ;
-	cbc:iso21090_datatype "ST"^^xsd:string ;
-	cbc:hasProperty :BCT-Obs_INT_Performer_evaluatorAlias_ST_code ;
+	cbc:iso21090_datatype "CD"^^xsd:string ;
+	cbc:hasProperty :BCT-Obs_INT_Performer_evaluatorAlias_CD_code ;
+.
+:BCT-Obs_INT_Performer_evaluatorAlias_CD_code
+	rdf:type cbc:Property ;
+	cbc:alias "Evaluator Identity (--EVALID)"^^xsd:string ;
+	cbc:ordinal "1"^^xsd:positiveInteger ;
+	cbc:bridg_path "Performer.evaluatorAlias.CD.code"^^xsd:string ;
+	cbc:simple_datatype "string"^^xsd:string ;
 .
