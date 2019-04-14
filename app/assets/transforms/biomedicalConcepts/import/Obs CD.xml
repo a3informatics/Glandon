@@ -1,4 +1,4 @@
-<BiomedicalConceptTemplates Version="3">
+<BiomedicalConceptTemplates Version="4">
 	<BiomedicalConceptTemplate Id="Obs CD" Name="Simple Observation CD Biomedical Research Concept Template" >
 		<Class Name="DefinedObservation">
 			<Attribute Alias="Test" Name="nameCode">
@@ -46,6 +46,24 @@
 				<Property Alias="Result Value (--ORRES)"  Name="code"/>
 			</Attribute>
 		</Class>
+    <Class Name="PerformedClinicalInterpretation"> 
+      <Attribute Alias="Clinically Significant" Name="clinicallySignificantIndicator" Datatype="CD">
+        <Property Alias="Clinically Significant (--CLSIG)"  Name="code"/>
+      </Attribute>
+    </Class>
+    <Class Name="PerformedProcedure"> 
+      <Attribute Alias="Directionality" Name="targetAnatomicSiteDirectionalityCode" Datatype="CD">
+        <Property Alias="Directionality (--DIR)"  Name="code"/>
+      </Attribute>
+    </Class>
+    <Class Name="Performer"> 
+      <Attribute Alias="Evaluator Role" Name="typeCode" Datatype="CD">
+        <Property Alias="Evaluator Role (--EVAL)"  Name="code"/>
+      </Attribute>
+      <Attribute Alias="Evaluator Identity" Name="evaluatorAlias" Datatype="CD">
+        <Property Alias="Evaluator Identity (--EVALID)"  Name="code"/>
+      </Attribute>
+    </Class>
 	</BiomedicalConceptTemplate>
 </BiomedicalConceptTemplates>
 
