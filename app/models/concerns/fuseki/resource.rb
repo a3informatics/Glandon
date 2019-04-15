@@ -47,7 +47,8 @@ module Fuseki
       define_singleton_method :create_uri do |parent|
         result = Uri.new(uri: parent.to_s) 
         if opts[:uri_unique]
-          result.extend_fragment(SecureRandom.uuid)
+          result = Uri.new(namespace: base_uri.namespace, fragment: SecureRandom.uuid)
+          #result.replace_fragment(SecureRandom.uuid)
         elsif opts[:uri_suffix] 
           result.extend_fragment(opts[:uri_suffix])
         end
@@ -58,7 +59,7 @@ module Fuseki
       define_method :create_uri do |parent|
         result = Uri.new(uri: parent.to_s) 
         if opts[:uri_unique]
-          result.extend_fragment(SecureRandom.uuid)
+          result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
         elsif opts[:uri_suffix] && opts[:uri_property] 
           result.extend_fragment("#{opts[:uri_suffix]}#{self.send(opts[:uri_property])}")
         elsif opts[:uri_suffix] 

@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 14:30:56 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -70,7 +70,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 14:30:56 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00001"^^xsd:string ;
 	th:notation "LHR"^^xsd:string ;
@@ -78,9 +78,9 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> ;
-	th:preferredTerm <http://www.acme-pharma.com/A00001/V1#A00001_c2bc9bb1-1201-45a3-ae5b-c356806c3e1a> ;
-	th:synonym <http://www.acme-pharma.com/A00001/V1#A00001_f5dab73d-fe95-4672-8f05-e45e7baf6249> ;
-	th:synonym <http://www.acme-pharma.com/A00001/V1#A00001_e8db7bd1-1c9d-4c80-986c-fe2f80ef244e> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c5f3fc55-e94c-4b35-baf8-3b8c8df80020> ;
+	th:synonym <http://www.assero.co.uk/SYN#54f65194-aa86-4984-9468-2796832014d4> ;
+	th:synonym <http://www.assero.co.uk/SYN#287be74a-1d07-4129-9fbf-df32801a509f> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -117,15 +117,15 @@
 	th:definition "The oldest LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 .
-<http://www.acme-pharma.com/A00001/V1#A00001_c2bc9bb1-1201-45a3-ae5b-c356806c3e1a>
+<http://www.assero.co.uk/PT#c5f3fc55-e94c-4b35-baf8-3b8c8df80020>
 	rdf:type th:PreferredTerm ;
 	isoC:label "London Heathrow"^^xsd:string ;
 .
-<http://www.acme-pharma.com/A00001/V1#A00001_f5dab73d-fe95-4672-8f05-e45e7baf6249>
+<http://www.assero.co.uk/SYN#54f65194-aa86-4984-9468-2796832014d4>
 	rdf:type th:Synonym ;
 	isoC:label "Heathrow"^^xsd:string ;
 .
-<http://www.acme-pharma.com/A00001/V1#A00001_e8db7bd1-1c9d-4c80-986c-fe2f80ef244e>
+<http://www.assero.co.uk/SYN#287be74a-1d07-4129-9fbf-df32801a509f>
 	rdf:type th:Synonym ;
 	isoC:label "LHR"^^xsd:string ;
 .
@@ -137,7 +137,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 14:30:56 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00002"^^xsd:string ;
 	th:notation "CPH"^^xsd:string ;

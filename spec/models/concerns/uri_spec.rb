@@ -133,6 +133,12 @@ describe Uri do
     expect(uri.to_ref).to eq("<http://www.example.com/path1/path2#XXX_BBB>")
   end
 
+  it "fragment to be replaced" do
+    uri = Uri.new(uri: "http://www.example.com/path1/path2#XXX")
+    uri.replace_fragment("BBB")
+    expect(uri.to_ref).to eq("<http://www.example.com/path1/path2#BBB>")
+  end
+
   it "access to the namespace class" do
     namespaces_1 = Uri.namespaces
     namespaces_2 = Uri.new(uri: "http://www.example.com/path1/path2#XXX").namespaces

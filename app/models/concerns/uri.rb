@@ -145,12 +145,20 @@ class Uri
     @path = @path.blank? ? extension : "#{@path}#{C_PATH_SEPARATOR}#{extension}"
   end
 
-  # Extend the fragment
+  # Extend the fragment. Extend the fragment part.
   #
   # @param extension [String] The extension to the fragment
   # @return [Void] no return
   def extend_fragment(extension)
     @fragment = @fragment.blank? ? extension : "#{@fragment}#{C_FRAGMENT_EXTENDER}#{extension}"
+  end
+
+  # Replace Fragment. Replace the fragment part.
+  #
+  # @param fragment [String] The new fragment
+  # @return [Void] no return
+  def replace_fragment(fragment)
+    @fragment = fragment
   end
 
   # Equal

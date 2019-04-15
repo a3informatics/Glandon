@@ -59,13 +59,16 @@ describe Fuseki::Resource do
 
   it "URI generation configured, unique" do
     parent = Uri.new(uri: "http://www.example.com/A#XXX")
-    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_unique: true})
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", base_uri: "http://www.example.com/X", uri_unique: true})
     expect(TestR1.respond_to?(:create_uri)).to eq(true)
     item = TestR1.new
     expect(item.respond_to?(:create_uri)).to eq(true)
     result = item.create_uri(parent)
     expect(result.to_s.length > parent.to_s.length).to eq(true)
-    expect(result.to_s).to start_with(parent.to_s)
+    expect(result.to_s).to start_with("http://www.example.com/X")
+    result = TestR1.create_uri(parent)
+    expect(result.to_s.length > parent.to_s.length).to eq(true)
+    expect(result.to_s).to start_with("http://www.example.com/X")
   end
 
   it "URI generation configured, prefix" do

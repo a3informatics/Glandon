@@ -275,7 +275,7 @@ describe Thesaurus::ManagedConcept do
     tc_1.to_sparql(sparql, true)
     tc_2.to_sparql(sparql, true)
     full_path = sparql.to_file
-  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
+  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
   end
   
   it "allows a TC to be exported as SPARQL" do
