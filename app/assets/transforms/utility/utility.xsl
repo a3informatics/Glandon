@@ -84,7 +84,7 @@
         <xsl:param name="pSemanticVersion"/>
         <xsl:param name="pScope"/>
         <xsl:call-template name="Subject">
-            <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
+            <xsl:with-param name="pName" select="concat(':',$pCID)"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'rdf:type'"/>
@@ -120,7 +120,7 @@
         <xsl:param name="pUntilDate"/>
         <xsl:param name="pEffectiveDate"/>
         <xsl:call-template name="Subject">
-            <xsl:with-param name="pName" select="concat('mdrItems:',$pCID)"/>
+            <xsl:with-param name="pName" select="concat(':',$pCID)"/>
         </xsl:call-template>
         <xsl:call-template name="PredicateObject">
             <xsl:with-param name="pPredicateName" select="'rdf:type'"/>
