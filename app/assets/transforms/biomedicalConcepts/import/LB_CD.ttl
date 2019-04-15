@@ -1,7 +1,7 @@
-# baseURI: http://www.assero.co.uk/MDRBCTs/V3
+# baseURI: http://www.assero.co.uk/MDRBCTs/V4
 # imports: http://www.assero.co.uk/ISO21090
 
-@prefix : <http://www.assero.co.uk/MDRBCTs/V3#> .
+@prefix : <http://www.assero.co.uk/MDRBCTs/V4#> .
 @prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
 @prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
 @prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
@@ -14,7 +14,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://www.assero.co.uk/MDRBCTs/V3>
+<http://www.assero.co.uk/MDRBCTs/V4>
 	rdf:type owl:Ontology ;
 	owl:imports <http://www.assero.co.uk/CDISCBiomedicalConcept> ;
 .
@@ -34,23 +34,23 @@
 	cbc:hasItem :BCT-BCT_LB_CD_PerformedClinicalResult_value ;
 	cbc:hasItem :BCT-BCT_LB_CD_PerformedClinicalInterpretation_clinicallySignificantIndicator ;
 	rdfs:label "Simple Laboratory CD Biomedical Research Concept Template"^^xsd:string ;
-	isoI:hasIdentifier mdrItems:SI-BCT_LB_CD-3 ;
-	isoR:hasState mdrItems:RS-BCT_LB_CD-3 ;
+	isoI:hasIdentifier mdrItems:SI-BCT_LB_CD-4 ;
+	isoR:hasState mdrItems:RS-BCT_LB_CD-4 ;
 	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription "Updated for clinical significance"^^xsd:string ;
-	isoT:creationDate "2019-04-05"^^xsd:date ;
-	isoT:lastChangeDate "2019-04-05"^^xsd:date ;
+	isoT:changeDescription "Adding date and comments to the definition files rather than parameters."^^xsd:string ;
+	isoT:creationDate "2019-04-15"^^xsd:date ;
+	isoT:lastChangeDate "2019-04-15"^^xsd:date ;
 	isoT:explanatoryComment ""^^xsd:string ;
 .
-mdrItems:SI-BCT_LB_CD-3
+mdrItems:SI-BCT_LB_CD-4
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "BCT LB CD"^^xsd:string ;
 	isoI:versionLabel ""^^xsd:string ;
-	isoI:version "3"^^xsd:positiveInteger ;
-	isoI:semantic_version "3.0.0"^^xsd:string ;
+	isoI:version "4"^^xsd:positiveInteger ;
+	isoI:semantic_version "4.0.0"^^xsd:string ;
 	isoI:hasScope mdrItems:NS-CDISC ;
 .
-mdrItems:RS-BCT_LB_CD-3
+mdrItems:RS-BCT_LB_CD-4
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;

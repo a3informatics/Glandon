@@ -6,9 +6,6 @@
 
     <xsl:import href="../../utility/utility.xsl" />
     
-    <xsl:param name="UseDate"/>
-    <xsl:param name="UseComment"/>
-
     <!-- Constants -->
     <xsl:variable name="LT">&lt;</xsl:variable>
     <xsl:variable name="GT">&gt;</xsl:variable>
@@ -39,6 +36,9 @@
         <!-- Build the document header with all prefixes etc -->
         <!-- First the base URI and imports -->
         <xsl:variable name="BaseURI" select="concat('http://www.assero.co.uk/MDRBCTs/V',//./@Version)"/>
+        <xsl:variable name="UseDate" select="//./@Date"/>
+        <xsl:variable name="UseComment" select="//./@Comment"/>
+        
         <xsl:value-of select="concat('# baseURI: ',$BaseURI,$CR)"/>
         <xsl:text>&#xa;</xsl:text>
         <xsl:text># imports: http://www.assero.co.uk/ISO21090&#xa;</xsl:text>
@@ -52,9 +52,6 @@
         <xsl:text disable-output-escaping="yes">@prefix isoI: &lt;http://www.assero.co.uk/ISO11179Identification#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoR: &lt;http://www.assero.co.uk/ISO11179Registration#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix isoT: &lt;http://www.assero.co.uk/ISO11179Types#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix mdrBridg: &lt;http://www.assero.co.uk/MDRBRIDG#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix mdrItems: &lt;http://www.assero.co.uk/MDRItems#&gt; .&#xa;</xsl:text>
-        <xsl:text disable-output-escaping="yes">@prefix mdrIso21090: &lt;http://www.assero.co.uk/MDRISO21090#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .&#xa;</xsl:text>
         <xsl:text disable-output-escaping="yes">@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .&#xa;</xsl:text>
@@ -70,13 +67,19 @@
         <xsl:text disable-output-escaping="yes">.&#xa;</xsl:text>
 
         <!-- Create each Research Concept Template -->
-        <xsl:apply-templates select="BiomedicalConceptTemplates/BiomedicalConceptTemplate"/>
+        <xsl:apply-templates select="BiomedicalConceptTemplates/BiomedicalConceptTemplate">
+            <xsl:with-param name="pDate" select="$UseDate" /> 
+            <xsl:with-param name="pComment" select="$UseComment" /> 
+        </xsl:apply-templates>
         
     </xsl:template>
 
     <!-- Template for the RCT -->
     <xsl:template match="BiomedicalConceptTemplate">
 
+        <xsl:param name="pDate"/>
+        <xsl:param name="pComment"/>
+        
         <xsl:variable name="BCTItemType" select="replace(@Id,' ','_')"/>
         <xsl:variable name="Prefix" select="concat($URIStart,$BCTItemType)"/>
         <xsl:variable name="Version" select="//./@Version"/>
@@ -113,8 +116,8 @@
             <xsl:with-param name="pObjectName" select="concat('mdrItems:',$RSName)" /> 
         </xsl:call-template>
         <xsl:call-template name="CommonFieldsV2">
-            <xsl:with-param name="pDate" select="$UseDate"/>
-            <xsl:with-param name="pComment" select="$UseComment"/>
+            <xsl:with-param name="pDate" select="$pDate"/>
+            <xsl:with-param name="pComment" select="$pComment"/>
         </xsl:call-template>
         <xsl:call-template name="SubjectEnd"/> 
         
