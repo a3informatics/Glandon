@@ -5,7 +5,8 @@ describe Thesaurus::ManagedConcept do
   include DataHelpers
   include ValidationHelpers
   include SparqlHelpers
-
+  include PublicFileHelpers
+  
   def sub_dir
     return "models/thesaurus/managed_concept"
   end
@@ -15,42 +16,21 @@ describe Thesaurus::ManagedConcept do
   end
 
   before :each do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
-    data_files = ["thesaurus_concept.ttl"]
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
     load_files(schema_files, data_files)
-  end
-
-  it "allows an object to be initialised" do
-    tc = Thesaurus::ManagedConcept.new
-    result = 
-      {
-        :children => [],
-        :definition => "",
-        :extension_properties => [],
-        :id => "",
-        :identifier => "",
-        :label => "",
-        :namespace => "",
-        :notation => "",
-        :parentIdentifier => "",
-        :preferredTerm => "",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    expect(tc.to_json).to eq(result)
   end
 
   it "allows validity of the object to be checked - error" do
     tc = Thesaurus::ManagedConcept.new
-    valid = tc.valid?
-    expect(valid).to eq(false)
-    expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("Identifier is empty")
+    expect(tc.valid?).to eq(false)
+    expect(tc.errors.count).to eq(2)
+    expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank and Identifier is empty")
   end 
 
   it "allows validity of the object to be checked" do
     tc = Thesaurus::ManagedConcept.new
+    tc.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
     tc.identifier = "AAA"
     tc.notation = "A"
     valid = tc.valid?
@@ -58,482 +38,299 @@ describe Thesaurus::ManagedConcept do
   end 
 
   it "allows a TC to be found" do
-    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A00001"))
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
     expect(tc.identifier).to eq("A00001")    
   end
 
   it "allows a TC to be found - error" do
-    expect{Thesaurus::ManagedConcept.find("THC-A00001x", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")}.to raise_error(Exceptions::NotFoundError)  
+    expect{Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001x"))}.to raise_error(Errors::NotFoundError, 
+      "Failed to find http://www.acme-pharma.com/A00001/V1#A00001x in Thesaurus::ManagedConcept.")  
   end
 
   it "allows the existance of a TC to be determined" do
-    tc = Thesaurus::ManagedConcept.new
-    tc.identifier = "A00001"
-    expect(tc.exists?).to eq(true)
+    expect(Thesaurus::ManagedConcept.exists?("A00001")).to eq(true)
   end
 
   it "allows the existance of a TC to be determined - not there" do
-    tc = Thesaurus::ManagedConcept.new
-    tc.identifier = "A00001x"
-    expect(tc.exists?).to eq(false)
+    expect(Thesaurus::ManagedConcept.exists?("A00001x")).to eq(false)
   end
 
   it "finds by properties, single" do
-  	tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expected = Thesaurus::ManagedConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	results = tc.find_by_property({identifier: "A00002"})
-  	expect(results[0].to_json).to eq(expected.to_json)
+  	results = Thesaurus::ManagedConcept.where({identifier: "A00001"})
+  	expect(results.count).to eq(1)
 	end
 
   it "finds by properties, multiple" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	expected = Thesaurus::ManagedConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  	results = tc.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
-  	expect(results[0].to_json).to eq(expected.to_json)
+  	results = Thesaurus::ManagedConcept.where({notation: "LHR", label: "London Heathrow"})
+  	expect(results.count).to eq(1)
 	end
 
   it "allows a new child TC to be added" do
-    json = 
-      {
-        :children => [],
-        :definition => "Other or mixed race",
-        :extension_properties => [],
-        :id => "",
-        :identifier => "A00004",
-        :label => "New",
-        :namespace => "",
-        :notation => "NEWNEW",
-        :parentIdentifier => "",
-        :preferredTerm => "New Stuff",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    new_object = tc.add_child(json)
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "The Queen's Terminal, the second terminal at Heathrow",
+      identifier: "A00014",
+      label: "Terminal 2",
+      notation: "T2"
+    }
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(0)
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-	#write_yaml_file(tc.to_json, sub_dir, "thesaurus_concept_example_1.yaml")
-		expected = read_yaml_file(sub_dir, "thesaurus_concept_example_1.yaml")
-    expect(tc.to_json).to be_eql(expected)
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+	#Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_1.yaml")
+		expected = read_yaml_file(sub_dir, "add_child_expected_1.yaml")
+    expect(tc.to_h).to eq(expected)
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
+    expect(tc.to_h).to eq(expected)
   end
 
   it "prevents a duplicate TC being added" do
-    json = 
-      {
-        :children => [],
-        :definition => "Other or mixed race",
-        :extension_properties => [],
-        :id => "",
-        :identifier => "A00004",
-        :label => "New",
-        :namespace => "",
-        :notation => "NEWNEW",
-        :parentIdentifier => "",
-        :preferredTerm => "New Stuff",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    new_object = tc.add_child(json)
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "A00014",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    new_object = tc.add_child(params)
+    expect(new_object.errors.count).to eq(0)
+    tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(1)
-    expect(new_object.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001.A00004, already exists")
+    expect(new_object.errors.full_messages[0]).to eq("An existing record exisits in the database")
   end
 
   it "prevents a TC being added with invalid identifier" do
-    json = 
-      {
-        :children => [],
-        :definition => "Other or mixed race!",
-        :extension_properties => [],
-        :id => "THC-A00004",
-        :identifier => "£",
-        :label => "New",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :notation => "NEWNEW",
-        :parentIdentifier => "",
-        :preferredTerm => "New Stuff",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    new_object = tc.add_child(json)
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "?",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(1)
     expect(new_object.errors.full_messages[0]).to eq("Identifier contains a part with invalid characters")
   end
 
   it "prevents a TC being added with invalid data" do
-    json = 
-      {
-        :children => [],
-        :definition => "Other or mixed race!@£$%^&*(){}",
-        :extension_properties => [],
-        :id => "THC-A00004",
-        :identifier => "A0000411",
-        :label => "New",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :notation => "NEWNEW",
-        :parentIdentifier => "",
-        :preferredTerm => "New Stuff",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    new_object = tc.add_child(json)
-    expect(new_object.errors.count).to eq(1)
-    expect(new_object.errors.full_messages[0]).to eq("Definition contains invalid characters")
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race!@£$%^&*(){}",
+      identifier: "?",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    new_object = tc.add_child(params)
+    expect(new_object.errors.count).to eq(2)
+    expect(new_object.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters and Definition contains invalid characters")
   end
 
   it "allows a TC to be updated" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :label => "New",
-        :notation => "NEWNEW AND",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff"
-      }
-    result =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept",
-        :id => "THC-A00001_A00004",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "New",
-        :extension_properties => [],
-        :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff",
-        :topLevel => false,
-        :parentIdentifier=>"",
-        :children => []
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    updated = tc.update(new_tc)
-    expect(updated).to eq(true)
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to eq(result)
-  end
-
-  it "allows a TC to be updated, label test" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :label => "New, really really new",
-        :notation => "NEWNEW AND",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff"
-      }
-    result =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept",
-        :id => "THC-A00001_A00004",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "New, really really new",
-        :extension_properties => [],
-        :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff",
-        :topLevel => false,
-        :parentIdentifier=>"",
-        :children => []
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    updated = tc.update(new_tc)
-    expect(updated).to eq(true)
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to eq(result)
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "A00014",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    new_object = tc.add_child(params)
+    new_object.label = "New_XXX"
+    new_object.notation = "NEWNEWXXX"
+    new_object.update
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "update_expected_1.yaml")
+    expect(tc.to_h).to eq(expected)
   end
 
   it "allows a TC to be updated, quotes test" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :label => "New",
-        :notation => "NEWNEW AND",
-        :synonym => "\"Quote\"",
-        :definition => "Other or 'mixed' race new",
-        :preferredTerm => "New Stuff \"and\" new stuff"
-      }
-    result =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept",
-        :id => "THC-A00001_A00004",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "New",
-        :extension_properties => [],
-        :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND",
-        :synonym => "\"Quote\"",
-        :definition => "Other or 'mixed' race new",
-        :preferredTerm => "New Stuff \"and\" new stuff",
-        :topLevel => false,
-        :parentIdentifier=>"",
-        :children => []
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    updated = tc.update(new_tc)
-    expect(updated).to eq(true)
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to eq(result)
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "A00014",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    new_object = tc.add_child(params)
+    new_object.label = "New \"XXX\""
+    new_object.update
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "update_expected_2.yaml")
+    expect(tc.to_h).to eq(expected)
   end
   
   it "allows a TC to be updated, character test" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :label => vh_all_chars,
-        :notation => vh_all_chars + "^",
-        :synonym => vh_all_chars,
-        :definition => vh_all_chars,
-        :preferredTerm => vh_all_chars
-      }
-    result =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept",
-        :id => "THC-A00001_A00004",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => vh_all_chars,
-        :extension_properties => [],
-        :identifier => "A00001.A00004",
-        :notation => vh_all_chars + "^",
-        :synonym => vh_all_chars,
-        :definition => vh_all_chars,
-        :preferredTerm => vh_all_chars,
-        :topLevel => false,
-        :parentIdentifier=>"",
-        :children => []
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    updated = tc.update(new_tc)
-    expect(updated).to eq(true)
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.to_json).to eq(result)
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "A00014",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    new_object = tc.add_child(params)
+    new_object.label = vh_all_chars
+    new_object.notation = vh_all_chars + "^"
+    new_object.definition = vh_all_chars
+    new_object.update
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_3.yaml")
+    expected = read_yaml_file(sub_dir, "update_expected_3.yaml")
+    expect(tc.to_h).to eq(expected)
   end
   
-  it "prevents a TC being updated with invalid data" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :notation => "NEWNEW AND!@£$%^&*()+^ and then the bad char ±",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff"
-      }
-    result =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept",
-        :id => "THC-A00001_A00004",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :label => "",
-        :extension_properties => [],
-        :identifier => "A00004",
-        :notation => "NEWNEW AND",
-        :synonym => "And",
-        :definition => "Other or mixed race new",
-        :preferredTerm => "New Stuff and new stuff",
-        :topLevel => false,
-        :parentIdentifier=>"",
-        :children => []
-      }
-    tc = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    updated = tc.update(new_tc)
-    expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("Notation contains invalid characters")
-  end
-
   it "allows to determine if TCs different" do
-    tc1 = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc2 = Thesaurus::ManagedConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    results = Thesaurus::ManagedConcept.diff?(tc1, tc2)
+    tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+    results = tc1.diff?(tc2)
     expect(results).to eq(true)
   end
 
   it "allows to determine if TCs same" do
-    tc1 = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc2 = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    results = Thesaurus::ManagedConcept.diff?(tc1, tc2)
+    tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    results = tc1.diff?(tc2)
     expect(results).to eq(false)
   end
 
   it "allows to determine if TCs different - notation" do
-    tc1 = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc1.notation = "X"
-    tc2 = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    results = Thesaurus::ManagedConcept.diff?(tc1, tc2)
+    tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    tc1.notation = "MODIFIED"
+    tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    results = tc1.diff?(tc2)
     expect(results).to eq(true)
   end
 
-  it "allows the object to be exported as JSON" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    result = 
-      {
-        :children => [],
-        :definition => "Other or mixed race",
-        :extension_properties => [],
-        :id => "THC-A00021",
-        :identifier => "A00021",
-        :label => "Other or Mixed",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :notation => "OTHER OR MIXED",
-        :parentIdentifier => "",
-        :preferredTerm => "Other / Mixed",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    expect(tc.to_json).to eq(result)
+  it "allows the object to be exported as Hash" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "to_hash_expected.yaml")    
+    expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
+    expect(tc.to_h).to eq(expected)
   end
 
-  it "allows a TC to be created from JSON" do
-    json = 
-      {
-        :children => [],
-        :definition => "Other or mixed race",
-        :extension_properties => [],
-        :id => "THC-A00021",
-        :identifier => "A00021",
-        :label => "Other or Mixed",
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1",
-        :notation => "OTHER OR MIXED",
-        :parentIdentifier => "",
-        :preferredTerm => "Other / Mixed",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    tc = Thesaurus::ManagedConcept.from_json(json)
-    expect(tc.to_json).to eq(json)
+  it "allows a TC to be created from Hash" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    input = read_yaml_file(sub_dir, "from_hash_input.yaml")
+    tc = Thesaurus::ManagedConcept.from_h(input)
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_expected.yaml")    
+    expected = read_yaml_file(sub_dir, "from_hash_expected.yaml")
+    expect(tc.to_h).to eq(expected)
   end
 
   it "allows a TC to be exported as SPARQL" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    result_uri = "http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021"
-    parent_uri = UriV2.new({:id => "THC-A000XX", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"})
-    result_sparql = "PREFIX iso25964: <http://www.assero.co.uk/ISO25964#>\n" +
-       "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-       "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-       "INSERT DATA \n" +
-       "{ \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> rdf:type <http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept> . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> rdfs:label \"Other or Mixed\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> iso25964:identifier \"A00021\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> iso25964:notation \"OTHER OR MIXED\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> iso25964:preferredTerm \"Other / Mixed\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> iso25964:synonym \"\"^^xsd:string . \n" +
-       "<http://www.assero.co.uk/MDRThesaurus/ACME/V1#THC-A000XX_A00021> iso25964:definition \"Other or mixed race\"^^xsd:string . \n" +
-       "}"
-    sparql = SparqlUpdateV2.new
-    expect(tc.to_sparql_v2(parent_uri, sparql).to_s).to eq(result_uri)
-    expect(sparql.to_s).to eq(result_sparql)
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    sparql = Sparql::Update.new
+    th = Thesaurus.new
+    tc_1 = Thesaurus::ManagedConcept.from_h({
+        label: "London Heathrow",
+        identifier: "A00001",
+        definition: "A definition",
+        notation: "LHR"
+      })
+    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+    tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+    tc_1a = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 5",
+        identifier: "A000011",
+        definition: "The 5th LHR Terminal",
+        notation: "T5"
+      })
+    tc_1b = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 1",
+        identifier: "A000012",
+        definition: "The oldest LHR Terminal",
+        notation: "T1"
+      })
+    tc_1.narrower << tc_1a
+    tc_1.narrower << tc_1b
+    tc_2 = Thesaurus::ManagedConcept.new
+    tc_2.identifier = "A00002"
+    tc_2.definition = "Copenhagen"
+    tc_2.extensible = false
+    tc_2.notation = "CPH"
+    th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+    th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+    th.set_initial("NEW_TH", ra)
+    tc_1.set_initial(tc_1.identifier, ra)
+    tc_2.set_initial(tc_2.identifier, ra)
+    sparql.default_namespace(th.uri.namespace)
+    th.to_sparql(sparql, true)
+    tc_1.to_sparql(sparql, true)
+    tc_2.to_sparql(sparql, true)
+    full_path = sparql.to_file
+  #copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
+  end
+  
+  it "allows a TC to be exported as SPARQL" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    sparql = Sparql::Update.new
+    tc.to_sparql(sparql, true)
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt") 
   end
   
   it "allows a TC to be destroyed" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.exists?).to eq(true)
-    result = tc.destroy
-    expect(result).to eq(true)
-    tc = Thesaurus::ManagedConcept.new
-    tc.identifier = "A00021"
-    expect(tc.exists?).to eq(false)
+    tc = Thesaurus::ManagedConcept.create({uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), identifier: "AAA", notation: "A"})
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"))
+    result = tc.delete
+    expect(result).to eq(1)
+    expect{Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"))}.to raise_error(Errors::NotFoundError, 
+      "Failed to find http://www.acme-pharma.com/A00001/V3#A00001 in Thesaurus::ManagedConcept.")  
   end
 
-  it "does not allow a TC to be destroyed if it has children I, called with children=true" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(tc.exists?).to eq(true)
-    result = tc.destroy
-    expect(result).to eq(false)
+  it "does not allow a TC to be destroyed if it has children" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    result = tc.delete
+    expect(result).to eq(0)
     expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001, has children. It cannot be deleted.")
-  end
-
-  it "does not allow a TC to be destroyed if it has children II, called with children=false" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1", false)
-    expect(tc.exists?).to eq(true)
-    result = tc.destroy
-    expect(result).to eq(false)
-    expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("The Thesaurus Concept, identifier A00001, has children. It cannot be deleted.")
-  end
-
-  it "handles a bad response error - add_child" do
-    new_tc = 
-      {
-        :children => [],
-        :definition => "Other or mixed race",
-        :extension_properties => [],
-        :id => "",
-        :identifier => "A00005",
-        :label => "New",
-        :namespace => "",
-        :notation => "NEWNEW",
-        :parentIdentifier => "",
-        :preferredTerm => "New Stuff",
-        :synonym => "",
-        :topLevel => false,
-        :type => "http://www.assero.co.uk/ISO25964#Thesaurus::ManagedConcept"
-      }
-    object = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    allow_any_instance_of(Thesaurus::ManagedConcept).to receive(:exists?).and_return(false) 
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect(ConsoleLogger).to receive(:info)
-    expect{object.add_child(new_tc)}.to raise_error(Exceptions::CreateError)
-  end
-
-  it "handles a bad response error - update" do
-    new_tc = 
-      {
-        :identifier => "A00001.A00004",
-        :label => "New",
-        :notation => "NEWNEW AND",
-        :synonym => "\"Quote\"",
-        :definition => "Other or 'mixed' race new",
-        :preferredTerm => "New Stuff \"and\" new stuff"
-      }
-    object = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect(ConsoleLogger).to receive(:info)
-    expect{object.update(new_tc)}.to raise_error(Exceptions::UpdateError)
-  end
-
-  it "handles a bad response error - destroy" do
-    object = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    response = Typhoeus::Response.new(code: 200, body: "")
-    expect(Rest).to receive(:sendRequest).and_return(response)
-    expect(response).to receive(:success?).and_return(false)
-    expect(ConsoleLogger).to receive(:info)
-    expect{object.destroy}.to raise_error(Exceptions::DestroyError)
-  end
-
-  it "set parent" do
-    object = Thesaurus::ManagedConcept.find("THC-A00001_A00004", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(object.parentIdentifier).to eq("")
-    object.set_parent
-		expect(object.parentIdentifier).to eq("A00001")
+    expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00001 due to the concept having children")
   end
 
   it "generates a CSV record with no header" do
-    tc = Thesaurus::ManagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
     expected = 
     [ 
       "A00001", "Vital Sign Test Codes Extension", 
       "VSTEST", "", "A set of additional Vital Sign Test Codes to extend the CDISC set.", ""
     ]
     expect(tc.to_csv_no_header).to eq(expected)
-   end
+  end
+
+  it "returns the parent concept" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001-A00014"),
+      definition: "Other or mixed race",
+      identifier: "A00014",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    new_object = tc.add_child(params)
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
+    expect(tc.parent).to eq("A00001")
+  end
+
+  it "returns the parent concept, none" do
+    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+    expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00001.")
+  end
 
 end
