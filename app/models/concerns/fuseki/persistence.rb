@@ -84,11 +84,17 @@ module Fuseki
       end
 
       def where_only(params)
-        Errors.application_error(C_CLASS_NAME, __method__.to_s, "Multiple properties specified.") if params.count != 1
+        Errors.application_error(self.class.name, __method__.to_s, "Multiple properties specified.") if params.count != 1
         results = where(params)
         return nil if results.empty?
-        Errors.application_error(C_CLASS_NAME, __method__.to_s, "Multiple objects found for #{params}.") if results.count > 1
+        Errors.application_error(self.class.name, __method__.to_s, "Multiple objects found for #{params}.") if results.count > 1
         return results.first
+      end
+
+      def where_only_or_create(where_params, create_params)
+        object = where_only(where_params)
+        return object if !object.nil?
+        return create(create_params)
       end
 
       # Find all objects
@@ -175,6 +181,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
     def delete
       clear_cache
       Sparql::Update.new.delete(self.uri)
+      return 1
     end
 
     def generic_objects(name, klass)
@@ -229,8 +236,22 @@ puts "***** SUBJECT CACHE #{uri} *****"
       instance_variables.each do |name|
         next if name == :@uri #|| name == :@rdf_type
         next if !properties.key?(name) # Ignore variables if no property declared.
-        property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name))
-        object_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], instance_variable_get(name)) if recurse
+        value = instance_variable_get(name)
+        next if object_empty?(properties[name], value)
+        property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], value)
+        object_to_triple(sparql, properties[name], value) if recurse
+      end
+    end      
+
+    def generate_uri(parent)
+      properties = properties_read(:instance)
+      self.uri = create_uri(parent) # Dynamic method 
+      instance_variables.each do |name|
+        next if name == :@uri #|| name == :@rdf_type
+        next if !properties.key?(name) # Ignore variables if no property declared.
+        value = instance_variable_get(name)
+        next if object_empty?(properties[name], value)
+        object_create_uri(properties[name], value)
       end
     end      
 
@@ -255,17 +276,35 @@ puts "***** CLEARING CACHE #{self.uri} *****"
       end
     end
 
-    def object_to_triple(sparql, property, schema, subject, predicate, objects)
+    def object_to_triple(sparql, property, objects)
+      return if property[:type] != :object
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        next if object.respond_to?(:sparql_recurse?) ? object.sparql_recurse? : false
+        next if object.respond_to?(:sparql_recurse?) ? !object.sparql_recurse? : true
         object.to_sparql(sparql, true)
+      end
+    end
+
+    def object_create_uri(property, objects)
+      return if property[:type] != :object
+      objects = [objects] if !objects.is_a? Array
+      objects.each do |object|
+        object.generate_uri(self.uri) if object.respond_to?(:generate_uri)
       end
     end
 
     def object_uri(object)
       return object if object.is_a? Uri
-      object.uri if object.respond_to?(:uri)
+      result = object.uri if object.respond_to?(:uri)
+      return result if !result.nil?
+      Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not be set or cannot be accessed: #{object.to_h}")
+    end
+
+    def object_empty?(property, value)
+      return false if property[:type] != :object 
+      return true if value.nil?
+      return true if value.is_a?(Array) and value.empty?
+      return false
     end
 
   end

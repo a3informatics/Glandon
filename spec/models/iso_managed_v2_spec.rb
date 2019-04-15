@@ -394,9 +394,19 @@ describe IsoManagedV2 do
   it "where, II" do
     results = []
     IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
-  write_yaml_file(results, sub_dir, "where_3.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "where_3.yaml")
     expected = read_yaml_file(sub_dir, "where_3.yaml")
     expect(results).to hash_equal(expected)
+  end
+
+  it "sets up the initial version" do
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    item = IsoManagedV2.new
+    item.set_initial("AAA", ra)
+    expect(item.version).to eq(1)
+    expect(item.identifier).to eq("AAA")
+    expect(item.owner_short_name).to eq("BBB")
+    expect(item.uri.to_s).to eq("http://www.bbb.com/AAA/V1")
   end
 
 end

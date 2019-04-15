@@ -67,9 +67,9 @@ module DataHelpers
   def load_file_into_triple_store(full_path)
     i = 1
     begin
+      i += 1
       response = CRUD.file(full_path)
       raise if !response.success?
-      i += 1
     rescue
       sleep 1
       puts colourize("***** File load failed #{full_path} *****", "red")

@@ -11,7 +11,9 @@ class IsoRegistrationStateV2 < Fuseki::Base
   C_NOT_SET = "Not_Set"
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-            base_uri: "http://#{ENV["url_authority"]}/RS" 
+            base_uri: "http://#{ENV["url_authority"]}/RS",
+            uri_suffix: "RS"
+
   data_property :registration_status, default: C_NOT_SET
   data_property :administrative_note
   data_property :effective_date

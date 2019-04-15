@@ -59,6 +59,11 @@ describe Uri do
     expect(uri.to_s).to eq("http://www.example.com/path1/path2/XXXXXX/V2")
   end
 
+  it "can create a uri from an authority, identifier and version" do
+    uri = Uri.new({authority: "www.example.com", identifier: "YYYYYY", version: 2})
+    expect(uri.to_ref).to eq("<http://www.example.com/YYYYYY/V2>")
+  end
+
   it "allows the uri to be retrieved as a string" do
     uri = Uri.new({namespace: "http://www.example.com/path1/path2", identifier: "XXXXXX", version: 2})
     expect(uri.to_s).to eq("http://www.example.com/path1/path2/XXXXXX/V2")

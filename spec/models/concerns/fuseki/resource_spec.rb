@@ -18,6 +18,11 @@ describe Fuseki::Resource do
     
   class TestR1 
     extend Fuseki::Resource
+
+    def xxx
+      return 14
+    end
+
   end
 
   class TestR2 
@@ -49,6 +54,60 @@ describe Fuseki::Resource do
     expect(TestR1.respond_to?(:rdf_type)).to eq(true)
     item = TestR1.new
     expect(item.respond_to?(:rdf_type)).to eq(true)
+    expect(TestR1.instance_variable_get(:@properties)).to eq({}) # Make sure we clear properties.
+  end
+
+  it "URI generation configured, unique" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_unique: true})
+    expect(TestR1.respond_to?(:create_uri)).to eq(true)
+    item = TestR1.new
+    expect(item.respond_to?(:create_uri)).to eq(true)
+    result = item.create_uri(parent)
+    expect(result.to_s.length > parent.to_s.length).to eq(true)
+    expect(result.to_s).to start_with(parent.to_s)
+  end
+
+  it "URI generation configured, prefix" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    expected = "#{parent.to_s}_AAA"
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "AAA"})
+    expect(TestR1.respond_to?(:create_uri)).to eq(true)
+    item = TestR1.new
+    expect(item.respond_to?(:create_uri)).to eq(true)
+    result = item.create_uri(parent)
+    expect(result.to_s).to eq(expected)
+    expect(result.equal?(parent)).to eq(false)
+  end
+
+  it "URI generation configured, property" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    expected = "#{parent.to_s}_14"
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_property: :xxx})
+    expect(TestR1.respond_to?(:create_uri)).to eq(true)
+    item = TestR1.new
+    expect(item.respond_to?(:create_uri)).to eq(true)
+    result = item.create_uri(parent)
+    expect(result.to_s).to eq(expected)
+  end
+
+  it "URI generation configured, property & prefix" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    expected = "#{parent.to_s}_BBB14"
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB", uri_property: :xxx})
+    expect(TestR1.respond_to?(:create_uri)).to eq(true)
+    item = TestR1.new
+    expect(item.respond_to?(:create_uri)).to eq(true)
+    result = item.create_uri(parent)
+    expect(result.to_s).to eq(expected)
+  end
+
+  it "URI generation configured, property & prefix" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    expected = "#{parent.to_s}_BBB"
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", uri_suffix: "BBB"})
+    result = TestR1.create_uri(parent)
+    expect(result.to_s).to eq(expected)
   end
 
   it "error if cardinality not configured" do

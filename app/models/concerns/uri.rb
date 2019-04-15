@@ -27,6 +27,7 @@ class Uri
   # 2. {:uri} either full namespace or prefixed
   # 3. {:namespace, :fragment}
   # 4. {:namespace, :identifier, :version}
+  # 5. {:authority, :identifier, :version}
   #
   # @param [Hash] args The arguments hash.
   # @option args [String] :id The unique id.
@@ -58,6 +59,10 @@ class Uri
       @path = get_path(namespace)
       extend_path(filter_identifier(args[:identifier]))
       extend_path("V#{filter_version(args[:version])}")
+      @fragment = ""
+    elsif args.has_key?(:identifier) && args.has_key?(:version) && args.has_key?(:authority) 
+      @authority = args[:authority]
+      @path = "#{filter_identifier(args[:identifier])}/V#{filter_version(args[:version])}"
       @fragment = ""
     end
   end

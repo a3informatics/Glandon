@@ -1,4 +1,4 @@
-# Fuseki Resource. Handles the methods to create properties in a class
+# Fuseki Utility. Utility functions for classes
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
@@ -15,25 +15,26 @@ module Fuseki
     module ClassMethods
 
       include Fuseki::Properties
+      include Fuseki::Persistence::Property
 
+      # From Hash. Create the class from a hash. Will recurse creating child objects
+      #
+      # @param [Hash] params the hash
+      # @return [Object] the object created
       def from_h(params)
-        properties = properties_read(:class)
         object = self.new
         params.each do |name, value|
-          variable = Fuseki::Persistence::Naming.new(name)
-          property = properties[variable.as_instance]
+          inst_var = Fuseki::Persistence::Naming.new(name).as_instance
           if name == :uri
-            object.instance_variable_set(:@uri, Uri.new(uri: value))
+            object.from_uri(inst_var, value)
           elsif value.is_a?(Hash)
-            next if property.nil?
-            result = property[:model_class].constantize.from_h(value)
-            object.instance_variable_set(variable.as_instance, result)
+            object.from_hash(inst_var, value)
           elsif value.is_a?(Array)
-            next if property.nil?
-            klass = property[:model_class].constantize
-            value.each {|x| object.instance_variable_set(variable.as_instance, klass.from_h(value))}
+            value.each do |x| 
+              x.is_a?(Hash) ? object.from_hash(inst_var, value) : object.from_uri(inst_var, value)
+            end
           else
-            object.instance_variable_set(variable.as_instance, value)
+            object.from_value(inst_var, value)
           end
         end
         object
@@ -41,6 +42,9 @@ module Fuseki
 
     end
 
+    # To Hash. Output the class as a hash
+    #
+    # @return [Hash] the hash
     def to_h
       result = {uri: instance_variable_get(:@uri).to_h, rdf_type: self.rdf_type.to_h}
       properties = properties_read(:instance)

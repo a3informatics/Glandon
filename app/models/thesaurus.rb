@@ -1,36 +1,12 @@
-class Thesaurus <  IsoManaged
+class Thesaurus <  IsoManagedV2
 
-  include ActiveModel::Naming
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-      
-  attr_accessor :children
- 
-  # Constants
-  C_SCHEMA_PREFIX = UriManagement::C_ISO_25964
-  C_INSTANCE_PREFIX = UriManagement::C_MDR_TH
-  C_CLASS_NAME = "Thesaurus"
-  C_CID_PREFIX = "TH"
-  C_RDF_TYPE = "Thesaurus"
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
-    
-  # Initialize the object
-  #
-  # @param triples [hash] The raw triples keyed by id
-  # @param id [string] The id of the form
-  # @return [object] The form object
-  def initialize(triples=nil, id=nil)
-    self.children = Array.new
-    if triples.nil?
-      super
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-    else
-      super(triples, id)
-    end
-  end
+  configure rdf_type: "http://www.assero.co.uk/Thesaurus#Thesaurus",
+            uri_suffix: "TH"
 
+  object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TcReference"
+  object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept"
+
+=begin  
   # Owner
   #
   # @return [IsoRegistrationAuthority] the owner
@@ -38,61 +14,6 @@ class Thesaurus <  IsoManaged
     IsoRegistrationAuthority.owner
   end
 
-  # Find 
-  #
-  # @param id [string] The id of the form.
-  # @param namespace [hash] The raw triples keyed by id.
-  # @param children [boolean] Find all child objects. Defaults to true.
-  # @return [object] The form object.
-  def self.find(id, ns, children=true)   
-    object = nil
-    query = UriManagement.buildNs(ns, [UriManagement::C_ISO_T, UriManagement::C_ISO_25964]) +
-      "SELECT ?s ?p ?o WHERE \n" +
-      "{ \n" +
-      "  { \n" +
-      "    :" + id + " ?p ?o .\n" +
-      "    ?s ?p ?o .\n" +
-      "    FILTER(CONTAINS(STR(?s), \"" + ns + "\"))  \n" +
-      "  } UNION {\n" +
-      "    :" + id + " iso25964:hasConcept ?s .\n" +
-      "    ?s ?p ?o .\n" + 
-      "    FILTER(!CONTAINS(STR(?p), \"hasChild\"))  \n" +
-      "  } UNION {\n" +
-      "    :" + id + " isoT:hasIdentifier ?s . \n" +
-      "    ?s ?p ?o . \n" +
-      "  } UNION {\n" +
-      "    :" + id + " isoT:hasState ?s . \n" +
-      "    ?s ?p ?o . \n" +
-      "  }\n" +
-      "} ORDER BY (?s)"
-    response = CRUD.query(query)
-    triples = Hash.new { |h,k| h[k] = [] }
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      subject = ModelUtility.getValue('s', true, node)
-      predicate = ModelUtility.getValue('p', true, node)
-      objectUri = ModelUtility.getValue('o', true, node)
-      objectLiteral = ModelUtility.getValue('o', false, node)
-      if predicate != ""
-        triple_object = objectUri
-        if triple_object == ""
-          triple_object = objectLiteral
-        end
-        key = ModelUtility.extractCid(subject)
-        triples[key] << {:subject => subject, :predicate => predicate, :object => triple_object}
-      end
-    end
-    object = new(triples, id)
-    if children
-      object.children = ThesaurusConcept.find_for_parent(object.triples, object.get_links(UriManagement::C_ISO_25964, "hasConcept"))
-      object.children.each do |child|
-        child.parentIdentifier = child.identifier
-      end
-    end
-    return object    
-  end
-  
   # Find Complete thesaurus
   #
   # @param id [string] The id of the form.
@@ -129,41 +50,6 @@ class Thesaurus <  IsoManaged
       result = self.find(ModelUtility.extractCid(uri), ModelUtility.extractNs(uri), false)
     end
     return result
-  end
-
-  # Find by Property values
-  #
-  # @param params [Hash] hash containing search parameters
-  # @return [Array] array of ThesaurusConcept objects
-  def find_by_property(params)
-    results = []
-    uris = super(params, ["hasConcept", "hasChild"], ThesaurusConcept::C_RDF_TYPE, C_SCHEMA_NS)
-    uris.each { |x| results << ThesaurusConcept.find(x.id, x.namespace)}
-    return results
-  end
-
-  def self.all
-    return all_by_type(C_RDF_TYPE, C_SCHEMA_NS)
-  end
-
-  def self.list
-    return super(C_RDF_TYPE, C_SCHEMA_NS)
-  end
-
-  def self.unique
-    return super(C_RDF_TYPE, C_SCHEMA_NS)
-  end
-
-  def self.history(params)
-    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
-  end
-
-  def self.current(params)
-    return super(C_RDF_TYPE, C_SCHEMA_NS, params)
-  end
-
-  def self.current_set
-  	return super(C_RDF_TYPE, C_SCHEMA_NS)    
   end
 
   # Create Simple
@@ -227,55 +113,6 @@ class Thesaurus <  IsoManaged
   def self.import(params, ownerNamespace)
     object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)
     return object
-  end
-
-  # Destroy
-  #
-  # @return null
-  def destroy
-    super
-  end
-
-  # To JSON
-  #
-  # @return [hash] The object hash 
-  def to_json
-    json = super
-    json[:children] = Array.new
-    self.children.sort_by! {|u| u.identifier}
-    self.children.each do |child|
-      json[:children] << child.to_json
-    end
-    return json
-  end
-
-  # From JSON
-  #
-  # @param json [hash] The hash of values for the object 
-  # @return [object] The object
-  def self.from_json(json)
-    object = super(json)
-    if !json[:children].blank?
-      json[:children].each do |child|
-        object.children << ThesaurusConcept.from_json(child)
-      end
-    end
-    return object
-  end
-
-  # To SPARQL
-  #
-  # @return [object] The SPARQL object created.
-  def to_sparql_v2
-    sparql = SparqlUpdateV2.new
-    uri = super(sparql, C_SCHEMA_PREFIX)
-    subject = {:uri => uri}
-    self.children.sort_by! {|u| u.identifier}
-    self.children.each do |child|
-      ref_uri = child.to_sparql_v2(uri, sparql)
-      sparql.triple({:uri => uri}, {:prefix => C_SCHEMA_PREFIX, :id => "hasConcept"}, {:uri => ref_uri})
-    end
-    return sparql
   end
 
   # Search. The new version. Searches either the specified version or all current versions.
@@ -374,13 +211,6 @@ class Thesaurus <  IsoManaged
       results << UriV2.new({:uri => ModelUtility.getValue('ctc', true, node)}).to_s
     end
     return results
-  end
-
-  # Check Valid
-  #
-  # @return [boolean] Returns true if valid, false otherwise.
-  def valid?
-    return super
   end
   
 private
@@ -506,6 +336,6 @@ private
     end
     return order
   end
-
+=end
 
 end

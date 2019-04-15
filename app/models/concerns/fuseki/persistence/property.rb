@@ -8,7 +8,7 @@ module Fuseki
   
     module Property
 
-      # URI? Does the named proerty contain a URI
+      # URI? Does the named property contain a URI
       #
       # @param name [Symbol] the property name. Needs to be the instance form
       # @return [Void] no return
@@ -29,10 +29,27 @@ module Fuseki
         from_value(property_name.as_instance, triple[:object])
       end
 
+      # From Value. Sets the property specified to the value
+      #
+      # @param name [String] the name of the property. In rails form
+      # @param value [String] the value
+      # @return [Void] no return
       def from_value(name, value)
         properties = self.class.instance_variable_get(:@properties)
         return if !properties.key?(name) # Ignore values if no property declared.
-        properties[name][:type] ==:object ? from_uri(name, value) : from_simple(name, value)
+        properties[name][:type] == :object ? from_uri(name, value) : from_simple(name, value)
+      end
+
+      # From Hash. Sets the property specified from a hash
+      #
+      # @param name [String] the name of the property. In rails form
+      # @param value [Hash] the hash
+      # @return [Void] no return
+      def from_hash(name, value)
+        properties = self.class.instance_variable_get(:@properties)
+        return if !properties.key?(name) # Ignore values if no property declared.
+        object = properties[name][:model_class].constantize.from_h(value)
+        set_object(name, object)
       end
 
       # From URI. Sets the named property with the specified URI
@@ -41,7 +58,8 @@ module Fuseki
       # @param object [Object] the object. Might be a Uri, Fuseki::base or a scalar
       # @return [Void] no return
       def from_uri(name, object)
-        instance_variable_get(name).is_a?(Array) ? instance_variable_get(name).push(object) : instance_variable_set(name, object)
+        object = Uri.new(uri: object) if object.is_a? String
+        set_object(name, object)
       end
 
       # From Simple. Sets the named property with the specified scalar value
@@ -56,11 +74,16 @@ module Fuseki
         base_type = schema.range(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
       rescue => e
-        puts "FronSimple: Error #{name}=#{value}"
+        puts "FromSimple: Error #{name}=#{value}"
         puts schema.to_yaml
       end
 
     private
+
+      # Set an object, either single or array
+      def set_object(name, object)
+        instance_variable_get(name).is_a?(Array) ? instance_variable_get(name).push(object) : instance_variable_set(name, object)
+      end
 
       # Set a simple typed value
       def to_typed(base_type, value)

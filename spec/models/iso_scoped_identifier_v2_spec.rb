@@ -370,5 +370,11 @@ describe IsoScopedIdentifierV2 do
   	expect(version).to eq(6)
   end
 
+  it "generates a URI" do
+    si = IsoScopedIdentifierV2.new
+    si.generate_uri(Uri.new(uri: "http://www.assero.co.uk/ID/1"))
+    expect(si.uri.to_s).to eq("http://www.assero.co.uk/ID/1#SI")
+  end
+
 end
   

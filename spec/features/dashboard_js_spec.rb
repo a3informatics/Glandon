@@ -5,13 +5,7 @@ describe "Dashboard JS", :type => :feature do
   include DataHelpers
   include PauseHelpers
   include UiHelpers
- 
-  def table_search(text)
-    input = find(:xpath, '//*[@id="triplesTable_filter"]/label/input')
-    input.set(text)
-    input.native.send_keys(:return)
-  end
-
+  
   before :all do
     user = User.create :email => "reader@example.com", :password => "12345678" 
     clear_triple_store
@@ -44,6 +38,7 @@ describe "Dashboard JS", :type => :feature do
       fill_in 'Email', with: 'reader@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
+      #pause
       click_link 'Biomedical Concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_main_search("C16358")
@@ -53,21 +48,20 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
-    #pause
+      #pause
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
-    #pause
-      table_search("SI-ACME_BC_C16358-1")
+      #pause
       find(:xpath, "//tr[contains(.,'mdrItems:SI-ACME_BC_C16358-1')]/td", :text => 'Show').click
       expect(page).to have_content 'Triple Store View'
-    #pause
+      #pause
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRItems'
       expect(find('#subjectId').value).to eq 'SI-ACME_BC_C16358-1'      
       find(:xpath, "//table[@id='main']/tbody/tr/td", :text => /\A1\z/).click
       click_button 'View'
-    #pause
+      #pause
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
       click_link 'Close'
       expect(current_path).to eq("/dashboard")
@@ -114,7 +108,7 @@ describe "Dashboard JS", :type => :feature do
       fill_in 'Email', with: 'reader@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
-    #pause
+      #pause
       find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
       expect(page).to have_content 'History: BC A00002'
     end

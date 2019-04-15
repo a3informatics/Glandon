@@ -15,15 +15,18 @@
   owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
   owl:versionInfo "V1"^^xsd:string ;
 .
-:Component
-  rdfs:subClassOf isoT:AdministeredItem ;
-.
-:XReference
-  rdf:type owl:Class ;
-  rdfs:label "Cross Reference"^^xsd:string ;
-  rdfs:subClassOf :Reference ;
-  skos:definition "Holds a cross reference to another item."^^xsd:string ;
-.
+# Moved to main part
+#:Component
+#  rdfs:subClassOf isoT:AdministeredItem ;
+#.
+# Moved to main part
+#:XReference
+#  rdf:type owl:Class ;
+#  rdfs:label "Cross Reference"^^xsd:string ;
+#  rdfs:subClassOf :Reference ;
+#  skos:definition "Holds a cross reference to another item."^^xsd:string ;
+#.
+# Deprecated
 :hasCrossReference
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;

@@ -7,6 +7,7 @@ class IsoManagedV2 < IsoConceptV2
   extend Resource
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
+
   object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
   object_property :has_identifier, cardinality: :one, model_class: "IsoScopedIdentifierV2"
   data_property :origin
@@ -89,6 +90,10 @@ class IsoManagedV2 < IsoConceptV2
   # @return [IsoRegistrationAuthorityV2] The owner authority object.
   def owner
     self.has_state.by_authority
+  end
+
+  def owner_short_name
+    return owner.ra_namespace.short_name
   end
 
   # Determine if the object is owned by this repository
@@ -237,7 +242,6 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
-
   # Update the item
   #
   # @params [Hash] The parameters {:explanatoryComment, :changeDescription, :origin}
@@ -245,6 +249,25 @@ class IsoManagedV2 < IsoConceptV2
   # @return null
   def update(params)  
     Sparql::Update.new.sparql_update(update_query(params), self.rdf_type.namespace, [:isoT])
+  end
+
+  # Set URIs. Sets the URIs for the managed item and all children
+  #
+  # @return [Void] no return
+  def set_uris
+    generate_uri(Uri.new(authority: owner.ra_namespace.authority, identifier: self.identifier, version: self.version))
+  end
+
+  # Set Intial. Sets the SI and RS fields to the initial values for a new item.
+  #
+  # @param [String] indentifier the identifier
+  # @param [IsoRegistrationAuthorityV2] ra the registration authority under which the item is being registered
+  # @return [Void] no return
+  def set_initial(identifier, ra)
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra)
+    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: "Incomplete", previous_state: "Incomplete")
+    self.last_change_date = Time.now
+    set_uris
   end
   
 private

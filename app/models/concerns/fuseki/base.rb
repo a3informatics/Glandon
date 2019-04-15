@@ -27,7 +27,7 @@ module Fuseki
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       self.class.instance_variable_get(:@properties).each do |name, definition| 
         variable = Fuseki::Persistence::Naming.new(name)
-        value = attributes.key?(variable.as_symbol) ? attributes[variable.as_symbol] : definition[:default]
+        value = attributes.key?(variable.as_symbol) ? attributes[variable.as_symbol] : definition[:default].dup
         from_value(variable.as_instance, value)
       end
     end

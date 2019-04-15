@@ -14,9 +14,13 @@ module Fuseki
     # @option opts [Symbol] :rdf_type the RDF type for the class
     # @return [Void] no return
     def configure(opts = {})
-      Errors.application_error(self.name, __method__.to_s, "No RDF type specified when configuring class.") if !opts.key?(:rdf_type)
-      #add_to_properties(:rdf_type, {default: Uri.new(uri: opts[:rdf_type]), cardinality: :one, model_class: "", type: :object})
 
+      # Clear the properties
+      @properties = {}
+
+      # Make sure RDF type set
+      Errors.application_error(self.name, __method__.to_s, "No RDF type specified when configuring class.") if !opts.key?(:rdf_type)
+      
       # Define class method for the RDF Type
       define_singleton_method :rdf_type do
         Uri.new(uri: opts[:rdf_type])
@@ -27,17 +31,44 @@ module Fuseki
         self.class.rdf_type
       end
 
-      # Save the base URI
+      # Define the base URI method
       if opts[:base_uri]
         define_singleton_method :base_uri do
           Uri.new(uri: opts[:base_uri])
         end
       end
 
+      # Define the cache method
       define_singleton_method :cache? do
         opts[:cache] ? opts[:cache] : false
       end
-      
+
+      # Define URI creation method for the class
+      define_singleton_method :create_uri do |parent|
+        result = Uri.new(uri: parent.to_s) 
+        if opts[:uri_unique]
+          result.extend_fragment(SecureRandom.uuid)
+        elsif opts[:uri_suffix] 
+          result.extend_fragment(opts[:uri_suffix])
+        end
+        result
+      end
+
+      # Define instance method for creating a URI.
+      define_method :create_uri do |parent|
+        result = Uri.new(uri: parent.to_s) 
+        if opts[:uri_unique]
+          result.extend_fragment(SecureRandom.uuid)
+        elsif opts[:uri_suffix] && opts[:uri_property] 
+          result.extend_fragment("#{opts[:uri_suffix]}#{self.send(opts[:uri_property])}")
+        elsif opts[:uri_suffix] 
+          result.extend_fragment(opts[:uri_suffix])
+        elsif opts[:uri_property] 
+          result.extend_fragment(self.send(opts[:uri_property]))
+        end
+        result
+      end
+
     end
 
     # Object Property
@@ -86,6 +117,16 @@ module Fuseki
       @properties["@#{name}".to_sym] = opts
     end
     
+    def unique_extension
+      SecureRandom.uuid
+    end
+
+    def prefix_property_extension(opts)
+      return "" if !opts.key?(:prefix) && !opts.key?(:property)
+      return "#{opts[:prefix]}" if !opts.key?(:property)
+      return "#{opts[:prefix]}#{self.send(opts[:property])}"
+    end
+
   end
 
 end

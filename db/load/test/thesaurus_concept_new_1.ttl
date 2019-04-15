@@ -1,0 +1,98 @@
+@prefix : <http://www.acme-pharma.com/NEW_TH/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/NEW_TH/V1>
+  rdf:type owl:Ontology ;
+.
+:TH
+  rdf:type th:Thesaurus ;
+  isoC:label ""^^xsd:string ;
+  isoT:hasState :TH_RS ;
+  isoT:hasIdentifier :TH_SI ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+  isoT:lastChangeDate "2019-04-08 08:13:42 +0100"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:isTopConceptReference :TH_TCR1 ;
+  th:isTopConceptReference :TH_TCR2 ;
+.
+:TH_RS
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Incomplete"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Incomplete"^^xsd:string ;
+  isoR:byAuthority :TH_SI ;
+.
+:TH_SI
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "NEW_TH"^^xsd:string ;
+  isoI:versionLabel ""^^xsd:string ;
+  isoI:version "1"^^xsd:positiveInteger ;
+  isoI:semanticVersion "0.0.1"^^xsd:string ;
+  isoI:hasScope :TH_SI ;
+.
+:TH_TCR1
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "true"^^xsd:boolean ;
+  bo:ordinal "1"^^xsd:positiveInteger ;
+  bo:localLabel ""^^xsd:string ;
+  bo:reference <http://www.assero.co.uk/TC#OWNER-A00022> ;
+.
+:TH_TCR2
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "true"^^xsd:boolean ;
+  bo:ordinal "2"^^xsd:positiveInteger ;
+  bo:localLabel ""^^xsd:string ;
+  bo:reference <http://www.assero.co.uk/TC#OWNER-A00021> ;
+.
+<http://www.assero.co.uk/TC#OWNER-A00022>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Axe"^^xsd:string ;
+  th:identifier "A00022"^^xsd:string ;
+  th:notation "AXE"^^xsd:string ;
+  th:definition ""^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#1> ;
+.
+<http://www.assero.co.uk/TC#OWNER-A00021>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label ""^^xsd:string ;
+  th:identifier "A00021"^^xsd:string ;
+  th:notation "NOTATION1"^^xsd:string ;
+  th:definition "The definition."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#9d6cf7e6-7350-489b-b4f9-a1e4b89e8b39> ;
+  th:synonym <http://www.assero.co.uk/SYN#3ef7e1f0-2848-4486-b49f-7727db753e6b> ;
+  th:synonym <http://www.assero.co.uk/SYN#405007aa-ee03-4093-8d38-8ffa0f123586> ;
+.
+<http://www.assero.co.uk/PT#9d6cf7e6-7350-489b-b4f9-a1e4b89e8b39>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Preferred Term 1"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#3ef7e1f0-2848-4486-b49f-7727db753e6b>
+  rdf:type th:Synonym ;
+  isoC:label "synonym 1"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#405007aa-ee03-4093-8d38-8ffa0f123586>
+  rdf:type th:Synonym ;
+  isoC:label "synonym 2"^^xsd:string ;
+.

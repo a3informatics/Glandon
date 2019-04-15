@@ -14,17 +14,6 @@ module Fuseki
       self.instance_variable_set(:@properties, merged)
     end
 
-    # Move to persistence
-    #def properties_predicate
-    #  properties = self.instance_variable_get(:@properties)
-    #  type = self.rdf_type
-    #  properties.each do |name, entry| 
-    #    property_name = Fuseki::Persistence::Naming.new(name)
-    #    properties[name][:predicate] = Uri.new(namespace: type.namespace, fragment: property_name.as_schema)
-    #  end
-    #  properties = self.instance_variable_set(:@properties, properties) # @todo Required? Check.
-    #end
-
     def properties_read(scope)
       base = scope == :class ? self : self.class
       if scope == :class

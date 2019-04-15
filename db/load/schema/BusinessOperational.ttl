@@ -1,22 +1,25 @@
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
-@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
-@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
+# Deprecated prefixes
+@prefix cbc: <http://www.assero.co.uk/CDISCBiomedicalConcept#> .
+@prefix iso25964: <http://www.assero.co.uk/ISO25964#> .
+
 <http://www.assero.co.uk/BusinessOperational>
   rdf:type owl:Ontology ;
-  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
-  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
 .
 :Component
   rdf:type owl:Class ;
   rdfs:label "Component"^^xsd:string ;
-  rdfs:subClassOf isoC:Concept ;
+  rdfs:subClassOf isoC:Concept ; # Deprecated, to be removed.
+  rdfs:subClassOf isoT::AdministeredItem ;
+  skos:definition "Generic reference type."^^xsd:string ;
 .
 :Reference
   rdf:type owl:Class ;
@@ -36,11 +39,18 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept Template."^^xsd:string ;
 .
+# Deprecated
 :PReference
   rdf:type owl:Class ;
   rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept property."^^xsd:string ;
+.
+:BcPReference
+  rdf:type owl:Class ;
+  rdfs:label "Biomedical Concept Property Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to a Biomedical Concept Property."^^xsd:string ;
 .
 :TcReference
   rdf:type owl:Class ;
@@ -66,6 +76,13 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to the branch parent."^^xsd:string ;
 .
+:XReference
+  rdf:type owl:Class ;
+  rdfs:label "Cross Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds a cross reference to another item."^^xsd:string ;
+.
+# Deprecated
 :hasBiomedicalConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -74,6 +91,7 @@
   rdfs:range cbc:BiomedicalConceptInstance ;
   skos:definition "Biomedical Concept instance relationship."^^xsd:string ;
 .
+# Deprecated
 :basedOnTemplate
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -82,6 +100,7 @@
   rdfs:range cbc:BiomedicalConceptTemplate ;
   skos:definition "Biomedical Concept Template relationship."^^xsd:string ;
 .
+# Deprecated
 :hasProperty
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -93,6 +112,7 @@
   rdfs:range cbc:Property ;
   skos:definition "Biomedical Concept property relationship."^^xsd:string ;
 .
+# Deprecated
 :hasThesaurusConcept
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -101,6 +121,7 @@
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Thesaurus Concept relationship."^^xsd:string ;
 .
+# Deprecated
 :hasTabulation
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -109,6 +130,7 @@
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Tabulation relationship."^^xsd:string ;
 .
+# Deprecated
 :hasColumn
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
@@ -117,13 +139,21 @@
   rdfs:range iso25964:ThesaurusConcept ;
   skos:definition "Tabulation Column relationship."^^xsd:string ;
 .
+:reference
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Branched From."^^xsd:string ;
+  rdfs:domain :Reference ;
+  rdfs:range isoC:Concept ;
+  skos:definition "Relationship to a referenced concept."^^xsd:string ;
+.
 :branchedFrom
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :BReference ;
-  rdfs:label "Branched From relationship."^^xsd:string ;
+  rdfs:label "Branched From."^^xsd:string ;
   rdfs:range :Component ;
-  skos:definition "Branched From relationship."^^xsd:string ;
+  skos:definition "Relationship to the component from which this component is branched."^^xsd:string ;
 .
 :ordinal
   rdf:type owl:DatatypeProperty ;
@@ -133,6 +163,7 @@
     ] ;
   rdfs:label "ordinal"^^xsd:string ;
   rdfs:range xsd:positiveInteger ;
+  skos:definition "The releative position within the collection."^^xsd:string ;
 .
 :enabled
   rdf:type owl:DatatypeProperty ;
@@ -140,6 +171,7 @@
   rdfs:domain :Reference ;
   rdfs:label "enabled"^^xsd:string ;
   rdfs:range xsd:boolean ;
+  skos:definition "The reference enabled flag. True if enabled, false otherwise."^^xsd:string ;
 .
 :optional
   rdf:type owl:DatatypeProperty ;
@@ -147,11 +179,22 @@
   rdfs:domain :Reference ;
   rdfs:label "optional"^^xsd:string ;
   rdfs:range xsd:boolean ;
+  skos:definition "The reference optional flag. True if optiomal, false if required."^^xsd:string ;
 .
+# Deprecated, see new defintion after.
 :local_label
   rdf:type owl:DatatypeProperty ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:domain :TcReference ;
-  rdfs:label "Repelacement label"^^xsd:string ;
+  rdfs:label "Replacement label"^^xsd:string ;
   rdfs:range xsd:string ;
+  skos:definition "The local label. Used to overwrite the referenced item's label."^^xsd:string ;
+.
+:localLabel
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:domain :TcReference ;
+  rdfs:label "Local Label"^^xsd:string ;
+  rdfs:range xsd:string ;
+  skos:definition "The local label. Used to overwrite the referenced item's label."^^xsd:string ;
 .

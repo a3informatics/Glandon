@@ -1,0 +1,18 @@
+PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/TC#OWNER-A00021> rdf:type th:UnmanagedConcept . 
+<http://www.assero.co.uk/TC#OWNER-A00021> isoC:label ""^^xsd:string . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:identifier "A00021"^^xsd:string . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:notation "NOTATION1"^^xsd:string . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:definition "The definition."^^xsd:string . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:extensible "false"^^xsd:boolean . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:preferredTerm <http://www.assero.co.uk/PT#9d6cf7e6-7350-489b-b4f9-a1e4b89e8b39> . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:synonym <http://www.assero.co.uk/SYN#3ef7e1f0-2848-4486-b49f-7727db753e6b> . 
+<http://www.assero.co.uk/TC#OWNER-A00021> th:synonym <http://www.assero.co.uk/SYN#405007aa-ee03-4093-8d38-8ffa0f123586> . 
+}

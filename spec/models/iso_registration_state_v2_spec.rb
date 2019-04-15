@@ -520,5 +520,11 @@ describe IsoRegistrationStateV2 do
     expect(object.current?).to eq(false)
   end
 
+  it "generates a URI" do
+    rs = IsoRegistrationStateV2.new
+    rs.generate_uri(Uri.new(uri: "http://www.assero.co.uk/ID/1"))
+    expect(rs.uri.to_s).to eq("http://www.assero.co.uk/ID/1#RS")
+  end
+
 end
   

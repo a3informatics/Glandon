@@ -5,7 +5,9 @@
 class IsoScopedIdentifierV2 < Fuseki::Base
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier",
-            base_uri: "http://#{ENV["url_authority"]}/SI" 
+            base_uri: "http://#{ENV["url_authority"]}/SI",
+            uri_suffix: "SI"
+
   data_property :identifier
   data_property :version_label
   data_property :version

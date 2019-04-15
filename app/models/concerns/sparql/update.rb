@@ -163,12 +163,13 @@ module Sparql
 
     # Write the header part
     def turtle_header(f)
+      namespaces = Uri::Namespace.new
       f.write("@prefix : <#{@default_namespace}#> .\n")
-      UriManagement.required.map do |k,v|
+      namespaces.required_namespaces.map do |k, v|
         @prefix_used[k] = k if !@prefix_used.key?(k)
       end
-      @prefix_used.map do |k,v|
-        f.write("@prefix #{v}: <#{UriManagement.getNs(v)}#> .\n")
+      @prefix_used.map do |k, v|
+        f.write("@prefix #{v}: <#{namespaces.namespace_from_prefix(v)}#> .\n")
       end
       f.write("\n<#{@default_namespace}>\n")
       f.write("\trdf:type owl:Ontology ;\n")
