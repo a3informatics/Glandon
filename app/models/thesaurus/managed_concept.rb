@@ -34,7 +34,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
 private
 
-  # Find parent query
+  # Find parent query. Used by BaseConcept
   def parent_query
     "SELECT DISTINCT ?i WHERE \n" +
     "{ \n" +     

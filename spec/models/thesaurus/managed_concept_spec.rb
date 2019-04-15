@@ -252,12 +252,18 @@ describe Thesaurus::ManagedConcept do
         definition: "The 5th LHR Terminal",
         notation: "T5"
       })
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+    tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
     tc_1b = Thesaurus::UnmanagedConcept.from_h({
         label: "Terminal 1",
         identifier: "A000012",
         definition: "The oldest LHR Terminal",
         notation: "T1"
       })
+    tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
     tc_1.narrower << tc_1a
     tc_1.narrower << tc_1b
     tc_2 = Thesaurus::ManagedConcept.new

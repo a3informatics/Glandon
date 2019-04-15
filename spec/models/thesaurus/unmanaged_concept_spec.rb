@@ -38,30 +38,30 @@ describe Thesaurus::UnmanagedConcept do
   end 
 
   it "allows a TC to be found" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
-    expect(tc.identifier).to eq("A00021")    
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    expect(tc.identifier).to eq("A000011")    
   end
 
   it "allows a TC to be found - error" do
-    expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021x"))}.to raise_error(Errors::NotFoundError, 
-      "Failed to find http://www.assero.co.uk/TC#OWNER-A00021x in Thesaurus::UnmanagedConcept.")  
+    expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011x"))}.to raise_error(Errors::NotFoundError, 
+      "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011x in Thesaurus::UnmanagedConcept.")  
   end
 
   it "allows the existance of a TC to be determined" do
-    expect(Thesaurus::UnmanagedConcept.exists?("A00021")).to eq(true)
+    expect(Thesaurus::UnmanagedConcept.exists?("A000011")).to eq(true)
   end
 
   it "allows the existance of a TC to be determined - not there" do
-    expect(Thesaurus::UnmanagedConcept.exists?("A00021x")).to eq(false)
+    expect(Thesaurus::UnmanagedConcept.exists?("A000011x")).to eq(false)
   end
 
   it "finds by properties, single" do
-  	results = Thesaurus::UnmanagedConcept.where({identifier: "A00021"})
+  	results = Thesaurus::UnmanagedConcept.where({identifier: "A000011"})
   	expect(results.count).to eq(1)
 	end
 
   it "finds by properties, multiple" do
-  	results = Thesaurus::UnmanagedConcept.where({notation: "AXE", label: "Axe"})
+  	results = Thesaurus::UnmanagedConcept.where({notation: "T1", label: "Terminal 1"})
   	expect(results.count).to eq(1)
 	end
 
@@ -74,10 +74,10 @@ describe Thesaurus::UnmanagedConcept do
       label: "New",
       notation: "NEWNEW"
     }
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(0)
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
 	#Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_1.yaml")
 		expected = read_yaml_file(sub_dir, "add_child_expected_1.yaml")
     expect(tc.to_h).to eq(expected)
@@ -96,10 +96,10 @@ describe Thesaurus::UnmanagedConcept do
       label: "New",
       notation: "NEWNEW"
     }
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(0)
-    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(1)
     expect(new_object.errors.full_messages[0]).to eq("An existing record exisits in the database")
@@ -114,7 +114,7 @@ describe Thesaurus::UnmanagedConcept do
       label: "New",
       notation: "NEWNEW"
     }
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(1)
     expect(new_object.errors.full_messages[0]).to eq("Identifier contains a part with invalid characters")
@@ -129,14 +129,14 @@ describe Thesaurus::UnmanagedConcept do
       label: "New",
       notation: "NEWNEW"
     }
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(2)
     expect(new_object.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters and Definition contains invalid characters")
   end
 
   it "allows a TC to be updated" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -156,7 +156,7 @@ describe Thesaurus::UnmanagedConcept do
   end
 
   it "allows a TC to be updated, quotes test" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -175,7 +175,7 @@ describe Thesaurus::UnmanagedConcept do
   end
   
   it "allows a TC to be updated, character test" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -196,29 +196,29 @@ describe Thesaurus::UnmanagedConcept do
   end
   
   it "allows to determine if TCs different" do
-    tc1 = Thesaurus::UnmanagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc2 = Thesaurus::UnmanagedConcept.find("THC-A00021", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
     results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
     expect(results).to eq(true)
   end
 
   it "allows to determine if TCs same" do
-    tc1 = Thesaurus::UnmanagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc2 = Thesaurus::UnmanagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
     expect(results).to eq(false)
   end
 
   it "allows to determine if TCs different - notation" do
-    tc1 = Thesaurus::UnmanagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    tc1.notation = "X"
-    tc2 = Thesaurus::UnmanagedConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    tc1.notation = "Tx5"
+    tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
     expect(results).to eq(true)
   end
 
   it "allows the object to be exported as Hash" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
   #Xwrite_yaml_file(tc.to_h, sub_dir, "to_hash_expected.yaml")    
     expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
     expect(tc.to_h).to eq(expected)
@@ -246,8 +246,8 @@ describe Thesaurus::UnmanagedConcept do
         preferred_term: Uri.new(uri: "http://www.assero.co.uk/PT#1")
       })
     tc_2 = Thesaurus::UnmanagedConcept.new
-    tc_2.uri = Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00021")
-    tc_2.identifier = "A00021"
+    tc_2.uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
+    tc_2.identifier = "A000011"
     tc_2.definition = "The definition."
     tc_2.extensible = false
     tc_2.notation = "NOTATION1"
@@ -268,7 +268,7 @@ describe Thesaurus::UnmanagedConcept do
   end
   
   it "allows a TC to be exported as SPARQL" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     sparql = Sparql::Update.new
     tc.to_sparql(sparql, true)
   #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
@@ -276,16 +276,16 @@ describe Thesaurus::UnmanagedConcept do
   end
   
   it "allows a TC to be destroyed" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
-    expect(Thesaurus::UnmanagedConcept.exists?("A00021")).to eq(true)
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    expect(Thesaurus::UnmanagedConcept.exists?("A000011")).to eq(true)
     result = tc.delete
     expect(result).to eq(1)
-    expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))}.to raise_error(Errors::NotFoundError, 
-      "Failed to find http://www.assero.co.uk/TC#OWNER-A00021 in Thesaurus::UnmanagedConcept.")  
+    expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError, 
+      "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")  
   end
 
   it "does not allow a TC to be destroyed if it has children" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -295,15 +295,15 @@ describe Thesaurus::UnmanagedConcept do
       notation: "NEWNEW"
     }
     new_object = tc.add_child(params)
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     result = tc.delete
     expect(result).to eq(0)
     expect(tc.errors.count).to eq(1)
-    expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00021 due to the concept having children")
+    expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
   end
 
   it "generates a CSV record with no header" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     expected = 
     [ 
       "A00001", "Vital Sign Test Codes Extension", 
@@ -313,7 +313,7 @@ describe Thesaurus::UnmanagedConcept do
   end
 
   it "returns the parent concept" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -324,12 +324,20 @@ describe Thesaurus::UnmanagedConcept do
     }
     new_object = tc.add_child(params)
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-    expect(tc.parent).to eq("A00021")
+    expect(tc.parent).to eq("A000011")
   end
 
   it "returns the parent concept, none" do
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00021"))
-    expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00021.")
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
+      definition: "Other or mixed race",
+      identifier: "A00004",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    tc = Thesaurus::UnmanagedConcept.create(params)
+    expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
   end
 
 end

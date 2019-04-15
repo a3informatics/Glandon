@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -70,7 +70,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00001"^^xsd:string ;
 	th:notation "LHR"^^xsd:string ;
@@ -78,9 +78,9 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c5f3fc55-e94c-4b35-baf8-3b8c8df80020> ;
-	th:synonym <http://www.assero.co.uk/SYN#54f65194-aa86-4984-9468-2796832014d4> ;
-	th:synonym <http://www.assero.co.uk/SYN#287be74a-1d07-4129-9fbf-df32801a509f> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a> ;
+	th:synonym <http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87> ;
+	th:synonym <http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -108,6 +108,31 @@
 	th:notation "T5"^^xsd:string ;
 	th:definition "The 5th LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7> ;
+	th:synonym <http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21> ;
+	th:synonym <http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa> ;
+	th:synonym <http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de> ;
+	th:synonym <http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12> ;
+.
+<http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Terminal 5"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21>
+	rdf:type th:Synonym ;
+	isoC:label "T5"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa>
+	rdf:type th:Synonym ;
+	isoC:label "Terminal Five"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de>
+	rdf:type th:Synonym ;
+	isoC:label "BA Terminal"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12>
+	rdf:type th:Synonym ;
+	isoC:label "British Airways Terminal"^^xsd:string ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012>
 	rdf:type th:UnmanagedConcept ;
@@ -116,16 +141,21 @@
 	th:notation "T1"^^xsd:string ;
 	th:definition "The oldest LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02> ;
 .
-<http://www.assero.co.uk/PT#c5f3fc55-e94c-4b35-baf8-3b8c8df80020>
+<http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Terminal 1"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a>
 	rdf:type th:PreferredTerm ;
 	isoC:label "London Heathrow"^^xsd:string ;
 .
-<http://www.assero.co.uk/SYN#54f65194-aa86-4984-9468-2796832014d4>
+<http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87>
 	rdf:type th:Synonym ;
 	isoC:label "Heathrow"^^xsd:string ;
 .
-<http://www.assero.co.uk/SYN#287be74a-1d07-4129-9fbf-df32801a509f>
+<http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356>
 	rdf:type th:Synonym ;
 	isoC:label "LHR"^^xsd:string ;
 .
@@ -137,7 +167,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:26:22 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00002"^^xsd:string ;
 	th:notation "CPH"^^xsd:string ;

@@ -42,7 +42,7 @@ class Thesaurus
       return 0
     end
 
-    # Set Parent
+    # Parent
     #
     # @return [Void] no return
     def parent
