@@ -145,4 +145,13 @@ describe Fuseki::Resource do
     expect(TestR6.instance_variable_get(:@properties)).to eq({:@fred2 => fred2_expected})    
   end
 
+  it "Key property" do
+    parent = Uri.new(uri: "http://www.example.com/A#XXX")
+    TestR1.configure({rdf_type: "http://www.example.com/A#XXX", key_property: :xxx})
+    expect(TestR1.respond_to?(:key_property)).to eq(true)
+    item = TestR1.new
+    expect(item.respond_to?(:key_property)).to eq(false)
+    expect(TestR1.key_property).to eq(:xxx)
+  end
+
 end

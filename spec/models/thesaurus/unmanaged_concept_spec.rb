@@ -198,14 +198,14 @@ describe Thesaurus::UnmanagedConcept do
   it "allows to determine if TCs different" do
     tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
-    results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
+    results = tc1.diff?(tc2)
     expect(results).to eq(true)
   end
 
   it "allows to determine if TCs same" do
     tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-    results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
+    results = tc1.diff?(tc2)
     expect(results).to eq(false)
   end
 
@@ -213,7 +213,7 @@ describe Thesaurus::UnmanagedConcept do
     tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     tc1.notation = "Tx5"
     tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-    results = Thesaurus::UnmanagedConcept.diff?(tc1, tc2)
+    results = tc1.diff?(tc2)
     expect(results).to eq(true)
   end
 

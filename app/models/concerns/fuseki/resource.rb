@@ -31,10 +31,17 @@ module Fuseki
         self.class.rdf_type
       end
 
-      # Define the base URI method
+      # Define the base URI method. Class level
       if opts[:base_uri]
         define_singleton_method :base_uri do
           Uri.new(uri: opts[:base_uri])
+        end
+      end
+
+      # Define the key method. Class level
+      if opts[:key_property]
+        define_singleton_method :key_property do
+          return opts[:key_property]
         end
       end
 
@@ -111,7 +118,17 @@ module Fuseki
   
     # Create the instance variable. Set the info for the instance variable.
     def add_to_properties(name, opts)
-      self.send(:attr_accessor, "#{name}")
+      #self.send(:attr_accessor, "#{name}")
+      
+      define_method("#{name}=") do |value|
+        instance_variable_set("@#{name}", value)
+        @new_record = true
+      end
+
+      define_method("#{name}") do 
+        instance_variable_get("@#{name}")
+      end
+      
       @properties ||= {}
       opts[:name] = name
       opts[:predicate] = Uri.new(namespace: self.rdf_type.namespace, fragment: Fuseki::Persistence::Naming.new(name).as_schema)

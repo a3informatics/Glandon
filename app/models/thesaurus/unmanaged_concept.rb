@@ -1,7 +1,8 @@
 class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#UnmanagedConcept",
-            uri_property: :identifier
+            uri_property: :identifier,
+            key_property: :identifier
 
   data_property :identifier
   data_property :notation
