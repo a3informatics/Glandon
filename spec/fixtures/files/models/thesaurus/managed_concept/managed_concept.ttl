@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 08:12:44 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -70,7 +70,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 08:12:44 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00001"^^xsd:string ;
 	th:notation "LHR"^^xsd:string ;
@@ -78,9 +78,9 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a> ;
-	th:synonym <http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87> ;
-	th:synonym <http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#10cb1ade-c37a-4a94-859c-79707f1b61fa> ;
+	th:synonym <http://www.assero.co.uk/SYN#da2edeab-ee11-4aec-95ec-517fb7b192c6> ;
+	th:synonym <http://www.assero.co.uk/SYN#3d08f04c-16ba-42a8-a0e4-ba2f2e1a1456> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -108,31 +108,11 @@
 	th:notation "T5"^^xsd:string ;
 	th:definition "The 5th LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7> ;
-	th:synonym <http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21> ;
-	th:synonym <http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa> ;
-	th:synonym <http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de> ;
-	th:synonym <http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12> ;
-.
-<http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Terminal 5"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#4e9306d8-54b9-4530-bc87-f4c213178b21>
-	rdf:type th:Synonym ;
-	isoC:label "T5"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#32e1fa9d-fbad-4d81-94dc-60425eb68eaa>
-	rdf:type th:Synonym ;
-	isoC:label "Terminal Five"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#b4a275eb-5aaa-42bc-9f29-04f66e50b3de>
-	rdf:type th:Synonym ;
-	isoC:label "BA Terminal"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#d96909d1-3502-42e2-8c3e-b09d2df9bf12>
-	rdf:type th:Synonym ;
-	isoC:label "British Airways Terminal"^^xsd:string ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7ca26ab6-6447-453b-9112-48c49d8f57d4> ;
+	th:synonym <http://www.assero.co.uk/SYN#f758cc18-2ca7-4779-9bc7-8f7003da4b4c> ;
+	th:synonym <http://www.assero.co.uk/SYN#7bed5ee1-d451-4129-9e89-1e0532615285> ;
+	th:synonym <http://www.assero.co.uk/SYN#cefbfeaf-53e6-4398-85e9-8ab85f4f04cc> ;
+	th:synonym <http://www.assero.co.uk/SYN#de21900e-bcc3-4ac8-a624-5edf0448d1ff> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_A000012>
 	rdf:type th:UnmanagedConcept ;
@@ -141,23 +121,7 @@
 	th:notation "T1"^^xsd:string ;
 	th:definition "The oldest LHR Terminal"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02> ;
-.
-<http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Terminal 1"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a>
-	rdf:type th:PreferredTerm ;
-	isoC:label "London Heathrow"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87>
-	rdf:type th:Synonym ;
-	isoC:label "Heathrow"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356>
-	rdf:type th:Synonym ;
-	isoC:label "LHR"^^xsd:string ;
+	th:preferredTerm <http://www.assero.co.uk/PT#48856742-0e60-404b-992f-3d6848315f84> ;
 .
 <http://www.acme-pharma.com/A00002/V1#A00002>
 	rdf:type th:ManagedConcept ;
@@ -167,7 +131,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-04-15 15:43:51 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-04-16 08:12:44 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "A00002"^^xsd:string ;
 	th:notation "CPH"^^xsd:string ;

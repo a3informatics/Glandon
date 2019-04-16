@@ -82,8 +82,4 @@ class IsoRegistrationAuthority < Fuseki::Base
     object
   end
 
-  def sparql_recurse?
-    return false
-  end 
-
 end

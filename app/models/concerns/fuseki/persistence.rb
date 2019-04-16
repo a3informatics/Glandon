@@ -123,6 +123,8 @@ module Fuseki
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
           object.from_triple(triple)
         end
+        object.instance_variable_set(:@new_record, false)
+        object.instance_variable_set(:@destroyed, false)
         object
       end
 
@@ -167,9 +169,17 @@ puts "***** SUBJECT CACHE #{uri} *****"
     # ----------------
 
     def persisted?
-      !self.uri.nil?
+      !(@new_record || @destroyed)
     end
       
+    def new_record?
+      @new_record
+    end
+
+    def destroyed?
+      @destroyed
+    end
+
     def id
       self.uri.nil? ? nil : self.uri.to_id
     end
@@ -181,6 +191,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
     def delete
       clear_cache
       Sparql::Update.new.delete(self.uri)
+      @destroyed = true
       return 1
     end
 
@@ -226,6 +237,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
       sparql.default_namespace(@uri.namespace)
       to_sparql(sparql)
       operation == :create ? sparql.create : sparql.update(@uri)
+      @new_record = false
       self
     end
 
@@ -255,10 +267,6 @@ puts "***** SUBJECT CACHE #{uri} *****"
       end
     end      
 
-    def sparql_recurse?
-      return true
-    end
-
   private
 
     def clear_cache
@@ -280,7 +288,7 @@ puts "***** CLEARING CACHE #{self.uri} *****"
       return if property[:type] != :object
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        next if object.respond_to?(:sparql_recurse?) ? !object.sparql_recurse? : true
+        next if object.respond_to?(:persisted?) ? object.persisted? : true
         object.to_sparql(sparql, true)
       end
     end

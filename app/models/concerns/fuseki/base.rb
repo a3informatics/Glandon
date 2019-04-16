@@ -22,6 +22,8 @@ module Fuseki
     include Utility
 
     def initialize(attributes = {})
+      @new_record = true
+      @destroyed  = false
       self.class.get_schema(:initialize)
       self.class.properties_inherit
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil

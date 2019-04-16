@@ -43,8 +43,4 @@ class IsoNamespace < Fuseki::Base
     super
   end 
 
-  def sparql_recurse?
-    return false
-  end
-
 end
