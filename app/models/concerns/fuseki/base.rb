@@ -23,7 +23,7 @@ module Fuseki
 
     def initialize(attributes = {})
       @new_record = true
-      @destroyed  = false
+      @destroyed = false
       self.class.get_schema(:initialize)
       self.class.properties_inherit
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
