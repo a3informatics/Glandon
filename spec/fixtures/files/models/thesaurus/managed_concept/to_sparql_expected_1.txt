@@ -1,0 +1,28 @@
+PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.acme-pharma.com/A00001/V1#A00001> rdf:type th:ManagedConcept . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoC:label "London Heathrow"^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:hasState <http://www.acme-pharma.com/A00001/V1#A00001_RS> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:hasIdentifier <http://www.acme-pharma.com/A00001/V1#A00001_SI> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:origin ""^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:changeDescription ""^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:creationDate "2016-01-01 00:00:00 %2B0000"^^xsd:dateTime . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:lastChangeDate "2019-04-15 15:43:51 %2B0100"^^xsd:dateTime . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:explanatoryComment ""^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:identifier "A00001"^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:notation "LHR"^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:definition "A definition"^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:extensible "false"^^xsd:boolean . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000012> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A000011> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:preferredTerm <http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#5e8ce872-a324-4cd5-9848-8b1e7c792356> . 
+<http://www.acme-pharma.com/A00001/V1#A00001> th:synonym <http://www.assero.co.uk/SYN#afaf1917-2dee-40c6-9abb-78de72ac5e87> . 
+}

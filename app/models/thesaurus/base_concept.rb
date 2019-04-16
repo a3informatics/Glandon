@@ -18,6 +18,13 @@ class Thesaurus
     
     end
 
+    # Children?
+    #
+    # @return [Boolean] True if there are children, false otherwise
+    def children?
+      return extended_with.any? || narrower.any? || !is_subset.blank?
+    end
+  
     # Add a child concept
     #
     # @params params [Hash] the params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}

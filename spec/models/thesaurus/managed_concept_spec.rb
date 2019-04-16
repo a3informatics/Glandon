@@ -225,7 +225,8 @@ describe Thesaurus::ManagedConcept do
   end
 
   it "allows a TC to be created from Hash" do
-    tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+  #Xtc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+  #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_input.yaml")    
     input = read_yaml_file(sub_dir, "from_hash_input.yaml")
     tc = Thesaurus::ManagedConcept.from_h(input)
   #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_expected.yaml")    
@@ -281,15 +282,54 @@ describe Thesaurus::ManagedConcept do
     tc_1.to_sparql(sparql, true)
     tc_2.to_sparql(sparql, true)
     full_path = sparql.to_file
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
   end
   
-  it "allows a TC to be exported as SPARQL" do
+  it "allows a TC to be exported as SPARQL, I" do
     tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
     sparql = Sparql::Update.new
     tc.to_sparql(sparql, true)
-  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
-    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt") 
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt") 
+  end
+
+  it "allows a TC to be exported as SPARQL, II" do
+    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    tc_1 = Thesaurus::ManagedConcept.from_h({
+        label: "London Heathrow",
+        identifier: "A00001",
+        definition: "A definition",
+        notation: "LHR"
+      })
+    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+    tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+    tc_1a = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 5",
+        identifier: "A000011",
+        definition: "The 5th LHR Terminal",
+        notation: "T5"
+      })
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+    tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+    tc_1b = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 1",
+        identifier: "A000012",
+        definition: "The oldest LHR Terminal",
+        notation: "T1"
+      })
+    tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+    tc_1.narrower << tc_1a
+    tc_1.narrower << tc_1b
+    sparql = Sparql::Update.new
+    tc_1.set_initial(tc_1.identifier, ra)
+    sparql.default_namespace(tc_1.uri.namespace)
+    tc_1.to_sparql(sparql, true)
+  write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
+    check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt") 
   end
   
   it "allows a TC to be destroyed" do

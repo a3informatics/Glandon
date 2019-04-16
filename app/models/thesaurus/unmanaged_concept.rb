@@ -21,13 +21,6 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   include Thesaurus::BaseConcept
 
-  # Children?
-  #
-  # @return [Boolean] True if there are children, false otherwise
-  def children?
-    return extended_with.any? || narrower.any? || !is_subset.blank?
-  end
-
 private
 
   # Find parent query. Used by BaseConcept

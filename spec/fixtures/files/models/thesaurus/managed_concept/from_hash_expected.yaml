@@ -1,0 +1,90 @@
+---
+:uri: http://www.acme-pharma.com/A00001/V1#A00001
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: London Heathrow
+:has_state:
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :by_authority:
+    :uri: http://www.acme-pharma.com/A00002/V1#A00002_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: "<Not Set>"
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :uri: {}
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+:has_identifier:
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: A00001
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.0.1
+  :has_scope:
+    :uri: http://www.acme-pharma.com/A00002/V1#A00002_SI
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ''
+    :name: ''
+    :authority: ''
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-04-15T15:43:51+01:00'
+:explanatory_comment: ''
+:identifier: A00001
+:notation: LHR
+:definition: A definition
+:extensible: false
+:extended_with: []
+:narrower:
+- :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: {}
+  :preferred_term: {}
+  :synonym: []
+- :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: {}
+  :preferred_term: {}
+  :synonym: []
+:is_subset:
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Subset
+  :label: ''
+  :members: {}
+:preferred_term:
+  :uri: http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: London Heathrow
+:synonym:
+- :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: ''
+- :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+  :label: ''

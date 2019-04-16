@@ -58,7 +58,8 @@ module Fuseki
           properties = klass_map[klass.name]
           name = properties[:name]
           object = klass.new.class.from_results(Uri.new(uri: subject), triples)
-          properties[:cardinality] == :one ? parent.instance_variable_set("@#{name}".to_sym, object) : parent.instance_variable_get("@#{name}".to_sym).push(object)
+          #properties[:cardinality] == :one ? parent.instance_variable_set("@#{name}".to_sym, object) : parent.instance_variable_get("@#{name}".to_sym).push(object)
+          parent.replace_uri("@#{name}".to_sym, object)
         end
         parent
       end
@@ -136,12 +137,12 @@ module Fuseki
           klass = properties[name][:model_class].constantize
           if properties[name][:cardinality] == :one
             child_uri = object.instance_variable_get(name)
-            object.instance_variable_set(name, klass.new.class.from_results_recurse(child_uri, triples))
+            object.instance_variable_set(name, klass.new.class.from_results_recurse(child_uri, triples)) if !child_uri.nil?
           else
             links = object.instance_variable_get(name)
             children = []
             links.each do |child_uri|
-              children << klass.new.class.from_results_recurse(child_uri, triples)
+              children << klass.new.class.from_results_recurse(child_uri, triples) if !child_uri.nil?
             end
             object.instance_variable_set(name, children)
           end

@@ -78,11 +78,25 @@ module Fuseki
         puts schema.to_yaml
       end
 
+      def replace_uri(name, object)
+        properties = self.class.instance_variable_get(:@properties)
+        return if !properties.key?(name) # Ignore values if no property declared.
+        remove_uri(name, object.uri)
+        set_object(name, object)
+      end
+
     private
 
       # Set an object, either single or array
       def set_object(name, object)
         instance_variable_get(name).is_a?(Array) ? instance_variable_get(name).push(object) : instance_variable_set(name, object)
+      end
+
+      # Remove an item based on its URI
+      def remove_uri(name, uri)
+        value = instance_variable_get(name)
+        return if !value.is_a?(Array)
+        value.delete_if {|x| x.is_a?(Uri) && x == uri}
       end
 
       # Set a simple typed value
