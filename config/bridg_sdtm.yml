@@ -49,6 +49,13 @@ defaults: &defaults
   AdverseEventOutcomeResult.value.CD.code: "--OUT"
   # Laboratory Specimen
   Material.formCode.CD.code: "--SPEC"
+  # Directionality
+  PerformedProcedure.targetAnatomicSiteDirectionalityCode.CD.code: "--DIR"
+  # Evaluator
+  Performer.typeCode.CD.code: "--EVAL"
+  Performer.evaluatorAlias.ST.value: "--EVALID"
+  # Clinical Significance
+  PerformedClinicalInterpretation.clinicallySignificantIndicator.CD.code: "--CLSIG"
 
 development:
   <<: *defaults
