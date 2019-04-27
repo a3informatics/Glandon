@@ -11,8 +11,8 @@ defaults: &defaults
   DefinedActivity.subcategoryCode.CD: "--SCAT"
   # Performed Observation 
   PerformedObservation.bodyPositionCode.CD.code: "--POS"
-  PerformedObservation.negationIndicator.BL.value: "--STAT"
-  PerformedObservation.negationReason.DSET(SC).value: "--REASND"
+  PerformedObservation.negationIndicator.CD.code: "--STAT"
+  PerformedObservation.negationReason.SC.code.CD.code: "--REASND"
   PerformedObservation.dateRange.IVL_TS_DATETIME.low.TS_DATETIME.value: "--DTC"
   PerformedObservation.methodCode.CD.code: "--METHOD"
   PerformedObservation.approachAnatomicSiteCode.CD.code: "--LOC"
@@ -26,7 +26,9 @@ defaults: &defaults
   # Performed Observation Result
   PerformedObservationResult.value.CD.code: "--ORRES"
   PerformedObservationResult.value.PQR.value: "--ORRES"
+  PerformedObservationResult.value.PQR_INT.value: "--ORRES"
   PerformedObservationResult.value.PQR.code: "--ORRESU"
+  PerformedObservationResult.value.PQR_INT.code: "--ORRESU"
   PerformedObservationResult2.value.ST.value: "--RELNST"
   PerformedObservationResult3.value.CD.code: "--SCAN"
   PerformedObservationResult4.value.CD.code: "--SDTH"
@@ -53,7 +55,7 @@ defaults: &defaults
   PerformedProcedure.targetAnatomicSiteDirectionalityCode.CD.code: "--DIR"
   # Evaluator
   Performer.typeCode.CD.code: "--EVAL"
-  Performer.evaluatorAlias.ST.value: "--EVALID"
+  Performer.evaluatorAlias.CD.code: "--EVALID"
   # Clinical Significance
   PerformedClinicalInterpretation.clinicallySignificantIndicator.CD.code: "--CLSIG"
 
