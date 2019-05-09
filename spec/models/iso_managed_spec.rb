@@ -611,7 +611,7 @@ describe IsoManaged do
     expect(results.count).to eq(all.count)
   end
 
-  it "finds by properties, I" do
+  it "finds by properties, I, upper case" do
     results = []
     IsoManaged.find_by_property({text: "VSB"}).each { |x| results << x.to_json }
   #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
@@ -619,6 +619,14 @@ describe IsoManaged do
     expect(results).to hash_equal(expected)
   end
 
+  it "finds by properties, I, lower case" do
+    results = []
+    IsoManaged.find_by_property({text: "vsb"}).each { |x| results << x.to_json }
+  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
+    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
+    expect(results).to hash_equal(expected)
+  end
+  
   it "finds by properties, II" do
     results = []
     IsoManaged.find_by_property({text: "Baseline"}).each { |x| results << x.to_json }
