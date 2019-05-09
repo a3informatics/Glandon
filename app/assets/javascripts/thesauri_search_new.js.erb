@@ -40,11 +40,14 @@ $(document).ready( function() {
     },
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
-    "columns": columns
+    "columns": columns,
+    "orderCellsTop": true,
   });
 
+
+
   // Setup - add a text input to each footer cell
-  $('#searchTable tfoot th').each( function () {
+  $('#searchTable thead tr:eq(1) th').each( function () {
     var title = $(this).text();
     var id = "searchTable_csearch_" + title.toLowerCase();
     if (title == "Extensible") {
@@ -56,11 +59,13 @@ $(document).ready( function() {
     }
   });
 
+  $("#searchTable input").css("width", "100%");
+
   // Apply the column search. Fires on return or field empty assuming not the
   // current search value (i.e. something has changed).
-  tsSearchTable.columns().every( function () {
+  tsSearchTable.columns().every( function (index) {
     var that = this;
-    $( 'input', this.footer() ).on( 'keyup', function (e) {
+    $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
       if (e.which == 13 || this.value == "") {
         if (that.search() !== this.value) {
           that.search(this.value).draw();
@@ -106,7 +111,7 @@ $(document).ready( function() {
     // Clear search fields in UI and within datatables.
     $("#searchTable_filter input").val("");
     tsSearchTable.columns().every( function () {
-    	$( 'input', this.footer() ).val("");
+    	$('#searchTable thead input').val("");
     });
     tsSearchTable.search('');
  		tsSearchTable.columns().search('');
