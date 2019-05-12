@@ -345,6 +345,7 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
       #pause
       expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
       click_link 'Branch'
@@ -359,7 +360,7 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: A BRANCH FORM'
       find(:xpath, "//tr[contains(.,'A BRANCH FORM')]/td/a", :text => 'Show').click
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_link 'Branched From'
       click_link 'Branched From'
       expect(page).to have_content 'Show: DM1 For Branching DM1 BRANCH (V0.0.0, 1, Standard)'
