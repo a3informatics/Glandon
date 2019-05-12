@@ -108,12 +108,9 @@ describe "Forms", :type => :feature do
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
       expect(page).to have_content 'Show: Demographics DM1 01 (V0.0.0, 1, Candidate)'
-      #show_body = page.body
       click_link 'Close'
-      #write_text_file_2(show_body, sub_dir, "form_show.txt")
-      #expected = read_text_file_2(sub_dir, "form_show.txt")
-      #expect(show_body).to eq(expected)
     end
 
     it "allows a form show page to be viewed, show table details", js: true do
