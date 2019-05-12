@@ -31,8 +31,8 @@ describe 'imports/list.html.erb', :type => :view do
     expect(rendered).to have_link "Import CDISC Term"
     expect(rendered).to have_link "Import Form from ALS"
     expect(rendered).to have_link "Import Form from ODM"
-    expect(rendered).to have_link "Import Terminology form Excel"
-    expect(rendered).to have_link "Import Terminology form ODM"    
+    expect(rendered).to have_link "Import Terminology from Excel"
+    expect(rendered).to have_link "Import Terminology from ODM"    
     expect(rendered).to have_link "Current Imports"    
   end
 
