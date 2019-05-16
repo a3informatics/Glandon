@@ -6,14 +6,6 @@
 var pageLength = 5;
 var pageSettings = [[5,10,15,25,50,100,-1], ["5","10","15","25","50","100","All"]];
 
-  
-function simulateReturn(i){
-  var e = jQuery.Event("keypress");
-  e.which = 13; //choose the one you want
-  e.keyCode = 13;
-  i.trigger(e);
-};
-
 function keyUpReturn(element) {
     var e = $.Event('keyup');
     e.which = 13;
@@ -62,7 +54,7 @@ describe("Thesauri Search", function() {
 
 
 
-  it("initialises the object", function() {
+  it("Initialises the object", function() {
     var id = $('#thesaurus_id').val();
     var namespace = $('#thesaurus_namespace').val();
     expect(id).to.eq("aaa");
@@ -70,7 +62,7 @@ describe("Thesauri Search", function() {
     var tsp = new ThesauriSearchPanel(id, namespace);
   })
 
-  it("setup text input to each header cell", function(){
+  it("Setup text input to each header cell", function(){
     var id = $('#thesaurus_id').val();
     var namespace = $('#thesaurus_namespace').val();
     expect(id).to.eq("aaa");
@@ -84,7 +76,7 @@ describe("Thesauri Search", function() {
     }
   });
 
-  it("search from input header cell", function() {
+  it("Search from input header cell", function() {
     var id = $('#thesaurus_id').val();
     var namespace = $('#thesaurus_namespace').val();
     expect(id).to.eq("aaa");
@@ -107,13 +99,12 @@ describe("Thesauri Search", function() {
     data = {"draw":"2","recordsTotal":"10","recordsFiltered":"1","data":[{"identifier":"C66789","notation":"ND","synonym":"Not Done","definition":"Indicates a task, process or examination that has either not been initiated or completed. (NCI)","preferredTerm":"CDISC SDTM Not Done Terminology","topLevel":true,"parentIdentifier":"C66789","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C66789","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V49","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}
     $('#searchTable_filter input').val("C66789");
     keyUpReturn('#searchTable_filter input');
-    // server.respondWith("GET", "/^\/thesauri\/search_results?draw.*$/", [200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     server.respond([200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(1)").text()).to.eq("C66789");
   });
 
 
-  it("Handle click on table row", function(){
+  it("Click on table row", function(){
     var id = $('#thesaurus_id').val();
     var namespace = $('#thesaurus_namespace').val();
     expect(id).to.eq("aaa");
@@ -122,7 +113,6 @@ describe("Thesauri Search", function() {
     data = {"draw":"2","recordsTotal":"10","recordsFiltered":"1","data":[{"identifier":"C49484","notation":"NOT DONE","synonym":"","definition":"Indicates a task, process or examination that has either not been initiated or completed. (NCI)","preferredTerm":"Not Done","topLevel":false,"parentIdentifier":"C66789","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66789_C49484","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V49","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}
     $('#searchTable thead tr:eq(1) th:eq(3) input').val("NOT DONE");
     keyUpReturn('#searchTable thead tr:eq(1) th:eq(3) input');
-    // server.respondWith("GET", "/^\/thesauri\/search_results?draw.*$/", [200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     server.respond([200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(1)").text()).to.eq("C66789");
     $('#searchTable tbody tr').click();
@@ -130,7 +120,7 @@ describe("Thesauri Search", function() {
   })
 
 
-  it("Handle doubleclick on table row", function(){
+  it("Doubleclick on table row", function(){
     var id = $('#thesaurus_id').val();
     var namespace = $('#thesaurus_namespace').val();
     expect(id).to.eq("aaa");
@@ -139,7 +129,6 @@ describe("Thesauri Search", function() {
     data = {"draw":"2","recordsTotal":"10","recordsFiltered":"1","data":[{"identifier":"C49484","notation":"NOT DONE","synonym":"","definition":"Indicates a task, process or examination that has either not been initiated or completed. (NCI)","preferredTerm":"Not Done","topLevel":false,"parentIdentifier":"C66789","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C66789_C49484","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V49","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}
     $('#searchTable thead tr:eq(1) th:eq(3) input').val("NOT DONE");
     keyUpReturn('#searchTable thead tr:eq(1) th:eq(3) input');
-    // server.respondWith("GET", "/^\/thesauri\/search_results?draw.*$/", [200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     server.respond([200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(1)").text()).to.eq("C66789");
 

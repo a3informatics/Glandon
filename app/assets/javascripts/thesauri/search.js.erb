@@ -10,6 +10,7 @@ function ThesauriSearchPanel(id, namespace) {
     {"data" : "notation", "width" : "10%"},
     {"data" : "preferredTerm", "width" : "15%" },
     {"data" : "synonym", "width" : "15%" },
+    {"data" : "definition", "width" : "40%"}
   ];
   this.initTable();
   this.filterOutAll();
@@ -19,7 +20,6 @@ function ThesauriSearchPanel(id, namespace) {
 
   var _this = this;
 
-  $("#notepad_adding").prop("disabled", true);
   $("#searchTable input").css("width", "100%");
 
   // Handle click on terminology table
@@ -162,10 +162,3 @@ ThesauriSearchPanel.prototype.filterOutAll = function () {
   }
 }
 
-/*function tsInit(callback) {
-  tsCallBack = callback;
-}
-
-function tsUpdate(count) {
-  $("#notepadAdd").html('Notepad+ <span class="badge">' + count + '</span>');
-}*/
