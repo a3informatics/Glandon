@@ -6,10 +6,10 @@ function ThesauriSearchPanel(id, namespace) {
   this.columns = [
     {"data" : "parentIdentifier", "width" : "10%"},
     {"data" : "identifier", "width" : "10%"},
-    {"data" : "notation", "width" : "10%"},
+    {"data" : "notation", "width" : "15%"},
     {"data" : "preferredTerm", "width" : "15%" },
     {"data" : "synonym", "width" : "15%" },
-    {"data" : "definition", "width" : "40%"}
+    {"data" : "definition", "width" : "35%"}
   ];
   this.initTable();
   this.filterOutAll();
@@ -103,7 +103,7 @@ ThesauriSearchPanel.prototype.setupOverallSearchEvent = function () {
 ThesauriSearchPanel.prototype.setupColumnInput = function () {
   $('#searchTable thead tr:eq(1) th').each( function () {
     var title = $(this).text();
-    var id = "searchTable_csearch_" + title.toLowerCase();
+    var id = "searchTable_csearch_" + title.toLowerCase().replace(/ /g,"_");
     if (title == "Extensible") {
       // Do nothing
     } else if (title == "Definition") {

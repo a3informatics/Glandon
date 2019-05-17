@@ -11,20 +11,6 @@ describe "CDISC Terminology", :type => :feature do
     return "features"
   end
 
-  def overall_search(text)
-  	input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
-    input.set(text)
-    input.native.send_keys(:return)
-    wait_for_ajax_long
-  end
-
-  def column_search(column, text)
-  	input = @column_input_map[column]
-  	fill_in input, with: text
-    ui_hit_return(input)
-    wait_for_ajax_long
-  end
-
   def wait_for_ajax_long
     wait_for_ajax(15)
   end
@@ -61,12 +47,6 @@ describe "CDISC Terminology", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
-      @column_input_map = 
-		  	{ 
-		  		notation: "searchTable_csearch_submission value", 
-		  		code_list: "searchTable_csearch_cl", 
-		  		definition: "searchTable_csearch_definition" 
-		  	}  
     end
 
     after :all do
@@ -88,8 +68,7 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
       wait_for_ajax_long 
-      expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
-      #expect(page).not_to have_button('notepadAdd')
+      ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -100,56 +79,56 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
       wait_for_ajax_long # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
+      ui_check_table_info("searchTable", 0, 0, 0)
 
-      column_search(:code_list, 'C100129')
-      expect(page).to have_content 'Showing 1 to 10 of 142 entries'
-
-      column_search(:definition, 'Hamilton')
-      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
-
-      column_search(:notation, 'ADMINISTRATION')
-      expect(page).to have_content 'Showing 1 to 2 of 2 entries'
-
-      fill_in 'searchTable_csearch_submission value', with: 'A' # In effect delete all bar one character
-      ui_hit_backspace('searchTable_csearch_submission value') # Delete last character so now empty
+      ui_term_column_search(:code_list, 'C100129')
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
+      ui_term_column_search(:definition, 'Hamilton')
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
+      ui_term_column_search(:notation, 'ADMINISTRATION')
+      ui_check_table_info("searchTable", 1, 2, 2)
+      
+      fill_in 'searchTable_csearch_submission_value', with: 'A' # In effect delete all bar one character
+      ui_hit_backspace('searchTable_csearch_submission_value') # Delete last character so now empty
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
-
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
       fill_in 'searchTable_csearch_definition', with: 'H'
       ui_hit_backspace('searchTable_csearch_definition')
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 1 to 10 of 142 entries'
-
-      overall_search('Hamilton')
-      expect(page).to have_content 'Showing 1 to 3 of 3 entries'
-
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
+      ui_term_overall_search('Hamilton')
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
       input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
       input.set('H')
       input.native.send_keys(:backspace)
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 1 to 10 of 142 entries'
-
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[3]/a')
       link.click
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 11 to 20 of 142 entries'
-
+      ui_check_table_info("searchTable", 11, 20, 142)
+      
       link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[4]/a')
       link.click
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 21 to 30 of 142 entries'
-
+      ui_check_table_info("searchTable", 21, 30, 142)
+      
       link = find(:xpath, '//*[@id="searchTable_previous"]/a')
       link.click
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 11 to 20 of 142 entries'
+      ui_check_table_info("searchTable", 11, 20, 142)
       
       link = find(:xpath, '//*[@id="searchTable_next"]/a')
       link.click
       wait_for_ajax_long
-      expect(page).to have_content 'Showing 21 to 30 of 142 entries'
-
+      ui_check_table_info("searchTable", 21, 30, 142)
+      
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -160,27 +139,27 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
       wait_for_ajax_long # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
+      ui_check_table_info("searchTable", 0, 0, 0)
 
-      overall_search('race')
-      expect(page).to have_content 'Showing 1 to 10 of 35 entries'
+      ui_term_overall_search('race')
+      ui_check_table_info("searchTable", 1, 10, 35)
 
-      column_search(:notation, 'RACE')
-      expect(page).to have_content 'Showing 1 to 10 of 11 entries'
+      ui_term_column_search(:notation, 'RACE')
+      ui_check_table_info("searchTable", 1, 10, 11)
 
       ui_table_row_double_click('searchTable', 'CDISC SDTM Race Terminology')
       wait_for_ajax_short
-			expect(page).to have_content 'Showing 1 to 6 of 6 entries'
+			ui_check_table_info("searchTable", 1, 6, 6)
+
+			ui_term_column_search(:definition, 'the')
+      ui_check_table_info("searchTable", 1, 5, 5)
       
-			column_search(:definition, 'the')
-			expect(page).to have_content 'Showing 1 to 5 of 5 entries'
-      
-			column_search(:notation, 'RACE')
+			ui_term_column_search(:notation, 'RACE')
 			expect(page).to have_content 'Showing 1 to 1 of 1 entries'
 
       ui_table_row_double_click('searchTable', 'CDISC SDTM Race Terminology')
 			wait_for_ajax_short
-      expect(page).to have_content 'Showing 1 to 6 of 6 entries'
+      ui_check_table_info("searchTable", 1, 6, 6)
 
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -233,8 +212,7 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
       wait_for_ajax_v_long # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 16,903 entries'
-      #expect(page).not_to have_button('notepadAdd')
+      ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
@@ -245,8 +223,7 @@ describe "CDISC Terminology", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
       wait_for_ajax_v_long # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 17,356 entries'
-      #expect(page).not_to have_button('Notepad+')
+      ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'History: CDISC Terminology'
     end

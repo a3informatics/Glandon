@@ -163,7 +163,8 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Label:")
       expect(page).to have_content("Template Identifier:")
       expect(page).to have_content("Add Biomedical Concept")
-      expect(page).to have_content("Showing 1 to 10 of 17,363 entries")
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_check_table_info("bc_table", 1, 10, 13)
       ui_check_page_options("temp_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
       ui_button_disabled("bc_previous")
       ui_button_disabled("bc_next")
@@ -387,9 +388,10 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_terminology_table
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
+      ui_term_overall_search("QSCAT")
       ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
       wait_for_ajax_short
-     ui_table_row_click('searchTable', 'C100760')
+      ui_table_row_click('searchTable', 'C100760')
       ui_click_by_id 'tfe_add_item'
       wait_for_ajax_short
      
