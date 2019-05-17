@@ -1,3 +1,15 @@
+/* Thesauri Search Panel. Panel used to search terminologies
+*
+* @author Dave Iberson-Hurst & Sofie Roug Jensen
+* @since 2.22.3
+*/
+
+/* Package Initialisation
+*
+* @param [id] the fragment for the URI
+* @param [namespace] the namespace for the URI
+* @return [Void]
+*/
 function ThesauriSearchPanel(id, namespace) {
   this.id = id;
   this.namespace = namespace;
@@ -27,7 +39,6 @@ function ThesauriSearchPanel(id, namespace) {
       $(_this.tsCurrentRef).toggleClass('success');
     }
     $(this).toggleClass('success');
-    //var row = _this.tsSearchTable.row(this).index();
     _this.tsCurrentRef = this;
   });
 
@@ -57,6 +68,10 @@ function ThesauriSearchPanel(id, namespace) {
 }
 
 
+/* Initialise Table
+*
+* @return [Void]
+*/
 ThesauriSearchPanel.prototype.initTable = function () {
   var _this = this;
   this.tsSearchTable = $('#searchTable').DataTable( {
@@ -83,6 +98,10 @@ ThesauriSearchPanel.prototype.initTable = function () {
 };
 
 
+/* Setup Overal Search Event
+*
+* @return [Void]
+*/
 ThesauriSearchPanel.prototype.setupOverallSearchEvent = function () {
   // Apply the overall search. Fires on return or field empty assuming not the
   // current search value (i.e. something has changed).
@@ -99,7 +118,10 @@ ThesauriSearchPanel.prototype.setupOverallSearchEvent = function () {
   });
 }
 
-// Setup - add a text input to each footer cell
+/* Setup Column Input. Add a text input to each header cell
+*
+* @return [Void]
+*/
 ThesauriSearchPanel.prototype.setupColumnInput = function () {
   $('#searchTable thead tr:eq(1) th').each( function () {
     var title = $(this).text();
@@ -114,8 +136,11 @@ ThesauriSearchPanel.prototype.setupColumnInput = function () {
   });
 }
 
-// Apply the column search. Fires on return or field empty assuming not the
-// current search value (i.e. something has changed).
+/* Setup Search Input Event. Apply the column search. Fires on return or field empty assuming not the
+*   current search value (i.e. something has changed).
+*
+* @return [Void]
+*/
 ThesauriSearchPanel.prototype.setupSearchInputEvent = function () {
   var _this = this;
   _this.tsSearchTable.columns().every( function (index) {
@@ -130,7 +155,10 @@ ThesauriSearchPanel.prototype.setupSearchInputEvent = function () {
   });
 }
 
-// Get the current selection.
+/* Get Current Selection. Returns the currently selected row as a URI.
+*
+* @return [String] the result URI or null if none selected
+*/
 ThesauriSearchPanel.prototype.getSelected = function () {
   var _this = this;
   if (_this.tsCurrentRef !== null) {
@@ -142,8 +170,11 @@ ThesauriSearchPanel.prototype.getSelected = function () {
   }
 }
 
-// Remove the All option from the datatables table length option if
-// present. Also updates the selected page length.
+/* File Out All. Remove the All option from the datatables table length option if
+*   present. Also updates the selected page length.
+*
+* @return [Void]
+*/
 ThesauriSearchPanel.prototype.filterOutAll = function () {
   var max = pageSettings[0][0];
   for (var i=0; i<pageSettings[0].length; i++) {
@@ -160,4 +191,3 @@ ThesauriSearchPanel.prototype.filterOutAll = function () {
     pageLength = max;
   }
 }
-
