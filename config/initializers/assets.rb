@@ -25,8 +25,7 @@ Rails.application.config.assets.version = '1.0'
   markdown_editor
   background_index 
 	biomedical_concepts_editor biomedical_concept_template_new
-	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor thesauri_impact
-  thesauri/search
+	thesauri_editor thesauri_viewer thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel
   form_placeholder_new form_editor form_viewer form_show form_utility
   d3_tree d3graph d3_graph d3_editor d3_editor_new
@@ -37,3 +36,5 @@ end
 Rails.application.config.assets.precompile += %w( shared/import/term_files_panel.js shared/import/crf_files_panel.js shared/import/items_panel.js )
 Rails.application.config.assets.precompile += %w( concerns/check_box.css )
 Rails.application.config.assets.precompile += %w( import/crfs/new.js import/terms/new.js )
+Rails.application.config.assets.precompile += %w( cdisc_term/search.js )
+Rails.application.config.assets.precompile += %w( thesauri/search.js thesauri/search_current.js shared/thesauri/search.js )

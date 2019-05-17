@@ -1,5 +1,4 @@
-<%= stylesheet_link_tag    'thesauri_search_new' %>
-<%= javascript_include_tag 'thesauri_search_new' %>
+<%= javascript_include_tag 'thesauri/search' %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Search:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
@@ -7,35 +6,14 @@
 <style>
 	#searchTable { table-layout: fixed; }
 </style>
-<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Search:", :item => @thesaurus} %>
-<div class="col-md-12">
-	<table id="searchTable" class="table table-striped table-bordered table-condensed">
-  	<thead>
-			<tr>
-		    <th>Code List</th>
-		    <th>Item</th>
-		    <th>Submission Value</th>
-		    <th>Preferred Term</th>
-		    <th>Synonym</th>
-		    <th>Definition</th>
-	  	</tr>
-		</thead>
-		<tbody>
-		</tbody>
-		<tfoot>
-      <tr>
-		    <th>CL</th>
-		    <th>Item</th>
-		    <th>Submission Value</th>
-		    <th>Preferred Term</th>
-		    <th>Synonym</th>
-		    <th>Definition</th>
-      </tr>
-  	</tfoot>
-	</table>
-	<%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= render partial: "shared/stdInstanceTitlePanel", :locals => {:title => "Search:", :item => @thesaurus} %>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-12">
+      <%= render partial: "shared/thesauri/search", :locals => {current: @thesaurus.current?, single: true, id: @thesaurus.id, namespace: @thesaurus.namespace} %>
+      <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
+    </div>
+  </div>
 </div>
-<input type="hidden" id="thesaurus_current" value="<%= @thesaurus.current? %>">
-<input type="hidden" id="thesaurus_single" value="<%= true %>">
-<input type="hidden" id="thesaurus_id" value="<%= @thesaurus.id %>">
-<input type="hidden" id="thesaurus_namespace" value="<%= @thesaurus.namespace %>" %>	
