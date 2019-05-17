@@ -25,6 +25,13 @@ var tfeCurrentRow;        //
 var tfeItemTable;
 
 $(document).ready( function() {
+
+  // For the term search panel. Teh id and namespace should both be empty in this context but here just to make compatiable with
+  // the old way.
+  var id = document.getElementById("thesaurus_id");
+  var namespace = document.getElementById("thesaurus_namespace");
+  var tsp = new ThesauriSearchPanel(id, namespace);
+
   $('#tfe_item_table tbody').on('click', 'tr', function () {
     if (tfeCurrentRef !== null) {
       $(tfeCurrentRef).toggleClass('success');
@@ -46,7 +53,7 @@ $(document).ready( function() {
   });
 
   $('#tfe_add_item').on ('click', function() {
-    uri = tsGet();
+    uri = tsp.tsGet();
     if (uri !== null) {
       spAddSpinner("#tfe_processing");
       tfeAdd(getId(uri), getNamespace(uri));
