@@ -11,8 +11,8 @@ function ThesauriSearchPanel(id, namespace) {
     {"data" : "synonym", "width" : "15%" },
     {"data" : "definition", "width" : "35%"}
   ];
+  this.filterOutAll(); // Must be called before initTable so as to filter the page settings
   this.initTable();
-  this.filterOutAll();
   this.setupColumnInput(); 
   this.setupSearchInputEvent();
   this.setupOverallSearchEvent();
