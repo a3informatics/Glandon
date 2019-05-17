@@ -77,13 +77,7 @@ Capybara.register_driver :chrome do |app|
   })
   client = Selenium::WebDriver::Remote::Http::Default.new
   client.timeout = 120
-	# New configuration method
 	Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
-	# Old configuration method
-  #profile = Selenium::WebDriver::Chrome::Profile.new
-  #profile["download.default_directory"] = DownloadHelpers::PATH
-  #Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
-  #Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
 
 Capybara.javascript_driver = :chrome
