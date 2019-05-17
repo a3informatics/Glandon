@@ -260,4 +260,61 @@ describe Thesaurus do
     expect(result).to eq(expected)
   end
 
+  it "detects an empty search" do
+    params = 
+    { 
+      search: 
+      {
+        value: ""
+      }, 
+      columns: 
+      {
+        col1: {search: {value: ""}}, 
+        col2: {search: {value: ""}}, 
+        col3: {search: {value: ""}}
+      }
+    }
+    expect(Thesaurus.empty_search?(params)).to eq(true)
+    params[:search][:value] = "somthing"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(true)
+    params[:columns][:col1][:search][:value] = "X"
+    params[:columns][:col2][:search][:value] = ""
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:columns][:col1][:search][:value] = ""
+    params[:columns][:col2][:search][:value] = "X"
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:columns][:col1][:search][:value] = ""
+    params[:columns][:col2][:search][:value] = ""
+    params[:columns][:col3][:search][:value] = "X"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = "somthing"
+    params[:columns][:col1][:search][:value] = "X"
+    params[:columns][:col2][:search][:value] = "X"
+    params[:columns][:col3][:search][:value] = "X"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = "somthing"
+    params[:columns][:col1][:search][:value] = "X"
+    params[:columns][:col2][:search][:value] = "X"
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = "somthing"
+    params[:columns][:col1][:search][:value] = "X"
+    params[:columns][:col2][:search][:value] = ""
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = ""
+    params[:columns][:col1][:search][:value] = "X"
+    params[:columns][:col2][:search][:value] = ""
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params[:search][:value] = ""
+    params[:columns][:col1][:search][:value] = ""
+    params[:columns][:col2][:search][:value] = ""
+    params[:columns][:col3][:search][:value] = ""
+    expect(Thesaurus.empty_search?(params)).to eq(true)
+  end
 end

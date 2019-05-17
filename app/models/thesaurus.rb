@@ -309,7 +309,17 @@ class Thesaurus <  IsoManaged
     end
     return { count: count, items: results }
   end
-  
+ 
+  # Empty Search? No search parameters
+  # 
+  # @param params [Hash]  the hash sent by datatables for a search.
+  # @return [Boolean] true if empty, otherwise false
+  def self.empty_search?(params)
+    params[:columns].each {|key, column| return false if !column[:search][:value].blank?}
+    return false if !params[:search][:value].blank?
+    return true
+  end
+
   # Impact. Determine what impact this version has.
   # 
   # @return [Array] of thesaurus concepts that have an impact

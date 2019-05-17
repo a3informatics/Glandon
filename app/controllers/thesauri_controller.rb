@@ -136,8 +136,12 @@ class ThesauriController < ApplicationController
   
   def search_results
     authorize Thesaurus, :view?
-    results = Thesaurus.search(params)
-    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+    if Thesaurus.empty_search?(params)
+      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+    else
+      results = Thesaurus.search(params)
+      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+    end
   end
 
    def export_ttl
