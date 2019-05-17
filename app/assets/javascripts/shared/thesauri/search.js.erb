@@ -2,7 +2,6 @@ function ThesauriSearchPanel(id, namespace) {
   this.id = id;
   this.namespace = namespace;
   this.tsCurrentRef = null;
-  this.tsCurrentRow = null;
   this.tsSearchTable = null;
   this.columns = [
     {"data" : "parentIdentifier", "width" : "10%"},
@@ -28,9 +27,8 @@ function ThesauriSearchPanel(id, namespace) {
       $(_this.tsCurrentRef).toggleClass('success');
     }
     $(this).toggleClass('success');
-    var row = _this.tsSearchTable.row(this).index();
+    //var row = _this.tsSearchTable.row(this).index();
     _this.tsCurrentRef = this;
-    _this.tsCurrentRow = row;
   });
 
   // handle double click on terminology table
@@ -41,7 +39,6 @@ function ThesauriSearchPanel(id, namespace) {
     $(this).toggleClass('success');
     var row = _this.tsSearchTable.row(this).index();
     _this.tsCurrentRef = this;
-    _this.tsCurrentRow = row;
     var data = _this.tsSearchTable.row(row).data();
     // Clear search fields in UI and within datatables.
     $("#searchTable_filter input").val("");
@@ -133,10 +130,12 @@ ThesauriSearchPanel.prototype.setupSearchInputEvent = function () {
   });
 }
 
-ThesauriSearchPanel.prototype.tsGet = function () {
-  if (tsCurrentRef !== null) {
-    var row = tsSearchTable.row(tsCurrentRef).index();
-    var data = tsSearchTable.row(row).data();
+// Get the current selection.
+ThesauriSearchPanel.prototype.getSelected = function () {
+  var _this = this;
+  if (_this.tsCurrentRef !== null) {
+    var row = _this.tsSearchTable.row(_this.tsCurrentRef).index();
+    var data = _this.tsSearchTable.row(row).data();
     return toUri(data.namespace, data.id);
   } else {
     return null;

@@ -53,7 +53,7 @@ $(document).ready( function() {
   });
 
   $('#tfe_add_item').on ('click', function() {
-    uri = tsp.tsGet();
+    uri = tsp.getSelected();
     if (uri !== null) {
       spAddSpinner("#tfe_processing");
       tfeAdd(getId(uri), getNamespace(uri));
