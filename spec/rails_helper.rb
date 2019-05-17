@@ -70,22 +70,15 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_preference(:download, {
+    prompt_for_download: false,
+    default_directory: DownloadHelpers::PATH
+  })
   client = Selenium::WebDriver::Remote::Http::Default.new
   client.timeout = 120
 	# New configuration method
-	Capybara::Selenium::Driver.new(app,
-    :browser => :chrome,
-    :http_client => client,
-    :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
-      'chromeOptions' => {
-        'args' => [ "--window-size=1800,1000" ],
-        'prefs' => {
-          'download.default_directory' => DownloadHelpers::PATH,
-          'download.prompt_for_download' => false
-        }
-      }
-    )
-  )
+	Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
 	# Old configuration method
   #profile = Selenium::WebDriver::Chrome::Profile.new
   #profile["download.default_directory"] = DownloadHelpers::PATH
@@ -94,12 +87,3 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
-
-# Thin server
-Capybara.register_server :thin do |app, port, host|
-  require 'rack/handler/thin'
-  Rack::Handler::Thin.run(app, :Port => port, :Host => host)
-end
-
-Capybara.server = :thin
-#Capybara.default_max_wait_time = 10
