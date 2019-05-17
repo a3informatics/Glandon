@@ -530,7 +530,7 @@ class IsoManaged < IsoConcept
       "  ?a rdfs:label ?b . \n" +
       "  ?a isoI:hasIdentifier ?si . \n" +
       "  ?si isoI:identifier ?e . \n" +
-      "  FILTER (regex(?b, '#{params[:text]}') || regex(?e, '#{params[:text]}')) . \n" +
+      "  FILTER (regex(?b, '#{params[:text]}', 'i') || regex(?e, '#{params[:text]}', 'i')) . \n" +
       "  ?a rdf:type ?h . \n" +
       "  ?a isoT:creationDate ?c . \n" +
       "  ?a isoT:lastChangeDate  ?d . \n" +

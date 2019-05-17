@@ -46,7 +46,7 @@
 		<BRIDGAttribute Name="studyDayRange" DataType="IVL_INT" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="delayDuration" DataType="PQ.TIME" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="negationReason" DataType="DSET(SC)" Description="" Use="Optional"/>
-		<BRIDGAttribute Name="negationIndicator" DataType="BL" Description="" Use="Optional"/>
+		<BRIDGAttribute Name="negationIndicator" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="repetitionNumber" DataType="INT.POS" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="statusCode" DataType="CD" Description="" Use="Optional"/>
 		<BRIDGAttribute Name="statusDate" DataType="TS_DATETIME" Description="" Use="Optional"/>
@@ -143,5 +143,15 @@
   <BRIDGClass Name="Material">
     <BRIDGAttribute Name="formCode" DataType="CD" Description="" Use="Optional"/>   
   </BRIDGClass>	
+  <BRIDGClass Name="PerformedProcedure" Description="The completed action whose immediate and primary intention is the alteration of the physical or mental condition of the subject, study subject or experimental unit.">
+    <BRIDGAttribute Name="targetAnatomicSiteDirectionalityCode" DataType="CD" Description="A coded value specifying the directional portion of the anatomic site that is a target site for a procedure." Use="Optional"/>   
+  </BRIDGClass>
+  <BRIDGClass Name="Performer" Description="">
+    <BRIDGAttribute Name="typeCode" DataType="CD" Description="A coded value specifying the kind of performer." Use="Optional"/>   
+    <BRIDGAttribute Name="evaluatorAlias" DataType="CD" Description="A non-unique textual identifier for the performer." Use="Optional"/>   
+  </BRIDGClass>
+  <BRIDGClass Name="PerformedClinicalInterpretation" Description="An assessment which involves determining the meaning of one or more other observation results.">
+    <BRIDGAttribute Name="clinicallySignificantIndicator" DataType="CD" Description="Specifies whether a subject's clinical condition is important based on judgment." Use="Optional"/>   
+  </BRIDGClass>
 </BRIDG>
 

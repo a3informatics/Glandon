@@ -70,9 +70,12 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :chrome do |app|
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 120
 	# New configuration method
 	Capybara::Selenium::Driver.new(app,
     :browser => :chrome,
+    :http_client => client,
     :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
       'chromeOptions' => {
         'args' => [ "--window-size=1800,1000" ],

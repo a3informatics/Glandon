@@ -79,6 +79,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       expect(page).to have_css("#editor_table", wait: 15) 
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
+      bc_scroll_to_editor_table
       bc_set_test_code([{ cl: "C100136", cli: "C100392" }])
       bc_scroll_to_editor_table
       bc_set_test_name([{ cl: "C100135", cli: "C100392" }])
