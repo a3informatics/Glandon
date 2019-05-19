@@ -162,14 +162,16 @@ describe "SDTM User Domain Editor", :type => :feature do
     it "allows non-standard variable to be moved up and down and not pass a standard variable", js: true do
       load_domain("DM Domain")
       click_button "V+"
-      sleep 0.25
+      sleep 0.5
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
+#puts("KEY 1: #{key_1}")
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
       #wait_for_ajax
       click_button "V+"
-      sleep 0.25
+      sleep 0.5
       key_2 = ui_get_key_by_path('["Demographics", "DM000030"]')
+#puts("KEY 2: #{key_2}")
       expect(key_2).not_to eq(-1)
       ui_click_node_key(key_2)
       #wait_for_ajax
@@ -242,8 +244,9 @@ describe "SDTM User Domain Editor", :type => :feature do
     it "allows the edit session to be saved", js: true do
       load_domain("DM Domain")
       click_button "V+"
-      sleep 0.25
+      sleep 0.5
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
+#puts("KEY 1: #{key_1}")
       expect(key_1).not_to eq(-1)
       ui_click_save
       #pause
