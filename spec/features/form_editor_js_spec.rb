@@ -970,11 +970,11 @@ describe "Form Editor", :type => :feature do
     it "loads current terminology", js: true do
       load_form("CRF TEST 1") 
       expect(page).to have_content 'Current Terminologies'
-      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
+      ui_check_table_info("searchTable", 0, 0, 0)
       fill_in 'searchTable_csearch_cl', with: 'C100129'
       ui_hit_return('searchTable_csearch_cl')
       wait_for_ajax(10)
-      expect(page).to have_content 'Showing 1 to 10 of 142 entries'
+      ui_check_table_info("searchTable", 1, 10, 142)
     end
 
     it "form edit timeout warnings and expiration", js: true do
