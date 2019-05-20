@@ -85,7 +85,9 @@ RSpec.configure do |config|
 end
 
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w(--auto-open-devtools-for-tabs --window-size=2400,2400))
+  options = Selenium::WebDriver::Chrome::Options.new
+  # Optional new statement to access devtools
+  #options = Selenium::WebDriver::Chrome::Options.new(args: %w(--auto-open-devtools-for-tabs --window-size=2400,2400)) 
   options.add_preference(:download, {
     prompt_for_download: false,
     default_directory: DownloadHelpers::PATH
