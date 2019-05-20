@@ -45,11 +45,11 @@ describe("Thesauri Search", function() {
     '  <input type="hidden" id="thesaurus_namespace" value="bbb">' ;
     fixture.set(html);
     server = sinon.fakeServer.create();
-  })
+  });
 
   afterEach(function() {
     server.restore();
-  })
+  });
 
   it("Initialises the object", function() {
     var size = ["10", "10", "10", "10", "10", "20"]
@@ -65,7 +65,7 @@ describe("Thesauri Search", function() {
     $('#searchTable_length option').each( function (index) {
       expect(this.innerHTML).to.eq(pages[index]);
     });
-  })
+  });
 
   it("Search from input header cell", function() {
     var id = $('#thesaurus_id').val();
@@ -76,7 +76,7 @@ describe("Thesauri Search", function() {
     keyUpReturn('#searchTable thead tr:eq(1) th:eq(3) input');
     server.respond([200, {"Content-Type":"application/json"}, JSON.stringify(data) ]);
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(1)").text()).to.eq("C66789");
-  })
+  });
 
   it("Overall search", function(){
     var id = $('#thesaurus_id').val();
@@ -101,7 +101,7 @@ describe("Thesauri Search", function() {
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(1)").text()).to.eq("C66789");
     $('#searchTable tbody tr').click();
     expect($('#searchTable tbody tr').hasClass('success')).to.eq(true);
-  })
+  });
 
 
   it("Doubleclick on table row", function(){
@@ -124,7 +124,44 @@ describe("Thesauri Search", function() {
     expect($("#searchTable tbody tr:nth-child(1) td:nth-child(2)").text()).to.eq("C66789");
     expect($("#searchTable tbody tr:nth-child(2) td:nth-child(1)").text()).to.eq("C66789");
     expect($("#searchTable tbody tr:nth-child(2) td:nth-child(2)").text()).to.eq("C49484");
-  })
+  });
+
+  it("Clearing overall search input", function(){
+    var id = $('#thesaurus_id').val();
+    var namespace = $('#thesaurus_namespace').val();
+    var tsp = new ThesauriSearchPanel(id, namespace);
+    expect($("#searchTable_filter input").val()).to.eq("");
+    $("#searchTable_filter input").val("bpi");
+    expect($("#searchTable_filter input").val()).to.eq("bpi");
+    $('#clearbutton').click();
+    expect($("#searchTable_filter input").val()).to.eq("");
+  });
+
+  it("Clearing column search input", function(){
+    var id = $('#thesaurus_id').val();
+    var namespace = $('#thesaurus_namespace').val();
+    var tsp = new ThesauriSearchPanel(id, namespace);
+    expect($("#searchTable thead input").val()).to.eq("");
+    $("#searchTable thead input").val("bpi");
+    expect($("#searchTable thead input").val()).to.eq("bpi");
+    $('#clearbutton').click();
+    expect($("#searchTable thead input").val()).to.eq("");
+  });
+
+  it("Clearing both overall search input and column input", function(){
+    var id = $('#thesaurus_id').val();
+    var namespace = $('#thesaurus_namespace').val();
+    var tsp = new ThesauriSearchPanel(id, namespace);
+    expect($("#searchTable_filter input").val()).to.eq("");
+    expect($("#searchTable thead input").val()).to.eq("");
+    $("#searchTable_filter input").val("basic");
+    $("#searchTable thead input").val("bpi");
+    expect($("#searchTable_filter input").val()).to.eq("basic");
+    expect($("#searchTable thead input").val()).to.eq("bpi");
+    $('#clearbutton').click();
+    expect($("#searchTable_filter input").val()).to.eq("");
+    expect($("#searchTable thead input").val()).to.eq("");
+  });
 
   it("single I, page length changed", function() {
     var id = $('#thesaurus_id').val();
