@@ -28,6 +28,7 @@ function ThesauriSearchPanel(id, namespace) {
   this.setupColumnInput(); 
   this.setupSearchInputEvent();
   this.setupOverallSearchEvent();
+  this.setupClearButton();
 
   var _this = this;
 
@@ -65,6 +66,7 @@ function ThesauriSearchPanel(id, namespace) {
     e.keyCode = 13;
     $('#searchTable_csearch_cl').trigger(e);
   });
+  
 }
 
 
@@ -96,6 +98,22 @@ ThesauriSearchPanel.prototype.initTable = function () {
     "orderCellsTop": true,
   });
 };
+
+
+/* Setup Clear Button
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.setupClearButton = function () {
+  var _this = this;
+  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default btn-sm clear-button"><span class="fa fa-times"></span> Clear All</button>');
+  $('#clearbutton').click(function(){
+    $("#searchTable_filter input").val("");
+    _this.tsSearchTable.columns().every( function () {
+      $('#searchTable thead input').val("");
+    });
+  });
+}
 
 
 /* Setup Overal Search Event
