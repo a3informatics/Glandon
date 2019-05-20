@@ -67,10 +67,25 @@ RSpec.configure do |config|
   config.include(Capybara::DSL)
   config.include PauseHelpers, type: :feature
   
+  # Block for checking javascript errors.
+  #config.after(:each, type: :feature, js: true) do
+  #   errors = page.driver.browser.manage.logs.get(:browser)
+  #   if errors.present?
+  #     aggregate_failures 'javascript errrors' do
+  #       errors.each do |error|
+  #         expect(error.level).not_to eq('SEVERE'), error.message
+  #         next unless error.level == 'WARNING'
+  #         STDERR.puts 'WARN: javascript warning'
+  #         STDERR.puts error.message
+  #       end
+  #     end
+  #   end
+  # end
+
 end
 
 Capybara.register_driver :chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
+  options = Selenium::WebDriver::Chrome::Options.new(args: %w(--auto-open-devtools-for-tabs --window-size=2400,2400))
   options.add_preference(:download, {
     prompt_for_download: false,
     default_directory: DownloadHelpers::PATH
@@ -81,3 +96,11 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.javascript_driver = :chrome
+
+# Thin Server
+# Capybara.register_server :thin do |app, port, host|
+#     require 'rack/handler/thin'
+#    Rack::Handler::Thin.run(app, :Port => port, :Host => host)
+# end
+
+# Capybara.server = :thin
