@@ -3,12 +3,6 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<style>
-	#searchTable { table-layout: fixed; }
-  table.dataTable.table-condensed > thead > tr > th {
-    padding-right: 5px;
-  }
-</style>
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Search: All Current Terminology</h3>
