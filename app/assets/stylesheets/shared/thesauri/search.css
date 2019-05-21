@@ -7,7 +7,9 @@
   margin-left:  10px;
 }
 
-#searchTable { table-layout: fixed; }
+#searchTable_filter input {
+  font-weight: 700;
+}
 
 table.dataTable.table-condensed > thead > tr > th {
   padding-right: 5px;

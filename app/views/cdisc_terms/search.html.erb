@@ -3,9 +3,6 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<style>
-	#searchTable { table-layout: fixed; }
-</style>
 <div class="panel panel-default">
   <div class="panel-heading">
     <%= render partial: "shared/stdInstanceTitlePanel", :locals => {:title => "Search:", :item => @cdiscTerm} %>

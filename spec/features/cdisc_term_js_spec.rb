@@ -165,6 +165,116 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
+    it "clearing overall search input", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_overall_search('race')
+      ui_check_table_info("searchTable", 1, 10, 35)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 10 of 35 entries'
+      expect(find('#searchTable_filter input')).to have_content('')
+    end
+
+    it "clearing column search inputs with one input", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_column_search(:notation, 'NOT DONE')
+      ui_check_table_info("searchTable", 1, 1, 1)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 1 of 1 entries'
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+    end
+
+    it "searching for same value after clearing overall search input", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 10, 11)
+      click_button 'clearbutton'
+      ui_term_column_search(:notation, 'm2')
+      ui_check_table_info("searchTable", 1, 10, 234)
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 2, 2)
+      click_button 'clearbutton'
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 10, 11)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 10 of 11 entries'
+      expect(find('#searchTable_filter input')).to have_content('')
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+    end
+
+    it "searching for same value after clearing overall search input in another date", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-09-25')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-09-25'
+      wait_for_ajax_long 
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 10, 11)
+      click_button 'clearbutton'
+      ui_term_column_search(:notation, 'm2')
+      ui_check_table_info("searchTable", 1, 10, 231)
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 2, 2)
+      click_button 'clearbutton'
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 10, 11)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 10 of 11 entries'
+      expect(find('#searchTable_filter input')).to have_content('')
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+    end
+
+
+    it "clearing column search inputs with more inputs", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_column_search(:notation, 'bpi')
+      ui_check_table_info("searchTable", 1, 10, 177)
+      ui_term_column_search(:definition, 'surgery')
+      ui_check_table_info("searchTable", 1, 4, 4)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 4 of 4 entries'
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+      expect(find('#searchTable_csearch_definition')).to have_content('')
+    end
+
+
+    it "clearing both overall search input and all column search input", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: CDISC Terminology 2015-12-18'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_overall_search('inches')
+      ui_check_table_info("searchTable", 1, 10, 11)
+      ui_term_column_search(:notation, 'ft2')
+      ui_check_table_info("searchTable", 1, 1, 1)
+      click_button 'clearbutton'
+      expect(page).to have_content 'Showing 1 to 1 of 1 entries'
+      expect(find('#searchTable_filter input')).to have_content('')
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+    end
+
   end
 
   describe "Reader Search", :type => :feature do

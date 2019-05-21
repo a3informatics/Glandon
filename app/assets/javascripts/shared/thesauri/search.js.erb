@@ -32,7 +32,7 @@ function ThesauriSearchPanel(id, namespace) {
 
   var _this = this;
 
-  $("#searchTable input").css("width", "100%");
+  $("#searchTable input").css({"width": "100%"});
 
   // Handle click on terminology table
   $('#searchTable tbody').on('click', 'tr', function () {
@@ -90,13 +90,18 @@ ThesauriSearchPanel.prototype.initTable = function () {
     "serverSide": true,
     "language": {
       "infoFiltered": "",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+      "emptyTable": "Make a new column or global search to see data",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>",
+      "search": "_INPUT_",
+      "searchPlaceholder": "Overall Search ..."
     },
     "pageLength": pageLength,
     "lengthMenu": pageSettings,
     "columns": _this.columns,
     "orderCellsTop": true,
   });
+
+  $('#searchTable_filter input').removeClass('input-sm');
 };
 
 
@@ -106,11 +111,13 @@ ThesauriSearchPanel.prototype.initTable = function () {
 */
 ThesauriSearchPanel.prototype.setupClearButton = function () {
   var _this = this;
-  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default btn-sm clear-button"><span class="fa fa-times"></span> Clear All</button>');
+  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default clear-button"><span class="fa fa-times"></span> Clear All</button>');
   $('#clearbutton').click(function(){
     $("#searchTable_filter input").val("");
+    _this.tsSearchTable.search("");
     _this.tsSearchTable.columns().every( function () {
       $('#searchTable thead input').val("");
+      this.search("");
     });
   });
 }
@@ -147,9 +154,9 @@ ThesauriSearchPanel.prototype.setupColumnInput = function () {
     if (title == "Extensible") {
       // Do nothing
     } else if (title == "Definition") {
-      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="20" placeholder="Search ..." />' );
+      $(this).html( '<input id="' + id + '" type="text" class="form-control input-sm" size="20" placeholder="Search ..." />' );
     } else {
-      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="10" placeholder="Search ..." />' );
+      $(this).html( '<input id="' + id + '" type="text" class="form-control input-sm" size="10" placeholder="Search ..." />' );
     }
   });
 }
