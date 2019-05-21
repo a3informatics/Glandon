@@ -60,7 +60,7 @@ describe("Thesauri Search", function() {
     expect($('#searchTable').DataTable().data().length == 0).to.eq(true); // Check we dont load anything
     $('#searchTable thead tr:eq(0) th').each( function (index) {
       var thead = $('#searchTable thead tr:eq(1) th:eq(' + index + ')');
-      expect(thead[0].innerHTML).to.eq('<input id="searchTable_csearch_' + this.innerHTML.toLowerCase().replace(/ /g,"_") + '" type="text" class="form-control" size="' + size[index] + '" placeholder="Search ..." style="width: 100%;">');
+      expect(thead[0].innerHTML).to.eq('<input id="searchTable_csearch_' + this.innerHTML.toLowerCase().replace(/ /g,"_") + '" type="text" class="form-control input-sm" size="' + size[index] + '" placeholder="Search ..." style="width: 100%;">');
     });
     $('#searchTable_length option').each( function (index) {
       expect(this.innerHTML).to.eq(pages[index]);
