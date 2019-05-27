@@ -74,6 +74,7 @@ module Fuseki
         base_type = schema.range(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
       rescue => e
+byebug
         puts "FromSimple: Error #{name}=#{value}"
         puts schema.to_yaml
       end

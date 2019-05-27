@@ -181,10 +181,34 @@ puts "***** SUBJECT CACHE #{uri} *****"
       @destroyed
     end
 
+    def set_persisted
+      self.instance_variable_set(:@new_record, false)
+      self.instance_variable_set(:@destroyed, false)
+    end
+
     def id
       self.uri.nil? ? nil : self.uri.to_id
     end
 
+    def where_child(params)
+      where_clauses = ""
+      params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
+      properties = properties_instance
+      unions = []
+      properties.relationships.map.each do |relationship|
+        unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
+      end
+      query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
+      results = Sparql::Query.new.query(query_string, self.rdf_type.namespace, [])
+      objects = []
+      map = results.subject_map
+      results.by_subject.each do |subject, triples|
+        klass = map[subject.to_s].constantize
+        objects << klass.from_results(Uri.new(uri: subject), triples)
+      end
+      objects
+    end
+      
     def update
       create_or_update(:update) if valid?(:update)
     end
@@ -339,6 +363,7 @@ puts "***** CLEARING CACHE #{self.uri} *****"
       return if property[:type] != :object
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
+        next if object.respond_to?(:persisted?) ? object.persisted? : false
         object.generate_uri(self.uri) if object.respond_to?(:generate_uri)
       end
     end

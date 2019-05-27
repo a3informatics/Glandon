@@ -31,7 +31,7 @@ module Fuseki
             object.from_hash(inst_var, value)
           elsif value.is_a?(Array)
             value.each do |x| 
-              x.is_a?(Hash) ? object.from_hash(inst_var, value) : object.from_uri(inst_var, value)
+              x.is_a?(Hash) ? object.from_hash(inst_var, x) : object.from_uri(inst_var, x)
             end
           else
             object.from_value(inst_var, value)
@@ -46,7 +46,7 @@ module Fuseki
     #
     # @return [Hash] the hash
     def to_h
-      result = {uri: instance_variable_get(:@uri).to_h, rdf_type: self.rdf_type.to_h}
+      result = {uri: instance_variable_get(:@uri).to_h, uuid: self.id, rdf_type: self.rdf_type.to_h}
       properties = properties_read(:instance)
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
@@ -54,6 +54,8 @@ module Fuseki
         if object.is_a?(Array)
           result[variable] = []
           object.each {|x| result[variable] << x.to_h}
+        elsif object.nil?
+          result[variable] = nil
         elsif object.respond_to? :to_h 
           result[variable] = object.to_h
         else

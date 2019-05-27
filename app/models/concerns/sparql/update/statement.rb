@@ -3,8 +3,8 @@
 # @author Dave Iberson-Hurst
 # @since 2.21.1
 
-require "sparql/update/statement/uri"     # Ensure loaded so that raisl resolves corrently against Uri class
-require "sparql/update/statement/literal"
+require_dependency "sparql/update/statement/uri"     # Ensure loaded so that raisl resolves corrently against Uri class
+require_dependency "sparql/update/statement/literal"
 
 module Sparql
 

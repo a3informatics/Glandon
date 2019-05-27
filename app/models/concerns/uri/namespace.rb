@@ -37,6 +37,10 @@ class Uri
       return prefix
     end
       
+    def owl_prefix
+      return Rails.configuration.namespaces[:required].key("http://www.w3.org/2002/07/owl")
+    end
+    
     # Get Namespace for a prefix
     #
     # @param prefix [Symbol] The prefix

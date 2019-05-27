@@ -189,8 +189,9 @@ module Sparql
 
     # Add OWL namespace if not already included
     def add_owl_namespace
-      return if @prefix_used.key?(UriManagement::C_OWL)
-      @prefix_used[UriManagement::C_OWL] = UriManagement::C_OWL 
+      owl = Uri::Namespace.new.owl_prefix.to_s
+      return if @prefix_used.key?(owl)
+      @prefix_used[owl] = owl 
     end
 
   end
