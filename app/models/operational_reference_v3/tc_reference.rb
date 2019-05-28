@@ -8,8 +8,8 @@ class OperationalReferenceV3::TcReference < OperationalReferenceV3
             uri_suffix: "TCR",
             uri_property: :ordinal
 
-  data_property :local_label
-  object_property :reference, cardinality: :one, model_class: "IsoNamespace"
+  data_property :local_label, default: ""
+  object_property :reference, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept"
   
   validates_with Validator::Field, attribute: :local_label, method: :valid_label?  
   

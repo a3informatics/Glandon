@@ -1,11 +1,11 @@
-require "nokogiri"
-require "uri"
-
 class CdiscTerm < Thesaurus
+  
+C_IDENTIFIER = "CT"
+  
+=begin  
   
   # Constants
   C_CLASS_NAME = "CdiscTerm"
-  C_IDENTIFIER = "CDISC Terminology"
   C_SCHEMA_PREFIX = Thesaurus::C_SCHEMA_PREFIX
   C_INSTANCE_PREFIX = Thesaurus::C_INSTANCE_PREFIX
   C_CID_PREFIX = Thesaurus::C_CID_PREFIX
@@ -31,11 +31,17 @@ class CdiscTerm < Thesaurus
     end
   end
 
+=end
+
   # Owner
   #
   # @return [IsoRegistrationAuthority] the owner
   def self.owner
     @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
+  end
+
+  def self.child_klass
+    ::CdiscCl
   end
 
   # Configuration
@@ -59,15 +65,17 @@ class CdiscTerm < Thesaurus
     self.class.configuration
   end
 
+  def add(item, ordinal)
+    self.is_top_concept_reference << OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item)
+    self.is_top_concept << item
+  end
+
+=begin
   # Get the next version
   #
   # @return [integet] the integer version
   def self.next_version
     super(C_IDENTIFIER, owner)
-  end
-
-  def self.child_klass
-    ::CdiscCl
   end
 
   # Find
@@ -586,6 +594,6 @@ private
     end
     return order
   end
-
+=end
   
 end

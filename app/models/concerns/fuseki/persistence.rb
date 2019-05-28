@@ -256,23 +256,6 @@ puts "***** SUBJECT CACHE #{uri} *****"
       !not_used?
     end
 
-    def diff?(other)
-      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if self.class != other.class
-      if persisted? && other.persisted?
-        return true if self.uri != other.uri
-      else
-        properties = properties_read(:instance)
-        instance_variables.each do |name|
-          next if name == :@uri #|| name == :@rdf_type
-          next if !properties.key?(name) # Ignore variables if no property declared.
-          a = instance_variable_get(name)
-          b = other.instance_variable_get(name)
-          return true if properties[name][:type] == :object ? diff_objects?(a, b) : a != b
-        end
-      end
-      return false
-    end 
-
     def create_or_update(operation)
       clear_cache
       sparql = Sparql::Update.new()
@@ -310,30 +293,6 @@ puts "***** SUBJECT CACHE #{uri} *****"
     end      
 
   private
-
-    def diff_objects?(a, b)
-      return a.diff?(b) if !a.is_a? Array
-      return diff_uris?(a, b) if a.first.is_a? Uri
-      key = a.class.key_property
-      a.each do |a_obj|
-        b_obj = b.select {|x| x.send(key) == a.send(key)}
-        return true if b_obj.empty? 
-        return true if a_obj.diff?(b_obj.first)
-      end    
-      return false
-    end
-
-    def diff_uris?(a, b)
-      a_to_s = uris_to_s(a)
-      b_to_s = uris_to_s(b)
-      return a_to_s - b_to_s == []
-    end
-
-    def uris_to_s(objects)
-      result = []
-      objects.each {|x| result << x.to_s}
-      result
-    end
 
     def clear_cache
       return if !self.class.cache?

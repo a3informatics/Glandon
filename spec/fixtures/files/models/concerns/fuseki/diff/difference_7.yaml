@@ -1,0 +1,21 @@
+---
+:ra_namespace:
+- :status: :no_change
+  :previous: http://www.assero.co.uk/Fragment#Test1
+  :current: http://www.assero.co.uk/Fragment#Test1
+  :difference: <div class="diff"></div>
+- :status: :updated
+  :previous: http://www.assero.co.uk/Fragment#Test1
+  :current: http://www.assero.co.uk/Fragment#Test2
+  :difference: |
+    <div class="diff">
+      <ul>
+        <li class="del"><del>http://www.assero.co.uk/Fragment#Test<strong>1</strong></del></li>
+        <li class="ins"><ins>http://www.assero.co.uk/Fragment#Test<strong>2</strong></ins></li>
+      </ul>
+    </div>
+:effective_date:
+  :status: :no_change
+  :previous: 2016-01-01 00:00:00.000000000 +00:00
+  :current: 2016-01-01 00:00:00.000000000 +00:00
+  :difference: <div class="diff"></div>

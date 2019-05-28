@@ -3,10 +3,20 @@
 # @attribute [Boolean] extensible the code list extensibel flag
 # @author Dave Iberson-Hurst
 # @since 0.0.1
-require "diffy"
+#require "diffy"
 
-class CdiscCl < ThesaurusConcept
+class CdiscCl < Thesaurus::ManagedConcept
+
+  def children
+    return self.narrower
+  end
   
+  def self.owner
+    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
+  end
+
+
+=begin  
   attr_accessor :extensible
   
   # Constants
@@ -283,5 +293,6 @@ class CdiscCl < ThesaurusConcept
     data = to_csv_no_header(self.identifier)
     generate_csv(headers, data)
   end
+=end
 
 end

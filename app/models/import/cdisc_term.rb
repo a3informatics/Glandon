@@ -23,7 +23,7 @@ class Import::CdiscTerm < Import::Rectangular
       import_type: :cdisc_term,
       sheet_name: :sheet,
       version_label: :date,
-      label: "CDISC Terminology"
+      label: "Controlled Terminology"
     }
   end
 

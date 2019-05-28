@@ -51,7 +51,19 @@ private
   end
     
   def merge_parent_set(reader)
-    reader.engine.parent_set.each {|k, v| @parent_set.key?(k) ? self.errors.add(:base, "Duplicate identifier #{k} detected during import.") : @parent_set[k] = v}
+    reader.engine.parent_set.each do |k, v| 
+      if @parent_set.key?(k) 
+        if @parent_set[k].diff?(v) 
+puts "P: #{@parent_set[k].to_h}"
+puts "V: #{v.to_h}"
+          self.errors.add(:base, "Duplicate identifier #{k} detected during import of #{reader.full_path} and a difference has been detected.") 
+        else
+          #
+        end
+      else
+        @parent_set[k] = v
+      end
+    end
   end
 
   def merge_classification_set(reader)
@@ -59,19 +71,13 @@ private
   end
 
   # Process. Process the results structre to convert to objects
-  def process(json)
-    results = {parent: nil, children: []}
-    parent = configuration[:parent_klass].build(json[:parent][:instance])
-    results[:parent] = parent 
+  def process(results)
+    parent = results[:parent]
     if managed?(configuration[:parent_klass].child_klass)
-      json[:children].each do |child|
-        child = configuration[:parent_klass].child_klass.build(child[:instance])
-        results[:children] << child
-        results[:parent].add_child(child)
-      end
+      results[:managed_children].each_with_index {|child, index| parent.add_child(child, index + 1)}
       # @todo need to add the other collections in the future in line below
       parent.collections = {datatype: TabularStandard::Datatype.new, compliance: TabularStandard::Compliance.new} 
-      results[:children].each {|child| child.update_variables(parent.collections)}
+      results[:managed_children].each {|child| child.update_variables(parent.collections)}
     end
     return results
   end
@@ -79,48 +85,46 @@ private
   # Check no errors in the objects structure.
   def object_errors?(objects)
     return true if objects[:parent].errors.any?
-    objects[:children].each {|c| return true if c.errors.any?}
+    objects[:managed_children].each {|c| return true if c.errors.any?}
     return false
   end
 
   # Is the klass a managed item
   def managed?(klass)
-    klass.ancestors.include?(IsoManaged)
+    klass.ancestors.include?(IsoManagedV2)
   end
 
-  # a
+  # Add the children that are managed items in their own right
   def add_managed_children(results)
     ordinal = 1
-    parent = results[:parent][:instance]
+    parent = results[:parent]
     @parent_set.each do |key, item| 
-      results[:children] << {order: ordinal, instance: add_managed_child(item, parent, ordinal)}
+      results[:managed_children] << add_managed_child(item, parent, ordinal)
       ordinal += 1
     end
     results[:classifications] = @classifications
   end
 
-  # Build the associated datasets
+  # Add a single managed child
   def add_managed_child(dataset, parent, ordinal)
-    instance = dataset.import_operation(identifier: dataset.identifier, label: parent[:managed_item][:label], 
-      semantic_version: parent[:operation][:new_semantic_version], version_label: parent[:managed_item][:scoped_identifier][:version_label], 
-      version: parent[:operation][:new_version], date: parent[:managed_item][:creation_date], ordinal: ordinal)
-    instance[:managed_item][:children] = []
-    dataset.children.each {|v| instance[:managed_item][:children] << v.to_hash}
-    return instance
+    dataset.set_import(identifier: dataset.identifier, label: parent.label, 
+      semantic_version: parent.semantic_version, version_label: parent.version_label, 
+      version: parent.version, date: parent.creation_date.to_s, ordinal: ordinal)
+    return dataset
   end        
 
+  # Add the children that are not managed items
   def add_children(results)
-    parent = results[:parent][:instance]
-    @parent_set.each {|key, item| parent[:managed_item][:children] << item.to_hash}
+    @parent_set.each {|key, item| results[:managed_children] << item}
   end
 
   def add_parent(params)
     klass = configuration[:parent_klass]
     parent = klass.new
-    instance = parent.import_operation(identifier: klass.configuration[:identifier], label: params[:label], 
+    parent.set_import(identifier: klass.configuration[:identifier], label: params[:label], 
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
-    return {parent: {:order => 1, :instance => instance}, children: [], classifications: {}}
+    return {parent: parent, managed_children: [], classifications: {}}
   end
   
 end

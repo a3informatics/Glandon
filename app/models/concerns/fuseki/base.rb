@@ -20,6 +20,7 @@ module Fuseki
     extend Schema
     extend Properties
     include Utility
+    include Diff
 
     def initialize(attributes = {})
       @new_record = true

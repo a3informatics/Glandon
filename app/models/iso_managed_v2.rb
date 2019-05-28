@@ -109,7 +109,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [string] The status
   def registration_status
     return "na" if self.has_state.nil?
-    return self.has_state.registrationStatus
+    return self.has_state.registration_status
   end
 
   # Checks if item is regsitered
@@ -253,23 +253,47 @@ class IsoManagedV2 < IsoConceptV2
 
   # Set URIs. Sets the URIs for the managed item and all children
   #
+  # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
   # @return [Void] no return
-  def set_uris
-    generate_uri(Uri.new(authority: owner.ra_namespace.authority, identifier: self.identifier, version: self.version))
+  def set_uris(ra)
+    generate_uri(Uri.new(authority: ra.ra_namespace.authority, identifier: self.identifier, version: self.version))
   end
 
   # Set Intial. Sets the SI and RS fields to the initial values for a new item.
   #
   # @param [String] indentifier the identifier
-  # @param [IsoRegistrationAuthorityV2] ra the registration authority under which the item is being registered
   # @return [Void] no return
-  def set_initial(identifier, ra)
+  def set_initial(identifier)
+    ra = IsoRegistrationAuthority.owner
     self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra)
     self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: "Incomplete", previous_state: "Incomplete")
     self.last_change_date = Time.now
-    set_uris
+    set_uris(ra)
   end
-  
+
+  # Set Import. Sets the key parameters for a managed item.
+  #
+  # @param [Hash] params the params hash
+  # @option params [String] :label the items's label
+  # @option params [String] :identifier the items's identifier
+  # @option params [String] :version_label the items's version label
+  # @option params [String] :semantic_version the items's semantic version
+  # @option params [String] :version the items's version (integer as a string)
+  # @option params [String] :date the items's release date
+  # @option params [Integer] :ordinal the ordinal for the item
+  # @return [Void] no return
+  def set_import(params)
+    ra = self.class.owner
+    self.label = params[:label] if self.label.blank?
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: params[:identifier], version: params[:version], version_label: params[:version_label], 
+      semantic_version: params[:semantic_version], has_scope: ra)
+    self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: IsoRegistrationStateV2.released_state, 
+      previous_state: IsoRegistrationStateV2.released_state)
+    self.creation_date = params[:date].to_time_with_default
+    self.last_change_date = params[:date].to_time_with_default
+    set_uris(ra)
+  end 
+
 private
 
   # The update query

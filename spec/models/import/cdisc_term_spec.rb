@@ -21,21 +21,13 @@ describe Import::CdiscTerm do
   end
 
 	before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+    ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
+    load_files(schema_files, data_files)
     Import.destroy_all
     delete_all_public_test_files
     setup
@@ -215,7 +207,7 @@ describe Import::CdiscTerm do
     full_path_5 = test_file_path(sub_dir, "Protocol Terminology 2018-09-28.xlsx")
     params = 
     {
-      version: "1", date: "2012-06-29", files: [full_path_1, full_path_2, full_path_3, full_path_4, full_path_5], 
+      version: "1", date: "2018-12-21", files: [full_path_1, full_path_2, full_path_3, full_path_4, full_path_5], 
       version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
     }
     result = @object.import(params)
@@ -225,8 +217,30 @@ describe Import::CdiscTerm do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2010-12-21.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2010-12-21.yaml")
+  #Xwrite_yaml_file(actual, sub_dir, "import_version_2018-12-21.yaml")
+    expected = read_yaml_file(sub_dir, "import_version_2018-12-21.yaml")
+    expect(actual).to eq(expected)
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, Duplicates I" do
+    full_path_1 = test_file_path(sub_dir, "SDTM Terminology Duplicate 1.xlsx")
+    full_path_2 = test_file_path(sub_dir, "SDTM Terminology Duplicate 2.xlsx")
+    params = 
+    {
+      version: "1", date: "2018-12-21", files: [full_path_1, full_path_2], 
+      version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
+    }
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+    actual = read_yaml_file(sub_dir, filename)
+  #Xwrite_yaml_file(actual, sub_dir, "import_duplicate_1.yaml")
+    expected = read_yaml_file(sub_dir, "import_duplicate_1.yaml")
     expect(actual).to eq(expected)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

@@ -76,15 +76,16 @@ describe IsoManagedV2 do
 		result =     
 			{ 
       	:uri => {},
-        :has_identifier => {},
-        :has_state => {},
+        :has_identifier => nil,
+        :has_state => nil,
         :rdf_type => "http://www.assero.co.uk/ISO11179Types#AdministeredItem",
       	:label => "",
       	:origin => "",
       	:change_description => "",
       	:creation_date => "2016-01-01T00:00:00+00:00",
       	:last_change_date => "2016-01-01T00:00:00+00:00",
-      	:explanatory_comment => ""
+      	:explanatory_comment => "",
+        :uuid => nil
     	}
 		item = IsoManagedV2.new
     expect(item.to_h).to eq(result)
@@ -138,7 +139,7 @@ describe IsoManagedV2 do
   it "allows registration status and registered to be determined" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-    expect(item.has_state.registration_status).to eq("Incomplete")   
+    expect(item.registration_status).to eq("Incomplete")   
     expect(item.registered?).to eq(true)   
   end
 
@@ -400,13 +401,34 @@ describe IsoManagedV2 do
   end
 
   it "sets up the initial version" do
-    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     item = IsoManagedV2.new
-    item.set_initial("AAA", ra)
+    item.set_initial("AAA")
     expect(item.version).to eq(1)
     expect(item.identifier).to eq("AAA")
     expect(item.owner_short_name).to eq("BBB")
     expect(item.uri.to_s).to eq("http://www.bbb.com/AAA/V1")
+  end
+
+  it "sets up the import version" do
+  
+    class IMV2Klass < IsoManagedV2
+      
+      def self.owner
+        IsoRegistrationAuthority.find_by_short_name("BBB")
+      end
+
+    end
+  
+    item = IMV2Klass.new
+    params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", version: 5, date: "1989-07-07", ordinal: 1}
+    item.set_import(params)
+    expect(item.version).to eq(5)
+    expect(item.identifier).to eq("XXX")
+    expect(item.owner_short_name).to eq("BBB")
+    expect(item.creation_date.iso8601).to eq("1989-07-07T00:00:00+02:00")
+    expect(item.last_change_date.iso8601).to eq("1989-07-07T00:00:00+02:00")
+    expect(item.uri.to_s).to eq("http://www.bbb.com/XXX/V5")
+    expect(item.registration_status).to eq("Standard")
   end
 
 end
