@@ -5,9 +5,9 @@
 /**
  * Initialize the editor. Set the call back functions
  *
- * @param clickCallBackPre [Function] the function to be called pre click processing
- * @param clickCallBackPost [Function] the function to be called post click processing
- * @param dblClickCallBackPost [Function] the function to be called post click processing
+ * @param [Function] clickCallBackPre the function to be called pre click processing
+ * @param [Function] clickCallBackPost the function to be called post click processing
+ * @param [Function] dblClickCallBackPost the function to be called post click processing
  * @return [Null] 
  */
 function D3Editor(d3DivId, clickCallBackPre, clickCallBackPost, dblClickCallBackPost, validateCallBack) {
@@ -62,10 +62,10 @@ D3Editor.prototype.getCurrent = function () {
  * Function to handle click on the D3 tree. Show the node info. Highlight the node.
  * Perform the pre and post callbacks.
  *
- * @param node [Object] the current node
+ * @param  [Object] node the current node
  * @return [Null] 
  */
-D3Editor.prototype.click = function (node) {    
+D3Editor.prototype.click = function (node) { 
   var valid = true;
   if (this.currentNode != null) {
     valid = this.validateCallBack(this.currentNode);
@@ -75,9 +75,9 @@ D3Editor.prototype.click = function (node) {
     }
   }
   if (valid) { 
-    this.currentGRef = this;
+    this.currentGRef = d3FindGRef(node.key);
     this.currentNode = node;
-    d3MarkNode(this);
+    d3MarkNode(this.currentGRef);
     this.clickCallBackPost(this.currentNode);
   }
 }  
@@ -86,19 +86,19 @@ D3Editor.prototype.click = function (node) {
  * Function to handle double click on the D3 tree. Expand or hide the children,
  * display the tree and make the callback.
  *
- * @param node [Object] the current node
+ * @param  [Object] node the current node
  * @return [Null] 
  */
 D3Editor.prototype.dblClick = function (node) {
-  d3eExpandHide(node);
-  d3eDisplayTree(node.key);
+  this.expandHide(node);
+  this.displayTree(node.key);
   this.dblClickCallBackPost(node);
 } 
 
 /**
  * Expands or hide a node's children
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.expandHide = function (node) {
@@ -114,34 +114,34 @@ D3Editor.prototype.expandHide = function (node) {
 /**
  * Force hide a node's children
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.forceHide = function (node) {
   node.expand = false;
-  d3eExpandHide(node);
+  this.expandHide(node);
 } 
 
 /**
  * Force expand a node's children
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.forceExpand = function (node) {
   node.expand = (node.save.length > 0) ? true : false;
-  d3eExpandHide(node); 
+  this.expandHide(node); 
 } 
 
 
 /**
  * Displays the tree
  * 
- * @param nodeKey [Integer] the node key of the node to be displayed
+ * @param  [Integer] nodeKey the node key of the node to be displayed
  * @return [Null]
  */
 D3Editor.prototype.displayTree = function (nodeKey) {
-  d3TreeNormal(this.d3Div, this.rootNode, this.click, this.dblClick);
+  d3TreeNormal(this.d3Div, this.rootNode, this.click.bind(this), this.dblClick.bind(this));
   var gRef = d3FindGRef(nodeKey);
   if (gRef !== null) {
     this.currentGRef = gRef;
@@ -157,14 +157,25 @@ D3Editor.prototype.displayTree = function (nodeKey) {
  */
 D3Editor.prototype.reDisplay = function () {
   if (this.currentNode != null) {
-    d3eDisplayTree(this.currentNode .key);
+    this.displayTree(this.currentNode.key);
   }
+}
+
+/**
+ * Resize Display of the tree
+ * 
+ * @return [void]
+ */
+D3Editor.prototype.reSizeDisplay = function (step) {
+  var height = d3GetHeight();
+  d3AdjustHeight(height + step);
+  this.reDisplay();
 }
 
 /**
  * Deletes a node.
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.deleteNode = function (node) {
@@ -179,8 +190,8 @@ D3Editor.prototype.deleteNode = function (node) {
     delete parentNode.save;
     parentData.children = [];
   }
-  d3eSetParent(parentNode);
-  d3eSetOrdinal(parentData);
+  this.setParent(parentNode);
+  this.setOrdinal(parentData);
   return parentNode;
 }
 
@@ -195,7 +206,7 @@ D3Editor.prototype.deleteChildren = function (node) {
 /**
  * Moves the node up. Prevents moving up past first position.
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.moveNodeUp = function (node) {
@@ -216,14 +227,14 @@ D3Editor.prototype.moveNodeUp = function (node) {
     parentData.children[parentIndex] = tempNode1;
     tempNode1.index = parentIndex;
     tempNode2.index = parentIndex - 1;
-    d3eSetOrdinal(parentData);
+    this.setOrdinal(parentData);
   }
 }
 
 /**
  * Moves the node down. Prevents moving down past last position.
  * 
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Null]
  */
 D3Editor.prototype.moveNodeDown = function (node) {
@@ -244,7 +255,7 @@ D3Editor.prototype.moveNodeDown = function (node) {
     parentData.children[parentIndex] = tempNode1;
     tempNode1.index = parentIndex;
     tempNode2.index = parentIndex + 1;
-    d3eSetOrdinal(parentData);
+    this.setOrdinal(parentData);
   }
 }
 
@@ -260,7 +271,7 @@ D3Editor.prototype.lastKey = function () {
 /**
  * Tests if node has children
  *
- * @param node [Object] the node
+ * @param  [Object] node the node
  * @return [Boolean] true if node has children, false otherwise.
  */
 D3Editor.prototype.hasChildren = function (node) {
@@ -277,9 +288,9 @@ D3Editor.prototype.hasChildren = function (node) {
 
 /**
  *
- * @param parentNode [Object] The parent node
- * @param data [Object] The data object associated with the node
- * @param addAtEnd [Object] At at end of existing nodes if true, at front if false
+ * @param [Object] parentNode The parent node
+ * @param [Object] data The data object associated with the node
+ * @param [Object] addAtEnd At at end of existing nodes if true, at front if false
  */
 D3Editor.prototype.addData = function (parentNode, data, addAtEnd) {
   if (!parentNode.data.hasOwnProperty('children')) {
@@ -290,7 +301,7 @@ D3Editor.prototype.addData = function (parentNode, data, addAtEnd) {
   } else {
     parentNode.data.children.unshift(data);
   }
-  d3eSetOrdinal(parentNode.data);
+  this.setOrdinal(parentNode.data);
 }
 
 /**
@@ -298,8 +309,8 @@ D3Editor.prototype.addData = function (parentNode, data, addAtEnd) {
  * Will also add th edata into the corresponding position in the 
  * parallel data tree.
  *
- * @param parent [Object] The parent node
- * @param name [Object] The node name
+ * @param [Object] parent The parent node
+ * @param [Object] name The node name
  * @param type [Object] The node type
  * @param enabled [Object] The node enabled flag
  * @param data [Object] The data object associated with the node

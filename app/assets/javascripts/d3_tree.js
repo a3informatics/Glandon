@@ -194,10 +194,21 @@ function d3TextColour (node) {
 }
 
 function d3AdjustHeight(height) {
-  if (height < 800) {
-    height = 800;
+  var originalHeight = $(window).height() - 400;
+  if (height < originalHeight) {
+    height = originalHeight;
   }
   d3HeightOverride = true;
   d3HeightOverrideValue = height;  
-  //$('#d3').css("height",height + "px");  
-}  
+  $('#d3').css("height",height + "px");  
+}
+
+/*
+ * Get Current Height
+ *
+ * @return [Integer] the exisitng height of the D3 div
+ */
+function d3GetHeight() {
+  var height = $('#d3').css("height");
+  return parseInt(height.replace("px", ""));
+} 

@@ -1,45 +1,63 @@
 $(document).ready(function() {
   
-  initData();
+  var csvp = new ConceptSystemViewPanel(100);
   
   // Set window resize.
-  window.addEventListener("resize", d3eReDisplay);
+  window.addEventListener("resize", csvp.reDisplay);
 
 });
 
-function initData () { 
-  var html = $("#jsonData").html();
-  var json = $.parseJSON(html);
-  d3eInit("d3", empty, displayNode, empty, emptyValidation);
-  rootNode = d3eRoot(json.label, "", json)
-  for (i=0; i<json.children.length; i++) {
-    child = json.children[i];
-    setD3(child, rootNode);
+function ConceptSystemViewPanel(step) { 
+  this.html = $("#jsonData").html();
+  this.json = $.parseJSON(this.html);
+  // d3eInit("d3", empty, displayNode, empty, emptyValidation);
+  this.heightStep = step;
+  this.d3Editor = new D3Editor("d3", this.empty.bind(this), this.displayNode.bind(this), this.empty.bind(this), this.validate.bind(this));
+  this.rootNode = this.d3Editor.root(this.json.label, "", this.json)
+  for (i=0; i < this.json.children.length; i++) {
+    child = this.json.children[i];
+    this.initNode(child, this.rootNode);
   }
-  d3eDisplayTree(rootNode.key);
+  this.d3Editor.displayTree(this.rootNode.key);
+
+  var _this = this;
+
+  $('#d3_minus').click(function () {
+    _this.d3Editor.reSizeDisplay(_this.heightStep * -1);
+  });
+
+  $('#d3_plus').click(function () {
+    _this.d3Editor.reSizeDisplay(_this.heightStep);
+  });
+
 }
 
-function setD3(sourceNode, d3ParentNode) {
+ConceptSystemViewPanel.prototype.initNode = function(sourceNode, d3ParentNode) {
   var newNode;
   var i;
   var child;
-  newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+  newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
   if (sourceNode.hasOwnProperty('children')) {
     for (i=0; i<sourceNode.children.length; i++) {
       child = sourceNode.children[i];
-      setD3(child, newNode);
+      this.initNode(child, newNode);
     }
   }
 }
 
-function empty(node) {
+ConceptSystemViewPanel.prototype.empty = function(node) {
 }
 
-function emptyValidation(node) {
+ConceptSystemViewPanel.prototype.reDisplay = function() {
+  var _this = this;
+  _this.d3Editor.reDisplay();
+}
+
+ConceptSystemViewPanel.prototype.validate = function(node) {
   return true;
 }
 
-function displayNode(node) {
+ConceptSystemViewPanel.prototype.displayNode = function(node) {
   if (node.type ===  C_SYSTEM) {
     // Do nothing
   } else if (node.type === C_TAG) {
