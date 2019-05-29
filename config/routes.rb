@@ -97,7 +97,6 @@ Rails.application.routes.draw do
     collection do
       get :node_new
       post :node_add
-      get :view
     end
   end
   namespace :iso_concept_systems do

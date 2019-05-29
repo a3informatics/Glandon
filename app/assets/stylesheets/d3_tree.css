@@ -20,3 +20,28 @@
 }
 
 .d3-tree { height:75vh; }
+
+.tree-toolbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+
+}
+
+.search-tree {
+  width: 10em;
+  margin: 0 5px;
+}
+
+
+.handle-tag-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+.update-tag {
+  margin-right: 5px;
+}
