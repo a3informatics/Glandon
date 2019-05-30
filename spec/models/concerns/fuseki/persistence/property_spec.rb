@@ -27,8 +27,7 @@ describe Fuseki::Persistence::Property do
     include ActiveModel::AttributeMethods
 
     include Fuseki::Persistence::Property
-    #extend Fuseki::Schema
-    #extend Fuseki::Properties
+    include Fuseki::Properties
 
     def initialize
       self.class.class_variable_set(:@@schema, Fuseki::Schema::SchemaMap.new({}))
@@ -206,7 +205,7 @@ describe Fuseki::Persistence::Property do
     expect(item.effective_date).to eq("2016-01-01 00:00:00.000000000 +0000")
     allow_any_instance_of(Fuseki::Schema::SchemaMap).to receive(:range).and_return("dateTime")
     item.from_value_test(:@effective_date, "2011-01-01")
-    expect(item.effective_date.to_s).to eq("2011-01-01 00:00:00 +0000")
+    expect(item.effective_date.to_s).to eq("2011-01-01 00:00:00 +0100")
   end
 
   it "allows for value update, object & array" do
@@ -234,4 +233,14 @@ describe Fuseki::Persistence::Property do
     expect(item.registration_authority.last.to_h).to eq(input_2)
   end
  
+  it "detects the property target class" do
+    item = TestFpp4.new
+    expect(item.property_target(:@registration_authority)).to eq(TestFpp1)
+  end
+
+  it "detects the property target class, not a link" do
+    item = TestFpp4.new
+    expect{item.property_target(:@effective_date)}.to raise_error(Errors::ApplicationLogicError, "Calling method 'property_target' on non-object property '@effective_date'")
+  end
+
 end

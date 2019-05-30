@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Excel do
+describe Excel::Engine do
 	
 	include DataHelpers
 
@@ -13,6 +13,26 @@ describe Excel do
     @child_object = ChildClass.new
   end
 
+  class EET1Class
+    extend ActiveModel::Naming
+    attr_reader :errors
+    attr_accessor :definition
+
+    def initialize
+      @errors = ActiveModel::Errors.new(self)
+      @definition = []
+    end
+
+    def property_target(name)
+      return DefinitionClass
+    end
+
+    def from_object(name, object)
+      @definition << object
+    end
+
+  end
+
   class ScopedIdentifierClass
     extend ActiveModel::Naming
     attr_accessor :identifier
@@ -23,6 +43,41 @@ describe Excel do
 
     def to_hash
       return {identifier: self.identifier}
+    end
+
+  end
+
+  class DefinitionClass < Fuseki::Base
+
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
+    data_property :label
+
+    # Need to fake this as we are no loading any schema triples for this test
+    full_path = Rails.root.join "spec/fixtures/files/models/concerns/excel/engine/schema.yaml"
+    schema = YAML.load_file(full_path)
+    Fuseki::Base.class_variable_set(:@@schema, Fuseki::Schema::SchemaMap.new(schema))
+    
+    def to_hash
+      {label: self.label}
+    end
+
+    def to_json
+      to_hash
+    end
+
+  end
+
+  class EET2Class < Fuseki::Base
+
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
+    object_property :collection, cardinality: :many, model_class: "DefinitionClass"
+
+    def to_hash
+      {label: self.label}
+    end
+
+    def property_target(name)
+      return DefinitionClass
     end
 
   end
@@ -53,9 +108,17 @@ describe Excel do
       return result
     end
 
+    def property_target(name)
+      return DefinitionClass
+    end
+
+    def from_object(name, object)
+      instance_variable_set(name, object)
+    end
+
   end
 
-  class ParentClass < IsoManaged
+  class ParentClass < IsoManagedV2
     extend ActiveModel::Naming
     attr_accessor :label
     attr_accessor :children
@@ -73,19 +136,13 @@ describe Excel do
       return result
     end
 
-  end
-
-  class Test
-    extend ActiveModel::Naming
-    attr_reader :errors
-
-    def initialize
-      @errors = ActiveModel::Errors.new(self)
+    def property_target(name)
+      return DefinitionClass
     end
 
   end
 
-  def parent_set_hash(object)
+ def parent_set_hash(object)
     result = []
     object.parent_set.each {|k,c| result << c.to_hash}
     return result
@@ -94,7 +151,7 @@ describe Excel do
   it "initialize object, success" do
     full_path = test_file_path(sub_dir, "new_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(object.parent_set). to eq({})
     expect(parent.errors.count).to eq(0)
@@ -103,7 +160,7 @@ describe Excel do
   it "checks a cell, empty, permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.check_value(4, 2, true)
     expect(result).to eq("")
@@ -113,7 +170,7 @@ describe Excel do
   it "checks a cell, empty, not permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.check_value(4, 2, false)
     expect(result).to eq("")
@@ -124,7 +181,7 @@ describe Excel do
   it "checks a cell, full, permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.check_value(4, 1, true)
     expect(result).to eq("3")
@@ -134,7 +191,7 @@ describe Excel do
   it "checks a cell, full, not permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.check_value(4, 1, false)
     expect(result).to eq("3")
@@ -144,7 +201,7 @@ describe Excel do
   it "checks a cell for empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.cell_empty?(4, 1)
     expect(result).to eq(false)
@@ -157,7 +214,7 @@ describe Excel do
   it "checks a cell for blank and not blank" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.column_blank?({row: 4, col: 1})
     expect(result).to eq(false)
@@ -176,7 +233,7 @@ describe Excel do
   it "checks a condition" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.process_action?({method: :column_blank?, column: 1}, 4)
     expect(result).to eq(false)
@@ -196,7 +253,7 @@ describe Excel do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.create_parent({row: 2, col: 1, map: {P1: "IDENT_1", P2: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
     expect(the_result).to be_a(ParentClass)
@@ -211,7 +268,7 @@ describe Excel do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.create_parent({row: 2, col: 1, map: {}, klass: "ParentClass"}) {|result| the_result = result}
     result = parent_set_hash(object)
@@ -225,7 +282,7 @@ describe Excel do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.create_parent({row: 2, col: 1, map: {PX: "IDENT_1", PY: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
     result = parent_set_hash(object)
@@ -240,7 +297,7 @@ describe Excel do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.create_parent({row: 6, col: 1, map: {P1: "IDENT_1", P2: "IDENT_2"}, klass: "ParentClass"}) {|result| the_result = result}
     result = parent_set_hash(object)
@@ -255,57 +312,175 @@ describe Excel do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.create_child({row: 2, col: 1, map: {}, klass: "ChildClass"}) {|result| the_result = result}
     expect(the_result).to be_a(ChildClass)
     expect(parent.errors.count).to eq(0)
   end
 
-  it "returns the compliance" do
+  it "creates definition, non exists" do
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(parent.definition.count).to eq(0)
+    object.create_definition(parent, "definition", "Expected")
+    expect(parent.definition.count).to eq(1)
+    expect(parent.definition.first).to be_a(DefinitionClass)
+    expect(parent.definition.first.label).to eq("Expected")
+    expect(parent.errors.count).to eq(0)
+  end
+
+  it "creates definition, exists" do
+    DefinitionClass.create(label: "Expected", uri: Uri.new(uri: "http://www.example.com/temp#expected"))
+    result = DefinitionClass.all
+    expect(result.count).to eq(1)
+    full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(parent.definition.count).to eq(0)
+    object.create_definition(parent, "definition", "Expected")
+    expect(parent.definition.count).to eq(1)
+    expect(parent.definition.first).to be_a(DefinitionClass)
+    expect(parent.definition.first.label).to eq("Expected")
+    expect(parent.definition.first.uri).to eq(result.first.uri)
+    expect(parent.errors.count).to eq(0)
+  end
+
+  it "create classification, non exists" do
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    object.core_classification({row: 2, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
-    expect(@child_object.compliance).to be_a(SdtmModelCompliance)
-    expect(@child_object.compliance.label).to eq("This is A")
+    object.create_classification({row: 2, col: 1, object: parent, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "definition"})
+    expect(parent.definition.count).to eq(1)
+    result = parent.definition[0]
+    expect(result).to be_a(DefinitionClass)
+    expect(result.label).to eq("This is A")
     expect(parent.errors.any?).to eq(false)
-    object.core_classification({row: 4, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
-    expect(@child_object.compliance).to be_a(SdtmModelCompliance)
-    expect(@child_object.compliance.label).to eq("This is C")
+    object.create_classification({row: 4, col: 1, object: parent, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "definition"})
+    expect(parent.definition.count).to eq(2)
+    result = parent.definition[0]
+    expect(result).to be_a(DefinitionClass)
+    expect(result.label).to eq("This is A")
     expect(parent.errors.any?).to eq(false)
-    object.core_classification({row: 5, col: 1, object: @child_object, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "compliance"})
-    expect(@child_object.compliance).to be_nil
+    expect(parent.errors.any?).to eq(false)
+    object.create_classification({row: 5, col: 1, object: parent, map: {A: "This is A", B: "This is B", C: "This is C"}, property: "definition"})
+    expect(parent.definition.count).to eq(2)
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'ERROR' error detected in row 5 column 1.")
   end
 
-  it "returns the datatype" do
+  it "returns the classification, exists" do
+    exists_1 = DefinitionClass.create(label: "This is X", uri: Uri.new(uri: "http://www.example.com/temp#X"))
+    exists_2 = DefinitionClass.create(label: "This is Y", uri: Uri.new(uri: "http://www.example.com/temp#Y"))
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.datatype_classification({row: 2, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
-    expect(result).to be_a(SdtmModelDatatype)
+    result = DefinitionClass.all
+    expect(result.count).to eq(2)
+    expect(parent.definition.count).to eq(0)
+    object.create_classification({row: 2, col: 2, object: parent, map: {X: "This is X", Y: "This is Y"}, property: "definition"})
+    expect(parent.definition.count).to eq(1)
+    result = parent.definition[0]
+    expect(result).to be_a(DefinitionClass)
     expect(result.label).to eq("This is X")
+    expect(result.uri).to eq(exists_1.uri)
     expect(parent.errors.any?).to eq(false)
-    result = object.datatype_classification({row: 3, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
-    expect(result).to be_a(SdtmModelDatatype)
+    object.create_classification({row: 3, col: 2, object: parent, map: {X: "This is X", Y: "This is Y"}, property: "definition"})
+    expect(parent.definition.count).to eq(2)
+    result = parent.definition[1]
+    expect(result).to be_a(DefinitionClass)
     expect(result.label).to eq("This is Y")
+    expect(result.uri).to eq(exists_2.uri)
     expect(parent.errors.any?).to eq(false)
-    result = object.datatype_classification({row: 4, col: 2, object: @child_object, map: {X: "This is X", Y: "This is Y"}, property: "datatype"})
-    expect(result).to be_nil
+    object.create_classification({row: 4, col: 2, object: parent, map: {X: "This is X", Y: "This is Y"}, property: "definition"})
+    expect(parent.definition.count).to eq(2)
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'NONE' error detected in row 4 column 2.")
   end
 
+  it "can create multiple shared definitions, I" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.tokenize_and_create_shared({row: 2, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}})
+    expect(parent.collection.count).to eq(3)
+    expect(parent.collection[0].label).to eq("A")
+    expect(parent.collection[1].label).to eq("B")
+    expect(parent.collection[2].label).to eq("C")
+  end
+
+  it "can create multiple shared definitions, II" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.tokenize_and_create_shared({row: 4, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}})
+    expect(parent.collection.count).to eq(4)
+    expect(parent.collection[0].label).to eq("C")
+    expect(parent.collection[1].label).to eq("D:E:F")
+    expect(parent.collection[2].label).to eq("G")
+    expect(parent.collection[3].label).to eq("H")
+  end
+
+  it "can create multiple shared definitions, III" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.tokenize_and_create_shared({row: 5, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}})
+    expect(parent.collection.count).to eq(0)
+  end
+
+  it "can create shared definitions, I" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.create_shared({row: 4, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}, can_be_empty: true})
+    expect(parent.collection.count).to eq(1)
+    expect(parent.collection[0].label).to eq("C;D:E:F ;  G ; H;")
+  end
+
+  it "can create shared definitions, II" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.create_shared({row: 5, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}, can_be_empty: true})
+    expect(parent.collection.count).to eq(0)
+  end
+
   it "returns the CT Reference" do
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.ct_reference({row: 2, col: 3, object: @child_object, map: {}, property: "ct"})
     expect(@child_object.ct).to eq("X1X")
@@ -322,7 +497,7 @@ describe Excel do
   it "returns the CT Other information" do
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.ct_other({row: 2, col: 3, object: @child_object, map: {}, property: "ct_notes"})
     expect(@child_object.ct_notes).to eq("")
@@ -337,7 +512,7 @@ describe Excel do
   it "returns the sheet info" do
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.sheet_info(:cdisc_adam_ig, :main)
   #Xwrite_yaml_file(result, sub_dir, "sheet_info_expected_1.yaml")
@@ -348,7 +523,7 @@ describe Excel do
   it "process engine, no errors" do
     full_path = test_file_path(sub_dir, "process_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.process(:test_1, :sheet_1)
     result = parent_set_hash(object)
@@ -361,7 +536,7 @@ describe Excel do
   it "process engine, parent map missing" do
     full_path = test_file_path(sub_dir, "process_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.process(:test_2, :sheet_1)
     result = parent_set_hash(object)
@@ -377,7 +552,7 @@ describe Excel do
   it "process engine, no errors with conditional" do
     full_path = test_file_path(sub_dir, "process_input_3.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
-    parent = Test.new
+    parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     object.process(:test_3, :sheet_1)
     result = parent_set_hash(object)

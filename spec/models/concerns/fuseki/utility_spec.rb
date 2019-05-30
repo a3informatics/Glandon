@@ -26,6 +26,7 @@ describe Fuseki::Utility do
     include ActiveModel::Validations
     include ActiveModel::AttributeMethods
 
+    include Fuseki::Persistence
     include Fuseki::Persistence::Property
     include Fuseki::Utility
     extend Fuseki::Schema
@@ -126,7 +127,8 @@ describe Fuseki::Utility do
       owner: "12345", 
       organization_identifier: "Hello World", 
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
-      uri: uri_s.to_s 
+      uri: uri_s.to_s,
+      uuid: uri_s.to_id
     }
     item = TestFU1.new
     item.uri = uri_s
@@ -142,7 +144,8 @@ describe Fuseki::Utility do
       effective_date: "2016-01-01T00:00:00+00:00", 
       ra_namespace: [uri.to_s, uri.to_s],
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-      uri: uri_s.to_s 
+      uri: uri_s.to_s,
+      uuid: uri_s.to_id
     }
     item = TestFU2.new
     item.uri = uri_s
@@ -158,7 +161,8 @@ describe Fuseki::Utility do
       effective_date: "2016-01-01T00:00:00+00:00", 
       ra_namespace: uri.to_s,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-      uri: uri_s.to_s 
+      uri: uri_s.to_s, 
+      uuid: uri_s.to_id
     }
     item = TestFU3.new
     item.uri = uri_s
@@ -172,7 +176,8 @@ describe Fuseki::Utility do
       effective_date: "2016-01-01T00:00:00+00:00", 
       ra_namespace: TestToH.new.to_h,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
-      uri: uri_s.to_s 
+      uri: uri_s.to_s,
+      uuid: uri_s.to_id
     }
     item = TestFU3.new
     item.uri = uri_s

@@ -41,7 +41,7 @@ class Excel::Engine
             next unless process_action?(action[:condition], row)
             action_object = action[:object].to_sym
             action_method = action[:method].to_sym
-            params = action.slice(:map, :klass, :property, :can_be_empty)
+            params = action.slice(:map, :klass, :property, :can_be_empty, :additional)
             params.merge!({row: row, col: col})
             action_object == :parent ? params[:object] = parent : params[:object] = child
             if action_method == :create_parent
@@ -140,6 +140,68 @@ class Excel::Engine
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
+  # Tokenize And Create Shared
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank.
+  # @option params [Hash] :additonal hash containing the tokenize separator character
+  # @return [Void] no return
+  def tokenize_and_create_shared(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :property, :can_be_empty, :additional])
+    x = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if x.empty?
+    parts = x.split(params[:additional][:token])
+    parts.each {|p| create_definition(params[:object], params[:property], p.strip)}
+  end
+
+  # Create Shared
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank.
+  # @return [Void] no return
+  def create_shared(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :property, :can_be_empty])
+    x = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if x.empty?
+    create_definition(params[:object], params[:property], x)
+  end
+
+  # Create Classification
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @param [Object] object the object in which the property is being set
+  # @param [Hash] map the mapping from spreadsheet values to internal values
+  # @param [String] property the name of the property
+  # @return [Void] no return
+  def create_classification(params)
+    check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
+    create_definition(params[:object], params[:property], check_mapped(params[:row], params[:col], params[:map]))
+  end
+
+  # Create Definition
+  #
+  # @param [Object] parent the parent instance
+  # @param [String] property the property name
+  # @param [String] label the label for the definition
+  # @return [Void] no return
+  def create_definition(parent, property, label)
+    return if label.blank?
+    klass = parent.property_target(property)
+    results = klass.where(label: label)
+    object = results.any? ? results.first : object_create(klass, label)
+    parent.from_object(Fuseki::Persistence::Naming.new(property).as_instance, object)
+  end
+
+=begin
   # Core Classification
   #
   # @param [Integer] row the cell row
@@ -169,6 +231,7 @@ class Excel::Engine
     params[:object].instance_variable_set("@#{params[:property]}", object_create(SdtmModelDatatype, 
       check_mapped(params[:row], params[:col], params[:map])))
   end
+=end
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped
   #
@@ -282,7 +345,7 @@ private
   def parent_create(klass, identifier)
     return @parent_set[identifier] if @parent_set.has_key?(identifier)
     item = klass.new
-    item.scopedIdentifier.identifier = identifier if item.is_a? IsoManaged
+    item.scopedIdentifier.identifier = identifier if item.is_a? IsoManagedV2
     @parent_set[identifier] = item
     return item
   end

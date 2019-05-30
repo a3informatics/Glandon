@@ -26,7 +26,7 @@ module Fuseki
     # @return [Boolean] true if different, false otherwise.
     def diff?(other)
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if self.class != other.class
-      properties = properties_read(:instance)
+      properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
         self_object = self.instance_variable_get(name)
@@ -47,13 +47,15 @@ module Fuseki
     # Diff? Are the two objects different
     #
     # @param [Object] other the other object to which this object is being compared
+    # @param [Hash] options the options to use for the diff operation
+    # @option options [Array] :ignore An array of properties to be ignored
     # @raise [Errors::ApplicationLogicError] raised if the objects are not of the same class
-    # @return [Boolean] true if different, false otherwise.
+    # @return [Hash] the results hash
     def difference(previous, options={})
       options[:ignore] = [:uri, :rdf_type, :uuid] if options[:ignore].blank?
       results = {}
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{previous.class.name}") if self.class != previous.class
-      properties = properties_read(:instance)
+      properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
         next if options[:ignore].include?(variable)
@@ -65,7 +67,7 @@ module Fuseki
           a = ""
           status = previous_object.nil? ? :no_change : :deleted
           b = previous_object.nil? ? "" : previous_object
-          results[variable] = self.difference_record(:not_present, a, b)
+          results[variable] = difference_record(:not_present, a, b)
         elsif self_object.respond_to? :difference
           self_object.difference(other_object, options)
         else

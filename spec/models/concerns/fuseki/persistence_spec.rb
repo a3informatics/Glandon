@@ -68,7 +68,7 @@ describe Fuseki::Persistence do
   end
 
   it "error if RDF type not configured" do
-    expect(TestFp1).to receive(:properties_read).and_return(read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") )
+    expect(TestFp1).to receive(:properties_read_class).and_return(read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") )
     triples = read_yaml_file(sub_dir, "from_results_recurse_input_1.yaml")
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     result = TestFp1.from_results_recurse(uri, triples)

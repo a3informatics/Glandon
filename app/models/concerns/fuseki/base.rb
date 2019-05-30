@@ -18,7 +18,7 @@ module Fuseki
     extend Resource
     include Persistence
     extend Schema
-    extend Properties
+    include Properties
     include Utility
     include Diff
 

@@ -35,8 +35,7 @@ module Fuseki
         parts = [0]
         klass_map = {}
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-        #schema = self.read_schema
-        properties = properties_read(:class)
+        properties = properties_read_class
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
           #next if name == :@rdf_type
@@ -66,7 +65,7 @@ module Fuseki
 
       def where(params)
         schema = self.get_schema(:where)
-        properties = properties_read(:class)
+        properties = properties_read_class
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
           "  ?s rdf:type #{rdf_type.to_ref} ."
@@ -131,7 +130,7 @@ module Fuseki
 
       def from_results_recurse(uri, triples)
         object = from_results(uri, triples[uri.to_s])
-        properties = self.properties_read(:class)
+        properties = self.properties_read_class
         properties.each do |name, value|
           next if properties[name][:type] != :object
           klass = properties[name][:model_class].constantize
@@ -222,10 +221,11 @@ puts "***** SUBJECT CACHE #{uri} *****"
 
     def generic_objects(name, klass)
       objects = []
-      properties = properties_read(:instance)
-      predicate = properties["@#{name}".to_sym][:predicate]  
-      klass = properties["@#{name}".to_sym][:model_class].constantize
-      cardinality = properties["@#{name}".to_sym][:cardinality]
+      properties = properties_metadata
+      variable = Fuseki::Persistence::Naming.new(name)
+      predicate = properties.predicate(variable.as_instance)
+      klass = properties.klass(variable.as_instance)
+      cardinality = properties.cardinality(variable.as_instance)
       sparql = Sparql::Query.new()
       query_string = "SELECT ?s ?p ?o WHERE {" +
           "  #{uri.to_ref} #{predicate.to_ref} ?s ." +
@@ -267,7 +267,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
     end
 
     def to_sparql(sparql, recurse=false)
-      properties = properties_read(:instance)
+      properties = properties_read_instance
       schema = self.class.get_schema(:create_or_update)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       instance_variables.each do |name|
@@ -281,7 +281,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
     end      
 
     def generate_uri(parent)
-      properties = properties_read(:instance)
+      properties = properties_read_instance
       self.uri = create_uri(parent) # Dynamic method 
       instance_variables.each do |name|
         next if name == :@uri #|| name == :@rdf_type

@@ -14,7 +14,7 @@ module Fuseki
       # @return [Void] no return
       def uri?(name)
         properties = self.class.instance_variable_get(:@properties)
-        Errors.application_error(self.name, __method__.to_s, "Calling method on non-object property.") if !properties[name][:type] == :object
+        object_property?(name, __method__.to_s)
         value = instance_variable_get(name)
         value.is_a?(Array) ? value.first.is_a?(Uri) : value.is_a?(Uri)
       end
@@ -52,6 +52,11 @@ module Fuseki
         set_object(name, object)
       end
 
+      def from_object(name, object)
+        from_uri(name, object) if object.is_a?(Uri) || object.is_a?(String)
+        set_object(name, object)
+      end
+
       # From URI. Sets the named property with the specified URI
       #
       # @param name [Symbol] the property name. Needs to be the instance form
@@ -86,7 +91,22 @@ byebug
         set_object(name, object)
       end
 
+      # Property Target. Get the target class for a property
+      #
+      # @param name [Symbol] the property name. Needs to be the instance form
+      # @raise [ApplicationLogicError] raised if property is not an object property
+      # @return [String] the class name
+      def property_target(name)
+        object_property?(name, __method__.to_s)
+        properties_metadata.klass(name)
+      end
+
     private
+
+      # Make sure property is an object property, raise exception if not.
+      def object_property?(name, method)
+        Errors.application_error(self.class.name, method, "Calling method '#{method}' on non-object property '#{name}'") if !properties_metadata.object?(name)
+      end
 
       # Set an object, either single or array
       def set_object(name, object)

@@ -47,7 +47,7 @@ module Fuseki
     # @return [Hash] the hash
     def to_h
       result = {uri: instance_variable_get(:@uri).to_h, uuid: self.id, rdf_type: self.rdf_type.to_h}
-      properties = properties_read(:instance)
+      properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
         object = instance_variable_get(name)
