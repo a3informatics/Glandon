@@ -438,6 +438,24 @@ describe Excel::Engine do
     expect(parent.collection.count).to eq(0)
   end
 
+  it "can create multiple shared definitions, IV" do
+    full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.tokenize_and_create_shared({row: 7, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}})
+    object.tokenize_and_create_shared({row: 8, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
+      property: "collection", additional: {token: ";"}})
+    expect(parent.collection.count).to eq(3)
+    expect(parent.collection[0].label).to eq("A")
+    expect(parent.collection[1].label).to eq("A")
+    expect(parent.collection[2].label).to eq("B")
+    expect(parent.collection[0].uri).to eq(parent.collection[1].uri)
+  end
+  
   it "can create shared definitions, I" do
     full_path = test_file_path(sub_dir, "tokenize_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 

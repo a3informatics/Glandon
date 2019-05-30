@@ -66,8 +66,8 @@ C_IDENTIFIER = "CT"
   end
 
   def add(item, ordinal)
-    self.is_top_concept_reference << OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item)
-    self.is_top_concept << item
+    self.is_top_concept_reference << OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
+    self.is_top_concept << item.uri
   end
 
 =begin

@@ -22,7 +22,7 @@ class Import::Rectangular < Import
     @classifications = {}
     read_all_excel(params)
     results = add_parent(params)
-    managed?(configuration[:parent_klass].child_klass) ? add_managed_children(results) : add_children(results)
+    add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
     objects = self.errors.empty? ? process(results) : {parent: self, children: []}
     object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     # @todo we need to unlock the import.
@@ -46,38 +46,29 @@ private
       reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
       merge_errors(reader, self)
       merge_parent_set(reader)
-      merge_classification_set(reader)
+      #merge_classification_set(reader)
     end
   end
     
   def merge_parent_set(reader)
     reader.engine.parent_set.each do |k, v| 
       if @parent_set.key?(k) 
-        if @parent_set[k].diff?(v) 
-puts "P: #{@parent_set[k].to_h}"
-puts "V: #{v.to_h}"
-          self.errors.add(:base, "Duplicate identifier #{k} detected during import of #{reader.full_path} and a difference has been detected.") 
-        else
-          #
-        end
+        self.errors.add(:base, "Duplicate identifier #{k} detected during import of #{reader.full_path} and a difference has been detected.") if @parent_set[k].diff?(v) 
       else
         @parent_set[k] = v
       end
     end
   end
 
-  def merge_classification_set(reader)
-    reader.engine.classifications.each {|k, v| @classifications[k] = v if !@classifications.key?(k)}
-  end
+  #def merge_classification_set(reader)
+  #  reader.engine.classifications.each {|k, v| @classifications[k] = v if !@classifications.key?(k)}
+  #end
 
   # Process. Process the results structre to convert to objects
   def process(results)
     parent = results[:parent]
     if managed?(configuration[:parent_klass].child_klass)
-      results[:managed_children].each_with_index {|child, index| parent.add_child(child, index + 1)}
-      # @todo need to add the other collections in the future in line below
-      parent.collections = {datatype: TabularStandard::Datatype.new, compliance: TabularStandard::Compliance.new} 
-      results[:managed_children].each {|child| child.update_variables(parent.collections)}
+      results[:managed_children].each_with_index {|child, index| parent.add(child, index + 1)}
     end
     return results
   end
@@ -102,7 +93,6 @@ puts "V: #{v.to_h}"
       results[:managed_children] << add_managed_child(item, parent, ordinal)
       ordinal += 1
     end
-    results[:classifications] = @classifications
   end
 
   # Add a single managed child
@@ -114,9 +104,9 @@ puts "V: #{v.to_h}"
   end        
 
   # Add the children that are not managed items
-  def add_children(results)
-    @parent_set.each {|key, item| results[:managed_children] << item}
-  end
+  #def add_children(results)
+  #  @parent_set.each {|key, item| results[:managed_children] << item}
+  #end
 
   def add_parent(params)
     klass = configuration[:parent_klass]
@@ -124,7 +114,7 @@ puts "V: #{v.to_h}"
     parent.set_import(identifier: klass.configuration[:identifier], label: params[:label], 
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
-    return {parent: parent, managed_children: [], classifications: {}}
+    return {parent: parent, managed_children: []}
   end
   
 end

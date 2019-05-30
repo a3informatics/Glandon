@@ -1,0 +1,1209 @@
+@prefix : <http://www.acme-pharma.com/CT/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix : <#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.acme-pharma.com/CT/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "CDISC Term"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:16 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
+	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TCR3 ;
+	th:isTopConceptReference :TH_TCR4 ;
+	th:isTopConceptReference :TH_TCR5 ;
+	th:isTopConceptReference :TH_TCR6 ;
+	th:isTopConceptReference :TH_TCR7 ;
+	th:isTopConceptReference :TH_TCR8 ;
+	th:isTopConceptReference :TH_TCR9 ;
+	th:isTopConcept <http://www.cdisc.org/C141663/V1#C141663> ;
+	th:isTopConcept <http://www.cdisc.org/C141662/V1#C141662> ;
+	th:isTopConcept <http://www.cdisc.org/C115388/V1#C115388> ;
+	th:isTopConcept <http://www.cdisc.org/C115387/V1#C115387> ;
+	th:isTopConcept <http://www.cdisc.org/C101805/V1#C101805> ;
+	th:isTopConcept <http://www.cdisc.org/C101806/V1#C101806> ;
+	th:isTopConcept <http://www.cdisc.org/C66767/V1#C66767> ;
+	th:isTopConcept <http://www.cdisc.org/C103459/V1#C103459> ;
+	th:isTopConcept <http://www.cdisc.org/C103458/V1#C103458> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "CT"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C141663/V1#C141663> ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C141662/V1#C141662> ;
+.
+:TH_TCR3
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C115388/V1#C115388> ;
+.
+:TH_TCR4
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C115387/V1#C115387> ;
+.
+:TH_TCR5
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C101805/V1#C101805> ;
+.
+:TH_TCR6
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C101806/V1#C101806> ;
+.
+:TH_TCR7
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66767/V1#C66767> ;
+.
+:TH_TCR8
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "8"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C103459/V1#C103459> ;
+.
+:TH_TCR9
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "9"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C103458/V1#C103458> ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663>
+	rdf:type th:ManagedConcept ;
+	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C141663/V1#C141663_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C141663/V1#C141663_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C141663"^^xsd:string ;
+	th:notation "A4STR1TC"^^xsd:string ;
+	th:definition "4 Stair Ascend test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C141663/V1#C141663_C141706> ;
+	th:narrower <http://www.acme-pharma.com/C141663/V1#C141663_C141707> ;
+	th:narrower <http://www.acme-pharma.com/C141663/V1#C141663_C147590> ;
+	th:synonym <http://www.assero.co.uk/SYN#6691b3c4-d903-4930-85b8-1a1b5e4897ba> ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C141663"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663_C141706>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	th:identifier "C141706"^^xsd:string ;
+	th:notation "A4STR101"^^xsd:string ;
+	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#f5469cb3-f0e0-44a2-b9d6-7f075c00cb30> ;
+.
+<http://www.assero.co.uk/SYN#f5469cb3-f0e0-44a2-b9d6-7f075c00cb30>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663_C141707>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	th:identifier "C141707"^^xsd:string ;
+	th:notation "A4STR102"^^xsd:string ;
+	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#33275e95-0866-4deb-af6c-4561a95c0b3b> ;
+.
+<http://www.assero.co.uk/SYN#33275e95-0866-4deb-af6c-4561a95c0b3b>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Test Grade"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C141663/V1#C141663_C147590>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	th:identifier "C147590"^^xsd:string ;
+	th:notation "A4STR103"^^xsd:string ;
+	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#cb85375f-a596-4019-b3b5-ef5225e0eb47> ;
+.
+<http://www.assero.co.uk/SYN#cb85375f-a596-4019-b3b5-ef5225e0eb47>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Wear Orthoses"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#6691b3c4-d903-4930-85b8-1a1b5e4897ba>
+	rdf:type th:Synonym ;
+	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662>
+	rdf:type th:ManagedConcept ;
+	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C141662/V1#C141662_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C141662/V1#C141662_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C141662"^^xsd:string ;
+	th:notation "A4STR1TN"^^xsd:string ;
+	th:definition "4 Stair Ascend test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C141662/V1#C141662_C141707> ;
+	th:narrower <http://www.acme-pharma.com/C141662/V1#C141662_C141706> ;
+	th:narrower <http://www.acme-pharma.com/C141662/V1#C141662_C147590> ;
+	th:synonym <http://www.assero.co.uk/SYN#92a2408d-9383-4145-98a3-e1fd390ca6c3> ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C141662"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662_C141707>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	th:identifier "C141707"^^xsd:string ;
+	th:notation "A4STR1-Test Grade"^^xsd:string ;
+	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#c7758e1d-cdae-4b87-8dfa-2237712822f1> ;
+.
+<http://www.assero.co.uk/SYN#c7758e1d-cdae-4b87-8dfa-2237712822f1>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Test Grade"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662_C141706>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	th:identifier "C141706"^^xsd:string ;
+	th:notation "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
+	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#289246b1-d0a9-48ab-809b-0bb804a32cfd> ;
+.
+<http://www.assero.co.uk/SYN#289246b1-d0a9-48ab-809b-0bb804a32cfd>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C141662/V1#C141662_C147590>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	th:identifier "C147590"^^xsd:string ;
+	th:notation "A4STR1-Wear Orthoses"^^xsd:string ;
+	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#57cf0983-9eab-4f0c-b578-121221381a8d> ;
+.
+<http://www.assero.co.uk/SYN#57cf0983-9eab-4f0c-b578-121221381a8d>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Wear Orthoses"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#92a2408d-9383-4145-98a3-e1fd390ca6c3>
+	rdf:type th:Synonym ;
+	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388>
+	rdf:type th:ManagedConcept ;
+	isoC:label "6 Minute Walk Functional Test Test Code"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C115388/V1#C115388_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C115388/V1#C115388_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C115388"^^xsd:string ;
+	th:notation "SIXMW1TC"^^xsd:string ;
+	th:definition "6 Minute Walk Test test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115800> ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115801> ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115802> ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115803> ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115804> ;
+	th:narrower <http://www.acme-pharma.com/C115388/V1#C115388_C115805> ;
+	th:synonym <http://www.assero.co.uk/SYN#1d7daf05-3dd9-4aa8-8b26-09a22f57917c> ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C115388"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115800>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 1 Minute"^^xsd:string ;
+	th:identifier "C115800"^^xsd:string ;
+	th:notation "SIXMW101"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 1 minute."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#7179e379-2de3-454d-9ce9-e9005e713271> ;
+.
+<http://www.assero.co.uk/SYN#7179e379-2de3-454d-9ce9-e9005e713271>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 1 Minute"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115801>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 2 Minutes"^^xsd:string ;
+	th:identifier "C115801"^^xsd:string ;
+	th:notation "SIXMW102"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 2 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#053acebd-acf3-4ebe-9619-f2051ccc4f93> ;
+.
+<http://www.assero.co.uk/SYN#053acebd-acf3-4ebe-9619-f2051ccc4f93>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 2 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115802>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 3 Minutes"^^xsd:string ;
+	th:identifier "C115802"^^xsd:string ;
+	th:notation "SIXMW103"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 3 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#f44ac8b2-cc91-4d74-898f-fb98e51da1e4> ;
+.
+<http://www.assero.co.uk/SYN#f44ac8b2-cc91-4d74-898f-fb98e51da1e4>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 3 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115803>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 4 Minutes"^^xsd:string ;
+	th:identifier "C115803"^^xsd:string ;
+	th:notation "SIXMW104"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 4 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#51d1ec36-e9f1-4bc3-aed2-cb812f4cd189> ;
+.
+<http://www.assero.co.uk/SYN#51d1ec36-e9f1-4bc3-aed2-cb812f4cd189>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 4 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115804>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 5 Minutes"^^xsd:string ;
+	th:identifier "C115804"^^xsd:string ;
+	th:notation "SIXMW105"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 5 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#0917dbdb-acb9-4c78-a2bd-938f737d1d2a> ;
+.
+<http://www.assero.co.uk/SYN#0917dbdb-acb9-4c78-a2bd-938f737d1d2a>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 5 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115388/V1#C115388_C115805>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 6 Minutes"^^xsd:string ;
+	th:identifier "C115805"^^xsd:string ;
+	th:notation "SIXMW106"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 6 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#cc0651c9-3218-434a-a4d2-332be4c7ce3e> ;
+.
+<http://www.assero.co.uk/SYN#cc0651c9-3218-434a-a4d2-332be4c7ce3e>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 6 Minutes"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#1d7daf05-3dd9-4aa8-8b26-09a22f57917c>
+	rdf:type th:Synonym ;
+	isoC:label "6 Minute Walk Functional Test Test Code"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387>
+	rdf:type th:ManagedConcept ;
+	isoC:label "6 Minute Walk Functional Test Test Name"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C115387/V1#C115387_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C115387/V1#C115387_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C115387"^^xsd:string ;
+	th:notation "SIXMW1TN"^^xsd:string ;
+	th:definition "6 Minute Walk Test test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115800> ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115801> ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115802> ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115803> ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115804> ;
+	th:narrower <http://www.acme-pharma.com/C115387/V1#C115387_C115805> ;
+	th:synonym <http://www.assero.co.uk/SYN#53c133b2-eb26-4b9a-b769-b1c4e4fe5021> ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C115387"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115800>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 1 Minute"^^xsd:string ;
+	th:identifier "C115800"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 1 Minute"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 1 minute."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#5d4de5e1-ef15-4985-8c63-7c517774005f> ;
+.
+<http://www.assero.co.uk/SYN#5d4de5e1-ef15-4985-8c63-7c517774005f>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 1 Minute"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115801>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 2 Minutes"^^xsd:string ;
+	th:identifier "C115801"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 2 Minutes"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 2 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#9ae6de88-4b70-4608-93c8-68251a870095> ;
+.
+<http://www.assero.co.uk/SYN#9ae6de88-4b70-4608-93c8-68251a870095>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 2 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115802>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 3 Minutes"^^xsd:string ;
+	th:identifier "C115802"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 3 Minutes"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 3 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#55b1d31c-5274-4ed9-b3ec-8998d507b7cd> ;
+.
+<http://www.assero.co.uk/SYN#55b1d31c-5274-4ed9-b3ec-8998d507b7cd>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 3 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115803>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 4 Minutes"^^xsd:string ;
+	th:identifier "C115803"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 4 Minutes"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 4 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#1e7ef8f3-6f15-415b-98d8-0c3113482819> ;
+.
+<http://www.assero.co.uk/SYN#1e7ef8f3-6f15-415b-98d8-0c3113482819>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 4 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115804>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 5 Minutes"^^xsd:string ;
+	th:identifier "C115804"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 5 Minutes"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 5 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#31a45e66-b3ef-40f1-b532-139f78861800> ;
+.
+<http://www.assero.co.uk/SYN#31a45e66-b3ef-40f1-b532-139f78861800>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 5 Minutes"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C115387/V1#C115387_C115805>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "6MWT - Distance at 6 Minutes"^^xsd:string ;
+	th:identifier "C115805"^^xsd:string ;
+	th:notation "SIXMW1-Distance at 6 Minutes"^^xsd:string ;
+	th:definition "6 Minute Walk Test - Distance at 6 minutes."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#a873a540-5f71-412a-9553-3df6c176ae2a> ;
+.
+<http://www.assero.co.uk/SYN#a873a540-5f71-412a-9553-3df6c176ae2a>
+	rdf:type th:Synonym ;
+	isoC:label "SIXMW1-Distance at 6 Minutes"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#53c133b2-eb26-4b9a-b769-b1c4e4fe5021>
+	rdf:type th:Synonym ;
+	isoC:label "6 Minute Walk Functional Test Test Name"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Code"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C101805/V1#C101805_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C101805/V1#C101805_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C101805"^^xsd:string ;
+	th:notation "AIMS01TC"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102034> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102035> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102036> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102037> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102038> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102039> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102040> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102041> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102042> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102043> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102044> ;
+	th:narrower <http://www.acme-pharma.com/C101805/V1#C101805_C102045> ;
+	th:synonym <http://www.assero.co.uk/SYN#8f5af323-ddc2-481f-8778-26dc7f8c42ff> ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C101805"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102034>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Muscles of Facial Expression"^^xsd:string ;
+	th:identifier "C102034"^^xsd:string ;
+	th:notation "AIMS0101"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Muscles of facial expression, e.g., movements of forehead, eyebrows, periorbital area, cheeks. Include frowning, blinking, grimacing of upper face."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#a1480865-3cc3-4e58-ba68-cd79e612766f> ;
+.
+<http://www.assero.co.uk/SYN#a1480865-3cc3-4e58-ba68-cd79e612766f>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Muscles of Facial Expression"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102035>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Lips and Perioral Area"^^xsd:string ;
+	th:identifier "C102035"^^xsd:string ;
+	th:notation "AIMS0102"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Lips and perioral area, e.g., puckering, pouting, smacking."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#a20e5cce-fd97-4461-a205-d08ae3813ef9> ;
+.
+<http://www.assero.co.uk/SYN#a20e5cce-fd97-4461-a205-d08ae3813ef9>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Lips and Perioral Area"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102036>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Jaw"^^xsd:string ;
+	th:identifier "C102036"^^xsd:string ;
+	th:notation "AIMS0103"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Jaw, e.g., biting, clenching, chewing, mouth opening, lateral movement."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#75f5c52a-b281-4092-8cf4-2f65b52144c2> ;
+.
+<http://www.assero.co.uk/SYN#75f5c52a-b281-4092-8cf4-2f65b52144c2>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Jaw"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102037>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Tongue"^^xsd:string ;
+	th:identifier "C102037"^^xsd:string ;
+	th:notation "AIMS0104"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Tongue. Rate only increase in movement both in and out of mouth, not inability to sustain movement."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#e05efa9f-6f1c-4878-9ebd-467c21de5902> ;
+.
+<http://www.assero.co.uk/SYN#e05efa9f-6f1c-4878-9ebd-467c21de5902>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Tongue"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102038>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Upper Extremities"^^xsd:string ;
+	th:identifier "C102038"^^xsd:string ;
+	th:notation "AIMS0105"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Upper (arms, wrists, hands, fingers). Include movements that are choreic (rapid, objectively purposeless, irregular, spontaneous) or athetoid (slow, irregular, complex, serpentine). Do not include tremor (repetitive, regular, rhythmic movements)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#bd5fab86-4801-4faa-94ce-86731f0dfab8> ;
+.
+<http://www.assero.co.uk/SYN#bd5fab86-4801-4faa-94ce-86731f0dfab8>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Upper Extremities"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102039>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Lower Extremities"^^xsd:string ;
+	th:identifier "C102039"^^xsd:string ;
+	th:notation "AIMS0106"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Lower (legs, knees, ankles, toes), e.g., lateral knee movement, foot tapping, heel dropping, foot squirming, inversion and eversion of foot."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#a8bf82f1-cfe8-4142-9c65-5d0303d31da1> ;
+.
+<http://www.assero.co.uk/SYN#a8bf82f1-cfe8-4142-9c65-5d0303d31da1>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Lower Extremities"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102040>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Neck, Shoulders, Hips"^^xsd:string ;
+	th:identifier "C102040"^^xsd:string ;
+	th:notation "AIMS0107"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Trunk Movements, Neck, shoulders, hips, e.g., rocking, twisting, squirming, pelvic gyrations. Include diaphragmatic movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#97618a12-1987-43bc-be22-17d7bd07d6af> ;
+.
+<http://www.assero.co.uk/SYN#97618a12-1987-43bc-be22-17d7bd07d6af>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Neck, Shoulders, Hips"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102041>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Severity of Abnormal Movements"^^xsd:string ;
+	th:identifier "C102041"^^xsd:string ;
+	th:notation "AIMS0108"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Severity of abnormal movements, based on the highest single score on the above items."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#4977de6a-d803-44b1-b885-a24806f962fb> ;
+.
+<http://www.assero.co.uk/SYN#4977de6a-d803-44b1-b885-a24806f962fb>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Severity of Abnormal Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102042>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Incapacitation Due to Abnormal Movements"^^xsd:string ;
+	th:identifier "C102042"^^xsd:string ;
+	th:notation "AIMS0109"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Incapacitation due to abnormal movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#3b5d8a3b-f6e1-4f59-bf01-f4f135a7d5c2> ;
+.
+<http://www.assero.co.uk/SYN#3b5d8a3b-f6e1-4f59-bf01-f4f135a7d5c2>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Incapacitation due Abn Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102043>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Patient's Awareness of Abnormal Movements"^^xsd:string ;
+	th:identifier "C102043"^^xsd:string ;
+	th:notation "AIMS0110"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Patient's awareness of abnormal movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#b86bc6a9-e531-453a-9942-2ad463a24b69> ;
+.
+<http://www.assero.co.uk/SYN#b86bc6a9-e531-453a-9942-2ad463a24b69>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Patient Awareness Abn Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102044>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Current Teeth/Dentures Problems"^^xsd:string ;
+	th:identifier "C102044"^^xsd:string ;
+	th:notation "AIMS0111"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Current problems with teeth and/or dentures."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#f71ff1dc-c378-4089-a353-64d9bd61034a> ;
+.
+<http://www.assero.co.uk/SYN#f71ff1dc-c378-4089-a353-64d9bd61034a>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Current Problems Teeth/Dentures"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101805/V1#C101805_C102045>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Patient Usually Wears Dentures"^^xsd:string ;
+	th:identifier "C102045"^^xsd:string ;
+	th:notation "AIMS0112"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Does patient usually wear dentures?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#ea9c50b6-007b-412f-9c80-7a7fa6872ce4> ;
+.
+<http://www.assero.co.uk/SYN#ea9c50b6-007b-412f-9c80-7a7fa6872ce4>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Patient Usually Wear Dentures"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#8f5af323-ddc2-481f-8778-26dc7f8c42ff>
+	rdf:type th:Synonym ;
+	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Code"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Name"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C101806/V1#C101806_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C101806/V1#C101806_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C101806"^^xsd:string ;
+	th:notation "AIMS01TN"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102044> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102042> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102036> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102035> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102039> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102034> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102040> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102043> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102045> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102041> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102037> ;
+	th:narrower <http://www.acme-pharma.com/C101806/V1#C101806_C102038> ;
+	th:synonym <http://www.assero.co.uk/SYN#cf0a080d-a863-4d5b-8ad9-96e29955dd55> ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C101806"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102044>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Current Teeth/Dentures Problems"^^xsd:string ;
+	th:identifier "C102044"^^xsd:string ;
+	th:notation "AIMS01-Current Problems Teeth/Dentures"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Current problems with teeth and/or dentures."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#edad9a36-0a7c-419b-9984-12ffb627ecd6> ;
+.
+<http://www.assero.co.uk/SYN#edad9a36-0a7c-419b-9984-12ffb627ecd6>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Current Problems Teeth/Dentures"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102042>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Incapacitation Due to Abnormal Movements"^^xsd:string ;
+	th:identifier "C102042"^^xsd:string ;
+	th:notation "AIMS01-Incapacitation due Abn Movements"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Incapacitation due to abnormal movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#1e4ea9bb-64a1-434d-a877-b81d3ab2875e> ;
+.
+<http://www.assero.co.uk/SYN#1e4ea9bb-64a1-434d-a877-b81d3ab2875e>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Incapacitation due Abn Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102036>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Jaw"^^xsd:string ;
+	th:identifier "C102036"^^xsd:string ;
+	th:notation "AIMS01-Jaw"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Jaw, e.g., biting, clenching, chewing, mouth opening, lateral movement."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#ad84bbe1-9871-4cdb-a90e-669943d10e65> ;
+.
+<http://www.assero.co.uk/SYN#ad84bbe1-9871-4cdb-a90e-669943d10e65>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Jaw"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102035>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Lips and Perioral Area"^^xsd:string ;
+	th:identifier "C102035"^^xsd:string ;
+	th:notation "AIMS01-Lips and Perioral Area"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Lips and perioral area, e.g., puckering, pouting, smacking."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#3b1905bc-2051-4513-b980-0943f48ba839> ;
+.
+<http://www.assero.co.uk/SYN#3b1905bc-2051-4513-b980-0943f48ba839>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Lips and Perioral Area"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102039>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Lower Extremities"^^xsd:string ;
+	th:identifier "C102039"^^xsd:string ;
+	th:notation "AIMS01-Lower Extremities"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Lower (legs, knees, ankles, toes), e.g., lateral knee movement, foot tapping, heel dropping, foot squirming, inversion and eversion of foot."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#4da0d388-1d35-47b4-a0e0-d096c9727739> ;
+.
+<http://www.assero.co.uk/SYN#4da0d388-1d35-47b4-a0e0-d096c9727739>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Lower Extremities"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102034>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Muscles of Facial Expression"^^xsd:string ;
+	th:identifier "C102034"^^xsd:string ;
+	th:notation "AIMS01-Muscles of Facial Expression"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Muscles of facial expression, e.g., movements of forehead, eyebrows, periorbital area, cheeks. Include frowning, blinking, grimacing of upper face."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#e52514ee-a12f-4d85-80bc-73e1c59e746f> ;
+.
+<http://www.assero.co.uk/SYN#e52514ee-a12f-4d85-80bc-73e1c59e746f>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Muscles of Facial Expression"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102040>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Neck, Shoulders, Hips"^^xsd:string ;
+	th:identifier "C102040"^^xsd:string ;
+	th:notation "AIMS01-Neck, Shoulders, Hips"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Trunk Movements, Neck, shoulders, hips, e.g., rocking, twisting, squirming, pelvic gyrations. Include diaphragmatic movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#c454d7a2-fe79-4376-8bf3-01fc47bd960b> ;
+.
+<http://www.assero.co.uk/SYN#c454d7a2-fe79-4376-8bf3-01fc47bd960b>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Neck, Shoulders, Hips"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102043>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Patient's Awareness of Abnormal Movements"^^xsd:string ;
+	th:identifier "C102043"^^xsd:string ;
+	th:notation "AIMS01-Patient Awareness Abn Movements"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Patient's awareness of abnormal movements."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#95a0345e-6be1-47f6-92b1-5e12313faa97> ;
+.
+<http://www.assero.co.uk/SYN#95a0345e-6be1-47f6-92b1-5e12313faa97>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Patient Awareness Abn Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102045>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Patient Usually Wears Dentures"^^xsd:string ;
+	th:identifier "C102045"^^xsd:string ;
+	th:notation "AIMS01-Patient Usually Wear Dentures"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Does patient usually wear dentures?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#4926c62d-ac05-4c36-8429-cb5b143bd51c> ;
+.
+<http://www.assero.co.uk/SYN#4926c62d-ac05-4c36-8429-cb5b143bd51c>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Patient Usually Wear Dentures"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102041>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Severity of Abnormal Movements"^^xsd:string ;
+	th:identifier "C102041"^^xsd:string ;
+	th:notation "AIMS01-Severity of Abnormal Movements"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Severity of abnormal movements, based on the highest single score on the above items."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#d714c0ad-a378-4159-b5cd-0028944769c7> ;
+.
+<http://www.assero.co.uk/SYN#d714c0ad-a378-4159-b5cd-0028944769c7>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Severity of Abnormal Movements"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102037>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Tongue"^^xsd:string ;
+	th:identifier "C102037"^^xsd:string ;
+	th:notation "AIMS01-Tongue"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Tongue. Rate only increase in movement both in and out of mouth, not inability to sustain movement."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#93ef75a2-6824-40bd-b0ee-ae5a9f3b1281> ;
+.
+<http://www.assero.co.uk/SYN#93ef75a2-6824-40bd-b0ee-ae5a9f3b1281>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Tongue"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C101806/V1#C101806_C102038>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "AIMS - Upper Extremities"^^xsd:string ;
+	th:identifier "C102038"^^xsd:string ;
+	th:notation "AIMS01-Upper Extremities"^^xsd:string ;
+	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Upper (arms, wrists, hands, fingers). Include movements that are choreic (rapid, objectively purposeless, irregular, spontaneous) or athetoid (slow, irregular, complex, serpentine). Do not include tremor (repetitive, regular, rhythmic movements)."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#3736911b-c6e4-40e9-9999-8a3780a5e38e> ;
+.
+<http://www.assero.co.uk/SYN#3736911b-c6e4-40e9-9999-8a3780a5e38e>
+	rdf:type th:Synonym ;
+	isoC:label "AIMS01-Upper Extremities"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#cf0a080d-a863-4d5b-8ad9-96e29955dd55>
+	rdf:type th:Synonym ;
+	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Name"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C66767/V1#C66767_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C66767/V1#C66767_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66767"^^xsd:string ;
+	th:notation "ACN"^^xsd:string ;
+	th:definition "Terminology specifying changes to the study treatment as a result of an adverse event."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49503> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49504> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C150826> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49505> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49501> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C49502> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C48660> ;
+	th:narrower <http://www.acme-pharma.com/C66767/V1#C66767_C17998> ;
+	th:synonym <http://www.assero.co.uk/SYN#ad467ad8-c9ef-4a78-98f9-f36deb71f53b> ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66767"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49503>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Increased"^^xsd:string ;
+	th:identifier "C49503"^^xsd:string ;
+	th:notation "DOSE INCREASED"^^xsd:string ;
+	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49504>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Not Changed"^^xsd:string ;
+	th:identifier "C49504"^^xsd:string ;
+	th:notation "DOSE NOT CHANGED"^^xsd:string ;
+	th:definition "An indication that a medication schedule was maintained. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C150826>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Rate Reduced"^^xsd:string ;
+	th:identifier "C150826"^^xsd:string ;
+	th:notation "DOSE RATE REDUCED"^^xsd:string ;
+	th:definition "An indication that the administration of a medication was modified by reducing the rate at which the dose was given, without reducing the total dose administered."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49505>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Dose Reduced"^^xsd:string ;
+	th:identifier "C49505"^^xsd:string ;
+	th:notation "DOSE REDUCED"^^xsd:string ;
+	th:definition "An indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49501>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Drug Interrupted"^^xsd:string ;
+	th:identifier "C49501"^^xsd:string ;
+	th:notation "DRUG INTERRUPTED"^^xsd:string ;
+	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C49502>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Drug Withdrawn"^^xsd:string ;
+	th:identifier "C49502"^^xsd:string ;
+	th:notation "DRUG WITHDRAWN"^^xsd:string ;
+	th:definition "An indication that a medication schedule was modified through termination of a prescribed regimen of medication. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C48660>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Not Applicable"^^xsd:string ;
+	th:identifier "C48660"^^xsd:string ;
+	th:notation "NOT APPLICABLE"^^xsd:string ;
+	th:definition "Determination of a value is not relevant in the current context. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#ca5620d5-9333-4fe4-84fa-ccc973ba40bc> ;
+	th:synonym <http://www.assero.co.uk/SYN#f3875dd0-fbd0-4e0f-8455-963f2538ecee> ;
+.
+<http://www.assero.co.uk/SYN#ca5620d5-9333-4fe4-84fa-ccc973ba40bc>
+	rdf:type th:Synonym ;
+	isoC:label "NA"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f3875dd0-fbd0-4e0f-8455-963f2538ecee>
+	rdf:type th:Synonym ;
+	isoC:label "Not Applicable"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C66767/V1#C66767_C17998>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Unknown"^^xsd:string ;
+	th:identifier "C17998"^^xsd:string ;
+	th:notation "UNKNOWN"^^xsd:string ;
+	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#bdeb882d-64d5-430d-9c34-a7db5a29ba01> ;
+	th:synonym <http://www.assero.co.uk/SYN#8143607b-584d-47ec-b577-d6b7ac950386> ;
+	th:synonym <http://www.assero.co.uk/SYN#6aad8770-f908-4e41-9055-6f62f5f395b0> ;
+.
+<http://www.assero.co.uk/SYN#bdeb882d-64d5-430d-9c34-a7db5a29ba01>
+	rdf:type th:Synonym ;
+	isoC:label "U"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#8143607b-584d-47ec-b577-d6b7ac950386>
+	rdf:type th:Synonym ;
+	isoC:label "UNK"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#6aad8770-f908-4e41-9055-6f62f5f395b0>
+	rdf:type th:Synonym ;
+	isoC:label "Unknown"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#ad467ad8-c9ef-4a78-98f9-f36deb71f53b>
+	rdf:type th:Synonym ;
+	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C103459/V1#C103459>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Code"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C103459/V1#C103459_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C103459/V1#C103459_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C103459"^^xsd:string ;
+	th:notation "ACGC01TC"^^xsd:string ;
+	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C103459/V1#C103459_C103531> ;
+	th:synonym <http://www.assero.co.uk/SYN#753e0d0d-8bb2-4988-a0b0-30fcf0cbe540> ;
+.
+<http://www.acme-pharma.com/C103459/V1#C103459_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C103459/V1#C103459_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C103459"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C103459/V1#C103459_C103531>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "ADCS-CGIC - Clinical Impression of Change from Baseline"^^xsd:string ;
+	th:identifier "C103531"^^xsd:string ;
+	th:notation "ACGC0101"^^xsd:string ;
+	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change - Clinical impression of change from baseline."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#1b01adf9-3843-4a05-9c32-61288948a10f> ;
+.
+<http://www.assero.co.uk/SYN#1b01adf9-3843-4a05-9c32-61288948a10f>
+	rdf:type th:Synonym ;
+	isoC:label "ACGC01-Clinical Impression of Change"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#753e0d0d-8bb2-4988-a0b0-30fcf0cbe540>
+	rdf:type th:Synonym ;
+	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Code"^^xsd:string ;
+.
+<http://www.acme-pharma.com/C103458/V1#C103458>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Name"^^xsd:string ;
+	isoT:hasState <http://www.acme-pharma.com/C103458/V1#C103458_RS> ;
+	isoT:hasIdentifier <http://www.acme-pharma.com/C103458/V1#C103458_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21 00:00:00 +0100"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-05-30 20:23:17 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C103458"^^xsd:string ;
+	th:notation "ACGC01TN"^^xsd:string ;
+	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.acme-pharma.com/C103458/V1#C103458_C103531> ;
+	th:synonym <http://www.assero.co.uk/SYN#136479b9-c26e-4960-8f7b-dcb827face1e> ;
+.
+<http://www.acme-pharma.com/C103458/V1#C103458_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Incomplete"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C103458/V1#C103458_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C103458"^^xsd:string ;
+	isoI:versionLabel ""^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "0.0.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.acme-pharma.com/C103458/V1#C103458_C103531>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "ADCS-CGIC - Clinical Impression of Change from Baseline"^^xsd:string ;
+	th:identifier "C103531"^^xsd:string ;
+	th:notation "ACGC01-Clinical Impression of Change"^^xsd:string ;
+	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change - Clinical impression of change from baseline."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:synonym <http://www.assero.co.uk/SYN#41ce3457-df76-4bc6-9433-4c00bb2f59a0> ;
+.
+<http://www.assero.co.uk/SYN#41ce3457-df76-4bc6-9433-4c00bb2f59a0>
+	rdf:type th:Synonym ;
+	isoC:label "ACGC01-Clinical Impression of Change"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#136479b9-c26e-4960-8f7b-dcb827face1e>
+	rdf:type th:Synonym ;
+	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Name"^^xsd:string ;
+.

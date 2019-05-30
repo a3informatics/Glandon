@@ -28,8 +28,8 @@ class ThesauriController < ApplicationController
   def history
     authorize Thesaurus
     @identifier = params[:identifier]
-    @scope_id = params[:scope_id]
-    @thesauri = Thesaurus.history({identifier: params[:identifier], scope: IsoNamespace.find(params[:scope_id])})
+    #@scope_id = params[:scope_id]
+    @thesauri = Thesaurus.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
     redirect_to thesauri_index_path if @thesauri.count == 0
   end
   
@@ -220,7 +220,7 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:id, :namespace, :label, :identifier, :notation, :synonym, :definition, :preferredTerm, :type)
+    params.require(:thesauri).permit(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     
 end

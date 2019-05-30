@@ -90,9 +90,15 @@ class Import < ActiveRecord::Base
   # @return [Void] no return
   def save_load_file(objects)
     parent = objects[:parent]
-    path = TypePathManagement.history_url(parent.rdf_type, parent.identifier, parent.scopedIdentifier.namespace.id)
-    sparql = parent.to_sparql_v2
-    objects[:children].each {|c| c.to_sparql_v2(sparql)}
+    path = TypePathManagement.history_url_v2(parent)
+    sparql = Sparql::Update.new()
+    parent.set_initial(parent.identifier)
+    sparql.default_namespace(parent.uri.namespace)
+    parent.to_sparql(sparql, true)
+    objects[:managed_children].each do |c| 
+      c.set_initial(c.identifier)
+      c.to_sparql(sparql, true)
+    end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
     self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"), 

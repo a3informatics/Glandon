@@ -22,7 +22,7 @@ class Excel::Engine
     @workbook = workbook
     @errors = owner.errors
     @parent_set = {}
-    @classifications = {datatype: false, core: false, compliance: false}
+    @classifications = {}
   end
 
   # Process. Process a sheet according to the configuration
@@ -305,8 +305,11 @@ private
   # Find or build an object and set label
   def object_create(klass, value)
     return nil if value.blank?
+    @classifications[klass.name] = {} if !@classifications.key?(klass.name)
+    return @classifications[klass.name][value] if @classifications[klass.name].key?(value)
     item = klass.new
     item.label = value
+    @classifications[klass.name][value] = item
     return item
   end
 

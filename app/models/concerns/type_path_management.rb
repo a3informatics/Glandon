@@ -5,8 +5,8 @@ module TypePathManagement
   
   @@type_to_class = 
   { 
-    Thesaurus::C_RDF_TYPE_URI.to_s => { klass: Thesaurus },
-    ThesaurusConcept::C_RDF_TYPE_URI.to_s => { klass: ThesaurusConcept },
+    #Thesaurus::C_RDF_TYPE_URI.to_s => { klass: Thesaurus },
+    #ThesaurusConcept::C_RDF_TYPE_URI.to_s => { klass: ThesaurusConcept },
     Form::C_RDF_TYPE_URI.to_s => { klass: Form },
     Form::Group::Normal::C_RDF_TYPE_URI.to_s => { klass: Form::Group::Normal },
     Form::Group::Common::C_RDF_TYPE_URI.to_s => { klass: Form::Group::Common },
@@ -21,7 +21,7 @@ module TypePathManagement
   }
 
   @@mi_history_path = 
-    { Thesaurus::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_index_path, strong: "" },
+    { Thesaurus.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_index_path, strong: "thesauri" },
       BiomedicalConceptTemplate::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
       BiomedicalConcept::C_RDF_TYPE_URI.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concepts_path, strong: "biomedical_concept" },
       Form::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },
@@ -70,6 +70,18 @@ module TypePathManagement
     else
       return ""
     end
+  end
+
+  # Method returns the strong parameter prefix for a gven rdf type
+  #
+  # @param [Object] object the managed object
+  # @return [String] The url
+  def self.history_url_v2(object)
+    rdf_type_s = object.rdf_type.to_s
+    Errors.application_error(self.name, __method__.to_s, "Unknown object type #{rdf_type_s} detected.") if !@@mi_history_path.has_key?(rdf_type_s) 
+    path = @@mi_history_path[rdf_type_s][:path]
+    strong = @@mi_history_path[rdf_type_s][:strong]
+    return "#{path}/?#{strong}[identifier]=#{object.identifier}&#{strong}[scope_id]=#{object.owner.ra_namespace.id}"
   end
 
 end

@@ -82,15 +82,22 @@ module Fuseki
 
     def array_diff?(a, b)
       return diff_uris?(a, b) if a.first.is_a? Uri
-      if a.class.respond_to?(:key_property)
+      if a.first.class.respond_to?(:key_property)
         key_method = a.first.class.key_property
         a.each do |a_obj|
           b_obj = b.select {|x| x.send(key_method) == a_obj.send(key_method)}
-          return true if b_obj.empty? 
           return true if a_obj.diff?(b_obj.first)
         end    
+      elsif a.first.respond_to?(:diff?)
+        a.each_with_index do |a_obj, index|
+          b_obj = b[index]
+          return true if a_obj.diff?(b_obj)
+        end    
       else
-        return true if a - b != []
+        a.each_with_index do |a_obj, index|
+          b_obj = b[index]
+          return true if a_obj != b_obj
+        end    
       end
       return false
     end
