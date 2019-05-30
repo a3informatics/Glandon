@@ -33,20 +33,6 @@ describe Excel::Engine do
 
   end
 
-  class ScopedIdentifierClass
-    extend ActiveModel::Naming
-    attr_accessor :identifier
-
-    def initialize
-      @identifier = ""
-    end
-
-    def to_hash
-      return {identifier: self.identifier}
-    end
-
-  end
-
   class DefinitionClass < Fuseki::Base
 
     configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
@@ -127,11 +113,11 @@ describe Excel::Engine do
     def initialize
       @label = ""
       @children = []
-      @has_identifier = ScopedIdentifierClass.new
+      @has_identifier = nil
     end
 
     def to_hash
-      result = {label: self.label, children: [], scoped_identifier: has_identifier.to_hash}
+      result = {label: self.label, children: [], scoped_identifier: has_identifier.to_h}
       children.each {|c| result[:children] << c.to_hash}
       return result
     end

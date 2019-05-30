@@ -195,43 +195,12 @@ class Excel::Engine
   # @return [Void] no return
   def create_definition(parent, property, label)
     return if label.blank?
-    klass = parent.property_target(property)
+    variable = Fuseki::Persistence::Naming.new(property).as_instance
+    klass = parent.property_target(variable)
     results = klass.where(label: label)
     object = results.any? ? results.first : object_create(klass, label)
-    parent.from_object(Fuseki::Persistence::Naming.new(property).as_instance, object)
+    parent.from_object(variable, object)
   end
-
-=begin
-  # Core Classification
-  #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
-  # @return [Void] no return
-  def core_classification(params)
-    check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
-    @classifications[:core] = true
-    params[:object].instance_variable_set("@#{params[:property]}", object_create(SdtmModelCompliance, 
-      check_mapped(params[:row], params[:col], params[:map])))
-  end
-
-  # Datatype Classification
-  #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
-  # @return [Void] no return
-  def datatype_classification(params)
-    check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
-    @classifications[:datatype] = true
-    params[:object].instance_variable_set("@#{params[:property]}", object_create(SdtmModelDatatype, 
-      check_mapped(params[:row], params[:col], params[:map])))
-  end
-=end
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped
   #
@@ -345,6 +314,7 @@ private
   def parent_create(klass, identifier)
     return @parent_set[identifier] if @parent_set.has_key?(identifier)
     item = klass.new
+    item.has_identifier = IsoScopedIdentifierV2.new
     item.has_identifier.identifier = identifier if item.is_a? IsoManagedV2
     @parent_set[identifier] = item
     return item
