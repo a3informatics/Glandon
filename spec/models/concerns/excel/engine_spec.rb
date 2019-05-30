@@ -122,16 +122,16 @@ describe Excel::Engine do
     extend ActiveModel::Naming
     attr_accessor :label
     attr_accessor :children
-    attr_accessor :scopedIdentifier
+    attr_accessor :has_identifier
 
     def initialize
       @label = ""
       @children = []
-      @scopedIdentifier = ScopedIdentifierClass.new
+      @has_identifier = ScopedIdentifierClass.new
     end
 
     def to_hash
-      result = {label: self.label, children: [], scoped_identifier: scopedIdentifier.to_hash}
+      result = {label: self.label, children: [], scoped_identifier: has_identifier.to_hash}
       children.each {|c| result[:children] << c.to_hash}
       return result
     end

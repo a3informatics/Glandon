@@ -345,7 +345,7 @@ private
   def parent_create(klass, identifier)
     return @parent_set[identifier] if @parent_set.has_key?(identifier)
     item = klass.new
-    item.scopedIdentifier.identifier = identifier if item.is_a? IsoManagedV2
+    item.has_identifier.identifier = identifier if item.is_a? IsoManagedV2
     @parent_set[identifier] = item
     return item
   end
