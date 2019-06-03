@@ -6,6 +6,8 @@
 
 var d3HeightOverride = false;
 var d3HeightOverrideValue = $(window).height() - 200; 
+var rectW = 120;
+var rectH = 30;
 
 /**
  * D3 Initialise: Create a D3 tree. 
@@ -26,22 +28,41 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     //height = $(window).height() - 200; 
     height = d3Div.clientHeight;
   }
-  var tree = d3.layout.tree()
+  var tree = d3.layout.tree().nodeSize([70, 40])
     .size([height, width - 160]);
   var diagonal = d3.svg.diagonal()
-    .projection(function(d) { return [d.y, d.x]; });
+    .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
   var svg = d3.select(d3Div).append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(40,0)");
+  svg.append("svg:defs").selectAll("marker")
+      .data(["end"])      // Different link/path types can be defined here
+    .enter().append("svg:marker")    // This section adds in the arrows
+      .attr("id", String)
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 10)
+      .attr("refY", 0)
+      .attr("fill", "#ccc")
+      .attr("markerWidth", 8)
+      .attr("markerHeight", 8)
+      .attr("orient", "auto")
+    .append("svg:path")
+      .attr("d", "M0,-5L10,0L0,5");
+
   var nodes = tree.nodes(jsonData),
   links = tree.links(nodes);
   var link = svg.selectAll("path.link")
     .data(links)
     .enter().append("path")
     .attr("class", "link")
-    .attr("d", diagonal);
+    .attr("x", rectW / 2 )
+    .attr("y", rectH)
+    .attr("d", diagonal)
+    .attr("stroke-width", 3)
+    .style("margin-left", "60px")
+    .attr("marker-end", "url(#end)");
   var node = svg.selectAll("g.node")
     .data(nodes)
     .enter().append("g")
@@ -49,16 +70,27 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
     .on("click", clickCallBack)
     .on("dblclick", dblClickCallBack);
-  node.append("circle")
-    .attr("r", 5)
+  node.append("rect")
+    .attr("width", rectW)
+    .attr("height", rectH)
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("stroke", "#5cb85c")
+    .attr("stroke-width", 1)
+    .style("fill", "#fff" )
+    //.attr("r", 5)
     //.attr("fill", function(d) { return d3NodeColour(d); });
-    .style("fill", function(d) { return d3NodeColour(d); });
+    //.style("fill", function(d) { return d3NodeColour(d); });
   node.append("text")
-    .attr("dx", function(d) { return d.children ? -8 : 8; })
-    .attr("dy", 3)
+    .attr("x", rectW / 2)
+    .attr("y", rectH / 2)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    //.attr("dx", function(d) { return d.children ? -8 : 8; })
+    //.attr("dy", 3)
     //.attr("fill", function(d) { return d3TextColour(d); })
-    .style("fill", function(d) { return d3TextColour(d); })
-    .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
+    //.style("fill", function(d) { return d3TextColour(d); })
+    //.attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
   d3.select(self.frameElement).style("height", height + "px");
 }
@@ -70,7 +102,9 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
  * @return [Null]
  */
 function d3MarkNode(gRef) {
-  d3.select(gRef).select("circle").style("fill", "steelblue");
+  //d3.select(gRef).select("circle").style("fill", "steelblue");
+  d3.select(gRef).select("rect").style("fill", "#337ab7");
+  d3.select(gRef).select("rect").attr("stroke", "#337ab7");
 }
 
 /**
@@ -146,7 +180,12 @@ function d3FindData(key) {
  * @return [Object] the node data
  */
 function d3RestoreNode(gRef) {
-  d3.select(gRef).select('circle').style("fill", d3NodeColour(gRef.__data__));
+  //d3.select(gRef).select('circle').style("fill", d3NodeColour(gRef.__data__));
+  d3.select(gRef).select('rect').style("fill", d3NodeColour(gRef.__data__));
+  d3.select(gRef).select('rect').attr("stroke", "none");
+  if (d3NodeColour(gRef.__data__) === "white") {
+    d3.select(gRef).select('rect').attr("stroke", "#5cb85c");
+  }
 }
 
 /**
@@ -165,10 +204,10 @@ function d3NodeColour (node) {
         if(node.is_common) {
           return "silver";
         } else {
-          return "mediumseagreen";
+          return "white";
         }
       } else {
-        return "mediumseagreen";
+        return "white";
       }
     } else {
       return "orangered";
