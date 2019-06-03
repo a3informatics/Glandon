@@ -33,6 +33,7 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "XXX",
         :extension_properties => [],
         :children => []
       }
@@ -97,12 +98,13 @@ describe IsoConceptSystem::Node do
         :type => "",
         :id => "", 
         :namespace => "", 
-        :label => "Node 3±",
+        :label => "Node 3",
+        :description => "Node 3±",
         :extension_properties => [],
         :children => []
       }
     new_concept = concept.add(json)
-    expect(new_concept.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+    expect(new_concept.errors.full_messages.to_sentence).to eq("Description contains invalid characters or is empty")
     expect(new_concept.errors.count).to eq(1)
   end
 
@@ -119,6 +121,7 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "definition X",
         :extension_properties => [],
         :children => []
       }
@@ -131,6 +134,7 @@ describe IsoConceptSystem::Node do
         :namespace => "", 
         :label => "Node 3_4",
         :extension_properties => [],
+        :description => "definition X",
         :children => []
       }
     expect(result).to eq(expected)
@@ -153,6 +157,7 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
         :children => []
       }

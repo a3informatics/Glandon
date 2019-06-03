@@ -25,6 +25,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
         :children => []
       }
@@ -36,6 +37,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
         :children => []
       }
@@ -49,7 +51,8 @@ describe IsoConceptSystem do
         :type => "",
         :id => "", 
         :namespace => "", 
-        :label => "Node 3±",
+        :label => "Node 3",
+        :description => "Node 3±",
         :extension_properties => [],
         :children => []
       }
@@ -65,6 +68,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
         :children => []
       }
@@ -90,6 +94,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "Node 3_4",
         :extension_properties => [],
         :children => []
       }
@@ -101,6 +106,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "Node 3_4",
         :extension_properties => [],
         :children => []
       }
@@ -117,6 +123,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
         :children => []
       }
@@ -134,6 +141,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
         :children => []
       }
@@ -152,6 +160,7 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
         :children => []
       }

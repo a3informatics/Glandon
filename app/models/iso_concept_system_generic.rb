@@ -1,6 +1,6 @@
 class IsoConceptSystemGeneric < IsoConcept
 
-  attr_accessor :children
+  attr_accessor :children, :description
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_ISO_C
@@ -17,6 +17,7 @@ class IsoConceptSystemGeneric < IsoConcept
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
+    self.description = ""
     self.children = Array.new
     if triples.nil?
       super
@@ -64,6 +65,7 @@ class IsoConceptSystemGeneric < IsoConcept
   # @return [Hash] The object hash 
   def to_json
     result = super
+    result[:description] = self.description
     result[:children] = Array.new
     children.each do |child|
       result[:children] << child.to_json
@@ -77,6 +79,7 @@ class IsoConceptSystemGeneric < IsoConcept
   # @return [Object] The object
   def self.from_json(json)
     object = super(json)
+    object.description = json[:description]
     object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => self::C_RDF_TYPE}).to_s
     if !json[:children].blank?
       json[:children].each do |child|
@@ -97,6 +100,7 @@ class IsoConceptSystemGeneric < IsoConcept
     self.id = uri.id
     self.namespace = uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
+    sparql.triple({:uri => self.uri}, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
     return sparql
   end
 
@@ -104,7 +108,9 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @return [Boolean] True if valid, false otherwise.
   def valid?
-    super
+    result1 = super
+    result2 = FieldValidation::valid_long_name?(:description, self.description, self)
+    return result1 && result2
   end
 
 private

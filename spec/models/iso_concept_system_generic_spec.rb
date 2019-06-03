@@ -38,6 +38,7 @@ describe IsoConceptSystemGeneric do
 	it "validates a valid object" do
     result = IsoConceptSystemGeneric.new
     result.label = "Hello world"
+    result.description = "Hello world"
     expect(result.valid?).to eq(true)
   end
 
@@ -55,6 +56,7 @@ describe IsoConceptSystemGeneric do
         :namespace => "", 
         :label => "",
         :extension_properties => [],
+        :description => "",
         :children => []
       }
     expect(IsoConceptSystemGeneric.new.to_json).to match(result)
@@ -68,6 +70,7 @@ describe IsoConceptSystemGeneric do
         :id => "GSC-C3", 
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
+        :description => "Description 3",
         :extension_properties => [],
         :children => []
       }
@@ -83,6 +86,7 @@ describe IsoConceptSystemGeneric do
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
         :extension_properties => [],
+        :description => "Description 3",
         :children => 
         [
           {
@@ -90,6 +94,7 @@ describe IsoConceptSystemGeneric do
             :id=>"GSC-C3_2", :namespace=>"http://www.assero.co.uk/MDRConcepts", 
             :label=>"Node 3_2", 
             :extension_properties=>[], 
+            :description => "Description 3_2",
             :children=>[]
           }, 
           {
@@ -98,6 +103,7 @@ describe IsoConceptSystemGeneric do
             :namespace=>"http://www.assero.co.uk/MDRConcepts", 
             :label=>"Node 3_1", 
             :extension_properties=>[], 
+            :description => "Description 3_1",
             :children=>[]
           }
         ]
@@ -109,6 +115,7 @@ describe IsoConceptSystemGeneric do
     concepts = ICSGTest1.all
     result = [
       {
+        description: "",
         children: [],
         rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystem",
         id: "GSC-C",
@@ -120,7 +127,7 @@ describe IsoConceptSystemGeneric do
         triples: {}
       }
     ]
-    expect(concepts.to_json).to hash_equal(result.to_json)
+    expect(concepts.to_json).to eq(result.to_json)
   end
 
   it "allows the object to be returned as json" do
@@ -133,9 +140,10 @@ describe IsoConceptSystemGeneric do
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
         :extension_properties => [],
+        :description => "Description 3",
         :children => []
       }
-    expect(concept.to_json).to eq(expected)
+    expect(concept.to_json).to hash_equal(expected)
   end
 
   it "allows the object to be created from json" do
@@ -146,6 +154,7 @@ describe IsoConceptSystemGeneric do
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
+        :description => "Description 3",
         :children => []
       }
     concept = ICSGTest1.from_json(json)
@@ -157,6 +166,7 @@ describe IsoConceptSystemGeneric do
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
+        :description => "Description 3",
         :children => []
       }
     expect(result).to eq(expected)
