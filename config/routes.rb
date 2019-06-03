@@ -93,17 +93,15 @@ Rails.application.routes.draw do
       get :admin
     end
   end
-  resources :iso_concept_systems do
+  resources :iso_concept_systems, only: [:index] do
     collection do
-      get :node_new
-      post :node_add
+      post :add
     end
   end
   namespace :iso_concept_systems do
-    resources :nodes do
-      collection do
-        get :node_new
-        post :node_add
+    resources :nodes, only: [:destroy] do
+      member do
+        post :add
       end
     end
   end
