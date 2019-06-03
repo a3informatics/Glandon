@@ -1,6 +1,6 @@
 class IsoConceptSystemGeneric < IsoConcept
 
-  attr_accessor :description, :children
+  attr_accessor :children
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_ISO_C
@@ -17,7 +17,6 @@ class IsoConceptSystemGeneric < IsoConcept
   # @param id [string] The identifier for the concept being built from the triples
   # @return [object] The new object
   def initialize(triples=nil, id=nil)
-    self.description = ""
     self.children = Array.new
     if triples.nil?
       super
@@ -34,9 +33,7 @@ class IsoConceptSystemGeneric < IsoConcept
   # @return [Object] The concept
   def self.find(id, ns, children=true)
     object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
+    children_from_triples(object, object.triples, id) if children
     return object
   end
 
@@ -44,8 +41,22 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param rdf_type [Atring] The RDF type
   # @return [Array] Array of objects
-  def self.all(rdf_type)
-    results = super(rdf_type, C_SCHEMA_NS)
+  def self.all
+    results = super(self::C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  # Add a child object
+  #
+  # @raise [CreateError] If object not created.
+  # @return [Object] The new object created if no exception raised
+  def add(params)
+    object = IsoConceptSystem::Node.from_json(params)
+    if object.valid?
+      sparql = object.to_sparql_v2
+      sparql.default_namespace(object.namespace)
+      create_child(object, sparql, C_SCHEMA_PREFIX, "hasMember")
+    end
+    return object
   end
 
   # To JSON
@@ -53,7 +64,6 @@ class IsoConceptSystemGeneric < IsoConcept
   # @return [Hash] The object hash 
   def to_json
     result = super
-    result[:description] = self.description
     result[:children] = Array.new
     children.each do |child|
       result[:children] << child.to_json
@@ -65,10 +75,9 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param json [Hash] The hash of values for the object 
   # @return [Object] The object
-  def self.from_json(json, rdf_type)
+  def self.from_json(json)
     object = super(json)
-    object.description = json[:description]
-    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => rdf_type}).to_s
+    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => self::C_RDF_TYPE}).to_s
     if !json[:children].blank?
       json[:children].each do |child|
         object.children << IsoConceptSystem::Node.from_json(child)
@@ -81,14 +90,13 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param cid_prefix [String] The fragment prefix
   # @return [Object] The sparql object
-  def to_sparql_v2(cid_prefix)
+  def to_sparql_v2
     sparql = SparqlUpdateV2.new
     ra = IsoRegistrationAuthority.owner
-    uri = UriV2.new({:prefix => cid_prefix, :org_name => ra.namespace.shortName, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
+    uri = UriV2.new({:prefix => self.class::C_CID_PREFIX, :org_name => ra.namespace.shortName, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
     self.id = uri.id
     self.namespace = uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
-    sparql.triple({:uri => self.uri}, {:prefix => C_SCHEMA_PREFIX, :id => "description"}, {:literal => "#{self.description}", :primitive_type => "string"})
     return sparql
   end
 
@@ -96,9 +104,7 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @return [Boolean] True if valid, false otherwise.
   def valid?
-    result1 = super
-    result2 = FieldValidation::valid_long_name?(:description, self.description, self)
-    return result1 && result2
+    super
   end
 
 private

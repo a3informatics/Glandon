@@ -25,15 +25,25 @@ describe IsoConceptSystemGeneric do
     clear_iso_registration_state_object
   end
 
+  class ICSGTest1 < IsoConceptSystemGeneric
+    C_CID_PREFIX = "CS"
+    C_RDF_TYPE = "ConceptSystem"
+  end
+
+  class ICSGTest2 < IsoConceptSystemGeneric
+    C_CID_PREFIX = "GSC"
+    C_RDF_TYPE = "ConceptSystemNode"
+  end
+
 	it "validates a valid object" do
     result = IsoConceptSystemGeneric.new
-    result.description = "Hello world"
+    result.label = "Hello world"
     expect(result.valid?).to eq(true)
   end
 
   it "does not validate an invalid object" do
     result = IsoConceptSystemGeneric.new
-    result.description = "Hello world±"
+    result.label = "Hello world±"
     expect(result.valid?).to eq(false)
   end
 
@@ -45,7 +55,6 @@ describe IsoConceptSystemGeneric do
         :namespace => "", 
         :label => "",
         :extension_properties => [],
-        :description => "",
         :children => []
       }
     expect(IsoConceptSystemGeneric.new.to_json).to match(result)
@@ -60,7 +69,6 @@ describe IsoConceptSystemGeneric do
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     expect(concept.to_json).to eq(result)
@@ -75,7 +83,6 @@ describe IsoConceptSystemGeneric do
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => 
         [
           {
@@ -83,7 +90,6 @@ describe IsoConceptSystemGeneric do
             :id=>"GSC-C3_2", :namespace=>"http://www.assero.co.uk/MDRConcepts", 
             :label=>"Node 3_2", 
             :extension_properties=>[], 
-            :description=>"Description 3_2", 
             :children=>[]
           }, 
           {
@@ -92,7 +98,6 @@ describe IsoConceptSystemGeneric do
             :namespace=>"http://www.assero.co.uk/MDRConcepts", 
             :label=>"Node 3_1", 
             :extension_properties=>[], 
-            :description=>"Description 3_1", 
             :children=>[]
           }
         ]
@@ -101,10 +106,9 @@ describe IsoConceptSystemGeneric do
   end
 
   it "finds all objects" do
-    concepts = IsoConceptSystemGeneric.all("ConceptSystem")
+    concepts = ICSGTest1.all
     result = [
       {
-        description: "",
         children: [],
         rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystem",
         id: "GSC-C",
@@ -116,7 +120,7 @@ describe IsoConceptSystemGeneric do
         triples: {}
       }
     ]
-    expect(concepts.to_json).to eq(result.to_json)
+    expect(concepts.to_json).to hash_equal(result.to_json)
   end
 
   it "allows the object to be returned as json" do
@@ -129,7 +133,6 @@ describe IsoConceptSystemGeneric do
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     expect(concept.to_json).to eq(expected)
@@ -143,19 +146,17 @@ describe IsoConceptSystemGeneric do
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
-    concept = IsoConceptSystemGeneric.from_json(json, "ConceptSystemNode")
+    concept = ICSGTest1.from_json(json)
     result = concept.to_json
     expected =     
       { 
-        :type => "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
+        :type => "http://www.assero.co.uk/ISO11179Concepts#ConceptSystem",
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     expect(result).to eq(expected)
@@ -163,8 +164,8 @@ describe IsoConceptSystemGeneric do
 
   it "allows the object to be returned as SPARQL" do
     expected = read_text_file_2(sub_dir, "iso_concept_system_generic_sparql.txt")
-    concept = IsoConceptSystemGeneric.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
-    result = concept.to_sparql_v2("GSC")
+    concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    result = concept.to_sparql_v2
     timestamps = /(\d{10})/.match(result.to_s) # Find the timestamp used in the test call
     updated_expected = expected.gsub("NNNNNNNNNN", timestamps[0]) # Update the expected results with the timestamp
     expect(result.to_s).to eq(updated_expected)
