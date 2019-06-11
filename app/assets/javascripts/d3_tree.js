@@ -30,8 +30,14 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   }
   var tree = d3.layout.tree().nodeSize([70, 40])
     .size([height, width - 160]);
-  var diagonal = d3.svg.diagonal()
-    .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
+  // var diagonal = d3.svg.diagonal()
+  //   .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
+  var diagonal = function link(d) {
+    return "M" + rectW + "," + (d.source.x + rectH / 2)
+        + "C" + (d.source.y + d.target.y) / 2 + "," + (d.source.x + rectH / 2)
+        + " " + (d.source.y + d.target.y) / 2 + "," + (d.target.x + rectH / 2)
+        + " " + d.target.y + "," + (d.target.x + rectH / 2);
+  }; 
   var svg = d3.select(d3Div).append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -50,7 +56,6 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
       .attr("orient", "auto")
     .append("svg:path")
       .attr("d", "M0,-5L10,0L0,5");
-
   var nodes = tree.nodes(jsonData),
   links = tree.links(nodes);
   var link = svg.selectAll("path.link")
@@ -77,7 +82,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("ry", 4)
     .attr("stroke", "#5cb85c")
     .attr("stroke-width", 1)
-    .style("fill", "#fff" )
+    .style("fill", "#fff")
     //.attr("r", 5)
     //.attr("fill", function(d) { return d3NodeColour(d); });
     //.style("fill", function(d) { return d3NodeColour(d); });
