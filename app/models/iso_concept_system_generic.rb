@@ -60,6 +60,31 @@ class IsoConceptSystemGeneric < IsoConcept
     return object
   end
 
+  # Update
+  #
+  # @raise [UpdateError] If object not updated.
+  # @return [Object] The new object created if no exception raised
+  def update(params)
+    update = UriManagement.buildNs(self.namespace, ["isoC"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label ?a . \n" +
+      " :" + self.id + " isoC:description ?b . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label \"" + SparqlUtility::replace_special_chars(params[:label]) + "\"^^xsd:string . \n" +
+      " :" + self.id + " isoC:description \"" + SparqlUtility::replace_special_chars(params[:description]) + "\"^^xsd:string . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label ?a . \n" +
+      " :" + self.id + " isoC:description ?b . \n" +
+      "}"
+    response = CRUD.update(update)
+    Errors.object_update_error(self.class.name, __method__.to_s, self) if !response.success?
+  end
+
   # To JSON
   #
   # @return [Hash] The object hash 

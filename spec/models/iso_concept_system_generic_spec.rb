@@ -181,4 +181,20 @@ describe IsoConceptSystemGeneric do
     expect(result.to_s).to eq(updated_expected)
   end
 
+  it "allows the object to be uodated" do
+    concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    concept.update(label: "NEW", description: "This is updated")
+    result = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    expect(result.label).to eq("NEW")
+    expect(result.description).to eq("This is updated")
+  end
+
+  it "handles a bad response error - update" do
+    concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    response = Typhoeus::Response.new(code: 200, body: "")
+    expect(Rest).to receive(:sendRequest).and_return(response)
+    expect(response).to receive(:success?).and_return(false)
+    expect{concept.update(label: "XXX", description: "XXX")}.to raise_error(Errors::UpdateError)
+  end
+
 end

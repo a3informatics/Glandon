@@ -99,7 +99,7 @@ Rails.application.routes.draw do
     end
   end
   namespace :iso_concept_systems do
-    resources :nodes, only: [:destroy] do
+    resources :nodes, only: [:destroy, :update] do
       member do
         post :add
       end

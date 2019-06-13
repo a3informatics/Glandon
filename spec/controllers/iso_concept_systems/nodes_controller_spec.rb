@@ -58,6 +58,14 @@ describe IsoConceptSystems::NodesController do
       expect(flash[:error]).to be_present      
     end
 
+    it "update a node" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
+      post :update, {:id => node.id, :namespace => node.namespace, :iso_concept_systems_node => {:label => "Updated Label", :description => "Updated Description"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")    
+    end
+
   end
 
   describe "Unauthorized User" do
