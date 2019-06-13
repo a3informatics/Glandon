@@ -45,4 +45,8 @@ describe Uri::Namespace do
     expect(Uri.namespaces.required_prefix?("rdf")).to eq(true)
   end
 
+  it "owl prefix" do
+    expect(@namespaces.owl_prefix).to eq(:owl)
+  end
+
 end

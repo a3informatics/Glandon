@@ -7,7 +7,8 @@ module Sparql
   class Query
 
     include Sparql::PrefixClauses
-    
+    include Sparql::CRUD
+
     # Execute Query
     #
     # @param query [String] the query string.
@@ -16,7 +17,7 @@ module Sparql
     # @return [Array] array of nokogiri nodes containiing the results.
     def query(query, default, prefixes)
       sparql = "#{build_clauses(default, prefixes)}#{query}"
-      response = CRUD.query(sparql)
+      response = send_query(sparql)
       raise_error(sparql) if !response.success?
       Sparql::Query::Results.new(response.body)
     end

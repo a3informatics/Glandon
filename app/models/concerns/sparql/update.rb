@@ -7,7 +7,8 @@ module Sparql
   class Update
 
     include Sparql::PrefixClauses
-     
+    include Sparql::CRUD
+
     C_CLASS_NAME = self.name
 
     def initialize()  
@@ -117,7 +118,7 @@ module Sparql
 
     # Execute update/create
     def execute_update(type, sparql)
-      response = CRUD.update(sparql)
+      response = send_update(sparql)
       if !response.success?
         base = "Failed to #{type} an item in the database. SPARQL #{type} failed."
         message = "#{base}\nSPARQL: #{sparql}"
@@ -130,7 +131,7 @@ module Sparql
 
     # Execute upload
     def execute_upload(file)
-      response = CRUD.file(file)
+      response = send_file(file)
       if !response.success?
         base = "Failed to upload and create an item in the database."
         message = "#{base}\nFilename: #{file}"
@@ -180,7 +181,9 @@ module Sparql
       current_subject = ""
       @triples.each do |key, subject|
         subject.each do |triple| 
-          f.write(triple.to_turtle(current_subject))
+          text = triple.to_turtle(current_subject)
+        byebug
+          f.write(text.dump)
           current_subject = key
         end
       end

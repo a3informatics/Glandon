@@ -29,31 +29,31 @@ describe Sparql::Update::Statement::Literal do
   it "allows for the class to be created, special characters" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = Sparql::Update::Statement::Literal.new(args)
-    expect("#{result}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
-    expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"")    
+    expect("#{result}").to eq("\"hello ++++ world\"^^xsd:string")    
+    expect("#{result.to_ref}").to eq("\"hello ++++ world\"")    
     expect("#{result.to_turtle}").to eq("\"hello ++++ world\"^^xsd:string")    
   end
 
   it "allows for the class to be created, special characters" do
     args = {:literal => "hello \r\n\t\\\"\' world", :primitive_type => "string"}
     result = Sparql::Update::Statement::Literal.new(args)
-    expect("#{result}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"^^xsd:string")    
-    expect("#{result.to_ref}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"")    
-    expect("#{result.to_turtle}").to eq("\"hello \\r\\n\t\\\\\\\"' world\"^^xsd:string")    
+    expect("#{result}").to eq("\"hello \\r\\n\\t\\\\\"' world\"^^xsd:string")    
+    expect("#{result.to_ref}").to eq("\"hello \\r\\n\\t\\\\\"' world\"")    
+    expect("#{result.to_turtle}").to eq("\"hello \\r\\n\\t\\\\\"' world\"^^xsd:string")    
   end
 
   it "allows for the class to be created, special characters, prefixed form" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = Sparql::Update::Statement::Literal.new(args)
     #expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"^^xsd:string")    
-    expect("#{result.to_ref}").to eq("\"hello %2B%2B%2B%2B world\"")    
+    expect("#{result.to_ref}").to eq("\"hello ++++ world\"")    
   end
 
   it "allows for the class to be created, special characters" do
     args = {:literal => "2018-01-01T00:00:00+01:00", :primitive_type => "dateTime"}
     result = Sparql::Update::Statement::Literal.new(args)
-    expect("#{result}").to eq("\"2018-01-01T00:00:00%2B01:00\"^^xsd:dateTime")    
-    expect("#{result.to_ref}").to eq("\"2018-01-01T00:00:00%2B01:00\"")    
+    expect("#{result}").to eq("\"2018-01-01T00:00:00+01:00\"^^xsd:dateTime")    
+    expect("#{result.to_ref}").to eq("\"2018-01-01T00:00:00+01:00\"")    
   end
 
   it "allows for the class to be created, type error" do

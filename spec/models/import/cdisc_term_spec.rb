@@ -47,7 +47,7 @@ describe Import::CdiscTerm do
       import_type: :cdisc_term,
       sheet_name: :sheet,
       version_label: :date,
-      label: "CDISC Terminology"
+      label: "Controlled Terminology"
     }
     expect(Import::CdiscTerm.configuration).to eq(expected)
   end
@@ -137,8 +137,8 @@ describe Import::CdiscTerm do
     expected = read_yaml_file(sub_dir, "import_version_2007-03-06.yaml")
     expect(actual).to eq(expected)
     expect(@job.status).to eq("Complete")
+byebug
     delete_data_file(sub_dir, filename)
-
   end
 
   it "import, CDISC Version 2 Format" do
