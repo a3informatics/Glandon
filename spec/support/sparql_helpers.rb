@@ -30,8 +30,7 @@ module SparqlHelpers
   def check_ttl_fix(results_filename, expected_filename, options)
     actual = read_ttl_file(results_filename)
     expected = read_ttl_file(expected_filename)
-    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
-    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
+    fixes(actual, expected, options)
     expect(actual).to sparql_results_equal(expected)
   end
 
@@ -52,9 +51,13 @@ module SparqlHelpers
   def check_triples_fix(results_filename, expected_filename, options)
     actual = read_triple_file(results_filename)
     expected = read_triple_file(expected_filename)
-    fix_predicate(actual, :last_change_date, expected, :last_change_date) if options[:last_change_date]  
-    fix_predicate(actual, :creation_date, expected, :creation_date) if options[:creation_date]  
+    fixes(actual, expected, options)
     expect(actual).to sparql_results_equal(expected)
+  end
+
+  def fixes(actual, expected, options)
+    fix_predicate(actual, expected, :last_change_date) if options[:last_change_date]  
+    fix_predicate(actual, expected, :creation_date) if options[:creation_date]  
   end
 
   def read_sparql_file(filename)
@@ -115,8 +118,9 @@ module SparqlHelpers
     return results = {prefixes: [], triples: results, checks: true}
   end
 
-  def fix_predicate(results, r_field, expected, e_field)
-    set_predicate(results[:triples], r_field, extract_predicate(expected[:triples], e_field))
+  def fix_predicate(results, expected, r_field)
+    set_predicate(results[:triples], r_field, "2019-01-01 12:13:14 +0200") # Set a dummy date, don't extract
+    set_predicate(expected[:triples], r_field, "2019-01-01 12:13:14 +0200") 
   end
 
 private
@@ -128,16 +132,16 @@ private
     @checks[type] = true
   end
 
-  def extract_predicate(triples, predicate_type)
-    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
-    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triple.empty?
-    triple.first[:object]
-  end
+  #def extract_predicate(triples, predicate_type)
+  #  triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
+  #  triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triple.empty?
+  #  triple.first[:object]
+  #end
 
   def set_predicate(triples, predicate_type, new_date)
-    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
-    triple = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triple.empty?
-    triple.first[:object] = new_date
+    triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
+    triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triples.empty?
+    triples.each {|x| x[:object] = new_date}
   end
 
   def expand(results)

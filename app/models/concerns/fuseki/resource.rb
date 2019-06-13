@@ -3,6 +3,7 @@
 # @author Dave Iberson-Hurst
 # @since 2.21.0
 require "active_support/core_ext/class"
+require "digest"
 
 module Fuseki
   
@@ -66,7 +67,11 @@ module Fuseki
       define_method :create_uri do |parent|
         result = Uri.new(uri: parent.to_s) 
         if opts[:uri_unique]
-          result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+          if opts[:uri_unique].is_a?(TrueClass)
+            result = Uri.new(namespace: self.class.base_uri.namespace, fragment: SecureRandom.uuid)
+          else
+            result = Uri.new(namespace: self.class.base_uri.namespace, fragment: Digest::SHA1.hexdigest(self.send(opts[:uri_unique])))
+          end
         elsif opts[:uri_suffix] && opts[:uri_property] 
           result.extend_fragment("#{opts[:uri_suffix]}#{self.send(opts[:uri_property])}")
         elsif opts[:uri_suffix] 

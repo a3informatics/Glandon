@@ -67,7 +67,7 @@ describe Import::CdiscTerm do
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
     params = 
     {
-      version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "ADaM IG", semantic_version: "1.1.1", job: @job
+      version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
@@ -76,7 +76,7 @@ describe Import::CdiscTerm do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
-    check_ttl(filename, "import_expected_1.txt")
+    check_ttl_fix(filename, "import_expected_1.txt", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
 	end

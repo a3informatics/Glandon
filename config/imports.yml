@@ -237,29 +237,22 @@ defaults: &defaults
             label: "NCI Preferred Term"
             actions:
               -
-                method: set_property
+                method: create_shared
                 object: parent
                 property: preferredTerm
-                can_be_empty: true
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: create_shared
+                object: child
+                property: preferredTerm
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_not_blank?
-                  column: 3
-              -
-                method: set_property
-                object: child
-                property: preferredTerm
-                map: {}
-                condition: 
-                  method: column_blank?
-                  column: 3
-              -
-                method: set_property
-                object: child
-                property: label
-                map: {}
-                condition: 
-                  method: column_blank?
                   column: 3
           - 
             label: "CDISC Definition"
@@ -454,29 +447,22 @@ defaults: &defaults
             label: "NCI Preferred Term"
             actions:
               -
-                method: set_property
+                method: create_shared
                 object: parent
                 property: preferredTerm
-                can_be_empty: true
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: create_shared
+                object: child
+                property: preferredTerm
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_not_blank?
-                  column: 3
-              -
-                method: set_property
-                object: child
-                property: preferredTerm
-                map: {}
-                condition: 
-                  method: column_blank?
-                  column: 3
-              -
-                method: set_property
-                object: child
-                property: label
-                map: {}
-                condition: 
-                  method: column_blank?
                   column: 3
           -
             label: Pre-release/ Production
@@ -631,30 +617,23 @@ defaults: &defaults
             label: "NCI Preferred Term"
             actions:
               -
-                method: set_property
+                method: create_shared
                 object: parent
                 property: preferredTerm
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_blank?
                   column: 2
               -
-                method: set_property
+                method: create_shared
                 object: child
                 property: preferredTerm
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_not_blank?
                   column: 2
-              -
-                method: set_property
-                object: child
-                property: label
-                map: {}
-                condition: 
-                  method: column_not_blank?
-                  column: 2
-
 development:
   <<: *defaults
 
