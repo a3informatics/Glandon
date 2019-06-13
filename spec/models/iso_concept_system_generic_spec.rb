@@ -189,6 +189,20 @@ describe IsoConceptSystemGeneric do
     expect(result.description).to eq("This is updated")
   end
 
+  it "allows the object to be uodated, validation error I" do
+    concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    concept.update(label: "NEW", description: "This is updated±±")
+    expect(concept.errors.count).to eq(1)
+    expect(concept.errors.full_messages.to_sentence).to eq("Description contains invalid characters or is empty")
+  end
+
+  it "allows the object to be uodated, validation error II" do
+    concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
+    concept.update(label: "NEW±±", description: "This is updated")
+    expect(concept.errors.count).to eq(1)
+    expect(concept.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+  end
+
   it "handles a bad response error - update" do
     concept = ICSGTest2.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts", false)
     response = Typhoeus::Response.new(code: 200, body: "")

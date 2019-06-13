@@ -63,8 +63,11 @@ class IsoConceptSystemGeneric < IsoConcept
   # Update
   #
   # @raise [UpdateError] If object not updated.
-  # @return [Object] The new object created if no exception raised
+  # @return [Boolean] The new object created if no exception raised
   def update(params)
+    self.label = params[:label]
+    self.description = params[:description]
+    return if !valid?
     update = UriManagement.buildNs(self.namespace, ["isoC"]) +
       "DELETE \n" +
       "{ \n" +

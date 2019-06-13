@@ -66,6 +66,15 @@ describe IsoConceptSystems::NodesController do
       expect(response.code).to eq("200")    
     end
 
+    it "update a node, errors" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
+      post :update, {:id => node.id, :namespace => node.namespace, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("400")   
+      expect(response.body).to eq("{\"errors\":[\"Label contains invalid characters\"]}") 
+    end
+
   end
 
   describe "Unauthorized User" do

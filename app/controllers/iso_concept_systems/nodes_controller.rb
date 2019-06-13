@@ -30,15 +30,16 @@ class IsoConceptSystems::NodesController < ApplicationController
     authorize IsoConceptSystem::Node
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
     node.update(the_params)
-    render :json => {}, :status => 200
+    status = node.errors.empty? ? 200 : 400
+    render :json => {errors: node.errors.full_messages}, :status => status
   rescue => e
-    render :json => {errors: "Something went wrong updating the tag."}, :status => 500
+    render :json => {errors: ["Something went wrong updating the tag."]}, :status => 500
   end
   
 private
 
-    def the_params
-      params.require(:iso_concept_systems_node).permit(:label, :description)
-    end
+  def the_params
+    params.require(:iso_concept_systems_node).permit(:label, :description)
+  end
 
 end
