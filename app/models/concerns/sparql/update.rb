@@ -182,8 +182,7 @@ module Sparql
       @triples.each do |key, subject|
         subject.each do |triple| 
           text = triple.to_turtle(current_subject)
-        byebug
-          f.write(text.dump)
+          f.write(text)
           current_subject = key
         end
       end

@@ -50,7 +50,6 @@ describe Sparql::Update do
   end
 
   after :all do
-byebug
     delete_all_public_test_files
   end
   
@@ -306,7 +305,7 @@ byebug
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo2"}, {:uri => o_uri})
     sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo3"}, {:prefix => "", :fragment => "#ooo4"})
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / & \n\r\t", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t", :primitive_type => "string"})
     sparql.upload
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
@@ -314,7 +313,7 @@ byebug
       pre = ModelUtility.getValue('p', true, node)
       next if pre != "http://www.example.com/default#ooo4"
       obj = ModelUtility.getValue('o', false, node)
-      expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / & \n\r\t")
+      expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t")
     end
   end
 
@@ -347,7 +346,7 @@ byebug
     timer_start    
     full_path = sparql.to_file
     timer_stop("#{count} triple file took: ")
-  copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "to_file_expected_1.txt")
+  #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "to_file_expected_1.txt")
     actual = read_text_file_full_path(full_path)
     expected = read_text_file_2(sub_dir, "to_file_expected_1.txt")
     expect(actual).to eq(expected)

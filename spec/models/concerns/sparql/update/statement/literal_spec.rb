@@ -26,7 +26,7 @@ describe Sparql::Update::Statement::Literal do
     expect("#{result.to_ref}").to eq("\"hello world\"")
   end
 
-  it "allows for the class to be created, special characters" do
+  it "allows for the class to be created, special characters I" do
     args = {:literal => "hello ++++ world", :primitive_type => "string"}
     result = Sparql::Update::Statement::Literal.new(args)
     expect("#{result}").to eq("\"hello ++++ world\"^^xsd:string")    
@@ -34,12 +34,12 @@ describe Sparql::Update::Statement::Literal do
     expect("#{result.to_turtle}").to eq("\"hello ++++ world\"^^xsd:string")    
   end
 
-  it "allows for the class to be created, special characters" do
+  it "allows for the class to be created, special characters II" do
     args = {:literal => "hello \r\n\t\\\"\' world", :primitive_type => "string"}
     result = Sparql::Update::Statement::Literal.new(args)
-    expect("#{result}").to eq("\"hello \\r\\n\\t\\\\\"' world\"^^xsd:string")    
-    expect("#{result.to_ref}").to eq("\"hello \\r\\n\\t\\\\\"' world\"")    
-    expect("#{result.to_turtle}").to eq("\"hello \\r\\n\\t\\\\\"' world\"^^xsd:string")    
+    expect("#{result}").to eq("\"hello \\r\\n\\t\\\\\\\"' world\"^^xsd:string")    
+    expect("#{result.to_ref}").to eq("\"hello \\r\\n\\t\\\\\\\"' world\"")    
+    expect("#{result.to_turtle}").to eq("\"hello \\\\r\\\\n\\\\t\\\\\\\\\\\\\\\"' world\"^^xsd:string")    
   end
 
   it "allows for the class to be created, special characters, prefixed form" do
