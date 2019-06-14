@@ -13,12 +13,11 @@ class IsoConceptSystems::NodesController < ApplicationController
   def destroy
     authorize IsoConceptSystem::Node
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
-    if node.children.length == 0
-      node.destroy
-      render :json => {errors: node.errors.full_messages}, :status => 200
-    else
-      render :json => {errors: ["Child tags exist, this tag cannot be deleted."]}, :status => 500
-    end
+    node.destroy
+    status = node.errors.empty? ? 200 : 500
+    render :json => {errors: node.errors.full_messages}, :status => status
+  rescue => e
+    render :json => {errors: ["Something went wrong deleting the tag."]}, :status => 500
   end
 
   def update

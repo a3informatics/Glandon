@@ -52,12 +52,12 @@ class IsoConceptSystem::Node < IsoConceptSystemGeneric
     return uri
   end
 
-  # Destroy this object and links to it.
+  # Destroy this object and links to it. Prevents delete if children.
   #
   # @raise [DestroyError] If object not destroyed.
   # @return [Null]
   def destroy
-    destroy_with_links
+    self.children.any? ? self.errors.add(:base, "Cannot destroy tag as it has children tags") : destroy_with_links
   end
 
 end
