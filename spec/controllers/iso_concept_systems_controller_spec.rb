@@ -27,10 +27,19 @@ describe IsoConceptSystemsController do
 
     it "returns a concept system tree" do
       get :index
-      result = assigns(:concept_systems)
+      result = assigns(:concept_system)
+      expect(result.id).to eq("GSC-C")
+      expect(result.namespace).to eq("http://www.assero.co.uk/MDRConcepts")
+    end
+
+    it "returns a concept system tree" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :show, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
     #Xwrite_yaml_file(result, sub_dir, "iso_concept_system_controller.yaml")
       expected = read_yaml_file(sub_dir, "iso_concept_system_controller.yaml")
-      expect(result).to eq(expected)
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")    
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)    
     end
 
     it "allows a node to be added" do
@@ -47,11 +56,20 @@ describe IsoConceptSystemsController do
 
   describe "Unauthorized User" do
     
-    it "show a concept" do
+    it "index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
     end
 
+    it "show a concept" do
+      get :show, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "add a concept" do
+      post :add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
   end
 
 end

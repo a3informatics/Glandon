@@ -94,10 +94,8 @@ class IsoConceptSystemGeneric < IsoConcept
   def to_json
     result = super
     result[:description] = self.description
-    result[:children] = Array.new
-    children.each do |child|
-      result[:children] << child.to_json
-    end
+    result[:children] = []
+    children.each {|child| result[:children] << child.to_json}
     return result
   end
 

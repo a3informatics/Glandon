@@ -7,13 +7,14 @@ class IsoConceptSystemsController < ApplicationController
   def index
     authorize IsoConceptSystem
     cs_set = IsoConceptSystem.all
-    cs = cs_set.empty? ? IsoConceptSystem.create(label: "Tags") : IsoConceptSystem.find(cs_set.first.id, cs_set.first.namespace)
-    @concept_systems = cs.to_json
-    @concept_systems[:children] =[]
-    cs.children.each do |child|
-      @concept_systems[:children] << child.to_json
-    end
+    @concept_system = cs_set.empty? ? IsoConceptSystem.create(label: "Tags") : IsoConceptSystem.find(cs_set.first.id, cs_set.first.namespace)
   end
+
+  def show
+    authorize IsoConceptSystem
+    concept_system = IsoConceptSystem.find(params[:id], params[:namespace])
+    render :json => {data: concept_system.to_json}, :status => 200
+  end    
 
   def add
     authorize IsoConceptSystem, :create?

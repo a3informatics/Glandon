@@ -1,9 +1,8 @@
 <%= stylesheet_link_tag    'd3_tree'%>
 <%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list' %>
 <% top_level_breadcrumb("Tags") %>
-<script id="jsonData" type="text/json">
-    <%= raw @concept_systems.to_json %>
-</script>
+<%= javascript_tag "var concept_system_id = \"#{@concept_system.id}\";" %>
+<%= javascript_tag "var concept_system_namespace = \"#{@concept_system.namespace}\";" %>
 <div class="row">
     <div class="col-md-7">
       <div class="panel panel-default">
