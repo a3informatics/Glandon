@@ -6,12 +6,8 @@ class IsoConceptSystems::NodesController < ApplicationController
     authorize IsoConceptSystem::Node, :create?
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
     new_node = node.add(the_params)
-    if new_node.errors.blank?
-      flash[:success] = 'The tag was successfully created.'
-    else
-      flash[:error] = "Something went wrong and the tag was not created. #{new_node.errors.full_messages.to_sentence}."
-    end
-    redirect_to iso_concept_systems_node_path(:id => node.id, :namespace => node.namespace)
+    status = new_node.errors.empty? ? 200 : 400
+    render :json => {errors: new_node.errors.full_messages}, :status => status
   end
 
   def destroy
@@ -19,11 +15,10 @@ class IsoConceptSystems::NodesController < ApplicationController
     node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
     if node.children.length == 0
       node.destroy
-      flash[:success] = 'The tag was successfully deleted.'
+      render :json => {errors: node.errors.full_messages}, :status => 200
     else
-      flash[:error] = "Child tags exist, this tag cannot be deleted."
+      render :json => {errors: ["Child tags exist, this tag cannot be deleted."]}, :status => 500
     end
-    redirect_to iso_concept_systems_node_path(:id => params[:parent_id], :namespace => params[:parent_namespace])
   end
 
   def update
