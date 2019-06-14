@@ -43,13 +43,19 @@ describe IsoConceptSystemsController do
     end
 
     it "allows a node to be added" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       post :add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_system => {:label => "New Node Label", :description => "New Node Description"}}
-      expect(flash[:success]).to be_present
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")    
+      expect(response.body).to eq("{\"errors\":[]}")    
     end
 
     it "prevents an invalid node being added" do
+      request.env['HTTP_ACCEPT'] = "application/json"
       post :add, {:id => "GSC-C", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_system => {:label => "New Label", :description => "New Description±"}}
-      expect(flash[:error]).to be_present
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("400")    
+      expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")    
     end
 
   end

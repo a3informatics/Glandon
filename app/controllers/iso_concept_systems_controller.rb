@@ -20,18 +20,14 @@ class IsoConceptSystemsController < ApplicationController
     authorize IsoConceptSystem, :create?
     conceptSystem = IsoConceptSystem.find(params[:id], params[:namespace])
     node = conceptSystem.add(the_params)
-    if node.errors.blank?
-      flash[:success] = 'Concept system node was successfully created.'
-    else
-      flash[:error] = "Concept system node was not created. #{node.errors.full_messages.to_sentence}."
-    end
-    redirect_to iso_concept_systems_path
+    status = node.errors.empty? ? 200 : 400
+    render :json => {errors: node.errors.full_messages}, :status => status
   end
 
 private
 
-    def the_params
-      params.require(:iso_concept_system).permit(:label, :description)
-    end
+  def the_params
+    params.require(:iso_concept_system).permit(:label, :description)
+  end
     
 end
