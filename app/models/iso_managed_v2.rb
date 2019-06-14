@@ -4,7 +4,7 @@
 # @since 2.21.1
 class IsoManagedV2 < IsoConceptV2
 
-  extend Resource
+  #extend Resource
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
 

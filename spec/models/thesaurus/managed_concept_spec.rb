@@ -64,13 +64,13 @@ describe Thesaurus::ManagedConcept do
     @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
     @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
     @tc_3a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-    params = tc_1b.to_h
+    params = @tc_1b.to_h
     params[:definition] = "The oldest LHR Terminal. A real mess",
     @tc_3b = Thesaurus::UnmanagedConcept.from_h(params)
     @tc_3b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
     @tc_3.narrower << @tc_3a
     @tc_3.narrower << @tc_3b
-    @tc_4 = Thesaurus::ManagedConcept.from_h(@tc_2.from_h)
+    @tc_4 = Thesaurus::ManagedConcept.from_h(@tc_2.to_h)
     @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
     @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
   end
@@ -94,14 +94,14 @@ describe Thesaurus::ManagedConcept do
     @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
     @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
     @tc_5a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-    @tc_5b = Thesaurus::UnmanagedConcept.from_h(tc_5b.to_h)
+    @tc_5b = Thesaurus::UnmanagedConcept.from_h(@tc_1b.to_h)
     @tc_5b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
     @tc_5.narrower << @tc_5a
     @tc_5.narrower << @tc_5b
     @tc_5.narrower << @tc_5c
-    @tc_6 = Thesaurus::ManagedConcept.from_h(@tc_2.from_h)
-    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+    @tc_6 = Thesaurus::ManagedConcept.from_h(@tc_2.to_h)
+    @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+    @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
   end
 
   before :all  do
@@ -419,9 +419,8 @@ describe Thesaurus::ManagedConcept do
 
   it "replaces with previous, difference" do
     simple_thesaurus_1
-    simple_thesaurus_2
     simple_thesaurus_3
-    expect(@tc_4.replace_if_no_change(@tc_3).uri).to eq(@tc_4.uri)
+    expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
   end
 
 end
