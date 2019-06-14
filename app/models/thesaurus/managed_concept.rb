@@ -33,7 +33,22 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   include Thesaurus::BaseConcept
 
+  def replace_if_no_change(previous)
+    return previous if !self.diff?(previous)
+    replace_children_if_no_change(previous)
+    return self
+  end
+
 private
+
+  #
+  def replace_children_if_no_change(previous)
+    self.narrower.each_with_index do |child, index|
+      previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
+      next if previous_child.empty?
+      self.narrower[index] = child.replace_if_no_change(previous_child.first)
+    end
+  end
 
   # Find parent query. Used by BaseConcept
   def parent_query

@@ -11,6 +11,99 @@ describe Thesaurus::ManagedConcept do
     return "models/thesaurus/managed_concept"
   end
 
+  def simple_thesaurus_1
+    @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    @th_1 = Thesaurus.new
+    @tc_1 = Thesaurus::ManagedConcept.from_h({
+        label: "London Heathrow",
+        identifier: "A00001",
+        definition: "A definition",
+        notation: "LHR"
+      })
+    @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+    @tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+    @tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+    @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 5",
+        identifier: "A000011",
+        definition: "The 5th LHR Terminal",
+        notation: "T5"
+      })
+    @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+    @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+    @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+    @tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+    @tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+    @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal 1",
+        identifier: "A000012",
+        definition: "The oldest LHR Terminal",
+        notation: "T1"
+      })
+    @tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+    @tc_1.narrower << @tc_1a
+    @tc_1.narrower << @tc_1b
+    @tc_2 = Thesaurus::ManagedConcept.new
+    @tc_2.identifier = "A00002"
+    @tc_2.definition = "Copenhagen"
+    @tc_2.extensible = false
+    @tc_2.notation = "CPH"
+    @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+    @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+  end
+
+  def simple_thesaurus_2
+    @th_2 = Thesaurus.new
+    @tc_3 = Thesaurus::ManagedConcept.from_h(@tc_1.to_h)
+    @tc_3.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+    @tc_3.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+    @tc_3.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+    @tc_3a = Thesaurus::UnmanagedConcept.from_h(@tc_1a.to_h)
+    @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+    @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+    @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+    @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+    @tc_3a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+    params = tc_1b.to_h
+    params[:definition] = "The oldest LHR Terminal. A real mess",
+    @tc_3b = Thesaurus::UnmanagedConcept.from_h(params)
+    @tc_3b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+    @tc_3.narrower << @tc_3a
+    @tc_3.narrower << @tc_3b
+    @tc_4 = Thesaurus::ManagedConcept.from_h(@tc_2.from_h)
+    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+  end
+
+  def simple_thesaurus_3
+    @th_3 = Thesaurus.new
+    @tc_5 = Thesaurus::ManagedConcept.from_h(@tc_1.to_h)
+    @tc_5.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
+    @tc_5.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
+    @tc_5.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+    @tc_5c = Thesaurus::UnmanagedConcept.from_h({
+        label: "Terminal X",
+        identifier: "A000014",
+        definition: "The new new LHR Terminal. Never going to happen",
+        notation: "TX"
+      })
+    @tc_5c.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal X")
+    @tc_5a = Thesaurus::UnmanagedConcept.from_h(@tc_1a.to_h)
+    @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
+    @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
+    @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
+    @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
+    @tc_5a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
+    @tc_5b = Thesaurus::UnmanagedConcept.from_h(tc_5b.to_h)
+    @tc_5b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
+    @tc_5.narrower << @tc_5a
+    @tc_5.narrower << @tc_5b
+    @tc_5.narrower << @tc_5c
+    @tc_6 = Thesaurus::ManagedConcept.from_h(@tc_2.from_h)
+    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+    @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+  end
+
   before :all  do
     IsoHelpers.clear_cache
   end
@@ -235,52 +328,15 @@ describe Thesaurus::ManagedConcept do
   end
 
   it "allows a TC to be exported as SPARQL" do
-    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
     sparql = Sparql::Update.new
-    th = Thesaurus.new
-    tc_1 = Thesaurus::ManagedConcept.from_h({
-        label: "London Heathrow",
-        identifier: "A00001",
-        definition: "A definition",
-        notation: "LHR"
-      })
-    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
-    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
-    tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
-    tc_1a = Thesaurus::UnmanagedConcept.from_h({
-        label: "Terminal 5",
-        identifier: "A000011",
-        definition: "The 5th LHR Terminal",
-        notation: "T5"
-      })
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
-    tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-    tc_1b = Thesaurus::UnmanagedConcept.from_h({
-        label: "Terminal 1",
-        identifier: "A000012",
-        definition: "The oldest LHR Terminal",
-        notation: "T1"
-      })
-    tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
-    tc_1.narrower << tc_1a
-    tc_1.narrower << tc_1b
-    tc_2 = Thesaurus::ManagedConcept.new
-    tc_2.identifier = "A00002"
-    tc_2.definition = "Copenhagen"
-    tc_2.extensible = false
-    tc_2.notation = "CPH"
-    th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-    th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-    th.set_initial("NEW_TH", ra)
-    tc_1.set_initial(tc_1.identifier, ra)
-    tc_2.set_initial(tc_2.identifier, ra)
+    simple_thesaurus_1
+    @th.set_initial("NEW_TH", ra)
+    @tc_1.set_initial(@tc_1.identifier, @ra)
+    @tc_2.set_initial(@tc_2.identifier, @ra)
     sparql.default_namespace(th.uri.namespace)
-    th.to_sparql(sparql, true)
-    tc_1.to_sparql(sparql, true)
-    tc_2.to_sparql(sparql, true)
+    @th.to_sparql(sparql, true)
+    @tc_1.to_sparql(sparql, true)
+    @tc_2.to_sparql(sparql, true)
     full_path = sparql.to_file
   #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
   end
@@ -294,41 +350,12 @@ describe Thesaurus::ManagedConcept do
   end
 
   it "allows a TC to be exported as SPARQL, II" do
-    ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-    tc_1 = Thesaurus::ManagedConcept.from_h({
-        label: "London Heathrow",
-        identifier: "A00001",
-        definition: "A definition",
-        notation: "LHR"
-      })
-    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
-    tc_1.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
-    tc_1.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
-    tc_1a = Thesaurus::UnmanagedConcept.from_h({
-        label: "Terminal 5",
-        identifier: "A000011",
-        definition: "The 5th LHR Terminal",
-        notation: "T5"
-      })
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
-    tc_1a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
-    tc_1a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-    tc_1b = Thesaurus::UnmanagedConcept.from_h({
-        label: "Terminal 1",
-        identifier: "A000012",
-        definition: "The oldest LHR Terminal",
-        notation: "T1"
-      })
-    tc_1b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
-    tc_1.narrower << tc_1a
-    tc_1.narrower << tc_1b
     sparql = Sparql::Update.new
-    tc_1.set_initial(tc_1.identifier, ra)
-    sparql.default_namespace(tc_1.uri.namespace)
-    tc_1.to_sparql(sparql, true)
-  write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
+    simple_thesaurus_1
+    @tc_1.set_initial(@tc_1.identifier, @ra)
+    sparql.default_namespace(@tc_1.uri.namespace)
+    @tc_1.to_sparql(sparql, true)
+  #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt") 
   end
   
@@ -377,6 +404,24 @@ describe Thesaurus::ManagedConcept do
   it "returns the parent concept, none" do
     tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
     expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00001.")
+  end
+
+  it "replaces with previous if no difference" do
+    simple_thesaurus_1
+    expect(@tc_1.replace_if_no_change(@tc_1).uri).to eq(@tc_1.uri)
+  end
+
+  it "replaces with previous, difference" do
+    simple_thesaurus_1
+    simple_thesaurus_2
+    expect(@tc_3.replace_if_no_change(@tc_1).uri).to eq(@tc_3.uri)
+  end
+
+  it "replaces with previous, difference" do
+    simple_thesaurus_1
+    simple_thesaurus_2
+    simple_thesaurus_3
+    expect(@tc_4.replace_if_no_change(@tc_3).uri).to eq(@tc_4.uri)
   end
 
 end
