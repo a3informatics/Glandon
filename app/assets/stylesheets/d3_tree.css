@@ -26,7 +26,6 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
-
 }
 
 .search-tree {
@@ -39,9 +38,12 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-top: 5px;
 }
 
 .update-tag {
   margin-right: 5px;
+}
+
+.tag-input {
+  margin-bottom: 10px;
 }

@@ -94,7 +94,7 @@ Rails.application.routes.draw do
     end
   end
   resources :iso_concept_systems, only: [:index, :show] do
-    collection do
+    member do
       post :add
     end
   end

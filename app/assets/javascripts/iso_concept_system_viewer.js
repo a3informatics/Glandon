@@ -24,12 +24,16 @@ function ConceptSystemViewPanel(id, namespace, step) {
     _this.d3Editor.reSizeDisplay(_this.heightStep);
   });
 
+  $('#add_tag').click(function () {
+    addTag(_this.displayTree.bind(_this));
+  });
+
   $('#update_tag').click(function () {
     updateTag(_this.displayTree.bind(_this));
   });
 
   $('#delete_tag').click(function () {
-    deleteTag();
+    deleteTag(_this.displayTree.bind(_this));
   });
 }
 
@@ -39,7 +43,7 @@ ConceptSystemViewPanel.prototype.displayTree = function() {
     url: '/iso_concept_systems/' + _this.id + '?namespace=' + _this.namespace,
     type: 'GET',
     success: function(result) {
-      _this.rootNode = _this.d3Editor.root(result.data.label, "", result.data)
+      _this.rootNode = _this.d3Editor.root(result.data.label, result.data.type, result.data)
       for (var i=0; i < result.data.children.length; i++) {
         _this.initNode(result.data.children[i], _this.rootNode);
       }
@@ -77,10 +81,13 @@ ConceptSystemViewPanel.prototype.validate = function(node) {
 }
 
 ConceptSystemViewPanel.prototype.displayNode = function(node) {
-  if (node.type ===  C_SYSTEM) {
-    // Do nothing
-  } else if (node.type === C_TAG) {
-    imlRefresh(node.data.id, node.data.namespace);
     showTagInfo(node.data);
+  if (node.type ===  C_SYSTEM) {
+    $('#update_tag').prop("disabled",true);
+    $('#delete_tag').prop("disabled",true);
+  } else if (node.type === C_TAG) {
+    $('#update_tag').prop("disabled",false);
+    $('#delete_tag').prop("disabled",false);
+    imlRefresh(node.data.id, node.data.namespace);
   } 
 }
