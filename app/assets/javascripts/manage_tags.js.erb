@@ -1,0 +1,65 @@
+var tagId;
+var tagNamespace;
+var tagLabel;
+var tagDescription;
+
+function showTagInfo(data) {
+  tagId = data.id;
+  tagNamespace = data.namespace
+  tagLabel = data.label
+  tagDescription = data.description
+  $('#edit_label').val(tagLabel);
+  $('#edit_description').val(tagDescription);
+}
+
+function updateTag() {
+  var labelValue = $('#edit_label').val();
+  var descriptionValue = $('#edit_description').val();
+  var data = { "namespace": tagNamespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + tagId,
+    type: 'PUT',
+    data: data,
+    success: function(data) {
+      alert('Update success.');
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+}
+
+
+// function deleteTag() {
+//   $.ajax({
+//     url: '/iso_concept_systems/nodes/' + tagId,
+//     type: 'DELETE',
+//     data: function( d ) {
+//       d.namespace = tagNamespace,
+//     },
+//     success: function(data) {
+//       alert('Update success.');
+//     },
+//     error: function(xhr, status, error){
+//       handleAjaxError (xhr, status, error);
+//     }
+//   });
+// }
+
+
+function createTag() {
+  var labelValue = $('#add_label').val();
+  var descriptionValue = $('#add_description').val();
+  var data = { "namespace": tagNamespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + tagId,
+    type: 'PUT',
+    data: data,
+    success: function(data) {
+      alert('Update success.');
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+}

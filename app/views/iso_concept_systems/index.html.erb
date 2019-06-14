@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag    'd3_tree'%>
-<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list' %>
+<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list', 'manage_tags' %>
 <% top_level_breadcrumb("Tags") %>
-<%= javascript_tag "var concept_system_id = \"#{@concept_system.id}\";" %>
-<%= javascript_tag "var concept_system_namespace = \"#{@concept_system.namespace}\";" %>
+<%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
+<%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>
 <div class="row">
     <div class="col-md-7">
       <div class="panel panel-default">
@@ -34,14 +34,21 @@
         </div>  
         <div class="panel-body">
         	<div class="add-child-tag">
-        		
+        		<h5>Add Tag to selected Tag</h5>
+        		<input class="form-control" id="label" type="text" placeholder="label" name="">
+        		<input class="form-control" id="description" type="text" placeholder="description" name="">
+        		<div class="handle-tag-buttons">
+        			<button class="btn btn-success" type="">Add tag</button>
+        		</div>
         	</div>
         	<hr>
         	<div class="handle-selected-tag">
-        		<input class="form-control" type="text" name="">
+        		<h5>Selected Tag</h5>
+        		<input class="form-control" id="edit_label" type="text" name="">
+        		<input class="form-control" id="edit_description" type="text" name="">
         		<div class="handle-tag-buttons">
-        			<button class="btn btn-primary update-tag" type="">Update</button>
-        			<button class="btn btn-danger delete-tag" type="">Delete</button>
+        			<button class="btn btn-primary update-tag" id="update_tag" type="">Update</button>
+        			<button class="btn btn-danger delete-tag" id="delete_tag" type="">Delete</button>
         		</div>
         	</div>
         </div>

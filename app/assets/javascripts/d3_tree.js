@@ -50,7 +50,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
       .attr("viewBox", "0 -5 10 10")
       .attr("refX", 10)
       .attr("refY", 0)
-      .attr("fill", "#ccc")
+      .attr("fill", "lightsteelblue")
       .attr("markerWidth", 8)
       .attr("markerHeight", 8)
       .attr("orient", "auto")
@@ -65,7 +65,6 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("x", rectW / 2 )
     .attr("y", rectH)
     .attr("d", diagonal)
-    .attr("stroke-width", 3)
     .style("margin-left", "60px")
     .attr("marker-end", "url(#end)");
   var node = svg.selectAll("g.node")
