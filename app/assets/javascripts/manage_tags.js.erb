@@ -12,7 +12,7 @@ function showTagInfo(data) {
   $('#edit_description').val(tagDescription);
 }
 
-function updateTag() {
+function updateTag(callback) {
   var labelValue = $('#edit_label').val();
   var descriptionValue = $('#edit_description').val();
   var data = { "namespace": tagNamespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
@@ -21,7 +21,7 @@ function updateTag() {
     type: 'PUT',
     data: data,
     success: function(data) {
-      alert('Update success.');
+      callback();
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);

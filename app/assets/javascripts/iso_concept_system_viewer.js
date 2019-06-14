@@ -1,8 +1,5 @@
 $(document).ready(function() {
   
-
-
-
   var csvp = new ConceptSystemViewPanel(conceptSystemId, conceptSystemNamespace, 100);
   
   // Set window resize.
@@ -11,19 +8,11 @@ $(document).ready(function() {
 });
 
 function ConceptSystemViewPanel(id, namespace, step) { 
-  this.html = $("#jsonData").html();
-  this.json = $.parseJSON(this.html);
-  // d3eInit("d3", empty, displayNode, empty, emptyValidation);
   this.id = id;
   this.namespace = namespace;
   this.heightStep = step;
   this.d3Editor = new D3Editor("d3", this.empty.bind(this), this.displayNode.bind(this), this.empty.bind(this), this.validate.bind(this));
-  this.rootNode = this.d3Editor.root(this.json.label, "", this.json)
-  for (i=0; i < this.json.children.length; i++) {
-    child = this.json.children[i];
-    this.initNode(child, this.rootNode);
-  }
-  this.d3Editor.displayTree(this.rootNode.key);
+  this.displayTree();
 
   var _this = this;
 
@@ -36,7 +25,7 @@ function ConceptSystemViewPanel(id, namespace, step) {
   });
 
   $('#update_tag').click(function () {
-    updateTag();
+    updateTag(_this.displayTree.bind(_this));
   });
 
   $('#delete_tag').click(function () {
@@ -44,13 +33,31 @@ function ConceptSystemViewPanel(id, namespace, step) {
   });
 }
 
+ConceptSystemViewPanel.prototype.displayTree = function() {
+  var _this = this;
+  $.ajax({
+    url: '/iso_concept_systems/' + _this.id + '?namespace=' + _this.namespace,
+    type: 'GET',
+    success: function(result) {
+      _this.rootNode = _this.d3Editor.root(result.data.label, "", result.data)
+      for (var i=0; i < result.data.children.length; i++) {
+        _this.initNode(result.data.children[i], _this.rootNode);
+      }
+      _this.d3Editor.displayTree(_this.rootNode.key);
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+}
+
 ConceptSystemViewPanel.prototype.initNode = function(sourceNode, d3ParentNode) {
   var newNode;
-  var i;
   var child;
   newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+this.d3Editor.displayTree(this.rootNode.key);
   if (sourceNode.hasOwnProperty('children')) {
-    for (i=0; i<sourceNode.children.length; i++) {
+    for (var i=0; i<sourceNode.children.length; i++) {
       child = sourceNode.children[i];
       this.initNode(child, newNode);
     }
