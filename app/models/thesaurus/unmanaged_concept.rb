@@ -21,6 +21,21 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   include Thesaurus::BaseConcept
 
+  def replace_if_no_difference(previous)
+    return previous if !self.diff?(previous)
+    align_with(previous)
+    return self
+  end
+
+  def align_with(previous)
+    self.narrower.each do |child|
+      previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
+      next if previous_child.empty?
+      child.replace_with_no_difference(previous_child)
+    end
+    previous.extended_with.each {|x| self.extended_with << x}
+  end
+
 private
 
   # Find parent query. Used by BaseConcept

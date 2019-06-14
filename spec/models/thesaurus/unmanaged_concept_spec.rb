@@ -340,4 +340,20 @@ describe Thesaurus::UnmanagedConcept do
     expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
   end
 
+  it "replaces with previous if no difference" do
+    input = read_yaml_file(sub_dir, "from_hash_input.yaml")
+    tc_current = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    tc_previous = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    expect(tc_current.replace_if_no_difference(tc_previous).uri).to eq(tc_previous.uri)
+  end
+
+  it "keeps current if difference" do
+    input = {},
+    tc_current = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    tc_previous = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    tc_previous.notation = "SSSSSS"
+    tc_previous.update
+    expect(tc_current.replace_if_no_difference(tc_previous).uri).to eq(tc_current.uri)
+  end
+
 end
