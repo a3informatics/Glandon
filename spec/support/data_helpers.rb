@@ -77,6 +77,17 @@ module DataHelpers
     end
   end
 
+  def check_file_actual_expected(actual, sub_dir, filename, args={})
+    write_file = args[:write_file] ? args[:write_file] : false
+    equate_method = args[:equate_method] ? args[:equate_method] : :eq
+    if args[:write_file]
+      puts "***** WARNING: Writing Results File *****" 
+      write_yaml_file(actual, sub_dir, filename)
+    end
+    expected = read_yaml_file(sub_dir, filename)
+    expect(actual).to self.send(equate_method, expected)   
+  end
+
   def read_yaml_file_to_hash(filename)
     full_path = Rails.root.join "db/load/test/#{filename}"
     return YAML.load_file(full_path)

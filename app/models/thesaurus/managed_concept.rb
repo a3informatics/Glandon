@@ -34,6 +34,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::BaseConcept
 
   def replace_if_no_change(previous)
+    return self if previous.nil?
     return previous if !self.diff?(previous)
     replace_children_if_no_change(previous)
     return self

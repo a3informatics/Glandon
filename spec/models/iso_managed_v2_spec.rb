@@ -94,18 +94,13 @@ describe IsoManagedV2 do
 	it "allows an item to be found" do
 		uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri)
-  #Xwrite_yaml_file(item.to_h, sub_dir, "find_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "find_expected_1.yaml")
-    expect(item.to_h).to eq(expected)   
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml")  
 	end
 
   it "allows an item to be found, II" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-  #Xwrite_yaml_file(item.to_h, sub_dir, "find_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "find_expected_2.yaml")
-    expect(item.to_h).to eq(expected)   
-    #expect(true).to be(false)
+    check_file_actual_expected(item.to_h, sub_dir, "find_expected_2.yaml")
   end
 
   it "allows the version, semantic_version, version_label and indentifier to be found" do
@@ -139,12 +134,12 @@ describe IsoManagedV2 do
   it "allows registration status and registered to be determined" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-    expect(item.registration_status).to eq("Incomplete")   
+    expect(item.registration_status).to eq("Standard")   
     expect(item.registered?).to eq(true)   
   end
 
   it "allows edit, state on edit and delete status to be determined" do
-   uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
     expect(item.edit?).to eq(true)   
     expect(item.state_on_edit).to eq("Incomplete")
@@ -152,24 +147,24 @@ describe IsoManagedV2 do
   end
 
   it "allows current and can be current status to be determined" do
-    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
     expect(item.current?).to eq(false)   
     expect(item.can_be_current?).to eq(false)   
   end
 
   it "allows new_version, next_version, next_semantic_version, and first_version to be determined" do
-    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
     expect(item.new_version?).to eq(false)   
-    expect(item.next_version).to eq(2)   
-    expect(item.next_semantic_version.to_s).to eq("1.3.0")   
+    expect(item.next_version).to eq(4)   
+    expect(item.next_semantic_version.to_s).to eq("1.5.0")   
     expect(item.first_version).to eq(1)   
   end
 
   it "allows next version for an indentifier to be determned" do
   	next_version = IsoManagedV2.next_version("TEST", IsoRegistrationAuthority.owner.ra_namespace)
-  	expect(next_version).to eq(2)
+  	expect(next_version).to eq(4)
   	next_version = IsoManagedV2.next_version("TEST", IsoRegistrationAuthority.find_by_short_name("AAA"))
   	expect(next_version).to eq(1)
   	next_version = IsoManagedV2.next_version("TESTxxxxx", IsoRegistrationAuthority.owner)
@@ -195,13 +190,26 @@ describe IsoManagedV2 do
 
   it "finds history of an item entries" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    results = []
-    results[0] = {:id => uri_1.to_id, :scoped_identifier_version => 1}
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST")
+    uri_3 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+    results = [
+      {:id => uri_1.to_id, :scoped_identifier_version => 1},
+      {:id => uri_2.to_id, :scoped_identifier_version => 2},
+      {:id => uri_3.to_id, :scoped_identifier_version => 3}
+    ]
     items = IsoManagedV2.history({:identifier => "TEST", :scope => IsoRegistrationAuthority.owner.ra_namespace})
     items.each_with_index do |item, index|
       expect(results[index][:id]).to eq(items[index].id)
       expect(results[index][:scoped_identifier_version]).to eq(items[index].has_identifier.version)
     end
+  end
+
+  it "finds latest" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+    result = IsoManagedV2.latest({:identifier => "TEST", :scope => IsoRegistrationAuthority.owner.ra_namespace})
+    expect(result.version).to eq(3)
+    result = IsoManagedV2.latest({:identifier => "TESTx", :scope => IsoRegistrationAuthority.owner.ra_namespace}) # Invalid identifier
+    expect(result).to be_nil
   end
 
 =begin
@@ -318,9 +326,7 @@ describe IsoManagedV2 do
   it "permits the item to be exported as JSON" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     item = IsoManagedV2.find(uri, false)
-  #Xwrite_text_file_2(item.to_h.to_yaml, sub_dir, "to_json_1.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_1.yaml")
-    expect(item.to_h).to eq(expected)
+    check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml")
   end
 
 =begin
@@ -381,23 +387,19 @@ describe IsoManagedV2 do
 
   it "gets all" do
     all = IsoManagedV2.all # Empty search will find all items
-    expect(all.count).to eq(1)
+    expect(all.count).to eq(3)
   end
 
   it "where, I" do
     results = []
     IsoManagedV2.where({label: "VSB"}).each { |x| results << x.to_json }
-  #Xwrite_yaml_file(results, sub_dir, "where_2.yaml")
-    expected = read_yaml_file(sub_dir, "where_2.yaml")
-    expect(results).to hash_equal(expected)
+    check_file_actual_expected(results, sub_dir, "where_2.yaml")
   end
 
   it "where, II" do
     results = []
     IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
-  #Xwrite_yaml_file(results, sub_dir, "where_3.yaml")
-    expected = read_yaml_file(sub_dir, "where_3.yaml")
-    expect(results).to hash_equal(expected)
+    check_file_actual_expected(results, sub_dir, "where_3.yaml")
   end
 
   it "sets up the initial version" do

@@ -66,9 +66,13 @@ private
 
   # Process. Process the results structre to convert to objects
   def process(results)
+    klass = configuration[:parent_klass]
+    return results if !managed?(klass.child_klass)
     parent = results[:parent]
-    if managed?(configuration[:parent_klass].child_klass)
-      results[:managed_children].each_with_index {|child, index| parent.add(child, index + 1)}
+    results[:managed_children].each_with_index do |child, index| 
+      previous = IsoManagedV2.latest({scope: klass.owner, identifier: child.identifier})
+      child = child.replace_if_no_change(previous)
+      parent.add(child, index + 1)
     end
     return results
   end

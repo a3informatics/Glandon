@@ -232,14 +232,19 @@ class IsoManagedV2 < IsoConceptV2
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
-    parts[0] = "  { ?e ?p ?o . BIND (?e as ?s) }" 
-    parts[1] = "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts[2] = "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
-    parts[3] = "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
+    parts << "  { ?e ?p ?o . BIND (?e as ?s) }" 
+    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
+    parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
+    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     query_results.subject_map.values.uniq{|x| x.to_s}.each {|uri| results << from_results_recurse(uri, query_results.by_subject)}
-    results
+    results.sort_by{|x| x.version}
+  end
+
+  def self.latest(params)
+    results = history(params)
+    results.empty? ? nil : results.last
   end
 
   # Update the item
