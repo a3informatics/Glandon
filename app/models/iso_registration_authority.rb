@@ -52,6 +52,9 @@ class IsoRegistrationAuthority < Fuseki::Base
       klass == self.name ? parent = object : ra_namespace = object
     end
     parent.ra_namespace = ra_namespace
+    # Make sure persisted
+    parent.ra_namespace.set_persisted
+    parent.set_persisted 
     parent
   end
 

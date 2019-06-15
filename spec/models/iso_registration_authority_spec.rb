@@ -52,37 +52,45 @@ describe IsoRegistrationAuthority do
     result.international_code_designator = "DUNS"
     result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
     result.owner = false
-    expect(result.to_h).to eq({uri: "http://www.assero.co.uk/MDRItems#XXX", organization_identifier: "123456777",
+    expected = {uri: "http://www.assero.co.uk/MDRItems#XXX", uuid: result.uuid, organization_identifier: "123456777",
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
-      international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h })
+      international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h }
+    expect(result.to_h).to eq(expected)
   end
 
   it "finds authority" do
-    result = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
+    expected = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
       ra_namespace: "http://www.assero.co.uk/NS#BBB",}
-    expect(IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")).to_h).to eq(result)   
+    result = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    expected[:uuid] = result.uuid
+    expect(result.to_h).to eq(expected)   
+    expect(result.persisted?).to eq(true)   
   end
 
 	it "finds all authorities" do
+    result_1 = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    result_2 = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS111111111"))
     results = [
       { 
         organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
         rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
-        ra_namespace: "http://www.assero.co.uk/NS#BBB"
+        ra_namespace: "http://www.assero.co.uk/NS#BBB", uuid: result_1.uuid
       },
       {
         organization_identifier: "111111111", international_code_designator: "DUNS", owner: false, uri: "http://www.assero.co.uk/RA#DUNS111111111", 
         rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
-        ra_namespace: "http://www.assero.co.uk/NS#AAA"
+        ra_namespace: "http://www.assero.co.uk/NS#AAA", uuid: result_2.uuid
       }
     ]
     expect(IsoRegistrationAuthority.all.map{|x| x.to_h}).to eq(results)   
   end
 
   it "finds authority by short name" do
-    result = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-    expect(IsoRegistrationAuthority.find_by_short_name("BBB").to_h).to eq(result.to_h)   
+    expected = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+    result = IsoRegistrationAuthority.find_by_short_name("BBB")
+    expect(result.to_h).to eq(expected.to_h)   
+    expect(result.persisted?).to eq(true)   
   end
 
 	it "determines if authority exists" do
@@ -128,7 +136,8 @@ describe IsoRegistrationAuthority do
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
       international_code_designator: "DUNS", 
       owner: true, 
-      ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h 
+      ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h,
+      uuid: result.uuid 
     }
     expect(result.to_h).to eq(expected)
   end
