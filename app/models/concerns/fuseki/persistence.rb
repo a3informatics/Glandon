@@ -189,6 +189,8 @@ puts "***** SUBJECT CACHE #{uri} *****"
       self.uri.nil? ? nil : self.uri.to_id
     end
 
+    alias uuid id
+
     def where_child(params)
       where_clauses = ""
       params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
