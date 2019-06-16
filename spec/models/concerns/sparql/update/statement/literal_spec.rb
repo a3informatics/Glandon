@@ -39,7 +39,7 @@ describe Sparql::Update::Statement::Literal do
     result = Sparql::Update::Statement::Literal.new(args)
     expect("#{result}").to eq("\"hello \\r\\n\\t\\\\\\\"' world\"^^xsd:string")    
     expect("#{result.to_ref}").to eq("\"hello \\r\\n\\t\\\\\\\"' world\"")    
-    expect("#{result.to_turtle}").to eq("\"hello \\\\r\\\\n\\\\t\\\\\\\\\\\\\\\"' world\"^^xsd:string")    
+    expect("#{result.to_turtle}").to eq("\"hello \\r\\n\\t\\\\\\\"' world\"^^xsd:string")    
   end
 
   it "allows for the class to be created, special characters, prefixed form" do

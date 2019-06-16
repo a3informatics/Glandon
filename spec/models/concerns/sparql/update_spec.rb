@@ -55,7 +55,7 @@ describe Sparql::Update do
   
   it "allows for the class to be created" do
 		sparql = Sparql::Update.new()
-    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{}}")
+    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{},\"duplicates\":{}}")
 	end
 
   it "allows a URI triple to be added" do
@@ -303,17 +303,23 @@ describe Sparql::Update do
     o_uri = Uri.new({:uri => "http://www.example.com/test#ooo"})
     p_uri = Uri.new({:uri => "http://www.example.com/test#ppp"})
     sparql.add({:uri => s_uri}, {:uri => p_uri}, {:uri => o_uri},)
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo2"}, {:uri => o_uri})
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo3"}, {:prefix => "", :fragment => "#ooo4"})
-    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "#ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t", :primitive_type => "string"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo2"}, {:uri => o_uri})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo3"}, {:prefix => "", :fragment => "#ooo4"})
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo4"}, {:literal => "+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t", :primitive_type => "string"})
+    string = %Q{+/ \ "test" 'aaa \ "  / % & \n\r\t}
+    sparql.add({:uri => s_uri}, {:namespace => "", :fragment => "ooo5"}, {:literal => string, :primitive_type => "string"})
     sparql.upload
     xmlDoc = Nokogiri::XML(CRUD.query("#{UriManagement.buildNs("", [])}SELECT ?s ?p ?o WHERE { ?s ?p ?o }").body)
     xmlDoc.remove_namespaces!
     xmlDoc.xpath("//result").each do |node|
       pre = ModelUtility.getValue('p', true, node)
-      next if pre != "http://www.example.com/default#ooo4"
-      obj = ModelUtility.getValue('o', false, node)
-      expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t")
+      if pre == "http://www.example.com/default#ooo4" 
+        obj = ModelUtility.getValue('o', false, node)
+        expect(obj).to eq("+/ \\ \"test\" 'aaa \\ \" ' / % & \n\r\t")
+      elsif pre == "http://www.example.com/default#ooo5" 
+        obj = ModelUtility.getValue('o', false, node)
+        expect(obj).to eq(string)
+      end
     end
   end
 

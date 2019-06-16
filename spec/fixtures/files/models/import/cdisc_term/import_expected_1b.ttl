@@ -52,7 +52,7 @@
 	th:isTopConcept <http://www.cdisc.org/C78426/V1#C78426> ;
 	th:isTopConcept <http://www.cdisc.org/C78745/V1#C78745> ;
 	th:isTopConcept <http://www.cdisc.org/C78425/V1#C78425> ;
-	th:isTopConcept <http://www.cdisc.org/C128689/V2#C128689> ;
+	th:isTopConcept <http://www.cdisc.org/C128689/V1#C128689> ;
 	th:isTopConcept <http://www.cdisc.org/C83004/V1#C83004> ;
 	th:isTopConcept <http://www.cdisc.org/C78428/V1#C78428> ;
 	th:isTopConcept <http://www.cdisc.org/C78427/V1#C78427> ;
@@ -170,7 +170,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "10"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C128689/V2#C128689> ;
+	bo:reference <http://www.cdisc.org/C128689/V1#C128689> ;
 .
 :TH_TCR11
 	rdf:type bo:TcReference ;
@@ -397,132 +397,6 @@
 	isoI:version "2"^^xsd:positiveInteger ;
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128689/V2#C128689>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Race As Collected"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C128689/V2#C128689_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C128689/V2#C128689_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C128689"^^xsd:string ;
-	th:notation "RACEC"^^xsd:string ;
-	th:definition "A terminology codelist relevant to the race of an individual as collected on the case report form."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C154875> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C42331> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128937> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41226> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C18237> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43877> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41259> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43876> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41260> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C16310> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41262> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C67271> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43671> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43823> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43673> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128938> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128991> ;
-	th:narrower <http://www.cdisc.org/C128689/V2#C128689_C16352> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128992> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43830> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43674> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43399> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77810> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44950> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43391> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43824> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C67117> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77819> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43831> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43851> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43393> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44265> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43825> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43398> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43715> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44268> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43718> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43826> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43392> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C154874> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43395> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43397> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43832> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43722> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43716> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43719> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77811> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43409> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43402> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77820> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43864> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43833> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41219> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43720> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43834> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77813> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77814> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43234> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43717> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43427> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43405> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43860> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44269> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43721> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44953> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C156583> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43672> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43675> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43400> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43827> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43828> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C17998> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43396> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43829> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77817> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41261> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77816> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128993> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128994> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44270> ;
-	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43835> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e049dd6b40661708669ff441a788c5c308e832df> ;
-	th:synonym <http://www.assero.co.uk/SYN#195b7572065e614050a90cef82db7594300328f4> ;
-.
-<http://www.cdisc.org/C128689/V2#C128689_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128689/V2#C128689_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C128689"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128689/V2#C128689_C16352>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C16352"^^xsd:string ;
-	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
-	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \\\"Haitian\\\" or \\\"Negro\\\" can be used in addition to \\\"Black or African American.\\\" (FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3627dd5a7a283e2ebfd8369a8849768aae6143e8> ;
 .
 <http://www.cdisc.org/C999999/V2#C999999>
 	rdf:type th:ManagedConcept ;

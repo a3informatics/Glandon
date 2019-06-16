@@ -55,10 +55,10 @@ module Sparql
           raise Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid triple literal detected. Args: #{args}") 
         end
 
-        # Turtle Escape. Note the double inpsect but the need to remove the quotes on start and end of string
+        # Turtle Escape. Note the single inpsect but the need to remove the quotes on start and end of string
         def turtle_escape
           return @value if @type != BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-          @value.dup.inspect.trim_inspect_quotes.inspect.trim_inspect_quotes
+          @value.dup.inspect.trim_inspect_quotes #.inspect.trim_inspect_quotes << Seems we don't need double operation.
         end
 
         # Normal Escape. Note the single inpsect but the need to remove the quotes on start and end of string
