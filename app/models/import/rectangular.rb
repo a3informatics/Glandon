@@ -66,19 +66,19 @@ private
 
   # Process. Process the results structre to convert to objects
   def process(results)
+    filtered = []
     klass = configuration[:parent_klass]
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
     parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
       previous_info = child_klass.latest({scope: klass.owner, identifier: child.identifier})
-      if !previous_info.nil?
-        previous = child_klass.find(previous_info.id) 
-        child = child.replace_if_no_change(previous)
-      end
-      parent.add(child, index + 1)
+      previous = previous_info.nil? ? nil : child_klass.find(previous_info.id) 
+      actual = child.replace_if_no_change(previous)
+      parent.add(actual, index + 1)
+      filtered << child if actual.uuid == child.uuid
     end
-    return results
+    return {parent: parent, managed_children: filtered}
   end
 
   # Check no errors in the objects structure.

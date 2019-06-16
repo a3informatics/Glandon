@@ -46,21 +46,21 @@
 	th:isTopConcept <http://www.cdisc.org/C78418/V2#C78418> ;
 	th:isTopConcept <http://www.cdisc.org/C78417/V2#C78417> ;
 	th:isTopConcept <http://www.cdisc.org/C78419/V2#C78419> ;
-	th:isTopConcept <http://www.cdisc.org/C78420/V2#C78420> ;
-	th:isTopConcept <http://www.cdisc.org/C78422/V2#C78422> ;
-	th:isTopConcept <http://www.cdisc.org/C128690/V2#C128690> ;
-	th:isTopConcept <http://www.cdisc.org/C78426/V2#C78426> ;
-	th:isTopConcept <http://www.cdisc.org/C78745/V2#C78745> ;
-	th:isTopConcept <http://www.cdisc.org/C78425/V2#C78425> ;
+	th:isTopConcept <http://www.cdisc.org/C78420/V1#C78420> ;
+	th:isTopConcept <http://www.cdisc.org/C78422/V1#C78422> ;
+	th:isTopConcept <http://www.cdisc.org/C128690/V1#C128690> ;
+	th:isTopConcept <http://www.cdisc.org/C78426/V1#C78426> ;
+	th:isTopConcept <http://www.cdisc.org/C78745/V1#C78745> ;
+	th:isTopConcept <http://www.cdisc.org/C78425/V1#C78425> ;
 	th:isTopConcept <http://www.cdisc.org/C128689/V2#C128689> ;
-	th:isTopConcept <http://www.cdisc.org/C83004/V2#C83004> ;
-	th:isTopConcept <http://www.cdisc.org/C78428/V2#C78428> ;
-	th:isTopConcept <http://www.cdisc.org/C78427/V2#C78427> ;
-	th:isTopConcept <http://www.cdisc.org/C78421/V2#C78421> ;
-	th:isTopConcept <http://www.cdisc.org/C78429/V2#C78429> ;
-	th:isTopConcept <http://www.cdisc.org/C78423/V2#C78423> ;
-	th:isTopConcept <http://www.cdisc.org/C78430/V2#C78430> ;
-	th:isTopConcept <http://www.cdisc.org/C78431/V2#C78431> ;
+	th:isTopConcept <http://www.cdisc.org/C83004/V1#C83004> ;
+	th:isTopConcept <http://www.cdisc.org/C78428/V1#C78428> ;
+	th:isTopConcept <http://www.cdisc.org/C78427/V1#C78427> ;
+	th:isTopConcept <http://www.cdisc.org/C78421/V1#C78421> ;
+	th:isTopConcept <http://www.cdisc.org/C78429/V1#C78429> ;
+	th:isTopConcept <http://www.cdisc.org/C78423/V1#C78423> ;
+	th:isTopConcept <http://www.cdisc.org/C78430/V1#C78430> ;
+	th:isTopConcept <http://www.cdisc.org/C78431/V1#C78431> ;
 	th:isTopConcept <http://www.cdisc.org/C999999/V2#C999999> ;
 .
 :TH_RS
@@ -116,7 +116,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78420/V2#C78420> ;
+	bo:reference <http://www.cdisc.org/C78420/V1#C78420> ;
 .
 :TH_TCR5
 	rdf:type bo:TcReference ;
@@ -125,7 +125,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78422/V2#C78422> ;
+	bo:reference <http://www.cdisc.org/C78422/V1#C78422> ;
 .
 :TH_TCR6
 	rdf:type bo:TcReference ;
@@ -134,7 +134,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C128690/V2#C128690> ;
+	bo:reference <http://www.cdisc.org/C128690/V1#C128690> ;
 .
 :TH_TCR7
 	rdf:type bo:TcReference ;
@@ -143,7 +143,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78426/V2#C78426> ;
+	bo:reference <http://www.cdisc.org/C78426/V1#C78426> ;
 .
 :TH_TCR8
 	rdf:type bo:TcReference ;
@@ -152,7 +152,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78745/V2#C78745> ;
+	bo:reference <http://www.cdisc.org/C78745/V1#C78745> ;
 .
 :TH_TCR9
 	rdf:type bo:TcReference ;
@@ -161,7 +161,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78425/V2#C78425> ;
+	bo:reference <http://www.cdisc.org/C78425/V1#C78425> ;
 .
 :TH_TCR10
 	rdf:type bo:TcReference ;
@@ -179,7 +179,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "11"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C83004/V2#C83004> ;
+	bo:reference <http://www.cdisc.org/C83004/V1#C83004> ;
 .
 :TH_TCR12
 	rdf:type bo:TcReference ;
@@ -188,7 +188,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78428/V2#C78428> ;
+	bo:reference <http://www.cdisc.org/C78428/V1#C78428> ;
 .
 :TH_TCR13
 	rdf:type bo:TcReference ;
@@ -197,7 +197,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "13"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78427/V2#C78427> ;
+	bo:reference <http://www.cdisc.org/C78427/V1#C78427> ;
 .
 :TH_TCR14
 	rdf:type bo:TcReference ;
@@ -206,7 +206,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "14"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78421/V2#C78421> ;
+	bo:reference <http://www.cdisc.org/C78421/V1#C78421> ;
 .
 :TH_TCR15
 	rdf:type bo:TcReference ;
@@ -215,7 +215,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "15"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78429/V2#C78429> ;
+	bo:reference <http://www.cdisc.org/C78429/V1#C78429> ;
 .
 :TH_TCR16
 	rdf:type bo:TcReference ;
@@ -224,7 +224,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "16"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78423/V2#C78423> ;
+	bo:reference <http://www.cdisc.org/C78423/V1#C78423> ;
 .
 :TH_TCR17
 	rdf:type bo:TcReference ;
@@ -233,7 +233,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "17"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78430/V2#C78430> ;
+	bo:reference <http://www.cdisc.org/C78430/V1#C78430> ;
 .
 :TH_TCR18
 	rdf:type bo:TcReference ;
@@ -242,7 +242,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "18"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78431/V2#C78431> ;
+	bo:reference <http://www.cdisc.org/C78431/V1#C78431> ;
 .
 :TH_TCR19
 	rdf:type bo:TcReference ;
@@ -315,13 +315,13 @@
 	th:notation "CMDOSU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Concomitant Medication Dose Units codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78417/V2#C78417_C48480> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48480> ;
 	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48155> ;
-	th:narrower <http://www.cdisc.org/C78417/V2#C78417_C48579> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48579> ;
 	th:narrower <http://www.cdisc.org/C78417/V2#C78417_C28253> ;
-	th:narrower <http://www.cdisc.org/C78417/V2#C78417_C28254> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C28254> ;
 	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C65060> ;
-	th:narrower <http://www.cdisc.org/C78417/V2#C78417_C48542> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48542> ;
 	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48152> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#615d5e75a3648855f01143af254621dc0fdc6067> ;
 	th:synonym <http://www.assero.co.uk/SYN#275ba432be6e55754367b9ff0e33395a08624242> ;
@@ -345,28 +345,6 @@
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.cdisc.org/C78417/V2#C78417_C48480>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48480"^^xsd:string ;
-	th:notation "CAPSULE"^^xsd:string ;
-	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
-.
-<http://www.cdisc.org/C78417/V2#C78417_C48579>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48579"^^xsd:string ;
-	th:notation "IU"^^xsd:string ;
-	th:definition "The unitage assigned by the WHO (World Health Organization) to International Biological Standards - substances, classed as biological according to the criteria provided by WHO Expert Committee on Biological Standardization, to enable the results of biological and immunological assay procedures to be expressed in the same way throughout the world. The definition of an international unit is generally arbitrary and technical, and has to be officially approved by the International Conference for Unification of Formulae.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#84f3d83ac27c0549e8030fc17d6779362f089563> ;
-	th:synonym <http://www.assero.co.uk/SYN#9ff31bb53dfc2bff233e882d367714fba682d7dc> ;
-	th:synonym <http://www.assero.co.uk/SYN#84f3d83ac27c0549e8030fc17d6779362f089563> ;
-.
 <http://www.cdisc.org/C78417/V2#C78417_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
@@ -376,28 +354,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 	th:synonym <http://www.assero.co.uk/SYN#e0f7903bdd999e7fd7922066e9718b3556262353> ;
-.
-<http://www.cdisc.org/C78417/V2#C78417_C28254>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C28254"^^xsd:string ;
-	th:notation "mL"^^xsd:string ;
-	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
-.
-<http://www.cdisc.org/C78417/V2#C78417_C48542>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48542"^^xsd:string ;
-	th:notation "TABLET"^^xsd:string ;
-	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
 .
 <http://www.cdisc.org/C78419/V2#C78419>
 	rdf:type th:ManagedConcept ;
@@ -413,13 +369,13 @@
 	th:notation "CMDOSFRQ"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Frequency codelist created for CDASH Concomitant Medication Dosing Frequency per Interval codelist. (NCI). NOTE: C64530 QID Removed"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78419/V2#C78419_C64496> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64496> ;
 	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64499> ;
 	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C25473> ;
 	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64498> ;
 	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64525> ;
 	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64527> ;
-	th:narrower <http://www.cdisc.org/C78419/V2#C78419_C17998> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C17998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#bd6b07a094c74f2b230cf0726b0af9e28caeed76> ;
 	th:synonym <http://www.assero.co.uk/SYN#ec34a595d2755c80ab66db84b3bd3925a21cf55c> ;
 .
@@ -441,364 +397,6 @@
 	isoI:version "2"^^xsd:positiveInteger ;
 	isoI:semanticVersion "2.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78419/V2#C78419_C64496>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C64496"^^xsd:string ;
-	th:notation "BID"^^xsd:string ;
-	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a6010b24bbb82d0d6708790d98cd3be2fdd106c8> ;
-	th:synonym <http://www.assero.co.uk/SYN#0f4d56d1e20778bf2e1052ecb3219509238fb660> ;
-	th:synonym <http://www.assero.co.uk/SYN#b716e5e857bed2eec2976ce383b3e73da8ba9f10> ;
-.
-<http://www.cdisc.org/C78419/V2#C78419_C17998>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C17998"^^xsd:string ;
-	th:notation "UNKNOWN"^^xsd:string ;
-	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13> ;
-	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-.
-<http://www.cdisc.org/C78420/V2#C78420>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78420/V2#C78420_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78420/V2#C78420_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78420"^^xsd:string ;
-	th:notation "CMROUTE"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Concomitant Medication Route of Administration codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38250> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C28161> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38255> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38258> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38284> ;
-	th:narrower <http://www.cdisc.org/C78420/V2#C78420_C38288> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38295> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38216> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38299> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38304> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38305> ;
-	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38313> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ad91a9cde4d28454c2f79fa33dfd151b3804eb4e> ;
-	th:synonym <http://www.assero.co.uk/SYN#a945a52089f8d4447f0758e7716b5b71a9baf85b> ;
-.
-<http://www.cdisc.org/C78420/V2#C78420_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78420/V2#C78420_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78420"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78420/V2#C78420_C38288>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C38288"^^xsd:string ;
-	th:notation "ORAL"^^xsd:string ;
-	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3c664252074dbec68e2beaaa48130b18c55b0eb9> ;
-	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
-	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
-.
-<http://www.cdisc.org/C78422/V2#C78422>
-	rdf:type th:ManagedConcept ;
-	isoC:label "ECG Original Units"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78422/V2#C78422_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78422/V2#C78422_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78422"^^xsd:string ;
-	th:notation "EGORRESU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH ECG Original Units codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C49673> ;
-	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C41140> ;
-	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C42535> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#598aac350b1d8b8dfcf80440259a47dac59af3ae> ;
-	th:synonym <http://www.assero.co.uk/SYN#ebf61013108062e151e387a033c8e548082d4ad8> ;
-.
-<http://www.cdisc.org/C78422/V2#C78422_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78422/V2#C78422_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78422"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128690/V2#C128690>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Ethnicity As Collected"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C128690/V2#C128690_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C128690/V2#C128690_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C128690"^^xsd:string ;
-	th:notation "ETHNICC"^^xsd:string ;
-	th:definition "A terminology codelist relevant to the ethnicity of an individual as collected on the case report form."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C17950> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67118> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C107608> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67115> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C17459> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C126531> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67113> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67114> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C41222> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C43234> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67112> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C103283> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C126532> ;
-	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67120> ;
-	th:narrower <http://www.cdisc.org/C128690/V2#C128690_C17998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d094a4f602e1f0f95ece7530e1c723c83f44bfd3> ;
-	th:synonym <http://www.assero.co.uk/SYN#42bb2447e2fd156b780ee921e59be4436b5c7c91> ;
-.
-<http://www.cdisc.org/C128690/V2#C128690_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128690/V2#C128690_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C128690"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C128690/V2#C128690_C17998>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C17998"^^xsd:string ;
-	th:notation "UNKNOWN"^^xsd:string ;
-	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13> ;
-	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-.
-<http://www.cdisc.org/C78426/V2#C78426>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Exposure Dose Form"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78426/V2#C78426_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78426/V2#C78426_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78426"^^xsd:string ;
-	th:notation "EXDOSFRM"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Pharmaceutical Dosage Form codelist created for CDASH Exposure Dose Form codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42887> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C25158> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C28944> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42933> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42934> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42966> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42968> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42972> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42989> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42993> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42994> ;
-	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c931e65c942e0291ec1bc4b8cab07cfa3ff437a4> ;
-	th:synonym <http://www.assero.co.uk/SYN#a41e243c4b1c63f7ffeed23098576a860f3a8ac0> ;
-.
-<http://www.cdisc.org/C78426/V2#C78426_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78426/V2#C78426_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78426"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78745/V2#C78745>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78745/V2#C78745_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78745/V2#C78745_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78745"^^xsd:string ;
-	th:notation "EXDOSFRQ"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Frequency codelist created for CDASH Exposure Dosing Frequency per Interval codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78745/V2#C78745_C64496> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64499> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C25473> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64530> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64498> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64525> ;
-	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64527> ;
-	th:narrower <http://www.cdisc.org/C78745/V2#C78745_C17998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#28293791da2b0fe4e6da6dd36ca841e0dd4688a2> ;
-	th:synonym <http://www.assero.co.uk/SYN#6ff6b661bd9dd51f62141b5ee9b81a2382ef1528> ;
-.
-<http://www.cdisc.org/C78745/V2#C78745_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78745/V2#C78745_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78745"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78745/V2#C78745_C64496>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C64496"^^xsd:string ;
-	th:notation "BID"^^xsd:string ;
-	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a6010b24bbb82d0d6708790d98cd3be2fdd106c8> ;
-	th:synonym <http://www.assero.co.uk/SYN#0f4d56d1e20778bf2e1052ecb3219509238fb660> ;
-	th:synonym <http://www.assero.co.uk/SYN#b716e5e857bed2eec2976ce383b3e73da8ba9f10> ;
-.
-<http://www.cdisc.org/C78745/V2#C78745_C17998>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C17998"^^xsd:string ;
-	th:notation "UNKNOWN"^^xsd:string ;
-	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13> ;
-	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-.
-<http://www.cdisc.org/C78425/V2#C78425>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Exposure Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78425/V2#C78425_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78425/V2#C78425_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78425"^^xsd:string ;
-	th:notation "EXROUTE"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Exposure Route of Administration codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38250> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C28161> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38255> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38258> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38284> ;
-	th:narrower <http://www.cdisc.org/C78425/V2#C78425_C38288> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38295> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38216> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38299> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38304> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38305> ;
-	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38313> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9a5dfce65d75d7a6e37add695ac1b52b89ca963b> ;
-	th:synonym <http://www.assero.co.uk/SYN#6298e31cca5e4a72f5094c432b629dfd2ab3719c> ;
-.
-<http://www.cdisc.org/C78425/V2#C78425_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78425/V2#C78425_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78425"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78425/V2#C78425_C38288>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C38288"^^xsd:string ;
-	th:notation "ORAL"^^xsd:string ;
-	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3c664252074dbec68e2beaaa48130b18c55b0eb9> ;
-	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
-	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
 .
 <http://www.cdisc.org/C128689/V2#C128689>
 	rdf:type th:ManagedConcept ;
@@ -885,7 +483,7 @@
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43400> ;
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43827> ;
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43828> ;
-	th:narrower <http://www.cdisc.org/C128689/V2#C128689_C17998> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C17998> ;
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43396> ;
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43829> ;
 	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77817> ;
@@ -925,471 +523,6 @@
 	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \\\"Haitian\\\" or \\\"Negro\\\" can be used in addition to \\\"Black or African American.\\\" (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3627dd5a7a283e2ebfd8369a8849768aae6143e8> ;
-.
-<http://www.cdisc.org/C128689/V2#C128689_C17998>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C17998"^^xsd:string ;
-	th:notation "UNKNOWN"^^xsd:string ;
-	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13> ;
-	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
-.
-<http://www.cdisc.org/C83004/V2#C83004>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C83004/V2#C83004_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C83004/V2#C83004_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C83004"^^xsd:string ;
-	th:notation "SUNCF"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Never/Current/Former Classification codelist created for CDASH Substance Use Never/Current/Former Classification codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C25471> ;
-	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C25627> ;
-	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C70543> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#7d75396a3be5449481ba17a34deeb65843db8564> ;
-	th:synonym <http://www.assero.co.uk/SYN#c208d4b7e2fd2077d102a99fdb000c728cb3b66c> ;
-.
-<http://www.cdisc.org/C83004/V2#C83004_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C83004/V2#C83004_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C83004"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78428/V2#C78428>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Total Volume Administration Unit"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78428/V2#C78428_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78428/V2#C78428_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78428"^^xsd:string ;
-	th:notation "EXVOLTU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Total Volume Administration Unit codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78428/V1#C78428_C28253> ;
-	th:narrower <http://www.cdisc.org/C78428/V2#C78428_C28254> ;
-	th:narrower <http://www.cdisc.org/C78428/V1#C78428_C48152> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fe3e8d310c04afc82b9196210f22a944c6240498> ;
-	th:synonym <http://www.assero.co.uk/SYN#08a98faedd8f85cdce829dc821f98220825cc38a> ;
-.
-<http://www.cdisc.org/C78428/V2#C78428_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78428/V2#C78428_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78428"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78428/V2#C78428_C28254>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C28254"^^xsd:string ;
-	th:notation "mL"^^xsd:string ;
-	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
-.
-<http://www.cdisc.org/C78427/V2#C78427>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78427/V2#C78427_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78427/V2#C78427_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78427"^^xsd:string ;
-	th:notation "EXINTPU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit for Duration of Treatment Interruption codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78427/V2#C78427_C25529> ;
-	th:narrower <http://www.cdisc.org/C78427/V1#C78427_C48154> ;
-	th:narrower <http://www.cdisc.org/C78427/V1#C78427_C42535> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#600ed5c7a75a09de52f1c1223f5e3fa9a10f1481> ;
-	th:synonym <http://www.assero.co.uk/SYN#b1a089c264fe617960cdce590e610856f1ec55a7> ;
-.
-<http://www.cdisc.org/C78427/V2#C78427_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78427/V2#C78427_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78427"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78427/V2#C78427_C25529>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C25529"^^xsd:string ;
-	th:notation "HOURS"^^xsd:string ;
-	th:definition "A unit of measurement of time equal to 60 minutes."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c37cf838b0b980da78f19ac1366359fb80951f62> ;
-	th:synonym <http://www.assero.co.uk/SYN#9e25a34e635a123f8958bbe26e7c4843278597fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#27d5482eebd075de44389774fce28c69f45c8a75> ;
-	th:synonym <http://www.assero.co.uk/SYN#51bd95353aeda6615433bea21896c893ef5e62dc> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Unit of Drug Dispensed or Returned"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78421/V2#C78421_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78421/V2#C78421_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78421"^^xsd:string ;
-	th:notation "DAORRESU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit of Drug Dispensed or Returned codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48474> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48477> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48478> ;
-	th:narrower <http://www.cdisc.org/C78421/V2#C78421_C48480> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48484> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48490> ;
-	th:narrower <http://www.cdisc.org/C78421/V2#C78421_C48520> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48521> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48524> ;
-	th:narrower <http://www.cdisc.org/C78421/V2#C78421_C48542> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48549> ;
-	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48551> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e9e3ffe44be131c93eb1479301e98f081590db6c> ;
-	th:synonym <http://www.assero.co.uk/SYN#dc5ec7c6f24dce8c8f5dcb3bb1ef79a78fc2bff4> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78421"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421_C48480>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48480"^^xsd:string ;
-	th:notation "CAPSULE"^^xsd:string ;
-	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421_C48520>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48520"^^xsd:string ;
-	th:notation "PACKAGE"^^xsd:string ;
-	th:definition "A dosing measurement based on the package unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#586e4d04a3bce9cd20e7284a33467b07e8544c8b> ;
-	th:synonym <http://www.assero.co.uk/SYN#b4d95120ea9f33838cde518bf2445466c790b838> ;
-	th:synonym <http://www.assero.co.uk/SYN#586e4d04a3bce9cd20e7284a33467b07e8544c8b> ;
-.
-<http://www.cdisc.org/C78421/V2#C78421_C48542>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48542"^^xsd:string ;
-	th:notation "TABLET"^^xsd:string ;
-	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
-.
-<http://www.cdisc.org/C78429/V2#C78429>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Unit of Measure for Flow Rate"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78429/V2#C78429_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78429/V2#C78429_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78429"^^xsd:string ;
-	th:notation "EXFLRTU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit of Measure for Flow Rate codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C64777> ;
-	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C67420> ;
-	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C71205> ;
-	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C71211> ;
-	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C67406> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#415cad1e2949473095ef5c7ed02c7e21b0af3d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#28678a5e4febc46aac74250f3af4f50a2ac54b38> ;
-.
-<http://www.cdisc.org/C78429/V2#C78429_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78429/V2#C78429_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78429"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Units for Exposure"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78423/V2#C78423_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78423/V2#C78423_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78423"^^xsd:string ;
-	th:notation "EXDOSU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Units for Exposure codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78423/V2#C78423_C48480> ;
-	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48155> ;
-	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C28253> ;
-	th:narrower <http://www.cdisc.org/C78423/V2#C78423_C28254> ;
-	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C65060> ;
-	th:narrower <http://www.cdisc.org/C78423/V2#C78423_C48542> ;
-	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48152> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8ef04ec32693688e0d618dd99e4182c75910ec1a> ;
-	th:synonym <http://www.assero.co.uk/SYN#9699885f799ec62e111c26b3c5a2c8b7a957bc82> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78423"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423_C48480>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48480"^^xsd:string ;
-	th:notation "CAPSULE"^^xsd:string ;
-	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423_C28254>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C28254"^^xsd:string ;
-	th:notation "mL"^^xsd:string ;
-	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
-.
-<http://www.cdisc.org/C78423/V2#C78423_C48542>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48542"^^xsd:string ;
-	th:notation "TABLET"^^xsd:string ;
-	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Units for Planned Exposure"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78430/V2#C78430_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78430/V2#C78430_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78430"^^xsd:string ;
-	th:notation "EXPDOSEU"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Units for Planned Exposure codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78430/V2#C78430_C48480> ;
-	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48155> ;
-	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C28253> ;
-	th:narrower <http://www.cdisc.org/C78430/V2#C78430_C28254> ;
-	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C65060> ;
-	th:narrower <http://www.cdisc.org/C78430/V2#C78430_C48542> ;
-	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48152> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a8aaddbf23dff57c091e2fc5a9b64aa7e4aec554> ;
-	th:synonym <http://www.assero.co.uk/SYN#9a38bc081509a0da68c1b387d4b38a2e85692d3f> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78430"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430_C48480>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48480"^^xsd:string ;
-	th:notation "CAPSULE"^^xsd:string ;
-	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430_C28254>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C28254"^^xsd:string ;
-	th:notation "mL"^^xsd:string ;
-	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
-	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
-.
-<http://www.cdisc.org/C78430/V2#C78430_C48542>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
-	th:identifier "C48542"^^xsd:string ;
-	th:notation "TABLET"^^xsd:string ;
-	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
-	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
-.
-<http://www.cdisc.org/C78431/V2#C78431>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78431/V2#C78431_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78431/V2#C78431_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78431"^^xsd:string ;
-	th:notation "VSPOS"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Position codelist created for CDASH Vital Signs Position of Subject codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62122> ;
-	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62166> ;
-	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62167> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a75371b0f6c06b07a2e8bc827accc0cd9b9cb475> ;
-	th:synonym <http://www.assero.co.uk/SYN#3bf9e4a32ba89a540c3e5df0d0773fdd56d0b556> ;
-.
-<http://www.cdisc.org/C78431/V2#C78431_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78431/V2#C78431_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78431"^^xsd:string ;
-	isoI:versionLabel "2.0.0"^^xsd:string ;
-	isoI:version "2"^^xsd:positiveInteger ;
-	isoI:semanticVersion "2.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C999999/V2#C999999>
 	rdf:type th:ManagedConcept ;

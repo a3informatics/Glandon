@@ -22,23 +22,27 @@ module Fuseki
     # Diff? Are the two objects different
     #
     # @param [Object] other the other object to which this object is being compared
-    # @raise [Errors::ApplicationLogicError] raised if the objects are not of the same class
+    # @param [Hash] options the options to use for the diff operation
+    # @option options [Array] :ignore An array of properties to be ignored
+    # @raise [Errors::ApplicationLogicError] raised if the objects are not compatible classes
     # @return [Boolean] true if different, false otherwise.
-    def diff?(other)
+    def diff?(other, options={})
+      options[:ignore] = [] if options[:ignore].blank?
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if incomptible_klass?(other)
       properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
+        next if options[:ignore].include?(variable)
         self_object = self.instance_variable_get(name)
         other_object = other.instance_variable_get(name)
         if self_object.is_a?(Array)
           return true if array_diff?(self_object, other_object)
         elsif self_object.nil? 
-          return true if !other_object.nil?
+          return diff(name, self_object, other_object) if !other_object.nil?
         elsif self_object.respond_to? :diff?
-          return true if self_object.diff?(other_object)
+          return diff(name, self_object, other_object) if self_object.diff?(other_object)
         else
-          return true if self_object != other_object
+          return diff(name, self_object, other_object) if self_object != other_object
         end
       end
       false
@@ -49,36 +53,41 @@ module Fuseki
     # @param [Object] other the other object to which this object is being compared
     # @param [Hash] options the options to use for the diff operation
     # @option options [Array] :ignore An array of properties to be ignored
-    # @raise [Errors::ApplicationLogicError] raised if the objects are not of the same class
+    # @raise [Errors::ApplicationLogicError] raised if the objects are not compatible classes
     # @return [Hash] the results hash
-    def difference(previous, options={})
-      options[:ignore] = [:uri, :rdf_type, :uuid] if options[:ignore].blank?
+    def difference(other, options={})
+      options[:ignore] = [] if options[:ignore].blank?
       results = {}
-      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{previous.class.name}") if incomptible_klass?(other)
+      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if incomptible_klass?(other)
       properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
         next if options[:ignore].include?(variable)
         self_object = self.instance_variable_get(name)
-        previous_object = previous.instance_variable_get(name)
+        other_object = other.instance_variable_get(name)
         if self_object.is_a?(Array)
-          results[variable] = array_difference(self_object, previous_object, options)
+          results[variable] = array_difference(self_object, other_object, options)
         elsif self_object.nil? 
           a = ""
-          status = previous_object.nil? ? :no_change : :deleted
-          b = previous_object.nil? ? "" : previous_object
+          status = other_object.nil? ? :no_change : :deleted
+          b = other_object.nil? ? "" : other_object
           results[variable] = difference_record(:not_present, a, b)
         elsif self_object.respond_to? :difference
           self_object.difference(other_object, options)
         else
-          status = self_object == previous_object ? :no_change : :updated
-          results[variable] = difference_record(status, self_object, previous_object)
+          status = self_object == other_object ? :no_change : :updated
+          results[variable] = difference_record(status, self_object, other_object)
         end
       end
       results
     end
 
   private
+
+    def diff(name, self_object, other_object)
+puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n"
+      true
+    end
 
     # Check we have comptible classes.
     def incomptible_klass?(other)
@@ -87,16 +96,18 @@ module Fuseki
 
     # Array diff?
     def array_diff?(a, b)
+      return true if a.count != b.count
       return diff_uris?(a, b) if a.first.is_a? Uri
       if a.first.class.respond_to?(:key_property)
         key_method = a.first.class.key_property
         a.each do |a_obj|
           b_obj = b.select {|x| x.send(key_method) == a_obj.send(key_method)}
-          return true if a_obj.diff?(b_obj.first)
+          return diff("array", a_obj, b_obj) if a_obj.diff?(b_obj.first)
         end    
       elsif a.first.respond_to?(:diff?)
         a.each_with_index do |a_obj, index|
-          b_obj = b[index]
+          match_by_uri = b.select {|x| x.uri == a_obj.uri}
+          b_obj = match_by_uri.empty? ? b[index] : match_by_uri.first
           return true if a_obj.diff?(b_obj)
         end    
       else
@@ -112,7 +123,7 @@ module Fuseki
     def diff_uris?(a, b)
       a_to_s = uris_to_s(a)
       b_to_s = uris_to_s(b)
-      return a_to_s - b_to_s != []
+      return a_to_s - b_to_s != [] || b_to_s - a_to_s != []
     end
 
     # URIs to String

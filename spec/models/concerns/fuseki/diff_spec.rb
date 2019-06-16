@@ -307,4 +307,25 @@ end
     expect(actual).to eq(expected)
   end
 
+  it "diff, children I, ignore and same" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test1")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test2")
+    uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")
+    item_1 = TestD2.new
+    item_1.uri = uri_s
+    item_1.ra_namespace << uri_1
+    item_1.ra_namespace << uri_2
+    item_2 = TestD2.new
+    item_2.uri = uri_s
+    item_2.ra_namespace << uri_1
+    item_2.ra_namespace << uri_1
+    expect(item_1.diff?(item_2, {ignore: [:ra_namespace]})).to eq(false)
+    actual = item_1.difference(item_2, {ignore: [:ra_namespace]})
+    check_file_actual_expected(actual, sub_dir, "difference_10.yaml")
+    expect(item_1.diff?(item_2)).to eq(true)
+    actual = item_1.difference(item_2)
+    check_file_actual_expected(actual, sub_dir, "difference_11.yaml")
+  end
+
+
 end
