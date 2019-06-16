@@ -1,4 +1,4 @@
-@prefix : <http://www.acme-pharma.com/CT/V1#> .
+@prefix : <http://www.cdisc.org/CT/V1#> .
 @prefix th: <http://www.assero.co.uk/Thesaurus#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
@@ -11,7 +11,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-<http://www.acme-pharma.com/CT/V1>
+<http://www.cdisc.org/CT/V1>
 	rdf:type owl:Ontology ;
 .
 :TH
@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -63,22 +63,22 @@
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 :TH_SI
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "CT"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 :TH_TCR1
 	rdf:type bo:TcReference ;
@@ -242,55 +242,55 @@
 	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C78431/V1#C78431> ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418>
+<http://www.cdisc.org/C78418/V1#C78418>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78418/V1#C78418_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78418/V1#C78418_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78418/V1#C78418_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78418/V1#C78418_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78418"^^xsd:string ;
 	th:notation "CMDOSFRM"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Pharmaceutical Dosage Form codelist created for CDASH Concomitant Medication Dose Form codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42887> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C25158> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C28944> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42933> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42934> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42966> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42968> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42972> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42989> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42993> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42994> ;
-	th:narrower <http://www.acme-pharma.com/C78418/V1#C78418_C42998> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42887> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C25158> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C28944> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42933> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42934> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42966> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42968> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42972> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42989> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42993> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42994> ;
+	th:narrower <http://www.cdisc.org/C78418/V1#C78418_C42998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#57c3e2a3076c93f263b2b64f552b8340c5b4cee1> ;
 	th:synonym <http://www.assero.co.uk/SYN#269367d65ef83b1f48765225c5f2ff6710192004> ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_RS>
+<http://www.cdisc.org/C78418/V1#C78418_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_SI>
+<http://www.cdisc.org/C78418/V1#C78418_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78418"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42887>
+<http://www.cdisc.org/C78418/V1#C78418_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42887"^^xsd:string ;
@@ -303,16 +303,12 @@
 <http://www.assero.co.uk/PT#04dcea559f165b7e76040aeda4bb442466be5584>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Aerosol Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#2d513aeafa1d2db93eb7c7d4959d6fa6ac1c7e46>
 	rdf:type th:Synonym ;
 	isoC:label "aer"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "aer"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C25158>
+<http://www.cdisc.org/C78418/V1#C78418_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25158"^^xsd:string ;
@@ -325,24 +321,12 @@
 <http://www.assero.co.uk/PT#abfca5c2555873c105230bde1364fcc73b9ec3a0>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Capsule Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Capsule Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b>
 	rdf:type th:Synonym ;
 	isoC:label "cap"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cap"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cap"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cap"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cap"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cap"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C28944>
+<http://www.cdisc.org/C78418/V1#C78418_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28944"^^xsd:string ;
@@ -354,10 +338,8 @@
 <http://www.assero.co.uk/PT#c853577b8ffb2bd48ff9d90bf8745a74396dfbef>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Cream Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Cream Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42933>
+<http://www.cdisc.org/C78418/V1#C78418_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42933"^^xsd:string ;
@@ -369,10 +351,8 @@
 <http://www.assero.co.uk/PT#afb8a3b1849a1c244871bd6f25410817db173a73>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Gas Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Gas Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42934>
+<http://www.cdisc.org/C78418/V1#C78418_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42934"^^xsd:string ;
@@ -384,10 +364,8 @@
 <http://www.assero.co.uk/PT#b682d9828fe1a41e15c8ae7dbf8412df56881d03>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Gel Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Gel Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42966>
+<http://www.cdisc.org/C78418/V1#C78418_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42966"^^xsd:string ;
@@ -400,16 +378,12 @@
 <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab>
 	rdf:type th:Synonym ;
 	isoC:label "oint"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "oint"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42968>
+<http://www.cdisc.org/C78418/V1#C78418_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42968"^^xsd:string ;
@@ -421,10 +395,8 @@
 <http://www.assero.co.uk/PT#b0f545614911c593fd264fba3d2716d4644b1a5c>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Patch Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Patch Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42972>
+<http://www.cdisc.org/C78418/V1#C78418_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42972"^^xsd:string ;
@@ -436,10 +408,8 @@
 <http://www.assero.co.uk/PT#409eff3841299c82bcc2bb12c8193d9769157565>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Powder Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Powder Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42989>
+<http://www.cdisc.org/C78418/V1#C78418_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42989"^^xsd:string ;
@@ -451,10 +421,8 @@
 <http://www.assero.co.uk/PT#2aab5adc97384a248f4d36dde0ad2d8e833332b9>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Spray Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Spray Dosage Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42993>
+<http://www.cdisc.org/C78418/V1#C78418_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42993"^^xsd:string ;
@@ -467,16 +435,12 @@
 <http://www.assero.co.uk/PT#9ffde3456a785cdbcbfc4600e4d93bcd83f32ab7>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Suppository Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#73df624a55231e2779d2b3bf2d9fc15940981451>
 	rdf:type th:Synonym ;
 	isoC:label "supp"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "supp"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42994>
+<http://www.cdisc.org/C78418/V1#C78418_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42994"^^xsd:string ;
@@ -489,16 +453,12 @@
 <http://www.assero.co.uk/PT#cb86353d3fd40afdb81acfab08b4a69e6fee2157>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Suspension Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#7ce169445378cfafea1ea42b289b2d9244bd9a4a>
 	rdf:type th:Synonym ;
 	isoC:label "susp"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "susp"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78418/V1#C78418_C42998>
+<http://www.cdisc.org/C78418/V1#C78418_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42998"^^xsd:string ;
@@ -511,20 +471,8 @@
 <http://www.assero.co.uk/PT#4603450ad4ca8f69255657c180f8673e043ce641>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Tablet Dosage Form"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Tablet Dosage Form"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220>
-	rdf:type th:Synonym ;
-	isoC:label "tab"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "tab"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "tab"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "tab"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "tab"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "tab"^^xsd:string ;
 .
@@ -536,51 +484,51 @@
 	rdf:type th:Synonym ;
 	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417>
+<http://www.cdisc.org/C78417/V1#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78417/V1#C78417_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78417/V1#C78417_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78417/V1#C78417_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78417/V1#C78417_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78417"^^xsd:string ;
 	th:notation "CMDOSU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Concomitant Medication Dose Units codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C48480> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C48155> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C48579> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C28253> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C28254> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C65060> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C48542> ;
-	th:narrower <http://www.acme-pharma.com/C78417/V1#C78417_C48152> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48480> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48155> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48579> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C28253> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C28254> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C65060> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48542> ;
+	th:narrower <http://www.cdisc.org/C78417/V1#C78417_C48152> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#615d5e75a3648855f01143af254621dc0fdc6067> ;
 	th:synonym <http://www.assero.co.uk/SYN#275ba432be6e55754367b9ff0e33395a08624242> ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_RS>
+<http://www.cdisc.org/C78417/V1#C78417_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_SI>
+<http://www.cdisc.org/C78417/V1#C78417_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78417"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C48480>
+<http://www.cdisc.org/C78417/V1#C78417_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48480"^^xsd:string ;
@@ -594,24 +542,12 @@
 <http://www.assero.co.uk/PT#31a54a5715e499535e8246a24a8092db52ef813a>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a>
 	rdf:type th:Synonym ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Capsule Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C48155>
+<http://www.cdisc.org/C78417/V1#C78417_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48155"^^xsd:string ;
@@ -624,20 +560,12 @@
 <http://www.assero.co.uk/PT#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Gram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Gram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Gram"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a>
 	rdf:type th:Synonym ;
 	isoC:label "Gram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Gram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Gram"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C48579>
+<http://www.cdisc.org/C78417/V1#C78417_C48579>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48579"^^xsd:string ;
@@ -660,7 +588,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "International Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C28253>
+<http://www.cdisc.org/C78417/V1#C78417_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28253"^^xsd:string ;
@@ -673,24 +601,12 @@
 <http://www.assero.co.uk/PT#e0f7903bdd999e7fd7922066e9718b3556262353>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milligram"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#e0f7903bdd999e7fd7922066e9718b3556262353>
 	rdf:type th:Synonym ;
 	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Milligram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Milligram"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C28254>
+<http://www.cdisc.org/C78417/V1#C78417_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28254"^^xsd:string ;
@@ -704,34 +620,16 @@
 <http://www.assero.co.uk/PT#0a34bed7ce20f1c19cc0829bc4df38636c7744fb>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Milliliter"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milliliter"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milliliter"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Milliliter"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb>
-	rdf:type th:Synonym ;
-	isoC:label "Milliliter"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Milliliter"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Milliliter"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "Milliliter"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c>
 	rdf:type th:Synonym ;
 	isoC:label "cm3"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cm3"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cm3"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "cm3"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C65060>
+<http://www.cdisc.org/C78417/V1#C78417_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C65060"^^xsd:string ;
@@ -744,20 +642,12 @@
 <http://www.assero.co.uk/PT#d397620f2c0345cdfffacff0380803f22f76d954>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Puff Dosing Unit"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#d397620f2c0345cdfffacff0380803f22f76d954>
 	rdf:type th:Synonym ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Puff Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Puff Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C48542>
+<http://www.cdisc.org/C78417/V1#C78417_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48542"^^xsd:string ;
@@ -771,24 +661,12 @@
 <http://www.assero.co.uk/PT#9b8b20fa547158bab84caf8a30df4def78740d1e>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e>
 	rdf:type th:Synonym ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Tablet Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78417/V1#C78417_C48152>
+<http://www.cdisc.org/C78417/V1#C78417_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48152"^^xsd:string ;
@@ -802,30 +680,12 @@
 <http://www.assero.co.uk/PT#2ee41b27b0088a24958075235ecbfb62c2c43ec3>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Microgram"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#2ee41b27b0088a24958075235ecbfb62c2c43ec3>
 	rdf:type th:Synonym ;
 	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Microgram"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Microgram"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#22c30fb9d36a2d9abdad8521ca3c0a70b31474ce>
-	rdf:type th:Synonym ;
-	isoC:label "mcg"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "mcg"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "mcg"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "mcg"^^xsd:string ;
 .
@@ -837,51 +697,51 @@
 	rdf:type th:Synonym ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419>
+<http://www.cdisc.org/C78419/V1#C78419>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78419/V1#C78419_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78419/V1#C78419_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78419/V1#C78419_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78419/V1#C78419_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78419"^^xsd:string ;
 	th:notation "CMDOSFRQ"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Frequency codelist created for CDASH Concomitant Medication Dosing Frequency per Interval codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64496> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64499> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C25473> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64530> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64498> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64525> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C64527> ;
-	th:narrower <http://www.acme-pharma.com/C78419/V1#C78419_C17998> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64496> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64499> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C25473> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64530> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64498> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64525> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C64527> ;
+	th:narrower <http://www.cdisc.org/C78419/V1#C78419_C17998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#bd6b07a094c74f2b230cf0726b0af9e28caeed76> ;
 	th:synonym <http://www.assero.co.uk/SYN#ec34a595d2755c80ab66db84b3bd3925a21cf55c> ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_RS>
+<http://www.cdisc.org/C78419/V1#C78419_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_SI>
+<http://www.cdisc.org/C78419/V1#C78419_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78419"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64496>
+<http://www.cdisc.org/C78419/V1#C78419_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64496"^^xsd:string ;
@@ -895,22 +755,16 @@
 <http://www.assero.co.uk/PT#a6010b24bbb82d0d6708790d98cd3be2fdd106c8>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Twice Daily"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Twice Daily"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#0f4d56d1e20778bf2e1052ecb3219509238fb660>
-	rdf:type th:Synonym ;
-	isoC:label "BD"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "BD"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#b716e5e857bed2eec2976ce383b3e73da8ba9f10>
 	rdf:type th:Synonym ;
 	isoC:label "Twice per day"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Twice per day"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64499>
+<http://www.cdisc.org/C78419/V1#C78419_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64499"^^xsd:string ;
@@ -923,16 +777,12 @@
 <http://www.assero.co.uk/PT#e7c732dbfe3f8a74b53a0ff9102fd90dedf60c4e>
 	rdf:type th:PreferredTerm ;
 	isoC:label "As Necessary"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "As Necessary"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#869d429d6f823b7be734876db3a1ddb779a9b07b>
 	rdf:type th:Synonym ;
 	isoC:label "As needed"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "As needed"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C25473>
+<http://www.cdisc.org/C78419/V1#C78419_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25473"^^xsd:string ;
@@ -945,16 +795,12 @@
 <http://www.assero.co.uk/PT#728298d3dbf4fb2c355b2f052c982ba87532447e>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Daily"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Daily"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#728298d3dbf4fb2c355b2f052c982ba87532447e>
 	rdf:type th:Synonym ;
 	isoC:label "Daily"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Daily"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64530>
+<http://www.cdisc.org/C78419/V1#C78419_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64530"^^xsd:string ;
@@ -967,16 +813,12 @@
 <http://www.assero.co.uk/PT#25e0fae992b22e717515452d1b00654a9c355061>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Four Times Daily"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Four Times Daily"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#c0859e1109c97e866ad9622644abaea630648c82>
 	rdf:type th:Synonym ;
 	isoC:label "4 times per day"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "4 times per day"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64498>
+<http://www.cdisc.org/C78419/V1#C78419_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64498"^^xsd:string ;
@@ -990,22 +832,16 @@
 <http://www.assero.co.uk/PT#d31edb7b8a94bbafe2184d44bbd83463e1dd1158>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Monthly"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Monthly"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#66e8b7af8c03f887734a54974863b35c4b52a3b6>
-	rdf:type th:Synonym ;
-	isoC:label "Every Month"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "Every Month"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#457117bfb2643d55743d596ac7677ab7e4ab7f28>
 	rdf:type th:Synonym ;
 	isoC:label "Per Month"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Per Month"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64525>
+<http://www.cdisc.org/C78419/V1#C78419_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64525"^^xsd:string ;
@@ -1018,16 +854,12 @@
 <http://www.assero.co.uk/PT#76fa4ef77f6935c9cd510019910d14ad798f2631>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Every Other Day"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Every Other Day"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#51c3df813e70b1a8bc67fa4202c0bfc2e3448d82>
 	rdf:type th:Synonym ;
 	isoC:label "Every other day"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Every other day"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C64527>
+<http://www.cdisc.org/C78419/V1#C78419_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64527"^^xsd:string ;
@@ -1040,16 +872,12 @@
 <http://www.assero.co.uk/PT#82260507dd2fd65a8129119ae012eac7b99cf3a6>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Three Times Daily"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Three Times Daily"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#c42dc40bf840209799184599dcbfc78f24f8df57>
 	rdf:type th:Synonym ;
 	isoC:label "3 times per day"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "3 times per day"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78419/V1#C78419_C17998>
+<http://www.cdisc.org/C78419/V1#C78419_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17998"^^xsd:string ;
@@ -1064,40 +892,16 @@
 <http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Unknown"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Unknown"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Unknown"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Unknown"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6>
-	rdf:type th:Synonym ;
-	isoC:label "U"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "U"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "U"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "U"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13>
 	rdf:type th:Synonym ;
 	isoC:label "UNK"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "UNK"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "UNK"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "UNK"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce>
-	rdf:type th:Synonym ;
-	isoC:label "Unknown"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Unknown"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Unknown"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "Unknown"^^xsd:string ;
 .
@@ -1109,55 +913,55 @@
 	rdf:type th:Synonym ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420>
+<http://www.cdisc.org/C78420/V1#C78420>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78420/V1#C78420_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78420/V1#C78420_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78420/V1#C78420_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78420/V1#C78420_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78420"^^xsd:string ;
 	th:notation "CMROUTE"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Concomitant Medication Route of Administration codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38250> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C28161> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38255> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38258> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38284> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38288> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38295> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38216> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38299> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38304> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38305> ;
-	th:narrower <http://www.acme-pharma.com/C78420/V1#C78420_C38313> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38250> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C28161> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38255> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38258> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38284> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38288> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38295> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38216> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38299> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38304> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38305> ;
+	th:narrower <http://www.cdisc.org/C78420/V1#C78420_C38313> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#ad91a9cde4d28454c2f79fa33dfd151b3804eb4e> ;
 	th:synonym <http://www.assero.co.uk/SYN#a945a52089f8d4447f0758e7716b5b71a9baf85b> ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_RS>
+<http://www.cdisc.org/C78420/V1#C78420_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_SI>
+<http://www.cdisc.org/C78420/V1#C78420_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78420"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38250>
+<http://www.cdisc.org/C78420/V1#C78420_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38250"^^xsd:string ;
@@ -1169,10 +973,8 @@
 <http://www.assero.co.uk/PT#0e5eb71a1c71d0eb5fcd6028a5754682e885246b>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Intralesional Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Intralesional Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C28161>
+<http://www.cdisc.org/C78420/V1#C78420_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28161"^^xsd:string ;
@@ -1184,10 +986,8 @@
 <http://www.assero.co.uk/PT#a6f68af9062c1524adb78d97707cb49eb497cb36>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38255>
+<http://www.cdisc.org/C78420/V1#C78420_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38255"^^xsd:string ;
@@ -1199,10 +999,8 @@
 <http://www.assero.co.uk/PT#bbbed9a6fb97452bb2affc119fd4f6fca59565ac>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Intraocular Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Intraocular Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38258>
+<http://www.cdisc.org/C78420/V1#C78420_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38258"^^xsd:string ;
@@ -1214,10 +1012,8 @@
 <http://www.assero.co.uk/PT#e1260f1094cd83bde83f0cf6b4f3fc7d56ede6f5>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38284>
+<http://www.cdisc.org/C78420/V1#C78420_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38284"^^xsd:string ;
@@ -1230,16 +1026,12 @@
 <http://www.assero.co.uk/PT#cee600f02645c72e9e9e92cdddfe60f2ac7f8e89>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Nasal Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Nasal Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141>
 	rdf:type th:Synonym ;
 	isoC:label "Intranasal Route of Administration"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Intranasal Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38288>
+<http://www.cdisc.org/C78420/V1#C78420_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38288"^^xsd:string ;
@@ -1253,22 +1045,16 @@
 <http://www.assero.co.uk/PT#3c664252074dbec68e2beaaa48130b18c55b0eb9>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Oral Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517>
-	rdf:type th:Synonym ;
-	isoC:label "Intraoral Route of Administration"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "Intraoral Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5>
 	rdf:type th:Synonym ;
 	isoC:label "PO"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "PO"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38295>
+<http://www.cdisc.org/C78420/V1#C78420_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38295"^^xsd:string ;
@@ -1280,10 +1066,8 @@
 <http://www.assero.co.uk/PT#ab19603696dc1caa67b7f612897919871559e924>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Rectal Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Rectal Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38216>
+<http://www.cdisc.org/C78420/V1#C78420_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38216"^^xsd:string ;
@@ -1295,10 +1079,8 @@
 <http://www.assero.co.uk/PT#86be3df092791e3e7d1298ba90b3592252716b5e>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Inhalation Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Inhalation Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38299>
+<http://www.cdisc.org/C78420/V1#C78420_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38299"^^xsd:string ;
@@ -1312,22 +1094,16 @@
 <http://www.assero.co.uk/PT#2e9f3013ff9625671ce2f05c0e8e6c34ee3cc1d2>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#59aa962f7269a10c4395e01495c04a928240cb5b>
-	rdf:type th:Synonym ;
-	isoC:label "SC"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "SC"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#2c2b73028cb230080017043fc3305b8ae9682fe9>
 	rdf:type th:Synonym ;
 	isoC:label "Subdermal Route of Administration"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Subdermal Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38304>
+<http://www.cdisc.org/C78420/V1#C78420_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38304"^^xsd:string ;
@@ -1340,16 +1116,12 @@
 <http://www.assero.co.uk/PT#9ed688f88dfcb4bef257cd8460afbe5a29fbdce8>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Topical Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#b48813fa0aece2d14a9215d74ebb9cba0cf6faa9>
 	rdf:type th:Synonym ;
 	isoC:label "TOP"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "TOP"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38305>
+<http://www.cdisc.org/C78420/V1#C78420_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38305"^^xsd:string ;
@@ -1361,10 +1133,8 @@
 <http://www.assero.co.uk/PT#7d993502e3067f74b7fd9fe80a0f8153f320114e>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Transdermal Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Transdermal Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78420/V1#C78420_C38313>
+<http://www.cdisc.org/C78420/V1#C78420_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38313"^^xsd:string ;
@@ -1376,8 +1146,6 @@
 <http://www.assero.co.uk/PT#fd0586a1c58c3891d70eb7decb451955a00d0a9f>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Vaginal Route of Administration"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Vaginal Route of Administration"^^xsd:string ;
 .
 <http://www.assero.co.uk/PT#ad91a9cde4d28454c2f79fa33dfd151b3804eb4e>
 	rdf:type th:PreferredTerm ;
@@ -1387,46 +1155,46 @@
 	rdf:type th:Synonym ;
 	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422>
+<http://www.cdisc.org/C78422/V1#C78422>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Original Units"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78422/V1#C78422_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78422/V1#C78422_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78422/V1#C78422_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78422/V1#C78422_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78422"^^xsd:string ;
 	th:notation "EGORRESU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH ECG Original Units codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78422/V1#C78422_C49673> ;
-	th:narrower <http://www.acme-pharma.com/C78422/V1#C78422_C41140> ;
-	th:narrower <http://www.acme-pharma.com/C78422/V1#C78422_C42535> ;
+	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C49673> ;
+	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C41140> ;
+	th:narrower <http://www.cdisc.org/C78422/V1#C78422_C42535> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#598aac350b1d8b8dfcf80440259a47dac59af3ae> ;
 	th:synonym <http://www.assero.co.uk/SYN#ebf61013108062e151e387a033c8e548082d4ad8> ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422_RS>
+<http://www.cdisc.org/C78422/V1#C78422_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422_SI>
+<http://www.cdisc.org/C78422/V1#C78422_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78422"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422_C49673>
+<http://www.cdisc.org/C78422/V1#C78422_C49673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C49673"^^xsd:string ;
@@ -1444,7 +1212,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Beats per Minute"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422_C41140>
+<http://www.cdisc.org/C78422/V1#C78422_C41140>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41140"^^xsd:string ;
@@ -1462,7 +1230,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Millisecond"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78422/V1#C78422_C42535>
+<http://www.cdisc.org/C78422/V1#C78422_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42535"^^xsd:string ;
@@ -1475,12 +1243,8 @@
 <http://www.assero.co.uk/PT#2a4bcae654f264daf22579fb462bf0bae302a057>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Second"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Second"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#2a4bcae654f264daf22579fb462bf0bae302a057>
-	rdf:type th:Synonym ;
-	isoC:label "Second"^^xsd:string ;
 	rdf:type th:Synonym ;
 	isoC:label "Second"^^xsd:string ;
 .
@@ -1492,58 +1256,58 @@
 	rdf:type th:Synonym ;
 	isoC:label "ECG Original Units"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690>
+<http://www.cdisc.org/C128690/V1#C128690>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ethnicity As Collected"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C128690/V1#C128690_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C128690/V1#C128690_SI> ;
+	isoT:hasState <http://www.cdisc.org/C128690/V1#C128690_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C128690/V1#C128690_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C128690"^^xsd:string ;
 	th:notation "ETHNICC"^^xsd:string ;
 	th:definition "A terminology codelist relevant to the ethnicity of an individual as collected on the case report form."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C17950> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67118> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C107608> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67115> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C17459> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C126531> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67113> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67114> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C41222> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C43234> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67112> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C103283> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C126532> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C67120> ;
-	th:narrower <http://www.acme-pharma.com/C128690/V1#C128690_C17998> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C17950> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67118> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C107608> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67115> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C17459> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C126531> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67113> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67114> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C41222> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C43234> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67112> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C103283> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C126532> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C67120> ;
+	th:narrower <http://www.cdisc.org/C128690/V1#C128690_C17998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d094a4f602e1f0f95ece7530e1c723c83f44bfd3> ;
 	th:synonym <http://www.assero.co.uk/SYN#42bb2447e2fd156b780ee921e59be4436b5c7c91> ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_RS>
+<http://www.cdisc.org/C128690/V1#C128690_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_SI>
+<http://www.cdisc.org/C128690/V1#C128690_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C128690"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C17950>
+<http://www.cdisc.org/C128690/V1#C128690_C17950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17950"^^xsd:string ;
@@ -1556,7 +1320,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Ashkenazi Jew"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67118>
+<http://www.cdisc.org/C128690/V1#C128690_C67118>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67118"^^xsd:string ;
@@ -1569,7 +1333,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Central American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C107608>
+<http://www.cdisc.org/C128690/V1#C128690_C107608>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C107608"^^xsd:string ;
@@ -1582,7 +1346,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Cuban"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67115>
+<http://www.cdisc.org/C128690/V1#C128690_C67115>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67115"^^xsd:string ;
@@ -1595,7 +1359,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Cuban or Cuban American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C17459>
+<http://www.cdisc.org/C128690/V1#C128690_C17459>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17459"^^xsd:string ;
@@ -1608,7 +1372,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Hispanic or Latino"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C126531>
+<http://www.cdisc.org/C128690/V1#C128690_C126531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C126531"^^xsd:string ;
@@ -1621,7 +1385,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Latin American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67113>
+<http://www.cdisc.org/C128690/V1#C128690_C67113>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67113"^^xsd:string ;
@@ -1634,7 +1398,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Mexican"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67114>
+<http://www.cdisc.org/C128690/V1#C128690_C67114>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67114"^^xsd:string ;
@@ -1647,7 +1411,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Mexican American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C41222>
+<http://www.cdisc.org/C128690/V1#C128690_C41222>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41222"^^xsd:string ;
@@ -1660,7 +1424,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Not Hispanic or Latino"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C43234>
+<http://www.cdisc.org/C128690/V1#C128690_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43234"^^xsd:string ;
@@ -1673,16 +1437,12 @@
 <http://www.assero.co.uk/PT#8ffb8ebca8e21357de48ead89224cf69e628a522>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Not Reported"^^xsd:string ;
-	rdf:type th:PreferredTerm ;
-	isoC:label "Not Reported"^^xsd:string ;
 .
 <http://www.assero.co.uk/SYN#98e856820171b6204a73629df62a2fc4bcd78c01>
 	rdf:type th:Synonym ;
 	isoC:label "Not reported"^^xsd:string ;
-	rdf:type th:Synonym ;
-	isoC:label "Not reported"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67112>
+<http://www.cdisc.org/C128690/V1#C128690_C67112>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67112"^^xsd:string ;
@@ -1695,7 +1455,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Puerto Rican"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C103283>
+<http://www.cdisc.org/C128690/V1#C128690_C103283>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C103283"^^xsd:string ;
@@ -1708,7 +1468,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Sephardic Jew"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C126532>
+<http://www.cdisc.org/C128690/V1#C128690_C126532>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C126532"^^xsd:string ;
@@ -1721,7 +1481,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "South American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C67120>
+<http://www.cdisc.org/C128690/V1#C128690_C67120>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67120"^^xsd:string ;
@@ -1734,7 +1494,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Spanish"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128690/V1#C128690_C17998>
+<http://www.cdisc.org/C128690/V1#C128690_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17998"^^xsd:string ;
@@ -1754,55 +1514,55 @@
 	rdf:type th:Synonym ;
 	isoC:label "Ethnicity As Collected"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426>
+<http://www.cdisc.org/C78426/V1#C78426>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dose Form"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78426/V1#C78426_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78426/V1#C78426_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78426/V1#C78426_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78426/V1#C78426_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78426"^^xsd:string ;
 	th:notation "EXDOSFRM"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Pharmaceutical Dosage Form codelist created for CDASH Exposure Dose Form codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42887> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C25158> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C28944> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42933> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42934> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42966> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42968> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42972> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42989> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42993> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42994> ;
-	th:narrower <http://www.acme-pharma.com/C78426/V1#C78426_C42998> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42887> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C25158> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C28944> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42933> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42934> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42966> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42968> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42972> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42989> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42993> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42994> ;
+	th:narrower <http://www.cdisc.org/C78426/V1#C78426_C42998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c931e65c942e0291ec1bc4b8cab07cfa3ff437a4> ;
 	th:synonym <http://www.assero.co.uk/SYN#a41e243c4b1c63f7ffeed23098576a860f3a8ac0> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_RS>
+<http://www.cdisc.org/C78426/V1#C78426_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_SI>
+<http://www.cdisc.org/C78426/V1#C78426_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78426"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42887>
+<http://www.cdisc.org/C78426/V1#C78426_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42887"^^xsd:string ;
@@ -1812,7 +1572,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#04dcea559f165b7e76040aeda4bb442466be5584> ;
 	th:synonym <http://www.assero.co.uk/SYN#2d513aeafa1d2db93eb7c7d4959d6fa6ac1c7e46> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C25158>
+<http://www.cdisc.org/C78426/V1#C78426_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25158"^^xsd:string ;
@@ -1822,7 +1582,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#abfca5c2555873c105230bde1364fcc73b9ec3a0> ;
 	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C28944>
+<http://www.cdisc.org/C78426/V1#C78426_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28944"^^xsd:string ;
@@ -1831,7 +1591,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c853577b8ffb2bd48ff9d90bf8745a74396dfbef> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42933>
+<http://www.cdisc.org/C78426/V1#C78426_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42933"^^xsd:string ;
@@ -1840,7 +1600,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#afb8a3b1849a1c244871bd6f25410817db173a73> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42934>
+<http://www.cdisc.org/C78426/V1#C78426_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42934"^^xsd:string ;
@@ -1849,7 +1609,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b682d9828fe1a41e15c8ae7dbf8412df56881d03> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42966>
+<http://www.cdisc.org/C78426/V1#C78426_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42966"^^xsd:string ;
@@ -1859,7 +1619,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
 	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42968>
+<http://www.cdisc.org/C78426/V1#C78426_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42968"^^xsd:string ;
@@ -1868,7 +1628,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b0f545614911c593fd264fba3d2716d4644b1a5c> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42972>
+<http://www.cdisc.org/C78426/V1#C78426_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42972"^^xsd:string ;
@@ -1877,7 +1637,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#409eff3841299c82bcc2bb12c8193d9769157565> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42989>
+<http://www.cdisc.org/C78426/V1#C78426_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42989"^^xsd:string ;
@@ -1886,7 +1646,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2aab5adc97384a248f4d36dde0ad2d8e833332b9> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42993>
+<http://www.cdisc.org/C78426/V1#C78426_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42993"^^xsd:string ;
@@ -1896,7 +1656,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#9ffde3456a785cdbcbfc4600e4d93bcd83f32ab7> ;
 	th:synonym <http://www.assero.co.uk/SYN#73df624a55231e2779d2b3bf2d9fc15940981451> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42994>
+<http://www.cdisc.org/C78426/V1#C78426_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42994"^^xsd:string ;
@@ -1906,7 +1666,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#cb86353d3fd40afdb81acfab08b4a69e6fee2157> ;
 	th:synonym <http://www.assero.co.uk/SYN#7ce169445378cfafea1ea42b289b2d9244bd9a4a> ;
 .
-<http://www.acme-pharma.com/C78426/V1#C78426_C42998>
+<http://www.cdisc.org/C78426/V1#C78426_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42998"^^xsd:string ;
@@ -1924,51 +1684,51 @@
 	rdf:type th:Synonym ;
 	isoC:label "Exposure Dose Form"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745>
+<http://www.cdisc.org/C78745/V1#C78745>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78745/V1#C78745_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78745/V1#C78745_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78745/V1#C78745_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78745/V1#C78745_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78745"^^xsd:string ;
 	th:notation "EXDOSFRQ"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Frequency codelist created for CDASH Exposure Dosing Frequency per Interval codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64496> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64499> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C25473> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64530> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64498> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64525> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C64527> ;
-	th:narrower <http://www.acme-pharma.com/C78745/V1#C78745_C17998> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64496> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64499> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C25473> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64530> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64498> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64525> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C64527> ;
+	th:narrower <http://www.cdisc.org/C78745/V1#C78745_C17998> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#28293791da2b0fe4e6da6dd36ca841e0dd4688a2> ;
 	th:synonym <http://www.assero.co.uk/SYN#6ff6b661bd9dd51f62141b5ee9b81a2382ef1528> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_RS>
+<http://www.cdisc.org/C78745/V1#C78745_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_SI>
+<http://www.cdisc.org/C78745/V1#C78745_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78745"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64496>
+<http://www.cdisc.org/C78745/V1#C78745_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64496"^^xsd:string ;
@@ -1979,7 +1739,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#0f4d56d1e20778bf2e1052ecb3219509238fb660> ;
 	th:synonym <http://www.assero.co.uk/SYN#b716e5e857bed2eec2976ce383b3e73da8ba9f10> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64499>
+<http://www.cdisc.org/C78745/V1#C78745_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64499"^^xsd:string ;
@@ -1989,7 +1749,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#e7c732dbfe3f8a74b53a0ff9102fd90dedf60c4e> ;
 	th:synonym <http://www.assero.co.uk/SYN#869d429d6f823b7be734876db3a1ddb779a9b07b> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C25473>
+<http://www.cdisc.org/C78745/V1#C78745_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25473"^^xsd:string ;
@@ -1999,7 +1759,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#728298d3dbf4fb2c355b2f052c982ba87532447e> ;
 	th:synonym <http://www.assero.co.uk/SYN#728298d3dbf4fb2c355b2f052c982ba87532447e> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64530>
+<http://www.cdisc.org/C78745/V1#C78745_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64530"^^xsd:string ;
@@ -2009,7 +1769,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#25e0fae992b22e717515452d1b00654a9c355061> ;
 	th:synonym <http://www.assero.co.uk/SYN#c0859e1109c97e866ad9622644abaea630648c82> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64498>
+<http://www.cdisc.org/C78745/V1#C78745_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64498"^^xsd:string ;
@@ -2020,7 +1780,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#66e8b7af8c03f887734a54974863b35c4b52a3b6> ;
 	th:synonym <http://www.assero.co.uk/SYN#457117bfb2643d55743d596ac7677ab7e4ab7f28> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64525>
+<http://www.cdisc.org/C78745/V1#C78745_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64525"^^xsd:string ;
@@ -2030,7 +1790,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#76fa4ef77f6935c9cd510019910d14ad798f2631> ;
 	th:synonym <http://www.assero.co.uk/SYN#51c3df813e70b1a8bc67fa4202c0bfc2e3448d82> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C64527>
+<http://www.cdisc.org/C78745/V1#C78745_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64527"^^xsd:string ;
@@ -2040,7 +1800,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#82260507dd2fd65a8129119ae012eac7b99cf3a6> ;
 	th:synonym <http://www.assero.co.uk/SYN#c42dc40bf840209799184599dcbfc78f24f8df57> ;
 .
-<http://www.acme-pharma.com/C78745/V1#C78745_C17998>
+<http://www.cdisc.org/C78745/V1#C78745_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17998"^^xsd:string ;
@@ -2060,55 +1820,55 @@
 	rdf:type th:Synonym ;
 	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425>
+<http://www.cdisc.org/C78425/V1#C78425>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78425/V1#C78425_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78425/V1#C78425_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78425/V1#C78425_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78425/V1#C78425_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78425"^^xsd:string ;
 	th:notation "EXROUTE"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Exposure Route of Administration codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38250> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C28161> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38255> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38258> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38284> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38288> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38295> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38216> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38299> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38304> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38305> ;
-	th:narrower <http://www.acme-pharma.com/C78425/V1#C78425_C38313> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38250> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C28161> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38255> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38258> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38284> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38288> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38295> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38216> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38299> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38304> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38305> ;
+	th:narrower <http://www.cdisc.org/C78425/V1#C78425_C38313> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9a5dfce65d75d7a6e37add695ac1b52b89ca963b> ;
 	th:synonym <http://www.assero.co.uk/SYN#6298e31cca5e4a72f5094c432b629dfd2ab3719c> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_RS>
+<http://www.cdisc.org/C78425/V1#C78425_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_SI>
+<http://www.cdisc.org/C78425/V1#C78425_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78425"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38250>
+<http://www.cdisc.org/C78425/V1#C78425_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38250"^^xsd:string ;
@@ -2117,7 +1877,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0e5eb71a1c71d0eb5fcd6028a5754682e885246b> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C28161>
+<http://www.cdisc.org/C78425/V1#C78425_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28161"^^xsd:string ;
@@ -2126,7 +1886,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a6f68af9062c1524adb78d97707cb49eb497cb36> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38255>
+<http://www.cdisc.org/C78425/V1#C78425_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38255"^^xsd:string ;
@@ -2135,7 +1895,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#bbbed9a6fb97452bb2affc119fd4f6fca59565ac> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38258>
+<http://www.cdisc.org/C78425/V1#C78425_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38258"^^xsd:string ;
@@ -2144,7 +1904,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e1260f1094cd83bde83f0cf6b4f3fc7d56ede6f5> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38284>
+<http://www.cdisc.org/C78425/V1#C78425_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38284"^^xsd:string ;
@@ -2154,7 +1914,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#cee600f02645c72e9e9e92cdddfe60f2ac7f8e89> ;
 	th:synonym <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38288>
+<http://www.cdisc.org/C78425/V1#C78425_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38288"^^xsd:string ;
@@ -2165,7 +1925,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
 	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38295>
+<http://www.cdisc.org/C78425/V1#C78425_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38295"^^xsd:string ;
@@ -2174,7 +1934,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#ab19603696dc1caa67b7f612897919871559e924> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38216>
+<http://www.cdisc.org/C78425/V1#C78425_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38216"^^xsd:string ;
@@ -2183,7 +1943,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#86be3df092791e3e7d1298ba90b3592252716b5e> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38299>
+<http://www.cdisc.org/C78425/V1#C78425_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38299"^^xsd:string ;
@@ -2194,7 +1954,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#59aa962f7269a10c4395e01495c04a928240cb5b> ;
 	th:synonym <http://www.assero.co.uk/SYN#2c2b73028cb230080017043fc3305b8ae9682fe9> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38304>
+<http://www.cdisc.org/C78425/V1#C78425_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38304"^^xsd:string ;
@@ -2204,7 +1964,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#9ed688f88dfcb4bef257cd8460afbe5a29fbdce8> ;
 	th:synonym <http://www.assero.co.uk/SYN#b48813fa0aece2d14a9215d74ebb9cba0cf6faa9> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38305>
+<http://www.cdisc.org/C78425/V1#C78425_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38305"^^xsd:string ;
@@ -2213,7 +1973,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7d993502e3067f74b7fd9fe80a0f8153f320114e> ;
 .
-<http://www.acme-pharma.com/C78425/V1#C78425_C38313>
+<http://www.cdisc.org/C78425/V1#C78425_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C38313"^^xsd:string ;
@@ -2230,124 +1990,124 @@
 	rdf:type th:Synonym ;
 	isoC:label "Exposure Route of Administration"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689>
+<http://www.cdisc.org/C128689/V1#C128689>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Race As Collected"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C128689/V1#C128689_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C128689/V1#C128689_SI> ;
+	isoT:hasState <http://www.cdisc.org/C128689/V1#C128689_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C128689/V1#C128689_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C128689"^^xsd:string ;
 	th:notation "RACEC"^^xsd:string ;
 	th:definition "A terminology codelist relevant to the race of an individual as collected on the case report form."^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C154875> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C42331> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128937> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41226> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C18237> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43877> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41259> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43876> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41260> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C16310> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41262> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C67271> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43671> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43823> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43673> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128938> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128991> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C16352> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128992> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43830> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43674> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43399> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77810> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44950> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43391> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43824> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C67117> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77819> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43831> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43851> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43393> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44265> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43825> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43398> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43715> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44268> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43718> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43826> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43392> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C154874> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43395> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43397> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43832> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43722> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43716> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43719> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77811> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43409> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43402> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77820> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43864> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43833> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41219> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43720> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43834> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77813> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77814> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43234> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43717> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43427> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43405> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43860> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44269> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43721> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44953> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C156583> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43672> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43675> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43400> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43827> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43828> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C17998> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43396> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43829> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77817> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C41261> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C77816> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128993> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C128994> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C44270> ;
-	th:narrower <http://www.acme-pharma.com/C128689/V1#C128689_C43835> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C154875> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C42331> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128937> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41226> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C18237> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43877> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41259> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43876> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41260> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C16310> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41262> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C67271> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43671> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43823> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43673> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128938> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128991> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C16352> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128992> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43830> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43674> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43399> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77810> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44950> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43391> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43824> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C67117> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77819> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43831> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43851> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43393> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44265> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43825> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43398> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43715> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44268> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43718> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43826> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43392> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C154874> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43395> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43397> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43832> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43722> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43716> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43719> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77811> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43409> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43402> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77820> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43864> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43833> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41219> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43720> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43834> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77813> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77814> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43234> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43717> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43427> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43405> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43860> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44269> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43721> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44953> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C156583> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43672> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43675> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43400> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43827> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43828> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C17998> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43396> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43829> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77817> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C41261> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C77816> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128993> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C128994> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C44270> ;
+	th:narrower <http://www.cdisc.org/C128689/V1#C128689_C43835> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e049dd6b40661708669ff441a788c5c308e832df> ;
 	th:synonym <http://www.assero.co.uk/SYN#195b7572065e614050a90cef82db7594300328f4> ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_RS>
+<http://www.cdisc.org/C128689/V1#C128689_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_SI>
+<http://www.cdisc.org/C128689/V1#C128689_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C128689"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C154875>
+<http://www.cdisc.org/C128689/V1#C128689_C154875>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C154875"^^xsd:string ;
@@ -2360,7 +2120,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Aboriginal Australian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C42331>
+<http://www.cdisc.org/C128689/V1#C128689_C42331>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42331"^^xsd:string ;
@@ -2373,7 +2133,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "African"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128937>
+<http://www.cdisc.org/C128689/V1#C128689_C128937>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128937"^^xsd:string ;
@@ -2386,7 +2146,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "African American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41226>
+<http://www.cdisc.org/C128689/V1#C128689_C41226>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41226"^^xsd:string ;
@@ -2399,7 +2159,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "African Caribbean"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C18237>
+<http://www.cdisc.org/C128689/V1#C128689_C18237>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C18237"^^xsd:string ;
@@ -2412,7 +2172,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Alaska Native"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43877>
+<http://www.cdisc.org/C128689/V1#C128689_C43877>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43877"^^xsd:string ;
@@ -2425,7 +2185,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "American Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41259>
+<http://www.cdisc.org/C128689/V1#C128689_C41259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41259"^^xsd:string ;
@@ -2438,7 +2198,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "American Indian or Alaska Native"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43876>
+<http://www.cdisc.org/C128689/V1#C128689_C43876>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43876"^^xsd:string ;
@@ -2451,7 +2211,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Arab"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41260>
+<http://www.cdisc.org/C128689/V1#C128689_C41260>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41260"^^xsd:string ;
@@ -2464,7 +2224,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Asian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C16310>
+<http://www.cdisc.org/C128689/V1#C128689_C16310>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C16310"^^xsd:string ;
@@ -2477,7 +2237,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Asian American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41262>
+<http://www.cdisc.org/C128689/V1#C128689_C41262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41262"^^xsd:string ;
@@ -2490,7 +2250,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Asian Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C67271>
+<http://www.cdisc.org/C128689/V1#C128689_C67271>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67271"^^xsd:string ;
@@ -2503,7 +2263,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Bahamian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43671>
+<http://www.cdisc.org/C128689/V1#C128689_C43671>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43671"^^xsd:string ;
@@ -2516,7 +2276,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Bangladeshi"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43823>
+<http://www.cdisc.org/C128689/V1#C128689_C43823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43823"^^xsd:string ;
@@ -2529,7 +2289,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Barbadian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43673>
+<http://www.cdisc.org/C128689/V1#C128689_C43673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43673"^^xsd:string ;
@@ -2542,7 +2302,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Bhutanese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128938>
+<http://www.cdisc.org/C128689/V1#C128689_C128938>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128938"^^xsd:string ;
@@ -2555,7 +2315,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Black"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128991>
+<http://www.cdisc.org/C128689/V1#C128689_C128991>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128991"^^xsd:string ;
@@ -2568,7 +2328,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Black Central American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C16352>
+<http://www.cdisc.org/C128689/V1#C128689_C16352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C16352"^^xsd:string ;
@@ -2581,7 +2341,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Black or African American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128992>
+<http://www.cdisc.org/C128689/V1#C128689_C128992>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128992"^^xsd:string ;
@@ -2594,7 +2354,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Black South American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43830>
+<http://www.cdisc.org/C128689/V1#C128689_C43830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43830"^^xsd:string ;
@@ -2607,7 +2367,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Botswanan"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43674>
+<http://www.cdisc.org/C128689/V1#C128689_C43674>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43674"^^xsd:string ;
@@ -2620,7 +2380,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Burmese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43399>
+<http://www.cdisc.org/C128689/V1#C128689_C43399>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43399"^^xsd:string ;
@@ -2633,7 +2393,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Cambodian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77810>
+<http://www.cdisc.org/C128689/V1#C128689_C77810>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77810"^^xsd:string ;
@@ -2646,7 +2406,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Caribbean Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44950>
+<http://www.cdisc.org/C128689/V1#C128689_C44950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44950"^^xsd:string ;
@@ -2659,7 +2419,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Central American Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43391>
+<http://www.cdisc.org/C128689/V1#C128689_C43391>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43391"^^xsd:string ;
@@ -2672,7 +2432,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Chinese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43824>
+<http://www.cdisc.org/C128689/V1#C128689_C43824>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43824"^^xsd:string ;
@@ -2685,7 +2445,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Dominica Islander"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C67117>
+<http://www.cdisc.org/C128689/V1#C128689_C67117>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67117"^^xsd:string ;
@@ -2698,7 +2458,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Dominican"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77819>
+<http://www.cdisc.org/C128689/V1#C128689_C77819>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77819"^^xsd:string ;
@@ -2711,7 +2471,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Eastern European"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43831>
+<http://www.cdisc.org/C128689/V1#C128689_C43831>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43831"^^xsd:string ;
@@ -2724,7 +2484,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Ethiopian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43851>
+<http://www.cdisc.org/C128689/V1#C128689_C43851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43851"^^xsd:string ;
@@ -2737,7 +2497,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "European"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43393>
+<http://www.cdisc.org/C128689/V1#C128689_C43393>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43393"^^xsd:string ;
@@ -2750,7 +2510,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Filipino"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44265>
+<http://www.cdisc.org/C128689/V1#C128689_C44265>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44265"^^xsd:string ;
@@ -2763,7 +2523,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Greenland Eskimo"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43825>
+<http://www.cdisc.org/C128689/V1#C128689_C43825>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43825"^^xsd:string ;
@@ -2776,7 +2536,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Haitian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43398>
+<http://www.cdisc.org/C128689/V1#C128689_C43398>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43398"^^xsd:string ;
@@ -2789,7 +2549,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Hmong"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43715>
+<http://www.cdisc.org/C128689/V1#C128689_C43715>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43715"^^xsd:string ;
@@ -2802,7 +2562,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Indonesian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44268>
+<http://www.cdisc.org/C128689/V1#C128689_C44268>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44268"^^xsd:string ;
@@ -2815,7 +2575,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Inupiat Eskimo"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43718>
+<http://www.cdisc.org/C128689/V1#C128689_C43718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43718"^^xsd:string ;
@@ -2828,7 +2588,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Iwo Jiman"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43826>
+<http://www.cdisc.org/C128689/V1#C128689_C43826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43826"^^xsd:string ;
@@ -2841,7 +2601,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Jamaican"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43392>
+<http://www.cdisc.org/C128689/V1#C128689_C43392>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43392"^^xsd:string ;
@@ -2854,7 +2614,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Japanese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C154874>
+<http://www.cdisc.org/C128689/V1#C128689_C154874>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C154874"^^xsd:string ;
@@ -2867,7 +2627,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Khoisan"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43395>
+<http://www.cdisc.org/C128689/V1#C128689_C43395>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43395"^^xsd:string ;
@@ -2880,7 +2640,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Korean"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43397>
+<http://www.cdisc.org/C128689/V1#C128689_C43397>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43397"^^xsd:string ;
@@ -2893,7 +2653,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Laotian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43832>
+<http://www.cdisc.org/C128689/V1#C128689_C43832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43832"^^xsd:string ;
@@ -2906,7 +2666,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Liberian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43722>
+<http://www.cdisc.org/C128689/V1#C128689_C43722>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43722"^^xsd:string ;
@@ -2919,7 +2679,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Malagasy"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43716>
+<http://www.cdisc.org/C128689/V1#C128689_C43716>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43716"^^xsd:string ;
@@ -2932,7 +2692,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Malaysian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43719>
+<http://www.cdisc.org/C128689/V1#C128689_C43719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43719"^^xsd:string ;
@@ -2945,7 +2705,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Maldivian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77811>
+<http://www.cdisc.org/C128689/V1#C128689_C77811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77811"^^xsd:string ;
@@ -2958,7 +2718,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Mediterranean"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43409>
+<http://www.cdisc.org/C128689/V1#C128689_C43409>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43409"^^xsd:string ;
@@ -2971,7 +2731,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Melanesian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43402>
+<http://www.cdisc.org/C128689/V1#C128689_C43402>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43402"^^xsd:string ;
@@ -2984,7 +2744,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Micronesian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77820>
+<http://www.cdisc.org/C128689/V1#C128689_C77820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77820"^^xsd:string ;
@@ -2997,7 +2757,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Middle Eastern"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43864>
+<http://www.cdisc.org/C128689/V1#C128689_C43864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43864"^^xsd:string ;
@@ -3010,7 +2770,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Mongolian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43833>
+<http://www.cdisc.org/C128689/V1#C128689_C43833>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43833"^^xsd:string ;
@@ -3023,7 +2783,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Namibian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41219>
+<http://www.cdisc.org/C128689/V1#C128689_C41219>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41219"^^xsd:string ;
@@ -3036,7 +2796,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43720>
+<http://www.cdisc.org/C128689/V1#C128689_C43720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43720"^^xsd:string ;
@@ -3049,7 +2809,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Nepalese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43834>
+<http://www.cdisc.org/C128689/V1#C128689_C43834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43834"^^xsd:string ;
@@ -3062,7 +2822,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Nigerian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77813>
+<http://www.cdisc.org/C128689/V1#C128689_C77813>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77813"^^xsd:string ;
@@ -3075,7 +2835,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "North Coast of Africa"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77814>
+<http://www.cdisc.org/C128689/V1#C128689_C77814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77814"^^xsd:string ;
@@ -3088,7 +2848,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Northern European"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43234>
+<http://www.cdisc.org/C128689/V1#C128689_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43234"^^xsd:string ;
@@ -3098,7 +2858,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#8ffb8ebca8e21357de48ead89224cf69e628a522> ;
 	th:synonym <http://www.assero.co.uk/SYN#98e856820171b6204a73629df62a2fc4bcd78c01> ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43717>
+<http://www.cdisc.org/C128689/V1#C128689_C43717>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43717"^^xsd:string ;
@@ -3111,7 +2871,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Okinawan"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43427>
+<http://www.cdisc.org/C128689/V1#C128689_C43427>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43427"^^xsd:string ;
@@ -3124,7 +2884,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Pakistani"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43405>
+<http://www.cdisc.org/C128689/V1#C128689_C43405>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43405"^^xsd:string ;
@@ -3137,7 +2897,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Polynesian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43860>
+<http://www.cdisc.org/C128689/V1#C128689_C43860>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43860"^^xsd:string ;
@@ -3150,7 +2910,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Russian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44269>
+<http://www.cdisc.org/C128689/V1#C128689_C44269>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44269"^^xsd:string ;
@@ -3163,7 +2923,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Siberian Eskimo"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43721>
+<http://www.cdisc.org/C128689/V1#C128689_C43721>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43721"^^xsd:string ;
@@ -3176,7 +2936,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Singaporean"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44953>
+<http://www.cdisc.org/C128689/V1#C128689_C44953>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44953"^^xsd:string ;
@@ -3189,7 +2949,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "South American Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C156583>
+<http://www.cdisc.org/C128689/V1#C128689_C156583>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C156583"^^xsd:string ;
@@ -3202,7 +2962,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Southern African Coloured"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43672>
+<http://www.cdisc.org/C128689/V1#C128689_C43672>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43672"^^xsd:string ;
@@ -3215,7 +2975,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Sri Lankan"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43675>
+<http://www.cdisc.org/C128689/V1#C128689_C43675>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43675"^^xsd:string ;
@@ -3228,7 +2988,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Taiwanese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43400>
+<http://www.cdisc.org/C128689/V1#C128689_C43400>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43400"^^xsd:string ;
@@ -3241,7 +3001,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Thai"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43827>
+<http://www.cdisc.org/C128689/V1#C128689_C43827>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43827"^^xsd:string ;
@@ -3254,7 +3014,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Tobagoan"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43828>
+<http://www.cdisc.org/C128689/V1#C128689_C43828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43828"^^xsd:string ;
@@ -3267,7 +3027,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Trinidadian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C17998>
+<http://www.cdisc.org/C128689/V1#C128689_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C17998"^^xsd:string ;
@@ -3279,7 +3039,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#cc202b3aa2a95f0125652f112a76611ea44e2d13> ;
 	th:synonym <http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce> ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43396>
+<http://www.cdisc.org/C128689/V1#C128689_C43396>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43396"^^xsd:string ;
@@ -3292,7 +3052,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Vietnamese"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43829>
+<http://www.cdisc.org/C128689/V1#C128689_C43829>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43829"^^xsd:string ;
@@ -3305,7 +3065,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "West Indian"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77817>
+<http://www.cdisc.org/C128689/V1#C128689_C77817>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77817"^^xsd:string ;
@@ -3318,7 +3078,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Western European"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C41261>
+<http://www.cdisc.org/C128689/V1#C128689_C41261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C41261"^^xsd:string ;
@@ -3331,7 +3091,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "White"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C77816>
+<http://www.cdisc.org/C128689/V1#C128689_C77816>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C77816"^^xsd:string ;
@@ -3344,7 +3104,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "White Caribbean"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128993>
+<http://www.cdisc.org/C128689/V1#C128689_C128993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128993"^^xsd:string ;
@@ -3357,7 +3117,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "White Central American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C128994>
+<http://www.cdisc.org/C128689/V1#C128689_C128994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C128994"^^xsd:string ;
@@ -3370,7 +3130,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "White South American"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C44270>
+<http://www.cdisc.org/C128689/V1#C128689_C44270>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C44270"^^xsd:string ;
@@ -3383,7 +3143,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Yupik Eskimo"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C128689/V1#C128689_C43835>
+<http://www.cdisc.org/C128689/V1#C128689_C43835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C43835"^^xsd:string ;
@@ -3404,46 +3164,46 @@
 	rdf:type th:Synonym ;
 	isoC:label "Race As Collected"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004>
+<http://www.cdisc.org/C83004/V1#C83004>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C83004/V1#C83004_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C83004/V1#C83004_SI> ;
+	isoT:hasState <http://www.cdisc.org/C83004/V1#C83004_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C83004/V1#C83004_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C83004"^^xsd:string ;
 	th:notation "SUNCF"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Never/Current/Former Classification codelist created for CDASH Substance Use Never/Current/Former Classification codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C83004/V1#C83004_C25471> ;
-	th:narrower <http://www.acme-pharma.com/C83004/V1#C83004_C25627> ;
-	th:narrower <http://www.acme-pharma.com/C83004/V1#C83004_C70543> ;
+	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C25471> ;
+	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C25627> ;
+	th:narrower <http://www.cdisc.org/C83004/V1#C83004_C70543> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7d75396a3be5449481ba17a34deeb65843db8564> ;
 	th:synonym <http://www.assero.co.uk/SYN#c208d4b7e2fd2077d102a99fdb000c728cb3b66c> ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004_RS>
+<http://www.cdisc.org/C83004/V1#C83004_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004_SI>
+<http://www.cdisc.org/C83004/V1#C83004_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C83004"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004_C25471>
+<http://www.cdisc.org/C83004/V1#C83004_C25471>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25471"^^xsd:string ;
@@ -3456,7 +3216,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Current"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004_C25627>
+<http://www.cdisc.org/C83004/V1#C83004_C25627>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25627"^^xsd:string ;
@@ -3474,7 +3234,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Previous"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C83004/V1#C83004_C70543>
+<http://www.cdisc.org/C83004/V1#C83004_C70543>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C70543"^^xsd:string ;
@@ -3495,46 +3255,46 @@
 	rdf:type th:Synonym ;
 	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428>
+<http://www.cdisc.org/C78428/V1#C78428>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Total Volume Administration Unit"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78428/V1#C78428_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78428/V1#C78428_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78428/V1#C78428_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78428/V1#C78428_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78428"^^xsd:string ;
 	th:notation "EXVOLTU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Total Volume Administration Unit codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78428/V1#C78428_C28253> ;
-	th:narrower <http://www.acme-pharma.com/C78428/V1#C78428_C28254> ;
-	th:narrower <http://www.acme-pharma.com/C78428/V1#C78428_C48152> ;
+	th:narrower <http://www.cdisc.org/C78428/V1#C78428_C28253> ;
+	th:narrower <http://www.cdisc.org/C78428/V1#C78428_C28254> ;
+	th:narrower <http://www.cdisc.org/C78428/V1#C78428_C48152> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fe3e8d310c04afc82b9196210f22a944c6240498> ;
 	th:synonym <http://www.assero.co.uk/SYN#08a98faedd8f85cdce829dc821f98220825cc38a> ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428_RS>
+<http://www.cdisc.org/C78428/V1#C78428_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428_SI>
+<http://www.cdisc.org/C78428/V1#C78428_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78428"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428_C28253>
+<http://www.cdisc.org/C78428/V1#C78428_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28253"^^xsd:string ;
@@ -3544,7 +3304,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 	th:synonym <http://www.assero.co.uk/SYN#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428_C28254>
+<http://www.cdisc.org/C78428/V1#C78428_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28254"^^xsd:string ;
@@ -3555,7 +3315,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
 	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
 .
-<http://www.acme-pharma.com/C78428/V1#C78428_C48152>
+<http://www.cdisc.org/C78428/V1#C78428_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48152"^^xsd:string ;
@@ -3574,46 +3334,46 @@
 	rdf:type th:Synonym ;
 	isoC:label "Total Volume Administration Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427>
+<http://www.cdisc.org/C78427/V1#C78427>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78427/V1#C78427_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78427/V1#C78427_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78427/V1#C78427_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78427/V1#C78427_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78427"^^xsd:string ;
 	th:notation "EXINTPU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit for Duration of Treatment Interruption codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78427/V1#C78427_C25529> ;
-	th:narrower <http://www.acme-pharma.com/C78427/V1#C78427_C48154> ;
-	th:narrower <http://www.acme-pharma.com/C78427/V1#C78427_C42535> ;
+	th:narrower <http://www.cdisc.org/C78427/V1#C78427_C25529> ;
+	th:narrower <http://www.cdisc.org/C78427/V1#C78427_C48154> ;
+	th:narrower <http://www.cdisc.org/C78427/V1#C78427_C42535> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#600ed5c7a75a09de52f1c1223f5e3fa9a10f1481> ;
 	th:synonym <http://www.assero.co.uk/SYN#b1a089c264fe617960cdce590e610856f1ec55a7> ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427_RS>
+<http://www.cdisc.org/C78427/V1#C78427_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427_SI>
+<http://www.cdisc.org/C78427/V1#C78427_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78427"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427_C25529>
+<http://www.cdisc.org/C78427/V1#C78427_C25529>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C25529"^^xsd:string ;
@@ -3641,7 +3401,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "hr"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427_C48154>
+<http://www.cdisc.org/C78427/V1#C78427_C48154>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48154"^^xsd:string ;
@@ -3659,7 +3419,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Minute"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78427/V1#C78427_C42535>
+<http://www.cdisc.org/C78427/V1#C78427_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C42535"^^xsd:string ;
@@ -3677,55 +3437,55 @@
 	rdf:type th:Synonym ;
 	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421>
+<http://www.cdisc.org/C78421/V1#C78421>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Drug Dispensed or Returned"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78421/V1#C78421_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78421/V1#C78421_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78421/V1#C78421_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78421/V1#C78421_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78421"^^xsd:string ;
 	th:notation "DAORRESU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit of Drug Dispensed or Returned codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48474> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48477> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48478> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48480> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48484> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48490> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48520> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48521> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48524> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48542> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48549> ;
-	th:narrower <http://www.acme-pharma.com/C78421/V1#C78421_C48551> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48474> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48477> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48478> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48480> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48484> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48490> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48520> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48521> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48524> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48542> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48549> ;
+	th:narrower <http://www.cdisc.org/C78421/V1#C78421_C48551> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e9e3ffe44be131c93eb1479301e98f081590db6c> ;
 	th:synonym <http://www.assero.co.uk/SYN#dc5ec7c6f24dce8c8f5dcb3bb1ef79a78fc2bff4> ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_RS>
+<http://www.cdisc.org/C78421/V1#C78421_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_SI>
+<http://www.cdisc.org/C78421/V1#C78421_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78421"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48474>
+<http://www.cdisc.org/C78421/V1#C78421_C48474>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48474"^^xsd:string ;
@@ -3743,7 +3503,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Bag Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48477>
+<http://www.cdisc.org/C78421/V1#C78421_C48477>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48477"^^xsd:string ;
@@ -3761,7 +3521,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Bottle Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48478>
+<http://www.cdisc.org/C78421/V1#C78421_C48478>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48478"^^xsd:string ;
@@ -3779,7 +3539,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Box Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48480>
+<http://www.cdisc.org/C78421/V1#C78421_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48480"^^xsd:string ;
@@ -3790,7 +3550,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
 	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48484>
+<http://www.cdisc.org/C78421/V1#C78421_C48484>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48484"^^xsd:string ;
@@ -3808,7 +3568,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Container Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48490>
+<http://www.cdisc.org/C78421/V1#C78421_C48490>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48490"^^xsd:string ;
@@ -3826,7 +3586,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Disk Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48520>
+<http://www.cdisc.org/C78421/V1#C78421_C48520>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48520"^^xsd:string ;
@@ -3849,7 +3609,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Package Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48521>
+<http://www.cdisc.org/C78421/V1#C78421_C48521>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48521"^^xsd:string ;
@@ -3867,7 +3627,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Packet Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48524>
+<http://www.cdisc.org/C78421/V1#C78421_C48524>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48524"^^xsd:string ;
@@ -3885,7 +3645,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Patch Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48542>
+<http://www.cdisc.org/C78421/V1#C78421_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48542"^^xsd:string ;
@@ -3896,7 +3656,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
 	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48549>
+<http://www.cdisc.org/C78421/V1#C78421_C48549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48549"^^xsd:string ;
@@ -3914,7 +3674,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Tube Dosing Unit"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78421/V1#C78421_C48551>
+<http://www.cdisc.org/C78421/V1#C78421_C48551>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48551"^^xsd:string ;
@@ -3940,48 +3700,48 @@
 	rdf:type th:Synonym ;
 	isoC:label "Unit of Drug Dispensed or Returned"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429>
+<http://www.cdisc.org/C78429/V1#C78429>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Measure for Flow Rate"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78429/V1#C78429_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78429/V1#C78429_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78429/V1#C78429_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78429/V1#C78429_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78429"^^xsd:string ;
 	th:notation "EXFLRTU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Unit of Measure for Flow Rate codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78429/V1#C78429_C64777> ;
-	th:narrower <http://www.acme-pharma.com/C78429/V1#C78429_C67420> ;
-	th:narrower <http://www.acme-pharma.com/C78429/V1#C78429_C71205> ;
-	th:narrower <http://www.acme-pharma.com/C78429/V1#C78429_C71211> ;
-	th:narrower <http://www.acme-pharma.com/C78429/V1#C78429_C67406> ;
+	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C64777> ;
+	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C67420> ;
+	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C71205> ;
+	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C71211> ;
+	th:narrower <http://www.cdisc.org/C78429/V1#C78429_C67406> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#415cad1e2949473095ef5c7ed02c7e21b0af3d1e> ;
 	th:synonym <http://www.assero.co.uk/SYN#28678a5e4febc46aac74250f3af4f50a2ac54b38> ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_RS>
+<http://www.cdisc.org/C78429/V1#C78429_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_SI>
+<http://www.cdisc.org/C78429/V1#C78429_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78429"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_C64777>
+<http://www.cdisc.org/C78429/V1#C78429_C64777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C64777"^^xsd:string ;
@@ -3994,7 +3754,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Milliliter per Minute"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_C67420>
+<http://www.cdisc.org/C78429/V1#C78429_C67420>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67420"^^xsd:string ;
@@ -4007,7 +3767,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Millimole per 24 Hours"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_C71205>
+<http://www.cdisc.org/C78429/V1#C78429_C71205>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C71205"^^xsd:string ;
@@ -4025,7 +3785,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "mcg/day"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_C71211>
+<http://www.cdisc.org/C78429/V1#C78429_C71211>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C71211"^^xsd:string ;
@@ -4043,7 +3803,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "mcg/min"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78429/V1#C78429_C67406>
+<http://www.cdisc.org/C78429/V1#C78429_C67406>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C67406"^^xsd:string ;
@@ -4069,50 +3829,50 @@
 	rdf:type th:Synonym ;
 	isoC:label "Unit of Measure for Flow Rate"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423>
+<http://www.cdisc.org/C78423/V1#C78423>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Exposure"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78423/V1#C78423_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78423/V1#C78423_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78423/V1#C78423_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78423/V1#C78423_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78423"^^xsd:string ;
 	th:notation "EXDOSU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Units for Exposure codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C48480> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C48155> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C28253> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C28254> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C65060> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C48542> ;
-	th:narrower <http://www.acme-pharma.com/C78423/V1#C78423_C48152> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48480> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48155> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C28253> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C28254> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C65060> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48542> ;
+	th:narrower <http://www.cdisc.org/C78423/V1#C78423_C48152> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8ef04ec32693688e0d618dd99e4182c75910ec1a> ;
 	th:synonym <http://www.assero.co.uk/SYN#9699885f799ec62e111c26b3c5a2c8b7a957bc82> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_RS>
+<http://www.cdisc.org/C78423/V1#C78423_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_SI>
+<http://www.cdisc.org/C78423/V1#C78423_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78423"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C48480>
+<http://www.cdisc.org/C78423/V1#C78423_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48480"^^xsd:string ;
@@ -4123,7 +3883,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
 	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C48155>
+<http://www.cdisc.org/C78423/V1#C78423_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48155"^^xsd:string ;
@@ -4133,7 +3893,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a> ;
 	th:synonym <http://www.assero.co.uk/SYN#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C28253>
+<http://www.cdisc.org/C78423/V1#C78423_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28253"^^xsd:string ;
@@ -4143,7 +3903,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 	th:synonym <http://www.assero.co.uk/SYN#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C28254>
+<http://www.cdisc.org/C78423/V1#C78423_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28254"^^xsd:string ;
@@ -4154,7 +3914,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
 	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C65060>
+<http://www.cdisc.org/C78423/V1#C78423_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C65060"^^xsd:string ;
@@ -4164,7 +3924,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#d397620f2c0345cdfffacff0380803f22f76d954> ;
 	th:synonym <http://www.assero.co.uk/SYN#d397620f2c0345cdfffacff0380803f22f76d954> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C48542>
+<http://www.cdisc.org/C78423/V1#C78423_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48542"^^xsd:string ;
@@ -4175,7 +3935,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
 	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
 .
-<http://www.acme-pharma.com/C78423/V1#C78423_C48152>
+<http://www.cdisc.org/C78423/V1#C78423_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48152"^^xsd:string ;
@@ -4194,50 +3954,50 @@
 	rdf:type th:Synonym ;
 	isoC:label "Units for Exposure"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430>
+<http://www.cdisc.org/C78430/V1#C78430>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Planned Exposure"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78430/V1#C78430_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78430/V1#C78430_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78430/V1#C78430_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78430/V1#C78430_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78430"^^xsd:string ;
 	th:notation "EXPDOSEU"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Unit codelist created for CDASH Units for Planned Exposure codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C48480> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C48155> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C28253> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C28254> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C65060> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C48542> ;
-	th:narrower <http://www.acme-pharma.com/C78430/V1#C78430_C48152> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48480> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48155> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C28253> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C28254> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C65060> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48542> ;
+	th:narrower <http://www.cdisc.org/C78430/V1#C78430_C48152> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a8aaddbf23dff57c091e2fc5a9b64aa7e4aec554> ;
 	th:synonym <http://www.assero.co.uk/SYN#9a38bc081509a0da68c1b387d4b38a2e85692d3f> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_RS>
+<http://www.cdisc.org/C78430/V1#C78430_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_SI>
+<http://www.cdisc.org/C78430/V1#C78430_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78430"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C48480>
+<http://www.cdisc.org/C78430/V1#C78430_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48480"^^xsd:string ;
@@ -4248,7 +4008,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#31a54a5715e499535e8246a24a8092db52ef813a> ;
 	th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C48155>
+<http://www.cdisc.org/C78430/V1#C78430_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48155"^^xsd:string ;
@@ -4258,7 +4018,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a> ;
 	th:synonym <http://www.assero.co.uk/SYN#33d7fcc0b12d09962ff37557c0c268e32ba2eb8a> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C28253>
+<http://www.cdisc.org/C78430/V1#C78430_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28253"^^xsd:string ;
@@ -4268,7 +4028,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 	th:synonym <http://www.assero.co.uk/SYN#e0f7903bdd999e7fd7922066e9718b3556262353> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C28254>
+<http://www.cdisc.org/C78430/V1#C78430_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C28254"^^xsd:string ;
@@ -4279,7 +4039,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#0a34bed7ce20f1c19cc0829bc4df38636c7744fb> ;
 	th:synonym <http://www.assero.co.uk/SYN#4dfa8d1e51b35e2c8358404fcc30a59fc922388c> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C65060>
+<http://www.cdisc.org/C78430/V1#C78430_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C65060"^^xsd:string ;
@@ -4289,7 +4049,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#d397620f2c0345cdfffacff0380803f22f76d954> ;
 	th:synonym <http://www.assero.co.uk/SYN#d397620f2c0345cdfffacff0380803f22f76d954> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C48542>
+<http://www.cdisc.org/C78430/V1#C78430_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48542"^^xsd:string ;
@@ -4300,7 +4060,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#9b8b20fa547158bab84caf8a30df4def78740d1e> ;
 	th:synonym <http://www.assero.co.uk/SYN#e974602114f14fbf55401c109937e173b1b23220> ;
 .
-<http://www.acme-pharma.com/C78430/V1#C78430_C48152>
+<http://www.cdisc.org/C78430/V1#C78430_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C48152"^^xsd:string ;
@@ -4319,46 +4079,46 @@
 	rdf:type th:Synonym ;
 	isoC:label "Units for Planned Exposure"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431>
+<http://www.cdisc.org/C78431/V1#C78431>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
-	isoT:hasState <http://www.acme-pharma.com/C78431/V1#C78431_RS> ;
-	isoT:hasIdentifier <http://www.acme-pharma.com/C78431/V1#C78431_SI> ;
+	isoT:hasState <http://www.cdisc.org/C78431/V1#C78431_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78431/V1#C78431_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-06-13 17:57:30 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-11-22 00:00:00 +0100"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C78431"^^xsd:string ;
 	th:notation "VSPOS"^^xsd:string ;
 	th:definition "A terminology subset of the CDISC SDTM Position codelist created for CDASH Vital Signs Position of Subject codelist. (NCI)"^^xsd:string ;
 	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.acme-pharma.com/C78431/V1#C78431_C62122> ;
-	th:narrower <http://www.acme-pharma.com/C78431/V1#C78431_C62166> ;
-	th:narrower <http://www.acme-pharma.com/C78431/V1#C78431_C62167> ;
+	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62122> ;
+	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62166> ;
+	th:narrower <http://www.cdisc.org/C78431/V1#C78431_C62167> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a75371b0f6c06b07a2e8bc827accc0cd9b9cb475> ;
 	th:synonym <http://www.assero.co.uk/SYN#3bf9e4a32ba89a540c3e5df0d0773fdd56d0b556> ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431_RS>
+<http://www.cdisc.org/C78431/V1#C78431_RS>
 	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Incomplete"^^xsd:string ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
 	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Incomplete"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431_SI>
+<http://www.cdisc.org/C78431/V1#C78431_SI>
 	rdf:type isoI:ScopedIdentifier ;
 	isoI:identifier "C78431"^^xsd:string ;
-	isoI:versionLabel ""^^xsd:string ;
+	isoI:versionLabel "1.1.1"^^xsd:string ;
 	isoI:version "1"^^xsd:positiveInteger ;
-	isoI:semanticVersion "0.0.1"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS123456789> ;
+	isoI:semanticVersion "1.1.1"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431_C62122>
+<http://www.cdisc.org/C78431/V1#C78431_C62122>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C62122"^^xsd:string ;
@@ -4376,7 +4136,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Sitting"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431_C62166>
+<http://www.cdisc.org/C78431/V1#C78431_C62166>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C62166"^^xsd:string ;
@@ -4394,7 +4154,7 @@
 	rdf:type th:Synonym ;
 	isoC:label "Standing"^^xsd:string ;
 .
-<http://www.acme-pharma.com/C78431/V1#C78431_C62167>
+<http://www.cdisc.org/C78431/V1#C78431_C62167>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label ""^^xsd:string ;
 	th:identifier "C62167"^^xsd:string ;

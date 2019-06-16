@@ -14,7 +14,8 @@ module Sparql
     def initialize()  
       @default_namespace = ""
       @prefix_used = {}
-      @triples = Hash.new {|h,k| h[k] = [] }
+      @triples = Hash.new {|h,k| h[k] = []}
+      @duplicates = {}
     end
 
     # Set default namespace
@@ -41,6 +42,7 @@ module Sparql
     # @return [Null] Nothing returned
     def add(subject, predicate, object)
       s = Sparql::Update::Statement.new({subject: subject, predicate: predicate, object: object}, @default_namespace, @prefix_used)
+      return if duplicate?(s)
       @triples[s.subject.to_s] << s
     end
 
@@ -115,6 +117,13 @@ module Sparql
     end
 
   private
+
+    # Duplicate triple
+    def duplicate?(s)
+      return true if @duplicates.key?(s.to_s)
+      @duplicates[s.to_s] = true
+      return false
+    end
 
     # Execute update/create
     def execute_update(type, sparql)

@@ -1,7 +1,9 @@
 class CdiscTerm < Thesaurus
   
-C_IDENTIFIER = "CT"
-  
+  C_IDENTIFIER = "CT"
+
+  @@cdisc_ra = nil
+
 =begin  
   
   # Constants
@@ -37,7 +39,9 @@ C_IDENTIFIER = "CT"
   #
   # @return [IsoRegistrationAuthority] the owner
   def self.owner
-    @@cdisc_ra ||= IsoRegistrationAuthority.find_by_short_name("CDISC")
+    return @@cdisc_ra if !@@cdisc_ra.nil?
+    @@cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    @@cdisc_ra.freeze
   end
 
   def self.child_klass
@@ -66,7 +70,9 @@ C_IDENTIFIER = "CT"
   end
 
   def add(item, ordinal)
-    self.is_top_concept_reference << OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
+    ref = OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
+    ref.uri = ref.create_uri(self.uri)
+    self.is_top_concept_reference << ref
     self.is_top_concept << item.uri
   end
 

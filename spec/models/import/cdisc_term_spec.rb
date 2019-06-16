@@ -64,22 +64,42 @@ describe Import::CdiscTerm do
   end
 
   it "import, no errors" do
-    full_path = test_file_path(sub_dir, "import_input_1.xlsx")
+    full_path = test_file_path(sub_dir, "import_input_1a.xlsx")
     params = 
     {
       version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1.txt")
-    check_ttl_fix(filename, "import_expected_1.txt", {last_change_date: true})
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
+    check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
 	end
+
+  it "import, no errors" do
+    load_local_file_into_triple_store(sub_dir, "import_load_1b.ttl")
+    full_path = test_file_path(sub_dir, "import_input_1b.xlsx")
+    params = 
+    {
+      version: "2", date: "2018-11-22", files: [full_path], version_label: "2.0.0", label: "CDASH Test", semantic_version: "2.0.0", job: @job
+    }
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1b.ttl")
+    check_ttl_fix(filename, "import_expected_1b.ttl", {last_change_date: true})
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
 
   it "import, errors" do
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
@@ -93,7 +113,7 @@ describe Import::CdiscTerm do
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -128,7 +148,7 @@ describe Import::CdiscTerm do
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -149,7 +169,7 @@ byebug
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -169,7 +189,7 @@ byebug
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -189,7 +209,7 @@ byebug
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -212,7 +232,7 @@ byebug
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
@@ -251,7 +271,7 @@ byebug
     params = {version: "39", date: "2014-12-19", files: [full_path_1, full_path_2], version_label: "2014-12-19", label: "CDISC Terminology 2014-12-19", semantic_version: "39.0.0", job: @job}
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?(sub_dir, filename)).to eq(true)
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)

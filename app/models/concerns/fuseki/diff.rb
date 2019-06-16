@@ -25,7 +25,7 @@ module Fuseki
     # @raise [Errors::ApplicationLogicError] raised if the objects are not of the same class
     # @return [Boolean] true if different, false otherwise.
     def diff?(other)
-      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if self.class != other.class
+      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if incomptible_klass?(other)
       properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
@@ -44,7 +44,7 @@ module Fuseki
       false
     end
 
-    # Diff? Are the two objects different
+    # Difference. How are the two objects different
     #
     # @param [Object] other the other object to which this object is being compared
     # @param [Hash] options the options to use for the diff operation
@@ -54,7 +54,7 @@ module Fuseki
     def difference(previous, options={})
       options[:ignore] = [:uri, :rdf_type, :uuid] if options[:ignore].blank?
       results = {}
-      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{previous.class.name}") if self.class != previous.class
+      Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{previous.class.name}") if incomptible_klass?(other)
       properties = properties_read_instance
       properties.each do |name, property|
         variable = Fuseki::Persistence::Naming.new(name).as_symbol
@@ -80,6 +80,12 @@ module Fuseki
 
   private
 
+    # Check we have comptible classes.
+    def incomptible_klass?(other)
+      !self.class.ancestors.include?(other.class)
+    end
+
+    # Array diff?
     def array_diff?(a, b)
       return diff_uris?(a, b) if a.first.is_a? Uri
       if a.first.class.respond_to?(:key_property)
@@ -102,18 +108,21 @@ module Fuseki
       return false
     end
 
+    # URI Array Diff? 
     def diff_uris?(a, b)
       a_to_s = uris_to_s(a)
       b_to_s = uris_to_s(b)
       return a_to_s - b_to_s != []
     end
 
+    # URIs to String
     def uris_to_s(objects)
       result = []
       objects.each {|x| result << x.to_s}
       result
     end
 
+    # Array difference
     def array_difference(current, previous, options)
       return difference_uris(current, previous) if current.first.is_a? Uri
       results = []
@@ -137,10 +146,12 @@ module Fuseki
       results
     end
 
+    # Difference Record
     def difference_record(status, current, previous)
       {status: status, previous: previous, current: current, difference: Diffy::Diff.new(previous, current).to_s(:html)}
     end
 
+    # Difference URIs
     def difference_uris(current, previous)
       current_to_s = uris_to_s(current)
       previous_to_s = uris_to_s(previous)

@@ -92,11 +92,9 @@ class Import < ActiveRecord::Base
     parent = objects[:parent]
     path = TypePathManagement.history_url_v2(parent)
     sparql = Sparql::Update.new()
-    parent.set_initial(parent.identifier)
     sparql.default_namespace(parent.uri.namespace)
     parent.to_sparql(sparql, true)
     objects[:managed_children].each do |c| 
-      c.set_initial(c.identifier)
       c.to_sparql(sparql, true)
     end
     filename = sparql.to_file

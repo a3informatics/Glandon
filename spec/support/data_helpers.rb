@@ -44,6 +44,11 @@ module DataHelpers
   	CRUD.update(sparql_query)
   end
 
+  def load_local_file_into_triple_store(sub_dir, filename)
+    full_path = set_path(sub_dir, filename)
+    load_file_into_triple_store(full_path)
+  end
+
   def load_test_file_into_triple_store(filename)
 		full_path = Rails.root.join "db/load/test/#{filename}"
   	load_file_into_triple_store(full_path)
