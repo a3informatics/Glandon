@@ -1,6 +1,14 @@
 module UiHelpers
+  # General Tag helpers
+	def ui_click_tag_add
+    ui_click_by_id('tag_add')
+  end
 
-	# General UI helpers
+  def ui_click_tag_delete
+    ui_click_by_id('tag_delete')
+  end
+
+  # General UI helpers
   # ==================
   
   def ui_check_page_has(text)
