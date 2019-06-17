@@ -48,6 +48,7 @@ ConceptSystemViewPanel.prototype.displayTree = function() {
         _this.initNode(result.data.children[i], _this.rootNode);
       }
       _this.d3Editor.displayTree(_this.rootNode.key);
+      showTagInfo(_this.rootNode.data);
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);
