@@ -1,0 +1,80 @@
+var tagId;
+var tagNamespace;
+var tagLabel;
+var tagDescription;
+var tagType;
+
+function showTagInfo(data) {
+  tagId = data.id;
+  tagNamespace = data.namespace
+  tagLabel = data.label
+  tagDescription = data.description
+  tagType = data.type
+  $('#edit_label').val(tagLabel);
+  $('#edit_description').val(tagDescription);
+}
+
+function clearTagFields() {
+  $('#add_label').val('');
+  $('#add_description').val('');
+  $('#edit_label').val('');
+  $('#edit_description').val('');
+}
+
+function updateTag(callback) {
+  var labelValue = $('#edit_label').val();
+  var descriptionValue = $('#edit_description').val();
+  var data = { "namespace": tagNamespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + tagId,
+    type: 'PUT',
+    data: data,
+    success: function(data) {
+      callback();
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  clearTagFields();
+}
+
+function deleteTag(callback) {
+  var data = {"id": tagId, "namespace": tagNamespace}
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + tagId,
+    type: 'DELETE',
+    data: data,
+    success: function(data) {
+      callback();
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  clearTagFields();
+}
+
+function addTag(callback) {
+  var labelValue = $('#add_label').val();
+  var descriptionValue = $('#add_description').val();
+  if (tagType === C_SYSTEM) {
+    var url = '/iso_concept_systems/' + tagId + '/add';
+    var data = {"namespace": tagNamespace, "iso_concept_system": { "label": labelValue, "description": descriptionValue }};
+  } else if (tagType === C_TAG) {
+    var url = '/iso_concept_systems/nodes/' + tagId + '/add';
+    var data = {"namespace": tagNamespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  } 
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    success: function(data) {
+      callback();
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  clearTagFields();
+}

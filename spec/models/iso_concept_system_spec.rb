@@ -25,8 +25,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     concept = IsoConceptSystem.create(json)
@@ -37,8 +37,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "http://www.assero.co.uk/MDRConcepts", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     expected[:id] = concept.id # Needed because contains a timestamp
@@ -52,8 +52,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3±",
         :extension_properties => [],
-        :description => "Description 3±",
         :children => []
       }
     concept = IsoConceptSystem.create(json)
@@ -68,8 +68,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
-        :description => "Description 3_3",
         :children => []
       }
     new_concept = concept.add(json)
@@ -94,8 +94,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "Node 3_4",
         :extension_properties => [],
-        :description => "Description 3_4",
         :children => []
       }
     concept = IsoConceptSystem.from_json(json)
@@ -106,8 +106,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "Node 3_4",
         :extension_properties => [],
-        :description => "Description 3_4",
         :children => []
       }
     expect(result).to eq(expected)
@@ -123,8 +123,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     #new_object = IsoConceptSystem.create(json)
@@ -141,8 +141,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
-        :description => "Description 3_3",
         :children => []
       }
     response = Typhoeus::Response.new(code: 200, body: "")
@@ -160,8 +160,8 @@ describe IsoConceptSystem do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3",
         :extension_properties => [],
-        :description => "Description 3",
         :children => []
       }
     concept = IsoConceptSystem.create(json)

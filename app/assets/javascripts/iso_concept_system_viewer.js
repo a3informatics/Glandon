@@ -1,48 +1,93 @@
 $(document).ready(function() {
   
-  initData();
+  var csvp = new ConceptSystemViewPanel(conceptSystemId, conceptSystemNamespace, 100);
   
   // Set window resize.
-  window.addEventListener("resize", d3eReDisplay);
+  window.addEventListener("resize", csvp.reDisplay);
 
 });
 
-function initData () { 
-  var html = $("#jsonData").html();
-  var json = $.parseJSON(html);
-  d3eInit("d3", empty, displayNode, empty, emptyValidation);
-  rootNode = d3eRoot(json.label, "", json)
-  for (i=0; i<json.children.length; i++) {
-    child = json.children[i];
-    setD3(child, rootNode);
-  }
-  d3eDisplayTree(rootNode.key);
+function ConceptSystemViewPanel(id, namespace, step) { 
+  this.id = id;
+  this.namespace = namespace;
+  this.heightStep = step;
+  this.d3Editor = new D3Editor("d3", this.empty.bind(this), this.displayNode.bind(this), this.empty.bind(this), this.validate.bind(this));
+  this.displayTree();
+
+  var _this = this;
+
+  $('#d3_minus').click(function () {
+    _this.d3Editor.reSizeDisplay(_this.heightStep * -1);
+  });
+
+  $('#d3_plus').click(function () {
+    _this.d3Editor.reSizeDisplay(_this.heightStep);
+  });
+
+  $('#add_tag').click(function () {
+    addTag(_this.displayTree.bind(_this));
+  });
+
+  $('#update_tag').click(function () {
+    updateTag(_this.displayTree.bind(_this));
+  });
+
+  $('#delete_tag').click(function () {
+    deleteTag(_this.displayTree.bind(_this));
+  });
 }
 
-function setD3(sourceNode, d3ParentNode) {
+ConceptSystemViewPanel.prototype.displayTree = function() {
+  var _this = this;
+  $.ajax({
+    url: '/iso_concept_systems/' + _this.id + '?namespace=' + _this.namespace,
+    type: 'GET',
+    success: function(result) {
+      _this.rootNode = _this.d3Editor.root(result.data.label, result.data.type, result.data)
+      for (var i=0; i < result.data.children.length; i++) {
+        _this.initNode(result.data.children[i], _this.rootNode);
+      }
+      _this.d3Editor.displayTree(_this.rootNode.key);
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+}
+
+ConceptSystemViewPanel.prototype.initNode = function(sourceNode, d3ParentNode) {
   var newNode;
-  var i;
   var child;
-  newNode = d3eAddNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+  newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+this.d3Editor.displayTree(this.rootNode.key);
   if (sourceNode.hasOwnProperty('children')) {
-    for (i=0; i<sourceNode.children.length; i++) {
+    for (var i=0; i<sourceNode.children.length; i++) {
       child = sourceNode.children[i];
-      setD3(child, newNode);
+      this.initNode(child, newNode);
     }
   }
 }
 
-function empty(node) {
+ConceptSystemViewPanel.prototype.empty = function(node) {
 }
 
-function emptyValidation(node) {
+ConceptSystemViewPanel.prototype.reDisplay = function() {
+  var _this = this;
+  _this.d3Editor.reDisplay();
+}
+
+ConceptSystemViewPanel.prototype.validate = function(node) {
   return true;
 }
 
-function displayNode(node) {
+ConceptSystemViewPanel.prototype.displayNode = function(node) {
+    showTagInfo(node.data);
   if (node.type ===  C_SYSTEM) {
-    // Do nothing
+    $('#update_tag').prop("disabled",true);
+    $('#delete_tag').prop("disabled",true);
   } else if (node.type === C_TAG) {
-    imlRefresh(node.data.id, node.data.namespace)
+    $('#update_tag').prop("disabled",false);
+    $('#delete_tag').prop("disabled",false);
+    imlRefresh(node.data.id, node.data.namespace);
   } 
 }

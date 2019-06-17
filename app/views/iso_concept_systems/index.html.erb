@@ -1,25 +1,79 @@
-<%= javascript_include_tag 'standard_datatable' %>
-<% top_level_breadcrumb ("Classifications") %>
-<h3>Classifications</h3>
-<div class="col-md-8">
-	<table id="main" class="table table-striped table-bordered table-condensed">
-	  	<thead>
-	  		<tr>
-	    		<th>Label</th>
-			    <th></th>
-			    <th></th>
-		  	</tr>
-		 </thead>
-		 <tbody>
-			<% @conceptSystems.each do |cs| %>
-			  	<tr>
-			    	<td><%= cs.label %></td>
-				    <td><%= link_to "Show", iso_concept_system_path(:id => cs.id, :namespace => cs.namespace), :class => "btn btn-primary btn-xs" %></td>
-				    <td><%= link_to "Delete", iso_concept_system_path(:id => cs.id, :namespace => cs.namespace), method: :delete, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
-			  	</tr>
-			<% end %>
-		</tbody>
-	</table>
-	<%= link_to "New", new_iso_concept_system_path, :class => "btn btn-success" %>
-	<%= link_to "View", view_iso_concept_systems_path, :class => "btn btn-primary" %>
+<%= stylesheet_link_tag    'd3_tree'%>
+<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list', 'manage_tags' %>
+<% top_level_breadcrumb("Tags") %>
+<%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
+<%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>
+<div class="row">
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Tag Viewer</h3>
+        </div>
+        <div class="panel-body">
+          <div class="tree-toolbar">
+            <div class="btn-group" role="group" aria-label="First group">
+              <button id="d3_minus" type="button" class="btn btn-primary">
+                <i class="fa fa-minus-circle fa-lg fa-fw"></i>
+              </button>
+              <button id="d3_plus" type="button" class="btn  btn-primary">
+                <i class="fa fa-plus-circle fa-lg fa-fw"></i>
+              </button>
+            </div>
+            <input class="form-control search-tree" type="search" placeholder="search for tag" name="search-tree">
+          </div>
+          <div class="d3-tree" id="d3">
+              <!-- D3 Area -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Manage Tags</h3>
+        </div>  
+        <div class="panel-body">
+        	<div class="add-child-tag">
+        		<h5>Add Tag to selected Tag</h5>
+        		<input class="form-control tag-input" id="add_label" type="text" placeholder="label" name="">
+        		<input class="form-control tag-input" id="add_description" type="text" placeholder="description" name="">
+        		<div class="handle-tag-buttons">
+        			<button class="btn btn-success" id="add_tag" type="">Add tag</button>
+        		</div>
+        	</div>
+        	<hr>
+        	<div class="handle-selected-tag">
+        		<h5>Selected Tag</h5>
+        		<input class="form-control tag-input" id="edit_label" type="text" name="">
+        		<input class="form-control tag-input" id="edit_description" type="text" name="">
+        		<div class="handle-tag-buttons">
+        			<button class="btn btn-primary update-tag" id="update_tag" type="">Update</button>
+        			<button class="btn btn-danger delete-tag" id="delete_tag" type="">Delete</button>
+        		</div>
+        	</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12" >
+      <div id="iso_managed_panel" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Item List</h3>
+        </div>
+        <div class="panel-body">
+          <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
+            <thead>
+                <tr> 
+                    <th>Identifier</th>
+                    <th>Label</th>
+                    <th>Version</th>
+                    <th>Version Label</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
 </div>

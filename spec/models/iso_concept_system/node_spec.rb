@@ -33,8 +33,8 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "XXX",
         :extension_properties => [],
-        :description => "Description 3_3",
         :children => []
       }
     new_concept = concept.add(json)
@@ -99,8 +99,8 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3",
+        :description => "Node 3±",
         :extension_properties => [],
-        :description => "Description 3±",
         :children => []
       }
     new_concept = concept.add(json)
@@ -108,10 +108,18 @@ describe IsoConceptSystem::Node do
     expect(new_concept.errors.count).to eq(1)
   end
 
-  it "allows an object to be destroyed" do
+  it "allows an object to be destroyed, no children" do
     concept = IsoConceptSystem::Node.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts", false)
     concept.destroy
+    expect(concept.errors.count).to eq(0)
     expect{IsoConceptSystem::Node.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts", false)}.to raise_error(Exceptions::NotFoundError)
+  end
+
+  it "prevents an object being destroyed, children" do
+    concept = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
+    concept.destroy
+    expect(concept.errors.count).to eq(1)
+    expect(concept.errors.full_messages.to_sentence).to eq("Cannot destroy tag as it has children tags")
   end
 
   it "allows the object to be created from json" do
@@ -121,8 +129,8 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_4",
+        :description => "definition X",
         :extension_properties => [],
-        :description => "Description 3_4",
         :children => []
       }
     concept = IsoConceptSystem::Node.from_json(json)
@@ -134,7 +142,7 @@ describe IsoConceptSystem::Node do
         :namespace => "", 
         :label => "Node 3_4",
         :extension_properties => [],
-        :description => "Description 3_4",
+        :description => "definition X",
         :children => []
       }
     expect(result).to eq(expected)
@@ -157,8 +165,8 @@ describe IsoConceptSystem::Node do
         :id => "", 
         :namespace => "", 
         :label => "Node 3_3",
+        :description => "Node 3_3",
         :extension_properties => [],
-        :description => "Description 3_3",
         :children => []
       }
     response = Typhoeus::Response.new(code: 200, body: "")
