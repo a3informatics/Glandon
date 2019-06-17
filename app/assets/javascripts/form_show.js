@@ -76,6 +76,7 @@ $(document).ready(function() {
         processNode(child, mi);
       }
     }
+    displayAttributes(mi.id,mi.namespace);
   }
 
   /*

@@ -1,0 +1,24 @@
+var isoManagedId;
+var isoManagedNamespace;
+var tagItem;
+      
+function displayAttributes(id, namespace) {
+  isoManagedId = id;
+  isoManagedNamespace = namespace;
+  var data = {"id": isoManagedId, "namespace": isoManagedNamespace};
+  $.ajax({
+    url: "/iso_managed/tags",
+    type: "GET",
+    data: data,
+    dataType: 'json',
+    error: function (xhr, status, error) {
+      
+    },
+    success: function(result){
+      for (var i=0; i < result.data.length; i++) {
+        tagItem = result.data[i];
+        $('#tags_container').append('<span class="label label-info tag-item">' + tagItem.label + '</span>')
+      }
+    }
+  });
+}
