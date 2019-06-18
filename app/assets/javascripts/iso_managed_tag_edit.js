@@ -18,6 +18,7 @@ function initData () {
   var namespace = document.getElementById("namespace");
   imtlInit(id.value, namespace.value);
   imtlRefresh();
+  displayAttributes(id.value, namespace.value, true);
   }
 
 function setD3(sourceNode, d3ParentNode) {
@@ -41,7 +42,7 @@ function displayNode(node) {
   if (node.type ==  C_SYSTEM) {
     //alert("System node");
   } else if (node.type == C_TAG) {
-    //imlRefresh(node.data.id, node.data.namespace)
+    imlRefresh(node.data.id, node.data.namespace)
   } 
 }
 

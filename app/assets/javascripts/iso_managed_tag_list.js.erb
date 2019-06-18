@@ -4,6 +4,8 @@ var isoManagedId;
 var isoManagedNamespace;
 var tagRow;
 var tagData;
+var selectedTagId = null;
+var selectedTagNamespace = null;
 
 function imtlInit(id, namespace) {
   isoManagedId = id;
@@ -59,26 +61,6 @@ $(document).ready(function() {
     }
   });
 
-  $('#tag_delete').click(function() {
-    if (tagRow != null) {
-      delete_tag(tagData.id, tagData.namespace)
-    } else {
-      var html = alertWarning("You need to select a tag.");
-      displayAlerts(html);
-    }
-  });
-
-  $('#iso_managed_tag_table tbody').on('click', 'tr', function () {
-    var row = isoManagedTagTable.row(this).index();
-    var data = isoManagedTagTable.row(row).data();
-    if (tagRow != null) {
-      $(tagRow).toggleClass('success');
-    }
-    $(this).toggleClass('success')
-    tagData = data;
-    tagRow = this
-  });
-
   function add_tag(data) {
     $.ajax({
       url: "/iso_managed/add_tag",
@@ -95,30 +77,7 @@ $(document).ready(function() {
         displayAlerts(html);
       },
       success: function(result){
-        imtlRefresh();
-      }
-    });
-  }
-
-  function delete_tag(id, namespace) {
-    $.ajax({
-      url: "/iso_managed/delete_tag",
-      data: {
-        "id": isoManagedId,
-        "namespace": isoManagedNamespace,
-        "tag_id": id,
-        "tag_namespace": namespace
-      },
-      dataType: 'json',
-      type: 'POST',
-      error: function (xhr, status, error) {
-        var html = alertError("An error has occurred deleting the tag.");
-        displayAlerts(html);
-      },
-      success: function(result){
-        imtlRefresh();
-        tagRow = null;
-        tagData = null;
+        displayAttributes(isoManagedId, isoManagedNamespace, true);
       }
     });
   }
