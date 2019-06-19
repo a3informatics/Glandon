@@ -49,14 +49,7 @@ class IsoManagedController < ApplicationController
   def edit_tags
     authorize IsoManaged, :edit?
     @iso_managed = IsoManaged.find(params[:id], params[:namespace], false)
-    @concept_systems = Hash.new
-    @concept_systems[:label] = "Root"
-    @concept_systems[:children] = Array.new
-    cs_set = IsoConceptSystem.all
-    cs_set.each do |cs|
-      concept_system = IsoConceptSystem.find(cs.id, cs.namespace)
-      @concept_systems[:children] << concept_system.to_json
-    end
+    @concept_system = IsoConceptSystem.root
     @referer = request.referer
   end
 
