@@ -26,7 +26,7 @@ describe Import::CdiscTerm do
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
       "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
     ]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     Import.destroy_all
     delete_all_public_test_files
@@ -82,7 +82,7 @@ describe Import::CdiscTerm do
     delete_data_file(sub_dir, filename)
 	end
 
-  it "import, no errors" do
+  it "import, no errors, second version" do
     load_local_file_into_triple_store(sub_dir, "import_load_1b.ttl")
     full_path = test_file_path(sub_dir, "import_input_1b.xlsx")
     params = 
@@ -260,22 +260,6 @@ byebug
     copy_file_from_public_files("test", filename, sub_dir)
   #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "duplicates_expected_1.txt")
     check_ttl(filename, "duplicates_expected_1.txt")
-    expect(@job.status).to eq("Complete")
-    delete_data_file(sub_dir, filename)
-  end
-
-  it "import, CDISC Compare with previous method" do
-    load_test_file_into_triple_store("CT_V38.ttl")
-    full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2014-12-19.xlsx")
-    full_path_2 = test_file_path(sub_dir, "COA Terminology 2014-12-19.xlsx")
-    params = {version: "39", date: "2014-12-19", files: [full_path_1, full_path_2], version_label: "2014-12-19", label: "CDISC Terminology 2014-12-19", semantic_version: "39.0.0", job: @job}
-    result = @object.import(params)
-    filename = "cdisc_term_#{@object.id}_errors.yml"
-    expect(public_file_does_not_exist?("test", filename)).to eq(true)
-    filename = "cdisc_term_#{@object.id}_load.ttl"
-    expect(public_file_exists?("test", filename)).to eq(true)
-    copy_file_from_public_files("test", filename, sub_dir)
-    check_ttl(filename, "import_version_2014-12-19.ttl")
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end

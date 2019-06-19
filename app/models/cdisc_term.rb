@@ -76,6 +76,30 @@ class CdiscTerm < Thesaurus
     self.is_top_concept << item.uri
   end
 
+  def changes(length)
+    items = self.class.history(identifier: C_IDENTIFIER, scope: owner)
+    first = items.index {|x| x.uri == self.uri}
+    
+    versions_set = items.map {|e| e.uri}
+    versions_set = versions_set[first - 1, first + length - 1]
+    query_string = %Q{SELECT ?e ?v ?i ?cl WHERE
+{
+  #{versions_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref}isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
+  ?r bo:reference ?cl .
+  ?cl isoT:hasIdentifier ?si2 .
+  ?si2 isoI:identifier ?i .
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    results = query_results.by_object_set([:e, :v, :i, :cl])
+    results.each do |entry|
+      uri = entry[:e].to_s
+      final[uri] = {version: entry[:v], children: []} if final.key?(uri)
+      final[uri] << {identifier: entry[:i], uri: entry[:cl]}
+    end
+    previous = first == 0 ? false : true
+
+  end
+
 =begin
   # Get the next version
   #

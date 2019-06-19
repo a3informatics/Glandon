@@ -29,7 +29,7 @@ class Excel
     @workbook = Roo::Spreadsheet.open(@full_path.to_s, extension: :xlsx) 
     @engine = Excel::Engine.new(self, @workbook) # Needs to be after workbook setup
   rescue => e
-    msg = "Exception raised opening Excel workbook filename=#{@full_path}."
+    msg = "Exception raised opening Excel workbook filename=#{@full_path}. #{e}"
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
     @workbook = nil

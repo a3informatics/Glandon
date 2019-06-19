@@ -40,16 +40,20 @@ class Import::Rectangular < Import
 
 private
 
+  # Read all the Excel files
   def read_all_excel(params)
     params[:files].each do |file|
       reader = configuration[:reader_klass].new(file)
+      merge_errors(reader, self)
+      next if !reader.errors.empty?
       reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
       merge_errors(reader, self)
+      next if !reader.errors.empty?
       merge_parent_set(reader)
-      #merge_classification_set(reader)
     end
   end
     
+  # Merge the parent sets. Error if they dont match!
   def merge_parent_set(reader)
     reader.engine.parent_set.each do |k, v| 
       if @parent_set.key?(k) 
@@ -59,10 +63,6 @@ private
       end
     end
   end
-
-  #def merge_classification_set(reader)
-  #  reader.engine.classifications.each {|k, v| @classifications[k] = v if !@classifications.key?(k)}
-  #end
 
   # Process. Process the results structre to convert to objects
   def process(results)
@@ -111,11 +111,7 @@ private
     return dataset
   end        
 
-  # Add the children that are not managed items
-  #def add_children(results)
-  #  @parent_set.each {|key, item| results[:managed_children] << item}
-  #end
-
+  # Add the parent item
   def add_parent(params)
     klass = configuration[:parent_klass]
     parent = klass.new

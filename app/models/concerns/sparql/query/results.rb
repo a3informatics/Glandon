@@ -73,11 +73,23 @@ module Sparql
       # By Object. Extract results as single array of object
       #
       # @param o_var [String|Symbol] the object column name. Defaults to :o
-      # @result [Hash] a hash of [subject, predicate, object] hash records
+      # @result [Array] an array of values
       def by_object(o_var=:o)
         values = []
+        @results.each {|result| values << result.column(o_var).value}
+        values
+      end
+
+      # By Object Set. Extract results as single array of objects in a hash
+      #
+      # @param [Array] variables an array of string or symbol variables/column names
+      # @result [Array] an array of hashes containing the row of data
+      def by_object_set(variables)
+        values = []
         @results.each do |result|
-          values << result.column(o_var).value
+          row = {}
+          variables.each {|variable| row[variable.to_sym] = result.column(variable).value}
+          values << row
         end
         values
       end

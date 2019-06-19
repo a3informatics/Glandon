@@ -60,4 +60,10 @@ describe Sparql::Query::Results do
     expect(results.results).to eq([])
   end
 
+  it "allows for the results to be presented by row and column" do
+    results = Sparql::Query::Results.new(@xml)
+    result = results.by_object_set([:s, "p", :o])
+    check_file_actual_expected(result, sub_dir, "by_object_expected_1.yaml")
+  end
+
 end
