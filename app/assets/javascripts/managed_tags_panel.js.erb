@@ -3,16 +3,17 @@ function ManagedTagsPanel(callback) {
   this.callback = callback;
 
   var _this = this;
+  
   $('#add_tag').click(function () {
-    addTag(_this.displayTree.bind(_this));
+    _this.add();
   });
 
   $('#update_tag').click(function () {
-    updateTag(_this.displayTree.bind(_this));
+    _this.update();
   });
 
   $('#delete_tag').click(function () {
-    deleteTag(_this.displayTree.bind(_this));
+    _this.delete();
   });
 }
 
@@ -46,7 +47,7 @@ ManagedTagsPanel.prototype.update = function() {
     type: 'PUT',
     data: data,
     success: function(data) {
-      _this.callback();
+      _this.callback(data);
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);
@@ -63,7 +64,7 @@ ManagedTagsPanel.prototype.delete = function() {
     type: 'DELETE',
     data: data,
     success: function(data) {
-      _this.callback();
+      _this.callback(data);
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);
@@ -80,7 +81,7 @@ ManagedTagsPanel.prototype.add = function() {
     var url = '/iso_concept_systems/' + _this.data.id + '/add';
     var data = {"namespace": _this.data.namespace, "iso_concept_system": { "label": labelValue, "description": descriptionValue }};
   } else if (_this.data.type === C_TAG) {
-    var url = '/iso_concept_systems/nodes/' + tagId + '/add';
+    var url = '/iso_concept_systems/nodes/' + _this.data.id + '/add';
     var data = {"namespace": _this.data.namespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
   } 
   $.ajax({
@@ -88,7 +89,7 @@ ManagedTagsPanel.prototype.add = function() {
     type: 'POST',
     data: data,
     success: function(data) {
-      _this.callback();
+      _this.callback(data);
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);

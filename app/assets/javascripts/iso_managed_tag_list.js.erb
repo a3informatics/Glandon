@@ -1,4 +1,4 @@
-function isoManagedTagListPanel(id, namespace) {
+function IsoManagedTagListPanel(id, namespace) {
   this.isoManagedId = id;
   this.isoManagedNamespace = namespace
   this.data = null;
@@ -7,7 +7,7 @@ function isoManagedTagListPanel(id, namespace) {
 
   $('#tag_add').click(function() {
     if (_this.data !== null) {
-      add();
+      _this.add();
     } else {
       var html = alertWarning("You need to select a tag node.");
       displayAlerts(html);
@@ -15,11 +15,11 @@ function isoManagedTagListPanel(id, namespace) {
   });
 }
 
-isoManagedTagListPanel.prototype.selected = function(data) {
+IsoManagedTagListPanel.prototype.selected = function(data) {
   this.data = data;
 }
 
-isoManagedTagListPanel.prototype.add = function() {
+IsoManagedTagListPanel.prototype.add = function() {
   var _this = this;
   $.ajax({
     url: "/iso_managed/add_tag",
