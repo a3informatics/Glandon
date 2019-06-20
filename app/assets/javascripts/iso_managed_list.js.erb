@@ -1,25 +1,29 @@
-var isoManagedTableReload;
-var isoManagedTable;
-var tagId;
-var tagNamespace;
+function IsoManagedListOldPanel() {
+  this.isoManagedTableReload = null;
+  this.isoManagedTable = null;
+  this.tagId = null;
+  this.tagNamespace = null;
+}
 
-function imlRefresh(id, namespace) {
-  tagId = id;
-  tagNamespace = namespace
-  if (!isoManagedTableReload) {
-    imlLoad();
+IsoManagedListOldPanel.prototype.refresh = function (id, namespace) {
+  var _this = this;
+  _this.tagId = id;
+  _this.tagNamespace = namespace
+  if (!_this.isoManagedTableReload) {
+    _this.load();
   } else {
-    isoManagedTable.ajax.reload();
+    _this.isoManagedTable.ajax.reload();
   }
 }
 
-function imlLoad () {
-  isoManagedTable = $('#iso_managed_table').DataTable( {
+IsoManagedListOldPanel.prototype.load = function () {
+  var _this = this;
+  _this.isoManagedTable = $('#iso_managed_table').DataTable( {
     "ajax": {
       "url": "/iso_managed/find_by_tag",
       "data": function( d ) {
-        d.id = tagId,
-        d.namespace = tagNamespace
+        d.id = _this.tagId,
+        d.namespace = _this.tagNamespace
       },
       "dataSrc": "data"
     },
@@ -42,5 +46,5 @@ function imlLoad () {
       }}
     ]
   });
-  isoManagedTableReload = true;    
+  _this.isoManagedTableReload = true;    
 }

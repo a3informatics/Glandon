@@ -1,0 +1,99 @@
+function ManagedTagsPanel(callback) {
+  this.data = null;
+  this.callback = callback;
+
+  var _this = this;
+  
+  $('#add_tag').click(function () {
+    _this.add();
+  });
+
+  $('#update_tag').click(function () {
+    _this.update();
+  });
+
+  $('#delete_tag').click(function () {
+    _this.delete();
+  });
+}
+
+ManagedTagsPanel.prototype.show = function(data) {
+  this.data = data;
+  $('#edit_label').val(data.label);
+  $('#edit_description').val(data.description);
+  if (data.type ===  C_SYSTEM) {
+    $('#update_tag').prop("disabled",true);
+    $('#delete_tag').prop("disabled",true);
+  } else if (data.type === C_TAG) {
+    $('#update_tag').prop("disabled",false);
+    $('#delete_tag').prop("disabled",false);
+  } 
+}
+
+ManagedTagsPanel.prototype.clear = function() {
+  $('#add_label').val('');
+  $('#add_description').val('');
+  $('#edit_label').val('');
+  $('#edit_description').val('');
+}
+
+ManagedTagsPanel.prototype.update = function() {
+  var _this = this;
+  var labelValue = $('#edit_label').val();
+  var descriptionValue = $('#edit_description').val();
+  var data = { "namespace": _this.data.namespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + _this.data.id,
+    type: 'PUT',
+    data: data,
+    success: function(data) {
+      _this.callback(data);
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  _this.clear();
+}
+
+ManagedTagsPanel.prototype.delete = function() {
+  var _this = this;
+  var data = {"id": _this.data.id, "namespace": _this.data.namespace}
+  $.ajax({
+    url: '/iso_concept_systems/nodes/' + _this.data.id,
+    type: 'DELETE',
+    data: data,
+    success: function(data) {
+      _this.callback(data);
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  _this.clear();
+}
+
+ManagedTagsPanel.prototype.add = function() {
+  var _this = this;
+  var labelValue = $('#add_label').val();
+  var descriptionValue = $('#add_description').val();
+  if (_this.data.type === C_SYSTEM) {
+    var url = '/iso_concept_systems/' + _this.data.id + '/add';
+    var data = {"namespace": _this.data.namespace, "iso_concept_system": { "label": labelValue, "description": descriptionValue }};
+  } else if (_this.data.type === C_TAG) {
+    var url = '/iso_concept_systems/nodes/' + _this.data.id + '/add';
+    var data = {"namespace": _this.data.namespace, "iso_concept_systems_node": { "label": labelValue, "description": descriptionValue }};
+  } 
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: data,
+    success: function(data) {
+      _this.callback(data);
+    },
+    error: function(xhr, status, error){
+      handleAjaxError (xhr, status, error);
+    }
+  });
+  _this.clear();
+}

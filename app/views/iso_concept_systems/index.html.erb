@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    'd3_tree'%>
-<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list', 'manage_tags' %>
+<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_systems/index', 'shared/iso_concept_systems/concept_system_view_panel', 'iso_managed_list', 'managed_tags_panel' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -56,8 +56,6 @@
         	</div>
         </div>
       </div>
-    </div>
-    <div class="col-md-12" >
       <div id="iso_managed_panel" class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Item List</h3>
@@ -77,6 +75,6 @@
             </tbody>
           </table>
         </div>
+      </div>
     </div>
-  </div>
 </div>

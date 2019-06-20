@@ -134,7 +134,7 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @return [Boolean] True if valid, false otherwise.
   def valid?
-    result1 = super
+    result1 = FieldValidation.valid_non_empty_label?(:label, self.label, self)
     result2 = FieldValidation::valid_long_name?(:description, self.description, self)
     return result1 && result2
   end

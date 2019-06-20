@@ -6,8 +6,7 @@ class IsoConceptSystemsController < ApplicationController
 
   def index
     authorize IsoConceptSystem
-    cs_set = IsoConceptSystem.all
-    @concept_system = cs_set.empty? ? IsoConceptSystem.create(label: "Tags") : IsoConceptSystem.find(cs_set.first.id, cs_set.first.namespace)
+    @concept_system = IsoConceptSystem.root
   end
 
   def show

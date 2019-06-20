@@ -1,16 +1,8 @@
-$(document).ready(function() {
-  
-  var csvp = new ConceptSystemViewPanel(conceptSystemId, conceptSystemNamespace, 100);
-  
-  // Set window resize.
-  window.addEventListener("resize", csvp.reDisplay);
-
-});
-
-function ConceptSystemViewPanel(id, namespace, step) { 
+function ConceptSystemViewPanel(id, namespace, step, callback) { 
   this.id = id;
   this.namespace = namespace;
   this.heightStep = step;
+  this.callback = callback;
   this.d3Editor = new D3Editor("d3", this.empty.bind(this), this.displayNode.bind(this), this.empty.bind(this), this.validate.bind(this));
   this.displayTree();
 
@@ -24,17 +16,7 @@ function ConceptSystemViewPanel(id, namespace, step) {
     _this.d3Editor.reSizeDisplay(_this.heightStep);
   });
 
-  $('#add_tag').click(function () {
-    addTag(_this.displayTree.bind(_this));
-  });
 
-  $('#update_tag').click(function () {
-    updateTag(_this.displayTree.bind(_this));
-  });
-
-  $('#delete_tag').click(function () {
-    deleteTag(_this.displayTree.bind(_this));
-  });
 }
 
 ConceptSystemViewPanel.prototype.displayTree = function() {
@@ -48,6 +30,7 @@ ConceptSystemViewPanel.prototype.displayTree = function() {
         _this.initNode(result.data.children[i], _this.rootNode);
       }
       _this.d3Editor.displayTree(_this.rootNode.key);
+      _this.displayNode(_this.rootNode);
     },
     error: function(xhr, status, error){
       handleAjaxError (xhr, status, error);
@@ -81,13 +64,7 @@ ConceptSystemViewPanel.prototype.validate = function(node) {
 }
 
 ConceptSystemViewPanel.prototype.displayNode = function(node) {
-    showTagInfo(node.data);
-  if (node.type ===  C_SYSTEM) {
-    $('#update_tag').prop("disabled",true);
-    $('#delete_tag').prop("disabled",true);
-  } else if (node.type === C_TAG) {
-    $('#update_tag').prop("disabled",false);
-    $('#delete_tag').prop("disabled",false);
-    imlRefresh(node.data.id, node.data.namespace);
-  } 
+  var _this = this;
+  _this.callback(node.data);
 }
+
