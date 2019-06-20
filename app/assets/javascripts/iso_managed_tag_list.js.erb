@@ -2,7 +2,8 @@ function IsoManagedTagListPanel(id, namespace) {
   this.isoManagedId = id;
   this.isoManagedNamespace = namespace
   this.data = null;
-
+  displayAttributes(isoManagedId, isoManagedNamespace, true);
+  
   var _this = this;
 
   $('#tag_add').click(function() {

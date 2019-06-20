@@ -10,6 +10,8 @@ $(document).ready(function() {
   } 
 
   // Set window resize.
-  window.addEventListener("resize", csvp.reDisplay);
+  window.addEventListener("resize", function(event){
+    csvp.reDisplay();
+  });
 
 });

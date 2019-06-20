@@ -1,7 +1,7 @@
 $(document).ready(function() {
   
   var csvp = new ConceptSystemViewPanel(conceptSystemId, conceptSystemNamespace, 100, nodeSelected);
-  var mtp = new ManagedTagsPanel(nodeSelected);
+  var mtp = new ManagedTagsPanel(nodeAction);
   var imlop = new IsoManagedListOldPanel();
   
   function nodeSelected(data) {
@@ -9,7 +9,13 @@ $(document).ready(function() {
     imlop.refresh(data.id, data.namespace);
   } 
 
+  function nodeAction(data) {
+    csvp.displayTree();
+  } 
+
   // Set window resize.
-  window.addEventListener("resize", csvp.reDisplay);
+  window.addEventListener("resize", function(event){
+    csvp.reDisplay();
+  });
 
 });
