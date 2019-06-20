@@ -1,5 +1,8 @@
 <%= stylesheet_link_tag    'd3_tree'%>
 <%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_list', 'manage_tags' %>
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
 <% top_level_breadcrumb("Tags") %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>

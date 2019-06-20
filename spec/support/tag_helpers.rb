@@ -12,50 +12,31 @@ module TagHelper
       expect(page).to have_content 'Concept system was successfully created.'
     end
 
-  def create_tag(parent, label, description)
-   # visit '/users/sign_in'
-   # expect(page).to have_content 'Email'
-   # fill_in 'Email', with: 'form_edit@example.com'
-   # fill_in 'Password', with: '12345678'
-   # click_button 'Log in'
-    #expect(page).to have_content 'Signed in successfully'  
+  def create_tag_first_level(label, description)
       click_link 'Dashboard'
       expect(page).to have_content 'Registration Status Counts'   
       click_link 'Tags'
-      expect(page).to have_content 'Classifications'  
-      find(:xpath, "//tr[contains(.,'Root')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Root'
-      click_link 'New'
-      fill_in 'iso_concept_system_label', with: "#{label}"
-      fill_in 'iso_concept_system_description', with: "#{description}"
-      click_button 'Create'
-      expect(page).to have_content 'Concept system node was successfully created.'   
-    #click_link 'Tags'
-    #expect(page).to have_content 'Manage Tags'  
-    #ui_click_node_name "#{parent}"
-    #fill_in 'Add New Tag', with: "#{label}"
-    #fill_in 'Description', with: "#{description}"
-     # #fill_in 'iso_concept_system_label', with: 'Tag1'
-     # #fill_in 'iso_concept_system_description', with: 'Tag 1'
-    # click_button 'Add'
-    # expect(page).to have_content("#{label}")
-    # click_link 'Close'
+      expect(page).to have_content 'Tag Viewer'  
+      ui_check_input("edit_label", 'Tags')
+      fill_in 'add_label', with: "#{label}"
+      fill_in 'add_description', with: "#{description}"
+      click_button 'Add tag'
+      wait_for_ajax
+      expect(page).to have_content("#{label}")
+      #click_link 'Close'
   end
 
   def create_tag_child(parent, identifier, label)
       click_link 'Dashboard'
       expect(page).to have_content 'Registration Status Counts'   
       click_link 'Tags'
-      expect(page).to have_content 'Classifications'  
-      find(:xpath, "//tr[contains(.,'Root')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Root'
-      find(:xpath, "//tr[contains(.,#{parent})]/td/a", :text => 'Show').click
-      click_link 'New'
-      fill_in 'iso_concept_system_label', with: "#{identifier}"
-      fill_in 'iso_concept_system_description', with: "#{label}"
-      click_button 'Create'
-      pause
-      expect(page).to have_content 'Concept system node was successfully created.' 
+      expect(page).to have_content 'Tag Viewer'  
+      ui_click_node_name ("#{parent}")
+      ui_check_input("edit_label", "#{parent}")
+      fill_in 'add_label', with: "#{identifier}"
+      fill_in 'add_description', with: "#{label}"
+      click_button 'Add tag'
+      expect(page).to have_content "#{identifier}" 
   end
 
   def create_tag_form(identifier, label)

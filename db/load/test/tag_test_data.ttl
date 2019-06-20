@@ -3,7 +3,8 @@
 <http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tags for all" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C2> . 
-<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C3> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C3> .
+<http://www.assero.co.uk/MDRConcepts#GSC-C> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C4> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG1" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 1" . 
@@ -12,7 +13,10 @@
 <http://www.assero.co.uk/MDRConcepts#GSC-C2> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 2" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG3" . 
-<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 3" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C3> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 3" .
+<http://www.assero.co.uk/MDRConcepts#GSC-C4> 		<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4> 		<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG4" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4> 		<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 4" .  
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_1> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_2> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_3> . 
@@ -49,6 +53,10 @@
 <http://www.assero.co.uk/MDRConcepts#GSC-C3_3> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C3_3> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG3-3" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C3_3> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 3-3" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C4_1> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG4-1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 4_1" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1_1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_1_1> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1_1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_1_2> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C1_1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C1_1_3> . 
@@ -93,3 +101,7 @@
 <http://www.assero.co.uk/MDRConcepts#GSC-C2_3_1> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C2_3_1> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG2-3-1" . 
 <http://www.assero.co.uk/MDRConcepts#GSC-C2_3_1> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 2-3-1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1> 		<http://www.assero.co.uk/ISO11179Concepts#hasMember> 			<http://www.assero.co.uk/MDRConcepts#GSC-C4_1_1> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1_1> 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 				<http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode> . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1_1> 	<http://www.w3.org/2000/01/rdf-schema#label> 							"TAG4-1-1" . 
+<http://www.assero.co.uk/MDRConcepts#GSC-C4_1_1> 	<http://www.assero.co.uk/ISO11179Concepts#description> 		"Tag number 4-1-1" . 
