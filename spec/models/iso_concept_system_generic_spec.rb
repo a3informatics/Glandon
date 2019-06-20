@@ -42,9 +42,16 @@ describe IsoConceptSystemGeneric do
     expect(result.valid?).to eq(true)
   end
 
-  it "does not validate an invalid object" do
+  it "does not validate an invalid object I" do
     result = IsoConceptSystemGeneric.new
     result.label = "Hello world±"
+    expect(result.valid?).to eq(false)
+  end
+
+  it "does not validate an invalid object II" do
+    result = IsoConceptSystemGeneric.new
+    result.label = ""
+    result.description = "Hello world"
     expect(result.valid?).to eq(false)
   end
 
