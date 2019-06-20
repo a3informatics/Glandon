@@ -13,7 +13,7 @@ Rails.application.config.assets.version = '1.0'
   token_timer spinner
   field_validation
   iso_concept_graph iso_concept_impact
-  iso_managed_comment_edit iso_managed_list iso_managed_tag_list shared/iso_concept_systems/iso_concept_system_viewer
+  iso_managed_comment_edit iso_managed_list iso_managed_tag_list shared/iso_concept_systems/concept_system_view_panel
   iso_managed_graph iso_managed_list_panel iso_managed_select_panel 
   impact_analysis_graph_panel impact_analysis
   cdisc_cross_ref_panel cdisc_cross_ref

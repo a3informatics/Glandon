@@ -1,30 +1,29 @@
 function IsoManagedListOldPanel() {
-this.isoManagedTableReload = null;
-this.isoManagedTable = null;
-this.tagId = null;
-this.tagNamespace = null;
-
-var _this = this;
+  this.isoManagedTableReload = null;
+  this.isoManagedTable = null;
+  this.tagId = null;
+  this.tagNamespace = null;
 }
 
 IsoManagedListOldPanel.prototype.refresh = function (id, namespace) {
   var _this = this;
-  this.tagId = id;
-  this.tagNamespace = namespace
-  if (!isoManagedTableReload) {
-    _this.imlLoad();
+  _this.tagId = id;
+  _this.tagNamespace = namespace
+  if (!_this.isoManagedTableReload) {
+    _this.load();
   } else {
-    isoManagedTable.ajax.reload();
+    _this.isoManagedTable.ajax.reload();
   }
 }
+
 IsoManagedListOldPanel.prototype.load = function () {
   var _this = this;
-  this.isoManagedTable = $('#iso_managed_table').DataTable( {
+  _this.isoManagedTable = $('#iso_managed_table').DataTable( {
     "ajax": {
       "url": "/iso_managed/find_by_tag",
       "data": function( d ) {
-        d.id = this.tagId,
-        d.namespace = this.tagNamespace
+        d.id = _this.tagId,
+        d.namespace = _this.tagNamespace
       },
       "dataSrc": "data"
     },
@@ -47,5 +46,5 @@ IsoManagedListOldPanel.prototype.load = function () {
       }}
     ]
   });
-  this.isoManagedTableReload = true;    
+  _this.isoManagedTableReload = true;    
 }
