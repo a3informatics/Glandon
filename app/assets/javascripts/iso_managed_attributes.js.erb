@@ -9,10 +9,14 @@ function displayAttributes(id, namespace, deleteEnabled) {
     type: "GET",
     data: data,
     dataType: 'json',
+    beforeSend: function() {
+      $('#tag_panel_spinner').addClass('display-element');
+    },
     error: function (xhr, status, error) {
       
     },
     success: function(result){
+      $('#tag_panel_spinner').removeClass('display-element');
       $('#tags_container').html('');
       for (var i=0; i < result.data.length; i++) {
         var tagItem = result.data[i];

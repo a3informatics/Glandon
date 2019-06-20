@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag    'd3_tree', 'tags'%>
-<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_system_viewer', 'iso_managed_tag_edit', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
+<%= stylesheet_link_tag    'd3_tree', 'tags', 'concerns/spinner-component' %>
+<%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'shared/iso_concept_systems/iso_concept_system_viewer', 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>
 <div class="row">
@@ -32,7 +32,12 @@
         <div class="panel-heading">
             <h3 class="panel-title">Tag List</h3>
         </div>
-        <div class="panel-body">
+        <div id="tag_panel" class="panel-body">
+          <div id="tag_panel_spinner" class="loading-overlay">
+            <div class="spinner-container">
+              <img class="spinner" src="<%= asset_path('processing_medium_2.gif') %>">
+            </div>
+          </div>
           <div class="tags-container" id="tags_container"></div>
           <button type="button" id="tag_add" class="btn btn-primary">Add selected Tag</button>  
         </div>

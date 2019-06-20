@@ -1,85 +1,42 @@
-var isoManagedTagTableReload;
-var isoManagedTagTable;
-var isoManagedId;
-var isoManagedNamespace;
-var tagRow;
-var tagData;
-var selectedTagId = null;
-var selectedTagNamespace = null;
+function isoManagedTagListPanel(id, namespace) {
+  this.isoManagedId = id;
+  this.isoManagedNamespace = namespace
+  this.data = null;
 
-function imtlInit(id, namespace) {
-  isoManagedId = id;
-  isoManagedNamespace = namespace
-  tagRow = null;
-  tagData = null;
-}
-
-function imtlRefresh() {
-  if (!isoManagedTagTableReload) {
-    imtlLoad();
-  } else {
-    isoManagedTagTable.ajax.reload();
-  }
-}
-
-function imtlLoad () {
-  isoManagedTagTable = $('#iso_managed_tag_table').DataTable( {
-    "ajax": {
-      "url": "/iso_managed/tags",
-      "data": function( d ) {
-        d.id = isoManagedId,
-        d.namespace = isoManagedNamespace
-      },
-      "dataSrc": "data"
-    },
-    "processing": true,
-    "bInfo" : false,
-    //"searching": false,
-    "pageLength": 5,
-    "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
-    "language": {
-           "processing": "<img src='<%= asset_path('processing.gif') %>'>"
-      },
-    "columns": [
-      {"data" : "label"},
-    ]
-  });
-  isoManagedTagTableReload = true;    
-}
-
-$(document).ready(function() {
+  var _this = this;
 
   $('#tag_add').click(function() {
-    if (d3eCurrentSet) {
-      var node = d3eGetCurrent();
-      if (node.type == C_TAG) {
-        add_tag(node.data)
-      } 
+    if (_this.data !== null) {
+      add();
     } else {
       var html = alertWarning("You need to select a tag node.");
       displayAlerts(html);
     }
   });
+}
 
-  function add_tag(data) {
-    $.ajax({
-      url: "/iso_managed/add_tag",
-      data: {
-        "id": isoManagedId,
-        "namespace": isoManagedNamespace,
-        "tag_id": data.id,
-        "tag_namespace": data.namespace
-      },
-      dataType: 'json',
-      type: 'POST',
-      error: function (xhr, status, error) {
-        var html = alertError("An error has occurred adding the tag.");
-        displayAlerts(html);
-      },
-      success: function(result){
-        displayAttributes(isoManagedId, isoManagedNamespace, true);
-      }
-    });
-  }
+isoManagedTagListPanel.prototype.selected = function(data) {
+  this.data = data;
+}
 
-});
+isoManagedTagListPanel.prototype.add = function() {
+  var _this = this;
+  $.ajax({
+    url: "/iso_managed/add_tag",
+    data: {
+      "id": _this.isoManagedId,
+      "namespace": _this.isoManagedNamespace,
+      "tag_id": _this.data.id,
+      "tag_namespace": _this.data.namespace
+    },
+    dataType: 'json',
+    type: 'POST',
+    error: function (xhr, status, error) {
+      var html = alertError("An error has occurred adding the tag.");
+      displayAlerts(html);
+    },
+    success: function(result){
+      displayAttributes(isoManagedId, isoManagedNamespace, true);
+    }
+  });
+}

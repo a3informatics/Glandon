@@ -1,0 +1,17 @@
+$(document).ready(function() {
+  
+  var csvp = new ConceptSystemViewPanel(conceptSystemId, conceptSystemNamespace, 100, nodeSelected);
+  // Manage Tags
+  var mtp = new ManagedTagsPanel(csvp.display());
+  // Item List
+  var imlop = new IsoManagedListOldPanel(csvp.display());
+  
+  function nodeSelected(data) {
+    mtp.show(data);
+    imlop.imlRefresh(data.id, data.namespace);
+  } 
+
+  // Set window resize.
+  window.addEventListener("resize", csvp.reDisplay);
+
+});
