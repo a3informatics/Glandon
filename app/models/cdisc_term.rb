@@ -91,15 +91,59 @@ class CdiscTerm < Thesaurus
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
     results = query_results.by_object_set([:e, :v, :i, :cl])
+    final = {}
     results.each do |entry|
       uri = entry[:e].to_s
-      final[uri] = {version: entry[:v], children: []} if final.key?(uri)
-      final[uri] << {identifier: entry[:i], uri: entry[:cl]}
+      final[uri] = {version: entry[:v], children: []} if !final.key?(uri)
+      final[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl]]
     end
-    previous = first == 0 ? false : true
-
+    the_results = []
+    final.sort_by{|k,v| v[:version]}
+    previous_version = nil
+    final.each do |uri, version|
+      ver = version[:version].to_i
+      if first == 0 
+        the_results[ver] = {children: {}}
+        version[:children].each do |entry|
+          the_results[ver][:children][entry[:key].to_sym] = {status: :created}
+        end
+      elsif previous_version.nil?
+        # nothing needed?
+      else
+        the_results[ver] = {children: {}}
+        # new = B-A
+        # updated = A Union B URI != URI
+        # nochange = A Union B URI == URI
+        # deleted = A-B
+        new_items = version[:children] - previous_version[:children]
+        updated_items = version[:children] & previous_version[:children]
+        deleted_items = previous_version[:children] - version[:children]
+        new_items.each do |entry|
+          the_results[ver][:children][entry[:key].to_sym] = {status: :created}
+        end
+        updated_items.each do |entry|
+          the_results[ver][:children][entry[:key].to_sym] = {status: :updated}
+        end
+        deleted_items.each do |entry|
+          the_results[ver][:children][entry[:key].to_sym] = {status: :deleted}
+        end
+      end
+      previous_version = version
+    end
+    the_results
   end
 
+  class DiffResult < Hash
+
+    def eql?(other_hash)
+      self[:key] == other_hash[:key]
+    end
+
+    def hash
+      self[:key].hash
+    end
+
+  end
 =begin
   # Get the next version
   #

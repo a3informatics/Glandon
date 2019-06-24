@@ -66,7 +66,7 @@ describe CdiscTerm do
 	end
 
 	def check_cl_result(results, cl, status)
-  	expect(results[1][:children][cl.to_sym][:status]).to eq(status)
+  	expect(results[:children][cl.to_sym][:status]).to eq(status)
   end
 
   def check_cli_result(old_version, new_version, cl, cli, *args)
@@ -94,6 +94,7 @@ describe CdiscTerm do
     params = set_params(version, date, files)
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
+byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
@@ -116,14 +117,28 @@ describe CdiscTerm do
   	th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
     results = th.changes(2)
     # Results
-  	check_cl_result(results, "C127265", :no_change)
-  	check_cl_result(results, "C132262", :updated)
-  	check_cl_result(results, "C66738", :updated)
-  	# Compare code list items
-  	check_cli_result(old_version, new_version, "C100129", "C100763", updated: [:"Preferred Term", :Notation, :Synonym])
-  	check_cli_result(old_version, new_version, "C100129", "C119093", updated: [:Definition])
-  	check_cli_result(old_version, new_version, "C101846", "C99524", updated: [:Definition])
-  	check_cli_result(old_version, new_version, "C101846", "C127576", updated: [:Definition])
+    check_cl_result(results[1], :C16564, :created)
+  	check_cl_result(results[1], :C20587, :created)
+  	check_cl_result(results[1], :C49627, :created)
+  	check_cl_result(results[1], :C49660, :created)
+    check_cl_result(results[1], :C49499, :created)
+  end
+
+  it "Base create, version 2 SDTM" do
+    files = [db_load_file_path("cdisc/ct/sdtm", "SDTM Terminology 2007-04-20.xlsx")]
+    process_term(2, "2007-04-20", files, true)
+    # Load resulting file
+    load_version(1)
+    load_version(2)
+    # Compare thesaurus
+    th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+    results = th.changes(2)
+    # Results
+    check_cl_result(results[2], :C16564, :created)
+    check_cl_result(results[2], :C20587, :created)
+    check_cl_result(results[2], :C49627, :created)
+    check_cl_result(results[2], :C49660, :created)
+    check_cl_result(results[2], :C49499, :created)
   end
 
 =begin
