@@ -115,7 +115,6 @@ class CdiscTerm < Thesaurus
         # updated = A Union B URI != URI
         # nochange = A Union B URI == URI
         # deleted = A-B
-byebug
         new_items = version[:children] - previous_version[:children]
         common_items = version[:children] & previous_version[:children]
         deleted_items = previous_version[:children] - version[:children]

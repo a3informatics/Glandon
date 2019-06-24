@@ -453,7 +453,7 @@ defaults: &defaults
                 can_be_empty: false
                 map: {}
                 condition: 
-                  method: column_blank?
+                  method: column_not_blank?
                   column: 3
               -
                 method: create_shared
@@ -462,7 +462,7 @@ defaults: &defaults
                 can_be_empty: false
                 map: {}
                 condition: 
-                  method: column_not_blank?
+                  method: column_blank?
                   column: 3
           -
             label: Pre-release/ Production
