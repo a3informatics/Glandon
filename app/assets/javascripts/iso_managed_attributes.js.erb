@@ -30,6 +30,9 @@ function displayAttributes(id, namespace, deleteEnabled) {
       } else if (deleteEnabled === false){
         //Do nothing
       }
+      if( $('#tags_container').is(':empty') ) {
+        $('#tags_container').text('No tags added yet');
+      };
     }
   });
 }

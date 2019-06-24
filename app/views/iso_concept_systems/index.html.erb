@@ -1,8 +1,8 @@
-<%= stylesheet_link_tag    'd3_tree'%>
+<%= stylesheet_link_tag    'd3_tree', 'concerns/spinner-component' %>
 <%= javascript_include_tag 'd3_tree', 'd3_editor_new', 'iso_concept_systems/index', 'shared/iso_concept_systems/concept_system_view_panel', 'iso_managed_list', 'managed_tags_panel' %>
-<% if Rails.env == "test" || Rails.env == "development" %>
+<!--  <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
-<% end %>
+<% end %>-->
 <% top_level_breadcrumb("Tags") %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>

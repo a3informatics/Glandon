@@ -42,7 +42,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("width", width)
     .attr("height", height)
     .append("g")
-    .attr("transform", "translate(40,0)");
+    .attr("transform", "translate(35,0)");
   svg.append("svg:defs").selectAll("marker")
       .data(["end"])      // Different link/path types can be defined here
     .enter().append("svg:marker")    // This section adds in the arrows

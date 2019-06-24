@@ -14,10 +14,18 @@ function IsoManagedTagListPanel(id, namespace) {
       displayAlerts(html);
     }
   });
+
+
+
 }
 
 IsoManagedTagListPanel.prototype.selected = function(data) {
   this.data = data;
+  if (data.type ===  C_SYSTEM) {
+    $('#tag_add').prop("disabled",true);
+  } else if (data.type === C_TAG) {
+    $('#tag_add').prop("disabled",false);
+  } 
 }
 
 IsoManagedTagListPanel.prototype.add = function() {
