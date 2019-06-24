@@ -378,7 +378,7 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
           - 
-            label: "CDISC Submission Valuee"
+            label: "CDISC Submission Value"
             actions:
               -
                 method: set_property

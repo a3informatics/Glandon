@@ -115,14 +115,17 @@ class CdiscTerm < Thesaurus
         # updated = A Union B URI != URI
         # nochange = A Union B URI == URI
         # deleted = A-B
+byebug
         new_items = version[:children] - previous_version[:children]
-        updated_items = version[:children] & previous_version[:children]
+        common_items = version[:children] & previous_version[:children]
         deleted_items = previous_version[:children] - version[:children]
         new_items.each do |entry|
           the_results[ver][:children][entry[:key].to_sym] = {status: :created}
         end
-        updated_items.each do |entry|
-          the_results[ver][:children][entry[:key].to_sym] = {status: :updated}
+        common_items.each do |entry|
+          prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
+          curr = version[:children].find{|x| x[:key] == entry[:key]}
+          the_results[ver][:children][entry[:key].to_sym] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
         end
         deleted_items.each do |entry|
           the_results[ver][:children][entry[:key].to_sym] = {status: :deleted}
@@ -134,6 +137,10 @@ class CdiscTerm < Thesaurus
   end
 
   class DiffResult < Hash
+
+    def no_change?(other_hash)
+      self[:uri] == other_hash[:uri]
+    end
 
     def eql?(other_hash)
       self[:key] == other_hash[:key]

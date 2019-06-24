@@ -19,7 +19,7 @@ describe CdiscTerm do
     @object.save
   end
 
-  before :all do
+  before :each do
     schema_files = 
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
@@ -27,8 +27,6 @@ describe CdiscTerm do
     ]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    Import.destroy_all
-    delete_all_public_test_files
     setup
   end
 
@@ -124,21 +122,46 @@ byebug
     check_cl_result(results[1], :C49499, :created)
   end
 
-  it "Base create, version 2 SDTM" do
-    files = [db_load_file_path("cdisc/ct/sdtm", "SDTM Terminology 2007-04-20.xlsx")]
-    process_term(2, "2007-04-20", files, true)
-    # Load resulting file
+  it "Create version 2 SDTM" do
+    # Load previous versions
     load_version(1)
+    # Process and load new
+    files = [db_load_file_path("cdisc/ct/sdtm", "SDTM Terminology 2007-04-20.xlsx")]
+    process_term(2, "2007-04-20", files) #, true)
     load_version(2)
     # Compare thesaurus
     th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
     results = th.changes(2)
     # Results
-    check_cl_result(results[2], :C16564, :created)
-    check_cl_result(results[2], :C20587, :created)
-    check_cl_result(results[2], :C49627, :created)
-    check_cl_result(results[2], :C49660, :created)
-    check_cl_result(results[2], :C49499, :created)
+    check_cl_result(results[2], :C16564, :deleted)
+    check_cl_result(results[2], :C20587, :deleted)
+    check_cl_result(results[2], :C49627, :deleted)
+    check_cl_result(results[2], :C49660, :deleted)
+    check_cl_result(results[2], :C49499, :deleted)
+    check_cl_result(results[2], :C66785, :created)
+    check_cl_result(results[2], :C66787, :created)
+    check_cl_result(results[2], :C66790, :created)
+    check_cl_result(results[2], :C67153, :created)
+    check_cl_result(results[2], :C66737, :created)  
+  end
+
+  it "Create version 3 SDTM" do
+    # Load previous versions
+    load_version(1)
+    load_version(2)
+    # Process and load new
+    files = [db_load_file_path("cdisc/ct/sdtm", "SDTM Terminology 2007-04-26.xlsx")]
+    process_term(3, "2007-04-26", files) #, true)
+    load_version(3)
+    # Compare thesaurus
+    th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
+    results = th.changes(2)
+    # Results
+    check_cl_result(results[3], :C66785, :created)
+    check_cl_result(results[3], :C66787, :no_change)
+    check_cl_result(results[3], :C66790, :no_change)
+    check_cl_result(results[3], :C67153, :no_change)
+    check_cl_result(results[3], :C66737, :updated)
   end
 
 =begin
