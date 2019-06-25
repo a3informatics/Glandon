@@ -99,17 +99,17 @@ describe("D3 Tree", function() {
  	it("sets the node colour", function() {
  		node = {};
  		node.expand = true;
- 		expect(d3NodeColour(node)).to.equal("skyblue");
+ 		expect(d3NodeColour(node)).to.equal("#5bc0de");
  		node.expand = false;
  		expect(d3NodeColour(node)).to.equal("white");
  		node.enabled = true;
- 		expect(d3NodeColour(node)).to.equal("mediumseagreen");
+ 		expect(d3NodeColour(node)).to.equal("white");
  		node.is_common = true;
  		expect(d3NodeColour(node)).to.equal("silver");
  		node.is_common = false;
- 		expect(d3NodeColour(node)).to.equal("mediumseagreen");
+ 		expect(d3NodeColour(node)).to.equal("white");
  		node.enabled = false;
- 		expect(d3NodeColour(node)).to.equal("orangered");
+ 		expect(d3NodeColour(node)).to.equal("#d9534f");
   });
 
  	it("sets the text colour", function() {
@@ -118,12 +118,12 @@ describe("D3 Tree", function() {
  		node.is_common = false;
  		expect(d3TextColour(node)).to.equal("black");
  		node.is_common = true;
- 		expect(d3TextColour(node)).to.equal("silver");
+ 		expect(d3TextColour(node)).to.equal("black");
   });
 
- 	xit("adjusts the height", function() {
- 		//expect(true).to.equal(false);
-  	//pending();
-  });
+ 	// xit("adjusts the height", function() {
+ 	// 	//expect(true).to.equal(false);
+  // 	//pending();
+  // });
 
 });
