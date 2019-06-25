@@ -79,12 +79,11 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("height", rectH)
     .attr("rx", 4)
     .attr("ry", 4)
-    .attr("stroke", "#5cb85c")
+    .attr("stroke", function(d) { return d3StrokeColour(d); })
     .attr("stroke-width", 1)
-    .style("fill", "#fff")
     //.attr("r", 5)
     //.attr("fill", function(d) { return d3NodeColour(d); });
-    //.style("fill", function(d) { return d3NodeColour(d); });
+    .style("fill", function(d) { return d3NodeColour(d); });
   node.append("text")
     .attr("x", rectW / 2)
     .attr("y", rectH / 2)
@@ -93,7 +92,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     //.attr("dx", function(d) { return d.children ? -8 : 8; })
     //.attr("dy", 3)
     //.attr("fill", function(d) { return d3TextColour(d); })
-    //.style("fill", function(d) { return d3TextColour(d); })
+    .style("fill", function(d) { return d3TextColour(d); })
     //.attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
   d3.select(self.frameElement).style("height", height + "px");
@@ -106,9 +105,9 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
  * @return [Null]
  */
 function d3MarkNode(gRef) {
-  //d3.select(gRef).select("circle").style("fill", "steelblue");
-  d3.select(gRef).select("rect").style("fill", "#337ab7");
-  d3.select(gRef).select("rect").attr("stroke", "#337ab7");
+  d3.select(gRef).select("rect").style("fill", "#428bca"); //darkblue
+  d3.select(gRef).select("rect").style("stroke", "#428bca"); //darkblue
+  d3.select(gRef).select("text").style("fill", "white");
 }
 
 /**
@@ -184,12 +183,9 @@ function d3FindData(key) {
  * @return [Object] the node data
  */
 function d3RestoreNode(gRef) {
-  //d3.select(gRef).select('circle').style("fill", d3NodeColour(gRef.__data__));
   d3.select(gRef).select('rect').style("fill", d3NodeColour(gRef.__data__));
-  d3.select(gRef).select('rect').attr("stroke", "none");
-  if (d3NodeColour(gRef.__data__) === "white") {
-    d3.select(gRef).select('rect').attr("stroke", "#5cb85c");
-  }
+  d3.select(gRef).select('rect').style("stroke", d3StrokeColour(gRef.__data__));
+  d3.select(gRef).select('text').style("fill", d3TextColour(gRef.__data__));
 }
 
 /**
@@ -200,7 +196,7 @@ function d3RestoreNode(gRef) {
  */
 function d3NodeColour (node) {
   if (node.expand) {
-    return "skyblue";
+    return "#5bc0de";//lightblue
   }
   if ('enabled' in node) {
     if (node.enabled) {
@@ -214,12 +210,13 @@ function d3NodeColour (node) {
         return "white";
       }
     } else {
-      return "orangered";
+      return "#d9534f"; //red
     }
   } else {
     return "white";
   }
 }
+
 
 /**
  * Sets the node text colour
@@ -228,12 +225,55 @@ function d3NodeColour (node) {
  * @return [String] the text colour
  */
 function d3TextColour (node) {
-  if ('is_common' in node) {
-    if(node.is_common) {
-      return "silver";
-    }
+if (node.expand) {
+    return "white";
   }
-  return "black";
+  if ('enabled' in node) {
+    if (node.enabled) {
+      if ('is_common' in node) {
+        if(node.is_common) {
+          return "#777"; //darkgrey
+        } else {
+          return "black";
+        }
+      } else {
+        return "black";
+      }
+    } else {
+      return "white";
+    }
+  } else {
+    return "black";
+  }
+}
+
+/**
+ * Sets the node stroke colour
+ *
+ * @param node [Object] the current node
+ * @return [String] the stroke colour
+ */
+function d3StrokeColour (node) {
+  if (node.expand) {
+    return "#5bc0de"; //lightblue
+  }
+  if ('enabled' in node) {
+    if (node.enabled) {
+      if ('is_common' in node) {
+        if(node.is_common) {
+          return "silver";
+        } else {
+          return "#5cb85c"; //greeen
+        }
+      } else {
+        return "#5cb85c"; //green
+      }
+    } else {
+      return "#d9534f"; //red
+    }
+  } else {
+    return "white";
+  }
 }
 
 function d3AdjustHeight(height) {
