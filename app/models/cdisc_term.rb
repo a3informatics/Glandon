@@ -77,11 +77,21 @@ class CdiscTerm < Thesaurus
   end
 
   def changes(length)
+    final = {}
+    cl_set = {}
+    versions = []
+    start = 0
+
     items = self.class.history(identifier: C_IDENTIFIER, scope: owner)
-    first = items.index {|x| x.uri == self.uri}
-    
+    first = items.index {|x| x.uri == self.uri}    
+    if first == 0 
+      start = 0 
+      final["dummy"] = {version: "0", date: "", children: []} if first == 0
+    else
+      start = first - 1
+      final = {}
+    end    
     versions_set = items.map {|e| e.uri}
-    start = first == 0 ? 0 : first - 1
     versions_set = versions_set[start, first + length - 1]
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
@@ -94,53 +104,53 @@ class CdiscTerm < Thesaurus
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
     results = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-    final = {}
-    cl_set = {}
-    results.each do |entry|
-      cl_set[entry[:i].to_sym] = {status: :not_present} if !cl_set.key?(entry[:i].to_sym)
-    end
+
     results.each do |entry|
       uri = entry[:e].to_s
       final[uri] = {version: entry[:v], date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !final.key?(uri)
       final[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
     end
+
     the_results = []
-    final.sort_by{|k,v| v[:version]}
+    final.sort_by {|k,v| v[:version]}
+    final.each {|k,v| versions << v[:date]}
+    versions = versions.drop(1)
     previous_version = nil
+    initial_status = [:not_present] * versions.length
     final.each do |uri, version|
-      ver = version[:version].to_i
-      date = version[:date]
-      if first == 0 
-        the_results[ver] = {version: ver, date: date, children: cl_set}
-        version[:children].each do |entry|
-          the_results[ver][:children][entry[:key].to_sym] = {status: :created}
-        end
-      elsif previous_version.nil?
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if cl_set.key?(key)
+        cl_set[key] = {key: entry[:key], label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+      end
+    end
+    final.each do |uri, version|
+      ver = version[:version].to_i - start - 2
+      if previous_version.nil?
         # nothing needed?
       else
-        the_results[ver] = {version: ver, date: date, children: cl_set}
-        # new = B-A
-        # updated = A Union B URI != URI
-        # nochange = A Union B URI == URI
-        # deleted = A-B
+        # :created = B-A
+        # :updated = A Union B URI != URI
+        # :no_change = A Union B URI == URI
+        # :deleted = A-B
         new_items = version[:children] - previous_version[:children]
         common_items = version[:children] & previous_version[:children]
         deleted_items = previous_version[:children] - version[:children]
         new_items.each do |entry|
-          the_results[ver][:children][entry[:key].to_sym] = {status: :created}
+          cl_set[entry[:key].to_sym][:status][ver] = :created
         end
         common_items.each do |entry|
           prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
           curr = version[:children].find{|x| x[:key] == entry[:key]}
-          the_results[ver][:children][entry[:key].to_sym] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+          cl_set[entry[:key].to_sym][:status][ver] = curr.no_change?(prev) ? :no_change : :updated
         end
         deleted_items.each do |entry|
-          the_results[ver][:children][entry[:key].to_sym] = {status: :deleted}
+          cl_set[entry[:key].to_sym][:status][ver] = :deleted
         end
       end
       previous_version = version
     end
-    the_results.compact
+    {versions: versions, items: cl_set}
   end
 
   class DiffResult < Hash

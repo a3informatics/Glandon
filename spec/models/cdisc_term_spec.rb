@@ -398,10 +398,16 @@ describe CdiscTerm do
       #
     end
 
-    it "calculates changes" do
-      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+    it "calculates changes, window 4" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml")
+    end
+
+    it "calculates changes, window 10" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      actual = ct.changes(10)
+      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml", write_file: true)
     end
 
   end

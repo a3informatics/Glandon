@@ -1,0 +1,1146 @@
+---
+:versions:
+- '2007-04-20'
+- '2007-04-26'
+- '2007-05-31'
+- '2007-06-05'
+- '2008-01-15'
+- '2008-01-25'
+- '2008-08-26'
+- '2008-09-22'
+- '2008-09-24'
+:items:
+  :C20587:
+    :key: C20587
+    :label: Age Group
+    :notation: AGESPAN
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C16960:
+    :key: C16960
+    :label: Patient Ethnic Group
+    :notation: Patient
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C25464:
+    :key: C25464
+    :label: Country
+    :notation: COUNTRY
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C50400:
+    :key: C50400
+    :label: Age Unit
+    :notation: AGEU
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C42636:
+    :key: C42636
+    :label: Pharmaceutical Dosage Form
+    :notation: FRM
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49650:
+    :key: C49650
+    :label: Diagnosis Group
+    :notation: TDIGRP
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49480:
+    :key: C49480
+    :label: Category for Inclusion and or Exclusion
+    :notation: IECAT
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49627:
+    :key: C49627
+    :label: Reason for Non-Completion
+    :notation: NCOMPLT
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C50399:
+    :key: C50399
+    :label: Dictionary Name
+    :notation: DICTNAM
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C64388:
+    :key: C64388
+    :label: CDISC System Organ Class
+    :notation: SOC
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49638:
+    :key: C49638
+    :label: Relation to Reference Period
+    :notation: STENRF
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49499:
+    :key: C49499
+    :label: Action Taken with Study Treatment
+    :notation: ACN
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49484:
+    :key: C49484
+    :label: Not Done
+    :notation: ND
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49704:
+    :key: C49704
+    :label: Common Terminology Criteria for Adverse Events
+    :notation: TOXGR
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C38114:
+    :key: C38114
+    :label: Route of Administration
+    :notation: ROUTE
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C16564:
+    :key: C16564
+    :label: Patient Ethnic Group
+    :notation: ETHNIC
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49489:
+    :key: C49489
+    :label: Adverse Event Outcome
+    :notation: OUT
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49647:
+    :key: C49647
+    :label: Control Type
+    :notation: TCNTRL
+    :status:
+    - :updated
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49705:
+    :key: C49705
+    :label: Severity/Intensity Scale for Adverse Events
+    :notation: AESEV
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49691:
+    :key: C49691
+    :label: Trial Summary Parameter
+    :notation: TSPARM
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C25681:
+    :key: C25681
+    :label: Size
+    :notation: SIZE
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49672:
+    :key: C49672
+    :label: Vital Signs
+    :notation: VSTEST
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C48281:
+    :key: C48281
+    :label: Trial Phase
+    :notation: TPHASE
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49696:
+    :key: C49696
+    :label: Sex of Study Group
+    :notation: SEXPOP
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49652:
+    :key: C49652
+    :label: Trial Indication Type
+    :notation: TINDTP
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C28421:
+    :key: C28421
+    :label: Sex
+    :notation: SEX
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49558:
+    :key: C49558
+    :label: Submission Domain Abbreviation
+    :notation: DOMAIN
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49658:
+    :key: C49658
+    :label: Trial Blinding Schema
+    :notation: "[TBLIND]"
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49486:
+    :key: C49486
+    :label: Yes, No, Unknown, or Not Applicable Response
+    :notation: NY
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C65047:
+    :key: C65047
+    :label: CDISC SDTM Laboratory Test Terminology
+    :notation: LABTEST
+    :status:
+    - :updated
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+  :C49675:
+    :key: C49675
+    :label: Units for Vital Signs Results
+    :notation: VSRESU
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C49660:
+    :key: C49660
+    :label: Trial Type
+    :notation: TTYPE
+    :status:
+    - :deleted
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+  :C66769:
+    :key: C66769
+    :label: Severity/Intensity Scale for Adverse Events
+    :notation: AESEV
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66790:
+    :key: C66790
+    :label: Patient Ethnic Group
+    :notation: ETHNIC
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66738:
+    :key: C66738
+    :label: Trial Summary Parameter Test Code
+    :notation: TSPARMCD
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66733:
+    :key: C66733
+    :label: Size
+    :notation: SIZE
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C67154:
+    :key: C67154
+    :label: Laboratory Test Name
+    :notation: LBTEST
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+  :C66786:
+    :key: C66786
+    :label: Country
+    :notation: COUNTRY
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66781:
+    :key: C66781
+    :label: Age Unit
+    :notation: AGEU
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66729:
+    :key: C66729
+    :label: Route of Administration
+    :notation: ROUTE
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66789:
+    :key: C66789
+    :label: Not Done
+    :notation: ND
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66737:
+    :key: C66737
+    :label: Trial Phase
+    :notation: TPHASE
+    :status:
+    - :created
+    - :updated
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :updated
+    - :updated
+    - :no_change
+  :C66732:
+    :key: C66732
+    :label: Sex of Participants
+    :notation: SEXPOP
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66780:
+    :key: C66780
+    :label: Age Span
+    :notation: AGESPAN
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66728:
+    :key: C66728
+    :label: Relation to Reference Period
+    :notation: STENRF
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66770:
+    :key: C66770
+    :label: Units for Vital Signs Results
+    :notation: VSRESU
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C67152:
+    :key: C67152
+    :label: Trial Summary Parameter Test Name
+    :notation: TSPARM
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66783:
+    :key: C66783
+    :label: CDISC System Organ Class
+    :notation: SOC
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66797:
+    :key: C66797
+    :label: Category for Inclusion/Exclusion
+    :notation: IECAT
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66768:
+    :key: C66768
+    :label: Outcome of Event
+    :notation: OUT
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66767:
+    :key: C66767
+    :label: Action Taken with Study Treatment
+    :notation: ACN
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66741:
+    :key: C66741
+    :label: Vital Signs Test Code
+    :notation: VSTESTCD
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66788:
+    :key: C66788
+    :label: Dictionary Name
+    :notation: DICTNAM
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66736:
+    :key: C66736
+    :label: Trial Indication Type
+    :notation: TINDTP
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66787:
+    :key: C66787
+    :label: Diagnosis Group
+    :notation: TDIGRP
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C67153:
+    :key: C67153
+    :label: Vital Signs Test Name
+    :notation: VSTEST
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66727:
+    :key: C66727
+    :label: Completion/Reason for Non-Completion
+    :notation: NCOMPLT
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :updated
+    - :updated
+    - :no_change
+  :C66784:
+    :key: C66784
+    :label: Common Terminology Criteria for Adverse Events
+    :notation: TOXGR
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66734:
+    :key: C66734
+    :label: Domain Abbreviation
+    :notation: DOMAIN
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66726:
+    :key: C66726
+    :label: Pharmaceutical Dosage Form
+    :notation: FRM
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+  :C66731:
+    :key: C66731
+    :label: Sex
+    :notation: SEX
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66735:
+    :key: C66735
+    :label: Trial Blinding Schema
+    :notation: TBLIND
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66742:
+    :key: C66742
+    :label: No Yes Response
+    :notation: NY
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66739:
+    :key: C66739
+    :label: Trial Type
+    :notation: TTYPE
+    :status:
+    - :created
+    - :no_change
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C66785:
+    :key: C66785
+    :label: Control Type
+    :notation: TCNTRL
+    :status:
+    - :not_present
+    - :created
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C71153:
+    :key: C71153
+    :label: ECG Test Code
+    :notation: EGTESTCD
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :updated
+    - :updated
+    - :no_change
+  :C71620:
+    :key: C71620
+    :label: Unit
+    :notation: UNIT
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+    - :updated
+    - :no_change
+  :C71150:
+    :key: C71150
+    :label: ECG Result
+    :notation: EGSTRESC
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C71152:
+    :key: C71152
+    :label: ECG Test Name
+    :notation: EGTEST
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :updated
+    - :updated
+    - :no_change
+  :C71151:
+    :key: C71151
+    :label: ECG Test Method
+    :notation: EGMETHOD
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C71148:
+    :key: C71148
+    :label: Position
+    :notation: POSITION
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :updated
+    - :no_change
+    - :no_change
+    - :no_change
+  :C71113:
+    :key: C71113
+    :label: Frequency
+    :notation: FREQ
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+    - :no_change
+    - :no_change
+  :C74561:
+    :key: C74561
+    :label: Skin Type
+    :notation: SKINTYP
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+  :C74560:
+    :key: C74560
+    :label: Skin Classification
+    :notation: SKINCLAS
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :deleted
+  :C74558:
+    :key: C74558
+    :label: Category for Disposition Event
+    :notation: DSCAT
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :updated
+    - :no_change
+  :C74456:
+    :key: C74456
+    :label: Anatomical Location
+    :notation: LOC
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :no_change
+  :C74559:
+    :key: C74559
+    :label: Subject Characteristic Code
+    :notation: SCCD
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :no_change
+    - :updated
+  :C25188:
+    :key: C25188
+    :label: Marital Status
+    :notation: MARISTAT
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+    - :deleted
+  :C76348:
+    :key: C76348
+    :label: Marital Status
+    :notation: MARISTAT
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+  :C74457:
+    :key: C74457
+    :label: Race
+    :notation: RACE
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
+  :C76351:
+    :key: C76351
+    :label: Skin Classification
+    :notation: SKINCLAS
+    :status:
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :not_present
+    - :created
