@@ -102,6 +102,7 @@ puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n"
         key_method = a.first.class.key_property
         a.each do |a_obj|
           b_obj = b.select {|x| x.send(key_method) == a_obj.send(key_method)}
+          return true if b_obj.empty?
           return diff("array", a_obj, b_obj) if a_obj.diff?(b_obj.first)
         end    
       elsif a.first.respond_to?(:diff?)

@@ -8,9 +8,14 @@ class Import::CdiscTerm < Import::Rectangular
   
   C_V1 = "01/01/1900".to_datetime 
   C_V2 = "01/05/2007".to_datetime 
-  C_V3 = "01/04/2010".to_datetime 
-  C_SHEET_MAP = [{range: (C_V1...C_V2), sheet: :version_1}, {range: (C_V2...C_V3), sheet: :version_2}, {range: (C_V3...DateTime.now.to_date+1), sheet: :version_3}]
-  C_DEFAULT = :version_3
+  C_V3 = "01/09/2008".to_datetime 
+  C_V4 = "01/04/2010".to_datetime 
+  C_SHEET_MAP = [
+    {range: (C_V1...C_V2), sheet: :version_1}, 
+    {range: (C_V2...C_V3), sheet: :version_2}, 
+    {range: (C_V3...C_V4), sheet: :version_3}, 
+    {range: (C_V4...DateTime.now.to_date+1), sheet: :version_4}]
+  C_DEFAULT = :version_4
 
   # Configuration. Sets the parameters for the import
   # 

@@ -57,10 +57,12 @@ describe Import::CdiscTerm do
     expect(object.sheet({date: "01/01/2000"})).to eq(:version_1)
     expect(object.sheet({date: "30/04/2007"})).to eq(:version_1)
     expect(object.sheet({date: "01/05/2007"})).to eq(:version_2)
-    expect(object.sheet({date: "31/03/2010"})).to eq(:version_2)
-    expect(object.sheet({date: "01/04/2010"})).to eq(:version_3)
-    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_3)
-    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_3) # Future date
+    expect(object.sheet({date: "31/08/2008"})).to eq(:version_2)
+    expect(object.sheet({date: "01/09/2008"})).to eq(:version_3)
+    expect(object.sheet({date: "31/03/2010"})).to eq(:version_3)
+    expect(object.sheet({date: "01/04/2010"})).to eq(:version_4)
+    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_4)
+    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_4) # Future date
   end
 
   it "import, no errors" do
@@ -140,7 +142,7 @@ describe Import::CdiscTerm do
     expect(@job.status).to include("An exception was detected during the import processes.\nDetails: error.\nBacktrace: ")
   end
 
-  it "import, CDISC Version 1 Format" do
+  it "import, CDISC Version 1 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2007-03-06.xlsx")
     params = 
     {
@@ -161,7 +163,7 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 2 Format" do
+  it "import, CDISC Version 2 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2007-05-31.xlsx")
     params = 
     {
@@ -181,7 +183,28 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 3 Format" do
+  it "import, CDISC Version 3 Format, errors detected" do
+    full_path = test_file_path(sub_dir, "SDTM Terminology 2008-09-22.xlsx")
+    params = 
+    {
+      version: "1", date: "2008-09-22", files: [full_path], version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
+    }
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+byebug
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+    actual = read_yaml_file(sub_dir, filename)
+  write_yaml_file(actual, sub_dir, "import_version_2008-09-22.yaml")
+    expected = read_yaml_file(sub_dir, "import_version_2008-09-22.yaml")
+    expect(actual).to eq(expected)
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+  it "import, CDISC Version 4 Format, errors detected" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2010-04-08.xlsx")
     params = 
     {
@@ -201,7 +224,7 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, CDISC Version 3 Format" do
+  it "import, CDISC Version 4 Format, no errors" do
     full_path = test_file_path(sub_dir, "SDTM Terminology 2012-06-29.xlsx")
     params = 
     {
@@ -219,7 +242,7 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, Multiple Version 3 Format" do
+  it "import, Multiple Version 4 Format, no errors" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2018-12-21.xlsx")
     full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2018-12-21.xlsx")
     full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2018-12-21.xlsx")
