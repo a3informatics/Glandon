@@ -1,0 +1,985 @@
+@prefix : <http://www.cdisc.org/CT/V10#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/CT/V10>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
+	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConceptReference :TH_TCR3 ;
+	th:isTopConceptReference :TH_TCR4 ;
+	th:isTopConceptReference :TH_TCR5 ;
+	th:isTopConceptReference :TH_TCR6 ;
+	th:isTopConceptReference :TH_TCR7 ;
+	th:isTopConceptReference :TH_TCR8 ;
+	th:isTopConceptReference :TH_TCR9 ;
+	th:isTopConceptReference :TH_TCR10 ;
+	th:isTopConceptReference :TH_TCR11 ;
+	th:isTopConceptReference :TH_TCR12 ;
+	th:isTopConceptReference :TH_TCR13 ;
+	th:isTopConceptReference :TH_TCR14 ;
+	th:isTopConceptReference :TH_TCR15 ;
+	th:isTopConceptReference :TH_TCR16 ;
+	th:isTopConceptReference :TH_TCR17 ;
+	th:isTopConceptReference :TH_TCR18 ;
+	th:isTopConceptReference :TH_TCR19 ;
+	th:isTopConceptReference :TH_TCR20 ;
+	th:isTopConceptReference :TH_TCR21 ;
+	th:isTopConceptReference :TH_TCR22 ;
+	th:isTopConceptReference :TH_TCR23 ;
+	th:isTopConceptReference :TH_TCR24 ;
+	th:isTopConceptReference :TH_TCR25 ;
+	th:isTopConceptReference :TH_TCR26 ;
+	th:isTopConceptReference :TH_TCR27 ;
+	th:isTopConceptReference :TH_TCR28 ;
+	th:isTopConceptReference :TH_TCR29 ;
+	th:isTopConceptReference :TH_TCR30 ;
+	th:isTopConceptReference :TH_TCR31 ;
+	th:isTopConceptReference :TH_TCR32 ;
+	th:isTopConceptReference :TH_TCR33 ;
+	th:isTopConceptReference :TH_TCR34 ;
+	th:isTopConceptReference :TH_TCR35 ;
+	th:isTopConceptReference :TH_TCR36 ;
+	th:isTopConceptReference :TH_TCR37 ;
+	th:isTopConceptReference :TH_TCR38 ;
+	th:isTopConceptReference :TH_TCR39 ;
+	th:isTopConceptReference :TH_TCR40 ;
+	th:isTopConceptReference :TH_TCR41 ;
+	th:isTopConceptReference :TH_TCR42 ;
+	th:isTopConceptReference :TH_TCR43 ;
+	th:isTopConceptReference :TH_TCR44 ;
+	th:isTopConceptReference :TH_TCR45 ;
+	th:isTopConceptReference :TH_TCR46 ;
+	th:isTopConceptReference :TH_TCR47 ;
+	th:isTopConceptReference :TH_TCR48 ;
+	th:isTopConcept <http://www.cdisc.org/C66767/V4#C66767> ;
+	th:isTopConcept <http://www.cdisc.org/C66768/V4#C66768> ;
+	th:isTopConcept <http://www.cdisc.org/C66780/V4#C66780> ;
+	th:isTopConcept <http://www.cdisc.org/C66781/V4#C66781> ;
+	th:isTopConcept <http://www.cdisc.org/C66797/V4#C66797> ;
+	th:isTopConcept <http://www.cdisc.org/C66783/V4#C66783> ;
+	th:isTopConcept <http://www.cdisc.org/C66784/V4#C66784> ;
+	th:isTopConcept <http://www.cdisc.org/C66785/V4#C66785> ;
+	th:isTopConcept <http://www.cdisc.org/C66786/V4#C66786> ;
+	th:isTopConcept <http://www.cdisc.org/C66787/V4#C66787> ;
+	th:isTopConcept <http://www.cdisc.org/C66788/V4#C66788> ;
+	th:isTopConcept <http://www.cdisc.org/C66789/V4#C66789> ;
+	th:isTopConcept <http://www.cdisc.org/C66790/V4#C66790> ;
+	th:isTopConcept <http://www.cdisc.org/C66726/V8#C66726> ;
+	th:isTopConcept <http://www.cdisc.org/C66727/V9#C66727> ;
+	th:isTopConcept <http://www.cdisc.org/C66728/V4#C66728> ;
+	th:isTopConcept <http://www.cdisc.org/C66729/V4#C66729> ;
+	th:isTopConcept <http://www.cdisc.org/C66769/V4#C66769> ;
+	th:isTopConcept <http://www.cdisc.org/C66731/V4#C66731> ;
+	th:isTopConcept <http://www.cdisc.org/C66732/V4#C66732> ;
+	th:isTopConcept <http://www.cdisc.org/C66733/V4#C66733> ;
+	th:isTopConcept <http://www.cdisc.org/C66734/V4#C66734> ;
+	th:isTopConcept <http://www.cdisc.org/C66735/V4#C66735> ;
+	th:isTopConcept <http://www.cdisc.org/C66736/V4#C66736> ;
+	th:isTopConcept <http://www.cdisc.org/C66737/V9#C66737> ;
+	th:isTopConcept <http://www.cdisc.org/C66738/V5#C66738> ;
+	th:isTopConcept <http://www.cdisc.org/C67152/V4#C67152> ;
+	th:isTopConcept <http://www.cdisc.org/C66739/V4#C66739> ;
+	th:isTopConcept <http://www.cdisc.org/C66770/V4#C66770> ;
+	th:isTopConcept <http://www.cdisc.org/C66741/V4#C66741> ;
+	th:isTopConcept <http://www.cdisc.org/C67153/V4#C67153> ;
+	th:isTopConcept <http://www.cdisc.org/C66742/V4#C66742> ;
+	th:isTopConcept <http://www.cdisc.org/C65047/V8#C65047> ;
+	th:isTopConcept <http://www.cdisc.org/C67154/V8#C67154> ;
+	th:isTopConcept <http://www.cdisc.org/C71113/V6#C71113> ;
+	th:isTopConcept <http://www.cdisc.org/C71148/V7#C71148> ;
+	th:isTopConcept <http://www.cdisc.org/C71150/V6#C71150> ;
+	th:isTopConcept <http://www.cdisc.org/C71153/V9#C71153> ;
+	th:isTopConcept <http://www.cdisc.org/C71152/V9#C71152> ;
+	th:isTopConcept <http://www.cdisc.org/C71151/V6#C71151> ;
+	th:isTopConcept <http://www.cdisc.org/C71620/V9#C71620> ;
+	th:isTopConcept <http://www.cdisc.org/C74456/V8#C74456> ;
+	th:isTopConcept <http://www.cdisc.org/C74558/V9#C74558> ;
+	th:isTopConcept <http://www.cdisc.org/C76351/V10#C76351> ;
+	th:isTopConcept <http://www.cdisc.org/C74561/V8#C74561> ;
+	th:isTopConcept <http://www.cdisc.org/C74559/V10#C74559> ;
+	th:isTopConcept <http://www.cdisc.org/C76348/V10#C76348> ;
+	th:isTopConcept <http://www.cdisc.org/C74457/V10#C74457> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "CT"^^xsd:string ;
+	isoI:versionLabel "2008-09-24 Release"^^xsd:string ;
+	isoI:version "10"^^xsd:positiveInteger ;
+	isoI:semanticVersion "10.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66767/V4#C66767> ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66768/V4#C66768> ;
+.
+:TH_TCR3
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "3"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66780/V4#C66780> ;
+.
+:TH_TCR4
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "4"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66781/V4#C66781> ;
+.
+:TH_TCR5
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "5"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66797/V4#C66797> ;
+.
+:TH_TCR6
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "6"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66783/V4#C66783> ;
+.
+:TH_TCR7
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "7"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66784/V4#C66784> ;
+.
+:TH_TCR8
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "8"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66785/V4#C66785> ;
+.
+:TH_TCR9
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "9"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66786/V4#C66786> ;
+.
+:TH_TCR10
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "10"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66787/V4#C66787> ;
+.
+:TH_TCR11
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "11"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66788/V4#C66788> ;
+.
+:TH_TCR12
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "12"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66789/V4#C66789> ;
+.
+:TH_TCR13
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "13"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66790/V4#C66790> ;
+.
+:TH_TCR14
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "14"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66726/V8#C66726> ;
+.
+:TH_TCR15
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "15"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66727/V9#C66727> ;
+.
+:TH_TCR16
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "16"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+.
+:TH_TCR17
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "17"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66729/V4#C66729> ;
+.
+:TH_TCR18
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "18"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66769/V4#C66769> ;
+.
+:TH_TCR19
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "19"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66731/V4#C66731> ;
+.
+:TH_TCR20
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "20"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66732/V4#C66732> ;
+.
+:TH_TCR21
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "21"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66733/V4#C66733> ;
+.
+:TH_TCR22
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "22"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66734/V4#C66734> ;
+.
+:TH_TCR23
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "23"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66735/V4#C66735> ;
+.
+:TH_TCR24
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "24"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66736/V4#C66736> ;
+.
+:TH_TCR25
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "25"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66737/V9#C66737> ;
+.
+:TH_TCR26
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "26"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66738/V5#C66738> ;
+.
+:TH_TCR27
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "27"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C67152/V4#C67152> ;
+.
+:TH_TCR28
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "28"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66739/V4#C66739> ;
+.
+:TH_TCR29
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "29"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66770/V4#C66770> ;
+.
+:TH_TCR30
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "30"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66741/V4#C66741> ;
+.
+:TH_TCR31
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "31"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C67153/V4#C67153> ;
+.
+:TH_TCR32
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "32"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+.
+:TH_TCR33
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "33"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C65047/V8#C65047> ;
+.
+:TH_TCR34
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "34"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C67154/V8#C67154> ;
+.
+:TH_TCR35
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "35"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71113/V6#C71113> ;
+.
+:TH_TCR36
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "36"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71148/V7#C71148> ;
+.
+:TH_TCR37
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "37"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71150/V6#C71150> ;
+.
+:TH_TCR38
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "38"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71153/V9#C71153> ;
+.
+:TH_TCR39
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "39"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71152/V9#C71152> ;
+.
+:TH_TCR40
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "40"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71151/V6#C71151> ;
+.
+:TH_TCR41
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "41"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C71620/V9#C71620> ;
+.
+:TH_TCR42
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "42"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+.
+:TH_TCR43
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "43"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74558/V9#C74558> ;
+.
+:TH_TCR44
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "44"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C76351/V10#C76351> ;
+.
+:TH_TCR45
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "45"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74561/V8#C74561> ;
+.
+:TH_TCR46
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "46"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74559/V10#C74559> ;
+.
+:TH_TCR47
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "47"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C76348/V10#C76348> ;
+.
+:TH_TCR48
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "48"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C74457/V10#C74457> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Skin Classification"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C76351/V10#C76351_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C76351/V10#C76351_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C76351"^^xsd:string ;
+	th:notation "SKINCLAS"^^xsd:string ;
+	th:definition "A classification system used to categorize the sensitivity of a subject's skin to sunlight."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74569> ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74570> ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74571> ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74572> ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74573> ;
+	th:narrower <http://www.cdisc.org/C76351/V10#C76351_C74574> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4f446cdb06c3e37eb8027ca7d0165fa162d5b1c8> ;
+	th:synonym <http://www.assero.co.uk/SYN#c90b3c0cd287db49a35fc2d1451947c2eb2cc990> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C76351"^^xsd:string ;
+	isoI:versionLabel "2008-09-24 Release"^^xsd:string ;
+	isoI:version "10"^^xsd:positiveInteger ;
+	isoI:semanticVersion "10.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74569>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74569"^^xsd:string ;
+	th:notation "TYPE1"^^xsd:string ;
+	th:definition "Individuals who never tan and always sunburn if exposed to any appreciable amount of sunlight, primarily red headed individuals and lightly complected blondes. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74570>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74570"^^xsd:string ;
+	th:notation "TYPE2"^^xsd:string ;
+	th:definition "Individuals who frequently burn but are able to tan to a small degree after extended sun exposure. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0500b308f138d762bf885f63b393775daa5078c5> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74571>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74571"^^xsd:string ;
+	th:notation "TYPE3"^^xsd:string ;
+	th:definition "Individuals who burn infrequently and tan readily. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6f2c22646afc7901b6bba34350b332c41a565052> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74572>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74572"^^xsd:string ;
+	th:notation "TYPE4"^^xsd:string ;
+	th:definition "Individuals who rarely burn and tan heavily with moderate sun exposures, especially individuals of Asian, American Indian, Mediterranean and Latin American descent. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#54d856230e7a778fbfc28d23c2fb7200182b608d> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74573>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74573"^^xsd:string ;
+	th:notation "TYPE5"^^xsd:string ;
+	th:definition "Individuals who have dark constitutive pigmentation but become noticeably darker with sun exposure, especially light complected black individuals, those of Indian descent. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#61ab941b6336cedc77a813e19c35f9c0a24108a0> ;
+.
+<http://www.cdisc.org/C76351/V10#C76351_C74574>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74574"^^xsd:string ;
+	th:notation "TYPE6"^^xsd:string ;
+	th:definition "Individuals who have the heaviest constitutive pigmentation, especially dark skinned black individuals. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b3216592d9c7d566ecc2852dd79c5cdd6f46191e> ;
+.
+<http://www.cdisc.org/C74559/V10#C74559>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Subject Characteristic Code"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C74559/V10#C74559_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C74559/V10#C74559_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C74559"^^xsd:string ;
+	th:notation "SCCD"^^xsd:string ;
+	th:definition "A unique code representing each Subject Characteristic."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C74559/V8#C74559_C17953> ;
+	th:narrower <http://www.cdisc.org/C74559/V8#C74559_C25188> ;
+	th:narrower <http://www.cdisc.org/C74559/V8#C74559_C25193> ;
+	th:narrower <http://www.cdisc.org/C74559/V10#C74559_C74563> ;
+	th:narrower <http://www.cdisc.org/C74559/V10#C74559_C74580> ;
+	th:narrower <http://www.cdisc.org/C74559/V8#C74559_C74565> ;
+	th:narrower <http://www.cdisc.org/C74559/V8#C74559_C74566> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#59719466bd74152601f8dffa672c815a6090a77b> ;
+	th:synonym <http://www.assero.co.uk/SYN#5615f6f50e7e3f5733aef092408dd22e72cc38b9> ;
+.
+<http://www.cdisc.org/C74559/V10#C74559_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C74559/V10#C74559_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C74559"^^xsd:string ;
+	isoI:versionLabel "2008-09-24 Release"^^xsd:string ;
+	isoI:version "10"^^xsd:positiveInteger ;
+	isoI:semanticVersion "10.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C74559/V10#C74559_C74563>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74563"^^xsd:string ;
+	th:notation "SKINCLAS"^^xsd:string ;
+	th:definition "A classification system used to categorize the sensitivity of a subject's skin to sunlight."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#352b8394e9f0fbaf581ae14b43532036e43da2f3> ;
+	th:synonym <http://www.assero.co.uk/SYN#c90b3c0cd287db49a35fc2d1451947c2eb2cc990> ;
+.
+<http://www.assero.co.uk/PT#352b8394e9f0fbaf581ae14b43532036e43da2f3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Fitzpatrick Classification Scale"^^xsd:string ;
+.
+<http://www.cdisc.org/C74559/V10#C74559_C74580>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C74580"^^xsd:string ;
+	th:notation "SKINTYP"^^xsd:string ;
+	th:definition "A distinctive characteristic of the skin marked by the amount of sebum secreted by sebaceous glands."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e2765eb8c9d66685ab2e895d6b9bffec25b860e5> ;
+	th:synonym <http://www.assero.co.uk/SYN#e2765eb8c9d66685ab2e895d6b9bffec25b860e5> ;
+.
+<http://www.assero.co.uk/PT#e2765eb8c9d66685ab2e895d6b9bffec25b860e5>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Skin Type"^^xsd:string ;
+.
+<http://www.cdisc.org/C76348/V10#C76348>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Marital Status"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C76348/V10#C76348_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C76348/V10#C76348_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C76348"^^xsd:string ;
+	th:notation "MARISTAT"^^xsd:string ;
+	th:definition "A demographic parameter indicating a person's current conjugal status."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C76240> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C51776> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C76241> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C51777> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C51773> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C51774> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C51775> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C76242> ;
+	th:narrower <http://www.cdisc.org/C76348/V10#C76348_C53262> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#44875f38b161fd4b9fd4fe802ec5861ece09e96d> ;
+	th:synonym <http://www.assero.co.uk/SYN#e65f73600961af1c5a4703e1fa25d1c6274b41fd> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C76348"^^xsd:string ;
+	isoI:versionLabel "2008-09-24 Release"^^xsd:string ;
+	isoI:version "10"^^xsd:positiveInteger ;
+	isoI:semanticVersion "10.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C76240>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C76240"^^xsd:string ;
+	th:notation "ANNULLED"^^xsd:string ;
+	th:definition "Marriage contract has been declared null and to not have existed. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6c0590ce3f81545b976f33f5b868257ed0030bb2> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C51776>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C51776"^^xsd:string ;
+	th:notation "DIVORCED"^^xsd:string ;
+	th:definition "Marrige contract has been declared dissolved and inactive. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8e4a4cae1976d5bf033e994e1bf2bfa0cc5a7446> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C76241>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C76241"^^xsd:string ;
+	th:notation "INTERLOCUTORY"^^xsd:string ;
+	th:definition "Temporary order issued during the course of litigation. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b8a258c76abcf3fd4cdecd97f1c55daad31679c8> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C51777>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C51777"^^xsd:string ;
+	th:notation "LEGALLY SEPARATED"^^xsd:string ;
+	th:definition "A person living apart from his/her spouse by legal arrangement. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#823037d3e5e633ddd8e3fecebca59676c0d1f0c2> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C51773>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C51773"^^xsd:string ;
+	th:notation "MARRIED"^^xsd:string ;
+	th:definition "A current marriage contract is active. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c75a2b42a0ab364e58b54559c45fcda50d1973f4> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C51774>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C51774"^^xsd:string ;
+	th:notation "NEVER MARRIED"^^xsd:string ;
+	th:definition "No marriage contract has ever been entered. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#de9cc140d790d157fa0a02ccc8b548d9def652e1> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C51775>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C51775"^^xsd:string ;
+	th:notation "WIDOWED"^^xsd:string ;
+	th:definition "The spouse has died. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b26fb14058448cbd0b355a07aaf6d6c8ef8061c9> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C76242>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C76242"^^xsd:string ;
+	th:notation "POLYGAMOUS"^^xsd:string ;
+	th:definition "More than 1 current spouse. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b8ebc63df1e445c965054d58c5f6094d42ee9811> ;
+.
+<http://www.cdisc.org/C76348/V10#C76348_C53262>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C53262"^^xsd:string ;
+	th:notation "DOMESTIC PARTNER"^^xsd:string ;
+	th:definition "Person declares that a domestic partnership relationship exists. (HL7)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#12e5c54e904135b46f2efc3796b8765da41a32a8> ;
+.
+<http://www.assero.co.uk/PT#44875f38b161fd4b9fd4fe802ec5861ece09e96d>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Marital Status Terminology"^^xsd:string ;
+.
+<http://www.cdisc.org/C74457/V10#C74457>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Race"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C74457/V10#C74457_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C74457/V10#C74457_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-24 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C74457"^^xsd:string ;
+	th:notation "RACE"^^xsd:string ;
+	th:definition "Terminology codelist used to identify the race of an individual within the Clinical Data Interchange Standards Consortium Study Data Tabulation Model."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C74457/V10#C74457_C16352> ;
+	th:narrower <http://www.cdisc.org/C74457/V10#C74457_C41259> ;
+	th:narrower <http://www.cdisc.org/C74457/V10#C74457_C41260> ;
+	th:narrower <http://www.cdisc.org/C74457/V10#C74457_C41219> ;
+	th:narrower <http://www.cdisc.org/C74457/V10#C74457_C41261> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ea1a16b2f95899925986870918b94ab433b5a052> ;
+	th:synonym <http://www.assero.co.uk/SYN#6643dce8e4d3c9b96317eee572d9ea0ae4d49e57> ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C74457"^^xsd:string ;
+	isoI:versionLabel "2008-09-24 Release"^^xsd:string ;
+	isoI:version "10"^^xsd:positiveInteger ;
+	isoI:semanticVersion "10.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_C16352>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C16352"^^xsd:string ;
+	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
+	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \"Haitian\" or \"Negro\" can be used in addition to \"Black or African American.\" (FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a3d7a69b76c6dd0c6ecd83a8bd70009d83ac3089> ;
+.
+<http://www.assero.co.uk/PT#a3d7a69b76c6dd0c6ecd83a8bd70009d83ac3089>
+	rdf:type th:PreferredTerm ;
+	isoC:label "African American"^^xsd:string ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_C41259>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C41259"^^xsd:string ;
+	th:notation "AMERICAN INDIAN OR ALASKA NATIVE"^^xsd:string ;
+	th:definition "A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment. (FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7efb949c214cfde39eca86048d9cd80805b6ef66> ;
+.
+<http://www.assero.co.uk/PT#7efb949c214cfde39eca86048d9cd80805b6ef66>
+	rdf:type th:PreferredTerm ;
+	isoC:label "American Indian or Alaska Native"^^xsd:string ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_C41260>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C41260"^^xsd:string ;
+	th:notation "ASIAN"^^xsd:string ;
+	th:definition "A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam. (FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#652670c84ed3d9d78167774063e04af717756ed3> ;
+.
+<http://www.assero.co.uk/PT#652670c84ed3d9d78167774063e04af717756ed3>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Asian"^^xsd:string ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_C41219>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C41219"^^xsd:string ;
+	th:notation "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER"^^xsd:string ;
+	th:definition "Denotes a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands. The term covers particularly people who identify themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian, Samoan, Chuu. (FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c58b17c01a9528ef0306b466391b77758f8688ec> ;
+.
+<http://www.assero.co.uk/PT#c58b17c01a9528ef0306b466391b77758f8688ec>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
+.
+<http://www.cdisc.org/C74457/V10#C74457_C41261>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label ""^^xsd:string ;
+	th:identifier "C41261"^^xsd:string ;
+	th:notation "WHITE"^^xsd:string ;
+	th:definition "Denotes a person with European, Middle Eastern, or North African ancestral origin who identifies, or is identified, as White. (FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#37619fc13053f82b7cb7da3d24ceb1598ab6d05c> ;
+.
+<http://www.assero.co.uk/PT#37619fc13053f82b7cb7da3d24ceb1598ab6d05c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "White"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#ea1a16b2f95899925986870918b94ab433b5a052>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC SDTM Race Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#6643dce8e4d3c9b96317eee572d9ea0ae4d49e57>
+	rdf:type th:Synonym ;
+	isoC:label "Race"^^xsd:string ;
+.

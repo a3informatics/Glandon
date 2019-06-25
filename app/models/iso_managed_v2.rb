@@ -247,6 +247,20 @@ class IsoManagedV2 < IsoConceptV2
     results.empty? ? nil : results.last
   end
 
+  def forward(step, window)
+    results = self.class.history(scope: owner, identifier: self.identifier)
+    my_index = results.index {|x| x.uri == self.uri}
+    new_index = (my_index + step) > (results.count - window) ? (results.count - window) : (my_index + step)
+    results[new_index]
+  end
+
+  def rewind(step, window)
+    results = self.class.history(scope: owner, identifier: self.identifier)
+    my_index = results.index {|x| x.uri == self.uri}
+    new_index = (my_index - step) > 0 ? (my_index - step) : 0
+    results[new_index]
+  end
+
   # Update the item
   #
   # @params [Hash] The parameters {:explanatoryComment, :changeDescription, :origin}

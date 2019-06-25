@@ -4,67 +4,67 @@ class CdiscTermsController < ApplicationController
   
   C_CLASS_NAME = "CdiscTermsController"
   
-  def find_submission
-    authorize CdiscTerm, :view?
-    ct = CdiscTerm.current
-    if !ct.nil?
-      uri = ct.find_submission(params[:notation])
-      if !uri.nil?
-        @cdiscCl = CdiscCl.find(uri.id, uri.namespace)
-        render :template => "cdisc_cls/show"
-      else
-        flash[:error] = "Could not find the Code List."
-        redirect_to request.referer
-      end
-    else
-      flash[:error] = "Not current version of the terminology."
-      redirect_to request.referer
-    end
-  end
+  # def find_submission
+  #   authorize CdiscTerm, :view?
+  #   ct = CdiscTerm.current
+  #   if !ct.nil?
+  #     uri = ct.find_submission(params[:notation])
+  #     if !uri.nil?
+  #       @cdiscCl = CdiscCl.find(uri.id, uri.namespace)
+  #       render :template => "cdisc_cls/show"
+  #     else
+  #       flash[:error] = "Could not find the Code List."
+  #       redirect_to request.referer
+  #     end
+  #   else
+  #     flash[:error] = "Not current version of the terminology."
+  #     redirect_to request.referer
+  #   end
+  # end
 
   def history
     authorize CdiscTerm
-    @cdiscTerms = CdiscTerm.history
+    @cdiscTerms = Thesaurus.history(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner)
   end
   
-  def import
-    authorize CdiscTerm
-    @files = Dir.glob(Rails.root.join("public", "upload") + "*.owl")
-    @cdiscTerm = CdiscTerm.new
-    all = CdiscTerm.all
-    @next_version = all.last.next_version
-  end
+  # def import
+  #   authorize CdiscTerm
+  #   @files = Dir.glob(Rails.root.join("public", "upload") + "*.owl")
+  #   @cdiscTerm = CdiscTerm.new
+  #   all = CdiscTerm.all
+  #   @next_version = all.last.next_version
+  # end
   
-  def import_cross_reference
-    authorize CdiscTerm, :import?
-    @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
-    @cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
-  end
+  # def import_cross_reference
+  #   authorize CdiscTerm, :import?
+  #   @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
+  #   @cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+  # end
   
-  def create
-    authorize CdiscTerm, :import?
-    hash = CdiscTerm.create(this_params)
-    @cdiscTerm = hash[:object]
-    @job = hash[:job]
-    if @cdiscTerm.errors.empty?
-      redirect_to backgrounds_path
-    else
-      flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-      redirect_to import_cdisc_terms_path
-    end
-  end
+  # def create
+  #   authorize CdiscTerm, :import?
+  #   hash = CdiscTerm.create(this_params)
+  #   @cdiscTerm = hash[:object]
+  #   @job = hash[:job]
+  #   if @cdiscTerm.errors.empty?
+  #     redirect_to backgrounds_path
+  #   else
+  #     flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+  #     redirect_to import_cdisc_terms_path
+  #   end
+  # end
   
-  def create_cross_reference
-    authorize CdiscTerm, :import?
-    cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
-    hash = cdisc_term.create_cross_reference(this_params)
-    if hash[:object].errors.empty?
-      redirect_to backgrounds_path
-    else
-      flash[:error] = hash[:object].errors.full_messages.to_sentence
-      redirect_to import_cdisc_terms_path
-    end
-  end
+  # def create_cross_reference
+  #   authorize CdiscTerm, :import?
+  #   cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+  #   hash = cdisc_term.create_cross_reference(this_params)
+  #   if hash[:object].errors.empty?
+  #     redirect_to backgrounds_path
+  #   else
+  #     flash[:error] = hash[:object].errors.full_messages.to_sentence
+  #     redirect_to import_cdisc_terms_path
+  #   end
+  # end
   
   def show
     authorize CdiscTerm
@@ -75,7 +75,7 @@ class CdiscTermsController < ApplicationController
   def search
     authorize CdiscTerm, :view?
     @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
-    @items = Notepad.where(user_id: current_user).find_each
+    # @items = Notepad.where(user_id: current_user).find_each
     @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.scope.id)
   end
   
@@ -118,34 +118,30 @@ class CdiscTermsController < ApplicationController
     render "changes"
   end
   
-  def changes_calc
-    authorize CdiscTerm, :view?
-    if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
-        redirect_to changes_cdisc_terms_path
-    else
-      hash = CdiscTerm.changes()
-      @cdiscTerm = hash[:object]
-      @job = hash[:job]
-      if @cdiscTerm.errors.empty?
-        redirect_to backgrounds_path
-      else
-        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-        redirect_to history_cdisc_terms_path
-      end
-    end
-  end
+  # def changes_calc
+  #   authorize CdiscTerm, :view?
+  #   if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
+  #       redirect_to changes_cdisc_terms_path
+  #   else
+  #     hash = CdiscTerm.changes()
+  #     @cdiscTerm = hash[:object]
+  #     @job = hash[:job]
+  #     if @cdiscTerm.errors.empty?
+  #       redirect_to backgrounds_path
+  #     else
+  #       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+  #       redirect_to history_cdisc_terms_path
+  #     end
+  #   end
+  # end
 
   def changes
     authorize CdiscTerm, :view?
     version = get_version
-    ct = CdiscTerm.current
-    @identifier = ct.nil? ? CdiscTerm::C_IDENTIFIER : ct.identifier
-    full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-  	@trimmed_results = CdiscTerm::Utility.trim_results(full_results, version, current_user.max_term_display.to_i)
-    @previous_version = CdiscTerm::Utility.previous_version(full_results, @trimmed_results.first[:version])
-    @next_version = CdiscTerm::Utility.next_version(full_results, @trimmed_results.first[:version], 
-    	current_user.max_term_display.to_i, full_results.length)
-  	@cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
+    @ct = CdiscTerm.find(params[:id])
+    @cls = @ct.changes(current_user.max_term_display.to_i)
+    @previous_ct = @ct.rewind(1, current_user.max_term_display.to_i)
+    @next_version = @ct.forward(1, current_user.max_term_display.to_i)
   end
 
   def changes_report
@@ -199,19 +195,19 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def file
-    authorize CdiscTerm, :import?
-    @files = Dir.glob(CdiscCtChanges.dir_path + "*")
-  end
+  # def file
+  #   authorize CdiscTerm, :import?
+  #   @files = Dir.glob(CdiscCtChanges.dir_path + "*")
+  # end
 
-  def file_delete
-    authorize CdiscTerm, :import?
-    files = this_params[:files]
-    files.each do |file|
-      File.delete(file) if File.exist?(file)
-    end 
-    redirect_to file_cdisc_terms_path
-  end
+  # def file_delete
+  #   authorize CdiscTerm, :import?
+  #   files = this_params[:files]
+  #   files.each do |file|
+  #     File.delete(file) if File.exist?(file)
+  #   end 
+  #   redirect_to file_cdisc_terms_path
+  # end
 
   def cross_reference
   	authorize CdiscTerm, :show?

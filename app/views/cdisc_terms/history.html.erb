@@ -6,11 +6,11 @@
 		<%= render partial: "shared/stdInstanceHeader" %>
 		<tbody>
 			<% current_item = get_current_item( @cdiscTerms) %>
-			<%  @cdiscTerms.each do |item| %>
-				<%= render partial: "shared/stdInstanceRow", :locals => {:item => item, 
+			<% @cdiscTerms.each do |item| %>
+				<%= render partial: "shared/std_instance_row_v2", :locals => {:item => item, 
 	  				:current_item => current_item, 
-	  				:showPath => cdisc_term_path(:id => item.id, :namespace => item.namespace), 
-	  				:searchPath => search_cdisc_terms_path(:id => item.id, :namespace => item.namespace), 
+	  				:showPath => cdisc_term_path(item), 
+	  				:searchPath => search_cdisc_terms_path(item), 
 	  				:viewPath => "",
 	  				:editPath => "",
 	  				:deletePath => "",
@@ -20,12 +20,6 @@
 			<% end %>				
 		</tbody>
 	</table>
-	<% if policy(CdiscTerm).import? %>
-		<%= link_to "Import", import_cdisc_terms_path, :class => "btn btn-success" %>
-	<% end %>
-	<%= link_to "Changes", changes_calc_cdisc_terms_path, :class => "btn btn-primary" %>
+	<%= link_to "Changes", changes_cdisc_term_path(@cdiscTerms.first), :class => "btn btn-primary" %>
 	<%= link_to "Submission", submission_calc_cdisc_terms_path() , :class => "btn btn-primary" %>
-	<% if policy(CdiscTerm).import? %>
-		<%= link_to "Files", file_cdisc_terms_path, :class => "btn btn-primary" %>
-	<% end %>
 </div>

@@ -203,8 +203,7 @@ Rails.application.routes.draw do
   resources :cdisc_terms do
     collection do
       get :find_submission
-      get :changes
-      get :changes_calc
+      #get :changes_calc
       get :changes_report
       get :compare
       get :compare_calc
@@ -216,10 +215,11 @@ Rails.application.routes.draw do
       get :search_results
       get :import
       get :load
-      get :file
-      delete :file_delete
+      #get :file
+      #delete :file_delete
     end
     member do
+      get :changes
       get :cross_reference
       get :import_cross_reference
       post :create_cross_reference

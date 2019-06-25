@@ -81,36 +81,44 @@ class CdiscTerm < Thesaurus
     first = items.index {|x| x.uri == self.uri}
     
     versions_set = items.map {|e| e.uri}
-    versions_set = versions_set[first - 1, first + length - 1]
-    query_string = %Q{SELECT ?e ?v ?i ?cl WHERE
+    start = first == 0 ? 0 : first - 1
+    versions_set = versions_set[start, first + length - 1]
+    query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
-  #{versions_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref}isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
+  #{versions_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref}isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
   ?r bo:reference ?cl .
   ?cl isoT:hasIdentifier ?si2 .
+  ?cl isoC:label ?l .
+  ?cl th:notation ?n .
   ?si2 isoI:identifier ?i .
 }}
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
-    results = query_results.by_object_set([:e, :v, :i, :cl])
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    results = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
     final = {}
+    cl_set = {}
+    results.each do |entry|
+      cl_set[entry[:i].to_sym] = {status: :not_present} if !cl_set.key?(entry[:i].to_sym)
+    end
     results.each do |entry|
       uri = entry[:e].to_s
-      final[uri] = {version: entry[:v], children: []} if !final.key?(uri)
-      final[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl]]
+      final[uri] = {version: entry[:v], date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !final.key?(uri)
+      final[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
     end
     the_results = []
     final.sort_by{|k,v| v[:version]}
     previous_version = nil
     final.each do |uri, version|
       ver = version[:version].to_i
+      date = version[:date]
       if first == 0 
-        the_results[ver] = {children: {}}
+        the_results[ver] = {version: ver, date: date, children: cl_set}
         version[:children].each do |entry|
           the_results[ver][:children][entry[:key].to_sym] = {status: :created}
         end
       elsif previous_version.nil?
         # nothing needed?
       else
-        the_results[ver] = {children: {}}
+        the_results[ver] = {version: ver, date: date, children: cl_set}
         # new = B-A
         # updated = A Union B URI != URI
         # nochange = A Union B URI == URI
@@ -132,7 +140,7 @@ class CdiscTerm < Thesaurus
       end
       previous_version = version
     end
-    the_results
+    the_results.compact
   end
 
   class DiffResult < Hash

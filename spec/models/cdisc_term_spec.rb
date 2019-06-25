@@ -19,6 +19,10 @@ describe CdiscTerm do
     end
   end
 
+  def load_versions(range)
+    range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+  end
+
   describe "CDISC Terminology General" do
 
     before :all do
@@ -374,71 +378,30 @@ describe CdiscTerm do
 
   end
 
-  describe "CDISC Terminology Versions" do
+  describe "CDISC Terminology Changes" do
 
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("CT_V48.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
-      delete_all_public_files
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
+      load_versions(1..13)
     end
 
-    after :all do
-      delete_all_public_files
+    after :each do
+      #
     end
 
-    it "imports a cdisc terminology, June 2017" do
-      job = Background.create
-      filename = db_load_file_path("cdisc", "SDTM_2017-06-30.owl")
-      params = {version: "49", date: "2017-06-30", files: ["#{filename}"]}
-      result = CdiscTerm.create(params)
-      expect(result[:object].errors.count).to eq(0)  
-      expect(result[:job].status).to eq("Complete. Successful import.")
-      public_file_exists?("upload", "CT_V49.ttl")
-      results = read_public_text_file("upload", "CT_V49.ttl")
-    #write_text_file_2(results, sub_dir, "CT_V49.ttl")
-      expected = read_text_file_2(sub_dir, "CT_V49.ttl")
-      expect(results).to eq(expected) 
-    end
-
-    it "imports a cdisc terminology, September 2017" do
-      job = Background.create
-      filename = db_load_file_path("cdisc", "SDTM_2017-09-29.owl")
-      params = {version: "50", date: "2017-09-29", files: ["#{filename}"]}
-      result = CdiscTerm.create(params)
-      expect(result[:object].errors.count).to eq(0)  
-      expect(result[:job].status).to eq("Complete. Successful import.")
-      public_file_exists?("upload", "CT_V50.ttl")
-      results = read_public_text_file("upload", "CT_V50.ttl")
-    #write_text_file_2(results, sub_dir, "CT_V50.ttl")
-      expected = read_text_file_2(sub_dir, "CT_V50.ttl")
-      expect(results).to eq(expected) 
-    end
-
-    it "imports a cdisc terminology, December 2017" do
-      job = Background.create
-      filename = db_load_file_path("cdisc", "SDTM_2017-12-22.owl")
-      params = {version: "51", date: "2017-12-22", files: ["#{filename}"]}
-      result = CdiscTerm.create(params)
-      expect(result[:object].errors.count).to eq(0)  
-      expect(result[:job].status).to eq("Complete. Successful import.")
-      results = read_public_text_file("upload", "CT_V51.ttl")
-    #write_text_file_2(results, sub_dir, "CT_V51.ttl")
-      expected = read_text_file_2(sub_dir, "CT_V51.ttl")
-      expect(results).to eq(expected) 
+    it "calculates changes" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+      actual = ct.changes(4)
+      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", write_file: true)
     end
 
   end
