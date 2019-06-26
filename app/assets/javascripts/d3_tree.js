@@ -105,6 +105,8 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
  * @return [Null]
  */
 function d3MarkNode(gRef) {
+  d3.select(gRef).select("rect").classed("search-result-bg", false);
+  d3.select(gRef).select("text").classed("search-result-text", false);
   d3.select(gRef).select("rect").style("fill", "#428bca"); //darkblue
   d3.select(gRef).select("rect").style("stroke", "#428bca"); //darkblue
   d3.select(gRef).select("text").style("fill", "white");
@@ -175,6 +177,46 @@ function d3FindData(key) {
   }
   return result;
 }
+
+
+/**
+ * Search for the node by label
+ *
+ * @param label [String] the label for the node
+ * @return [Object] the node data
+ */
+function d3Search(label) {
+  var result = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.name.toLowerCase().indexOf(label.toLowerCase()) >= 0) {
+      d3.select(nodes[0][i]).select("rect").classed("search-result-bg", true);
+      d3.select(nodes[0][i]).select("text").classed("search-result-text", true);
+    }
+  }
+  return result;
+}
+
+
+/**
+ * Clear Search 
+ *
+ * @return [Object] the node data
+ */
+function d3ClearSearch() {
+  var result = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (d3.select(nodes[0][i]).select("rect").classed("search-result-bg")) {
+      d3.select(nodes[0][i]).select("rect").classed("search-result-bg", false);
+      d3.select(nodes[0][i]).select("text").classed("search-result-text", false);
+    }
+  }
+  return result;
+}
+
 
 /**
  * Restore the node colour by element reference

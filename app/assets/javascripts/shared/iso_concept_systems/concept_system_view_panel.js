@@ -16,6 +16,20 @@ function ConceptSystemViewPanel(id, namespace, step, callback) {
     _this.d3Editor.reSizeDisplay(_this.heightStep);
   });
 
+  $('#d3Search input')
+    .unbind() // Unbind previous default bindings
+    .bind("keyup", function(e) { // Bind our desired behavior
+      if(this.value !== "" && e.keyCode == 13) {
+        d3ClearSearch();
+        d3Search(this.value);
+      }
+      return;
+  });
+
+  $('#clearSearch').click(function(){
+    $('#d3Search input').val('');
+    d3ClearSearch();
+  });
 
 }
 
