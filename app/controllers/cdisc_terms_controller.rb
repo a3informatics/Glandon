@@ -138,7 +138,7 @@ class CdiscTermsController < ApplicationController
   def changes
     authorize CdiscTerm, :view?
     version = get_version
-    @ct = CdiscTerm.find(params[:id])
+    @ct = CdiscTerm.find(params[:id], false)
     @cls = @ct.changes(current_user.max_term_display.to_i)
     @previous_ct = @ct.rewind(1, current_user.max_term_display.to_i)
     @next_version = @ct.forward(1, current_user.max_term_display.to_i)
