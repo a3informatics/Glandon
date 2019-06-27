@@ -94,24 +94,6 @@ describe IsoManagedV2 do
       expect(item.to_h).to eq(result)
   	end
 
-  	it "allows an item to be found" do
-  		uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
-      check_file_actual_expected(item.to_h, sub_dir, "find_expected_1.yaml")  
-  	end
-
-    it "allows an item to be found, II" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
-      check_file_actual_expected(item.to_h, sub_dir, "find_expected_2.yaml")
-    end
-
-    it "allows an item to be found, II" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
-      check_file_actual_expected(item.to_h, sub_dir, "find_expected_2.yaml")
-    end
-
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find(uri, false)
@@ -449,13 +431,13 @@ describe IsoManagedV2 do
     it "find, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_1.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml")
     end
 
     it "find, II" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = CdiscTerm.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_2.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "find_expected_2.yaml")
     end
 
     it "find, III, speed" do
@@ -475,13 +457,13 @@ describe IsoManagedV2 do
     it "where, I" do
       results = []
       IsoManagedV2.where({label: "VSB"}).each { |x| results << x.to_json }
-      check_file_actual_expected(results, sub_dir, "where_2.yaml")
+      check_file_actual_expected(results, sub_dir, "where_expected_1.yaml")
     end
 
     it "where, II" do
       results = []
       IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
-      check_file_actual_expected(results, sub_dir, "where_3.yaml")
+      check_file_actual_expected(results, sub_dir, "where_expected_2.yaml")
     end
 
   end

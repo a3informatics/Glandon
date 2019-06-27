@@ -204,21 +204,12 @@ class IsoManagedV2 < IsoConceptV2
   # @return [object] The object.
   def self.find(id, full=true)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-  
     parts = []
-    #parts << "{ #{uri.to_ref} ?p ?o . BIND (#{uri.to_ref} as ?s) }" 
     x = subject_set(full)
-    x.each do |p| 
-      parts << "{ #{uri.to_ref} (#{p})* ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }"  
-    end
+    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude]}) ?o }"
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
+    x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
-  
-    # query_string = "SELECT ?s ?p ?o WHERE \n" +
-    #   "{ \n" +
-    #   "  #{uri.to_ref} (#{subject_set(full)})? ?s .\n" +
-    #   "  ?s ?p ?o .\n" + 
-    #   "}"
-
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
     from_results_recurse(uri, results.by_subject)
@@ -348,20 +339,7 @@ private
   # Relationship set, array of predicates.
   def self.subject_set(full)
     x = properties_metadata_class
-    y = x.relationships
-    z = x.managed_paths
-    return z
-byebug
-    return y.map {|x| x[:predicate].to_ref } #.join("|")
-    ref_set = 
-    [
-      IsoRegistrationStateV2.rdf_type.to_ref, IsoScopedIdentifierV2.rdf_type.to_ref, 
-      IsoNamespace.rdf_type.to_ref, IsoRegistrationAuthority.rdf_type.to_ref, self.rdf_type.to_ref
-    ]
-    config = self.class.instance_variable_get(:@configuration)
-    ref_set = ref_set + config[:relationships] if full && !config.nil?
-    ref_set.join(",")
-    #ref_set
+    {include: x.managed_paths, exclude: x.excluded_relationships}
   end
 
 end

@@ -1,50 +1,44 @@
 ---
-:uri: http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST
-:uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVA==
+:uri: http://www.cdisc.org/CT/V1#TH
+:uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEg=
 :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
-:label: Iso Concept Test Form
+:label: Controlled Terminology
 :has_state:
-  :uri: http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1
-  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtQUNNRV9URVNULTE=
+  :uri: http://www.cdisc.org/CT/V1#TH_RS
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfUlM=
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Standard
   :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00+01:00'
-  :until_date: '2016-01-01T00:00:00+01:00'
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Incomplete
+  :previous_state: Standard
   :by_authority:
-    :uri: http://www.assero.co.uk/RA#DUNS123456789
-    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: '123456789'
+    :organization_identifier: "<Not Set>"
     :international_code_designator: DUNS
-    :owner: true
-    :ra_namespace:
-      :uri: http://www.assero.co.uk/NS#BBB
-      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: BBB
-      :name: BBB Pharma
-      :authority: www.bbb.com
+    :owner: false
+    :ra_namespace: 
 :has_identifier:
-  :uri: http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1
-  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktQUNNRV9URVNULTE=
+  :uri: http://www.cdisc.org/CT/V1#TH_SI
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfU0k=
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: TEST
-  :version_label: '0.1'
+  :identifier: CT
+  :version_label: 2007-03-06 Release
   :version: 1
-  :semantic_version: 1.2.3
+  :semantic_version: 1.0.0
   :has_scope:
-    :uri: http://www.assero.co.uk/NS#BBB
-    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQkJC
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: BBB
-    :name: BBB Pharma
-    :authority: www.bbb.com
+    :short_name: ''
+    :name: ''
+    :authority: ''
 :origin: ''
-:change_description: Creation
-:creation_date: '2016-06-15T21:06:10+02:00'
-:last_change_date: '2016-06-16T13:14:24+02:00'
+:change_description: ''
+:creation_date: '2007-03-06T00:00:00+01:00'
+:last_change_date: '2007-03-06T00:00:00+01:00'
 :explanatory_comment: ''

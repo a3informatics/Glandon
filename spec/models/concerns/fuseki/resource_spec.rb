@@ -123,11 +123,11 @@ describe Fuseki::Resource do
 
   it "Object property configured" do
     TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
-    fred_expected = {:cardinality=>:one, :default=>nil, :model_class=>"XXX", :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
-    sid_expected = {:cardinality=>:many, :default=>[], :model_class=>"XXX", :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
+    fred_expected = {:cardinality=>:one, :default=>nil, :model_class=>"XXX", :path_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+    sid_expected = {:cardinality=>:many, :default=>[], :model_class=>"XXX", :path_exclude=>true, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
     TestR4.object_property(:fred, {cardinality: :one, model_class: "XXX"})
     expect(TestR4.instance_variable_get(:@properties)).to eq({:@fred => fred_expected})
-    TestR4.object_property(:sid, {cardinality: :many, model_class: "XXX"})
+    TestR4.object_property(:sid, {cardinality: :many, model_class: "XXX", path_exclude: true})
     expect(TestR4.instance_variable_get(:@properties)).to eq({:@fred => fred_expected, :@sid => sid_expected}) 
   end
 
