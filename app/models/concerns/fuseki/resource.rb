@@ -96,6 +96,7 @@ module Fuseki
       Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
       opts[:default] = opts[:cardinality] == :one ? nil : []
       opts[:type] = :object 
+      opts[:path_exclude] = false if !opts.key?(:path_exclude)
       add_to_properties(name, opts)
 
       define_method "#{name}_objects" do

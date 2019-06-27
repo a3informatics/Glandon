@@ -32,11 +32,16 @@ module Fuseki
         properties_scoped(self)
       end
 
+      def properties_metadata_class
+        properties_inherit
+        properties_scoped(self)
+      end
+
       def properties_scoped(scope)
         if scope.instance_variable_defined?(:@_properties)
           return scope.instance_variable_get(:@_properties)
         else
-          return scope.instance_variable_set(:@_properties, PropertiesMetadata.new(scope.instance_variable_get(:@properties)))
+          return scope.instance_variable_set(:@_properties, PropertiesMetadata.new(self, scope.instance_variable_get(:@properties)))
         end      
       end
 
@@ -52,12 +57,29 @@ module Fuseki
 
     class PropertiesMetadata
 
-      def initialize(metadata)
+      def initialize(ref, metadata)
+        @parent = ref
         @metadata = metadata
       end
 
       def relationships
         @metadata.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+      end
+
+      def managed_paths(stack=[])
+        top = true if stack.empty?
+        result = []
+        predicates = @metadata.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[:path_exclude]}}
+        predicates.each do |predicate| 
+          stack = [] if top
+          next if predicate[:exclude]
+          klass = predicate[:model_class].constantize
+          next if stack.include?(klass)
+          stack.push(klass)
+          children = klass.properties_metadata_class.managed_paths(stack)
+          children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
+        end
+        result
       end
 
       def klass(property_name)
