@@ -195,7 +195,7 @@ function d3Search(label) {
       d3.select(nodes[0][i]).select("text").classed("search-result-text", true);
     }
   }
-  return result;
+  return data;
 }
 
 

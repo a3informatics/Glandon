@@ -79,6 +79,17 @@ describe("D3 Tree", function() {
 		expect(data.data.type).to.equal("data_child_3"); 		
   });
 
+  it("allows the data from a node to be obtained by label and searched for", function() {
+    var data = d3Search("child3");
+    expect(data.name).to.equal('child3');  
+    var gRef = d3FindGRefByName("child3");
+    expect(gRef.childNodes[0].className.animVal).to.equal('search-result-bg');
+    expect(gRef.childNodes[1].className.animVal).to.equal('search-result-text');
+    d3ClearSearch();
+    expect(gRef.childNodes[0].className.animVal).to.equal('');
+    expect(gRef.childNodes[1].className.animVal).to.equal('');
+  });
+
  	it("allows the data from a node to be obtained by key", function() {
  		var gRef = d3FindGRefByName("child3");
 		var data = d3GetData(gRef);
