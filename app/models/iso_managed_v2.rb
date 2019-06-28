@@ -228,13 +228,15 @@ class IsoManagedV2 < IsoConceptV2
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
-    parts << "  { ?e ?p ?o . BIND (?e as ?s) }" 
+    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
     parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
     parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
-    query_results.subject_map.values.uniq{|x| x.to_s}.each {|uri| results << from_results_recurse(uri, query_results.by_subject)}
+    x = query_results.subject_map.values.uniq{|x| x.to_s}
+    y = query_results.by_subject
+    x.each {|uri| results << from_results_recurse(uri, y)}
     results.sort_by{|x| x.version}
   end
 
