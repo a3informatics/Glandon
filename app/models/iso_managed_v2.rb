@@ -245,18 +245,15 @@ class IsoManagedV2 < IsoConceptV2
     results.empty? ? nil : results.last
   end
 
-  def forward(step, window)
-    results = self.class.history(scope: owner, identifier: self.identifier)
-    my_index = results.index {|x| x.uri == self.uri}
-    new_index = (my_index + step) > (results.count - window) ? (results.count - window) : (my_index + step)
-    results[new_index]
-  end
-
-  def rewind(step, window)
-    results = self.class.history(scope: owner, identifier: self.identifier)
-    my_index = results.index {|x| x.uri == self.uri}
-    new_index = (my_index - step) > 0 ? (my_index - step) : 0
-    results[new_index]
+  def forward_backward(step, window)
+    result = {backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil}
+    history_result = self.class.history(scope: owner, identifier: self.identifier)
+    my_index = history_result.index {|x| x.uri == self.uri}
+    result[:forward_single] = history_result[my_index + step] if (my_index + step) <= (history_result.count - window)
+    result[:forward_multiple] = history_result[my_index + window] if (my_index + window) <= (history_result.count - window)
+    result[:backward_single] = history_result[my_index - step] if (my_index - step) >= 0
+    result[:backward_multiple] = history_result[my_index - window] if (my_index - window) >= 0
+    result
   end
 
   # Update the item

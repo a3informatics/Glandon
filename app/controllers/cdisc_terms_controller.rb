@@ -140,8 +140,11 @@ class CdiscTermsController < ApplicationController
     version = get_version
     @ct = CdiscTerm.find(params[:id], false)
     @cls = @ct.changes(current_user.max_term_display.to_i)
-    @previous_ct = @ct.rewind(1, current_user.max_term_display.to_i)
-    @next_version = @ct.forward(1, current_user.max_term_display.to_i)
+    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each do |k,v|
+      @links[k] = v.nil? ? "" : changes_cdisc_term_path(v)
+    end
   end
 
   def changes_report
