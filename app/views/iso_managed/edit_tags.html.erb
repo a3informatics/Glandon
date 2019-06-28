@@ -49,7 +49,14 @@
             </div>
           </div>
           <div class="tags-container" id="tags_container"></div>
-          <button type="button" id="tag_add" class="btn btn-primary">Add selected Tag</button>  
+          
+          <div class="well selected-container">
+            <div class="tag-display">
+              <span><strong>Label: </strong><span id="selected_label" type="text" readonly></span></span>
+              <span class="selected-description"><strong>Description: </strong><span id="selected_description" type="text" readonly></span></span>
+            </div>
+            <button type="button" id="tag_add" class="btn btn-primary tag-add">Add selected tag</button>
+          </div>
         </div>
     </div>
     <div id="iso_managed_panel" class="panel panel-default">

@@ -1,8 +1,12 @@
 .tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
   margin-bottom: 10px;
 }
 .tagItem {
   margin-right: 5px;
+  margin-bottom: 10px;
   font-size: 12px;
 }
 #tag_panel, .attribute-panel{
@@ -17,3 +21,22 @@
   fill: white!important;
 }
 
+.selected-description {
+  font-size: 11px;
+}
+
+.selected-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tag-display{
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-add {
+  height: 40px;
+  align-self: center;
+}

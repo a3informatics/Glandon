@@ -26,6 +26,8 @@ IsoManagedTagListPanel.prototype.selected = function(data) {
   } else if (data.type === C_TAG) {
     $('#tag_add').prop("disabled",false);
   } 
+  $('#selected_label').text(data.label);
+  $('#selected_description').text(data.description);
 }
 
 IsoManagedTagListPanel.prototype.add = function() {
