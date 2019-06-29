@@ -179,7 +179,7 @@ describe IsoManagedV2 do
       expect(item.to_h).to eq(result)
     end
 
-    it "finds history of an item entries" do
+    it "finds history of items" do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST")
       uri_3 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
@@ -201,6 +201,23 @@ describe IsoManagedV2 do
       expect(result.version).to eq(3)
       result = IsoManagedV2.latest({:identifier => "TESTx", :scope => IsoRegistrationAuthority.owner.ra_namespace}) # Invalid identifier
       expect(result).to be_nil
+    end
+
+    it "returns forwards and backwards" do
+      item_history = []
+      (1..20).each do |index|
+        item = IsoManagedV2.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Number #{index}"
+        item_history << item
+      end
+      current = item_history[10]
+      expect(current).to receive(:owner).and_return(nil)
+      expect(current).to receive(:identifier).and_return("CT")
+      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      results = {}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.uri.to_s}
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_1.yaml", write_file: true)
     end
 
 =begin
