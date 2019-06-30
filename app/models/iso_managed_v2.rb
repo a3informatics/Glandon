@@ -265,15 +265,16 @@ class IsoManagedV2 < IsoConceptV2
     results.sort_by{|x| x.version}
   end
 
-
-
-
-
   def self.latest(params)
     results = history(params)
     results.empty? ? nil : results.last
   end
 
+  # Forward Backward. Provides URIs for mving through the history
+  #
+  # @params [Integer] step the step to be taken, probably best set to 1
+  # @params [Integer] window the window size; the number being displayed
+  # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
   def forward_backward(step, window)
     result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
     history_result = self.class.history(scope: owner, identifier: self.identifier)

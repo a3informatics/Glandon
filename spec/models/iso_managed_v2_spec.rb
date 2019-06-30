@@ -218,7 +218,7 @@ describe IsoManagedV2 do
       expect(IsoManagedV2).to receive(:history).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
-      check_file_actual_expected(results, sub_dir, "forward_backward_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_1.yaml")
     end
 
     it "returns forwards and backwards, II" do
@@ -235,7 +235,7 @@ describe IsoManagedV2 do
       expect(IsoManagedV2).to receive(:history).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
-      check_file_actual_expected(results, sub_dir, "forward_backward_expected_2.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_2.yaml")
     end
 
     it "returns forwards and backwards, III" do
@@ -252,7 +252,7 @@ describe IsoManagedV2 do
       expect(IsoManagedV2).to receive(:history).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
-      check_file_actual_expected(results, sub_dir, "forward_backward_expected_3.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_3.yaml")
 
       current = item_history[2]
       expect(current).to receive(:owner).and_return(nil)
@@ -260,7 +260,7 @@ describe IsoManagedV2 do
       expect(IsoManagedV2).to receive(:history).and_return(item_history)
       results = {}
       current.forward_backward(2, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
-      check_file_actual_expected(results, sub_dir, "forward_backward_expected_4.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_4.yaml")
     end
 
 =begin
