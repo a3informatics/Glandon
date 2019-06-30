@@ -3,6 +3,7 @@ require 'rails_helper'
 describe IsoManagedV2 do
 
 	include DataHelpers
+  include PublicFileHelpers
   include ValidationHelpers
   include SparqlHelpers
   include IsoHelpers
@@ -203,7 +204,7 @@ describe IsoManagedV2 do
       expect(result).to be_nil
     end
 
-    it "returns forwards and backwards" do
+    it "returns forwards and backwards, I" do
       item_history = []
       (1..20).each do |index|
         item = IsoManagedV2.new
@@ -216,8 +217,50 @@ describe IsoManagedV2 do
       expect(current).to receive(:identifier).and_return("CT")
       expect(IsoManagedV2).to receive(:history).and_return(item_history)
       results = {}
-      current.forward_backward(1, 4).map{|k,v| results[k] = v.uri.to_s}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_1.yaml", write_file: true)
+    end
+
+    it "returns forwards and backwards, II" do
+      item_history = []
+      (1..3).each do |index|
+        item = IsoManagedV2.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Number #{index}"
+        item_history << item
+      end
+      current = item_history[1]
+      expect(current).to receive(:owner).and_return(nil)
+      expect(current).to receive(:identifier).and_return("CT")
+      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      results = {}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_2.yaml", write_file: true)
+    end
+
+    it "returns forwards and backwards, III" do
+      item_history = []
+      (1..5).each do |index|
+        item = IsoManagedV2.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Number #{index}"
+        item_history << item
+      end
+      current = item_history[1]
+      expect(current).to receive(:owner).and_return(nil)
+      expect(current).to receive(:identifier).and_return("CT")
+      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      results = {}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_3.yaml", write_file: true)
+
+      current = item_history[2]
+      expect(current).to receive(:owner).and_return(nil)
+      expect(current).to receive(:identifier).and_return("CT")
+      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      results = {}
+      current.forward_backward(2, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      check_file_actual_expected(results, sub_dir, "forward_backward_expected_4.yaml", write_file: true)
     end
 
 =begin
@@ -481,6 +524,54 @@ describe IsoManagedV2 do
       results = []
       IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
       check_file_actual_expected(results, sub_dir, "where_expected_2.yaml")
+    end
+
+  end
+
+  describe "Pagination" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "history speed" do
+      (1..200).each do |index|
+        item = CdiscTerm.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Number #{index}"
+        item.set_import(identifier: "TEST", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+    timer_start
+      current = CdiscTerm.history_pagination(identifier: "TEST", scope: CdiscTerm.owner, count: 10, offset: 10)
+    timer_stop("10 entries")
+      expect(current.count).to eq(10)
+      expect(current[0].version).to eq(11)
+
+    timer_start
+      current = CdiscTerm.history_pagination(identifier: "TEST", scope: CdiscTerm.owner, count: 10, offset: 30)
+    timer_stop("10 entries")
+      expect(current.count).to eq(10)
+      expect(current[0].version).to eq(31)
+
+    timer_start
+      current = CdiscTerm.history(identifier: "TEST", scope: CdiscTerm.owner)
+    timer_stop("History")
+      expect(current.count).to eq(200)
+      expect(current.first.version).to eq(1)
+      expect(current.last.version).to eq(200)
     end
 
   end

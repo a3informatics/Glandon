@@ -240,19 +240,51 @@ class IsoManagedV2 < IsoConceptV2
     results.sort_by{|x| x.version}
   end
 
+
+
+  def self.history_pagination(params)
+    triple_count = 28
+    count = params[:count].to_i * triple_count 
+    offset = params[:offset].to_i * triple_count 
+    parts = []
+    results = []
+    base =  "?e rdf:type #{rdf_type.to_ref} . " +
+            "?e isoT:hasIdentifier ?si . " +
+            "?si isoI:identifier '#{params[:identifier]}' . " +
+            "?si isoI:version ?v . " +
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
+    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
+    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
+    parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
+    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
+    query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    x = query_results.subject_map.values.uniq{|x| x.to_s}
+    y = query_results.by_subject
+    x.each {|uri| results << from_results_recurse(uri, y)}
+    results.sort_by{|x| x.version}
+  end
+
+
+
+
+
   def self.latest(params)
     results = history(params)
     results.empty? ? nil : results.last
   end
 
   def forward_backward(step, window)
-    result = {backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil}
+    result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
     history_result = self.class.history(scope: owner, identifier: self.identifier)
+    return result if history_result.empty?
     my_index = history_result.index {|x| x.uri == self.uri}
+    result[:start] = history_result.first
+    result[:backward_single] = history_result[my_index - step] if my_index > 0
+    result[:backward_multiple] = history_result[my_index - window] if (my_index - window) >= 0
     result[:forward_single] = history_result[my_index + step] if (my_index + step) <= (history_result.count - window)
     result[:forward_multiple] = history_result[my_index + window] if (my_index + window) <= (history_result.count - window)
-    result[:backward_single] = history_result[my_index - step] if (my_index - step) >= 0
-    result[:backward_multiple] = history_result[my_index - window] if (my_index - window) >= 0
+    result[:end] = (history_result.length - window) >= 0 ? history_result[history_result.length - window] : history_result.first
     result
   end
 
