@@ -17,107 +17,76 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
 
   it 'displays the form, next and previous links' do 
 
-    results = read_yaml_file(sub_dir, "changes.yaml")
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
+    links = read_yaml_file(sub_dir, "changes_links_1.yaml")
 
-    assign(:identifier, "CDISC Terminology")
-    assign(:trimmed_results, results)
     assign(:cls, cls)
-		assign(:previous_version, 40)
-    assign(:next_version, 49)
+		assign(:links, links)
 
     render
 
   	#puts response.body
 
     expect(rendered).to have_content("Changes: CDISC Terminology")
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(1)", text: 'C100129')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'CDISC Questionnaire Category Terminology')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(3)", text: "QSCAT")
+    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(1)", text: 'C49499')
+    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'Action Taken with Study Treatment')
+    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(3)", text: "ACN")
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(4)", text: '')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(5)", text: '')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(6)", text: '')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(7)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(8)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(9)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(10)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(11)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(12)", text: 'Changes')
+    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(8)", text: 'Changes')
 
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=40' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=49' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes_report.pdf']")
     
   end
 
-  it 'displays the form, next link only' do 
+  it 'displays the form, previous link only' do 
 
-    results = read_yaml_file(sub_dir, "changes.yaml")
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
+    links = read_yaml_file(sub_dir, "changes_links_2.yaml")
 
-    assign(:identifier, "CDISC Terminology")
-		assign(:trimmed_results, results)
     assign(:cls, cls)
-		assign(:previous_version, nil)
-    assign(:next_version, 49)
+    assign(:links, links)
 
     render
 
-  	#puts response.body
-
-    expect(rendered).to have_content("Changes: CDISC Terminology")
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(1)", text: 'C100129')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'CDISC Questionnaire Category Terminology')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(3)", text: "QSCAT")
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(4)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(5)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(6)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(7)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(8)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(9)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(10)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(11)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(12)", text: 'Changes')
-
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=' and @class='btn btn-primary disabled']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=49' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn btn-primary']")
+    ui_link_disabled("fb_fs_button")
+    ui_link_disabled("fb_fm_button")
+    ui_link_disabled("fb_end_button")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes_report.pdf']")
     
   end
 
-    it 'displays the form, previous link only' do 
+    it 'displays the form, next link only' do 
 
-    results = read_yaml_file(sub_dir, "changes.yaml")
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
+    links = read_yaml_file(sub_dir, "changes_links_3.yaml")
 
-    assign(:identifier, "CDISC Terminology")
-    assign(:trimmed_results, results)
     assign(:cls, cls)
-		assign(:previous_version, 40)
-    assign(:next_version, nil)
+    assign(:links, links)
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("Changes: CDISC Terminology")
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(1)", text: 'C100129')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'CDISC Questionnaire Category Terminology')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(3)", text: "QSCAT")
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(4)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(5)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(6)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(7)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(8)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(9)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(10)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(11)", text: '')
-    expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(12)", text: 'Changes')
-
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=40' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes?cdisc_term%5Bversion%5D=' and @class='btn btn-primary disabled']")
+    ui_link_disabled("fb_start_button")
+    ui_link_disabled("fb_bs_button")
+    ui_link_disabled("fb_bm_button")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/changes_report.pdf']")
     

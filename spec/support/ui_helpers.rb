@@ -82,6 +82,10 @@ module UiHelpers
     expect(page).to have_button("#{id}", disabled: false)
   end       
 
+  def ui_link_disabled(id)
+    expect(page).to have_no_link("#{id}")
+  end       
+
   def ui_button_label(id, text)
     expect(find("##{id}").text).to eq(text)
   end

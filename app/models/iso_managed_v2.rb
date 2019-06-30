@@ -279,13 +279,15 @@ class IsoManagedV2 < IsoConceptV2
     result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
     history_result = self.class.history(scope: owner, identifier: self.identifier)
     return result if history_result.empty?
+    start_stop = 0
+    end_stop = history_result.count - window
     my_index = history_result.index {|x| x.uri == self.uri}
-    result[:start] = history_result.first
-    result[:backward_single] = history_result[my_index - step] if my_index > 0
-    result[:backward_multiple] = history_result[my_index - window] if (my_index - window) >= 0
-    result[:forward_single] = history_result[my_index + step] if (my_index + step) <= (history_result.count - window)
-    result[:forward_multiple] = history_result[my_index + window] if (my_index + window) <= (history_result.count - window)
-    result[:end] = (history_result.length - window) >= 0 ? history_result[history_result.length - window] : history_result.first
+    result[:start] = history_result[start_stop] if my_index > start_stop
+    result[:backward_single] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop
+    result[:backward_multiple] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop
+    result[:forward_single] = history_result[forward(my_index, step, end_stop)] if my_index < end_stop
+    result[:forward_multiple] = history_result[forward(my_index, window, end_stop)] if my_index < end_stop
+    result[:end] = history_result[end_stop] if my_index < end_stop
     result
   end
 
@@ -342,6 +344,14 @@ class IsoManagedV2 < IsoConceptV2
   end 
 
 private
+
+  def forward(current, step, end_stop)
+    return (current + step) < end_stop ? (current + step) : end_stop
+  end
+
+  def backward(current, step, end_stop)
+    return (current - step) > end_stop ? (current - step) : end_stop
+  end
 
   # The update query
   def update_query(params)

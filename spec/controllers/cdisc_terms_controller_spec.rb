@@ -162,29 +162,12 @@ describe CdiscTermsController do
     end
 
     it "obtains the change results" do
-      get :changes
-      expect(assigns(:identifier)).to eq('CDISC Terminology')
-      expect(assigns(:previous_version)).to eq(nil)
-      expect(assigns(:next_version)).to eq(nil)
-      expect(assigns(:trimmed_results)).not_to eq(nil)
-      expect(assigns(:cls)).not_to eq(nil)
-      expect(response).to render_template("changes")
-    end
-
-    it "obtains the change results, version" do
-      get :changes, { cdisc_term: {version: 40}}
-      expect(assigns(:identifier)).to eq('CDISC Terminology')
-      expect(assigns(:previous_version)).to eq(39)
-      expect(assigns(:next_version)).to eq(nil)
-      expect(response).to render_template("changes")
-    end
-
-    it "obtains the change results, version" do
-			@user.write_setting("max_term_display", 2)
-      get :changes, { cdisc_term: {version: 39}}
-      expect(assigns(:identifier)).to eq('CDISC Terminology')
-      expect(assigns(:previous_version)).to eq(nil)
-      expect(assigns(:next_version)).to eq(40)
+      @user.write_setting("max_term_display", 2)
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
+      get :changes, id: "aaa"
+      expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/changes"})
       expect(response).to render_template("changes")
     end
 
