@@ -1,0 +1,114 @@
+/*
+* Change Panel
+* 
+* Requires:
+* changes [Table] the changes table
+*/
+
+/**
+ * Change Panel Constructor
+ *
+ * @return [void]
+ */
+function ChangesPanel(url, column_count) {
+  var _this = this;
+  this.url = url;
+  var columns = [
+    {"data" : "key", className: "fit"},
+    {"data" : "label"},
+    {"data" : "notation", className: "fit"}];
+  for (i=0; i<column_count; i++) {
+    columns.push({className: "text-center", "render" : function (data, type, row, meta) {
+      index = meta.col - 3;
+      if (type == 'display') {
+        return _this.status(row["status"+index]);
+      } else {
+        return row["status"+index];
+      }
+    }});
+  }
+  columns.push({className: "text-center", "render" : function (data, type, row, meta) {
+    return '<a href="#" class="btn btn-primary btn-xs">Changes</a>';
+  }});
+  this.changesTable = $('#changes').DataTable( {
+    "columns": columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+  this.hideButtons();
+  this.add();
+}
+
+/**
+ * Add items to table
+ *
+ * @return [void]
+ */
+ChangesPanel.prototype.add = function () {
+  var _this = this;
+  $.ajax({
+    url: _this.url,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+    	for (i=0; i<result.data.versions.length; i++) {
+        $(_this.changesTable.column(3+i).header()).text(result.data.versions[i]);
+      }
+      $.each(result.data.items, function(key, item){
+        var row = {key: item.key, label: item.label, notation: item.notation};
+        for (j=0; j<item.status.length; j++) {
+          row["status"+j] = item.status[j]
+        }
+        _this.changesTable.row.add(row);
+      });
+      _this.changesTable.draw();
+      _this.showButtons();
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}
+
+/**
+ * Hide Buttons. Hide the button bar with the scroll buttons
+ *
+ * @return [void]
+ */
+ChangesPanel.prototype.hideButtons = function () {
+  $("#forward_backward_div").hide();
+}
+
+/**
+ * Show Buttons. Show the button bar with the scroll buttons
+ *
+ * @return [void]
+ */
+ChangesPanel.prototype.showButtons = function () {
+  $("#forward_backward_div").show();
+}
+
+/**
+ * Status. Turn the status value into HTML icon
+ *
+ * @return [String] the HTML
+ */
+ChangesPanel.prototype.status = function (status) {
+  if (status == "created") {
+    return '<span class="glyphicon glyphicon-ok text-success"/>';
+  } else if (status == "no_change") {
+    return '<span class="glyphicon glyphicon-minus text-success"/>';
+  } else if (status == "updated") {
+    return '<span class="text-center glyphicon glyphicon-edit text-warning"/>';
+  } else if (status == "deleted") {
+    return '<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>';
+  } else if (status == "not_present") {
+    return '<td class="text-center">&nbsp;</td>';
+  } else {
+    return '<td class="text-center">' + status + '</td>';
+  }
+}

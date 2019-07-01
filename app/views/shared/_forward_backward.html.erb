@@ -5,7 +5,7 @@
 <% forward_single_class = links[:forward_single].blank? ? button_class + " disabled" : button_class %>
 <% forward_multiple_class = links[:forward_multiple].blank? ? button_class + " disabled" : button_class %>
 <% end_class = links[:end].blank? ? button_class + " disabled" : button_class %>
-<div class="btn-group" role="group" aria-label="Basic example">
+<div id="forward_backward_div" class="btn-group" role="group" aria-label="Forward backward buttons">
   <%= link_to links[:start], id: "fb_s_button", class: "#{start_class}" do %>
     Start
   <% end %>

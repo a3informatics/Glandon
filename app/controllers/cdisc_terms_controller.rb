@@ -144,14 +144,18 @@ class CdiscTermsController < ApplicationController
 
   def changes
     authorize CdiscTerm, :view?
-    version = get_version
+    @version_count = current_user.max_term_display.to_i
     @ct = CdiscTerm.find(params[:id], false)
-    @cls = @ct.changes(current_user.max_term_display.to_i)
     link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
     @links = {}
-    link_objects.each do |k,v|
-      @links[k] = v.nil? ? "" : changes_cdisc_term_path(v)
-    end
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_cdisc_term_path(v)}
+  end
+
+  def changes_results
+    authorize CdiscTerm, :view?
+    ct = CdiscTerm.find(params[:id], false)
+    cls = ct.changes(current_user.max_term_display.to_i)
+    render json: {data: cls}
   end
 
   def changes_report

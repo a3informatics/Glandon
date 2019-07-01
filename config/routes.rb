@@ -204,7 +204,7 @@ Rails.application.routes.draw do
     collection do
       get :find_submission
       #get :changes_calc
-      get :changes_report
+      #get :changes_report
       get :compare
       get :compare_calc
       get :submission
@@ -221,6 +221,7 @@ Rails.application.routes.draw do
     end
     member do
       get :changes
+      get :changes_results
       get :cross_reference
       get :import_cross_reference
       post :create_cross_reference

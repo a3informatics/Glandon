@@ -37,4 +37,5 @@ Rails.application.config.assets.precompile += %w( shared/import/term_files_panel
 Rails.application.config.assets.precompile += %w( concerns/check_box.css )
 Rails.application.config.assets.precompile += %w( import/crfs/new.js import/terms/new.js )
 Rails.application.config.assets.precompile += %w( shared/history_panel.js )
-Rails.application.config.assets.precompile += %w( cdisc_term/history.js )
+Rails.application.config.assets.precompile += %w( shared/thesauri/changes_panel.js )
+Rails.application.config.assets.precompile += %w( cdisc_term/history.js cdisc_term/changes.js)
