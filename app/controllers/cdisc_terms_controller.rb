@@ -24,9 +24,16 @@ class CdiscTermsController < ApplicationController
 
   def history
     authorize CdiscTerm
-    @cdiscTerms = Thesaurus.history(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner)
+    results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: 1, offset: 1)
+    @cdisc_term = results.first
   end
-  
+
+  def history_results
+    authorize CdiscTerm, :history?
+    results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: params[:count], offset: params[:offset])
+    render json: {data: results.map{|x| x.to_h}, offset: params[:offset], count: results.count}
+  end
+
   # def import
   #   authorize CdiscTerm
   #   @files = Dir.glob(Rails.root.join("public", "upload") + "*.owl")
@@ -66,57 +73,57 @@ class CdiscTermsController < ApplicationController
   #   end
   # end
   
-  def show
-    authorize CdiscTerm
-    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace])
-    @cdiscTerms = CdiscTerm.all_previous(@cdiscTerm.version)
-  end
+  # def show
+  #   authorize CdiscTerm
+  #   @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace])
+  #   @cdiscTerms = CdiscTerm.all_previous(@cdiscTerm.version)
+  # end
   
-  def search
-    authorize CdiscTerm, :view?
-    @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
-    # @items = Notepad.where(user_id: current_user).find_each
-    @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.scope.id)
-  end
+  # def search
+  #   authorize CdiscTerm, :view?
+  #   @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
+  #   # @items = Notepad.where(user_id: current_user).find_each
+  #   @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.scope.id)
+  # end
   
-  def search_results
-    authorize CdiscTerm, :view?
-    results = Thesaurus.search(params)
-    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, 
-    	:data => results[:items] }
-  end
+  # def search_results
+  #   authorize CdiscTerm, :view?
+  #   results = Thesaurus.search(params)
+  #   render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, 
+  #   	:data => results[:items] }
+  # end
 
-  def compare_calc
-    authorize CdiscTerm, :view?
-    old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
-    new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
-    # If results already prepared redirect, else calculate.
-    version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
-    if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT, version_hash)
-      redirect_to compare_cdisc_terms_path(params.symbolize_keys)
-    else
-      hash = CdiscTerm.compare(old_cdisc_term, new_cdisc_term)
-      @cdiscTerm = hash[:object]
-      @job = hash[:job]
-      if @cdiscTerm.errors.empty?
-        redirect_to backgrounds_path
-      else
-        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-        redirect_to history_cdisc_terms_path
-      end
-    end
-  end
+  # def compare_calc
+  #   authorize CdiscTerm, :view?
+  #   old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
+  #   new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
+  #   # If results already prepared redirect, else calculate.
+  #   version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
+  #   if CdiscCtChanges.exists?(CdiscCtChanges::C_TWO_CT, version_hash)
+  #     redirect_to compare_cdisc_terms_path(params.symbolize_keys)
+  #   else
+  #     hash = CdiscTerm.compare(old_cdisc_term, new_cdisc_term)
+  #     @cdiscTerm = hash[:object]
+  #     @job = hash[:job]
+  #     if @cdiscTerm.errors.empty?
+  #       redirect_to backgrounds_path
+  #     else
+  #       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+  #       redirect_to history_cdisc_terms_path
+  #     end
+  #   end
+  # end
 
-  def compare
-    authorize CdiscTerm, :view?
-    old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
-    new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
-    version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
-    @identifier = old_cdisc_term.identifier
-    @trimmed_results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
-    @cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
-    render "changes"
-  end
+  # def compare
+  #   authorize CdiscTerm, :view?
+  #   old_cdisc_term = CdiscTerm.find(params[:oldId], params[:oldNamespace], false)
+  #   new_cdisc_term = CdiscTerm.find(params[:newId], params[:newNamespace], false)
+  #   version_hash = {:new_version => new_cdisc_term.version.to_s, :old_version => old_cdisc_term.version.to_s}
+  #   @identifier = old_cdisc_term.identifier
+  #   @trimmed_results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, version_hash)
+  #   @cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
+  #   render "changes"
+  # end
   
   # def changes_calc
   #   authorize CdiscTerm, :view?
@@ -159,44 +166,44 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  def submission_calc
-    authorize CdiscTerm, :view?
-    if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
-      redirect_to submission_cdisc_terms_path
-    else
-      hash = CdiscTerm.submission_changes
-      @cdiscTerm = hash[:object]
-      @job = hash[:job]
-      if @cdiscTerm.errors.empty?
-        redirect_to backgrounds_path
-      else
-        flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-        redirect_to history_cdisc_terms_path
-      end
-    end
-  end
+  # def submission_calc
+  #   authorize CdiscTerm, :view?
+  #   if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
+  #     redirect_to submission_cdisc_terms_path
+  #   else
+  #     hash = CdiscTerm.submission_changes
+  #     @cdiscTerm = hash[:object]
+  #     @job = hash[:job]
+  #     if @cdiscTerm.errors.empty?
+  #       redirect_to backgrounds_path
+  #     else
+  #       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
+  #       redirect_to history_cdisc_terms_path
+  #     end
+  #   end
+  # end
 
-  def submission
-    authorize CdiscTerm, :view?
-    version = get_version
-    full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    @results = CdiscTerm::Utility.trim_submission_results(full_results, version, current_user.max_term_display.to_i)
-    @previous_version = CdiscTerm::Utility.previous_version(full_results[:versions], @results[:versions].first[:version])
-    @next_version = CdiscTerm::Utility.next_version(full_results[:versions], @results[:versions].first[:version], 
-    	current_user.max_term_display.to_i, full_results[:versions].length)
-  end
+  # def submission
+  #   authorize CdiscTerm, :view?
+  #   version = get_version
+  #   full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+  #   @results = CdiscTerm::Utility.trim_submission_results(full_results, version, current_user.max_term_display.to_i)
+  #   @previous_version = CdiscTerm::Utility.previous_version(full_results[:versions], @results[:versions].first[:version])
+  #   @next_version = CdiscTerm::Utility.next_version(full_results[:versions], @results[:versions].first[:version], 
+  #   	current_user.max_term_display.to_i, full_results[:versions].length)
+  # end
 
-  def submission_report
-    authorize CdiscTerm, :view?
-    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    respond_to do |format|
-      format.pdf do
-        @html = Reports::CdiscSubmissionReport.new.create(results, current_user)
-        @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
-        render @render_args
-      end
-    end
-  end
+  # def submission_report
+  #   authorize CdiscTerm, :view?
+  #   results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+  #   respond_to do |format|
+  #     format.pdf do
+  #       @html = Reports::CdiscSubmissionReport.new.create(results, current_user)
+  #       @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
+  #       render @render_args
+  #     end
+  #   end
+  # end
 
   # def file
   #   authorize CdiscTerm, :import?
@@ -212,18 +219,18 @@ class CdiscTermsController < ApplicationController
   #   redirect_to file_cdisc_terms_path
   # end
 
-  def cross_reference
-  	authorize CdiscTerm, :show?
-  	@direction = this_params[:direction]
-  	@cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
-  end
+  # def cross_reference
+  # 	authorize CdiscTerm, :show?
+  # 	@direction = this_params[:direction]
+  # 	@cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+  # end
 
-  def export_csv
-    authorize CdiscTerm, :show?
-    uri = UriV3.new(id: params[:id]) # Using new mechanism
-    ct = CdiscTerm.find(uri.fragment, uri.namespace)
-    send_data ct.to_csv, filename: "CDISC_Term_#{ct.version_label}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
-  end
+  # def export_csv
+  #   authorize CdiscTerm, :show?
+  #   uri = UriV3.new(id: params[:id]) # Using new mechanism
+  #   ct = CdiscTerm.find(uri.fragment, uri.namespace)
+  #   send_data ct.to_csv, filename: "CDISC_Term_#{ct.version_label}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  # end
 
 private
 

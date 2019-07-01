@@ -211,6 +211,7 @@ Rails.application.routes.draw do
       get :submission_calc
       get :submission_report
       get :history
+      get :history_results
       get :search
       get :search_results
       get :import

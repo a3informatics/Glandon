@@ -1,0 +1,72 @@
+/*
+* Managed Item Panel
+* 
+* Requires:
+* managed_item_table [Table] the managed item table
+*/
+
+/**
+ * ISO Managed List Panel Constructor
+ *
+ * @return [void]
+ */
+function HistoryPanel(url, count) {
+  var _this = this;
+  this.url = url;
+  this.count = count;
+	this.historyTable = $('#history').DataTable( {
+    "columns": [
+      {"data" : "has_identifier.semantic_version"},
+      {"data" : "label"},
+      {"data" : "has_identifier.identifier"},
+      {"data" : "has_identifier.version_label"},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}},
+      {"render" : function (data, type, row, meta) {return '';}}
+    ],
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+    }
+  });
+  this.add(0);
+}
+
+/**
+ * Add item to table
+ *
+ * @param [String] uri the uri of the item being added
+ * @param [Integer] key a unique reference
+ * @return [void]
+ */
+HistoryPanel.prototype.add = function (offset) {
+  var _this = this;
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+    	for (i=0; i<result.data.length; i++) {
+        _this.historyTable.row.add(result.data[i]);
+      }
+      _this.historyTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count)
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}
