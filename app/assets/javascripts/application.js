@@ -337,3 +337,14 @@ $(document).ready(function() {
   });
 });
 
+/*
+* Datatables generic processing function
+* See: https://datatables.net/plug-ins/api/processing()
+*/
+jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
+  return this.iterator( 'table', function ( ctx ) {
+    ctx.oApi._fnProcessingDisplay( ctx, show );
+  });
+});
+
+

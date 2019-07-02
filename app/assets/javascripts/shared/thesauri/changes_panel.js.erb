@@ -1,5 +1,5 @@
 /*
-* Change Panel
+* Changes Panel
 * 
 * Requires:
 * changes [Table] the changes table
@@ -11,8 +11,8 @@
  * @return [void]
  */
 function ChangesPanel(url, column_count) {
-  var _this = this;
   this.url = url;
+  var _this = this;
   var columns = [
     {"data" : "key", className: "fit"},
     {"data" : "label"},
@@ -36,7 +36,9 @@ function ChangesPanel(url, column_count) {
     "lengthMenu": pageSettings, // Gloabl setting
     "processing": true,
     "language": {
-      "processing": "<img src='<%= asset_path('processing.gif') %>'>"
+      "infoFiltered": "",
+      "emptyTable": "No changes.",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
     }
   });
   this.hideButtons();
@@ -50,6 +52,7 @@ function ChangesPanel(url, column_count) {
  */
 ChangesPanel.prototype.add = function () {
   var _this = this;
+  _this.changesTable.processing(true);
   $.ajax({
     url: _this.url,
     type: 'GET',
@@ -67,9 +70,11 @@ ChangesPanel.prototype.add = function () {
       });
       _this.changesTable.draw();
       _this.showButtons();
+      _this.changesTable.processing(false);
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
+      _this.changesTable.processing(false);
     }
   });
 }
