@@ -169,9 +169,10 @@ describe IsoManagedController do
       get :branches, {id: "F-ACME_DM1BRANCH", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      #write_text_file_2(response.body, sub_dir, "iso_managed_branches_json_1.txt")
-      expected = read_text_file_2(sub_dir, "iso_managed_branches_json_1.txt")
-      expect(response.body).to eq(expected)
+      results = JSON.parse(response.body, symbolize_names: true)
+    #Xwrite_yaml_file(results, sub_dir, "iso_managed_branches_json_1.yaml")
+      expected = read_yaml_file(sub_dir, "iso_managed_branches_json_1.yaml")
+      expect(results).to eq(expected)
     end
 
     it "returns the branches for an item" do
@@ -209,7 +210,7 @@ describe IsoManagedController do
       hash = JSON.parse(response.body, symbolize_names: true)
     #write_yaml_file(hash, sub_dir, "iso_managed_impact_next.yaml")
       results = read_yaml_file(sub_dir, "iso_managed_impact_next.yaml")
-      expect(hash).to match(results)
+      expect(hash).to hash_equal(results)
     end
 
     it "destroy" do
