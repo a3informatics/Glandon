@@ -65,7 +65,7 @@ describe Thesaurus do
     valid = th.valid?
     expect(valid).to eq(false)
     expect(th.errors.count).to eq(3)
-    expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
+    expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name is empty")
     expect(th.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
     expect(th.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
   end 
@@ -83,6 +83,7 @@ describe Thesaurus do
 
   it "allows a Thesaurus to be found" do
     th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+  #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_1.yaml")
     result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_1.yaml")
     expect(th.to_json).to eq(result_th)
   end
@@ -94,15 +95,16 @@ describe Thesaurus do
 
   it "allows the complete Th to be found" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-  #write_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
+  #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
   	expected = read_yaml_file(sub_dir, "thesaurus_example_2.yaml")
     expect(th.to_json).to be_eql(expected)    
   end
 
   it "allows the thesaurus to be found from a concept" do
-    result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_3.yaml")
     th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    expect(th.to_json).to eq(result_th)
+  #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_3.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_3.yaml")
+    expect(th.to_json).to eq(expected)
   end
 
   it "finds by properties, single" do
@@ -202,9 +204,7 @@ describe Thesaurus do
   it "allows the Th to be exported as SPARQL" do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     sparql = th.to_sparql_v2
-  #write_text_file_2(sparql.to_s, sub_dir, "thesaurus_example_7.txt")
-    #expected = read_text_file_2(sub_dir, "thesaurus_example_7.txt")
-    #expect(sparql.to_s).to eq(expected)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "thesaurus_example_7.txt")
     check_sparql_no_file(sparql.to_s, "thesaurus_example_7.txt")
   end
 
