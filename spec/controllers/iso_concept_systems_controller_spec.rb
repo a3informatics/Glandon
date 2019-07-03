@@ -22,6 +22,9 @@ describe IsoConceptSystemsController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_test_file_into_triple_store("iso_namespace_fake.ttl")
       clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
     end
 
     it "returns a concept system tree, none exists" do
