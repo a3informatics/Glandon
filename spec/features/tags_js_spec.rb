@@ -102,14 +102,11 @@ describe "Tags", :type => :feature do
       click_link 'Tags'
       expect(page).to have_content 'Manage Tags' 
       expect(page).to have_content 'Tag1' 
-      pause
+      #pause
       fill_in 'add_label', with: 'Tag1'
       fill_in 'add_description', with: 'Tag is identical with already existing tag!'
       click_button 'Add tag'
-      ui_click_node_name ("Tag1")
-      ui_check_input('edit_description', "Tag is identical with already existing tag")
       #pause
-
       #not implemented expect(page).to have_content 'You cannot create identical tags at the same level..........'      
     end
 
@@ -273,7 +270,7 @@ describe "Tags", :type => :feature do
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click 
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
-      pause
+      #pause
     end
 
      it "remove tags and child tags from forms (REQ-MDR-15)", js:true do
@@ -329,11 +326,11 @@ describe "Tags", :type => :feature do
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click
       wait_for_ajax
-      pause
+      #pause
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1").click
       X = find(:xpath, "//div[@id='tags_container']", visible: false).text
       expect(X).to have_content "" 
-      pause
+      #pause
     end
 
      it "view a list of managed items being tagged to a selected tag when adding tags to a form,  (REQ-MDR-TAG-100)", js:true do
@@ -370,30 +367,27 @@ describe "Tags", :type => :feature do
       click_link 'Tags'
       expect(page).to have_content 'Manage Tags'  
       fill_in 'search for tag', with: 'TAG1-3'
-      pause
+      #pause
       ui_hit_return("d3Search_input")
       wait_for_ajax
       
-      pause
-      #byebug (need extra input from Dave)
+      #pause
+      byebug
       #find(:xpath, "//div[@id='d3']/svg/g/g/text[@class='search-result-text']", :text => "Tag1_3")
+      ('svg').find('g[@id='node']').attr('class')
 
-      #expect(page).to have_class 'search-result-text'
-      #expect(edit_label).to have_content 'Tag1_3'
-      fill_in 'Search', with: 'Tag2_2'
+      fill_in 'd3Search_input', with: 'Tag2_2'
+      ui_hit_return("d3Search_input")
       #add a path for the graph display
-      expect(edit_label).to have_content 'Tag2_2'
+      fill_in 'd3Search_input', with: 'Tag3'
+      ui_hit_return("d3Search_input")
       #add a path for the graph display
-      fill_in 'Search', with: 'Tag3'
-      expect(edit_label).to have_content 'Tag3'
-      #add a path for the graph display
-      fill_in 'Search', with: 'Tag6'
+      fill_in 'd3Search_input', with: 'Tag6'
+      ui_hit_return("d3Search_input")
       expect(page).to have_content 'No Tags found'
       expect(true).to eq(false)
     end
-
-    it "can view tagged managed items when searching for a specific tag (REQ-MDR-TAG-120)", js: true 
-
+  
   end
 
 end
