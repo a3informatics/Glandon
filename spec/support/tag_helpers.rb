@@ -21,7 +21,6 @@ module TagHelper
       fill_in 'add_label', with: "#{label}"
       fill_in 'add_description', with: "#{description}"
       click_button 'Add tag'
-      wait_for_ajax
       expect(page).to have_content("#{label}")
       #click_link 'Close'
   end
@@ -52,6 +51,7 @@ module TagHelper
   def create_tag_bc(identifier, label, template)
     #ui_scroll_to_id("biomedical_concept_identifier")
     click_link 'Biomedical Concepts'
+    wait_for_ajax
     expect(page).to have_content 'Index: Biomedical Concepts'  
     click_link 'New'
     fill_in "biomedical_concept_identifier", with: "#{identifier}"
@@ -81,7 +81,7 @@ module TagHelper
     expect(page).to have_content 'History:'  
     # find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Edit').click
     # expect(page).to have_content 'Edit:'  
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Tags').click
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Update Tags').click
     expect(page).to have_content 'Edit Tags:'
     ui_click_node_name("#{tag}") #{tag}"
     #expect(display_label).to have_content "#{tag}"
