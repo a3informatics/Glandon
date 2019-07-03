@@ -1,13 +1,19 @@
-/* Loading overlay with spinner */
-.loading-overlay {
+/* Parent to spinner container */
+div.dataTables_wrapper div.dataTables_processing{
   position: absolute;
   background-color: rgba(255, 255, 255, 0.8);
   z-index: 4;
-  bottom: 0px;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  display: none;
+  bottom: 0px!important;
+  top: 0px!important;
+  left: 0px!important;
+  right: 0px!important;
+  margin-bottom: -40px!important;
+  margin-top: -40px!important;
+  margin-left: 0!important;
+  width: unset!important;
+  border: none!important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 /* parent to centered spinner */
@@ -24,25 +30,5 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.display-element {
-  display: block!important;
-}
 
-div.dataTables_wrapper div.dataTables_processing{
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.8);
-  z-index: 4;
-  bottom: 0px!important;
-  top: 0px!important;
-  left: 0px!important;
-  right: 0px!important;
-  margin-bottom: 0!important;
-  margin-top: 0!important;
-  margin-left: 0!important;
-  width: unset!important;
-  border: none!important;
-}
 
-.dataTables_processing .card {
-   border: none!important;
-}
