@@ -234,13 +234,15 @@ class IsoManagedV2 < IsoConceptV2
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
-    x = query_results.subject_map.values.uniq{|x| x.to_s}
-    y = query_results.by_subject
-    x.each {|uri| results << from_results_recurse(uri, y)}
+    by_subject = query_results.by_subject
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+      item = from_results_recurse(uri, by_subject)
+      item.has_state.by_authority = params[:scope]
+      item.has_identifier.has_scope = params[:scope].ra_namespace
+      results << item
+    end
     results.sort_by{|x| x.version}
   end
-
-
 
   def self.history_pagination(params)
     triple_count = 28
@@ -259,10 +261,14 @@ class IsoManagedV2 < IsoConceptV2
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
-    x = query_results.subject_map.values.uniq{|x| x.to_s}
-    y = query_results.by_subject
-    x.each {|uri| results << from_results_recurse(uri, y)}
-    results.sort_by{|x| x.version}
+    by_subject = query_results.by_subject
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+      item = from_results_recurse(uri, by_subject)
+      item.has_state.by_authority = params[:scope]
+      item.has_identifier.has_scope = params[:scope].ra_namespace
+      results << item
+    end
+    results
   end
 
   def self.latest(params)

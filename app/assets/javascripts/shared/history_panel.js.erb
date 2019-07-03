@@ -17,18 +17,17 @@ function HistoryPanel(url, count) {
 	this.historyTable = $('#history').DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": [
-      {"className": "fit",
-       "render" : function (data, type, row, meta) {
+      {"render" : function (data, type, row, meta) {
         if (type == 'display') {
           return row.has_identifier.semantic_version;
         } else {
           return row.has_identifier.version;
         }}
       },
-      {"data" : "label"},
+      {"data" : "has_state.by_authority.ra_namespace.short_name"},
       {"data" : "has_identifier.identifier"},
+      {"data" : "label"},
       {"data" : "has_identifier.version_label"},
-      {"render" : function (data, type, row, meta) {return '';}},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.view_path, "View");}},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.search_path, "Search");}},
