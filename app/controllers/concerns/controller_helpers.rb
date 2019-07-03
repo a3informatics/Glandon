@@ -14,4 +14,38 @@ module ControllerHelpers
     return []
   end
 
+  def add_history_paths(controller, object)
+    result = {}
+    policy = policy(object.class)
+    edit = policy.edit?
+    delete = policy.destroy?
+    result[:show_path] = path_for(controller, :show, object)
+    result[:view_path] = path_for(controller, :view, object)
+    result[:search_path] = path_for(controller, :search, object)
+    if edit && object.edit? && object.latest?
+      result[:edit_path] = path_for(controller, :edit, object)
+      result[:tags_path] = edit_tags_iso_managed_index_path(:id => item.uri.fragment, :namespace => item.uri.namespace)
+    else
+      result[:edit_path] = ""
+      result[:tags_path] = ""
+    end      
+    if object.registered? && edit
+      current_id = object.current? ? current_item.registrationState.id : ""
+      result[:status_path] = status_iso_managed_index_path(:id => object.uri.fragment, :iso_managed => 
+        {:index_label => "", :index_path => "", :current_id => current_id})
+    end
+    if delete && object.delete?
+      result[:delete_path] = path_for(controller, :destroy, object)
+    else
+      result[:delete_path] = ""
+    end
+    return result
+  end
+
+private
+
+  def path_for(controller, action, id)
+    Rails.application.routes.url_for controller: controller, action: action, only_path: true, id: id
+  end
+
 end

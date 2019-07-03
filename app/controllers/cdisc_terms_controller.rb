@@ -1,5 +1,7 @@
 class CdiscTermsController < ApplicationController
   
+  include ControllerHelpers
+
   before_action :authenticate_user!
   
   C_CLASS_NAME = "CdiscTermsController"
@@ -30,8 +32,12 @@ class CdiscTermsController < ApplicationController
 
   def history_results
     authorize CdiscTerm, :history?
-    results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: params[:count], offset: params[:offset])
-    render json: {data: results.map{|x| x.to_h}, offset: params[:offset], count: results.count}
+    results = []
+    history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: params[:count], offset: params[:offset])
+    history_results.each do |object|
+      results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
+    end
+    render json: {data: results, offset: params[:offset], count: results.count}
   end
 
   # def import
