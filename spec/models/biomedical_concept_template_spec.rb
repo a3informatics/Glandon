@@ -26,7 +26,7 @@ describe BiomedicalConceptTemplate do
     result = BiomedicalConceptTemplate.new
     result.valid?
     expect(result.errors.count).to eq(3)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name is empty")
     expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
     expect(result.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     expect(result.valid?).to eq(false)

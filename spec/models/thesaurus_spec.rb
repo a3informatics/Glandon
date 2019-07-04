@@ -85,7 +85,7 @@ describe Thesaurus do
     th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
   #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_1.yaml")
     result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_1.yaml")
-    expect(th.to_json).to eq(result_th)
+    expect(th.to_json).to hash_equal(result_th)
   end
 
   it "allows a Th to be found - error" do
@@ -97,14 +97,14 @@ describe Thesaurus do
     th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
   #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
   	expected = read_yaml_file(sub_dir, "thesaurus_example_2.yaml")
-    expect(th.to_json).to be_eql(expected)    
+    expect(th.to_json).to hash_equal(expected)    
   end
 
   it "allows the thesaurus to be found from a concept" do
     th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
   #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_3.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_3.yaml")
-    expect(th.to_json).to eq(expected)
+    expect(th.to_json).to hash_equal(expected)
   end
 
   it "finds by properties, single" do
