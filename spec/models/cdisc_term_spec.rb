@@ -81,7 +81,7 @@ describe CdiscTerm do
       valid = th.valid?
       expect(valid).to eq(false)
       expect(th.errors.count).to eq(3)
-      expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
+      expect(th.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name is empty")
       expect(th.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
       expect(th.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     end 
@@ -114,7 +114,7 @@ describe CdiscTerm do
       th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     #Xwrite_yaml_file(th.to_json, sub_dir, "find_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_expected_1.yaml")
-      expect(th.to_json).to eq(result_th)
+      expect(th.to_json).to hash_equal(result_th)
     end
 
     it "allows a CDISC Term to be found - error" do
@@ -124,9 +124,9 @@ describe CdiscTerm do
 
     it "Find only the root object" do
       th =CdiscTerm.find_only("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-    #write_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
+    #Xwrite_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_only_expected_1.yaml")
-      expect(th.to_json).to eq(result_th)
+      expect(th.to_json).to hash_equal(result_th)
     end
 
     it "Find the CL with a submission value" do
@@ -146,9 +146,9 @@ describe CdiscTerm do
     it "finds all items" do
       results = CdiscTerm.all
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "finds history of an item entries" do
@@ -169,17 +169,17 @@ describe CdiscTerm do
     it "finds all except" do
       results = CdiscTerm.all_except(34)
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_except_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "find all previous" do
       results = CdiscTerm.all_previous(36)
       results_json = results.map { |result| result = result.to_json }
-    #write_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
+    #Xwrite_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_previous_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "allows the current version to be found" do
