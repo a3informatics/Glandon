@@ -35,7 +35,7 @@ describe BiomedicalConcept do
     result = BiomedicalConcept.new
     result.valid?
     expect(result.errors.count).to eq(3)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name contains invalid characters")
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name is empty")
     expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
     expect(result.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     expect(result.valid?).to eq(false)
@@ -155,7 +155,7 @@ it "allows a BC to be found" do
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #write_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_to_json.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -232,7 +232,7 @@ it "allows a BC to be found" do
     updated_bc = BiomedicalConcept.update(op)
     expect(updated_bc.errors.full_messages.to_sentence).to eq("")
     expect(updated_bc.errors.count).to eq(0)
-    #write_yaml_file(updated_bc.to_json, sub_dir, "bc_update_result.yaml")
+  #Xwrite_yaml_file(updated_bc.to_json, sub_dir, "bc_update_result.yaml")
     expected = read_yaml_file(sub_dir, "bc_update_result.yaml")
     expected[:last_changed_date] = date_check_now(updated_bc.lastChangeDate).iso8601
     expect(updated_bc.to_json).to eq(expected)
@@ -251,7 +251,7 @@ it "allows a BC to be found" do
   it "allows the object to be created from JSON" do
     json = read_yaml_file(sub_dir, "bc_to_json.yaml")
     item = BiomedicalConcept.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
     expected = read_yaml_file(sub_dir, "bc_from_json.yaml")
     expect(item.to_json).to hash_equal(expected)
   end
@@ -259,7 +259,7 @@ it "allows a BC to be found" do
   it "allows an object to be exported as SPARQL" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.to_sparql_v2
-  #write_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
+  #Xwrite_text_file_2(result.to_s, sub_dir, "bc_sparql.txt")
     write_text_file_2(item.to_sparql_v2.to_s, sub_dir, "bc_sparql_result_1.txt")
     actual = read_sparql_file("bc_sparql_result_1.txt")
     expected = read_sparql_file("bc_sparql.txt")
@@ -270,7 +270,7 @@ it "allows a BC to be found" do
   it "get the properties, no references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(false)
-  #write_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_no_ref.yaml")
     expect(result).to hash_equal(expected)
   end
@@ -278,7 +278,7 @@ it "allows a BC to be found" do
   it "get the properties with references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(true)
-  #write_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_properties_with_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
     expect(result).to hash_equal(expected)
   end
@@ -287,7 +287,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     items = item.get_properties(true)
     result = BiomedicalConcept.get_unique_references(items)
-  #write_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
     expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
     expect(result).to hash_equal(expected)
   end
