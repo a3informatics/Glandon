@@ -49,9 +49,28 @@ RSpec::Matchers.define :hash_equal do |expected|
 
   def iso8601_match?(actual, expected)
     return true if DateTime.parse(actual) == DateTime.parse(expected)
+    return true if iso8601_defaults_and_equal?(actual, expected)
     note_error(actual, expected)
   end
 
+  def iso8601_defaults_and_equal?(actual, expected)
+    a = DateTime.parse(actual)
+    e = DateTime.parse(expected)
+    return false if !iso8601_default_date?(a)
+    return false if !iso8601_default_date?(e)
+    return false if !iso8601_correct_zone?(a)
+    return false if !iso8601_correct_zone?(e)
+    true
+  end
+
+  def iso8601_default_date?(value)
+    return value.to_date.to_s == "2016-01-01"
+  end
+
+  def iso8601_correct_zone?(value)
+    return value.zone == "+00:00" || value.zone == "+01:00"
+  end
+    
   def arrays_match?(actual, expected)
     exp = expected.clone
     actual.each do |a|

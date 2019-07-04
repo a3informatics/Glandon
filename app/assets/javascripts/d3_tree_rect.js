@@ -6,6 +6,8 @@
 
 var d3HeightOverride = false;
 var d3HeightOverrideValue = $(window).height() - 200; 
+var rectW = 120;
+var rectH = 30;
 
 /**
  * D3 Initialise: Create a D3 tree. 
@@ -26,22 +28,45 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     //height = $(window).height() - 200; 
     height = d3Div.clientHeight;
   }
-  var tree = d3.layout.tree()
+  var tree = d3.layout.tree().nodeSize([70, 40])
     .size([height, width - 160]);
   var diagonal = d3.svg.diagonal()
-    .projection(function(d) { return [d.y, d.x]; });
+     .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
+  // var diagonal = function link(d) {
+  //   return "M" + rectW + "," + (d.source.x + rectH / 2)
+  //       + "C" + (d.source.y + d.target.y) / 2 + "," + (d.source.x + rectH / 2)
+  //       + " " + (d.source.y + d.target.y) / 2 + "," + (d.target.x + rectH / 2)
+  //       + " " + d.target.y + "," + (d.target.x + rectH / 2);
+  // }; 
   var svg = d3.select(d3Div).append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
-    .attr("transform", "translate(40,0)");
-  var nodes = tree.nodes(jsonData),
-  links = tree.links(nodes);
+    .attr("transform", "translate(35,0)");
+  svg.append("svg:defs").selectAll("marker")
+      .data(["end"])      // Different link/path types can be defined here
+    .enter().append("svg:marker")    // This section adds in the arrows
+      .attr("id", String)
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 10)
+      .attr("refY", 0)
+      .attr("fill", "lightsteelblue")
+      .attr("markerWidth", 8)
+      .attr("markerHeight", 8)
+      .attr("orient", "auto")
+    .append("svg:path")
+      .attr("d", "M0,-5L10,0L0,5");
+  var nodes = tree.nodes(jsonData);
+  var links = tree.links(nodes);
   var link = svg.selectAll("path.link")
     .data(links)
     .enter().append("path")
     .attr("class", "link")
-    .attr("d", diagonal);
+    .attr("x", rectW / 2 )
+    .attr("y", rectH)
+    .attr("d", diagonal)
+    .style("margin-left", "60px")
+    .attr("marker-end", "url(#end)");
   var node = svg.selectAll("g.node")
     .data(nodes)
     .enter().append("g")
@@ -49,16 +74,26 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
     .on("click", clickCallBack)
     .on("dblclick", dblClickCallBack);
-  node.append("circle")
-    .attr("r", 5)
+  node.append("rect")
+    .attr("width", rectW)
+    .attr("height", rectH)
+    .attr("rx", 4)
+    .attr("ry", 4)
+    .attr("stroke", function(d) { return d3StrokeColour(d); })
+    .attr("stroke-width", 1)
+    //.attr("r", 5)
     //.attr("fill", function(d) { return d3NodeColour(d); });
     .style("fill", function(d) { return d3NodeColour(d); });
   node.append("text")
-    .attr("dx", function(d) { return d.children ? -8 : 8; })
-    .attr("dy", 3)
+    .attr("x", rectW / 2)
+    .attr("y", rectH / 2)
+    .attr("dy", ".35em")
+    .attr("text-anchor", "middle")
+    //.attr("dx", function(d) { return d.children ? -8 : 8; })
+    //.attr("dy", 3)
     //.attr("fill", function(d) { return d3TextColour(d); })
     .style("fill", function(d) { return d3TextColour(d); })
-    .attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
+    //.attr("text-anchor", function(d) { return d.children ? "end" : "start"; })
     .text(function(d) { if (d.name.length > 15) { return d.name.substring(0,12) + "..."} else { return d.name;} });
   d3.select(self.frameElement).style("height", height + "px");
 }
@@ -70,7 +105,11 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
  * @return [Null]
  */
 function d3MarkNode(gRef) {
-  d3.select(gRef).select("circle").style("fill", "steelblue");
+  d3.select(gRef).select("rect").classed("search-result-bg", false);
+  d3.select(gRef).select("text").classed("search-result-text", false);
+  d3.select(gRef).select("rect").style("fill", "#428bca"); //darkblue
+  d3.select(gRef).select("rect").style("stroke", "#428bca"); //darkblue
+  d3.select(gRef).select("text").style("fill", "white");
 }
 
 /**
@@ -139,6 +178,46 @@ function d3FindData(key) {
   return result;
 }
 
+
+/**
+ * Search for the node by label
+ *
+ * @param label [String] the label for the node
+ * @return [Object] the node data
+ */
+function d3Search(label) {
+  var result = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (data.name.toLowerCase().indexOf(label.toLowerCase()) >= 0) {
+      d3.select(nodes[0][i]).select("rect").classed("search-result-bg", true);
+      d3.select(nodes[0][i]).select("text").classed("search-result-text", true);
+    }
+  }
+  return data;
+}
+
+
+/**
+ * Clear Search 
+ *
+ * @return [Object] the node data
+ */
+function d3ClearSearch() {
+  var result = null;
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    var data = nodes[0][i].__data__;
+    if (d3.select(nodes[0][i]).select("rect").classed("search-result-bg")) {
+      d3.select(nodes[0][i]).select("rect").classed("search-result-bg", false);
+      d3.select(nodes[0][i]).select("text").classed("search-result-text", false);
+    }
+  }
+  return result;
+}
+
+
 /**
  * Restore the node colour by element reference
  *
@@ -146,7 +225,9 @@ function d3FindData(key) {
  * @return [Object] the node data
  */
 function d3RestoreNode(gRef) {
-  d3.select(gRef).select('circle').style("fill", d3NodeColour(gRef.__data__));
+  d3.select(gRef).select('rect').style("fill", d3NodeColour(gRef.__data__));
+  d3.select(gRef).select('rect').style("stroke", d3StrokeColour(gRef.__data__));
+  d3.select(gRef).select('text').style("fill", d3TextColour(gRef.__data__));
 }
 
 /**
@@ -157,7 +238,7 @@ function d3RestoreNode(gRef) {
  */
 function d3NodeColour (node) {
   if (node.expand) {
-    return "skyblue";
+    return "#5bc0de";//lightblue
   }
   if ('enabled' in node) {
     if (node.enabled) {
@@ -165,18 +246,19 @@ function d3NodeColour (node) {
         if(node.is_common) {
           return "silver";
         } else {
-          return "mediumseagreen";
+          return "white";
         }
       } else {
-        return "mediumseagreen";
+        return "white";
       }
     } else {
-      return "orangered";
+      return "#d9534f"; //red
     }
   } else {
     return "white";
   }
 }
+
 
 /**
  * Sets the node text colour
@@ -185,12 +267,55 @@ function d3NodeColour (node) {
  * @return [String] the text colour
  */
 function d3TextColour (node) {
-  if ('is_common' in node) {
-    if(node.is_common) {
-      return "silver";
-    }
+if (node.expand) {
+    return "white";
   }
-  return "black";
+  if ('enabled' in node) {
+    if (node.enabled) {
+      if ('is_common' in node) {
+        if(node.is_common) {
+          return "#777"; //darkgrey
+        } else {
+          return "black";
+        }
+      } else {
+        return "black";
+      }
+    } else {
+      return "white";
+    }
+  } else {
+    return "black";
+  }
+}
+
+/**
+ * Sets the node stroke colour
+ *
+ * @param node [Object] the current node
+ * @return [String] the stroke colour
+ */
+function d3StrokeColour (node) {
+  if (node.expand) {
+    return "#5bc0de"; //lightblue
+  }
+  if ('enabled' in node) {
+    if (node.enabled) {
+      if ('is_common' in node) {
+        if(node.is_common) {
+          return "silver";
+        } else {
+          return "#5cb85c"; //greeen
+        }
+      } else {
+        return "#5cb85c"; //green
+      }
+    } else {
+      return "#d9534f"; //red
+    }
+  } else {
+    return "white";
+  }
 }
 
 function d3AdjustHeight(height) {

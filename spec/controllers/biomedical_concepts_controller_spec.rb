@@ -64,7 +64,7 @@ describe BiomedicalConceptsController do
       results = JSON.parse(response.body, symbolize_names: true)
     #Xwrite_yaml_file(results, sub_dir, "bc_controller_list.yaml")
       expected = read_yaml_file(sub_dir, "bc_controller_list.yaml")
-      expect(results).to eq(expected)
+      expect(results).to hash_equal(expected)
     end
 
     it "shows the history" do

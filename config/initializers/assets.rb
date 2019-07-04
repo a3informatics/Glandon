@@ -28,7 +28,7 @@ Rails.application.config.assets.version = '1.0'
 	thesauri_editor thesauri_viewer thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel
   form_placeholder_new form_editor form_viewer form_show form_utility
-  d3_tree d3graph d3_graph d3_editor d3_editor_new
+  d3_tree d3_tree_rect d3graph d3_graph d3_editor d3_editor_new
   export/start_panel
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
