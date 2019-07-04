@@ -196,7 +196,7 @@ function saveRest() {
       contentType: 'application/json',
       success: function(result){
         spRemoveSpinner("#saving");
-        ttSave();
+        ttSave("1");
       },
       error: function(xhr, status, error){
         handleAjaxError (xhr, status, error);

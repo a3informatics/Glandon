@@ -12,9 +12,9 @@ Rails.application.config.assets.version = '1.0'
 %w( colour unload print ajax_requests rspec_helper panel_collapse
   token_timer spinner
   field_validation
-  iso_concept_system_viewer 
   iso_concept_graph iso_concept_impact
-  iso_managed_comment_edit iso_managed_list iso_managed_tag_edit iso_managed_tag_list 
+  managed_tags_panel
+  iso_managed_comment_edit iso_managed_list iso_managed_tag_list shared/iso_concept_systems/concept_system_view_panel
   iso_managed_graph iso_managed_list_panel iso_managed_select_panel 
   impact_analysis_graph_panel impact_analysis
   cdisc_cross_ref_panel cdisc_cross_ref
@@ -25,10 +25,10 @@ Rails.application.config.assets.version = '1.0'
   markdown_editor
   background_index 
 	biomedical_concepts_editor biomedical_concept_template_new
-	thesauri_editor thesauri_viewer thesauri_search_new thesauri_field_editor thesauri_impact
+	thesauri_editor thesauri_viewer thesauri_field_editor thesauri_impact
 	thesaurus_concept_list_panel
   form_placeholder_new form_editor form_viewer form_show form_utility
-  d3_tree d3graph d3_graph d3_editor d3_editor_new
+  d3_tree d3_tree_rect d3graph d3_graph d3_editor d3_editor_new
   export/start_panel
   standard_datatable ).each do |controller|
   Rails.application.config.assets.precompile += ["#{controller}.js", "#{controller}.css"]
@@ -40,3 +40,6 @@ Rails.application.config.assets.precompile += %w( import/crfs/new.js import/term
 Rails.application.config.assets.precompile += %w( shared/history_panel.js )
 Rails.application.config.assets.precompile += %w( shared/thesauri/changes_panel.js )
 Rails.application.config.assets.precompile += %w( cdisc_term/history.js cdisc_term/changes.js)
+Rails.application.config.assets.precompile += %w( cdisc_term/search.js )
+Rails.application.config.assets.precompile += %w( thesauri/search.js thesauri/search_current.js shared/thesauri/search.js )
+Rails.application.config.assets.precompile += %w( iso_managed/edit_tags.js iso_concept_systems/index.js ) 

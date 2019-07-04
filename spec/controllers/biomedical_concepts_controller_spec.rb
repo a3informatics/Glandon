@@ -61,9 +61,10 @@ describe BiomedicalConceptsController do
       get :list
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #Xwrite_yaml_file(response.body, sub_dir, "bc_controller_list.yaml")
+      results = JSON.parse(response.body, symbolize_names: true)
+    #Xwrite_yaml_file(results, sub_dir, "bc_controller_list.yaml")
       expected = read_yaml_file(sub_dir, "bc_controller_list.yaml")
-      expect(response.body).to eq(expected)
+      expect(results).to hash_equal(expected)
     end
 
     it "shows the history" do

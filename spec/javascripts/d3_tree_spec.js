@@ -79,6 +79,17 @@ describe("D3 Tree", function() {
 		expect(data.data.type).to.equal("data_child_3"); 		
   });
 
+  it("allows the data from a node to be obtained by label and searched for", function() {
+    var data = d3Search("child3");
+    expect(data.name).to.equal('child3');  
+    var gRef = d3FindGRefByName("child3");
+    expect(gRef.childNodes[0].className.animVal).to.equal('search-result-bg');
+    expect(gRef.childNodes[1].className.animVal).to.equal('search-result-text');
+    d3ClearSearch();
+    expect(gRef.childNodes[0].className.animVal).to.equal('');
+    expect(gRef.childNodes[1].className.animVal).to.equal('');
+  });
+
  	it("allows the data from a node to be obtained by key", function() {
  		var gRef = d3FindGRefByName("child3");
 		var data = d3GetData(gRef);
@@ -99,17 +110,17 @@ describe("D3 Tree", function() {
  	it("sets the node colour", function() {
  		node = {};
  		node.expand = true;
- 		expect(d3NodeColour(node)).to.equal("skyblue");
+ 		expect(d3NodeColour(node)).to.equal("#5bc0de");
  		node.expand = false;
  		expect(d3NodeColour(node)).to.equal("white");
  		node.enabled = true;
- 		expect(d3NodeColour(node)).to.equal("mediumseagreen");
+ 		expect(d3NodeColour(node)).to.equal("white");
  		node.is_common = true;
  		expect(d3NodeColour(node)).to.equal("silver");
  		node.is_common = false;
- 		expect(d3NodeColour(node)).to.equal("mediumseagreen");
+ 		expect(d3NodeColour(node)).to.equal("white");
  		node.enabled = false;
- 		expect(d3NodeColour(node)).to.equal("orangered");
+ 		expect(d3NodeColour(node)).to.equal("#d9534f");
   });
 
  	it("sets the text colour", function() {
@@ -118,12 +129,12 @@ describe("D3 Tree", function() {
  		node.is_common = false;
  		expect(d3TextColour(node)).to.equal("black");
  		node.is_common = true;
- 		expect(d3TextColour(node)).to.equal("silver");
+ 		expect(d3TextColour(node)).to.equal("black");
   });
 
- 	xit("adjusts the height", function() {
- 		//expect(true).to.equal(false);
-  	//pending();
-  });
+ 	// xit("adjusts the height", function() {
+ 	// 	//expect(true).to.equal(false);
+  // 	//pending();
+  // });
 
 });

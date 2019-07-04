@@ -1,6 +1,14 @@
 module UiHelpers
+  # General Tag helpers
+	def ui_click_tag_add
+    ui_click_by_id('tag_add')
+  end
 
-	# General UI helpers
+  def ui_click_tag_delete
+    ui_click_by_id('tag_delete')
+  end
+
+  # General UI helpers
   # ==================
   
   def ui_check_page_has(text)
@@ -173,6 +181,10 @@ module UiHelpers
     end
   end
 
+  def ui_check_table_info(table_id, first, last, total)
+    expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total} entries")
+  end
+
   # Flash
   def ui_check_no_flash_message_present
     expect(page).not_to have_selector(:css, ".alert")
@@ -180,6 +192,27 @@ module UiHelpers
 
   def ui_check_flash_message_present
     expect(page).to have_selector(:css, ".alert")
+  end
+
+  # Terminology
+    def ui_term_overall_search(text)
+    input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
+    input.set(text)
+    input.native.send_keys(:return)
+    wait_for_ajax(15)
+  end
+
+  def ui_term_column_search(column, text)
+    column_input_map = 
+    { 
+      notation: "searchTable_csearch_submission_value", 
+      code_list: "searchTable_csearch_cl", 
+      definition: "searchTable_csearch_definition" 
+    }  
+    input = column_input_map[column]
+    fill_in input, with: text
+    ui_hit_return(input)
+    wait_for_ajax(15)
   end
 
   # Breadcrumb

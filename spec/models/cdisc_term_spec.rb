@@ -125,7 +125,7 @@ describe CdiscTerm do
       th =CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     #Xwrite_yaml_file(th.to_json, sub_dir, "find_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_expected_1.yaml")
-      expect(th.to_json).to eq(result_th)
+      expect(th.to_json).to hash_equal(result_th)
     end
 
     it "allows a CDISC Term to be found - error" do
@@ -137,7 +137,7 @@ describe CdiscTerm do
       th =CdiscTerm.find_only("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
     #Xwrite_yaml_file(th.to_json, sub_dir, "find_only_expected_1.yaml")
       result_th = read_yaml_file(sub_dir, "find_only_expected_1.yaml")
-      expect(th.to_json).to eq(result_th)
+      expect(th.to_json).to hash_equal(result_th)
     end
 
     it "Find the CL with a submission value" do
@@ -159,7 +159,7 @@ describe CdiscTerm do
       results_json = results.map { |result| result = result.to_json }
     #Xwrite_yaml_file(results_json, sub_dir, "all_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "finds history of an item entries" do
@@ -182,7 +182,7 @@ describe CdiscTerm do
       results_json = results.map { |result| result = result.to_json }
     #Xwrite_yaml_file(results_json, sub_dir, "all_except_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_except_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "find all previous" do
@@ -190,7 +190,7 @@ describe CdiscTerm do
       results_json = results.map { |result| result = result.to_json }
     #Xwrite_yaml_file(results_json, sub_dir, "all_previous_expected_1.yaml")
       results_ct = read_yaml_file(sub_dir, "all_previous_expected_1.yaml")
-      expect(results_json).to eq(results_ct)
+      expect(results_json).to hash_equal(results_ct)
     end
 
     it "allows the current version to be found" do

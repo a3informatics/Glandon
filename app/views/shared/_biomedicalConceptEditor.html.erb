@@ -109,7 +109,7 @@
             <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
           </div>
           <div class="panel-body">
-            <%= render partial: "shared/termSearchCurrent" %>
+            <%= render partial: "shared/thesauri/search", :locals => {current: true, single: false, id: "", namespace: ""} %>
           </div>
         </div>
       </div>

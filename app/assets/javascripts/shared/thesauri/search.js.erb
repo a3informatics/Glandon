@@ -1,0 +1,218 @@
+/* Thesauri Search Panel. Panel used to search terminologies
+*
+* @author Dave Iberson-Hurst & Sofie Roug Jensen
+* @since 2.22.3
+*/
+
+/* Package Initialisation
+*
+* @param [id] the fragment for the URI
+* @param [namespace] the namespace for the URI
+* @return [Void]
+*/
+function ThesauriSearchPanel(id, namespace) {
+  this.id = id;
+  this.namespace = namespace;
+  this.tsCurrentRef = null;
+  this.tsSearchTable = null;
+  this.columns = [
+    {"data" : "parentIdentifier", "width" : "10%"},
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "notation", "width" : "15%"},
+    {"data" : "preferredTerm", "width" : "15%" },
+    {"data" : "synonym", "width" : "15%" },
+    {"data" : "definition", "width" : "35%"}
+  ];
+  this.filterOutAll(); // Must be called before initTable so as to filter the page settings
+  this.initTable();
+  this.setupColumnInput(); 
+  this.setupSearchInputEvent();
+  this.setupOverallSearchEvent();
+  this.setupClearButton();
+
+  var _this = this;
+
+  $("#searchTable input").css({"width": "100%"});
+
+  // Handle click on terminology table
+  $('#searchTable tbody').on('click', 'tr', function () {
+    if (_this.tsCurrentRef != null) {
+      $(_this.tsCurrentRef).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    _this.tsCurrentRef = this;
+  });
+
+  // handle double click on terminology table
+  $('#searchTable tbody').on('dblclick', 'tr', function () {
+    if (_this.tsCurrentRef != null) {
+      $(_this.tsCurrentRef).toggleClass('success');
+    }
+    $(this).toggleClass('success');
+    var row = _this.tsSearchTable.row(this).index();
+    _this.tsCurrentRef = this;
+    var data = _this.tsSearchTable.row(row).data();
+    // Clear search fields in UI and within datatables.
+    $("#searchTable_filter input").val("");
+    _this.tsSearchTable.columns().every( function () {
+      $('#searchTable thead input').val("");
+    });
+    _this.tsSearchTable.search('');
+    _this.tsSearchTable.columns().search('');
+    // Set our parent identifier search and trigger.
+    $('#searchTable_csearch_cl').val(data.parentIdentifier);
+    var e = jQuery.Event("keyup");
+    e.which = 13; 
+    e.keyCode = 13;
+    $('#searchTable_csearch_cl').trigger(e);
+  });
+  
+}
+
+
+/* Initialise Table
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.initTable = function () {
+  var _this = this;
+  this.tsSearchTable = $('#searchTable').DataTable( {
+    "ajax": {
+      "url": "/thesauri/search_results",
+      "data": function( d ) {
+        d.id = _this.id.value,
+        d.namespace = _this.namespace.value
+      },
+    "dataSrc": "data" 
+    },
+    "deferLoading": 0,
+    "processing": true,
+    "serverSide": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "Make a new column or global search to see data",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>",
+      "search": "_INPUT_",
+      "searchPlaceholder": "Overall Search ..."
+    },
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "columns": _this.columns,
+    "orderCellsTop": true,
+  });
+
+  $('#searchTable_filter input').removeClass('input-sm');
+};
+
+
+/* Setup Clear Button
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.setupClearButton = function () {
+  var _this = this;
+  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default clear-button"><span class="fa fa-times"></span> Clear All</button>');
+  $('#clearbutton').click(function(){
+    $("#searchTable_filter input").val("");
+    _this.tsSearchTable.search("");
+    _this.tsSearchTable.columns().every( function () {
+      $('#searchTable thead input').val("");
+      this.search("");
+    });
+  });
+}
+
+
+/* Setup Overal Search Event
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.setupOverallSearchEvent = function () {
+  // Apply the overall search. Fires on return or field empty assuming not the
+  // current search value (i.e. something has changed).
+  var _this = this;
+  $("#searchTable_filter input")
+    .unbind() // Unbind previous default bindings
+    .bind("keyup", function(e) { // Bind our desired behavior
+      if(this.value == "" || e.keyCode == 13) {
+        if (_this.tsSearchTable.search() !== this.value) {
+          _this.tsSearchTable.search(this.value).draw();
+        }
+      }
+      return;
+  });
+}
+
+/* Setup Column Input. Add a text input to each header cell
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.setupColumnInput = function () {
+  $('#searchTable thead tr:eq(1) th').each( function () {
+    var title = $(this).text();
+    var id = "searchTable_csearch_" + title.toLowerCase().replace(/ /g,"_");
+    if (title == "Extensible") {
+      // Do nothing
+    } else if (title == "Definition") {
+      $(this).html( '<input id="' + id + '" type="text" class="form-control input-sm" size="20" placeholder="Search ..." />' );
+    } else {
+      $(this).html( '<input id="' + id + '" type="text" class="form-control input-sm" size="10" placeholder="Search ..." />' );
+    }
+  });
+}
+
+/* Setup Search Input Event. Apply the column search. Fires on return or field empty assuming not the
+*   current search value (i.e. something has changed).
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.setupSearchInputEvent = function () {
+  var _this = this;
+  _this.tsSearchTable.columns().every( function (index) {
+    var that = this;
+    $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
+      if (e.which == 13 || this.value == "") {
+        if (that.search() !== this.value) {
+          that.search(this.value).draw();
+        }
+      }
+    });
+  });
+}
+
+/* Get Current Selection. Returns the currently selected row as a URI.
+*
+* @return [String] the result URI or null if none selected
+*/
+ThesauriSearchPanel.prototype.getSelected = function () {
+  var _this = this;
+  if (_this.tsCurrentRef !== null) {
+    var row = _this.tsSearchTable.row(_this.tsCurrentRef).index();
+    var data = _this.tsSearchTable.row(row).data();
+    return toUri(data.namespace, data.id);
+  } else {
+    return null;
+  }
+}
+
+/* File Out All. Remove the All option from the datatables table length option if
+*   present. Also updates the selected page length.
+*
+* @return [Void]
+*/
+ThesauriSearchPanel.prototype.filterOutAll = function () {
+  var max = pageSettings[0][0];
+  for (var i=0; i<pageSettings[0].length; i++) {
+    if (pageSettings[0][i] === -1) {
+      pageSettings[0].splice(i,1);
+      pageSettings[1].splice(i,1);
+    } else {
+      if (pageSettings[0][i] > max) {
+        max = pageSettings[0][i];
+      }
+    }
+  }
+  if (pageLength === -1) {
+    pageLength = max;
+  }
+}

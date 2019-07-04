@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag    'spinner', 'concerns/spinner-component', 'shared/thesauri/search' %>
+<%= javascript_include_tag 'shared/thesauri/search', 'spinner' %>
+<table id="searchTable" class="table table-striped table-bordered table-condensed" style="width:100%">
+	<thead>
+		<tr>
+	    <th>Code List</th>
+	    <th>Item</th>
+	    <th>Submission Value</th>
+	    <th>Preferred Term</th>
+	    <th>Synonym</th>
+	    <th>Definition</th>
+  	</tr>
+    <tr>
+	    <th>CL</th>
+	    <th>Item</th>
+	    <th>Submission Value</th>
+	    <th>Preferred Term</th>
+	    <th>Synonym</th>
+	    <th>Definition</th>
+    </tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<input type="hidden" id="thesaurus_current" value="<%= current %>">
+<input type="hidden" id="thesaurus_single" value="<%= single %>">
+<input type="hidden" id="thesaurus_id" value="<%= id %>">
+<input type="hidden" id="thesaurus_namespace" value="<%= namespace %>">	

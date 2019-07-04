@@ -6,6 +6,12 @@ describe "Dashboard JS", :type => :feature do
   include PauseHelpers
   include UiHelpers
   
+  def triples_search(search_text)
+    input = find(:xpath, '//*[@id="triplesTable_filter"]/label/input')
+    input.set("#{search_text}")
+    input.native.send_keys(:return)
+  end
+
   before :all do
     user = User.create :email => "reader@example.com", :password => "12345678" 
     clear_triple_store
@@ -48,10 +54,11 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Triple Store View'
       expect(page).to have_field('subjectNs', disabled: true)
       expect(page).to have_field('subjectId', disabled: true)
-      #pause
+    #pause
       expect(find('#subjectNs').value).to eq 'http://www.assero.co.uk/MDRBCs/V1'
       expect(find('#subjectId').value).to eq 'BC-ACME_BC_C16358'      
-      #pause
+    #pause
+      triples_search("BC_C16358-1")
       find(:xpath, "//tr[contains(.,'mdrItems:SI-ACME_BC_C16358-1')]/td", :text => 'Show').click
       expect(page).to have_content 'Triple Store View'
       #pause
@@ -108,7 +115,7 @@ describe "Dashboard JS", :type => :feature do
       fill_in 'Email', with: 'reader@example.com'
       fill_in 'Password', with: '12345678'
       click_button 'Log in'
-      #pause
+    #pause
       find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
       expect(page).to have_content 'History: BC A00002'
     end

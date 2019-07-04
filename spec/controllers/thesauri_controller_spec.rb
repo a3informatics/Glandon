@@ -372,6 +372,16 @@ describe ThesauriController do
       expect(response.code).to eq("200")    
     end
 
+    it "obtains the search results, empty search" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      results = Thesaurus.search(params)
+      get :search_results, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")    
+      expect(response.body).to eq("{\"draw\":\"1\",\"recordsTotal\":\"15\",\"recordsFiltered\":\"0\",\"data\":[]}")    
+    end
+
     it "export as TTL" do
       params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
       get :export_ttl, params

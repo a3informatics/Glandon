@@ -125,15 +125,11 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_version?(symbol, value, object)
-    if value.nil?
-      object.errors.add(symbol, "is empty")
-      return false
-    else
-      result = "#{value}".match /\A[0-9]+\z/ 
-      return true if result != nil
-      object.errors.add(symbol, "contains invalid characters, must be an integer")
-      return false
-    end
+    return false if value_empty?(symbol, value, object)
+    result = "#{value}".match /\A[0-9]+\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters, must be an integer")
+    return false
   end
 
   # Valid Short Name
@@ -143,15 +139,11 @@ module FieldValidation
   # @param object [Object] The object to which the value/item belongs
   # @return [Boolean] true if value valid, false otherwise
   def self.valid_short_name?(symbol, value, object)
-    if value.nil?
-      object.errors.add(symbol, "is empty")
-      return false
-    else
-      result = value.match /\A[A-Za-z0-9]+\z/ 
-      return true if result != nil
-      object.errors.add(symbol, "contains invalid characters")
-      return false
-    end
+    return false if value_empty?(symbol, value, object)
+    result = value.match /\A[A-Za-z0-9]+\z/ 
+    return true if result != nil
+    object.errors.add(symbol, "contains invalid characters")
+    return false
   end
 
   # Valid Free Text
@@ -221,6 +213,17 @@ module FieldValidation
     return true if value =~ /\A#{C_LABEL}\z/
     object.errors.add(symbol, "contains invalid characters")
     return false
+  end
+
+  # Valid Non Empty Label
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.valid_non_empty_label?(symbol, value, object)
+    return false if value_empty?(symbol, value, object)
+    valid_label?(symbol, value, object)
   end
 
   # Valid Question
@@ -423,16 +426,15 @@ module FieldValidation
   	return false
   end
 
-  # Valid Registration State
-  #
-  # @param symbol [String] The item being checked
-  # @param value [String] The value being checked
-  # @param object [Object] The object to which the value/item belongs
-  # @return [Boolean] true if value valid, false otherwise
-  def self.valid_registration_state?(field, value, object)
-    return true if Rails.configuration.iso_registration_state.has_key?(value.to_sym)
-    object.errors.add(field, "is invalid")
-    return false  
+private
+
+  def self.value_empty?(symbol, value, object)
+    if value.blank?
+      object.errors.add(symbol, "is empty")
+      true
+    else
+      false
+    end
   end
 
 end

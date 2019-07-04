@@ -1,0 +1,56 @@
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Form> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"DS Demo Tag Form" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Types#creationDate> 			"2019-06-12T08:35:56+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Types#lastChangeDate> 			"2019-06-12T08:38:08+00:00" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Types#changeDescription> 			"1 draft version of the DS demo form " . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Types#explanatoryComment> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Types#origin> 			"There are no references" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Identification#hasIdentifier> 			<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/ISO11179Registration#hasState> 			<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/BusinessForm#hasGroup> 			<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#NormalGroup> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"test group 1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#hasItem> 			<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#repeating> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Question 1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"1" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#datatype> 			"integer" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#format> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I1> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"test" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/BusinessForm#Question> . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.w3.org/2000/01/rdf-schema#label> 			"Question 2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#completion> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#note> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#optional> 			"false" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#ordinal> 			"2" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#datatype> 			"integer" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#format> 			"3" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#mapping> 			"" . 
+<http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_DSDEMO_G1_I2> 			<http://www.assero.co.uk/BusinessForm#question_text> 			"Test question 2" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Identification#hasScope> 			<http://www.assero.co.uk/MDRItems#NS-ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Identification#identifier> 			"DS DEMO" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Identification#version> 			"2" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Identification#semantic_version> 			"1.1.0" . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Identification#versionLabel> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.w3.org/1999/02/22-rdf-syntax-ns#type> 			<http://www.assero.co.uk/ISO11179Registration#RegistrationState> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#byAuthority> 			<http://www.assero.co.uk/MDRItems#RA-123456789> . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#registrationStatus> 			"Incomplete" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#effectiveDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#untilDate> 			"2016-01-01T00:00:00+00:00" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#administrativeNote> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#unresolvedIssue> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#administrativeStatus> 			"" . 
+<http://www.assero.co.uk/MDRItems#RS-ACME_DSDEMO-2> 			<http://www.assero.co.uk/ISO11179Registration#previousState> 			"Incomplete" . 

@@ -152,5 +152,61 @@ describe CdiscTerm do
     check_cli_result(old_version, new_version, "C67154", "C81958", updated: [:Synonym, :Notation])
 
   end
+
+  it "compares V56 to V55" do
+    old_version = 55
+    new_version = 56
+    load_term(old_version, new_version)
+
+    # Compare versions
+    results = compare_term(old_version, new_version)
+
+    # ETHNICC
+    check_cl_result(results, "C128690", :updated) 
+    check_cli_result(old_version, new_version, "C128690", "C158194", created: true) 
     
+    # LBTESTCD
+    check_cl_result(results, "C65047", :updated)
+    check_cli_result(old_version, new_version, "C65047", "C100426", deleted: true) 
+    check_cli_result(old_version, new_version, "C65047", "C154736", updated: [:Synonym]) 
+    
+    # METHOD
+    check_cl_result(results, "C85492", :updated) 
+    check_cli_result(old_version, new_version, "C85492", "C101293", updated: [:Definition]) 
+    
+    # PKPARM
+    check_cl_result(results, "C85493", :updated)
+    check_cli_result(old_version, new_version, "C85493", "C154839", updated: [:Definition])
+    
+    # VSTESTCD
+    check_cl_result(results, "C66741", :updated)
+    check_cli_result(old_version, new_version, "C66741", "C158297", created: true)
+    
+    # VSTEST
+    check_cl_result(results, "C67153", :updated)
+    check_cli_result(old_version, new_version, "C67153", "C158297", created: true)
+    
+    # TRPROPRS
+    check_cl_result(results, "C124309", :updated)
+    check_cli_result(old_version, new_version, "C124309", "C96644", deleted: true) 
+    
+    # RETESTCD
+    check_cl_result(results, "C111106", :updated)
+    check_cli_result(old_version, new_version, "C111106", "C123565", updated: [:Definition])
+        
+    # RACEC
+    check_cl_result(results, "C128689", :updated) 
+    check_cli_result(old_version, new_version, "C128689", "C158274", created: true)
+    
+    # NVTESTCD
+    check_cl_result(results, "C116104", :updated)
+    check_cli_result(old_version, new_version, "C116104", "C158258", created: true)
+    
+    # LBTEST
+    check_cl_result(results, "C67154", :updated) 
+    check_cli_result(old_version, new_version, "C67154", "C154753", updated: [:Synonym, :Notation])
+    check_cli_result(old_version, new_version, "C67154", "C154736", updated: [:Synonym, :Notation])
+    
+  end
+     
 end

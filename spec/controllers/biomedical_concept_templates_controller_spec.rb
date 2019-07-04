@@ -52,9 +52,10 @@ describe BiomedicalConceptTemplatesController do
       get :list
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    write_text_file_2(response.body, sub_dir, "bct_controller_list.txt")
-      expected = read_text_file_2(sub_dir, "bct_controller_list.txt")
-      expect(response.body).to eq(expected)
+      result = JSON.parse(response.body)
+    #Xwrite_yaml_file(result, sub_dir, "bct_controller_list.yml")
+      expected = read_yaml_file(sub_dir, "bct_controller_list.yml")
+      expect(result).to hash_equal(expected)
     end
 
     it "lists all templates, JSON" do  
@@ -62,9 +63,10 @@ describe BiomedicalConceptTemplatesController do
       get :all
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    write_text_file_2(response.body, sub_dir, "bct_controller_all.txt")
-      expected = read_text_file_2(sub_dir, "bct_controller_all.txt")
-      expect(response.body).to eq(expected)
+      result = JSON.parse(response.body)
+    #Xwrite_yaml_file(result, sub_dir, "bct_controller_all.yml")
+      expected = read_yaml_file(sub_dir, "bct_controller_all.yml")
+      expect(result).to hash_equal(expected)
     end
 
     it "shows the history" do

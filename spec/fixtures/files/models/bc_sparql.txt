@@ -12,10 +12,10 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#BiomedicalConceptInstance> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> rdfs:label "Temperature (BC C25206)"^^xsd:string . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_BC_C25206-1> . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:creationDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:lastChangeDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_BC_C25206-1> . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:creationDate "2016-01-01T00:00:00%2B01:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:lastChangeDate "2016-01-01T00:00:00%2B01:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:changeDescription ""^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206> isoT:origin ""^^xsd:string . 
@@ -42,8 +42,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> rdf:type isoI:ScopedIdentifier . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:version "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:versionLabel "0.1"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:semanticVersion "1.0.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:hasScope <http://www.assero.co.uk/NS#ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:semantic_version "1.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-ACME_BC_C25206-1> isoI:hasScope mdrItems:NS-ACME . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9> rdf:type <http://www.assero.co.uk/CDISCBiomedicalConcept#Item> . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9> rdfs:label ""^^xsd:string . 
 <http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25206_I9> cbc:ordinal "9"^^xsd:positiveInteger . 

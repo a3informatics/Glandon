@@ -6,6 +6,9 @@
 
     <xsl:import href="../../utility/utility.xsl" />
     
+    <xsl:param name="UseDate"/>
+    <xsl:param name="UseComment"/>
+
     <!-- Constants -->
     <xsl:variable name="LT">&lt;</xsl:variable>
     <xsl:variable name="GT">&gt;</xsl:variable>

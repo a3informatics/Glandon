@@ -356,7 +356,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
-      expect(page).to have_content 'Showing 1 to 7 of 7 entries'
+      ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'History: CDISC EXT'
     end  
@@ -371,7 +371,7 @@ describe "Thesaurus", :type => :feature do
       click_link 'Search Current'
       expect(page).to have_content 'Search: All Current Terminology'
       wait_for_ajax(5) # Big load
-      expect(page).to have_content 'Showing 1 to 10 of 17,363 entries'
+      ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'Index: Terminology'
     end  

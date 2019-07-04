@@ -478,6 +478,22 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test contains invalid characters")
   end
 
+  it "checks a valid non empty label, cannot be empty" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_non_empty_label?(:test, "A Label", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a valid non empty label, cannot be empty" do
+    object = IsoConcept.new
+    expect(FieldValidation.valid_non_empty_label?(:test, "", object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test is empty")
+    object = IsoConcept.new # Comparison to normal label which can be empty
+    expect(FieldValidation.valid_label?(:test, "", object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
   it "checks a valid question" do
     object = IsoConcept.new
     expect(FieldValidation.valid_question?(:test, "A Question", object)).to eq(true)

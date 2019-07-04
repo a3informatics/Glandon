@@ -104,7 +104,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_click_node_name("SITEID")
       ui_check_input('variableFormat', "ISO 3333")
       ui_check_input('variableNotes', "Some notes for the site id")
-      ui_check_input('variableComment', "Some comments for the site id")      
+      ui_check_input('variableComment', "Some comments for the site id")
     end
 
     it "allows a non-standard variable to be added and deleted", js: true do
@@ -156,32 +156,48 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_input('variableLabel', "New label updated")    
       click_button 'variableDelete'
       ui_click_by_id 'save'
+      wait_for_ajax(10)
       ui_click_by_id 'close'
+      expect(page).to have_content 'History:' # Ensure server stays around to save changes, needed for next test (bit naughty)
     end
 
     it "allows non-standard variable to be moved up and down and not pass a standard variable", js: true do
       load_domain("DM Domain")
       click_button "V+"
+      expect(page).to have_content 'DM000029'
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       expect(key_1).not_to eq(-1)
       ui_click_node_name("Demographics")
-      #wait_for_ajax
       click_button "V+"
+      expect(page).to have_content 'DM000030'
       key_2 = ui_get_key_by_path('["Demographics", "DM000030"]')
       expect(key_2).not_to eq(-1)
-      ui_click_node_key(key_2)
+      ui_click_node_name("Demographics")
+      click_button "V+"
+      expect(page).to have_content 'DM000031'
+      key_3 = ui_get_key_by_path('["Demographics", "DM000031"]')
+      ui_click_node_key(key_3)
       #wait_for_ajax
       click_button 'variableUp'
-      ui_check_node_ordinal(key_2, 29)
+      ui_check_node_ordinal(key_1, 29)
+      ui_check_node_ordinal(key_3, 30)
+      ui_check_node_ordinal(key_2, 31)
+      click_button 'variableUp'
+      ui_check_node_ordinal(key_3, 29)
       ui_check_node_ordinal(key_1, 30)
+      ui_check_node_ordinal(key_2, 31)
       click_button 'variableUp'
       expect(page).to have_content 'You cannot move the node up past a standard variable.'
       click_button 'variableDown'
       ui_check_node_ordinal(key_1, 29)
+      ui_check_node_ordinal(key_3, 30)
+      ui_check_node_ordinal(key_2, 31)
+      click_button 'variableDown'
+      ui_check_node_ordinal(key_1, 29)
       ui_check_node_ordinal(key_2, 30)
+      ui_check_node_ordinal(key_3, 31)
       click_button 'variableDown'
       expect(page).to have_content 'You cannot move the node down.'
-      key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
       ui_click_node_key(key_1)
       #wait_for_ajax
       click_button 'variableUp'
@@ -240,8 +256,9 @@ describe "SDTM User Domain Editor", :type => :feature do
     it "allows the edit session to be saved", js: true do
       load_domain("DM Domain")
       click_button "V+"
-      wait_for_ajax
+      sleep 0.5
       key_1 = ui_get_key_by_path('["Demographics", "DM000029"]')
+#puts("KEY 1: #{key_1}")
       expect(key_1).not_to eq(-1)
       ui_click_save
       #pause

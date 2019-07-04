@@ -1,6 +1,6 @@
 class IsoConceptSystemGeneric < IsoConcept
 
-  attr_accessor :description, :children
+  attr_accessor :children, :description
   
   # Constants
   C_SCHEMA_PREFIX = UriManagement::C_ISO_C
@@ -34,9 +34,7 @@ class IsoConceptSystemGeneric < IsoConcept
   # @return [Object] The concept
   def self.find(id, ns, children=true)
     object = super(id, ns)
-    if children
-      children_from_triples(object, object.triples, id)
-    end
+    children_from_triples(object, object.triples, id) if children
     return object
   end
 
@@ -44,8 +42,50 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param rdf_type [Atring] The RDF type
   # @return [Array] Array of objects
-  def self.all(rdf_type)
-    results = super(rdf_type, C_SCHEMA_NS)
+  def self.all
+    results = super(self::C_RDF_TYPE, C_SCHEMA_NS)
+  end
+
+  # Add a child object
+  #
+  # @raise [CreateError] If object not created.
+  # @return [Object] The new object created if no exception raised
+  def add(params)
+    object = IsoConceptSystem::Node.from_json(params)
+    if object.valid?
+      sparql = object.to_sparql_v2
+      sparql.default_namespace(object.namespace)
+      create_child(object, sparql, C_SCHEMA_PREFIX, "hasMember")
+    end
+    return object
+  end
+
+  # Update
+  #
+  # @raise [UpdateError] If object not updated.
+  # @return [Boolean] The new object created if no exception raised
+  def update(params)
+    self.label = params[:label]
+    self.description = params[:description]
+    return if !valid?
+    update = UriManagement.buildNs(self.namespace, ["isoC"]) +
+      "DELETE \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label ?a . \n" +
+      " :" + self.id + " isoC:description ?b . \n" +
+      "} \n" +
+      "INSERT \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label \"" + SparqlUtility::replace_special_chars(params[:label]) + "\"^^xsd:string . \n" +
+      " :" + self.id + " isoC:description \"" + SparqlUtility::replace_special_chars(params[:description]) + "\"^^xsd:string . \n" +
+      "} \n" +
+      "WHERE \n" +
+      "{ \n" +
+      " :" + self.id + " rdfs:label ?a . \n" +
+      " :" + self.id + " isoC:description ?b . \n" +
+      "}"
+    response = CRUD.update(update)
+    Errors.object_update_error(self.class.name, __method__.to_s, self) if !response.success?
   end
 
   # To JSON
@@ -54,10 +94,8 @@ class IsoConceptSystemGeneric < IsoConcept
   def to_json
     result = super
     result[:description] = self.description
-    result[:children] = Array.new
-    children.each do |child|
-      result[:children] << child.to_json
-    end
+    result[:children] = []
+    children.each {|child| result[:children] << child.to_json}
     return result
   end
 
@@ -65,10 +103,10 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param json [Hash] The hash of values for the object 
   # @return [Object] The object
-  def self.from_json(json, rdf_type)
+  def self.from_json(json)
     object = super(json)
     object.description = json[:description]
-    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => rdf_type}).to_s
+    object.rdf_type = UriV2.new({:namespace => C_SCHEMA_NS, :id => self::C_RDF_TYPE}).to_s
     if !json[:children].blank?
       json[:children].each do |child|
         object.children << IsoConceptSystem::Node.from_json(child)
@@ -81,10 +119,10 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @param cid_prefix [String] The fragment prefix
   # @return [Object] The sparql object
-  def to_sparql_v2(cid_prefix)
+  def to_sparql_v2
     sparql = SparqlUpdateV2.new
     ra = IsoRegistrationAuthority.owner
-    uri = UriV2.new({:prefix => cid_prefix, :org_name => ra.ra_namespace.short_name, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
+    uri = UriV2.new({:prefix => self.class::C_CID_PREFIX, :org_name => ra.namespace.shortName, :identifier => Time.now.to_i, :namespace => C_INSTANCE_NS})
     self.id = uri.id
     self.namespace = uri.namespace
     super(sparql, C_SCHEMA_PREFIX)
@@ -96,7 +134,7 @@ class IsoConceptSystemGeneric < IsoConcept
   #
   # @return [Boolean] True if valid, false otherwise.
   def valid?
-    result1 = super
+    result1 = FieldValidation.valid_non_empty_label?(:label, self.label, self)
     result2 = FieldValidation::valid_long_name?(:description, self.description, self)
     return result1 && result2
   end

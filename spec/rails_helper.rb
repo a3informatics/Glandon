@@ -67,36 +67,42 @@ RSpec.configure do |config|
   config.include(Capybara::DSL)
   config.include PauseHelpers, type: :feature
   
+  # Block for checking javascript errors.
+  #config.after(:each, type: :feature, js: true) do
+  #   errors = page.driver.browser.manage.logs.get(:browser)
+  #   if errors.present?
+  #     aggregate_failures 'javascript errrors' do
+  #       errors.each do |error|
+  #         expect(error.level).not_to eq('SEVERE'), error.message
+  #         next unless error.level == 'WARNING'
+  #         STDERR.puts 'WARN: javascript warning'
+  #         STDERR.puts error.message
+  #       end
+  #     end
+  #   end
+  # end
+
 end
 
 Capybara.register_driver :chrome do |app|
-	# New configuration method
-	Capybara::Selenium::Driver.new(app,
-    :browser => :chrome,
-    :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.chrome(
-      'chromeOptions' => {
-        'args' => [ "--window-size=1800,1000" ],
-        'prefs' => {
-          'download.default_directory' => DownloadHelpers::PATH,
-          'download.prompt_for_download' => false
-        }
-      }
-    )
-  )
-	# Old configuration method
-  #profile = Selenium::WebDriver::Chrome::Profile.new
-  #profile["download.default_directory"] = DownloadHelpers::PATH
-  #Capybara::Selenium::Driver.new(app, :browser => :chrome, profile: profile)
-  #Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+  # Optional new statement to access devtools
+  #options = Selenium::WebDriver::Chrome::Options.new(args: %w(--auto-open-devtools-for-tabs --window-size=2400,2400)) 
+  options.add_preference(:download, {
+    prompt_for_download: false,
+    default_directory: DownloadHelpers::PATH
+  })
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = 120
+	Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client, :options => options)
 end
 
 Capybara.javascript_driver = :chrome
 
-# Thin server
-Capybara.register_server :thin do |app, port, host|
-  require 'rack/handler/thin'
-  Rack::Handler::Thin.run(app, :Port => port, :Host => host)
-end
+# Thin Server
+# Capybara.register_server :thin do |app, port, host|
+#     require 'rack/handler/thin'
+#    Rack::Handler::Thin.run(app, :Port => port, :Host => host)
+# end
 
-Capybara.server = :thin
-#Capybara.default_max_wait_time = 10
+# Capybara.server = :thin

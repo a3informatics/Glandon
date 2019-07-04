@@ -11,9 +11,9 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> rdf:type <http://www.assero.co.uk/ISO25964#Thesaurus> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> rdfs:label "CDISC Extensions"^^xsd:string . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-SPONSOR_CT> . 
-<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:creationDate "2015-11-22T00:00:00%2B00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-SPONSOR_CT> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:creationDate "2015-11-22T00:00:00%2B01:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:lastChangeDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:changeDescription "Creation"^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:explanatoryComment ""^^xsd:string . 
@@ -34,8 +34,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> rdf:type isoI:ScopedIdentifier . 
 <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:version "1"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:versionLabel "0.1"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:semanticVersion "0.0.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:hasScope <http://www.assero.co.uk/NS#ACME> . 
+<http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:semantic_version "0.0.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> isoI:hasScope mdrItems:NS-ACME . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> rdf:type <http://www.assero.co.uk/ISO25964#ThesaurusConcept> . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> rdfs:label "Vital Sign Test Codes Extension"^^xsd:string . 
 <http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1_A00001> iso25964:identifier "A00001"^^xsd:string . 

@@ -162,20 +162,21 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Label:")
       expect(page).to have_content("Template Identifier:")
       expect(page).to have_content("Add Biomedical Concept")
-      expect(page).to have_content("Showing 1 to 10 of 17,363 entries")
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_check_table_info("bc_table", 1, 10, 13)
       ui_check_page_options("temp_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
       ui_button_disabled("bc_previous")
       ui_button_disabled("bc_next")
     end
 
-    it "allows a BC to be created", js: true do
+    it "allows a BC to be created (REQ-MDR-BC-010, REQ-MDR-BC-020,)", js: true do
       open_edit_multiple
       create_bc("TEST BC CD", "Test BC CD Label", "Obs CD")
       expect(page).to have_content("Test BC CD Label")
       ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
     end
 
-    it "allows 4 BCs being edited and visible", js: true do
+    it "allows 4 BCs being edited and visible (REQ-MDR-BC-030)", js: true do
       open_edit_multiple
       create_bc("TEST BC 1", "Test BC No. 1", "Obs PQR")
       create_bc("TEST BC 2", "Test BC No. 2", "Obs PQR")
@@ -187,7 +188,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Test BC No. 4")
     end
 
-    it "allows 8 BCs to be edited", js: true do
+    it "allows 8 BCs to be edited (REQ-MDR-BC-030)", js: true do
       open_edit_multiple
       create_bc("TEST BC 11", "Test BC No. 11", "Obs PQR")
       create_bc("TEST BC 12", "Test BC No. 12", "Obs PQR")
@@ -289,7 +290,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     end
 
     
-    it "allows a property to be updated", js: true do
+    it "allows a property to be updated (REQ-MDR-BC-010)", js: true do
       #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 51", "Test BC No. 51", "Obs PQR")
@@ -376,7 +377,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_disabled('tfe_delete_all_items')
     end
 
-    it "allows terminology to be added", js: true do
+    it "allows terminology to be added (REQ-MDR-BC-060)", js: true do
       #set_screen_size(1500, 900)
       open_edit_multiple
       create_bc("TEST BC 82", "Test BC No. 82", "Obs CD")
@@ -386,9 +387,10 @@ describe "Biomedical Concept Editor", :type => :feature do
       scroll_to_terminology_table
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
+      ui_term_overall_search("QSCAT")
       ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
       wait_for_ajax_short
-     ui_table_row_click('searchTable', 'C100760')
+      ui_table_row_click('searchTable', 'C100760')
       ui_click_by_id 'tfe_add_item'
       wait_for_ajax_short
      
@@ -501,7 +503,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(tokens).to match_array([])
     end 
 
-    it "edit timeout warnings", js: true do
+    it "edit timeout warnings (REQ-MDR-EL-020)", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       #set_screen_size(1500, 900)
       open_edit_multiple

@@ -124,20 +124,24 @@ class ThesauriController < ApplicationController
   def search
     authorize Thesaurus, :view?
     @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
-    @items = Notepad.where(user_id: current_user).find_each
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
+    #@items = Notepad.where(user_id: current_user).find_each
+    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
   end
   
   def search_current
     authorize Thesaurus, :view?
-    @items = Notepad.where(user_id: current_user).find_each
+    #@items = Notepad.where(user_id: current_user).find_each
     @close_path = thesauri_index_path
   end
   
   def search_results
     authorize Thesaurus, :view?
-    results = Thesaurus.search(params)
-    render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+    if Thesaurus.empty_search?(params)
+      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+    else
+      results = Thesaurus.search(params)
+      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+    end
   end
 
    def export_ttl
