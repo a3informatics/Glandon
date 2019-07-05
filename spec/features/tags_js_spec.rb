@@ -373,8 +373,8 @@ describe "Tags", :type => :feature do
       
       #pause
       byebug
-      #find(:xpath, "//div[@id='d3']/svg/g/g/text[@class='search-result-text']", :text => "Tag1_3")
-      ('svg').find('g[@id='node']').attr('class')
+      find(:xpath, "//div[@id='d3']/svg/g/g/text[@class='search-result-text']", :text => "Tag1_3")
+      ('svg').find(g[@id='node']).attr('class')
 
       fill_in 'd3Search_input', with: 'Tag2_2'
       ui_hit_return("d3Search_input")
