@@ -367,25 +367,24 @@ describe "Tags", :type => :feature do
       click_link 'Tags'
       expect(page).to have_content 'Manage Tags'  
       fill_in 'search for tag', with: 'TAG1-3'
-      #pause
       ui_hit_return("d3Search_input")
       wait_for_ajax
-      
-      #pause
-      byebug
-      #find(:xpath, "//div[@id='d3']/svg/g/g/text[@class='search-result-text']", :text => "Tag1_3")
-      ('svg').find('g[@id='node']').attr('class')
-
+      result = ui_get_search_results
+      expect(result.count).to eq(1)
+      expect(result[0]).to eq("TAG1-3")
       fill_in 'd3Search_input', with: 'Tag2_2'
       ui_hit_return("d3Search_input")
-      #add a path for the graph display
+      result = ui_get_search_results
+      expect(result.count).to eq(0)
       fill_in 'd3Search_input', with: 'Tag3'
       ui_hit_return("d3Search_input")
-      #add a path for the graph display
+      result = ui_get_search_results
+      expect(result.count).to eq(4)
+      ["TAG3", "TAG3-2", "TAG3-1", "TAG3-3"].each {|x| expect(result.include?(x)).to eq(true)}
       fill_in 'd3Search_input', with: 'Tag6'
       ui_hit_return("d3Search_input")
-      expect(page).to have_content 'No Tags found'
-      expect(true).to eq(false)
+      result = ui_get_search_results
+      expect(result.count).to eq(0)
     end
   
   end
