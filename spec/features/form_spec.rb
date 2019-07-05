@@ -52,7 +52,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: T2'
     end
 
-    it "history allows the show page to be viewed" do
+    it "history allows the show page to be viewed (REQ-MDR-CRF-010)" do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
@@ -62,7 +62,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
     end
 
-    it "history allows the view page to be viewed" do
+    it "history allows the view page to be viewed (REQ-MDR-CRF-010)" do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
@@ -86,7 +86,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: DM1 01'
     end
     
-    it "history allows the edit page to be viewed" do 
+    it "history allows the edit page to be viewed (REQ-MDR-CRF-010)" do 
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
@@ -144,7 +144,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 
-    it "allows a form to be created" do
+    it "allows a form to be created (REQ-MDR-CRF-010)" do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       click_link 'New'

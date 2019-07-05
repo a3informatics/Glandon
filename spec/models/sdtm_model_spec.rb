@@ -145,9 +145,13 @@ describe SdtmModel do
   	sparql = SparqlUpdateV2.new
 		json = read_yaml_file(sub_dir, "build_input.yaml")
 		result = SdtmModel.build(json, sparql)
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
 	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
-    expect(result.to_json).to eq(expected)
+		expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expected[:class_refs].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
+    expect(result.to_json).to hash_equal(expected)
 		expect(result.errors.full_messages.to_sentence).to eq("")
 		expect(result.errors.count).to eq(0)
   end

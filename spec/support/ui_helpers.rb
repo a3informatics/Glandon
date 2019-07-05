@@ -333,6 +333,11 @@ module UiHelpers
     return page.evaluate_script("rhGetViaName(\"#{text}\")").to_i
   end
 
+  def ui_get_search_results
+    #return page.evaluate_script("rhGetViaName(\"A\")").to_i
+    return page.evaluate_script("d3GetSearch()")
+  end
+
   def ui_check_validation_error(current_key, field, text, error_msg, to_key)
     ui_click_node_key(current_key)
     fill_in field, with: text

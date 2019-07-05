@@ -183,7 +183,7 @@ function d3FindData(key) {
  * Search for the node by label
  *
  * @param label [String] the label for the node
- * @return [Object] the node data
+ * @return [Void] no return
  */
 function d3Search(label) {
   var result = null;
@@ -195,28 +195,43 @@ function d3Search(label) {
       d3.select(nodes[0][i]).select("text").classed("search-result-text", true);
     }
   }
-  return data;
+  //return data;
 }
 
 
 /**
  * Clear Search 
  *
- * @return [Object] the node data
+ * @return [Void] no return
  */
 function d3ClearSearch() {
-  var result = null;
+  //var result = null;
   var nodes = d3.selectAll("g.node");
   for (var i=0; i<nodes[0].length; i++) {
-    var data = nodes[0][i].__data__;
+    //var data = nodes[0][i].__data__;
     if (d3.select(nodes[0][i]).select("rect").classed("search-result-bg")) {
       d3.select(nodes[0][i]).select("rect").classed("search-result-bg", false);
       d3.select(nodes[0][i]).select("text").classed("search-result-text", false);
     }
   }
-  return result;
+  //return result;
 }
 
+/**
+ * Get Search 
+ *
+ * @return [Array] array of nodes
+ */
+function d3GetSearch() {
+  var result = [];
+  var nodes = d3.selectAll("g.node");
+  for (var i=0; i<nodes[0].length; i++) {
+    if (d3.select(nodes[0][i]).select("rect").classed("search-result-bg")) {
+      result.push(nodes[0][i].__data__.name);
+    }
+  }
+  return result;
+}
 
 /**
  * Restore the node colour by element reference

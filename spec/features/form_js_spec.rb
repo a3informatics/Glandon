@@ -102,7 +102,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'CRF: Demographics DM1 01 (V0.0.0, 1, Candidate)'
     end
 
-    it "allows a form show page to be viewed", js: true do
+    it "allows a form show page to be viewed (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
@@ -113,7 +113,7 @@ describe "Forms", :type => :feature do
       click_link 'Close'
     end
 
-    it "allows a form show page to be viewed, show table details", js: true do
+    it "allows a form show page to be viewed, show table details (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
@@ -132,7 +132,7 @@ describe "Forms", :type => :feature do
       #ui_check_table_row_class('main', 8, 'warning')
     end
 
-    it "allows a form show page to be viewed, show table details, VS BC", js: true do
+    it "allows a form show page to be viewed, show table details, VS BC (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
@@ -145,7 +145,7 @@ describe "Forms", :type => :feature do
       ui_check_table_row('main', 12, ["12", "Result Units (--ORRESU)", "Result units?", "string", "", "", "oz [C48519]<br/>g [C48155]]<br/>LB [C48531]]<br/>kg [C28252]", "", ""])
     end
 
-    it "allows a form show page to be viewed, edit button check", js: true do
+    it "allows a form show page to be viewed, edit button check (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
@@ -157,7 +157,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Edit: Vital Signs Baseline VS BASELINE (V0.1.0, 2, Incomplete)' # Create a new version
     end
 
-    it "allows a form show page to be viewed", js: true do
+    it "allows a form show page to be viewed (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
@@ -167,7 +167,7 @@ describe "Forms", :type => :feature do
       click_link 'Close'
     end
 
-    it "allows a form show page to be viewed, view tree details, DM", js: true do
+    it "allows a form show page to be viewed, view tree details, DM (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
@@ -216,7 +216,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(3, ["Completion Instructions:", ""])     
     end
 
-    it "allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY", js: true do
+    it "allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
@@ -278,7 +278,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(5, ["Notes:", ""])  
     end
 
-    it "allows a form to be deleted", js: true do
+    it "allows a form to be deleted (REQ-MDR-CRF-010)", js: true do
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
@@ -317,7 +317,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content "Nice Label"
     end
     
-    it "allows a form to be created, field validation", js: true do
+    it "allows a form to be created, field validation (REQ-MDR-CRF-010)", js: true do
       visit '/forms/new'
       expect(page).to have_content 'New Form:'
       fill_in 'form[identifier]', with: '£££'
@@ -375,7 +375,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Show: Test Branch Form A BRANCH FORM (V0.1.0, 1, Incomplete)'
     end
 
-    it "allows for a Form to be exported as JSON", js: true do
+    it "allows for a Form to be exported as JSON (REQ-MDR-CRF-100)", js: true do
       clear_downloads
       visit '/forms'
       expect(page).to have_content 'Index: Forms'
@@ -391,7 +391,7 @@ describe "Forms", :type => :feature do
       expect(file).to eq(expected)
     end
 
-    it "allows for a Forms to be exported as TTL", js: true do
+    it "allows for a Forms to be exported as TTL (REQ-MDR-CRF-100)", js: true do
       clear_downloads
       visit '/forms'
       expect(page).to have_content 'Index: Forms'

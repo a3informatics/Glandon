@@ -56,7 +56,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'History: BC C49677'
     end
 
-    it "history allows the show page to be viewed" do
+    it "history allows the show page to be viewed (REQ-MDR-BC-010)" do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
@@ -93,7 +93,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content("Biomedical Concept was successfully created.")
     end
 
-    it "allows for a BC to be edited" do
+    it "allows for a BC to be edited (REQ-MDR-BC-010)" do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click

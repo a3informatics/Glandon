@@ -1,8 +1,16 @@
 function getFill(gRef) {
+  return d3.select(gRef).select('circle')[0][0].style.fill; // Syntax a bit evil, not sure why the [0][0]  
+}
+
+function getFillRect(gRef) {
 	return d3.select(gRef).select('rect')[0][0].style.fill; // Syntax a bit evil, not sure why the [0][0]  
 }
 
 function selectedNodeTest(fill) {
+  return (fill === "#4682b4" || fill === "steelblue");
+}
+
+function selectedNodeTestRect(fill) {
 	return (fill === "#4682b4" || fill === "rgb(66, 139, 202)");
 }
 
@@ -11,10 +19,18 @@ function hiddenNodeTest(fill) {
 }
 
 function enabledNodeTest(fill) {
+  return (fill === '#3cb371' || fill === "mediumseagreen");
+}
+
+function enabledNodeTestRect(fill) {
 	return (fill === "white" || fill === "rgb(217, 83, 79)");
 }
 
 function disabledNodeTest(fill) {
+  return (fill === '#ff4500' || fill === "orangered");
+}
+
+function disabledNodeTestRect(fill) {
 	return (fill === "white" || fill === "rgb(217, 83, 79)");
 }
 

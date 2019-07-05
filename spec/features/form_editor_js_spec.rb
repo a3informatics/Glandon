@@ -61,7 +61,7 @@ describe "Form Editor", :type => :feature do
       fill_in 'groupLabel', with: "Top Level Group"
     end
 
-    it "allows a form to be defined, Form Panel", js: true do
+    it "allows a form to be defined, Form Panel (REQ-MDR-CRF-010)", js: true do
       create_form("TEST 1A", "Test", "Test 1") # TEST 1 -> TEST1A to avoid name clash
       fill_in 'formCompletion', with: "Completion for the form **level**"
       fill_in 'formNote', with: "Notes for *form*"
@@ -72,7 +72,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('formNote', "Notes for *form*")
     end
 
-    it "allows a group to be added, Group Panel", js: true do
+    it "allows a group to be added, Group Panel (REQ-MDR-CRF-040, REQ-MDR-CRF-050, REQ-MDR-CRF-060)", js: true do
       create_form("TEST 2A", "Test", "Test 2") # TEST 2 -> TEST2A to avoid name clash
       click_button 'formAddGroup'
       expect(page).to have_content 'Group Details'
@@ -110,7 +110,7 @@ describe "Form Editor", :type => :feature do
       ui_click_node_name("Group 1")
     end
 
-    it "allows a question to be added, Question Panel", js: true do
+    it "allows a question to be added, Question Panel (REQ-MDR-CRF-020)", js: true do
       create_form("TEST 4", "Test", "Test 4") 
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
@@ -138,7 +138,7 @@ describe "Form Editor", :type => :feature do
       ui_check_radio('form_datatype_s', true)
     end
 
-    it "allows a label to be added, Label Panel", js: true do 
+    it "allows a label to be added, Label Panel (REQ-MDR-CRF-020)", js: true do 
       create_form("TEST 5", "Test", "Test 5") 
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
@@ -170,7 +170,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('placeholderText', "This is some placeholder text")
     end
 
-    it "allows a mapping to be added, Mapping Panel", js: true do
+    it "allows a mapping to be added, Mapping Panel (REQ-MDR-CRF-020)", js: true do
       create_form("TEST 7", "Test", "Test 7") 
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
@@ -192,7 +192,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content 'Date and Time (--DTC)'
     end
 
-    it "allows items to be moved up and down", js: true do
+    it "allows items to be moved up and down (REQ-MDR-CRF-080)", js: true do
       load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 2"]')
@@ -247,7 +247,7 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("You cannot move the node down.")      
     end
 
-    it "allows groups to be moved up and down", js: true do
+    it "allows groups to be moved up and down (REQ-MDR-CRF-080)", js: true do
       load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Repeating Group"]')
@@ -258,7 +258,7 @@ describe "Form Editor", :type => :feature do
       ui_check_node_ordinal(key1, 3)
     end
 
-    it "allows for BCs to be moved up and down", js: true do
+    it "allows for BCs to be moved up and down (REQ-MDR-CRF-080)", js: true do
     	load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       ui_click_node_key(key1)
@@ -282,7 +282,7 @@ describe "Form Editor", :type => :feature do
 			ui_check_node_ordinal(key1, 3)
 		end
 
-    it "allows for BC Items to be moved up and down", js: true do
+    it "allows for BC Items to be moved up and down (REQ-MDR-CRF-080)", js: true do
     	load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Diastolic Blood Pressure (BC C25299)", "Result Value (--ORRES)"]')
       ui_click_node_key(key1)
@@ -499,7 +499,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('commonLabel', "Common New 1")
     end
 
-    it "allows questions to be updated, check enable and disable on the panel - WILL FAIL CURRENTLY ", js: true do
+    it "allows questions to be updated, check enable and disable on the panel - WILL FAIL CURRENTLY (REQ-MDR-CRF-050, REQ-MDR-CRF-070)", js: true do
       create_form("TEST QUESTION 1", "Test", "Test Question 1")
       click_button 'formAddGroup'
       expect(page).to have_content 'Group Details'
@@ -859,7 +859,7 @@ describe "Form Editor", :type => :feature do
       ui_check_input('bcNote', "Notes for BC")
     end
     
-    it "allows a BC property to have enabled and optional, completion instructions and notes", js: true do
+    it "allows a BC property to have enabled and optional, completion instructions and notes (REQ-MDR-CRF-050)", js: true do
       load_form("CRF TEST 1") 
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)", "Result Value (--ORRES)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
@@ -1049,7 +1049,7 @@ describe "Form Editor", :type => :feature do
       expect(tokens).to match_array([])
     end  
 
-    it "allows the fields to be valdated", js: true do
+    it "allows the fields to be validated", js: true do
       load_form("CRF TEST 1") 
       # Keys
       key_form = ui_get_key_by_path('["CRF Test Form"]')

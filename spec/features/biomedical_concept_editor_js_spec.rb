@@ -342,7 +342,7 @@ describe "Biomedical Concept Editor", :type => :feature do
      expect(page).to have_content("Terminology: Body Position (--POS)")
       select_terminology(3)
       wait_for_ajax_short
-     ui_button_disabled('tfe_add_item')
+      ui_button_disabled('tfe_add_item')
       ui_button_disabled('tfe_delete_item')
       ui_button_disabled('tfe_delete_all_items')
     end

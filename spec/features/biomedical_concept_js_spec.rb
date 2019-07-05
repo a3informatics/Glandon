@@ -45,7 +45,7 @@ describe "Biomedical Concepts", :type => :feature do
       ua_curator_login
     end
 
-    it "allows for a BC to be exported as JSON", js: true do
+    it "allows for a BC to be exported as JSON (REQ-MDR-BC-050)", js: true do
       clear_downloads
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
@@ -61,7 +61,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(file).to eq(expected)
     end
 
-    it "allows for a BC to be exported as TTL", js: true do
+    it "allows for a BC to be exported as TTL (REQ-MDR-BC-050)", js: true do
       clear_downloads
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
@@ -78,7 +78,7 @@ describe "Biomedical Concepts", :type => :feature do
       delete_data_file(sub_dir, "bc_export_results.ttl")
     end
 
-    it "allows for a new BC to be created, error", js: true do
+    it "allows for a new BC to be created, error (REQ-MDR-BC-020)", js: true do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       click_link 'New'
@@ -89,7 +89,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content("A Biomedical Concept Template must be selected.")   
     end
 
-    it "allows for a new BC to be created, I", js: true do
+    it "allows for a new BC to be created, I (REQ-MDR-BC-010, REQ-MDR-BC-020)", js: true do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       click_link 'New'
@@ -102,7 +102,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content("Biomedical Concept was successfully created.")   
     end
 
-    it "allows for a new BC to be created, II", js: true do
+    it "allows for a new BC to be created, II (REQ-MDR-BC-010, REQ-MDR-BC-020)", js: true do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       click_link 'New'
@@ -119,7 +119,7 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content("Biomedical Concept was successfully created.")   
     end
 
-    it "allows for a new BC to be created, field validation", js: true do
+    it "allows for a new BC to be created, field validation (REQ-MDR-BC-010, REQ-MDR-BC-020)", js: true do
       visit '/biomedical_concepts'
       expect(page).to have_content 'Index: Biomedical Concepts'
       click_link 'New'
