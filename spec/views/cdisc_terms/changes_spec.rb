@@ -69,7 +69,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     
   end
 
-    it 'displays the form, next link only' do 
+  it 'displays the form, next link only' do 
 
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
     links = read_yaml_file(sub_dir, "changes_links_3.yaml")

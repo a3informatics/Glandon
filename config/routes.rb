@@ -200,31 +200,21 @@ Rails.application.routes.draw do
   resources :cdisc_terms do
     collection do
       get :find_submission
-      #get :changes_calc
-      #get :changes_report
-      get :compare
-      get :compare_calc
-      #get :submission
-      #get :submission_calc
-      #get :submission_report
       get :history
       get :history_results
       get :search
       get :search_results
-      get :import
-      get :load
-      #get :file
-      #delete :file_delete
     end
     member do
       get :changes
       get :changes_results
+      get :changes_report
       get :submission
       get :submission_results
-      #get :submission_report
-      get :cross_reference
-      get :import_cross_reference
-      post :create_cross_reference
+      get :submission_report
+      #get :cross_reference
+      #get :import_cross_reference
+      #post :create_cross_reference
       get :export_csv
     end
   end

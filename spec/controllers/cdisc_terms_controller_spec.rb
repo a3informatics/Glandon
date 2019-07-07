@@ -37,26 +37,21 @@ describe CdiscTermsController do
       return params
     end
 
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
+  before :each do
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+    ]
+    load_files(schema_files, data_files)
+    load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+  end
 
-      load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
-      load_test_file_into_triple_store("CT_V41.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
-      delete_all_public_test_files
-    end
-
+=begin
     it "returns an error when it cannot find a code list, no current version" do
       @request.env['HTTP_REFERER'] = 'http://test.host/cdisc_term'
       params = { :notation => "VSTESTCDx" }
@@ -160,15 +155,25 @@ describe CdiscTermsController do
       get :changes_calc
       expect(response).to redirect_to("/cdisc_terms/changes")
     end
+=end
+    it "changes" do
+      @user.write_setting("max_term_display", 2)
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
+      get :changes, id: "aaa"
+      expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/changes"})
+      expect(response).to render_template("changes")
+    end
 
     it "obtains the change results" do
       @user.write_setting("max_term_display", 2)
       expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
       expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
-      expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
-      get :changes, id: "aaa"
-      expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/changes"})
-      expect(response).to render_template("changes")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :changes_results, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
     it "changes_report" do
@@ -176,27 +181,25 @@ describe CdiscTermsController do
       get :changes_report
       expect(response.content_type).to eq("application/pdf")
     end
-    
-    it "calculates the submission changes results, no file" do
-      delete_all_public_test_files
-      get :submission_calc
-      expect(response).to redirect_to("/backgrounds")
-    end
 
-    it "calculates the submission changes results, file" do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
-      get :submission_calc
-      expect(response).to redirect_to("/cdisc_terms/submission")
-    end
-
-    it "obtains the submission change results" do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
-      get :submission
-      expect(assigns(:previous_version)).to eq(nil)
-      expect(assigns(:next_version)).to eq(nil)
+    it "submission" do
+      @user.write_setting("max_term_display", 2)
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
+      get :submission, id: "aaa"
+      expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/submission"})
       expect(response).to render_template("submission")
+    end
+
+    it "obtains the submission results" do
+      @user.write_setting("max_term_display", 2)
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:submission).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :submission_results, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
     it "submission_report" do
@@ -208,7 +211,7 @@ describe CdiscTermsController do
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"cdisc_submission.pdf\"")
       expect(assigns(:render_args)).to eq({page_size: @user.paper_size, orientation: 'Landscape', lowquality: true, basic_auth: nil})
     end
-    
+
   end
 
   describe "Content Admin User" do
