@@ -176,32 +176,21 @@ class CdiscTermsController < ApplicationController
     end
   end
 
-  # def submission_calc
-  #   authorize CdiscTerm, :view?
-  #   if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_SUB)
-  #     redirect_to submission_cdisc_terms_path
-  #   else
-  #     hash = CdiscTerm.submission_changes
-  #     @cdiscTerm = hash[:object]
-  #     @job = hash[:job]
-  #     if @cdiscTerm.errors.empty?
-  #       redirect_to backgrounds_path
-  #     else
-  #       flash[:error] = @cdiscTerm.errors.full_messages.to_sentence
-  #       redirect_to history_cdisc_terms_path
-  #     end
-  #   end
-  # end
+  def submission
+    authorize CdiscTerm, :view?
+    @version_count = current_user.max_term_display.to_i
+    @ct = CdiscTerm.find(params[:id], false)
+    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_cdisc_term_path(v)}
+  end
 
-  # def submission
-  #   authorize CdiscTerm, :view?
-  #   version = get_version
-  #   full_results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-  #   @results = CdiscTerm::Utility.trim_submission_results(full_results, version, current_user.max_term_display.to_i)
-  #   @previous_version = CdiscTerm::Utility.previous_version(full_results[:versions], @results[:versions].first[:version])
-  #   @next_version = CdiscTerm::Utility.next_version(full_results[:versions], @results[:versions].first[:version], 
-  #   	current_user.max_term_display.to_i, full_results[:versions].length)
-  # end
+  def submission_results
+    authorize CdiscTerm, :view?
+    ct = CdiscTerm.find(params[:id], false)
+    cls = ct.submission(current_user.max_term_display.to_i)
+    render json: {data: cls}
+  end
 
   # def submission_report
   #   authorize CdiscTerm, :view?

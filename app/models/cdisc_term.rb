@@ -167,10 +167,123 @@ class CdiscTerm < Thesaurus
     {versions: versions, items: final_results}
   end
 
+  # Submisison
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def submission(window_size)
+    raw_results = {}
+    final_results = {}
+    versions = []
+    start_index = 0
+    first_index = 0
+
+    # Get the version set. Work out if we need a dummy first one.
+    items = self.class.history(identifier: C_IDENTIFIER, scope: owner)
+    first_index = items.index {|x| x.uri == self.uri}    
+    if first_index == 0 
+      start_index = 0 
+      raw_results["dummy"] = {version: "0", date: "", children: []} if first_index == 0
+    else
+      start_index = first_index - 1
+      raw_results = {}
+    end    
+    version_set = items.map {|e| e.uri}
+    version_set = version_set[start_index..(first_index + window_size - 1)]
+
+    items[start_index..(first_index + window_size - 1)].each do |x|
+      raw_results[x.uri.to_s] = {version: x.version, date: "#{x.creation_date}".to_time_with_default.strftime("%Y-%m-%d"), children: []}
+    end
+
+    # Query
+    parts = []
+    version_set.each_with_index do |x, index| 
+      next if index == 0
+      parts << %Q{
+{
+  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?p } MINUS
+  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?p }
+  ?p th:identifier ?i2 . 
+  ?p (th:preferredTerm/isoC:label) ?l . 
+  ?cl th:narrower ?p . 
+  ?cl th:identifier ?i .
+  #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?x . 
+  ?x th:identifier ?i2 . 
+  ?cl2 th:narrower ?x . 
+  ?cl2 th:identifier ?i .
+  ?p th:notation ?n . 
+  ?x th:notation ?xclin . 
+  FILTER (?xclin != ?n)
+  BIND (#{x.to_ref} as ?e)
+} 
+      }    
+    end
+    query_string = %Q{
+SELECT ?e ?i ?cl ?n ?i2 ?l WHERE
+{
+  { #{parts.join(" UNION\n")} }
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    triples = query_results.by_object_set([:e, :i, :cl, :l, :n, :i2])
+    triples.each do |entry|
+      uri = entry[:e].to_s
+      raw_results[uri][:children] << DiffResultSubmission[key: "#{entry[:i]}.#{entry[:i2]}", uri: entry[:cl], label: entry[:l], notation: entry[:n], identifier: entry[:i2]]
+    end
+
+    # Get the version array
+    raw_results.sort_by {|k,v| v[:version]}
+    raw_results.each {|k,v| versions << v[:date]}
+    versions = versions.drop(1)
+
+    # Build the skeleton final results with a default value.
+    initial_status = [:no_change] * versions.length
+    raw_results.each do |uri, version|
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if final_results.key?(key)
+        final_results[key] = {key: entry[:key], label: entry[:label] , notation: entry[:notation], identifier: entry[:identifier], status: initial_status.dup}
+      end
+    end
+
+    # Process the changes
+    previous_version = nil
+    base_version = raw_results.map{|k,v| v[:version]}[1].to_i
+    raw_results.each do |uri, version|
+      version_index = version[:version].to_i - base_version
+      if previous_version.nil?
+        # nothing needed?
+      else
+        version[:children].each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = :updated
+        end
+      end
+      previous_version = version
+    end
+
+    # And return
+    {versions: versions, items: final_results}
+  end
+
   class DiffResult < Hash
 
     def no_change?(other_hash)
       self[:uri] == other_hash[:uri]
+    end
+
+    def eql?(other_hash)
+      self[:key] == other_hash[:key]
+    end
+
+    def hash
+      self[:key].hash
+    end
+
+  end
+
+  class DiffResultSubmission < Hash
+
+    def no_change?(other_hash)
+      self[:uri] == other_hash[:uri] && self[:notation] == other_hash[:notation]
     end
 
     def eql?(other_hash)

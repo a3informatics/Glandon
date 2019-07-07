@@ -452,4 +452,50 @@ describe CdiscTerm do
 
   end
 
+  describe "CDISC Submission Changes" do
+
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
+      load_versions(1..13)
+    end
+
+    after :each do
+      #
+    end
+
+    it "calculates changes, window 4, general" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
+      actual = ct.submission(4)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml", write_file: true)
+    end
+
+    it "calculates changes, window 10, large" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
+      actual = ct.submission(10)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml", write_file: true) 
+    end
+
+    it "calculates changes, window 4, first item" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
+      actual = ct.submission(4)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml", write_file: true)
+    end
+
+    it "calculates changes, window 4, second" do
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
+      actual = ct.submission(4)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml", write_file: true)
+    end
+
+  end
+
 end

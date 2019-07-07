@@ -1,54 +1,7 @@
-<%= javascript_include_tag 'standard_datatable' %>
-<% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Submission") %>
-<h3>Submission Values Changes:</h3>
+<%= javascript_include_tag 'cdisc_term/changes' %>
+<%= javascript_tag "var url_path = '#{submission_results_cdisc_term_path(@ct)}';" %>
+<%= javascript_tag "var column_count = '#{@version_count}';" %>
+<% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
 <div class="col-md-12">
-	<table id="main" class="table table-striped table-bordered table-condensed">
-	  	<thead>
-	  		<tr>
-				<th>Code List</th>
-				<th>Item</th>
-				<th>Label</th>
-				<th>Original Submission Value</th>
-				<% @results[:versions].each do |version| %>
-		    	<th class="text-center"><%= version[:version_label] %></th>
-		  	<% end %>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>	
-			<% @results[:children].each do |clKey, clEntry| %>
-				<% cli = clEntry %>
-				<% id = cli[:id]%>
-				<% identifier = cli[:identifier]%>
-				<% parent_identifier = cli[:parent_identifier]%>
-				<% label = cli[:label]%>
-				<% submission = cli[:notation]%>
-				<tr>
-					<td><%= parent_identifier %></td>
-					<td><%= identifier %></td>
-					<td><%= label %></td>
-					<td><%= submission %></td>
-					<% cli[:result].each do |result| %>
-						<% if result[:status] == :updated %>
-							<td class="text-center"><span class="text-center glyphicon glyphicon-edit text-warning"/></td>
-						<% else %>
-							<td class="text-center">&nbsp;</td>
-						<% end %>
-					<% end %>
-					<td><%=link_to "Changes", changes_cdisc_clis_path(id: id, cdisc_cli: {namespace: cli[:namespace]}), :class => "btn btn-primary btn-xs" %></td>
-				</tr>	
-			<% end %>
-		</tbody>
-	</table>
-	<% button_class = "btn btn-primary" %>
-	<% previous_class = @previous_version.nil? ? button_class + " disabled" : button_class %>
-	<% next_class = @next_version.nil? ? button_class + " disabled" : button_class %>
-	<%= link_to submission_cdisc_terms_path(cdisc_term: { version: @previous_version }), class: "#{previous_class}" do %>
-  	<span class="glyphicon glyphicon-chevron-left"></span>
-	<% end %>
-	<%= link_to submission_cdisc_terms_path(cdisc_term: { version: @next_version }), class: "#{next_class}" do %>
-  	<span class="glyphicon glyphicon-chevron-right"></span>
-	<% end %>
-	<%= link_to "Close", history_cdisc_terms_path, :class => "btn btn-primary" %>
-	<%= link_to "Report", submission_report_cdisc_terms_path(:format => :pdf) , :class => "btn btn-primary", :target => "_blank" %>
+  <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Submission: CDISC Terminology", column_count: @version_count, links: @links} %>
 </div>
