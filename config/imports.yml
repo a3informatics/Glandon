@@ -660,6 +660,172 @@ defaults: &defaults
                 klass: CdiscCl
                 map: {}
                 condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
+                method: create_child
+                object: child
+                klass: CdiscCli
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+          - 
+            label: "Codelist Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+          - 
+            label: "Codelist Extensible (Yes/No)"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+                condition: 
+                  method: column_blank?
+                  column: 2
+          - 
+            label: "Codelist Name" 
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 2
+          - 
+            label: "CDISC Submission Value"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+          - 
+            label: "CDISC Preferred Term"
+            actions: []
+          -
+            label: "CDISC Synonym(s)"
+            actions:
+              -
+                method: tokenize_and_create_shared
+                object: parent
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+                condition: 
+                  method: column_blank?
+                  column: 2
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+          - 
+            label: "CDISC Definition"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: definition
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+          - 
+            label: "NCI Preferred Term"
+            actions:
+              -
+                method: create_shared
+                object: parent
+                property: preferredTerm
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 2
+              -
+                method: create_shared
+                object: child
+                property: preferredTerm
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+        version_5:
+          selection:
+            date: true
+          columns: 
+          - 
+            label: "Code"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+              -
+                method: create_parent
+                object: parent
+                klass: CdiscCl
+                map: {}
+                condition: 
                   method: column_blank?
                   column: 2
               -

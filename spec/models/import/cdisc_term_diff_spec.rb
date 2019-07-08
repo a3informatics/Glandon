@@ -54,7 +54,7 @@ describe CdiscTerm do
   end
 
 	def check_cl_result(results, cl, status)
-  	puts "***** Error checking CL Result: #{cl} for expected result #{status} *****" if results[:children][cl.to_sym][:status] != status
+  	puts "***** Error checking CL Result: #{cl} for expected result #{status} *****" if results[:children][cl.to_sym][:status][:status] != status
     expect(results[:children][cl.to_sym][:status]).to eq(status)
   end
 
@@ -95,6 +95,23 @@ byebug
     check_ttl_fix(filename, "CT_V#{version}.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
+  end
+
+  def check_cl_results(results, expected)
+    expected.each {|e| check_cl_result(results, e[:cl], e[:status])}
+  end
+
+  def load_versions(range)
+    range.each {|n| load_version(n)}
+  end
+
+  def process_load_and_compare(filenames, date, version, create_file=false)
+    files = []
+    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct/sdtm", filenames[index])}
+    process_term(version, date, files, create_file)
+    load_version(version)
+    th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
+    results = th.changes(2)
   end
 
   it "Base create, version 1 SDTM - 2007" do
@@ -326,21 +343,204 @@ byebug
     check_cl_results(results[current_version], expected) 
   end
 
-  def check_cl_results(results, expected)
-    expected.each {|e| check_cl_result(results, e[:cl], e[:status])}
+  it "Create version 14 SDTM - 2009" do
+    current_version = 14
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2009-02-17.xlsx"], "2009-02-17", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
   end
 
-  def load_versions(range)
-    range.each {|n| load_version(n)}
+  it "Create version 15 SDTM - 2009" do
+    current_version = 15
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2009-02-18.xlsx"], "2009-02-18", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
   end
 
-  def process_load_and_compare(filenames, date, version, create_file=false)
-    files = []
-    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct/sdtm", filenames[index])}
-    process_term(version, date, files, create_file)
-    load_version(version)
-    th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
-    results = th.changes(2)
+  it "Create version 16 SDTM - 2009" do
+    current_version = 16
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2009-05-01.xlsx"], "2009-05-01", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 17 SDTM - 2009" do
+    current_version = 17
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2009-07-06.xlsx"], "2009-07-06", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 18 SDTM - 2009" do
+    current_version = 18
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2009-10-06.xlsx"], "2009-10-06", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 19 SDTM - 2010" do
+    current_version = 19
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2010-03-05.xlsx", "ADaM Terminology 2010-03-05.xlsx", "CDASH Terminology 2010-03-05.xlsx"], "2010-03-05", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 20 SDTM - 2010" do
+    current_version = 20
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2010-04-08.xlsx"], "2010-04-08", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 21 SDTM - 2010" do
+    current_version = 21
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2010-07-02.xlsx"], "2010-07-02", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 22 SDTM - 2010" do
+    current_version = 22
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2010-10-06.xlsx", "ADaM Terminology 2010-10-06.xlsx"], "2010-10-06", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
+  end
+
+  it "Create version 23 SDTM - 2010" do
+    current_version = 23
+    load_versions(1..(current_version-1))
+    results = process_load_and_compare(["SDTM Terminology 2010-10-22.xlsx"], "2010-10-22", current_version, true)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change}
+    ]
+    check_cl_results(results[current_version], expected) 
   end
 
 =begin

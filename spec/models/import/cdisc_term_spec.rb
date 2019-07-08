@@ -59,10 +59,12 @@ describe Import::CdiscTerm do
     expect(object.sheet({date: "01/05/2007"})).to eq(:version_2)
     expect(object.sheet({date: "31/08/2008"})).to eq(:version_2)
     expect(object.sheet({date: "01/09/2008"})).to eq(:version_3)
-    expect(object.sheet({date: "31/03/2010"})).to eq(:version_3)
-    expect(object.sheet({date: "01/04/2010"})).to eq(:version_4)
-    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_4)
-    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_4) # Future date
+    expect(object.sheet({date: "30/04/2009"})).to eq(:version_3)
+    expect(object.sheet({date: "01/05/2009"})).to eq(:version_4)
+    expect(object.sheet({date: "31/03/2010"})).to eq(:version_4)
+    expect(object.sheet({date: "01/04/2010"})).to eq(:version_5)
+    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_5)
+    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_5) # Future date
   end
 
   it "import, no errors" do

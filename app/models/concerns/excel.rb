@@ -58,7 +58,7 @@ class Excel
     end
     headers.each_with_index do |header, i|
       next if header == info[:columns][i]
-      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected #{info[:columns][i]}, found #{header}.")
+      @errors.add(:base, "#{info[:selection][:label]} sheet in the excel file, incorrect #{(i+1).ordinalize} column name. Expected '#{info[:columns][i]}', found '#{header}'.")
       return false
     end 
     return true
