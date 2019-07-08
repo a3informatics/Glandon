@@ -22,8 +22,6 @@ class ApiController < ActionController::Base
   C_SDTM_IG_TYPE = UriV2.new({:namespace => SdtmIg::C_SCHEMA_NS, :id => SdtmIg::C_RDF_TYPE})
   C_BC_TYPE = UriV2.new({:namespace => BiomedicalConcept::C_SCHEMA_NS, :id => BiomedicalConcept::C_RDF_TYPE}) 
   C_BCT_TYPE = UriV2.new({:namespace => BiomedicalConceptTemplate::C_SCHEMA_NS, :id => BiomedicalConceptTemplate::C_RDF_TYPE}) 
-  C_TH_TYPE = UriV2.new({:namespace => Thesaurus::C_SCHEMA_NS, :id => Thesaurus::C_RDF_TYPE})
-  C_THC_TYPE = UriV2.new({:namespace => ThesaurusConcept::C_SCHEMA_NS, :id => ThesaurusConcept::C_RDF_TYPE})
   C_BCP_TYPE = UriV2.new({:namespace => BiomedicalConceptCore::Property::C_SCHEMA_NS, :id => BiomedicalConceptCore::Property::C_RDF_TYPE})
   C_SDTM_UDV_TYPE = UriV2.new({:namespace => SdtmUserDomain::Variable::C_SCHEMA_NS, :id => SdtmUserDomain::Variable::C_RDF_TYPE})
   C_SDTM_IGDV_TYPE = UriV2.new({:namespace => SdtmIgDomain::Variable::C_SCHEMA_NS, :id => SdtmIgDomain::Variable::C_RDF_TYPE})
@@ -65,10 +63,6 @@ class ApiController < ActionController::Base
       C_BCT => { 
         :label => C_BCT, 
         :class => "BiomedicalConceptTemplate"
-      },
-      C_TH => { 
-        :label => C_TH, 
-        :class => "Thesaurus"
       }
     }
 
@@ -105,14 +99,6 @@ class ApiController < ActionController::Base
       C_BCT_TYPE.to_s => { 
         :rdf_type => C_BCT_TYPE, 
         :class => "BiomedicalConceptTemplate"
-      },
-      C_TH_TYPE.to_s => { 
-        :rdf_type => C_TH_TYPE, 
-        :class => "Thesaurus"
-      },
-      C_THC_TYPE.to_s => { 
-        :rdf_type => C_THC_TYPE, 
-        :class => "ThesaurusConcept"
       },
       C_BCP_TYPE.to_s => { 
         :rdf_type => C_BCP_TYPE, 
