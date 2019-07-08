@@ -15,7 +15,8 @@ describe Reports::CdiscChangesReport do
   end
 
   after :each do
-    @user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.where(:email =>  "wicked@example.com").first
+    user.destroy
   end
 
   it "creates the report" do

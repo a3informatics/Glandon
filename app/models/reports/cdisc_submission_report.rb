@@ -1,3 +1,7 @@
+# Report CDISC Submission Report
+#
+# @author Dave Iberson-Hurst
+# @since 2.20.0
 class Reports::CdiscSubmissionReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
@@ -6,9 +10,8 @@ class Reports::CdiscSubmissionReport
 
   # Create the domain report
   #
-  # @param domain [Domain] the domain object
-  # @param options [Hash] the options
-  # @param user [User] the user
+  # @param [Hash] results the submission changes report
+  # @param [User] user the current user
   # @return [String] the HTML
   def create(results, user)
     @report = Reports::WickedCore.new
@@ -39,7 +42,7 @@ private
     html += "<h3>Conventions</h3>"
     html += "<p>In the following table each page contains two tables. The first table indicates when a change took "
     html += "place while the second table details the change. The changes are releated by the index thus [n].</p>"
-    results[:children].each do |key, entry|
+    results[:items].each do |key, entry|
       if index % C_PER_PAGE == 0
         # Output existing
         html += "<h3>Changes</h3>" if page == 1  
@@ -76,7 +79,7 @@ private
     html += "<th>Label</th>"
     html += "<th>Original Submission Value</th>"
     versions.each do |label|
-      html += "<th>#{label[:version_label]}</th>"
+      html += "<th>#{label}</th>"
     end
     html += "</tr></thead><tbody>"
     return html
@@ -101,7 +104,7 @@ private
     html += "<td>#{entry[:identifier]}</td>"
     html += "<td>#{entry[:label]}</td>"
     html += "<td>#{entry[:notation]}</td>"
-    entry[:result].each do |result|
+    entry[:status].each do |result|
       status = result[:status]
       if status == :updated
         html += "<td>[#{@ref}]</td>"
@@ -117,11 +120,11 @@ private
 
   def secondary_data_row(entry)
     html = ""
-    entry[:result].each do |result|
+    entry[:status].each do |result|
       html += "<tr>"
       status = result[:status]
       if status == :updated
-        current = result[:current].empty? ? C_DELETED : result[:current]
+        current = result[:notation].empty? ? C_DELETED : result[:notation]
         html += "<td>[#{result[:ref]}]</td>"
         html += "<td>#{result[:previous]}</td>"
         html += "<td>#{current}</td>"

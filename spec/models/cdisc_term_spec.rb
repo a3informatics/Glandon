@@ -429,25 +429,25 @@ describe CdiscTerm do
     it "calculates changes, window 4, general" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", write_file: true)
     end
 
     it "calculates changes, window 10, large" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
       actual = ct.changes(10)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml") 
+      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml", write_file: true) 
     end
 
     it "calculates changes, window 4, first item" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml", write_file: true)
     end
 
     it "calculates changes, window 4, second" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml", write_file: true)
     end
 
   end
@@ -475,25 +475,25 @@ describe CdiscTerm do
     it "calculates changes, window 4, general" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml")
     end
 
     it "calculates changes, window 10, large" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
       actual = ct.submission(10)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml", write_file: true) 
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml") 
     end
 
     it "calculates changes, window 4, first item" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml")
     end
 
     it "calculates changes, window 4, second" do
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"), false)
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml")
     end
 
   end

@@ -1,9 +1,9 @@
 ---
 :versions:
+- '2007-03-06'
 - '2007-04-20'
 - '2007-04-26'
 - '2007-05-31'
-- '2007-06-05'
 :items:
   :C65047.C64809:
     :key: C65047.C64809
@@ -11,13 +11,13 @@
     :notation: SODIUM
     :identifier: C64809
     :status:
-    - :status: :updated
-      :notation: SODIUM
-      :previous: NA
     - &1
       :status: :no_change
       :notation: ''
       :previous: ''
+    - :status: :updated
+      :notation: SODIUM
+      :previous: NA
     - *1
     - *1
   :C66737.C49687:
@@ -27,10 +27,10 @@
     :identifier: C49687
     :status:
     - *1
+    - *1
     - :status: :updated
       :notation: Phase IIIaTrial
       :previous: Phase IIIA Trial
-    - *1
     - *1
   :C66737.C49688:
     :key: C66737.C49688
@@ -39,10 +39,10 @@
     :identifier: C49688
     :status:
     - *1
+    - *1
     - :status: :updated
       :notation: Phase IIb Trial
       :previous: Phase II B Trial
-    - *1
     - *1
   :C66737.C49686:
     :key: C66737.C49686
@@ -51,10 +51,10 @@
     :identifier: C49686
     :status:
     - *1
+    - *1
     - :status: :updated
       :notation: Phase IIa Trial
       :previous: Phase II A Trial
-    - *1
     - *1
   :C66737.C49689:
     :key: C66737.C49689
@@ -63,10 +63,10 @@
     :identifier: C49689
     :status:
     - *1
+    - *1
     - :status: :updated
       :notation: Phase IIIb Trial
       :previous: Phase III B Trial
-    - *1
     - *1
   :C67152.C20587:
     :key: C67152.C20587
@@ -76,10 +76,10 @@
     :status:
     - *1
     - *1
+    - *1
     - :status: :updated
       :notation: Age Group
       :previous: Age Span
-    - *1
   :C66790.C43234:
     :key: C66790.C43234
     :label: Not Stated
@@ -88,10 +88,10 @@
     :status:
     - *1
     - *1
+    - *1
     - :status: :updated
       :notation: NOT REPORTED
       :previous: Not reported
-    - *1
   :C67153.C49680:
     :key: C67153.C49680
     :label: Body Frame Size
@@ -100,10 +100,10 @@
     :status:
     - *1
     - *1
+    - *1
     - :status: :updated
       :notation: Body Frame Size
       :previous: Frame Size
-    - *1
   :C67153.C12472:
     :key: C67153.C12472
     :label: Adipose Tissue
@@ -112,7 +112,7 @@
     :status:
     - *1
     - *1
+    - *1
     - :status: :updated
       :notation: Adipose Tissue
       :previous: Body Fat
-    - *1

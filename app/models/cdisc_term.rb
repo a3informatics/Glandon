@@ -65,7 +65,7 @@ class CdiscTerm < Thesaurus
     first_index = items.index {|x| x.uri == self.uri}    
     if first_index == 0 
       start_index = 0 
-      raw_results["dummy"] = {version: "0", date: "", children: []} if first_index == 0
+      raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
     else
       start_index = first_index - 1
       raw_results = {}
@@ -87,7 +87,7 @@ class CdiscTerm < Thesaurus
     triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
     triples.each do |entry|
       uri = entry[:e].to_s
-      raw_results[uri] = {version: entry[:v], date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
       raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
     end
 
@@ -97,7 +97,7 @@ class CdiscTerm < Thesaurus
     versions = versions.drop(1)
 
     # Build the skeleton final results with a default value.
-    initial_status = [:not_present] * versions.length
+    initial_status = [{ status: :not_present}] * versions.length
     raw_results.each do |uri, version|
       version[:children].each do |entry|
         key = entry[:key].to_sym
@@ -122,15 +122,15 @@ class CdiscTerm < Thesaurus
         common_items = version[:children] & previous_version[:children]
         deleted_items = previous_version[:children] - version[:children]
         new_items.each do |entry|
-          final_results[entry[:key].to_sym][:status][version_index] = :created
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
         end
         common_items.each do |entry|
           prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
           curr = version[:children].find{|x| x[:key] == entry[:key]}
-          final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? :no_change : :updated
+          final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
         end
         deleted_items.each do |entry|
-          final_results[entry[:key].to_sym][:status][version_index] = :deleted
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
         end
       end
       previous_version = version
@@ -156,7 +156,7 @@ class CdiscTerm < Thesaurus
     first_index = items.index {|x| x.uri == self.uri}    
     if first_index == 0 
       start_index = 0 
-      raw_results["dummy"] = {version: "0", date: "", children: []} if first_index == 0
+      raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
     else
       start_index = first_index - 1
       raw_results = {}
@@ -185,22 +185,22 @@ class CdiscTerm < Thesaurus
   ?cl2 th:narrower ?x . 
   ?cl2 th:identifier ?i .
   ?p th:notation ?n . 
-  ?x th:notation ?xclin . 
-  FILTER (?xclin != ?n)
+  ?x th:notation ?pn . 
+  FILTER (?pn != ?n)
   BIND (#{x.to_ref} as ?e)
 } 
       }    
     end
     query_string = %Q{
-SELECT ?e ?i ?cl ?n ?i2 ?l WHERE
+SELECT ?e ?i ?cl ?n ?pn ?i2 ?l WHERE
 {
   { #{parts.join(" UNION\n")} }
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-    triples = query_results.by_object_set([:e, :i, :cl, :l, :n, :i2])
+    triples = query_results.by_object_set([:e, :i, :cl, :l, :n, :pn, :i2])
     triples.each do |entry|
       uri = entry[:e].to_s
-      raw_results[uri][:children] << DiffResultSubmission[key: "#{entry[:i]}.#{entry[:i2]}", uri: entry[:cl], label: entry[:l], notation: entry[:n], identifier: entry[:i2]]
+      raw_results[uri][:children] << DiffResultSubmission[key: "#{entry[:i]}.#{entry[:i2]}", uri: entry[:cl], label: entry[:l], notation: entry[:n], previous: entry[:pn], identifier: entry[:i2]]
     end
 
     # Get the version array
@@ -209,7 +209,7 @@ SELECT ?e ?i ?cl ?n ?i2 ?l WHERE
     versions = versions.drop(1)
 
     # Build the skeleton final results with a default value.
-    initial_status = [:no_change] * versions.length
+    initial_status = [{ status: :no_change, notation: "", previous: ""}] * versions.length
     raw_results.each do |uri, version|
       version[:children].each do |entry|
         key = entry[:key].to_sym
@@ -223,11 +223,9 @@ SELECT ?e ?i ?cl ?n ?i2 ?l WHERE
     base_version = raw_results.map{|k,v| v[:version]}[1].to_i
     raw_results.each do |uri, version|
       version_index = version[:version].to_i - base_version
-      if previous_version.nil?
-        # nothing needed?
-      else
+      if !previous_version.nil?
         version[:children].each do |entry|
-          final_results[entry[:key].to_sym][:status][version_index] = :updated
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :updated, notation: entry[:notation], previous: entry[:previous]}
         end
       end
       previous_version = version

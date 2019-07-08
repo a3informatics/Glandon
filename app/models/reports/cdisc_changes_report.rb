@@ -1,3 +1,7 @@
+# Report CDISC Changes Report
+#
+# @author Dave Iberson-Hurst
+# @since 2.20.0
 class Reports::CdiscChangesReport
 
   C_CLASS_NAME = "Report::CdiscChangesReport"
@@ -6,9 +10,9 @@ class Reports::CdiscChangesReport
 
   # Create the CDISC changes report
   #
-  # @param results [Hash] the results hash
-  # @param user [User] the user
-  # @return [String] the HTML
+  # @param [Hash] results the results hash
+  # @param [User] user the current user
+  # @return [String] the HTML for the report
   def create(results, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Terminology Change Report", "", [], user)
@@ -62,7 +66,8 @@ private
       html += "<td>#{key}</td>"
       html += "<td>#{cl[:label]}</td>"
       html += "<td>#{cl[:notation]}</td>"
-      cl[:status].each do |status|
+      cl[:status].each do |entry|
+        status = entry[:status]
         if status == :created
           html += "<td>C</td>"
         elsif status == :no_change

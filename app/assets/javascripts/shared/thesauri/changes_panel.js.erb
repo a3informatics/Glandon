@@ -64,7 +64,7 @@ ChangesPanel.prototype.add = function () {
       $.each(result.data.items, function(key, item){
         var row = {key: item.key, label: item.label, notation: item.notation};
         for (j=0; j<item.status.length; j++) {
-          row["status"+j] = item.status[j]
+          row["status"+j] = item.status[j].status
         }
         _this.changesTable.row.add(row);
       });
