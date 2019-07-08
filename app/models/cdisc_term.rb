@@ -1,39 +1,12 @@
+# CDISC Terminology Model
+#
+# @author Dave Iberson-Hurst
+# @since 2.22.0
 class CdiscTerm < Thesaurus
   
   C_IDENTIFIER = "CT"
 
   @@cdisc_ra = nil
-
-=begin  
-  
-  # Constants
-  C_CLASS_NAME = "CdiscTerm"
-  C_SCHEMA_PREFIX = Thesaurus::C_SCHEMA_PREFIX
-  C_INSTANCE_PREFIX = Thesaurus::C_INSTANCE_PREFIX
-  C_CID_PREFIX = Thesaurus::C_CID_PREFIX
-  C_RDF_TYPE = Thesaurus::C_RDF_TYPE
-  C_SCHEMA_NS = UriManagement.getNs(C_SCHEMA_PREFIX)
-  C_INSTANCE_NS = UriManagement.getNs(C_INSTANCE_PREFIX)
-  C_RDF_TYPE_URI = UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})
-
-  # class variables
-  @@cdisc_ra = nil
-
-  # Initialize the object
-  #
-  # @param triples [hash] The raw triples keyed by id
-  # @param id [string] The id of the form
-  # @return [object] The form object
-  def initialize(triples=nil, id=nil)
-    if triples.nil?
-      super
-      self.rdf_type = "#{UriV2.new({:namespace => C_SCHEMA_NS, :id => C_RDF_TYPE})}"
-    else
-      super(triples, id)
-    end
-  end
-
-=end
 
   # Owner
   #

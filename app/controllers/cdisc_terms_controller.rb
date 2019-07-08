@@ -1,3 +1,7 @@
+# CDISC Terminology Controller
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.0
 class CdiscTermsController < ApplicationController
   
   include ControllerHelpers
