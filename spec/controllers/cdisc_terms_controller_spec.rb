@@ -206,13 +206,12 @@ describe CdiscTermsController do
     end
 
     it "submission_report" do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
+      @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :submission_report
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:submission).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      get :submission_report, id: "aaa"
       expect(response.content_type).to eq("application/pdf")
-      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"cdisc_submission.pdf\"")
-      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, orientation: 'Landscape', lowquality: true, basic_auth: nil})
     end
 
   end
