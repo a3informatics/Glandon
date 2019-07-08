@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2007-06-05 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2007-06-05 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -425,8 +425,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V5#C66738_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2007-06-05 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2007-06-05 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C66738"^^xsd:string ;
 	th:notation "TSPARMCD"^^xsd:string ;
@@ -478,7 +478,7 @@
 .
 <http://www.cdisc.org/C66738/V5#C66738_C20587>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Age Group"^^xsd:string ;
 	th:identifier "C20587"^^xsd:string ;
 	th:notation "AGESPAN"^^xsd:string ;
 	th:definition "Subgroups of populations based on age. (NCI)"^^xsd:string ;

@@ -209,7 +209,7 @@ class IsoManagedV2 < IsoConceptV2
     exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude]}) ?o }"
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
     x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
-    query_string = "SELECT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
     from_results_recurse(uri, results.by_subject)

@@ -254,6 +254,15 @@ defaults: &defaults
                 condition: 
                   method: column_blank?
                   column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
           - 
             label: "CDISC Definition"
             actions:
@@ -464,6 +473,15 @@ defaults: &defaults
                 condition: 
                   method: column_blank?
                   column: 3
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
           -
             label: Pre-release/ Production
             actions: []
@@ -631,6 +649,15 @@ defaults: &defaults
                 method: create_shared
                 object: child
                 property: preferredTerm
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: label
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -808,6 +835,15 @@ defaults: &defaults
                 condition: 
                   method: column_not_blank?
                   column: 2
+              -
+                method: set_property
+                object: child
+                property: label
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
         version_5:
           selection:
             date: true
@@ -967,6 +1003,15 @@ defaults: &defaults
                 method: create_shared
                 object: child
                 property: preferredTerm
+                can_be_empty: false
+                map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_property
+                object: child
+                property: label
                 can_be_empty: false
                 map: {}
                 condition: 

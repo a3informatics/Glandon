@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -568,8 +568,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C66727/V9#C66727_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C66727"^^xsd:string ;
 	th:notation "NCOMPLT"^^xsd:string ;
@@ -615,7 +615,7 @@
 .
 <http://www.cdisc.org/C66727/V9#C66727_C41331>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Adverse Event"^^xsd:string ;
 	th:identifier "C41331"^^xsd:string ;
 	th:notation "ADVERSE EVENT"^^xsd:string ;
 	th:definition "Any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An adverse event (AE) can therefore be any unintended sign (including an abnormal laboratory finding), symptom,or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product. NOTE: For further information, see the ICH Guideline for Clinical Safety Data Management: Definitions and Standards for Expedited Reporting. [Modified from ICH E2A] Synonyms: side effect, adverse experience. See also serious adverse event, serious adverse experience.  (CDISC glossary)"^^xsd:string ;
@@ -629,8 +629,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V9#C66737_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C66737"^^xsd:string ;
 	th:notation "TPHASE"^^xsd:string ;
@@ -672,7 +672,7 @@
 .
 <http://www.cdisc.org/C66737/V9#C66737_C15600>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Phase I Trial"^^xsd:string ;
 	th:identifier "C15600"^^xsd:string ;
 	th:notation "Phase I Trial"^^xsd:string ;
 	th:definition "The initial introduction of an investigational new drug into humans. Phase 1 studies are typically closely monitored and may be conducted in patients or normal volunteer subjects. NOTE: These studies are designed to determine the metabolism and pharmacologic actions of the drug in humans, the side effects associated with increasing doses, and, if possible, to gain early evidence on effectiveness. During Phase 1, sufficient information about the drug's pharmacokinetics and pharmacological effects should be obtained to permit the design of well-controlled, scientifically valid, Phase 2 studies. The total number of subjects and patients included in Phase I studies varies with the drug, but is generally in the range of 20 to 80. Phase 1 studies also include studies of drug metabolism, structure-activity relationships, and mechanism of action in humans, as well as studies in which investigational drugs are used as research tools to explore biological phenomena or disease processes.  [After FDA CDER Handbook, ICH E8] (CDISC glossary)"^^xsd:string ;
@@ -683,7 +683,7 @@
 .
 <http://www.cdisc.org/C66737/V9#C66737_C15602>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Phase III Trial"^^xsd:string ;
 	th:identifier "C15602"^^xsd:string ;
 	th:notation "Phase III Trial"^^xsd:string ;
 	th:definition "Phase 3. Studies are expanded controlled and uncontrolled trials. They are performed after preliminary evidence suggesting effectiveness of the drug has been obtained, and are intended to gather the additional information about effectiveness and safety that is needed to confirm efficacy and evaluate the overall benefit-risk relationship of the drug and to provide an adequate basis for physician labeling. NOTE: Phase 3 studies usually include from several hundred to several thousand subjects. [After FDA CDER Handbook, ICH E8]  (CDISC glossary)"^^xsd:string ;
@@ -694,7 +694,7 @@
 .
 <http://www.cdisc.org/C66737/V9#C66737_C15603>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Phase IV Trial"^^xsd:string ;
 	th:identifier "C15603"^^xsd:string ;
 	th:notation "Phase IV Trial"^^xsd:string ;
 	th:definition "Phase 4. Postmarketing (Phase 4) studies to delineate additional information about the drug's risks, benefits, and optimal use that may be requested by regulatory authorities in conjunction with marketing approval. NOTE: These studies could include, but would not be limited to, studying different doses or schedules of administration than were used in Phase 2 studies, use of the drug in other patient populations or other stages of the disease, or use of the drug over a longer period of time. [After FDA CDER Handbook, ICH E8]  (CDISC glossary)"^^xsd:string ;
@@ -710,8 +710,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C71153/V9#C71153_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C71153"^^xsd:string ;
 	th:notation "EGTESTCD"^^xsd:string ;
@@ -787,7 +787,7 @@
 .
 <http://www.cdisc.org/C71153/V9#C71153_C62113>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "QTcF-Fridericia's Correction Formula"^^xsd:string ;
 	th:identifier "C62113"^^xsd:string ;
 	th:notation "QTCF"^^xsd:string ;
 	th:definition "A formula which takes into account the physiologic shortening of the QT interval which occurs as the heart rate increases, permitting comparison of the QT interval across a range of rates. It is mathematically defined as: QTcF = QT/CubeRootRR(seconds) and theoretically corrects the QT interval to that which would be observed at a heart rate of 1 cycle per second. (NCI)"^^xsd:string ;
@@ -801,7 +801,7 @@
 .
 <http://www.cdisc.org/C71153/V9#C71153_C62119>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "JTcF-Fridericia's Correction Formula"^^xsd:string ;
 	th:identifier "C62119"^^xsd:string ;
 	th:notation "JTCF"^^xsd:string ;
 	th:definition "A formula which takes into account the physiologic shortening of the JT interval which occurs as the heart rate increases, permitting comparison of the JT interval across a range of rates. It is mathematically defined as: JTcF = JT/CubeRootRR(seconds) and theoretically corrects the JT interval to that which would be observed at a heart rate of 1 cycle per second. (NCI)"^^xsd:string ;
@@ -820,8 +820,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C71152/V9#C71152_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C71152"^^xsd:string ;
 	th:notation "EGTEST"^^xsd:string ;
@@ -897,7 +897,7 @@
 .
 <http://www.cdisc.org/C71152/V9#C71152_C62113>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "QTcF-Fridericia's Correction Formula"^^xsd:string ;
 	th:identifier "C62113"^^xsd:string ;
 	th:notation "QTcF - Fridericia's Correction Formula"^^xsd:string ;
 	th:definition "A formula which takes into account the physiologic shortening of the QT interval which occurs as the heart rate increases, permitting comparison of the QT interval across a range of rates. It is mathematically defined as: QTcF = QT/CubeRootRR(seconds) and theoretically corrects the QT interval to that which would be observed at a heart rate of 1 cycle per second. (NCI)"^^xsd:string ;
@@ -907,7 +907,7 @@
 .
 <http://www.cdisc.org/C71152/V9#C71152_C62119>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "JTcF-Fridericia's Correction Formula"^^xsd:string ;
 	th:identifier "C62119"^^xsd:string ;
 	th:notation "JTcF - Fridericia's Correction Formula"^^xsd:string ;
 	th:definition "A formula which takes into account the physiologic shortening of the JT interval which occurs as the heart rate increases, permitting comparison of the JT interval across a range of rates. It is mathematically defined as: JTcF = JT/CubeRootRR(seconds) and theoretically corrects the JT interval to that which would be observed at a heart rate of 1 cycle per second. (NCI)"^^xsd:string ;
@@ -922,8 +922,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V9#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C71620"^^xsd:string ;
 	th:notation "UNIT"^^xsd:string ;
@@ -1258,7 +1258,7 @@
 .
 <http://www.cdisc.org/C71620/V9#C71620_C68859>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Standard Cubic Foot"^^xsd:string ;
 	th:identifier "C68859"^^xsd:string ;
 	th:notation "ft3"^^xsd:string ;
 	th:definition "A unit used in physical chemistry to express the amount of substance of an ideal gas in one cubic foot at 60 degrees Fahrenheit and pressure of one atmosphere.(NCI)"^^xsd:string ;
@@ -1277,8 +1277,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C74558/V9#C74558_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C74558"^^xsd:string ;
 	th:notation "DSCAT"^^xsd:string ;
@@ -1311,7 +1311,7 @@
 .
 <http://www.cdisc.org/C74558/V9#C74558_C74590>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Protocol Disposition Event"^^xsd:string ;
 	th:identifier "C74590"^^xsd:string ;
 	th:notation "DISPOSITION EVENT"^^xsd:string ;
 	th:definition "The group of incidents that occur during a clinical trial and describe whether a subject completed the study epoch or the reason this event did not occur. The subject's disposition is often described for each phase of the study."^^xsd:string ;
@@ -1326,8 +1326,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C25188/V9#C25188_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
-	isoT:lastChangeDate "2008-09-22 00:00:00 +0200"^^xsd:dateTime ;
+	isoT:creationDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-09-22 00:00:00 +0000"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C25188"^^xsd:string ;
 	th:notation "MARISTAT"^^xsd:string ;
@@ -1366,7 +1366,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C76240>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Annulled"^^xsd:string ;
 	th:identifier "C76240"^^xsd:string ;
 	th:notation "ANNULLED"^^xsd:string ;
 	th:definition "Marriage contract has been declared null and to not have existed. (HL7)"^^xsd:string ;
@@ -1379,7 +1379,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C51776>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Divorced"^^xsd:string ;
 	th:identifier "C51776"^^xsd:string ;
 	th:notation "DIVORCED"^^xsd:string ;
 	th:definition "Marrige contract has been declared dissolved and inactive. (HL7)"^^xsd:string ;
@@ -1392,7 +1392,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C76241>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Interlocutory"^^xsd:string ;
 	th:identifier "C76241"^^xsd:string ;
 	th:notation "INTERLOCUTORY"^^xsd:string ;
 	th:definition "Temporary order issued during the course of litigation. (HL7)"^^xsd:string ;
@@ -1405,7 +1405,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C51777>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Separated"^^xsd:string ;
 	th:identifier "C51777"^^xsd:string ;
 	th:notation "LEGALLY SEPARATED"^^xsd:string ;
 	th:definition "A person living apart from his/her spouse by legal arrangement. (HL7)"^^xsd:string ;
@@ -1418,7 +1418,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C51773>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Married"^^xsd:string ;
 	th:identifier "C51773"^^xsd:string ;
 	th:notation "MARRIED"^^xsd:string ;
 	th:definition "A current marriage contract is active. (HL7)"^^xsd:string ;
@@ -1431,7 +1431,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C51774>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Never Married"^^xsd:string ;
 	th:identifier "C51774"^^xsd:string ;
 	th:notation "NEVER MARRIED"^^xsd:string ;
 	th:definition "No marriage contract has ever been entered. (HL7)"^^xsd:string ;
@@ -1444,7 +1444,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C51775>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Widowed"^^xsd:string ;
 	th:identifier "C51775"^^xsd:string ;
 	th:notation "WIDOWED"^^xsd:string ;
 	th:definition "The spouse has died. (HL7)"^^xsd:string ;
@@ -1457,7 +1457,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C76242>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Polygamous"^^xsd:string ;
 	th:identifier "C76242"^^xsd:string ;
 	th:notation "POLYGAMOUS"^^xsd:string ;
 	th:definition "More than 1 current spouse. (HL7)"^^xsd:string ;
@@ -1470,7 +1470,7 @@
 .
 <http://www.cdisc.org/C25188/V9#C25188_C53262>
 	rdf:type th:UnmanagedConcept ;
-	isoC:label ""^^xsd:string ;
+	isoC:label "Domestic Partnership"^^xsd:string ;
 	th:identifier "C53262"^^xsd:string ;
 	th:notation "DOMESTIC PARTNER"^^xsd:string ;
 	th:definition "Person declares that a domestic partnership relationship exists. (HL7)"^^xsd:string ;

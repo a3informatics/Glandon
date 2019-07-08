@@ -64,7 +64,7 @@ private
     end
   end
 
-  # Process. Process the results structre to convert to objects
+  # Process. Process the results structure to convert to objects
   def process(results)
     filtered = []
     klass = configuration[:parent_klass]
