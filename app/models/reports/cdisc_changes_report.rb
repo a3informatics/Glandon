@@ -7,13 +7,12 @@ class Reports::CdiscChangesReport
   # Create the CDISC changes report
   #
   # @param results [Hash] the results hash
-  # @param cls [Hash] the code lists
   # @param user [User] the user
   # @return [String] the HTML
-  def create(results, cls, user)
+  def create(results, user)
     @report = Reports::WickedCore.new
     @report.open("CDISC Terminology Change Report", "", [], user)
-    body(results, cls)
+    body(results)
     @report.close
     return @report.html
   end
@@ -29,16 +28,16 @@ class Reports::CdiscChangesReport
 
 private
 
-  def body(results, cls)
+  def body(results)
     html = ""
     html += "<h3>Conventions</h3>"
     html += "<p>In the following table for a code list entry:<ul><li><p>C = Code List was created in the CDISC Terminology</p></li>"
     html += "<li><p>U = Code List was updated in some way</p></li>"
     html += "<li><p>'-' = There was no change to the Code List</p></li>"
-    html += "<li><p>X = The Code List was deleted from teh CDISC Terminology</p></li></ul></p>"
+    html += "<li><p>X = The Code List was deleted from the CDISC Terminology</p></li></ul></p>"
     index = 0
     page_count = C_FIRST_PAGE
-    cls.each do |key, cl|
+    results[:items].each do |key, cl|
       if index % page_count == 0
         if index == 0
           html += "<h3>Changes</h3>"
@@ -54,18 +53,16 @@ private
         html += "<th>Identifier</th>"
         html += "<th>Label</th>"
         html += "<th>Submission Value</th>"
-        results.each do |result|
-          r = result[:results]
-          html += "<th>" + result[:date] + "</th>"
+        results[:versions].each do |version|
+          html += "<th>" + version + "</th>"
         end
         html += "</tr></thead><tbody>"
       end
-      s = cl[:status]
       html += "<tr>"
       html += "<td>#{key}</td>"
-      html += "<td>#{cl[:preferred_term]}</td>"
+      html += "<td>#{cl[:label]}</td>"
       html += "<td>#{cl[:notation]}</td>"
-      s.each do |status|
+      cl[:status].each do |status|
         if status == :created
           html += "<td>C</td>"
         elsif status == :no_change
