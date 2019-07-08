@@ -166,11 +166,11 @@ class CdiscTermsController < ApplicationController
 
   def changes_report
     authorize CdiscTerm, :view?
-    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    cls = CdiscTerm::Utility.transpose_results(results)
+    ct = CdiscTerm.find(params[:id], false)
+    cls = ct.changes(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
-        @html = Reports::CdiscChangesReport.new.create(results, cls, current_user)
+        @html = Reports::CdiscChangesReport.new.create(cls, current_user)
         render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end

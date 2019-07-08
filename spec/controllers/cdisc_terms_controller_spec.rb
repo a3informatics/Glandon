@@ -177,8 +177,11 @@ describe CdiscTermsController do
     end
 
     it "changes_report" do
+      @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :changes_report
+      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      get :changes_report, id: "aaa"
       expect(response.content_type).to eq("application/pdf")
     end
 
