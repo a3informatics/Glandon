@@ -303,12 +303,16 @@ puts "***** CLEARING CACHE #{self.uri} *****"
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
+    # Create the triple for the property
     def property_to_triple(sparql, property, schema, subject, predicate, objects)
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        statement = property[:type] == :object ? {uri: object_uri(object)} : {literal: "#{object}", primitive_type: schema.range(predicate)}
+        datatype = schema.range(predicate)
+        statement = property[:type] == :object ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
         sparql.add({:uri => subject}, {:uri => predicate}, statement)
       end
+    rescue => e
+byebug
     end
 
     def object_to_triple(sparql, property, objects)
@@ -344,6 +348,10 @@ byebug
       return false
     end
 
+    # Build the object literal as a string
+    def object_literal(type, value)
+      return type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) ? value.iso8601 : value
+    end
   end
 
 end

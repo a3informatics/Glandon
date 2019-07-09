@@ -232,7 +232,8 @@ describe IsoRegistrationStateV2 do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
     expected = 
     {
-      :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_1-1", 
+      :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
+      :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
       :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
       :registration_status => "Standard",
       :administrative_note => "", 
@@ -258,7 +259,8 @@ describe IsoRegistrationStateV2 do
     expected = 
     [
       {
-        :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_1-1", 
+        :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -271,6 +273,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-3", 
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTM=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -283,6 +286,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_2-2", 
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8yLTI=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -295,6 +299,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-5", 
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -307,6 +312,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-4", 
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTQ=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -319,6 +325,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV1-5",
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjEtNQ==",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -331,6 +338,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV2-5",
+        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjItNQ==",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -356,6 +364,7 @@ describe IsoRegistrationStateV2 do
     expected = 
       {
         :uri => "http://www.assero.co.uk/RS/BBB/NEW",
+        :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUlMvQkJCL05FVw==",
         :by_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
@@ -457,6 +466,7 @@ describe IsoRegistrationStateV2 do
     }
     expected = input.except(:identifier)
     expected[:uri] = {} # Will be empty until saved.
+    expected[:uuid] = nil # Will be empty until saved.
     expect(IsoRegistrationStateV2.from_h(input).to_h).to eq(expected)
   end
   
@@ -466,7 +476,8 @@ describe IsoRegistrationStateV2 do
     object = IsoRegistrationStateV2.find_children(uri)
     expected = 
     {
-      :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-5", 
+      :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_3-5",
+      :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
       :by_authority => ra.to_h, 
       :registration_status => "Standard",
       :administrative_note => "", 

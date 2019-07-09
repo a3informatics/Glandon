@@ -16,8 +16,8 @@ class IsoRegistrationStateV2 < Fuseki::Base
 
   data_property :registration_status, default: C_NOT_SET
   data_property :administrative_note
-  data_property :effective_date
-  data_property :until_date
+  data_property :effective_date, default: C_DEFAULT_DATETIME
+  data_property :until_date, default: C_DEFAULT_DATETIME
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state, default: C_NOT_SET

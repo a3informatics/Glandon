@@ -8,8 +8,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> rdf:type isoR:RegistrationState . 
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:registrationStatus "Standard"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeNote ""^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate "2016-01-01 00:00:00 %2B0000"^^xsd:dateTime . 
-<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate "2016-01-01 00:00:00 %2B0000"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:unresolvedIssue ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:administrativeStatus ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-TEST_3-4> isoR:previousState "Qualified"^^xsd:string . 

@@ -50,7 +50,8 @@ describe Sparql::Update::Statement::Literal do
   end
 
   it "allows for the class to be created, special characters" do
-    args = {:literal => "2018-01-01T00:00:00+01:00", :primitive_type => "dateTime"}
+    x = "2018-01-01T00:00:00+01:00".to_time_with_default
+    args = {:literal => x, :primitive_type => "dateTime"}
     result = Sparql::Update::Statement::Literal.new(args)
     expect("#{result}").to eq("\"2018-01-01T00:00:00+01:00\"^^xsd:dateTime")    
     expect("#{result.to_ref}").to eq("\"2018-01-01T00:00:00+01:00\"")    
