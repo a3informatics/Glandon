@@ -68,17 +68,26 @@
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Top concept reference relationship"^^xsd:string ;
-  rdfs:domain :ManagedConcept ;
+  rdfs:domain :Thesaurus ;
   rdfs:range bo:TcReference ;
-  skos:definition "Relationship linking a managed concept to concepts that are themseleves version managed."^^xsd:string ;
+  skos:definition "Relationship linking a thesaurus to concepts that are themseleves version managed."^^xsd:string ;
+.
+:isTopConcept
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:hasTopConcept ;
+  rdfs:label "Top concept relationship"^^xsd:string ;
+  rdfs:domain :Thesaurus ;
+  rdfs:range :ManagedConcept ;
+  skos:definition "Relationship linking a thesaurus to child concepts to preserve the SKOS model."^^xsd:string ;
 .
 :narrowerReference
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Narrower reference relationship"^^xsd:string ;
-  rdfs:domain :Thesaurus ;
+  rdfs:domain :ManagedConcept ;
   rdfs:range bo:TcReference ;
-  skos:definition "Relationship linking the thesaurus to concepts that are themseleves version managed."^^xsd:string ;
+  skos:definition "Relationship linking a managed concept to concepts that are themseleves version managed."^^xsd:string ;
 .
 :narrower
   rdf:type owl:ObjectProperty ;
@@ -155,7 +164,7 @@
   skos:definition "Relationship to the preferred term."^^xsd:string ;
 .
 :synonym
-  rdf:type owl:AnnotationProperty ;
+  rdf:type owl:DatatypeProperty  ;
   rdfs:subPropertyOf isoC:property ;
   rdfs:label "Synonym"^^xsd:string ;
   rdfs:domain  [ a owl:Class ;

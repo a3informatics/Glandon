@@ -21,8 +21,8 @@
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:creationDate "2007-06-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2007-06-05T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -97,8 +97,8 @@
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
@@ -425,8 +425,8 @@
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V5#C66738_SI> ;
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
-	isoT:lastChangeDate "2007-06-05 00:00:00 +0000"^^xsd:dateTime ;
+	isoT:creationDate "2007-06-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2007-06-05T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:identifier "C66738"^^xsd:string ;
 	th:notation "TSPARMCD"^^xsd:string ;
@@ -461,8 +461,8 @@
 	rdf:type isoR:RegistrationState ;
 	isoR:registrationStatus "Standard"^^xsd:string ;
 	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01 00:00:00 +0000"^^xsd:dateTime ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
