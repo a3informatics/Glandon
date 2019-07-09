@@ -451,16 +451,17 @@ describe CdiscTerm do
     results = process_load_and_compare(["SDTM Terminology 2010-03-05.xlsx", "ADaM Terminology 2010-03-05.xlsx", "CDASH Terminology 2010-03-05.xlsx"], "2010-03-05", current_version, true)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
-      {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C66790, status: :updated},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change}
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -476,11 +477,12 @@ describe CdiscTerm do
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change}
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -500,7 +502,8 @@ describe CdiscTerm do
       {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :no_change},
       {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change}
+      {cl: :C76351, status: :updated},
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -511,16 +514,17 @@ describe CdiscTerm do
     results = process_load_and_compare(["SDTM Terminology 2010-10-06.xlsx", "ADaM Terminology 2010-10-06.xlsx"], "2010-10-06", current_version, true)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change}
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -540,7 +544,8 @@ describe CdiscTerm do
       {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :no_change},
       {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change}
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
