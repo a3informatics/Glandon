@@ -3,8 +3,38 @@ class Thesaurus <  IsoManagedV2
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#Thesaurus",
             uri_suffix: "TH"
 
-  object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TcReference"
+  object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TcReference", children: true
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", path_exclude: true
+
+  def managed_children_pagination(params)
+    super(params) {mcp_query(params)}
+  end
+
+private
+
+  # Standard managed children pagination query
+  def mcp_query(params)
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    refs = is_top_concept_reference.sort_by{|x| x.ordinal}[offset..(offset+count-1)]
+    uris = refs.map{|x| x.reference.uri.to_ref}.join(" ")
+    %Q{SELECT ?s ?p ?o ?e ?v WHERE
+{
+  VALUES ?e { #{uris} }
+  ?e isoT:hasIdentifier ?si .
+  ?si isoI:hasScope ?ra .
+  ?e isoT:hasState ?rs .
+  {
+    { ?e ?p ?o . BIND (?e as ?s) } UNION
+    { ?e th:synonym ?s . ?s ?p ?o } UNION
+    { ?e th:preferredTerm ?s . ?s ?p ?o } UNION
+    { ?si ?p ?o . BIND (?si as ?s) } UNION
+    { ?ra ?p ?o . BIND (?ra as ?s) } UNION
+    { ?rs ?p ?o . BIND (?rs as ?s) }
+  }
+} 
+}
+  end
 
 =begin  
   # Owner

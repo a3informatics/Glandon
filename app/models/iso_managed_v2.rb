@@ -271,33 +271,13 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
-  def children_pagination(params, property)
-    parts = []
+  def managed_children_pagination(params)
     results = []
-    triple_count = 28
-    count = params[:count].to_i * triple_count 
-    offset = params[:offset].to_i * triple_count 
-    properties = properties_metadata
-    variable = Fuseki::Persistence::Naming.new(property)
-    predicate = properties.predicate(variable.as_instance)
-    klass = properties.klass(variable.as_instance)
-    base =  "#{self.uri.to_ref} #{predicate.to_ref} ?r . " +
-            "?r bo:reference ?e . " +
-            "?r bo:ordinal ?v . " +
-            "?e isoT:hasIdentifier ?si . " +
-            "?si isoI:hasScope ?ra . " +
-            "?e isoT:hasState ?rs . "
-    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s)}" 
-    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts << "  { ?ra ?p ?o . BIND (?ra as ?s) }" 
-    parts << "  { ?rs ?p ?o . BIND (?rs as ?s) }" 
-    query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}"
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo])
+    query_string = block_given? ? yield(params) : managed_children_pagination_query(params)
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo, :th])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
-      item = klass.referenced_klass.from_results_recurse(uri, by_subject)
-      #item.has_state.by_authority = params[:scope]
-      #item.has_identifier.has_scope = params[:scope].ra_namespace
+      item = self.class.children_klass.referenced_klass.from_results_recurse(uri, by_subject)
       results << item
     end
     results
@@ -382,6 +362,29 @@ class IsoManagedV2 < IsoConceptV2
   end 
 
 private
+
+  # Standard managed children pagination query
+  def managed_children_pagination_query(params)
+    triple_count = 28
+    count = params[:count].to_i * triple_count 
+    offset = params[:offset].to_i * triple_count 
+    %Q{SELECT ?s ?p ?o ?e ?v WHERE
+{
+  #{self.uri.to_ref} #{self.class.children_predicate.to_ref} ?r . 
+  ?r bo:reference ?e .
+  ?r bo:ordinal ?v .
+  ?e isoT:hasIdentifier ?si .
+  ?si isoI:hasScope ?ra .
+  ?e isoT:hasState ?rs .
+  {
+    { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) } UNION
+    { ?si ?p ?o . BIND (?si as ?s) } UNION
+    { ?ra ?p ?o . BIND (?ra as ?s) } UNION
+    { ?rs ?p ?o . BIND (?rs as ?s) }
+  }
+} ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+}
+  end
 
   def forward(current, step, end_stop)
     return (current + step) < end_stop ? (current + step) : end_stop

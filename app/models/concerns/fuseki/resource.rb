@@ -107,6 +107,25 @@ module Fuseki
         generic_objects?(name)
       end
 
+      if opts.key?(:children)
+        
+        # Define an instance method to return the children
+        define_method "children" do
+          instance_variable_get("@#{name}")
+        end
+
+        # Define a class method to get the children class
+        define_singleton_method "children_klass" do
+          opts[:model_class].constantize
+        end
+
+        # Define a class method to get the child predicate
+        define_singleton_method "children_predicate" do
+          predicate_uri(name)
+        end
+
+      end
+
     end
 
     # Data Property
@@ -137,7 +156,7 @@ module Fuseki
       
       @properties ||= {}
       opts[:name] = name
-      opts[:predicate] = Uri.new(namespace: self.rdf_type.namespace, fragment: Fuseki::Persistence::Naming.new(name).as_schema)
+      opts[:predicate] = predicate_uri(name)
       @properties["@#{name}".to_sym] = opts
     end
     
@@ -149,6 +168,10 @@ module Fuseki
       return "" if !opts.key?(:prefix) && !opts.key?(:property)
       return "#{opts[:prefix]}" if !opts.key?(:property)
       return "#{opts[:prefix]}#{self.send(opts[:property])}"
+    end
+
+    def predicate_uri(name)
+      Uri.new(namespace: self.rdf_type.namespace, fragment: Fuseki::Persistence::Naming.new(name).as_schema)
     end
 
   end

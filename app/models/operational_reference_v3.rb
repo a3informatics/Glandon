@@ -9,7 +9,11 @@ class OperationalReferenceV3 < IsoConceptV2
   data_property :optional, default: false
   data_property :ordinal, default: 1
 
+  # Reference Klass. Return the reference clas
+  #
+  # @return [Class] the reference class
   def self.referenced_klass
+    # Note :reference is set by class inheriting from this one.
     properties_metadata_class.klass(Fuseki::Persistence::Naming.new(:reference).as_instance)  
   end
 

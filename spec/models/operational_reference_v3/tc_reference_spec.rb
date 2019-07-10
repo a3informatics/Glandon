@@ -14,7 +14,7 @@ describe OperationalReferenceV3::TcReference do
   end
 
   before :each do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "BusinessOperational.ttl"]
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
     load_files(schema_files, data_files)
   end
@@ -61,6 +61,10 @@ describe OperationalReferenceV3::TcReference do
     item.to_sparql(sparql)
   #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_create_sparql_expected.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
+  end
+
+  it "returns the referenced class" do
+    expect(OperationalReferenceV3::TcReference.referenced_klass).to eq(Thesaurus::ManagedConcept)
   end
 
 end
