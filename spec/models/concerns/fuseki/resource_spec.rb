@@ -121,7 +121,7 @@ describe Fuseki::Resource do
     expect{TestR3.object_property(:fred, {cardinality: :one})}.to raise_error(Errors::ApplicationLogicError, "No model class specified for object property.")
   end
 
-  it "Object property configured" do
+  it "object property configured" do
     TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
     fred_expected = {:cardinality=>:one, :default=>nil, :model_class=>"XXX", :path_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
     sid_expected = {:cardinality=>:many, :default=>[], :model_class=>"XXX", :path_exclude=>true, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
@@ -131,21 +131,21 @@ describe Fuseki::Resource do
     expect(TestR4.instance_variable_get(:@properties)).to eq({:@fred => fred_expected, :@sid => sid_expected}) 
   end
 
-  it "Data property configured, no default" do
+  it "data property configured, no default" do
     TestR5.configure({rdf_type: "http://www.example.com/C#YYY"})
     fred1_expected = {:cardinality=>:one, :default=>"", :model_class=>"", :name=>:fred1, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred1")}
     TestR5.data_property(:fred1)
     expect(TestR5.instance_variable_get(:@properties)).to eq({:@fred1 => fred1_expected})    
   end
 
-  it "Data property configured, default" do
+  it "data property configured, default" do
     TestR6.configure({rdf_type: "http://www.example.com/C#YYY"})
     fred2_expected = {:cardinality=>:one, :default=>"default value", :model_class=>"", :name=>:fred2, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred2")}
     TestR6.data_property(:fred2, {default: "default value"})
     expect(TestR6.instance_variable_get(:@properties)).to eq({:@fred2 => fred2_expected})    
   end
 
-  it "Key property" do
+  it "key property" do
     parent = Uri.new(uri: "http://www.example.com/A#XXX")
     TestR1.configure({rdf_type: "http://www.example.com/A#XXX", key_property: :xxx})
     expect(TestR1.respond_to?(:key_property)).to eq(true)
@@ -153,5 +153,17 @@ describe Fuseki::Resource do
     expect(item.respond_to?(:key_property)).to eq(false)
     expect(TestR1.key_property).to eq(:xxx)
   end
+
+  it "children properties" do
+    TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+    fred_expected = {:cardinality=>:one, :children=>true, :default=>nil, :model_class=>"XXX", :path_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+    TestR4.object_property(:fred, {cardinality: :one, model_class: "XXX", children: true})
+    expect(TestR4.instance_variable_get(:@properties)).to eq({:@fred => fred_expected})
+    item = TestR4.new
+    expect(TestR4.respond_to?(:children_klass)).to eq(true)
+    expect(TestR4.respond_to?(:children_predicate)).to eq(true)
+    expect(item.respond_to?(:children)).to eq(true)
+  end
+
 
 end
