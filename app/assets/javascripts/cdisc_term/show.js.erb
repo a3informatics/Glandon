@@ -1,0 +1,11 @@
+$(document).ready( function() {
+  var columns = [
+    {"data" : "identifier"},
+    {"data" : "notation"},
+    {"data" : "preferred_term.label"},
+    {"data" : "synonym_list"},
+    {"data" : "extensible"},
+    {"data" : "definition"}
+  ];
+  var mcp = new ManagedChildrenPanel(url_path, 30, columns);
+});

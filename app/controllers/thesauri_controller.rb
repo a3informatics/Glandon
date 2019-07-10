@@ -33,6 +33,29 @@ class ThesauriController < ApplicationController
     redirect_to thesauri_index_path if @thesauri.count == 0
   end
   
+  def show
+    authorize Thesaurus
+    @ct = CdiscTerm.find(params[:id])
+  end
+  
+  def show_results
+start = Time.now()
+    results = []
+    authorize Thesaurus, :show?
+    @ct = Thesaurus.find(params[:id])
+step1 = Time.now()
+    children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+step2 = Time.now()
+    children.each {|c| results << c.to_h}
+step3 = Time.now()
+    render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
+step4 = Time.now()
+puts "1=#{(step1 - start).round(2)} secs"
+puts "2=#{(step2 - start).round(2)} secs"
+puts "3=#{(step3 - start).round(2)} secs"
+puts "4=#{(step4 - start).round(2)} secs"
+  end
+
   def create
     authorize Thesaurus
     @thesaurus = Thesaurus.create_simple(the_params)
@@ -102,18 +125,7 @@ class ThesauriController < ApplicationController
     redirect_to request.referer
   end
 
-  def show
-    authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
-    respond_to do |format|
-      format.html
-      format.json do
-        results = @thesaurus.to_json
-        render json: results
-      end
-    end
-  end
+  
   
   def view
     authorize Thesaurus

@@ -83,12 +83,6 @@ class CdiscTermsController < ApplicationController
   #   end
   # end
   
-  # def show
-  #   authorize CdiscTerm
-  #   @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace])
-  #   @cdiscTerms = CdiscTerm.all_previous(@cdiscTerm.version)
-  # end
-  
   # def search
   #   authorize CdiscTerm, :view?
   #   @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)

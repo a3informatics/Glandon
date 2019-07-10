@@ -18,7 +18,7 @@ private
     offset = params[:offset].to_i
     refs = is_top_concept_reference.sort_by{|x| x.ordinal}[offset..(offset+count-1)]
     uris = refs.map{|x| x.reference.uri.to_ref}.join(" ")
-    %Q{SELECT ?s ?p ?o ?e ?v WHERE
+    %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
 {
   VALUES ?e { #{uris} }
   {

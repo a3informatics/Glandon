@@ -1,7 +1,8 @@
 module ApplicationHelper
 
 	def instance_title(title, item)
-		return raw("#{title} #{item.label} <small>#{item.identifier} (V#{item.semantic_version}, #{item.version}, #{item.registrationStatus})</small>")	
+    status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus 
+		return raw("#{title} #{item.label} <small>#{item.identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")	
 	end
 
 	# Bootstrap Class

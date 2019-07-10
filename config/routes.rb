@@ -143,6 +143,10 @@ Rails.application.routes.draw do
       get :impact_next
       get :impact_report
     end
+    member do
+      get :show_results
+      get :export_csv
+    end
   end
   resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
     collection do
@@ -190,13 +194,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notepads do
-    collection do
-      get :index_term
-      post :create_term
-      delete :destroy_term
-    end
-  end
+  # CDISC Terminology
   resources :cdisc_terms do
     collection do
       get :find_submission
@@ -215,7 +213,7 @@ Rails.application.routes.draw do
       #get :cross_reference
       #get :import_cross_reference
       #post :create_cross_reference
-      get :export_csv
+      #get :export_csv
     end
   end
   resources :cdisc_cls, :only => [:show] do

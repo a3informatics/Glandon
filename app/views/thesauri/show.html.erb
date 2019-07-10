@@ -1,56 +1,53 @@
-<%= javascript_include_tag 'standard_datatable' %>
-<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Show:") %>
-<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @thesaurus} %>
+<%= javascript_include_tag 'cdisc_term/show', 'shared/iso_managed/managed_children_panel' %>
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_tag "var url_path = '#{show_results_thesauri_path}';" %>
+<% third_level_managed_item_breadcrumb(@ct, "Terminology", thesauri_index_path, @close_path, "Show:") %>
+<%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Show:", :item => @ct} %>
 <div class="col-md-12">
   <h4>Details</h4>
   <table class="table table-striped table-bordered table-condensed">
     <thead>
+    <tr>
+      <th>Identifer</th>
+      <th>Label</th>
+      <th>Owner</th>
+      <th>Status</th>
+      <th>Version</th>
+      <th>Version Label</th>
+      <th class="fit"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @ct.identifier %></td>
+      <td><%= @ct.label %></td>
+      <td><%= @ct.owner_short_name %></td>
+      <td><%= @ct.registration_status %></td>
+      <td><%= @ct.semantic_version %></td>
+      <td><%= @ct.version_label %></td>
+      <td class="fit">
+        <%= link_to "Impact", impact_thesauri_index_path(id: @ct.uri.fragment, namespace: @ct.uri.namespace), :class => "btn btn-info btn-xs" %>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  <h4>Code Lists</h4>
+  <table id="children_table" class="table table-striped table-bordered table-condensed">
+    <thead>
       <tr>
-        <th>Identifer</th>
-        <th>Label</th>
-        <th>Owner</th>
-        <th>Status</th>
-        <th>Version</th>
-        <th>Version Label</th>
+        <th class="fit">Identifer</th>
+        <th class="fit">Submission Value</th>
+        <th>Preferred Term</th>
+        <th>Synonym(s)</th>
+        <th class="fit">Extensible</th>
+        <th>Definition</th>
+        <th class="fit"></th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= @thesaurus.identifier %></td>
-        <td><%= @thesaurus.label %></td>
-        <td><%= @thesaurus.owner %></td>
-        <td><%= @thesaurus.registrationState.registrationStatus  %></td>
-        <td><%= @thesaurus.semantic_version %></td>
-        <td><%= @thesaurus.versionLabel %></td>
-      </tr>
     </tbody>
-    </table>
-    <h4>Code Lists</h4>
-    <table id="main" class="table table-striped table-bordered table-condensed">
-      <thead>
-          <tr>
-            <th>Label</th>
-            <th>Identifer</th>
-            <th>Submission Value</th>
-            <th>Preferred Term</th>
-            <th>Synonym(s)</th>
-            <th>Definition</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-            <% @thesaurus.children.each do |cl| %>
-              <tr>
-                <td><%= cl.label %></td>
-                <td><%= cl.identifier %></td>
-                <td><%= cl.notation %></td>
-                <td><%= cl.preferredTerm %></td>
-                <td><%= cl.synonym %></td>
-                <td><%= cl.definition %></td>
-                <td><%= link_to "Show", thesaurus_concept_path(:id => cl.id, :namespace => cl.namespace), :class => "btn btn-primary btn-xs" %></td>
-              </tr>
-            <% end %>
-        </tbody>
-    </table>
-    <%= link_to "Export Turtle", export_ttl_thesauri_index_path(:id => @thesaurus.id, :namespace => @thesaurus.namespace), :class => "btn btn-info" %>
+  </table>
+  <%= link_to "Export CSV", export_csv_thesauri_path(@ct), :class => "btn btn-info" %>
+  <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
 </div>
+
