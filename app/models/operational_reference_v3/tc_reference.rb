@@ -9,7 +9,7 @@ class OperationalReferenceV3::TcReference < OperationalReferenceV3
             uri_property: :ordinal
 
   data_property :local_label, default: ""
-  object_property :reference, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept", path_exclude: true
+  object_property :reference, cardinality: :one, model_class: "Thesaurus::ManagedConcept", path_exclude: true
   
   validates_with Validator::Field, attribute: :local_label, method: :valid_label?  
   

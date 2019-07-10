@@ -1,0 +1,581 @@
+---
+- :uri: http://www.cdisc.org/C66767/V4#C66767
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment
+  :has_state:
+    :uri: http://www.cdisc.org/C66767/V4#C66767_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66767/V4#C66767_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2N19TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66767
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66787/V4#C66787
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1Y0I0M2Njc4Nw==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Diagnosis Group
+  :has_state:
+    :uri: http://www.cdisc.org/C66787/V4#C66787_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1Y0I0M2Njc4N19SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66787/V4#C66787_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1Y0I0M2Njc4N19TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66787
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66768/V4#C66768
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Outcome of Event
+  :has_state:
+    :uri: http://www.cdisc.org/C66768/V4#C66768_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OF9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66768/V4#C66768_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OF9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66768
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66780/V4#C66780
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MA==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Age Span
+  :has_state:
+    :uri: http://www.cdisc.org/C66780/V4#C66780_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66780/V4#C66780_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MF9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66780
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66781/V4#C66781
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MQ==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Age Unit
+  :has_state:
+    :uri: http://www.cdisc.org/C66781/V4#C66781_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66781/V4#C66781_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MV9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66781
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66797/V4#C66797
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1Y0I0M2Njc5Nw==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Category for Inclusion/Exclusion
+  :has_state:
+    :uri: http://www.cdisc.org/C66797/V4#C66797_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1Y0I0M2Njc5N19SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66797/V4#C66797_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1Y0I0M2Njc5N19TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66797
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66783/V4#C66783
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4Mw==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: CDISC System Organ Class
+  :has_state:
+    :uri: http://www.cdisc.org/C66783/V4#C66783_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4M19SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66783/V4#C66783_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4M19TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66783
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66784/V4#C66784
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1Y0I0M2Njc4NA==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Common Terminology Criteria for Adverse Events
+  :has_state:
+    :uri: http://www.cdisc.org/C66784/V4#C66784_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1Y0I0M2Njc4NF9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66784/V4#C66784_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1Y0I0M2Njc4NF9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66784
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66785/V4#C66785
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1Y0I0M2Njc4NQ==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Control Type
+  :has_state:
+    :uri: http://www.cdisc.org/C66785/V4#C66785_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1Y0I0M2Njc4NV9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66785/V4#C66785_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1Y0I0M2Njc4NV9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66785
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []
+- :uri: http://www.cdisc.org/C66786/V4#C66786
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y0I0M2Njc4Ng==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Country
+  :has_state:
+    :uri: http://www.cdisc.org/C66786/V4#C66786_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y0I0M2Njc4Nl9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66786/V4#C66786_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y0I0M2Njc4Nl9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66786
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: ''
+  :notation: ''
+  :definition: ''
+  :extensible: false
+  :extended_with: []
+  :narrower: []
+  :is_subset: 
+  :preferred_term: 
+  :synonym: []

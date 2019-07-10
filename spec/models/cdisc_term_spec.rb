@@ -25,6 +25,41 @@ describe CdiscTerm do
 
   describe "CDISC Terminology General" do
 
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+        "CT_V1.ttl",
+        "CT_V2.ttl",
+        "CT_V3.ttl",
+        "CT_V4.ttl",
+        "CT_V5.ttl",
+        "CT_V6.ttl",
+        "CT_V7.ttl",
+        "CT_V8.ttl",
+        "CT_V9.ttl",
+        "CT_V10.ttl"
+      ]
+      load_files(schema_files, data_files)
+    end
+
+    after :each do
+      #
+    end
+
+    it "get children" do
+      actual = []
+      ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
+      results = ct.children_pagination({count: 10, offset: 0}, :is_top_concept_reference)
+      results.each {|x| actual << x.to_h}
+      check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml")
+    end
+
 =begin
     before :all do
       clear_triple_store
