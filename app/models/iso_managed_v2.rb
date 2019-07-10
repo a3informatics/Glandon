@@ -271,6 +271,12 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
+  # Managed Children Pagination. Get managed children by page
+  #
+  # @params [Hash] params a hash of parameters
+  # @params params [String] :offset the start offset of items to be returned
+  # @params params [String] :count the count of items to be returned
+  # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
   def managed_children_pagination(params)
     results = []
     query_string = block_given? ? yield(params) : managed_children_pagination_query(params)

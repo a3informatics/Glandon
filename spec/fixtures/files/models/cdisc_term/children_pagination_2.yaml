@@ -4655,3 +4655,2900 @@
     :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2Q1MjNlYmJkMTAxNDZjZGZkMzlkZWUwNzdmMDRjOWQwODQ2OGQwYmM=
     :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
     :label: Country
+- :uri: http://www.cdisc.org/C66788/V4#C66788
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OA==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Dictionary Name
+  :has_state:
+    :uri: http://www.cdisc.org/C66788/V4#C66788_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66788/V4#C66788_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66788
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66788
+  :notation: DICTNAM
+  :definition: A name given to a reference source that lists words and gives their
+    meaning. (NCI)
+  :extensible: true
+  :extended_with: []
+  :narrower:
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C49468
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDk0Njg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C49471
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDk0NzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C49474
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDk0NzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C49476
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDk0NzY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C53489
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNTM0ODk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C49475
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDk0NzU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66788/V4#C66788_C43820
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OF9DNDM4MjA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  :is_subset: 
+  :preferred_term:
+    :uri: http://www.assero.co.uk/PT#0227cc4a00913e1562208f64b840261853cc0f5b
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMDIyN2NjNGEwMDkxM2UxNTYyMjA4ZjY0Yjg0MDI2MTg1M2NjMGY1Yg==
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC SDTM Dictionary Name Terminology
+  :synonym:
+  - :uri: http://www.assero.co.uk/SYN#df854d25ff230d4caf3df2125d69fcbd92d23098
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2RmODU0ZDI1ZmYyMzBkNGNhZjNkZjIxMjVkNjlmY2JkOTJkMjMwOTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Name of Dictionary
+  - :uri: http://www.assero.co.uk/SYN#c48af7fc8d8e6953d279e0b179ac7d378202a2be
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2M0OGFmN2ZjOGQ4ZTY5NTNkMjc5ZTBiMTc5YWM3ZDM3ODIwMmEyYmU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Dictionary Name
+- :uri: http://www.cdisc.org/C66727/V9#C66727
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyNw==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Completion/Reason for Non-Completion
+  :has_state:
+    :uri: http://www.cdisc.org/C66727/V9#C66727_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyN19SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66727/V9#C66727_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyN19TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66727
+    :version_label: 2008-09-22 Release
+    :version: 9
+    :semantic_version: 9.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-09-22T00:00:00+00:00'
+  :last_change_date: '2008-09-22T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66727
+  :notation: NCOMPLT
+  :definition: The reason that a subject was discontinued from a clinical trial.
+  :extensible: true
+  :extended_with: []
+  :narrower:
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C49631
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDk2MzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C48227
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDgyMjc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C25250
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMjUyNTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C49633
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDk2MzM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C25742
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMjU3NDI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C17649
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMTc2NDk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C48250
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDgyNTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C49634
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDk2MzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C28554
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMjg1NTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C48251
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDgyNTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C49632
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDk2MzI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C48226
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDgyMjY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C35571
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMzU1NzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C25746
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DMjU3NDY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V4#C66727_C49628
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y0I0M2NjcyN19DNDk2Mjg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66727/V9#C66727_C41331
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyN19DNDEzMzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  :is_subset: 
+  :preferred_term:
+    :uri: http://www.assero.co.uk/PT#e90c96059b36451c45326513aee7fc9ceed9790b
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZTkwYzk2MDU5YjM2NDUxYzQ1MzI2NTEzYWVlN2ZjOWNlZWQ5NzkwYg==
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC SDTM Reason for Non-Completion Terminology
+  :synonym:
+  - :uri: http://www.assero.co.uk/SYN#02a24fcba19bc023c9848e72397af053f058da9f
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzAyYTI0ZmNiYTE5YmMwMjNjOTg0OGU3MjM5N2FmMDUzZjA1OGRhOWY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Completion/Reason for Non-Completion
+- :uri: http://www.cdisc.org/C66789/V4#C66789
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OQ==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Not Done
+  :has_state:
+    :uri: http://www.cdisc.org/C66789/V4#C66789_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66789/V4#C66789_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66789
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66789
+  :notation: ND
+  :definition: Indicates a task, process or examination that has either not been initiated
+    or completed. (NCI)
+  :extensible: false
+  :extended_with: []
+  :narrower:
+  - :uri: http://www.cdisc.org/C66789/V4#C66789_C49484
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OV9DNDk0ODQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  :is_subset: 
+  :preferred_term:
+    :uri: http://www.assero.co.uk/PT#e5042f0da970a373ceee25e016fcabfa7e0fe3e2
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZTUwNDJmMGRhOTcwYTM3M2NlZWUyNWUwMTZmY2FiZmE3ZTBmZTNlMg==
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC SDTM Not DoneTerminology
+  :synonym:
+  - :uri: http://www.assero.co.uk/SYN#80693856b066974cd21dac794f7adf4b3437ce78
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzgwNjkzODU2YjA2Njk3NGNkMjFkYWM3OTRmN2FkZjRiMzQzN2NlNzg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Not Done
+- :uri: http://www.cdisc.org/C66790/V4#C66790
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MA==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Patient Ethnic Group
+  :has_state:
+    :uri: http://www.cdisc.org/C66790/V4#C66790_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66790/V4#C66790_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66790
+    :version_label: 2007-05-31 Release
+    :version: 4
+    :semantic_version: 4.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2007-05-31T00:00:00+00:00'
+  :last_change_date: '2007-05-31T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66790
+  :notation: ETHNIC
+  :definition: A social group characterized by a distinctive social and cultural tradition
+    maintained from generation to generation, a common history and origin and a sense
+    of identification with the group; members of the group have distinctive features
+    in their way of life, shared experiences and often a common genetic heritage;
+    these features may be reflected in their experience of health and disease. (NCI)
+  :extensible: true
+  :extended_with: []
+  :narrower:
+  - :uri: http://www.cdisc.org/C66790/V4#C66790_C17998
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DMTc5OTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66790/V4#C66790_C17459
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DMTc0NTk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66790/V4#C66790_C43234
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DNDMyMzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66790/V4#C66790_C41222
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MF9DNDEyMjI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  :is_subset: 
+  :preferred_term:
+    :uri: http://www.assero.co.uk/PT#ce0ee660b2d365604596d4a553e7f01a9a2f26d3
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjY2UwZWU2NjBiMmQzNjU2MDQ1OTZkNGE1NTNlN2YwMWE5YTJmMjZkMw==
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC SDTM Patient Ethnic GroupTerminology
+  :synonym:
+  - :uri: http://www.assero.co.uk/SYN#ccb1d3b51ea0c56ce60391f6492e9db1c03d0415
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2NjYjFkM2I1MWVhMGM1NmNlNjAzOTFmNjQ5MmU5ZGIxYzAzZDA0MTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Patient Ethnic Group
+- :uri: http://www.cdisc.org/C66726/V8#C66726
+  :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNg==
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Pharmaceutical Dosage Form
+  :has_state:
+    :uri: http://www.cdisc.org/C66726/V8#C66726_RS
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNl9SUw==
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+    :registration_status: Standard
+    :administrative_note: ''
+    :effective_date: '2016-01-01T00:00:00+00:00'
+    :until_date: '2016-01-01T00:00:00+00:00'
+    :unresolved_issue: ''
+    :administrative_status: ''
+    :previous_state: Standard
+    :by_authority:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+      :organization_identifier: '084433759'
+      :international_code_designator: DUNS
+      :owner: false
+      :ra_namespace:
+        :uri: http://www.assero.co.uk/NS#CDISC
+        :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+        :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+        :short_name: ''
+        :name: ''
+        :authority: ''
+  :has_identifier:
+    :uri: http://www.cdisc.org/C66726/V8#C66726_SI
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNl9TSQ==
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66726
+    :version_label: 2008-08-26 Release
+    :version: 8
+    :semantic_version: 8.0.0
+    :has_scope:
+      :uri: http://www.assero.co.uk/RA#DUNS084433759
+      :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ''
+      :name: ''
+      :authority: ''
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2008-08-26T00:00:00+00:00'
+  :last_change_date: '2008-08-26T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66726
+  :notation: FRM
+  :definition: The form of the completed pharmaceutical product, e.g. tablet, capsule,
+    injection, elixir, suppository. Dosage form can have a significant effect on the
+    onset, duration and intensity of the pharmacological action of a drug. A pharmaceutical
+    dosage form controls the rate at which the drug is released into the biological
+    fluids. This release rate affects its intrinsic absorption pattern and therefore,
+    the bioavailability of the drug.
+  :extensible: true
+  :extended_with: []
+  :narrower:
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60992
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5OTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42975
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60985
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5ODU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60934
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5MzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42950
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42895
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47915
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc5MTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42955
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42986
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C45415
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDU0MTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42970
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42930
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60930
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5MzA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42981
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42998
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42947
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42951
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42896
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47916
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc5MTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42927
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mjc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42968
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Njg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42931
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60931
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5MzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42999
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C48193
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDgxOTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42948
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47912
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc5MTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47898
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4OTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42923
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42916
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C61004
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjEwMDQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47889
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4ODk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42903
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42944
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43001
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDMwMDE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60891
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA4OTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42924
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60929
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5Mjk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42990
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42917
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42956
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42936
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C25158
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMjUxNTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42929
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mjk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42920
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42967
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Njc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42971
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42991
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42957
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42909
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42900
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43451
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDM0NTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42932
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60897
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA4OTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42982
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42937
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mzc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42963
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42912
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60884
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA4ODQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42905
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43003
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDMwMDM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42994
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42943
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C17423
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMTc0MjM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60994
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5OTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42933
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42893
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42964
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42913
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42906
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42995
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60995
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5OTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42976
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42960
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42763
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI3NjM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42987
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C45416
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDU0MTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42940
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42972
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47890
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4OTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42678
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI2Nzg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42890
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42977
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Nzc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42952
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42897
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60926
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5MjY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42988
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42887
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4ODc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60957
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5NTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42969
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Njk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47887
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4ODc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42973
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60988
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5ODg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42898
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42949
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C45413
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDU0MTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42984
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42953
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47913
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc5MTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C61005
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjEwMDU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60984
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5ODQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60933
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5MzM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42996
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42945
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42894
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47914
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc5MTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42925
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42918
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C61006
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjEwMDY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42997
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42980
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42946
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42921
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C48624
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDg2MjQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42926
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42992
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42919
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42958
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42901
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42983
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C29167
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMjkxNjc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42938
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mzg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47897
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4OTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C29269
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMjkyNjk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42922
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MjI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42899
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42959
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42902
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43000
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDMwMDA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42934
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C28944
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMjg5NDQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C25394
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DMjUzOTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42939
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mzk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42965
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60928
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5Mjg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42914
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42907
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42935
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MzU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42961
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42928
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Mjg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42910
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTA=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43525
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDM1MjU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42966
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjY=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42915
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42941
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NDE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42908
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60997
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5OTc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42679
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI2Nzk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42978
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Nzg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42891
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42962
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NjI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60927
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5Mjc=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42911
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MTE=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42904
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5MDQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C43002
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDMwMDI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42989
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42888
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4ODg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42993
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5OTM=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C60958
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNjA5NTg=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42974
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NzQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C47892
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDc4OTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42979
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5Nzk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42892
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4OTI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42985
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5ODU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42954
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI5NTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C45414
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDU0MTQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V4#C66726_C42889
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y0I0M2NjcyNl9DNDI4ODk=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  - :uri: http://www.cdisc.org/C66726/V8#C66726_C42942
+    :uuid: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNl9DNDI5NDI=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :identifier: ''
+    :notation: ''
+    :definition: ''
+    :extensible: false
+    :extended_with: []
+    :narrower: []
+    :is_subset: 
+    :preferred_term: 
+    :synonym: []
+  :is_subset: 
+  :preferred_term:
+    :uri: http://www.assero.co.uk/PT#d96179c363badf5b6dbc81819e0d0bad858dcd3f
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZDk2MTc5YzM2M2JhZGY1YjZkYmM4MTgxOWUwZDBiYWQ4NThkY2QzZg==
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: CDISC SDTM Pharmaceutical Dosage FormTerminology
+  :synonym:
+  - :uri: http://www.assero.co.uk/SYN#b8487733af39fd171119d807c25976f546299895
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2I4NDg3NzMzYWYzOWZkMTcxMTE5ZDgwN2MyNTk3NmY1NDYyOTk4OTU=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Dose Form
+  - :uri: http://www.assero.co.uk/SYN#7332de6e7143f2007dbf2076504d34469c100eb4
+    :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzczMzJkZTZlNzE0M2YyMDA3ZGJmMjA3NjUwNGQzNDQ2OWMxMDBlYjQ=
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Pharmaceutical Dosage Form

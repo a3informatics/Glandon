@@ -21,16 +21,14 @@ private
     %Q{SELECT ?s ?p ?o ?e ?v WHERE
 {
   VALUES ?e { #{uris} }
-  ?e isoT:hasIdentifier ?si .
-  ?si isoI:hasScope ?ra .
-  ?e isoT:hasState ?rs .
   {
     { ?e ?p ?o . BIND (?e as ?s) } UNION
     { ?e th:synonym ?s . ?s ?p ?o } UNION
     { ?e th:preferredTerm ?s . ?s ?p ?o } UNION
-    { ?si ?p ?o . BIND (?si as ?s) } UNION
-    { ?ra ?p ?o . BIND (?ra as ?s) } UNION
-    { ?rs ?p ?o . BIND (?rs as ?s) }
+    { ?e isoT:hasIdentifier ?s . ?s ?p ?o } UNION
+    { ?e isoT:hasIdentifier/isoI:hasScope ?s . ?s ?p ?o } UNION
+    { ?e isoT:hasState ?s . ?s ?p ?o } UNION
+    { ?e isoT:hasState/isoR:byAuthority ?s . ?s ?p ?o }
   }
 } 
 }

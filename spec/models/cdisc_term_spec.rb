@@ -52,12 +52,23 @@ describe CdiscTerm do
       #
     end
 
+    # it "get children" do
+    #   actual = []
+    #   ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
+    #   results = ct.managed_children_pagination({count: 10, offset: 0})
+    #   results.each {|x| actual << x.to_h}
+    #   check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml")
+    # end
+
     it "get children" do
       actual = []
       ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"), false)
-      results = ct.children_pagination({count: 10, offset: 0}, :is_top_concept_reference)
+      results = ct.managed_children_pagination({offset: 0, count: 10})
       results.each {|x| actual << x.to_h}
-      check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml", write_file: true)
+      results = ct.managed_children_pagination({offset: 10, count: 5})
+      results.each {|x| actual << x.to_h}
+      check_file_actual_expected(actual, sub_dir, "children_pagination_2.yaml", write_file: true)
     end
 
 =begin
