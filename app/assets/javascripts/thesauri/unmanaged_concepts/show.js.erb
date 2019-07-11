@@ -1,0 +1,13 @@
+$(document).ready( function() {
+  if (url_path !== "") {
+    var columns = [
+      {"data" : "identifier"},
+      {"data" : "notation"},
+      {"data" : "preferred_term.label"},
+      {"data" : "synonym_list"},
+      {"data" : "extensible"},
+      {"data" : "definition"}
+    ];
+    var cp = new ChildrenPanel(url_path, 20, columns);
+  }
+});

@@ -8,8 +8,6 @@ class CdiscTermsController < ApplicationController
 
   before_action :authenticate_user!
   
-  C_CLASS_NAME = "CdiscTermsController"
-  
   # def find_submission
   #   authorize CdiscTerm, :view?
   #   ct = CdiscTerm.current

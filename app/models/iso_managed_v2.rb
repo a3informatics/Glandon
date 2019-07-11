@@ -289,6 +289,24 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
+  # Children Pagination. Get unmanaged children by page
+  #
+  # @params [Hash] params a hash of parameters
+  # @params params [String] :offset the start offset of items to be returned
+  # @params params [String] :count the count of items to be returned
+  # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
+  def children_pagination(params)
+    results = []
+    query_string = block_given? ? yield(params) : children_pagination_query(params)
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT, :bo])
+    by_subject = query_results.by_subject
+    query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
+      item = self.class.children_klass.from_results_recurse(uri, by_subject)
+      results << item
+    end
+    results
+  end
+
   def self.latest(params)
     results = history(params)
     results.empty? ? nil : results.last
@@ -389,6 +407,20 @@ private
     { ?rs ?p ?o . BIND (?rs as ?s) }
   }
 } ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+}
+  end
+
+  # Standard unmanaged children pagination query
+  def children_pagination_query(params)
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    uris = children.map{|x| x.uri.to_ref}[offset..(offset+count-1)].join(" ")
+    %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
+{
+  VALUES ?e { #{uris} }
+  ?e ?p ?o . 
+  BIND (?e as ?s)
+} 
 }
   end
 

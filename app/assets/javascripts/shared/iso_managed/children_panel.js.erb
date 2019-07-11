@@ -1,0 +1,81 @@
+/*
+* Children Panel
+* 
+* Requires:
+* children_table [Table] the managed item table
+*/
+
+/**
+ * Children Panel Constructor
+ *
+ * @return [void]
+ */
+function ChildrenPanel(url, count, columns) {
+  var _this = this;
+  this.url = url;
+  this.count = count;
+  this.columns = columns;
+  this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
+  this.childrenTable = $('#children_table').DataTable( {
+    "order": [[ 0, "desc" ]],
+    "columns": _this.columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No child items.",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+    }
+  });
+  this.add(0);
+}
+
+/**
+ * Add item to table
+ *
+ * @param [Integer] the offset to retrieve
+ * @return [void]
+ */
+ChildrenPanel.prototype.add = function (offset) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      for (i=0; i<result.data.length; i++) {
+        _this.synonymList(result.data[i]);
+        var row = _this.childrenTable.row.add(result.data[i]);
+      }
+      _this.childrenTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count)
+      } else {
+        _this.childrenTable.processing(false);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
+}
+
+ChildrenPanel.prototype.synonymList = function(entry) {
+  var items = [];
+  $.each(entry.synonym, function(i, value) {
+    items.push(value.label);
+  });
+  entry.synonym_list = items.join("; ");
+}
+
+ChildrenPanel.prototype.linkButton = function (path, text) {
+  if (path === "") {
+    return "&nbsp;"
+  } else {
+    return '<a href="' + path + '" class="btn btn-primary btn-xs">' + text + '</a>';
+  }
+}

@@ -114,6 +114,11 @@ module Fuseki
           instance_variable_get("@#{name}")
         end
 
+        # Define an instance method to return the children
+        define_method "children?" do
+          instance_variable_get("@#{name}").any?
+        end
+
         # Define a class method to get the children class
         define_singleton_method "children_klass" do
           opts[:model_class].constantize

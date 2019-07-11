@@ -127,6 +127,13 @@ Rails.application.routes.draw do
       get :export_csv
     end
   end
+  
+  # Thesauri
+  namespace :thesauri do
+    resources :managed_concepts
+    resources :unmanaged_concepts
+  end
+
   resources :thesauri do
     collection do
       get :history
@@ -148,16 +155,18 @@ Rails.application.routes.draw do
       get :export_csv
     end
   end
-  resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
-    collection do
-      get :children
-      post :add_child
-    end
-    member do
-      get :cross_reference_start
-      get :cross_reference_details
-    end
-  end
+
+  # resources :thesaurus_concepts, :only => [:update, :show, :destroy, :edit] do
+  #   collection do
+  #     get :children
+  #     post :add_child
+  #   end
+  #   member do
+  #     get :cross_reference_start
+  #     get :cross_reference_details
+  #   end
+  # end
+  
   resources :uploads
 
   # Imports
