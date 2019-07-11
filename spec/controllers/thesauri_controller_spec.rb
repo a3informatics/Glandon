@@ -327,19 +327,21 @@ describe ThesauriController do
       expect(Token.count).to eq(token_count)
     end
 
-    it "returns a thesaurus as JSON" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :show, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")    
+    it "show" do
+      expect(Thesaurus).to receive(:find).and_return(CdiscTerm.new)
+      get :show, id: "aaa"
+      expect(response).to render_template("show")
     end
 
-    it "returns a thesaurus as HTML" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
-      get :show, params
-      expect(response.content_type).to eq("text/html")
-      expect(response.code).to eq("200")    
+    it "show results" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus).to receive(:find).and_return(CdiscTerm.new)
+      expect_any_instance_of(CdiscTerm).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([CdiscTerm.new])
+      get :show_results, id: "aaa", offset: 0, count: 10
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")  
+      x = JSON.parse(response.body).deep_symbolize_keys
+      expect(x).to eq({data: [CdiscTerm.new.to_h], count: 1, offset: 0})
     end
 
     it "view a thesaurus" do

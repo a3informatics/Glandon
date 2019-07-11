@@ -36,6 +36,7 @@ class ThesauriController < ApplicationController
   def show
     authorize Thesaurus
     @ct = CdiscTerm.find(params[:id])
+    @close_path = request.referer
   end
   
   def show_results
