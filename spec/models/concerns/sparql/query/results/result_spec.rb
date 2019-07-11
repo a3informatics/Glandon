@@ -29,4 +29,9 @@ describe Sparql::Query::Results::Result do
     expect(result.to_hash).to eq(expected)
 	end
 
+  it "speed test" do
+    timer_start
+    (1..1000).each {|x| result = Sparql::Query::Results::Result.new(@nodes.first)}
+    timer_stop("1000 new calls")
+  end
 end

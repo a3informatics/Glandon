@@ -42,18 +42,20 @@ class ThesauriController < ApplicationController
 start = Time.now()
     results = []
     authorize Thesaurus, :show?
-    @ct = Thesaurus.find(params[:id])
 step1 = Time.now()
-    children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+    @ct = Thesaurus.find(params[:id])
 step2 = Time.now()
-    children.each {|c| results << c.to_h}
+    children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
 step3 = Time.now()
-    render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
+    children.each {|c| results << c.to_h}
 step4 = Time.now()
-puts "1=#{(step1 - start).round(2)} secs"
-puts "2=#{(step2 - start).round(2)} secs"
-puts "3=#{(step3 - start).round(2)} secs"
-puts "4=#{(step4 - start).round(2)} secs"
+    render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
+step5 = Time.now()
+puts "TC1=#{(step1 - start).round(2)} secs"
+puts "TC2=#{(step2 - start).round(2)} secs"
+puts "TC3=#{(step3 - start).round(2)} secs"
+puts "TC4=#{(step4 - start).round(2)} secs"
+puts "TC4=#{(step5 - start).round(2)} secs"
   end
 
   def create

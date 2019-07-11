@@ -12,15 +12,20 @@ module Sparql
 
         class Column
 
-          C_CLASS_NAME = self.name
-
           # Initialize
           #
           # @param [Nokogiri::Node] node the xml node containing the binding. Assumed to point at binding element
           # @return [Void] no return
-          def initialize(node) 
-            @name = node.attributes["name"].text
-            @value = uri_literal(node)
+          def initialize(node)
+            str = node.to_s
+            @name = str.match(/\A<binding name=\"([a-z]*)\"/)[1]            
+            uri = str.match(/<uri>(.*)<\/uri>/)
+            if !uri.nil? 
+              @value = Uri.new(uri: uri[1])
+            else
+              literal = str.match(/<literal.*>(.*)<\/literal>/)
+              @value = literal.nil? ? "" : literal[1]
+            end
           end
 
           # Name
@@ -47,30 +52,30 @@ module Sparql
         private
 
           # URI Literal. Extract single value
-          def uri_literal(node)
-            result = uri_from_node(node)
-            return result if result.instance_of? Uri
-            return literal_from_node(node)
-          end
+          # def uri_literal(node)
+          #   result = uri_from_node(node)
+          #   return result if result.instance_of? Uri
+          #   return literal_from_node(node)
+          # end
 
-          # Get the URI result
-          def uri_from_node(node)
-            result = value_from_node(node, "uri")
-            return nil if result.nil?
-            return Uri.new(uri: result)
-          end
+          # # Get the URI result
+          # def uri_from_node(node)
+          #   result = value_from_node(node, "uri")
+          #   return nil if result.nil?
+          #   return Uri.new(uri: result)
+          # end
 
-          # Get the literal result
-          def literal_from_node(node)
-            return value_from_node(node, "literal")
-          end
+          # # Get the literal result
+          # def literal_from_node(node)
+          #   return value_from_node(node, "literal")
+          # end
 
-          # Get a value from the node givena path
-          def value_from_node(node, path)
-            items = node.xpath(path)
-            return items.first.text if items.count == 1
-            return nil
-          end
+          # # Get a value from the node givena path
+          # def value_from_node(node, path)
+          #   items = node.xpath(path)
+          #   return items.first.text if items.count == 1
+          #   return nil
+          # end
 
         end
 

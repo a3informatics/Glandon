@@ -66,4 +66,23 @@ describe Sparql::Query::Results do
     check_file_actual_expected(result, sub_dir, "by_object_expected_1.yaml")
   end
 
+  it "speed test" do
+    timer_start
+    (1..1000).each {|x| result = Sparql::Query::Results.new(@xml)}
+    timer_stop("1000 new calls")
+  end
+
+  it "speed test II" do
+    xml = read_text_file_2(sub_dir, "xml_2.xml")
+    timer_start
+    result = Sparql::Query::Results.new(xml)
+    timer_stop("XML 2 call")
+  end
+
+  it "speed test III" do
+    xml = read_text_file_2(sub_dir, "xml_3.xml")
+    timer_start
+    result = Sparql::Query::Results.new(xml)
+    timer_stop("XML 3 call")
+  end
 end

@@ -138,9 +138,8 @@ module Fuseki
             child_uri = object.instance_variable_get(name)
             object.instance_variable_set(name, klass.new.class.from_results_recurse(child_uri, triples)) if !child_uri.nil?
           else
-            links = object.instance_variable_get(name)
             children = []
-            links.each do |child_uri|
+            object.instance_variable_get(name).each do |child_uri|
               children << klass.new.class.from_results_recurse(child_uri, triples) if !child_uri.nil?
             end
             object.instance_variable_set(name, children)

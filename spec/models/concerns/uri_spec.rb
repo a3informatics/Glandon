@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe Uri do
 	
+  include TimeHelpers
+
   it "can create a blank args" do
     uri = Uri.new({})
     expect(uri.to_s).to eq("")
@@ -152,6 +154,12 @@ describe Uri do
     uri_3 = Uri.new({uri: "http://www.example.com/path1/path2#1"})
     expect(uri_1==uri_2).to eq(false)
     expect(uri_1==uri_3).to eq(true)
+  end
+
+  it "speed test" do
+    timer_start
+    (1..10000).each {|x| uri = Uri.new({uri: "http://www.example.com/path1/path2#1"})}
+    timer_stop("10000 URI calls")
   end
 
 end

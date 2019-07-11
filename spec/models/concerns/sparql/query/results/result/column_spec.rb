@@ -35,4 +35,11 @@ describe Sparql::Query::Results::Result::Column do
     expect(result.to_hash).to eq({:name=>"s", :value=>"http://www.assero.co.uk/MDRItems#RA-123456789"})
   end
 
+  it "speed test" do
+    bindings = @nodes.first.xpath("binding")
+    timer_start
+    (1..1000).each {|x| result = Sparql::Query::Results::Result::Column.new(bindings.first)}
+    timer_stop("1000 new calls")
+  end
+
 end

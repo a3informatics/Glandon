@@ -18,17 +18,27 @@ private
     offset = params[:offset].to_i
     refs = is_top_concept_reference.sort_by{|x| x.ordinal}[offset..(offset+count-1)]
     uris = refs.map{|x| x.reference.uri.to_ref}.join(" ")
+#     %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
+# {
+#   VALUES ?e { #{uris} }
+#   {
+#     { ?e ?p ?o . BIND (?e as ?s) } UNION
+#     { ?e th:synonym ?s . ?s ?p ?o } UNION
+#     { ?e th:preferredTerm ?s . ?s ?p ?o } UNION
+#     { ?e isoT:hasIdentifier ?s . ?s ?p ?o } UNION
+#     { ?e isoT:hasIdentifier/isoI:hasScope ?s . ?s ?p ?o } UNION
+#     { ?e isoT:hasState ?s . ?s ?p ?o } UNION
+#     { ?e isoT:hasState/isoR:byAuthority ?s . ?s ?p ?o }
+#   }
+# } 
+# }
     %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
 {
   VALUES ?e { #{uris} }
   {
     { ?e ?p ?o . BIND (?e as ?s) } UNION
     { ?e th:synonym ?s . ?s ?p ?o } UNION
-    { ?e th:preferredTerm ?s . ?s ?p ?o } UNION
-    { ?e isoT:hasIdentifier ?s . ?s ?p ?o } UNION
-    { ?e isoT:hasIdentifier/isoI:hasScope ?s . ?s ?p ?o } UNION
-    { ?e isoT:hasState ?s . ?s ?p ?o } UNION
-    { ?e isoT:hasState/isoR:byAuthority ?s . ?s ?p ?o }
+    { ?e th:preferredTerm ?s . ?s ?p ?o }
   }
 } 
 }

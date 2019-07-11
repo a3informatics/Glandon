@@ -1,4 +1,4 @@
-# Sparql Statement
+# Sparql Query Results Result. 
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
@@ -14,11 +14,8 @@ module Sparql
 
         # Initialize
         #
-        # @param [Hash] args the hash of arguments
-        # @option args [Hash] :subject the subject URI. can be epxressed in a number of ways
-        # @option args [Hash] :predicate a URI. can be epxressed in a number of ways
-        # @option args [Hash] :object a URI or literal. can be epxressed in a number of ways
-        # @return [SparqlUpdateV2::Statement] the object
+        # @param [Nokogiri::Node] the node
+        # @return [Sparql::Query::Results::Result] the object
         def initialize(node) 
           @columns = {}
           node.xpath("binding").each do |b|
