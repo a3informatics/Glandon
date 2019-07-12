@@ -10,16 +10,15 @@
 * @param [namespace] the namespace for the URI
 * @return [Void]
 */
-function ThesauriSearchPanel(id, namespace) {
+function ThesauriSearchPanel(id) {
   this.id = id;
-  this.namespace = namespace;
   this.tsCurrentRef = null;
   this.tsSearchTable = null;
   this.columns = [
-    {"data" : "parentIdentifier", "width" : "10%"},
+    {"data" : "parent_identifier", "width" : "10%"},
     {"data" : "identifier", "width" : "10%"},
     {"data" : "notation", "width" : "15%"},
-    {"data" : "preferredTerm", "width" : "15%" },
+    {"data" : "preferred_term", "width" : "15%" },
     {"data" : "synonym", "width" : "15%" },
     {"data" : "definition", "width" : "35%"}
   ];
@@ -78,12 +77,8 @@ ThesauriSearchPanel.prototype.initTable = function () {
   var _this = this;
   this.tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
-      "url": "/thesauri/search_results",
-      "data": function( d ) {
-        d.id = _this.id.value,
-        d.namespace = _this.namespace.value
-      },
-    "dataSrc": "data" 
+      "url": "/thesauri/" + _this.id.value + "/search",
+      "dataSrc": "data" 
     },
     "deferLoading": 0,
     "processing": true,

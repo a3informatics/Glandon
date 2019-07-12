@@ -9,7 +9,7 @@
   </div>
   <div class="panel-body">
     <div class="col-md-12">
-      <%= render partial: "shared/thesauri/search", :locals => {current: @thesaurus.current?, single: true, id: @thesaurus.id, namespace: @thesaurus.namespace} %>
+      <%= render partial: "shared/thesauri/search", :locals => {current: @thesaurus.current?, single: true, id: @thesaurus.id} %>
       <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
     </div>
   </div>

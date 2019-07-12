@@ -41,7 +41,7 @@ s1 = Time.now
     respond_to do |format|
       format.html do
         @close_path = request.referer
-puts "Thesari Show S1: #{s1-start}"
+puts "Thesauri Show S1: #{s1-start}"
       end
       format.json do
         results = []
@@ -50,9 +50,9 @@ s2 = Time.now
         children.each {|c| results << c.to_h.reverse_merge!({show_path: thesauri_managed_concept_path(c)})}
 s3 = Time.now
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
-puts "Thesari Show S1: #{s1-start}"
-puts "Thesari Show S2: #{s2-s1}"
-puts "Thesari Show S3: #{s3-s2}"
+puts "Thesauri Show S1: #{s1-start}"
+puts "Thesauri Show S2: #{s2-s1}"
+puts "Thesauri Show S3: #{s3-s2}"
       end
     end
 s4 = Time.now
@@ -138,27 +138,26 @@ puts "Thesari Show Overall: #{s4-start}"
 
   def search
     authorize Thesaurus, :view?
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
-    #@items = Notepad.where(user_id: current_user).find_each
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner_id)
+    @thesaurus = Thesaurus.find(params[:id], false)
+    respond_to do |format|
+      format.html 
+        @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner)
+      format.json do
+        if Thesaurus.empty_search?(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+        else
+          results = @thesaurus.search(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+        end        
+      end
+    end
   end
   
   def search_current
     authorize Thesaurus, :view?
-    #@items = Notepad.where(user_id: current_user).find_each
     @close_path = thesauri_index_path
   end
   
-  def search_results
-    authorize Thesaurus, :view?
-    if Thesaurus.empty_search?(params)
-      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
-    else
-      results = Thesaurus.search(params)
-      render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
-    end
-  end
-
    def export_ttl
     authorize Thesaurus
     item = IsoManaged::find(params[:id], params[:namespace])

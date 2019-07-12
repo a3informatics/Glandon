@@ -138,8 +138,6 @@ Rails.application.routes.draw do
     collection do
       get :history
       get :view
-      get :search
-      get :search_results
       get :search_current
       #get :next
       get :children
@@ -151,6 +149,7 @@ Rails.application.routes.draw do
       get :impact_report
     end
     member do
+      get :search
       get :export_csv
     end
   end
