@@ -77,25 +77,34 @@ describe Fuseki::Properties do
   it "get properties, class and instance" do
     temp = TestFP1.new
     result = TestFP1.class_properties
-    check_file_actual_expected(metadata_to_h(result), sub_dir, "properties_metadata_expected_1.yaml", write_file: true)
+    check_file_actual_expected(metadata_to_h(result), sub_dir, "properties_metadata_expected_1.yaml")
     item = TestFP1.new
     result = item.instance_properties
     check_file_actual_expected(metadata_to_h(result), sub_dir, "properties_metadata_expected_1.yaml")
   end
 
-  it "relationships" do
+  it "object relationships" do
     temp = TestFP1.new
     result = TestFP1.class_properties
-    check_file_actual_expected(result.relationships, sub_dir, "relationships_expected_1.yaml", write_file: true)
+    check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
     item = TestFP1.new
     result = item.instance_properties
-    check_file_actual_expected(result.relationships, sub_dir, "relationships_expected_1.yaml")
+    check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
+  end
+
+  it "property relationships" do
+    temp = TestFP1.new
+    result = TestFP1.class_properties
+    check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
+    item = TestFP1.new
+    result = item.instance_properties
+    check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
   end
 
   it "managed paths" do
     temp = TestFP1.new
     result = TestFP1.class_properties
-    check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml", write_file: true)
+    check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
     item = TestFP1.new
     result = item.instance_properties
     check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")

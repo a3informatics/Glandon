@@ -69,8 +69,15 @@ module Fuseki
     # Relationships
     # 
     # @return [Array] array of hash each containing the predicate and class for the class' relationships
-    def relationships
+    def object_relationships
       @metadata.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
+    end
+
+    # Property Relationships
+    # 
+    # @return [Array] array of hash each containing the predicate and class for the class' relationships
+    def property_relationships
+      @metadata.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
     end
 
     # Excluded Relationships

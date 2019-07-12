@@ -18,6 +18,8 @@ private
     offset = params[:offset].to_i
     refs = is_top_concept_reference.sort_by{|x| x.ordinal}[offset..(offset+count-1)]
     uris = refs.map{|x| x.reference.uri.to_ref}.join(" ")
+    predicates = refs[0].class.referenced_klass.properties_metadata_class.property_relationships.map{|x| x[:predicate].to_ref}.join("|")
+
 #     %Q{SELECT DISTINCT ?s ?p ?o ?e WHERE
 # {
 #   VALUES ?e { #{uris} }
@@ -36,8 +38,10 @@ private
 {
   VALUES ?e { #{uris} }
   {
-    { ?e ?p ?o . BIND (?e as ?s) } UNION
+    { ?e (#{predicates}) ?o . ?e ?p ?o . BIND (?e as ?s) } UNION
+    { ?e th:synonym ?o . BIND (?e as ?s) . BIND (th:synonym as ?p) } UNION
     { ?e th:synonym ?s . ?s ?p ?o } UNION
+    { ?e th:preferredTerm ?o . BIND (?e as ?s) . BIND (th:preferredTerm as ?p) } UNION
     { ?e th:preferredTerm ?s . ?s ?p ?o }
   }
 } 

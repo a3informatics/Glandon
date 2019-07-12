@@ -214,7 +214,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
       params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
       properties = properties_instance
       unions = []
-      properties.relationships.map.each do |relationship|
+      properties.object_relationships.map.each do |relationship|
         unions << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?s .\n#{where_clauses}?s ?p ?o .\nBIND ('#{relationship[:model_class]}' as ?e) . }"
       end
       query_string = "SELECT ?s ?p ?o ?e WHERE {#{unions.join(" UNION\n")}}"
@@ -329,6 +329,7 @@ puts "***** SUBJECT CACHE #{uri} *****"
       else
         "#{value}"
       end
+    rescue => e
     end
 
     def clear_cache
