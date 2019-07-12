@@ -29,9 +29,42 @@ describe Sparql::Query::Results::Result do
     expect(result.to_hash).to eq(expected)
 	end
 
+  it "column" do
+    result = Sparql::Query::Results::Result.new(@nodes.first)
+  #Xwrite_yaml_file(result.column("p").to_hash, sub_dir, "column_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "column_expected_1.yaml")
+    expect(result.column("p").to_hash).to eq(expected)
+    expect(result.column(:p).to_hash).to eq(expected)
+  end
+
+  it "row" do
+    object = Sparql::Query::Results::Result.new(@nodes.first)
+    x = {}
+    result = object.row(["p", "s"]).each{|k,v| x[k]=v.to_s}
+  #Xwrite_yaml_file(x, sub_dir, "row_expected_1.yaml")
+    expected = read_yaml_file(sub_dir, "row_expected_1.yaml")
+    expect(result).to eq(expected)
+    x = {}
+    result = object.row([:p, :s]).each{|k,v| x[k]=v.to_s}
+    expect(result).to eq(expected)
+  end
+
+  it "row, with extra" do
+    object = Sparql::Query::Results::Result.new(@nodes.first)
+    x = {}
+    result = object.row(["p", "s", "z"]).each{|k,v| x[k]=v.to_s}
+  #Xwrite_yaml_file(x, sub_dir, "row_expected_2.yaml")
+    expected = read_yaml_file(sub_dir, "row_expected_2.yaml")
+    expect(result).to eq(expected)
+    x = {}
+    result = object.row([:p, :s, :z]).each{|k,v| x[k]=v.to_s}
+    expect(result).to eq(expected)
+  end
+
   it "speed test" do
     timer_start
     (1..1000).each {|x| result = Sparql::Query::Results::Result.new(@nodes.first)}
     timer_stop("1000 new calls")
   end
+
 end

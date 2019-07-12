@@ -32,6 +32,13 @@ module Sparql
           @columns[name.to_sym]
         end
 
+        # Row
+        def row(names)
+          result = Hash[names.map {|x| [x.to_sym, ""]}]
+          @columns.each {|name, column| result[name.to_sym] = column.value}
+          result
+        end
+
         # To Hash
         # 
         # @return [Hash] a hash representation of the class content

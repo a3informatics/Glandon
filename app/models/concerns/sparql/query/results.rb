@@ -87,9 +87,10 @@ module Sparql
       def by_object_set(variables)
         values = []
         @results.each do |result|
-          row = {}
-          variables.each {|variable| row[variable.to_sym] = result.column(variable).value}
-          values << row
+          #row = {}
+          #variables.each {|variable| row[variable.to_sym] = result.column(variable).value}
+          #values << row
+         values << result.row(variables)
         end
         values
       end

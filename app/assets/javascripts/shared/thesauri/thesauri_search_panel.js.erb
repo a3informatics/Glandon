@@ -59,7 +59,7 @@ function ThesauriSearchPanel(id) {
     _this.tsSearchTable.search('');
     _this.tsSearchTable.columns().search('');
     // Set our parent identifier search and trigger.
-    $('#searchTable_csearch_cl').val(data.parentIdentifier);
+    $('#searchTable_csearch_cl').val(data.parent_identifier);
     var e = jQuery.Event("keyup");
     e.which = 13; 
     e.keyCode = 13;

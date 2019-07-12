@@ -28,8 +28,7 @@ class ThesauriController < ApplicationController
   def history
     authorize Thesaurus
     @identifier = params[:identifier]
-    #@scope_id = params[:scope_id]
-    @thesauri = Thesaurus.history({identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id])})
+    @thesauri = Thesaurus.history({identifier: the_params[:identifier], scope: IsoRegistrationAuthority.find(the_params[:scope_id])})
     redirect_to thesauri_index_path if @thesauri.count == 0
   end
   
@@ -128,8 +127,6 @@ puts "Thesari Show Overall: #{s4-start}"
     redirect_to request.referer
   end
 
-  
-  
   def view
     authorize Thesaurus
     @thesaurus = Thesaurus.find(params[:id], params[:namespace])
@@ -141,7 +138,7 @@ puts "Thesari Show Overall: #{s4-start}"
     @thesaurus = Thesaurus.find(params[:id], false)
     respond_to do |format|
       format.html 
-        @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.owner)
+        @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.identifier, scope_id: @thesaurus.owner})
       format.json do
         if Thesaurus.empty_search?(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
