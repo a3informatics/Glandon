@@ -151,7 +151,6 @@ Rails.application.routes.draw do
       get :impact_report
     end
     member do
-      get :show_results
       get :export_csv
     end
   end

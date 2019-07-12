@@ -35,19 +35,30 @@ class ThesauriController < ApplicationController
   
   def show
     authorize Thesaurus
-    @ct = CdiscTerm.find(params[:id])
-    @close_path = request.referer
+start = Time.now
+    @ct = Thesaurus.find(params[:id])
+s1 = Time.now
+    respond_to do |format|
+      format.html do
+        @close_path = request.referer
+puts "Thesari Show S1: #{s1-start}"
+      end
+      format.json do
+        results = []
+        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+s2 = Time.now
+        children.each {|c| results << c.to_h.reverse_merge!({show_path: thesauri_managed_concept_path(c)})}
+s3 = Time.now
+        render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
+puts "Thesari Show S1: #{s1-start}"
+puts "Thesari Show S2: #{s2-s1}"
+puts "Thesari Show S3: #{s3-s2}"
+      end
+    end
+s4 = Time.now
+puts "Thesari Show Overall: #{s4-start}"
   end
   
-  def show_results
-    results = []
-    authorize Thesaurus, :show?
-    @ct = Thesaurus.find(params[:id])
-    children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
-    children.each {|c| results << c.to_h.reverse_merge!({show_path: thesauri_managed_concept_path(c)})}
-    render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
-  end
-
   def create
     authorize Thesaurus
     @thesaurus = Thesaurus.create_simple(the_params)

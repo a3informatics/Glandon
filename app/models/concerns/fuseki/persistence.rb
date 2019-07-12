@@ -117,11 +117,30 @@ module Fuseki
       end
 
       def from_results(uri, triples)
+        # object = new
+        # object.instance_variable_set("@uri", uri)
+        # triples.each do |triple|
+        #   next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        #   object.from_triple(triple)
+        # end
+        # object.instance_variable_set(:@new_record, false)
+        # object.instance_variable_set(:@destroyed, false)
+        # object
         object = new
         object.instance_variable_set("@uri", uri)
+        properties = object.class.instance_variable_get(:@properties)
+        schema = object.class.class_variable_get(:@@schema)
         triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-          object.from_triple(triple)
+          name = "@#{triple[:predicate].fragment.underscore}".to_sym
+          next if !properties.key?(name) # Ignore values if no property declared.
+          value = triple[:object]
+          if properties[name][:type] == :object 
+            value = Uri.new(uri: value) if value.is_a? String
+            object.instance_variable_get(name).is_a?(Array) ? object.instance_variable_get(name).push(value) : object.instance_variable_set(name, value)
+          else
+            object.instance_variable_set(name, to_typed(schema.range(properties[name][:predicate]), value))
+          end
         end
         object.instance_variable_set(:@new_record, false)
         object.instance_variable_set(:@destroyed, false)
@@ -294,6 +313,23 @@ puts "***** SUBJECT CACHE #{uri} *****"
     end      
 
   private
+
+    # Set a simple typed value
+    def self.to_typed(base_type, value)
+      if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
+        "#{value}"
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
+        value.to_bool
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
+        value.to_time_with_default
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
+        value.to_i
+      elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
+        value.to_i
+      else
+        "#{value}"
+      end
+    end
 
     def clear_cache
       return if !self.class.cache?
