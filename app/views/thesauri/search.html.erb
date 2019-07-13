@@ -1,4 +1,5 @@
 <%= javascript_include_tag 'thesauri/search' %>
+<%= javascript_tag "var url_path = '#{search_thesauri_path(@thesaurus)}';" %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Search:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
@@ -9,7 +10,7 @@
   </div>
   <div class="panel-body">
     <div class="col-md-12">
-      <%= render partial: "shared/thesauri/search", :locals => {current: @thesaurus.current?, single: true, id: @thesaurus.id} %>
+      <%= render partial: "shared/thesauri/search" %>
       <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
     </div>
   </div>

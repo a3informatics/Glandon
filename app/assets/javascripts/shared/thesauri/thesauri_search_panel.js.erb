@@ -10,8 +10,8 @@
 * @param [namespace] the namespace for the URI
 * @return [Void]
 */
-function ThesauriSearchPanel(id) {
-  this.id = id;
+function ThesauriSearchPanel(url) {
+  this.url = url;
   this.tsCurrentRef = null;
   this.tsSearchTable = null;
   this.columns = [
@@ -77,7 +77,7 @@ ThesauriSearchPanel.prototype.initTable = function () {
   var _this = this;
   this.tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
-      "url": "/thesauri/" + _this.id.value + "/search",
+      "url": _this.url,
       "dataSrc": "data" 
     },
     "deferLoading": 0,

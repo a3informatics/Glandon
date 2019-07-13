@@ -1,3 +1,7 @@
+# Thesaurus Search
+#
+# @author Dave Iberson-Hurst
+# @since 2.22.0
 class Thesaurus
 
   module Search
@@ -24,6 +28,16 @@ class Thesaurus
 
     module ClassMethods
 
+      # Search Current. Search the current set. 
+      # 
+      # @param params [Hash] the hash sent by datatables for a search.
+      # @return [Hash] a hash containing :count wiht the number of records that could be returned and
+      #    :items which is an array of results.
+      def self.search_current(params)
+        object = self.new
+        object.search_multiple(prams, [self.uri]) # << Needs array of current terminology URIs
+      end
+
       # Empty Search? No search parameters
       # 
       # @param params [Hash]  the hash sent by datatables for a search.
@@ -42,32 +56,38 @@ class Thesaurus
     # @return [Hash] a hash containing :count wiht the number of records that could be returned and
     #    :items which is an array of results.
     def search(params)
-      results = []
-      query_results = Sparql::Query.new.query(query_string(params), "", [:bo, :th, :isoC])
-      triples = query_results.by_object_set([:pi, :i, :n, :d, :pt, :sys, :uri])
-      triples.each do |t|
-        results << {uri: t[:uri].to_s, parent_identifier: t[:pi], identifier: t[:i], notation: t[:n], definition: t[:d], preferred_term: t[:pt], synonym: t[:sys]}
-      end
-      return { count: search_count(params), items: results }
+      search_multiple(params, [self.uri])
     end
 
   private
 
-    # Search resut count
-    def search_count(params)
+    # Search one or more terminologies
+    def search_multiple(params, uris)
       results = []
-      query_results = Sparql::Query.new.query(query_string(params, false), "", [:bo, :th, :isoC])
+      query_results = Sparql::Query.new.query(query_string(params, uris), "", [:bo, :th, :isoC])
+      triples = query_results.by_object_set([:pi, :i, :n, :d, :pt, :sys, :uri])
+      triples.each do |t|
+        results << {uri: t[:uri].to_s, parent_identifier: t[:pi], identifier: t[:i], notation: t[:n], definition: t[:d], preferred_term: t[:pt], synonym: t[:sys]}
+      end
+      return { count: search_count(params, uris), items: results }
+    end
+
+    # Search resut count
+    def search_count(params, uris)
+      results = []
+      query_results = Sparql::Query.new.query(query_string(params, uris, false), "", [:bo, :th, :isoC])
       query_results.results.count
     end
 
     # Build the search query string
-    def query_string(params, limit=true)
+    def query_string(params, uris, limit=true)
       search = params[:search]
       columns = params[:columns]
       variable = get_order_variable(params[:order]["0"][:column])
       order = get_order(params[:order]["0"][:dir])
       main_part = %Q{
-        #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?mc .
+        VALUES ?e { #{uris.map{|x| x.to_ref}.join(" ")} }
+        ?e th:isTopConceptReference/bo:reference ?mc .
         {
             {
               ?mc th:narrower+ ?uc .
