@@ -56,6 +56,7 @@ class Excel::Engine
               self.send(action[:method], params)
             end
           rescue => e
+byebug
             @errors.add(:base, "Process error #{e} when processing action '#{action}' on row #{row} column #{col}.")
           end
         end

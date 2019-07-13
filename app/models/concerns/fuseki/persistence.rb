@@ -71,7 +71,7 @@ module Fuseki
           "  ?s rdf:type #{rdf_type.to_ref} ."
         params.each do |name, value|
           predicate = properties["@#{name}".to_sym][:predicate]
-          query_string += "  ?s #{predicate.to_ref} \"#{value}\"^^xsd:#{schema.range(predicate)} ."
+          query_string += "  ?s #{predicate.to_ref} \"#{value.dup.inspect.trim_inspect_quotes}\"^^xsd:#{schema.range(predicate)} ."
         end
         query_string += "  ?s ?p ?o ."
         query_string += "}"

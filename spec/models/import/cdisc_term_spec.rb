@@ -289,4 +289,24 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
+  it "import, quotes" do
+    full_path_1 = test_file_path(sub_dir, "SDTM Terminology Quotes 1.xlsx")
+    params = 
+    {
+      version: "1", date: "2018-12-21", files: [full_path_1], 
+      version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
+    }
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "quotes_expected_1.txt")
+    check_ttl(filename, "quotes_expected_1.txt")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
+
+
 end

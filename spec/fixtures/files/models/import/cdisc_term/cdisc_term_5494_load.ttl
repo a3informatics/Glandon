@@ -1,0 +1,250 @@
+@prefix : <http://www.cdisc.org/CT/V1#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/CT/V1>
+	rdf:type owl:Ontology ;
+.
+:TH
+	rdf:type th:Thesaurus ;
+	isoC:label "CDISC Term"^^xsd:string ;
+	isoT:hasState :TH_RS ;
+	isoT:hasIdentifier :TH_SI ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:isTopConceptReference :TH_TCR1 ;
+	th:isTopConceptReference :TH_TCR2 ;
+	th:isTopConcept <http://www.cdisc.org/C141663/V1#C141663> ;
+	th:isTopConcept <http://www.cdisc.org/C141662/V1#C141662> ;
+.
+:TH_RS
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_SI
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "CT"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_TCR1
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "1"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C141663/V1#C141663> ;
+.
+:TH_TCR2
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "2"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C141662/V1#C141662> ;
+.
+<http://www.cdisc.org/C141663/V1#C141663>
+	rdf:type th:ManagedConcept ;
+	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C141663/V1#C141663_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C141663/V1#C141663_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C141663"^^xsd:string ;
+	th:notation "A4STR1TC"^^xsd:string ;
+	th:definition "4 Stair Ascend test code."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C141663/V1#C141663_C141706> ;
+	th:narrower <http://www.cdisc.org/C141663/V1#C141663_C141707> ;
+	th:narrower <http://www.cdisc.org/C141663/V1#C141663_C147590> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ebe1484517123050587eaf3fc805177e190bfaa6> ;
+	th:synonym <http://www.assero.co.uk/SYN#f1272bcfa0f6a2d37d5db1f11e928e66fb87c4b9> ;
+.
+<http://www.cdisc.org/C141663/V1#C141663_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C141663/V1#C141663_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C141663"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C141663/V1#C141663_C141706>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Unclassified Pleomorphic Sarcoma (Formerly \"Malignant Fibrous Histiocytoma\")"^^xsd:string ;
+	th:identifier "C141706"^^xsd:string ;
+	th:notation "A4STR101"^^xsd:string ;
+	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#df10b4ea10062c3c8caec2fba6f45f63ea5cf9ce> ;
+	th:synonym <http://www.assero.co.uk/SYN#a62dfc381bb5860c71f4b102c8cccab3403db52c> ;
+.
+<http://www.assero.co.uk/PT#df10b4ea10062c3c8caec2fba6f45f63ea5cf9ce>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Unclassified Pleomorphic Sarcoma (Formerly \"Malignant Fibrous Histiocytoma\")"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#a62dfc381bb5860c71f4b102c8cccab3403db52c>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
+.
+<http://www.cdisc.org/C141663/V1#C141663_C141707>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	th:identifier "C141707"^^xsd:string ;
+	th:notation "A4STR102"^^xsd:string ;
+	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c2f1b44a65b4d34507f86cd9fb1a0859845d5693> ;
+	th:synonym <http://www.assero.co.uk/SYN#9e5ae8597f35d490f34eecb65faf8a02f52ec8a6> ;
+.
+<http://www.assero.co.uk/PT#c2f1b44a65b4d34507f86cd9fb1a0859845d5693>
+	rdf:type th:PreferredTerm ;
+	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#9e5ae8597f35d490f34eecb65faf8a02f52ec8a6>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Test Grade"^^xsd:string ;
+.
+<http://www.cdisc.org/C141663/V1#C141663_C147590>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	th:identifier "C147590"^^xsd:string ;
+	th:notation "A4STR103"^^xsd:string ;
+	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5fa7ae9fcec8e93395be5eafe2e4ae5b011d8e84> ;
+	th:synonym <http://www.assero.co.uk/SYN#cfb1152e42fb7a18db7bc8cbd8311407c265b92f> ;
+.
+<http://www.assero.co.uk/PT#5fa7ae9fcec8e93395be5eafe2e4ae5b011d8e84>
+	rdf:type th:PreferredTerm ;
+	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#cfb1152e42fb7a18db7bc8cbd8311407c265b92f>
+	rdf:type th:Synonym ;
+	isoC:label "A4STR1-Wear Orthoses"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#ebe1484517123050587eaf3fc805177e190bfaa6>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Functional Test 4 Stair Ascend Test Code Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f1272bcfa0f6a2d37d5db1f11e928e66fb87c4b9>
+	rdf:type th:Synonym ;
+	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+.
+<http://www.cdisc.org/C141662/V1#C141662>
+	rdf:type th:ManagedConcept ;
+	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C141662/V1#C141662_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C141662/V1#C141662_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C141662"^^xsd:string ;
+	th:notation "A4STR1TN"^^xsd:string ;
+	th:definition "4 Stair Ascend test name."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C141662/V1#C141662_C141707> ;
+	th:narrower <http://www.cdisc.org/C141662/V1#C141662_C141706> ;
+	th:narrower <http://www.cdisc.org/C141662/V1#C141662_C147590> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#20f5fbb781264b68aec0221816590df34eb56770> ;
+	th:synonym <http://www.assero.co.uk/SYN#9fa1433b913e068995c38ccb4d63932f9a46ad28> ;
+.
+<http://www.cdisc.org/C141662/V1#C141662_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C141662/V1#C141662_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C141662"^^xsd:string ;
+	isoI:versionLabel "1.0.0"^^xsd:string ;
+	isoI:version "1"^^xsd:positiveInteger ;
+	isoI:semanticVersion "1.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C141662/V1#C141662_C141707>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	th:identifier "C141707"^^xsd:string ;
+	th:notation "A4STR1-Test Grade"^^xsd:string ;
+	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c2f1b44a65b4d34507f86cd9fb1a0859845d5693> ;
+	th:synonym <http://www.assero.co.uk/SYN#9e5ae8597f35d490f34eecb65faf8a02f52ec8a6> ;
+.
+<http://www.cdisc.org/C141662/V1#C141662_C141706>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	th:identifier "C141706"^^xsd:string ;
+	th:notation "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
+	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#222a1a0c716bb3e53e67e0c22880b76507fe865c> ;
+	th:synonym <http://www.assero.co.uk/SYN#a62dfc381bb5860c71f4b102c8cccab3403db52c> ;
+.
+<http://www.assero.co.uk/PT#222a1a0c716bb3e53e67e0c22880b76507fe865c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+.
+<http://www.cdisc.org/C141662/V1#C141662_C147590>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	th:identifier "C147590"^^xsd:string ;
+	th:notation "A4STR1-Wear Orthoses"^^xsd:string ;
+	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5fa7ae9fcec8e93395be5eafe2e4ae5b011d8e84> ;
+	th:synonym <http://www.assero.co.uk/SYN#cfb1152e42fb7a18db7bc8cbd8311407c265b92f> ;
+.
+<http://www.assero.co.uk/PT#20f5fbb781264b68aec0221816590df34eb56770>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Functional Test 4 Stair Ascend Test Name Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#9fa1433b913e068995c38ccb4d63932f9a46ad28>
+	rdf:type th:Synonym ;
+	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+.

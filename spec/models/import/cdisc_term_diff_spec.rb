@@ -35,6 +35,10 @@ describe CdiscTerm do
     delete_all_public_test_files
   end
 
+  def set_write_file
+    true
+  end
+
   def check_term_differences(results, expected)
     expect(results[:status]).to eq(expected[:status])
     expect(results[:result]).to eq(expected[:result])
@@ -79,10 +83,19 @@ describe CdiscTerm do
   # 	end
   # end
 
+  def dump_errors_if_present(filename, version, date)
+    full_path = Rails.root.join "public/test/#{filename}"
+    return if !File.exists?(full_path)
+    errors = YAML.load_file(full_path)
+    puts "***** ERRORS ON IMPORT - V#{version} for #{date} *****"
+    puts errors
+  end
+
   def process_term(version, date, files, copy_file=false)
     params = set_params(version, date, files)
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
+    dump_errors_if_present(filename, version, date)
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
@@ -106,16 +119,33 @@ describe CdiscTerm do
 
   def process_load_and_compare(filenames, date, version, create_file=false)
     files = []
-    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct/sdtm", filenames[index])}
+    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct/", filenames[index])}
     process_term(version, date, files, create_file)
     load_version(version)
     th = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
     results = th.changes(2)
   end
 
-  it "Base create, version 1 SDTM - 2007" do
+  def execute_import(current_version, issue_date, reqd_files, create_file=false)
+    files = []
+    file_pattern = 
+    {
+      adam: "adam/ADaM Terminology #{issue_date}.xlsx",
+      cdash: "cdash/CDASH Terminology #{issue_date}.xlsx", 
+      coa: "coa/COA Terminology #{issue_date}.xlsx", 
+      sdtm: "sdtm/SDTM Terminology #{issue_date}.xlsx", 
+      qrs: "qrs/QRS Terminology #{issue_date}.xlsx", 
+      qs: "qs/QS Terminology #{issue_date}.xlsx",
+      qsft: "qs-ft/QS-FT Terminology #{issue_date}.xlsx"
+    }
+    load_versions(1..(current_version-1))
+    reqd_files.each {|k,v| files << file_pattern[k] if v}
+    results = process_load_and_compare(files, issue_date, current_version, create_file: create_file)
+  end
+
+  it "Base create, version 1: 2007" do
     current_version = 1
-    results = process_load_and_compare(["SDTM Terminology 2007-03-06.xlsx"], "2007-03-06", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2007-03-06.xlsx"], "2007-03-06", current_version, set_write_file)
     expected = [
       {cl: :C16564, status: :created},
       {cl: :C20587, status: :created},
@@ -126,10 +156,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 2 SDTM - 2007" do
+  it "Create version 2: 2007" do
     current_version = 2
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2007-04-20.xlsx"], "2007-04-20", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2007-04-20.xlsx"], "2007-04-20", current_version, set_write_file)
     expected = [
       {cl: :C16564, status: :deleted},
       {cl: :C20587, status: :deleted},
@@ -144,10 +174,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 3 SDTM - 2007" do
+  it "Create version 3: 2007" do
     current_version = 3
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2007-04-26.xlsx"], "2007-04-26", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2007-04-26.xlsx"], "2007-04-26", current_version, set_write_file)
     expected = [
       {cl: :C66785, status: :created},
       {cl: :C66787, status: :no_change},
@@ -158,10 +188,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 4 SDTM - 2007" do
+  it "Create version 4: 2007" do
     current_version = 4
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2007-05-31.xlsx"], "2007-05-31", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2007-05-31.xlsx"], "2007-05-31", current_version, set_write_file)
     expected = [
       {cl: :C66785, status: :updated},
       {cl: :C66787, status: :updated},
@@ -173,10 +203,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 5 SDTM - 2007" do
+  it "Create version 5: 2007" do
     current_version = 5
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2007-06-05.xlsx"], "2007-06-05", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2007-06-05.xlsx"], "2007-06-05", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -189,10 +219,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 6 SDTM - 2008" do
+  it "Create version 6: 2008" do
     current_version = 6
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-01-15.xlsx"], "2008-01-15", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-01-15.xlsx"], "2008-01-15", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -207,10 +237,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 7 SDTM - 2008" do
+  it "Create version 7: 2008" do
     current_version = 7
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-01-25.xlsx"], "2008-01-25", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-01-25.xlsx"], "2008-01-25", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -225,10 +255,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 8 SDTM - 2008" do
+  it "Create version 8: 2008" do
     current_version = 8
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-08-26.xlsx"], "2008-08-26", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-08-26.xlsx"], "2008-08-26", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :updated},
       {cl: :C66738, status: :no_change},
@@ -244,10 +274,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 9 SDTM - 2008" do
+  it "Create version 9: 2008" do
     current_version = 9
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-09-22.xlsx"], "2008-09-22", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-09-22.xlsx"], "2008-09-22", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :updated},
       {cl: :C66738, status: :no_change},
@@ -263,10 +293,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 10 SDTM - 2008" do
+  it "Create version 10: 2008" do
     current_version = 10
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-09-24.xlsx"], "2008-09-24", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-09-24.xlsx"], "2008-09-24", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -285,10 +315,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 11 SDTM - 2008" do
+  it "Create version 11: 2008" do
     current_version = 11
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-09-30.xlsx"], "2008-09-30", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-09-30.xlsx"], "2008-09-30", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -305,10 +335,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 12 SDTM - 2008" do
+  it "Create version 12: 2008" do
     current_version = 12
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-10-09.xlsx"], "2008-10-09", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-10-09.xlsx"], "2008-10-09", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -325,10 +355,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 13 SDTM - 2008" do
+  it "Create version 13: 2008" do
     current_version = 13
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2008-10-15.xlsx"], "2008-10-15", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2008-10-15.xlsx"], "2008-10-15", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -345,10 +375,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 14 SDTM - 2009" do
+  it "Create version 14: 2009" do
     current_version = 14
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2009-02-17.xlsx"], "2009-02-17", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2009-02-17.xlsx"], "2009-02-17", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -365,10 +395,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 15 SDTM - 2009" do
+  it "Create version 15: 2009" do
     current_version = 15
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2009-02-18.xlsx"], "2009-02-18", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2009-02-18.xlsx"], "2009-02-18", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -385,10 +415,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 16 SDTM - 2009" do
+  it "Create version 16: 2009" do
     current_version = 16
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2009-05-01.xlsx"], "2009-05-01", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2009-05-01.xlsx"], "2009-05-01", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :updated},
       {cl: :C66738, status: :updated},
@@ -405,10 +435,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 17 SDTM - 2009" do
+  it "Create version 17: 2009" do
     current_version = 17
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2009-07-06.xlsx"], "2009-07-06", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2009-07-06.xlsx"], "2009-07-06", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -425,10 +455,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 18 SDTM - 2009" do
+  it "Create version 18: 2009" do
     current_version = 18
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2009-10-06.xlsx"], "2009-10-06", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2009-10-06.xlsx"], "2009-10-06", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -445,10 +475,11 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 19 SDTM - 2010" do
+  it "Create version 19: 2010" do
     current_version = 19
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2010-03-05.xlsx", "ADaM Terminology 2010-03-05.xlsx", "CDASH Terminology 2010-03-05.xlsx"], "2010-03-05", current_version, true)
+    files = ["sdtm/SDTM Terminology 2010-03-05.xlsx", "adam/ADaM Terminology 2010-03-05.xlsx", "cdash/CDASH Terminology 2010-03-05.xlsx"]
+    results = process_load_and_compare(files, "2010-03-05", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -466,10 +497,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 20 SDTM - 2010" do
+  it "Create version 20: 2010" do
     current_version = 20
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2010-04-08.xlsx"], "2010-04-08", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2010-04-08.xlsx"], "2010-04-08", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -487,10 +518,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 21 SDTM - 2010" do
+  it "Create version 21: 2010" do
     current_version = 21
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2010-07-02.xlsx"], "2010-07-02", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2010-07-02.xlsx"], "2010-07-02", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -508,10 +539,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 22 SDTM - 2010" do
+  it "Create version 22: 2010" do
     current_version = 22
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2010-10-06.xlsx", "ADaM Terminology 2010-10-06.xlsx"], "2010-10-06", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2010-10-06.xlsx", "adam/ADaM Terminology 2010-10-06.xlsx"], "2010-10-06", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -529,10 +560,10 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-  it "Create version 23 SDTM - 2010" do
+  it "Create version 23: 2010" do
     current_version = 23
     load_versions(1..(current_version-1))
-    results = process_load_and_compare(["SDTM Terminology 2010-10-22.xlsx"], "2010-10-22", current_version, true)
+    results = process_load_and_compare(["sdtm/SDTM Terminology 2010-10-22.xlsx"], "2010-10-22", current_version, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -550,72 +581,720 @@ describe CdiscTerm do
     check_cl_results(results, expected) 
   end
 
-=begin
-  it "compares V50 to V49" do
-  	old_version = 49
-  	new_version = 50
-  	load_term(old_version, new_version)
-  	# Compare code lists
-  	results = compare_term(old_version, new_version)
-  	check_cl_result(results, "C101846", :updated)
-  	check_cl_result(results, "C101847", :updated)
-  	check_cl_result(results, "C138221", :created)
-  	check_cl_result(results, "C138225", :created)
-  	check_cl_result(results, "C67154", :updated)
-  	check_cl_result(results, "C65047", :updated) 
-  	check_cl_result(results, "C74456", :updated)
-  	check_cl_result(results, "C120528", :updated)
-  	check_cl_result(results, "C101848", :updated)
-  	check_cl_result(results, "C96782", :updated)
-  	# Compare code list items
-  	check_cli_result(old_version, new_version, "C101846", "C127573", updated: [:Definition])
-  	check_cli_result(old_version, new_version, "C101847", "C127575", updated: [:Definition])
-  	check_cli_result(old_version, new_version, "C101847", "C139051", created: true)
-  	check_cli_result(old_version, new_version, "C138221", "C138436", created: true)
-  	check_cli_result(old_version, new_version, "C138225", "C138462", created: true)
-  	check_cli_result(old_version, new_version, "C67154", "C139090", created: true)
-  	check_cli_result(old_version, new_version, "C65047", "C64606", updated: [:Definition, :Synonym])
-  	check_cli_result(old_version, new_version, "C65047", "C114218", deleted: true)
-  	check_cli_result(old_version, new_version, "C74456", "C12774", updated: [:Notation])
-  	check_cli_result(old_version, new_version, "C120528", "C128982", updated: [:Notation, :Definition, :Synonym])
-	end
-
-  it "compares V55 to V54" do
-    old_version = 54
-    new_version = 55
-    load_term(old_version, new_version)
-
-    # Compare versions
-    results = compare_term(old_version, new_version)
-
-    # Compare code lists
-    check_cl_result(results, "C118971", :updated)
-    check_cl_result(results, "C111111", :updated)
-    check_cl_result(results, "C111112", :updated)
-    check_cl_result(results, "C99079", :updated)
-    check_cl_result(results, "C150780", :updated)
-    check_cl_result(results, "C128681", :updated)
-    check_cl_result(results, "C65047", :updated)
-    check_cl_result(results, "C74456", :updated)
-    check_cl_result(results, "C132263", :updated)
-    check_cl_result(results, "C74457", :updated)
-
-    # Compare code list items
-    check_cli_result(old_version, new_version, "C66741", "C156606", created: true)
-    check_cli_result(old_version, new_version, "C67153", "C41255", created: true)
-    check_cli_result(old_version, new_version, "C67152", "C156604", created: true)
-    check_cli_result(old_version, new_version, "C96778", "C147488", updated: [:Definition])
-    check_cli_result(old_version, new_version, "C124298", "C126036", updated: [:Synonym])
-    check_cli_result(old_version, new_version, "C127269", "C154909", updated: [:Synonym])
-    check_cli_result(old_version, new_version, "C76348", "C51777", updated: [:"Preferred Term"])
-    check_cli_result(old_version, new_version, "C74456", "C12810", created: true)
-    check_cli_result(old_version, new_version, "C65047", "C156535", created: true)
-    check_cli_result(old_version, new_version, "C65047", "C156515", created: true)
-    check_cli_result(old_version, new_version, "C67154", "C156535", created: true)
-    check_cli_result(old_version, new_version, "C67154", "C156515", created: true)
-    check_cli_result(old_version, new_version, "C67154", "C81958", updated: [:Synonym, :Notation])
-
+  it "Create version 24: 2011" do
+    results = execute_import(24, "2011-01-07", {sdtm: true, adam: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
   end
-=end
+
+  it "Create version 25: 2011" do
+    results = execute_import(25, "2011-04-08", {sdtm: true, adam: false, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 26: 2011" do
+    results = execute_import(26, "2011-06-10", {sdtm: true, adam: false, cdash: false}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 27: 2011" do
+    results = execute_import(27, "2011-07-22", {sdtm: true, adam: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 28: 2011" do
+    results = execute_import(28, "2011-12-09", {sdtm: true, adam: false, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :created}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 29: 2012" do
+    results = execute_import(29, "2012-03-23", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 30: 2012" do
+    results = execute_import(30, "2012-06-29", {sdtm: true, adam: false, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 31: 2012" do
+    results = execute_import(31, "2012-08-03", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 32: 2012" do
+    results = execute_import(32, "2012-12-21", {sdtm: true, adam: false, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 33: 2013" do
+    results = execute_import(33, "2013-04-12", {sdtm: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 34: 2013" do
+    results = execute_import(34, "2013-06-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 35: 2013" do
+    results = execute_import(35, "2013-10-04", {sdtm: true, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 36: 2013" do
+    results = execute_import(36, "2013-12-20", {sdtm: true, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 37: 2014" do
+    results = execute_import(37, "2014-03-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 38: 2014" do
+    results = execute_import(38, "2014-06-27", {sdtm: true, qsft: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 39: 2014" do
+    results = execute_import(39, "2014-09-26", {sdtm: true, qsft: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 40: 2014" do
+    results = execute_import(40, "2014-10-06", {sdtm: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 41: 2014" do
+    results = execute_import(41, "2014-12-19", {sdtm: true, coa: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 42: 2015" do
+    results = execute_import(42, "2015-03-27", {sdtm: true, coa: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :updated}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 43: 2015" do
+    results = execute_import(43, "2015-06-26", {sdtm: true, qrs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 44: 2015" do
+    results = execute_import(44, "2015-09-25", {sdtm: true, qrs: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 45: 2015" do
+    results = execute_import(45, "2015-12-18", {sdtm: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 46: 2016" do
+    results = execute_import(46, "2016-03-25", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 47: 2016" do
+    results = execute_import(47, "2016-06-24", {sdtm: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 48: 2016" do
+    results = execute_import(48, "2016-09-30", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 49: 2016" do
+    results = execute_import(49, "2016-12-16", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 50: 2017" do
+    results = execute_import(50, "2017-03-31", {sdtm: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 51: 2017" do
+    results = execute_import(51, "2017-06-30", {sdtm: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 52: 2017" do
+    results = execute_import(52, "2017-09-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 53: 2017" do
+    results = execute_import(53, "2017-12-22", {sdtm: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 54: 2018" do
+    results = execute_import(54, "2018-03-30", {sdtm: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 55: 2018" do
+    results = execute_import(55, "2018-06-29", {sdtm: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 56: 2018" do
+    results = execute_import(56, "2018-09-28", {sdtm: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 57: 2018" do
+    results = execute_import(57, "2018-12-21", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 58: 2019" do
+    results = execute_import(58, "2019-03-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
+
+  it "Create version 59: 2019" do
+    results = execute_import(59, "2019-06-28", {sdtm: true, cdash: true}, set_write_file)
+    expected = [
+      {cl: :C66737, status: :no_change},
+      {cl: :C66738, status: :no_change},
+      {cl: :C66785, status: :no_change},
+      {cl: :C66787, status: :no_change},
+      {cl: :C66790, status: :no_change},
+      {cl: :C67152, status: :no_change},
+      {cl: :C67153, status: :no_change},
+      {cl: :C71153, status: :no_change},
+      {cl: :C71620, status: :no_change},
+      {cl: :C74456, status: :no_change},
+      {cl: :C76351, status: :no_change},
+      {cl: :C78735, status: :no_change},
+      {cl: :C88025, status: :no_change}
+    ]
+    check_cl_results(results, expected) 
+  end
 
 end
