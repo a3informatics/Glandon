@@ -39,7 +39,7 @@ class CdiscTermsController < ApplicationController
     history_results.each do |object|
       results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
     end
-    render json: {data: results, offset: params[:offset], count: results.count}
+    render json: {data: results, offset: params[:offset].to_i, count: results.count}
   end
 
   # def import
