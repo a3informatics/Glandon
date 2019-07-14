@@ -942,13 +942,13 @@ describe CdiscTerm do
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
-      {cl: :C66785, status: :no_change},
+      {cl: :C66785, status: :updated},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :updated},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
@@ -965,14 +965,14 @@ describe CdiscTerm do
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :updated},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -981,18 +981,18 @@ describe CdiscTerm do
     results = execute_import(44, "2015-09-25", {sdtm: true, qrs: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1001,18 +1001,18 @@ describe CdiscTerm do
     results = execute_import(45, "2015-12-18", {sdtm: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1021,18 +1021,18 @@ describe CdiscTerm do
     results = execute_import(46, "2016-03-25", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1041,18 +1041,18 @@ describe CdiscTerm do
     results = execute_import(47, "2016-06-24", {sdtm: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1060,19 +1060,19 @@ describe CdiscTerm do
   it "Create version 48: 2016" do
     results = execute_import(48, "2016-09-30", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
-      {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
-      {cl: :C66785, status: :no_change},
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
+      {cl: :C66785, status: :updated},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :updated},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :deleted}
     ]
     check_cl_results(results, expected) 
   end
@@ -1081,18 +1081,17 @@ describe CdiscTerm do
     results = execute_import(49, "2016-12-16", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
-      {cl: :C66787, status: :no_change},
+      {cl: :C66787, status: :updated},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1106,13 +1105,12 @@ describe CdiscTerm do
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1121,18 +1119,17 @@ describe CdiscTerm do
     results = execute_import(51, "2017-06-30", {sdtm: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :no_change},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1140,19 +1137,18 @@ describe CdiscTerm do
   it "Create version 52: 2017" do
     results = execute_import(52, "2017-09-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
-      {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1161,18 +1157,17 @@ describe CdiscTerm do
     results = execute_import(53, "2017-12-22", {sdtm: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
-      {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C66790, status: :updated},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :no_change},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1181,18 +1176,17 @@ describe CdiscTerm do
     results = execute_import(54, "2018-03-30", {sdtm: true, cdash: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1201,18 +1195,17 @@ describe CdiscTerm do
     results = execute_import(55, "2018-06-29", {sdtm: true, cdash: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
-      {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C66790, status: :updated},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1221,18 +1214,17 @@ describe CdiscTerm do
     results = execute_import(56, "2018-09-28", {sdtm: true, cdash: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
-      {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C66790, status: :updated},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -1241,18 +1233,17 @@ describe CdiscTerm do
     results = execute_import(57, "2018-12-21", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1261,18 +1252,17 @@ describe CdiscTerm do
     results = execute_import(58, "2019-03-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
@@ -1291,8 +1281,7 @@ describe CdiscTerm do
       {cl: :C71620, status: :no_change},
       {cl: :C74456, status: :no_change},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
   end
