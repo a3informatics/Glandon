@@ -1046,7 +1046,7 @@ describe CdiscTerm do
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :updated},
-      {cl: :C67153, status: :updated},
+      {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :updated},
       {cl: :C74456, status: :updated},
