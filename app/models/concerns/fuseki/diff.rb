@@ -27,6 +27,9 @@ module Fuseki
     # @raise [Errors::ApplicationLogicError] raised if the objects are not compatible classes
     # @return [Boolean] true if different, false otherwise.
     def diff?(other, options={})
+
+puts "\n***** DIFF: #{self.identifier} *****\n\n" if self.respond_to?(:identifier)
+
       options[:ignore] = [] if options[:ignore].blank?
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if incomptible_klass?(other)
       properties = properties_read_instance
@@ -85,7 +88,9 @@ module Fuseki
   private
 
     def diff(name, self_object, other_object)
-puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n"
+
+puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if "#{name}".start_with?("@")
+
       true
     end
 

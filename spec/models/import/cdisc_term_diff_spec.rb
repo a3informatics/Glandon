@@ -36,7 +36,7 @@ describe CdiscTerm do
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)
@@ -140,7 +140,7 @@ describe CdiscTerm do
     }
     load_versions(1..(current_version-1))
     reqd_files.each {|k,v| files << file_pattern[k] if v}
-    results = process_load_and_compare(files, issue_date, current_version, create_file: create_file)
+    results = process_load_and_compare(files, issue_date, current_version, create_file)
   end
 
   it "Base create, version 1: 2007" do
@@ -764,12 +764,12 @@ describe CdiscTerm do
       {cl: :C66738, status: :no_change},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
-      {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C66790, status: :updated},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :updated},
       {cl: :C71153, status: :updated},
       {cl: :C71620, status: :updated},
-      {cl: :C74456, status: :no_change},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :updated},
       {cl: :C88025, status: :updated}
@@ -789,10 +789,10 @@ describe CdiscTerm do
       {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :updated},
-      {cl: :C74456, status: :no_change},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}     # <<<< Not sure about this one! @todo
     ]
     check_cl_results(results, expected) 
   end
@@ -811,7 +811,7 @@ describe CdiscTerm do
       {cl: :C71620, status: :updated},
       {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :updated},
+      {cl: :C78735, status: :no_change},     # <<<< Not sure about this one! @todo
       {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
@@ -829,7 +829,7 @@ describe CdiscTerm do
       {cl: :C67153, status: :updated},
       {cl: :C71153, status: :updated},
       {cl: :C71620, status: :updated},
-      {cl: :C74456, status: :no_change},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
       {cl: :C88025, status: :updated}
