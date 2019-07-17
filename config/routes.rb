@@ -130,8 +130,18 @@ Rails.application.routes.draw do
   
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts
-    resources :unmanaged_concepts
+    resources :managed_concepts do
+      member do
+        get :changes
+        get :differences
+      end
+    end
+    resources :unmanaged_concepts do
+      member do
+        get :changes
+        get :differences
+      end
+    end
   end
 
   resources :thesauri do
@@ -207,8 +217,8 @@ Rails.application.routes.draw do
       get :find_submission
       get :history
       get :history_results
-      get :search
-      get :search_results
+      #get :search
+      #get :search_results
     end
     member do
       get :changes
@@ -227,15 +237,10 @@ Rails.application.routes.draw do
     member do
       get :export_csv
     end
-    collection do
-      get :changes
-    end
   end
-  resources :cdisc_clis, :only => [:show] do
-    collection do
-      get :changes
-    end
-  end
+  resources :cdisc_clis, :only => [:show]
+
+  # BCs
   resources :biomedical_concept_templates do
     collection do
       get :history

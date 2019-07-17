@@ -76,7 +76,7 @@ class CdiscTerm < Thesaurus
     # Get the raw results
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
-  #{version_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref}isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
+  #{version_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
   ?r bo:reference ?cl .
   ?cl isoT:hasIdentifier ?si2 .
   ?cl isoC:label ?l .
@@ -102,7 +102,7 @@ class CdiscTerm < Thesaurus
       version[:children].each do |entry|
         key = entry[:key].to_sym
         next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
 

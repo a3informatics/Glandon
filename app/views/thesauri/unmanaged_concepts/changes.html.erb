@@ -1,0 +1,12 @@
+<%= javascript_include_tag 'thesauri/unmanaged_concepts/changes' %>
+<%= javascript_tag "var differences_url_path = '#{differences_thesauri_unmanaged_concept_path(@tc)}';" %>
+<%= javascript_tag "var changes_url_path = '#{changes_thesauri_managed_concept_path(@tc)}';" %>
+<%= javascript_tag "var children = #{@tc.children?};" %>
+<%= javascript_tag "var column_count = '#{@version_count}';" %>
+<div class="col-md-12">
+  <%= render partial: "shared/thesauri/differences_panel", :locals => {title: "Differences: #{@tc.identifier}, #{@tc.label}", column_count: @version_count, links: @links} %>
+  <% if @tc.children? %>
+    <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes: CDISC Terminology", column_count: @version_count, links: @links} %>
+  <% end %>
+  <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
+</div>

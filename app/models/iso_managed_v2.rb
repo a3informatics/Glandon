@@ -244,6 +244,18 @@ class IsoManagedV2 < IsoConceptV2
     results.sort_by{|x| x.version}
   end
 
+  def self.history_uris(params)    
+    parts = []
+    results = []
+    base =  "?e rdf:type #{rdf_type.to_ref} . " +
+            "?e isoT:hasIdentifier ?si . " +
+            "?si isoI:identifier '#{params[:identifier]}' . " +
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
+    query_string = "SELECT ?e WHERE { #{base} }"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    query_results.by_object_set([:e])
+  end
+
   def self.history_pagination(params)
     triple_count = 28
     count = params[:count].to_i * triple_count 

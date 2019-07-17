@@ -150,13 +150,16 @@ class CdiscTermsController < ApplicationController
     @ct = CdiscTerm.find(params[:id], false)
     link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
     @links = {}
-    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_cdisc_term_path(v)}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v)}
   end
 
   def changes_results
     authorize CdiscTerm, :view?
     ct = CdiscTerm.find(params[:id], false)
     cls = ct.changes(current_user.max_term_display.to_i)
+    cls[:items].each do |k,v| 
+      v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
+    end
     render json: {data: cls}
   end
 

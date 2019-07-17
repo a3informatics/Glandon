@@ -28,7 +28,7 @@ function ChangesPanel(url, column_count) {
     }});
   }
   columns.push({className: "text-center", "render" : function (data, type, row, meta) {
-    return '<a href="#" class="btn btn-primary btn-xs">Changes</a>';
+    return '<a href="' + row.changesPath + '" class="btn btn-primary btn-xs">Changes</a>';
   }});
   this.changesTable = $('#changes').DataTable( {
     "columns": columns,
@@ -62,7 +62,7 @@ ChangesPanel.prototype.add = function () {
         $(_this.changesTable.column(3+i).header()).text(result.data.versions[i]);
       }
       $.each(result.data.items, function(key, item){
-        var row = {key: item.key, label: item.label, notation: item.notation};
+        var row = {key: item.key, changesPath: item.changes_path, label: item.label, notation: item.notation};
         for (j=0; j<item.status.length; j++) {
           row["status"+j] = item.status[j].status
         }

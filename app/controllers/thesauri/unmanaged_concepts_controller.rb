@@ -2,6 +2,33 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
  
   before_action :authenticate_user!
   
+  def changes
+    authorize Thesaurus, :view?
+    @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    respond_to do |format|
+      format.html
+        @version_count = @tc.changes_count(current_user.max_term_display.to_i)
+        #link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
+        @links = {}
+        #link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_unmanaged_concept_path(v)} # <<< unmanged concept
+        @close_path = request.referer
+      format.json do
+        clis = @tc.changes(current_user.max_term_display.to_i)
+        render json: {data: clis}
+      end
+    end
+  end
+
+  def differences
+    authorize Thesaurus, :view?
+    @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    respond_to do |format|
+      format.json do
+        render json: {data: @tc.differences}
+      end
+    end
+  end
+
   # def edit
   #   authorize ThesaurusConcept
   #   @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)

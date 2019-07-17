@@ -1,0 +1,80 @@
+/*
+* Differences Panel
+* 
+* Requires:
+* differences_table [Table] the differences table
+*/
+
+/**
+ * Differences Panel Constructor
+ *
+ * @return [void]
+ */
+function DifferencesPanel(url) {
+  this.url = url;
+  var _this = this;
+  var columns = [
+    {"data" : "date"},
+    {"render" : function (data, type, row, meta) {
+      return _this.status(row.differences.identifier);
+    }},
+    {"render" : function (data, type, row, meta) {
+      return _this.status(row.differences.notation);
+    }},
+    {"render" : function (data, type, row, meta) {
+      return _this.status(row.differences.preferred_term.label);
+    }},
+    {"render" : function (data, type, row, meta) {
+      var html = "";
+      jQuery.each(row.differences.synonym, function(i, val) {
+        html = html + _this.merge(val.label);
+      });
+      return html;
+    }},
+    {"render" : function (data, type, row, meta) {
+      return _this.status(row.differences.definition);
+    }}];
+  this.differencesTable = $('#differences_table').DataTable( {
+    "ajax": {
+      "url": _this.url,
+      "dataSrc": "data"  
+    },
+    "columns": columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No changes.",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+    }
+  });
+}
+
+DifferencesPanel.prototype.status = function (data) {
+  if (data.status === "deleted") {
+    return '<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>';
+  } else if (data.status === "no_change") {
+    return '<td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>';
+  } else if (data.status === "created") {
+    return '<td><div class="diff">' + data.current + '</div></td>';
+  } else if(data.status === "updated") {
+    return '<td>' + data.difference + '</td>';
+  } else {
+    return '<td></td>';
+  }
+}
+
+DifferencesPanel.prototype.merge = function (data) {
+  if (data.status === "deleted") {
+    return data.difference + '</br>'
+  } else if (data.status === "no_change") {
+    return data.current + '</br>';
+  } else if (data.status === "created") {
+    return '<div class="diff">' + data.current + '</div></br>';
+  } else if(data.status === "updated") {
+    return data.difference + '</br>';
+  } else {
+    return '';
+  }
+}
