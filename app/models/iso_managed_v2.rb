@@ -324,6 +324,31 @@ class IsoManagedV2 < IsoConceptV2
     results.empty? ? nil : results.last
   end
 
+  # Find the set of unique identifiers for a given RDF Type
+  #
+  # @return [Array] Each hash contains {identifier, scope_id, owner_short_name}
+  def self.unique
+    results = []
+    query_string = %Q{
+      SELECT DISTINCT ?e ?l ?i ?ra ?sn WHERE
+      {
+        ?e rdf:type #{rdf_type.to_ref} .
+        ?e isoC:label ?l .
+        ?e isoT:hasIdentifier ?si .
+        ?si isoI:identifier ?i .
+        ?si isoI:hasScope ?ra .
+        ?ra isoR:raNamespace ?ns .
+        ?ns isoI:shortName ?sn .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
+    triples = query_results.by_object_set([:e, :i, :l, :ra])
+    triples.each do |entry|
+      results << {identifier: entry[:i], label: entry[:l], scope_id: entry[:ra].to_id, owner: entry[:sn]}
+    end
+    results    
+  end
+
   # Forward Backward. Provides URIs for mving through the history
   #
   # @params [Integer] step the step to be taken, probably best set to 1

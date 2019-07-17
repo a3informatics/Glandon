@@ -15,12 +15,7 @@ class ThesauriController < ApplicationController
     respond_to do |format|
       format.html 
       format.json do
-        results = {}
-        results[:data] = []
-        @thesauri.each do |item|
-          results[:data] << item
-        end
-        render json: results
+        render json: {data: @thesauri}
       end
     end
   end

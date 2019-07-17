@@ -576,4 +576,61 @@ describe IsoManagedV2 do
 
   end
 
+  describe "Unique" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "unique, empty" do
+      index = Thesaurus.unique
+      expect(index.count).to eq(0)
+    end
+
+    it "unique, items" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      index = CdiscTerm.unique
+      expect(index.count).to eq(10)
+      expect(index.first[:label]).to eq("Item 1")
+      expect(index.first[:identifier]).to eq("ITEM1")
+      expect(index.last[:label]).to eq("Item 10")
+      expect(index.last[:identifier]).to eq("ITEM10")
+    end
+
+    it "unique speed" do
+      (1..50).each do |index|
+        item = CdiscTerm.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      timer_start
+      index = CdiscTerm.unique
+      timer_stop("Unique")
+    end
+
+  end
+
+
 end
