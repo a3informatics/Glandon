@@ -597,7 +597,7 @@ describe IsoManagedV2 do
       expect(index.count).to eq(0)
     end
 
-    it "unique, items" do
+    it "unique, items many" do
       (1..10).each do |index|
         item = CdiscTerm.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
@@ -615,8 +615,24 @@ describe IsoManagedV2 do
       expect(index.last[:identifier]).to eq("ITEM10")
     end
 
+    it "unique, items one" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
+        item.label = "Item"
+        item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      index = CdiscTerm.unique
+      expect(index.count).to eq(1)
+      expect(index.first[:label]).to eq("Item")
+      expect(index.first[:identifier]).to eq("ITEM")
+    end
+
     it "unique speed" do
-      (1..50).each do |index|
+      (1..500).each do |index|
         item = CdiscTerm.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
         item.label = "Item #{index}"
@@ -627,6 +643,7 @@ describe IsoManagedV2 do
       end 
       timer_start
       index = CdiscTerm.unique
+      expect(index.count).to eq(500)
       timer_stop("Unique")
     end
 

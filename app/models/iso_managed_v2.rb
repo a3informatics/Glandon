@@ -329,6 +329,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Array] Each hash contains {identifier, scope_id, owner_short_name}
   def self.unique
     results = []
+    check = {}
     query_string = %Q{
       SELECT DISTINCT ?e ?l ?i ?ra ?sn WHERE
       {
@@ -344,7 +345,10 @@ class IsoManagedV2 < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
     triples = query_results.by_object_set([:e, :i, :l, :ra])
     triples.each do |entry|
+      key = "#{entry[:sn]}.#{entry[:i]}"
+      next if check.key?(key)
       results << {identifier: entry[:i], label: entry[:l], scope_id: entry[:ra].to_id, owner: entry[:sn]}
+      check[key] = true
     end
     results    
   end
