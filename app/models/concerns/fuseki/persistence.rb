@@ -277,11 +277,11 @@ puts "***** SUBJECT CACHE #{uri} *****"
       !not_used?
     end
 
-    def create_or_update(operation)
+    def create_or_update(operation, recurse=false)
       clear_cache
       sparql = Sparql::Update.new()
       sparql.default_namespace(@uri.namespace)
-      to_sparql(sparql)
+      to_sparql(sparql, recurse)
       operation == :create ? sparql.create : sparql.update(@uri)
       @new_record = false
       self

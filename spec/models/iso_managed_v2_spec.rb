@@ -263,28 +263,6 @@ describe IsoManagedV2 do
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_4.yaml")
     end
 
-=begin
-    it "checks if an item cannot be created, existing identifier and version" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
-      expect(item.create_permitted?).to eq(false)
-    end
-
-    it "checks if an item can be created, new version" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
-      item.scoped_identifier.version = 2
-      expect(item.create_permitted?).to eq(true)
-    end
-
-    it "checks if an item can be created, new identifier" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
-      item.scoped_identifier.identifier = "TEST NEW"
-      expect(item.create_permitted?).to eq(true)
-    end
-=end
-
     it "allows an item to be created from JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find(uri, false)
@@ -649,5 +627,124 @@ describe IsoManagedV2 do
 
   end
 
+  describe "Create" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "create" do
+      object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      expect(object.errors.count).to eq(0)
+      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal)
+      object = Thesaurus.find(object.uri)
+      check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
+    end
+
+    it "create, not valid" do
+      object = Thesaurus.create({label: "A new item±±", identifier: "XXXXX"})
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+    end
+
+    it "create, not permitted" do
+      expect(IsoScopedIdentifierV2).to receive(:exists?).and_return(true)
+      object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
+    end
+
+  end
+
+  describe "Create Permitted" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "checks if an item cannot be created, existing identifier and version" do
+      item = IsoManagedV2.new
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.identifier = "XXX"
+      item.has_identifier.has_scope = IsoNamespace.new
+      item.has_identifier.version = 1
+      expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
+      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(item.create_permitted?).to eq(false)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
+    end
+
+    it "checks if an item cannot be created, existing identifier and version" do
+      item = IsoManagedV2.new
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.identifier = "XXX"
+      item.has_identifier.has_scope = IsoNamespace.new
+      item.has_identifier.version = 2
+      expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(false)
+      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(0)
+      expect(item.create_permitted?).to eq(false)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. Identifier does not exist but version [2] error.")
+    end
+
+    it "checks if an item can be created, new version" do
+      item = IsoManagedV2.new
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.identifier = "XXX"
+      item.has_identifier.has_scope = IsoNamespace.new
+      item.has_identifier.version = 2
+      expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
+      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(1)
+      expect(item.create_permitted?).to eq(true)
+      expect(item.errors.count).to eq(0)
+    end
+
+    it "checks if an item can be created, new version" do
+      item = IsoManagedV2.new
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.identifier = "XXX"
+      item.has_identifier.has_scope = IsoNamespace.new
+      item.has_identifier.version = 5
+      expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
+      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(item.create_permitted?).to eq(true)
+      expect(item.errors.count).to eq(0)
+    end
+
+    it "checks if an item can be created, new version" do
+      item = IsoManagedV2.new
+      item.has_identifier = IsoScopedIdentifierV2.new
+      item.has_identifier.identifier = "XXX"
+      item.has_identifier.has_scope = IsoNamespace.new
+      item.has_identifier.version = 3
+      expect(IsoScopedIdentifierV2).to receive(:exists?).with("XXX", instance_of(IsoNamespace)).and_return(true)
+      expect(IsoScopedIdentifierV2).to receive(:latest_version).with("XXX", instance_of(IsoNamespace)).and_return(4)
+      expect(item.create_permitted?).to eq(false)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
+    end
+
+  end
 
 end

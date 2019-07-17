@@ -4,10 +4,10 @@ class ThesauriController < ApplicationController
 
   before_action :authenticate_user!
   
-  def new
-    authorize Thesaurus
-    @thesaurus = Thesaurus.new
-  end
+  # def new
+  #   authorize Thesaurus
+  #   @thesaurus = Thesaurus.new
+  # end
 
   def index
     authorize Thesaurus
@@ -55,15 +55,14 @@ puts "Thesari Show Overall: #{s4-start}"
   
   def create
     authorize Thesaurus
-    @thesaurus = Thesaurus.create_simple(the_params)
+    @thesaurus = Thesaurus.create(the_params)
     if @thesaurus.errors.empty?
       AuditTrail.create_item_event(current_user, @thesaurus, "Terminology created.")
       flash[:success] = 'Terminology was successfully created.'
-      redirect_to thesauri_index_path
     else
       flash[:error] = @thesaurus.errors.full_messages.to_sentence
-      redirect_to new_thesauri_path
     end
+    redirect_to thesauri_index_path
   end
 
   def edit

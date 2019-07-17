@@ -86,7 +86,7 @@ module DataHelpers
     write_file = args[:write_file] ? args[:write_file] : false
     equate_method = args[:equate_method] ? args[:equate_method] : :eq
     if args[:write_file]
-      puts "***** WARNING: Writing Results File *****" 
+      puts colourize("***** WARNING: Writing Results File *****", "red")
       write_yaml_file(actual, sub_dir, filename)
     end
     expected = read_yaml_file(sub_dir, filename)

@@ -83,6 +83,10 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_identifier.same_version?(version)
   end
   
+  def scope
+    return self.has_identifier.has_scope
+  end
+
   # Return the owner
   #
   # @return [IsoRegistrationAuthorityV2] The owner authority object.
@@ -215,10 +219,10 @@ class IsoManagedV2 < IsoConceptV2
     from_results_recurse(uri, results.by_subject)
   end
 
-  def create(params)
-    object = new(params[:label])
+  def self.create(params)
+    object = new(label: params[:label])
     object.set_initial(params[:identifier])
-    object.create_or_update(:create) if object.valid?(:create)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
   end
 
@@ -379,6 +383,23 @@ class IsoManagedV2 < IsoConceptV2
     result[:forward_multiple] = history_result[forward(my_index, window, end_stop)] if my_index < end_stop
     result[:end] = history_result[end_stop] if my_index < end_stop
     result
+  end
+
+  # Determines if the item can be created
+  #
+  # @param ra [object] The Registration Authority
+  # @return [boolean] True if create is permitted, false otherwise.
+  def create_permitted?
+    exists = IsoScopedIdentifierV2.exists?(self.identifier, self.scope)
+    return true if self.version == IsoScopedIdentifierV2.first_version && !exists
+    latest_version = IsoScopedIdentifierV2.latest_version(self.identifier, self.scope)
+    return true if self.version > latest_version && exists
+    if exists
+      self.errors.add(:base, "The item cannot be created. The identifier is already in use.")
+    else
+      self.errors.add(:base, "The item cannot be created. Identifier does not exist but version [#{self.version}] error.")
+    end 
+    false
   end
 
   # Update the item
