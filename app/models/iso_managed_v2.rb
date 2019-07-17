@@ -215,6 +215,13 @@ class IsoManagedV2 < IsoConceptV2
     from_results_recurse(uri, results.by_subject)
   end
 
+  def create(params)
+    object = new(params[:label])
+    object.set_initial(params[:identifier])
+    object.create_or_update(:create) if object.valid?(:create)
+    object
+  end
+
   # History. Find the history for a given identifier within a scope
   #
   # @rdfType [string] The RDF type

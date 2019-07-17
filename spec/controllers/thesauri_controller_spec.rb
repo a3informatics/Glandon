@@ -45,11 +45,7 @@ describe ThesauriController do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("thesaurus.ttl")
-      load_test_file_into_triple_store("thesaurus_concept.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -61,15 +57,16 @@ describe ThesauriController do
       user.destroy
     end
 
-    it "new thesaurus" do
-      get :new
-      expect(response).to render_template("new")
-    end
+    # it "new thesaurus" do
+    #   get :new
+    #   expect(response).to render_template("new")
+    # end
 
-    it "index thesauri" do
-      thesauri = Thesaurus.unique
+    it "index" do
+      expected = [{x: "a1", y: true, z: "something"}, {x: "a2", y: true, z: "something else"}]
+      expect(Thesaurus).to receive(:unique).and_return(expected)
       get :index
-      expect(assigns(:thesauri).to_json).to eq(thesauri.to_json)
+      expect(assigns(:thesauri)).to eq(expected)
       expect(response).to render_template("index")
     end
 

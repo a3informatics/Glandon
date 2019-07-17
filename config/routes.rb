@@ -144,7 +144,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :thesauri do
+  resources :thesauri, only: [:index, :show, :create] do
     collection do
       get :history
       get :view
