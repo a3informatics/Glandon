@@ -162,6 +162,8 @@ Rails.application.routes.draw do
     member do
       get :changes
       get :changes_report
+      get :submission
+      get :submission_report
       get :search
       get :export_csv
     end
@@ -226,9 +228,9 @@ Rails.application.routes.draw do
       #get :changes
       #get :changes_results
       #get :changes_report
-      get :submission
-      get :submission_results
-      get :submission_report
+      #get :submission
+      #get :submission_results
+      #get :submission_report
       #get :cross_reference
       #get :import_cross_reference
       #post :create_cross_reference

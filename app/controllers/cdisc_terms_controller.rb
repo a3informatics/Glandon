@@ -179,34 +179,34 @@ class CdiscTermsController < ApplicationController
   #   end
   # end
 
-  def submission
-    authorize CdiscTerm, :view?
-    @version_count = current_user.max_term_display.to_i
-    @ct = CdiscTerm.find(params[:id], false)
-    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
-    @links = {}
-    link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_cdisc_term_path(v)}
-  end
+  # def submission
+  #   authorize CdiscTerm, :view?
+  #   @version_count = current_user.max_term_display.to_i
+  #   @ct = CdiscTerm.find(params[:id], false)
+  #   link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+  #   @links = {}
+  #   link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_cdisc_term_path(v)}
+  # end
 
-  def submission_results
-    authorize CdiscTerm, :view?
-    ct = CdiscTerm.find(params[:id], false)
-    cls = ct.submission(current_user.max_term_display.to_i)
-    render json: {data: cls}
-  end
+  # def submission_results
+  #   authorize CdiscTerm, :view?
+  #   ct = CdiscTerm.find(params[:id], false)
+  #   cls = ct.submission(current_user.max_term_display.to_i)
+  #   render json: {data: cls}
+  # end
 
-  def submission_report
-    authorize CdiscTerm, :view?
-    ct = CdiscTerm.find(params[:id], false)
-    cls = ct.submission(current_user.max_term_display.to_i)
-    respond_to do |format|
-      format.pdf do
-        @html = Reports::CdiscSubmissionReport.new.create(cls, current_user)
-        @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
-        render @render_args
-      end
-    end
-  end
+  # def submission_report
+  #   authorize CdiscTerm, :view?
+  #   ct = CdiscTerm.find(params[:id], false)
+  #   cls = ct.submission(current_user.max_term_display.to_i)
+  #   respond_to do |format|
+  #     format.pdf do
+  #       @html = Reports::CdiscSubmissionReport.new.create(cls, current_user)
+  #       @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
+  #       render @render_args
+  #     end
+  #   end
+  # end
 
   # def file
   #   authorize CdiscTerm, :import?

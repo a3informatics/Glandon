@@ -15,7 +15,7 @@
     :key: C65047.C64809
     :label: Sodium Measurement
     :notation: SODIUM
-    :identifier: C64809
+    :identifier: 
     :status:
     - :status: :updated
       :notation: SODIUM
@@ -36,7 +36,7 @@
     :key: C66737.C49687
     :label: Phase IIIa Trial
     :notation: Phase IIIaTrial
-    :identifier: C49687
+    :identifier: 
     :status:
     - *1
     - :status: :updated
@@ -54,7 +54,7 @@
     :key: C66737.C49688
     :label: Phase IIb Trial
     :notation: Phase IIb Trial
-    :identifier: C49688
+    :identifier: 
     :status:
     - *1
     - :status: :updated
@@ -72,7 +72,7 @@
     :key: C66737.C49686
     :label: Phase IIa Trial
     :notation: Phase IIa Trial
-    :identifier: C49686
+    :identifier: 
     :status:
     - *1
     - :status: :updated
@@ -90,7 +90,7 @@
     :key: C66737.C49689
     :label: Phase IIIb Trial
     :notation: Phase IIIb Trial
-    :identifier: C49689
+    :identifier: 
     :status:
     - *1
     - :status: :updated
@@ -104,29 +104,11 @@
     - *1
     - *1
     - *1
-  :C67152.C20587:
-    :key: C67152.C20587
-    :label: Age Group
-    :notation: Age Group
-    :identifier: C20587
-    :status:
-    - *1
-    - *1
-    - :status: :updated
-      :notation: Age Group
-      :previous: Age Span
-    - *1
-    - *1
-    - *1
-    - *1
-    - *1
-    - *1
-    - *1
   :C66790.C43234:
     :key: C66790.C43234
     :label: Not Stated
     :notation: NOT REPORTED
-    :identifier: C43234
+    :identifier: 
     :status:
     - *1
     - *1
@@ -144,7 +126,7 @@
     :key: C67153.C49680
     :label: Body Frame Size
     :notation: Body Frame Size
-    :identifier: C49680
+    :identifier: 
     :status:
     - *1
     - *1
@@ -162,7 +144,7 @@
     :key: C67153.C12472
     :label: Adipose Tissue
     :notation: Adipose Tissue
-    :identifier: C12472
+    :identifier: 
     :status:
     - *1
     - *1
@@ -176,11 +158,29 @@
     - *1
     - *1
     - *1
+  :C67152.C20587:
+    :key: C67152.C20587
+    :label: Age Group
+    :notation: Age Group
+    :identifier: 
+    :status:
+    - *1
+    - *1
+    - :status: :updated
+      :notation: Age Group
+      :previous: Age Span
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
+    - *1
   :C71152.C62113:
     :key: C71152.C62113
     :label: QTcF-Fridericia's Correction Formula
-    :notation: "QTcF - Fridericia\x92s Correction Formula"
-    :identifier: C62113
+    :notation: QTcF - Fridericia&#x92;s Correction Formula
+    :identifier: 
     :status:
     - *1
     - *1
@@ -189,18 +189,18 @@
     - *1
     - *1
     - :status: :updated
-      :notation: "QTcF - Fridericia\x92s Correction Formula"
-      :previous: QTcF - Fridericia’s Correction Formula
+      :notation: QTcF - Fridericia&#x92;s Correction Formula
+      :previous: QTcF - Fridericia&#x2019;s Correction Formula
     - :status: :updated
       :notation: QTcF - Fridericia's Correction Formula
-      :previous: "QTcF - Fridericia\x92s Correction Formula"
+      :previous: QTcF - Fridericia&#x92;s Correction Formula
     - *1
     - *1
   :C71152.C62119:
     :key: C71152.C62119
     :label: JTcF-Fridericia's Correction Formula
-    :notation: "JTcF - Fridericia\x92s Correction Formula"
-    :identifier: C62119
+    :notation: JTcF - Fridericia&#x92;s Correction Formula
+    :identifier: 
     :status:
     - *1
     - *1
@@ -209,10 +209,10 @@
     - *1
     - *1
     - :status: :updated
-      :notation: "JTcF - Fridericia\x92s Correction Formula"
-      :previous: JTcF - Fridericia’s Correction Formula
+      :notation: JTcF - Fridericia&#x92;s Correction Formula
+      :previous: JTcF - Fridericia&#x2019;s Correction Formula
     - :status: :updated
       :notation: JTcF - Fridericia's Correction Formula
-      :previous: "JTcF - Fridericia\x92s Correction Formula"
+      :previous: JTcF - Fridericia&#x92;s Correction Formula
     - *1
     - *1

@@ -193,6 +193,38 @@ puts "Thesari Show Overall: #{s4-start}"
     end
   end
 
+  def submission
+    authorize CdiscTerm, :view?
+    respond_to do |format|
+      format.html do
+        @version_count = current_user.max_term_display.to_i
+        @ct = Thesaurus.find_minimum(params[:id])
+        link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+        @links = {}
+        link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_thesauri_path(v.to_id)}
+        @close_path = request.referer
+      end
+      format.json do
+        ct = Thesaurus.find_minimum(params[:id])
+        cls = ct.submission(current_user.max_term_display.to_i)
+        render json: {data: cls}
+      end
+    end
+  end
+
+  def submission_report
+    authorize CdiscTerm, :view?
+    ct = Thesaurus.find_minimum(params[:id])
+    cls = ct.submission(current_user.max_term_display.to_i)
+    respond_to do |format|
+      format.pdf do
+        @html = Reports::CdiscSubmissionReport.new.create(cls, current_user)
+        @render_args = {pdf: 'cdisc_submission', page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true}
+        render @render_args
+      end
+    end
+  end
+
   def search_current
     authorize Thesaurus, :view?
     @close_path = thesauri_index_path

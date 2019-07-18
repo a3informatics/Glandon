@@ -447,6 +447,35 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/pdf")
     end
 
+    it "submission" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:forward_backward).and_return({start: nil, end: Uri.new(uri: "http://www.xxx.com/aaa#1")})
+      get :submission, id: "aaa"
+      expect(assigns(:links)).to eq({start: "", end: "/thesauri/aHR0cDovL3d3dy54eHguY29tL2FhYSMx/submission"})
+      expect(response).to render_template("submission")
+    end
+
+    it "obtains the submission results" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:submission).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :submission, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+    end
+
+    it "submission_report" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:submission).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      get :submission_report, id: "aaa"
+      expect(response.content_type).to eq("application/pdf")
+    end
+
   end
 
   describe "Unauthorized User" do
