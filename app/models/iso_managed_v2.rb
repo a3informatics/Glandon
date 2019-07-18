@@ -228,10 +228,10 @@ class IsoManagedV2 < IsoConceptV2
 
   # History. Find the history for a given identifier within a scope
   #
-  # @rdfType [string] The RDF type
-  # @ns [string] The namespace
-  # @params [hash] {:identifier, :scope_id}
-  # @return [array] An array of objects.
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [Array] An array of objects.
   def self.history(params)    
     parts = []
     results = []
@@ -291,6 +291,34 @@ class IsoManagedV2 < IsoConceptV2
       #item.has_state.by_authority = params[:scope]
       item.has_identifier.has_scope = params[:scope]
       results << item
+    end
+    results
+  end
+
+  # Comments. Return comments for all items with given identifier and scope
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [Array] An array of hash with the comment info.
+  def self.comments(params)
+    parts = []
+    results = []
+    base =  "?e isoT:hasIdentifier ?si . \n" +
+            "?si isoI:identifier '#{params[:identifier]}' . \n" +
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . \n" +
+            "?si isoI:version ?v . \n" +
+            "?si isoI:semanticVersion ?sv . \n" +
+            "?e isoT:explanatoryComment ?ec . \n" +
+            "?e isoT:changeDescription ?cdesc . \n" +
+            "?e isoT:origin ?o . \n" +
+            "?e isoT:creationDate ?cd . \n" +
+            "?e isoT:lastChangeDate ?lcd . \n"
+    query_string = "SELECT ?e ?sv ?ec ?cdesc ?o ?cd ?lcd ?v WHERE { #{base} } ORDER BY (?v)"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    query_results.by_object_set([:e, :sv, :ec, :cdesc, :o, :cd, :lcd]).each do |x| 
+      results << {uri: x[:e], version: x[:v], semantic_version: x[:sv], explanatory_comment: x[:ec], change_description: x[:cdesc],
+                  origin: x[:o], last_change_date: x[:lcd].format_as_date, creation_date: x[:cd].format_as_date}
     end
     results
   end

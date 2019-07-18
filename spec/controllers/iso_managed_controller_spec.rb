@@ -223,6 +223,30 @@ describe IsoManagedController do
       expect(Token.count).to eq(token_count)
     end
 
+    it "comments" do
+      params = {identifier: "XXX", scope_id: "1234" }
+      expected_base = 
+      [
+        {uri: Uri.new(uri: "http://test.host/managed_item#1"), a: "x", b: "y"}, 
+        {uri: Uri.new(uri: "http://test.host/managed_item#2"), a: "x1", b: "y1"}
+      ]
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(IsoNamespace).to receive(:find).with("1234").and_return(IsoNamespace.new)
+      expect(IsoManagedV2).to receive(:comments).with({identifier: params[:identifier], scope: an_instance_of(IsoNamespace)}).and_return(expected_base)
+      get :comments, { iso_managed: params}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expected = expected_base
+      expected[0][:uri] = expected[0][:uri].to_s
+      expected[0][:edit_path] = "/iso_managed/1/edit?iso_managed%5Bnamespace%5D=http%3A%2F%2Ftest.host%2Fmanaged_item"
+      expected[1][:uri] = expected[1][:uri].to_s
+      expected[1][:edit_path] = "/iso_managed/2/edit?iso_managed%5Bnamespace%5D=http%3A%2F%2Ftest.host%2Fmanaged_item"
+      result = JSON.parse(response.body).deep_symbolize_keys[:data]
+      result[0][:uri] = result[0][:uri].to_s
+      result[1][:uri] = result[1][:uri].to_s
+      expect(result).to hash_equal(expected)
+    end
+
   end
 
   describe "Content Admin User" do

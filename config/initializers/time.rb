@@ -9,4 +9,8 @@ class String
     return Time.parse(C_DEFAULT_DATETIME)
   end
 
+  def format_as_date
+    self.to_time.strftime("%Y-%m-%d")
+  end
+
 end

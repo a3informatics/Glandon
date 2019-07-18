@@ -53,6 +53,16 @@ class IsoManagedController < ApplicationController
     @referer = request.referer
   end
 
+  def comments
+    authorize IsoManaged, :edit?
+    comments = IsoManagedV2.comments(identifier: this_params[:identifier], scope: IsoNamespace.find(this_params[:scope_id]))
+    comments.each do |x| 
+      x[:edit_path] = edit_iso_managed_path({id: x[:uri].fragment, iso_managed: {namespace: x[:uri].namespace}})
+      x[:uri] = x[:uri].to_s
+    end
+    render json: {data: comments}
+  end
+
   def find_by_tag
     authorize IsoManaged, :show?
     items = IsoManaged.find_by_tag(params[:id], params[:namespace])
@@ -188,7 +198,7 @@ class IsoManagedController < ApplicationController
 private
 
   def this_params
-    params.require(:iso_managed).permit(:namespace, :changeDescription, :explanatoryComment, :origin, :referer, :index_path, :index_label, :current_id)
+    params.require(:iso_managed).permit(:identifier, :scope_id, :namespace, :changeDescription, :explanatoryComment, :origin, :referer, :index_path, :index_label, :current_id)
   end
 
   def changes_params

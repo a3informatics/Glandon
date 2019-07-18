@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       get :impact_start
       get :impact_next
       get :changes
+      get :comments
     end
     member do
       get :branches
