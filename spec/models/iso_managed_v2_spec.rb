@@ -355,7 +355,7 @@ describe IsoManagedV2 do
     it "permits the item to be exported as JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find(uri, false)
-      check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml")
+      check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal)
     end
 
 =begin
@@ -441,11 +441,12 @@ describe IsoManagedV2 do
       item = IMV2Klass.new
       params = {label: "Label", identifier: "XXX", version_label: "v l", semantic_version: "1.1.1", version: 5, date: "1989-07-07", ordinal: 1}
       item.set_import(params)
+      expected_date = "1989-07-07".to_time_with_default
       expect(item.version).to eq(5)
       expect(item.identifier).to eq("XXX")
       expect(item.owner_short_name).to eq("BBB")
-      expect(item.creation_date.iso8601).to eq("1989-07-07T00:00:00+02:00")
-      expect(item.last_change_date.iso8601).to eq("1989-07-07T00:00:00+02:00")
+      expect(item.creation_date.iso8601).to eq("#{expected_date.iso8601}")
+      expect(item.last_change_date.iso8601).to eq("#{expected_date.iso8601}")
       expect(item.uri.to_s).to eq("http://www.bbb.com/XXX/V5")
       expect(item.registration_status).to eq("Standard")
     end
@@ -469,13 +470,13 @@ describe IsoManagedV2 do
     it "find, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "find, II" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = CdiscTerm.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_2.yaml")
+      check_file_actual_expected(results.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "find, III, speed" do
@@ -495,13 +496,13 @@ describe IsoManagedV2 do
     it "where, I" do
       results = []
       IsoManagedV2.where({label: "VSB"}).each { |x| results << x.to_json }
-      check_file_actual_expected(results, sub_dir, "where_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "where_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "where, II" do
       results = []
       IsoManagedV2.where({label: "Iso Concept Test Form"}).each { |x| results << x.to_h }
-      check_file_actual_expected(results, sub_dir, "where_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "where_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -532,21 +533,21 @@ describe IsoManagedV2 do
         item.to_sparql(sparql, true)
         sparql.upload
       end 
-    timer_start
-      current = CdiscTerm.history_pagination(identifier: "TEST", scope: CdiscTerm.owner, count: 10, offset: 10)
-    timer_stop("10 entries")
+      timer_start
+      current = CdiscTerm.history_pagination(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 10)
+      timer_stop("10 entries")
       expect(current.count).to eq(10)
       expect(current[0].version).to eq(11)
 
-    timer_start
-      current = CdiscTerm.history_pagination(identifier: "TEST", scope: CdiscTerm.owner, count: 10, offset: 30)
-    timer_stop("10 entries")
+      timer_start
+      current = CdiscTerm.history_pagination(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 30)
+      timer_stop("10 entries")
       expect(current.count).to eq(10)
       expect(current[0].version).to eq(31)
 
-    timer_start
-      current = CdiscTerm.history(identifier: "TEST", scope: CdiscTerm.owner)
-    timer_stop("History")
+      timer_start
+      current = CdiscTerm.history(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope)
+      timer_stop("History")
       expect(current.count).to eq(200)
       expect(current.first.version).to eq(1)
       expect(current.last.version).to eq(200)

@@ -10,9 +10,12 @@
  *
  * @return [void]
  */
-function HistoryPanel(url, count) {
+function HistoryPanel(url, strict_params, identifier, scope_id, count) {
   var _this = this;
   this.url = url;
+  this.strict_params = strict_params;
+  this.identifier = identifier;
+  this.scope_id = scope_id;
   this.count = count;
 	this.historyTable = $('#history').DataTable( {
     "order": [[ 0, "desc" ]],
@@ -24,7 +27,7 @@ function HistoryPanel(url, count) {
           return row.has_identifier.version;
         }}
       },
-      {"data" : "has_state.by_authority.ra_namespace.short_name"},
+      {"data" : "has_identifier.has_scope.short_name"},
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
       {"data" : "has_identifier.version_label"},
@@ -58,9 +61,11 @@ function HistoryPanel(url, count) {
 HistoryPanel.prototype.add = function (offset) {
   var _this = this;
   _this.historyTable.processing(true);
+  var data = {}
+  data[_this.strict_params] = {"identifier": _this.identifier, "scope_id": _this.scope_id, "count": _this.count, "offset": offset}
   $.ajax({
     url: _this.url,
-    data: {"count": _this.count, "offset": offset},
+    data: data,
     type: 'GET',
     dataType: 'json',
     success: function(result) {

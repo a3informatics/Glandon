@@ -28,18 +28,22 @@ class CdiscTermsController < ApplicationController
 
   def history
     authorize CdiscTerm
-    results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: 1, offset: 1)
-    @cdisc_term = results.first
-  end
-
-  def history_results
-    authorize CdiscTerm, :history?
-    results = []
-    history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: CdiscTerm.owner, count: params[:count], offset: params[:offset])
-    history_results.each do |object|
-      results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
+    respond_to do |format|
+      format.html do
+        results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+        @cdisc_term_id = results.first.to_id
+        @identifier = CdiscTerm::C_IDENTIFIER
+        @scope_id = IsoRegistrationAuthority.cdisc_scope.id
+      end
+      format.json do
+        results = []
+        history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope, count: the_params[:count], offset: the_params[:offset])
+        history_results.each do |object|
+          results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
+        end
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
     end
-    render json: {data: results, offset: params[:offset].to_i, count: results.count}
   end
 
   # def import
@@ -53,12 +57,12 @@ class CdiscTermsController < ApplicationController
   # def import_cross_reference
   #   authorize CdiscTerm, :import?
   #   @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
-  #   @cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+  #   @cdisc_term = CdiscTerm.find(params[:id], the_params[:namespace], false)
   # end
   
   # def create
   #   authorize CdiscTerm, :import?
-  #   hash = CdiscTerm.create(this_params)
+  #   hash = CdiscTerm.create(the_params)
   #   @cdiscTerm = hash[:object]
   #   @job = hash[:job]
   #   if @cdiscTerm.errors.empty?
@@ -71,8 +75,8 @@ class CdiscTermsController < ApplicationController
   
   # def create_cross_reference
   #   authorize CdiscTerm, :import?
-  #   cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
-  #   hash = cdisc_term.create_cross_reference(this_params)
+  #   cdisc_term = CdiscTerm.find(params[:id], the_params[:namespace], false)
+  #   hash = cdisc_term.create_cross_reference(the_params)
   #   if hash[:object].errors.empty?
   #     redirect_to backgrounds_path
   #   else
@@ -211,7 +215,7 @@ class CdiscTermsController < ApplicationController
 
   # def file_delete
   #   authorize CdiscTerm, :import?
-  #   files = this_params[:files]
+  #   files = the_params[:files]
   #   files.each do |file|
   #     File.delete(file) if File.exist?(file)
   #   end 
@@ -220,8 +224,8 @@ class CdiscTermsController < ApplicationController
 
   # def cross_reference
   # 	authorize CdiscTerm, :show?
-  # 	@direction = this_params[:direction]
-  # 	@cdisc_term = CdiscTerm.find(params[:id], this_params[:namespace], false)
+  # 	@direction = the_params[:direction]
+  # 	@cdisc_term = CdiscTerm.find(params[:id], the_params[:namespace], false)
   # end
 
   # def export_csv
@@ -233,13 +237,14 @@ class CdiscTermsController < ApplicationController
 
 private
 
-  def this_params
-    params.require(:cdisc_term).permit(:version, :date, :term, :textSearch, :namespace, :uri, :direction, :cCodeSearch, :files => [] )
+  def the_params
+    params.require(:cdisc_term).permit(:identifier, :scope_id, :offset, :count)
+    #(:version, :date, :term, :textSearch, :namespace, :uri, :direction, :cCodeSearch, :files => [] )
   end
 
   def get_version
   	return nil if params[:cdisc_term].blank? 
-  	return this_params[:version].to_i
+  	return the_params[:version].to_i
   end
 
 end

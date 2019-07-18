@@ -61,7 +61,7 @@ class CdiscTerm < Thesaurus
     first_index = 0
 
     # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history(identifier: C_IDENTIFIER, scope: owner)
+    items = self.class.history(identifier: C_IDENTIFIER, scope: owner.ra_namespace)
     first_index = items.index {|x| x.uri == self.uri}    
     if first_index == 0 
       start_index = 0 

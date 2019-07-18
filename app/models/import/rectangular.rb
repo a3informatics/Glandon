@@ -71,8 +71,9 @@ private
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
     parent = results[:parent]
+    scope = klass.owner.ra_namespace
     results[:managed_children].each_with_index do |child, index| 
-      previous_info = child_klass.latest({scope: klass.owner, identifier: child.identifier})
+      previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
       previous = previous_info.nil? ? nil : child_klass.find(previous_info.id) 
       actual = child.replace_if_no_change(previous)
       parent.add(actual, index + 1)

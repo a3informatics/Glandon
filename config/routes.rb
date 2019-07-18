@@ -216,7 +216,6 @@ Rails.application.routes.draw do
     collection do
       get :find_submission
       get :history
-      get :history_results
       #get :search
       #get :search_results
     end

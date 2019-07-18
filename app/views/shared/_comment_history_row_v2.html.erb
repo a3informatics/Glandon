@@ -1,0 +1,15 @@
+<tr>
+  <td><%= item.semantic_version %></td>
+  <td><%= Timestamp.new(item.creation_date).to_datetime %></td>
+  <td><%= Timestamp.new(item.last_change_date).to_datetime %></td>
+  <td><%= raw MarkdownEngine::render(item.change_description) %></td>
+  <td><%= raw MarkdownEngine::render(item.explanatory_comment) %></td>
+  <td><%= raw MarkdownEngine::render(item.origin) %></td>
+  <% if policy(mi_class).edit? %>
+    <td><%= link_to "Edit", edit_iso_managed_path(:id => item.uri.fragment, :iso_managed => 
+      {:namespace => item.uri.namespace, :index_label => index_label, :index_path => index_path }), 
+      :class => "btn btn-primary btn-xs" %></td>
+  <% else %>
+    <td></td>
+  <% end %>
+</tr>

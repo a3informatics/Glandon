@@ -22,9 +22,23 @@ class ThesauriController < ApplicationController
   
   def history
     authorize Thesaurus
-    @identifier = params[:identifier]
-    @thesauri = Thesaurus.history({identifier: the_params[:identifier], scope: IsoRegistrationAuthority.find(the_params[:scope_id])})
-    redirect_to thesauri_index_path if @thesauri.count == 0
+    respond_to do |format|
+      format.html do
+        results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        redirect_to thesauri_index_path if results.count == 0
+        @thesauri_id = results.first
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
+      end
+      format.json do
+        results = []
+        history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        history_results.each do |object|
+          results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
+        end
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+    end
   end
   
   def show
@@ -229,7 +243,8 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count)
+    #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     
 end

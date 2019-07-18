@@ -456,7 +456,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :TH_TCR1
 	rdf:type bo:TcReference ;
@@ -2363,7 +2363,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C66780/V31#C66780_C16268>
 	rdf:type th:UnmanagedConcept ;
@@ -2578,7 +2578,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C66726/V31#C66726_C42966>
 	rdf:type th:UnmanagedConcept ;
@@ -2642,7 +2642,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C66727/V31#C66727_C38155>
 	rdf:type th:UnmanagedConcept ;
@@ -2784,7 +2784,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C66734/V31#C66734_C102605>
 	rdf:type th:UnmanagedConcept ;
@@ -3439,7 +3439,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71150/V31#C71150_C62270>
 	rdf:type th:UnmanagedConcept ;
@@ -5061,7 +5061,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71620/V31#C71620_C102695>
 	rdf:type th:UnmanagedConcept ;
@@ -5704,7 +5704,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C74456/V31#C74456_C102627>
 	rdf:type th:UnmanagedConcept ;
@@ -5902,7 +5902,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C74559/V31#C74559_C102625>
 	rdf:type th:UnmanagedConcept ;
@@ -6237,7 +6237,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C85492/V31#C85492_C102599>
 	rdf:type th:UnmanagedConcept ;
@@ -7391,7 +7391,7 @@
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86825> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86909> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C76385> ;
-	th:narrower <http://www.cdisc.org/C85491/V23#C85491_C86826> ;
+	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86826> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86827> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86829> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86828> ;
@@ -7468,7 +7468,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C85491/V31#C85491_C85545>
 	rdf:type th:UnmanagedConcept ;
@@ -7777,7 +7777,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C85493/V31#C85493_C85787>
 	rdf:type th:UnmanagedConcept ;
@@ -8956,7 +8956,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C85839/V31#C85839_C85787>
 	rdf:type th:UnmanagedConcept ;
@@ -10107,7 +10107,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C88025/V31#C88025_C82973>
 	rdf:type th:UnmanagedConcept ;
@@ -10301,7 +10301,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C99079/V31#C99079_C101526>
 	rdf:type th:UnmanagedConcept ;
@@ -10359,7 +10359,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C101843/V31#C101843_C100086>
 	rdf:type th:UnmanagedConcept ;
@@ -10419,7 +10419,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C101842/V31#C101842_C100086>
 	rdf:type th:UnmanagedConcept ;
@@ -10499,7 +10499,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C101846/V31#C101846_C100000>
 	rdf:type th:UnmanagedConcept ;
@@ -10558,7 +10558,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102575/V31#C102575_C102606>
 	rdf:type th:UnmanagedConcept ;
@@ -10669,7 +10669,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102576/V31#C102576_C102650>
 	rdf:type th:UnmanagedConcept ;
@@ -10742,7 +10742,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102577/V31#C102577_C102633>
 	rdf:type th:UnmanagedConcept ;
@@ -10836,7 +10836,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102578/V31#C102578_C102600>
 	rdf:type th:UnmanagedConcept ;
@@ -10945,7 +10945,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102579/V31#C102579_C102602>
 	rdf:type th:UnmanagedConcept ;
@@ -11029,7 +11029,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C101851/V31#C101851_C102626>
 	rdf:type th:UnmanagedConcept ;
@@ -11088,7 +11088,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C101852/V31#C101852_C102626>
 	rdf:type th:UnmanagedConcept ;
@@ -11147,7 +11147,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102580/V31#C102580_C14157>
 	rdf:type th:UnmanagedConcept ;
@@ -11254,7 +11254,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102581/V31#C102581_C62607>
 	rdf:type th:UnmanagedConcept ;
@@ -11327,7 +11327,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102582/V31#C102582_C102644>
 	rdf:type th:UnmanagedConcept ;
@@ -11416,7 +11416,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102583/V31#C102583_C102638>
 	rdf:type th:UnmanagedConcept ;
@@ -11542,7 +11542,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102584/V31#C102584_C102635>
 	rdf:type th:UnmanagedConcept ;
@@ -11639,7 +11639,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102585/V31#C102585_C17449>
 	rdf:type th:UnmanagedConcept ;
@@ -11731,7 +11731,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102586/V31#C102586_C102663>
 	rdf:type th:UnmanagedConcept ;
@@ -11840,7 +11840,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102587/V31#C102587_C102714>
 	rdf:type th:UnmanagedConcept ;
@@ -12056,7 +12056,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102588/V31#C102588_C48953>
 	rdf:type th:UnmanagedConcept ;
@@ -12193,7 +12193,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102589/V31#C102589_C25586>
 	rdf:type th:UnmanagedConcept ;
@@ -12266,7 +12266,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C102590/V31#C102590_C34483>
 	rdf:type th:UnmanagedConcept ;
@@ -12385,7 +12385,7 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C100129/V31#C100129_C102120>
 	rdf:type th:UnmanagedConcept ;
@@ -12599,5 +12599,5 @@
 	isoI:versionLabel "2012-08-03 Release"^^xsd:string ;
 	isoI:version "31"^^xsd:positiveInteger ;
 	isoI:semanticVersion "31.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .

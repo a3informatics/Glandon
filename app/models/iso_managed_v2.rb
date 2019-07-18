@@ -248,27 +248,28 @@ class IsoManagedV2 < IsoConceptV2
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      item.has_state.by_authority = params[:scope]
-      item.has_identifier.has_scope = params[:scope].ra_namespace
+      #item.has_state.by_authority = params[:scope]
+      item.has_identifier.has_scope = params[:scope]
       results << item
     end
     results.sort_by{|x| x.version}
   end
 
   def self.history_uris(params)    
-    parts = []
     results = []
     base =  "?e rdf:type #{rdf_type.to_ref} . " +
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
+            "?si isoI:version ?v . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
-    query_string = "SELECT ?e WHERE { #{base} }"
+    query_string = "SELECT ?e WHERE { #{base} } ORDER BY (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
-    query_results.by_object_set([:e])
+    query_results.by_object_set([:e]).each{|x| results << x[:e]}
+    results
   end
 
   def self.history_pagination(params)
-    triple_count = 28
+    triple_count = 27
     count = params[:count].to_i * triple_count 
     offset = params[:offset].to_i * triple_count 
     parts = []
@@ -287,8 +288,8 @@ class IsoManagedV2 < IsoConceptV2
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      item.has_state.by_authority = params[:scope]
-      item.has_identifier.has_scope = params[:scope].ra_namespace
+      #item.has_state.by_authority = params[:scope]
+      item.has_identifier.has_scope = params[:scope]
       results << item
     end
     results
@@ -342,23 +343,22 @@ class IsoManagedV2 < IsoConceptV2
     results = []
     check = {}
     query_string = %Q{
-      SELECT DISTINCT ?e ?l ?i ?ra ?sn WHERE
+      SELECT DISTINCT ?e ?l ?i ?ns ?sn WHERE
       {
         ?e rdf:type #{rdf_type.to_ref} .
         ?e isoC:label ?l .
         ?e isoT:hasIdentifier ?si .
         ?si isoI:identifier ?i .
-        ?si isoI:hasScope ?ra .
-        ?ra isoR:raNamespace ?ns .
+        ?si isoI:hasScope ?ns .
         ?ns isoI:shortName ?sn .
       }
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    triples = query_results.by_object_set([:e, :i, :l, :ra])
+    triples = query_results.by_object_set([:e, :i, :l, :ns, :sn])
     triples.each do |entry|
       key = "#{entry[:sn]}.#{entry[:i]}"
       next if check.key?(key)
-      results << {identifier: entry[:i], label: entry[:l], scope_id: entry[:ra].to_id, owner: entry[:sn]}
+      results << {identifier: entry[:i], label: entry[:l], scope_id: entry[:ns].to_id, owner: entry[:sn]}
       check[key] = true
     end
     results    
@@ -425,7 +425,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Void] no return
   def set_initial(identifier)
     ra = IsoRegistrationAuthority.owner
-    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra)
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra.ra_namespace)
     self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: "Incomplete", previous_state: "Incomplete")
     self.last_change_date = Time.now
     set_uris(ra)
@@ -446,7 +446,7 @@ class IsoManagedV2 < IsoConceptV2
     ra = self.class.owner
     self.label = params[:label] if self.label.blank?
     self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: params[:identifier], version: params[:version], version_label: params[:version_label], 
-      semantic_version: params[:semantic_version], has_scope: ra)
+      semantic_version: params[:semantic_version], has_scope: ra.ra_namespace)
     self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: IsoRegistrationStateV2.released_state, 
       previous_state: IsoRegistrationStateV2.released_state)
     self.creation_date = params[:date].to_time_with_default

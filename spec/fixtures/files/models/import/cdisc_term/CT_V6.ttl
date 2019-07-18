@@ -67,7 +67,7 @@
 	th:isTopConceptReference :TH_TCR41 ;
 	th:isTopConcept <http://www.cdisc.org/C66767/V4#C66767> ;
 	th:isTopConcept <http://www.cdisc.org/C66768/V4#C66768> ;
-	th:isTopConcept <http://www.cdisc.org/C66780/V4#C66780> ;
+	th:isTopConcept <http://www.cdisc.org/C66780/V6#C66780> ;
 	th:isTopConcept <http://www.cdisc.org/C66781/V4#C66781> ;
 	th:isTopConcept <http://www.cdisc.org/C66797/V4#C66797> ;
 	th:isTopConcept <http://www.cdisc.org/C66783/V4#C66783> ;
@@ -78,8 +78,8 @@
 	th:isTopConcept <http://www.cdisc.org/C66788/V4#C66788> ;
 	th:isTopConcept <http://www.cdisc.org/C66789/V4#C66789> ;
 	th:isTopConcept <http://www.cdisc.org/C66790/V4#C66790> ;
-	th:isTopConcept <http://www.cdisc.org/C66726/V4#C66726> ;
-	th:isTopConcept <http://www.cdisc.org/C66727/V4#C66727> ;
+	th:isTopConcept <http://www.cdisc.org/C66726/V6#C66726> ;
+	th:isTopConcept <http://www.cdisc.org/C66727/V6#C66727> ;
 	th:isTopConcept <http://www.cdisc.org/C66728/V4#C66728> ;
 	th:isTopConcept <http://www.cdisc.org/C66729/V4#C66729> ;
 	th:isTopConcept <http://www.cdisc.org/C66769/V4#C66769> ;
@@ -89,7 +89,7 @@
 	th:isTopConcept <http://www.cdisc.org/C66734/V4#C66734> ;
 	th:isTopConcept <http://www.cdisc.org/C66735/V4#C66735> ;
 	th:isTopConcept <http://www.cdisc.org/C66736/V4#C66736> ;
-	th:isTopConcept <http://www.cdisc.org/C66737/V4#C66737> ;
+	th:isTopConcept <http://www.cdisc.org/C66737/V6#C66737> ;
 	th:isTopConcept <http://www.cdisc.org/C66738/V5#C66738> ;
 	th:isTopConcept <http://www.cdisc.org/C67152/V4#C67152> ;
 	th:isTopConcept <http://www.cdisc.org/C66739/V4#C66739> ;
@@ -124,7 +124,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 :TH_TCR1
 	rdf:type bo:TcReference ;
@@ -151,7 +151,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C66780/V4#C66780> ;
+	bo:reference <http://www.cdisc.org/C66780/V6#C66780> ;
 .
 :TH_TCR4
 	rdf:type bo:TcReference ;
@@ -250,7 +250,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "14"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C66726/V4#C66726> ;
+	bo:reference <http://www.cdisc.org/C66726/V6#C66726> ;
 .
 :TH_TCR15
 	rdf:type bo:TcReference ;
@@ -259,7 +259,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "15"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C66727/V4#C66727> ;
+	bo:reference <http://www.cdisc.org/C66727/V6#C66727> ;
 .
 :TH_TCR16
 	rdf:type bo:TcReference ;
@@ -349,7 +349,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "25"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C66737/V4#C66737> ;
+	bo:reference <http://www.cdisc.org/C66737/V6#C66737> ;
 .
 :TH_TCR26
 	rdf:type bo:TcReference ;
@@ -495,6 +495,424 @@
 	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71620/V6#C71620> ;
 .
+<http://www.cdisc.org/C66780/V6#C66780>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Age Span"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C66780/V6#C66780_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C66780/V6#C66780_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66780"^^xsd:string ;
+	th:notation "AGESPAN"^^xsd:string ;
+	th:definition "Subgroups of populations based on age. (NCI)"^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C27954> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C49685> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C49683> ;
+	th:narrower <http://www.cdisc.org/C66780/V6#C66780_C16268> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C49641> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C49643> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C16731> ;
+	th:narrower <http://www.cdisc.org/C66780/V4#C66780_C49642> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e4669eb63584b0c13fe15a2f73f99387fb86b0c0> ;
+	th:synonym <http://www.assero.co.uk/SYN#f2544775a2ff25ab5c35882e525e78cb1bd47abc> ;
+.
+<http://www.cdisc.org/C66780/V6#C66780_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C66780/V6#C66780_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66780"^^xsd:string ;
+	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "6.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C66780/V6#C66780_C16268>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Elderly"^^xsd:string ;
+	th:identifier "C16268"^^xsd:string ;
+	th:notation "ELDERLY (> 65)"^^xsd:string ;
+	th:definition "An age group comprised by people 65 years of age and older. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#994558b6302bab816e4b5f9bab254d4c3eb2fec6> ;
+.
+<http://www.cdisc.org/C66726/V6#C66726>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C66726/V6#C66726_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C66726/V6#C66726_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66726"^^xsd:string ;
+	th:notation "FRM"^^xsd:string ;
+	th:definition "The form of the completed pharmaceutical product, e.g. tablet, capsule, injection, elixir, suppository. Dosage form can have a significant effect on the onset, duration and intensity of the pharmacological action of a drug. A pharmaceutical dosage form controls the rate at which the drug is released into the biological fluids. This release rate affects its intrinsic absorption pattern and therefore, the bioavailability of the drug."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42887> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42888> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42960> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42971> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42889> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42892> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42890> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43451> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42891> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C25158> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42895> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42896> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42917> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42902> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42904> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42916> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42928> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42936> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42954> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C45414> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42678> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60884> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60891> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42900> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42919> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C28944> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60897> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42901> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C45415> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47890> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43525> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42679> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42763> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C17423> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42912> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42913> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42915> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42929> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60926> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42932> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42920> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42984> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60927> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60928> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60929> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42933> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42934> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42906> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60930> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48193> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42937> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C45416> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42938> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42903> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42909> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42939> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42940> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42921> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42941> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42894> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42978> ;
+	th:narrower <http://www.cdisc.org/C66726/V6#C66726_C42942> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42944> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60931> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42946> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42914> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42950> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42974> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42976> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42977> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42959> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42957> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42958> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42956> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42945> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42899> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42995> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42926> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42951> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42988> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60933> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42922> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47915> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42947> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42948> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47916> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C45413> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42949> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42952> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42953> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60934> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29167> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60957> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60958> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42955> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29269> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48624> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42965> ;
+	th:narrower <http://www.cdisc.org/C66726/V6#C66726_C42966> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60984> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47887> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42967> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42907> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60985> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42968> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42923> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42911> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42969> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42943> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42918> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C25394> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42970> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47913> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42972> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42908> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42973> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42975> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42961> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60988> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42979> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42980> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42981> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42982> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42983> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42986> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42898> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42987> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60994> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42935> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60992> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47912> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42989> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42962> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42990> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42991> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47914> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42993> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42924> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42994> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42925> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60995> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47889> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47898> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42996> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42998> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42893> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42897> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60997> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42905> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42997> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42910> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42927> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42931> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42930> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C61004> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C61005> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42964> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42963> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42999> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C61006> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42985> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42992> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47892> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C47897> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43000> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43001> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43002> ;
+	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C43003> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d96179c363badf5b6dbc81819e0d0bad858dcd3f> ;
+	th:synonym <http://www.assero.co.uk/SYN#7332de6e7143f2007dbf2076504d34469c100eb4> ;
+	th:synonym <http://www.assero.co.uk/SYN#b8487733af39fd171119d807c25976f546299895> ;
+.
+<http://www.cdisc.org/C66726/V6#C66726_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C66726/V6#C66726_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66726"^^xsd:string ;
+	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "6.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C66726/V6#C66726_C42942>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Implant Dosage Form"^^xsd:string ;
+	th:identifier "C42942"^^xsd:string ;
+	th:notation "IMPLANT"^^xsd:string ;
+	th:definition "<html>A material containing drug intended to be inserted securely and<b> </b>deeply in a living site for growth, slow release, or formation of an organic union. (NCI)</html>"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#99c1aeaeaa8cfe5ee6aca32a5ce22e01b4548c8a> ;
+.
+<http://www.cdisc.org/C66726/V6#C66726_C42966>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Ointment Dosage Form"^^xsd:string ;
+	th:identifier "C42966"^^xsd:string ;
+	th:notation "OINTMENT"^^xsd:string ;
+	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
+.
+<http://www.cdisc.org/C66727/V6#C66727>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Completion/Reason for Non-Completion"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C66727/V6#C66727_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C66727/V6#C66727_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66727"^^xsd:string ;
+	th:notation "NCOMPLT"^^xsd:string ;
+	th:definition "The reason that a subject was discontinued from a clinical trial."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66727/V6#C66727_C41331> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C25250> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C28554> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C48226> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C48227> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C49631> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C17649> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C48250> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C25742> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C35571> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C48251> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C25746> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C49628> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C49632> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C49633> ;
+	th:narrower <http://www.cdisc.org/C66727/V4#C66727_C49634> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e90c96059b36451c45326513aee7fc9ceed9790b> ;
+	th:synonym <http://www.assero.co.uk/SYN#02a24fcba19bc023c9848e72397af053f058da9f> ;
+.
+<http://www.cdisc.org/C66727/V6#C66727_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C66727/V6#C66727_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66727"^^xsd:string ;
+	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "6.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C66727/V6#C66727_C41331>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Adverse Event"^^xsd:string ;
+	th:identifier "C41331"^^xsd:string ;
+	th:notation "ADVERSE EVENT"^^xsd:string ;
+	th:definition "Any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An adverse event (AE) can therefore be any unintended sign (including an abnormal laboratory finding), symptom,or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product. NOTE: For further information, see the ICH Guideline for Clinical Safety Data Management: Definitions and Standards for Expedited Reporting. “[Modified from ICH E2A]” Synonyms: side effect, adverse experience. See also serious adverse event, serious adverse experience.  (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a2d201132dbeaa6bc05be71972261e33f1701a14> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Trial Phase"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C66737/V6#C66737_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C66737/V6#C66737_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2008-01-15T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C66737"^^xsd:string ;
+	th:notation "TPHASE"^^xsd:string ;
+	th:definition "Clinical trials are broken into three or four phases: Phase I tests a new drug or treatment for safety in a small group; Phase II expands the study to a larger group of people; Phase III expands the study to an even larger group of people to measure whether the treatment actually benefits patients, and whether its benefits exceed its risks; and Phase IV takes place after the drug or treatment has been licensed and marketed. (NCI)"^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C66737/V6#C66737_C15600> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C15693> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C15601> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C15694> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C49686> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C49688> ;
+	th:narrower <http://www.cdisc.org/C66737/V6#C66737_C15602> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C49687> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C49689> ;
+	th:narrower <http://www.cdisc.org/C66737/V6#C66737_C15603> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C47865> ;
+	th:narrower <http://www.cdisc.org/C66737/V4#C66737_C48660> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ea316b4c8700efa4ad1f09c6a6565e2e8a8723c2> ;
+	th:synonym <http://www.assero.co.uk/SYN#73056984706139d0dc7464d5c079e1b1dca9efff> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C66737"^^xsd:string ;
+	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
+	isoI:version "6"^^xsd:positiveInteger ;
+	isoI:semanticVersion "6.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737_C15600>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Phase I Trial"^^xsd:string ;
+	th:identifier "C15600"^^xsd:string ;
+	th:notation "Phase I Trial"^^xsd:string ;
+	th:definition "The initial introduction of an investigational new drug into humans. Phase 1 studies are typically closely monitored and may be conducted in patients or normal volunteer subjects. NOTE: These studies are designed to determine the metabolism and pharmacologic actions of the drug in humans, the side effects associated with increasing doses, and, if possible, to gain early evidence on effectiveness. During Phase 1, sufficient information about the drug’s pharmacokinetics and pharmacological effects should be obtained to permit the design of well-controlled, scientifically valid, Phase 2 studies. The total number of subjects and patients included in Phase I studies varies with the drug, but is generally in the range of 20 to 80. Phase 1 studies also include studies of drug metabolism, structure-activity relationships, and mechanism of action in humans, as well as studies in which investigational drugs are used as research tools to explore biological phenomena or disease processes.  [After FDA CDER Handbook, ICH E8] (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0f8d3a7a3ddc206c56cc87bb874188b475b60278> ;
+	th:synonym <http://www.assero.co.uk/SYN#ba679725558c667587ecb1b95b66c53743240fff> ;
+	th:synonym <http://www.assero.co.uk/SYN#356a192b7913b04c54574d18c28d46e6395428ab> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737_C15602>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Phase III Trial"^^xsd:string ;
+	th:identifier "C15602"^^xsd:string ;
+	th:notation "Phase III Trial"^^xsd:string ;
+	th:definition "Phase 3. Studies are expanded controlled and uncontrolled trials. They are performed after preliminary evidence suggesting effectiveness of the drug has been obtained, and are intended to gather the additional information about effectiveness and safety that is needed to confirm efficacy and evaluate the overall benefit–risk relationship of the drug and to provide an adequate basis for physician labeling. NOTE: Phase 3 studies usually include from several hundred to several thousand subjects. [After FDA CDER Handbook, ICH E8]  (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#f6ee4e25b05954cb4eb59c3c03235493c727181d> ;
+	th:synonym <http://www.assero.co.uk/SYN#cadef1f25ed578ee8fe3402016b3fc43f9767ada> ;
+	th:synonym <http://www.assero.co.uk/SYN#77de68daecd823babbb58edb1c8e14d7106e83bb> ;
+.
+<http://www.cdisc.org/C66737/V6#C66737_C15603>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Phase IV Trial"^^xsd:string ;
+	th:identifier "C15603"^^xsd:string ;
+	th:notation "Phase IV Trial"^^xsd:string ;
+	th:definition "Phase 4. Postmarketing (Phase 4) studies to delineate additional information about the drug’s risks, benefits, and optimal use that may be requested by regulatory authorities in conjunction with marketing approval. NOTE: These studies could include, but would not be limited to, studying different doses or schedules of administration than were used in Phase 2 studies, use of the drug in other patient populations or other stages of the disease, or use of the drug over a longer period of time. [After FDA CDER Handbook, ICH E8]  (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b0e62c2ddff4828091dc5fc779bfc97f086c8d53> ;
+	th:synonym <http://www.assero.co.uk/SYN#f8455aabef9fc38b43f4879c32e831ca0ddb4647> ;
+	th:synonym <http://www.assero.co.uk/SYN#1b6453892473a467d07372d45eb05abc2031647a> ;
+.
 <http://www.cdisc.org/C71113/V6#C71113>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Frequency"^^xsd:string ;
@@ -578,7 +996,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71113/V6#C71113_C17649>
 	rdf:type th:UnmanagedConcept ;
@@ -1499,7 +1917,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71148/V6#C71148_C62122>
 	rdf:type th:UnmanagedConcept ;
@@ -1826,7 +2244,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71150/V6#C71150_C26889>
 	rdf:type th:UnmanagedConcept ;
@@ -3842,7 +4260,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71153/V6#C71153_C39779>
 	rdf:type th:UnmanagedConcept ;
@@ -4760,7 +5178,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71152/V6#C71152_C39779>
 	rdf:type th:UnmanagedConcept ;
@@ -5286,7 +5704,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71151/V6#C71151_C71101>
 	rdf:type th:UnmanagedConcept ;
@@ -6031,7 +6449,7 @@
 	isoI:versionLabel "2008-01-15 Release"^^xsd:string ;
 	isoI:version "6"^^xsd:positiveInteger ;
 	isoI:semanticVersion "6.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/RA#DUNS084433759> ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
 <http://www.cdisc.org/C71620/V6#C71620_C18063>
 	rdf:type th:UnmanagedConcept ;

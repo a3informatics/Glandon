@@ -23,6 +23,9 @@ class IsoRegistrationAuthority < Fuseki::Base
   validates_with Validator::Uniqueness, attribute: :organization_identifier, on: :create
   validates_with Validator::Klass, property: :ra_namespace, level: :uri
 
+  @@repository_scope = nil
+  @@cdisc_scope = nil
+
   # Find by the short name.
   #
   # @param name [String] The short name of the namespace of the authority to be found
@@ -74,6 +77,22 @@ class IsoRegistrationAuthority < Fuseki::Base
     find_children(object.uri)
   end
 
+  # Find the scope for the repository owner
+  #
+  # @return [String] the scope id
+  def self.repository_scope
+    @@repository_scope ||= owner.ra_namespace
+    @@repository_scope
+  end
+
+  # Find the scope for CDISC
+  #
+  # @return [String] the scope id
+  def self.cdisc_scope
+    @@cdisc_scope ||= find_by_short_name("CDISC").ra_namespace
+    @@cdisc_scope
+  end
+  
   # Create
   #
   # @param attributes [Hash] the set of properties
