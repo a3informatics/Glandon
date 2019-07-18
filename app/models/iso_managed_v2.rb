@@ -203,7 +203,6 @@ class IsoManagedV2 < IsoConceptV2
   # Find
   #
   # @param [Uri|id] the identifier, either a URI or the id
-  # @return [Object] a class object.
   # @param full [Boolean] all child triples if set true, otherwise just the top level concept
   # @return [object] The object.
   def self.find(id, full=true)  
@@ -217,6 +216,25 @@ class IsoManagedV2 < IsoConceptV2
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
     from_results_recurse(uri, results.by_subject)
+  end
+
+  # Find Minimum
+  #
+  # @param [Uri|id] the identifier, either a URI or the id
+  # @return [object] The object.
+  def self.find_minimum(id)  
+    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    parts = []
+    parts << "  { #{uri.to_ref} ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (#{uri.to_ref} as ?s) }" 
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"  
+    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }" 
+    query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if query_results.empty?
+    item = from_results_recurse(uri, query_results.by_subject)
+    ns_uri = item.has_identifier.has_scope.uri
+    item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
+    item
   end
 
   def self.create(params)

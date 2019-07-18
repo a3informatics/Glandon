@@ -462,7 +462,7 @@ describe IsoManagedV2 do
     before :each do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
         "BusinessOperational.ttl", "thesaurus.ttl"]
-      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data_4.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
     end
@@ -482,14 +482,20 @@ describe IsoManagedV2 do
     it "find, III, speed" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
-      (1..100).each {|x| results = IsoManagedV2.find(uri)}
+      (1..100).each {|x| results = CdiscTerm.find(uri)}
       timer_stop("Find 100 times")
     end
 
-    it "find, IV, speed" do
+    it "find minimum I" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      results = IsoManagedV2.find_minimum(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "find minimum II, speed" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
-      (1..100).each {|x| results = CdiscTerm.find(uri)}
+      (1..100).each {|x| results = CdiscTerm.find_minimum(uri)}
       timer_stop("Find 100 times")
     end
 
