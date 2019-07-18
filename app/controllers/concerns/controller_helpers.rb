@@ -20,7 +20,7 @@ module ControllerHelpers
     edit = policy.edit?
     delete = policy.destroy?
     result[:show_path] = path_for(controller, :show, object)
-    result[:view_path] = path_for(controller, :view, object)
+    #result[:view_path] = path_for(controller, :view, object) <<< Removed
     result[:search_path] = path_for(controller, :search, object)
     if edit && object.edit? && object.latest?
       result[:edit_path] = path_for(controller, :edit, object)

@@ -135,11 +135,12 @@ puts "Thesari Show Overall: #{s4-start}"
     redirect_to request.referer
   end
 
-  def view
-    authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
-  end
+  # Removed.
+  # def view
+  #   authorize Thesaurus
+  #   @thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  #   @close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
+  # end
 
   def search
     authorize Thesaurus, :view?

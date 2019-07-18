@@ -32,7 +32,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       {"data" : "label"},
       {"data" : "has_identifier.version_label"},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}},
-      {"render" : function (data, type, row, meta) {return _this.linkButton(row.view_path, "View");}},
+      //{"render" : function (data, type, row, meta) {return _this.linkButton(row.view_path, "View");}}, << Removed
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.search_path, "Search");}},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.edit_path, "Edit");}},
       {"render" : function (data, type, row, meta) {return _this.linkButton(row.status_path, "Status");}},
