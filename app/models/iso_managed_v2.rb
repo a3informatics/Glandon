@@ -346,7 +346,7 @@ class IsoManagedV2 < IsoConceptV2
   # @params [Hash] params a hash of parameters
   # @params params [String] :offset the start offset of items to be returned
   # @params params [String] :count the count of items to be returned
-  # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
+  # @return [Array] array of objects
   def managed_children_pagination(params)
     results = []
     query_string = block_given? ? yield(params) : managed_children_pagination_query(params)
@@ -364,7 +364,7 @@ class IsoManagedV2 < IsoConceptV2
   # @params [Hash] params a hash of parameters
   # @params params [String] :offset the start offset of items to be returned
   # @params params [String] :count the count of items to be returned
-  # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
+  # @return [Array] array of objects
   def children_pagination(params)
     results = []
     query_string = block_given? ? yield(params) : children_pagination_query(params)
@@ -417,11 +417,11 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
   def forward_backward(step, window)
     result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
-    history_result = self.class.history(scope: owner, identifier: self.identifier)
+    history_result = self.class.history_uris(scope: self.scope, identifier: self.identifier)
     return result if history_result.empty?
     start_stop = 0
     end_stop = history_result.count - window
-    my_index = history_result.index {|x| x.uri == self.uri}
+    my_index = history_result.index {|x| x == self.uri}
     result[:start] = history_result[start_stop] if my_index > start_stop
     result[:backward_single] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop
     result[:backward_multiple] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop

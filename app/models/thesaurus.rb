@@ -12,7 +12,113 @@ class Thesaurus <  IsoManagedV2
     super(params) {mcp_query(params)}
   end
 
+  # Changes
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes(window_size)
+    raw_results = {}
+    final_results = {}
+    versions = []
+    start_index = 0
+    first_index = 0
+
+    # Get the version set. Work out if we need a dummy first one.
+    items = self.class.history_uris(identifier: self.identifier, scope: self.scope)
+    first_index = items.index {|x| x == self.uri}    
+    if first_index == 0 
+      start_index = 0 
+      raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
+    else
+      start_index = first_index - 1
+      raw_results = {}
+    end    
+    version_set = items[start_index..(first_index + window_size - 1)]
+
+    # Get the raw results
+    query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
+{
+  #{version_set.map{|x| "{ #{x.to_ref} th:isTopConceptReference ?r . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
+  ?r bo:reference ?cl .
+  ?cl isoT:hasIdentifier ?si2 .
+  ?cl isoC:label ?l .
+  ?cl th:notation ?n .
+  ?si2 isoI:identifier ?i .
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+    triples.each do |entry|
+      uri = entry[:e].to_s
+      raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
+    end
+
+    # Get the version array
+    raw_results.sort_by {|k,v| v[:version]}
+    raw_results.each {|k,v| versions << v[:date]}
+    versions = versions.drop(1)
+
+    # Build the skeleton final results with a default value.
+    initial_status = [{ status: :not_present}] * versions.length
+    raw_results.each do |uri, version|
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if final_results.key?(key)
+        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+      end
+    end
+
+    # Process the changes
+    previous_version = nil
+    base_version = raw_results.map{|k,v| v[:version]}[1].to_i
+    raw_results.each do |uri, version|
+      version_index = version[:version].to_i - base_version
+      if previous_version.nil?
+        # nothing needed?
+      else
+        # :created = B-A
+        # :updated = A Union B URI != URI
+        # :no_change = A Union B URI == URI
+        # :deleted = A-B
+        new_items = version[:children] - previous_version[:children]
+        common_items = version[:children] & previous_version[:children]
+        deleted_items = previous_version[:children] - version[:children]
+        new_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+        end
+        common_items.each do |entry|
+          prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
+          curr = version[:children].find{|x| x[:key] == entry[:key]}
+          final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+        end
+        deleted_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
+        end
+      end
+      previous_version = version
+    end
+
+    # And return
+    {versions: versions, items: final_results}
+  end
+
 private
+
+  class DiffResult < Hash
+
+    def no_change?(other_hash)
+      self[:uri] == other_hash[:uri]
+    end
+
+    def eql?(other_hash)
+      self[:key] == other_hash[:key]
+    end
+
+    def hash
+      self[:key].hash
+    end
+
+  end
 
   # Standard managed children pagination query
   def mcp_query(params)

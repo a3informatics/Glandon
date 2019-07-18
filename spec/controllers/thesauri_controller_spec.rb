@@ -325,20 +325,20 @@ describe ThesauriController do
     end
 
     it "show" do
-      expect(Thesaurus).to receive(:find).and_return(CdiscTerm.new)
+      expect(Thesaurus).to receive(:find).and_return(Thesauri.new)
       get :show, id: "aaa"
       expect(response).to render_template("show")
     end
 
     it "show results" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:find).and_return(CdiscTerm.new)
-      expect_any_instance_of(CdiscTerm).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([CdiscTerm.new])
+      expect(Thesaurus).to receive(:find).and_return(Thesauri.new)
+      expect_any_instance_of(Thesauri).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([Thesauri.new])
       get :show_results, id: "aaa", offset: 0, count: 10
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")  
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to eq({data: [CdiscTerm.new.to_h], count: 1, offset: 0})
+      expect(x).to eq({data: [Thesauri.new.to_h], count: 1, offset: 0})
     end
 
     it "view a thesaurus" do
@@ -417,6 +417,35 @@ describe ThesauriController do
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"impact_analysis.pdf\"")
       expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
 	  end
+
+    it "changes" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:forward_backward).and_return({start: nil, end: Uri.new(uri: "http://www.xxx.com/aaa#1")})
+      get :changes, id: "aaa"
+      expect(assigns(:links)).to eq({start: "", end: "/thesauri/aHR0cDovL3d3dy54eHguY29tL2FhYSMx/changes"})
+      expect(response).to render_template("changes")
+    end
+
+    it "obtains the change results" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :changes, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+    end
+
+    it "changes_report" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+      get :changes_report, id: "aaa"
+      expect(response.content_type).to eq("application/pdf")
+    end
 
   end
 

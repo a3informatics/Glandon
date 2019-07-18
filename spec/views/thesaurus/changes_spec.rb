@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'cdisc_terms/changes.html.erb', :type => :view do
+describe 'thesauri/changes.html.erb', :type => :view do
 
   include UiHelpers
   include UserAccountHelpers
@@ -35,6 +35,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
+    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -56,8 +57,8 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/#{ct.id}/changes_report.pdf']")
+    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
     
   end
 
@@ -71,6 +72,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
+    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -80,8 +82,8 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     ui_link_disabled("fb_fs_button")
     ui_link_disabled("fb_fm_button")
     ui_link_disabled("fb_end_button")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/#{ct.id}/changes_report.pdf']")
+    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
     
   end
 
@@ -95,6 +97,7 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
+    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -106,8 +109,8 @@ describe 'cdisc_terms/changes.html.erb', :type => :view do
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/#{ct.id}/changes_report.pdf']")
+    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
     
   end
 

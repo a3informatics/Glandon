@@ -148,36 +148,36 @@ class CdiscTermsController < ApplicationController
   #   end
   # end
 
-  def changes
-    authorize CdiscTerm, :view?
-    @version_count = current_user.max_term_display.to_i
-    @ct = CdiscTerm.find(params[:id], false)
-    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
-    @links = {}
-    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v)}
-  end
+  # def changes
+  #   authorize CdiscTerm, :view?
+  #   @version_count = current_user.max_term_display.to_i
+  #   @ct = CdiscTerm.find(params[:id], false)
+  #   link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+  #   @links = {}
+  #   link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v)}
+  # end
 
-  def changes_results
-    authorize CdiscTerm, :view?
-    ct = CdiscTerm.find(params[:id], false)
-    cls = ct.changes(current_user.max_term_display.to_i)
-    cls[:items].each do |k,v| 
-      v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
-    end
-    render json: {data: cls}
-  end
+  # def changes_results
+  #   authorize CdiscTerm, :view?
+  #   ct = CdiscTerm.find(params[:id], false)
+  #   cls = ct.changes(current_user.max_term_display.to_i)
+  #   cls[:items].each do |k,v| 
+  #     v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
+  #   end
+  #   render json: {data: cls}
+  # end
 
-  def changes_report
-    authorize CdiscTerm, :view?
-    ct = CdiscTerm.find(params[:id], false)
-    cls = ct.changes(current_user.max_term_display.to_i)
-    respond_to do |format|
-      format.pdf do
-        @html = Reports::CdiscChangesReport.new.create(cls, current_user)
-        render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
-      end
-    end
-  end
+  # def changes_report
+  #   authorize CdiscTerm, :view?
+  #   ct = CdiscTerm.find(params[:id], false)
+  #   cls = ct.changes(current_user.max_term_display.to_i)
+  #   respond_to do |format|
+  #     format.pdf do
+  #       @html = Reports::CdiscChangesReport.new.create(cls, current_user)
+  #       render pdf: "cdisc_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+  #     end
+  #   end
+  # end
 
   def submission
     authorize CdiscTerm, :view?

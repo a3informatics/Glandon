@@ -206,60 +206,64 @@ describe IsoManagedV2 do
 
     it "returns forwards and backwards, I" do
       item_history = []
+      items = []
       (1..20).each do |index|
         item = IsoManagedV2.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
-        item.label = "Number #{index}"
-        item_history << item
+        items << item
+        item_history << item.uri
       end
-      current = item_history[10]
-      expect(current).to receive(:owner).and_return(nil)
+      current = items[10]
+      expect(current).to receive(:scope).and_return(IsoNamespace.new)
       expect(current).to receive(:identifier).and_return("CT")
-      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
-      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      current.forward_backward(1, 4).each{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_1.yaml")
     end
 
     it "returns forwards and backwards, II" do
       item_history = []
+      items = []
       (1..3).each do |index|
         item = IsoManagedV2.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
-        item.label = "Number #{index}"
-        item_history << item
+        items << item
+        item_history << item.uri
       end
-      current = item_history[1]
-      expect(current).to receive(:owner).and_return(nil)
+      current = items[1]
+      expect(current).to receive(:scope).and_return(IsoNamespace.new)
       expect(current).to receive(:identifier).and_return("CT")
-      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
-      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_2.yaml")
     end
 
     it "returns forwards and backwards, III" do
       item_history = []
+      items = []
       (1..5).each do |index|
         item = IsoManagedV2.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
         item.label = "Number #{index}"
-        item_history << item
+        items << item
+        item_history << item.uri
       end
-      current = item_history[1]
-      expect(current).to receive(:owner).and_return(nil)
+      current = items[1]
+      expect(current).to receive(:scope).and_return(IsoNamespace.new)
       expect(current).to receive(:identifier).and_return("CT")
-      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
-      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_3.yaml")
 
-      current = item_history[2]
-      expect(current).to receive(:owner).and_return(nil)
+      current = items[2]
+      expect(current).to receive(:scope).and_return(IsoNamespace.new)
       expect(current).to receive(:identifier).and_return("CT")
-      expect(IsoManagedV2).to receive(:history).and_return(item_history)
+      expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
-      current.forward_backward(2, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.uri.to_s}
+      current.forward_backward(2, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
       check_file_actual_expected(results, sub_dir, "forward_backward_expected_4.yaml")
     end
 

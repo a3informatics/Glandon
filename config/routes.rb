@@ -160,6 +160,8 @@ Rails.application.routes.draw do
       get :impact_report
     end
     member do
+      get :changes
+      get :changes_report
       get :search
       get :export_csv
     end
@@ -221,9 +223,9 @@ Rails.application.routes.draw do
       #get :search_results
     end
     member do
-      get :changes
-      get :changes_results
-      get :changes_report
+      #get :changes
+      #get :changes_results
+      #get :changes_report
       get :submission
       get :submission_results
       get :submission_report

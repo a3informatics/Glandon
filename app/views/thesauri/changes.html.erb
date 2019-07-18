@@ -1,0 +1,9 @@
+<%= javascript_include_tag 'thesauri/changes' %>
+<%= javascript_tag "var url_path = '#{changes_thesauri_path(@ct)}';" %>
+<%= javascript_tag "var column_count = '#{@version_count}';" %>
+<% second_level_breadcrumb("#{@ct.identifier}", @close_path, "Changes") %>
+<div class="col-md-12">
+  <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes: CDISC Terminology", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
+  <%= render partial: "shared/buttons/report", :locals => {link_path:  changes_report_thesauri_path(@ct, format: :pdf), id: "report", small: false} %>  
+</div>

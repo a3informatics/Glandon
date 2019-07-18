@@ -156,34 +156,34 @@ describe CdiscTermsController do
       expect(response).to redirect_to("/cdisc_terms/changes")
     end
 =end
-    it "changes" do
-      @user.write_setting("max_term_display", 2)
-      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
-      expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
-      get :changes, id: "aaa"
-      expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/changes"})
-      expect(response).to render_template("changes")
-    end
+    # it "changes" do
+    #   @user.write_setting("max_term_display", 2)
+    #   expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+    #   expect_any_instance_of(CdiscTerm).to receive(:forward_backward).and_return({start: nil, end: "aaa1"})
+    #   get :changes, id: "aaa"
+    #   expect(assigns(:links)).to eq({start: "", end: "/cdisc_terms/aaa1/changes"})
+    #   expect(response).to render_template("changes")
+    # end
 
-    it "obtains the change results" do
-      @user.write_setting("max_term_display", 2)
-      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
-      expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :changes_results, id: "aaa"
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
-    end
+    # it "obtains the change results" do
+    #   @user.write_setting("max_term_display", 2)
+    #   expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+    #   expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :changes_results, id: "aaa"
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200") 
+    #   expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+    # end
 
-    it "changes_report" do
-      @user.write_setting("max_term_display", 2)
-      request.env['HTTP_ACCEPT'] = "application/pdf"
-      expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
-      expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
-      get :changes_report, id: "aaa"
-      expect(response.content_type).to eq("application/pdf")
-    end
+    # it "changes_report" do
+    #   @user.write_setting("max_term_display", 2)
+    #   request.env['HTTP_ACCEPT'] = "application/pdf"
+    #   expect(CdiscTerm).to receive(:find).and_return(CdiscTerm.new)
+    #   expect_any_instance_of(CdiscTerm).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
+    #   get :changes_report, id: "aaa"
+    #   expect(response.content_type).to eq("application/pdf")
+    # end
 
     it "submission" do
       @user.write_setting("max_term_display", 2)
