@@ -81,13 +81,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
-    @tc = Thesaurus::ManagedConcept.find(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     respond_to do |format|
       format.html
       format.json do
         children = @tc.children_pagination(params)
-        results = children.map{|x| x.to_h.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x)})}
-        render json: {data: results, offset: params[:offset], count: results.count}, status: 200
+        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x[:uri].to_id)})}
+        render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
     end
   end
@@ -101,6 +101,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
         @links = {}
         link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_unmanaged_concept_path(v)} # <<< unmanged concept
+        @close_path = request.referer
       format.json do
         clis = @tc.changes(current_user.max_term_display.to_i)
         clis[:items].each do |k,v| 

@@ -7,6 +7,7 @@ class IsoNamespace < Fuseki::Base
   configure rdf_type: "http://www.assero.co.uk/ISO11179Identification#Namespace",
             base_uri: "http://www.assero.co.uk/NS",
             cache: true 
+            
   data_property :short_name
   data_property :name
   data_property :authority

@@ -48,7 +48,7 @@ ManagedChildrenPanel.prototype.add = function (offset) {
     dataType: 'json',
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
-        _this.synonymList(result.data[i]);
+        //_this.synonymList(result.data[i]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();
@@ -65,13 +65,13 @@ ManagedChildrenPanel.prototype.add = function (offset) {
   });
 }
 
-ManagedChildrenPanel.prototype.synonymList = function(entry) {
-  var items = [];
-  $.each(entry.synonym, function(i, value) {
-    items.push(value.label);
-  });
-  entry.synonym_list = items.join("; ");
-}
+// ManagedChildrenPanel.prototype.synonymList = function(entry) {
+//   var items = [];
+//   $.each(entry.synonym, function(i, value) {
+//     items.push(value.label);
+//   });
+//   entry.synonym_list = items.join("; ");
+// }
 
 ManagedChildrenPanel.prototype.linkButton = function (path, text) {
   if (path === "") {

@@ -43,28 +43,18 @@ class ThesauriController < ApplicationController
   
   def show
     authorize Thesaurus
-start = Time.now
-    @ct = Thesaurus.find(params[:id])
-s1 = Time.now
+    @ct = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html do
         @close_path = request.referer
-puts "Thesauri Show S1: #{s1-start}"
       end
       format.json do
         results = []
         children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
-s2 = Time.now
-        children.each {|c| results << c.to_h.reverse_merge!({show_path: thesauri_managed_concept_path(c)})}
-s3 = Time.now
+        children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path(c[:uri].to_id)})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
-puts "Thesauri Show S1: #{s1-start}"
-puts "Thesauri Show S2: #{s2-s1}"
-puts "Thesauri Show S3: #{s3-s2}"
       end
     end
-s4 = Time.now
-puts "Thesari Show Overall: #{s4-start}"
   end
   
   def create
@@ -144,7 +134,7 @@ puts "Thesari Show Overall: #{s4-start}"
 
   def search
     authorize Thesaurus, :view?
-    @thesaurus = Thesaurus.find(params[:id], false)
+    @thesaurus = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html 
         @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.identifier, scope_id: @thesaurus.owner})

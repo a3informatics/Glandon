@@ -7,7 +7,8 @@ class IsoRegistrationAuthority < Fuseki::Base
   C_SCHEMES = %w(DUNS)
 
   configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
-            base_uri: "http://www.assero.co.uk/RA" 
+            base_uri: "http://www.assero.co.uk/RA",
+            cache: true 
 
   data_property :organization_identifier, default: "<Not Set>" 
   data_property :international_code_designator, default: C_SCHEMES.first

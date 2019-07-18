@@ -2,10 +2,10 @@ $(document).ready( function() {
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
-    {"data" : "preferred_term.label"},
-    {"data" : "synonym_list"},
+    {"data" : "preferred_term"},
+    {"data" : "synonym"},
     {"data" : "extensible"},
     {"data" : "definition"}
   ];
-  var mcp = new ManagedChildrenPanel(url_path, 20, columns);
+  var mcp = new ManagedChildrenPanel(url_path, 1000, columns);
 });

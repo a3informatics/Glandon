@@ -47,7 +47,6 @@ ChildrenPanel.prototype.add = function (offset) {
     dataType: 'json',
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
-        _this.synonymList(result.data[i]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();

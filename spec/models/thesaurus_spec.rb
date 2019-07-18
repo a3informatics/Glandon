@@ -4,6 +4,7 @@ describe Thesaurus do
 
   include DataHelpers
   include SparqlHelpers
+  include TimeHelpers
 
   def sub_dir
     return "models"
@@ -427,4 +428,44 @@ describe Thesaurus do
     end
 
   end
+
+  describe "Child Operations" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
+      load_versions(1..59)
+    end
+
+    after :each do
+      #
+    end
+
+    it "get children" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      actual = ct.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_1.yaml", write_file: true)
+    end
+
+    it "get children, speed" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      timer_start
+      (1..100).each {|x| actual = ct.managed_children_pagination(offset: 0, count: 10)}
+      timer_stop("100 searches")
+    end
+
+  end
+
 end

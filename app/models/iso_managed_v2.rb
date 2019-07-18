@@ -234,6 +234,10 @@ class IsoManagedV2 < IsoConceptV2
     item = from_results_recurse(uri, query_results.by_subject)
     ns_uri = item.has_identifier.has_scope.uri
     item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
+    ra_uri = item.has_state.by_authority.uri
+    item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
+    ns_uri = item.has_state.by_authority.ra_namespace
+    item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
     item
   end
 
