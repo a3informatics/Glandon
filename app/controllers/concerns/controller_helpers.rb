@@ -14,17 +14,27 @@ module ControllerHelpers
     return []
   end
 
-  def add_history_paths(controller, object)
-    result = {}
-    policy = policy(object.class)
+  def add_history_paths(klass, controller, set)
+    results = []
+    policy = policy(klass)
     edit = policy.edit?
     delete = policy.destroy?
+    set.each do |object|
+      results << object.to_h.reverse_merge!(add_history_path(controller, object, edit, delete))
+    end
+    results
+  end
+
+private
+
+  def add_history_path(controller, object, edit, delete)
+    result = {}
     result[:show_path] = path_for(controller, :show, object)
     #result[:view_path] = path_for(controller, :view, object) <<< Removed
     result[:search_path] = path_for(controller, :search, object)
     if edit && object.edit? && object.latest?
       result[:edit_path] = path_for(controller, :edit, object)
-      result[:tags_path] = edit_tags_iso_managed_index_path(:id => item.uri.fragment, :namespace => item.uri.namespace)
+      result[:tags_path] = edit_tags_iso_managed_index_path(:id => object.uri.fragment, :namespace => object.uri.namespace)
     else
       result[:edit_path] = ""
       result[:tags_path] = ""
@@ -41,8 +51,6 @@ module ControllerHelpers
     end
     return result
   end
-
-private
 
   def path_for(controller, action, id)
     Rails.application.routes.url_for controller: controller, action: action, only_path: true, id: id

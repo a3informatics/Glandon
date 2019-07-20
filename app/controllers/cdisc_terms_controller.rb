@@ -37,9 +37,7 @@ class CdiscTermsController < ApplicationController
       format.json do
         results = []
         history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope, count: the_params[:count], offset: the_params[:offset])
-        history_results.each do |object|
-          results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
-        end
+        results = add_history_paths(CdiscTerm, :thesauri, history_results)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end

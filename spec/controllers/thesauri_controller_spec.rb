@@ -28,31 +28,31 @@ describe ThesauriController do
   end
 
   def sub_dir
-    return "controllers"
+    return "controllers/thesauri"
   end
 
   describe "Authorized User" do
   	
     login_curator
 
-    before :all do
-      clear_triple_store
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
       Token.delete_all
       @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
     end
 
-    after :all do
+    after :each do
       user = User.where(:email => "lock@example.com").first
       user.destroy
     end
@@ -70,13 +70,31 @@ describe ThesauriController do
       expect(response).to render_template("index")
     end
 
-    it "thesaurus history" do
-      get :history, { :identifier => "CDISC EXT", :scope_id => IsoRegistrationAuthority.owner.ra_namespace.id }
+    it "shows the history, initial view" do
+      params = {}
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
+      expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzE=")
+      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
     end
 
+    it "shows the history, page" do
+      CT1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      CT2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([CT1, CT2])        
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "thesaurus history, none" do
-      get :history, { :identifier => "CDISC EXT NEW", :scope_id => IsoRegistrationAuthority.owner.ra_namespace.id }
+      expect(Thesaurus).to receive(:history_uris).with({identifier: "CDISC EXT NEW", scope: an_instance_of(IsoNamespace)}).and_return([])
+      get :history, {thesauri: {identifier: "CDISC EXT NEW", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
       expect(response).to redirect_to("/thesauri")
     end
 

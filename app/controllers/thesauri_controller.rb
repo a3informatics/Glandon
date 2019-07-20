@@ -25,18 +25,18 @@ class ThesauriController < ApplicationController
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        redirect_to thesauri_index_path if results.count == 0
-        @thesauri_id = results.first
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
+        if results.empty? 
+          redirect_to thesauri_index_path 
+        else
+          @thesauri_id = results.first.to_id
+          @identifier = the_params[:identifier]
+          @scope_id = the_params[:scope_id]
+        end
       end
       format.json do
         results = []
         history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-        #history_results = Thesaurus.history(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        history_results.each do |object|
-          results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
-        end
+        results = add_history_paths(Thesaurus, :thesauri, history_results)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
