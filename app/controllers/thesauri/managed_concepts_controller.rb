@@ -79,6 +79,17 @@ class Thesauri::ManagedConceptsController < ApplicationController
   #   end
   # end
 
+  # ************************
+  # CSV Export 
+  # ************************
+  
+  # def export_csv
+  #   authorize CdiscCl, :view?
+  #   uri = UriV3.new(id: params[:id]) # Using new mechanism
+  #   cl = CdiscCl.find(uri.fragment, uri.namespace)
+  #   send_data cl.to_csv, filename: "CDISC_CL_#{cl.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  # end
+
   def show
     authorize Thesaurus
     @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])

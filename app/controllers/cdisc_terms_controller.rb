@@ -6,7 +6,7 @@ class CdiscTermsController < ApplicationController
   
   include ControllerHelpers
 
-  before_action :authenticate_user!
+  before_action :authenticate_and_authorized
   
   # def find_submission
   #   authorize CdiscTerm, :view?
@@ -27,7 +27,6 @@ class CdiscTermsController < ApplicationController
   # end
 
   def history
-    authorize CdiscTerm
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
@@ -242,9 +241,14 @@ private
     #(:version, :date, :term, :textSearch, :namespace, :uri, :direction, :cCodeSearch, :files => [] )
   end
 
-  def get_version
-  	return nil if params[:cdisc_term].blank? 
-  	return the_params[:version].to_i
+  def authenticate_and_authorized
+    authenticate_user!
+    authorize CdiscTerm
   end
+
+  # def get_version
+  # 	return nil if params[:cdisc_term].blank? 
+  # 	return the_params[:version].to_i
+  # end
 
 end

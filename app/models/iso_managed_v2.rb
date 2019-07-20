@@ -257,21 +257,23 @@ class IsoManagedV2 < IsoConceptV2
   def self.history(params)    
     parts = []
     results = []
-    base =  "?e rdf:type #{rdf_type.to_ref} . " +
-            "?e isoT:hasIdentifier ?si . " +
+    base =  "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
     parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
     parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
+    #parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      #item.has_state.by_authority = params[:scope]
       item.has_identifier.has_scope = params[:scope]
+    ra_uri = item.has_state.by_authority.uri
+    item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
+    ns_uri = item.has_state.by_authority.ra_namespace
+    item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
       results << item
     end
     results.sort_by{|x| x.version}
@@ -291,7 +293,7 @@ class IsoManagedV2 < IsoConceptV2
   end
 
   def self.history_pagination(params)
-    triple_count = 27
+    triple_count = 23
     count = params[:count].to_i * triple_count 
     offset = params[:offset].to_i * triple_count 
     parts = []
@@ -299,19 +301,20 @@ class IsoManagedV2 < IsoConceptV2
     base =  "?e rdf:type #{rdf_type.to_ref} . " +
             "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
-            "?si isoI:version ?v . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
+            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " +
+            "?si isoI:version ?v . "
     parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
     parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
+    #parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
-    query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}"
+    query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v) LIMIT #{count} OFFSET #{offset}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      #item.has_state.by_authority = params[:scope]
       item.has_identifier.has_scope = params[:scope]
+      item.has_state.by_authority = IsoRegistrationAuthority.find(item.has_state.by_authority.uri)
+      item.has_state.by_authority.ra_namespace = IsoNamespace.find(item.has_state.by_authority.ra_namespace)
       results << item
     end
     results

@@ -14,28 +14,28 @@ describe CdiscTermsController do
   	
     login_curator
 
-    def standard_params
-      params = 
-      {
-        :draw => "1", 
-        :columns =>
-        {
-          "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-          "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-          "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-          "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-          "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-          "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-        }, 
-        :order => { "0" => { :column => "0", :dir => "asc" }}, 
-        :start => "0", 
-        :length => "15", 
-        :search => { :value => "", :regex => "false" }, 
-        :id => "TH-CDISC_CDISCTerminology", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
-      }
-      return params
-    end
+    # def standard_params
+    #   params = 
+    #   {
+    #     :draw => "1", 
+    #     :columns =>
+    #     {
+    #       "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+    #       "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+    #     }, 
+    #     :order => { "0" => { :column => "0", :dir => "asc" }}, 
+    #     :start => "0", 
+    #     :length => "15", 
+    #     :search => { :value => "", :regex => "false" }, 
+    #     :id => "TH-CDISC_CDISCTerminology", 
+    #     :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
+    #   }
+    #   return params
+    # end
 
   before :each do
     schema_files = 
@@ -49,6 +49,7 @@ describe CdiscTermsController do
     ]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+    load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
   end
 
 =begin
@@ -80,12 +81,31 @@ describe CdiscTermsController do
       expect(flash[:error]).to match("Could not find the Code List.")
       expect(response).to redirect_to("/cdisc_term")
     end
-    
-    it "shows the history" do
+=end
+
+    it "shows the history, initial view" do
+      params = {}
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
       get :history
+      expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzE=")
+      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
       expect(response).to render_template("history")
     end
 
+    it "shows the history, page" do
+      CT1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      CT2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([CT1, CT2])        
+      get :history, {cdisc_term: {count: 20, offset: 20}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+=begin
     it "show the terminology" do
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }
       get :show, params
@@ -220,161 +240,167 @@ describe CdiscTermsController do
     
     login_content_admin
 
-    it "presents the import view"  do
-      get :import
-      expect(assigns(:next_version)).to eq(42)
-      expect(response).to render_template("import")
+    it "shows the history, initial view" do
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      get :history
+      expect(response).to render_template("history")
     end
 
-    it "allows a CDISC Terminology to be created" do
-      delete_public_file("upload", "background_term.owl")
-      copy_file_to_public_files("controllers", "background_term.owl", "upload")
-      filename = public_path("upload", "background_term.owl")
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "12", 
-          :date => "2016-12-13", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
-      public_file_exists?("upload", "CT_V12.ttl")
-      delete_public_file("upload", "CT_V12.ttl")
-      expect(response).to redirect_to("/backgrounds")
-    end
+    # it "presents the import view"  do
+    #   get :import
+    #   expect(assigns(:next_version)).to eq(42)
+    #   expect(response).to render_template("import")
+    # end
+
+    # it "allows a CDISC Terminology to be created" do
+    #   delete_public_file("upload", "background_term.owl")
+    #   copy_file_to_public_files("controllers", "background_term.owl", "upload")
+    #   filename = public_path("upload", "background_term.owl")
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "12", 
+    #       :date => "2016-12-13", 
+    #       :files => ["#{filename}"]
+    #     }
+    #   }
+    #   post :create, params
+    #   public_file_exists?("upload", "CT_V12.ttl")
+    #   delete_public_file("upload", "CT_V12.ttl")
+    #   expect(response).to redirect_to("/backgrounds")
+    # end
     
-    it "allows a CDISC Terminology to be created, error version" do
-      filename = public_path("upload", "background_term.owl")
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "aa", 
-          :date => "2016-12-13", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
-      expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/cdisc_terms/import")
-    end
+    # it "allows a CDISC Terminology to be created, error version" do
+    #   filename = public_path("upload", "background_term.owl")
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "aa", 
+    #       :date => "2016-12-13", 
+    #       :files => ["#{filename}"]
+    #     }
+    #   }
+    #   post :create, params
+    #   expect(flash[:error]).to be_present
+    #   expect(response).to redirect_to("/cdisc_terms/import")
+    # end
 
-    it "allows a CDISC Terminology to be created, error filename" do
-      filename = public_path("upload", "background_term.owl")
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "aa", 
-          :date => "2016-12-13"
-        }
-      }
-      post :create, params
-      expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/cdisc_terms/import")
-    end
+    # it "allows a CDISC Terminology to be created, error filename" do
+    #   filename = public_path("upload", "background_term.owl")
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "aa", 
+    #       :date => "2016-12-13"
+    #     }
+    #   }
+    #   post :create, params
+    #   expect(flash[:error]).to be_present
+    #   expect(response).to redirect_to("/cdisc_terms/import")
+    # end
 
-    it "provides a list of the CDISC files" do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
-      copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
-      expected = 
-      [
-        "public/test/CDISC_CT_40_39_Changes.yaml", 
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      get :file
-      results = assigns(:files)
-      expect(results).to match_array(expected)
-    end
+    # it "provides a list of the CDISC files" do
+    #   delete_all_public_test_files
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_40_39_Changes.yaml", 
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   get :file
+    #   results = assigns(:files)
+    #   expect(results).to match_array(expected)
+    # end
 
-    it "allows a file to be deleted" do
-      delete_all_public_test_files
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
-      copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
-      copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
-      expected = 
-      [
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
-      delete :file_delete, params
-      files = Dir.glob(CdiscCtChanges.dir_path + "*")
-      expect(files).to eq(expected)
-    end
+    # it "allows a file to be deleted" do
+    #   delete_all_public_test_files
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_Submission_Changes.yaml", "test")
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_Changes.yaml", "test")
+    #   copy_file_to_public_files(sub_dir, "CDISC_CT_40_39_Changes.yaml", "test")
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
+    #   delete :file_delete, params
+    #   files = Dir.glob(CdiscCtChanges.dir_path + "*")
+    #   expect(files).to eq(expected)
+    # end
 
-    it "presents the import cross reference view" do
-      copy_file_to_public_files(sub_dir, "import_cross_reference_1.xlsx", "upload")
-      copy_file_to_public_files(sub_dir, "import_cross_reference_2.xlsx", "upload")
-      expected_files = 
-      [
-        public_path("upload", "import_cross_reference_1.xlsx").to_s, 
-        public_path("upload", "import_cross_reference_2.xlsx").to_s
-      ]
-    	params = 
-      {
-        id: "TH-CDISC_CDISCTerminology", 
-        cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V41" }
-      }
-      get :import_cross_reference, params
-      expect(assigns(:cdisc_term).version).to eq(41)
-      expected_files.each do |file|
-      	expect(assigns(:files).include?(file)).to eq(true)
-      end
-      expect(response).to render_template("import_cross_reference")
-      delete_public_file("upload", "import_cross_reference_1.xlsx")
-      delete_public_file("upload", "import_cross_reference_2.xlsx")
-    end
+    # it "presents the import cross reference view" do
+    #   copy_file_to_public_files(sub_dir, "import_cross_reference_1.xlsx", "upload")
+    #   copy_file_to_public_files(sub_dir, "import_cross_reference_2.xlsx", "upload")
+    #   expected_files = 
+    #   [
+    #     public_path("upload", "import_cross_reference_1.xlsx").to_s, 
+    #     public_path("upload", "import_cross_reference_2.xlsx").to_s
+    #   ]
+    # 	params = 
+    #   {
+    #     id: "TH-CDISC_CDISCTerminology", 
+    #     cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V41" }
+    #   }
+    #   get :import_cross_reference, params
+    #   expect(assigns(:cdisc_term).version).to eq(41)
+    #   expected_files.each do |file|
+    #   	expect(assigns(:files).include?(file)).to eq(true)
+    #   end
+    #   expect(response).to render_template("import_cross_reference")
+    #   delete_public_file("upload", "import_cross_reference_1.xlsx")
+    #   delete_public_file("upload", "import_cross_reference_2.xlsx")
+    # end
 
-    it "allows a cross reference to be created" do
-    	load_test_file_into_triple_store("CT_V44.ttl")
-      delete_public_file("upload", "create_cross_reference_1.xlsx")
-      copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
-      filename = public_path("upload", "create_cross_reference_1.xlsx")
-      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44", 
-      	uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44#TH-CDISC_CDISCTerminology", 
-      	version: "44", files: ["#{filename}"] }}
-      post :create_cross_reference, params
-      expect(response).to redirect_to("/backgrounds")
-    end
+    # it "allows a cross reference to be created" do
+    # 	load_test_file_into_triple_store("CT_V44.ttl")
+    #   delete_public_file("upload", "create_cross_reference_1.xlsx")
+    #   copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
+    #   filename = public_path("upload", "create_cross_reference_1.xlsx")
+    #   params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44", 
+    #   	uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V44#TH-CDISC_CDISCTerminology", 
+    #   	version: "44", files: ["#{filename}"] }}
+    #   post :create_cross_reference, params
+    #   expect(response).to redirect_to("/backgrounds")
+    # end
 
-    it "allows a cross reference to be created, error filename" do
-      filename = public_path("upload", "missing.xlsx")
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "41", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
-      expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/cdisc_terms/import")
-    end
+    # it "allows a cross reference to be created, error filename" do
+    #   filename = public_path("upload", "missing.xlsx")
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "41", 
+    #       :files => ["#{filename}"]
+    #     }
+    #   }
+    #   post :create, params
+    #   expect(flash[:error]).to be_present
+    #   expect(response).to redirect_to("/cdisc_terms/import")
+    # end
 
-    it "allows a cross reference to be created, error version" do
-      delete_public_file("upload", "create_cross_reference_1.xlsx")
-      copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
-      filename = public_path("upload", "create_cross_reference_1.xlsx")
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "1", 
-          :files => ["#{filename}"]
-        }
-      }
-      post :create, params
-      expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/cdisc_terms/import")
-      delete_public_file("upload", "create_cross_reference_1.xlsx")
-    end
+    # it "allows a cross reference to be created, error version" do
+    #   delete_public_file("upload", "create_cross_reference_1.xlsx")
+    #   copy_file_to_public_files(sub_dir, "create_cross_reference_1.xlsx", "upload")
+    #   filename = public_path("upload", "create_cross_reference_1.xlsx")
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "1", 
+    #       :files => ["#{filename}"]
+    #     }
+    #   }
+    #   post :create, params
+    #   expect(flash[:error]).to be_present
+    #   expect(response).to redirect_to("/cdisc_terms/import")
+    #   delete_public_file("upload", "create_cross_reference_1.xlsx")
+    # end
 
   end
 
@@ -382,59 +408,65 @@ describe CdiscTermsController do
     
     login_reader
 
-    it "prevents access to the import view"  do
-      get :import
-      expect(response).to redirect_to("/")
+    it "shows the history, initial view" do
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      get :history
+      expect(response).to render_template("history")
     end
 
-    it "prevents access to the import cross reference view"  do
-    	params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
-      get :import_cross_reference, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to the import view"  do
+    #   get :import
+    #   expect(response).to redirect_to("/")
+    # end
 
-    it "prevents access to creation of a CDISC Terminology" do
-      params = { cdisc_term: { version: "12", date: "2016-12-13", files: ["xxx.txt"] }}
-      post :create, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to the import cross reference view"  do
+    # 	params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
+    #   get :import_cross_reference, params
+    #   expect(response).to redirect_to("/")
+    # end
+
+    # it "prevents access to creation of a CDISC Terminology" do
+    #   params = { cdisc_term: { version: "12", date: "2016-12-13", files: ["xxx.txt"] }}
+    #   post :create, params
+    #   expect(response).to redirect_to("/")
+    # end
     
-    it "prevents access to creation of a cross reference" do
-      params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", uri: "", 
-      	version: "39", files: ["xxx.txt"] }}
-      post :create_cross_reference, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to creation of a cross reference" do
+    #   params = { id: "TH-CDISC_CDISCTerminology", cdisc_term: { namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39", uri: "", 
+    #   	version: "39", files: ["xxx.txt"] }}
+    #   post :create_cross_reference, params
+    #   expect(response).to redirect_to("/")
+    # end
     
-    it "prevents access to the list of the CDISC files" do
-      expected = 
-      [
-        "public/test/CDISC_CT_40_39_Changes.yaml", 
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      get :file
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to the list of the CDISC files" do
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_40_39_Changes.yaml", 
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   get :file
+    #   expect(response).to redirect_to("/")
+    # end
 
-    it "prevents access to file deletion" do
-      expected = 
-      [
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
-      delete :file_delete, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to file deletion" do
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
+    #   delete :file_delete, params
+    #   expect(response).to redirect_to("/")
+    # end
 
-    it "displays the cross reference" do
-    	params = { :id => "TH-CDISC_CDISCTerminology", cdisc_term: { direction: :to, namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
-      get :cross_reference, params
-      expect(response).to render_template("cross_reference")
-      expect(assigns(:cdisc_term).version).to eq(39)
-      expect(assigns(:direction)).to eq(:to.to_s)
-    end
+    # it "displays the cross reference" do
+    # 	params = { :id => "TH-CDISC_CDISCTerminology", cdisc_term: { direction: :to, namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V39" }}
+    #   get :cross_reference, params
+    #   expect(response).to render_template("cross_reference")
+    #   expect(assigns(:cdisc_term).version).to eq(39)
+    #   expect(assigns(:direction)).to eq(:to.to_s)
+    # end
 
   end
 
@@ -442,46 +474,52 @@ describe CdiscTermsController do
     
     login_curator
 
-    it "prevents access to the import view"  do
-      get :import
-      expect(response).to redirect_to("/")
+    it "shows the history, initial view" do
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      get :history
+      expect(response).to render_template("history")
     end
 
-    it "prevents access to creation of a CDISC Terminology" do
-      params = 
-      {
-        :cdisc_term => 
-        { 
-          :version => "12", 
-          :date => "2016-12-13", 
-          :files => ["xxx.txt"]
-        }
-      }
-      post :create, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to the import view"  do
+    #   get :import
+    #   expect(response).to redirect_to("/")
+    # end
+
+    # it "prevents access to creation of a CDISC Terminology" do
+    #   params = 
+    #   {
+    #     :cdisc_term => 
+    #     { 
+    #       :version => "12", 
+    #       :date => "2016-12-13", 
+    #       :files => ["xxx.txt"]
+    #     }
+    #   }
+    #   post :create, params
+    #   expect(response).to redirect_to("/")
+    # end
     
-    it "prevents access to the list of the CDISC files" do
-      expected = 
-      [
-        "public/test/CDISC_CT_40_39_Changes.yaml", 
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      get :file
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to the list of the CDISC files" do
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_40_39_Changes.yaml", 
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   get :file
+    #   expect(response).to redirect_to("/")
+    # end
 
-    it "prevents access to file deletion" do
-      expected = 
-      [
-        "public/test/CDISC_CT_Changes.yaml", 
-        "public/test/CDISC_CT_Submission_Changes.yaml"
-      ]
-      params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
-      delete :file_delete, params
-      expect(response).to redirect_to("/")
-    end
+    # it "prevents access to file deletion" do
+    #   expected = 
+    #   [
+    #     "public/test/CDISC_CT_Changes.yaml", 
+    #     "public/test/CDISC_CT_Submission_Changes.yaml"
+    #   ]
+    #   params = {:cdisc_term => { :files => ["public/test/CDISC_CT_40_39_Changes.yaml"] }}
+    #   delete :file_delete, params
+    #   expect(response).to redirect_to("/")
+    # end
 
   end
   

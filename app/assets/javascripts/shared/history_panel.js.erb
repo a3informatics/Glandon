@@ -60,7 +60,9 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
  */
 HistoryPanel.prototype.add = function (offset) {
   var _this = this;
-  _this.historyTable.processing(true);
+  if (offset === 0) {
+    _this.historyTable.processing(true);
+  }
   var data = {}
   data[_this.strict_params] = {"identifier": _this.identifier, "scope_id": _this.scope_id, "count": _this.count, "offset": offset}
   $.ajax({
@@ -77,7 +79,8 @@ HistoryPanel.prototype.add = function (offset) {
       }
       _this.historyTable.draw();
       if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count)
+        _this.historyTable.processing(false);
+       _this.add(result.offset + _this.count)
       } else {
         _this.historyTable.processing(false);
       }

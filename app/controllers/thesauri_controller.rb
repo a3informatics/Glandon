@@ -33,6 +33,7 @@ class ThesauriController < ApplicationController
       format.json do
         results = []
         history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+        #history_results = Thesaurus.history(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         history_results.each do |object|
           results << object.to_h.reverse_merge!(add_history_paths(:thesauri, object))
         end
