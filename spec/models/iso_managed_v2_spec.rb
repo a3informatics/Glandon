@@ -8,6 +8,7 @@ describe IsoManagedV2 do
   include SparqlHelpers
   include IsoHelpers
   include TimeHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/iso_managed_v2"
@@ -178,22 +179,6 @@ describe IsoManagedV2 do
       item = IsoManagedV2.find(uri)
       result[:last_change_date] = date_check_now(item.last_change_date).iso8601
       expect(item.to_h).to eq(result)
-    end
-
-    it "finds history of items" do
-      uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST")
-      uri_3 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      results = [
-        {:id => uri_1.to_id, :scoped_identifier_version => 1},
-        {:id => uri_2.to_id, :scoped_identifier_version => 2},
-        {:id => uri_3.to_id, :scoped_identifier_version => 3}
-      ]
-      items = IsoManagedV2.history({:identifier => "TEST", :scope => IsoRegistrationAuthority.owner.ra_namespace})
-      items.each_with_index do |item, index|
-        expect(results[index][:id]).to eq(items[index].id)
-        expect(results[index][:scoped_identifier_version]).to eq(items[index].has_identifier.version)
-      end
     end
 
     it "finds latest" do
@@ -493,7 +478,7 @@ describe IsoManagedV2 do
     it "find minimum I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "find minimum II, speed" do
@@ -517,50 +502,61 @@ describe IsoManagedV2 do
 
   end
 
-  describe "Pagination" do
+  describe "History Pagination" do
 
-    before :all  do
+    before :all do
       IsoHelpers.clear_cache
-    end
-
-    before :each do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..50)
     end
 
     after :all do
       delete_all_public_test_files
     end
 
+    it "history" do
+      results = []
+      actual = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "history, pagination" do
+      results = []
+      actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 10)
+      expect(actual.count).to eq(10)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "history uris" do
+      results = []
+      actual = CdiscTerm.history_uris(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      actual.each {|x| results << x.to_s}
+      check_file_actual_expected(results, sub_dir, "history_uris_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "history speed" do
-      (1..200).each do |index|
-        item = CdiscTerm.new
-        item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
-        item.label = "Number #{index}"
-        item.set_import(identifier: "TEST", version_label: "#{index}", semantic_version: "#{index}.0.0", version: "#{index}", date: "2019-01-01", ordinal: index)
-        sparql = Sparql::Update.new  
-        item.to_sparql(sparql, true)
-        sparql.upload
-      end 
       timer_start
-      current = CdiscTerm.history_pagination(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 10)
-      timer_stop("10 entries")
+      current = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: "10", offset: "10")
+      timer_stop("Pagination 10 entries")
       expect(current.count).to eq(10)
-      expect(current[0].version).to eq(11)
+      expect(current[0].version).to eq(40)
 
       timer_start
-      current = CdiscTerm.history_pagination(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 30)
-      timer_stop("10 entries")
-      expect(current.count).to eq(10)
-      expect(current[0].version).to eq(31)
+      current = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: "50", offset: "0")
+      timer_stop("Pagination 50 entries")
+      expect(current.count).to eq(50)
+      expect(current[0].version).to eq(50)
 
       timer_start
-      current = CdiscTerm.history(identifier: "TEST", scope: IsoRegistrationAuthority.cdisc_scope)
-      timer_stop("History")
-      expect(current.count).to eq(200)
-      expect(current.first.version).to eq(1)
-      expect(current.last.version).to eq(200)
+      current = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      timer_stop("No Pagination 50 entries")
+      expect(current.count).to eq(50)
+      expect(current.first.version).to eq(50)
+      expect(current.last.version).to eq(1)
     end
 
   end
@@ -657,8 +653,10 @@ describe IsoManagedV2 do
     it "create" do
       object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
       expect(object.errors.count).to eq(0)
+      check_dates(object, sub_dir, "create_expected_1a.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal)
       object = Thesaurus.find(object.uri)
+      check_dates(object, sub_dir, "create_expected_1b.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
     end
 

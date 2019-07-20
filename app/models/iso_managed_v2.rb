@@ -218,7 +218,7 @@ class IsoManagedV2 < IsoConceptV2
     from_results_recurse(uri, results.by_subject)
   end
 
-  # Find Minimum
+  # Find Minimum. Finds the minimun amount of info for an Managed Item. Use this for quick finds.
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
@@ -241,9 +241,14 @@ class IsoManagedV2 < IsoConceptV2
     item
   end
 
+  # Create. Creates a managed object.
+  #
+  # @params [Hash] params a set of initial vaues for any attributes
+  # @return [Object] the created object. May contain errors if unsuccesful.
   def self.create(params)
     object = new(label: params[:label])
     object.set_initial(params[:identifier])
+    object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
     object
   end
@@ -259,26 +264,29 @@ class IsoManagedV2 < IsoConceptV2
     results = []
     base =  "?e isoT:hasIdentifier ?si . " +
             "?si isoI:identifier '#{params[:identifier]}' . " +
+            "?si isoI:version ?v . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
     parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
     parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    #parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
-    query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }}"
+    query_string = "SELECT ?s ?p ?o ?e WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      item.has_identifier.has_scope = params[:scope]
-    ra_uri = item.has_state.by_authority.uri
-    item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
-    ns_uri = item.has_state.by_authority.ra_namespace
-    item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
+      set_cached_scopes(item, params[:scope])
       results << item
     end
-    results.sort_by{|x| x.version}
+    results
   end
 
+  # History URIs. Find the history for a given identifier within a scope return just the URIs. 
+  #  Written for speed
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [Array] An array of objects.
   def self.history_uris(params)    
     results = []
     base =  "?e rdf:type #{rdf_type.to_ref} . " +
@@ -286,12 +294,20 @@ class IsoManagedV2 < IsoConceptV2
             "?si isoI:identifier '#{params[:identifier]}' . " +
             "?si isoI:version ?v . " +
             "?si isoI:hasScope #{params[:scope].uri.to_ref} . " 
-    query_string = "SELECT ?e WHERE { #{base} } ORDER BY (?v)"
+    query_string = "SELECT ?e WHERE { #{base} } ORDER BY DESC (?v)"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
     query_results.by_object_set([:e]).each{|x| results << x[:e]}
     results
   end
 
+  # History. Find the history for a given identifier within a scope by page
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @params params [String] :ofset the required offset
+  # @params params [String] :count the number of items required
+  # @return [Array] An array of URIs
   def self.history_pagination(params)
     triple_count = 23
     count = params[:count].to_i * triple_count 
@@ -305,16 +321,13 @@ class IsoManagedV2 < IsoConceptV2
             "?si isoI:version ?v . "
     parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
     parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    #parts << "  { #{params[:scope].uri.to_ref} ?p ?o . BIND (#{params[:scope].uri.to_ref} as ?s)}" 
     parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
     query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v) LIMIT #{count} OFFSET #{offset}"
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 
       item = from_results_recurse(uri, by_subject)
-      item.has_identifier.has_scope = params[:scope]
-      item.has_state.by_authority = IsoRegistrationAuthority.find(item.has_state.by_authority.uri)
-      item.has_state.by_authority.ra_namespace = IsoNamespace.find(item.has_state.by_authority.ra_namespace)
+      set_cached_scopes(item, params[:scope])
       results << item
     end
     results
@@ -384,9 +397,15 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
+  # Latest. Find the latest item from the history
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [IsoManaged] the found object or nil (if empty history)
   def self.latest(params)
-    results = history(params)
-    results.empty? ? nil : results.last
+    results = history_uris(params)
+    results.empty? ? nil : find_minimum(results.first)
   end
 
   # Find the set of unique identifiers for a given RDF Type
@@ -508,6 +527,13 @@ class IsoManagedV2 < IsoConceptV2
   end 
 
 private
+
+  # Set the scopes, will use the cache so quick.
+  def self.set_cached_scopes(object, si_scope)
+    object.has_identifier.has_scope = si_scope
+    object.has_state.by_authority = IsoRegistrationAuthority.find(object.has_state.by_authority.uri)
+    object.has_state.by_authority.ra_namespace = IsoNamespace.find(object.has_state.by_authority.ra_namespace)
+  end
 
   # Standard managed children pagination query
   def managed_children_pagination_query(params)
