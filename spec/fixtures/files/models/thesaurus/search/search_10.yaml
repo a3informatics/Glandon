@@ -1,7 +1,19 @@
---- '{"count":2,"items":[{"identifier":"C66741","notation":"VSTESTCD","synonym":"Vital
-  Signs Test Code","definition":"The test code given to the test that analyzes a particular
-  set of vital signs including temperature, respiratory rate, heart rate, and blood
-  pressure.","preferredTerm":"CDISC SDTM Vital Sign Test Code Terminology","topLevel":true,"parentIdentifier":"C66741","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C66741","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C67153","notation":"VSTEST","synonym":"Vital
-  Signs Test Name","definition":"The test name given to the test that analyzes a particular
-  set of vital signs including temperature, respiratory rate, heart rate, and blood
-  pressure.","preferredTerm":"CDISC SDTM Vital Sign Test Name Terminology","topLevel":true,"parentIdentifier":"C67153","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CL-C67153","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'
+---
+:count: 2
+:items:
+- :uri: http://www.cdisc.org/C66741/V45#C66741
+  :parent_identifier: C66741
+  :identifier: C66741
+  :notation: VSTESTCD
+  :definition: The test code given to the test that analyzes a particular set of vital
+    signs including temperature, respiratory rate, heart rate, and blood pressure.
+  :preferred_term: CDISC SDTM Vital Sign Test Code Terminology
+  :synonym: Vital Signs Test Code
+- :uri: http://www.cdisc.org/C67153/V45#C67153
+  :parent_identifier: C67153
+  :identifier: C67153
+  :notation: VSTEST
+  :definition: The test name given to the test that analyzes a particular set of vital
+    signs including temperature, respiratory rate, heart rate, and blood pressure.
+  :preferred_term: CDISC SDTM Vital Sign Test Name Terminology
+  :synonym: Vital Signs Test Name

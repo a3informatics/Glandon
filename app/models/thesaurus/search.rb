@@ -122,7 +122,7 @@ class Thesaurus
       end
       
       # Overall search
-      query += "  ?uri (th:identifier|th:notation|th:preferredTerm|th:definition) ?i . FILTER regex(?i, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
+      query += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
 
       # And close it all
       query += "}" 
