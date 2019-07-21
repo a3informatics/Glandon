@@ -380,47 +380,47 @@ private
   end
 =end
 
-  # Search. The new version. Searches either the specified version or all current versions.
-  # 
-  # @param params [Hash]  the hash sent by datatables for a search. If namespace is empty then the 
-  #                       current versions of terminolgy are searched.
-  # @return [Hash]  a hash containing :count wiht the number of records that could be returned and
-  #                 :items which is an array of results.
-  def self.search(params)
-    results = []
-    variable = getOrderVariable(params[:order]["0"][:column])
-    order = getOrdering(params[:order]["0"][:dir])
-    if params[:namespace].blank?
-      uri_set = [] #IsoManaged.current_set(C_RDF_TYPE, C_SCHEMA_NS)
-    else
-      uri_set = []
-      uri_set << self.uri
-    end
-    query = UriManagement.buildNs(self.rdf_type.namespace, ["iso25964", "isoR"])
-    query += query_string(params[:search], params[:columns], uri_set)
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    count = xmlDoc.xpath("//result").length
-    query += " ORDER BY #{order} (#{variable}) OFFSET #{params[:start]} LIMIT #{params[:length]}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    xmlDoc.xpath("//result").each do |node|
-      process_node(node, results)
-    end
-    return { count: count, items: results }
-  end
+  # # Search. The new version. Searches either the specified version or all current versions.
+  # # 
+  # # @param params [Hash]  the hash sent by datatables for a search. If namespace is empty then the 
+  # #                       current versions of terminolgy are searched.
+  # # @return [Hash]  a hash containing :count wiht the number of records that could be returned and
+  # #                 :items which is an array of results.
+  # def self.search(params)
+  #   results = []
+  #   variable = getOrderVariable(params[:order]["0"][:column])
+  #   order = getOrdering(params[:order]["0"][:dir])
+  #   if params[:namespace].blank?
+  #     uri_set = [] #IsoManaged.current_set(C_RDF_TYPE, C_SCHEMA_NS)
+  #   else
+  #     uri_set = []
+  #     uri_set << self.uri
+  #   end
+  #   query = UriManagement.buildNs(self.rdf_type.namespace, ["iso25964", "isoR"])
+  #   query += query_string(params[:search], params[:columns], uri_set)
+  #   response = CRUD.query(query)
+  #   xmlDoc = Nokogiri::XML(response.body)
+  #   xmlDoc.remove_namespaces!
+  #   count = xmlDoc.xpath("//result").length
+  #   query += " ORDER BY #{order} (#{variable}) OFFSET #{params[:start]} LIMIT #{params[:length]}"
+  #   response = CRUD.query(query)
+  #   xmlDoc = Nokogiri::XML(response.body)
+  #   xmlDoc.remove_namespaces!
+  #   xmlDoc.xpath("//result").each do |node|
+  #     process_node(node, results)
+  #   end
+  #   return { count: count, items: results }
+  # end
  
-  # Empty Search? No search parameters
-  # 
-  # @param params [Hash]  the hash sent by datatables for a search.
-  # @return [Boolean] true if empty, otherwise false
-  def self.empty_search?(params)
-    params[:columns].each {|key, column| return false if !column[:search][:value].blank?}
-    return false if !params[:search][:value].blank?
-    return true
-  end
+  # # Empty Search? No search parameters
+  # # 
+  # # @param params [Hash]  the hash sent by datatables for a search.
+  # # @return [Boolean] true if empty, otherwise false
+  # def self.empty_search?(params)
+  #   params[:columns].each {|key, column| return false if !column[:search][:value].blank?}
+  #   return false if !params[:search][:value].blank?
+  #   return true
+  # end
 
 =begin
 
