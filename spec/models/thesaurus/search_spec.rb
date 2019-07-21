@@ -5,7 +5,7 @@ describe Thesaurus do
   include DataHelpers
 
   def sub_dir
-    return "models"
+    return "models/thesaurus/search"
   end
 
   def standard_params

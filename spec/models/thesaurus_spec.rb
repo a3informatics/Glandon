@@ -13,25 +13,17 @@ describe Thesaurus do
   describe "Main Tests" do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("thesaurus.ttl")
-      load_test_file_into_triple_store("CT_V34.ttl")
-      load_test_file_into_triple_store("CT_V35.ttl")
-      load_test_file_into_triple_store("CT_V36.ttl")
-      load_test_file_into_triple_store("CT_V49.ttl")
-      load_test_file_into_triple_store("op_ref_1.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+    before :all do
+      IsoHelpers.clear_cache
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..50)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
     end
 
     it "returns the owner" do
