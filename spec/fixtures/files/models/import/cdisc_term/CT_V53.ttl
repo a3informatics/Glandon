@@ -795,7 +795,7 @@
 	th:isTopConcept <http://www.cdisc.org/C130239/V49#C130239> ;
 	th:isTopConcept <http://www.cdisc.org/C130238/V49#C130238> ;
 	th:isTopConcept <http://www.cdisc.org/C101842/V32#C101842> ;
-	th:isTopConcept <http://www.cdisc.org/C101859/V53#C101859> ;
+	th:isTopConcept <http://www.cdisc.org/C101859/V41#C101859> ;
 	th:isTopConcept <http://www.cdisc.org/C101866/V32#C101866> ;
 	th:isTopConcept <http://www.cdisc.org/C119016/V47#C119016> ;
 	th:isTopConcept <http://www.cdisc.org/C119015/V44#C119015> ;
@@ -824,8 +824,8 @@
 	th:isTopConcept <http://www.cdisc.org/C119063/V46#C119063> ;
 	th:isTopConcept <http://www.cdisc.org/C101811/V46#C101811> ;
 	th:isTopConcept <http://www.cdisc.org/C101812/V46#C101812> ;
-	th:isTopConcept <http://www.cdisc.org/C135686/V53#C135686> ;
-	th:isTopConcept <http://www.cdisc.org/C135685/V53#C135685> ;
+	th:isTopConcept <http://www.cdisc.org/C135686/V51#C135686> ;
+	th:isTopConcept <http://www.cdisc.org/C135685/V51#C135685> ;
 	th:isTopConcept <http://www.cdisc.org/C135684/V51#C135684> ;
 	th:isTopConcept <http://www.cdisc.org/C135683/V51#C135683> ;
 	th:isTopConcept <http://www.cdisc.org/C101813/V50#C101813> ;
@@ -2118,7 +2118,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "76"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101859/V53#C101859> ;
+	bo:reference <http://www.cdisc.org/C101859/V41#C101859> ;
 .
 :TH_TCR77
 	rdf:type bo:TcReference ;
@@ -2379,7 +2379,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "105"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C135686/V53#C135686> ;
+	bo:reference <http://www.cdisc.org/C135686/V51#C135686> ;
 .
 :TH_TCR106
 	rdf:type bo:TcReference ;
@@ -2388,7 +2388,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "106"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C135685/V53#C135685> ;
+	bo:reference <http://www.cdisc.org/C135685/V51#C135685> ;
 .
 :TH_TCR107
 	rdf:type bo:TcReference ;
@@ -10347,93 +10347,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "Arm Null Reason"^^xsd:string ;
 .
-<http://www.cdisc.org/C101859/V53#C101859>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Cardiac Procedure Indication"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C101859/V53#C101859_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C101859/V53#C101859_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C101859"^^xsd:string ;
-	th:notation "CVPRCIND"^^xsd:string ;
-	th:definition "The reason that a subject had a cardiac procedure."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99919> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100033> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C34830> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99938> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99947> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99949> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100035> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99925> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99943> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99961> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C26726> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99931> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C64251> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100045> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99980> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99982> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99983> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99999> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100001> ;
-	th:narrower <http://www.cdisc.org/C101859/V53#C101859_C100000> ;
-	th:narrower <http://www.cdisc.org/C101859/V53#C101859_C100002> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100005> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100006> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C15306> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100008> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C15712> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100014> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100015> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100018> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100019> ;
-	th:narrower <http://www.cdisc.org/C101859/V38#C101859_C17998> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100030> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C50799> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d53add6b4131200d282f97ccf5cf9fd2fb90d7f4> ;
-	th:synonym <http://www.assero.co.uk/SYN#f6e42fc226e87b408f81bab757ef7f3233704768> ;
-.
-<http://www.cdisc.org/C101859/V53#C101859_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C101859/V53#C101859_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C101859"^^xsd:string ;
-	isoI:versionLabel "2017-12-22 Release"^^xsd:string ;
-	isoI:version "53"^^xsd:positiveInteger ;
-	isoI:semanticVersion "53.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C101859/V53#C101859_C100000>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100000"^^xsd:string ;
-	th:notation "PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL INFARCTION (STEMI) (STABLE, >12 HRS FROM SYMPTOM ONSET)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject does not have recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b6ada804e9c3c87f5ace9abf476f9e70eb734c15> ;
-.
-<http://www.cdisc.org/C101859/V53#C101859_C100002>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100002"^^xsd:string ;
-	th:notation "PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL INFARCTION (STEMI) (UNSTABLE, >12 HRS FROM SYMPTOM ONSET)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject has recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8169eec6ea94372281df5a5cfa45073c0f4f12ba> ;
-.
 <http://www.cdisc.org/C101847/V53#C101847>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Cardiovascular Test Code"^^xsd:string ;
@@ -11813,124 +11726,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b9d82fce8a21dafcbe2425b2ed834300d0e02f7e> ;
 	th:synonym <http://www.assero.co.uk/SYN#594231314f665e5c2d8a909898c4fe2dd29d02d7> ;
-.
-<http://www.cdisc.org/C135686/V53#C135686>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Clinical Global Impression Generic Modification Version Questionnaire Test Code"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C135686/V53#C135686_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C135686/V53#C135686_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C135686"^^xsd:string ;
-	th:notation "CGI02TC"^^xsd:string ;
-	th:definition "Clinical Global Impression Generic Modification Version test code."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C135686/V51#C135686_C135814> ;
-	th:narrower <http://www.cdisc.org/C135686/V53#C135686_C135815> ;
-	th:narrower <http://www.cdisc.org/C135686/V53#C135686_C135816> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#1e81acebb40320d7edad66f1e594727a9e59323b> ;
-	th:synonym <http://www.assero.co.uk/SYN#9b27d8235e1e8b2623152e2e3ee2ea3ddc432751> ;
-.
-<http://www.cdisc.org/C135686/V53#C135686_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C135686/V53#C135686_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C135686"^^xsd:string ;
-	isoI:versionLabel "2017-12-22 Release"^^xsd:string ;
-	isoI:version "53"^^xsd:positiveInteger ;
-	isoI:semanticVersion "53.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C135686/V53#C135686_C135815>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "CGI Generic Modification Version - Change"^^xsd:string ;
-	th:identifier "C135815"^^xsd:string ;
-	th:notation "CGI0202"^^xsd:string ;
-	th:definition "Clinical Global Impression - Rate total change whether or not, in your judgement, it is due entirely to drug treatment. Compared to the subject's condition <at previously assessed protocol specified time point>, how much has the subject changed?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e10f62528d1bb3ff353f1fe166b83ba5271f04a3> ;
-	th:synonym <http://www.assero.co.uk/SYN#769aafc92fe7e52a11ce7f4b19df91ffdd00a764> ;
-.
-<http://www.cdisc.org/C135686/V53#C135686_C135816>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "CGI Generic Modification Version - Improvement"^^xsd:string ;
-	th:identifier "C135816"^^xsd:string ;
-	th:notation "CGI0203"^^xsd:string ;
-	th:definition "Clinical Global Impression - Rate total improvement whether or not, in your judgement, it is due entirely to drug treatment. Compared to the subject's condition <at previously assessed protocol specified time point>, how much has the subject improved?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#29622e4cc7c48ca1b3e2a3d27336b044892bfee4> ;
-	th:synonym <http://www.assero.co.uk/SYN#d032fb0e415506ac94e0e1e384984657d49fc58e> ;
-.
-<http://www.cdisc.org/C135685/V53#C135685>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Clinical Global Impression Generic Modification Version Questionnaire Test Name"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C135685/V53#C135685_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C135685/V53#C135685_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2017-12-22T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C135685"^^xsd:string ;
-	th:notation "CGI02TN"^^xsd:string ;
-	th:definition "Clinical Global Impression Generic Modification Version test name."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C135685/V53#C135685_C135815> ;
-	th:narrower <http://www.cdisc.org/C135685/V53#C135685_C135816> ;
-	th:narrower <http://www.cdisc.org/C135685/V51#C135685_C135814> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3acb8bca416c3a82bb8a88bb36e2c90eda3bf613> ;
-	th:synonym <http://www.assero.co.uk/SYN#f4dde74015a8a465d9b4a84194e2c1d774624aa9> ;
-.
-<http://www.cdisc.org/C135685/V53#C135685_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C135685/V53#C135685_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C135685"^^xsd:string ;
-	isoI:versionLabel "2017-12-22 Release"^^xsd:string ;
-	isoI:version "53"^^xsd:positiveInteger ;
-	isoI:semanticVersion "53.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C135685/V53#C135685_C135815>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "CGI Generic Modification Version - Change"^^xsd:string ;
-	th:identifier "C135815"^^xsd:string ;
-	th:notation "CGI02-Change"^^xsd:string ;
-	th:definition "Clinical Global Impression - Rate total change whether or not, in your judgement, it is due entirely to drug treatment. Compared to the subject's condition <at previously assessed protocol specified time point>, how much has the subject changed?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e10f62528d1bb3ff353f1fe166b83ba5271f04a3> ;
-	th:synonym <http://www.assero.co.uk/SYN#769aafc92fe7e52a11ce7f4b19df91ffdd00a764> ;
-.
-<http://www.cdisc.org/C135685/V53#C135685_C135816>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "CGI Generic Modification Version - Improvement"^^xsd:string ;
-	th:identifier "C135816"^^xsd:string ;
-	th:notation "CGI02-Improvement"^^xsd:string ;
-	th:definition "Clinical Global Impression - Rate total improvement whether or not, in your judgement, it is due entirely to drug treatment. Compared to the subject's condition <at previously assessed protocol specified time point>, how much has the subject improved?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#29622e4cc7c48ca1b3e2a3d27336b044892bfee4> ;
-	th:synonym <http://www.assero.co.uk/SYN#d032fb0e415506ac94e0e1e384984657d49fc58e> ;
 .
 <http://www.cdisc.org/C66727/V53#C66727>
 	rdf:type th:ManagedConcept ;
@@ -19243,7 +19038,7 @@
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C71067> ;
 	th:narrower <http://www.cdisc.org/C71150/V34#C71150_C101596> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C71068> ;
-	th:narrower <http://www.cdisc.org/C71150/V53#C71150_C102594> ;
+	th:narrower <http://www.cdisc.org/C71150/V38#C71150_C102594> ;
 	th:narrower <http://www.cdisc.org/C71150/V34#C71150_C102595> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C102642> ;
 	th:narrower <http://www.cdisc.org/C71150/V37#C71150_C114159> ;
@@ -19474,17 +19269,6 @@
 	isoI:version "53"^^xsd:positiveInteger ;
 	isoI:semanticVersion "53.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C71150/V53#C71150_C102594>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Acute Right Ventricular Myocardial Infarction by ECG Finding"^^xsd:string ;
-	th:identifier "C102594"^^xsd:string ;
-	th:notation "ACUTE RIGHT VENTRICULAR WALL MYOCARDIAL INFARCTION"^^xsd:string ;
-	th:definition "An electrocardiographic finding in leads V1 or V2 of an initial R wave duration greater than or equal to 40 ms, R wave greater than S wave, upright T wave, with accompanying ST elevation, which is suggestive of acute myocardial infarction of the ventricular wall of the left ventricle. Evidence of inferior or lateral myocardial infarction is usually also present. Additional criteria include ST elevation > 100 microvolts in the right precordial leads V4R through V6R."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#dd847f99a47c7007b64bec8b13e5900099396cbc> ;
-	th:synonym <http://www.assero.co.uk/SYN#0ced5c5dda4370f24228c64f331078b716c100f3> ;
-	th:synonym <http://www.assero.co.uk/SYN#25974d2d4b77bf6f615c2842827ad01c4379c2a0> ;
 .
 <http://www.cdisc.org/C71150/V53#C71150_C102597>
 	rdf:type th:UnmanagedConcept ;
@@ -20181,7 +19965,7 @@
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C71067> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C101596> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C71068> ;
-	th:narrower <http://www.cdisc.org/C120522/V53#C120522_C102594> ;
+	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102594> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102595> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102642> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C114159> ;
@@ -20415,17 +20199,6 @@
 	isoI:version "53"^^xsd:positiveInteger ;
 	isoI:semanticVersion "53.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C120522/V53#C120522_C102594>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Acute Right Ventricular Myocardial Infarction by ECG Finding"^^xsd:string ;
-	th:identifier "C102594"^^xsd:string ;
-	th:notation "ACUTE RIGHT VENTRICULAR WALL MYOCARDIAL INFARCTION"^^xsd:string ;
-	th:definition "An electrocardiographic finding in leads V1 or V2 of an initial R wave duration greater than or equal to 40 ms, R wave greater than S wave, upright T wave, with accompanying ST elevation, which is suggestive of acute myocardial infarction of the ventricular wall of the left ventricle. Evidence of inferior or lateral myocardial infarction is usually also present. Additional criteria include ST elevation > 100 microvolts in the right precordial leads V4R through V6R."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#dd847f99a47c7007b64bec8b13e5900099396cbc> ;
-	th:synonym <http://www.assero.co.uk/SYN#0ced5c5dda4370f24228c64f331078b716c100f3> ;
-	th:synonym <http://www.assero.co.uk/SYN#25974d2d4b77bf6f615c2842827ad01c4379c2a0> ;
 .
 <http://www.cdisc.org/C120522/V53#C120522_C102597>
 	rdf:type th:UnmanagedConcept ;
@@ -27090,7 +26863,7 @@
 	th:narrower <http://www.cdisc.org/C65047/V16#C65047_C74649> ;
 	th:narrower <http://www.cdisc.org/C65047/V4#C65047_C64803> ;
 	th:narrower <http://www.cdisc.org/C65047/V42#C65047_C120648> ;
-	th:narrower <http://www.cdisc.org/C65047/V51#C65047_C116210> ;
+	th:narrower <http://www.cdisc.org/C65047/V50#C65047_C116210> ;
 	th:narrower <http://www.cdisc.org/C65047/V50#C65047_C132381> ;
 	th:narrower <http://www.cdisc.org/C65047/V51#C65047_C132382> ;
 	th:narrower <http://www.cdisc.org/C65047/V41#C65047_C100435> ;
@@ -29629,7 +29402,7 @@
 	th:narrower <http://www.cdisc.org/C67154/V19#C67154_C82028> ;
 	th:narrower <http://www.cdisc.org/C67154/V19#C67154_C82029> ;
 	th:narrower <http://www.cdisc.org/C67154/V19#C67154_C80201> ;
-	th:narrower <http://www.cdisc.org/C67154/V51#C67154_C116210> ;
+	th:narrower <http://www.cdisc.org/C67154/V50#C67154_C116210> ;
 	th:narrower <http://www.cdisc.org/C67154/V18#C67154_C74616> ;
 	th:narrower <http://www.cdisc.org/C67154/V19#C67154_C81964> ;
 	th:narrower <http://www.cdisc.org/C67154/V8#C67154_C74784> ;
@@ -33193,9 +32966,9 @@
 	th:narrower <http://www.cdisc.org/C125922/V51#C125922_C135462> ;
 	th:narrower <http://www.cdisc.org/C125922/V47#C125922_C119570> ;
 	th:narrower <http://www.cdisc.org/C125922/V50#C125922_C132429> ;
-	th:narrower <http://www.cdisc.org/C125922/V51#C125922_C48603> ;
-	th:narrower <http://www.cdisc.org/C125922/V51#C125922_C48604> ;
-	th:narrower <http://www.cdisc.org/C125922/V51#C125922_C48602> ;
+	th:narrower <http://www.cdisc.org/C125922/V50#C125922_C48603> ;
+	th:narrower <http://www.cdisc.org/C125922/V50#C125922_C48604> ;
+	th:narrower <http://www.cdisc.org/C125922/V50#C125922_C48602> ;
 	th:narrower <http://www.cdisc.org/C125922/V46#C125922_C125988> ;
 	th:narrower <http://www.cdisc.org/C125922/V47#C125922_C95149> ;
 	th:narrower <http://www.cdisc.org/C125922/V53#C125922_C142346> ;
@@ -33969,8 +33742,8 @@
 	th:definition "Patient Global Impression Generic Modification Version test code."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.cdisc.org/C135688/V51#C135688_C135817> ;
-	th:narrower <http://www.cdisc.org/C135688/V53#C135688_C135818> ;
-	th:narrower <http://www.cdisc.org/C135688/V53#C135688_C135819> ;
+	th:narrower <http://www.cdisc.org/C135688/V51#C135688_C135818> ;
+	th:narrower <http://www.cdisc.org/C135688/V51#C135688_C135819> ;
 	th:narrower <http://www.cdisc.org/C135688/V53#C135688_C142226> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5d59907cc54069536343180b72f56a7afc66e272> ;
 	th:synonym <http://www.assero.co.uk/SYN#df028dcedbcd3157b779a08d15548b4cd074d032> ;
@@ -33993,26 +33766,6 @@
 	isoI:version "53"^^xsd:positiveInteger ;
 	isoI:semanticVersion "53.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C135688/V53#C135688_C135818>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "PGI Generic Modification Version - Change"^^xsd:string ;
-	th:identifier "C135818"^^xsd:string ;
-	th:notation "PGI0102"^^xsd:string ;
-	th:definition "Patient Global Impression - Compared to <previously assessed protocol specified time point> how much has your condition changed?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#36cc22ad67025333aef07e1bbe4173a6ed0a397c> ;
-	th:synonym <http://www.assero.co.uk/SYN#c0227f667860be06fc2a1029dd0e16dfb0baeb43> ;
-.
-<http://www.cdisc.org/C135688/V53#C135688_C135819>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "PGI Generic Modification Version - Improvement"^^xsd:string ;
-	th:identifier "C135819"^^xsd:string ;
-	th:notation "PGI0103"^^xsd:string ;
-	th:definition "Patient Global Impression - Compared to <previously assessed protocol specified time point> how much has your condition improved?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#52224ed1f7d2d9b27581d4d6b41afca8ed50a524> ;
-	th:synonym <http://www.assero.co.uk/SYN#33a83152c381b9e2bfab4731e4105348b88b6280> ;
 .
 <http://www.cdisc.org/C135688/V53#C135688_C142226>
 	rdf:type th:UnmanagedConcept ;
@@ -34046,8 +33799,8 @@
 	th:notation "PGI01TN"^^xsd:string ;
 	th:definition "Patient Global Impression Generic Modification Version test name."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C135687/V53#C135687_C135818> ;
-	th:narrower <http://www.cdisc.org/C135687/V53#C135687_C135819> ;
+	th:narrower <http://www.cdisc.org/C135687/V51#C135687_C135818> ;
+	th:narrower <http://www.cdisc.org/C135687/V51#C135687_C135819> ;
 	th:narrower <http://www.cdisc.org/C135687/V53#C135687_C142226> ;
 	th:narrower <http://www.cdisc.org/C135687/V51#C135687_C135817> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#432c1eca8580e6451eed887fb69551928d2dc0bb> ;
@@ -34071,26 +33824,6 @@
 	isoI:version "53"^^xsd:positiveInteger ;
 	isoI:semanticVersion "53.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C135687/V53#C135687_C135818>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "PGI Generic Modification Version - Change"^^xsd:string ;
-	th:identifier "C135818"^^xsd:string ;
-	th:notation "PGI01-Change"^^xsd:string ;
-	th:definition "Patient Global Impression - Compared to <previously assessed protocol specified time point> how much has your condition changed?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#36cc22ad67025333aef07e1bbe4173a6ed0a397c> ;
-	th:synonym <http://www.assero.co.uk/SYN#c0227f667860be06fc2a1029dd0e16dfb0baeb43> ;
-.
-<http://www.cdisc.org/C135687/V53#C135687_C135819>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "PGI Generic Modification Version - Improvement"^^xsd:string ;
-	th:identifier "C135819"^^xsd:string ;
-	th:notation "PGI01-Improvement"^^xsd:string ;
-	th:definition "Patient Global Impression - Compared to <previously assessed protocol specified time point> how much has your condition improved?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#52224ed1f7d2d9b27581d4d6b41afca8ed50a524> ;
-	th:synonym <http://www.assero.co.uk/SYN#33a83152c381b9e2bfab4731e4105348b88b6280> ;
 .
 <http://www.cdisc.org/C135687/V53#C135687_C142226>
 	rdf:type th:UnmanagedConcept ;

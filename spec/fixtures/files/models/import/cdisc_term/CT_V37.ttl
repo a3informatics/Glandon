@@ -386,13 +386,13 @@
 	th:isTopConcept <http://www.cdisc.org/C66781/V35#C66781> ;
 	th:isTopConcept <http://www.cdisc.org/C74456/V37#C74456> ;
 	th:isTopConcept <http://www.cdisc.org/C101842/V32#C101842> ;
-	th:isTopConcept <http://www.cdisc.org/C101859/V37#C101859> ;
+	th:isTopConcept <http://www.cdisc.org/C101859/V36#C101859> ;
 	th:isTopConcept <http://www.cdisc.org/C101866/V32#C101866> ;
 	th:isTopConcept <http://www.cdisc.org/C101853/V32#C101853> ;
 	th:isTopConcept <http://www.cdisc.org/C101854/V32#C101854> ;
 	th:isTopConcept <http://www.cdisc.org/C101847/V36#C101847> ;
 	th:isTopConcept <http://www.cdisc.org/C101846/V36#C101846> ;
-	th:isTopConcept <http://www.cdisc.org/C74558/V9#C74558> ;
+	th:isTopConcept <http://www.cdisc.org/C74558/V8#C74558> ;
 	th:isTopConcept <http://www.cdisc.org/C66797/V27#C66797> ;
 	th:isTopConcept <http://www.cdisc.org/C66784/V33#C66784> ;
 	th:isTopConcept <http://www.cdisc.org/C87162/V32#C87162> ;
@@ -537,12 +537,12 @@
 	th:isTopConcept <http://www.cdisc.org/C102590/V32#C102590> ;
 	th:isTopConcept <http://www.cdisc.org/C66741/V36#C66741> ;
 	th:isTopConcept <http://www.cdisc.org/C67153/V36#C67153> ;
-	th:isTopConcept <http://www.cdisc.org/C78418/V37#C78418> ;
+	th:isTopConcept <http://www.cdisc.org/C78418/V36#C78418> ;
 	th:isTopConcept <http://www.cdisc.org/C78417/V37#C78417> ;
 	th:isTopConcept <http://www.cdisc.org/C78419/V37#C78419> ;
 	th:isTopConcept <http://www.cdisc.org/C78420/V36#C78420> ;
 	th:isTopConcept <http://www.cdisc.org/C78422/V27#C78422> ;
-	th:isTopConcept <http://www.cdisc.org/C78426/V37#C78426> ;
+	th:isTopConcept <http://www.cdisc.org/C78426/V36#C78426> ;
 	th:isTopConcept <http://www.cdisc.org/C78745/V37#C78745> ;
 	th:isTopConcept <http://www.cdisc.org/C78425/V36#C78425> ;
 	th:isTopConcept <http://www.cdisc.org/C83004/V19#C83004> ;
@@ -810,7 +810,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101859/V37#C101859> ;
+	bo:reference <http://www.cdisc.org/C101859/V36#C101859> ;
 .
 :TH_TCR7
 	rdf:type bo:TcReference ;
@@ -864,7 +864,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C74558/V9#C74558> ;
+	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
 .
 :TH_TCR13
 	rdf:type bo:TcReference ;
@@ -2169,7 +2169,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "157"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78418/V37#C78418> ;
+	bo:reference <http://www.cdisc.org/C78418/V36#C78418> ;
 .
 :TH_TCR158
 	rdf:type bo:TcReference ;
@@ -2214,7 +2214,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "162"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78426/V37#C78426> ;
+	bo:reference <http://www.cdisc.org/C78426/V36#C78426> ;
 .
 :TH_TCR163
 	rdf:type bo:TcReference ;
@@ -5389,93 +5389,6 @@
 <http://www.assero.co.uk/SYN#eb10b711b613888d7b0d4faf7f1fdcf9cc0b1145>
 	rdf:type th:Synonym ;
 	isoC:label "PIP5 of the Hand"^^xsd:string ;
-.
-<http://www.cdisc.org/C101859/V37#C101859>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Cardiac Procedure Indication"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C101859/V37#C101859_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C101859/V37#C101859_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C101859"^^xsd:string ;
-	th:notation "CVPRCIND"^^xsd:string ;
-	th:definition "The reason that a subject had a cardiac procedure."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99919> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100033> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C34830> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99938> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99947> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99949> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100035> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99925> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99943> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99961> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C26726> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99931> ;
-	th:narrower <http://www.cdisc.org/C101859/V36#C101859_C64251> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100045> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99980> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99982> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99983> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99999> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100001> ;
-	th:narrower <http://www.cdisc.org/C101859/V37#C101859_C100000> ;
-	th:narrower <http://www.cdisc.org/C101859/V37#C101859_C100002> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100005> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100006> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C15306> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100008> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C15712> ;
-	th:narrower <http://www.cdisc.org/C101859/V36#C101859_C100014> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100015> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100018> ;
-	th:narrower <http://www.cdisc.org/C101859/V36#C101859_C100019> ;
-	th:narrower <http://www.cdisc.org/C101859/V35#C101859_C17998> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100030> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C50799> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d53add6b4131200d282f97ccf5cf9fd2fb90d7f4> ;
-	th:synonym <http://www.assero.co.uk/SYN#f6e42fc226e87b408f81bab757ef7f3233704768> ;
-.
-<http://www.cdisc.org/C101859/V37#C101859_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C101859/V37#C101859_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C101859"^^xsd:string ;
-	isoI:versionLabel "2014-03-28 Release"^^xsd:string ;
-	isoI:version "37"^^xsd:positiveInteger ;
-	isoI:semanticVersion "37.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C101859/V37#C101859_C100000>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100000"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Stable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject does not have recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b6ada804e9c3c87f5ace9abf476f9e70eb734c15> ;
-.
-<http://www.cdisc.org/C101859/V37#C101859_C100002>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100002"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Unstable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject has recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8169eec6ea94372281df5a5cfa45073c0f4f12ba> ;
 .
 <http://www.cdisc.org/C66727/V37#C66727>
 	rdf:type th:ManagedConcept ;
@@ -10869,7 +10782,7 @@
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86462> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86463> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86464> ;
-	th:narrower <http://www.cdisc.org/C85491/V26#C85491_C86465> ;
+	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86465> ;
 	th:narrower <http://www.cdisc.org/C85491/V37#C85491_C114256> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86466> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86467> ;
@@ -12727,7 +12640,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3726> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83488> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83489> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C82973> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C82973> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7111> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C54297> ;
@@ -12753,7 +12666,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C111199> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C35875> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2923> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3879> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3879> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4176> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4715> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3752> ;
@@ -12791,7 +12704,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2946> ;
 	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C60334> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2947> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C2948> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2948> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C53684> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2964> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C79949> ;
@@ -12799,7 +12712,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3777> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2972> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2974> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3555> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3555> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C4858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9011> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2996> ;
@@ -12914,9 +12827,9 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C40407> ;
 	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C6963> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3270> ;
-	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C3789> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3789> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3272> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3059> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3059> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4306> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3286> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3710> ;
@@ -12936,7 +12849,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C103392> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3296> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C8810> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C9145> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9145> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6803> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7440> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3698> ;
@@ -12946,7 +12859,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C8559> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3308> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C96805> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3798> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3798> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C48305> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C92181> ;
 	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C92184> ;
@@ -12957,7 +12870,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9344> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6966> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7157> ;
-	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C4665> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4665> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3764> ;
 	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C112275> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C6433> ;
@@ -13258,7 +13171,7 @@
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29269> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48624> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42965> ;
-	th:narrower <http://www.cdisc.org/C66726/V37#C66726_C42966> ;
+	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C42966> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C60984> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C47887> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42967> ;
@@ -13358,16 +13271,6 @@
 	th:definition "A solid dosage form in which the drug is enclosed within either a hard or soft soluble container or 'shell' made from a suitable form of gelatin; additionally, the capsule is covered in a designated film coating, and which releases a drug (or drugs) in such a manner to allow at least a reduction in dosing frequency as compared to that drug (or drugs) presented as a conventional dosage form."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#461c95c98827eaf5559d11d4cb3aa639a7023616> ;
-.
-<http://www.cdisc.org/C66726/V37#C66726_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C114119/V37#C114119>
 	rdf:type th:ManagedConcept ;
@@ -15466,7 +15369,7 @@
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13273> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13252> ;
 	th:narrower <http://www.cdisc.org/C78734/V35#C78734_C62004> ;
-	th:narrower <http://www.cdisc.org/C78734/V23#C78734_C78743> ;
+	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78743> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78740> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13259> ;
 	th:narrower <http://www.cdisc.org/C78734/V35#C78734_C33156> ;
@@ -16960,64 +16863,6 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#2bdde86e2670dd41617c7be1092b5a671feb4c3b> ;
 	th:synonym <http://www.assero.co.uk/SYN#2bdde86e2670dd41617c7be1092b5a671feb4c3b> ;
 .
-<http://www.cdisc.org/C78418/V37#C78418>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78418/V37#C78418_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78418/V37#C78418_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78418"^^xsd:string ;
-	th:notation "CMDOSFRM"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Pharmaceutical Dosage Form codelist created for CDASH Concomitant Medication Dose Form codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42887> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C25158> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C28944> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42933> ;
-	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42934> ;
-	th:narrower <http://www.cdisc.org/C78418/V37#C78418_C42966> ;
-	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42968> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42972> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42989> ;
-	th:narrower <http://www.cdisc.org/C78418/V35#C78418_C42993> ;
-	th:narrower <http://www.cdisc.org/C78418/V36#C78418_C42994> ;
-	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#57c3e2a3076c93f263b2b64f552b8340c5b4cee1> ;
-	th:synonym <http://www.assero.co.uk/SYN#269367d65ef83b1f48765225c5f2ff6710192004> ;
-.
-<http://www.cdisc.org/C78418/V37#C78418_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78418/V37#C78418_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78418"^^xsd:string ;
-	isoI:versionLabel "2014-03-28 Release"^^xsd:string ;
-	isoI:version "37"^^xsd:positiveInteger ;
-	isoI:semanticVersion "37.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78418/V37#C78418_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
-.
 <http://www.cdisc.org/C78417/V37#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
@@ -17125,64 +16970,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e7c732dbfe3f8a74b53a0ff9102fd90dedf60c4e> ;
 	th:synonym <http://www.assero.co.uk/SYN#869d429d6f823b7be734876db3a1ddb779a9b07b> ;
-.
-<http://www.cdisc.org/C78426/V37#C78426>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Exposure Dose Form"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78426/V37#C78426_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78426/V37#C78426_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2014-03-28T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78426"^^xsd:string ;
-	th:notation "EXDOSFRM"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Pharmaceutical Dosage Form codelist created for CDASH Exposure Dose Form codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42887> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C25158> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C28944> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42933> ;
-	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42934> ;
-	th:narrower <http://www.cdisc.org/C78426/V37#C78426_C42966> ;
-	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42968> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42972> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42989> ;
-	th:narrower <http://www.cdisc.org/C78426/V35#C78426_C42993> ;
-	th:narrower <http://www.cdisc.org/C78426/V36#C78426_C42994> ;
-	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c931e65c942e0291ec1bc4b8cab07cfa3ff437a4> ;
-	th:synonym <http://www.assero.co.uk/SYN#a41e243c4b1c63f7ffeed23098576a860f3a8ac0> ;
-.
-<http://www.cdisc.org/C78426/V37#C78426_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78426/V37#C78426_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78426"^^xsd:string ;
-	isoI:versionLabel "2014-03-28 Release"^^xsd:string ;
-	isoI:version "37"^^xsd:positiveInteger ;
-	isoI:semanticVersion "37.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78426/V37#C78426_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C78745/V37#C78745>
 	rdf:type th:ManagedConcept ;

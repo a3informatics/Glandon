@@ -468,7 +468,7 @@
 	th:isTopConcept <http://www.cdisc.org/C74456/V43#C74456> ;
 	th:isTopConcept <http://www.cdisc.org/C120521/V42#C120521> ;
 	th:isTopConcept <http://www.cdisc.org/C101842/V32#C101842> ;
-	th:isTopConcept <http://www.cdisc.org/C101859/V43#C101859> ;
+	th:isTopConcept <http://www.cdisc.org/C101859/V41#C101859> ;
 	th:isTopConcept <http://www.cdisc.org/C101866/V32#C101866> ;
 	th:isTopConcept <http://www.cdisc.org/C101853/V32#C101853> ;
 	th:isTopConcept <http://www.cdisc.org/C101854/V32#C101854> ;
@@ -538,8 +538,8 @@
 	th:isTopConcept <http://www.cdisc.org/C120522/V43#C120522> ;
 	th:isTopConcept <http://www.cdisc.org/C120523/V42#C120523> ;
 	th:isTopConcept <http://www.cdisc.org/C120524/V42#C120524> ;
-	th:isTopConcept <http://www.cdisc.org/C120525/V43#C120525> ;
-	th:isTopConcept <http://www.cdisc.org/C120526/V43#C120526> ;
+	th:isTopConcept <http://www.cdisc.org/C120525/V42#C120525> ;
+	th:isTopConcept <http://www.cdisc.org/C120526/V42#C120526> ;
 	th:isTopConcept <http://www.cdisc.org/C99076/V28#C99076> ;
 	th:isTopConcept <http://www.cdisc.org/C99078/V32#C99078> ;
 	th:isTopConcept <http://www.cdisc.org/C101840/V41#C101840> ;
@@ -981,7 +981,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101859/V43#C101859> ;
+	bo:reference <http://www.cdisc.org/C101859/V41#C101859> ;
 .
 :TH_TCR8
 	rdf:type bo:TcReference ;
@@ -1611,7 +1611,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "77"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C120525/V43#C120525> ;
+	bo:reference <http://www.cdisc.org/C120525/V42#C120525> ;
 .
 :TH_TCR78
 	rdf:type bo:TcReference ;
@@ -1620,7 +1620,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "78"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C120526/V43#C120526> ;
+	bo:reference <http://www.cdisc.org/C120526/V42#C120526> ;
 .
 :TH_TCR79
 	rdf:type bo:TcReference ;
@@ -5858,93 +5858,6 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Ward's Triangle"^^xsd:string ;
 .
-<http://www.cdisc.org/C101859/V43#C101859>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Cardiac Procedure Indication"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C101859/V43#C101859_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C101859/V43#C101859_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C101859"^^xsd:string ;
-	th:notation "CVPRCIND"^^xsd:string ;
-	th:definition "The reason that a subject had a cardiac procedure."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99919> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100033> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C34830> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99938> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99947> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99949> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100035> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99925> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99943> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99961> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C26726> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99931> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C64251> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100045> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99980> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99982> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99983> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C99999> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100001> ;
-	th:narrower <http://www.cdisc.org/C101859/V43#C101859_C100000> ;
-	th:narrower <http://www.cdisc.org/C101859/V43#C101859_C100002> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100005> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100006> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C15306> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100008> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C15712> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100014> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100015> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100018> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100019> ;
-	th:narrower <http://www.cdisc.org/C101859/V38#C101859_C17998> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C100030> ;
-	th:narrower <http://www.cdisc.org/C101859/V41#C101859_C50799> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d53add6b4131200d282f97ccf5cf9fd2fb90d7f4> ;
-	th:synonym <http://www.assero.co.uk/SYN#f6e42fc226e87b408f81bab757ef7f3233704768> ;
-.
-<http://www.cdisc.org/C101859/V43#C101859_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C101859/V43#C101859_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C101859"^^xsd:string ;
-	isoI:versionLabel "2015-06-26 Release"^^xsd:string ;
-	isoI:version "43"^^xsd:positiveInteger ;
-	isoI:semanticVersion "43.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C101859/V43#C101859_C100000>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100000"^^xsd:string ;
-	th:notation "PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL INFARCTION (STEMI) (STABLE, >12 HRS FROM SYMPTOM ONSET)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject does not have recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b6ada804e9c3c87f5ace9abf476f9e70eb734c15> ;
-.
-<http://www.cdisc.org/C101859/V43#C101859_C100002>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100002"^^xsd:string ;
-	th:notation "PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL INFARCTION (STEMI) (UNSTABLE, >12 HRS FROM SYMPTOM ONSET)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject has recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8169eec6ea94372281df5a5cfa45073c0f4f12ba> ;
-.
 <http://www.cdisc.org/C101847/V43#C101847>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Cardiovascular Test Code"^^xsd:string ;
@@ -6647,7 +6560,7 @@
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C71067> ;
 	th:narrower <http://www.cdisc.org/C71150/V34#C71150_C101596> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C71068> ;
-	th:narrower <http://www.cdisc.org/C71150/V43#C71150_C102594> ;
+	th:narrower <http://www.cdisc.org/C71150/V38#C71150_C102594> ;
 	th:narrower <http://www.cdisc.org/C71150/V34#C71150_C102595> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C102642> ;
 	th:narrower <http://www.cdisc.org/C71150/V37#C71150_C114159> ;
@@ -6676,7 +6589,7 @@
 	th:narrower <http://www.cdisc.org/C71150/V43#C71150_C92229> ;
 	th:narrower <http://www.cdisc.org/C71150/V35#C71150_C111120> ;
 	th:narrower <http://www.cdisc.org/C71150/V34#C71150_C106503> ;
-	th:narrower <http://www.cdisc.org/C71150/V43#C71150_C116138> ;
+	th:narrower <http://www.cdisc.org/C71150/V38#C71150_C116138> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C62258> ;
 	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102623> ;
 	th:narrower <http://www.cdisc.org/C71150/V36#C71150_C102628> ;
@@ -6874,17 +6787,6 @@
 	isoI:semanticVersion "43.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/C71150/V43#C71150_C102594>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Acute Right Ventricular Myocardial Infarction by ECG Finding"^^xsd:string ;
-	th:identifier "C102594"^^xsd:string ;
-	th:notation "ACUTE RIGHT VENTRICULAR WALL MYOCARDIAL INFARCTION"^^xsd:string ;
-	th:definition "An electrocardiographic finding in leads V1 or V2 of an initial R wave duration greater than or equal to 40 ms, R wave greater than S wave, upright T wave, with accompanying ST elevation, which is suggestive of acute myocardial infarction of the ventricular wall of the left ventricle. Evidence of inferior or lateral myocardial infarction is usually also present. Additional criteria include ST elevation > 100 microvolts in the right precordial leads V4R through V6R."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#dd847f99a47c7007b64bec8b13e5900099396cbc> ;
-	th:synonym <http://www.assero.co.uk/SYN#0ced5c5dda4370f24228c64f331078b716c100f3> ;
-	th:synonym <http://www.assero.co.uk/SYN#25974d2d4b77bf6f615c2842827ad01c4379c2a0> ;
-.
 <http://www.cdisc.org/C71150/V43#C71150_C92228>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Borderline QTcB"^^xsd:string ;
@@ -6904,15 +6806,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#ba8cba510433c33ac7769f7f475b9f6458b538a6> ;
 	th:synonym <http://www.assero.co.uk/SYN#ba8cba510433c33ac7769f7f475b9f6458b538a6> ;
-.
-<http://www.cdisc.org/C71150/V43#C71150_C116138>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "ACC/AHA Ischemic ECG Changes"^^xsd:string ;
-	th:identifier "C116138"^^xsd:string ;
-	th:notation "CV ENDPOINTS ISCHEMIC ECG CHANGES"^^xsd:string ;
-	th:definition "An electrocardiographic finding, in the absence of left ventricular hypertrophy (LVH) and left bundle branch block pattern on ECG, of either a) new (or presumed new) ST elevation at the J point in two contiguous leads with the following cut-points: >=0.1 mV in all leads other than leads V2-V3 where the following cut points apply: >=0.2 mV in men >=40 years; >=0.25 mV in men <40 years, or >=0.15 mV in women; or b) new (or presumed new) horizontal or down-sloping ST depression >=0.05 mV in two contiguous leads and/or T inversion >=0.1 mV in two contiguous leads with prominent R wave or R/S ratio >1. (Thygesen K, Alpert JS, Jaffe AS, et al.: the Writing Group on behalf of the Joint ESC/ACCF/AHA/WHF Task Force for the Universal Definition of Myocardial Infarction. J Am Coll Cardiol 60(16):1-18, 2012)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#cec4ad313163231da6a2d5e2d0614cbe3d05e94b> ;
 .
 <http://www.cdisc.org/C71153/V43#C71153>
 	rdf:type th:ManagedConcept ;
@@ -7504,7 +7397,7 @@
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C71067> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C101596> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C71068> ;
-	th:narrower <http://www.cdisc.org/C120522/V43#C120522_C102594> ;
+	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102594> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102595> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C102642> ;
 	th:narrower <http://www.cdisc.org/C120522/V42#C120522_C114159> ;
@@ -7734,17 +7627,6 @@
 	isoI:semanticVersion "43.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/C120522/V43#C120522_C102594>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Acute Right Ventricular Myocardial Infarction by ECG Finding"^^xsd:string ;
-	th:identifier "C102594"^^xsd:string ;
-	th:notation "ACUTE RIGHT VENTRICULAR WALL MYOCARDIAL INFARCTION"^^xsd:string ;
-	th:definition "An electrocardiographic finding in leads V1 or V2 of an initial R wave duration greater than or equal to 40 ms, R wave greater than S wave, upright T wave, with accompanying ST elevation, which is suggestive of acute myocardial infarction of the ventricular wall of the left ventricle. Evidence of inferior or lateral myocardial infarction is usually also present. Additional criteria include ST elevation > 100 microvolts in the right precordial leads V4R through V6R."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#dd847f99a47c7007b64bec8b13e5900099396cbc> ;
-	th:synonym <http://www.assero.co.uk/SYN#0ced5c5dda4370f24228c64f331078b716c100f3> ;
-	th:synonym <http://www.assero.co.uk/SYN#25974d2d4b77bf6f615c2842827ad01c4379c2a0> ;
-.
 <http://www.cdisc.org/C120522/V43#C120522_C92228>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Borderline QTcB"^^xsd:string ;
@@ -7764,106 +7646,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#ba8cba510433c33ac7769f7f475b9f6458b538a6> ;
 	th:synonym <http://www.assero.co.uk/SYN#ba8cba510433c33ac7769f7f475b9f6458b538a6> ;
-.
-<http://www.cdisc.org/C120525/V43#C120525>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Immunogenicity Specimen Assessments Test Code"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C120525/V43#C120525_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C120525/V43#C120525_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C120525"^^xsd:string ;
-	th:notation "ISTESTCD"^^xsd:string ;
-	th:definition "Terminology relevant to the immunogenicity specimen test codes of the CDISC Study Data Tabulation Model."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C120525/V43#C120525_C120622> ;
-	th:narrower <http://www.cdisc.org/C120525/V42#C120525_C120623> ;
-	th:narrower <http://www.cdisc.org/C120525/V42#C120525_C120624> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#6f4ebf275e331705d4a162047472d8e1cc0a09f8> ;
-	th:synonym <http://www.assero.co.uk/SYN#ebba7bd7b6854fa16051fa5cb8c804362836aa30> ;
-.
-<http://www.cdisc.org/C120525/V43#C120525_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C120525/V43#C120525_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C120525"^^xsd:string ;
-	isoI:versionLabel "2015-06-26 Release"^^xsd:string ;
-	isoI:version "43"^^xsd:positiveInteger ;
-	isoI:semanticVersion "43.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C120525/V43#C120525_C120622>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Influenza Hemagglutinin 1 Specific IgG Antibody Secreting Cell Count"^^xsd:string ;
-	th:identifier "C120622"^^xsd:string ;
-	th:notation "H1IGGASC"^^xsd:string ;
-	th:definition "A measurement of the H1 specific IgG antibody secreting cells in a biological specimen."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2fe08cce0dacdf6a69e0a553a53da16e79bb42f1> ;
-	th:synonym <http://www.assero.co.uk/SYN#e61ce2610c21edac32ea9df88183648ebd2f421d> ;
-	th:synonym <http://www.assero.co.uk/SYN#d70e4c6a327f3642b1f09542cb251f1fc9471e06> ;
-.
-<http://www.cdisc.org/C120526/V43#C120526>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Immunogenicity Specimen Assessments Test Name"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C120526/V43#C120526_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C120526/V43#C120526_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-06-26T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C120526"^^xsd:string ;
-	th:notation "ISTEST"^^xsd:string ;
-	th:definition "Terminology relevant to the immunogenicity specimen test names of the CDISC Study Data Tabulation Model."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C120526/V43#C120526_C120622> ;
-	th:narrower <http://www.cdisc.org/C120526/V42#C120526_C120623> ;
-	th:narrower <http://www.cdisc.org/C120526/V42#C120526_C120624> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d9ac36d07e074107710f2ec724257328ad8a0a63> ;
-	th:synonym <http://www.assero.co.uk/SYN#14e9cf560cd32e0ac5b2651df32481e497e1bb50> ;
-.
-<http://www.cdisc.org/C120526/V43#C120526_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C120526/V43#C120526_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C120526"^^xsd:string ;
-	isoI:versionLabel "2015-06-26 Release"^^xsd:string ;
-	isoI:version "43"^^xsd:positiveInteger ;
-	isoI:semanticVersion "43.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C120526/V43#C120526_C120622>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Influenza Hemagglutinin 1 Specific IgG Antibody Secreting Cell Count"^^xsd:string ;
-	th:identifier "C120622"^^xsd:string ;
-	th:notation "H1 Specific IgG Antibody Secreting Cells"^^xsd:string ;
-	th:definition "A measurement of the H1 specific IgG antibody secreting cells in a biological specimen."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2fe08cce0dacdf6a69e0a553a53da16e79bb42f1> ;
-	th:synonym <http://www.assero.co.uk/SYN#e61ce2610c21edac32ea9df88183648ebd2f421d> ;
-	th:synonym <http://www.assero.co.uk/SYN#d70e4c6a327f3642b1f09542cb251f1fc9471e06> ;
 .
 <http://www.cdisc.org/C65047/V43#C65047>
 	rdf:type th:ManagedConcept ;
@@ -20670,7 +20452,7 @@
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29269> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48624> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42965> ;
-	th:narrower <http://www.cdisc.org/C66726/V43#C66726_C42966> ;
+	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C42966> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C60984> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C47887> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42967> ;
@@ -20770,16 +20552,6 @@
 	th:definition "A substance composed of complexed active and/or inert ingredient(s) with natural or synthetic lipids that is intended for injection. (NCI)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b18fd539a89b8283454eb405e181050cdf3f03d0> ;
-.
-<http://www.cdisc.org/C66726/V43#C66726_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C85493/V43#C85493>
 	rdf:type th:ManagedConcept ;

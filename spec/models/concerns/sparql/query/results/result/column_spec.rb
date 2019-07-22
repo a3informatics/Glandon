@@ -22,7 +22,7 @@ describe Sparql::Query::Results::Result::Column do
     get_nodes
   end
 
-  it "allows for the class to be created" do
+  it "allows for the class to be created, URI" do
     bindings = @nodes.first.xpath("binding")
 		result = Sparql::Query::Results::Result::Column.new(bindings.first)
     expect(result.name).to eq("s")
@@ -33,6 +33,12 @@ describe Sparql::Query::Results::Result::Column do
     bindings = @nodes[3].xpath("binding")
     result = Sparql::Query::Results::Result::Column.new(bindings.first)
     expect(result.to_hash).to eq({:name=>"s", :value=>"http://www.assero.co.uk/MDRItems#RA-123456789"})
+  end
+
+  it "allows for the class to be created, literal with <>" do
+    bindings = @nodes.last.xpath("binding")
+    result = Sparql::Query::Results::Result::Column.new(bindings.last)
+    expect(result.to_hash).to eq({:name=>"o", :value=> "AAA << TEST >> Long"})
   end
 
   it "speed test" do

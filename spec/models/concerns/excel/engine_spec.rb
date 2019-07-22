@@ -216,6 +216,32 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
   end
 
+  it "checks a cell for smart quotes" do
+    full_path = test_file_path(sub_dir, "check_values_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.check_value(2 ,8)
+    expect(result).to eq("During Phase 1, sufficient information about the drug's pharmacokinetics")
+    result = object.check_value(3 ,8)
+    expect(result).to eq("'ll'")
+    result = object.check_value(4 ,8)
+    expect(result).to eq("\"xxx\"")    
+    result = object.check_value(5 ,8)
+    expect(result).to eq("")    
+  end
+
+  it "checks a cell for integer" do
+    full_path = test_file_path(sub_dir, "check_values_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.check_value(6 ,8)
+    expect(result).to eq("1")
+    result = object.check_value(7 ,8)
+    expect(result).to eq("2")
+  end
+
   it "checks a condition" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
@@ -449,11 +475,9 @@ describe Excel::Engine do
       property: "collection", additional: {token: ";"}})
     object.tokenize_and_create_shared({row: 8, col: 1, object: parent, map: {X: "This is X", Y: "This is Y"}, 
       property: "collection", additional: {token: ";"}})
-    expect(parent.collection.count).to eq(3)
+    expect(parent.collection.count).to eq(2)
     expect(parent.collection[0].label).to eq("A")
-    expect(parent.collection[1].label).to eq("A")
-    expect(parent.collection[2].label).to eq("B")
-    expect(parent.collection[0].uri).to eq(parent.collection[1].uri)
+    expect(parent.collection[1].label).to eq("B")
   end
   
   it "can create shared definitions, I" do
