@@ -38,7 +38,7 @@ describe Sparql::Query::Results::Result::Column do
   it "allows for the class to be created, literal with <>" do
     bindings = @nodes.last.xpath("binding")
     result = Sparql::Query::Results::Result::Column.new(bindings.last)
-    expect(result.to_hash).to eq({:name=>"o", :value=> "AAA << TEST >> Long"})
+    expect(result.to_hash).to eq({:name=>"o", :value=> "AAA << TEST >> AND THIS && Long"})
   end
 
   it "speed test" do
