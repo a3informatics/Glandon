@@ -1303,7 +1303,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected)
-    check_count(version, 28590+289+50)
+    check_count(version, 28590+289+50-155) # Duplicates (155) in CDASH C128690, C128689 
   end
 
   it "Create version 59: 2019" do
@@ -1313,7 +1313,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
-      {cl: :C66787, status: :no_change},
+      {cl: :C66787, status: :deleted},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
@@ -1324,7 +1324,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
-    check_count(version, 29095+293)
+    check_count(version, 29095+293-159) # Duplicates (159) in CDASH C128690, C128689 
   end
 
 end

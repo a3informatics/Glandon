@@ -51,10 +51,11 @@ module Sparql
 
         private
 
-          # Convert < and > since we are taking the raw XML
+          # Convert <, > and & chars since we are taking the raw XML
           def convert_xml_chars(text)
-            text = text.gsub(/&lt;/, '<')
-            text.gsub(/&gt;/, '>')
+            CGI.unescapeHTML(text)
+            #text = text.gsub(/&lt;/, '<')
+            #text.gsub(/&gt;/, '>')
           end
 
         end
