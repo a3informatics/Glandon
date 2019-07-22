@@ -24,7 +24,7 @@ class Thesaurus <  IsoManagedV2
     first_index = 0
 
     # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history_uris(identifier: self.identifier, scope: self.scope)
+    items = self.class.history_uris(identifier: self.identifier, scope: self.scope).reverse 
     first_index = items.index {|x| x == self.uri}    
     if first_index == 0 
       start_index = 0 
@@ -114,7 +114,7 @@ class Thesaurus <  IsoManagedV2
     first_index = 0
 
     # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history(identifier: self.identifier, scope: self.scope)
+    items = self.class.history(identifier: self.identifier, scope: self.scope).reverse
     first_index = items.index {|x| x.uri == self.uri}    
     if first_index == 0 
       start_index = 0 

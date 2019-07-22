@@ -308,5 +308,24 @@ byebug
     delete_data_file(sub_dir, filename)
   end
 
+  it "import dupplicate synonyms and PTs" do
+    load_local_file_into_triple_store(sub_dir, "characters_1.ttl")
+    full_path_1 = test_file_path(sub_dir, "characters_1.xlsx")
+    params = 
+    {
+      version: "2", date: "2018-12-21", files: [full_path_1], 
+      version_label: "2.0.0", label: "CDISC Term", semantic_version: "2.0.0", job: @job
+    }
+    result = @object.import(params)
+    filename = "cdisc_term_#{@object.id}_errors.yml"
+    expect(public_file_does_not_exist?("test", filename)).to eq(true)
+    filename = "cdisc_term_#{@object.id}_load.ttl"
+    expect(public_file_exists?("test", filename)).to eq(true)
+    copy_file_from_public_files("test", filename, sub_dir)
+  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "characters_expected_1.ttl")
+    check_ttl(filename, "characters_expected_1.ttl")
+    expect(@job.status).to eq("Complete")
+    delete_data_file(sub_dir, filename)
+  end
 
 end

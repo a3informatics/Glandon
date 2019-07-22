@@ -35,6 +35,28 @@ describe CdiscTerm do
     delete_all_public_test_files
   end
 
+  def check_count(version, expected)
+    uri_sting = "http://www.cdisc.org/CT/V#{version}#TH"
+    query_string = %Q{
+SELECT DISTINCT (count(?uri) as ?count) WHERE {            
+  #{Uri.new(uri: uri_sting).to_ref} th:isTopConceptReference/bo:reference ?mc .
+  { 
+    ?mc th:identifier ?i .
+    BIND(?i as ?pi)
+    BIND(?mc as ?uri)
+  } UNION
+  {
+    ?mc th:narrower ?uc .
+    ?mc th:identifier ?pi .
+    ?uc th:identifier ?i .
+    BIND(?uc as ?uri)
+  }
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:bo, :th])
+    count = query_results.by_object_set([:count]).first[:count].to_i
+    expect(count).to eq(expected)
+  end
+
   def set_write_file
     true
   end
@@ -87,7 +109,7 @@ describe CdiscTerm do
     full_path = Rails.root.join "public/test/#{filename}"
     return if !File.exists?(full_path)
     errors = YAML.load_file(full_path)
-    puts "***** ERRORS ON IMPORT - V#{version} for #{date} *****"
+    puts colourize("***** ERRORS ON IMPORT - V#{version} for #{date} *****", "red")
     puts errors
   end
 
@@ -101,7 +123,7 @@ describe CdiscTerm do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     if copy_file
-      puts "***** Warning! Copying result file. *****"
+      puts colourize("***** Warning! Copying result file. *****", "red")
       copy_file_from_public_files_rename("test", filename, sub_dir, "CT_V#{version}.ttl") 
     end
     check_ttl_fix(filename, "CT_V#{version}.ttl", {last_change_date: true})
@@ -153,7 +175,8 @@ describe CdiscTerm do
       {cl: :C49660, status: :created},
       {cl: :C49499, status: :created}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(current_version, 881)
   end
 
   it "Create version 2: 2007" do
@@ -172,6 +195,7 @@ describe CdiscTerm do
       {cl: :C66737, status: :created}
     ]
     check_cl_results(results, expected) 
+    check_count(current_version, 1003)
   end
 
   it "Create version 3: 2007" do
@@ -185,7 +209,8 @@ describe CdiscTerm do
       {cl: :C67153, status: :no_change},
       {cl: :C66737, status: :updated}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(current_version, 1003)
   end
 
   it "Create version 4: 2007" do
@@ -267,7 +292,7 @@ describe CdiscTerm do
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :no_change},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :updated},
+      {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :no_change},
       {cl: :C74559, status: :created}
     ]
@@ -286,7 +311,7 @@ describe CdiscTerm do
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :no_change},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :updated},
+      {cl: :C71153, status: :no_change},
       {cl: :C71620, status: :updated},
       {cl: :C74559, status: :no_change}
     ]
@@ -332,7 +357,8 @@ describe CdiscTerm do
       {cl: :C74456, status: :no_change},
       {cl: :C76351, status: :no_change}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(current_version, 2301)
   end
 
   it "Create version 12: 2008" do
@@ -536,7 +562,8 @@ describe CdiscTerm do
       {cl: :C76351, status: :updated},
       {cl: :C78735, status: :no_change}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(current_version, 4190)
   end
 
   it "Create version 22: 2010" do
@@ -630,7 +657,7 @@ describe CdiscTerm do
       {cl: :C67152, status: :no_change},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :updated},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change}
@@ -662,13 +689,13 @@ describe CdiscTerm do
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
-      {cl: :C66785, status: :no_change},
+      {cl: :C66785, status: :updated},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :updated},
       {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
+      {cl: :C71620, status: :updated},
       {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
@@ -681,17 +708,17 @@ describe CdiscTerm do
     results = execute_import(29, "2012-03-23", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
+      {cl: :C78735, status: :updated},
       {cl: :C88025, status: :no_change}
     ]
     check_cl_results(results, expected) 
@@ -707,18 +734,19 @@ describe CdiscTerm do
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :no_change},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
 
   it "Create version 31: 2012" do
-    results = execute_import(31, "2012-08-03", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
+    version = 31
+    results = execute_import(version, "2012-08-03", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -728,31 +756,32 @@ describe CdiscTerm do
       {cl: :C67152, status: :no_change},
       {cl: :C67153, status: :no_change},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change},
       {cl: :C88025, status: :no_change}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(version, 9086)
   end
 
   it "Create version 32: 2012" do
     results = execute_import(32, "2012-12-21", {sdtm: true, adam: false, cdash: true, qs: true}, set_write_file)
     expected = [
-      {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66737, status: :updated},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
-      {cl: :C67153, status: :no_change},
+      {cl: :C67152, status: :updated},
+      {cl: :C67153, status: :updated},
       {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
-      {cl: :C76351, status: :no_change},
-      {cl: :C78735, status: :no_change},
-      {cl: :C88025, status: :no_change}
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
+      {cl: :C76351, status: :updated},
+      {cl: :C78735, status: :updated},
+      {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
   end
@@ -778,7 +807,8 @@ describe CdiscTerm do
   end
 
   it "Create version 34: 2013" do
-    results = execute_import(34, "2013-06-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
+    version = 34
+    results = execute_import(version, "2013-06-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :no_change},
@@ -792,9 +822,10 @@ describe CdiscTerm do
       {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :updated},
-      {cl: :C88025, status: :updated}     # <<<< Not sure about this one! @todo
+      {cl: :C88025, status: :no_change} 
     ]
     check_cl_results(results, expected) 
+    check_count(version, 11157)
   end
 
   it "Create version 35: 2013" do
@@ -918,7 +949,8 @@ describe CdiscTerm do
   end
 
   it "Create version 41: 2014" do
-    results = execute_import(41, "2014-12-19", {sdtm: true, coa: true}, set_write_file)
+    version = 41
+    results = execute_import(version, "2014-12-19", {sdtm: true, coa: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :updated},
       {cl: :C66738, status: :updated},
@@ -935,6 +967,7 @@ describe CdiscTerm do
       {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
+    check_count(version, 15445)
   end
 
   it "Create version 42: 2015" do
@@ -963,7 +996,7 @@ describe CdiscTerm do
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
-      {cl: :C66787, status: :no_change},
+      {cl: :C66787, status: :deleted},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :updated},
       {cl: :C67153, status: :updated},
@@ -998,7 +1031,8 @@ describe CdiscTerm do
   end
 
   it "Create version 45: 2015" do
-    results = execute_import(45, "2015-12-18", {sdtm: true, adam: true}, set_write_file)
+    version = 45
+    results = execute_import(version, "2015-12-18", {sdtm: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -1015,6 +1049,7 @@ describe CdiscTerm do
       {cl: :C88025, status: :updated}
     ]
     check_cl_results(results, expected) 
+    check_count(version, 17396)
   end
 
   it "Create version 46: 2016" do
@@ -1116,7 +1151,8 @@ describe CdiscTerm do
   end
 
   it "Create version 51: 2017" do
-    results = execute_import(51, "2017-06-30", {sdtm: true}, set_write_file)
+    version = 51
+    results = execute_import(version, "2017-06-30", {sdtm: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -1131,7 +1167,8 @@ describe CdiscTerm do
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(version, 21977)
   end
 
   it "Create version 52: 2017" do
@@ -1249,7 +1286,8 @@ describe CdiscTerm do
   end
 
   it "Create version 58: 2019" do
-    results = execute_import(58, "2019-03-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
+    version = 58
+    results = execute_import(version, "2019-03-29", {sdtm: true, cdash: true, adam: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
@@ -1264,26 +1302,29 @@ describe CdiscTerm do
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change}
     ]
-    check_cl_results(results, expected) 
+    check_cl_results(results, expected)
+    check_count(version, 28590+289+50)
   end
 
   it "Create version 59: 2019" do
-    results = execute_import(59, "2019-06-28", {sdtm: true, cdash: true}, set_write_file)
+    version = 59
+    results = execute_import(version, "2019-06-28", {sdtm: true, cdash: true}, set_write_file)
     expected = [
       {cl: :C66737, status: :no_change},
-      {cl: :C66738, status: :no_change},
+      {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
       {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
-      {cl: :C67152, status: :no_change},
+      {cl: :C67152, status: :updated},
       {cl: :C67153, status: :no_change},
-      {cl: :C71153, status: :no_change},
-      {cl: :C71620, status: :no_change},
-      {cl: :C74456, status: :no_change},
+      {cl: :C71153, status: :updated},
+      {cl: :C71620, status: :updated},
+      {cl: :C74456, status: :updated},
       {cl: :C76351, status: :no_change},
       {cl: :C78735, status: :no_change}
     ]
     check_cl_results(results, expected) 
+    check_count(version, 29095+293)
   end
 
 end

@@ -366,7 +366,7 @@
 	th:isTopConcept <http://www.cdisc.org/C101854/V32#C101854> ;
 	th:isTopConcept <http://www.cdisc.org/C101847/V36#C101847> ;
 	th:isTopConcept <http://www.cdisc.org/C101846/V36#C101846> ;
-	th:isTopConcept <http://www.cdisc.org/C74558/V9#C74558> ;
+	th:isTopConcept <http://www.cdisc.org/C74558/V8#C74558> ;
 	th:isTopConcept <http://www.cdisc.org/C66797/V27#C66797> ;
 	th:isTopConcept <http://www.cdisc.org/C66784/V33#C66784> ;
 	th:isTopConcept <http://www.cdisc.org/C87162/V32#C87162> ;
@@ -812,7 +812,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C74558/V9#C74558> ;
+	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
 .
 :TH_TCR13
 	rdf:type bo:TcReference ;
@@ -4646,8 +4646,8 @@
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99983> ;
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99999> ;
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100001> ;
-	th:narrower <http://www.cdisc.org/C101859/V36#C101859_C100000> ;
-	th:narrower <http://www.cdisc.org/C101859/V36#C101859_C100002> ;
+	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100000> ;
+	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100002> ;
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100005> ;
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100006> ;
 	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C15306> ;
@@ -4694,24 +4694,6 @@
 <http://www.assero.co.uk/PT#44ba5042e4afe27a7de1ef4b1ffded82dcbc217f>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Left Ventricular Systolic Dysfunction"^^xsd:string ;
-.
-<http://www.cdisc.org/C101859/V36#C101859_C100000>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100000"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Stable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject does not have recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b6ada804e9c3c87f5ace9abf476f9e70eb734c15> ;
-.
-<http://www.cdisc.org/C101859/V36#C101859_C100002>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100002"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Unstable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject has recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8169eec6ea94372281df5a5cfa45073c0f4f12ba> ;
 .
 <http://www.cdisc.org/C101859/V36#C101859_C100014>
 	rdf:type th:UnmanagedConcept ;
@@ -14148,7 +14130,7 @@
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86462> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86463> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86464> ;
-	th:narrower <http://www.cdisc.org/C85491/V26#C85491_C86465> ;
+	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86465> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86466> ;
 	th:narrower <http://www.cdisc.org/C85491/V20#C85491_C86467> ;
 	th:narrower <http://www.cdisc.org/C85491/V19#C85491_C86468> ;
@@ -16615,7 +16597,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3726> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83488> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83489> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C82973> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C82973> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7111> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C54297> ;
@@ -16641,7 +16623,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C111199> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C35875> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2923> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3879> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3879> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4176> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4715> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3752> ;
@@ -16679,7 +16661,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2946> ;
 	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C60334> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2947> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C2948> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2948> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C53684> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2964> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C79949> ;
@@ -16687,7 +16669,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3777> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2972> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2974> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3555> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3555> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C4858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9011> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2996> ;
@@ -16801,9 +16783,9 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C40407> ;
 	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C6963> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3270> ;
-	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C3789> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3789> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3272> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3059> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3059> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4306> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3286> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3710> ;
@@ -16823,7 +16805,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C103392> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3296> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C8810> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C9145> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9145> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6803> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7440> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3698> ;
@@ -16833,7 +16815,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C8559> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3308> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C96805> ;
-	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C3798> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3798> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C48305> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C92181> ;
 	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C92184> ;
@@ -16844,7 +16826,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9344> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6966> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7157> ;
-	th:narrower <http://www.cdisc.org/C88025/V35#C88025_C4665> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4665> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3764> ;
 	th:narrower <http://www.cdisc.org/C88025/V36#C88025_C112275> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C6433> ;
@@ -16948,28 +16930,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "EOSINOPHIL ADENOCARCINOMA"^^xsd:string ;
 .
-<http://www.cdisc.org/C88025/V36#C88025_C3879>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Thyroid Gland Medullary Carcinoma"^^xsd:string ;
-	th:identifier "C3879"^^xsd:string ;
-	th:notation "CARCINOMA, C-CELL, MALIGNANT"^^xsd:string ;
-	th:definition "A neuroendocrine malignant epithelial neoplasm arising from C-cells of the thyroid gland."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2c6bd33d3a77aba2a4b5ddebf728b25be85f6c42> ;
-	th:synonym <http://www.assero.co.uk/SYN#13e04750ee7f29a58bffa4053518e2b3caa8d01b> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7eb70f52f48bc5ab649481bb7580736f748bfcf> ;
-	th:synonym <http://www.assero.co.uk/SYN#cd11396a217383429070f960453d0d97892e988d> ;
-	th:synonym <http://www.assero.co.uk/SYN#60c77c3191ef9e44a51eaeb064d9970b870019e0> ;
-	th:synonym <http://www.assero.co.uk/SYN#20be7159e39db23ba0dd5c9db0512d9d499b459d> ;
-	th:synonym <http://www.assero.co.uk/SYN#8e6c20481a677fd6342579af563c5c0090b89277> ;
-	th:synonym <http://www.assero.co.uk/SYN#f5733b3ebd7c446566ef4f38d18f79713ffa2a3e> ;
-	th:synonym <http://www.assero.co.uk/SYN#6f8ce0eb3e438ef36af688e22d5a5d888ef00a49> ;
-	th:synonym <http://www.assero.co.uk/SYN#5a8f52e10ccd08e0618861f8bfb24d9e4d550f1a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ef66787758438f5d6f6f63967c197fb8c4ebf584> ;
-	th:synonym <http://www.assero.co.uk/SYN#6832b35e2c831aa62546d7f2f609f94b0849a299> ;
-	th:synonym <http://www.assero.co.uk/SYN#87c280e470193098fef7eb39123f6d71ec286aa6> ;
-	th:synonym <http://www.assero.co.uk/SYN#51327e56836e3fec974320bc6f8691abd0a8950d> ;
-.
 <http://www.cdisc.org/C88025/V36#C88025_C60334>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rat Benign Chordoma"^^xsd:string ;
@@ -16982,21 +16942,6 @@
 <http://www.assero.co.uk/PT#76eb3038aaba4f8917cc7360e377b1586612ead3>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Rat Benign Chordoma"^^xsd:string ;
-.
-<http://www.cdisc.org/C88025/V36#C88025_C3555>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Malignant Placental Neoplasm"^^xsd:string ;
-	th:identifier "C3555"^^xsd:string ;
-	th:notation "DECIDUOMA, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm arising from decidua (placental) cells."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2c3cd98f557c1252629856f54d6d86d6176dfae1> ;
-	th:synonym <http://www.assero.co.uk/SYN#533546f8063fb2b07cdeb9db1ab7c2a1d395acd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#56e0a5a5f77f4e87e0328eabae2731a5cf4e3a5d> ;
-	th:synonym <http://www.assero.co.uk/SYN#f8f1f9b58c1d3c9443fe2181db8f1a9aa59235dd> ;
-	th:synonym <http://www.assero.co.uk/SYN#7152318afc274bf0993cb7e2432aebcdb6fc28b9> ;
-	th:synonym <http://www.assero.co.uk/SYN#c05333992f3333f01bec1b91afbd3706af32d406> ;
-	th:synonym <http://www.assero.co.uk/SYN#0069f4333f3069c6fb74c5422ac9e3e98efadd26> ;
 .
 <http://www.cdisc.org/C88025/V36#C88025_C60340>
 	rdf:type th:UnmanagedConcept ;
@@ -17115,46 +17060,6 @@
 <http://www.assero.co.uk/PT#a7b762639ba67f65882ade4b2d148328509dfd94>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Malignant Mesenchymal Tumor of the Rat Kidney"^^xsd:string ;
-.
-<http://www.cdisc.org/C88025/V36#C88025_C3059>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Neuroglial Tumor"^^xsd:string ;
-	th:identifier "C3059"^^xsd:string ;
-	th:notation "NEUROGLIAL TUMOR, UNDETERMINED"^^xsd:string ;
-	th:definition "A neoplasm of the central nervous system composed of glial cells (astrocytes, oligodendrocytes, ependymal cells), for which the malignancy status has not been determined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#20ec3a5545216be195cfb803a4ef55d17d89cb2e> ;
-	th:synonym <http://www.assero.co.uk/SYN#ec946bd2bff132a89336780bf537ad996f0c5f8a> ;
-	th:synonym <http://www.assero.co.uk/SYN#50387ea8dee87ad81e4d54aec823892b0c9134fa> ;
-	th:synonym <http://www.assero.co.uk/SYN#cf8331bca519df7b8cadec0c76a4ad06510bc898> ;
-	th:synonym <http://www.assero.co.uk/SYN#947a021f3b6feef70632ca263d83d187212acea4> ;
-	th:synonym <http://www.assero.co.uk/SYN#7fa90dd4520df076a70981b840c52f91ab4a2e81> ;
-	th:synonym <http://www.assero.co.uk/SYN#3ada34ede5f35b58bea53ede3c1f4723334ffd88> ;
-	th:synonym <http://www.assero.co.uk/SYN#c938e75e96cc1bf105d6d537de6009db9e6e9f21> ;
-	th:synonym <http://www.assero.co.uk/SYN#cbcfbf33a312e39d224b0fe224f37db60375d91b> ;
-	th:synonym <http://www.assero.co.uk/SYN#87e09ee3fcdc4b44e1fd95a163cf557f2499c61c> ;
-	th:synonym <http://www.assero.co.uk/SYN#d3cc80d0ebb78110b122f7b1734a1246e4cf99a8> ;
-	th:synonym <http://www.assero.co.uk/SYN#b53ce12e68fe0fa9a34808b45ddbdf086890caaa> ;
-.
-<http://www.cdisc.org/C88025/V36#C88025_C3798>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Malignant Peripheral Nerve Sheath Tumor"^^xsd:string ;
-	th:identifier "C3798"^^xsd:string ;
-	th:notation "PERIPHERAL NERVE SHEATH TUMOR, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm, originating from the sheaths of the peripheral nerve."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#eb8ad1ec38de9ddebe0a3b6dac8b3b323936fb59> ;
-	th:synonym <http://www.assero.co.uk/SYN#117804dd59f728e3ea9fcf26e8ac45d12f5ae0fa> ;
-	th:synonym <http://www.assero.co.uk/SYN#ef4d8c9d7297812f3f68518af76d9c0929604c28> ;
-	th:synonym <http://www.assero.co.uk/SYN#317f7806908faca79af9cc47ef4cf93f419ed7bc> ;
-	th:synonym <http://www.assero.co.uk/SYN#6fbc6e6c08b824a137775a389240a85b7a1e1b3e> ;
-	th:synonym <http://www.assero.co.uk/SYN#a9d79c772dc845c9e2b381e0eb71d2fe1d3ad4c0> ;
-	th:synonym <http://www.assero.co.uk/SYN#4e0dee7653efff1cd930cd3c794b1aecbfe071ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#16ab4bea87ef6a1c487a49009047e8eed1cce2cc> ;
-	th:synonym <http://www.assero.co.uk/SYN#e176a7839b885ef9b95db0a3c9c439b00eb2f5b2> ;
-	th:synonym <http://www.assero.co.uk/SYN#6e92a5664fcd52ae97476dc729f0ddf4c33e39ec> ;
-	th:synonym <http://www.assero.co.uk/SYN#2558990c9aa760a9b5937e73ec31f7bd4e471da6> ;
-	th:synonym <http://www.assero.co.uk/SYN#7baab7e9eaf6f2556f83cecbe1685c1f9394ac0d> ;
 .
 <http://www.cdisc.org/C88025/V36#C88025_C112275>
 	rdf:type th:UnmanagedConcept ;
@@ -17723,7 +17628,7 @@
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29269> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48624> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42965> ;
-	th:narrower <http://www.cdisc.org/C66726/V36#C66726_C42966> ;
+	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C42966> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C60984> ;
 	th:narrower <http://www.cdisc.org/C66726/V34#C66726_C47887> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42967> ;
@@ -17992,16 +17897,6 @@
 <http://www.assero.co.uk/PT#45d332664d612043c5a436bebc2d16a4214ec127>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Lyophilized Powder for Extended Release Injectable Suspension Dosage Form"^^xsd:string ;
-.
-<http://www.cdisc.org/C66726/V36#C66726_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C66726/V36#C66726_C42987>
 	rdf:type th:UnmanagedConcept ;
@@ -22896,7 +22791,7 @@
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13273> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13252> ;
 	th:narrower <http://www.cdisc.org/C78734/V35#C78734_C62004> ;
-	th:narrower <http://www.cdisc.org/C78734/V23#C78734_C78743> ;
+	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78743> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78740> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13259> ;
 	th:narrower <http://www.cdisc.org/C78734/V35#C78734_C33156> ;
@@ -25709,7 +25604,7 @@
 	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C28944> ;
 	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42933> ;
 	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42934> ;
-	th:narrower <http://www.cdisc.org/C78418/V36#C78418_C42966> ;
+	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42966> ;
 	th:narrower <http://www.cdisc.org/C78418/V34#C78418_C42968> ;
 	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42972> ;
 	th:narrower <http://www.cdisc.org/C78418/V19#C78418_C42989> ;
@@ -25737,16 +25632,6 @@
 	isoI:version "36"^^xsd:positiveInteger ;
 	isoI:semanticVersion "36.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78418/V36#C78418_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C78418/V36#C78418_C42994>
 	rdf:type th:UnmanagedConcept ;
@@ -25939,7 +25824,7 @@
 	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C28944> ;
 	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42933> ;
 	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42934> ;
-	th:narrower <http://www.cdisc.org/C78426/V36#C78426_C42966> ;
+	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42966> ;
 	th:narrower <http://www.cdisc.org/C78426/V34#C78426_C42968> ;
 	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42972> ;
 	th:narrower <http://www.cdisc.org/C78426/V19#C78426_C42989> ;
@@ -25967,16 +25852,6 @@
 	isoI:version "36"^^xsd:positiveInteger ;
 	isoI:semanticVersion "36.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78426/V36#C78426_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C78426/V36#C78426_C42994>
 	rdf:type th:UnmanagedConcept ;

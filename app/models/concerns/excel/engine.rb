@@ -154,7 +154,7 @@ class Excel::Engine
     check_params(__method__.to_s, params, [:row, :col, :object, :property, :can_be_empty, :additional])
     x = check_value(params[:row], params[:col], params[:can_be_empty])
     return if x.empty?
-    parts = x.split(params[:additional][:token])
+    parts = x.split(params[:additional][:token]).uniq # Make the array a set of unique entries
     parts.each {|p| create_definition(params[:object], params[:property], p.strip)}
   end
 
@@ -195,7 +195,9 @@ class Excel::Engine
   # @return [Void] no return
   def create_definition(parent, property, label)
     return if label.blank?
-    variable = Fuseki::Persistence::Naming.new(property).as_instance
+    naming = Fuseki::Persistence::Naming.new(property)
+    return if duplicate_label?(parent, naming.as_symbol, label)
+    variable = naming.as_instance
     klass = parent.property_target(variable)
     results = klass.where(label: label)
     object = results.any? ? results.first : object_create(klass, label)
@@ -236,8 +238,8 @@ class Excel::Engine
   # @param [Boolean] allow_empty allow the cell to be blank. Defaulted to false.
   # @return [String] the cell value. Will be empty if allowed to be. Error logged if not.
   def check_value(row, col, allow_empty=false)
-    value = @workbook.cell(row, col)
-    value = "" if value.blank? 
+    value = @workbook.cell(row, col).to_s # Ensure all inputs are strings
+    value = value.blank? ? "" : remove_unicode_chars(value)
     @errors.add(:base, "Empty cell detected in row #{row} column #{col}.") if value.blank? && !allow_empty
     return "#{value}".strip
   end
@@ -263,6 +265,22 @@ class Excel::Engine
   end
  
 private
+
+  # Remove smart quotes
+  def remove_unicode_chars(text)
+    text = text.gsub(/[\u2013]/, "-")
+    text = text.gsub(/[\u003E]/, ">")
+    text = text.gsub(/[\u003C]/, "<")
+    text = text.gsub(/[\u2018\u2019\u0092]/, "'")
+    text.gsub(/[\u201C\u201D]/, '"')
+  end
+
+  # Check for a duplicate label.
+  def duplicate_label?(parent, property, label)
+    collection = parent.send(property)
+    return false if collection.nil?
+    !collection.detect{|x| x.label == label}.nil?
+  end
 
   # Check params
   def check_params(method, params, args)
