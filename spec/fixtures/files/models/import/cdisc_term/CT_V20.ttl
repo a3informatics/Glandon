@@ -136,13 +136,13 @@
 	th:isTopConcept <http://www.cdisc.org/C74457/V10#C74457> ;
 	th:isTopConcept <http://www.cdisc.org/C78731/V14#C78731> ;
 	th:isTopConcept <http://www.cdisc.org/C78732/V14#C78732> ;
-	th:isTopConcept <http://www.cdisc.org/C78733/V20#C78733> ;
+	th:isTopConcept <http://www.cdisc.org/C78733/V14#C78733> ;
 	th:isTopConcept <http://www.cdisc.org/C78734/V14#C78734> ;
 	th:isTopConcept <http://www.cdisc.org/C78735/V19#C78735> ;
 	th:isTopConcept <http://www.cdisc.org/C78736/V14#C78736> ;
 	th:isTopConcept <http://www.cdisc.org/C78737/V14#C78737> ;
 	th:isTopConcept <http://www.cdisc.org/C78738/V14#C78738> ;
-	th:isTopConcept <http://www.cdisc.org/C85495/V20#C85495> ;
+	th:isTopConcept <http://www.cdisc.org/C85495/V19#C85495> ;
 	th:isTopConcept <http://www.cdisc.org/C85492/V19#C85492> ;
 	th:isTopConcept <http://www.cdisc.org/C85494/V20#C85494> ;
 	th:isTopConcept <http://www.cdisc.org/C85491/V20#C85491> ;
@@ -632,7 +632,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "52"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78733/V20#C78733> ;
+	bo:reference <http://www.cdisc.org/C78733/V14#C78733> ;
 .
 :TH_TCR53
 	rdf:type bo:TcReference ;
@@ -686,7 +686,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "58"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C85495/V20#C85495> ;
+	bo:reference <http://www.cdisc.org/C85495/V19#C85495> ;
 .
 :TH_TCR59
 	rdf:type bo:TcReference ;
@@ -3030,133 +3030,6 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#bd5a5ba47a3003fc687844ecfcf943b3eb1edd62> ;
 	th:synonym <http://www.assero.co.uk/SYN#bd5a5ba47a3003fc687844ecfcf943b3eb1edd62> ;
-.
-<http://www.cdisc.org/C78733/V20#C78733>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Specimen Condition"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78733/V20#C78733_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78733/V20#C78733_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-04-08T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-04-08T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78733"^^xsd:string ;
-	th:notation "SPECCOND"^^xsd:string ;
-	th:definition "The physical state or quality of a biological specimen."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70717> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70720> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70715> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70718> ;
-	th:narrower <http://www.cdisc.org/C78733/V20#C78733_C70719> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78723> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78724> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78725> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fd21e2da2b2e5a3f0f8fe4aa82ef0a7ede8a177f> ;
-	th:synonym <http://www.assero.co.uk/SYN#17fd8713ad2a212e1d7779df1c1c1167c3453c91> ;
-.
-<http://www.cdisc.org/C78733/V20#C78733_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78733/V20#C78733_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78733"^^xsd:string ;
-	isoI:versionLabel "2010-04-08 Release"^^xsd:string ;
-	isoI:version "20"^^xsd:positiveInteger ;
-	isoI:semanticVersion "20.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78733/V20#C78733_C70719>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Specimen at Room Temperature"^^xsd:string ;
-	th:identifier "C70719"^^xsd:string ;
-	th:notation "ROOM TEMPERATURE"^^xsd:string ;
-	th:definition "A specimen that has been subjected to and adjusted to the average ambient temperature of a room, usually considered to be around 20° C (68° F). (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fd0b7a590e1d6ad0396021ebf35c480cb9598a97> ;
-	th:synonym <http://www.assero.co.uk/SYN#fd0b7a590e1d6ad0396021ebf35c480cb9598a97> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Microbiology Susceptibility Testing Result Category"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C85495/V20#C85495_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C85495/V20#C85495_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-04-08T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-04-08T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C85495"^^xsd:string ;
-	th:notation "MSRESCAT"^^xsd:string ;
-	th:definition "Used to categorize the result of a finding in a standard format."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C85495/V20#C85495_C85560> ;
-	th:narrower <http://www.cdisc.org/C85495/V20#C85495_C85561> ;
-	th:narrower <http://www.cdisc.org/C85495/V19#C85495_C48660> ;
-	th:narrower <http://www.cdisc.org/C85495/V20#C85495_C85562> ;
-	th:narrower <http://www.cdisc.org/C85495/V19#C85495_C85563> ;
-	th:narrower <http://www.cdisc.org/C85495/V19#C85495_C85559> ;
-	th:narrower <http://www.cdisc.org/C85495/V19#C85495_C17998> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#89513cdc995679a7da5cc8c6739671cd7ba1c193> ;
-	th:synonym <http://www.assero.co.uk/SYN#89513cdc995679a7da5cc8c6739671cd7ba1c193> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C85495"^^xsd:string ;
-	isoI:versionLabel "2010-04-08 Release"^^xsd:string ;
-	isoI:version "20"^^xsd:positiveInteger ;
-	isoI:semanticVersion "20.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495_C85560>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Antimicrobial Intermediate Susceptibility Result"^^xsd:string ;
-	th:identifier "C85560"^^xsd:string ;
-	th:notation "INTERMEDIATE"^^xsd:string ;
-	th:definition "The growth of microorganisms may be inhibited by antimicrobials that approach usually attainable blood and tissue concentrations.  The response rates may be lower than for susceptible isolates. This category also includes a buffer zone, which should prevent small, uncontrolled, technical factors from causing major discrepancies in interpretations, especially for drugs with narrow pharmacotoxicity margins"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#1bbc246e9fb1a8e7c883a528c0a834d4c4ed1051> ;
-	th:synonym <http://www.assero.co.uk/SYN#b1cfe72fd27178870354f9f4e07bb82072caea55> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495_C85561>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Antimicrobial Nonsusceptibility Result"^^xsd:string ;
-	th:identifier "C85561"^^xsd:string ;
-	th:notation "NONSUSCEPTIBLE"^^xsd:string ;
-	th:definition "A category used for microorganisms that have only a susceptible interpretive criteria, but not an intermediate or resistant interpretive category (i.e., susceptible-only interpretive category). This category may be applied to new antimicrobial agents for which no resistant microorganisms have been encountered at the time the initial interpretive criteria are determined. Microorganisms that test with an MIC above or a zone measurement below the susceptible interpretive criteria are designated as nonsusceptible. A designation of nonsusceptible does not necessarily mean that a resistance mechanism(s) exists in the microorganism."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#163ccbe9378723d936bfd5ba8c863c2620879d63> ;
-	th:synonym <http://www.assero.co.uk/SYN#9e6879c0fee06218f7461ae5a2377c4e29725db4> ;
-.
-<http://www.cdisc.org/C85495/V20#C85495_C85562>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Antimicrobial Resistance Result"^^xsd:string ;
-	th:identifier "C85562"^^xsd:string ;
-	th:notation "RESISTANT"^^xsd:string ;
-	th:definition "The growth of microorganisms are not inhibited by the usually achievable concentrations of the antimicrobial agent with normal dosages, and/or microorganisms demonstrate MICs or zone diameters that fall in the range where specific microbial resistance mechanisms (e.g. Beta-lactamases) are likely, and clinical efficacy of the agent against the microorganism has not been reliably shown in treatment studies."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#6e0c9ef4ac533d4191f6ad6879c67474bcf342ba> ;
-	th:synonym <http://www.assero.co.uk/SYN#55a2e1d7dd3028d880dbaa9cc1831dc5dcaf3e46> ;
 .
 <http://www.cdisc.org/C85494/V20#C85494>
 	rdf:type th:ManagedConcept ;
