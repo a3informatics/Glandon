@@ -1,14 +1,41 @@
---- '{"count":5,"items":[{"identifier":"C116236","notation":"PNU/mL","synonym":"Protein
-  Nitrogen Unit per Milliliter","definition":"Unit of measure of potency of an allergenic
-  product expressed as a number of protein nitrogen units per one milliliter of formulation.","preferredTerm":"Allergenic
-  Protein Nitrogen Unit per Milliliter","topLevel":false,"parentIdentifier":"C71620","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C71620_C116236","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C61019","notation":"Blood
-  Urea Nitrogen","synonym":"Blood Urea Nitrogen","definition":"A measurement of the
-  urea nitrogen in a blood specimen.","preferredTerm":"Blood Urea Nitrogen Measurement","topLevel":false,"parentIdentifier":"C67154","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C67154_C61019","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C74753","notation":"BUNCREAT","synonym":"BUN/Creatinine","definition":"A
-  relative measurement (ratio or percentage) (ratio) of the blood urea nitrogen (BUN)
-  to the creatinine in a biological specimen.","preferredTerm":"Blood Urea Nitrogen
-  To Creatinine Ratio Measurement","topLevel":false,"parentIdentifier":"C65047","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C65047_C74753","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C74753","notation":"BUN/Creatinine","synonym":"BUN/Creatinine","definition":"A
-  relative measurement (ratio or percentage) (ratio) of the blood urea nitrogen (BUN)
-  to the creatinine in a biological specimen.","preferredTerm":"Blood Urea Nitrogen
-  To Creatinine Ratio Measurement","topLevel":false,"parentIdentifier":"C67154","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C67154_C74753","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}},{"identifier":"C61019","notation":"BUN","synonym":"Blood
-  Urea Nitrogen","definition":"A measurement of the urea nitrogen in a blood specimen.","preferredTerm":"Blood
-  Urea Nitrogen Measurement","topLevel":false,"parentIdentifier":"C65047","children":[],"rdf_type":"http://www.assero.co.uk/ISO25964#ThesaurusConcept","id":"CLI-C65047_C61019","namespace":"http://www.assero.co.uk/MDRThesaurus/CDISC/V43","label":"","properties":[],"links":[],"extension_properties":[],"triples":{}}]}'
+---
+:count: 5
+:items:
+- :uri: http://www.cdisc.org/C71620/V38#C71620_C116236
+  :parent_identifier: C71620
+  :identifier: C116236
+  :notation: PNU/mL
+  :definition: Unit of measure of potency of an allergenic product expressed as a
+    number of protein nitrogen units per one milliliter of formulation.
+  :preferred_term: Allergenic Protein Nitrogen Unit per Milliliter
+  :synonym: Protein Nitrogen Unit per Milliliter
+- :uri: http://www.cdisc.org/C67154/V4#C67154_C61019
+  :parent_identifier: C67154
+  :identifier: C61019
+  :notation: Blood Urea Nitrogen
+  :definition: A measurement of the urea nitrogen in a blood specimen.
+  :preferred_term: Blood Urea Nitrogen Measurement
+  :synonym: Blood Urea Nitrogen
+- :uri: http://www.cdisc.org/C65047/V28#C65047_C74753
+  :parent_identifier: C65047
+  :identifier: C74753
+  :notation: BUNCREAT
+  :definition: A relative measurement (ratio or percentage) (ratio) of the blood urea
+    nitrogen (BUN) to the creatinine in a biological specimen.
+  :preferred_term: Blood Urea Nitrogen To Creatinine Ratio Measurement
+  :synonym: BUN/Creatinine
+- :uri: http://www.cdisc.org/C67154/V28#C67154_C74753
+  :parent_identifier: C67154
+  :identifier: C74753
+  :notation: BUN/Creatinine
+  :definition: A relative measurement (ratio or percentage) (ratio) of the blood urea
+    nitrogen (BUN) to the creatinine in a biological specimen.
+  :preferred_term: Blood Urea Nitrogen To Creatinine Ratio Measurement
+  :synonym: BUN/Creatinine
+- :uri: http://www.cdisc.org/C65047/V4#C65047_C61019
+  :parent_identifier: C65047
+  :identifier: C61019
+  :notation: BUN
+  :definition: A measurement of the urea nitrogen in a blood specimen.
+  :preferred_term: Blood Urea Nitrogen Measurement
+  :synonym: Blood Urea Nitrogen

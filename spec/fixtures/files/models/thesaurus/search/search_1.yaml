@@ -1,237 +1,159 @@
 ---
-:count: 17356
+:count: 17396
 :items:
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CL-C100129
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+- :uri: http://www.cdisc.org/C100129/V44#C100129_C123663
+  :parent_identifier: C100129
+  :identifier: C123663
+  :notation: MSWS-12
+  :definition: 12-Item Multiple Sclerosis Walking Scale (MSWS-12) (Copyright 2000
+    Neurological Outcome Measures Unit).
+  :preferred_term: 12-Item Multiple Sclerosis Walking Scale Questionnaire
+  :synonym: MSWS01
+- :uri: http://www.cdisc.org/C100129/V45#C100129
+  :parent_identifier: C100129
   :identifier: C100129
   :notation: QSCAT
-  :synonym: Category of Questionnaire
   :definition: A grouping of observations within the Questionnaire domain.
-  :preferredTerm: CDISC Questionnaire Category Terminology
-  :topLevel: true
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100759
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100759
-  :notation: BPI
-  :synonym: BPI1
-  :definition: Brief Pain Inventory (BPI) (copyright 1991 Charles S. Cleeland, PhD,
-    Pain Research Group, All Right Reserved).
-  :preferredTerm: Brief Pain Inventory Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100760
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100760
-  :notation: BPI SHORT FORM
-  :synonym: BPI2
-  :definition: Brief Pain Inventory Short Form (BPI2) (copyright 1991 Charles S. Cleeland,
-    PhD, Pain Research Group, All Right Reserved).
-  :preferredTerm: Brief Pain Inventory Short Form Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100761
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100761
-  :notation: BPRS-A
-  :synonym: BPR01
-  :definition: 'Brief Psychiatric Rating Scale - Anchored (BPRS-A) (Woerner MB, Mannuzza
-    S, and Kane JM. Anchoring the BPRS: An Aid to Improved Reliability. Psychopharmacology
-    Bulletin 1988; 24(1):112-117).'
-  :preferredTerm: Brief Psychiatric Rating Scale A Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100762
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100762
-  :notation: ADAS-COG
-  :synonym: ADC
-  :definition: 'The CDISC version of the Alzheimer''s Disease Assessment Scale-Cognitive
-    (ADAS-Cog CDISC Version) containing 15 summary-level tests. This version is based
-    on combining the total pool of ADAS-Cog tests that were observed during a review
-    of multiple case report forms administered in clinical trials of Alzheimer''s
-    disease, as well as the CRF administered in the Alzheimer''s Disease Neuroimaging
-    Initiative (ADNI) observational study. (Modified from Mohs RC, Rosen WG, Davis
-    KL. The Alzheimer''s disease assessment scale: an instrument for assessing treatment
-    efficacy. Psychopharmacol Bull 1983;19(3):448-450. Rosen WG, Mohs RC, Davis KL.
-    A new rating scale for Alzheimer''s disease. Am J Psychiatry 1984;141(11):1356-1364.
-    Mohs RC, Knopman D, Petersen RC et al. Development of cognitive instruments for
-    use in clinical trials of antidementia drugs: additions to the Alzheimer''s Disease
-    Assessment Scale that broaden its scope. The Alzheimer''s Disease Cooperative
-    Study. Alzheimer Dis Assoc Disord 1997;11 Suppl 2:S13-S21. Wouters H, van Gool
-    WA, Schmand B, Lindeboom R. Revising the ADAS-cog for a more accurate assessment
-    of cognitive impairment. Alzheimer Dis Assoc Disord 2008;22(3):236-244.).'
-  :preferredTerm: Alzheimer's Disease Assessment Scale-Cognitive CDISC Version Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100763
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100763
-  :notation: CGI
-  :synonym: CGI01
-  :definition: 'Clinical Global Impression (CGI) (Guy W: ECDEU Assessment Manual for
-    Psychopharmacology. Rockville, MD: U.S. Department of Health, Education, and Welfare;
-    1976).'
-  :preferredTerm: Clinical Global Impression Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100764
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100764
-  :notation: COMM
-  :synonym: COMM1
-  :definition: Current Opioid Misuse Measure (COMM) (copyright 2010 Inflexxion, Inc.,
-    All rights reserved).
-  :preferredTerm: Current Opioid Misuse Measure Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100765
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100765
-  :notation: C-SSRS BASELINE
-  :synonym: CSS01
-  :definition: Columbia-Suicide Severity Rating Scale (C-SSRS) Baseline Version 2009-01-14
-    (Posner, K.; Brent, D.; Lucas, C.; Gould, M.; Stanley, B.; Brown, G.; Fisher,
-    P.; Zelazny, J.; Burke, A.; Oquendo, M.; Mann, J.; copyright 2008 The Research
-    Foundation for Mental Hygiene, Inc.).
-  :preferredTerm: Columbia-Suicide Severity Rating Scale Baseline Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100766
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100766
-  :notation: FPSR
-  :synonym: FPSR1
-  :definition: 'Faces Pain Scale - Revised (FPS-R) (Hicks CL, von Baeyer CL, van Korlaar
-    I, Goodenough B. Faces Pain Scale-Revised: Toward a Common Metric in Pediatric
-    Pain Measurement. Pain 2001; 93:173-183).'
-  :preferredTerm: Faces Pain Scale Revised Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100767
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100767
-  :notation: HAMD 17
-  :synonym: HAMD1
-  :definition: The Hamilton Depression Rating Scale 17-Item (HAMD 17) (Hamilton M.
-    Development of a rating scale for primary depressive illness. Br J Soc Clin Psychol
-    1967; 6(4):278-96).
-  :preferredTerm: Hamilton Depression Rating Scale 17 Item Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100768
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100768
-  :notation: KPS SCALE
-  :synonym: KPSS
-  :definition: 'The Karnofsky Performance Status Scale (KPSS) (Karnofsky DA, Burchenal
-    JH. (1949). ''The Clinical Evaluation of Chemotherapeutic Agents in Cancer.''
-    In: MacLeod CM (Ed), Evaluation of Chemotherapeutic Agents. Columbia Univ Press.
-    Page 196).'
-  :preferredTerm: Karnofsky Performance Status Scale Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100769
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100769
-  :notation: MDS-UPDRS
-  :synonym: UPD2
-  :definition: The Movement Disorder Society version of the Unified Parkinson's Disease
-    Rating Scale (MDS-UPDRS) (copyright 2008 Movement Disorder Society. All Rights
-    Reserved).
-  :preferredTerm: Movement Disorder Society Unified Parkinson's Disease Rating Scale
+  :preferred_term: CDISC Questionnaire Category Terminology
+  :synonym: Category of Questionnaire
+- :uri: http://www.cdisc.org/C100129/V43#C100129_C122371
+  :parent_identifier: C100129
+  :identifier: C122371
+  :notation: ADHD-RS-IV HOME VERSION
+  :definition: 'ADHD Rating Scale-IV (ADHD-RS-IV) Home Version (Copyright 1998. DuPaul
+    GJ, Power TJ, Anastopoulos AD, Reid R. ADHD Rating Scale-IV: Checklists, Norms,
+    and Clinical Interpretation. New York: The Guilford Press; 1998).'
+  :preferred_term: ADHD Rating Scale-IV Home Version Questionnaire
+  :synonym: ADHD01
+- :uri: http://www.cdisc.org/C100129/V30#C100129_C102111
+  :parent_identifier: C100129
+  :identifier: C102111
+  :notation: AIMS
+  :definition: 'Abnormal Involuntary Movement Scale (AIMS) (Guy W. Ed. ECDEU Assessment
+    Manual for Psychopharmacology. Rockville MD: US Dept of Health, Education and
+    Welfare. 1976, Publication No. (ADM) 76-338).'
+  :preferred_term: Abnormal Involuntary Movement Scale Questionnaire
+  :synonym: AIMS01
+- :uri: http://www.cdisc.org/C100129/V36#C100129_C112518
+  :parent_identifier: C100129
+  :identifier: C112518
+  :notation: AQ20
+  :definition: 'Airway Questionnaire 20 (AQ20) (Barley EA, Quirk FH, Jones PW. Asthma
+    health status in clinical practice: validity of a new short and simple instrument.
+    Respir Med 1998; 92:1207-14. Copyright Reserved P.W. Jones, PhD FRCP).'
+  :preferred_term: Airway Questionnaire 20
+  :synonym: AQ01
+- :uri: http://www.cdisc.org/C100129/V41#C100129_C119098
+  :parent_identifier: C100129
+  :identifier: C119098
+  :notation: AUDIT-C
+  :definition: Alcohol Use Disorder Identification Test-Consumption Questions (AUDIT-C)
+    (Bush K, Kivlahan DR, McDonell MB, Fihn SD, Bradley KA; for the Ambulatory Care
+    Quality Improvement Project (ACQUIP). The AUDIT Alcohol Consumption Questions
+    (AUDIT-C) An Effective Brief Screening Test for Problem Drinking. Arch Intern
+    Med. Sep 14 1998;158:1789-1795).
+  :preferred_term: Alcohol Use Disorder Identification Test Alcohol Consumption Questions
     Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100771
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100771
-  :notation: MNSI
-  :synonym: MNSI1
-  :definition: Michigan Neuropathy Screening Instrument (MNSI) (copyright University
-    of Michigan, 2000, All rights reserved).
-  :preferredTerm: Michigan Neuropathy Screening Instrument Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100772
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100772
-  :notation: NPI
-  :synonym: NPI1
-  :definition: Neuropsychiatric Inventory (NPI) (copyright JL Cummings, 1994, all
-    rights reserved; permission for commercial use required; npiTEST.net).
-  :preferredTerm: Neuropsychiatric Inventory Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C100129_C100773
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C100773
-  :notation: PDQUALIF
-  :synonym: PDQ01
-  :definition: Parkinson's Disease Quality of Life Scale (PDQUALIF) (Welsh M, McDermott
-    MP, Holloway RG, Plumb S, Pfeiffer R, Hubble J, and The Parkinson Study Group.
-    Development and Testing of the Parkinson's Disease Quality of Life Scale. Movement
-    Disorders, 2003, Vol. 18; 637-645).
-  :preferredTerm: Parkinson's Disease Quality of Life Scale Questionnaire
-  :topLevel: false
-  :parentIdentifier: C100129
-  :children: []
+  :synonym: ADTC01
+- :uri: http://www.cdisc.org/C100129/V41#C100129_C119097
+  :parent_identifier: C100129
+  :identifier: C119097
+  :notation: AUDIT-SR
+  :definition: 'Alcohol Use Disorder Identification Test: Self-Report Version (AUDIT)
+    (Saunders JB, Aasland, OG, Babor, TF, De La Fuente JR, Grant M. Development of
+    the Alcohol Use Disorders Identification Test (AUDIT): WHO Collaborative Project
+    on Early Detection of Persons with harmful Alcohol Consumption-II. Addiction (1993)
+    88:791-804).'
+  :preferred_term: Alcohol Use Disorder Identification Test Self-Report Version Questionnaire
+  :synonym: ADT01
+- :uri: http://www.cdisc.org/C100129/V34#C100129_C105166
+  :parent_identifier: C100129
+  :identifier: C105166
+  :notation: ADCS-ADL
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL) (Galasko, D., Bennett, D., Sano, M., Ernesto, C., Thomas,
+    R., Grundman, M., Ferris, S., and the ADCS. "An Inventory to Assess Activities
+    of Daily Living for Clinical Trials in Alzheimer''s Disease." Alzheimer''s Disease
+    and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study Activities of Daily Living
+    Inventory Questionnaire
+  :synonym: ADL01
+- :uri: http://www.cdisc.org/C100129/V34#C100129_C106888
+  :parent_identifier: C100129
+  :identifier: C106888
+  :notation: ADCS-ADL MCI
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL), MCI Version (Galasko, D., Bennett, D., Sano, M., Ernesto,
+    C., Thomas, R., Grundman, M., Ferris, S., and the ADCS. An Inventory to Assess
+    Activities of Daily Living for Clinical Trials in Alzheimer''s Disease. Alzheimer''s
+    Disease and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study-Activities of Daily Living
+    Inventory Mild Cognitive Impairment Questionnaire
+  :synonym: ADL03
+- :uri: http://www.cdisc.org/C100129/V45#C100129_C106889
+  :parent_identifier: C100129
+  :identifier: C106889
+  :notation: ADCS-ADL SEVERE DEMENTIA
+  :definition: 'Alzheimer''s Disease Cooperative Study-Activities of Daily Living
+    Inventory (ADCS-ADL), Severe Dementia Version (Galasko, D., Bennett, D., Sano,
+    M., Ernesto, C., Thomas, R., Grundman, M., Ferris, S., and the ADCS. An Inventory
+    to Assess Activities of Daily Living for Clinical Trials in Alzheimer''s Disease.
+    Alzheimer''s Disease and Associated Disorders, 1997. Volume 11(2): S33-S39).'
+  :preferred_term: Alzheimer's Disease Cooperative Study-Activities of Daily Living
+    Inventory Severe Dementia Questionnaire
+  :synonym: ADL02
+- :uri: http://www.cdisc.org/C100129/V32#C100129_C103515
+  :parent_identifier: C100129
+  :identifier: C103515
+  :notation: ADCS-CGIC
+  :definition: Alzheimer's Disease Cooperative Study-Clinical Global Impression of
+    Change (ADCS-CGIC) (Schneider LS, Olin JT, Doody RS, Clark CM, Morris JC, Reisberg
+    B, Schmitt FA, Grundman M, Thomas RG, Ferris SH, and the Alzheimer's Disease Cooperative
+    Study. Validity and Reliability of the Alzheimer's Disease Cooperative Study-Clinical
+    Global Impression of Change. Alzheimer Disease and Associated Disorders. 1997;
+    11(2):S22-S32).
+  :preferred_term: Alzheimer's Disease Cooperative Study-Clinical Global Impression
+    of Change Questionnaire
+  :synonym: ACGC01
+- :uri: http://www.cdisc.org/C100129/V43#C100129_C122370
+  :parent_identifier: C100129
+  :identifier: C122370
+  :notation: ACQ
+  :definition: Asthma Control Questionnaire (ACQ) (The Asthma Control Questionnaire
+    is copyrighted. It may not be changed, translated or sold [paper or software]
+    without the permission of Elizabeth Juniper. Juniper EF, O'Byrne PM, Guyatt GH,
+    Ferrie PJ, King DR. Development and validation of a questionnaire to measure asthma
+    control. Eur Respir J 1999;14:902-907).
+  :preferred_term: Asthma Control Questionnaire
+  :synonym: ACQ01
+- :uri: http://www.cdisc.org/C100129/V44#C100129_C123658
+  :parent_identifier: C100129
+  :identifier: C123658
+  :notation: ACT
+  :definition: 'Asthma Control Test (ACT) (Asthma Control Test copyright, QualityMetric
+    Incorporated 2002, 2004. All Rights Reserved. Asthma Control Test is a trademark
+    of QualityMetric Incorporated. Nathan RA, Sorkness CA, Kosinski M, Schatz M, Li
+    JT, Marcus P, Murray JJ, Pendergraft TB. Development of the asthma control test:
+    a survey for assessing asthma control. J Allergy Clin Immunol. 2004 Jan;113(1):59-65).'
+  :preferred_term: Asthma Control Test Questionnaire
+  :synonym: ACT01
+- :uri: http://www.cdisc.org/C100129/V43#C100129_C122372
+  :parent_identifier: C100129
+  :identifier: C122372
+  :notation: AQLQ
+  :definition: 'Asthma Quality of Life Questionnaire (AQLQ) (The AQLQ is copyrighted.
+    It may not be altered, sold [paper or electronic], translated or adapted for another
+    medium without the permission of Elizabeth Juniper. Juniper EF, Guyatt GH, Epstein
+    RS, Ferrie PJ, Jaeschke R, Hiller TK. Evaluation of impairment of health-related
+    quality of life in asthma: development of a questionnaire for use in clinical
+    trials. Thorax 1992; 47:76-83).'
+  :preferred_term: Asthma Quality of Life Questionnaire
+  :synonym: AQLQ01
+- :uri: http://www.cdisc.org/C100129/V30#C100129_C102113
+  :parent_identifier: C100129
+  :identifier: C102113
+  :notation: BARS
+  :definition: 'Barnes Akathisia Rating Scale (BARS) (Barnes TR: A Rating Scale for
+    Drug-Induced Akathisia. British Journal of Psychiatry 154:672-676, 1989).'
+  :preferred_term: Barnes Akathisia Rating Scale Questionnaire
+  :synonym: BARS01

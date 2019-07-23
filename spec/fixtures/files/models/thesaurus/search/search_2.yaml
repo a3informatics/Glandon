@@ -1,221 +1,131 @@
 ---
 :count: 15
 :items:
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CL-C66770
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C66770
-  :notation: VSRESU
-  :synonym: Units for Vital Signs Results
-  :definition: The unit used to record and describe the result of a test investigating
-    a vital sign. (NCI)
-  :preferredTerm: CDISC SDTM Unit for Vital Sign Result Terminology
-  :topLevel: true
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C25613
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+- :uri: http://www.cdisc.org/C66770/V33#C66770_C49668
+  :parent_identifier: C66770
+  :identifier: C49668
+  :notation: cm
+  :definition: A basic unit of length equal to one hundredth of a meter or approximately
+    0.393700787 inch.
+  :preferred_term: Centimeter
+  :synonym: Centimeter
+- :uri: http://www.cdisc.org/C66770/V4#C66770_C25613
+  :parent_identifier: C66770
   :identifier: C25613
   :notation: "%"
-  :synonym: Percentage
   :definition: A fraction or ratio with 100 understood as the denominator. (NCI)
-  :preferredTerm: Percentage
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C28251
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+  :preferred_term: Percentage
+  :synonym: Percentage
+- :uri: http://www.cdisc.org/C66770/V4#C66770_C48155
+  :parent_identifier: C66770
+  :identifier: C48155
+  :notation: g
+  :definition: A metric unit of mass equal to one one thousandth of a kilogram. (NCI)
+  :preferred_term: Gram
+  :synonym: Gram
+- :uri: http://www.cdisc.org/C66770/V41#C66770_C48500
+  :parent_identifier: C66770
+  :identifier: C48500
+  :notation: in
+  :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
+  :preferred_term: Inch
+  :synonym: Inch
+- :uri: http://www.cdisc.org/C66770/V4#C66770_C48531
+  :parent_identifier: C66770
+  :identifier: C48531
+  :notation: LB
+  :definition: A traditional unit of mass. By international agreement, one avoirdupois
+    pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy pounds.
+    (NCI)
+  :preferred_term: Pound
+  :synonym: Pound
+- :uri: http://www.cdisc.org/C66770/V37#C66770_C49671
+  :parent_identifier: C66770
+  :identifier: C49671
+  :notation: kg/m2
+  :definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
+  :preferred_term: Kilogram per Square Meter
+  :synonym: Kilogram per Square Meter
+- :uri: http://www.cdisc.org/C66770/V38#C66770_C28251
+  :parent_identifier: C66770
   :identifier: C28251
   :notation: mm
-  :synonym: Millimeter
   :definition: A unit of measure equal to one thousandth of a meter. (NCI)
-  :preferredTerm: Millimeter
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C28252
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C28252
-  :notation: kg
-  :synonym: Kilogram
-  :definition: The basic SI unit of mass. It is defined as the mass of an international
-    prototype in the form of a platinum-iridium cylinder kept at Sevres in France.
-    It is the only basic unit still defined in terms of a material object, and also
-    the only one with a prefix [kilo] already in place. A kilogram is equal to 1,000
-    grams and 2.204 622 6 pounds. (NCI)
-  :preferredTerm: Kilogram
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C42559
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+  :preferred_term: Millimeter
+  :synonym: Millimeter
+- :uri: http://www.cdisc.org/C66770/V37#C66770_C49670
+  :parent_identifier: C66770
+  :identifier: C49670
+  :notation: mmHg
+  :definition: A unit of pressure equal to 0.001316 atmosphere and equal to the pressure
+    indicated by one millimeter rise of mercury in a barometer at the Earth's surface.
+    (NCI)
+  :preferred_term: Millimeter of Mercury
+  :synonym: Millimeter of Mercury
+- :uri: http://www.cdisc.org/C66770/V4#C66770_C42559
+  :parent_identifier: C66770
   :identifier: C42559
   :notation: C
-  :synonym: Degree Celsius
   :definition: A unit of temperature of the temperature scale designed so that the
     freezing point of water is 0 degrees and the boiling point is 100 degrees at standard
     atmospheric pressure. The current official definition of the Celsius sets 0.01
     C to be at the triple point of water and a degree to be 1/273.16 of the difference
     in temperature between the triple point of water and absolute zero. One degree
     Celsius represents the same temperature difference as one Kelvin. (NCI)
-  :preferredTerm: Degree Celsius
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C42569
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C42569
-  :notation: m2
-  :synonym: Square Meter
-  :definition: The SI unit of area measurement equal to a square whose sides are one
-    meter long. Square meter is equal to 10,000 square centimeters; 0.01 ares; 1.196
-    square yards; 10.76 square feet; 1550 square inches. (NCI)
-  :preferredTerm: Square Meter
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C44277
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+  :preferred_term: Degree Celsius
+  :synonym: Degree Celsius
+- :uri: http://www.cdisc.org/C66770/V17#C66770_C44277
+  :parent_identifier: C66770
   :identifier: C44277
   :notation: F
-  :synonym: Degree Fahrenheit
   :definition: The Fahrenheit temperature scale is named after the German physicist
     Gabriel Fahrenheit (1686-1736), who proposed it in 1724. In this scale, the freezing
     point of water is 32 degrees Fahrenheit and the boiling point is 212 degrees,
     placing the boiling and melting points of water 180 degrees apart. In this scale
     a degree Fahrenheit is 5/9ths of a Kelvin (or of a degree Celsius), and minus
     40 degrees Fahrenheit is equal to minus 40 degrees Celsius. (NCI)
-  :preferredTerm: Degree Fahrenheit
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C48155
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C48155
-  :notation: g
-  :synonym: Gram
-  :definition: A metric unit of mass equal to one one thousandth of a kilogram. (NCI)
-  :preferredTerm: Gram
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C48500
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C48500
-  :notation: in
-  :synonym: Inch
-  :definition: A traditional unit of length equal to 2.54 centimeters. (NCI)
-  :preferredTerm: Inch
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C48531
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C48531
-  :notation: LB
-  :synonym: Pound
-  :definition: A traditional unit of mass. By international agreement, one avoirdupois
-    pound is equal to exactly 0.453 592 37 kilogram, 16 ounces, or 1.215 28 troy pounds.
-    (NCI)
-  :preferredTerm: Pound
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C49668
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C49668
-  :notation: cm
-  :synonym: Centimeter
-  :definition: A basic unit of length equal to one hundredth of a meter or approximately
-    0.393700787 inch.
-  :preferredTerm: Centimeter
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C49670
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C49670
-  :notation: mmHg
-  :synonym: Millimeter of Mercury
-  :definition: A unit of pressure equal to 0.001316 atmosphere and equal to the pressure
-    indicated by one millimeter rise of mercury in a barometer at the Earth's surface.
-    (NCI)
-  :preferredTerm: Millimeter of Mercury
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C49671
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C49671
-  :notation: kg/m2
-  :synonym: Kilogram per Square Meter
-  :definition: A unit expressed as kilogram of mass per square meter of area.(NCI)
-  :preferredTerm: Kilogram per Square Meter
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C49673
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
-  :identifier: C49673
-  :notation: beats/min
-  :synonym: Beats per Minute
-  :definition: The number of heartbeats measured per minute time. (NCI)
-  :preferredTerm: Beats per Minute
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
-- :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-  :id: CLI-C66770_C49674
-  :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V43
-  :label: ''
-  :extension_properties: []
+  :preferred_term: Degree Fahrenheit
+  :synonym: Degree Fahrenheit
+- :uri: http://www.cdisc.org/C66770/V4#C66770_C42569
+  :parent_identifier: C66770
+  :identifier: C42569
+  :notation: m2
+  :definition: The SI unit of area measurement equal to a square whose sides are one
+    meter long. Square meter is equal to 10,000 square centimeters; 0.01 ares; 1.196
+    square yards; 10.76 square feet; 1550 square inches. (NCI)
+  :preferred_term: Square Meter
+  :synonym: Square Meter
+- :uri: http://www.cdisc.org/C66770/V16#C66770_C28252
+  :parent_identifier: C66770
+  :identifier: C28252
+  :notation: kg
+  :definition: The basic SI unit of mass. It is defined as the mass of an international
+    prototype in the form of a platinum-iridium cylinder kept at Sevres in France.
+    It is the only basic unit still defined in terms of a material object, and also
+    the only one with a prefix [kilo] already in place. A kilogram is equal to 1,000
+    grams and 2.204 622 6 pounds. (NCI)
+  :preferred_term: Kilogram
+  :synonym: Kilogram
+- :uri: http://www.cdisc.org/C66770/V43#C66770_C49674
+  :parent_identifier: C66770
   :identifier: C49674
   :notation: breaths/min
-  :synonym: Breaths per Minute
   :definition: The number of breaths (inhalation and exhalation) taken per minute
     time. (NCI)
-  :preferredTerm: Breaths per Minute
-  :topLevel: false
-  :parentIdentifier: C66770
-  :children: []
+  :preferred_term: Breaths per Minute
+  :synonym: Breaths per Minute
+- :uri: http://www.cdisc.org/C66770/V43#C66770_C49673
+  :parent_identifier: C66770
+  :identifier: C49673
+  :notation: beats/min
+  :definition: The number of heartbeats measured per minute time. (NCI)
+  :preferred_term: Beats per Minute
+  :synonym: Beats per Minute
+- :uri: http://www.cdisc.org/C66770/V43#C66770
+  :parent_identifier: C66770
+  :identifier: C66770
+  :notation: VSRESU
+  :definition: The unit used to record and describe the result of a test investigating
+    a vital sign. (NCI)
+  :preferred_term: CDISC SDTM Unit for Vital Sign Result Terminology
+  :synonym: Units for Vital Signs Results
