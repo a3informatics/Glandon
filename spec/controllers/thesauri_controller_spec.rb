@@ -21,8 +21,6 @@ describe ThesauriController do
       :start => "0", 
       :length => "15", 
       :search => { :value => "", :regex => "false" }, 
-      :id => "TH-CDISC_CDISCTerminology", 
-      :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43"
     }
     return params
   end
@@ -359,15 +357,17 @@ describe ThesauriController do
       expect(x).to eq({data: [Thesauri.new.to_h], count: 1, offset: 0})
     end
 
-    it "view a thesaurus" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
-      get :view, params
-      expect(response.content_type).to eq("text/html")
-      expect(response.code).to eq("200")    
-    end
+    # it "view a thesaurus" do
+    #   params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
+    #   get :view, params
+    #   expect(response.content_type).to eq("text/html")
+    #   expect(response.code).to eq("200")    
+    # end
 
     it "initiates a search of a single terminology" do
       params = standard_params
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      params[:id] = ct.uri.to_id
       get :search, params
       expect(response).to render_template("search")
     end
@@ -380,23 +380,30 @@ describe ThesauriController do
 
     it "obtains the search results" do
       request.env['HTTP_ACCEPT'] = "application/json"
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
+      params[:id] = ct.uri.to_id
       params[:columns]["5"][:search][:value] = "cerebral"
       params[:search][:value] = "Temporal"
-      results = Thesaurus.search(params)
-      get :search_results, params
+      results = ct.search(params)
+      get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "obtains the search results, empty search" do
       request.env['HTTP_ACCEPT'] = "application/json"
+      ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
-      results = Thesaurus.search(params)
-      get :search_results, params
+      params[:id] = ct.uri.to_id
+      results = ct.search(params)
+      get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
-      expect(response.body).to eq("{\"draw\":\"1\",\"recordsTotal\":\"15\",\"recordsFiltered\":\"0\",\"data\":[]}")    
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "export as TTL" do

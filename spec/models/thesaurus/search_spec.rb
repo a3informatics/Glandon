@@ -48,9 +48,35 @@ describe Thesaurus do
   after :all do
   end
 
+  it "checks for empty search" do
+    params = standard_params
+    expect(Thesaurus.empty_search?(params)).to eq(true)
+    params = standard_params
+    params[:columns]["0"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:columns]["1"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:columns]["2"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:columns]["3"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:columns]["4"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:columns]["5"][:search][:value] = "C66770"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+    params = standard_params
+    params[:search][:value] = "nitrogen"
+    expect(Thesaurus.empty_search?(params)).to eq(false)
+  end
+
   it "allows a terminology to be searched, no search parameters" do
     params = standard_params
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
   end
@@ -58,7 +84,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, code list identifier" do
     params = standard_params
     params[:columns]["0"][:search][:value] = "C66770"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
   end
@@ -66,7 +92,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, item identifier" do
     params = standard_params
     params[:columns]["1"][:search][:value] = "C66770"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
   end
@@ -74,7 +100,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, submission value" do
     params = standard_params
     params[:columns]["2"][:search][:value] = "TEMP"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
   end
@@ -82,7 +108,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, preferred term"  do
     params = standard_params
     params[:columns]["3"][:search][:value] = "brain"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_5.yaml", equate_method: :hash_equal)
   end
@@ -90,7 +116,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, synonym" do
     params = standard_params
     params[:columns]["4"][:search][:value] = "Category"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_6.yaml", equate_method: :hash_equal)
   end
@@ -98,7 +124,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, definition" do
     params = standard_params
     params[:columns]["5"][:search][:value] = "cerebral"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_7.yaml", equate_method: :hash_equal)
   end 
@@ -106,7 +132,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, overall" do
     params = standard_params
     params[:search][:value] = "nitrogen"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_8.yaml", equate_method: :hash_equal)
   end 
@@ -115,7 +141,7 @@ describe Thesaurus do
     params = standard_params
     params[:columns]["5"][:search][:value] = "cerebral"
     params[:search][:value] = "Temporal"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal)
   end  
@@ -124,7 +150,7 @@ describe Thesaurus do
     params = standard_params
     params[:columns]["2"][:search][:value] = "VST"
     params[:columns]["3"][:search][:value] = "Test"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_10.yaml", equate_method: :hash_equal)
   end  
@@ -134,7 +160,7 @@ describe Thesaurus do
     params[:search][:value] = "nitrogen"
     params[:order]["0"][:column] = "2"
     params[:order]["0"][:dir] = "desc"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_11.yaml", equate_method: :hash_equal)
   end 
@@ -149,13 +175,14 @@ describe Thesaurus do
     params = standard_params
     params[:search][:value] = "RACE"
     results = Thesaurus.search_current(params)
-    check_file_actual_expected(results, sub_dir, "search_13.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(results, sub_dir, "search_13.yaml", equate_method: :hash_equal, write_file: true)
+    expect(true).to eq(false)
   end
 
   it "allows a terminology to be searched, overall, case sensitivity" do
     params = standard_params
     params[:search][:value] = "nitrogen"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results1 = ct.search(params)
     params[:search][:value] = "NITROGEN"
     results2 = ct.search(params)
@@ -166,7 +193,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, item identifier, case sensitivity" do
     params = standard_params
     params[:columns]["1"][:search][:value] = "c66770"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
   end
@@ -174,7 +201,7 @@ describe Thesaurus do
   it "allows a terminology to be searched, submission value, case sensitivity" do
     params = standard_params
     params[:columns]["2"][:search][:value] = "temp"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
   end
@@ -183,7 +210,7 @@ describe Thesaurus do
     params = standard_params
     params[:columns]["5"][:search][:value] = "cERebral"
     params[:search][:value] = "TEMPoral"
-    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
     results = ct.search(params)
     check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal)
   end  
