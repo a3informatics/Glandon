@@ -731,7 +731,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 30: 2012" do
       version = 30
-      results = execute_import(version, "2012-06-29", {sdtm: true, adam: false, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2012-06-29", {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -752,7 +752,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 31: 2012" do
       version = 31
-      results = execute_import(version, "2012-08-03", {sdtm: true, adam: false, cdash: false, qs: true}, set_write_file)
+      results = execute_import(version, "2012-08-03", {sdtm: "2012-08-03", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-08-03"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -769,12 +769,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :no_change}
       ]
       check_cl_results(results, expected)
-      check_count(version, 9086)
+      check_count(version, 6781+28+134+2305)
     end
 
     it "Create version 32: 2012" do
       version = 32
-      results = execute_import(version, "2012-12-21", {sdtm: true, adam: false, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2012-12-21", {sdtm: "2012-12-21", qs: "2012-12-21", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -799,7 +799,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 33: 2013" do
       version = 33
-      results = execute_import(version, "2013-04-12", {sdtm: true, qs: true}, set_write_file)
+      results = execute_import(version, "2013-04-12", {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -820,7 +820,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 34: 2013" do
       version = 34
-      results = execute_import(version, "2013-06-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2013-06-28", {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -842,7 +842,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 35: 2013" do
       version = 35
-      results = execute_import(version, "2013-10-04", {sdtm: true, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2013-10-04", {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -855,7 +855,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C71620, status: :updated},
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :no_change},
-        {cl: :C78735, status: :no_change},     # <<<< Not sure about this one! @todo
+        {cl: :C78735, status: :no_change},    
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
@@ -863,7 +863,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 36: 2013" do
       version = 36
-      results = execute_import(version, "2013-12-20", {sdtm: true, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2013-12-20", {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -888,7 +888,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 37: 2014" do
       version = 37
-      results = execute_import(version, "2014-03-28", {sdtm: true, cdash: true, qs: true}, set_write_file)
+      results = execute_import(version, "2014-03-28", {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -901,7 +901,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C71620, status: :updated},
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :no_change},
-        {cl: :C78735, status: :no_change},  # <<<< Not sure about this one! @todo
+        {cl: :C78735, status: :no_change},  
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
@@ -909,7 +909,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 38: 2014" do
       version = 38
-      results = execute_import(version, "2014-06-27", {sdtm: true, qsft: true}, set_write_file)
+      results = execute_import(version, "2014-06-27", {sdtm: "2014-06-27", qs: "2014-03-28", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -930,7 +930,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 39: 2014" do
       version = 39
-      results = execute_import(version, "2014-09-26", {sdtm: true, qsft: true, cdash: true, adam: true}, set_write_file)
+      results = execute_import(version, "2014-09-26", {sdtm: "2014-09-26", qs: "2014-03-28", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -951,7 +951,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 40: 2014" do
       version = 40
-      results = execute_import(version, "2014-10-06", {sdtm: true}, set_write_file)
+      results = execute_import(version, "2014-10-06", {sdtm: "2014-10-06", qs: "2014-03-28", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -972,7 +972,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 41: 2014" do
       version = 41
-      results = execute_import(version, "2014-12-19", {sdtm: true, coa: true}, set_write_file)
+      results = execute_import(version, "2014-12-19", {sdtm: "2014-12-19", qs: "2014-03-28", qsft: "2014-09-26", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -998,7 +998,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 42: 2015" do
       version = 42
-      results = execute_import(version, "2015-03-27", {sdtm: true, coa: true, cdash: true}, set_write_file)
+      results = execute_import(version, "2015-03-27", {sdtm: "2015-03-27", qs: "2014-03-28", qsft: "2014-09-26", coa: "2015-03-27", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1019,7 +1019,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 43: 2015" do
       version = 43
-      results = execute_import(version, "2015-06-26", {sdtm: true, qrs: true}, set_write_file)
+      results = execute_import(version, "2015-06-26", {sdtm:  "2015-06-26", qs: "2014-03-28", qsft: "2014-09-26", coa: "2015-03-27", qrs: "2015-06-26", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1040,7 +1040,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 44: 2015" do
       version = 44
-      results = execute_import(version, "2015-09-25", {sdtm: true, qrs: true}, set_write_file)
+      results = execute_import(version, "2015-09-25", {sdtm:  "2015-09-25", qs: "2014-03-28", qsft: "2014-09-26", coa: "2015-03-27", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1061,7 +1061,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 45: 2015" do
       version = 45
-      results = execute_import(version, "2015-12-18", {sdtm: true, adam: true}, set_write_file)
+      results = execute_import(version, "2015-12-18", {sdtm:  "2015-09-25", qs: "2014-03-28", qsft: "2014-09-26", coa: "2015-03-27", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
