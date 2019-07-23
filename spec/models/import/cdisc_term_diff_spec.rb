@@ -1380,7 +1380,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change}
       ]
       check_cl_results(results, expected) 
-      check_count(version, 29095+293-159) # Duplicates (159) in CDASH C128690, C128689 
+      check_count(version, 29095+293+50-159) # Duplicates (159) in CDASH C128690, C128689 
     end
 
   end
