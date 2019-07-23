@@ -166,10 +166,6 @@
 	th:isTopConcept <http://www.cdisc.org/C85492/V19#C85492> ;
 	th:isTopConcept <http://www.cdisc.org/C85494/V19#C85494> ;
 	th:isTopConcept <http://www.cdisc.org/C85491/V19#C85491> ;
-	th:isTopConcept <http://www.cdisc.org/C81225/V19#C81225> ;
-	th:isTopConcept <http://www.cdisc.org/C81223/V19#C81223> ;
-	th:isTopConcept <http://www.cdisc.org/C81226/V19#C81226> ;
-	th:isTopConcept <http://www.cdisc.org/C81224/V19#C81224> ;
 	th:isTopConcept <http://www.cdisc.org/C78417/V19#C78417> ;
 	th:isTopConcept <http://www.cdisc.org/C78418/V19#C78418> ;
 	th:isTopConcept <http://www.cdisc.org/C78419/V19#C78419> ;
@@ -186,6 +182,10 @@
 	th:isTopConcept <http://www.cdisc.org/C78430/V19#C78430> ;
 	th:isTopConcept <http://www.cdisc.org/C78431/V19#C78431> ;
 	th:isTopConcept <http://www.cdisc.org/C83004/V19#C83004> ;
+	th:isTopConcept <http://www.cdisc.org/C81225/V19#C81225> ;
+	th:isTopConcept <http://www.cdisc.org/C81223/V19#C81223> ;
+	th:isTopConcept <http://www.cdisc.org/C81226/V19#C81226> ;
+	th:isTopConcept <http://www.cdisc.org/C81224/V19#C81224> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -762,7 +762,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "62"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
+	bo:reference <http://www.cdisc.org/C78417/V19#C78417> ;
 .
 :TH_TCR63
 	rdf:type bo:TcReference ;
@@ -771,7 +771,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "63"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+	bo:reference <http://www.cdisc.org/C78418/V19#C78418> ;
 .
 :TH_TCR64
 	rdf:type bo:TcReference ;
@@ -780,7 +780,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "64"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
+	bo:reference <http://www.cdisc.org/C78419/V19#C78419> ;
 .
 :TH_TCR65
 	rdf:type bo:TcReference ;
@@ -789,7 +789,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "65"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C81224/V19#C81224> ;
+	bo:reference <http://www.cdisc.org/C78420/V19#C78420> ;
 .
 :TH_TCR66
 	rdf:type bo:TcReference ;
@@ -798,7 +798,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "66"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78417/V19#C78417> ;
+	bo:reference <http://www.cdisc.org/C78421/V19#C78421> ;
 .
 :TH_TCR67
 	rdf:type bo:TcReference ;
@@ -807,7 +807,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "67"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78418/V19#C78418> ;
+	bo:reference <http://www.cdisc.org/C78422/V19#C78422> ;
 .
 :TH_TCR68
 	rdf:type bo:TcReference ;
@@ -816,7 +816,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "68"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78419/V19#C78419> ;
+	bo:reference <http://www.cdisc.org/C78423/V19#C78423> ;
 .
 :TH_TCR69
 	rdf:type bo:TcReference ;
@@ -825,7 +825,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "69"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78420/V19#C78420> ;
+	bo:reference <http://www.cdisc.org/C78745/V19#C78745> ;
 .
 :TH_TCR70
 	rdf:type bo:TcReference ;
@@ -834,7 +834,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "70"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78421/V19#C78421> ;
+	bo:reference <http://www.cdisc.org/C78425/V19#C78425> ;
 .
 :TH_TCR71
 	rdf:type bo:TcReference ;
@@ -843,7 +843,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "71"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78422/V19#C78422> ;
+	bo:reference <http://www.cdisc.org/C78426/V19#C78426> ;
 .
 :TH_TCR72
 	rdf:type bo:TcReference ;
@@ -852,7 +852,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "72"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78423/V19#C78423> ;
+	bo:reference <http://www.cdisc.org/C78427/V19#C78427> ;
 .
 :TH_TCR73
 	rdf:type bo:TcReference ;
@@ -861,7 +861,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "73"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78745/V19#C78745> ;
+	bo:reference <http://www.cdisc.org/C78428/V19#C78428> ;
 .
 :TH_TCR74
 	rdf:type bo:TcReference ;
@@ -870,7 +870,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "74"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78425/V19#C78425> ;
+	bo:reference <http://www.cdisc.org/C78429/V19#C78429> ;
 .
 :TH_TCR75
 	rdf:type bo:TcReference ;
@@ -879,7 +879,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "75"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78426/V19#C78426> ;
+	bo:reference <http://www.cdisc.org/C78430/V19#C78430> ;
 .
 :TH_TCR76
 	rdf:type bo:TcReference ;
@@ -888,7 +888,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "76"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78427/V19#C78427> ;
+	bo:reference <http://www.cdisc.org/C78431/V19#C78431> ;
 .
 :TH_TCR77
 	rdf:type bo:TcReference ;
@@ -897,7 +897,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "77"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78428/V19#C78428> ;
+	bo:reference <http://www.cdisc.org/C83004/V19#C83004> ;
 .
 :TH_TCR78
 	rdf:type bo:TcReference ;
@@ -906,7 +906,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "78"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78429/V19#C78429> ;
+	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
 .
 :TH_TCR79
 	rdf:type bo:TcReference ;
@@ -915,7 +915,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "79"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78430/V19#C78430> ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
 .
 :TH_TCR80
 	rdf:type bo:TcReference ;
@@ -924,7 +924,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "80"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78431/V19#C78431> ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 .
 :TH_TCR81
 	rdf:type bo:TcReference ;
@@ -933,7 +933,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "81"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C83004/V19#C83004> ;
+	bo:reference <http://www.cdisc.org/C81224/V19#C81224> ;
 .
 <http://www.cdisc.org/C87162/V19#C87162>
 	rdf:type th:ManagedConcept ;
@@ -30197,490 +30197,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "Microorganism"^^xsd:string ;
 .
-<http://www.cdisc.org/C81225/V19#C81225>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Parameter Type"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C81225/V19#C81225_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C81225/V19#C81225_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C81225"^^xsd:string ;
-	th:notation "PARAMTYP"^^xsd:string ;
-	th:definition "Parameter Type: Indicates whether the parameter is derived as a function of one or more other parameters."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C81225/V19#C81225_C81197> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8383cb535637e2c0992667e62a92d5916c99dfa1> ;
-	th:synonym <http://www.assero.co.uk/SYN#adddd3800d982a8b97fd16acf680e523cf0ad201> ;
-.
-<http://www.cdisc.org/C81225/V19#C81225_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C81225/V19#C81225_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C81225"^^xsd:string ;
-	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-	isoI:version "19"^^xsd:positiveInteger ;
-	isoI:semanticVersion "19.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C81225/V19#C81225_C81197>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Derived Flag"^^xsd:string ;
-	th:identifier "C81197"^^xsd:string ;
-	th:notation "DERIVED"^^xsd:string ;
-	th:definition "Derived: Indicates that a parameter is derived as a function of one or more other parameters."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d29628d8d6c8987b75f01fcb25104d966e3bed87> ;
-.
-<http://www.assero.co.uk/PT#d29628d8d6c8987b75f01fcb25104d966e3bed87>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Derived Flag"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#8383cb535637e2c0992667e62a92d5916c99dfa1>
-	rdf:type th:PreferredTerm ;
-	isoC:label "CDISC ADaM Parameter Type Terminology"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#adddd3800d982a8b97fd16acf680e523cf0ad201>
-	rdf:type th:Synonym ;
-	isoC:label "Parameter Type"^^xsd:string ;
-.
-<http://www.cdisc.org/C81223/V19#C81223>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Date Imputation Flag"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C81223/V19#C81223_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C81223/V19#C81223_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C81223"^^xsd:string ;
-	th:notation "DATEFL"^^xsd:string ;
-	th:definition "Date Imputation Flag: Indicates the level of imputation reflected in a date value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81210> ;
-	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81211> ;
-	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81212> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0a1f4855292524fd90517ae9edefdd41a5094ea5> ;
-	th:synonym <http://www.assero.co.uk/SYN#5a15063e23aed6999b9b7ff29582d6827421cbf0> ;
-.
-<http://www.cdisc.org/C81223/V19#C81223_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C81223/V19#C81223_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C81223"^^xsd:string ;
-	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-	isoI:version "19"^^xsd:positiveInteger ;
-	isoI:semanticVersion "19.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C81223/V19#C81223_C81210>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Year Month Day Imputed"^^xsd:string ;
-	th:identifier "C81210"^^xsd:string ;
-	th:notation "Y"^^xsd:string ;
-	th:definition "Year Imputed: Entire date (year, month and day) is imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5c3d164d9ea97394ec55cc346306d71f35f9c7ca> ;
-.
-<http://www.assero.co.uk/PT#5c3d164d9ea97394ec55cc346306d71f35f9c7ca>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Year Month Day Imputed"^^xsd:string ;
-.
-<http://www.cdisc.org/C81223/V19#C81223_C81211>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Month Day Imputed"^^xsd:string ;
-	th:identifier "C81211"^^xsd:string ;
-	th:notation "M"^^xsd:string ;
-	th:definition "Month Imputed: Month and day are imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#092d9b65939f651bea1e43feb9ed81663088e755> ;
-.
-<http://www.assero.co.uk/PT#092d9b65939f651bea1e43feb9ed81663088e755>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Month Day Imputed"^^xsd:string ;
-.
-<http://www.cdisc.org/C81223/V19#C81223_C81212>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Day Imputed"^^xsd:string ;
-	th:identifier "C81212"^^xsd:string ;
-	th:notation "D"^^xsd:string ;
-	th:definition "Day Imputed: Day is imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#eab0708af5b0cf95ead24c21336a29b4ce3b74eb> ;
-.
-<http://www.assero.co.uk/PT#eab0708af5b0cf95ead24c21336a29b4ce3b74eb>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Day Imputed"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#0a1f4855292524fd90517ae9edefdd41a5094ea5>
-	rdf:type th:PreferredTerm ;
-	isoC:label "CDISC ADaM Date Imputation Flag Terminology"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#5a15063e23aed6999b9b7ff29582d6827421cbf0>
-	rdf:type th:Synonym ;
-	isoC:label "Date Imputation Flag"^^xsd:string ;
-.
-<http://www.cdisc.org/C81226/V19#C81226>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Time Imputation Flag"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C81226/V19#C81226_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C81226/V19#C81226_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C81226"^^xsd:string ;
-	th:notation "TIMEFL"^^xsd:string ;
-	th:definition "Time Imputation Flag: Indicates the level of imputation reflected in a time value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81214> ;
-	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81215> ;
-	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81213> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0de99b9817976c3e4689ab3a808e3f66d185719f> ;
-	th:synonym <http://www.assero.co.uk/SYN#21fd4691b139f8a01fee0188d355c552fb4094a3> ;
-.
-<http://www.cdisc.org/C81226/V19#C81226_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C81226/V19#C81226_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C81226"^^xsd:string ;
-	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-	isoI:version "19"^^xsd:positiveInteger ;
-	isoI:semanticVersion "19.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C81226/V19#C81226_C81214>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Minutes Seconds Imputed"^^xsd:string ;
-	th:identifier "C81214"^^xsd:string ;
-	th:notation "M"^^xsd:string ;
-	th:definition "Minutes Imputed: Minutes and seconds are imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5c2fdcb90ab8959910ef97c9714b564ec05bf08f> ;
-.
-<http://www.assero.co.uk/PT#5c2fdcb90ab8959910ef97c9714b564ec05bf08f>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Minutes Seconds Imputed"^^xsd:string ;
-.
-<http://www.cdisc.org/C81226/V19#C81226_C81215>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Seconds Imputed"^^xsd:string ;
-	th:identifier "C81215"^^xsd:string ;
-	th:notation "S"^^xsd:string ;
-	th:definition "Seconds Imputed: Seconds are imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#59c478ab456735198f1a2ca95ef59700d2e41140> ;
-.
-<http://www.assero.co.uk/PT#59c478ab456735198f1a2ca95ef59700d2e41140>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Seconds Imputed"^^xsd:string ;
-.
-<http://www.cdisc.org/C81226/V19#C81226_C81213>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Hours Minutes Seconds Imputed"^^xsd:string ;
-	th:identifier "C81213"^^xsd:string ;
-	th:notation "H"^^xsd:string ;
-	th:definition "Hours Imputed: Entire time (hours, minutes and seconds) is imputed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#7ba429e3dbacf79e815a39e70d10fe9528cc1b64> ;
-.
-<http://www.assero.co.uk/PT#7ba429e3dbacf79e815a39e70d10fe9528cc1b64>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Hours Minutes Seconds Imputed"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#0de99b9817976c3e4689ab3a808e3f66d185719f>
-	rdf:type th:PreferredTerm ;
-	isoC:label "CDISC ADaM Time Imputation Flag Terminology"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#21fd4691b139f8a01fee0188d355c552fb4094a3>
-	rdf:type th:Synonym ;
-	isoC:label "Time Imputation Flag"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Derivation Type"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C81224/V19#C81224_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C81224/V19#C81224_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C81224"^^xsd:string ;
-	th:notation "DTYPE"^^xsd:string ;
-	th:definition "Derivation Type: Analysis value derivation method."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C53331> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81198> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81199> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81200> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81201> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81203> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81204> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81205> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81206> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81207> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81208> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81209> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82866> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82867> ;
-	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82868> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a5dd0cbd8df9cc6b3c4d7015be8626013d797dd7> ;
-	th:synonym <http://www.assero.co.uk/SYN#fe8b1c115fc488500beffe342167ba0ae516f50e> ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C81224"^^xsd:string ;
-	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-	isoI:version "19"^^xsd:positiveInteger ;
-	isoI:semanticVersion "19.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C53331>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Maximum Likelihood Estimation"^^xsd:string ;
-	th:identifier "C53331"^^xsd:string ;
-	th:notation "ML"^^xsd:string ;
-	th:definition "Maximum Likelihood: A data imputation technique which populates missing values with estimates that maximize the probability of observing what has in fact been observed."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#13997640f4eb1e5d8a970b8971b2519729576184> ;
-.
-<http://www.assero.co.uk/PT#13997640f4eb1e5d8a970b8971b2519729576184>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Maximum Likelihood Estimation"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81198>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Last Observation Carried Forward Imputation Technique"^^xsd:string ;
-	th:identifier "C81198"^^xsd:string ;
-	th:notation "LOCF"^^xsd:string ;
-	th:definition "Last Observation Carried Forward: A data imputation technique which populates missing values with the subject's previous nonmissing value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c2eca4c488416b02f0b110f95b9ddd367aa04f8e> ;
-.
-<http://www.assero.co.uk/PT#c2eca4c488416b02f0b110f95b9ddd367aa04f8e>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Last Observation Carried Forward Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81199>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Worst Observation Carried Forward Imputation Technique"^^xsd:string ;
-	th:identifier "C81199"^^xsd:string ;
-	th:notation "WOCF"^^xsd:string ;
-	th:definition "Worst Observation Carried Forward: A data imputation technique which populates missing values with the subject's worst-case nonmissing value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bbbee7d59f81a4a6ac62aae6a6669355aa91ea04> ;
-.
-<http://www.assero.co.uk/PT#bbbee7d59f81a4a6ac62aae6a6669355aa91ea04>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Worst Observation Carried Forward Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81200>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Screening Observation Carried Forward Imputation Technique"^^xsd:string ;
-	th:identifier "C81200"^^xsd:string ;
-	th:notation "SOCF"^^xsd:string ;
-	th:definition "Screening Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing screening observation."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5297bc5b45af90778af3ddd77be8e59d91de7ef2> ;
-.
-<http://www.assero.co.uk/PT#5297bc5b45af90778af3ddd77be8e59d91de7ef2>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Screening Observation Carried Forward Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81201>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Baseline Observation Carried Forward Imputation Technique"^^xsd:string ;
-	th:identifier "C81201"^^xsd:string ;
-	th:notation "BLOCF"^^xsd:string ;
-	th:definition "Baseline Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing baseline observation."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#0cf077f51702546fa20158823cfc4402ad37f770> ;
-.
-<http://www.assero.co.uk/PT#0cf077f51702546fa20158823cfc4402ad37f770>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Baseline Observation Carried Forward Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81203>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Worst Case Imputation Technique"^^xsd:string ;
-	th:identifier "C81203"^^xsd:string ;
-	th:notation "WC"^^xsd:string ;
-	th:definition "Worst Case: A data imputation technique which populates missing values with the worst possible outcome."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8e459c699a55fe154fd465addbbf8560767106f7> ;
-.
-<http://www.assero.co.uk/PT#8e459c699a55fe154fd465addbbf8560767106f7>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Worst Case Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81204>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Mean of Other Group Imputation Technique"^^xsd:string ;
-	th:identifier "C81204"^^xsd:string ;
-	th:notation "MOTH"^^xsd:string ;
-	th:definition "Mean of Other Group: A data imputation technique which populates missing values with the mean value from a comparator or reference group."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#a07a0e1508b304700f1129b3c53864de28042068> ;
-.
-<http://www.assero.co.uk/PT#a07a0e1508b304700f1129b3c53864de28042068>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Mean of Other Group Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81205>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Penultimate Observation Carried Forward Imputation Technique"^^xsd:string ;
-	th:identifier "C81205"^^xsd:string ;
-	th:notation "POCF"^^xsd:string ;
-	th:definition "Penultimate Observation Carried Forward: A data imputation technique which populates missing values with the subject's next-to-last nonmissing value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e026c480c5a5b794e4c38ce6d546a803b3a964a4> ;
-.
-<http://www.assero.co.uk/PT#e026c480c5a5b794e4c38ce6d546a803b3a964a4>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Penultimate Observation Carried Forward Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81206>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Worst Observed Value in a Group Imputation Technique"^^xsd:string ;
-	th:identifier "C81206"^^xsd:string ;
-	th:notation "WOV"^^xsd:string ;
-	th:definition "Worst Observed Value in a Group: A data imputation technique which populates missing values with the worst value observed in a group of subjects."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#7bfd8f067c824f85262c730cb7d8c7ccc532768e> ;
-.
-<http://www.assero.co.uk/PT#7bfd8f067c824f85262c730cb7d8c7ccc532768e>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Worst Observed Value in a Group Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81207>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Mean Observed Value in a Group Imputation Technique"^^xsd:string ;
-	th:identifier "C81207"^^xsd:string ;
-	th:notation "MOV"^^xsd:string ;
-	th:definition "Mean Observed Value in a Group: A data imputation technique which populates missing values with the mean value observed in a group of subjects."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e9905bb7be7de08b3a108a5f1fa68654f8229953> ;
-.
-<http://www.assero.co.uk/PT#e9905bb7be7de08b3a108a5f1fa68654f8229953>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Mean Observed Value in a Group Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81208>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Interpolation Imputation Technique"^^xsd:string ;
-	th:identifier "C81208"^^xsd:string ;
-	th:notation "INTERP"^^xsd:string ;
-	th:definition "Interpolation: A method of imputation involving a missing value that is between known values and is estimated by a function of those known values."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#1c8b3c5068d7cd8413b7e292d72bfcb0760967fe> ;
-.
-<http://www.assero.co.uk/PT#1c8b3c5068d7cd8413b7e292d72bfcb0760967fe>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Interpolation Imputation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C81209>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Average of Value Derivation Technique"^^xsd:string ;
-	th:identifier "C81209"^^xsd:string ;
-	th:notation "AVERAGE"^^xsd:string ;
-	th:definition "Average: A data derivation technique which calculates a subject's average value over a defined set of records."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#557fea4a02a333d02592e5cd93e22ae0b21b965d> ;
-.
-<http://www.assero.co.uk/PT#557fea4a02a333d02592e5cd93e22ae0b21b965d>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Average of Value Derivation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C82866>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Endpoint Value Derivation Technique"^^xsd:string ;
-	th:identifier "C82866"^^xsd:string ;
-	th:notation "ENDPOINT"^^xsd:string ;
-	th:definition "Endpoint: A data derivation technique which calculates a subject's analysis end point value."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#86e545b978243892b23e28d05e8ce3091696e4fd> ;
-.
-<http://www.assero.co.uk/PT#86e545b978243892b23e28d05e8ce3091696e4fd>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Endpoint Value Derivation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C82867>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Minimum Value Derivation Technique"^^xsd:string ;
-	th:identifier "C82867"^^xsd:string ;
-	th:notation "MINIMUM"^^xsd:string ;
-	th:definition "Minimum: A data derivation technique which calculates a subject's minimum value over a defined set of records."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#183a72313d8399424aeee3d8769199e667eff195> ;
-.
-<http://www.assero.co.uk/PT#183a72313d8399424aeee3d8769199e667eff195>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Minimum Value Derivation Technique"^^xsd:string ;
-.
-<http://www.cdisc.org/C81224/V19#C81224_C82868>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Maximum Value Derivation Technique"^^xsd:string ;
-	th:identifier "C82868"^^xsd:string ;
-	th:notation "MAXIMUM"^^xsd:string ;
-	th:definition "Maximum: A data derivation technique which calculates a subject's maximum value over a defined set of records."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b4e0dcbe8e021403bc78528e522b7604e2ab1469> ;
-.
-<http://www.assero.co.uk/PT#b4e0dcbe8e021403bc78528e522b7604e2ab1469>
-	rdf:type th:PreferredTerm ;
-	isoC:label "Maximum Value Derivation Technique"^^xsd:string ;
-.
-<http://www.assero.co.uk/PT#a5dd0cbd8df9cc6b3c4d7015be8626013d797dd7>
-	rdf:type th:PreferredTerm ;
-	isoC:label "CDISC ADaM Derivation Type Terminology"^^xsd:string ;
-.
-<http://www.assero.co.uk/SYN#fe8b1c115fc488500beffe342167ba0ae516f50e>
-	rdf:type th:Synonym ;
-	isoC:label "Derivation Type"^^xsd:string ;
-.
 <http://www.cdisc.org/C78417/V19#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
@@ -32742,4 +32258,488 @@
 <http://www.assero.co.uk/SYN#c208d4b7e2fd2077d102a99fdb000c728cb3b66c>
 	rdf:type th:Synonym ;
 	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
+.
+<http://www.cdisc.org/C81225/V19#C81225>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Parameter Type"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C81225/V19#C81225_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C81225/V19#C81225_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C81225"^^xsd:string ;
+	th:notation "PARAMTYP"^^xsd:string ;
+	th:definition "Parameter Type: Indicates whether the parameter is derived as a function of one or more other parameters."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C81225/V19#C81225_C81197> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8383cb535637e2c0992667e62a92d5916c99dfa1> ;
+	th:synonym <http://www.assero.co.uk/SYN#adddd3800d982a8b97fd16acf680e523cf0ad201> ;
+.
+<http://www.cdisc.org/C81225/V19#C81225_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C81225/V19#C81225_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C81225"^^xsd:string ;
+	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+	isoI:version "19"^^xsd:positiveInteger ;
+	isoI:semanticVersion "19.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C81225/V19#C81225_C81197>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Derived Flag"^^xsd:string ;
+	th:identifier "C81197"^^xsd:string ;
+	th:notation "DERIVED"^^xsd:string ;
+	th:definition "Derived: Indicates that a parameter is derived as a function of one or more other parameters."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d29628d8d6c8987b75f01fcb25104d966e3bed87> ;
+.
+<http://www.assero.co.uk/PT#d29628d8d6c8987b75f01fcb25104d966e3bed87>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Derived Flag"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#8383cb535637e2c0992667e62a92d5916c99dfa1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC ADaM Parameter Type Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#adddd3800d982a8b97fd16acf680e523cf0ad201>
+	rdf:type th:Synonym ;
+	isoC:label "Parameter Type"^^xsd:string ;
+.
+<http://www.cdisc.org/C81223/V19#C81223>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Date Imputation Flag"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C81223/V19#C81223_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C81223/V19#C81223_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C81223"^^xsd:string ;
+	th:notation "DATEFL"^^xsd:string ;
+	th:definition "Date Imputation Flag: Indicates the level of imputation reflected in a date value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81210> ;
+	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81211> ;
+	th:narrower <http://www.cdisc.org/C81223/V19#C81223_C81212> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0a1f4855292524fd90517ae9edefdd41a5094ea5> ;
+	th:synonym <http://www.assero.co.uk/SYN#5a15063e23aed6999b9b7ff29582d6827421cbf0> ;
+.
+<http://www.cdisc.org/C81223/V19#C81223_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C81223/V19#C81223_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C81223"^^xsd:string ;
+	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+	isoI:version "19"^^xsd:positiveInteger ;
+	isoI:semanticVersion "19.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C81223/V19#C81223_C81210>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Year Month Day Imputed"^^xsd:string ;
+	th:identifier "C81210"^^xsd:string ;
+	th:notation "Y"^^xsd:string ;
+	th:definition "Year Imputed: Entire date (year, month and day) is imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5c3d164d9ea97394ec55cc346306d71f35f9c7ca> ;
+.
+<http://www.assero.co.uk/PT#5c3d164d9ea97394ec55cc346306d71f35f9c7ca>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Year Month Day Imputed"^^xsd:string ;
+.
+<http://www.cdisc.org/C81223/V19#C81223_C81211>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Month Day Imputed"^^xsd:string ;
+	th:identifier "C81211"^^xsd:string ;
+	th:notation "M"^^xsd:string ;
+	th:definition "Month Imputed: Month and day are imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#092d9b65939f651bea1e43feb9ed81663088e755> ;
+.
+<http://www.assero.co.uk/PT#092d9b65939f651bea1e43feb9ed81663088e755>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Month Day Imputed"^^xsd:string ;
+.
+<http://www.cdisc.org/C81223/V19#C81223_C81212>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Day Imputed"^^xsd:string ;
+	th:identifier "C81212"^^xsd:string ;
+	th:notation "D"^^xsd:string ;
+	th:definition "Day Imputed: Day is imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#eab0708af5b0cf95ead24c21336a29b4ce3b74eb> ;
+.
+<http://www.assero.co.uk/PT#eab0708af5b0cf95ead24c21336a29b4ce3b74eb>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Day Imputed"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#0a1f4855292524fd90517ae9edefdd41a5094ea5>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC ADaM Date Imputation Flag Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#5a15063e23aed6999b9b7ff29582d6827421cbf0>
+	rdf:type th:Synonym ;
+	isoC:label "Date Imputation Flag"^^xsd:string ;
+.
+<http://www.cdisc.org/C81226/V19#C81226>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Time Imputation Flag"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C81226/V19#C81226_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C81226/V19#C81226_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C81226"^^xsd:string ;
+	th:notation "TIMEFL"^^xsd:string ;
+	th:definition "Time Imputation Flag: Indicates the level of imputation reflected in a time value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81214> ;
+	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81215> ;
+	th:narrower <http://www.cdisc.org/C81226/V19#C81226_C81213> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0de99b9817976c3e4689ab3a808e3f66d185719f> ;
+	th:synonym <http://www.assero.co.uk/SYN#21fd4691b139f8a01fee0188d355c552fb4094a3> ;
+.
+<http://www.cdisc.org/C81226/V19#C81226_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C81226/V19#C81226_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C81226"^^xsd:string ;
+	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+	isoI:version "19"^^xsd:positiveInteger ;
+	isoI:semanticVersion "19.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C81226/V19#C81226_C81214>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Minutes Seconds Imputed"^^xsd:string ;
+	th:identifier "C81214"^^xsd:string ;
+	th:notation "M"^^xsd:string ;
+	th:definition "Minutes Imputed: Minutes and seconds are imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5c2fdcb90ab8959910ef97c9714b564ec05bf08f> ;
+.
+<http://www.assero.co.uk/PT#5c2fdcb90ab8959910ef97c9714b564ec05bf08f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Minutes Seconds Imputed"^^xsd:string ;
+.
+<http://www.cdisc.org/C81226/V19#C81226_C81215>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Seconds Imputed"^^xsd:string ;
+	th:identifier "C81215"^^xsd:string ;
+	th:notation "S"^^xsd:string ;
+	th:definition "Seconds Imputed: Seconds are imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#59c478ab456735198f1a2ca95ef59700d2e41140> ;
+.
+<http://www.assero.co.uk/PT#59c478ab456735198f1a2ca95ef59700d2e41140>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Seconds Imputed"^^xsd:string ;
+.
+<http://www.cdisc.org/C81226/V19#C81226_C81213>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Hours Minutes Seconds Imputed"^^xsd:string ;
+	th:identifier "C81213"^^xsd:string ;
+	th:notation "H"^^xsd:string ;
+	th:definition "Hours Imputed: Entire time (hours, minutes and seconds) is imputed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7ba429e3dbacf79e815a39e70d10fe9528cc1b64> ;
+.
+<http://www.assero.co.uk/PT#7ba429e3dbacf79e815a39e70d10fe9528cc1b64>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Hours Minutes Seconds Imputed"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#0de99b9817976c3e4689ab3a808e3f66d185719f>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC ADaM Time Imputation Flag Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#21fd4691b139f8a01fee0188d355c552fb4094a3>
+	rdf:type th:Synonym ;
+	isoC:label "Time Imputation Flag"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Derivation Type"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C81224/V19#C81224_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C81224/V19#C81224_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C81224"^^xsd:string ;
+	th:notation "DTYPE"^^xsd:string ;
+	th:definition "Derivation Type: Analysis value derivation method."^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C53331> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81198> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81199> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81200> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81201> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81203> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81204> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81205> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81206> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81207> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81208> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C81209> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82866> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82867> ;
+	th:narrower <http://www.cdisc.org/C81224/V19#C81224_C82868> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a5dd0cbd8df9cc6b3c4d7015be8626013d797dd7> ;
+	th:synonym <http://www.assero.co.uk/SYN#fe8b1c115fc488500beffe342167ba0ae516f50e> ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C81224"^^xsd:string ;
+	isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+	isoI:version "19"^^xsd:positiveInteger ;
+	isoI:semanticVersion "19.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C53331>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Maximum Likelihood Estimation"^^xsd:string ;
+	th:identifier "C53331"^^xsd:string ;
+	th:notation "ML"^^xsd:string ;
+	th:definition "Maximum Likelihood: A data imputation technique which populates missing values with estimates that maximize the probability of observing what has in fact been observed."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#13997640f4eb1e5d8a970b8971b2519729576184> ;
+.
+<http://www.assero.co.uk/PT#13997640f4eb1e5d8a970b8971b2519729576184>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Maximum Likelihood Estimation"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81198>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Last Observation Carried Forward Imputation Technique"^^xsd:string ;
+	th:identifier "C81198"^^xsd:string ;
+	th:notation "LOCF"^^xsd:string ;
+	th:definition "Last Observation Carried Forward: A data imputation technique which populates missing values with the subject's previous nonmissing value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c2eca4c488416b02f0b110f95b9ddd367aa04f8e> ;
+.
+<http://www.assero.co.uk/PT#c2eca4c488416b02f0b110f95b9ddd367aa04f8e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Last Observation Carried Forward Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81199>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Worst Observation Carried Forward Imputation Technique"^^xsd:string ;
+	th:identifier "C81199"^^xsd:string ;
+	th:notation "WOCF"^^xsd:string ;
+	th:definition "Worst Observation Carried Forward: A data imputation technique which populates missing values with the subject's worst-case nonmissing value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#bbbee7d59f81a4a6ac62aae6a6669355aa91ea04> ;
+.
+<http://www.assero.co.uk/PT#bbbee7d59f81a4a6ac62aae6a6669355aa91ea04>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Worst Observation Carried Forward Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81200>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Screening Observation Carried Forward Imputation Technique"^^xsd:string ;
+	th:identifier "C81200"^^xsd:string ;
+	th:notation "SOCF"^^xsd:string ;
+	th:definition "Screening Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing screening observation."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#5297bc5b45af90778af3ddd77be8e59d91de7ef2> ;
+.
+<http://www.assero.co.uk/PT#5297bc5b45af90778af3ddd77be8e59d91de7ef2>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Screening Observation Carried Forward Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81201>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Baseline Observation Carried Forward Imputation Technique"^^xsd:string ;
+	th:identifier "C81201"^^xsd:string ;
+	th:notation "BLOCF"^^xsd:string ;
+	th:definition "Baseline Observation Carried Forward: A data imputation technique which populates missing values with the subject's nonmissing baseline observation."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0cf077f51702546fa20158823cfc4402ad37f770> ;
+.
+<http://www.assero.co.uk/PT#0cf077f51702546fa20158823cfc4402ad37f770>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Baseline Observation Carried Forward Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81203>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Worst Case Imputation Technique"^^xsd:string ;
+	th:identifier "C81203"^^xsd:string ;
+	th:notation "WC"^^xsd:string ;
+	th:definition "Worst Case: A data imputation technique which populates missing values with the worst possible outcome."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#8e459c699a55fe154fd465addbbf8560767106f7> ;
+.
+<http://www.assero.co.uk/PT#8e459c699a55fe154fd465addbbf8560767106f7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Worst Case Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81204>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Mean of Other Group Imputation Technique"^^xsd:string ;
+	th:identifier "C81204"^^xsd:string ;
+	th:notation "MOTH"^^xsd:string ;
+	th:definition "Mean of Other Group: A data imputation technique which populates missing values with the mean value from a comparator or reference group."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a07a0e1508b304700f1129b3c53864de28042068> ;
+.
+<http://www.assero.co.uk/PT#a07a0e1508b304700f1129b3c53864de28042068>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Mean of Other Group Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81205>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Penultimate Observation Carried Forward Imputation Technique"^^xsd:string ;
+	th:identifier "C81205"^^xsd:string ;
+	th:notation "POCF"^^xsd:string ;
+	th:definition "Penultimate Observation Carried Forward: A data imputation technique which populates missing values with the subject's next-to-last nonmissing value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e026c480c5a5b794e4c38ce6d546a803b3a964a4> ;
+.
+<http://www.assero.co.uk/PT#e026c480c5a5b794e4c38ce6d546a803b3a964a4>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Penultimate Observation Carried Forward Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81206>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Worst Observed Value in a Group Imputation Technique"^^xsd:string ;
+	th:identifier "C81206"^^xsd:string ;
+	th:notation "WOV"^^xsd:string ;
+	th:definition "Worst Observed Value in a Group: A data imputation technique which populates missing values with the worst value observed in a group of subjects."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7bfd8f067c824f85262c730cb7d8c7ccc532768e> ;
+.
+<http://www.assero.co.uk/PT#7bfd8f067c824f85262c730cb7d8c7ccc532768e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Worst Observed Value in a Group Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81207>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Mean Observed Value in a Group Imputation Technique"^^xsd:string ;
+	th:identifier "C81207"^^xsd:string ;
+	th:notation "MOV"^^xsd:string ;
+	th:definition "Mean Observed Value in a Group: A data imputation technique which populates missing values with the mean value observed in a group of subjects."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e9905bb7be7de08b3a108a5f1fa68654f8229953> ;
+.
+<http://www.assero.co.uk/PT#e9905bb7be7de08b3a108a5f1fa68654f8229953>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Mean Observed Value in a Group Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81208>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Interpolation Imputation Technique"^^xsd:string ;
+	th:identifier "C81208"^^xsd:string ;
+	th:notation "INTERP"^^xsd:string ;
+	th:definition "Interpolation: A method of imputation involving a missing value that is between known values and is estimated by a function of those known values."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1c8b3c5068d7cd8413b7e292d72bfcb0760967fe> ;
+.
+<http://www.assero.co.uk/PT#1c8b3c5068d7cd8413b7e292d72bfcb0760967fe>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Interpolation Imputation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C81209>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Average of Value Derivation Technique"^^xsd:string ;
+	th:identifier "C81209"^^xsd:string ;
+	th:notation "AVERAGE"^^xsd:string ;
+	th:definition "Average: A data derivation technique which calculates a subject's average value over a defined set of records."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#557fea4a02a333d02592e5cd93e22ae0b21b965d> ;
+.
+<http://www.assero.co.uk/PT#557fea4a02a333d02592e5cd93e22ae0b21b965d>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Average of Value Derivation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C82866>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Endpoint Value Derivation Technique"^^xsd:string ;
+	th:identifier "C82866"^^xsd:string ;
+	th:notation "ENDPOINT"^^xsd:string ;
+	th:definition "Endpoint: A data derivation technique which calculates a subject's analysis end point value."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#86e545b978243892b23e28d05e8ce3091696e4fd> ;
+.
+<http://www.assero.co.uk/PT#86e545b978243892b23e28d05e8ce3091696e4fd>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Endpoint Value Derivation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C82867>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Minimum Value Derivation Technique"^^xsd:string ;
+	th:identifier "C82867"^^xsd:string ;
+	th:notation "MINIMUM"^^xsd:string ;
+	th:definition "Minimum: A data derivation technique which calculates a subject's minimum value over a defined set of records."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#183a72313d8399424aeee3d8769199e667eff195> ;
+.
+<http://www.assero.co.uk/PT#183a72313d8399424aeee3d8769199e667eff195>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Minimum Value Derivation Technique"^^xsd:string ;
+.
+<http://www.cdisc.org/C81224/V19#C81224_C82868>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Maximum Value Derivation Technique"^^xsd:string ;
+	th:identifier "C82868"^^xsd:string ;
+	th:notation "MAXIMUM"^^xsd:string ;
+	th:definition "Maximum: A data derivation technique which calculates a subject's maximum value over a defined set of records."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#b4e0dcbe8e021403bc78528e522b7604e2ab1469> ;
+.
+<http://www.assero.co.uk/PT#b4e0dcbe8e021403bc78528e522b7604e2ab1469>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Maximum Value Derivation Technique"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#a5dd0cbd8df9cc6b3c4d7015be8626013d797dd7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC ADaM Derivation Type Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#fe8b1c115fc488500beffe342167ba0ae516f50e>
+	rdf:type th:Synonym ;
+	isoC:label "Derivation Type"^^xsd:string ;
 .
