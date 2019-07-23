@@ -1210,7 +1210,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change}
       ]
       check_cl_results(results, expected)
-      check_count(version, 21977+223+45
+      check_count(version, 21977+223+45)
     end
 
     it "Create version 52: 2017" do
