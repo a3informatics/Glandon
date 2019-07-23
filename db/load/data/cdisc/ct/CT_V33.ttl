@@ -297,13 +297,13 @@
 	th:isTopConcept <http://www.cdisc.org/C67154/V33#C67154> ;
 	th:isTopConcept <http://www.cdisc.org/C71113/V33#C71113> ;
 	th:isTopConcept <http://www.cdisc.org/C71148/V29#C71148> ;
-	th:isTopConcept <http://www.cdisc.org/C71150/V33#C71150> ;
+	th:isTopConcept <http://www.cdisc.org/C71150/V31#C71150> ;
 	th:isTopConcept <http://www.cdisc.org/C71153/V33#C71153> ;
 	th:isTopConcept <http://www.cdisc.org/C71152/V33#C71152> ;
 	th:isTopConcept <http://www.cdisc.org/C71151/V26#C71151> ;
 	th:isTopConcept <http://www.cdisc.org/C71620/V33#C71620> ;
 	th:isTopConcept <http://www.cdisc.org/C74456/V33#C74456> ;
-	th:isTopConcept <http://www.cdisc.org/C74558/V9#C74558> ;
+	th:isTopConcept <http://www.cdisc.org/C74558/V8#C74558> ;
 	th:isTopConcept <http://www.cdisc.org/C76351/V32#C76351> ;
 	th:isTopConcept <http://www.cdisc.org/C74561/V8#C74561> ;
 	th:isTopConcept <http://www.cdisc.org/C74559/V32#C74559> ;
@@ -359,7 +359,7 @@
 	th:isTopConcept <http://www.cdisc.org/C101846/V32#C101846> ;
 	th:isTopConcept <http://www.cdisc.org/C101854/V32#C101854> ;
 	th:isTopConcept <http://www.cdisc.org/C101853/V32#C101853> ;
-	th:isTopConcept <http://www.cdisc.org/C101859/V33#C101859> ;
+	th:isTopConcept <http://www.cdisc.org/C101859/V32#C101859> ;
 	th:isTopConcept <http://www.cdisc.org/C101850/V32#C101850> ;
 	th:isTopConcept <http://www.cdisc.org/C101857/V32#C101857> ;
 	th:isTopConcept <http://www.cdisc.org/C101863/V32#C101863> ;
@@ -842,7 +842,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "36"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C71150/V33#C71150> ;
+	bo:reference <http://www.cdisc.org/C71150/V31#C71150> ;
 .
 :TH_TCR37
 	rdf:type bo:TcReference ;
@@ -896,7 +896,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "42"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C74558/V9#C74558> ;
+	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
 .
 :TH_TCR43
 	rdf:type bo:TcReference ;
@@ -1400,7 +1400,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "98"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101859/V33#C101859> ;
+	bo:reference <http://www.cdisc.org/C101859/V32#C101859> ;
 .
 :TH_TCR99
 	rdf:type bo:TcReference ;
@@ -3412,7 +3412,7 @@
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C29269> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C48624> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42965> ;
-	th:narrower <http://www.cdisc.org/C66726/V33#C66726_C42966> ;
+	th:narrower <http://www.cdisc.org/C66726/V32#C66726_C42966> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C60984> ;
 	th:narrower <http://www.cdisc.org/C66726/V32#C66726_C47887> ;
 	th:narrower <http://www.cdisc.org/C66726/V4#C66726_C42967> ;
@@ -3539,16 +3539,6 @@
 	th:definition "A liquid preparation, intended for parenteral use, that contains solids suspended in a suitable fluid medium and conforms in all respects to the requirements for Sterile Suspensions; the medicinal agents intended for the suspension are prepared by lyophilization (\"freeze drying\"), a process which involves the removal of water from products in the frozen state at extremely low pressures. (FDA)"^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6a170c4f264ade161e7f85a43a9f5bc789861a32> ;
-.
-<http://www.cdisc.org/C66726/V33#C66726_C42966>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Ointment Dosage Form"^^xsd:string ;
-	th:identifier "C42966"^^xsd:string ;
-	th:notation "OINTMENT"^^xsd:string ;
-	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved. (FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d842e6467999d68a749943a239be778fed990072> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7abada161ffd19b43e844bc00cbd0d809583aab> ;
 .
 <http://www.cdisc.org/C66726/V33#C66726_C42986>
 	rdf:type th:UnmanagedConcept ;
@@ -6739,273 +6729,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "Every 6 Months"^^xsd:string ;
 .
-<http://www.cdisc.org/C71150/V33#C71150>
-	rdf:type th:ManagedConcept ;
-	isoC:label "ECG Result"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C71150/V33#C71150_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C71150/V33#C71150_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2013-04-12T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2013-04-12T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C71150"^^xsd:string ;
-	th:notation "EGSTRESC"^^xsd:string ;
-	th:definition "Terminology codelist used with ECG Findings and Abnormalities within CDISC."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C26889> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C26923> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C34786> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C34940> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C35058> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C35059> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C35061> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C35132> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C35481> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C50466> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C50501> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C50779> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C50799> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C50800> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C50802> ;
-	th:narrower <http://www.cdisc.org/C71150/V16#C71150_C51224> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C61395> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62015> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62016> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62234> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62236> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62239> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62240> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62242> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62243> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62244> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62245> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62246> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62247> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62248> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62250> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62253> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62256> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62257> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62258> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62259> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62261> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62266> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62267> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62268> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C62269> ;
-	th:narrower <http://www.cdisc.org/C71150/V33#C71150_C62270> ;
-	th:narrower <http://www.cdisc.org/C71150/V33#C71150_C62271> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71026> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71027> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C50540> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71029> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71030> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71031> ;
-	th:narrower <http://www.cdisc.org/C71150/V16#C71150_C71032> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71033> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71034> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71035> ;
-	th:narrower <http://www.cdisc.org/C71150/V25#C71150_C50553> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71039> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71040> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71041> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71042> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71043> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71044> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71045> ;
-	th:narrower <http://www.cdisc.org/C71150/V16#C71150_C71046> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71047> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71048> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71049> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71050> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71051> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71052> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71053> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71054> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71055> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71056> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71057> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71058> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C71059> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C71060> ;
-	th:narrower <http://www.cdisc.org/C71150/V17#C71150_C71061> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71062> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71063> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71064> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71065> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71066> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71067> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71068> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71069> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C35398> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71073> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71074> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C35586> ;
-	th:narrower <http://www.cdisc.org/C71150/V19#C71150_C71076> ;
-	th:narrower <http://www.cdisc.org/C71150/V19#C71150_C71077> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71078> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71080> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71081> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71082> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71083> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71084> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71085> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71086> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71087> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71088> ;
-	th:narrower <http://www.cdisc.org/C71150/V17#C71150_C71089> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71090> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71094> ;
-	th:narrower <http://www.cdisc.org/C71150/V6#C71150_C71095> ;
-	th:narrower <http://www.cdisc.org/C71150/V33#C71150_C71096> ;
-	th:narrower <http://www.cdisc.org/C71150/V33#C71150_C71097> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C62017> ;
-	th:narrower <http://www.cdisc.org/C71150/V30#C71150_C62018> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C88140> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92228> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92229> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92230> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92231> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92232> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92233> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92234> ;
-	th:narrower <http://www.cdisc.org/C71150/V22#C71150_C92235> ;
-	th:narrower <http://www.cdisc.org/C71150/V23#C71150_C92227> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C37920> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90430> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90431> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C34902> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90440> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90441> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90443> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90444> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90450> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90451> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C38029> ;
-	th:narrower <http://www.cdisc.org/C71150/V26#C71150_C90483> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102591> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102592> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102593> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C101596> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102594> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102595> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102642> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C35303> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C35304> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102596> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102597> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102598> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102623> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102628> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102629> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102639> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102643> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C50599> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102701> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102652> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102653> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102655> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C101589> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102675> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102732> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102733> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102734> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102735> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102736> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102737> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102738> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102731> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102739> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102680> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102681> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102634> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102684> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102685> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102686> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102687> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102688> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102689> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102690> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102691> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102692> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102693> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C101597> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102603> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102672> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102724> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102604> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102673> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102725> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C83817> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102574> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102706> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102709> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C100076> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102718> ;
-	th:narrower <http://www.cdisc.org/C71150/V31#C71150_C102728> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#76a240cf20817b08da5472de050b763a750f2a53> ;
-	th:synonym <http://www.assero.co.uk/SYN#05f233aa69b75c1893a7150524f57f973a12f4bf> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C71150"^^xsd:string ;
-	isoI:versionLabel "2013-04-12 Release"^^xsd:string ;
-	isoI:version "33"^^xsd:positiveInteger ;
-	isoI:semanticVersion "33.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_C62270>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Right Bundle Branch Block"^^xsd:string ;
-	th:identifier "C62270"^^xsd:string ;
-	th:notation "RIGHT BUNDLE BRANCH BLOCK"^^xsd:string ;
-	th:definition "An impairment of transmission of the cardiac electrical impulse along the fibers of the right bundle branch. A \"complete RBBB pattern\" (with QRS duration > 0.11s) does not necessarily reflect the existence of a total conduction block in the right branch. This pattern only indicates that the entire or major parts of both ventricles are activated by the impulse emerging from the left branch. Thus, a significant degree of conduction delay (\"high-grade\" or \"incomplete RBBB\") can produce a similar pattern. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5e7c7c0ccd40a1dc9afa2d331fd55db0931b0113> ;
-	th:synonym <http://www.assero.co.uk/SYN#5e7c7c0ccd40a1dc9afa2d331fd55db0931b0113> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_C62271>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Nonspecific Intraventricular Conduction Delay"^^xsd:string ;
-	th:identifier "C62271"^^xsd:string ;
-	th:notation "INTRAVENTRICULAR CONDUCTION DELAY, NONSPECIFIC"^^xsd:string ;
-	th:definition "A delay in transmission of cardiac electrical impulses in the His-Purkinje system, diagnosed when the QRS is modestly prolonged (< 120 msec) and the QRS pattern and axis are not typical of a hemiblock. The conduction delay is considered to occur beyond the Purkinje's myocardial gates and arises from slow cell-to-cell conduction. The phenomenon is common in patients with acute MI. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d2e9d837778f1419fbeb82f8a65c43448e640592> ;
-	th:synonym <http://www.assero.co.uk/SYN#1fa610ef1c7c098c3082827ea52eb810b1eeec31> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_C71096>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "QTcB Prolongation Greater Than 500 msec"^^xsd:string ;
-	th:identifier "C71096"^^xsd:string ;
-	th:notation "QTCB PROLONGATION >500 MSEC"^^xsd:string ;
-	th:definition "Corrected QT interval longer than 500 msec, in accordance with Bazett's correction formula. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ee2ddad2fbad18c8e417096b36826cbb5061265b> ;
-	th:synonym <http://www.assero.co.uk/SYN#334701b171d396aab94133674e185f6c239131c5> ;
-.
-<http://www.cdisc.org/C71150/V33#C71150_C71097>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "QTcF Prolongation Greater Than 500 msec"^^xsd:string ;
-	th:identifier "C71097"^^xsd:string ;
-	th:notation "QTCF PROLONGATION >500 MSEC"^^xsd:string ;
-	th:definition "Corrected QT interval greater than 500 msec, in accordance with Fridericia's correction formula. (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#bfb131e677002e99faa3ab28315e88606594ea3d> ;
-	th:synonym <http://www.assero.co.uk/SYN#d3a831596092687dea3f967a6d78b57c6c412ec3> ;
-.
 <http://www.cdisc.org/C71153/V33#C71153>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Test Code"^^xsd:string ;
@@ -7030,13 +6753,13 @@
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62095> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62096> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62112> ;
-	th:narrower <http://www.cdisc.org/C71153/V9#C71153_C62113> ;
+	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62113> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62114> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62115> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62116> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62117> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62118> ;
-	th:narrower <http://www.cdisc.org/C71153/V9#C71153_C62119> ;
+	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62119> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62120> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62121> ;
 	th:narrower <http://www.cdisc.org/C71153/V6#C71153_C62123> ;
@@ -7132,13 +6855,13 @@
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62095> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62096> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62112> ;
-	th:narrower <http://www.cdisc.org/C71152/V9#C71152_C62113> ;
+	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62113> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62114> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62115> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62116> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62117> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62118> ;
-	th:narrower <http://www.cdisc.org/C71152/V9#C71152_C62119> ;
+	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62119> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62120> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62121> ;
 	th:narrower <http://www.cdisc.org/C71152/V6#C71152_C62123> ;
@@ -10022,7 +9745,7 @@
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78742> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13273> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13252> ;
-	th:narrower <http://www.cdisc.org/C78734/V23#C78734_C78743> ;
+	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78743> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C78740> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C13259> ;
 	th:narrower <http://www.cdisc.org/C78734/V14#C78734_C33156> ;
@@ -12083,7 +11806,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3726> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83488> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C83489> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C82973> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C82973> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7111> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C54297> ;
@@ -12102,10 +11825,10 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3727> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3775> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9325> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C2921> ;
+	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C2921> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C35875> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2923> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C3879> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3879> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4176> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4715> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3752> ;
@@ -12141,14 +11864,14 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C53459> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2946> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2947> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C2948> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2948> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2964> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C79949> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2971> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3777> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2972> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2974> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C3555> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3555> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C4858> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9011> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C2996> ;
@@ -12263,9 +11986,9 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C40407> ;
 	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C6963> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3270> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C3789> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3789> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3272> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C3059> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3059> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4306> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3286> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3710> ;
@@ -12284,7 +12007,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C3740> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3296> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C8810> ;
-	th:narrower <http://www.cdisc.org/C88025/V31#C88025_C9145> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9145> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6803> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7440> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3698> ;
@@ -12293,7 +12016,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C48314> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C8559> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3308> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C3798> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3798> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C48305> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C92181> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C48306> ;
@@ -12304,7 +12027,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C9344> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C6966> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C7157> ;
-	th:narrower <http://www.cdisc.org/C88025/V33#C88025_C4665> ;
+	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C4665> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C3764> ;
 	th:narrower <http://www.cdisc.org/C88025/V32#C88025_C6433> ;
 	th:narrower <http://www.cdisc.org/C88025/V28#C88025_C5680> ;
@@ -12375,59 +12098,6 @@
 	isoI:semanticVersion "33.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
 .
-<http://www.cdisc.org/C88025/V33#C88025_C2921>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Skin Basal Cell Carcinoma"^^xsd:string ;
-	th:identifier "C2921"^^xsd:string ;
-	th:notation "CARCINOMA, BASAL CELL, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant epithelial neoplasm arising from basal cells of the epidermis and pilosebaceous unit of skin [the dermis]."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#730e3e770e3bdee962665c82b3e47b9f03b76a37> ;
-	th:synonym <http://www.assero.co.uk/SYN#19684ceedea50ddb58fe71800f4f2b2a77efcb7e> ;
-	th:synonym <http://www.assero.co.uk/SYN#9604df78d71c6eeb4fc7910030da5cecb6206510> ;
-	th:synonym <http://www.assero.co.uk/SYN#c95b853cf240efd041cbc25726870c3ee6d7e951> ;
-	th:synonym <http://www.assero.co.uk/SYN#63df9ced4a9aeba6f5cf19c774aadacfc88e3f06> ;
-	th:synonym <http://www.assero.co.uk/SYN#8dda0d0accd64e86d5ef3e40df111c45a2f5c4ef> ;
-	th:synonym <http://www.assero.co.uk/SYN#ca3fa8ac66b0c148297c640e7734079dcaa48755> ;
-	th:synonym <http://www.assero.co.uk/SYN#4c0145a3c15e10089e2006c7f6f1bf8de2b3287c> ;
-.
-<http://www.cdisc.org/C88025/V33#C88025_C3879>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Thyroid Gland Medullary Carcinoma"^^xsd:string ;
-	th:identifier "C3879"^^xsd:string ;
-	th:notation "CARCINOMA, C-CELL, MALIGNANT"^^xsd:string ;
-	th:definition "A neuroendocrine malignant epithelial neoplasm arising from C-cells of the thyroid gland."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2c6bd33d3a77aba2a4b5ddebf728b25be85f6c42> ;
-	th:synonym <http://www.assero.co.uk/SYN#13e04750ee7f29a58bffa4053518e2b3caa8d01b> ;
-	th:synonym <http://www.assero.co.uk/SYN#a7eb70f52f48bc5ab649481bb7580736f748bfcf> ;
-	th:synonym <http://www.assero.co.uk/SYN#cd11396a217383429070f960453d0d97892e988d> ;
-	th:synonym <http://www.assero.co.uk/SYN#60c77c3191ef9e44a51eaeb064d9970b870019e0> ;
-	th:synonym <http://www.assero.co.uk/SYN#20be7159e39db23ba0dd5c9db0512d9d499b459d> ;
-	th:synonym <http://www.assero.co.uk/SYN#8e6c20481a677fd6342579af563c5c0090b89277> ;
-	th:synonym <http://www.assero.co.uk/SYN#f5733b3ebd7c446566ef4f38d18f79713ffa2a3e> ;
-	th:synonym <http://www.assero.co.uk/SYN#6f8ce0eb3e438ef36af688e22d5a5d888ef00a49> ;
-	th:synonym <http://www.assero.co.uk/SYN#5a8f52e10ccd08e0618861f8bfb24d9e4d550f1a> ;
-	th:synonym <http://www.assero.co.uk/SYN#ef66787758438f5d6f6f63967c197fb8c4ebf584> ;
-	th:synonym <http://www.assero.co.uk/SYN#6832b35e2c831aa62546d7f2f609f94b0849a299> ;
-	th:synonym <http://www.assero.co.uk/SYN#87c280e470193098fef7eb39123f6d71ec286aa6> ;
-	th:synonym <http://www.assero.co.uk/SYN#51327e56836e3fec974320bc6f8691abd0a8950d> ;
-.
-<http://www.cdisc.org/C88025/V33#C88025_C3555>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Malignant Placental Neoplasm"^^xsd:string ;
-	th:identifier "C3555"^^xsd:string ;
-	th:notation "DECIDUOMA, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm arising from decidua (placental) cells."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2c3cd98f557c1252629856f54d6d86d6176dfae1> ;
-	th:synonym <http://www.assero.co.uk/SYN#533546f8063fb2b07cdeb9db1ab7c2a1d395acd6> ;
-	th:synonym <http://www.assero.co.uk/SYN#56e0a5a5f77f4e87e0328eabae2731a5cf4e3a5d> ;
-	th:synonym <http://www.assero.co.uk/SYN#f8f1f9b58c1d3c9443fe2181db8f1a9aa59235dd> ;
-	th:synonym <http://www.assero.co.uk/SYN#7152318afc274bf0993cb7e2432aebcdb6fc28b9> ;
-	th:synonym <http://www.assero.co.uk/SYN#c05333992f3333f01bec1b91afbd3706af32d406> ;
-	th:synonym <http://www.assero.co.uk/SYN#0069f4333f3069c6fb74c5422ac9e3e98efadd26> ;
-.
 <http://www.cdisc.org/C88025/V33#C88025_C4247>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unclassified Pleomorphic Sarcoma (Formerly \"Malignant Fibrous Histiocytoma\")"^^xsd:string ;
@@ -12459,59 +12129,6 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "Neuroblastic Tumor"^^xsd:string ;
 .
-<http://www.cdisc.org/C88025/V33#C88025_C3789>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Olfactory Neuroblastoma"^^xsd:string ;
-	th:identifier "C3789"^^xsd:string ;
-	th:notation "NEUROBLASTOMA, OLFACTORY, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm of the olfactory receptor cells, composed of neuroblastic cells."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ca48a21978910ea329b476245fb6f239dbaa76f5> ;
-	th:synonym <http://www.assero.co.uk/SYN#4d7e62c571e815c6d3f199985a1b167e63fb8efe> ;
-	th:synonym <http://www.assero.co.uk/SYN#b5b394b2a3271426cbcf4a3a45fe78364c126e4a> ;
-	th:synonym <http://www.assero.co.uk/SYN#0e6d4e30ec98799cbf102f5c76d38f9fed286b04> ;
-	th:synonym <http://www.assero.co.uk/SYN#5379a2a9b78fe5674a713d454ab084c5de3e3cb6> ;
-.
-<http://www.cdisc.org/C88025/V33#C88025_C3059>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Neuroglial Tumor"^^xsd:string ;
-	th:identifier "C3059"^^xsd:string ;
-	th:notation "NEUROGLIAL TUMOR, UNDETERMINED"^^xsd:string ;
-	th:definition "A neoplasm of the central nervous system composed of glial cells (astrocytes, oligodendrocytes, ependymal cells), for which the malignancy status has not been determined."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#20ec3a5545216be195cfb803a4ef55d17d89cb2e> ;
-	th:synonym <http://www.assero.co.uk/SYN#ec946bd2bff132a89336780bf537ad996f0c5f8a> ;
-	th:synonym <http://www.assero.co.uk/SYN#50387ea8dee87ad81e4d54aec823892b0c9134fa> ;
-	th:synonym <http://www.assero.co.uk/SYN#cf8331bca519df7b8cadec0c76a4ad06510bc898> ;
-	th:synonym <http://www.assero.co.uk/SYN#947a021f3b6feef70632ca263d83d187212acea4> ;
-	th:synonym <http://www.assero.co.uk/SYN#7fa90dd4520df076a70981b840c52f91ab4a2e81> ;
-	th:synonym <http://www.assero.co.uk/SYN#3ada34ede5f35b58bea53ede3c1f4723334ffd88> ;
-	th:synonym <http://www.assero.co.uk/SYN#c938e75e96cc1bf105d6d537de6009db9e6e9f21> ;
-	th:synonym <http://www.assero.co.uk/SYN#cbcfbf33a312e39d224b0fe224f37db60375d91b> ;
-	th:synonym <http://www.assero.co.uk/SYN#87e09ee3fcdc4b44e1fd95a163cf557f2499c61c> ;
-	th:synonym <http://www.assero.co.uk/SYN#d3cc80d0ebb78110b122f7b1734a1246e4cf99a8> ;
-	th:synonym <http://www.assero.co.uk/SYN#b53ce12e68fe0fa9a34808b45ddbdf086890caaa> ;
-.
-<http://www.cdisc.org/C88025/V33#C88025_C3798>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Malignant Peripheral Nerve Sheath Tumor"^^xsd:string ;
-	th:identifier "C3798"^^xsd:string ;
-	th:notation "PERIPHERAL NERVE SHEATH TUMOR, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm, originating from the sheaths of the peripheral nerve."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#eb8ad1ec38de9ddebe0a3b6dac8b3b323936fb59> ;
-	th:synonym <http://www.assero.co.uk/SYN#117804dd59f728e3ea9fcf26e8ac45d12f5ae0fa> ;
-	th:synonym <http://www.assero.co.uk/SYN#ef4d8c9d7297812f3f68518af76d9c0929604c28> ;
-	th:synonym <http://www.assero.co.uk/SYN#317f7806908faca79af9cc47ef4cf93f419ed7bc> ;
-	th:synonym <http://www.assero.co.uk/SYN#6fbc6e6c08b824a137775a389240a85b7a1e1b3e> ;
-	th:synonym <http://www.assero.co.uk/SYN#a9d79c772dc845c9e2b381e0eb71d2fe1d3ad4c0> ;
-	th:synonym <http://www.assero.co.uk/SYN#4e0dee7653efff1cd930cd3c794b1aecbfe071ce> ;
-	th:synonym <http://www.assero.co.uk/SYN#16ab4bea87ef6a1c487a49009047e8eed1cce2cc> ;
-	th:synonym <http://www.assero.co.uk/SYN#e176a7839b885ef9b95db0a3c9c439b00eb2f5b2> ;
-	th:synonym <http://www.assero.co.uk/SYN#6e92a5664fcd52ae97476dc729f0ddf4c33e39ec> ;
-	th:synonym <http://www.assero.co.uk/SYN#2558990c9aa760a9b5937e73ec31f7bd4e471da6> ;
-	th:synonym <http://www.assero.co.uk/SYN#7baab7e9eaf6f2556f83cecbe1685c1f9394ac0d> ;
-.
 <http://www.cdisc.org/C88025/V33#C88025_C92184>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Malignant Adrenal Gland Composite Pheochromocytoma"^^xsd:string ;
@@ -12520,19 +12137,6 @@
 	th:definition "A malignant neoplasm of the adrenal gland medulla, composed of medullary and neuroectodermal components."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fd092b59ce511c63c6fb19fe4078615bbf10b7cc> ;
-.
-<http://www.cdisc.org/C88025/V33#C88025_C4665>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Plasma Cell Neoplasm"^^xsd:string ;
-	th:identifier "C4665"^^xsd:string ;
-	th:notation "PLASMA CELL TUMOR, MALIGNANT"^^xsd:string ;
-	th:definition "A malignant neoplasm composed of plasma cells."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#5046902aeedc52edc16fb28a9e92fe218768d31f> ;
-	th:synonym <http://www.assero.co.uk/SYN#0dd65d037c34484fc46c8e46504b3a78c27d3580> ;
-	th:synonym <http://www.assero.co.uk/SYN#17c1cd72f5786cdad06aab29c71acc2c2149a6a8> ;
-	th:synonym <http://www.assero.co.uk/SYN#3d817560360c82dd46e6608d612fd10b847dfdde> ;
-	th:synonym <http://www.assero.co.uk/SYN#3904aa72ba703e259883c4061370dbd686d522eb> ;
 .
 <http://www.cdisc.org/C99079/V33#C99079>
 	rdf:type th:ManagedConcept ;
@@ -12590,93 +12194,6 @@
 <http://www.assero.co.uk/PT#47768b66972b4056cf40f0be799c42085cf9ff11>
 	rdf:type th:PreferredTerm ;
 	isoC:label "Longterm Follow-up"^^xsd:string ;
-.
-<http://www.cdisc.org/C101859/V33#C101859>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Cardiac Procedure Indication"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C101859/V33#C101859_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C101859/V33#C101859_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2013-04-12T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2013-04-12T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C101859"^^xsd:string ;
-	th:notation "CVPRCIND"^^xsd:string ;
-	th:definition "The reason that a subject had a cardiac procedure."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99919> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100033> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C34830> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99938> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99947> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99949> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100035> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99925> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99943> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99961> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C26726> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99931> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99974> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100045> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99980> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99982> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99983> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C99999> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100001> ;
-	th:narrower <http://www.cdisc.org/C101859/V33#C101859_C100000> ;
-	th:narrower <http://www.cdisc.org/C101859/V33#C101859_C100002> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100005> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100006> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C15306> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100008> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C15712> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100014> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100015> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100018> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100019> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C17998> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C100030> ;
-	th:narrower <http://www.cdisc.org/C101859/V32#C101859_C50799> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d53add6b4131200d282f97ccf5cf9fd2fb90d7f4> ;
-	th:synonym <http://www.assero.co.uk/SYN#f6e42fc226e87b408f81bab757ef7f3233704768> ;
-.
-<http://www.cdisc.org/C101859/V33#C101859_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C101859/V33#C101859_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C101859"^^xsd:string ;
-	isoI:versionLabel "2013-04-12 Release"^^xsd:string ;
-	isoI:version "33"^^xsd:positiveInteger ;
-	isoI:semanticVersion "33.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C101859/V33#C101859_C100000>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100000"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Stable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject does not have recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b6ada804e9c3c87f5ace9abf476f9e70eb734c15> ;
-.
-<http://www.cdisc.org/C101859/V33#C101859_C100002>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over 12 Hours From Symptom Onset"^^xsd:string ;
-	th:identifier "C100002"^^xsd:string ;
-	th:notation "Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial Infarction (STEMI) (Unstable, >12 Hrs From Symptom Onset)"^^xsd:string ;
-	th:definition "A percutaneous coronary intervention is necessary for a myocardial infarction that presents with ST segment elevation and the subject has recurrent or persistent symptoms, symptoms of heart failure or ventricular arrhythmia. The presentation is past twelve hours since onset of symptoms."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#8169eec6ea94372281df5a5cfa45073c0f4f12ba> ;
 .
 <http://www.cdisc.org/C101858/V33#C101858>
 	rdf:type th:ManagedConcept ;
