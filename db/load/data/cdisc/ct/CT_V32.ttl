@@ -281,6 +281,10 @@
 	th:isTopConceptReference :TH_TCR255 ;
 	th:isTopConceptReference :TH_TCR256 ;
 	th:isTopConceptReference :TH_TCR257 ;
+	th:isTopConceptReference :TH_TCR258 ;
+	th:isTopConceptReference :TH_TCR259 ;
+	th:isTopConceptReference :TH_TCR260 ;
+	th:isTopConceptReference :TH_TCR261 ;
 	th:isTopConcept <http://www.cdisc.org/C66767/V28#C66767> ;
 	th:isTopConcept <http://www.cdisc.org/C66768/V28#C66768> ;
 	th:isTopConcept <http://www.cdisc.org/C66780/V17#C66780> ;
@@ -417,22 +421,6 @@
 	th:isTopConcept <http://www.cdisc.org/C102589/V31#C102589> ;
 	th:isTopConcept <http://www.cdisc.org/C102590/V32#C102590> ;
 	th:isTopConcept <http://www.cdisc.org/C103329/V32#C103329> ;
-	th:isTopConcept <http://www.cdisc.org/C78417/V28#C78417> ;
-	th:isTopConcept <http://www.cdisc.org/C78418/V30#C78418> ;
-	th:isTopConcept <http://www.cdisc.org/C78419/V28#C78419> ;
-	th:isTopConcept <http://www.cdisc.org/C78420/V32#C78420> ;
-	th:isTopConcept <http://www.cdisc.org/C78421/V19#C78421> ;
-	th:isTopConcept <http://www.cdisc.org/C78422/V27#C78422> ;
-	th:isTopConcept <http://www.cdisc.org/C78423/V19#C78423> ;
-	th:isTopConcept <http://www.cdisc.org/C78745/V25#C78745> ;
-	th:isTopConcept <http://www.cdisc.org/C78425/V32#C78425> ;
-	th:isTopConcept <http://www.cdisc.org/C78426/V30#C78426> ;
-	th:isTopConcept <http://www.cdisc.org/C78427/V25#C78427> ;
-	th:isTopConcept <http://www.cdisc.org/C78428/V19#C78428> ;
-	th:isTopConcept <http://www.cdisc.org/C78429/V19#C78429> ;
-	th:isTopConcept <http://www.cdisc.org/C78430/V25#C78430> ;
-	th:isTopConcept <http://www.cdisc.org/C78431/V25#C78431> ;
-	th:isTopConcept <http://www.cdisc.org/C83004/V19#C83004> ;
 	th:isTopConcept <http://www.cdisc.org/C100129/V32#C100129> ;
 	th:isTopConcept <http://www.cdisc.org/C100132/V32#C100132> ;
 	th:isTopConcept <http://www.cdisc.org/C100131/V32#C100131> ;
@@ -538,6 +526,26 @@
 	th:isTopConcept <http://www.cdisc.org/C103487/V32#C103487> ;
 	th:isTopConcept <http://www.cdisc.org/C103488/V32#C103488> ;
 	th:isTopConcept <http://www.cdisc.org/C103489/V32#C103489> ;
+	th:isTopConcept <http://www.cdisc.org/C78417/V28#C78417> ;
+	th:isTopConcept <http://www.cdisc.org/C78418/V30#C78418> ;
+	th:isTopConcept <http://www.cdisc.org/C78419/V28#C78419> ;
+	th:isTopConcept <http://www.cdisc.org/C78420/V32#C78420> ;
+	th:isTopConcept <http://www.cdisc.org/C78421/V19#C78421> ;
+	th:isTopConcept <http://www.cdisc.org/C78422/V27#C78422> ;
+	th:isTopConcept <http://www.cdisc.org/C78423/V19#C78423> ;
+	th:isTopConcept <http://www.cdisc.org/C78745/V25#C78745> ;
+	th:isTopConcept <http://www.cdisc.org/C78425/V32#C78425> ;
+	th:isTopConcept <http://www.cdisc.org/C78426/V30#C78426> ;
+	th:isTopConcept <http://www.cdisc.org/C78427/V25#C78427> ;
+	th:isTopConcept <http://www.cdisc.org/C78428/V19#C78428> ;
+	th:isTopConcept <http://www.cdisc.org/C78429/V19#C78429> ;
+	th:isTopConcept <http://www.cdisc.org/C78430/V25#C78430> ;
+	th:isTopConcept <http://www.cdisc.org/C78431/V25#C78431> ;
+	th:isTopConcept <http://www.cdisc.org/C83004/V19#C83004> ;
+	th:isTopConcept <http://www.cdisc.org/C81223/V19#C81223> ;
+	th:isTopConcept <http://www.cdisc.org/C81224/V22#C81224> ;
+	th:isTopConcept <http://www.cdisc.org/C81225/V19#C81225> ;
+	th:isTopConcept <http://www.cdisc.org/C81226/V19#C81226> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -1789,7 +1797,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "137"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78417/V28#C78417> ;
+	bo:reference <http://www.cdisc.org/C100129/V32#C100129> ;
 .
 :TH_TCR138
 	rdf:type bo:TcReference ;
@@ -1798,7 +1806,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "138"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78418/V30#C78418> ;
+	bo:reference <http://www.cdisc.org/C100132/V32#C100132> ;
 .
 :TH_TCR139
 	rdf:type bo:TcReference ;
@@ -1807,7 +1815,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "139"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78419/V28#C78419> ;
+	bo:reference <http://www.cdisc.org/C100131/V32#C100131> ;
 .
 :TH_TCR140
 	rdf:type bo:TcReference ;
@@ -1816,7 +1824,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "140"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78420/V32#C78420> ;
+	bo:reference <http://www.cdisc.org/C100133/V29#C100133> ;
 .
 :TH_TCR141
 	rdf:type bo:TcReference ;
@@ -1825,7 +1833,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "141"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78421/V19#C78421> ;
+	bo:reference <http://www.cdisc.org/C100134/V29#C100134> ;
 .
 :TH_TCR142
 	rdf:type bo:TcReference ;
@@ -1834,7 +1842,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "142"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78422/V27#C78422> ;
+	bo:reference <http://www.cdisc.org/C100135/V32#C100135> ;
 .
 :TH_TCR143
 	rdf:type bo:TcReference ;
@@ -1843,7 +1851,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "143"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78423/V19#C78423> ;
+	bo:reference <http://www.cdisc.org/C100136/V32#C100136> ;
 .
 :TH_TCR144
 	rdf:type bo:TcReference ;
@@ -1852,7 +1860,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "144"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78745/V25#C78745> ;
+	bo:reference <http://www.cdisc.org/C100137/V32#C100137> ;
 .
 :TH_TCR145
 	rdf:type bo:TcReference ;
@@ -1861,7 +1869,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "145"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78425/V32#C78425> ;
+	bo:reference <http://www.cdisc.org/C100138/V32#C100138> ;
 .
 :TH_TCR146
 	rdf:type bo:TcReference ;
@@ -1870,7 +1878,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "146"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78426/V30#C78426> ;
+	bo:reference <http://www.cdisc.org/C100139/V29#C100139> ;
 .
 :TH_TCR147
 	rdf:type bo:TcReference ;
@@ -1879,7 +1887,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "147"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78427/V25#C78427> ;
+	bo:reference <http://www.cdisc.org/C100140/V29#C100140> ;
 .
 :TH_TCR148
 	rdf:type bo:TcReference ;
@@ -1888,7 +1896,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "148"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78428/V19#C78428> ;
+	bo:reference <http://www.cdisc.org/C100141/V32#C100141> ;
 .
 :TH_TCR149
 	rdf:type bo:TcReference ;
@@ -1897,7 +1905,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "149"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78429/V19#C78429> ;
+	bo:reference <http://www.cdisc.org/C100142/V32#C100142> ;
 .
 :TH_TCR150
 	rdf:type bo:TcReference ;
@@ -1906,7 +1914,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "150"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78430/V25#C78430> ;
+	bo:reference <http://www.cdisc.org/C100143/V32#C100143> ;
 .
 :TH_TCR151
 	rdf:type bo:TcReference ;
@@ -1915,7 +1923,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "151"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78431/V25#C78431> ;
+	bo:reference <http://www.cdisc.org/C100144/V32#C100144> ;
 .
 :TH_TCR152
 	rdf:type bo:TcReference ;
@@ -1924,7 +1932,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "152"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C83004/V19#C83004> ;
+	bo:reference <http://www.cdisc.org/C100145/V29#C100145> ;
 .
 :TH_TCR153
 	rdf:type bo:TcReference ;
@@ -1933,7 +1941,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "153"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100129/V32#C100129> ;
+	bo:reference <http://www.cdisc.org/C100146/V29#C100146> ;
 .
 :TH_TCR154
 	rdf:type bo:TcReference ;
@@ -1942,7 +1950,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "154"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100132/V32#C100132> ;
+	bo:reference <http://www.cdisc.org/C100173/V32#C100173> ;
 .
 :TH_TCR155
 	rdf:type bo:TcReference ;
@@ -1951,7 +1959,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "155"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100131/V32#C100131> ;
+	bo:reference <http://www.cdisc.org/C100174/V32#C100174> ;
 .
 :TH_TCR156
 	rdf:type bo:TcReference ;
@@ -1960,7 +1968,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "156"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100133/V29#C100133> ;
+	bo:reference <http://www.cdisc.org/C100149/V29#C100149> ;
 .
 :TH_TCR157
 	rdf:type bo:TcReference ;
@@ -1969,7 +1977,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "157"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100134/V29#C100134> ;
+	bo:reference <http://www.cdisc.org/C100150/V29#C100150> ;
 .
 :TH_TCR158
 	rdf:type bo:TcReference ;
@@ -1978,7 +1986,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "158"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100135/V32#C100135> ;
+	bo:reference <http://www.cdisc.org/C100151/V29#C100151> ;
 .
 :TH_TCR159
 	rdf:type bo:TcReference ;
@@ -1987,7 +1995,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "159"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100136/V32#C100136> ;
+	bo:reference <http://www.cdisc.org/C100152/V29#C100152> ;
 .
 :TH_TCR160
 	rdf:type bo:TcReference ;
@@ -1996,7 +2004,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "160"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100137/V32#C100137> ;
+	bo:reference <http://www.cdisc.org/C100153/V29#C100153> ;
 .
 :TH_TCR161
 	rdf:type bo:TcReference ;
@@ -2005,7 +2013,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "161"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100138/V32#C100138> ;
+	bo:reference <http://www.cdisc.org/C100154/V29#C100154> ;
 .
 :TH_TCR162
 	rdf:type bo:TcReference ;
@@ -2014,7 +2022,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "162"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100139/V29#C100139> ;
+	bo:reference <http://www.cdisc.org/C100155/V29#C100155> ;
 .
 :TH_TCR163
 	rdf:type bo:TcReference ;
@@ -2023,7 +2031,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "163"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100140/V29#C100140> ;
+	bo:reference <http://www.cdisc.org/C100156/V29#C100156> ;
 .
 :TH_TCR164
 	rdf:type bo:TcReference ;
@@ -2032,7 +2040,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "164"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100141/V32#C100141> ;
+	bo:reference <http://www.cdisc.org/C100157/V29#C100157> ;
 .
 :TH_TCR165
 	rdf:type bo:TcReference ;
@@ -2041,7 +2049,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "165"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100142/V32#C100142> ;
+	bo:reference <http://www.cdisc.org/C100158/V29#C100158> ;
 .
 :TH_TCR166
 	rdf:type bo:TcReference ;
@@ -2050,7 +2058,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "166"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100143/V32#C100143> ;
+	bo:reference <http://www.cdisc.org/C100159/V29#C100159> ;
 .
 :TH_TCR167
 	rdf:type bo:TcReference ;
@@ -2059,7 +2067,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "167"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100144/V32#C100144> ;
+	bo:reference <http://www.cdisc.org/C100160/V32#C100160> ;
 .
 :TH_TCR168
 	rdf:type bo:TcReference ;
@@ -2068,7 +2076,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "168"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100145/V29#C100145> ;
+	bo:reference <http://www.cdisc.org/C100161/V29#C100161> ;
 .
 :TH_TCR169
 	rdf:type bo:TcReference ;
@@ -2077,7 +2085,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "169"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100146/V29#C100146> ;
+	bo:reference <http://www.cdisc.org/C100162/V29#C100162> ;
 .
 :TH_TCR170
 	rdf:type bo:TcReference ;
@@ -2086,7 +2094,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "170"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100173/V32#C100173> ;
+	bo:reference <http://www.cdisc.org/C100163/V29#C100163> ;
 .
 :TH_TCR171
 	rdf:type bo:TcReference ;
@@ -2095,7 +2103,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "171"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100174/V32#C100174> ;
+	bo:reference <http://www.cdisc.org/C100164/V29#C100164> ;
 .
 :TH_TCR172
 	rdf:type bo:TcReference ;
@@ -2104,7 +2112,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "172"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100149/V29#C100149> ;
+	bo:reference <http://www.cdisc.org/C100165/V29#C100165> ;
 .
 :TH_TCR173
 	rdf:type bo:TcReference ;
@@ -2113,7 +2121,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "173"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100150/V29#C100150> ;
+	bo:reference <http://www.cdisc.org/C100166/V29#C100166> ;
 .
 :TH_TCR174
 	rdf:type bo:TcReference ;
@@ -2122,7 +2130,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "174"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100151/V29#C100151> ;
+	bo:reference <http://www.cdisc.org/C100167/V32#C100167> ;
 .
 :TH_TCR175
 	rdf:type bo:TcReference ;
@@ -2131,7 +2139,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "175"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100152/V29#C100152> ;
+	bo:reference <http://www.cdisc.org/C100168/V32#C100168> ;
 .
 :TH_TCR176
 	rdf:type bo:TcReference ;
@@ -2140,7 +2148,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "176"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100153/V29#C100153> ;
+	bo:reference <http://www.cdisc.org/C100169/V29#C100169> ;
 .
 :TH_TCR177
 	rdf:type bo:TcReference ;
@@ -2149,7 +2157,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "177"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100154/V29#C100154> ;
+	bo:reference <http://www.cdisc.org/C100170/V29#C100170> ;
 .
 :TH_TCR178
 	rdf:type bo:TcReference ;
@@ -2158,7 +2166,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "178"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100155/V29#C100155> ;
+	bo:reference <http://www.cdisc.org/C100175/V29#C100175> ;
 .
 :TH_TCR179
 	rdf:type bo:TcReference ;
@@ -2167,7 +2175,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "179"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100156/V29#C100156> ;
+	bo:reference <http://www.cdisc.org/C100176/V29#C100176> ;
 .
 :TH_TCR180
 	rdf:type bo:TcReference ;
@@ -2176,7 +2184,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "180"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100157/V29#C100157> ;
+	bo:reference <http://www.cdisc.org/C101807/V30#C101807> ;
 .
 :TH_TCR181
 	rdf:type bo:TcReference ;
@@ -2185,7 +2193,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "181"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100158/V29#C100158> ;
+	bo:reference <http://www.cdisc.org/C101808/V31#C101808> ;
 .
 :TH_TCR182
 	rdf:type bo:TcReference ;
@@ -2194,7 +2202,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "182"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100159/V29#C100159> ;
+	bo:reference <http://www.cdisc.org/C101805/V30#C101805> ;
 .
 :TH_TCR183
 	rdf:type bo:TcReference ;
@@ -2203,7 +2211,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "183"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100160/V32#C100160> ;
+	bo:reference <http://www.cdisc.org/C101806/V30#C101806> ;
 .
 :TH_TCR184
 	rdf:type bo:TcReference ;
@@ -2212,7 +2220,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "184"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100161/V29#C100161> ;
+	bo:reference <http://www.cdisc.org/C101809/V30#C101809> ;
 .
 :TH_TCR185
 	rdf:type bo:TcReference ;
@@ -2221,7 +2229,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "185"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100162/V29#C100162> ;
+	bo:reference <http://www.cdisc.org/C101810/V30#C101810> ;
 .
 :TH_TCR186
 	rdf:type bo:TcReference ;
@@ -2230,7 +2238,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "186"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100163/V29#C100163> ;
+	bo:reference <http://www.cdisc.org/C101811/V30#C101811> ;
 .
 :TH_TCR187
 	rdf:type bo:TcReference ;
@@ -2239,7 +2247,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "187"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100164/V29#C100164> ;
+	bo:reference <http://www.cdisc.org/C101812/V30#C101812> ;
 .
 :TH_TCR188
 	rdf:type bo:TcReference ;
@@ -2248,7 +2256,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "188"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100165/V29#C100165> ;
+	bo:reference <http://www.cdisc.org/C101813/V30#C101813> ;
 .
 :TH_TCR189
 	rdf:type bo:TcReference ;
@@ -2257,7 +2265,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "189"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100166/V29#C100166> ;
+	bo:reference <http://www.cdisc.org/C101814/V30#C101814> ;
 .
 :TH_TCR190
 	rdf:type bo:TcReference ;
@@ -2266,7 +2274,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "190"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100167/V32#C100167> ;
+	bo:reference <http://www.cdisc.org/C101815/V30#C101815> ;
 .
 :TH_TCR191
 	rdf:type bo:TcReference ;
@@ -2275,7 +2283,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "191"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100168/V32#C100168> ;
+	bo:reference <http://www.cdisc.org/C101816/V30#C101816> ;
 .
 :TH_TCR192
 	rdf:type bo:TcReference ;
@@ -2284,7 +2292,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "192"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100169/V29#C100169> ;
+	bo:reference <http://www.cdisc.org/C101817/V30#C101817> ;
 .
 :TH_TCR193
 	rdf:type bo:TcReference ;
@@ -2293,7 +2301,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "193"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100170/V29#C100170> ;
+	bo:reference <http://www.cdisc.org/C101818/V30#C101818> ;
 .
 :TH_TCR194
 	rdf:type bo:TcReference ;
@@ -2302,7 +2310,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "194"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100175/V29#C100175> ;
+	bo:reference <http://www.cdisc.org/C101819/V30#C101819> ;
 .
 :TH_TCR195
 	rdf:type bo:TcReference ;
@@ -2311,7 +2319,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "195"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100176/V29#C100176> ;
+	bo:reference <http://www.cdisc.org/C101820/V30#C101820> ;
 .
 :TH_TCR196
 	rdf:type bo:TcReference ;
@@ -2320,7 +2328,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "196"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101807/V30#C101807> ;
+	bo:reference <http://www.cdisc.org/C101821/V30#C101821> ;
 .
 :TH_TCR197
 	rdf:type bo:TcReference ;
@@ -2329,7 +2337,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "197"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101808/V31#C101808> ;
+	bo:reference <http://www.cdisc.org/C101822/V30#C101822> ;
 .
 :TH_TCR198
 	rdf:type bo:TcReference ;
@@ -2338,7 +2346,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "198"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101805/V30#C101805> ;
+	bo:reference <http://www.cdisc.org/C101823/V30#C101823> ;
 .
 :TH_TCR199
 	rdf:type bo:TcReference ;
@@ -2347,7 +2355,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "199"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101806/V30#C101806> ;
+	bo:reference <http://www.cdisc.org/C101824/V30#C101824> ;
 .
 :TH_TCR200
 	rdf:type bo:TcReference ;
@@ -2356,7 +2364,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "200"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101809/V30#C101809> ;
+	bo:reference <http://www.cdisc.org/C101825/V30#C101825> ;
 .
 :TH_TCR201
 	rdf:type bo:TcReference ;
@@ -2365,7 +2373,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "201"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101810/V30#C101810> ;
+	bo:reference <http://www.cdisc.org/C101884/V30#C101884> ;
 .
 :TH_TCR202
 	rdf:type bo:TcReference ;
@@ -2374,7 +2382,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "202"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101811/V30#C101811> ;
+	bo:reference <http://www.cdisc.org/C101826/V30#C101826> ;
 .
 :TH_TCR203
 	rdf:type bo:TcReference ;
@@ -2383,7 +2391,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "203"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101812/V30#C101812> ;
+	bo:reference <http://www.cdisc.org/C101827/V30#C101827> ;
 .
 :TH_TCR204
 	rdf:type bo:TcReference ;
@@ -2392,7 +2400,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "204"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101813/V30#C101813> ;
+	bo:reference <http://www.cdisc.org/C101828/V32#C101828> ;
 .
 :TH_TCR205
 	rdf:type bo:TcReference ;
@@ -2401,7 +2409,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "205"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101814/V30#C101814> ;
+	bo:reference <http://www.cdisc.org/C101829/V32#C101829> ;
 .
 :TH_TCR206
 	rdf:type bo:TcReference ;
@@ -2410,7 +2418,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "206"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101815/V30#C101815> ;
+	bo:reference <http://www.cdisc.org/C100147/V32#C100147> ;
 .
 :TH_TCR207
 	rdf:type bo:TcReference ;
@@ -2419,7 +2427,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "207"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101816/V30#C101816> ;
+	bo:reference <http://www.cdisc.org/C100148/V30#C100148> ;
 .
 :TH_TCR208
 	rdf:type bo:TcReference ;
@@ -2428,7 +2436,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "208"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101817/V30#C101817> ;
+	bo:reference <http://www.cdisc.org/C101830/V30#C101830> ;
 .
 :TH_TCR209
 	rdf:type bo:TcReference ;
@@ -2437,7 +2445,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "209"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101818/V30#C101818> ;
+	bo:reference <http://www.cdisc.org/C101831/V30#C101831> ;
 .
 :TH_TCR210
 	rdf:type bo:TcReference ;
@@ -2446,7 +2454,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "210"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101819/V30#C101819> ;
+	bo:reference <http://www.cdisc.org/C103458/V32#C103458> ;
 .
 :TH_TCR211
 	rdf:type bo:TcReference ;
@@ -2455,7 +2463,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "211"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101820/V30#C101820> ;
+	bo:reference <http://www.cdisc.org/C103459/V32#C103459> ;
 .
 :TH_TCR212
 	rdf:type bo:TcReference ;
@@ -2464,7 +2472,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "212"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101821/V30#C101821> ;
+	bo:reference <http://www.cdisc.org/C103460/V32#C103460> ;
 .
 :TH_TCR213
 	rdf:type bo:TcReference ;
@@ -2473,7 +2481,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "213"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101822/V30#C101822> ;
+	bo:reference <http://www.cdisc.org/C103461/V32#C103461> ;
 .
 :TH_TCR214
 	rdf:type bo:TcReference ;
@@ -2482,7 +2490,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "214"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101823/V30#C101823> ;
+	bo:reference <http://www.cdisc.org/C103462/V32#C103462> ;
 .
 :TH_TCR215
 	rdf:type bo:TcReference ;
@@ -2491,7 +2499,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "215"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101824/V30#C101824> ;
+	bo:reference <http://www.cdisc.org/C103463/V32#C103463> ;
 .
 :TH_TCR216
 	rdf:type bo:TcReference ;
@@ -2500,7 +2508,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "216"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101825/V30#C101825> ;
+	bo:reference <http://www.cdisc.org/C103464/V32#C103464> ;
 .
 :TH_TCR217
 	rdf:type bo:TcReference ;
@@ -2509,7 +2517,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "217"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101884/V30#C101884> ;
+	bo:reference <http://www.cdisc.org/C103465/V32#C103465> ;
 .
 :TH_TCR218
 	rdf:type bo:TcReference ;
@@ -2518,7 +2526,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "218"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101826/V30#C101826> ;
+	bo:reference <http://www.cdisc.org/C103466/V32#C103466> ;
 .
 :TH_TCR219
 	rdf:type bo:TcReference ;
@@ -2527,7 +2535,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "219"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101827/V30#C101827> ;
+	bo:reference <http://www.cdisc.org/C103467/V32#C103467> ;
 .
 :TH_TCR220
 	rdf:type bo:TcReference ;
@@ -2536,7 +2544,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "220"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101828/V32#C101828> ;
+	bo:reference <http://www.cdisc.org/C103468/V32#C103468> ;
 .
 :TH_TCR221
 	rdf:type bo:TcReference ;
@@ -2545,7 +2553,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "221"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101829/V32#C101829> ;
+	bo:reference <http://www.cdisc.org/C103469/V32#C103469> ;
 .
 :TH_TCR222
 	rdf:type bo:TcReference ;
@@ -2554,7 +2562,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "222"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100147/V32#C100147> ;
+	bo:reference <http://www.cdisc.org/C103470/V32#C103470> ;
 .
 :TH_TCR223
 	rdf:type bo:TcReference ;
@@ -2563,7 +2571,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "223"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C100148/V30#C100148> ;
+	bo:reference <http://www.cdisc.org/C103471/V32#C103471> ;
 .
 :TH_TCR224
 	rdf:type bo:TcReference ;
@@ -2572,7 +2580,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "224"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101830/V30#C101830> ;
+	bo:reference <http://www.cdisc.org/C103472/V32#C103472> ;
 .
 :TH_TCR225
 	rdf:type bo:TcReference ;
@@ -2581,7 +2589,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "225"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C101831/V30#C101831> ;
+	bo:reference <http://www.cdisc.org/C103473/V32#C103473> ;
 .
 :TH_TCR226
 	rdf:type bo:TcReference ;
@@ -2590,7 +2598,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "226"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103458/V32#C103458> ;
+	bo:reference <http://www.cdisc.org/C103474/V32#C103474> ;
 .
 :TH_TCR227
 	rdf:type bo:TcReference ;
@@ -2599,7 +2607,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "227"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103459/V32#C103459> ;
+	bo:reference <http://www.cdisc.org/C103475/V32#C103475> ;
 .
 :TH_TCR228
 	rdf:type bo:TcReference ;
@@ -2608,7 +2616,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "228"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103460/V32#C103460> ;
+	bo:reference <http://www.cdisc.org/C103476/V32#C103476> ;
 .
 :TH_TCR229
 	rdf:type bo:TcReference ;
@@ -2617,7 +2625,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "229"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103461/V32#C103461> ;
+	bo:reference <http://www.cdisc.org/C103477/V32#C103477> ;
 .
 :TH_TCR230
 	rdf:type bo:TcReference ;
@@ -2626,7 +2634,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "230"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103462/V32#C103462> ;
+	bo:reference <http://www.cdisc.org/C103478/V32#C103478> ;
 .
 :TH_TCR231
 	rdf:type bo:TcReference ;
@@ -2635,7 +2643,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "231"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103463/V32#C103463> ;
+	bo:reference <http://www.cdisc.org/C103479/V32#C103479> ;
 .
 :TH_TCR232
 	rdf:type bo:TcReference ;
@@ -2644,7 +2652,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "232"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103464/V32#C103464> ;
+	bo:reference <http://www.cdisc.org/C103480/V32#C103480> ;
 .
 :TH_TCR233
 	rdf:type bo:TcReference ;
@@ -2653,7 +2661,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "233"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103465/V32#C103465> ;
+	bo:reference <http://www.cdisc.org/C103481/V32#C103481> ;
 .
 :TH_TCR234
 	rdf:type bo:TcReference ;
@@ -2662,7 +2670,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "234"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103466/V32#C103466> ;
+	bo:reference <http://www.cdisc.org/C103482/V32#C103482> ;
 .
 :TH_TCR235
 	rdf:type bo:TcReference ;
@@ -2671,7 +2679,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "235"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103467/V32#C103467> ;
+	bo:reference <http://www.cdisc.org/C103483/V32#C103483> ;
 .
 :TH_TCR236
 	rdf:type bo:TcReference ;
@@ -2680,7 +2688,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "236"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103468/V32#C103468> ;
+	bo:reference <http://www.cdisc.org/C103484/V32#C103484> ;
 .
 :TH_TCR237
 	rdf:type bo:TcReference ;
@@ -2689,7 +2697,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "237"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103469/V32#C103469> ;
+	bo:reference <http://www.cdisc.org/C103485/V32#C103485> ;
 .
 :TH_TCR238
 	rdf:type bo:TcReference ;
@@ -2698,7 +2706,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "238"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103470/V32#C103470> ;
+	bo:reference <http://www.cdisc.org/C103486/V32#C103486> ;
 .
 :TH_TCR239
 	rdf:type bo:TcReference ;
@@ -2707,7 +2715,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "239"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103471/V32#C103471> ;
+	bo:reference <http://www.cdisc.org/C103487/V32#C103487> ;
 .
 :TH_TCR240
 	rdf:type bo:TcReference ;
@@ -2716,7 +2724,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "240"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103472/V32#C103472> ;
+	bo:reference <http://www.cdisc.org/C103488/V32#C103488> ;
 .
 :TH_TCR241
 	rdf:type bo:TcReference ;
@@ -2725,7 +2733,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "241"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103473/V32#C103473> ;
+	bo:reference <http://www.cdisc.org/C103489/V32#C103489> ;
 .
 :TH_TCR242
 	rdf:type bo:TcReference ;
@@ -2734,7 +2742,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "242"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103474/V32#C103474> ;
+	bo:reference <http://www.cdisc.org/C78417/V28#C78417> ;
 .
 :TH_TCR243
 	rdf:type bo:TcReference ;
@@ -2743,7 +2751,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "243"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103475/V32#C103475> ;
+	bo:reference <http://www.cdisc.org/C78418/V30#C78418> ;
 .
 :TH_TCR244
 	rdf:type bo:TcReference ;
@@ -2752,7 +2760,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "244"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103476/V32#C103476> ;
+	bo:reference <http://www.cdisc.org/C78419/V28#C78419> ;
 .
 :TH_TCR245
 	rdf:type bo:TcReference ;
@@ -2761,7 +2769,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "245"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103477/V32#C103477> ;
+	bo:reference <http://www.cdisc.org/C78420/V32#C78420> ;
 .
 :TH_TCR246
 	rdf:type bo:TcReference ;
@@ -2770,7 +2778,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "246"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103478/V32#C103478> ;
+	bo:reference <http://www.cdisc.org/C78421/V19#C78421> ;
 .
 :TH_TCR247
 	rdf:type bo:TcReference ;
@@ -2779,7 +2787,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "247"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103479/V32#C103479> ;
+	bo:reference <http://www.cdisc.org/C78422/V27#C78422> ;
 .
 :TH_TCR248
 	rdf:type bo:TcReference ;
@@ -2788,7 +2796,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "248"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103480/V32#C103480> ;
+	bo:reference <http://www.cdisc.org/C78423/V19#C78423> ;
 .
 :TH_TCR249
 	rdf:type bo:TcReference ;
@@ -2797,7 +2805,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "249"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103481/V32#C103481> ;
+	bo:reference <http://www.cdisc.org/C78745/V25#C78745> ;
 .
 :TH_TCR250
 	rdf:type bo:TcReference ;
@@ -2806,7 +2814,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "250"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103482/V32#C103482> ;
+	bo:reference <http://www.cdisc.org/C78425/V32#C78425> ;
 .
 :TH_TCR251
 	rdf:type bo:TcReference ;
@@ -2815,7 +2823,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "251"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103483/V32#C103483> ;
+	bo:reference <http://www.cdisc.org/C78426/V30#C78426> ;
 .
 :TH_TCR252
 	rdf:type bo:TcReference ;
@@ -2824,7 +2832,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "252"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103484/V32#C103484> ;
+	bo:reference <http://www.cdisc.org/C78427/V25#C78427> ;
 .
 :TH_TCR253
 	rdf:type bo:TcReference ;
@@ -2833,7 +2841,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "253"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103485/V32#C103485> ;
+	bo:reference <http://www.cdisc.org/C78428/V19#C78428> ;
 .
 :TH_TCR254
 	rdf:type bo:TcReference ;
@@ -2842,7 +2850,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "254"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103486/V32#C103486> ;
+	bo:reference <http://www.cdisc.org/C78429/V19#C78429> ;
 .
 :TH_TCR255
 	rdf:type bo:TcReference ;
@@ -2851,7 +2859,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "255"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103487/V32#C103487> ;
+	bo:reference <http://www.cdisc.org/C78430/V25#C78430> ;
 .
 :TH_TCR256
 	rdf:type bo:TcReference ;
@@ -2860,7 +2868,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "256"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103488/V32#C103488> ;
+	bo:reference <http://www.cdisc.org/C78431/V25#C78431> ;
 .
 :TH_TCR257
 	rdf:type bo:TcReference ;
@@ -2869,7 +2877,43 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "257"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C103489/V32#C103489> ;
+	bo:reference <http://www.cdisc.org/C83004/V19#C83004> ;
+.
+:TH_TCR258
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "258"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C81223/V19#C81223> ;
+.
+:TH_TCR259
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "259"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C81224/V22#C81224> ;
+.
+:TH_TCR260
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "260"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C81225/V19#C81225> ;
+.
+:TH_TCR261
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "261"^^xsd:positiveInteger ;
+	bo:localLabel ""^^xsd:string ;
+	bo:reference <http://www.cdisc.org/C81226/V19#C81226> ;
 .
 <http://www.cdisc.org/C66784/V32#C66784>
 	rdf:type th:ManagedConcept ;
@@ -19820,144 +19864,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "General Observation Class"^^xsd:string ;
 .
-<http://www.cdisc.org/C78420/V32#C78420>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78420/V32#C78420_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78420/V32#C78420_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78420"^^xsd:string ;
-	th:notation "CMROUTE"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Concomitant Medication Route of Administration codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78420/V32#C78420_C38288> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38304> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38299> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38305> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38255> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C28161> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38216> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38250> ;
-	th:narrower <http://www.cdisc.org/C78420/V30#C78420_C38258> ;
-	th:narrower <http://www.cdisc.org/C78420/V32#C78420_C38284> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38313> ;
-	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38295> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#ad91a9cde4d28454c2f79fa33dfd151b3804eb4e> ;
-	th:synonym <http://www.assero.co.uk/SYN#a945a52089f8d4447f0758e7716b5b71a9baf85b> ;
-.
-<http://www.cdisc.org/C78420/V32#C78420_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78420/V32#C78420_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78420"^^xsd:string ;
-	isoI:versionLabel "2012-12-21 Release"^^xsd:string ;
-	isoI:version "32"^^xsd:positiveInteger ;
-	isoI:semanticVersion "32.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78420/V32#C78420_C38288>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Oral Route of Drug administration"^^xsd:string ;
-	th:identifier "C38288"^^xsd:string ;
-	th:notation "ORAL"^^xsd:string ;
-	th:definition "Administration to or by way of the mouth.(FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#16b7a781b0a7b87eda19abd9ab9977b02202dee6> ;
-	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
-	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
-.
-<http://www.cdisc.org/C78420/V32#C78420_C38284>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Nasal Route of Drug Administration"^^xsd:string ;
-	th:identifier "C38284"^^xsd:string ;
-	th:notation "NASAL"^^xsd:string ;
-	th:definition "Administration to the nose; administered by way of the nose.(FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#189407ce31a3a4449dd2e05cb192608c0b1b298c> ;
-	th:synonym <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141> ;
-.
-<http://www.cdisc.org/C78425/V32#C78425>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Exposure Route of Administration"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78425/V32#C78425_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78425/V32#C78425_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78425"^^xsd:string ;
-	th:notation "EXROUTE"^^xsd:string ;
-	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Exposure Route of Administration codelist. (NCI)"^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78425/V32#C78425_C38288> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38304> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38299> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38305> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38255> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C28161> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38216> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38250> ;
-	th:narrower <http://www.cdisc.org/C78425/V30#C78425_C38258> ;
-	th:narrower <http://www.cdisc.org/C78425/V32#C78425_C38284> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38313> ;
-	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38295> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#9a5dfce65d75d7a6e37add695ac1b52b89ca963b> ;
-	th:synonym <http://www.assero.co.uk/SYN#6298e31cca5e4a72f5094c432b629dfd2ab3719c> ;
-.
-<http://www.cdisc.org/C78425/V32#C78425_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78425/V32#C78425_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78425"^^xsd:string ;
-	isoI:versionLabel "2012-12-21 Release"^^xsd:string ;
-	isoI:version "32"^^xsd:positiveInteger ;
-	isoI:semanticVersion "32.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78425/V32#C78425_C38288>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Oral Route of Drug administration"^^xsd:string ;
-	th:identifier "C38288"^^xsd:string ;
-	th:notation "ORAL"^^xsd:string ;
-	th:definition "Administration to or by way of the mouth.(FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#16b7a781b0a7b87eda19abd9ab9977b02202dee6> ;
-	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
-	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
-.
-<http://www.cdisc.org/C78425/V32#C78425_C38284>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Nasal Route of Drug Administration"^^xsd:string ;
-	th:identifier "C38284"^^xsd:string ;
-	th:notation "NASAL"^^xsd:string ;
-	th:definition "Administration to the nose; administered by way of the nose.(FDA)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#189407ce31a3a4449dd2e05cb192608c0b1b298c> ;
-	th:synonym <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141> ;
-.
 <http://www.cdisc.org/C100129/V32#C100129>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Questionnaire Category"^^xsd:string ;
@@ -34463,4 +34369,142 @@
 <http://www.assero.co.uk/SYN#51cac6e667a103125a75869c4f48cd5c7c82b6df>
 	rdf:type th:Synonym ;
 	isoC:label "Urgency Perception Scale Questionnaire Test Code"^^xsd:string ;
+.
+<http://www.cdisc.org/C78420/V32#C78420>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C78420/V32#C78420_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78420/V32#C78420_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C78420"^^xsd:string ;
+	th:notation "CMROUTE"^^xsd:string ;
+	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Concomitant Medication Route of Administration codelist. (NCI)"^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C78420/V32#C78420_C38288> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38304> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38299> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38305> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38255> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C28161> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38216> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38250> ;
+	th:narrower <http://www.cdisc.org/C78420/V30#C78420_C38258> ;
+	th:narrower <http://www.cdisc.org/C78420/V32#C78420_C38284> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38313> ;
+	th:narrower <http://www.cdisc.org/C78420/V19#C78420_C38295> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ad91a9cde4d28454c2f79fa33dfd151b3804eb4e> ;
+	th:synonym <http://www.assero.co.uk/SYN#a945a52089f8d4447f0758e7716b5b71a9baf85b> ;
+.
+<http://www.cdisc.org/C78420/V32#C78420_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C78420/V32#C78420_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C78420"^^xsd:string ;
+	isoI:versionLabel "2012-12-21 Release"^^xsd:string ;
+	isoI:version "32"^^xsd:positiveInteger ;
+	isoI:semanticVersion "32.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C78420/V32#C78420_C38288>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Oral Route of Drug administration"^^xsd:string ;
+	th:identifier "C38288"^^xsd:string ;
+	th:notation "ORAL"^^xsd:string ;
+	th:definition "Administration to or by way of the mouth.(FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#16b7a781b0a7b87eda19abd9ab9977b02202dee6> ;
+	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
+	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
+.
+<http://www.cdisc.org/C78420/V32#C78420_C38284>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Nasal Route of Drug Administration"^^xsd:string ;
+	th:identifier "C38284"^^xsd:string ;
+	th:notation "NASAL"^^xsd:string ;
+	th:definition "Administration to the nose; administered by way of the nose.(FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#189407ce31a3a4449dd2e05cb192608c0b1b298c> ;
+	th:synonym <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141> ;
+.
+<http://www.cdisc.org/C78425/V32#C78425>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Exposure Route of Administration"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C78425/V32#C78425_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C78425/V32#C78425_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2012-12-21T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C78425"^^xsd:string ;
+	th:notation "EXROUTE"^^xsd:string ;
+	th:definition "A terminology subset of the CDISC SDTM Route codelist created for CDASH Exposure Route of Administration codelist. (NCI)"^^xsd:string ;
+	th:extensible "true"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C78425/V32#C78425_C38288> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38304> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38299> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38305> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38255> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C28161> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38216> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38250> ;
+	th:narrower <http://www.cdisc.org/C78425/V30#C78425_C38258> ;
+	th:narrower <http://www.cdisc.org/C78425/V32#C78425_C38284> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38313> ;
+	th:narrower <http://www.cdisc.org/C78425/V19#C78425_C38295> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9a5dfce65d75d7a6e37add695ac1b52b89ca963b> ;
+	th:synonym <http://www.assero.co.uk/SYN#6298e31cca5e4a72f5094c432b629dfd2ab3719c> ;
+.
+<http://www.cdisc.org/C78425/V32#C78425_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C78425/V32#C78425_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C78425"^^xsd:string ;
+	isoI:versionLabel "2012-12-21 Release"^^xsd:string ;
+	isoI:version "32"^^xsd:positiveInteger ;
+	isoI:semanticVersion "32.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C78425/V32#C78425_C38288>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Oral Route of Drug administration"^^xsd:string ;
+	th:identifier "C38288"^^xsd:string ;
+	th:notation "ORAL"^^xsd:string ;
+	th:definition "Administration to or by way of the mouth.(FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#16b7a781b0a7b87eda19abd9ab9977b02202dee6> ;
+	th:synonym <http://www.assero.co.uk/SYN#eea0c00c5051b0ccd46f0e32837b9762a2366ef5> ;
+	th:synonym <http://www.assero.co.uk/SYN#5b64a6edbd10a922a7baa3fcdce2dbf1af726517> ;
+.
+<http://www.cdisc.org/C78425/V32#C78425_C38284>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Nasal Route of Drug Administration"^^xsd:string ;
+	th:identifier "C38284"^^xsd:string ;
+	th:notation "NASAL"^^xsd:string ;
+	th:definition "Administration to the nose; administered by way of the nose.(FDA)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#189407ce31a3a4449dd2e05cb192608c0b1b298c> ;
+	th:synonym <http://www.assero.co.uk/SYN#2ab8bf7ac4e5638eb9172efb8ccf9ed59a13e141> ;
 .
