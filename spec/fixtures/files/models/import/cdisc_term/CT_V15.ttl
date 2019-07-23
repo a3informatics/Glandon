@@ -130,7 +130,7 @@
 	th:isTopConcept <http://www.cdisc.org/C74457/V10#C74457> ;
 	th:isTopConcept <http://www.cdisc.org/C78731/V14#C78731> ;
 	th:isTopConcept <http://www.cdisc.org/C78732/V14#C78732> ;
-	th:isTopConcept <http://www.cdisc.org/C78733/V15#C78733> ;
+	th:isTopConcept <http://www.cdisc.org/C78733/V14#C78733> ;
 	th:isTopConcept <http://www.cdisc.org/C78734/V14#C78734> ;
 	th:isTopConcept <http://www.cdisc.org/C78735/V15#C78735> ;
 	th:isTopConcept <http://www.cdisc.org/C78736/V14#C78736> ;
@@ -613,7 +613,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "51"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C78733/V15#C78733> ;
+	bo:reference <http://www.cdisc.org/C78733/V14#C78733> ;
 .
 :TH_TCR52
 	rdf:type bo:TcReference ;
@@ -1933,60 +1933,6 @@
 	isoI:version "15"^^xsd:positiveInteger ;
 	isoI:semanticVersion "15.0.0"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78733/V15#C78733>
-	rdf:type th:ManagedConcept ;
-	isoC:label "Specimen Condition"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C78733/V15#C78733_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C78733/V15#C78733_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2009-02-18T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C78733"^^xsd:string ;
-	th:notation "SPECCOND"^^xsd:string ;
-	th:definition "The physical state or quality of a biological specimen."^^xsd:string ;
-	th:extensible "true"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70717> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70720> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70715> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C70718> ;
-	th:narrower <http://www.cdisc.org/C78733/V15#C78733_C70719> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78723> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78724> ;
-	th:narrower <http://www.cdisc.org/C78733/V14#C78733_C78725> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fd21e2da2b2e5a3f0f8fe4aa82ef0a7ede8a177f> ;
-	th:synonym <http://www.assero.co.uk/SYN#17fd8713ad2a212e1d7779df1c1c1167c3453c91> ;
-.
-<http://www.cdisc.org/C78733/V15#C78733_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C78733/V15#C78733_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C78733"^^xsd:string ;
-	isoI:versionLabel "2009-02-18 Release"^^xsd:string ;
-	isoI:version "15"^^xsd:positiveInteger ;
-	isoI:semanticVersion "15.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C78733/V15#C78733_C70719>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Specimen at Room Temperature"^^xsd:string ;
-	th:identifier "C70719"^^xsd:string ;
-	th:notation "ROOM TEMPERATURE"^^xsd:string ;
-	th:definition "A specimen that has been subjected to and adjusted to the average ambient temperature of a room, usually considered to be around 20° C (68° F). (NCI)"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#fd0b7a590e1d6ad0396021ebf35c480cb9598a97> ;
-	th:synonym <http://www.assero.co.uk/SYN#fd0b7a590e1d6ad0396021ebf35c480cb9598a97> ;
 .
 <http://www.cdisc.org/C78735/V15#C78735>
 	rdf:type th:ManagedConcept ;

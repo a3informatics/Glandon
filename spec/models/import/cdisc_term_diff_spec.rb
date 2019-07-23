@@ -58,7 +58,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)
@@ -996,7 +996,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       {cl: :C66737, status: :no_change},
       {cl: :C66738, status: :updated},
       {cl: :C66785, status: :no_change},
-      {cl: :C66787, status: :deleted},
+      {cl: :C66787, status: :no_change},
       {cl: :C66790, status: :no_change},
       {cl: :C67152, status: :updated},
       {cl: :C67153, status: :updated},

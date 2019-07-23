@@ -786,8 +786,8 @@
 	th:isTopConcept <http://www.cdisc.org/C100157/V38#C100157> ;
 	th:isTopConcept <http://www.cdisc.org/C119070/V41#C119070> ;
 	th:isTopConcept <http://www.cdisc.org/C119069/V41#C119069> ;
-	th:isTopConcept <http://www.cdisc.org/C105130/V42#C105130> ;
-	th:isTopConcept <http://www.cdisc.org/C105129/V42#C105129> ;
+	th:isTopConcept <http://www.cdisc.org/C105130/V38#C105130> ;
+	th:isTopConcept <http://www.cdisc.org/C105129/V38#C105129> ;
 	th:isTopConcept <http://www.cdisc.org/C115402/V38#C115402> ;
 	th:isTopConcept <http://www.cdisc.org/C115401/V38#C115401> ;
 	th:isTopConcept <http://www.cdisc.org/C112437/V38#C112437> ;
@@ -828,8 +828,8 @@
 	th:isTopConcept <http://www.cdisc.org/C100137/V38#C100137> ;
 	th:isTopConcept <http://www.cdisc.org/C101821/V42#C101821> ;
 	th:isTopConcept <http://www.cdisc.org/C101822/V42#C101822> ;
-	th:isTopConcept <http://www.cdisc.org/C106667/V42#C106667> ;
-	th:isTopConcept <http://www.cdisc.org/C106666/V42#C106666> ;
+	th:isTopConcept <http://www.cdisc.org/C106667/V38#C106667> ;
+	th:isTopConcept <http://www.cdisc.org/C106666/V38#C106666> ;
 	th:isTopConcept <http://www.cdisc.org/C103469/V39#C103469> ;
 	th:isTopConcept <http://www.cdisc.org/C103468/V39#C103468> ;
 	th:isTopConcept <http://www.cdisc.org/C113856/V38#C113856> ;
@@ -3731,7 +3731,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "309"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C105130/V42#C105130> ;
+	bo:reference <http://www.cdisc.org/C105130/V38#C105130> ;
 .
 :TH_TCR310
 	rdf:type bo:TcReference ;
@@ -3740,7 +3740,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "310"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C105129/V42#C105129> ;
+	bo:reference <http://www.cdisc.org/C105129/V38#C105129> ;
 .
 :TH_TCR311
 	rdf:type bo:TcReference ;
@@ -4109,7 +4109,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "351"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C106667/V42#C106667> ;
+	bo:reference <http://www.cdisc.org/C106667/V38#C106667> ;
 .
 :TH_TCR352
 	rdf:type bo:TcReference ;
@@ -4118,7 +4118,7 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "352"^^xsd:positiveInteger ;
 	bo:localLabel ""^^xsd:string ;
-	bo:reference <http://www.cdisc.org/C106666/V42#C106666> ;
+	bo:reference <http://www.cdisc.org/C106666/V38#C106666> ;
 .
 :TH_TCR353
 	rdf:type bo:TcReference ;
@@ -23550,7 +23550,7 @@
 	th:narrower <http://www.cdisc.org/C115304/V38#C115304_C115793> ;
 	th:narrower <http://www.cdisc.org/C115304/V38#C115304_C115789> ;
 	th:narrower <http://www.cdisc.org/C115304/V38#C115304_C115794> ;
-	th:narrower <http://www.cdisc.org/C115304/V42#C115304_C115795> ;
+	th:narrower <http://www.cdisc.org/C115304/V38#C115304_C115795> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b102422363c6265f310400ec682db640a368e5cf> ;
 	th:synonym <http://www.assero.co.uk/SYN#ef96b868519530ac332a1d3b08369f17cbcc180c> ;
 .
@@ -23590,16 +23590,6 @@
 <http://www.assero.co.uk/SYN#d0153f6d9c38d85138595a4d28ce1e93108f7455>
 	rdf:type th:Synonym ;
 	isoC:label "BACS1"^^xsd:string ;
-.
-<http://www.cdisc.org/C115304/V42#C115304_C115795>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Timed Up and Go Functional Test"^^xsd:string ;
-	th:identifier "C115795"^^xsd:string ;
-	th:notation "TUG"^^xsd:string ;
-	th:definition "Timed Up and Go (TUG) (Podsiadlo D, Richardson S. The Timed 'Up & Go': a test of basic functional mobility for frail elderly persons. J Am Geriatr Soc. 1991; 39:142-148)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b8c1cde98e9300f6100e26cb0ec7c1a88fb6423c> ;
-	th:synonym <http://www.assero.co.uk/SYN#3c22fe5d56b141bd7f824fc6a9a34bc7d03fc755> ;
 .
 <http://www.cdisc.org/C100129/V42#C100129>
 	rdf:type th:ManagedConcept ;
@@ -23723,8 +23713,8 @@
 	th:narrower <http://www.cdisc.org/C100129/V34#C100129_C106694> ;
 	th:narrower <http://www.cdisc.org/C100129/V32#C100129_C100778> ;
 	th:narrower <http://www.cdisc.org/C100129/V32#C100129_C103530> ;
-	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C112527> ;
-	th:narrower <http://www.cdisc.org/C100129/V42#C100129_C112528> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C112527> ;
+	th:narrower <http://www.cdisc.org/C100129/V36#C100129_C112528> ;
 	th:narrower <http://www.cdisc.org/C100129/V41#C100129_C119096> ;
 	th:narrower <http://www.cdisc.org/C100129/V29#C100129_C100779> ;
 	th:narrower <http://www.cdisc.org/C100129/V30#C100129_C102124> ;
@@ -23785,26 +23775,6 @@
 <http://www.assero.co.uk/SYN#605b3d20cba9e7e3c8de8f59fc10c71bede8e6b7>
 	rdf:type th:Synonym ;
 	isoC:label "CRQ02"^^xsd:string ;
-.
-<http://www.cdisc.org/C100129/V42#C100129_C112527>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Visual Functioning Questionnaire 25-Interviewer Administered Format Version 2000"^^xsd:string ;
-	th:identifier "C112527"^^xsd:string ;
-	th:notation "VFQ-25 INTERVIEWER ADMINISTERED"^^xsd:string ;
-	th:definition "National Eye Institute Visual Functioning Questionnaire - 25 (VFQ-25) Version 2000 Interviewer-Administered Format (Mangione, C. M., Lee, P. P., Gutierrez, P. R., Spritzer, K., Berry, S., & Hays, R. D. Development of the 25-item National Eye Institute Visual Function Questionnaire (VFQ-25). Archives of Ophthalmology. 2001; 119:1050-1058). (This instrument was developed at RAND under the sponsorship of the National Eye Institute)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e0e19b67372e59a4b03052bbba06cde5caec37b9> ;
-	th:synonym <http://www.assero.co.uk/SYN#bc7ca084c2eac5ce58260b1345ff1de9fb72898a> ;
-.
-<http://www.cdisc.org/C100129/V42#C100129_C112528>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "Visual Functioning Questionnaire 25-Self Administered Format Version 2000"^^xsd:string ;
-	th:identifier "C112528"^^xsd:string ;
-	th:notation "VFQ-25 SELF ADMINISTERED"^^xsd:string ;
-	th:definition "National Eye Institute Visual Functioning Questionnaire - 25 (VFQ-25) Version 2000 Self-Administered Format (Mangione, C. M., Lee, P. P., Gutierrez, P. R., Spritzer, K., Berry, S., & Hays, R. D. Development of the 25-item National Eye Institute Visual Function Questionnaire (VFQ-25). Archives of Ophthalmology. 2001; 119:1050-1058). (This instrument was developed at RAND under the sponsorship of the National Eye Institute)."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b9d82fce8a21dafcbe2425b2ed834300d0e02f7e> ;
-	th:synonym <http://www.assero.co.uk/SYN#594231314f665e5c2d8a909898c4fe2dd29d02d7> ;
 .
 <http://www.cdisc.org/C120985/V42#C120985>
 	rdf:type th:ManagedConcept ;
@@ -27630,216 +27600,6 @@
 	rdf:type th:Synonym ;
 	isoC:label "QS-Chronic Respiratory Questionnaire Self-Administered Standardized Format Follow-Up Administration Version Test Name"^^xsd:string ;
 .
-<http://www.cdisc.org/C105130/V42#C105130>
-	rdf:type th:ManagedConcept ;
-	isoC:label "QS-Disability Assessment for Dementia Questionnaire Test Code"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C105130/V42#C105130_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C105130/V42#C105130_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C105130"^^xsd:string ;
-	th:notation "DAD TESTCD"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia test code."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105170> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105171> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105172> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105173> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105174> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105175> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105176> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105177> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105178> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105179> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105180> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105181> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105182> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105183> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105184> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105185> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105186> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105187> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105188> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105189> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105190> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105191> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105192> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105193> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105194> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105195> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105196> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105197> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105198> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105199> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105200> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105201> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105202> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105203> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105204> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105205> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105206> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105207> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105208> ;
-	th:narrower <http://www.cdisc.org/C105130/V33#C105130_C105209> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111577> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111578> ;
-	th:narrower <http://www.cdisc.org/C105130/V42#C105130_C111579> ;
-	th:narrower <http://www.cdisc.org/C105130/V42#C105130_C111617> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111580> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111581> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111582> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111583> ;
-	th:narrower <http://www.cdisc.org/C105130/V35#C105130_C111584> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#c9201ab9eeb33120410cb3ab355d5987f361e9d7> ;
-	th:synonym <http://www.assero.co.uk/SYN#5a19031e8b5baf3941f11343a1826b13921fdf88> ;
-.
-<http://www.cdisc.org/C105130/V42#C105130_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C105130/V42#C105130_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C105130"^^xsd:string ;
-	isoI:versionLabel "2015-03-27 Release"^^xsd:string ;
-	isoI:version "42"^^xsd:positiveInteger ;
-	isoI:semanticVersion "42.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C105130/V42#C105130_C111579>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "DAD - Sub-Total Planning and Organization"^^xsd:string ;
-	th:identifier "C111579"^^xsd:string ;
-	th:notation "DAD0143"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia - Sub-Total Planning & Organization."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b8b1dc1ba57dbeea96c459b6654cb55f5120eb0e> ;
-	th:synonym <http://www.assero.co.uk/SYN#1092051cdd73d05e207b2c40aae3c1f2ffd2bea7> ;
-.
-<http://www.cdisc.org/C105130/V42#C105130_C111617>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "DAD - Plan and Organize Number of Applicable Items"^^xsd:string ;
-	th:identifier "C111617"^^xsd:string ;
-	th:notation "DAD0144"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia - Sub-Total Planning & Organization Number of Applicable Items."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2310740341352bcf5fc341f43a0b3e81dec3f7e0> ;
-	th:synonym <http://www.assero.co.uk/SYN#a1dd321ad3b584f84b259381b1f9f33e23e353df> ;
-.
-<http://www.cdisc.org/C105129/V42#C105129>
-	rdf:type th:ManagedConcept ;
-	isoC:label "QS-Disability Assessment for Dementia Questionnaire Test Name"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C105129/V42#C105129_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C105129/V42#C105129_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C105129"^^xsd:string ;
-	th:notation "DAD TEST"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia test name."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105195> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105201> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105188> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105175> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105192> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105178> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105185> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105208> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105184> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105171> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105172> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105177> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105194> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105187> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105170> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105180> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105179> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105186> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111581> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105191> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105196> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105202> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111578> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105200> ;
-	th:narrower <http://www.cdisc.org/C105129/V42#C105129_C111617> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105207> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105173> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105189> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105198> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105197> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105205> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105199> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105209> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111580> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111577> ;
-	th:narrower <http://www.cdisc.org/C105129/V42#C105129_C111579> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105176> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105206> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105204> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105203> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105190> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111584> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111583> ;
-	th:narrower <http://www.cdisc.org/C105129/V35#C105129_C111582> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105181> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105182> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105183> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105174> ;
-	th:narrower <http://www.cdisc.org/C105129/V33#C105129_C105193> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#e47c705b98bfb03740dd55f86364f213132afee6> ;
-	th:synonym <http://www.assero.co.uk/SYN#49bf5b7007e706bc9c5241ca6f4cc90329c641fb> ;
-.
-<http://www.cdisc.org/C105129/V42#C105129_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C105129/V42#C105129_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C105129"^^xsd:string ;
-	isoI:versionLabel "2015-03-27 Release"^^xsd:string ;
-	isoI:version "42"^^xsd:positiveInteger ;
-	isoI:semanticVersion "42.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C105129/V42#C105129_C111617>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "DAD - Plan and Organize Number of Applicable Items"^^xsd:string ;
-	th:identifier "C111617"^^xsd:string ;
-	th:notation "DAD01-Plan & Org Num Applic Items"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia - Sub-Total Planning & Organization Number of Applicable Items."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#2310740341352bcf5fc341f43a0b3e81dec3f7e0> ;
-	th:synonym <http://www.assero.co.uk/SYN#a1dd321ad3b584f84b259381b1f9f33e23e353df> ;
-.
-<http://www.cdisc.org/C105129/V42#C105129_C111579>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "DAD - Sub-Total Planning and Organization"^^xsd:string ;
-	th:identifier "C111579"^^xsd:string ;
-	th:notation "DAD01-Sub-Total Planning & Organization"^^xsd:string ;
-	th:definition "Disability Assessment for Dementia - Sub-Total Planning & Organization."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#b8b1dc1ba57dbeea96c459b6654cb55f5120eb0e> ;
-	th:synonym <http://www.assero.co.uk/SYN#1092051cdd73d05e207b2c40aae3c1f2ffd2bea7> ;
-.
 <http://www.cdisc.org/C101819/V42#C101819>
 	rdf:type th:ManagedConcept ;
 	isoC:label "QS-Hamilton Anxiety Rating Scale Questionnaire Test Code"^^xsd:string ;
@@ -28075,210 +27835,6 @@
 <http://www.assero.co.uk/SYN#55468efa4d322d1ea685be6ca9fc87878b5e5f26>
 	rdf:type th:Synonym ;
 	isoC:label "QS-Hamilton Depression Rating Scale 21-Item Questionnaire Test Name"^^xsd:string ;
-.
-<http://www.cdisc.org/C106667/V42#C106667>
-	rdf:type th:ManagedConcept ;
-	isoC:label "QS-Health Assessment Questionnaire Disability Index Test Code"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C106667/V42#C106667_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C106667/V42#C106667_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C106667"^^xsd:string ;
-	th:notation "HAQ-DI TESTCD"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index test code."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C106667/V42#C106667_C106809> ;
-	th:narrower <http://www.cdisc.org/C106667/V42#C106667_C106810> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106811> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106812> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106813> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106814> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106815> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106816> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106817> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106818> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106819> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106820> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106821> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106822> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106823> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106824> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106825> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106826> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106827> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106828> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106829> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106830> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106831> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106832> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106833> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106834> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106835> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106836> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106837> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106838> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106839> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106840> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106841> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106842> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106843> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C107020> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106844> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106845> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106846> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C107093> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C107094> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106847> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106848> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106849> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106850> ;
-	th:narrower <http://www.cdisc.org/C106667/V34#C106667_C106851> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d71c925b2f4431980b52b7ff94fe2bfdeac98908> ;
-	th:synonym <http://www.assero.co.uk/SYN#8a1254ceb07c01992cb8fac0383811e192f4b27e> ;
-.
-<http://www.cdisc.org/C106667/V42#C106667_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C106667/V42#C106667_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C106667"^^xsd:string ;
-	isoI:versionLabel "2015-03-27 Release"^^xsd:string ;
-	isoI:version "42"^^xsd:positiveInteger ;
-	isoI:semanticVersion "42.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C106667/V42#C106667_C106809>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "HAQ-DI - Able to Dress Yourself"^^xsd:string ;
-	th:identifier "C106809"^^xsd:string ;
-	th:notation "HAQ0101"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index - Dressing & Grooming: Are you able to dress yourself, including tying shoelaces and doing buttons?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#cb3f1c1cff3461f232b1ed9c2652a88e1960460f> ;
-	th:synonym <http://www.assero.co.uk/SYN#b03a4a85d689798328e597b008847fae58d29d33> ;
-.
-<http://www.cdisc.org/C106667/V42#C106667_C106810>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "HAQ-DI - Able to Shampoo Hair"^^xsd:string ;
-	th:identifier "C106810"^^xsd:string ;
-	th:notation "HAQ0102"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index - Dressing & Grooming: Are you able to shampoo your hair?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d4f3d8abee4abd8cdd996266544d7c19f87edf16> ;
-	th:synonym <http://www.assero.co.uk/SYN#166b247cdc4356ef8bfed66d94093b3479a5df55> ;
-.
-<http://www.cdisc.org/C106666/V42#C106666>
-	rdf:type th:ManagedConcept ;
-	isoC:label "QS-Health Assessment Questionnaire Disability Index Test Name"^^xsd:string ;
-	isoT:hasState <http://www.cdisc.org/C106666/V42#C106666_RS> ;
-	isoT:hasIdentifier <http://www.cdisc.org/C106666/V42#C106666_SI> ;
-	isoT:origin ""^^xsd:string ;
-	isoT:changeDescription ""^^xsd:string ;
-	isoT:creationDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2015-03-27T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "C106666"^^xsd:string ;
-	th:notation "HAQ-DI TEST"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index test name."^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106841> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106844> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106843> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106823> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106818> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106820> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106822> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C107020> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106846> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106845> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106842> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106824> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106819> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106821> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106835> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106817> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106813> ;
-	th:narrower <http://www.cdisc.org/C106666/V42#C106666_C106809> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106840> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106812> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106833> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106828> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106827> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106829> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106850> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106849> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106847> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106848> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106830> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106814> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106815> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106836> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106837> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106825> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C107093> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106834> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106839> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106851> ;
-	th:narrower <http://www.cdisc.org/C106666/V42#C106666_C106810> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106826> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C107094> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106811> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106832> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106838> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106816> ;
-	th:narrower <http://www.cdisc.org/C106666/V34#C106666_C106831> ;
-	th:preferredTerm <http://www.assero.co.uk/PT#3a43f52c5401719cd499e9710763c9ad2bf9729e> ;
-	th:synonym <http://www.assero.co.uk/SYN#168862f74a1f6ba08d2d3b66017decb16430c7a0> ;
-.
-<http://www.cdisc.org/C106666/V42#C106666_RS>
-	rdf:type isoR:RegistrationState ;
-	isoR:registrationStatus "Standard"^^xsd:string ;
-	isoR:administrativeNote ""^^xsd:string ;
-	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoR:unresolvedIssue ""^^xsd:string ;
-	isoR:administrativeStatus ""^^xsd:string ;
-	isoR:previousState "Standard"^^xsd:string ;
-	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
-.
-<http://www.cdisc.org/C106666/V42#C106666_SI>
-	rdf:type isoI:ScopedIdentifier ;
-	isoI:identifier "C106666"^^xsd:string ;
-	isoI:versionLabel "2015-03-27 Release"^^xsd:string ;
-	isoI:version "42"^^xsd:positiveInteger ;
-	isoI:semanticVersion "42.0.0"^^xsd:string ;
-	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
-.
-<http://www.cdisc.org/C106666/V42#C106666_C106809>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "HAQ-DI - Able to Dress Yourself"^^xsd:string ;
-	th:identifier "C106809"^^xsd:string ;
-	th:notation "HAQ01-Dress Yourself"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index - Dressing & Grooming: Are you able to dress yourself, including tying shoelaces and doing buttons?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#cb3f1c1cff3461f232b1ed9c2652a88e1960460f> ;
-	th:synonym <http://www.assero.co.uk/SYN#b03a4a85d689798328e597b008847fae58d29d33> ;
-.
-<http://www.cdisc.org/C106666/V42#C106666_C106810>
-	rdf:type th:UnmanagedConcept ;
-	isoC:label "HAQ-DI - Able to Shampoo Hair"^^xsd:string ;
-	th:identifier "C106810"^^xsd:string ;
-	th:notation "HAQ01-Shampoo Your Hair"^^xsd:string ;
-	th:definition "Health Assessment Questionnaire Disability Index - Dressing & Grooming: Are you able to shampoo your hair?"^^xsd:string ;
-	th:extensible "false"^^xsd:boolean ;
-	th:preferredTerm <http://www.assero.co.uk/PT#d4f3d8abee4abd8cdd996266544d7c19f87edf16> ;
-	th:synonym <http://www.assero.co.uk/SYN#166b247cdc4356ef8bfed66d94093b3479a5df55> ;
 .
 <http://www.cdisc.org/C78419/V42#C78419>
 	rdf:type th:ManagedConcept ;
