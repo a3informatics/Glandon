@@ -146,7 +146,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   def differences
     results = []
-    items = self.class.where(identifier: self.identifier)
+    items = self.class.where(identifier: self.has_identifier.identifier)
     previous = nil
     items.each do |item|
       item.narrower = []

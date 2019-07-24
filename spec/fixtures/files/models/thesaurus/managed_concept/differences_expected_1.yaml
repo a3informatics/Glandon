@@ -1,0 +1,2197 @@
+---
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2007-03-06'
+  :differences:
+    :label:
+      :status: :created
+      :previous: ''
+      :current: CDISC SDTM Laboratory Test Terminology
+      :difference: ''
+    :has_state:
+      :status: :created
+      :previous: ''
+      :current: &1 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V1
+        fragment: C65047_RS
+      :difference: ''
+    :has_identifier:
+      :status: :created
+      :previous: ''
+      :current: &2 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V1
+        fragment: C65047_SI
+      :difference: ''
+    :origin:
+      :status: :created
+      :previous: ''
+      :current: ''
+      :difference: ''
+    :change_description:
+      :status: :created
+      :previous: ''
+      :current: ''
+      :difference: ''
+    :creation_date:
+      :status: :created
+      :previous: ''
+      :current: &3 2007-03-06 00:00:00.000000000 +00:00
+      :difference: ''
+    :last_change_date:
+      :status: :created
+      :previous: ''
+      :current: &4 2007-03-06 00:00:00.000000000 +00:00
+      :difference: ''
+    :explanatory_comment:
+      :status: :created
+      :previous: ''
+      :current: ''
+      :difference: ''
+    :identifier:
+      :status: :created
+      :previous: ''
+      :current: C65047
+      :difference: ''
+    :notation:
+      :status: :created
+      :previous: ''
+      :current: LABTEST
+      :difference: ''
+    :definition:
+      :status: :created
+      :previous: ''
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: ''
+    :extensible:
+      :status: :created
+      :previous: ''
+      :current: true
+      :difference: ''
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: ''
+    :preferred_term:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: ''
+    :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2007-04-20'
+  :differences:
+    :label:
+      :status: :updated
+      :previous: CDISC SDTM Laboratory Test Terminology
+      :current: Laboratory Test Code
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del><strong>CDISC SDTM </strong>Laboratory Test <strong>Terminology</strong></del></li>
+            <li class="ins"><ins>Laboratory Test <strong>Code</strong></ins></li>
+          </ul>
+        </div>
+    :has_state:
+      :status: :updated
+      :previous: *1
+      :current: &5 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V2
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>1</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>2</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *2
+      :current: &6 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V2
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>1</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>2</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *3
+      :current: &7 2007-04-20 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2007-0<strong>3-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2007-0<strong>4-20</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *4
+      :current: &8 2007-04-20 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2007-0<strong>3-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2007-0<strong>4-20</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :updated
+      :previous: LABTEST
+      :current: LBTESTCD
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>L<strong>A</strong>BTEST</del></li>
+            <li class="ins"><ins>LBTEST<strong>CD</strong></ins></li>
+          </ul>
+        </div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :created
+        :previous: ''
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: ''
+    :synonym:
+    - :label:
+        :status: :created
+        :previous: ''
+        :current: LBTESTCD
+        :difference: ''
+    - :label:
+        :status: :created
+        :previous: ''
+        :current: Laboratory Test Code
+        :difference: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2007-05-31'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *5
+      :current: &9 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V4
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>2</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>4</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *6
+      :current: &10 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V4
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>2</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>4</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *7
+      :current: &11 2007-05-31 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2007-0<strong>4-20</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2007-0<strong>5-31</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *8
+      :current: &12 2007-05-31 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2007-0<strong>4-20</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2007-0<strong>5-31</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :updated
+        :previous: LBTESTCD
+        :current: Laboratory Test Code
+        :difference: |
+          <div class="diff">
+            <ul>
+              <li class="del"><del>L<strong>BTESTCD</strong></del></li>
+              <li class="ins"><ins>L<strong>aboratory Test Code</strong></ins></li>
+            </ul>
+          </div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2008-08-26'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *9
+      :current: &13 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V8
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>4</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>8</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *10
+      :current: &14 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V8
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>4</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>8</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *11
+      :current: &15 2008-08-26 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>200<strong>7-05-31</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>200<strong>8-08-26</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *12
+      :current: &16 2008-08-26 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>200<strong>7-05-31</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>200<strong>8-08-26</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2009-02-17'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *13
+      :current: &17 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V14
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>8</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>14</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *14
+      :current: &18 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V14
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>8</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>14</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *15
+      :current: &19 2009-02-17 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>200<strong>8-08-26</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>200<strong>9-02-17</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *16
+      :current: &20 2009-02-17 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>200<strong>8-08-26</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>200<strong>9-02-17</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2009-02-18'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *17
+      :current: &21 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V15
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>4</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>5</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *18
+      :current: &22 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V15
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>4</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>5</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *19
+      :current: &23 2009-02-18 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-02-1<strong>7</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-02-1<strong>8</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *20
+      :current: &24 2009-02-18 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-02-1<strong>7</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-02-1<strong>8</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2009-05-01'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *21
+      :current: &25 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V16
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>5</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>6</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *22
+      :current: &26 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V16
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>5</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>6</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *23
+      :current: &27 2009-05-01 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-0<strong>2-18</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-0<strong>5-01</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *24
+      :current: &28 2009-05-01 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-0<strong>2-18</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-0<strong>5-01</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2009-07-06'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *25
+      :current: &29 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V17
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>6</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>7</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *26
+      :current: &30 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V17
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>6</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>7</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *27
+      :current: &31 2009-07-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-0<strong>5-01</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-0<strong>7-06</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *28
+      :current: &32 2009-07-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-0<strong>5-01</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-0<strong>7-06</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2009-10-06'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *29
+      :current: &33 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V18
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>7</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>8</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *30
+      :current: &34 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V18
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>7</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>8</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *31
+      :current: &35 2009-10-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-<strong>07</strong>-06 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-<strong>10</strong>-06 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *32
+      :current: &36 2009-10-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2009-<strong>07</strong>-06 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2009-<strong>10</strong>-06 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2010-03-05'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *33
+      :current: &37 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V19
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>8</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>9</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *34
+      :current: &38 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V19
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V1<strong>8</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V1<strong>9</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *35
+      :current: &39 2010-03-05 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>20<strong>09-10-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>20<strong>10-03-05</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *36
+      :current: &40 2010-03-05 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>20<strong>09-10-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>20<strong>10-03-05</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2010-04-08'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *37
+      :current: &41 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V20
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>19</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>20</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *38
+      :current: &42 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V20
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>19</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>20</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *39
+      :current: &43 2010-04-08 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-0<strong>3-05</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-0<strong>4-08</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *40
+      :current: &44 2010-04-08 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-0<strong>3-05</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-0<strong>4-08</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2010-07-02'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *41
+      :current: &45 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V21
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>0</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>1</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *42
+      :current: &46 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V21
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>0</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>1</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *43
+      :current: &47 2010-07-02 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-0<strong>4-08</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-0<strong>7-02</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *44
+      :current: &48 2010-07-02 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-0<strong>4-08</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-0<strong>7-02</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2010-10-06'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *45
+      :current: &49 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V22
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>1</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>2</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *46
+      :current: &50 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V22
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>1</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>2</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *47
+      :current: &51 2010-10-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-<strong>07-02</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-<strong>10-06</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *48
+      :current: &52 2010-10-06 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2010-<strong>07-02</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2010-<strong>10-06</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2011-04-08'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *49
+      :current: &53 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V25
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>2</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>5</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *50
+      :current: &54 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V25
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>2</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>5</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *51
+      :current: &55 2011-04-08 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>201<strong>0-10-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>201<strong>1-04-08</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *52
+      :current: &56 2011-04-08 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>201<strong>0-10-06</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>201<strong>1-04-08</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2011-06-10'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *53
+      :current: &57 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V26
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>5</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>6</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *54
+      :current: &58 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V26
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>5</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>6</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *55
+      :current: &59 2011-06-10 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-0<strong>4-08</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-0<strong>6-10</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *56
+      :current: &60 2011-06-10 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-0<strong>4-08</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-0<strong>6-10</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2011-07-22'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *57
+      :current: &61 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V27
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>6</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>7</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *58
+      :current: &62 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V27
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>6</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>7</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *59
+      :current: &63 2011-07-22 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-0<strong>6-10</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-0<strong>7-22</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *60
+      :current: &64 2011-07-22 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-0<strong>6-10</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-0<strong>7-22</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2011-12-09'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *61
+      :current: &65 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V28
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>7</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>8</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *62
+      :current: &66 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V28
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>7</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>8</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *63
+      :current: &67 2011-12-09 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-<strong>07-22</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-<strong>12-09</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *64
+      :current: &68 2011-12-09 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2011-<strong>07-22</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2011-<strong>12-09</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2012-03-23'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *65
+      :current: &69 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V29
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>8</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>9</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *66
+      :current: &70 !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V29
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V2<strong>8</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V2<strong>9</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *67
+      :current: &71 2012-03-23 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>201<strong>1-12-09</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>201<strong>2-03-23</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *68
+      :current: &72 2012-03-23 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>201<strong>1-12-09</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>201<strong>2-03-23</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YyMCNDNjUwNDc=
+  :date: '2012-06-29'
+  :differences:
+    :label:
+      :status: :no_change
+      :previous: Laboratory Test Code
+      :current: Laboratory Test Code
+      :difference: <div class="diff"></div>
+    :has_state:
+      :status: :updated
+      :previous: *69
+      :current: !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V30
+        fragment: C65047_RS
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>29</strong>#C65047_RS</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>30</strong>#C65047_RS</ins></li>
+          </ul>
+        </div>
+    :has_identifier:
+      :status: :updated
+      :previous: *70
+      :current: !ruby/object:Uri
+        scheme: http
+        authority: www.cdisc.org
+        path: C65047/V30
+        fragment: C65047_SI
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>http://www.cdisc.org/C65047/V<strong>29</strong>#C65047_SI</del></li>
+            <li class="ins"><ins>http://www.cdisc.org/C65047/V<strong>30</strong>#C65047_SI</ins></li>
+          </ul>
+        </div>
+    :origin:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :change_description:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :creation_date:
+      :status: :updated
+      :previous: *71
+      :current: 2012-06-29 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2012-0<strong>3-23</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2012-0<strong>6-29</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :last_change_date:
+      :status: :updated
+      :previous: *72
+      :current: 2012-06-29 00:00:00.000000000 +00:00
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>2012-0<strong>3-23</strong> 00:00:00 +0000</del></li>
+            <li class="ins"><ins>2012-0<strong>6-29</strong> 00:00:00 +0000</ins></li>
+          </ul>
+        </div>
+    :explanatory_comment:
+      :status: :no_change
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :identifier:
+      :status: :no_change
+      :previous: C65047
+      :current: C65047
+      :difference: <div class="diff"></div>
+    :notation:
+      :status: :no_change
+      :previous: LBTESTCD
+      :current: LBTESTCD
+      :difference: <div class="diff"></div>
+    :definition:
+      :status: :no_change
+      :previous: Terminology used for Laboratory Tests of the CDISC Standard Data
+        Tabulation Model.
+      :current: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
+        Model.
+      :difference: <div class="diff"></div>
+    :extensible:
+      :status: :no_change
+      :previous: true
+      :current: true
+      :difference: <div class="diff"></div>
+    :extended_with: []
+    :narrower: []
+    :is_subset:
+      :status: :not_present
+      :previous: ''
+      :current: ''
+      :difference: <div class="diff"></div>
+    :preferred_term:
+      :label:
+        :status: :no_change
+        :previous: CDISC SDTM Laboratory Test Terminology by Code
+        :current: CDISC SDTM Laboratory Test Terminology by Code
+        :difference: <div class="diff"></div>
+    :synonym:
+    - :label:
+        :status: :no_change
+        :previous: Laboratory Test Code
+        :current: Laboratory Test Code
+        :difference: <div class="diff"></div>

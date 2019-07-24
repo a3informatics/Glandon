@@ -427,7 +427,7 @@ describe Thesaurus::ManagedConcept do
 
   end
 
-  describe "changes" do
+  describe "changes and differences" do
 
     before :all  do
       IsoHelpers.clear_cache
@@ -463,6 +463,12 @@ describe Thesaurus::ManagedConcept do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.changes(8)
       check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
+    end
+
+    it "differences" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", write_file: true)
     end
 
   end
