@@ -87,38 +87,50 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   end
 
   def differences
-    raw_results = {}
-    results = []
-
-    # Get the version set. Work out if we need a dummy first one.
-    items = self.class.where(identifier: self.identifier)
-    version_set = items.map{|x| x.uri}
-
-    # Get the raw results
-    query_string = %Q{SELECT ?e ?v ?d ?s WHERE
-{
-  #{version_set.map{|x| "{ #{x.to_ref} ^th:narrower+ ?e . ?e rdf:type th:ManagedConcept . ?e isoT:creationDate ?d . ?e isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?s) } "}.join(" UNION\n")}
-}}
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th])
-    triples = query_results.by_object_set([:s, :e, :v, :d])
-    previous_id = ""
-    triples.each do |entry|
-      uri = entry[:s]
-      next if raw_results.key?(uri.to_s) || previous_id == uri.to_id     
-      raw_results[uri.to_s] = {id: uri.to_id, version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d")}
-      previous_id = uri.to_id 
-    end
-
-    # Build results
+    results =[]
+    query_string = %Q{
+SELECT DISTINCT ?p WHERE\n
+{        
+  {
+    ?p th:identifier ?pi .
+    {
+      SELECT DISTINCT ?pi 
+      {
+        ?parent th:narrower #{self.uri.to_ref} .
+        ?parent th:identifier ?pi .
+      }
+    }
+  }
+}
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
+    items = query_results.by_object_set([:p])
+    query_string = %Q{
+SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"; \") as ?sys) WHERE\n
+{        
+  VALUES ?p { #{items.map{|x| x[:p].to_ref}.join(" ")} }
+  {
+    ?p th:narrower ?s .
+    ?p isoT:creationDate ?date .
+    ?s th:identifier '#{self.identifier}' .
+    ?s th:notation ?n .
+    ?s th:definition ?d .
+    ?s th:extensible ?e .
+    OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+    OPTIONAL {?s th:synonym/isoC:label ?sy .}
+  }
+} GROUP BY ?s ?n ?d ?pt ?e ?s ?date ORDER BY ?date
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     previous = nil
-    raw_results.each do |uri, version|
-      item = items.find {|x| x.uri == uri}
-      Errors.application_error(self.class.name, __method__.to_s, "Nil item detected during differences.") if item.nil?
-      item.preferred_term_objects
-      item.synonym_objects
-      version[:differences] = previous.nil? ? item.difference_baseline : item.difference(previous)
-      results << version
-      previous = item
+    x = query_results.by_object_set([:n, :d, :e, :pt, :sys, :s, :date])
+    x.each do |x|
+      current = {identifier: self.identifier, notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+      if !ignore?(current, previous)  
+        diffs = previous.nil? ? difference_record_baseline(current) : difference_record(current, previous)
+        results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+      end
+      previous = current
     end
     results
   end
@@ -131,6 +143,12 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   end
 
 private
+
+  # Ignore for no change
+  def ignore?(current, previous)
+    return false if previous.nil?
+    !difference?(current, previous)  
+  end
 
   #
   def replace_children_if_no_change(previous)

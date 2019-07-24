@@ -65,6 +65,32 @@ class Thesaurus
       to_csv_by_key(:identifier, :label, :notation, :synonym, :definition, :preferredTerm)
     end
 
+    def difference_record(current, previous)
+      result = {}
+      [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+        status = current[x] == previous[x] ? :no_change : :updated
+        diff = status == :updated ? Diffy::Diff.new(previous[x], current[x]).to_s(:html) : ""
+        result[x] = {status: status, previous: previous[x], current: current[x], difference: diff }
+      end
+      result
+    end
+
+    def difference?(current, previous)
+      result = {}
+      [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+        return true if current[x] != previous[x]
+      end
+      false
+    end
+
+    def difference_record_baseline(current)
+      result = {}
+      [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+        result[x] = {status: :created, previous: "", current: current[x], difference: ""} 
+      end
+      result
+    end
+
   end
 
 end

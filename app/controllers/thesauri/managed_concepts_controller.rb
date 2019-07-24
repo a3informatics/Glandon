@@ -116,7 +116,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.json do
         clis = @tc.changes(current_user.max_term_display.to_i)
         clis[:items].each do |k,v| 
-          v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
+          v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
         end
         render json: {data: clis}
       end
