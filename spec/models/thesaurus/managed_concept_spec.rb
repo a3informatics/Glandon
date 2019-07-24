@@ -468,7 +468,7 @@ describe Thesaurus::ManagedConcept do
     it "differences" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
     end
 
   end

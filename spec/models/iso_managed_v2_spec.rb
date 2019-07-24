@@ -102,7 +102,7 @@ describe IsoManagedV2 do
       expect(item.version).to eq(1)   
       expect(item.semantic_version.to_s).to eq("1.2.3")   
       expect(item.version_label).to eq("0.1")   
-      expect(item.identifier).to eq("TEST")   
+      expect(item.scoped_identifier).to eq("TEST")   
     end
 
     it "allows the latest, later, earlier and same version to be assessed" do
@@ -200,7 +200,7 @@ describe IsoManagedV2 do
       end
       current = items[10]
       expect(current).to receive(:scope).and_return(IsoNamespace.new)
-      expect(current).to receive(:identifier).and_return("CT")
+      expect(current).to receive(:scoped_identifier).and_return("CT")
       expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).each{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
@@ -218,7 +218,7 @@ describe IsoManagedV2 do
       end
       current = items[1]
       expect(current).to receive(:scope).and_return(IsoNamespace.new)
-      expect(current).to receive(:identifier).and_return("CT")
+      expect(current).to receive(:scoped_identifier).and_return("CT")
       expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
@@ -237,7 +237,7 @@ describe IsoManagedV2 do
       end
       current = items[1]
       expect(current).to receive(:scope).and_return(IsoNamespace.new)
-      expect(current).to receive(:identifier).and_return("CT")
+      expect(current).to receive(:scoped_identifier).and_return("CT")
       expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
       current.forward_backward(1, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
@@ -245,7 +245,7 @@ describe IsoManagedV2 do
 
       current = items[2]
       expect(current).to receive(:scope).and_return(IsoNamespace.new)
-      expect(current).to receive(:identifier).and_return("CT")
+      expect(current).to receive(:scoped_identifier).and_return("CT")
       expect(IsoManagedV2).to receive(:history_uris).and_return(item_history)
       results = {}
       current.forward_backward(2, 4).map{|k,v| results[k] = v.nil? ? "nil" : v.to_s}
@@ -412,7 +412,7 @@ describe IsoManagedV2 do
       item = IsoManagedV2.new
       item.set_initial("AAA")
       expect(item.version).to eq(1)
-      expect(item.identifier).to eq("AAA")
+      expect(item.scoped_identifier).to eq("AAA")
       expect(item.owner_short_name).to eq("BBB")
       expect(item.uri.to_s).to eq("http://www.bbb.com/AAA/V1")
     end
@@ -432,7 +432,7 @@ describe IsoManagedV2 do
       item.set_import(params)
       expected_date = "1989-07-07".to_time_with_default
       expect(item.version).to eq(5)
-      expect(item.identifier).to eq("XXX")
+      expect(item.scoped_identifier).to eq("XXX")
       expect(item.owner_short_name).to eq("BBB")
       expect(item.creation_date.iso8601).to eq("#{expected_date.iso8601}")
       expect(item.last_change_date.iso8601).to eq("#{expected_date.iso8601}")

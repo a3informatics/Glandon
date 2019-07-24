@@ -145,16 +145,31 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   end
 
   def differences
-    results = []
-    items = self.class.where(identifier: self.has_identifier.identifier)
+    results =[]
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    query_string = %Q{
+SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?sys) ?s WHERE\n
+{        
+  VALUES ?s { #{items.map{|x| x.to_ref}.join(" ")} }
+  {
+    ?s th:identifier ?i .
+    ?s isoT:creationDate ?date .
+    ?s th:notation ?n .
+    ?s th:definition ?d .
+    ?s th:extensible ?e .
+    OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+    OPTIONAL {?s th:synonym/isoC:label ?sy .}
+  }
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?i
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     previous = nil
-    items.each do |item|
-      item.narrower = []
-      item.preferred_term_objects
-      item.synonym_objects
-      diffs = previous.nil? ? item.difference_baseline : item.difference(previous)
-      results << {id: uri.to_id, date: item.creation_date.strftime("%Y-%m-%d"), differences: diffs}
-      previous = item
+    x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date])
+    x.each do |x|
+      current = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+      diffs = previous.nil? ? difference_record_baseline(current) : difference_record(current, previous)
+      results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+      previous = current
     end
     results
   end
@@ -184,7 +199,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?
     ?s th:notation ?n .
     ?s th:definition ?d .
     ?s th:extensible ?e .
-    ?s th:preferredTerm/isoC:label ?pt .
+    OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
     OPTIONAL {?s th:synonym/isoC:label ?sy .}
   }
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
@@ -213,6 +228,24 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?
   end
 
 private
+
+  def difference_record(current, previous)
+    result = {}
+    [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+      status = current[x] == previous[x] ? :no_change : :updated
+      diff = status == :updated ? Diffy::Diff.new(previous[x], current[x]).to_s(:html) : ""
+      result[x] = {status: status, previous: previous[x], current: current[x], difference: diff }
+    end
+    result
+  end
+
+  def difference_record_baseline(current)
+    result = {}
+    [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+      result[x] = {status: :created, previous: "", current: current[x], difference: ""} 
+    end
+    result
+  end
 
   #
   def replace_children_if_no_change(previous)

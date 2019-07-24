@@ -4,8 +4,8 @@
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
 <div class="col-md-12">
-  <%= render partial: "shared/thesauri/differences_panel", :locals => {title: "Differences: #{@tc.identifier}, #{@tc.label}", column_count: @version_count, links: @links} %>
-  <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes: #{@tc.identifier}, #{@tc.label}", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/differences_panel", :locals => {title: "Differences: #{@tc.scoped_identifier}, #{@tc.label}", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes: #{@tc.scoped_identifier}, #{@tc.label}", column_count: @version_count, links: @links} %>
   <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
   <%= render partial: "shared/buttons/report", :locals => {link_path:  changes_report_thesauri_path(@tc, format: :pdf), id: "report", small: false} %>  
 </div>

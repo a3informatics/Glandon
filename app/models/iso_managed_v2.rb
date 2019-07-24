@@ -46,10 +46,10 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_identifier.semantic_version
   end
 
-  # Return the identifier
+  # Return the scoped identifier
   #
-  # @return [string] The identifier.
-  def identifier
+  # @return [String] the scoped identifier.
+  def scoped_identifier
     return self.has_identifier.identifier
   end
 
@@ -57,7 +57,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Boolean] Returns true of latest
   def latest?
-    return self.version == IsoScopedIdentifierV2.latest_version(self.identifier, self.has_state.by_authority)
+    return self.version == IsoScopedIdentifierV2.latest_version(self.scoped_identifier, self.has_state.by_authority)
   end
 
   # Later Version
@@ -443,7 +443,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
   def forward_backward(step, window)
     result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
-    history_result = self.class.history_uris(scope: self.scope, identifier: self.identifier).reverse
+    history_result = self.class.history_uris(scope: self.scope, identifier: self.scoped_identifier).reverse
     return result if history_result.empty?
     start_stop = 0
     end_stop = history_result.count - window
@@ -462,9 +462,9 @@ class IsoManagedV2 < IsoConceptV2
   # @param ra [object] The Registration Authority
   # @return [boolean] True if create is permitted, false otherwise.
   def create_permitted?
-    exists = IsoScopedIdentifierV2.exists?(self.identifier, self.scope)
+    exists = IsoScopedIdentifierV2.exists?(self.scoped_identifier, self.scope)
     return true if self.version == IsoScopedIdentifierV2.first_version && !exists
-    latest_version = IsoScopedIdentifierV2.latest_version(self.identifier, self.scope)
+    latest_version = IsoScopedIdentifierV2.latest_version(self.scoped_identifier, self.scope)
     return true if self.version > latest_version && exists
     if exists
       self.errors.add(:base, "The item cannot be created. The identifier is already in use.")
@@ -488,7 +488,7 @@ class IsoManagedV2 < IsoConceptV2
   # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
   # @return [Void] no return
   def set_uris(ra)
-    generate_uri(Uri.new(authority: ra.ra_namespace.authority, identifier: self.identifier, version: self.version))
+    generate_uri(Uri.new(authority: ra.ra_namespace.authority, identifier: self.scoped_identifier, version: self.version))
   end
 
   # Set Intial. Sets the SI and RS fields to the initial values for a new item.

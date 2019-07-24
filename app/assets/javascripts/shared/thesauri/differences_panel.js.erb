@@ -22,14 +22,15 @@ function DifferencesPanel(url) {
       return _this.status(row.differences.notation);
     }},
     {"render" : function (data, type, row, meta) {
-      return _this.status(row.differences.preferred_term.label);
+      return _this.status(row.differences.preferred_term);
     }},
     {"render" : function (data, type, row, meta) {
-      var html = "";
-      jQuery.each(row.differences.synonym, function(i, val) {
-        html = html + _this.merge(val.label);
-      });
-      return html;
+      // var html = "";
+      // jQuery.each(row.differences.synonym, function(i, val) {
+      //   html = html + _this.merge(val.label);
+      // });
+      // return html;
+      return _this.status(row.differences.synonym);
     }},
     {"render" : function (data, type, row, meta) {
       return _this.status(row.differences.definition);
