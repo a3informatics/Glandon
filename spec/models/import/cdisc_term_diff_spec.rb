@@ -1299,7 +1299,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 56: 2018" do
       version = 56
-      results = execute_import(version, "2018-09-28", {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2018-03-30"}, set_write_file)
+      results = execute_import(version, "2018-09-28", {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
