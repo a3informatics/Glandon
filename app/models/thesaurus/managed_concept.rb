@@ -42,8 +42,12 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     byebug
   end
 
+  # Changes Count
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Integer] the number of changes
   def changes_count(window_size)
-    items = self.class.history_uris(identifier: self.identifier, scope: self.owner)
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
     items.count < window_size ? items.count : window_size
   end
     
@@ -58,8 +62,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     start_index = 0
     first_index = 0
 
-    # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history_uris(identifier: self.identifier, scope: self.owner).reverse
+    # Get the version set. Work out if we need a dummy first one. Note the identifier
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
     first_index = items.index {|x| x == self.uri}    
     if first_index.nil? 
       first_index = 0
@@ -78,7 +82,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     # Get the raw results
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
-  #{version_set.map{|x| "{ #{x[:e].to_ref} th:narrower ?cl . #{x[:e].to_ref} isoT:creationDate ?d . #{x[:e].to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x[:e].to_ref} as ?e)} "}.join(" UNION\n")}
+  #{version_set.map{|x| "{ #{x.to_ref} th:narrower ?cl . #{x.to_ref} isoT:creationDate ?d . #{x.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.to_ref} as ?e)} "}.join(" UNION\n")}
   ?cl th:identifier ?i .
   ?cl isoC:label ?l .
   ?cl th:notation ?n .
@@ -108,10 +112,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
     # Process the changes
     previous_version = nil
-    #base_version = raw_results.map{|k,v| v[:version]}[1].to_i
     version_index = 0
     raw_results.each do |uri, version|
-      #version_index = version[:version].to_i - base_version
       if previous_version.nil?
         # nothing needed?
       else

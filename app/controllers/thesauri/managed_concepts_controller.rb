@@ -105,18 +105,18 @@ class Thesauri::ManagedConceptsController < ApplicationController
   
   def changes
     authorize Thesaurus, :view?
-    @tc = Thesaurus::ManagedConcept.find(params[:id], false)
+    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     respond_to do |format|
       format.html
         @version_count = @tc.changes_count(current_user.max_term_display.to_i)
         link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
         @links = {}
-        link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_unmanaged_concept_path(v)} # <<< unmanged concept
+        link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
         @close_path = request.referer
       format.json do
         clis = @tc.changes(current_user.max_term_display.to_i)
         clis[:items].each do |k,v| 
-          v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
+          v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
         end
         render json: {data: clis}
       end
@@ -125,7 +125,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def differences
     authorize Thesaurus, :view?
-    @tc = Thesaurus::ManagedConcept.find(params[:id], false)
+    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     respond_to do |format|
       format.json do
         render json: {data: @tc.differences}
