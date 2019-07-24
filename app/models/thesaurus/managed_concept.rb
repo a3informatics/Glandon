@@ -59,7 +59,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     first_index = 0
 
     # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history_uris(identifier: self.identifier, scope: self.owner)
+    items = self.class.history_uris(identifier: self.identifier, scope: self.owner).reverse
     first_index = items.index {|x| x == self.uri}    
     if first_index.nil? 
       first_index = 0

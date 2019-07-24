@@ -443,14 +443,14 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Hash] a hash containing six objects, start & end, forward & back by step, forward and back by window
   def forward_backward(step, window)
     result = {start: nil, backward_single: nil, backward_multiple: nil, forward_single: nil, forward_multiple: nil, end: nil}
-    history_result = self.class.history_uris(scope: self.scope, identifier: self.identifier)
+    history_result = self.class.history_uris(scope: self.scope, identifier: self.identifier).reverse
     return result if history_result.empty?
     start_stop = 0
     end_stop = history_result.count - window
     my_index = history_result.index {|x| x == self.uri}
     result[:start] = history_result[start_stop] if my_index > start_stop
     result[:backward_single] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop
-    result[:backward_multiple] = history_result[backward(my_index, step, start_stop)] if my_index > start_stop
+    result[:backward_multiple] = history_result[backward(my_index, window, start_stop)] if my_index > start_stop
     result[:forward_single] = history_result[forward(my_index, step, end_stop)] if my_index < end_stop
     result[:forward_multiple] = history_result[forward(my_index, window, end_stop)] if my_index < end_stop
     result[:end] = history_result[end_stop] if my_index < end_stop

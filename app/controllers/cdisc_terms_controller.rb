@@ -30,7 +30,7 @@ class CdiscTermsController < ApplicationController
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
-        @cdisc_term_id = results.first.to_id
+        @cdisc_term_id = results.last.to_id
         @identifier = CdiscTerm::C_IDENTIFIER
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
       end
