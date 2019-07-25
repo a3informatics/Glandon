@@ -383,19 +383,19 @@ describe Thesaurus::UnmanagedConcept do
     it "finds changes, 4" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
     end
 
     it "finds changes, 8" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
     end
 
     it "differences" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
     end
 
   end
