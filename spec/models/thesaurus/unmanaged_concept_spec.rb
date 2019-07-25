@@ -219,17 +219,13 @@ describe Thesaurus::UnmanagedConcept do
 
   it "allows the object to be exported as Hash" do
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-  #Xwrite_yaml_file(tc.to_h, sub_dir, "to_hash_expected.yaml")    
-    expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "to_h_expected.yaml")
   end
 
   it "allows a TC to be created from Hash" do
     input = read_yaml_file(sub_dir, "from_hash_input.yaml")
     tc = Thesaurus::UnmanagedConcept.from_h(input)
-  #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_expected.yaml")    
-    expected = read_yaml_file(sub_dir, "from_hash_expected.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
   end
 
   it "allows a TC to be exported as SPARQL" do

@@ -1,5 +1,6 @@
 ---
 :uri: http://www.assero.co.uk/TC#OWNER-ID
+:uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVEMjT1dORVItSUQ=
 :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
 :label: ''
 :identifier: A00021
@@ -10,17 +11,21 @@
 :narrower: []
 :is_subset:
   :uri: {}
+  :uuid: 
   :rdf_type: http://www.assero.co.uk/Thesaurus#Subset
   :label: ''
-  :members: {}
+  :members: 
 :preferred_term:
   :uri: http://www.assero.co.uk/PT#1
+  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMQ==
   :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
   :label: The preferred term
 :synonym:
-- :uri: {}
+- :uri: http://www.assero.co.uk/SYN#1
+  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzE=
   :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
-  :label: ''
-- :uri: {}
+  :label: synonym 1
+- :uri: http://www.assero.co.uk/SYN#2
+  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzI=
   :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
-  :label: ''
+  :label: synonym 2

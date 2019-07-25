@@ -8,9 +8,6 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     respond_to do |format|
       format.html
         @version_count = @tc.changes_count(current_user.max_term_display.to_i)
-        #link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
-        @links = {}
-        #link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_unmanaged_concept_path(v)} # <<< unmanged concept
         @close_path = request.referer
       format.json do
         clis = @tc.changes(current_user.max_term_display.to_i)

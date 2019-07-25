@@ -1,33 +1,55 @@
 require 'rails_helper'
-describe ThesaurusConceptsController do
+
+describe Thesauri::UnmanagedConceptsController do
 
   include DataHelpers
-  include IsoHelpers
   
   def sub_dir
-    return "controllers/thesaurus_concepts"
+    return "controllers/thesauri/unmanaged_concept"
   end
 
   describe "Authorized User" do
   	
     login_curator
 
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("thesaurus_concept.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
     end
 
+    after :each do
+    end
+
+    it "changes" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes_count).and_return(5)
+      get :changes, id: "aaa"
+      expect(response).to render_template("changes")
+    end
+
+    it "differences" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:differences).and_return({a: "1", b: "2"})
+      get :differences, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
+    end
+
+  end
+
+=begin
     it "edits concept, top level" do
       th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
       token = Token.obtain(th, @user)
@@ -341,22 +363,22 @@ describe ThesaurusConceptsController do
     end
 
     it "returns the cross references" do
-    	# Set up references
-		  tc_1 = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-		  tc_2 = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      # Set up references
+      tc_1 = ThesaurusConcept.find("THC-A00010", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      tc_2 = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
       or_1 = OperationalReferenceV2.new
-			or_1.ordinal = 1
-			or_1.subject_ref = tc_1.uri
-			cr_1 = CrossReference.new
-			cr_1.comments = "Linking two TCs" 
-			cr_1.ordinal = 1
-			cr_1.children << or_1		
-			sparql = SparqlUpdateV2.new
-			uri = cr_1.to_sparql_v2(tc_2.uri, sparql)
-			sparql.triple({uri: tc_2.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
-			result = CRUD.update(sparql.to_s)
-	    expect(result.success?).to eq(true)	
-	    params = { id: tc_2.id, thesaurus_concept: {namespace: tc_2.namespace, direction: :from }}
+      or_1.ordinal = 1
+      or_1.subject_ref = tc_1.uri
+      cr_1 = CrossReference.new
+      cr_1.comments = "Linking two TCs" 
+      cr_1.ordinal = 1
+      cr_1.children << or_1   
+      sparql = SparqlUpdateV2.new
+      uri = cr_1.to_sparql_v2(tc_2.uri, sparql)
+      sparql.triple({uri: tc_2.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
+      result = CRUD.update(sparql.to_s)
+      expect(result.success?).to eq(true) 
+      params = { id: tc_2.id, thesaurus_concept: {namespace: tc_2.namespace, direction: :from }}
       request.env['HTTP_ACCEPT'] = "application/json"
       get :cross_reference_start, params
       expect(response.content_type).to eq("application/json")
@@ -365,17 +387,16 @@ describe ThesaurusConceptsController do
     end
 
     it "returns the cross reference detail" do
-    	params = { id: "THC-A00011", thesaurus_concept: {namespace: "http://www.assero.co.uk/MDRThesaurus/ACME/V1", direction: :from }}
+      params = { id: "THC-A00011", thesaurus_concept: {namespace: "http://www.assero.co.uk/MDRThesaurus/ACME/V1", direction: :from }}
       request.env['HTTP_ACCEPT'] = "application/json"
       get :cross_reference_details, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    	result = JSON.parse(response.body)
+      result = JSON.parse(response.body)
     #write_yaml_file(result, sub_dir, "cross_reference_details_expected_1.yml")  
-    	expected = read_yaml_file(sub_dir, "cross_reference_details_expected_1.yml")
+      expected = read_yaml_file(sub_dir, "cross_reference_details_expected_1.yml")
       expect(result).to eq(expected)
-    end
-
-  end
+    end  
+=end  
 
 end
