@@ -357,5 +357,51 @@ describe Thesaurus::UnmanagedConcept do
     expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
     expect(tc_current.narrower.count).to eq(0)
   end
+  
+  describe "changes and differences" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..30)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "finds changes count" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      expect(tc.changes_count(4)).to eq(2)
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      expect(tc.changes_count(40)).to eq(2)
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      expect(tc.changes_count(4)).to eq(2)
+    end
+
+    it "finds changes, 4" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      results = tc.changes(4)
+      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml", write_file: true)
+    end
+
+    it "finds changes, 8" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      results = tc.changes(8)
+      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml", write_file: true)
+    end
+
+    it "differences" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", write_file: true)
+    end
+
+  end
 
 end

@@ -144,6 +144,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  # Differences
+  #
+  # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
   def differences
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
@@ -229,25 +232,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?
 
 private
 
-  def difference_record(current, previous)
-    result = {}
-    [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
-      status = current[x] == previous[x] ? :no_change : :updated
-      diff = status == :updated ? Diffy::Diff.new(previous[x], current[x]).to_s(:html) : ""
-      result[x] = {status: status, previous: previous[x], current: current[x], difference: diff }
-    end
-    result
-  end
-
-  def difference_record_baseline(current)
-    result = {}
-    [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
-      result[x] = {status: :created, previous: "", current: current[x], difference: ""} 
-    end
-    result
-  end
-
-  #
+  # Replace children if no change
   def replace_children_if_no_change(previous)
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}

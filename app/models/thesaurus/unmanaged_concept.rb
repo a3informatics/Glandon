@@ -21,6 +21,10 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   include Thesaurus::BaseConcept
 
+  # Changes Count
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Integer] the number of changes
   def changes_count(window_size)
     items = self.class.where(identifier: self.identifier)
     items.count < window_size ? items.count : window_size
@@ -57,7 +61,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     # Get the raw results
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
-  #{version_set.map{|x| "{ #{x[:e].to_ref} th:narrower ?cl . #{x[:e].to_ref} ^th:narrower+ ?r . ?r rdf:type th:ManagedConcept . ?r isoT:creationDate ?d . ?r isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x[:e].to_ref} as ?e)} "}.join(" UNION\n")}
+  #{version_set.map{|x| "{ #{x.uri.to_ref} th:narrower ?cl . #{x.uri.to_ref} ^th:narrower+ ?r . ?r rdf:type th:ManagedConcept . ?r isoT:creationDate ?d . ?r isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.uri.to_ref} as ?e)} "}.join(" UNION\n")}
   ?cl th:identifier ?i .
   ?cl isoC:label ?l .
   ?cl th:notation ?n .
