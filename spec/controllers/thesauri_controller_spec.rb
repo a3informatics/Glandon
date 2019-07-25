@@ -341,20 +341,21 @@ describe ThesauriController do
     end
 
     it "show" do
-      expect(Thesaurus).to receive(:find).and_return(Thesauri.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       get :show, id: "aaa"
       expect(response).to render_template("show")
     end
 
     it "show results" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:find).and_return(Thesauri.new)
-      expect_any_instance_of(Thesauri).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([Thesauri.new])
-      get :show_results, id: "aaa", offset: 0, count: 10
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
+      get :show, id: "aaa", offset: 0, count: 10
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")  
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to eq({data: [Thesauri.new.to_h], count: 1, offset: 0})
+      expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=", 
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE="}], count: 1, offset: 0})
     end
 
     # it "view a thesaurus" do

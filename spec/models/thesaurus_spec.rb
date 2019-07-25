@@ -5,25 +5,31 @@ describe Thesaurus do
   include DataHelpers
   include SparqlHelpers
   include TimeHelpers
+  include PublicFileHelpers
 
   def sub_dir
-    return "models"
+    return "models/thesaurus"
   end
 
   describe "Main Tests" do
 
     before :all do
-    before :all do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+      ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
     end
 
     after :all do
       delete_all_public_test_files
-    end
     end
 
     it "returns the owner" do
@@ -36,34 +42,29 @@ describe Thesaurus do
       th =Thesaurus.new
       result =     
         { 
-          :type => "http://www.assero.co.uk/ISO25964#Thesaurus",
-          :id => "", 
-          :namespace => "", 
+          :rdf_type => "http://www.assero.co.uk/Thesaurus#Thesaurus",
+          :uuid => nil,
+          :uri => {},
           :label => "",
-          :extension_properties => [],
           :origin => "",
           :change_description => "",
-          #:creation_date => Time.now,
-          #:last_changed_date => Time.now,
+          :creation_date => "".to_time_with_default.iso8601.to_s,
+          :last_change_date => "".to_time_with_default.iso8601.to_s,
           :explanatory_comment => "",
-          :registration_state => IsoRegistrationState.new.to_json,
-          :scoped_identifier => IsoScopedIdentifier.new.to_json,
-          :children => []
+          :has_state => nil,
+          :has_identifier => nil,
+          :is_top_concept => [],
+          :is_top_concept_reference => []
         }
-      result[:creation_date] = date_check_now(th.creationDate).iso8601
-      result[:last_changed_date] = date_check_now(th.lastChangeDate).iso8601
-      expect(th.to_json).to eq(result)
+      expect(th.to_h).to hash_equal(result)
     end
 
     it "allows validity of the object to be checked - error" do
       result = Thesaurus.new
       valid = result.valid?
       expect(valid).to eq(false)
-      expect(result.errors.count).to eq(4)
-      expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
-      expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
-      expect(result.errors.full_messages[2]).to eq("Registration State error: Registration authority error: Ra namespace: Empty object")
-      expect(result.errors.full_messages[3]).to eq("Scoped Identifier error: Identifier contains invalid characters")
+      expect(result.errors.count).to eq(1)
+      expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
     end 
 
     it "allows validity of the object to be checked" do
@@ -73,97 +74,85 @@ describe Thesaurus do
       ra.organization_identifier = "123456789"
       ra.international_code_designator = "DUNS"
       ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
-      th.registrationState.registrationAuthority = ra
-      th.scopedIdentifier.identifier = "HELLO WORLD"
+      th.has_state = IsoRegistrationStateV2.new
+      th.has_identifier = IsoScopedIdentifierV2.new
+      th.has_state.by_authority = ra
+      th.has_identifier.identifier = "HELLO WORLD"
+      th.uri = "xxx"
       valid = th.valid?
       expect(th.errors.count).to eq(0)
       expect(valid).to eq(true)
     end 
 
     it "allows a Thesaurus to be found" do
-      th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_1.yaml")
-      result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_1.yaml")
-      expect(th.to_json).to hash_equal(result_th)
+      th =Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "allows a Th to be found - error" do
-      th =Thesaurus.find("THC-A00001x", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(th.identifier).to eq("")    
+      expect{Thesaurus.find(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#X"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRThesaurus/ACME/V1#X in Thesaurus.")
     end
 
-    it "allows the complete Th to be found" do
-      th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_2.yaml")
-    	expected = read_yaml_file(sub_dir, "thesaurus_example_2.yaml")
-      expect(th.to_json).to hash_equal(expected)    
-    end
+    # it "allows the thesaurus to be found from a concept" do
+    #   th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   check_file_actual_expected(th.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal, write_method: true)  
+    # end
 
-    it "allows the thesaurus to be found from a concept" do
-      th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_3.yaml")
-      expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_3.yaml")
-      expect(th.to_json).to hash_equal(expected)
-    end
+    # it "finds by properties, single" do
+    #   th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   expected = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   results = th.find_by_property({identifier: "A00002"})
+    #   expect(results[0].to_json).to eq(expected.to_json)
+    # end
 
-    it "finds by properties, single" do
-      th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expected = ThesaurusConcept.find("THC-A00002", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      results = th.find_by_property({identifier: "A00002"})
-      expect(results[0].to_json).to eq(expected.to_json)
-    end
+    # it "finds by properties, multiple" do
+    #   th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   expected = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   results = th.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
+    #   expect(results[0].to_json).to eq(expected.to_json)
+    # end
 
-    it "finds by properties, multiple" do
-      th =Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expected = ThesaurusConcept.find("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      results = th.find_by_property({notation: "ETHNIC SUBGROUP [1]", preferredTerm: "Ethnic Subgroup 1"})
-      expect(results[0].to_json).to eq(expected.to_json)
-    end
+    # it "allows all records to be retrieved" do
+    #   results = Thesaurus.all
+    #   expect(results.count).to eq(5) # Another added for new test
+    # #Xwrite_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
+    #   expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
+    #   results.each do |result|
+    #     found = expected.find { |x| x.id == result.id }
+    #     expect(result.id).to eq(found.id)
+    #   end
+    # end
 
-    it "allows all records to be retrieved" do
-      results = Thesaurus.all
-      expect(results.count).to eq(5) # Another added for new test
-    #Xwrite_yaml_file(results, sub_dir, "thesaurus_all_1.yaml")
-      expected = read_yaml_file(sub_dir, "thesaurus_all_1.yaml")
-      results.each do |result|
-        found = expected.find { |x| x.id == result.id }
-        expect(result.id).to eq(found.id)
-      end
-    end
-
-    it "allows the list to be retrieved" do
-      result = Thesaurus.list
-      expect(result.count).to eq(5) # Another added for new test
-      expect(result[4].identifier).to eq("CDISC EXT")
-      expect(result[4].id).to eq("TH-SPONSOR_CT-1")
-      expect(result[4].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(result[3].identifier).to eq("CDISC Terminology")
-      expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
-      expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
-      expect(result[2].identifier).to eq("CDISC Terminology")
-      expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
-      expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
-      expect(result[1].identifier).to eq("CDISC Terminology")
-      expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
-      expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
-      expect(result[0].identifier).to eq("CDISC Terminology")
-      expect(result[0].id).to eq("TH-CDISC_CDISCTerminology")
-      expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
-    end
+    # it "allows the list to be retrieved" do
+    #   result = Thesaurus.list
+    #   expect(result.count).to eq(5) # Another added for new test
+    #   expect(result[4].identifier).to eq("CDISC EXT")
+    #   expect(result[4].id).to eq("TH-SPONSOR_CT-1")
+    #   expect(result[4].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    #   expect(result[3].identifier).to eq("CDISC Terminology")
+    #   expect(result[3].id).to eq("TH-CDISC_CDISCTerminology")
+    #   expect(result[3].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V34")
+    #   expect(result[2].identifier).to eq("CDISC Terminology")
+    #   expect(result[2].id).to eq("TH-CDISC_CDISCTerminology")
+    #   expect(result[2].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+    #   expect(result[1].identifier).to eq("CDISC Terminology")
+    #   expect(result[1].id).to eq("TH-CDISC_CDISCTerminology")
+    #   expect(result[1].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+    #   expect(result[0].identifier).to eq("CDISC Terminology")
+    #   expect(result[0].id).to eq("TH-CDISC_CDISCTerminology")
+    #   expect(result[0].namespace).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
+    # end
 
     it "allows the unique item to be retrived" do
       result = Thesaurus.unique
-      expect(result.count).to eq(2)
-      expect(result[1][:identifier]).to eq("CDISC EXT")
-      expect(result[0][:identifier]).to eq("CDISC Terminology")
-      expect(result[1][:owner]).to eq("ACME")
-      expect(result[0][:owner]).to eq("CDISC")
+      check_file_actual_expected(result, sub_dir, "unique_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "allows the history to be retrived" do
-      owner = IsoRegistrationAuthority.owner
-      result = Thesaurus.history({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
-      expect(result.count).to eq(1)
+      results = []
+      result = Thesaurus.history(:identifier => "CT", :scope => IsoNamespace.find_by_short_name("CDISC"))
+      result.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "allows the current item to be retrived" do
@@ -261,70 +250,16 @@ describe Thesaurus do
       expect(result).to eq(expected)
     end
 
-    it "detects an empty search" do
-      params = 
-      { 
-        search: 
-        {
-          value: ""
-        }, 
-        columns: 
-        {
-          col1: {search: {value: ""}}, 
-          col2: {search: {value: ""}}, 
-          col3: {search: {value: ""}}
-        }
-      }
-      expect(Thesaurus.empty_search?(params)).to eq(true)
-      params[:search][:value] = "somthing"
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(true)
-      params[:columns][:col1][:search][:value] = "X"
-      params[:columns][:col2][:search][:value] = ""
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:columns][:col1][:search][:value] = ""
-      params[:columns][:col2][:search][:value] = "X"
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:columns][:col1][:search][:value] = ""
-      params[:columns][:col2][:search][:value] = ""
-      params[:columns][:col3][:search][:value] = "X"
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = "somthing"
-      params[:columns][:col1][:search][:value] = "X"
-      params[:columns][:col2][:search][:value] = "X"
-      params[:columns][:col3][:search][:value] = "X"
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = "somthing"
-      params[:columns][:col1][:search][:value] = "X"
-      params[:columns][:col2][:search][:value] = "X"
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = "somthing"
-      params[:columns][:col1][:search][:value] = "X"
-      params[:columns][:col2][:search][:value] = ""
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = ""
-      params[:columns][:col1][:search][:value] = "X"
-      params[:columns][:col2][:search][:value] = ""
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(false)
-      params[:search][:value] = ""
-      params[:columns][:col1][:search][:value] = ""
-      params[:columns][:col2][:search][:value] = ""
-      params[:columns][:col3][:search][:value] = ""
-      expect(Thesaurus.empty_search?(params)).to eq(true)
-    end
-
   end
 
   describe "Terminology Changes" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :all  do
+      IsoHelpers.clear_cache
     end
 
     before :each do
@@ -377,6 +312,10 @@ describe Thesaurus do
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
     end
 
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
     before :each do
       schema_files = 
       [
@@ -398,25 +337,25 @@ describe Thesaurus do
     it "calculates changes, window 4, general" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml")
     end
 
     it "calculates changes, window 10, large" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.submission(10)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml")
     end
 
     it "calculates changes, window 4, first item" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml")
     end
 
     it "calculates changes, window 4, second" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.submission(4)
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml")
     end
 
   end
@@ -448,7 +387,7 @@ describe Thesaurus do
     it "get children" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       actual = ct.managed_children_pagination(offset: 0, count: 10)
-      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_1.yaml")
     end
 
     it "get children, speed" do

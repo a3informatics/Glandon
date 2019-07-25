@@ -1,0 +1,658 @@
+---
+:versions:
+- '2007-03-06'
+- '2007-04-20'
+- '2007-04-26'
+- '2007-05-31'
+:items:
+  :C49704:
+    :key: C49704
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NzA0L1YxI0M0OTcwNA==
+    :label: Common Terminology Criteria for Adverse Events
+    :notation: TOXGR
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - &1
+      :status: :not_present
+    - *1
+  :C49705:
+    :key: C49705
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NzA1L1YxI0M0OTcwNQ==
+    :label: Severity/Intensity Scale for Adverse Events
+    :notation: AESEV
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49489:
+    :key: C49489
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg5L1YxI0M0OTQ4OQ==
+    :label: Adverse Event Outcome
+    :notation: OUT
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C16960:
+    :key: C16960
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzE2OTYwL1YxI0MxNjk2MA==
+    :label: Patient Ethnic Group
+    :notation: Patient
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49691:
+    :key: C49691
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjkxL1YxI0M0OTY5MQ==
+    :label: Trial Summary Parameter
+    :notation: TSPARM
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C25681:
+    :key: C25681
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NjgxL1YxI0MyNTY4MQ==
+    :label: Size
+    :notation: SIZE
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49672:
+    :key: C49672
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjcyL1YxI0M0OTY3Mg==
+    :label: Vital Signs
+    :notation: VSTEST
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C64388:
+    :key: C64388
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY0Mzg4L1YxI0M2NDM4OA==
+    :label: CDISC System Organ Class
+    :notation: SOC
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C38114:
+    :key: C38114
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzM4MTE0L1YxI0MzODExNA==
+    :label: Route of Administration
+    :notation: ROUTE
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49499:
+    :key: C49499
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDk5L1YxI0M0OTQ5OQ==
+    :label: Action Taken with Study Treatment
+    :notation: ACN
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C16564:
+    :key: C16564
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzE2NTY0L1YxI0MxNjU2NA==
+    :label: Patient Ethnic Group
+    :notation: ETHNIC
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C48281:
+    :key: C48281
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ4MjgxL1YxI0M0ODI4MQ==
+    :label: Trial Phase
+    :notation: TPHASE
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49696:
+    :key: C49696
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njk2L1YxI0M0OTY5Ng==
+    :label: Sex of Study Group
+    :notation: SEXPOP
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49480:
+    :key: C49480
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDgwL1YxI0M0OTQ4MA==
+    :label: Category for Inclusion and or Exclusion
+    :notation: IECAT
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49638:
+    :key: C49638
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjM4L1YxI0M0OTYzOA==
+    :label: Relation to Reference Period
+    :notation: STENRF
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49484:
+    :key: C49484
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg0L1YxI0M0OTQ4NA==
+    :label: Not Done
+    :notation: ND
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49652:
+    :key: C49652
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjUyL1YxI0M0OTY1Mg==
+    :label: Trial Indication Type
+    :notation: TINDTP
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C28421:
+    :key: C28421
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI4NDIxL1YxI0MyODQyMQ==
+    :label: Sex
+    :notation: SEX
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49558:
+    :key: C49558
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NTU4L1YxI0M0OTU1OA==
+    :label: Submission Domain Abbreviation
+    :notation: DOMAIN
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C50399:
+    :key: C50399
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzUwMzk5L1YxI0M1MDM5OQ==
+    :label: Dictionary Name
+    :notation: DICTNAM
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C25464:
+    :key: C25464
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1NDY0L1YxI0MyNTQ2NA==
+    :label: Country
+    :notation: COUNTRY
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C20587:
+    :key: C20587
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzIwNTg3L1YxI0MyMDU4Nw==
+    :label: Age Group
+    :notation: AGESPAN
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49627:
+    :key: C49627
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjI3L1YxI0M0OTYyNw==
+    :label: Reason for Non-Completion
+    :notation: NCOMPLT
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C42636:
+    :key: C42636
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQyNjM2L1YxI0M0MjYzNg==
+    :label: Pharmaceutical Dosage Form
+    :notation: FRM
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49658:
+    :key: C49658
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjU4L1YxI0M0OTY1OA==
+    :label: Trial Blinding Schema
+    :notation: "[TBLIND]"
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49486:
+    :key: C49486
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NDg2L1YxI0M0OTQ4Ng==
+    :label: Yes, No, Unknown, or Not Applicable Response
+    :notation: NY
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C65047:
+    :key: C65047
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YxI0M2NTA0Nw==
+    :label: CDISC SDTM Laboratory Test Terminology
+    :notation: LABTEST
+    :status:
+    - :status: :created
+    - :status: :updated
+    - :status: :no_change
+    - :status: :updated
+  :C49647:
+    :key: C49647
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjQ3L1YxI0M0OTY0Nw==
+    :label: Control Type
+    :notation: TCNTRL
+    :status:
+    - :status: :created
+    - :status: :updated
+    - :status: :deleted
+    - *1
+  :C50400:
+    :key: C50400
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzUwNDAwL1YxI0M1MDQwMA==
+    :label: Age Unit
+    :notation: AGEU
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49675:
+    :key: C49675
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5Njc1L1YxI0M0OTY3NQ==
+    :label: Units for Vital Signs Results
+    :notation: VSRESU
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49650:
+    :key: C49650
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjUwL1YxI0M0OTY1MA==
+    :label: Diagnosis Group
+    :notation: TDIGRP
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C49660:
+    :key: C49660
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzQ5NjYwL1YxI0M0OTY2MA==
+    :label: Trial Type
+    :notation: TTYPE
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+    - *1
+  :C66769:
+    :key: C66769
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1YyI0M2Njc2OQ==
+    :label: Severity/Intensity Scale for Adverse Events
+    :notation: AESEV
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66790:
+    :key: C66790
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1YyI0M2Njc5MA==
+    :label: Patient Ethnic Group
+    :notation: ETHNIC
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66738:
+    :key: C66738
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM4L1YyI0M2NjczOA==
+    :label: Trial Summary Parameter Test Code
+    :notation: TSPARMCD
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66733:
+    :key: C66733
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1YyI0M2NjczMw==
+    :label: Size
+    :notation: SIZE
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C67154:
+    :key: C67154
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA==
+    :label: Laboratory Test Name
+    :notation: LBTEST
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66786:
+    :key: C66786
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1YyI0M2Njc4Ng==
+    :label: Country
+    :notation: COUNTRY
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66781:
+    :key: C66781
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==
+    :label: Age Unit
+    :notation: AGEU
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66729:
+    :key: C66729
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1YyI0M2NjcyOQ==
+    :label: Route of Administration
+    :notation: ROUTE
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66789:
+    :key: C66789
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1YyI0M2Njc4OQ==
+    :label: Not Done
+    :notation: ND
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66737:
+    :key: C66737
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1YyI0M2NjczNw==
+    :label: Trial Phase
+    :notation: TPHASE
+    :status:
+    - *1
+    - :status: :created
+    - :status: :updated
+    - :status: :updated
+  :C66732:
+    :key: C66732
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMyL1YyI0M2NjczMg==
+    :label: Sex of Participants
+    :notation: SEXPOP
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66780:
+    :key: C66780
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI0M2Njc4MA==
+    :label: Age Span
+    :notation: AGESPAN
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66728:
+    :key: C66728
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1YyI0M2NjcyOA==
+    :label: Relation to Reference Period
+    :notation: STENRF
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66770:
+    :key: C66770
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1YyI0M2Njc3MA==
+    :label: Units for Vital Signs Results
+    :notation: VSRESU
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C67152:
+    :key: C67152
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1YyI0M2NzE1Mg==
+    :label: Trial Summary Parameter Test Name
+    :notation: TSPARM
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66783:
+    :key: C66783
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1YyI0M2Njc4Mw==
+    :label: CDISC System Organ Class
+    :notation: SOC
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66797:
+    :key: C66797
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1YyI0M2Njc5Nw==
+    :label: Category for Inclusion/Exclusion
+    :notation: IECAT
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66768:
+    :key: C66768
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OA==
+    :label: Outcome of Event
+    :notation: OUT
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66767:
+    :key: C66767
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyI0M2Njc2Nw==
+    :label: Action Taken with Study Treatment
+    :notation: ACN
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66741:
+    :key: C66741
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1YyI0M2Njc0MQ==
+    :label: Vital Signs Test Code
+    :notation: VSTESTCD
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66788:
+    :key: C66788
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1YyI0M2Njc4OA==
+    :label: Dictionary Name
+    :notation: DICTNAM
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66736:
+    :key: C66736
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM2L1YyI0M2NjczNg==
+    :label: Trial Indication Type
+    :notation: TINDTP
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66787:
+    :key: C66787
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1YyI0M2Njc4Nw==
+    :label: Diagnosis Group
+    :notation: TDIGRP
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C67153:
+    :key: C67153
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUzL1YyI0M2NzE1Mw==
+    :label: Vital Signs Test Name
+    :notation: VSTEST
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66727:
+    :key: C66727
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1YyI0M2NjcyNw==
+    :label: Completion/Reason for Non-Completion
+    :notation: NCOMPLT
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66784:
+    :key: C66784
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1YyI0M2Njc4NA==
+    :label: Common Terminology Criteria for Adverse Events
+    :notation: TOXGR
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66734:
+    :key: C66734
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM0L1YyI0M2NjczNA==
+    :label: Domain Abbreviation
+    :notation: DOMAIN
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66726:
+    :key: C66726
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1YyI0M2NjcyNg==
+    :label: Pharmaceutical Dosage Form
+    :notation: FRM
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66731:
+    :key: C66731
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMxL1YyI0M2NjczMQ==
+    :label: Sex
+    :notation: SEX
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66735:
+    :key: C66735
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM1L1YyI0M2NjczNQ==
+    :label: Trial Blinding Schema
+    :notation: TBLIND
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66742:
+    :key: C66742
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1YyI0M2Njc0Mg==
+    :label: No Yes Response
+    :notation: NY
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66739:
+    :key: C66739
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1YyI0M2NjczOQ==
+    :label: Trial Type
+    :notation: TTYPE
+    :status:
+    - *1
+    - :status: :created
+    - :status: :no_change
+    - :status: :updated
+  :C66785:
+    :key: C66785
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1YzI0M2Njc4NQ==
+    :label: Control Type
+    :notation: TCNTRL
+    :status:
+    - *1
+    - *1
+    - :status: :created
+    - :status: :updated

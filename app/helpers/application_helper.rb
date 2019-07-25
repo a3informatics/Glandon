@@ -1,8 +1,9 @@
 module ApplicationHelper
 
 	def instance_title(title, item)
+    identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus 
-		return raw("#{title} #{item.label} <small>#{item.identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")	
+		return raw("#{title} #{item.label} <small>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")	
 	end
 
 	# Bootstrap Class
@@ -133,8 +134,9 @@ module ApplicationHelper
   # @param third_level_action [String] the third-level prefix for the link text
   # @return [Null]
   def third_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action)
+    identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
   	breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
-  		{link: second_level_link, text: "#{managed_item.identifier}"}, 
+  		{link: second_level_link, text: "#{identifier}"}, 
   		{link: "#", text: "#{third_level_action} V#{managed_item.semantic_version}"}])
   end
 

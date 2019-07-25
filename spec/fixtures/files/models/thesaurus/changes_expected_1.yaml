@@ -1,0 +1,508 @@
+---
+:versions:
+- '2008-09-24'
+- '2008-09-30'
+- '2008-10-09'
+- '2008-10-15'
+:items:
+  :C66767:
+    :key: C66767
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1Y0I0M2Njc2Nw==
+    :label: Action Taken with Study Treatment
+    :notation: ACN
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66729:
+    :key: C66729
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI5L1Y0I0M2NjcyOQ==
+    :label: Route of Administration
+    :notation: ROUTE
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66789:
+    :key: C66789
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg5L1Y0I0M2Njc4OQ==
+    :label: Not Done
+    :notation: ND
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66737:
+    :key: C66737
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y5I0M2NjczNw==
+    :label: Trial Phase
+    :notation: TPHASE
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71153:
+    :key: C71153
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUzL1Y2I0M3MTE1Mw==
+    :label: ECG Test Code
+    :notation: EGTESTCD
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66732:
+    :key: C66732
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMyL1Y0I0M2NjczMg==
+    :label: Sex of Participants
+    :notation: SEXPOP
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C65047:
+    :key: C65047
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y4I0M2NTA0Nw==
+    :label: Laboratory Test Code
+    :notation: LBTESTCD
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74559:
+    :key: C74559
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1Y4I0M3NDU1OQ==
+    :label: Subject Characteristic Code
+    :notation: SCCD
+    :status:
+    - :status: :updated
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71620:
+    :key: C71620
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y5I0M3MTYyMA==
+    :label: Unit
+    :notation: UNIT
+    :status:
+    - :status: :no_change
+    - :status: :updated
+    - :status: :no_change
+    - :status: :no_change
+  :C66797:
+    :key: C66797
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzk3L1Y0I0M2Njc5Nw==
+    :label: Category for Inclusion/Exclusion
+    :notation: IECAT
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66728:
+    :key: C66728
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI4L1Y0I0M2NjcyOA==
+    :label: Relation to Reference Period
+    :notation: STENRF
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66770:
+    :key: C66770
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MA==
+    :label: Units for Vital Signs Results
+    :notation: VSRESU
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66788:
+    :key: C66788
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg4L1Y0I0M2Njc4OA==
+    :label: Dictionary Name
+    :notation: DICTNAM
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66736:
+    :key: C66736
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM2L1Y0I0M2NjczNg==
+    :label: Trial Indication Type
+    :notation: TINDTP
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71150:
+    :key: C71150
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1Y2I0M3MTE1MA==
+    :label: ECG Result
+    :notation: EGSTRESC
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66742:
+    :key: C66742
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Mg==
+    :label: No Yes Response
+    :notation: NY
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74561:
+    :key: C74561
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTYxL1Y4I0M3NDU2MQ==
+    :label: Skin Type
+    :notation: SKINTYP
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66786:
+    :key: C66786
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y0I0M2Njc4Ng==
+    :label: Country
+    :notation: COUNTRY
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71151:
+    :key: C71151
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUxL1Y2I0M3MTE1MQ==
+    :label: ECG Test Method
+    :notation: EGMETHOD
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66781:
+    :key: C66781
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1Y0I0M2Njc4MQ==
+    :label: Age Unit
+    :notation: AGEU
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66727:
+    :key: C66727
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI3L1Y5I0M2NjcyNw==
+    :label: Completion/Reason for Non-Completion
+    :notation: NCOMPLT
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66739:
+    :key: C66739
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1Y0I0M2NjczOQ==
+    :label: Trial Type
+    :notation: TTYPE
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66787:
+    :key: C66787
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg3L1Y0I0M2Njc4Nw==
+    :label: Diagnosis Group
+    :notation: TDIGRP
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66735:
+    :key: C66735
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM1L1Y0I0M2NjczNQ==
+    :label: Trial Blinding Schema
+    :notation: TBLIND
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71148:
+    :key: C71148
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTQ4L1Y3I0M3MTE0OA==
+    :label: Position
+    :notation: POSITION
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C67153:
+    :key: C67153
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUzL1Y0I0M2NzE1Mw==
+    :label: Vital Signs Test Name
+    :notation: VSTEST
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74560:
+    :key: C74560
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTYwL1Y4I0M3NDU2MA==
+    :label: Skin Classification
+    :notation: SKINCLAS
+    :status:
+    - :status: :deleted
+    - &1
+      :status: :not_present
+    - *1
+    - *1
+  :C66785:
+    :key: C66785
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg1L1Y0I0M2Njc4NQ==
+    :label: Control Type
+    :notation: TCNTRL
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66780:
+    :key: C66780
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1Y0I0M2Njc4MA==
+    :label: Age Span
+    :notation: AGESPAN
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66731:
+    :key: C66731
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMxL1Y0I0M2NjczMQ==
+    :label: Sex
+    :notation: SEX
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66726:
+    :key: C66726
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzI2L1Y4I0M2NjcyNg==
+    :label: Pharmaceutical Dosage Form
+    :notation: FRM
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C67152:
+    :key: C67152
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0I0M2NzE1Mg==
+    :label: Trial Summary Parameter Test Name
+    :notation: TSPARM
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66734:
+    :key: C66734
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM0L1Y0I0M2NjczNA==
+    :label: Domain Abbreviation
+    :notation: DOMAIN
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71113:
+    :key: C71113
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1Y2I0M3MTExMw==
+    :label: Frequency
+    :notation: FREQ
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66741:
+    :key: C66741
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MQ==
+    :label: Vital Signs Test Code
+    :notation: VSTESTCD
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74558:
+    :key: C74558
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU4L1Y4I0M3NDU1OA==
+    :label: Category for Disposition Event
+    :notation: DSCAT
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66784:
+    :key: C66784
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg0L1Y0I0M2Njc4NA==
+    :label: Common Terminology Criteria for Adverse Events
+    :notation: TOXGR
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66768:
+    :key: C66768
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1Y0I0M2Njc2OA==
+    :label: Outcome of Event
+    :notation: OUT
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66769:
+    :key: C66769
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY5L1Y0I0M2Njc2OQ==
+    :label: Severity/Intensity Scale for Adverse Events
+    :notation: AESEV
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66790:
+    :key: C66790
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzkwL1Y0I0M2Njc5MA==
+    :label: Patient Ethnic Group
+    :notation: ETHNIC
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :updated
+  :C66738:
+    :key: C66738
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM4L1Y1I0M2NjczOA==
+    :label: Trial Summary Parameter Test Code
+    :notation: TSPARMCD
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C71152:
+    :key: C71152
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y2I0M3MTE1Mg==
+    :label: ECG Test Name
+    :notation: EGTEST
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74456:
+    :key: C74456
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y4I0M3NDQ1Ng==
+    :label: Anatomical Location
+    :notation: LOC
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C25188:
+    :key: C25188
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzI1MTg4L1Y5I0MyNTE4OA==
+    :label: Marital Status
+    :notation: MARISTAT
+    :status:
+    - :status: :deleted
+    - *1
+    - *1
+    - *1
+  :C66733:
+    :key: C66733
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1Y0I0M2NjczMw==
+    :label: Size
+    :notation: SIZE
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C67154:
+    :key: C67154
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y4I0M2NzE1NA==
+    :label: Laboratory Test Name
+    :notation: LBTEST
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C66783:
+    :key: C66783
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgzL1Y0I0M2Njc4Mw==
+    :label: CDISC System Organ Class
+    :notation: SOC
+    :status:
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C76348:
+    :key: C76348
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzQ4L1YxMCNDNzYzNDg=
+    :label: Marital Status
+    :notation: MARISTAT
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C74457:
+    :key: C74457
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU3L1YxMCNDNzQ0NTc=
+    :label: Race
+    :notation: RACE
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
+  :C76351:
+    :key: C76351
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTE=
+    :label: Skin Classification
+    :notation: SKINCLAS
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - :status: :no_change
+    - :status: :no_change
