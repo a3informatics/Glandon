@@ -11,16 +11,17 @@ class Token < ActiveRecord::Base
 	def self.obtain(managed_item, user)
 		token = nil
 		tokens = self.where(item_uri: managed_item.uri.to_s)
-		item_info = "[#{managed_item.owner_short_name}, #{managed_item.identifier}, #{managed_item.version}]"
+		identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
+    item_info = "[#{managed_item.owner_short_name}, #{identifier}, #{managed_item.version}]"
 		if tokens.length == 0
-			token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)
+			token = create(locked_at: Time.now, refresh_count: 0, item_uri: "#{managed_item.uri}", item_info: item_info, user_id: user.id)
 		elsif tokens.length == 1
 			if tokens[0].user_id == user.id
 				tokens[0].destroy
-				token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)				
+				token = create(locked_at: Time.now, refresh_count: 0, item_uri: "#{managed_item.uri}", item_info: item_info, user_id: user.id)				
 			elsif tokens[0].timed_out?
 				tokens[0].destroy
-				token = create(locked_at: Time.now, refresh_count: 0, item_uri: managed_item.uri, item_info: item_info, user_id: user.id)
+				token = create(locked_at: Time.now, refresh_count: 0, item_uri: "#{managed_item.uri}", item_info: item_info, user_id: user.id)
 			end
 		end
 		return token

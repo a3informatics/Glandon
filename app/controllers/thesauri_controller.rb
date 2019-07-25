@@ -72,7 +72,7 @@ class ThesauriController < ApplicationController
 
   def edit
     authorize Thesaurus
-    @thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
+    @thesaurus = Thesaurus.find_minimum(params[:id])
     @token = get_token(@thesaurus)
     if @thesaurus.new_version?
       th = Thesaurus.find_complete(params[:id], params[:namespace])
@@ -81,7 +81,7 @@ class ThesauriController < ApplicationController
       @token.release
 	    @token = get_token(@thesaurus)
 	  end
-  	@close_path = history_thesauri_index_path(identifier: @thesaurus.identifier, scope_id: @thesaurus.scope.id)
+  	@close_path = history_thesauri_index_path(identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope)
     @tc_identifier_prefix = ""
   end
 

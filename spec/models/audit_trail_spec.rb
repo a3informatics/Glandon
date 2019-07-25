@@ -22,6 +22,7 @@ describe AuditTrail do
     load_test_file_into_triple_store("iso_managed_data_2.ttl")
     load_test_file_into_triple_store("iso_managed_data_3.ttl")
     clear_iso_concept_object
+    load_cdisc_term_versions(1..2)
   end
 
   it "returns a human readable label for an instance" do
@@ -76,6 +77,15 @@ describe AuditTrail do
 
   it "allows a create item event to be added" do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create_item_event(user, item, "Any old text")
+    items = AuditTrail.last(100)
+    expect(items.count).to eq(1)
+  end
+
+  it "allows a create item event to be added, new managed item" do
+    item = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
     user = User.new
     user.email = "UserName1@example.com"
     AuditTrail.create_item_event(user, item, "Any old text")

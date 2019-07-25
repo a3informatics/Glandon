@@ -103,7 +103,8 @@ class AuditTrail < ActiveRecord::Base
 private
 
 	def self.add_item(user, item, event, description)
-		self.create(date_time: Time.now, user: user.email, owner: item.owner_short_name, identifier: item.identifier, version: item.semantic_version, event: event, description: description)
+    identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
+		self.create(date_time: Time.now, user: user.email, owner: item.owner_short_name, identifier: identifier, version: item.semantic_version, event: event, description: description)
 	end
 
 	def self.add_generic(user, event, description)
