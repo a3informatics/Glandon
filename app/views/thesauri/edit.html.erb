@@ -5,28 +5,22 @@
   <%= raw @thesaurus.to_json.to_json %>
 </script>
 <div class="row">
+  <div class="col-md-8">
+    <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @thesaurus} %>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Navigation</h3>
+      </div>
+      <div class="panel-body">
+        <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-md-12">
-    <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Edit:", :item => @thesaurus} %>
-    <table class="table table-striped table-bordered table-condensed">
-      <thead>
-        <tr>
-          <th>Label</th>
-          <th>Identifer</th>
-          <th>Version</th>
-          <th>Version Label</th>
-          <th>Owner</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @thesaurus.label %></td>
-          <td><%= @thesaurus.scoped_identifier %></td>
-          <td><%= @thesaurus.version %></td>
-          <td><%= @thesaurus.version_label %></td>
-          <td><%= @thesaurus.owner_short_name %></td>
-        </tr>
-      </tbody>
-    </table>
     <%= render partial: "shared/thesaurusConceptEditor" %>
   </div>
 </div>
