@@ -32,6 +32,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
+  include Thesaurus::Identifiers
 
   def replace_if_no_change(previous)
     return self if previous.nil?

@@ -7,48 +7,52 @@ class Thesaurus
   module Identifiers
 
     # Generated? Is the identifier generated or input by the user?
+    #
+    # 
     def new_identifier
-      Errors.application_error(self.class.name, __method__.to_s, "Request to generate identifier when not configured.") if !generated?
+      Errors.application_error(self.class.name, __method__.to_s, "Request to generate identifier when not configured.") if !generated_identifier?
       self.class == Thesaurus::ManagedConcept ? parent_identifier : child_identifier
     end
 
-    # Generated? Is the identifier generated or input by the user?
-    def generated?
-      self.class == Thesaurus::ManagedConcept ? parent_configuration[:generted] : child_configuration[:generted]
+    # Generated Indentifier? Is the identifier generated or input by the user?
+    #
+    #
+    def generated_identifier?
+      self.class == Thesaurus::ManagedConcept ? parent_identification_configuration.key?(:generated) : child_identification_configuration.key?(:generated)
     end
 
     # Generated? Is the identifier generated or input by the user?
-    def type
-      configuration[:scheme_type]
+    def identifier_scheme
+      identification_configuration[:scheme_type]
     end
 
   private
 
     def parent_identifier
       value = NameValue.next("thesaurus_parent_identifier")
-      identifier(value, parent_configuration)
+      generate_identifier(value, parent_identification_configuration[:generated])
     end
 
     def child_identifier
       value = NameValue.next("thesaurus_child_identifier")
-      identifier(value, parent_configuration)
+      generate_identifier(value, child_identification_configuration[:generated])
     end
 
-    def parent_configuration
-      configuration[:parent]
+    def parent_identification_configuration
+      identification_configuration[:parent]
     end
     
-    def parent_configuration
-      configuration[:child]
+    def child_identification_configuration
+      identification_configuration[:child]
     end
     
-    def configuration
+    def identification_configuration
       ENV["thesauri_identifiers"].deep_symbolize_keys
     end
 
-    def identifier(value, configuration)
+    def generate_identifier(value, configuration)
       pattern = configuration[:pattern].dup
-      pattern.sub!("[identifier]", '%0*d' % [configuration[:width], value])
+      pattern.sub!("[identifier]", '%0*d' % [configuration[:width].to_i, value])
     end
 
   end

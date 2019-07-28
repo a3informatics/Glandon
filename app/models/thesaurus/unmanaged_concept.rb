@@ -20,6 +20,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
   include Thesaurus::BaseConcept
+  include Thesaurus::Identifiers
 
   # Changes Count
   #
