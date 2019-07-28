@@ -1,4 +1,5 @@
 module UiHelpers
+  
   # General Tag helpers
 	def ui_click_tag_add
     ui_click_by_id('tag_add')

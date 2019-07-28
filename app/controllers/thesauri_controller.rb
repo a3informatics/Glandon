@@ -82,7 +82,7 @@ class ThesauriController < ApplicationController
 	    @token = get_token(@thesaurus)
 	  end
   	@close_path = history_thesauri_index_path(identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope)
-    @tc_identifier_prefix = ""
+    @parent_identifier = ""
   end
 
   def children

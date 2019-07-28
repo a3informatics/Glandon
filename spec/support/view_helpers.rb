@@ -24,6 +24,14 @@ module ViewHelpers
   	expect(rendered).to have_selector("input[type=submit][value='#{value}']")
   end
 
+  def expect_button_to_be_visible(id)
+    expect(rendered).to have_css("##{id}")
+  end
+
+  def expect_button_to_not_be_visible(id)
+    expect(rendered).to_not have_css("##{id}")
+  end
+
   def page_to_s
   	puts @rendered
   end

@@ -1,12 +1,9 @@
 <%= stylesheet_link_tag    'spinner' %>
 <%= javascript_include_tag 'thesauri_editor', 'unload', 'field_validation', 'spinner', 'token_timer' %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Edit:") %>
-<script id="json_data" type="text/json">
-  <%= raw @thesaurus.to_json.to_json %>
-</script>
 <div class="row">
   <div class="col-md-8">
-    <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @thesaurus} %>
+    <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Edit:", :item => @thesaurus} %>
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -22,6 +19,11 @@
 <div class="row">
   <div class="col-md-12">
     <%= render partial: "shared/thesaurusConceptEditor" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <%= render partial: "shared/thesauri/new_panel", :locals => {klass: Thesaurus::ManagedConcept, title: "New Code List", prefix: @parent_identifier} %>
   </div>
 </div>
 <input type="hidden" id="add_child_path" value="<%= add_child_thesauri_index_path %>">
