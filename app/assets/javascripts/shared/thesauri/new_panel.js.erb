@@ -13,13 +13,14 @@
  */
 function NewPanel(url, callback) {
   this.url = url;
+  this.callback = callback;
   
   var _this = this;
 
   $('#tnp_new_button').on('click', function () {
     var identifier = $("#tnp_identifier").val();
     $("#tnp_identifier").val("");
-    create(identifier);
+    _this.create(identifier);
   });
 
 }
@@ -30,15 +31,16 @@ function NewPanel(url, callback) {
  * @return [void]
  */
 NewPanel.prototype.create = function (identifier) {
-  var data = {thesauri: {identifier: identifier}};
+  var _this = this;
+  var data = {"thesauri": {"identifier": identifier}};
   $.ajax({
-    url: url
+    url: _this.url,
     type: 'POST',
-    data: data,
+    data: JSON.stringify(data),
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){
-      displaySuccess("The concept has been created.");
+      _this.callback(result);
     },
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);

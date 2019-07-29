@@ -48,6 +48,7 @@ module Glandon
     config.policy = config_for(:policy)
     config.imports = config_for(:imports).deep_symbolize_keys
     config.namespaces = config_for(:namespaces).deep_symbolize_keys
+    config.thesauri = config_for(:thesauri).deep_symbolize_keys
 
     # Rspec additions
     config.generators do |g|

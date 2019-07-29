@@ -198,50 +198,6 @@ describe Thesaurus do
       check_sparql_no_file(sparql.to_s, "thesaurus_example_7.txt")
     end
 
-    it "allows a child TC to be added" do
-      child =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-        :id => "",
-        :namespace => "",
-        :parentIdentifier => "",
-        :identifier => "A0001",
-        :label => "Label",
-        :notation => "SV",
-        :preferredTerm => "PT",
-        :synonym => "Syn",
-        :definition => "Def"
-      }
-      th = Thesaurus.create_simple({:identifier => "TEST", :label => "Test Thesaurus"})
-      expect(th.children.count).to eq(0)
-      tc = th.add_child(child)
-      expect(tc.errors.count).to eq(0)
-      th = Thesaurus.find(th.id, th.namespace)
-      expect(th.children.count).to eq(1)      
-    end
-
-    it "allows a child TC to be added - error, invalid identifier" do
-      child =
-      {
-        :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-        :id => "",
-        :namespace => "",
-        :parentIdentifier => "",
-        :identifier => "",
-        :label => "Label",
-        :notation => "SV",
-        :preferredTerm => "PT",
-        :synonym => "Syn",
-        :definition => "Def"
-      }
-      th = Thesaurus.find("TH-ACME_TEST", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(th.children.count).to eq(1)
-      tc = th.add_child(child)
-      expect(tc.errors.count).to eq(1)
-      th = Thesaurus.find(th.id, th.namespace)
-      expect(th.children.count).to eq(1)      
-    end
-
     it "allows the impact to be assessed - WILL CURRENTLY FAIL" do
     	th = Thesaurus.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
     	result = th.impact
@@ -397,13 +353,39 @@ describe Thesaurus do
       timer_stop("100 searches")
     end
 
-    it "add child" do
+    it "add child, manual entry" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
-      actual = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123")) 
-      check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
+      item = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
+      actual = item.to_h
+    #Xwrite_yaml_file(item.to_h, sub_dir, "add_child_expected_2.yaml")
+      expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
+      expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
+      expect(actual).to hash_equal(expected)
+    end
+
+    it "add child, generated identifier" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
+      ct.add_child(identifier: "S123")
+      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
+      actual = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
+      check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows a child TC to be added - error, invalid identifier" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+      item = ct.add_child(identifier: "S123£%^@")
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters")
+      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
     end
 
   end

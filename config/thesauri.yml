@@ -1,0 +1,20 @@
+defaults: &defaults
+  identifiers:
+    scheme_type: flat
+    parent: 
+      generated: 
+        pattern: "NP[identifier]P" 
+        width: "6"
+    Child: 
+      generated: 
+        pattern: "NC[identifier]C"
+        width: "8"
+
+development:
+  <<: *defaults
+
+production: 
+  <<: *defaults
+  
+test: 
+  <<: *defaults

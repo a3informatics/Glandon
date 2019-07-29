@@ -233,18 +233,21 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params a set of initial vaues for any attributes
+  # @params [Hash] params 
+  # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
   def add_child(params)
     child = Thesaurus::ManagedConcept.empty_concept
-    child[:identifier] = params[:identifier]
+    child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)
     transaction_begin
     child = Thesaurus::ManagedConcept.create(child)
+    return child if child.errors.any?
     ref = OperationalReferenceV3::TcReference.create({reference: child, ordinal: ordinal}, self)
     self.add_link(:is_top_concept, child)
     self.add_link(:is_top_concept_reference, ref)
     transaction_execute
+    child
   end
 
 private

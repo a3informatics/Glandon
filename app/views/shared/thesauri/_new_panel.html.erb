@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'shared/thesauri/new_panel' %>
 <div id="formInfo" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title"><%= title %></h3>
@@ -8,7 +9,7 @@
         <div class="form-group">
           <% if klass.generated_identifier? %>
             <p>An identifier will be automatically generated</p>
-            <input type="hidden" id="tnp_identifier" value="<%= "0" %>">
+            <input type="hidden" id="tnp_identifier" value="<%= "SERVERIDENTIFER" %>">
           <% else %>  
             <label for="tnp_identifier">Identifier:</label>
             <div class="input-group">

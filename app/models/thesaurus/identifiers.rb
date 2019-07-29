@@ -62,7 +62,8 @@ class Thesaurus
       end
       
       def identification_configuration
-        ENV["thesauri_identifiers"].deep_symbolize_keys
+        #ENV["thesauri_identifiers"].deep_symbolize_keys
+        Rails.configuration.thesauri[:identifiers]
       end
 
       def generate_identifier(value, configuration)

@@ -12,7 +12,6 @@
           <th>Status</th>
           <th>Version</th>
           <th>Version Label</th>
-          <th class="fit"></th>
         </tr>
       </thead>
         <tbody>
@@ -23,9 +22,6 @@
             <td><%= item.registration_status %></td>
             <td><%= item.semantic_version %></td>
             <td><%= item.version_label %></td>
-            <td>
-              <%= link_to "Impact", impact_thesauri_index_path(id: item.uri.fragment, namespace: item.uri.namespace), :class => "btn btn-info btn-xs" %>
-            </td>
           </tr>
       </tbody>
     </table>

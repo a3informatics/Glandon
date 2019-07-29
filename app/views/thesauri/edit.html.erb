@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag    'spinner' %>
-<%= javascript_include_tag 'thesauri_editor', 'unload', 'field_validation', 'spinner', 'token_timer' %>
+<%= javascript_include_tag 'thesauri_editor', 'unload', 'field_validation', 'spinner', 'token_timer', 'thesauri/edit'%>
+<%= javascript_tag "var add_child_path = '#{add_child_thesauri_path(@thesaurus)}';" %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Edit:") %>
 <div class="row">
   <div class="col-md-8">
@@ -26,8 +27,6 @@
     <%= render partial: "shared/thesauri/new_panel", :locals => {klass: Thesaurus::ManagedConcept, title: "New Code List", prefix: @parent_identifier} %>
   </div>
 </div>
-<input type="hidden" id="add_child_path" value="<%= add_child_thesauri_index_path %>">
-<input type="hidden" id="children_path" value="<%= children_thesauri_index_path %>">
 <input type="hidden" id="parameters_key" value="thesauri">
 <input type="hidden" id="token_1" value="<%= @token.id %>">
 <input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">
