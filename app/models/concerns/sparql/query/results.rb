@@ -22,6 +22,7 @@ module Sparql
         doc = Nokogiri::XML(body)
         doc.remove_namespaces!
         doc.xpath("//result").each do |result|
+          next if result.element_children.empty?
           @results << Sparql::Query::Results::Result.new(result)
         end
       end

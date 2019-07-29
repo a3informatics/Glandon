@@ -210,6 +210,15 @@ puts "***** SUBJECT CACHE #{uri} *****"
 
     alias uuid id
 
+    def transaction_begin
+      @transaction = Sparql::Transaction.new
+    end
+
+    def transaction_execute
+      @transaction.execute
+      @transaction = nil
+    end
+    
     def where_child(params)
       where_clauses = ""
       params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }
@@ -277,9 +286,13 @@ puts "***** SUBJECT CACHE #{uri} *****"
       !not_used?
     end
 
+    def partial_update(query, prefixes)
+      Sparql::Update.new(@transaction).sparql_update(query, self.rdf_type.namespace, prefixes)
+    end
+
     def create_or_update(operation, recurse=false)
       clear_cache
-      sparql = Sparql::Update.new()
+      sparql = Sparql::Update.new(@transaction)
       sparql.default_namespace(@uri.namespace)
       to_sparql(sparql, recurse)
       operation == :create ? sparql.create : sparql.update(@uri)

@@ -374,7 +374,7 @@ describe Thesaurus do
       ]
       data_files = 
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
       ]
       load_files(schema_files, data_files)
       load_versions(1..59)
@@ -395,6 +395,15 @@ describe Thesaurus do
       timer_start
       (1..100).each {|x| actual = ct.managed_children_pagination(offset: 0, count: 10)}
       timer_stop("100 searches")
+    end
+
+    it "add child" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      ct.add_child(identifier: "S123")
+      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
+      actual = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123")) 
+      check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end

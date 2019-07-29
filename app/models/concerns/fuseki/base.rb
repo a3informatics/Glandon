@@ -23,6 +23,7 @@ module Fuseki
     include Diff
 
     def initialize(attributes = {})
+      @transaction = nil
       @new_record = true
       @destroyed = false
       self.class.get_schema(:initialize)

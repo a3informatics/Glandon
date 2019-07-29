@@ -246,7 +246,7 @@ class IsoManagedV2 < IsoConceptV2
   # @params [Hash] params a set of initial vaues for any attributes
   # @return [Object] the created object. May contain errors if unsuccesful.
   def self.create(params)
-    object = new(label: params[:label])
+    object = new(params)
     object.set_initial(params[:identifier])
     object.creation_date = object.last_change_date # Will have been set by set_initial, ensures the same one used.
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
@@ -525,6 +525,41 @@ class IsoManagedV2 < IsoConceptV2
     self.last_change_date = params[:date].to_time_with_default
     set_uris(ra)
   end 
+
+  # Next Ordinal. Get the next ordinal for a managed item collection
+  #
+  # @param [String] the name of the property holding the collection
+  # @return [Integer] the next ordinal
+  def next_ordinal(property)
+    variable = Fuseki::Persistence::Naming.new(property)
+    query_string = %Q{
+      SELECT (MAX(?ordinal) AS ?max)
+      {
+        #{self.uri.to_ref} #{properties_metadata.predicate(variable.as_instance).to_ref} ?s .
+        ?s bo:ordinal ?ordinal
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:bo])
+    return 1 if query_results.empty?
+    query_results.by_object(:max).first.to_i + 1
+  end
+
+  # Add Link. Add a object to a collection
+  #
+  # @param [Symbol] the name of the property holding the collection
+  # @param [Object] the object to be linked
+  # @return [Void] no return
+  def add_link(property, object)
+    variable = Fuseki::Persistence::Naming.new(property)
+    predicate = properties_metadata.predicate(variable.as_instance)
+    update_query = %Q{
+      INSERT
+      {
+        #{self.uri.to_ref} #{predicate.to_ref} #{object.uri.to_ref} .
+      } WHERE {}
+    }
+    partial_update(update_query, [])
+  end
 
 private
 

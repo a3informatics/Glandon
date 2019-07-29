@@ -173,13 +173,9 @@ describe Thesaurus::ManagedConcept do
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(0)
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-  	#Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_1.yaml")
-  		expected = read_yaml_file(sub_dir, "add_child_expected_1.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_2.yaml")
-      expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
     it "prevents a duplicate TC being added" do
@@ -245,9 +241,7 @@ describe Thesaurus::ManagedConcept do
       new_object.notation = "NEWNEWXXX"
       new_object.update
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_1.yaml")
-      expected = read_yaml_file(sub_dir, "update_expected_1.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "update_expected_1.yaml")
     end
 
     it "allows a TC to be updated, quotes test" do
@@ -264,9 +258,7 @@ describe Thesaurus::ManagedConcept do
       new_object.label = "New \"XXX\""
       new_object.update
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_2.yaml")
-      expected = read_yaml_file(sub_dir, "update_expected_2.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
     end
     
     it "allows a TC to be updated, character test" do
@@ -285,9 +277,7 @@ describe Thesaurus::ManagedConcept do
       new_object.definition = vh_all_chars
       new_object.update
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_3.yaml")
-      expected = read_yaml_file(sub_dir, "update_expected_3.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
     end
     
     it "allows to determine if TCs different" do
@@ -314,19 +304,13 @@ describe Thesaurus::ManagedConcept do
 
     it "allows the object to be exported as Hash" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "to_hash_expected.yaml")    
-      expected = read_yaml_file(sub_dir, "to_hash_expected.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "to_hash_expected.yaml")
     end
 
     it "allows a TC to be created from Hash" do
-    #Xtc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_input.yaml")    
       input = read_yaml_file(sub_dir, "from_hash_input.yaml")
       tc = Thesaurus::ManagedConcept.from_h(input)
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_expected.yaml")    
-      expected = read_yaml_file(sub_dir, "from_hash_expected.yaml")
-      expect(tc.to_h).to eq(expected)
+      check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml", equate_method: :hash_equal)
     end
 
     it "allows a TC to be exported as SPARQL" do
@@ -361,13 +345,21 @@ describe Thesaurus::ManagedConcept do
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt") 
     end
     
+    it "allows a TC to be created" do
+      object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      expect(tc.scoped_identifier).to eq("A000001")
+      expect(tc.identifier).to eq("A000001")
+      expect(tc.notation).to eq("A")
+    end
+
     it "allows a TC to be destroyed" do
-      tc = Thesaurus::ManagedConcept.create({uri: Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"), identifier: "AAA", notation: "A"})
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"))
+      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
+      tc = Thesaurus::ManagedConcept.find(object.uri)
       result = tc.delete
       expect(result).to eq(1)
-      expect{Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001"))}.to raise_error(Errors::NotFoundError, 
-        "Failed to find http://www.acme-pharma.com/A00001/V3#A00001 in Thesaurus::ManagedConcept.")  
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError, 
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")  
     end
 
     it "does not allow a TC to be destroyed if it has children" do

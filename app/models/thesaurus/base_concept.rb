@@ -2,6 +2,8 @@ class Thesaurus
 
   module BaseConcept
 
+    C_NOT_SET = "Not Set"
+
     def self.included(klass)
       klass.extend(ClassMethods)
     end
@@ -16,6 +18,10 @@ class Thesaurus
         !where_only({identifier: identifier}).nil?
       end
     
+      def empty_concept
+        {identifier: C_NOT_SET, notation: C_NOT_SET, definition: C_NOT_SET, extensible: false, preferred_term: Thesaurus::PreferredTerm.where_only_or_create(C_NOT_SET)}
+      end
+
     end
 
     # Children?

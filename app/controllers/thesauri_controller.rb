@@ -97,7 +97,7 @@ class ThesauriController < ApplicationController
 
   def add_child
     authorize Thesaurus, :create?
-    thesaurus = Thesaurus.find(params[:id], params[:namespace], false)
+    thesaurus = Thesaurus.find_minimum(params[:id])
     token = Token.find_token(thesaurus, current_user)
     if !token.nil?
       thesaurus_concept = thesaurus.add_child(the_params)

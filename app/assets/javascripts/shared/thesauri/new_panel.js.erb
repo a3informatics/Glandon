@@ -1,0 +1,47 @@
+/*
+* Changes Panel
+* 
+* Requires:
+* tnp_new_button: the new button
+* tnp_identifier: the new identifier (might be empty, this is permitted)
+*/
+
+/**
+ * Change Panel Constructor
+ *
+ * @return [void]
+ */
+function NewPanel(url, callback) {
+  this.url = url;
+  
+  var _this = this;
+
+  $('#tnp_new_button').on('click', function () {
+    var identifier = $("#tnp_identifier").val();
+    $("#tnp_identifier").val("");
+    create(identifier);
+  });
+
+}
+
+/**
+ * Create. Create the concept
+ *
+ * @return [void]
+ */
+NewPanel.prototype.create = function (identifier) {
+  var data = {thesauri: {identifier: identifier}};
+  $.ajax({
+    url: url
+    type: 'POST',
+    data: data,
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){
+      displaySuccess("The concept has been created.");
+    },
+    error: function(xhr,status,error){
+      handleAjaxError (xhr, status, error);
+    }
+  }); 
+}

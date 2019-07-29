@@ -17,4 +17,11 @@ class OperationalReferenceV3 < IsoConceptV2
     properties_metadata_class.klass(Fuseki::Persistence::Naming.new(:reference).as_instance)  
   end
 
+  def self.create(params, parent)
+    object = new(params)
+    object.uri = object.create_uri(parent.uri)
+    object.create_or_update(:create) if object.valid?(:create)
+    object
+  end
+
 end

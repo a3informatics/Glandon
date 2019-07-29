@@ -11,11 +11,12 @@ module Sparql
 
     C_CLASS_NAME = self.name
 
-    def initialize()  
+    def initialize(transaction=nil)  
       @default_namespace = ""
       @prefix_used = {}
       @triples = Hash.new {|h,k| h[k] = []}
       @duplicates = {}
+      @transaction = transaction
     end
 
     # Set default namespace
@@ -127,14 +128,18 @@ module Sparql
 
     # Execute update/create
     def execute_update(type, sparql)
-      response = send_update(sparql)
-      if !response.success?
-        base = "Failed to #{type} an item in the database. SPARQL #{type} failed."
-        message = "#{base}\nSPARQL: #{sparql}"
-        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
-        raise Errors::CreateError.new(base) if type == :create
-        raise Errors::UpdateError.new(base) if type == :update
-        raise Errors::DestroyError.new(base)
+      if @transaction.nil?
+        response = send_update(sparql)
+        if !response.success?
+          base = "Failed to #{type} an item in the database. SPARQL #{type} failed."
+          message = "#{base}\nSPARQL: #{sparql}"
+          ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, message)
+          raise Errors::CreateError.new(base) if type == :create
+          raise Errors::UpdateError.new(base) if type == :update
+          raise Errors::DestroyError.new(base)
+        end
+      else
+        @transaction.add(sparql)
       end
     end
 

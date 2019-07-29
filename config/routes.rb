@@ -148,18 +148,18 @@ Rails.application.routes.draw do
   resources :thesauri, only: [:index, :show, :create, :edit, :destroy] do
     collection do
       get :history
-      get :view
+      #get :view
       get :search_current
       #get :next
-      get :children
-      post :add_child
-      get :export_ttl
-      get :impact
-      get :impact_start
-      get :impact_next
-      get :impact_report
+      #get :children
+      #get :export_ttl
+      #get :impact
+      #get :impact_start
+      #get :impact_next
+      #get :impact_report
     end
     member do
+      post :add_child
       get :changes
       get :changes_report
       get :submission
