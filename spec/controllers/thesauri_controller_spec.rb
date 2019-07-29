@@ -183,128 +183,63 @@ describe ThesauriController do
     end
 
     it 'adds a child thesaurus concept' do
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesauri => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "New TC",
-          :identifier => "A99999", 
-          :notation => "NEW 999", 
-          :synonym => "New syn 999", 
-          :definition => "New def 999", 
-          :preferredTerm => "New PT 999",
-          :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
-        }
-      }
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
-      audit_count = AuditTrail.count
-      post :add_child, params
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      tc = ThesaurusConcept.find("TH-SPONSOR_CT-1_A99999", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(tc.identifier).to eq("A99999")
-      expect(tc.notation).to eq("NEW 999")
-      expect(tc.definition).to eq("New def 999")
-      expect(tc.preferredTerm).to eq("New PT 999")
-      expect(tc.synonym).to eq("New syn 999")
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      new_ct = Thesaurus::ManagedConcept.new
+      new_ct.identifier = "A12345"
+      token = Token.obtain(ct, @user)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)        
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)        
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology updated.")
+      post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(th.children.count).to eq(4)
-      expect(AuditTrail.count).to eq(audit_count + 1)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it 'adds a child thesaurus concept, token refreshed' do
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesauri => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "New TC",
-          :identifier => "A99998", 
-          :notation => "NEW 998", 
-          :synonym => "New syn 998", 
-          :definition => "New def 998", 
-          :preferredTerm => "New PT 998",
-          :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
-        }
-      }
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      new_ct = Thesaurus::ManagedConcept.new
+      new_ct.identifier = "A12345"
+      token = Token.obtain(ct, @user)
       token.refresh
-      audit_count = AuditTrail.count
-      post :add_child, params
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      tc = ThesaurusConcept.find("TH-SPONSOR_CT-1_A99998", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(tc.identifier).to eq("A99998")
-      expect(tc.notation).to eq("NEW 998")
-      expect(tc.definition).to eq("New def 998")
-      expect(tc.preferredTerm).to eq("New PT 998")
-      expect(tc.synonym).to eq("New syn 998")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)        
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)        
+      post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(th.children.count).to eq(5)
-      expect(AuditTrail.count).to eq(audit_count)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it 'adds a child thesaurus concept, error in definition' do
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesauri => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "New TC",
-          :identifier => "A99998", 
-          :notation => "NEW 998", 
-          :synonym => "New syn 998", 
-          :definition => "New def 998!@£$%^&*(", 
-          :preferredTerm => "New PT 998",
-          :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
-        }
-      }
-      audit_count = AuditTrail.count
-      post :add_child, params
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+    it 'adds a child thesaurus concept, error' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      token = Token.obtain(ct, @user)
+      token.refresh
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token) 
+      mc = Thesaurus::ManagedConcept.new       
+      mc.errors.add(:base, "Error message 1")
+      mc.errors.add(:base, "Error message 2")
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(mc)        
+      post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(th.children.count).to eq(5)
-      expect(AuditTrail.count).to eq(audit_count)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it 'fails to add a child thesaurus concept, locked by another user' do
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @lock_user)
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesauri => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "New TC",
-          :identifier => "A99998", 
-          :notation => "NEW 998", 
-          :synonym => "New syn 998", 
-          :definition => "New def 998!@£$%^&*(", 
-          :preferredTerm => "New PT 998",
-          :type => "http://www.assero.co.uk/ISO25964#ThesaurusConcept"
-        }
-      }
-      audit_count = AuditTrail.count
-      post :add_child, params
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(nil) 
+      post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      expect(th.children.count).to eq(5)
-      expect(AuditTrail.count).to eq(audit_count)
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it 'fails to delete thesaurus, locked by another user' do

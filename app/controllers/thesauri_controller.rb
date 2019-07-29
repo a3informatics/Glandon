@@ -103,7 +103,7 @@ class ThesauriController < ApplicationController
       thesaurus_concept = thesaurus.add_child(the_params)
       if thesaurus_concept.errors.empty?
         AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        render :json => thesaurus_concept.to_json, :status => 200
+        render :json => {data: thesaurus_concept.to_h}, :status => 200
       else
         render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
       end
