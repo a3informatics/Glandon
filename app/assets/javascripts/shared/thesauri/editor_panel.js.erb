@@ -1,0 +1,172 @@
+function EditorPanel(tokenId, childrenPath, updatePath, editPath, deletePath) {
+  this.tokenId = tokenId;
+  this.childrenPath = childrenPath;
+  this.updatePath = pathInsertId(updatePath, "");
+  this.editPath = editPath;
+  this.deletePath = deletePath;
+  this.currentRow = null;
+  this.map = {};
+  this.editorTable = $('#editor_table').DataTable({
+    pageLength: pageLength,
+    lengthMenu: pageSettings,
+    ajax: {
+      url: childrenPath,
+      error: function (xhr, status, error) {
+        displayError("An error has occurred loading the terminology table.");
+      }
+    },
+    columns: [
+      { data: "identifier" },
+      { data: "label" },
+      { data: "notation" },
+      { data: "preferred_term" },
+      { data: "synonym" },
+      { data: "definition" },
+      { data: null, "render": function(data,type,full,meta) { 
+        return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
+      }},
+      { data: null, "render": function(data,type,full,meta) { 
+        return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
+      }}
+    ],
+    keys: {
+      columns: [ 1, 2, 3, 4, 5 ],
+      keys: [ 9, 38, 40 ]
+    }
+  });
+
+  this.editor = new $.fn.dataTable.Editor( {
+    ajax: {
+      edit: {
+        type: 'PUT',
+        url: this.updatePath
+      },
+    },
+    table: "#editor_table",
+    idSrc: "id",
+    fields: 
+    [
+      {
+          name: "label"
+      },
+      {
+          label: "Submission Value:",
+          name: "notation"
+      },
+      {
+          label: "Preferred term:",
+          name: "preferred_term"
+      },
+      {
+          label: "Synonym:",
+          name: "synonym"
+      },
+      {
+          label: "Definition:",
+          name: "definition"
+      }
+    ]
+  });
+
+  ttAddToken(this.tokenId);
+
+  // var addChildPath = $('#add_child_path').val();
+  // var childrenPath = $('#children_path').val();
+  // var parametersKey = $('#parameters_key').val();
+  // var html  = $("#json_data").html();
+  // var sourceJson;
+  // var managedItem;
+  
+  // $('#referer_button').click(function() {
+  //   ttExtendLock("1"); // Extend the token
+  //   keepToken = true; // Keep the token. Important
+  //   window.location.href = $('#referer_path').val();
+  // });
+
+  var _this = this;
+
+  // Click on the table.
+  $('#editor_table').on('click', 'tbody td:not(:first-child)', function (e) {
+    var idx = _this.editorTable.cell(this).index();
+    var row = idx.row;
+    var col = idx.column;
+    var data = _this.editorTable.cell(this).data();
+
+    if (col == 6) {
+      ttExtendLock("1"); // Extend the token
+      keepToken = true; // Keep the token. Important
+      window.location.href = pathInsertId(_this.editPath, data.id);
+    } else if (col == 7) {
+      if(confirm("Are you sure?")) {
+        _this.delete(data.id);
+      }
+    } else {
+      _this.editor.inline(_this.editorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
+    }
+  });
+
+  // Inline editing on tab focus
+  $('#editor_table').on( 'key-focus', function ( e, datatable, cell ) {
+     _this.editor.inline( cell.index(), { submitOnBlur: true, submit: 'all' } );
+  } );
+
+  // // Presubmit event. Format the data.
+  // editor.on('preSubmit', function ( e, d, type ) {
+  //   if ( type === 'edit' ) {
+  //     d.thesaurus_concept = cloneTC();
+  //     d.namespace = managedItem.namespace;
+  //     var columnObject = firstObject(d.data);
+  //     $.each(columnObject, function(key, value) {
+  //       d.thesaurus_concept[key] = value;
+  //     });
+  //     delete d.data;
+  //   }
+  //   return true;
+  // });
+
+  // // Submit error event. Route to the specified link.
+  // editor.on('submitError', function (e, xhr, err, thrown, data) {
+  //   window.location.href = xhr.responseJSON.link;
+  // });
+
+  // // Postsubmit event. Extend the timeout
+  // editor.on('postSubmit', function ( e, json, data, type ) {
+  //   ttExtendLock("1");
+  // });
+
+}
+
+EditorPanel.prototype.delete = function(id) {
+  var _this = this;
+  $.ajax({
+    url: pathInsertId(_this.deletePath, id),
+    type: 'DELETE',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){
+      displaySuccess("The concept has been deleted.");
+      _this.editorTable.ajax.reload();
+      ttExtendLock(_this.tokenId);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  }); 
+}
+
+  // function firstObject(object) {
+  //   var first;
+  //   for (var i in object) {
+  //     if (object.hasOwnProperty(i) && typeof(i) !== 'function') {
+  //       first = object[i];
+  //       break;
+  //     }
+  //   }
+  //   return first;
+  // }
+
+// Null function for page unload. Nothing to do
+function pageUnloadAction() {
+}
+
+  

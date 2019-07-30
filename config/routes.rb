@@ -131,13 +131,13 @@ Rails.application.routes.draw do
   
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts do
+    resources :managed_concepts, only: [:edit, :update, :destroy] do
       member do
         get :changes
         get :differences
       end
     end
-    resources :unmanaged_concepts do
+    resources :unmanaged_concepts, only: [:edit, :update, :destroy] do
       member do
         get :changes
         get :differences
@@ -151,7 +151,6 @@ Rails.application.routes.draw do
       #get :view
       get :search_current
       #get :next
-      #get :children
       #get :export_ttl
       #get :impact
       #get :impact_start
@@ -159,6 +158,7 @@ Rails.application.routes.draw do
       #get :impact_report
     end
     member do
+      get :children
       post :add_child
       get :changes
       get :changes_report

@@ -4,19 +4,19 @@ class Thesauri::ManagedConceptsController < ApplicationController
   
   C_CLASS_NAME = "ThesaurusConceptsController"
   
-  # def edit
-  #   authorize ThesaurusConcept
-  #   @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(@thesaurus_concept)
-  #   @token = Token.find_token(thesaurus, current_user)
-  #   @close_path = edit_lock_lost_link(thesaurus)
-  #   @referer_path = get_parent_link(@thesaurus_concept)
-  #   @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-  #   if @token.nil?
-  #     flash[:error] = "The edit lock has timed out."
-  #     redirect_to edit_lock_lost_link(thesaurus)
-  #   end
-  # end
+  def edit
+    authorize Thesaurus
+    @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    thesaurus = get_thesaurus(@thesaurus_concept)
+    @token = Token.find_token(thesaurus, current_user)
+    @close_path = edit_lock_lost_link(thesaurus)
+    @referer_path = get_parent_link(@thesaurus_concept)
+    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    if @token.nil?
+      flash[:error] = "The edit lock has timed out."
+      redirect_to edit_lock_lost_link(thesaurus)
+    end
+  end
 
   # def update
   #   authorize ThesaurusConcept
@@ -66,18 +66,18 @@ class Thesauri::ManagedConceptsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   authorize ThesaurusConcept
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept.destroy
-  #     audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   else
-  #     render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-  #   end
-  # end
+  def destroy
+    authorize Thesaurus
+    thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    thesaurus = get_thesaurus(thesaurus_concept)
+    token = Token.find_token(thesaurus, current_user)
+    if !token.nil?
+      thesaurus_concept.destroy
+      audit_and_respond(thesaurus, thesaurus_concept, token)
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+    end
+  end
 
   # ************************
   # CSV Export 

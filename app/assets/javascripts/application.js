@@ -274,6 +274,13 @@ function toUri(namespace, id) {
   return namespace + "#" + id;
 }
 
+/**
+* Replaces the model instance id in a path with the actual id.
+*/
+function pathInsertId(path ,id) {
+  return path.replace(":id", id);
+}
+
 /*
 * Utility functions
 */

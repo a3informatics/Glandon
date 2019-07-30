@@ -88,10 +88,9 @@ class ThesauriController < ApplicationController
   def children
     authorize Thesaurus, :edit?
     results = []
-    thesaurus = Thesaurus.find(params[:id], params[:namespace])
-    thesaurus.children.each do |child|
-      results << child.to_json
-    end
+    ct = Thesaurus.find_minimum(params[:id])
+    children = ct.managed_children_pagination({offset: "0", count: "10000"})
+    children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path(c[:id])})}
     render :json => { data: results }, :status => 200
   end
 
