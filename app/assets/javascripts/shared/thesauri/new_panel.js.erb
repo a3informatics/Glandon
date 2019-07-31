@@ -40,7 +40,7 @@ NewPanel.prototype.create = function (identifier) {
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){
-      _this.callback(result);
+      _this.callback(result.data);
     },
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);

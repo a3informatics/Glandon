@@ -90,7 +90,7 @@ class ThesauriController < ApplicationController
     results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path(c[:id])})}
+    children.each {|c| results << c.reverse_merge!({parent_id: ct.id, edit_path: edit_thesauri_managed_concept_path(c[:id]), delete_path: thesauri_managed_concept_path(c[:id])})}
     render :json => { data: results }, :status => 200
   end
 
@@ -102,7 +102,9 @@ class ThesauriController < ApplicationController
       thesaurus_concept = thesaurus.add_child(the_params)
       if thesaurus_concept.errors.empty?
         AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        render :json => {data: thesaurus_concept.to_h}, :status => 200
+        result = thesaurus_concept.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path(thesaurus_concept), delete_path: thesauri_managed_concept_path(thesaurus_concept)})
+        render :json => {data: thesaurus_concept.simple_to_h}, :status => 200
       else
         render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
       end

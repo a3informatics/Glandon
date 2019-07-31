@@ -18,30 +18,30 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
-  # def update
-  #   authorize ThesaurusConcept
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept.update(the_params)
-  #     if thesaurus_concept.errors.empty?
-  #       AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-  #       results = []
-  #       results << thesaurus_concept.to_json
-  #       render :json => {:data => results}, :status => 200
-  #     else
-  #       errors = []
-  #       thesaurus_concept.errors.each do |name, msg|
-  #         errors << {name: name, status: msg}
-  #       end
-  #       render :json => {:fieldErrors => errors}, :status => 200
-  #     end
-  #   else
-  #     flash[:error] = "The edit lock has timed out."
-  #     render :json => {:data => results, :link => edit_lock_lost_link(thesaurus)}, :status => 422
-  #   end
-  # end
+  def update
+    authorize Thesaurus
+    thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    thesaurus = get_thesaurus(thesaurus_concept)
+    token = Token.find_token(thesaurus, current_user)
+    if !token.nil?
+      thesaurus_concept.update(the_params)
+      if thesaurus_concept.errors.empty?
+        AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+        results = []
+        results << thesaurus_concept.to_json
+        render :json => {:data => results}, :status => 200
+      else
+        errors = []
+        thesaurus_concept.errors.each do |name, msg|
+          errors << {name: name, status: msg}
+        end
+        render :json => {:fieldErrors => errors}, :status => 200
+      end
+    else
+      flash[:error] = "The edit lock has timed out."
+      render :json => {:data => results, :link => edit_lock_lost_link(thesaurus)}, :status => 422
+    end
+  end
   
   # def children
   #   authorize Thesaurus, :edit?
@@ -68,12 +68,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def destroy
     authorize Thesaurus
-    thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    thesaurus = get_thesaurus(thesaurus_concept)
-    token = Token.find_token(thesaurus, current_user)
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    th = Thesaurus.find_minimum(the_params[:parent_id])
+    token = Token.find_token(th, current_user)
     if !token.nil?
-      thesaurus_concept.destroy
-      audit_and_respond(thesaurus, thesaurus_concept, token)
+      tc.destroy
+      audit_and_respond(th, tc, token)
     else
       render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
     end

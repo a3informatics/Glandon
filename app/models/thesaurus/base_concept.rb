@@ -97,6 +97,14 @@ class Thesaurus
       result
     end
 
+    def simple_to_h
+      {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: self.preferred_term.label, synonym: merge_synonyms, extensible: self.extensible, id: self.uri.to_id}
+    end
+
+    def merge_synonyms
+      self.synonym.map {|x| x.label}.join("; ")
+    end
+
   end
 
 end

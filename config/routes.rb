@@ -131,13 +131,13 @@ Rails.application.routes.draw do
   
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts, only: [:edit, :update, :destroy] do
+    resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
       member do
         get :changes
         get :differences
       end
     end
-    resources :unmanaged_concepts, only: [:edit, :update, :destroy] do
+    resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
       member do
         get :changes
         get :differences

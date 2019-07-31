@@ -2,8 +2,6 @@
 <%= javascript_tag "var add_child_path = '#{add_child_thesauri_path(@thesaurus)}';" %>
 <%= javascript_tag "var children_path = '#{children_thesauri_path(@thesaurus)}';" %>
 <%= javascript_tag "var update_path = '/thesauri/managed_concepts/:id';" %>
-<%= javascript_tag "var edit_path = '/thesauri/managed_concepts/:id/edit';" %>
-<%= javascript_tag "var delete_path = '/thesauri/unmanaged_concepts/:id';" %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Edit:") %>
 <div class="row">
   <div class="col-md-8">

@@ -1,51 +1,25 @@
-function EditorPanel(tokenId, childrenPath, updatePath, editPath, deletePath) {
+function EditorPanel(tokenId, childrenPath, updatePath) {
+  this.count = 30; // Table read size
   this.tokenId = tokenId;
   this.childrenPath = childrenPath;
   this.updatePath = pathInsertId(updatePath, "");
-  this.editPath = editPath;
-  this.deletePath = deletePath;
   this.currentRow = null;
   this.map = {};
-  this.editorTable = $('#editor_table').DataTable({
-    pageLength: pageLength,
-    lengthMenu: pageSettings,
-    ajax: {
-      url: childrenPath,
-      error: function (xhr, status, error) {
-        displayError("An error has occurred loading the terminology table.");
-      }
-    },
-    columns: [
-      { data: "identifier" },
-      { data: "label" },
-      { data: "notation" },
-      { data: "preferred_term" },
-      { data: "synonym" },
-      { data: "definition" },
-      { data: null, "render": function(data,type,full,meta) { 
-        return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
-      }},
-      { data: null, "render": function(data,type,full,meta) { 
-        return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
-      }}
-    ],
-    keys: {
-      columns: [ 1, 2, 3, 4, 5 ],
-      keys: [ 9, 38, 40 ]
-    }
-  });
 
   this.editor = new $.fn.dataTable.Editor( {
     ajax: {
       edit: {
         type: 'PUT',
-        url: this.updatePath
+        url: this.updatePath + '_id_'
       },
     },
     table: "#editor_table",
     idSrc: "id",
     fields: 
     [
+      {
+          name: "parent_id"
+      },
       {
           name: "label"
       },
@@ -68,7 +42,34 @@ function EditorPanel(tokenId, childrenPath, updatePath, editPath, deletePath) {
     ]
   });
 
-  ttAddToken(this.tokenId);
+  this.editorTable = $('#editor_table').DataTable({
+    pageLength: pageLength,
+    lengthMenu: pageSettings,
+    processing: true,
+    language: {
+      "infoFiltered": "",
+      "emptyTable": "No changes.",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+    },
+    columns: [
+      { data: "identifier" },
+      { data: "label" },
+      { data: "notation" },
+      { data: "preferred_term" },
+      { data: "synonym" },
+      { data: "definition" },
+      { data: null, "render": function(data,type,full,meta) { 
+        return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
+      }},
+      { data: null, "render": function(data,type,full,meta) { 
+        return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
+      }}
+    ],
+    keys: {
+      columns: [ 1, 2, 3, 4, 5 ], // Key codes to be listened to and the columns
+      keys: [ 9, 38, 40 ]
+    }
+  });
 
   // var addChildPath = $('#add_child_path').val();
   // var childrenPath = $('#children_path').val();
@@ -95,10 +96,10 @@ function EditorPanel(tokenId, childrenPath, updatePath, editPath, deletePath) {
     if (col == 6) {
       ttExtendLock("1"); // Extend the token
       keepToken = true; // Keep the token. Important
-      window.location.href = pathInsertId(_this.editPath, data.id);
+      window.location.href = data.edit_path;
     } else if (col == 7) {
       if(confirm("Are you sure?")) {
-        _this.delete(data.id);
+        _this.delete(data.delete_path);
       }
     } else {
       _this.editor.inline(_this.editorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
@@ -134,12 +135,62 @@ function EditorPanel(tokenId, childrenPath, updatePath, editPath, deletePath) {
   //   ttExtendLock("1");
   // });
 
+  ttAddToken(this.tokenId);
+  this.fill(0);
+
 }
 
-EditorPanel.prototype.delete = function(id) {
+/**
+ * Get items to table
+ *
+ * @return [void]
+ */
+EditorPanel.prototype.fill = function (offset) {
+  var _this = this;
+  _this.editorTable.processing(true);
+  $.ajax({
+    url: _this.childrenPath,
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      for (i=0; i<result.data.length; i++) {
+        var row = _this.editorTable.row.add(result.data[i]);
+      }
+      _this.editorTable.draw();
+      if (result.count >= _this.count) {
+       _this.add(result.offset + _this.count)
+      } else {
+        _this.editorTable.processing(false);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.editorTable.processing(false);
+    }
+  });
+}
+
+/**
+ * Add item to table
+ *
+ * @return [void]
+ */
+EditorPanel.prototype.add = function (record) {
+  var _this = this;
+  var row = _this.editorTable.row.add(record);
+  _this.editorTable.draw();
+}
+
+
+/**
+ * Delete an item
+ *
+ * @return [void]
+ */
+EditorPanel.prototype.delete = function(url) {
   var _this = this;
   $.ajax({
-    url: pathInsertId(_this.deletePath, id),
+    url: url,
     type: 'DELETE',
     dataType: 'json',
     contentType: 'application/json',
