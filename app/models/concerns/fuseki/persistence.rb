@@ -70,8 +70,8 @@ module Fuseki
           "  ?s rdf:type #{rdf_type.to_ref} ."
         params.each do |name, value|
           predicate = properties["@#{name}".to_sym][:predicate]
-          literal = self.class.schema_metadata.range(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
-          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{self.class.schema_metadata.datatype(predicate)} ."
+          literal = self.schema_metadata.datatype(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
+          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{self.schema_metadata.datatype(predicate)} ."
         end
         query_string += "  ?s ?p ?o ."
         query_string += "}"
@@ -147,27 +147,25 @@ module Fuseki
       end
 
       def from_results_recurse(uri, triples)
-        object = from_results(uri, triples[uri.to_s])
-        properties = self.properties_read_class
-        properties.each do |name, value|
-          next if properties[name][:type] != :object
-          klass = properties[name][:model_class].constantize
-          if properties[name][:cardinality] == :one 
-            child_uri = object.instance_variable_get(name)
-            if !child_uri.nil?
-              child = triples[child_uri].empty? ? child_uri : klass.new.class.from_results_recurse(child_uri, triples)
-              object.instance_variable_set(name, child) 
-            end
+        object = new
+        object.instance_variable_set("@uri", uri)
+        properties = object.class.instance_variable_get(:@properties)
+        triples[uri.to_s].each do |triple|
+          next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+          name = "@#{triple[:predicate].fragment.underscore}".to_sym
+          next if !properties.key?(name) # Ignore values if no property declared.
+          value = triple[:object]
+          x = properties[name]
+          if properties[name][:type] == :object 
+            klass = properties[name][:model_class].constantize
+            child = triples[value.to_s].empty? ? value : klass.new.class.from_results_recurse(value, triples)
+            properties[name][:cardinality] == :one ? object.instance_variable_set(name, child) : object.instance_variable_get(name).push(child)
           else
-            children = []
-            object.instance_variable_get(name).each do |child_uri|
-              next if child_uri.nil?
-              child = triples[child_uri].empty? ? child_uri : klass.new.class.from_results_recurse(child_uri, triples)
-              children << child
-            end
-            object.instance_variable_set(name, children)
+            object.instance_variable_set(name, to_typed(self.schema_metadata.datatype(properties[name][:predicate]), value))
           end
         end
+        object.instance_variable_set(:@new_record, false)
+        object.instance_variable_set(:@destroyed, false)
         object
       end
 

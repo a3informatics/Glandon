@@ -232,9 +232,9 @@ class IsoManagedV2 < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if query_results.empty?
     item = from_results_recurse(uri, query_results.by_subject)
-    ns_uri = item.has_identifier.has_scope.uri
+    ns_uri = item.has_identifier.has_scope
     item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
-    ra_uri = item.has_state.by_authority.uri
+    ra_uri = item.has_state.by_authority
     item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
     ns_uri = item.has_state.by_authority.ra_namespace
     item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
@@ -566,7 +566,7 @@ private
   # Set the scopes, will use the cache so quick.
   def self.set_cached_scopes(object, si_scope)
     object.has_identifier.has_scope = si_scope
-    object.has_state.by_authority = IsoRegistrationAuthority.find(object.has_state.by_authority.uri)
+    object.has_state.by_authority = IsoRegistrationAuthority.find(object.has_state.by_authority)
     object.has_state.by_authority.ra_namespace = IsoNamespace.find(object.has_state.by_authority.ra_namespace)
   end
 

@@ -472,13 +472,13 @@ describe IsoManagedV2 do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times [8.29s]")
+      timer_stop("Find 100 times [8.29s -> 5.77s]")
     end
 
     it "find minimum I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       results = IsoManagedV2.find_minimum(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results.to_h, sub_dir, "find_minimum_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "find minimum II, speed" do
