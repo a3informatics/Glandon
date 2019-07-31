@@ -64,15 +64,14 @@ module Fuseki
       end
 
       def where(params)
-        schema = self.get_schema(:where)
         properties = properties_read_class
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
           "  ?s rdf:type #{rdf_type.to_ref} ."
         params.each do |name, value|
           predicate = properties["@#{name}".to_sym][:predicate]
-          literal = schema.range(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
-          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{schema.range(predicate)} ."
+          literal = self.class.schema_metadata.range(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
+          query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{self.class.schema_metadata.datatype(predicate)} ."
         end
         query_string += "  ?s ?p ?o ."
         query_string += "}"
@@ -130,7 +129,6 @@ module Fuseki
         object = new
         object.instance_variable_set("@uri", uri)
         properties = object.class.instance_variable_get(:@properties)
-        schema = object.class.class_variable_get(:@@schema)
         triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
           name = "@#{triple[:predicate].fragment.underscore}".to_sym
@@ -140,7 +138,7 @@ module Fuseki
             value = Uri.new(uri: value) if value.is_a? String
             object.instance_variable_get(name).is_a?(Array) ? object.instance_variable_get(name).push(value) : object.instance_variable_set(name, value)
           else
-            object.instance_variable_set(name, to_typed(schema.range(properties[name][:predicate]), value))
+            object.instance_variable_set(name, to_typed(self.schema_metadata.datatype(properties[name][:predicate]), value))
           end
         end
         object.instance_variable_set(:@new_record, false)
@@ -302,14 +300,13 @@ puts "***** SUBJECT CACHE #{uri} *****"
 
     def to_sparql(sparql, recurse=false)
       properties = properties_read_instance
-      schema = self.class.get_schema(:create_or_update)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       instance_variables.each do |name|
         next if name == :@uri #|| name == :@rdf_type
         next if !properties.key?(name) # Ignore variables if no property declared.
         value = instance_variable_get(name)
         next if object_empty?(properties[name], value)
-        property_to_triple(sparql, properties[name], schema, @uri, properties[name][:predicate], value)
+        property_to_triple(sparql, properties[name], @uri, properties[name][:predicate], value)
         object_to_triple(sparql, properties[name], value) if recurse
       end
     end      
@@ -354,10 +351,10 @@ puts "***** CLEARING CACHE #{self.uri} *****"
     end
 
     # Create the triple for the property
-    def property_to_triple(sparql, property, schema, subject, predicate, objects)
+    def property_to_triple(sparql, property, subject, predicate, objects)
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        datatype = schema.range(predicate)
+        datatype = self.class.schema_metadata.datatype(predicate)
         statement = property[:type] == :object ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
         sparql.add({:uri => subject}, {:uri => predicate}, statement)
       end

@@ -2,11 +2,10 @@ module Fuseki
   
   module Schema
   
-    def get_schema(source)
-
-      # Note: This is Fuseki::Base as we set it for all classes once.
-      if !Fuseki::Base.class_variable_defined?(:@@schema) || Fuseki::Base.class_variable_get(:@@schema).nil?
-puts "***** READING SCHEMA #{source} *****"
+    def set_schema
+      # Note: Set as a class instance base, won't be inherited. 
+      if !Fuseki::Base.instance_variable_defined?(:@schema) || Fuseki::Base.instance_variable_get(:@schema).nil?
+puts "***** READING SCHEMA *****"
         sparql_query = "SELECT ?s ?p ?o WHERE\n" +
           "{\n" +
           "  {\n" + 
@@ -20,9 +19,13 @@ puts "***** READING SCHEMA #{source} *****"
           "  }\n" +
           "}"
         results = Sparql::Query.new.query(sparql_query, Uri.namespaces.namespace_from_prefix(:owl), [])
-        Fuseki::Base.class_variable_set(:@@schema, SchemaMap.new(results.by_subject))
+        Fuseki::Base.instance_variable_set(:@schema, SchemaMap.new(results.by_subject))
       end
-      Fuseki::Base.class_variable_get(:@@schema)
+    end
+
+    # Access method
+    def schema_metadata
+      Fuseki::Base.instance_variable_get(:@schema)
     end
 
     class SchemaMap
@@ -31,15 +34,17 @@ puts "***** READING SCHEMA #{source} *****"
         @map = Hash.new {|h,k| h[k] = {}}
         extract = 
         [ 
-          { uri: "http://www.w3.org/2000/01/rdf-schema#label", field: :label },
-          { uri: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", field: :rdf_type },
-          { uri: "http://www.w3.org/2000/01/rdf-schema#range", field: :range },
-          { uri: "http://www.w3.org/2000/01/rdf-schema#domain", field: :domain },
+          { uri: "http://www.w3.org/2000/01/rdf-schema#label", field: :label, store: :uri },
+          { uri: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", field: :rdf_type, store: :uri },
+          { uri: "http://www.w3.org/2000/01/rdf-schema#range", field: :range, store: :uri },
+          { uri: "http://www.w3.org/2000/01/rdf-schema#range", field: :datatype, store: :fragment },
+          { uri: "http://www.w3.org/2000/01/rdf-schema#domain", field: :domain, store: :uri },
         ]
         results.each do |predicate, parts|
           parts.each do |triple|
             extract.each do |e|
-              @map[predicate][e[:field]] = triple[:object] if triple[:predicate].to_s == e[:uri]
+              next if triple[:predicate].to_s != e[:uri]
+              @map[predicate][e[:field]] = e[:store] == :uri ? triple[:object] : triple[:object].fragment
             end
           end
         end
@@ -50,7 +55,11 @@ puts "***** READING SCHEMA #{source} *****"
       end
 
       def range(predicate)
-        @map[predicate.to_s][:range].fragment
+        @map[predicate.to_s][:range]
+      end
+
+      def datatype(predicate)
+        @map[predicate.to_s][:datatype]
       end
 
     end

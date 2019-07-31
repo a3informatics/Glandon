@@ -472,7 +472,7 @@ describe IsoManagedV2 do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times")
+      timer_stop("Find 100 times [8.29s]")
     end
 
     it "find minimum I" do
@@ -485,7 +485,7 @@ describe IsoManagedV2 do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find_minimum(uri)}
-      timer_stop("Find 100 times")
+      timer_stop("Find 100 times [1.65s]")
     end
 
     it "where, I" do
@@ -553,7 +553,7 @@ describe IsoManagedV2 do
 
       timer_start
       current = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
-      timer_stop("No Pagination 50 entries")
+      timer_stop("No Pagination 50 entries [0.44s]")
       expect(current.count).to eq(50)
       expect(current.first.version).to eq(50)
       expect(current.last.version).to eq(1)

@@ -22,11 +22,12 @@ module Fuseki
     include Utility
     include Diff
 
+    set_schema
+
     def initialize(attributes = {})
       @transaction = nil
       @new_record = true
       @destroyed = false
-      self.class.get_schema(:initialize)
       self.class.properties_inherit
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       self.class.instance_variable_get(:@properties).each do |name, definition| 

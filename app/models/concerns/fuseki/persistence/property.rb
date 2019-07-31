@@ -75,8 +75,7 @@ module Fuseki
       def from_simple(name, value)
         properties = self.class.instance_variable_get(:@properties)
         property_name = Fuseki::Persistence::Naming.new(name)
-        schema = self.class.class_variable_get(:@@schema)
-        base_type = schema.range(properties[name][:predicate])
+        base_type = self.class.schema_metadata.datatype(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
       rescue => e
         puts "FromSimple: Error #{name}=#{value}"
