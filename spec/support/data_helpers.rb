@@ -17,9 +17,10 @@ module DataHelpers
       triples = Sparql::Query.new.query(query_string, "", []) 
       raise if triples.results.empty?
       raise if triples.results.first.column(:o).value != "Namespace"
+      #raise if triples.results.first[:o] != "Namespace"
     rescue
       sleep 1
-      puts colourize(puts "***** !!!!! DB Check Failed, Attempt #{i} !!!!! *****", "red")
+      puts colourize("***** !!!!! DB Check Failed, Attempt #{i} !!!!! *****", "red")
       retry if i < 5 
     end
   end

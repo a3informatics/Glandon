@@ -94,13 +94,14 @@ module Fuseki
     def object_property(name, opts = {})
       Errors.application_error(self.name, __method__.to_s, "No cardinality specified for object property.") if !opts.key?(:cardinality)
       Errors.application_error(self.name, __method__.to_s, "No model class specified for object property.") if !opts.key?(:model_class)
+      opts[:model_class] = opts[:model_class].constantize
       opts[:default] = opts[:cardinality] == :one ? nil : []
       opts[:type] = :object 
       opts[:path_exclude] = false if !opts.key?(:path_exclude)
       add_to_properties(name, opts)
 
       define_method "#{name}_objects" do
-        generic_objects(name, opts[:model_class].constantize)
+        generic_objects(name, opts[:model_class])
       end
 
       define_method "#{name}_objects?" do
@@ -121,7 +122,7 @@ module Fuseki
 
         # Define a class method to get the children class
         define_singleton_method "children_klass" do
-          opts[:model_class].constantize
+          opts[:model_class]
         end
 
         # Define a class method to get the child predicate

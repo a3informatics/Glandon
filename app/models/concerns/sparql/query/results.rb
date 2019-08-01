@@ -25,6 +25,18 @@ module Sparql
           next if result.element_children.empty?
           @results << Sparql::Query::Results::Result.new(result)
         end
+        # variables = doc.xpath("//head/variable/@name").map{|x| x.text.to_sym}
+        # doc.xpath("//result").map{|x| x.xpath("binding")}.each do |x|
+        #   row = {}
+        #   x.each_with_index do |y, index|
+        #     value = y.xpath("uri").empty? ? y.xpath("literal").text : Uri.new(uri: y.xpath("uri").text)
+        #     row[variables[index]] = value
+        #   end
+        #   @results << row
+        # end
+#s3 = Time.now
+#puts "S1=#{s2-s1}"
+#puts "S2=#{s3-s2}"
       end
 
       # Results
@@ -45,10 +57,8 @@ module Sparql
         triples = Hash.new {|h,k| h[k] = []}
         s_var = args.key?(:subject) ? args[:subject] : :s 
         e_var = args.key?(:other) ? args[:other] : :e
-        @results.each do |result|
-          s_uri = result.column(s_var).value
-          triples[s_uri.to_s] = result.column(e_var).value
-        end
+        @results.map{|x| triples[x.column(s_var).value.to_s] = x.column(e_var).value}
+        #@results.map{|x| triples[x[s_var].to_s] = x[e_var]}
         return triples
       end
 
@@ -64,10 +74,8 @@ module Sparql
         s_var = args.key?(:subject) ? args[:subject] : :s 
         p_var = args.key?(:predicate) ? args[:predicate] : :p
         o_var = args.key?(:object) ? args[:object] : :o 
-        @results.each do |result|
-          s_uri = result.column(s_var).value
-          triples[s_uri.to_s] << {subject: s_uri, predicate: result.column(p_var).value, object: result.column(o_var).value}
-        end
+        @results.map{|x| triples[x.column(s_var).value.to_s] << {subject: x.column(s_var).value, predicate: x.column(p_var).value, object: x.column(o_var).value}}
+        #@results.map{|x| triples[x[s_var].to_s] << {subject: x[s_var], predicate: x[p_var], object: x[o_var]}}
         return triples
       end
 
@@ -77,7 +85,8 @@ module Sparql
       # @result [Array] an array of values
       def by_object(o_var=:o)
         values = []
-        @results.each {|result| values << result.column(o_var).value}
+        @results.map{|x| values << x.column(o_var).value}
+        #@results.map{|x| values << x[o_var]}
         values
       end
 
@@ -87,11 +96,9 @@ module Sparql
       # @result [Array] an array of hashes containing the row of data
       def by_object_set(variables)
         values = []
+        #@results.map{|x| values << x.slice(variables)}
         @results.each do |result|
-          #row = {}
-          #variables.each {|variable| row[variable.to_sym] = result.column(variable).value}
-          #values << row
-         values << result.row(variables)
+          values << result.row(variables)
         end
         values
       end

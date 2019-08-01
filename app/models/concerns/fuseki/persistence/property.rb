@@ -48,7 +48,7 @@ module Fuseki
       def from_hash(name, value)
         properties = self.class.instance_variable_get(:@properties)
         return if !properties.key?(name) # Ignore values if no property declared.
-        object = properties[name][:model_class].constantize.from_h(value)
+        object = properties[name][:model_class].from_h(value)
         set_object(name, object)
       end
 
@@ -74,7 +74,7 @@ module Fuseki
       # @return [Void] no return
       def from_simple(name, value)
         properties = self.class.instance_variable_get(:@properties)
-        property_name = Fuseki::Persistence::Naming.new(name)
+        #property_name = Fuseki::Persistence::Naming.new(name)
         base_type = self.class.schema_metadata.datatype(properties[name][:predicate])
         instance_variable_set(name, to_typed(base_type, value))
       rescue => e

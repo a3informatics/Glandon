@@ -98,7 +98,7 @@ module Fuseki
       predicates.each do |predicate| 
         stack = [] if top
         next if predicate[:exclude]
-        klass = predicate[:model_class].constantize
+        klass = predicate[:model_class]
         next if stack.include?(klass)
         stack.push(klass)
         children = klass.properties_metadata_class.managed_paths(stack)
@@ -111,7 +111,7 @@ module Fuseki
     # 
     # @return [Class] the class for a given property
     def klass(property_name)
-      @metadata[property_name][:model_class].constantize
+      @metadata[property_name][:model_class]
     end
 
     # Cardinality

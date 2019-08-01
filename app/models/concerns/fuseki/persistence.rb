@@ -41,7 +41,7 @@ module Fuseki
           #next if name == :@rdf_type
           next if properties[name][:type] != :object
           klass = properties[name][:model_class]
-          klass_map[klass] = properties[name]
+          klass_map[klass.name] = properties[name]
           predicate = properties[name][:predicate]
           parts << "  { #{uri.to_ref} #{predicate.to_ref} ?ref .  BIND (?ref as ?s) .  BIND ('#{klass}' as ?e) .  ?ref ?p ?o . }"
         end
@@ -155,9 +155,8 @@ module Fuseki
           name = "@#{triple[:predicate].fragment.underscore}".to_sym
           next if !properties.key?(name) # Ignore values if no property declared.
           value = triple[:object]
-          x = properties[name]
           if properties[name][:type] == :object 
-            klass = properties[name][:model_class].constantize
+            klass = properties[name][:model_class]
             child = triples[value.to_s].empty? ? value : klass.new.class.from_results_recurse(value, triples)
             properties[name][:cardinality] == :one ? object.instance_variable_set(name, child) : object.instance_variable_get(name).push(child)
           else
@@ -170,7 +169,6 @@ module Fuseki
       end
 
       def subject_cache(uri)
-puts "***** SUBJECT CACHE #{uri} *****"
         query_string = "SELECT ?s ?p ?o WHERE {#{uri.to_ref} ?p ?o . BIND (#{uri.to_ref} as ?s) .}"
         return Sparql::Query.new.query(query_string, uri.namespace, []) if !cache?
         Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
