@@ -31,35 +31,19 @@ module Fuseki
       # @return [Object] a class object.
       def find_children(id)
         parts = [0]
-        #klass_map = {}
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
         properties = resources
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
-          #next if name == :@rdf_type
           next if properties[name][:type] != :object
           klass = properties[name][:model_class]
-          #klass_map[klass.name] = properties[name]
           predicate = properties[name][:predicate]
           parts << "  { #{uri.to_ref} #{predicate.to_ref} ?ref .  BIND (?ref as ?s) .  BIND ('#{klass}' as ?e) .  ?ref ?p ?o . }"
         end
         query_string = "SELECT ?s ?p ?o ?e WHERE { #{parts.join(" UNION\n")} }"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
-        #objects = []
-        #map = results.subject_map
         from_results_recurse(uri, results.by_subject)
-        #parent = from_results(uri, results.by_subject[uri.to_s])
-        # results.by_subject.each do |subject, triples|
-        #   next if subject == parent.uri.to_s
-        #   klass = map[subject.to_s].constantize
-        #   properties = klass_map[klass.name]
-        #   name = properties[:name]
-        #   object = klass.new.class.from_results(Uri.new(uri: subject), triples)
-        #   #properties[:cardinality] == :one ? parent.instance_variable_set("@#{name}".to_sym, object) : parent.instance_variable_get("@#{name}".to_sym).push(object)
-        #   parent.replace_uri("@#{name}".to_sym, object)
-        # end
-        #parent
       end
 
       def where(params)
@@ -313,7 +297,6 @@ module Fuseki
 
     def clear_cache
       return if !self.class.cache?
-puts "***** CLEARING CACHE #{self.uri} *****"
       Fuseki::Base.class_variable_set(:@@subjects, Hash.new {|h, k| h[k] = {}}) if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
@@ -327,8 +310,6 @@ puts "***** CLEARING CACHE #{self.uri} *****"
         statement = property.object? ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
         sparql.add({:uri => subject}, {:uri => property.predicate}, statement)
       end
-    rescue => e
-byebug
     end
 
     def object_to_triple(sparql, property)
@@ -355,7 +336,6 @@ byebug
       return object if object.is_a? Uri
       result = object.uri if object.respond_to?(:uri)
       return result if !result.nil?
-byebug
       Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
     end
 
