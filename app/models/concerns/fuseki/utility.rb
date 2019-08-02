@@ -6,7 +6,7 @@ module Fuseki
   
   module Utility
 
-    include Fuseki::Properties
+    include Fuseki::Resource
 
     def self.included(base)
       base.extend(ClassMethods)
@@ -14,8 +14,7 @@ module Fuseki
 
     module ClassMethods
 
-      include Fuseki::Properties
-      include Fuseki::Persistence::Property
+      include Fuseki::Resource
 
       # From Hash. Create the class from a hash. Will recurse creating child objects
       #
@@ -23,18 +22,19 @@ module Fuseki
       # @return [Object] the object created
       def from_h(params)
         object = self.new
+        properties = self.resources
         params.each do |name, value|
-          inst_var = Fuseki::Persistence::Naming.new(name).as_instance
+          property = object.properties.property(name)
           if name == :uri
-            object.from_uri(inst_var, value)
+            property.set_uri(value)
           elsif value.is_a?(Hash)
-            object.from_hash(inst_var, value)
+            property.from_hash(inst_var, value)
           elsif value.is_a?(Array)
             value.each do |x| 
-              x.is_a?(Hash) ? object.from_hash(inst_var, x) : object.from_uri(inst_var, x)
+              x.is_a?(Hash) ? property.from_hash(x) : property.set_uri(x)
             end
           else
-            object.from_value(inst_var, value)
+            property.set_value( value)
           end
         end
         object
@@ -47,10 +47,9 @@ module Fuseki
     # @return [Hash] the hash
     def to_h
       result = {uri: instance_variable_get(:@uri).to_h, uuid: self.id, rdf_type: self.rdf_type.to_h}
-      properties = properties_read_instance
-      properties.each do |name, property|
-        variable = Fuseki::Persistence::Naming.new(name).as_symbol
-        object = instance_variable_get(name)
+      self.properties.each do |property| 
+        object = property.get
+        variable = property.name
         if object.is_a?(Array)
           result[variable] = []
           object.each {|x| result[variable] << x.to_h}

@@ -1,13 +1,13 @@
 require 'rails_helper'
 require 'iso_namespace'
 
-describe Fuseki::Properties do
+describe Fuseki::Resource::Properties do
   
   include DataHelpers
   include PublicFileHelpers
 
   def sub_dir
-    return "models/concerns/fuseki/properties"
+    return "models/concerns/fuseki/resource/properties"
   end
 
   before :all do
@@ -29,7 +29,6 @@ describe Fuseki::Properties do
 
     extend Fuseki::Schema
     extend Fuseki::Resource
-    include Fuseki::Properties
 
     attr_accessor :uri
 
@@ -45,7 +44,7 @@ describe Fuseki::Properties do
 
   def metadata_to_h(properties)
     result = {}
-    properties.metadata.each do |k,v| 
+    properties.each do |k,v| 
       y = v.dup
       y[:predicate] = y[:predicate].to_s
       result[k] = y
@@ -76,37 +75,37 @@ describe Fuseki::Properties do
 
   it "get properties, class and instance" do
     temp = TestFP1.new
-    result = TestFP1.class_properties
-    check_file_actual_expected(metadata_to_h(result), sub_dir, "properties_metadata_expected_1.yaml")
+    result = TestFP1.resources
+    check_file_actual_expected(metadata_to_h(result.raw), sub_dir, "properties_metadata_expected_1.yaml")
     item = TestFP1.new
-    result = item.instance_properties
-    check_file_actual_expected(metadata_to_h(result), sub_dir, "properties_metadata_expected_1.yaml")
+    result = item.class.resources
+    check_file_actual_expected(metadata_to_h(result.raw), sub_dir, "properties_metadata_expected_1.yaml")
   end
 
   it "object relationships" do
     temp = TestFP1.new
-    result = TestFP1.class_properties
+    result = TestFP1.resources
     check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
     item = TestFP1.new
-    result = item.instance_properties
+    result = item.class.resources
     check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
   end
 
   it "property relationships" do
     temp = TestFP1.new
-    result = TestFP1.class_properties
+    result = TestFP1.resources
     check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
     item = TestFP1.new
-    result = item.instance_properties
+    result = item.class.resources
     check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
   end
 
   it "managed paths" do
     temp = TestFP1.new
-    result = TestFP1.class_properties
+    result = TestFP1.resources
     check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
     item = TestFP1.new
-    result = item.instance_properties
+    result = item.class.resources
     check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
   end
 

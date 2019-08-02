@@ -29,6 +29,7 @@ describe IsoManagedV2 do
   	it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find(uri)
+byebug
       expect(item.valid?).to eq(true)
     end
 

@@ -642,8 +642,7 @@ private
 
   # Relationship set, array of predicates.
   def self.subject_set(full)
-    x = properties_metadata_class
-    {include: x.managed_paths, exclude: x.excluded_relationships}
+    {include: managed_paths, exclude: excluded_relationships}
   end
 
 end

@@ -4,10 +4,10 @@
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: raNamespace
-  :model_class: IsoNamespace
+  :model_class: !ruby/class 'IsoNamespace'
 - :predicate: !ruby/object:Uri
     scheme: http
     authority: www.assero.co.uk
     path: ISO11179Registration
     fragment: byAuthority
-  :model_class: IsoRegistrationAuthority
+  :model_class: !ruby/class 'IsoRegistrationAuthority'

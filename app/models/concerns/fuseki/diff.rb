@@ -6,7 +6,7 @@ module Fuseki
   
   module Diff
 
-    include Fuseki::Properties
+    include Fuseki::Resource
 
     def self.included(base)
       base.extend(ClassMethods)
@@ -14,8 +14,7 @@ module Fuseki
 
     module ClassMethods
 
-      include Fuseki::Properties
-      include Fuseki::Persistence::Property
+      include Fuseki::Resource
 
     end
 

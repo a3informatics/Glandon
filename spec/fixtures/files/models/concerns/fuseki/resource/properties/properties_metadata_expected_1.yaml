@@ -1,38 +1,43 @@
 ---
-:@organization_identifier:
+:organization_identifier:
   :default: "<Not Set>"
   :cardinality: :one
   :model_class: ''
   :type: :data
+  :base_type: string
   :name: :organization_identifier
   :predicate: http://www.assero.co.uk/ISO11179Registration#organizationIdentifier
-:@international_code_designator:
+:international_code_designator:
   :default: XXX
   :cardinality: :one
   :model_class: ''
   :type: :data
+  :base_type: string
   :name: :international_code_designator
   :predicate: http://www.assero.co.uk/ISO11179Registration#internationalCodeDesignator
-:@owner:
+:owner:
   :default: ''
   :cardinality: :one
   :model_class: ''
   :type: :data
+  :base_type: boolean
   :name: :owner
   :predicate: http://www.assero.co.uk/ISO11179Registration#owner
-:@ra_namespace:
+:ra_namespace:
   :cardinality: :one
-  :model_class: IsoNamespace
+  :model_class: !ruby/class 'IsoNamespace'
   :default: 
   :type: :object
   :path_exclude: false
+  :base_type: ''
   :name: :ra_namespace
   :predicate: http://www.assero.co.uk/ISO11179Registration#raNamespace
-:@by_authority:
+:by_authority:
   :cardinality: :one
-  :model_class: IsoRegistrationAuthority
+  :model_class: !ruby/class 'IsoRegistrationAuthority'
   :path_exclude: true
   :default: 
   :type: :object
+  :base_type: ''
   :name: :by_authority
   :predicate: http://www.assero.co.uk/ISO11179Registration#byAuthority

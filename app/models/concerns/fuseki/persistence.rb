@@ -7,9 +7,7 @@ module Fuseki
   module Persistence
   
     extend ActiveSupport::Concern
-    include Fuseki::Persistence::Property
-    include Fuseki::Properties
-
+    
     # -------------
     # Class Methods
     # -------------
@@ -117,29 +115,13 @@ module Fuseki
       end
 
       def from_results(uri, triples)
-        # object = new
-        # object.instance_variable_set("@uri", uri)
-        # triples.each do |triple|
-        #   next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-        #   object.from_triple(triple)
-        # end
-        # object.instance_variable_set(:@new_record, false)
-        # object.instance_variable_set(:@destroyed, false)
-        # object
         object = new
         object.instance_variable_set("@uri", uri)
         properties = object.class.instance_variable_get(:@properties)
         triples.each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-          name = "@#{triple[:predicate].fragment.underscore}".to_sym
-          next if !properties.key?(name) # Ignore values if no property declared.
-          value = triple[:object]
-          if properties[name][:type] == :object 
-            value = Uri.new(uri: value) if value.is_a? String
-            object.instance_variable_get(name).is_a?(Array) ? object.instance_variable_get(name).push(value) : object.instance_variable_set(name, value)
-          else
-            object.instance_variable_set(name, to_typed(self.schema_metadata.datatype(properties[name][:predicate]), value))
-          end
+          property = Fuseki::Resource::property.from_triple(triple)
+          property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
         end
         object.instance_variable_set(:@new_record, false)
         object.instance_variable_set(:@destroyed, false)
@@ -149,18 +131,15 @@ module Fuseki
       def from_results_recurse(uri, triples)
         object = new
         object.instance_variable_set("@uri", uri)
-        properties = object.class.instance_variable_get(:@properties)
         triples[uri.to_s].each do |triple|
           next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-          name = "@#{triple[:predicate].fragment.underscore}".to_sym
-          next if !properties.key?(name) # Ignore values if no property declared.
+          property = object.properties.property_from_triple(triple)
           value = triple[:object]
-          if properties[name][:type] == :object 
-            klass = properties[name][:model_class]
-            child = triples[value.to_s].empty? ? value : klass.new.class.from_results_recurse(value, triples)
-            properties[name][:cardinality] == :one ? object.instance_variable_set(name, child) : object.instance_variable_get(name).push(child)
+          if property.object?
+            child = triples[value.to_s].empty? ? value : property.klass.new.class.from_results_recurse(value, triples)
+            property.set_value(child)
           else
-            object.instance_variable_set(name, to_typed(self.schema_metadata.datatype(properties[name][:predicate]), value))
+            property.set_value(value)
           end
         end
         object.instance_variable_set(:@new_record, false)
