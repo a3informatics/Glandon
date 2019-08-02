@@ -67,6 +67,17 @@ class Uri
     end
   end
 
+  # From URI or String. Create a URI from a string or an existing URI.
+  #
+  # @params [String|Uri] value the string or existing URI
+  # @raise Errors::ApplicationLogicError if not a string or URI object.
+  # @return [Uri] the object
+  def self.from_uri_or_string(value)
+    return Uri.new(uri: value) if value.is_a?(String)
+    return value if value.is_a?(self)
+    Errors.application_error(self.class.name, __method__.to_s, "The value is not a string or an existing URI.")
+  end
+
   # Namespaces. Return a namespace object. Class version
   #
   # @return [Uri::Namespace] the object
