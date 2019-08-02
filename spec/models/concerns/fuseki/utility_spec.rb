@@ -27,16 +27,19 @@ describe Fuseki::Utility do
     include ActiveModel::AttributeMethods
 
     include Fuseki::Persistence
-    include Fuseki::Persistence::Property
     include Fuseki::Utility
+    include Fuseki::Diff
     extend Fuseki::Schema
+    extend Fuseki::Resource
 
     attr_accessor :uri
 
+    set_schema
+
     def initialize(props)
-      self.class.get_schema(:initialize)
-      self.class.class_variable_set(:@@schema, Fuseki::Base.class_variable_get(:@@schema))
-      self.class.instance_variable_set(:@properties, props)
+      @new_record = true
+      @destroyed = false
+      @properties = Fuseki::Resource::Properties.new(self, props)
     end
 
     def self.rdf_type
@@ -45,6 +48,10 @@ describe Fuseki::Utility do
 
     def rdf_type
       self.class::C_URI
+    end
+
+    def properties
+      @properties
     end
 
   end 
@@ -74,8 +81,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "@owner".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#owner"},
-        "@organization_identifier".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier"},
+        "owner".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#owner", base_type: "boolean"},
+        "organization_identifier".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier", base_type: "string"},
       }
       @owner = false
       @organization_identifier = ""
@@ -95,8 +102,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "@ra_namespace".to_sym => {type: :object, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace"}, 
-        "@effective_date".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate"}
+        "ra_namespace".to_sym => {type: :object, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace", base_type: ""}, 
+        "effective_date".to_sym => {type: :data, cardinality: :one, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate", base_type: "dateTime"}
       }
       self.class.instance_variable_set(:@properties, props)
       @effective_date = "".to_time_with_default

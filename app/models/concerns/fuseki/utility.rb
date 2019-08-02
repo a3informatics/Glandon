@@ -22,13 +22,13 @@ module Fuseki
       # @return [Object] the object created
       def from_h(params)
         object = self.new
-        properties = self.resources
+        properties = object.properties
         params.each do |name, value|
           if name == :uri
             object.uri = Uri.from_uri_or_string(value) # Special case, URI is not considered a property
           else
-            next if !properties.key?(name)
-            property = object.properties.property(name)
+            next if properties.ignore?(name)
+            property = properties.property(name)
             if value.is_a?(Hash)
               property.set_from_hash(value)
             elsif value.is_a?(Array)
@@ -50,7 +50,7 @@ module Fuseki
     # @return [Hash] the hash
     def to_h
       result = {uri: self.uri.to_h, uuid: self.id, rdf_type: self.rdf_type.to_h} # Core items and handled differently
-      self.properties.each do |property| 
+      @properties.each do |property| 
         object = property.get
         variable = property.name
         if object.is_a?(Array)

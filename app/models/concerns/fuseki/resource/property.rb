@@ -10,7 +10,7 @@ module Fuseki
 
       # Initialize
       #
-      # @param name [Symbol] the name of the property. Must be as declared in the rails class
+      # @param [Symbol] name the name of the property. Must be as declared in the rails class
       # @return [Object] the newly created object
       def initialize(ref, name, metadata)
         @parent = ref
@@ -20,11 +20,18 @@ module Fuseki
         @array = array?
       end
 
-      # name
+      # Name
       # 
       # @return [Symbol] the name of the property
       def name
         @name
+      end
+
+      # Name
+      # 
+      # @return [Symbol] the name in object instance format (:@<name)
+      def instance_name
+        @instance_variable_name
       end
 
       # Klass
@@ -81,7 +88,7 @@ module Fuseki
 
       # Set Value.
       #
-      # @param value [String] the value
+      # @param [String] value the value
       # @return [Void] no return
       def set_value(value)
         object? ? set_uri(value) : set_simple(value)
@@ -89,7 +96,7 @@ module Fuseki
 
       # From Hash. Sets the property specified from a hash
       #
-      # @param value [Hash] the hash
+      # @param [Hash] value the hash
       # @return [Void] no return
       def set_from_hash(value)
         set(klass.from_h(value))
@@ -97,7 +104,7 @@ module Fuseki
 
       # Set Default.
       #
-      # @param value [Object] the property value, might be an array
+      # @param [Object] value the property value, might be an array
       # @return [Void] no return
       def set_default(value)
         object? ? set_single(value) : set_simple(value)
@@ -105,7 +112,7 @@ module Fuseki
 
       # Set URI. Sets the named property with the specified URI. Converts from stroing if necessary to URI object
       #
-      # @param value [Object] the uri, either a sting or a Uri object
+      # @param [Object] value the uri, either a sting or a Uri object
       # @return [Void] no return
       def set_uri(value)
         value = Uri.new(uri: value) if value.is_a? String
@@ -114,7 +121,7 @@ module Fuseki
 
       # Set Simple. Sets the named property with the specified scalar value
       #
-      # @param value [String] the property value
+      # @param [String] value the property value
       # @return [Void] no return
       def set_simple(value)
         set_single(to_typed(@metadata[:base_type], value))
@@ -122,6 +129,10 @@ module Fuseki
         puts "simple: Error #{name}=#{value}"
       end
 
+      # Replace With Object. Replace a URI with the actual object
+      #
+      # @param [Object] object the object
+      # @return [Void] no return
       def replace_with_object(object)
         value = get
         value.delete_if {|x| x.is_a?(Uri) && x == object.uri} if array?
@@ -130,7 +141,7 @@ module Fuseki
 
       # Set
       #
-      # @param value [Object] the property value
+      # @param [Object] value the property value
       # @return [Void] no return
       def set(value)
         array? ? @parent.instance_variable_get(@instance_variable_name).push(value) : @parent.instance_variable_set(@instance_variable_name, value)
@@ -145,7 +156,7 @@ module Fuseki
 
       # Schema Predicate Name
       #
-      # @param name [Symbol] the property name
+      # @param [Symbol] name the property name
       # @return [String] schema version of the name 
       def self.schema_predicate_name(name) 
         "#{name}".camelcase(:lower) # Camelcase with lower first char

@@ -31,12 +31,11 @@ puts "\n***** DIFF: #{self.identifier} *****\n\n" if self.respond_to?(:identifie
 
       options[:ignore] = [] if options[:ignore].blank?
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if incomptible_klass?(other)
-      properties = properties_read_instance
-      properties.each do |name, property|
-        variable = Fuseki::Persistence::Naming.new(name).as_symbol
-        next if options[:ignore].include?(variable)
-        self_object = self.instance_variable_get(name)
-        other_object = other.instance_variable_get(name)
+      @properties.each do |property|
+        name = property.name
+        next if options[:ignore].include?(name)
+        self_object = self.instance_variable_get(property.instance_name)
+        other_object = other.instance_variable_get(property.instance_name)
         if self_object.is_a?(Array)
           return true if array_diff?(self_object, other_object)
         elsif self_object.nil? 
@@ -61,27 +60,28 @@ puts "\n***** DIFF: #{self.identifier} *****\n\n" if self.respond_to?(:identifie
       options[:ignore] = [] if options[:ignore].blank?
       results = {}
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if !other.nil? && incomptible_klass?(other)
-      properties = properties_read_instance
-      properties.each do |name, property|
-        variable = Fuseki::Persistence::Naming.new(name).as_symbol
-        next if options[:ignore].include?(variable)
-        self_object = self.instance_variable_get(name)
+      #properties = properties_read_instance
+      @properties.each do |property|
+        #variable = Fuseki::Persistence::Naming.new(name).as_symbol
+        name = property.name
+        next if options[:ignore].include?(name)
+        self_object = self.instance_variable_get(property.instance_name)
         if other.nil?
-          results[variable] = difference_record_baseline(:created, self_object)          
+          results[name] = difference_record_baseline(:created, self_object)          
         else
-          other_object = other.instance_variable_get(name)
+          other_object = other.instance_variable_get(property.instance_name)
           if self_object.is_a?(Array)
-            results[variable] = array_difference(self_object, other_object, options)
+            results[name] = array_difference(self_object, other_object, options)
           elsif self_object.nil? 
             a = ""
             status = other_object.nil? ? :no_change : :deleted
             b = other_object.nil? ? "" : other_object
-            results[variable] = difference_record(:not_present, a, b)
+            results[name] = difference_record(:not_present, a, b)
           elsif self_object.respond_to? :difference
-            results[variable] = self_object.difference(other_object, options)
+            results[name] = self_object.difference(other_object, options)
           else
             status = self_object == other_object ? :no_change : :updated
-            results[variable] = difference_record(status, self_object, other_object)
+            results[name] = difference_record(status, self_object, other_object)
           end
         end
       end
@@ -91,19 +91,20 @@ puts "\n***** DIFF: #{self.identifier} *****\n\n" if self.respond_to?(:identifie
     def difference_baseline(options={})
       options[:ignore] = [] if options[:ignore].blank?
       results = {}
-      properties = properties_read_instance
-      properties.each do |name, property|
-        variable = Fuseki::Persistence::Naming.new(name).as_symbol
+      #properties = properties_read_instance
+      @properties.each do |property|
+        #variable = Fuseki::Persistence::Naming.new(name).as_symbol
+        name = property.name
         next if options[:ignore].include?(variable)
         self_object = self.instance_variable_get(name)
         if self_object.is_a?(Array)
-          results[variable] = array_difference_baseline(self_object, options)
+          results[name] = array_difference_baseline(self_object, options)
         elsif self_object.nil? 
-          results[variable] = difference_record_baseline(:not_present, nil)
+          results[name] = difference_record_baseline(:not_present, nil)
         elsif self_object.respond_to? :difference_baseline
-          results[variable] = self_object.difference_baseline(options)
+          results[name] = self_object.difference_baseline(options)
         else
-          results[variable] = difference_record_baseline(:created, self_object)
+          results[name] = difference_record_baseline(:created, self_object)
         end
       end
       results

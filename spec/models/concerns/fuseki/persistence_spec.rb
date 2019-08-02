@@ -32,13 +32,17 @@ describe Fuseki::Persistence do
     include ActiveModel::Validations
     include ActiveModel::AttributeMethods
 
-    extend Fuseki::Schema
-    extend Fuseki::Properties
     include Fuseki::Persistence
-    include DataHelpers
+    include Fuseki::Utility
+    include Fuseki::Diff
+    extend Fuseki::Schema
+    extend Fuseki::Resource
+
+    attr_accessor :uri
+
+    set_schema
 
     def initialize
-      @@schema ||= self.class.get_schema(:initialize)
       @@props = read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") 
       self.class.instance_variable_set(:@properties, @@props)
     end

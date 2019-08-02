@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Fuseki::Utility do
+describe Fuseki::Diff do
   
   include DataHelpers
   include PublicFileHelpers
@@ -27,19 +27,19 @@ describe Fuseki::Utility do
     include ActiveModel::AttributeMethods
 
     include Fuseki::Persistence
-    include Fuseki::Persistence::Property
     include Fuseki::Utility
     include Fuseki::Diff
     extend Fuseki::Schema
+    extend Fuseki::Resource
 
     attr_accessor :uri
+
+    set_schema
 
     def initialize(props)
       @new_record = true
       @destroyed = false
-      self.class.get_schema(:initialize)
-      self.class.class_variable_set(:@@schema, Fuseki::Base.class_variable_get(:@@schema))
-      self.class.instance_variable_set(:@properties, props)
+      @properties = Fuseki::Resource::Properties.new(self, props)
     end
 
     def self.rdf_type
@@ -77,8 +77,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "@owner".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#owner"},
-        "@organization_identifier".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier"},
+        "owner".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#owner"},
+        "organization_identifier".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#organizationIdentifier"},
       }
       @owner = false
       @organization_identifier = ""
@@ -98,8 +98,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "@ra_namespace".to_sym => {type: :object, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace"}, 
-        "@effective_date".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate"}
+        "ra_namespace".to_sym => {type: :object, predicate: "http://www.assero.co.uk/ISO11179Registration#raNamespace"}, 
+        "effective_date".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Registration#effectiveDate"}
       }
       self.class.instance_variable_set(:@properties, props)
       @effective_date = "".to_time_with_default
@@ -120,8 +120,8 @@ describe Fuseki::Utility do
     def initialize
       props = 
       {
-        "@short_name".to_sym => {type: :object, predicate: "http://www.assero.co.uk/ISO11179Identification#shortName"}, 
-        "@name".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Identification#name"}
+        "short_name".to_sym => {type: :object, predicate: "http://www.assero.co.uk/ISO11179Identification#shortName"}, 
+        "name".to_sym => {type: :data, predicate: "http://www.assero.co.uk/ISO11179Identification#name"}
       }
       self.class.instance_variable_set(:@properties, props)
       @name = ""
