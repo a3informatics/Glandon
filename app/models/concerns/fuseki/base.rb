@@ -24,9 +24,7 @@ module Fuseki
     set_schema
   
     def initialize(attributes = {})
-      self.class.resource_inherit
       @properties = Fuseki::Resource::Properties.new(self, self.class.resources)
-byebug
       @transaction = nil
       @new_record = true
       @destroyed = false

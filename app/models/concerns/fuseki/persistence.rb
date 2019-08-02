@@ -25,49 +25,50 @@ module Fuseki
         from_results(uri, results.by_subject[uri.to_s])
       end
 
-      # Find
+      # Find Children
       #
-      # @param [UriV4|id] the identifier, either a URI or the id
+      # @param [Uri|id] the identifier, either a URI or the id
       # @return [Object] a class object.
       def find_children(id)
         parts = [0]
-        klass_map = {}
+        #klass_map = {}
         uri = id.is_a?(Uri) ? id : Uri.new(id: id)
-        properties = properties_read_class
+        properties = resources
         parts[0] = "  { #{uri.to_ref} ?p ?o .  BIND (#{uri.to_ref} as ?s) . BIND ('#{self.name}' as ?e) }" 
         properties.each do |name, value|
           #next if name == :@rdf_type
           next if properties[name][:type] != :object
           klass = properties[name][:model_class]
-          klass_map[klass.name] = properties[name]
+          #klass_map[klass.name] = properties[name]
           predicate = properties[name][:predicate]
           parts << "  { #{uri.to_ref} #{predicate.to_ref} ?ref .  BIND (?ref as ?s) .  BIND ('#{klass}' as ?e) .  ?ref ?p ?o . }"
         end
         query_string = "SELECT ?s ?p ?o ?e WHERE { #{parts.join(" UNION\n")} }"
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
         raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
-        objects = []
-        map = results.subject_map
-        parent = from_results(uri, results.by_subject[uri.to_s])
-        results.by_subject.each do |subject, triples|
-          next if subject == parent.uri.to_s
-          klass = map[subject.to_s].constantize
-          properties = klass_map[klass.name]
-          name = properties[:name]
-          object = klass.new.class.from_results(Uri.new(uri: subject), triples)
-          #properties[:cardinality] == :one ? parent.instance_variable_set("@#{name}".to_sym, object) : parent.instance_variable_get("@#{name}".to_sym).push(object)
-          parent.replace_uri("@#{name}".to_sym, object)
-        end
-        parent
+        #objects = []
+        #map = results.subject_map
+        from_results_recurse(uri, results.by_subject)
+        #parent = from_results(uri, results.by_subject[uri.to_s])
+        # results.by_subject.each do |subject, triples|
+        #   next if subject == parent.uri.to_s
+        #   klass = map[subject.to_s].constantize
+        #   properties = klass_map[klass.name]
+        #   name = properties[:name]
+        #   object = klass.new.class.from_results(Uri.new(uri: subject), triples)
+        #   #properties[:cardinality] == :one ? parent.instance_variable_set("@#{name}".to_sym, object) : parent.instance_variable_get("@#{name}".to_sym).push(object)
+        #   parent.replace_uri("@#{name}".to_sym, object)
+        # end
+        #parent
       end
 
       def where(params)
-        properties = properties_read_class
+        properties = resources
         sparql = Sparql::Query.new()
         query_string = "SELECT ?s ?p ?o WHERE {" +
           "  ?s rdf:type #{rdf_type.to_ref} ."
         params.each do |name, value|
-          predicate = properties["@#{name}".to_sym][:predicate]
+          predicate = properties["#{name}".to_sym][:predicate]
           literal = self.schema_metadata.datatype(predicate) == BaseDatatype.to_xsd(BaseDatatype::C_STRING) ? value.dup.inspect.trim_inspect_quotes : value
           query_string += "  ?s #{predicate.to_ref} \"#{literal}\"^^xsd:#{self.schema_metadata.datatype(predicate)} ."
         end
@@ -117,10 +118,9 @@ module Fuseki
       def from_results(uri, triples)
         object = new
         object.instance_variable_set("@uri", uri)
-        properties = object.class.instance_variable_get(:@properties)
         triples.each do |triple|
-          next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-          property = Fuseki::Resource::property.from_triple(triple)
+          property = object.properties.property_from_triple(triple)
+          next if property.nil?
           property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
         end
         object.instance_variable_set(:@new_record, false)
@@ -132,11 +132,11 @@ module Fuseki
         object = new
         object.instance_variable_set("@uri", uri)
         triples[uri.to_s].each do |triple|
-          next if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
           property = object.properties.property_from_triple(triple)
+          next if property.nil?
           value = triple[:object]
           if property.object?
-            child = triples[value.to_s].empty? ? value : property.klass.new.class.from_results_recurse(value, triples)
+            child = triples[value.to_s].empty? ? value : property.klass.from_results_recurse(value, triples)
             property.set_value(child)
           else
             property.set_value(value)
@@ -227,29 +227,24 @@ module Fuseki
       return 1
     end
 
-    def generic_objects(name, klass)
+    def generic_objects(name)
       objects = []
-      properties = properties_metadata
-      variable = Fuseki::Persistence::Naming.new(name)
-      predicate = properties.predicate(variable.as_instance)
-      klass = properties.klass(variable.as_instance)
-      cardinality = properties.cardinality(variable.as_instance)
+      property = self.properties.property(name)
       sparql = Sparql::Query.new()
       query_string = "SELECT ?s ?p ?o WHERE {" +
-          "  #{uri.to_ref} #{predicate.to_ref} ?s ." +
-          "  ?s ?p ?o ." +
-          "}"
+        "  #{uri.to_ref} #{property.predicate.to_ref} ?s ." +
+        "  ?s ?p ?o ." +
+        "}"
       results = Sparql::Query.new.query(query_string, "", [])
       objects = []
       results.by_subject.each do |subject, triples|
-        objects << klass.new.class.from_results(Uri.new(uri: subject), triples)
+        property.set_value(property.klass.from_results(Uri.new(uri: subject), triples))
       end
-      cardinality == :one ? instance_variable_set("@#{name}".to_sym, objects.first) : instance_variable_set("@#{name}".to_sym, objects)
-      objects
+      property.get
     end
 
     def generic_objects?(name)
-      !uri?("@#{name}".to_sym)
+      !uri?(name)
     end
 
     def not_used?
