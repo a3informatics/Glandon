@@ -104,8 +104,8 @@ module Fuseki
         object.instance_variable_set("@uri", uri)
         triples.each do |triple|
           property = object.properties.property_from_triple(triple)
-          next if property.nil?
-          property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
+          #next if property.nil?
+          #property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
         end
         object.instance_variable_set(:@new_record, false)
         object.instance_variable_set(:@destroyed, false)
@@ -119,11 +119,8 @@ module Fuseki
           property = object.properties.property_from_triple(triple)
           next if property.nil?
           value = triple[:object]
-          if property.object?
-            child = triples[value.to_s].empty? ? value : property.klass.from_results_recurse(value, triples)
-            property.set_value(child)
-          else
-            property.set_value(value)
+          if property.object? && !triples[value.to_s].empty?
+            property.replace_with_object(property.klass.from_results_recurse(value, triples))
           end
         end
         object.instance_variable_set(:@new_record, false)

@@ -18,8 +18,6 @@ module Fuseki
         @metadata = metadata
         @instance_variable_name = "@#{@name}".to_sym # @<name> as a symbol
         @array = array?
-      rescue => e
-byebug
       end
 
       # name
@@ -124,12 +122,11 @@ byebug
         puts "simple: Error #{name}=#{value}"
       end
 
-      # def replace_uri(name, object)
-      #   properties = self.class.instance_variable_get(:@properties)
-      #   return if !properties.key?(name) # Ignore values if no property declared.
-      #   remove_uri(name, object.uri)
-      #   set_object(name, object)
-      # end
+      def replace_with_object(object)
+        value = get
+        value.delete_if {|x| x.is_a?(Uri) && x == object.uri} if array?
+        set(object)
+      end
 
       # Set
       #
@@ -137,8 +134,6 @@ byebug
       # @return [Void] no return
       def set(value)
         array? ? @parent.instance_variable_get(@instance_variable_name).push(value) : @parent.instance_variable_set(@instance_variable_name, value)
-      rescue => e
-byebug
       end
 
       # Get
@@ -162,13 +157,6 @@ byebug
       def set_single(value)
         @parent.instance_variable_set(@instance_variable_name, value)
       end
-
-      # # Remove an item based on its URI
-      # def remove_uri(name, uri)
-      #   value = instance_variable_get(name)
-      #   return if !value.is_a?(Array)
-      #   value.delete_if {|x| x.is_a?(Uri) && x == uri}
-      # end
 
       # Set a simple typed value
       def to_typed(base_type, value)

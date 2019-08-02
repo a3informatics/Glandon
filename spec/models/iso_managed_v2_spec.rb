@@ -29,7 +29,6 @@ describe IsoManagedV2 do
   	it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find(uri)
-byebug
       expect(item.valid?).to eq(true)
     end
 
@@ -473,7 +472,7 @@ byebug
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times [8.29s -> 5.77s]")
+      timer_stop("Find 100 times [8.29s -> 6.48s]")
     end
 
     it "find minimum I" do
@@ -486,7 +485,7 @@ byebug
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find_minimum(uri)}
-      timer_stop("Find 100 times [1.65s]")
+      timer_stop("Find 100 times [1.65s -> 1.25s]")
     end
 
     it "where, I" do
@@ -542,19 +541,19 @@ byebug
     it "history speed" do
       timer_start
       current = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: "10", offset: "10")
-      timer_stop("Pagination 10 entries")
+      timer_stop("Pagination 10 entries [??? -> 0.12s]")
       expect(current.count).to eq(10)
       expect(current[0].version).to eq(40)
 
       timer_start
       current = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: "50", offset: "0")
-      timer_stop("Pagination 50 entries")
+      timer_stop("Pagination 50 entries [??? -> 0.4s]")
       expect(current.count).to eq(50)
       expect(current[0].version).to eq(50)
 
       timer_start
       current = CdiscTerm.history(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
-      timer_stop("No Pagination 50 entries [0.44s]")
+      timer_stop("No Pagination 50 entries [0.44s -> 0.36s]")
       expect(current.count).to eq(50)
       expect(current.first.version).to eq(50)
       expect(current.last.version).to eq(1)
