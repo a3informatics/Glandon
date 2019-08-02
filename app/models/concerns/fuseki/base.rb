@@ -31,7 +31,7 @@ module Fuseki
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       @properties.each do |property| 
         value = attributes.key?(property.name) ? attributes[property.name] : property.default_value
-        property.set_value(value)
+        property.set_default(value)
       end
     end
 

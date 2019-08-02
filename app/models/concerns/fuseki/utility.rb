@@ -24,17 +24,20 @@ module Fuseki
         object = self.new
         properties = self.resources
         params.each do |name, value|
-          property = object.properties.property(name)
           if name == :uri
-            property.set_uri(value)
-          elsif value.is_a?(Hash)
-            property.from_hash(inst_var, value)
-          elsif value.is_a?(Array)
-            value.each do |x| 
-              x.is_a?(Hash) ? property.from_hash(x) : property.set_uri(x)
-            end
+            object.uri = Uri.from_uri_or_string(value) # Special case, URI is not considered a property
           else
-            property.set_value( value)
+            next if !properties.key?(name)
+            property = object.properties.property(name)
+            if value.is_a?(Hash)
+              property.set_from_hash(value)
+            elsif value.is_a?(Array)
+              value.each do |x| 
+                x.is_a?(Hash) ? property.set_from_hash(x) : property.set_uri(x)
+              end
+            else
+              property.set_value(value)
+            end
           end
         end
         object
@@ -46,7 +49,7 @@ module Fuseki
     #
     # @return [Hash] the hash
     def to_h
-      result = {uri: instance_variable_get(:@uri).to_h, uuid: self.id, rdf_type: self.rdf_type.to_h}
+      result = {uri: self.uri.to_h, uuid: self.id, rdf_type: self.rdf_type.to_h} # Core items and handled differently
       self.properties.each do |property| 
         object = property.get
         variable = property.name

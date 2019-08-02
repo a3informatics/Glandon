@@ -274,27 +274,20 @@ module Fuseki
     end
 
     def to_sparql(sparql, recurse=false)
-      properties = properties_read_instance
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
-      instance_variables.each do |name|
-        next if name == :@uri #|| name == :@rdf_type
-        next if !properties.key?(name) # Ignore variables if no property declared.
-        value = instance_variable_get(name)
-        next if object_empty?(properties[name], value)
-        property_to_triple(sparql, properties[name], @uri, properties[name][:predicate], value)
-        object_to_triple(sparql, properties[name], value) if recurse
+      self.properties.each do |property|
+        next if object_empty?(property)
+        property_to_triple(sparql, property, @uri)
+        object_to_triple(sparql, property) if recurse
       end
     end      
 
     def generate_uri(parent)
-      properties = properties_read_instance
       self.uri = create_uri(parent) # Dynamic method 
-      instance_variables.each do |name|
-        next if name == :@uri #|| name == :@rdf_type
-        next if !properties.key?(name) # Ignore variables if no property declared.
-        value = instance_variable_get(name)
-        next if object_empty?(properties[name], value)
-        object_create_uri(properties[name], value)
+      properties.each do |property|
+        value = property.get
+        next if object_empty?(property)
+        object_create_uri(property)
       end
     end      
 
@@ -326,19 +319,21 @@ puts "***** CLEARING CACHE #{self.uri} *****"
     end
 
     # Create the triple for the property
-    def property_to_triple(sparql, property, subject, predicate, objects)
+    def property_to_triple(sparql, property, subject) #, predicate, objects)
+      objects = property.get
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
-        datatype = self.class.schema_metadata.datatype(predicate)
-        statement = property[:type] == :object ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
-        sparql.add({:uri => subject}, {:uri => predicate}, statement)
+        datatype = self.class.schema_metadata.datatype(property.predicate)
+        statement = property.object? ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
+        sparql.add({:uri => subject}, {:uri => property.predicate}, statement)
       end
     rescue => e
 byebug
     end
 
-    def object_to_triple(sparql, property, objects)
-      return if property[:type] != :object
+    def object_to_triple(sparql, property)
+      return if !property.object?
+      objects = property.get
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
         next if object.respond_to?(:persisted?) ? object.persisted? : true
@@ -346,8 +341,9 @@ byebug
       end
     end
 
-    def object_create_uri(property, objects)
-      return if property[:type] != :object
+    def object_create_uri(property)
+      return if !property.object?
+      objects = property.get
       objects = [objects] if !objects.is_a? Array
       objects.each do |object|
         next if object.respond_to?(:persisted?) ? object.persisted? : false
@@ -363,10 +359,11 @@ byebug
       Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
     end
 
-    def object_empty?(property, value)
-      return false if property[:type] != :object 
+    def object_empty?(property)
+      return false if !property.object? 
+      value = property.get
       return true if value.nil?
-      return true if value.is_a?(Array) and value.empty?
+      return true if property.array? && value.empty?
       return false
     end
 

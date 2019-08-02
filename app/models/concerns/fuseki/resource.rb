@@ -11,7 +11,7 @@ module Fuseki
 
     def resource_inherit
 #      return true if self.instance_variable_defined?(:@resources)
-puts "****** RESOURCES - #{self.name} ******"
+#puts "****** RESOURCES - #{self.name} ******"
       merged = {}
       klass_ancestors = self.ancestors.grep(Fuseki::Resource).reverse
       klass_ancestors.delete(Fuseki::Base) # Remove the base class

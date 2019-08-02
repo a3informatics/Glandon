@@ -18,6 +18,8 @@ module Fuseki
         @metadata = metadata
         @instance_variable_name = "@#{@name}".to_sym # @<name> as a symbol
         @array = array?
+      rescue => e
+byebug
       end
 
       # name
@@ -76,7 +78,7 @@ module Fuseki
       # @return [Boolean] true if a URI.
       def uri?
         value = get
-        value.is_a?(Array) ? value.first.is_a?(Uri) : value.is_a?(Uri)
+        @array ? value.first.is_a?(Uri) : value.is_a?(Uri)
       end
 
       # Set Value.
@@ -95,16 +97,24 @@ module Fuseki
         set(klass.from_h(value))
       end
 
-      # From URI. Sets the named property with the specified URI
+      # Set Default.
       #
-      # @param value [Object] the uri, either a sting or a Uri
+      # @param value [Object] the property value, might be an array
+      # @return [Void] no return
+      def set_default(value)
+        object? ? set_single(value) : set_simple(value)
+      end
+
+      # Set URI. Sets the named property with the specified URI. Converts from stroing if necessary to URI object
+      #
+      # @param value [Object] the uri, either a sting or a Uri object
       # @return [Void] no return
       def set_uri(value)
         value = Uri.new(uri: value) if value.is_a? String
         set(value)
       end
 
-      # From Simple. Sets the named property with the specified scalar value
+      # Set Simple. Sets the named property with the specified scalar value
       #
       # @param value [String] the property value
       # @return [Void] no return
@@ -127,6 +137,8 @@ module Fuseki
       # @return [Void] no return
       def set(value)
         array? ? @parent.instance_variable_get(@instance_variable_name).push(value) : @parent.instance_variable_set(@instance_variable_name, value)
+      rescue => e
+byebug
       end
 
       # Get

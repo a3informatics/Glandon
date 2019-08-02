@@ -209,7 +209,7 @@ class IsoManagedV2 < IsoConceptV2
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
     x = subject_set(full)
-    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude]}) ?o }"
+    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude].join("|")}) ?o }"
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
     x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
@@ -528,14 +528,14 @@ class IsoManagedV2 < IsoConceptV2
 
   # Next Ordinal. Get the next ordinal for a managed item collection
   #
-  # @param [String] the name of the property holding the collection
+  # @param [String] name the name of the property holding the collection
   # @return [Integer] the next ordinal
-  def next_ordinal(property)
-    variable = Fuseki::Persistence::Naming.new(property)
+  def next_ordinal(name)
+    predicate = self.properties.property(name).predicate
     query_string = %Q{
       SELECT (MAX(?ordinal) AS ?max)
       {
-        #{self.uri.to_ref} #{properties_metadata.predicate(variable.as_instance).to_ref} ?s .
+        #{self.uri.to_ref} #{predicate.to_ref} ?s .
         ?s bo:ordinal ?ordinal
       }
     }
@@ -546,12 +546,11 @@ class IsoManagedV2 < IsoConceptV2
 
   # Add Link. Add a object to a collection
   #
-  # @param [Symbol] the name of the property holding the collection
-  # @param [Object] the object to be linked
+  # @param [Symbol] name the name of the property holding the collection
+  # @param [Object] object the object to be linked
   # @return [Void] no return
-  def add_link(property, object)
-    variable = Fuseki::Persistence::Naming.new(property)
-    predicate = properties_metadata.predicate(variable.as_instance)
+  def add_link(name, object)
+    predicate = self.properties.property(name).predicate
     update_query = %Q{
       INSERT
       {
