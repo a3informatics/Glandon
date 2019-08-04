@@ -127,38 +127,37 @@ class Thesaurus <  IsoManagedV2
     end
 
     # Query
-    parts = []
+    triples = []
     version_set.each_with_index do |x, index| 
       next if index == 0
-      parts << %Q{
-{
-  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?p } MINUS
-  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?p }
-  ?p th:identifier ?ci . 
-  ?p (th:preferredTerm/isoC:label) ?l . 
-  ?cl th:narrower ?p . 
-  ?cl th:identifier ?pi .
-  #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?x . 
-  ?x th:identifier ?ci . 
-  ?cl2 th:narrower ?x . 
-  ?cl2 th:identifier ?pi .
-  ?p th:notation ?n . 
-  ?x th:notation ?pn . 
-  FILTER (?pn != ?n)
-  BIND (#{x.to_ref} as ?e)
-} 
-      }    
-    end
     query_string = %Q{
-SELECT ?e ?pi ?cl ?n ?pn ?ci ?l WHERE
-{
-  { #{parts.join(" UNION\n")} }
+SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
+{ 
+  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } MINUS   
+  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } 
+  BIND (STRAFTER(str(?ccl), '#') AS ?cid) .           
+  FILTER (?pid = ?cid)
+  ?ccl th:notation ?cn . 
+  FILTER (?pn != ?cn)
+  ?ccl isoC:label ?cl . 
+  ?ccl th:identifier ?ci . 
+  BIND (#{x.to_ref} AS ?e) .          
+  {
+    SELECT ?pcl ?pid ?pn WHERE 
+    {
+      { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } MINUS   
+      { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } 
+      BIND (STRAFTER(str(?pcl), '#') AS ?pid) .           
+      ?pcl th:notation ?pn .
+    }
+  }
 }}
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-    triples = query_results.by_object_set([:e, :pi, :cl, :l, :n, :pn, :ci])
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
+      triples += query_results.by_object_set([:e, :ccl, :cid, :cl, :ci, :cn, :pn])
+    end
     triples.each do |entry|
       uri = entry[:e].to_s
-      raw_results[uri][:children] << DiffResultSubmission[key: "#{entry[:pi]}.#{entry[:ci]}", uri: entry[:cl], label: entry[:l], notation: entry[:n], previous: entry[:pn], identifier: entry[:i2]]
+      raw_results[uri][:children] << {key: entry[:cid], uri: entry[:ccl], label: entry[:cl], notation: entry[:cn], previous: entry[:pn], identifier: entry[:ci]}
     end
 
     # Get the version array
