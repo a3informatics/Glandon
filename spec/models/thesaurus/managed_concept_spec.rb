@@ -465,4 +465,65 @@ describe Thesaurus::ManagedConcept do
 
   end
 
+  describe "updates" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "assigns properties, prevent identifier update" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.definition).to eq("A definition")    
+      tc.update({identifier: "A00001a", definition: "Updated"})
+      expect(tc.identifier).to eq("A00001") # Note, no ability to change identifier
+      expect(tc.definition).to eq("Updated")    
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.identifier).to eq("A00001")    
+      expect(tc.definition).to eq("Updated")      
+    end
+
+    it "assigns properties, synonyms" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.definition).to eq("A definition")    
+      expect(tc.synonym.count).to eq(2)
+      expect(tc.synonym.first.label).to eq("LHR")
+      expect(tc.synonym.last.label).to eq("Heathrow")
+      tc.update({definition: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever"})
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.definition).to eq("Updated")    
+      expect(tc.synonym.count).to eq(3)
+      expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
+      tc.update({synonym: "aaaa; bbbb"})
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.definition).to eq("Updated")    
+      expect(tc.synonym.count).to eq(2)
+      expect(tc.synonym.map{|x| x.label}).to match_array(["aaaa", "bbbb"])
+    end
+
+    it "assigns properties, preferred term" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.label).to eq("London Heathrow")    
+      expect(tc.synonym.count).to eq(2)
+      expect(tc.synonym.first.label).to eq("LHR")
+      expect(tc.synonym.last.label).to eq("Heathrow")
+      tc.update({label: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.label).to eq("Updated")    
+      expect(tc.synonym.count).to eq(3)
+      expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
+      expect(tc.preferred_term.label).to eq("Woah!")
+    end
+
+  end
+
 end

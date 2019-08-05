@@ -40,7 +40,8 @@ describe Thesaurus::PreferredTerm do
       {
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1", 
         :label => "BC Property Reference",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#PreferredTerm"
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#PreferredTerm",
+        :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvWC9WMSNGLUFDTUVfT1JfRzFfSTE="
       }
     item = Thesaurus::PreferredTerm.from_h(result)
     expect(item.to_h).to eq(result)

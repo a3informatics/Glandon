@@ -45,6 +45,7 @@ describe IsoConceptV2 do
 	      	:rdf_type => "http://www.assero.co.uk/ISO11179Concepts#Concept",
 	      	:uri => uri.to_s, 
 	      	:label => "A Concept",
+          :uuid => uri.to_id
 	    	}
       result = IsoConceptV2.find(uri)
 			expect(result.to_h).to eq(expected)   
@@ -66,6 +67,37 @@ describe IsoConceptV2 do
 			expect(concept.uri.fragment).to eq("F-T_G1")   
 		end
 		
+    it "find or create" do
+      expect(IsoConceptV2.where(label: "X").empty?).to eq(true)
+      concept = IsoConceptV2.where_only_or_create("X")
+      object = IsoConceptV2.where(label: "X")
+      expect(object.count).to eq(1)   
+      expect(object.first.label).to eq("X")   
+    end
+    
+    it "find or create set, none present" do
+      expect(IsoConceptV2.where(label: "X").empty?).to eq(true)
+      expect(IsoConceptV2.where(label: "Y").empty?).to eq(true)
+      concepts = IsoConceptV2.where_only_or_create_set(["X", "Y"])
+      expect(concepts.count).to eq(2)
+      object = IsoConceptV2.find(concepts[0])
+      expect(object.label).to eq("X")   
+      object = IsoConceptV2.find(concepts[1])
+      expect(object.label).to eq("Y")   
+    end
+    
+    it "find or create set, some present" do
+      existing = IsoConceptV2.where_only_or_create("X")
+      expect(IsoConceptV2.where(label: "Y").empty?).to eq(true)
+      concepts = IsoConceptV2.where_only_or_create_set(["X", "Y"])
+      expect(concepts.count).to eq(2)
+      object = IsoConceptV2.find(concepts[0])
+      expect(object.label).to eq("X")   
+      expect(existing.uri).to eq(concepts[0])   
+      object = IsoConceptV2.find(concepts[1])
+      expect(object.label).to eq("Y")   
+    end
+    
   end
 
 end

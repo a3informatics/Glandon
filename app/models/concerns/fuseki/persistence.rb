@@ -197,7 +197,12 @@ module Fuseki
       objects
     end
       
-    def update
+    def update(params)
+      @properties.assign(params)
+      create_or_update(:update) if valid?(:update)
+    end
+
+    def save
       create_or_update(:update) if valid?(:update)
     end
 

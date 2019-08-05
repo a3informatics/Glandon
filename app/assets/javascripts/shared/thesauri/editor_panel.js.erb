@@ -1,10 +1,9 @@
-function EditorPanel(tokenId, childrenPath, updatePath) {
+function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
   this.count = 30; // Table read size
   this.tokenId = tokenId;
   this.childrenPath = childrenPath;
   this.updatePath = pathInsertId(updatePath, "");
-  this.currentRow = null;
-  this.map = {};
+  this.parentId = parentId;
 
   this.editor = new $.fn.dataTable.Editor( {
     ajax: {
@@ -65,24 +64,12 @@ function EditorPanel(tokenId, childrenPath, updatePath) {
         return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
       }}
     ],
+    rowId: "id",
     keys: {
       columns: [ 1, 2, 3, 4, 5 ], // Key codes to be listened to and the columns
       keys: [ 9, 38, 40 ]
     }
   });
-
-  // var addChildPath = $('#add_child_path').val();
-  // var childrenPath = $('#children_path').val();
-  // var parametersKey = $('#parameters_key').val();
-  // var html  = $("#json_data").html();
-  // var sourceJson;
-  // var managedItem;
-  
-  // $('#referer_button').click(function() {
-  //   ttExtendLock("1"); // Extend the token
-  //   keepToken = true; // Keep the token. Important
-  //   window.location.href = $('#referer_path').val();
-  // });
 
   var _this = this;
 
@@ -102,38 +89,35 @@ function EditorPanel(tokenId, childrenPath, updatePath) {
         _this.delete(data.delete_path);
       }
     } else {
-      _this.editor.inline(_this.editorTable.cell(this).index(), { submitOnBlur: true, submit: 'all' });
+      _this.editor.inline(_this.editorTable.cell(this).index(), { submitOnBlur: true, submit: 'changed' });
     }
   });
 
   // Inline editing on tab focus
   $('#editor_table').on( 'key-focus', function ( e, datatable, cell ) {
-     _this.editor.inline( cell.index(), { submitOnBlur: true, submit: 'all' } );
+     _this.editor.inline( cell.index(), { submitOnBlur: true, submit: 'changed' } );
   } );
 
-  // // Presubmit event. Format the data.
-  // editor.on('preSubmit', function ( e, d, type ) {
-  //   if ( type === 'edit' ) {
-  //     d.thesaurus_concept = cloneTC();
-  //     d.namespace = managedItem.namespace;
-  //     var columnObject = firstObject(d.data);
-  //     $.each(columnObject, function(key, value) {
-  //       d.thesaurus_concept[key] = value;
-  //     });
-  //     delete d.data;
-  //   }
-  //   return true;
-  // });
+  // Presubmit event. Format the data.
+  this.editor.on('preSubmit', function ( e, d, type ) {
+    if ( type === 'edit' ) {
+      d.edit = d.data[Object.keys(d.data)[0]];
+      d.edit.parent_id = parentId;
+      delete d.data;
+    }
+    return true;
+  });
 
-  // // Submit error event. Route to the specified link.
-  // editor.on('submitError', function (e, xhr, err, thrown, data) {
-  //   window.location.href = xhr.responseJSON.link;
-  // });
+  // Submit error event. Route to the specified link.
+  this.editor.on('submitError', function (e, xhr, err, thrown, data) {
+    window.location.href = xhr.responseJSON.link;
+  });
 
-  // // Postsubmit event. Extend the timeout
-  // editor.on('postSubmit', function ( e, json, data, type ) {
-  //   ttExtendLock("1");
-  // });
+  // Postsubmit event. Extend the timeout
+  this.editor.on('postSubmit', function ( e, json, data, type ) {
+    ttExtendLock("1");
+    _this.editorTable.processing(false);
+  });
 
   ttAddToken(this.tokenId);
   this.fill(0);
@@ -181,7 +165,6 @@ EditorPanel.prototype.add = function (record) {
   _this.editorTable.draw();
 }
 
-
 /**
  * Delete an item
  *
@@ -204,17 +187,6 @@ EditorPanel.prototype.delete = function(url) {
     }
   }); 
 }
-
-  // function firstObject(object) {
-  //   var first;
-  //   for (var i in object) {
-  //     if (object.hasOwnProperty(i) && typeof(i) !== 'function') {
-  //       first = object[i];
-  //       break;
-  //     }
-  //   }
-  //   return first;
-  // }
 
 // Null function for page unload. Nothing to do
 function pageUnloadAction() {

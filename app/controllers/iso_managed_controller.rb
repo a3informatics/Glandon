@@ -12,7 +12,7 @@ class IsoManagedController < ApplicationController
   def update
     authorize IsoManaged
     managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
-    managed_item.update(this_params)
+    managed_item.update_comments(this_params)
     redirect_to this_params[:referer]
   end
 

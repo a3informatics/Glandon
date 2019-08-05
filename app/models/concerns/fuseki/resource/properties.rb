@@ -41,6 +41,14 @@ module Fuseki
         @metadata.each {|key, value| yield(Fuseki::Resource::Property.new(@parent, key, value))}
       end
 
+      def assign(params)
+        params.each do |key, value|
+          name = key.to_sym
+          next if ignore?(name)
+          self.property(name).set(value)
+        end
+      end
+
       def raw
         @metadata
       end

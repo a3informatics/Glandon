@@ -55,6 +55,17 @@ class Thesaurus
       return 0
     end
 
+    # Update. Specific update to control synonyms, PT and prevent identifier being updatedf.
+    #
+    # @param params [Hash] the new properties
+    # @return [Void] no return
+    def update(params)
+      self.synonym = Thesaurus::Synonym.where_only_or_create_set(params[:synonym]) if params.key?(:synonym)
+      self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term]) if params.key?(:preferred_term)
+      self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
+      save
+    end
+
     # Parent
     #
     # @return [Void] no return

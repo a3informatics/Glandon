@@ -7,7 +7,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    thesaurus = get_thesaurus(@thesaurus_concept)
+    thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
     @token = Token.find_token(thesaurus, current_user)
     @close_path = edit_lock_lost_link(thesaurus)
     @referer_path = get_parent_link(@thesaurus_concept)
@@ -20,26 +20,24 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def update
     authorize Thesaurus
-    thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    thesaurus = get_thesaurus(thesaurus_concept)
-    token = Token.find_token(thesaurus, current_user)
+    tc = Thesaurus::ManagedConcept.find(params[:id])
+    th = Thesaurus.find_minimum(edit_params[:parent_id])
+    token = Token.find_token(th, current_user)
     if !token.nil?
-      thesaurus_concept.update(the_params)
-      if thesaurus_concept.errors.empty?
-        AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        results = []
-        results << thesaurus_concept.to_json
-        render :json => {:data => results}, :status => 200
+      tc = tc.update(edit_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
+        render :json => {:data => [tc.simple_to_h]}, :status => 200
       else
         errors = []
-        thesaurus_concept.errors.each do |name, msg|
+        tc.errors.each do |name, msg|
           errors << {name: name, status: msg}
         end
         render :json => {:fieldErrors => errors}, :status => 200
       end
     else
       flash[:error] = "The edit lock has timed out."
-      render :json => {:data => results, :link => edit_lock_lost_link(thesaurus)}, :status => 422
+      render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
     end
   end
   
@@ -161,9 +159,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
 private
 
-  # def edit_lock_lost_link(thesaurus)
-  #   return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
-  # end
+  # Set the history path
+  def edit_lock_lost_link(thesaurus)
+    return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
+  end
 
   # def audit_and_respond(thesaurus, thesaurus_concept, token)
   #   if thesaurus_concept.errors.empty?
@@ -196,7 +195,11 @@ private
   # end
 
   def the_params
-    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :definition, :preferredTerm, :namespace, :label, :type, :direction)
+    params.require(:thesaurus_concept).permit(:parent_id)
   end
     
+  def edit_params
+    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
+  end
+
 end

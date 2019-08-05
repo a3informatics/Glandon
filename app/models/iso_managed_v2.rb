@@ -474,13 +474,13 @@ class IsoManagedV2 < IsoConceptV2
     false
   end
 
-  # Update the item
+  # Update Comments
   #
   # @params [Hash] The parameters {:explanatoryComment, :changeDescription, :origin}
   # @raise [Exceptions::UpdateError] if an error occurs during the update
   # @return null
-  def update(params)  
-    Sparql::Update.new.sparql_update(update_query(params), self.rdf_type.namespace, [:isoT])
+  def update_comments(params)  
+    partial_update(update_query(params), [:isoT])
   end
 
   # Set URIs. Sets the URIs for the managed item and all children

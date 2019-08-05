@@ -40,7 +40,8 @@ describe Thesaurus::Synonym do
       {
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1", 
         :label => "BC Property Reference",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym"
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym",
+        :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvWC9WMSNGLUFDTUVfT1JfRzFfSTE="
       }
     item = Thesaurus::Synonym.from_h(result)
     expect(item.to_h).to eq(result)
@@ -62,5 +63,19 @@ describe Thesaurus::Synonym do
     expect(item_1.label).to eq("NEW")
     expect(item_1.uri.to_s).to eq(item_2.uri.to_s)
   end    
+
+  it "creates a synonym set" do
+    expect(Thesaurus::Synonym.where(label: "Syn 1").empty?).to eq(true)
+    expect(Thesaurus::Synonym.where(label: "Syn 2").empty?).to eq(true)
+    results = Thesaurus::Synonym.where_only_or_create_set("Syn 1; Syn 2")
+    s1 = Thesaurus::Synonym.where_only(label: "Syn 1")
+    s2 = Thesaurus::Synonym.where_only(label: "Syn 2")
+    expect(results).to match_array([s1.uri, s2.uri])
+    results = Thesaurus::Synonym.where_only_or_create_set("Syn 1; Syn 2; Syn 3")
+    s3 = Thesaurus::Synonym.where_only(label: "Syn 3")
+    expect(results).to match_array([s1.uri, s2.uri, s3.uri])
+    results = Thesaurus::Synonym.where_only_or_create_set("Syn 1; Syn 3")
+    expect(results).to match_array([s1.uri, s3.uri])
+  end
 
 end
