@@ -58,7 +58,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)

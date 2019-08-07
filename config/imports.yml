@@ -239,7 +239,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: parent
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: true
                 map: {}
                 condition: 
@@ -248,7 +248,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: child
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -458,7 +458,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: parent
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -467,7 +467,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: child
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -639,7 +639,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: parent
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -648,7 +648,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: child
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -820,7 +820,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: parent
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -829,7 +829,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: child
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -993,7 +993,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: parent
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 
@@ -1002,7 +1002,7 @@ defaults: &defaults
               -
                 method: create_shared
                 object: child
-                property: preferredTerm
+                property: preferred_term
                 can_be_empty: false
                 map: {}
                 condition: 

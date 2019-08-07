@@ -189,19 +189,18 @@ class Excel::Engine
 
   # Create Definition
   #
-  # @param [Object] parent the parent instance
-  # @param [String] property the property name
-  # @param [String] label the label for the definition
+  # @param parent [Object] the parent instance
+  # @param property_name [String] the property name
+  # @param label [String] the label for the definition
   # @return [Void] no return
-  def create_definition(parent, property, label)
+  def create_definition(parent, property_name, label)
     return if label.blank?
-    naming = Fuseki::Persistence::Naming.new(property)
-    return if duplicate_label?(parent, naming.as_symbol, label)
-    variable = naming.as_instance
-    klass = parent.property_target(variable)
+    return if duplicate_label?(parent, property_name, label)
+    property = parent.properties.property(property_name.to_sym)
+    klass = property.klass
     results = klass.where(label: label)
     object = results.any? ? results.first : object_create(klass, label)
-    parent.from_object(variable, object)
+    property.set(object)
   end
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped

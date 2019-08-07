@@ -81,7 +81,7 @@ module TypePathManagement
     Errors.application_error(self.name, __method__.to_s, "Unknown object type #{rdf_type_s} detected.") if !@@mi_history_path.has_key?(rdf_type_s) 
     path = @@mi_history_path[rdf_type_s][:path]
     strong = @@mi_history_path[rdf_type_s][:strong]
-    return "#{path}/?#{strong}[identifier]=#{object.identifier}&#{strong}[scope_id]=#{object.owner.ra_namespace.id}"
+    return "#{path}/?#{strong}[identifier]=#{object.scoped_identifier}&#{strong}[scope_id]=#{object.owner.ra_namespace.id}"
   end
 
 end
