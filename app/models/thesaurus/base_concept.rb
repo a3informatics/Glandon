@@ -60,7 +60,7 @@ class Thesaurus
     # @param params [Hash] the new properties
     # @return [Void] no return
     def update(params)
-      self.synonym = Thesaurus::Synonym.where_only_or_create_set(params[:synonym]) if params.key?(:synonym)
+      self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
       self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term]) if params.key?(:preferred_term)
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
       save
@@ -109,11 +109,7 @@ class Thesaurus
     end
 
     def simple_to_h
-      {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: self.preferred_term.label, synonym: merge_synonyms, extensible: self.extensible, id: self.uri.to_id}
-    end
-
-    def merge_synonyms
-      self.synonym.map {|x| x.label}.join("; ")
+      {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: self.preferred_term.label, synonym: synonyms_to_s, extensible: self.extensible, id: self.uri.to_id}
     end
 
   end

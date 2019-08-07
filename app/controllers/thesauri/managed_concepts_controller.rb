@@ -10,7 +10,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
     @token = Token.find_token(thesaurus, current_user)
     @close_path = edit_lock_lost_link(thesaurus)
-    @referer_path = get_parent_link(@thesaurus_concept)
+    @referer_path = get_parent_link(@thesaurus)
     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
@@ -161,7 +161,7 @@ private
 
   # Set the history path
   def edit_lock_lost_link(thesaurus)
-    return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
+    return history_thesauri_index_path({thesauri: {identifier: thesaurus.scoped_identifier, scope_id: thesaurus.scope.id}})
   end
 
   # def audit_and_respond(thesaurus, thesaurus_concept, token)

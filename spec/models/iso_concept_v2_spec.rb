@@ -75,29 +75,6 @@ describe IsoConceptV2 do
       expect(object.first.label).to eq("X")   
     end
     
-    it "find or create set, none present" do
-      expect(IsoConceptV2.where(label: "X").empty?).to eq(true)
-      expect(IsoConceptV2.where(label: "Y").empty?).to eq(true)
-      concepts = IsoConceptV2.where_only_or_create_set(["X", "Y"])
-      expect(concepts.count).to eq(2)
-      object = IsoConceptV2.find(concepts[0])
-      expect(object.label).to eq("X")   
-      object = IsoConceptV2.find(concepts[1])
-      expect(object.label).to eq("Y")   
-    end
-    
-    it "find or create set, some present" do
-      existing = IsoConceptV2.where_only_or_create("X")
-      expect(IsoConceptV2.where(label: "Y").empty?).to eq(true)
-      concepts = IsoConceptV2.where_only_or_create_set(["X", "Y"])
-      expect(concepts.count).to eq(2)
-      object = IsoConceptV2.find(concepts[0])
-      expect(object.label).to eq("X")   
-      expect(existing.uri).to eq(concepts[0])   
-      object = IsoConceptV2.find(concepts[1])
-      expect(object.label).to eq("Y")   
-    end
-    
   end
 
 end

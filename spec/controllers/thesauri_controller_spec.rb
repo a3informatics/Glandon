@@ -110,26 +110,24 @@ describe ThesauriController do
 
     it 'creates thesaurus, fails bad identifier' do
       count = Thesaurus.all.count
-      expect(count).to eq(3) 
+      expect(count).to eq(2) 
       post :create, thesauri: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
+      count = Thesaurus.all.count
+      expect(count).to eq(2) 
       expect(assigns(:thesaurus).errors.count).to eq(1)
       expect(Thesaurus.all.count).to eq(count) 
       expect(flash[:error]).to be_present
-      expect(response).to redirect_to("/thesauri/new")
+      expect(response).to redirect_to("/thesauri")
     end
 
     it "edits thesaurus, no next version" do
-      params = 
-      {
-        :id => "TH-ACME_NEWTH", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      get :edit, params
+      ct = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      get :edit, id: ct.to_id
       result = assigns(:thesaurus)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-ACME_NEWTH") # Note no new version, no copy.
-      expect(result.identifier).to eq("NEW TH")
+      expect(token.item_uri).to eq("http://www.cdisc.org/CT/V1#TH") # Note no new version, no copy.
+      expect(result.identifier).to eq("CT")
       expect(response).to render_template("edit")
     end
 

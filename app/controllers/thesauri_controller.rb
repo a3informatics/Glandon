@@ -115,10 +115,11 @@ class ThesauriController < ApplicationController
 
   def destroy
     authorize Thesaurus
-    thesaurus = Thesaurus.find(params[:id], params[:namespace])
+    thesaurus = Thesaurus.find_minimum(params[:id])
     token = Token.obtain(thesaurus, current_user)
     if !token.nil?
-      thesaurus.destroy
+  byebug
+      thesaurus.delete
       AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
       token.release
     else
@@ -302,7 +303,7 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label)
     #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     

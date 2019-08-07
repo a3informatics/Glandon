@@ -10,15 +10,4 @@ class Thesaurus::Synonym < IsoConceptV2
             cache: true,
             key_property: :label
 
-  C_SEPARATOR = ";"
-
-  # Where Only Or Create Set. Checks the synonym set and creates any new ones. 
-  #  Returns the new set as a set of URIs
-  #     
-  # @param params [String] the set of synonyms as a ";" separated list
-  # @return [Array] array of URIs of the existing or new synonyms
-  def self.where_only_or_create_set(params)
-    super(result = params.split(C_SEPARATOR).map(&:strip)) # Split and strip any white space
-  end
-
 end

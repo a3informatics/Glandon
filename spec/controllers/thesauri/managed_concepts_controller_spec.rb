@@ -23,6 +23,10 @@ describe Thesauri::ManagedConceptsController do
         "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
       ]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+      Token.delete_all
+      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
     end
 
     after :each do
@@ -37,6 +41,16 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:links)).to eq({start: "", end: "/thesauri/managed_concepts/aHR0cDovL3d3dy54eHguY29tL2FhYSMx/changes"})
       expect(response).to render_template("changes")
     end
+
+    # it "edit" do
+    #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+    #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
+    #   get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
+    #   expect(assigns(:close_path)).to eq("")
+    #   expect(assigns(:referrer_path)).to eq("")
+    #   expect(assigns(:tc_identifier_prefix)).to eq("XXX")
+    #   expect(response).to render_template("edit")
+    # end
 
   end
   

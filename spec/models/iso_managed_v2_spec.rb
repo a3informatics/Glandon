@@ -660,10 +660,16 @@ describe IsoManagedV2 do
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
     end
 
-    it "create, not valid" do
+    it "create, not valid, label" do
       object = Thesaurus.create({label: "A new item±±", identifier: "XXXXX"})
       expect(object.errors.count).to eq(1)
       expect(object.errors.full_messages.to_sentence).to eq("Label contains invalid characters")
+    end
+
+    it "create, not valid, identifier" do
+      object = Thesaurus.create({label: "A new item", identifier: "XXXXX$"})
+      expect(object.errors.count).to eq(1)
+      expect(object.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters")
     end
 
     it "create, not permitted" do
@@ -811,6 +817,31 @@ describe IsoManagedV2 do
       query_results = Sparql::Query.new.query(query_string, "", [])
       expect(query_results.by_object(:o).count).to eq(1)
       expect(query_results.by_object(:o).first.to_s).to eq("http://www.assero.co.uk/XXX")
+    end
+
+  end
+
+  describe "Delete" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      IsoHelpers.clear_cache
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+    end
+
+    it "delete" do
+      results = Thesaurus.all
+      expect(results.count).to eq(4)
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(ct.delete).to eq(1)
+      results = Thesaurus.all
+      expect(results.count).to eq(3)
     end
 
   end

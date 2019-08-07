@@ -21,6 +21,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
+  include Thesaurus::Synonyms
 
   # Changes Count
   #

@@ -17,13 +17,8 @@ class IsoManagedV2 < IsoConceptV2
   validates_with Validator::Field, attribute: :origin, method: :valid_markdown?
   validates_with Validator::Field, attribute: :change_description, method: :valid_markdown?
   validates_with Validator::Field, attribute: :explanatory_comment, method: :valid_markdown?
-
-  # Constants
-  C_CLASS_NAME = self.name
-  C_HAS_STATE = Uri.new(uri: "http://www.assero.co.uk/ISO11179Types#hasState")
-  C_HAS_IDENTIFER = Uri.new(uri: "http://www.assero.co.uk/ISO11179Types#hasIdentifier")
-  C_RA_NAMESPACE = Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#raNamespace")
-  C_HAS_SCOPE = Uri.new(uri: "http://www.assero.co.uk/ISO11179Identification#hasScope")
+  validates_with Validator::Klass, property: :has_identifier
+  validates_with Validator::Klass, property: :has_state
   
   # Version
   #
@@ -200,15 +195,14 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Find
+  # Find. Full find of the managed item. Will find all children via paths that are not excluded.
   #
   # @param [Uri|id] the identifier, either a URI or the id
-  # @param full [Boolean] all child triples if set true, otherwise just the top level concept
-  # @return [object] The object.
-  def self.find(id, full=true)  
+  # @return [IsoManagedV2] The managed item object.
+  def self.find(id)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    x = subject_set(full)
+    x = subject_set
     exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude].join("|")}) ?o }"
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
     x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
@@ -436,6 +430,20 @@ class IsoManagedV2 < IsoConceptV2
     results    
   end
 
+  # Delete. Delete the managed item
+  #
+  # @return [integer] the number of objects deleted (always 1 if no exception)
+  def delete
+    parts = []
+    x = self.class.subject_set
+    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude].join("|")}) ?o }"
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
+    x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    1
+  end
+
   # Forward Backward. Provides URIs for mving through the history
   #
   # @params [Integer] step the step to be taken, probably best set to 1
@@ -640,7 +648,7 @@ private
   end
 
   # Relationship set, array of predicates.
-  def self.subject_set(full)
+  def self.subject_set
     {include: managed_paths, exclude: excluded_relationships}
   end
 

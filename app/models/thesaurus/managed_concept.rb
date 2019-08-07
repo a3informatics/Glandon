@@ -33,6 +33,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
+  include Thesaurus::Synonyms
 
   def replace_if_no_change(previous)
     return self if previous.nil?
