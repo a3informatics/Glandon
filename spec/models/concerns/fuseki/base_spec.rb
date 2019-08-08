@@ -125,11 +125,11 @@ describe Fuseki::Base do
     uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
     item = TestFb6.find(uri)
     expect(item.ra_namespace_objects?).to eq(false)
-    expect(item.ra_namespace_objects.count).to eq(1)
+    expect(item.ra_namespace_objects.nil?).to eq(false)
     expect(item.ra_namespace_objects?).to eq(true)
-    expect(item.ra_namespace_objects.first.short_name).to eq("BBB")
-    expect(item.ra_namespace_objects.first.name).to eq("BBB Pharma")
-    expect(item.ra_namespace_objects.first.authority).to eq("www.bbb.com")
+    expect(item.ra_namespace_objects.short_name).to eq("BBB")
+    expect(item.ra_namespace_objects.name).to eq("BBB Pharma")
+    expect(item.ra_namespace_objects.authority).to eq("www.bbb.com")
     expect(item.ra_namespace.short_name).to eq("BBB")
     expect(item.ra_namespace.name).to eq("BBB Pharma")
     expect(item.ra_namespace.authority).to eq("www.bbb.com")
@@ -170,7 +170,7 @@ describe Fuseki::Base do
     expect(item.international_code_designator).to eq(item_1.international_code_designator)
   end
 
-  it "allows for update" do
+  it "allows for update, no params" do
     item = TestFb5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
       international_code_designator: "DUNS_NEW")
     item_1 = TestFb5.find(item.uri)
@@ -182,6 +182,20 @@ describe Fuseki::Base do
     expect(item.organization_identifier).to eq(item_2.organization_identifier)
     expect(item.international_code_designator).to_not eq(item_2.international_code_designator)
     expect(item_2.international_code_designator).to eq("DUNS_OLD")
+  end
+
+  it "allows for update, with params" do
+    item = TestFb5.create(uri: Uri.new(uri: "http://www.assero.co.uk/RA#XXXXXXXX"), owner: false, organization_identifier: "1234567891234", 
+      international_code_designator: "DUNS_NEW")
+    item_1 = TestFb5.find(item.uri)
+    item_1.international_code_designator = "DUNS_OLD"
+    item_1.update(owner: true)
+    item_2 = TestFb5.find(item.uri)
+    expect(item.uri).to eq(item_2.uri)
+    expect(item.organization_identifier).to eq(item_2.organization_identifier)
+    expect(item.international_code_designator).to_not eq(item_2.international_code_designator)
+    expect(item_2.international_code_designator).to eq("DUNS_OLD")
+    expect(item_2.owner).to eq(true)
   end
 
   it "allows for where" do

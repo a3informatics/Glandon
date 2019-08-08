@@ -197,8 +197,8 @@ module Fuseki
       objects
     end
       
-    def update(params)
-      @properties.assign(params)
+    def update(params={})
+      @properties.assign(params) if !params.empty?
       create_or_update(:update) if valid?(:update)
     end
 
@@ -216,7 +216,6 @@ module Fuseki
     def generic_objects(name)
       objects = []
       property = self.properties.property(name)
-      sparql = Sparql::Query.new()
       query_string = "SELECT ?s ?p ?o WHERE {" +
         "  #{uri.to_ref} #{property.predicate.to_ref} ?s ." +
         "  ?s ?p ?o ." +
@@ -224,13 +223,13 @@ module Fuseki
       results = Sparql::Query.new.query(query_string, "", [])
       objects = []
       results.by_subject.each do |subject, triples|
-        property.set_value(property.klass.from_results(Uri.new(uri: subject), triples))
+        property.replace_with_object(property.klass.from_results(Uri.new(uri: subject), triples))
       end
       property.get
     end
 
     def generic_objects?(name)
-      !uri?(name)
+      !self.properties.property(name).uri?
     end
 
     def not_used?

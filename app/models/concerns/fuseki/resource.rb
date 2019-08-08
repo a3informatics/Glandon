@@ -162,7 +162,7 @@ module Fuseki
       add_to_resources(name, opts)
 
       define_method "#{name}_objects" do
-        generic_objects(name, opts[:model_class])
+        generic_objects(name)
       end
 
       define_method "#{name}_objects?" do
