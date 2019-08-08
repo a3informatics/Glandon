@@ -23,7 +23,7 @@ describe Fuseki::Persistence do
   after :each do
   end
 
-  class TestFP1 < Fuseki::Base
+  class TestFPe1 < Fuseki::Base
 
     configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
 
@@ -35,7 +35,7 @@ describe Fuseki::Persistence do
 
   it "find, simple case" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    result = TestFP1.find(uri)
+    result = TestFPe1.find(uri)
     expect(result.change_description).to eq("Creation")
     expect(result.has_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1")
     expect(result.has_state.to_s).to eq("http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1")
@@ -53,8 +53,8 @@ describe Fuseki::Persistence do
 
   it "find children" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    result = TestFP1.find_children(uri)
-    check_file_actual_expected(result.to_h, sub_dir, "find_children_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    result = TestFPe1.find_children(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "find_children_expected_1.yaml", equate_method: :hash_equal)
   end
 
 end
