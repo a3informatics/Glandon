@@ -118,7 +118,6 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(params[:id])
     token = Token.obtain(thesaurus, current_user)
     if !token.nil?
-  byebug
       thesaurus.delete
       AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
       token.release

@@ -11,7 +11,7 @@ describe Thesaurus::ManagedConcept do
     return "models/thesaurus/managed_concept"
   end
 
-  describe "general testa" do
+  describe "general tests" do
 
     def simple_thesaurus_1
       @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
@@ -56,30 +56,54 @@ describe Thesaurus::ManagedConcept do
 
     def simple_thesaurus_2
       @th_2 = Thesaurus.new
-      @tc_3 = Thesaurus::ManagedConcept.from_h(@tc_1.to_h)
+      @tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
       @tc_3.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
       @tc_3.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
       @tc_3.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
-      @tc_3a = Thesaurus::UnmanagedConcept.from_h(@tc_1a.to_h)
+      @tc_3a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "The 5th LHR Terminal",
+          notation: "T5"
+        })
       @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
       @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
       @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
       @tc_3a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
       @tc_3a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-      params = @tc_1b.to_h
+      params = {
+          label: "Terminal 1",
+          identifier: "A000012",
+          definition: "The oldest LHR Terminal",
+          notation: "T1"
+        }
       params[:definition] = "The oldest LHR Terminal. A real mess",
       @tc_3b = Thesaurus::UnmanagedConcept.from_h(params)
       @tc_3b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
       @tc_3.narrower << @tc_3a
       @tc_3.narrower << @tc_3b
-      @tc_4 = Thesaurus::ManagedConcept.from_h(@tc_2.to_h)
+      @tc_4 = Thesaurus::ManagedConcept.new
+      @tc_4.identifier = "A00002"
+      @tc_4.definition = "Copenhagen"
+      @tc_4.extensible = false
+      @tc_4.notation = "CPH"
       @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_2.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_4.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
 
     def simple_thesaurus_3
       @th_3 = Thesaurus.new
-      @tc_5 = Thesaurus::ManagedConcept.from_h(@tc_1.to_h)
+      @tc_5 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow",
+          identifier: "A00001",
+          definition: "A definition",
+          notation: "LHR"
+        })
       @tc_5.synonym << Thesaurus::Synonym.where_only_or_create("Heathrow")
       @tc_5.synonym << Thesaurus::Synonym.where_only_or_create("LHR")
       @tc_5.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
@@ -90,18 +114,32 @@ describe Thesaurus::ManagedConcept do
           notation: "TX"
         })
       @tc_5c.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal X")
-      @tc_5a = Thesaurus::UnmanagedConcept.from_h(@tc_1a.to_h)
+      @tc_5a = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 5",
+          identifier: "A000011",
+          definition: "The 5th LHR Terminal",
+          notation: "T5"
+        })
       @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("T5")
       @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("Terminal Five")
       @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("BA Terminal")
       @tc_5a.synonym << Thesaurus::Synonym.where_only_or_create("British Airways Terminal")
       @tc_5a.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 5")
-      @tc_5b = Thesaurus::UnmanagedConcept.from_h(@tc_1b.to_h)
+      @tc_5b = @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Terminal 1",
+          identifier: "A000012",
+          definition: "The oldest LHR Terminal",
+          notation: "T1"
+        })
       @tc_5b.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Terminal 1")
       @tc_5.narrower << @tc_5a
       @tc_5.narrower << @tc_5b
       @tc_5.narrower << @tc_5c
-      @tc_6 = Thesaurus::ManagedConcept.from_h(@tc_2.to_h)
+      @tc_6 = Thesaurus::ManagedConcept.new
+      @tc_6.identifier = "A00002"
+      @tc_6.definition = "Copenhagen"
+      @tc_6.extensible = false
+      @tc_6.notation = "CPH"
       @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_5.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_3.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_6.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
     end
@@ -119,8 +157,8 @@ describe Thesaurus::ManagedConcept do
     it "allows validity of the object to be checked - error" do
       tc = Thesaurus::ManagedConcept.new
       expect(tc.valid?).to eq(false)
-      expect(tc.errors.count).to eq(2)
-      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank and Identifier is empty")
+      expect(tc.errors.count).to eq(4)
+      expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, Has state: Empty object, and Identifier is empty")
     end 
 
     it "allows validity of the object to be checked" do
@@ -128,6 +166,13 @@ describe Thesaurus::ManagedConcept do
       tc.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#A00001")
       tc.identifier = "AAA"
       tc.notation = "A"
+      tc.has_state = IsoRegistrationStateV2.new
+      tc.has_state.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#RS_A00001")
+      tc.has_state.by_authority = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      tc.has_identifier = IsoScopedIdentifierV2.new
+      tc.has_identifier.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#SI_A00001")
+      tc.has_identifier.identifier = "AAA"
+      tc.has_identifier.semantic_version = "0.0.1"
       valid = tc.valid?
       expect(valid).to eq(true)
     end 
@@ -226,7 +271,7 @@ describe Thesaurus::ManagedConcept do
       expect(new_object.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters and Definition contains invalid characters")
     end
 
-    it "allows a TC to be updated" do
+    it "allows a TC to be saved" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       params = 
       {
@@ -239,12 +284,12 @@ describe Thesaurus::ManagedConcept do
       new_object = tc.add_child(params)
       new_object.label = "New_XXX"
       new_object.notation = "NEWNEWXXX"
-      new_object.update
+      new_object.save
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
       check_file_actual_expected(tc.to_h, sub_dir, "update_expected_1.yaml")
     end
 
-    it "allows a TC to be updated, quotes test" do
+    it "allows a TC to be saved, quotes test" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       params = 
       {
@@ -256,7 +301,7 @@ describe Thesaurus::ManagedConcept do
       }
       new_object = tc.add_child(params)
       new_object.label = "New \"XXX\""
-      new_object.update
+      new_object.save
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
       check_file_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
     end
@@ -274,8 +319,8 @@ describe Thesaurus::ManagedConcept do
       new_object = tc.add_child(params)
       new_object.label = vh_all_chars
       new_object.notation = vh_all_chars + "^"
-      new_object.definition = vh_all_chars
-      new_object.update
+      new_object.definition = 
+      new_object.update(definition: vh_all_chars)
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001-A00014"))
       check_file_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
     end
@@ -316,11 +361,11 @@ describe Thesaurus::ManagedConcept do
     it "allows a TC to be exported as SPARQL" do
       sparql = Sparql::Update.new
       simple_thesaurus_1
-      @th.set_initial("NEW_TH", ra)
-      @tc_1.set_initial(@tc_1.identifier, @ra)
-      @tc_2.set_initial(@tc_2.identifier, @ra)
-      sparql.default_namespace(th.uri.namespace)
-      @th.to_sparql(sparql, true)
+      @th_1.set_initial("NEW_TH")
+      @tc_1.set_initial(@tc_1.identifier)
+      @tc_2.set_initial(@tc_2.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
       full_path = sparql.to_file
@@ -338,7 +383,7 @@ describe Thesaurus::ManagedConcept do
     it "allows a TC to be exported as SPARQL, II" do
       sparql = Sparql::Update.new
       simple_thesaurus_1
-      @tc_1.set_initial(@tc_1.identifier, @ra)
+      @tc_1.set_initial(@tc_1.identifier)
       sparql.default_namespace(@tc_1.uri.namespace)
       @tc_1.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
@@ -402,18 +447,23 @@ describe Thesaurus::ManagedConcept do
 
     it "replaces with previous if no difference" do
       simple_thesaurus_1
+      @tc_1.uri = "XXX"
       expect(@tc_1.replace_if_no_change(@tc_1).uri).to eq(@tc_1.uri)
     end
 
     it "replaces with previous, difference" do
       simple_thesaurus_1
       simple_thesaurus_2
-      expect(@tc_3.replace_if_no_change(@tc_1).uri).to eq(@tc_3.uri)
+      @tc_1.uri = "XXX" # URIs just need to be unique strings
+      @tc_3.uri = "YYY"
+      expect(@tc_3.replace_if_no_change(@tc_1).uri).to eq(@tc_1.uri)
     end
 
     it "replaces with previous, difference" do
       simple_thesaurus_1
       simple_thesaurus_3
+      @tc_5.uri = "XXX" # URIs just need to be unique strings
+      @tc_6.uri = "YYY"
       expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
     end
 
@@ -510,15 +560,15 @@ describe Thesaurus::ManagedConcept do
       expect(tc.synonym.map{|x| x.label}).to match_array(["aaaa", "bbbb"])
     end
 
-    it "assigns properties, preferred term" do
+    it "assigns properties, preferred term and label" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("London Heathrow")    
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.first.label).to eq("LHR")
       expect(tc.synonym.last.label).to eq("Heathrow")
-      tc.update({label: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
+      tc.update({synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.label).to eq("Updated")    
+      expect(tc.label).to eq("Woah!")    
       expect(tc.synonym.count).to eq(3)
       expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
       expect(tc.preferred_term.label).to eq("Woah!")

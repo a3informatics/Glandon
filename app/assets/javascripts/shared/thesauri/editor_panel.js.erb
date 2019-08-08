@@ -20,9 +20,6 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
           name: "parent_id"
       },
       {
-          name: "label"
-      },
-      {
           label: "Submission Value:",
           name: "notation"
       },
@@ -52,7 +49,6 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     },
     columns: [
       { data: "identifier" },
-      { data: "label" },
       { data: "notation" },
       { data: "preferred_term" },
       { data: "synonym" },
@@ -66,7 +62,7 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     ],
     rowId: "id",
     keys: {
-      columns: [ 1, 2, 3, 4, 5 ], // Key codes to be listened to and the columns
+      columns: [ 1, 2, 3, 4 ], // Key codes to be listened to and the columns
       keys: [ 9, 38, 40 ]
     }
   });
@@ -80,11 +76,11 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     var col = idx.column;
     var data = _this.editorTable.cell(this).data();
 
-    if (col == 6) {
+    if (col == 5) {
       ttExtendLock("1"); // Extend the token
       keepToken = true; // Keep the token. Important
       window.location.href = data.edit_path;
-    } else if (col == 7) {
+    } else if (col == 6) {
       if(confirm("Are you sure?")) {
         _this.delete(data.delete_path);
       }

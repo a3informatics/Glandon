@@ -19,7 +19,7 @@ class Thesaurus
       end
     
       def empty_concept
-        {identifier: C_NOT_SET, notation: C_NOT_SET, definition: C_NOT_SET, extensible: false, preferred_term: Thesaurus::PreferredTerm.where_only_or_create(C_NOT_SET)}
+        {label: C_NOT_SET, identifier: C_NOT_SET, notation: C_NOT_SET, definition: C_NOT_SET, extensible: false, preferred_term: Thesaurus::PreferredTerm.where_only_or_create(C_NOT_SET)}
       end
 
     end
@@ -61,7 +61,10 @@ class Thesaurus
     # @return [Void] no return
     def update(params)
       self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
-      self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term]) if params.key?(:preferred_term)
+      if params.key?(:preferred_term)
+        self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term]) 
+        params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
+      end
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
       save
     end
