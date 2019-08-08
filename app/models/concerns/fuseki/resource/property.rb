@@ -162,6 +162,22 @@ module Fuseki
         "#{name}".camelcase(:lower) # Camelcase with lower first char
       end
 
+      # ---------
+      # Test Only
+      # ---------
+      
+      if Rails.env.test?
+
+        def parent
+          @parent
+        end
+
+        def metadata
+          @metadata
+        end
+
+      end
+
     private
 
       # Set an object, either single or array

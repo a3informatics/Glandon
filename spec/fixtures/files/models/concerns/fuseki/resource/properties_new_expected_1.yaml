@@ -1,0 +1,28 @@
+--- "--- !ruby/object:Fuseki::Resource::Properties\nparent: &1 !ruby/object:TestR10\n
+  \ properties: !ruby/object:Fuseki::Resource::Properties\n    parent: *1\n    metadata:\n
+  \     :organization_identifier: &2\n        :default: \"<Not Set>\"\n        :cardinality:
+  :one\n        :model_class: ''\n        :type: :data\n        :base_type: \n        :name:
+  :organization_identifier\n        :predicate: !ruby/object:Uri\n          scheme:
+  http\n          authority: www.assero.co.uk\n          path: ISO11179Registration\n
+  \         fragment: organizationIdentifier\n      :international_code_designator:
+  &3\n        :default: XXX\n        :cardinality: :one\n        :model_class: ''\n
+  \       :type: :data\n        :base_type: \n        :name: :international_code_designator\n
+  \       :predicate: !ruby/object:Uri\n          scheme: http\n          authority:
+  www.assero.co.uk\n          path: ISO11179Registration\n          fragment: internationalCodeDesignator\n
+  \     :owner: &4\n        :default: ''\n        :cardinality: :one\n        :model_class:
+  ''\n        :type: :data\n        :base_type: \n        :name: :owner\n        :predicate:
+  !ruby/object:Uri\n          scheme: http\n          authority: www.assero.co.uk\n
+  \         path: ISO11179Registration\n          fragment: owner\n      :ra_namespace:
+  &5\n        :cardinality: :one\n        :model_class: !ruby/class 'IsoNamespace'\n
+  \       :default: \n        :type: :object\n        :path_exclude: false\n        :base_type:
+  ''\n        :name: :ra_namespace\n        :predicate: !ruby/object:Uri\n          scheme:
+  http\n          authority: www.assero.co.uk\n          path: ISO11179Registration\n
+  \         fragment: raNamespace\n      :by_authority: &6\n        :cardinality:
+  :one\n        :model_class: !ruby/class 'IsoRegistrationAuthority'\n        :path_exclude:
+  true\n        :default: \n        :type: :object\n        :base_type: ''\n        :name:
+  :by_authority\n        :predicate: !ruby/object:Uri\n          scheme: http\n          authority:
+  www.assero.co.uk\n          path: ISO11179Registration\n          fragment: byAuthority\n
+  \ transaction: \n  new_record: true\n  destroyed: false\n  uri: \n  organization_identifier:
+  \"<Not Set>\"\n  international_code_designator: XXX\n  owner: ''\n  ra_namespace:
+  \n  by_authority: \nmetadata:\n  :organization_identifier: *2\n  :international_code_designator:
+  *3\n  :owner: *4\n  :ra_namespace: *5\n  :by_authority: *6\n"

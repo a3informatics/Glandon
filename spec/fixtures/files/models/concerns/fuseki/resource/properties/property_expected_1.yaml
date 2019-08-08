@@ -1,0 +1,12 @@
+---
+:default: ''
+:cardinality: :one
+:model_class: ''
+:type: :data
+:base_type: boolean
+:name: :owner
+:predicate: !ruby/object:Uri
+  scheme: http
+  authority: www.assero.co.uk
+  path: ISO11179Registration
+  fragment: owner

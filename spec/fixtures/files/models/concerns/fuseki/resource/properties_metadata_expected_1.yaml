@@ -6,7 +6,11 @@
   :type: :data
   :base_type: string
   :name: :organization_identifier
-  :predicate: http://www.assero.co.uk/ISO11179Registration#organizationIdentifier
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: organizationIdentifier
 :international_code_designator:
   :default: XXX
   :cardinality: :one
@@ -14,7 +18,11 @@
   :type: :data
   :base_type: string
   :name: :international_code_designator
-  :predicate: http://www.assero.co.uk/ISO11179Registration#internationalCodeDesignator
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: internationalCodeDesignator
 :owner:
   :default: ''
   :cardinality: :one
@@ -22,7 +30,11 @@
   :type: :data
   :base_type: boolean
   :name: :owner
-  :predicate: http://www.assero.co.uk/ISO11179Registration#owner
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: owner
 :ra_namespace:
   :cardinality: :one
   :model_class: !ruby/class 'IsoNamespace'
@@ -31,7 +43,11 @@
   :path_exclude: false
   :base_type: ''
   :name: :ra_namespace
-  :predicate: http://www.assero.co.uk/ISO11179Registration#raNamespace
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: raNamespace
 :by_authority:
   :cardinality: :one
   :model_class: !ruby/class 'IsoRegistrationAuthority'
@@ -40,4 +56,8 @@
   :type: :object
   :base_type: ''
   :name: :by_authority
-  :predicate: http://www.assero.co.uk/ISO11179Registration#byAuthority
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: byAuthority

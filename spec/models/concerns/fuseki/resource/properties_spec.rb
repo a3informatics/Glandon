@@ -20,39 +20,7 @@ describe Fuseki::Resource::Properties do
     load_files(schema_files, data_files)
   end
 
-  class BaseTestFP
- 
-    include ActiveModel::Naming
-    include ActiveModel::Conversion
-    include ActiveModel::Validations
-    include ActiveModel::AttributeMethods
-
-    extend Fuseki::Schema
-    extend Fuseki::Resource
-
-    attr_accessor :uri
-
-    def self.rdf_type
-      self::C_URI
-    end
-
-    def rdf_type
-      self.class::C_URI
-    end
-
-  end 
-
-  def metadata_to_h(properties)
-    result = {}
-    properties.each do |k,v| 
-      y = v.dup
-      y[:predicate] = y[:predicate].to_s
-      result[k] = y
-    end
-    result
-  end
-
-  class TestFP1 < BaseTestFP
+  class TestR10 < Fuseki::Base
     
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
               base_uri: "http://www.assero.co.uk/RA" 
@@ -63,50 +31,53 @@ describe Fuseki::Resource::Properties do
     object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
     object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", path_exclude: true
 
-    def self.class_properties
-      properties_metadata_class
-    end
-
-    def instance_properties
-      properties_metadata
-    end
-
   end 
 
-  it "get properties, class and instance" do
-    temp = TestFP1.new
-    result = TestFP1.resources
-    check_file_actual_expected(metadata_to_h(result.raw), sub_dir, "properties_metadata_expected_1.yaml")
-    item = TestFP1.new
-    result = item.class.resources
-    check_file_actual_expected(metadata_to_h(result.raw), sub_dir, "properties_metadata_expected_1.yaml")
+  it "setup properties" do
+    metadata = TestR10.resources
+    item = TestR10.new
+    properties = Fuseki::Resource::Properties.new(item, metadata)
+    expect(properties.parent.class).to eq(TestR10)
+    check_file_actual_expected(properties.metadata, sub_dir, "properties_new_expected_1.yaml")
   end
+  
+  it "ignore property" do
+    metadata = TestR10.resources
+    item = TestR10.new
+    properties = Fuseki::Resource::Properties.new(item, metadata)
+    expect(properties.ignore?(:fred)).to eq(true)
+    expect(properties.ignore?(:owner)).to eq(false)
+    expect(properties.ignore?(:ra_namespace)).to eq(false)
+  end  
 
-  it "object relationships" do
-    temp = TestFP1.new
-    result = TestFP1.resources
-    check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
-    item = TestFP1.new
-    result = item.class.resources
-    check_file_actual_expected(result.object_relationships, sub_dir, "relationships_expected_1.yaml")
-  end
+  it "property" do
+    metadata = TestR10.resources
+    item = TestR10.new
+    properties = Fuseki::Resource::Properties.new(item, metadata)
+    result = properties.property(:owner)
+    check_file_actual_expected(result.metadata, sub_dir, "property_expected_1.yaml")
+  end  
 
-  it "property relationships" do
-    temp = TestFP1.new
-    result = TestFP1.resources
-    check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
-    item = TestFP1.new
-    result = item.class.resources
-    check_file_actual_expected(result.property_relationships, sub_dir, "relationships_expected_2.yaml")
-  end
+  it "assign" do
+    metadata = TestR10.resources
+    item = TestR10.new
+    item.properties.assign(organization_identifier: "NEW", owner: true)
+    expect(item.owner).to eq(true)
+    expect(item.organization_identifier).to eq("NEW")
+  end  
 
-  it "managed paths" do
-    temp = TestFP1.new
-    result = TestFP1.resources
-    check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
-    item = TestFP1.new
-    result = item.class.resources
-    check_file_actual_expected(result.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
+  it "sets property from triple" do
+    metadata = TestR10.resources
+    item = TestR10.new
+    properties = Fuseki::Resource::Properties.new(item, metadata)
+    result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), object: ""})
+    expect(result).to eq(nil)
+    result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#internationalCodeDesignator"), object: "EEEEE"})
+    expect(result.name).to eq(:international_code_designator)
+    expect(result.get).to eq("EEEEE")
+    result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#raNamespace"), object: Uri.new(uri: "http://www.assero.co.uk/A#A")})
+    expect(result.name).to eq(:ra_namespace)
+    expect(result.get.to_s).to eq("http://www.assero.co.uk/A#A")
   end
 
 end

@@ -1,3 +1,8 @@
+# Fuseki Base. The base class for all objects in the triple store
+#
+# @author Dave Iberson-Hurst
+# @since 2.22.0
+
 require "active_model"
 require "fuseki/resource"
 require "fuseki/persistence"
