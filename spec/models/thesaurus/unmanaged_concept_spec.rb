@@ -78,13 +78,9 @@ describe Thesaurus::UnmanagedConcept do
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(0)
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-	#Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_1.yaml")
-		expected = read_yaml_file(sub_dir, "add_child_expected_1.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-  #Xwrite_yaml_file(tc.to_h, sub_dir, "add_child_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
   end
 
   it "prevents a duplicate TC being added" do
@@ -135,7 +131,7 @@ describe Thesaurus::UnmanagedConcept do
     expect(new_object.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters and Definition contains invalid characters")
   end
 
-  it "allows a TC to be updated" do
+  it "allows a TC to be saved" do
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
@@ -148,11 +144,9 @@ describe Thesaurus::UnmanagedConcept do
     new_object = tc.add_child(params)
     new_object.label = "New_XXX"
     new_object.notation = "NEWNEWXXX"
-    new_object.update
+    new_object.save
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-  #Xwrite_yaml_file(tc.to_h, sub_dir, "update_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "update_expected_1.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_1.yaml")
   end
 
   it "allows a TC to be updated, quotes test" do
@@ -167,11 +161,9 @@ describe Thesaurus::UnmanagedConcept do
     }
     new_object = tc.add_child(params)
     new_object.label = "New \"XXX\""
-    new_object.update
+    new_object.save
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-  write_yaml_file(tc.to_h, sub_dir, "update_expected_2.yaml")
-    expected = read_yaml_file(sub_dir, "update_expected_2.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
   end
   
   it "allows a TC to be updated, character test" do
@@ -188,11 +180,9 @@ describe Thesaurus::UnmanagedConcept do
     new_object.label = vh_all_chars
     new_object.notation = vh_all_chars + "^"
     new_object.definition = vh_all_chars
-    new_object.update
+    new_object.save
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-  write_yaml_file(tc.to_h, sub_dir, "update_expected_3.yaml")
-    expected = read_yaml_file(sub_dir, "update_expected_3.yaml")
-    expect(tc.to_h).to eq(expected)
+    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
   end
   
   it "allows to determine if TCs different" do
@@ -252,7 +242,7 @@ describe Thesaurus::UnmanagedConcept do
     tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Preferred Term 1")
     th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
     th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-    th.set_initial("NEW_TH", ra)
+    th.set_initial("NEW_TH")
     sparql.default_namespace(th.uri.namespace)
     th.to_sparql(sparql, true)
     tc_1.to_sparql(sparql, true)
@@ -348,8 +338,7 @@ describe Thesaurus::UnmanagedConcept do
     input = {},
     tc_current = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
     tc_previous = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
-    tc_previous.notation = "SSSSSS"
-    tc_previous.update
+    tc_previous.update(notation: "SSSSSS")
     expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
     expect(tc_current.narrower.count).to eq(0)
   end

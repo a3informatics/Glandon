@@ -153,7 +153,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{
-SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?sys) ?s WHERE\n
+SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {        
   VALUES ?s { #{items.map{|x| x.to_ref}.join(" ")} }
   {
@@ -196,7 +196,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\" \"
 
     # Get the final result
     query_string = %Q{
-SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?sys) ?s WHERE\n
+SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {        
   VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
   {

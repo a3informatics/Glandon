@@ -1,0 +1,19 @@
+PREFIX th: <http://www.assero.co.uk/Thesaurus#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> rdf:type th:Thesaurus . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoC:label "CDISC Extensions"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-SPONSOR_CT> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1> . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:origin ""^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:changeDescription "Creation"^^xsd:string . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:creationDate "2015-11-22T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:lastChangeDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
+<http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1> isoT:explanatoryComment ""^^xsd:string . 
+}

@@ -103,7 +103,7 @@ class Thesaurus
               }
           }
         }
-        query = "SELECT DISTINCT ?pi ?i ?n ?d ?pt (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?sys) ?uri WHERE\n"
+        query = "SELECT DISTINCT ?pi ?i ?n ?d ?pt (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) ?uri WHERE\n"
         query += "{\n"
         query += "  #{main_part}"
         

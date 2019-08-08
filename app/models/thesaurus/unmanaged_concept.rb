@@ -92,6 +92,9 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     end
   end
 
+  # Differences
+  #
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def differences
     results =[]
     query_string = %Q{
@@ -112,7 +115,7 @@ SELECT DISTINCT ?p WHERE\n
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     items = query_results.by_object_set([:p])
     query_string = %Q{
-SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"; \") as ?sys) WHERE\n
+SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) WHERE\n
 {        
   VALUES ?p { #{items.map{|x| x[:p].to_ref}.join(" ")} }
   {
@@ -141,6 +144,9 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     results
   end
 
+  # Replace If No Change. Replace the current with the previous if no differences.
+  #
+  # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous)
@@ -156,7 +162,7 @@ private
     !difference?(current, previous)  
   end
 
-  #
+  # Replace the child if no change.
   def replace_children_if_no_change(previous)
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}

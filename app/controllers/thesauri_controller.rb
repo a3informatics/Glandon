@@ -81,7 +81,7 @@ class ThesauriController < ApplicationController
       @token.release
 	    @token = get_token(@thesaurus)
 	  end
-  	@close_path = history_thesauri_index_path(identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope)
+  	@close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
     @parent_identifier = ""
   end
 

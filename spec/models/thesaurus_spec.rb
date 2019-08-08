@@ -33,9 +33,9 @@ describe Thesaurus do
     end
 
     it "returns the owner" do
-      expected = IsoRegistrationAuthority.owner.to_json
-      ra = Form.owner
-      expect(ra.to_json).to eq(expected)
+      expected = IsoRegistrationAuthority.owner
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(th.owner.uri).to eq(expected.uri)
     end    
 
     it "allows an object to be initialised" do
@@ -63,8 +63,8 @@ describe Thesaurus do
       result = Thesaurus.new
       valid = result.valid?
       expect(valid).to eq(false)
-      expect(result.errors.count).to eq(1)
-      expect(result.errors.full_messages[0]).to eq("Uri can't be blank")
+      expect(result.errors.count).to eq(3)
+      expect(result.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, and Has state: Empty object")
     end 
 
     it "allows validity of the object to be checked" do
@@ -75,9 +75,12 @@ describe Thesaurus do
       ra.international_code_designator = "DUNS"
       ra.ra_namespace = IsoNamespace.find(Uri.new(uri:"http://www.assero.co.uk/NS#ACME"))
       th.has_state = IsoRegistrationStateV2.new
-      th.has_identifier = IsoScopedIdentifierV2.new
+      th.has_state.uri = "na"
       th.has_state.by_authority = ra
+      th.has_identifier = IsoScopedIdentifierV2.new
+      th.has_identifier.uri = "na"
       th.has_identifier.identifier = "HELLO WORLD"
+      th.has_identifier.semantic_version = "0.1.0"
       th.uri = "xxx"
       valid = th.valid?
       expect(th.errors.count).to eq(0)
@@ -163,39 +166,29 @@ describe Thesaurus do
       expect(result.namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
     end
     
-    it "allows a simple creation of a thesaurus" do
-      result_th = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_4.yaml")
-      th = Thesaurus.create_simple({:identifier => "TEST", :label => "Test Thesaurus"})
-    #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_4.yaml")
-      result_th[:creation_date] = date_check_now(th.creationDate).iso8601
-      result_th[:last_changed_date] = date_check_now(th.lastChangeDate).iso8601
+    it "allows a creation of a thesaurus" do
+      th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+    #Xwrite_yaml_file(th.to_h, sub_dir, "thesaurus_example_4.yaml")
+      expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_4.yaml")
+      expected[:creation_date] = date_check_now(th.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(th.last_change_date).iso8601
       expect(th.errors.count).to eq(0)
-      expect(th.to_json).to eq(result_th)
-    end
-
-    it "allows for the creation of a thesaurus" do
-      th_result = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_6.yaml")
-      operation = read_yaml_file_to_hash_2(sub_dir, "thesaurus_example_5.yaml")
-      th = Thesaurus.create(operation)
-    #Xwrite_yaml_file(th.to_json, sub_dir, "thesaurus_example_6.yaml")
-      th_result[:creation_date] = operation[:managed_item][:creation_date]
-      th_result[:last_changed_date] = date_check_now(th.lastChangeDate).iso8601
-      expect(th.errors.count).to eq(0)
-      expect(th.to_json).to eq(th_result)
+      expect(th.to_h).to eq(expected)
     end
 
     it "allows for a thesaurus to be destroyed" do
-      th = Thesaurus.find("TH-ACME_NEW", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(th.exists?).to eq(true)
+      th = Thesaurus.create({:identifier => "TEST1", :label => "Test Thesaurus 1"})
+      expect(Thesaurus.find_minimum(th.id).uri.to_s).to eq("http://www.acme-pharma.com/TEST1/V1#TH")
       th.destroy
-      expect(th.exists?).to eq(false)
+      expect{Thesaurus.find_minimum(th.id)}.to raise_error(Errors::NotFoundError, "")
     end
 
-    it "allows the Th to be exported as SPARQL" do
-      th =Thesaurus.find_complete("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      sparql = th.to_sparql_v2
-    #Xwrite_text_file_2(sparql.to_s, sub_dir, "thesaurus_example_7.txt")
-      check_sparql_no_file(sparql.to_s, "thesaurus_example_7.txt")
+    it "allows the thesaurus to be exported as SPARQL" do
+      th = Thesaurus.find(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      sparql = Sparql::Update.new
+      th.to_sparql(sparql, true)
+    #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt") 
     end
 
     it "allows the impact to be assessed - WILL CURRENTLY FAIL" do
@@ -387,16 +380,21 @@ describe Thesaurus do
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
-      actual = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
-      check_file_actual_expected(actual.to_h, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+      item = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
+    #Xwrite_yaml_file(actual.to_h, sub_dir, "add_child_expected_4.yaml")
+      actual = item.to_h
+      expected = read_yaml_file(sub_dir, "add_child_expected_4.yaml")
+      expect(actual[:preferred_term][:label]).to eq(expected[:preferred_term][:label])
+      expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
+      expect(actual).to hash_equal(expected)
     end
 
     it "allows a child TC to be added - error, invalid identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
       item = ct.add_child(identifier: "S123£%^@")
-      expect(item.errors.count).to eq(1)
-      expect(item.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters")
+      expect(item.errors.count).to eq(2)
+      expect(item.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Identifier contains a part with invalid characters")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
     end

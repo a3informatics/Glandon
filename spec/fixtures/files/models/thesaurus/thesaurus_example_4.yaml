@@ -1,11 +1,11 @@
 ---
-:uri: http://www.acme-pharma.com/S12345X/V1#S12345X
-:uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVY
-:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-:label: Not Set
+:uri: http://www.acme-pharma.com/TEST/V1#TH
+:uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSA==
+:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:label: Test Thesaurus
 :has_state:
-  :uri: http://www.acme-pharma.com/S12345X/V1#S12345X_RS
-  :uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVYX1JT
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_RS
+  :uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9SUw==
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -29,10 +29,10 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :uri: http://www.acme-pharma.com/S12345X/V1#S12345X_SI
-  :uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVYX1NJ
+  :uri: http://www.acme-pharma.com/TEST/V1#TH_SI
+  :uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vVEVTVC9WMSNUSF9TSQ==
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: S12345X
+  :identifier: TEST
   :version_label: ''
   :version: 1
   :semantic_version: 0.0.1
@@ -45,19 +45,8 @@
     :authority: www.acme-pharma.com
 :origin: ''
 :change_description: ''
-:creation_date: '2019-08-08T14:52:26+02:00'
-:last_change_date: '2019-08-08T14:52:26+02:00'
+:creation_date: '2019-08-08T18:40:10+02:00'
+:last_change_date: '2019-08-08T18:40:10+02:00'
 :explanatory_comment: ''
-:identifier: S12345X
-:notation: Not Set
-:definition: Not Set
-:extensible: false
-:extended_with: []
-:narrower: []
-:is_subset: 
-:preferred_term:
-  :uri: http://www.assero.co.uk/PT#aad47035-8ffc-4f6b-b159-3890dd64f546
-  :uuid: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYWFkNDcwMzUtOGZmYy00ZjZiLWIxNTktMzg5MGRkNjRmNTQ2
-  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-  :label: Not Set
-:synonym: []
+:is_top_concept_reference: []
+:is_top_concept: []

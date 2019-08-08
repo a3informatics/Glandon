@@ -210,7 +210,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
 
     # Get the final result
     query_string = %Q{
-SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\" \") as ?sys) ?s WHERE\n
+SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) ?s WHERE\n
 {        
   VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
   {
