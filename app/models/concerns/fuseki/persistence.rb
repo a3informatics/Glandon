@@ -14,7 +14,7 @@ module Fuseki
 
     module ClassMethods
 
-      # Find
+      # Find. Simple find for the subject. Will cache if indicated in class definition.
       #
       # @param [Uri|id] the identifier, either a URI or the id
       # @return [Object] a class object.
@@ -25,7 +25,7 @@ module Fuseki
         from_results(uri, results.by_subject[uri.to_s])
       end
 
-      # Find Children
+      # Find Children. Find object and one-level of child
       #
       # @param [Uri|id] the identifier, either a URI or the id
       # @return [Object] a class object.
@@ -138,6 +138,20 @@ module Fuseki
         results = Sparql::Query.new.query(query_string, uri.namespace, [])
         cache[uri_as_s] = results if !results.empty?
         results
+      end
+
+      # -----------------
+      # Test Only Methods
+      # -----------------
+
+      if Rails.env.test?
+
+        # Check if cache has a key.
+        def cache_has_key?(uri)
+          return false if !Fuseki::Base.class_variable_defined?(:@@subjects) || Fuseki::Base.class_variable_get(:@@subjects).nil?
+          Fuseki::Base.class_variable_get(:@@subjects).key?(uri.to_s)
+        end
+
       end
 
     end
@@ -274,7 +288,7 @@ module Fuseki
         next if object_empty?(property)
         object_create_uri(property)
       end
-    end      
+    end   
 
   private
 

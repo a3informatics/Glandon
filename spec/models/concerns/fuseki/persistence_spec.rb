@@ -15,68 +15,46 @@ describe Fuseki::Persistence do
   end
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
+    load_files(schema_files, data_files)
   end
 
   after :each do
   end
 
-  class BaseTestFp
- 
-    include ActiveModel::Naming
-    include ActiveModel::Conversion
-    include ActiveModel::Validations
-    include ActiveModel::AttributeMethods
+  class TestFP1 < Fuseki::Base
 
-    include Fuseki::Persistence
-    include Fuseki::Utility
-    include Fuseki::Diff
-    extend Fuseki::Schema
-    extend Fuseki::Resource
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
 
-    attr_accessor :uri
-
-    set_schema
-
-    def initialize
-      @@props = read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") 
-      self.class.instance_variable_set(:@properties, @@props)
-    end
-
-    def self.rdf_type
-      self::C_URI
-    end
-
-  end 
-
-  class TestFp1 < BaseTestFp
-
-    C_URI = Uri.new(uri: "http://www.assero.co.uk/ISO11179Types#AdministeredItem")
-
-    attr_accessor :has_state
-    attr_accessor :has_identifier
-    attr_accessor :origin
-
-    def initialize
-      @origin = ""
-      @has_state = nil
-      @has_identifier = nil
-      @rdf_type = C_URI
-      super
-    end
+    object_property :has_state, cardinality: :one, model_class: "IsoRegistrationStateV2"
+    object_property :has_identifier, cardinality: :one, model_class: "IsoScopedIdentifierV2"
+    data_property :change_description
 
   end
 
-  it "error if RDF type not configured" do
-    expect(TestFp1).to receive(:properties_read_class).and_return(read_yaml_file("models/concerns/fuseki/persistence", "properties.yaml") )
-    triples = read_yaml_file(sub_dir, "from_results_recurse_input_1.yaml")
+  it "find, simple case" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    result = TestFp1.from_results_recurse(uri, triples)
-    puts result.to_json
+    result = TestFP1.find(uri)
+    expect(result.change_description).to eq("Creation")
+    expect(result.has_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1")
+    expect(result.has_state.to_s).to eq("http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1")
+  end
+
+  it "find with cache" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#BBB")
+    expect(Fuseki::Base.cache_has_key?(uri)).to eq(false)
+    result = IsoNamespace.find(uri)
+    expect(result.name).to eq("BBB Pharma")
+    expect(Fuseki::Base.cache_has_key?(uri)).to eq(true)
+    result = IsoNamespace.find(uri)
+    expect(result.name).to eq("BBB Pharma")
+  end
+
+  it "find children" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    result = TestFP1.find_children(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "find_children_expected_1.yaml", equate_method: :hash_equal, write_file: true)
   end
 
 end
