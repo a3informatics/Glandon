@@ -5,6 +5,7 @@ describe CdiscTerm do
   include DataHelpers
   include PublicFileHelpers
   include SparqlHelpers
+  include IsoHelpers
 
   def sub_dir
     return "models/import/cdisc_term"
@@ -20,6 +21,7 @@ describe CdiscTerm do
   end
 
   before :each do
+    IsoHelpers.clear_cache
     schema_files = 
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 

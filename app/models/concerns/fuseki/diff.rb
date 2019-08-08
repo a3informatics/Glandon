@@ -114,9 +114,7 @@ puts "\n***** DIFF: #{self.identifier} *****\n\n" if self.respond_to?(:identifie
   private
 
     def diff(name, self_object, other_object)
-
-puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if "#{name}".start_with?("@")
-
+puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if name.is_a? Symbol
       true
     end
 
