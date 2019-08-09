@@ -4,7 +4,7 @@ class Thesaurus <  IsoManagedV2
             uri_suffix: "TH"
 
   object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TcReference", children: true
-  object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", read_exclude: true
+  object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
 
   include Thesaurus::Search
 

@@ -1,9 +1,11 @@
 ---
-:default: ''
 :cardinality: :one
-:model_class: ''
+:model_class: 
 :type: :data
 :base_type: boolean
+:read_exclude: false
+:delete_exclude: false
+:default: ''
 :name: :owner
 :predicate: !ruby/object:Uri
   scheme: http

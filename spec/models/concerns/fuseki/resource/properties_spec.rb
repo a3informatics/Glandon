@@ -29,7 +29,7 @@ describe Fuseki::Resource::Properties do
     data_property :international_code_designator, default: "XXX"
     data_property :owner, default: false
     object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
-    object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", path_exclude: true
+    object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true, delete_exclude: true
 
   end 
 

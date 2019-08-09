@@ -202,10 +202,10 @@ class IsoManagedV2 < IsoConceptV2
   def self.find(id)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
-    x = subject_set
-    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude].join("|")}) ?o }"
+    exclude = excluded_read_relationships
+    exclude_clause = exclude.blank? ? "" : " MINUS { ?s (#{exclude.join("|")}) ?o }"
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
-    x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    read_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "SELECT DISTINCT ?s ?p ?o ?e WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Query.new.query(query_string, uri.namespace, [:isoI, :isoR])
     raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if results.empty?
@@ -435,10 +435,8 @@ class IsoManagedV2 < IsoConceptV2
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
     parts = []
-    x = self.class.subject_set
-    exclude_clause = x[:exclude].blank? ? "" : " MINUS { ?s (#{x[:exclude].join("|")}) ?o }"
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o #{exclude_clause}}" 
-    x[:include].each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }" 
+    self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
     results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
     1
@@ -645,11 +643,6 @@ private
       " #{self.uri.to_ref} isoT:origin ?c . \n" +
       " #{self.uri.to_ref} isoT:lastChangeDate ?d . \n" +
       "}"
-  end
-
-  # Relationship set, array of predicates.
-  def self.subject_set
-    {include: managed_paths, exclude: excluded_relationships}
   end
 
 end

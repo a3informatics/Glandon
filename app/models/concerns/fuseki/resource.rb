@@ -43,11 +43,18 @@ module Fuseki
       resources.select{|x,y| y[:type]!=:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class]}}
     end
 
-    # Excluded Relationships
+    # Excluded Read Relationships
     # 
     # @return [Array] array of hash each containing the predicate of any relationships marked to be excluded
-    def excluded_relationships
-      resources.select{|x,y| y[:type]==:object && y[:path_exclude]}.map{|x,y| y[:predicate].to_ref}
+    def excluded_read_relationships
+      excluded_relationships(:read_exclude)
+    end
+
+    # Excluded Delete Relationships
+    # 
+    # @return [Array] array of hash each containing the predicate of any relationships marked to be excluded
+    def excluded_delete_relationships
+      excluded_relationships(:delete_exclude)
     end
 
     # Read Paths
@@ -230,6 +237,14 @@ module Fuseki
         children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
       end
       result
+    end
+
+    # Excluded Relationships
+    # 
+    # @param type [Symbol] the path type
+    # @return [Array] array of hash each containing the predicate of any relationships marked to be excluded
+    def excluded_relationships(type)
+      resources.select{|x,y| y[:type]==:object && y[type]}.map{|x,y| y[:predicate].to_ref}
     end
 
   private

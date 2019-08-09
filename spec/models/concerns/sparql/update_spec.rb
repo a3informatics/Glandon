@@ -55,7 +55,7 @@ describe Sparql::Update do
   
   it "allows for the class to be created" do
 		sparql = Sparql::Update.new()
-    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{},\"duplicates\":{}}")
+    expect(sparql.to_json).to eq("{\"default_namespace\":\"\",\"prefix_used\":{},\"triples\":{},\"duplicates\":{},\"transaction\":null}")
 	end
 
   it "allows a URI triple to be added" do

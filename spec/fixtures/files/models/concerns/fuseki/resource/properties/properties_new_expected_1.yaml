@@ -1,10 +1,12 @@
 ---
 :organization_identifier:
-  :default: "<Not Set>"
   :cardinality: :one
-  :model_class: ''
+  :model_class: 
   :type: :data
   :base_type: string
+  :read_exclude: false
+  :delete_exclude: false
+  :default: "<Not Set>"
   :name: :organization_identifier
   :predicate: !ruby/object:Uri
     scheme: http
@@ -12,11 +14,13 @@
     path: ISO11179Registration
     fragment: organizationIdentifier
 :international_code_designator:
-  :default: XXX
   :cardinality: :one
-  :model_class: ''
+  :model_class: 
   :type: :data
   :base_type: string
+  :read_exclude: false
+  :delete_exclude: false
+  :default: XXX
   :name: :international_code_designator
   :predicate: !ruby/object:Uri
     scheme: http
@@ -24,11 +28,13 @@
     path: ISO11179Registration
     fragment: internationalCodeDesignator
 :owner:
-  :default: ''
   :cardinality: :one
-  :model_class: ''
+  :model_class: 
   :type: :data
   :base_type: boolean
+  :read_exclude: false
+  :delete_exclude: false
+  :default: ''
   :name: :owner
   :predicate: !ruby/object:Uri
     scheme: http
@@ -40,7 +46,8 @@
   :model_class: !ruby/class 'IsoNamespace'
   :default: 
   :type: :object
-  :path_exclude: false
+  :read_exclude: false
+  :delete_exclude: false
   :base_type: ''
   :name: :ra_namespace
   :predicate: !ruby/object:Uri
@@ -51,7 +58,8 @@
 :by_authority:
   :cardinality: :one
   :model_class: !ruby/class 'IsoRegistrationAuthority'
-  :path_exclude: true
+  :read_exclude: true
+  :delete_exclude: true
   :default: 
   :type: :object
   :base_type: ''
