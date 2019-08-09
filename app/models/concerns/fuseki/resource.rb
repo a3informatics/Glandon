@@ -50,23 +50,18 @@ module Fuseki
       resources.select{|x,y| y[:type]==:object && y[:path_exclude]}.map{|x,y| y[:predicate].to_ref}
     end
 
-    # Managed Paths
+    # Read Paths
     # 
-    # @return [Array] array of strings each being the path (SPARQL) from the class to form a managed item
-    def managed_paths(stack=[])
-      top = true if stack.empty?
-      result = []
-      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[:path_exclude]}}
-      predicates.each do |predicate| 
-        stack = [] if top
-        next if predicate[:exclude]
-        klass = predicate[:model_class]
-        next if stack.include?(klass)
-        stack.push(klass)
-        children = klass.managed_paths(stack)
-        children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
-      end
-      result
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def read_paths
+      managed_paths(:read_exclude)
+    end
+
+    # Delete Paths
+    # 
+    # @return [Array] array of strings each being the path (SPARQL) from the class to delete a managed item
+    def delete_paths
+      managed_paths(:delete_exclude)
     end
 
     # Configure
@@ -157,7 +152,8 @@ module Fuseki
       opts[:model_class] = opts[:model_class].constantize
       opts[:default] = opts[:cardinality] == :one ? nil : []
       opts[:type] = :object 
-      opts[:path_exclude] = false if !opts.key?(:path_exclude)
+      opts[:read_exclude] = opts.key?(:read_exclude)
+      opts[:delete_exclude] = opts.key?(:delete_exclude)
       opts[:base_type] = ""
       add_to_resources(name, opts)
 
@@ -198,12 +194,42 @@ module Fuseki
     # Data Property
     #
     # @param name [Symbol] the property name
-    # @param opts [Hash] the option hash.
+    # @param [Hash] opts the option hash.
     # @option opts [Symbol] :default the default value. Optional
     # @return [Void] no return
     def data_property(name, opts = {})
-      default = opts[:default] ? opts[:default] : ""
-      add_to_resources(name, {default: default, cardinality: :one, model_class: "", type: :data, base_type: self.schema_metadata.datatype(predicate_uri(name))})
+      options = 
+      { 
+        cardinality: :one, 
+        model_class: nil, 
+        type: :data, 
+        base_type: self.schema_metadata.datatype(predicate_uri(name)), 
+        read_exclude: false, 
+        delete_exclude: false 
+      }
+      options[:default] = opts[:default] ? opts[:default] : ""
+      add_to_resources(name, options)
+    end
+
+    # Managed Paths. Form a managed path
+    # 
+    # @param type [Symbol] the path type
+    # @param stack [Array] the stack of klasses processed. Used to prevent circular paths
+    # @return [Array] array of strings each being the path (SPARQL) from the class to read a managed item
+    def managed_paths(type, stack=[])
+      top = true if stack.empty?
+      result = []
+      predicates = resources.select{|x,y| y[:type]==:object}.map{|x,y| {predicate: y[:predicate], model_class: y[:model_class], exclude: y[type]}}
+      predicates.each do |predicate| 
+        stack = [] if top
+        next if predicate[:exclude]
+        klass = predicate[:model_class]
+        next if stack.include?(klass)
+        stack.push(klass)
+        children = klass.managed_paths(type, stack)
+        children.empty? ? result << "#{predicate[:predicate].to_ref}" : children.each {|child| result << "#{predicate[:predicate].to_ref}|#{child}"}
+      end
+      result
     end
 
   private

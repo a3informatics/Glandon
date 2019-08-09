@@ -134,12 +134,29 @@ describe Fuseki::Resource do
 
     it "object property configured" do
       TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
-      fred_expected = {:base_type=>"", :cardinality=>:one, :default=>nil, :model_class=>TestRTarget, :path_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
-      sid_expected = {:base_type=>"", :cardinality=>:many, :default=>[], :model_class=>TestRTarget, :path_exclude=>true, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
+      fred_expected = {:base_type=>"", :cardinality=>:one, :default=>nil, :model_class=>TestRTarget, :read_exclude=>false, :delete_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+      sid_expected = {:base_type=>"", :cardinality=>:many, :default=>[], :model_class=>TestRTarget, :read_exclude=>true, :delete_exclude=>false, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
       TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
       expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
-      TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", path_exclude: true})
+      TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true})
       expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected}) 
+    end
+
+    it "object property configured, exclude" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      fred_expected = {:base_type=>"", :cardinality=>:one, :default=>nil, :model_class=>TestRTarget, :read_exclude=>false, :delete_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+      sid_expected = {:base_type=>"", :cardinality=>:many, :default=>[], :model_class=>TestRTarget, :read_exclude=>true, :delete_exclude=>true,  :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
+      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget"})
+      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
+      TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true, delete_exclude: true})
+      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected, :sid => sid_expected}) 
+    end
+
+    it "object property configured, exclude bad value" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      sid_expected = {:base_type=>"", :cardinality=>:many, :default=>[], :model_class=>TestRTarget, :read_exclude=>true, :delete_exclude=>true, :name=>:sid, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#sid")}
+      TestR4.object_property(:sid, {cardinality: :many, model_class: "TestRTarget", read_exclude: true, delete_exclude: "x"})
+      expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:sid => sid_expected}) 
     end
 
     it "data property configured, no default" do
@@ -147,9 +164,9 @@ describe Fuseki::Resource do
       expect(TestR5).to receive(:schema_metadata).and_return(metadata)
       expect(metadata).to receive(:datatype).and_return("xxx")
       TestR5.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred1_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"", :model_class=>"", :name=>:fred1, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred1")}
+      fred1_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"", :model_class=>nil, :read_exclude=>false, :delete_exclude=>false, :name=>:fred1, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred1")}
       TestR5.data_property(:fred1)
-      expect(TestR5.instance_variable_get(:@resources)).to eq({:fred1 => fred1_expected})    
+      expect(TestR5.instance_variable_get(:@resources)).to hash_equal({:fred1 => fred1_expected})    
     end
 
     it "data property configured, default" do
@@ -157,9 +174,9 @@ describe Fuseki::Resource do
       expect(TestR6).to receive(:schema_metadata).and_return(metadata)
       expect(metadata).to receive(:datatype).and_return("xxx")
       TestR6.configure({rdf_type: "http://www.example.com/C#YYY"})
-      fred2_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"default value", :model_class=>"", :name=>:fred2, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred2")}
+      fred2_expected = {:base_type=>"xxx", :cardinality=>:one, :default=>"default value", :model_class=>nil, :read_exclude=>false, :delete_exclude=>false, :name=>:fred2, :type=>:data, predicate: Uri.new(uri: "http://www.example.com/C#fred2")}
       TestR6.data_property(:fred2, {default: "default value"})
-      expect(TestR6.instance_variable_get(:@resources)).to eq({:fred2 => fred2_expected})    
+      expect(TestR6.instance_variable_get(:@resources)).to hash_equal({:fred2 => fred2_expected})    
     end
 
     it "key property" do
@@ -173,9 +190,9 @@ describe Fuseki::Resource do
 
     it "children properties" do
       TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
-      fred_expected = {:base_type=>"", :cardinality=>:one, :children=>true, :default=>nil, :model_class=>TestRTarget, :path_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
+      fred_expected = {:base_type=>"", :cardinality=>:one, :children=>true, :default=>nil, :model_class=>TestRTarget, :read_exclude=>false, :delete_exclude=>false, :name=>:fred, :type=>:object, predicate: Uri.new(uri: "http://www.example.com/B#fred")}
       TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget", children: true})
-      expect(TestR4.instance_variable_get(:@resources)).to eq({:fred => fred_expected})
+      expect(TestR4.instance_variable_get(:@resources)).to hash_equal({:fred => fred_expected})
       item = TestR4.new
       expect(TestR4.respond_to?(:children_klass)).to eq(true)
       expect(TestR4.respond_to?(:children_predicate)).to eq(true)
@@ -186,23 +203,33 @@ describe Fuseki::Resource do
 
   describe "read metadata" do
 
-    before :each do
-      clear_triple_store
+    # This is naughty but ok-ish. Loads schema ready for the tests and the elaboration of class TestR10 which happens 
+    # before the "before :all" block. Schema is required.
+    sparql_query = "CLEAR DEFAULT"
+    CRUD.update(sparql_query)
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+    schema_files.each do |f|
+      full_path = Rails.root.join "db/load/schema/#{f}"
+      response = CRUD.file(full_path)
+      raise if !response.success?
+    end
+    
+    before :all do
     end
 
-    after :each do
+    after :all do
     end
 
     class TestR10 < Fuseki::Base
-      
+
       configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
                 base_uri: "http://www.assero.co.uk/RA" 
 
       data_property :organization_identifier, default: "<Not Set>" 
       data_property :international_code_designator, default: "XXX"
       data_property :owner, default: false
-      object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
-      object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", path_exclude: true
+      object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
+      object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
 
     end 
 
@@ -226,10 +253,16 @@ describe Fuseki::Resource do
       check_file_actual_expected(item.class.property_relationships, sub_dir, "relationships_expected_2.yaml")
     end
 
-    it "managed paths" do
-      check_file_actual_expected(TestR10.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
+    it "read paths" do
+      check_file_actual_expected(TestR10.read_paths, sub_dir, "managed_paths_expected_1.yaml")
       item = TestR10.new
-      check_file_actual_expected(item.class.managed_paths, sub_dir, "managed_paths_expected_1.yaml")
+      check_file_actual_expected(item.class.read_paths, sub_dir, "managed_paths_expected_1.yaml")
+    end
+
+    it "delete paths" do
+      check_file_actual_expected(TestR10.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+      item = TestR10.new
+      check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
     end
 
   end

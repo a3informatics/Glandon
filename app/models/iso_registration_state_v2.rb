@@ -21,7 +21,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state, default: C_NOT_SET
-  object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority"
+  object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", delete_exclude: true
 
   validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
   validates_with Validator::Field, attribute: :previous_state, method: :valid_registration_state?

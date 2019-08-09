@@ -12,7 +12,7 @@ class IsoScopedIdentifierV2 < Fuseki::Base
   data_property :version_label
   data_property :version
   data_property :semantic_version
-  object_property :has_scope, cardinality: :one, model_class: "IsoNamespace"
+  object_property :has_scope, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
 
   validates_with Validator::Field, attribute: :identifier, method: :valid_identifier?
   validates_with Validator::Field, attribute: :version_label, method: :valid_label?

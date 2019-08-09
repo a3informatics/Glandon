@@ -13,7 +13,7 @@ class IsoRegistrationAuthority < Fuseki::Base
   data_property :organization_identifier, default: "<Not Set>" 
   data_property :international_code_designator, default: C_SCHEMES.first
   data_property :owner, default: false
-  object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace"
+  object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
 
   # @todo probably add these to field. Not used anywhere selse at the moment so not worth it.
   validates :organization_identifier, presence: true
