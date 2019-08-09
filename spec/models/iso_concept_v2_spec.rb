@@ -45,7 +45,7 @@ describe IsoConceptV2 do
 	      	:rdf_type => "http://www.assero.co.uk/ISO11179Concepts#Concept",
 	      	:uri => uri.to_s, 
 	      	:label => "A Concept",
-          :uuid => uri.to_id
+          :id => uri.to_id
 	    	}
       result = IsoConceptV2.find(uri)
 			expect(result.to_h).to eq(expected)   

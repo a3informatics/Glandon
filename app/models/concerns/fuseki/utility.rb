@@ -49,7 +49,7 @@ module Fuseki
     #
     # @return [Hash] the hash
     def to_h
-      result = {uri: self.uri.to_h, uuid: self.id, rdf_type: self.rdf_type.to_h} # Core items and handled differently
+      result = {id: self.id, uri: self.uri.to_h, rdf_type: self.rdf_type.to_h} # Core items and handled differently.
       @properties.each do |property| 
         object = property.get
         variable = property.name

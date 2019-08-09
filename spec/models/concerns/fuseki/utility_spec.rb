@@ -135,7 +135,7 @@ describe Fuseki::Utility do
       organization_identifier: "Hello World", 
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
       uri: uri_s.to_s,
-      uuid: uri_s.to_id
+      id: uri_s.to_id
     }
     item = TestFU1.new
     item.uri = uri_s
@@ -152,7 +152,7 @@ describe Fuseki::Utility do
       ra_namespace: [uri.to_s, uri.to_s],
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
       uri: uri_s.to_s,
-      uuid: uri_s.to_id
+      id: uri_s.to_id
     }
     item = TestFU2.new
     item.uri = uri_s
@@ -169,7 +169,7 @@ describe Fuseki::Utility do
       ra_namespace: uri.to_s,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
       uri: uri_s.to_s, 
-      uuid: uri_s.to_id
+      id: uri_s.to_id
     }
     item = TestFU3.new
     item.uri = uri_s
@@ -184,7 +184,7 @@ describe Fuseki::Utility do
       ra_namespace: TestToH.new.to_h,
       rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
       uri: uri_s.to_s,
-      uuid: uri_s.to_id
+      id: uri_s.to_id
     }
     item = TestFU3.new
     item.uri = uri_s

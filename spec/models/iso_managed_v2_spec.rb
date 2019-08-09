@@ -90,7 +90,7 @@ describe IsoManagedV2 do
         	:creation_date => "2016-01-01T00:00:00+00:00",
         	:last_change_date => "2016-01-01T00:00:00+00:00",
         	:explanatory_comment => "",
-          :uuid => nil
+          :id => nil
       	}
   		item = IsoManagedV2.new
       expect(item.to_h).to eq(result)
@@ -98,7 +98,7 @@ describe IsoManagedV2 do
 
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find(uri)
       expect(item.version).to eq(1)   
       expect(item.semantic_version.to_s).to eq("1.2.3")   
       expect(item.version_label).to eq("0.1")   
@@ -107,7 +107,7 @@ describe IsoManagedV2 do
 
     it "allows the latest, later, earlier and same version to be assessed" do
      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find(uri)
       expect(item.latest?).to eq(true)   
       expect(item.later_version?(0)).to eq(true)   
       expect(item.later_version?(1)).to eq(false)   
@@ -119,21 +119,21 @@ describe IsoManagedV2 do
 
     it "allows owner and owned? to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, true)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.owner.organization_identifier).to eq("123456789")   
       expect(item.owned?).to eq(true)
     end
 
     it "allows registration status and registered to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.registration_status).to eq("Standard")   
       expect(item.registered?).to eq(true)   
     end
 
     it "allows edit, state on edit and delete status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.edit?).to eq(true)   
       expect(item.state_on_edit).to eq("Incomplete")
       expect(item.delete?).to eq(true)   
@@ -141,14 +141,14 @@ describe IsoManagedV2 do
 
     it "allows current and can be current status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find(uri)
       expect(item.current?).to eq(false)   
       expect(item.can_be_current?).to eq(false)   
     end
 
     it "allows new_version, next_version, next_semantic_version, and first_version to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.new_version?).to eq(false)   
       expect(item.next_version).to eq(4)   
       expect(item.next_semantic_version.to_s).to eq("1.5.0")   
@@ -254,7 +254,7 @@ describe IsoManagedV2 do
 
     it "allows an item to be created from JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       new_item = IsoManagedV2.from_h(item.to_h)
       expect(item.to_h).to eq(new_item.to_h)
     end
@@ -286,7 +286,7 @@ describe IsoManagedV2 do
 
     #it "allows the next version of an object to be adjusted" do
     #  uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    #  item = IsoManagedV2.find(uri, false)
+    #  item = IsoManagedV2.find_minimum(uri)
     #  expected = item.version + 1
     #  item.adjust_next_version
     #  expect(item.version).to eq(expected)
@@ -332,7 +332,7 @@ describe IsoManagedV2 do
          "}"
     #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       sparql = SparqlUpdateV2.new
       result_uri = item.to_sparql_v2(sparql, "bf")
       #expect(sparql.to_s).to eq(result)
@@ -343,7 +343,7 @@ describe IsoManagedV2 do
 
     it "permits the item to be exported as JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri, false)
+      item = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal)
     end
 
