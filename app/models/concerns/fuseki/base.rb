@@ -28,9 +28,13 @@ module Fuseki
 
     set_schema
   
+    # Initialize
+    #
+    # @param attributes [Hash] hash of attributes to set on initialization of the class
+    # @return [Object] the created object
     def initialize(attributes = {})
       @properties = Fuseki::Resource::Properties.new(self, self.class.resources)
-      @transaction = nil
+      @transaction = attributes.key?(:transaction) ? attributes[:transaction] : nil
       @new_record = true
       @destroyed = false
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
@@ -40,8 +44,23 @@ module Fuseki
       end
     end
 
+    # Properties
+    #
+    # @return [Fuseki::Resource::Properties] a class containing the propetrties
     def properties
       @properties
+    end
+
+    # ---------
+    # Test Only
+    # ---------
+    
+    if Rails.env.test?
+
+      def status
+        {uri: @uri, properties: @properties, transaction: @transaction, new_record: @new_record, destroyed: @destroyed}
+      end
+
     end
 
   end

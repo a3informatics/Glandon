@@ -216,5 +216,26 @@ describe Fuseki::Base do
     end}.to raise_error(Errors::ApplicationLogicError, "No model class specified for object property.")
   end
 
+  it "sets properties" do
+    item = TestFb1.new(name: "A Name", short_name: "XXXXX")
+    expect(item.name).to eq("A Name")
+    expect(item.short_name).to eq("XXXXX")
+    status = item.status
+    expect(status[:transaction]).to eq(nil)
+    expect(status[:destroyed]).to eq(false)
+    expect(status[:new_record]).to eq(true)
+  end
+
+  it "sets properties including transaction" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789")
+    transaction = TestFb3.find(uri) # Can be any class instance
+    item = TestFb1.new(name: "A Name", short_name: "XXXXX", transaction: transaction)
+    expect(item.name).to eq("A Name")
+    expect(item.short_name).to eq("XXXXX")
+    status = item.status
+    expect(status[:transaction].uri).to eq(transaction.uri)
+    expect(status[:destroyed]).to eq(false)
+    expect(status[:new_record]).to eq(true)
+  end
 
 end
