@@ -11,9 +11,10 @@
  *
  * @return [void]
  */
-function NewPanel(url, callback) {
+function NewPanel(url, strong_params, callback) {
   this.url = url;
   this.callback = callback;
+  this.strong_params = strong_params;
   
   var _this = this;
 
@@ -32,7 +33,8 @@ function NewPanel(url, callback) {
  */
 NewPanel.prototype.create = function (identifier) {
   var _this = this;
-  var data = {"thesauri": {"identifier": identifier}};
+  var data = {};
+  data[_this.strong_params] = {"identifier": identifier};
   $.ajax({
     url: _this.url,
     type: 'POST',
