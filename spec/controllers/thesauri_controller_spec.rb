@@ -180,14 +180,26 @@ describe ThesauriController do
       expect(response).to redirect_to("/thesauri")
     end
 
+    it "children" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :children, {id: ct.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)      
+    end
+
     it 'adds a child thesaurus concept' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       new_ct = Thesaurus::ManagedConcept.new
       new_ct.identifier = "A12345"
+      new_ct.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#fake")
+      new_ct.set_persisted # Needed for id method to work for paths
       token = Token.obtain(ct, @user)
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)        
-      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)        
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)
       expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology updated.")
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
@@ -196,10 +208,12 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it 'adds a child thesaurus concept, token refreshed' do
+    it 'adds a child thesaurus concept, token refreshed, no audit event' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       new_ct = Thesaurus::ManagedConcept.new
       new_ct.identifier = "A12345"
+      new_ct.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#fake")
+      new_ct.set_persisted # Needed for id method to work for paths
       token = Token.obtain(ct, @user)
       token.refresh
       request.env['HTTP_ACCEPT'] = "application/json"
@@ -242,32 +256,24 @@ describe ThesauriController do
 
     it 'fails to delete thesaurus, locked by another user' do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
-      th = Thesaurus.find("TH-ACME_NEWTH", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      th = Thesaurus.create({ :identifier => "NEW TH", :label => "New Thesaurus" })
       token = Token.obtain(th, @lock_user)
-      params = 
-        {
-          :id => "TH-ACME_NEWTH", 
-          :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        }
       audit_count = AuditTrail.count
       th_count = Thesaurus.all.count
-      delete :destroy, params
+      delete :destroy, id: th.id
       expect(Thesaurus.all.count).to eq(th_count)
       expect(AuditTrail.count).to eq(audit_count)
       expect(response).to redirect_to("/thesauri")
+      expect(flash[:error]).to be_present
     end
     
     it 'deletes thesaurus' do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
-      params = 
-        {
-          :id => "TH-ACME_NEWTH", 
-          :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        }
+      th = Thesaurus.create({ :identifier => "NEW TH 2", :label => "New Thesaurus 2" })
       audit_count = AuditTrail.count
       th_count = Thesaurus.all.count
       token_count = Token.all.count
-      delete :destroy, params
+      delete :destroy, id: th.id
       expect(Thesaurus.all.count).to eq(th_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)

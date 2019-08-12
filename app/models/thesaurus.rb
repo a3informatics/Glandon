@@ -307,63 +307,6 @@ private
     return result
   end
 
-  # Create Simple
-  #
-  # @param params
-  def self.create_simple(params)
-    object = self.new 
-    object.scopedIdentifier.identifier = params[:identifier]
-    object.label = params[:label]
-    object = Thesaurus.create(object.to_operation)
-    return object
-  end
-  
-  # Create 
-  #
-  # @param params [hash] {data:} The operational hash
-  # @return [oject] The form object. Valid if no errors set.
-  def self.create(params)
-    operation = params[:operation]
-    managed_item = params[:managed_item]
-    object = Thesaurus.from_json(managed_item)
-    object.from_operation(operation, C_CID_PREFIX, C_INSTANCE_NS, IsoRegistrationAuthority.owner)
-    if object.valid? then
-      if object.create_permitted?
-        sparql = object.to_sparql_v2
-        response = CRUD.update(sparql.to_s)
-        if !response.success?
-          object.errors.add(:base, "The Thesaurus was not created in the database.")
-        end
-      end
-    end
-    return object
-  end
-
-  # Add a child concept
-  #
-  # @todo This should probably be in ThesaurusConcept?
-  # @params params [hash] The params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
-  # @return [object] The object created. Errors set if create failed.
-  def add_child(params)
-    object = ThesaurusConcept.from_json(params)
-    object.identifier = "#{object.identifier}"
-    if !object.exists?
-      if object.valid?
-        sparql = SparqlUpdateV2.new
-        object.to_sparql_v2(self.uri, sparql)
-        sparql.triple({:uri => self.uri}, {:prefix => UriManagement::C_ISO_25964, :id => "hasConcept"}, {:uri => object.uri})
-        response = CRUD.update(sparql.to_s)
-        if !response.success?
-          object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, was not created in the database.")
-          raise Exceptions::CreateError.new(message: "Failed to create " + C_CLASS_NAME + " object.")
-        end
-      end
-    else
-      object.errors.add(:base, "The Thesaurus Concept, identifier #{object.identifier}, already exists in the database.")
-    end
-    return object
-  end
-
   # TODO: This needs looking at. used by CdiscTerm
   def self.import(params, ownerNamespace)
     object = super(C_CID_PREFIX, params, ownerNamespace, C_RDF_TYPE, C_SCHEMA_NS, C_INSTANCE_NS)

@@ -37,6 +37,10 @@ describe Fuseki::Base do
   class TestFb3 < Fuseki::Base
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority"
     object_property :ra_namespace, cardinality: :many, model_class: "IsoNamespace"
+
+    def register(instance)
+    end
+    
   end
 
   class TestFb4 < TestFb3
@@ -220,7 +224,7 @@ describe Fuseki::Base do
     item = TestFb1.new(name: "A Name", short_name: "XXXXX")
     expect(item.name).to eq("A Name")
     expect(item.short_name).to eq("XXXXX")
-    status = item.status
+    status = item.test_inspect
     expect(status[:transaction]).to eq(nil)
     expect(status[:destroyed]).to eq(false)
     expect(status[:new_record]).to eq(true)
@@ -232,7 +236,7 @@ describe Fuseki::Base do
     item = TestFb1.new(name: "A Name", short_name: "XXXXX", transaction: transaction)
     expect(item.name).to eq("A Name")
     expect(item.short_name).to eq("XXXXX")
-    status = item.status
+    status = item.test_inspect
     expect(status[:transaction].uri).to eq(transaction.uri)
     expect(status[:destroyed]).to eq(false)
     expect(status[:new_record]).to eq(true)

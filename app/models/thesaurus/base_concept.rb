@@ -33,17 +33,18 @@ class Thesaurus
   
     # Add a child concept
     #
-    # @params params [Hash] the params hash containig the concept data {:label, :notation. :preferredTerm, :synonym, :definition, :identifier}
+    # @params params [Hash] the params hash containing the concept data {:notation. :preferredTerm, :synonym, :definition, :identifier}
     # @return [Thesaurus::UnmanagedConcept] the object created. Errors set if create failed.
     def add_child(params)
-      object = Thesaurus::UnmanagedConcept.from_h(params)
-      return object if !object.valid?(:create)
-      sparql = Sparql::Update.new
-      sparql.default_namespace(self.uri.namespace)
-      object.to_sparql(sparql, true)
-      sparql.add({:uri => self.uri}, {:prefix => :th, :fragment => "narrower"}, {:uri => object.uri})
-      sparql.create
-      object
+      child = Thesaurus::UnmanagedConcept.empty_concept
+      child.merge!(params)
+      child[:identifier] = Thesaurus::UnmanagedConcept.generated_identifier? ? Thesaurus::UnmanagedConcept.new_identifier : params[:identifier]
+      child[:transaction] = transaction_begin
+      child = Thesaurus::UnmanagedConcept.create(child, self)
+      return child if child.errors.any?
+      self.add_link(:narrower, child)
+      transaction_execute
+      child
     end
 
     # Delete. Don't allow if children present.
@@ -112,9 +113,14 @@ class Thesaurus
     end
 
     def simple_to_h
-      {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: self.preferred_term.label, synonym: synonyms_to_s, extensible: self.extensible, id: self.uri.to_id}
+      {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: preferred_term_to_s, synonym: synonyms_to_s, extensible: self.extensible, id: self.uri.to_id}
     end
 
+    def preferred_term_to_s
+      return "" if self.preferred_term.nil?
+      self.preferred_term.label
+    end
+       
   end
 
 end

@@ -189,9 +189,12 @@ module Fuseki
 
     def transaction_execute
       @transaction.execute
-      @transaction = nil
     end
     
+    def transaction_clear
+      @transaction = nil
+    end
+
     def where_child(params)
       where_clauses = ""
       params.each {|name, value| where_clauses += "  ?s :#{name} \"#{value}\" .\n" }

@@ -77,4 +77,36 @@ describe IsoConceptV2 do
     
   end
 
+  describe "Utility Methods" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      IsoHelpers.clear_cache
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+    end
+
+    it "add link" do
+      item = Thesaurus::ManagedConcept.new
+      item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX")
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      ct.add_link(:is_top_concept, item)
+      query_string = %Q{
+        SELECT ?o
+        {
+          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> ?o .
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      expect(query_results.by_object(:o).count).to eq(1)
+      expect(query_results.by_object(:o).first.to_s).to eq("http://www.assero.co.uk/XXX")
+    end
+
+  end
+
 end

@@ -23,6 +23,13 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
 
+  def self.create(params, parent)
+    object = new(params)
+    object.uri = object.create_uri(parent.uri)
+    object.create_or_update(:create) if object.valid?(:create)
+    object
+  end
+  
   # Changes Count
   #
   # @param [Integer] window_size the required window size for changes

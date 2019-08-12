@@ -211,7 +211,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.cl
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
     query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s]).each do |x|
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], uri: x[:s]}
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], uri: x[:s].to_s, id: x[:s].to_id}
     end
     results
   end

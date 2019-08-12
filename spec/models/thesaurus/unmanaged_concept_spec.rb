@@ -6,6 +6,7 @@ describe Thesaurus::UnmanagedConcept do
   include ValidationHelpers
   include SparqlHelpers
   include PublicFileHelpers
+  include ThesauriHelpers
   
   def sub_dir
     return "models/thesaurus/unmanaged_concept"
@@ -19,6 +20,12 @@ describe Thesaurus::UnmanagedConcept do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
     load_files(schema_files, data_files)
+    NameValue.create(name: "thesaurus_child_identifier", value: "999")
+  end
+
+  after :each do
+    nv = NameValue.where(name: "thesaurus_child_identifier")
+    nv.first.destroy
   end
 
   it "allows validity of the object to be checked - error" do
@@ -65,10 +72,9 @@ describe Thesaurus::UnmanagedConcept do
   	expect(results.count).to eq(1)
 	end
 
-  it "allows a new child TC to be added" do
+  it "allows a new child TC to be added, some data" do
     params = 
     {
-      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
       definition: "Other or mixed race",
       identifier: "A00004",
       label: "New",
@@ -77,13 +83,30 @@ describe Thesaurus::UnmanagedConcept do
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     new_object = tc.add_child(params)
     expect(new_object.errors.count).to eq(0)
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
+  end
+
+  it "allows a new child TC to be added" do
+    params = 
+    {
+      identifier: "A00005",
+    }
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-    check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-    check_file_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
+    new_object = tc.add_child(params)
+    expect(new_object.errors.count).to eq(0)
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_3.yaml")
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_4.yaml")
   end
 
   it "prevents a duplicate TC being added" do
+    #local_configuration = {scheme_type: :flat, parent: {generated: {pattern: "NX[identifier]AA", width: "6"}}, child: {generated: {pattern: "YY[identifier]", width: "4"}}}
+    local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
+    expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).twice.and_return(local_configuration)
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -102,6 +125,8 @@ describe Thesaurus::UnmanagedConcept do
   end
 
   it "prevents a TC being added with invalid identifier" do
+    local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
+    expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -116,7 +141,9 @@ describe Thesaurus::UnmanagedConcept do
     expect(new_object.errors.full_messages[0]).to eq("Identifier contains a part with invalid characters")
   end
 
-  it "prevents a TC being added with invalid data" do
+  it "prevents a TC being added with invalid data, I" do
+    local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
+    expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
     params = 
     {
       uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
@@ -131,22 +158,36 @@ describe Thesaurus::UnmanagedConcept do
     expect(new_object.errors.full_messages.to_sentence).to eq("Identifier contains a part with invalid characters and Definition contains invalid characters")
   end
 
+  it "prevents a TC being added with invalid data, II" do
+    params = 
+    {
+      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
+      definition: "Other or mixed race!@£$%^&*(){}",
+      identifier: "?",
+      label: "New",
+      notation: "NEWNEW"
+    }
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    new_object = tc.add_child(params)
+    expect(new_object.errors.count).to eq(1)
+    expect(new_object.errors.full_messages.to_sentence).to eq("Definition contains invalid characters")
+  end
+
   it "allows a TC to be saved" do
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
-      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
       definition: "Other or mixed race",
       identifier: "A00004",
-      label: "New",
+      label: "New_ZZZ",
       notation: "NEWNEW"
     }
     new_object = tc.add_child(params)
     new_object.label = "New_XXX"
     new_object.notation = "NEWNEWXXX"
     new_object.save
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_1.yaml")
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_1.yaml")
   end
 
   it "allows a TC to be updated, quotes test" do
@@ -162,8 +203,8 @@ describe Thesaurus::UnmanagedConcept do
     new_object = tc.add_child(params)
     new_object.label = "New \"XXX\""
     new_object.save
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
   end
   
   it "allows a TC to be updated, character test" do
@@ -181,8 +222,8 @@ describe Thesaurus::UnmanagedConcept do
     new_object.notation = vh_all_chars + "^"
     new_object.definition = vh_all_chars
     new_object.save
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
-    check_file_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
+    tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+    check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
   end
   
   it "allows to determine if TCs different" do
@@ -302,42 +343,41 @@ describe Thesaurus::UnmanagedConcept do
     tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
     params = 
     {
-      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
       definition: "Other or mixed race",
       identifier: "A00004",
       label: "New",
       notation: "NEWNEW"
     }
     new_object = tc.add_child(params)
-    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.assero.co.uk/TC#OWNER-A00004"))
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
     expect(tc.parent).to eq("A000011")
   end
 
   it "returns the parent concept, none" do
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
     params = 
     {
-      uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
       definition: "Other or mixed race",
       identifier: "A00004",
       label: "New",
       notation: "NEWNEW"
     }
-    tc = Thesaurus::UnmanagedConcept.create(params)
+    tc = Thesaurus::UnmanagedConcept.create(params, tc)
     expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
   end
 
   it "replaces with previous if no difference" do
-    input = read_yaml_file(sub_dir, "from_hash_input.yaml")
-    tc_current = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
-    tc_previous = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+    tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+    tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
     expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_previous.uri)
     expect(tc_previous.narrower.count).to eq(0)
   end
 
   it "keeps current if difference" do
-    input = {},
-    tc_current = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
-    tc_previous = Thesaurus::UnmanagedConcept.create(:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition.")
+    tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+    tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+    tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
     tc_previous.update(notation: "SSSSSS")
     expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
     expect(tc_current.narrower.count).to eq(0)

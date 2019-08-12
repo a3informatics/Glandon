@@ -19,4 +19,20 @@ class IsoConceptV2 < Fuseki::Base
     super({label: label}, {uri: create_uri(base_uri), label: label})
   end
 
+  # Add Link. Add a object to a collection
+  #
+  # @param [Symbol] name the name of the property holding the collection
+  # @param [Object] object the object to be linked
+  # @return [Void] no return
+  def add_link(name, object)
+    predicate = self.properties.property(name).predicate
+    update_query = %Q{
+      INSERT
+      {
+        #{self.uri.to_ref} #{predicate.to_ref} #{object.uri.to_ref} .
+      } WHERE {}
+    }
+    partial_update(update_query, [])
+  end
+
 end

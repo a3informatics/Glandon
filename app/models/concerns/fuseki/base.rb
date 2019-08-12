@@ -34,7 +34,7 @@ module Fuseki
     # @return [Object] the created object
     def initialize(attributes = {})
       @properties = Fuseki::Resource::Properties.new(self, self.class.resources)
-      @transaction = attributes.key?(:transaction) ? attributes[:transaction] : nil
+      @transaction = add_to_transaction(attributes)
       @new_record = true
       @destroyed = false
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
@@ -57,10 +57,18 @@ module Fuseki
     
     if Rails.env.test?
 
-      def status
+      def test_inspect
         {uri: @uri, properties: @properties, transaction: @transaction, new_record: @new_record, destroyed: @destroyed}
       end
 
+    end
+
+  private
+
+    def add_to_transaction(attributes)
+      @transaction = attributes.key?(:transaction) ? attributes[:transaction] : nil
+      @transaction.register(self) if !@transaction.nil?
+      @transaction
     end
 
   end

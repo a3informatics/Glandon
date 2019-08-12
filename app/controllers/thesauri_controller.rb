@@ -75,7 +75,7 @@ class ThesauriController < ApplicationController
     @thesaurus = Thesaurus.find_minimum(params[:id])
     @token = get_token(@thesaurus)
     if @thesaurus.new_version?
-      th = Thesaurus.find_complete(params[:id], params[:namespace])
+      th = Thesaurus.find(params[:id])
       new_th = Thesaurus.create(th.to_operation)
       @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
       @token.release
@@ -90,7 +90,8 @@ class ThesauriController < ApplicationController
     results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path(c[:id]), delete_path: thesauri_managed_concept_path(c[:id])})}
+    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}), 
+      delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})}
     render :json => { data: results }, :status => 200
   end
 
@@ -99,12 +100,13 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(params[:id])
     token = Token.find_token(thesaurus, current_user)
     if !token.nil?
-      thesaurus_concept = thesaurus.add_child(the_params)
+      x = the_params
+      thesaurus_concept = thesaurus.add_child(x)
       if thesaurus_concept.errors.empty?
         AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
         result = thesaurus_concept.simple_to_h
         result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path(thesaurus_concept), delete_path: thesauri_managed_concept_path(thesaurus_concept)})
-        render :json => {data: thesaurus_concept.simple_to_h}, :status => 200
+        render :json => {data: result}, :status => 200
       else
         render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
       end

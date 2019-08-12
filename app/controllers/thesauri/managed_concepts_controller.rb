@@ -7,14 +7,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
-    @token = Token.find_token(thesaurus, current_user)
-    @close_path = edit_lock_lost_link(thesaurus)
-    @referer_path = get_parent_link(@thesaurus)
-    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    @thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
+    @token = get_token(@thesaurus_concept)
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(thesaurus)
+      redirect_to edit_lock_lost_link(@thesaurus)
+    else
+      @close_path = edit_lock_lost_link(@thesaurus)
+      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     end
   end
 
@@ -41,28 +41,35 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
   
-  # def children
-  #   authorize Thesaurus, :edit?
-  #   results = []
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace])
-  #   thesaurus_concept.children.each do |child|
-  #     results << child.to_json
-  #   end
-  #   render :json => { data: results }, :status => 200
-  # end
+  def children
+    authorize Thesaurus, :edit?
+    results = []
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    children = tc.children_pagination({offset: "0", count: "10000"})
+    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}}), 
+      delete_path: thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})})}
+    render :json => { data: results }, :status => 200
+  end
 
-  # def add_child
-  #   authorize ThesaurusConcept, :create?
-  #   parent_thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(parent_thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept = parent_thesaurus_concept.add_child(the_params)
-  #     audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   else
-  #     render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-  #   end
-  # end
+  def add_child
+    authorize Thesaurus, :create?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      new_tc = tc.add_child(the_params)
+      if new_tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, "Code list updated.") if token.refresh == 1
+        result = new_tc.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}}), 
+          delete_path: thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})})
+        render :json => {data: result}, :status => 200
+      else
+        render :json => {:errors => new_tc.errors.full_messages}, :status => 422
+      end
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
 
   def destroy
     authorize Thesaurus
@@ -95,7 +102,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.html
       format.json do
         children = @tc.children_pagination(params)
-        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x[:uri].to_id)})}
+        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x[:id])})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
     end
@@ -195,7 +202,7 @@ private
   # end
 
   def the_params
-    params.require(:thesaurus_concept).permit(:parent_id)
+    params.require(:managed_concept).permit(:parent_id, :identifier)
   end
     
   def edit_params

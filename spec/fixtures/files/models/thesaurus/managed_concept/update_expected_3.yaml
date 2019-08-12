@@ -1,10 +1,10 @@
 ---
-:uri: http://www.acme-pharma.com/A00001/V1#A00001-A00014
-:uuid: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMS1BMDAwMTQ=
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9OQzAwMDAwNDU2Qw==
+:uri: http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C
 :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
 :label: the dirty brown fox jumps over the lazy dog. THE DIRTY BROWN FOX JUMPS OVER
   THE LAZY DOG. 0123456789. !?,'"_-/\()[]~#*+@=:;&|<>
-:identifier: A00014
+:identifier: NC00000456C
 :notation: the dirty brown fox jumps over the lazy dog. THE DIRTY BROWN FOX JUMPS
   OVER THE LAZY DOG. 0123456789. !?,'"_-/\()[]~#*+@=:;&|<>^
 :definition: the dirty brown fox jumps over the lazy dog. THE DIRTY BROWN FOX JUMPS
@@ -13,5 +13,9 @@
 :extended_with: []
 :narrower: []
 :is_subset: 
-:preferred_term: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYTA3NmM3NTgtODljOS00OTQ4LWJiZjYtMmM5YWU5NWRhMDA1
+  :uri: http://www.assero.co.uk/PT#a076c758-89c9-4948-bbf6-2c9ae95da005
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: Not Set
 :synonym: []

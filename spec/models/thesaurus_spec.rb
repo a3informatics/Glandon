@@ -43,7 +43,7 @@ describe Thesaurus do
       result =     
         { 
           :rdf_type => "http://www.assero.co.uk/Thesaurus#Thesaurus",
-          :uuid => nil,
+          :id => nil,
           :uri => {},
           :label => "",
           :origin => "",
@@ -179,8 +179,8 @@ describe Thesaurus do
     it "allows for a thesaurus to be destroyed" do
       th = Thesaurus.create({:identifier => "TEST1", :label => "Test Thesaurus 1"})
       expect(Thesaurus.find_minimum(th.id).uri.to_s).to eq("http://www.acme-pharma.com/TEST1/V1#TH")
-      th.destroy
-      expect{Thesaurus.find_minimum(th.id)}.to raise_error(Errors::NotFoundError, "")
+      th.delete
+      expect{Thesaurus.find_minimum(th.id)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/TEST1/V1#TH in Thesaurus.")
     end
 
     it "allows the thesaurus to be exported as SPARQL" do
@@ -369,7 +369,10 @@ describe Thesaurus do
       actual = item.to_h
     #Xwrite_yaml_file(item.to_h, sub_dir, "add_child_expected_2.yaml")
       expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
+      expect(actual[:preferred_term][:label]).to eq(expected[:preferred_term][:label])
       expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
+      expected[:creation_date] = date_check_now(item.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(item.last_change_date).iso8601
       expect(actual).to hash_equal(expected)
     end
 
@@ -381,11 +384,13 @@ describe Thesaurus do
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
       item = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
-    #Xwrite_yaml_file(actual.to_h, sub_dir, "add_child_expected_4.yaml")
       actual = item.to_h
+    #Xwrite_yaml_file(actual.to_h, sub_dir, "add_child_expected_4.yaml")
       expected = read_yaml_file(sub_dir, "add_child_expected_4.yaml")
       expect(actual[:preferred_term][:label]).to eq(expected[:preferred_term][:label])
       expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
+      expected[:creation_date] = date_check_now(item.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(item.last_change_date).iso8601
       expect(actual).to hash_equal(expected)
     end
 
