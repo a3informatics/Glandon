@@ -161,7 +161,6 @@ describe Import::CdiscTerm do
     expected = read_yaml_file(sub_dir, "import_version_2007-03-06.yaml")
     expect(actual).to eq(expected)
     expect(@job.status).to eq("Complete")
-byebug
     delete_data_file(sub_dir, filename)
   end
 
@@ -193,13 +192,12 @@ byebug
     }
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_load.ttl"
-byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  write_yaml_file(actual, sub_dir, "import_version_2008-09-22.yaml")
+  #Xwrite_yaml_file(actual, sub_dir, "import_version_2008-09-22.yaml")
     expected = read_yaml_file(sub_dir, "import_version_2008-09-22.yaml")
     expect(actual).to eq(expected)
     expect(@job.status).to eq("Complete")
