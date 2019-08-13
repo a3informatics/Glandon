@@ -47,6 +47,85 @@ describe Thesauri::UnmanagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
     end
 
+    it "updates concept, token" do
+      umtc = Thesaurus::UnmanagedConcept.new
+      umtc.notation = "NEW NOTATION"
+      umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
+      umtc.set_persisted # Needed for id method to work for paths
+      mtc = Thesaurus::ManagedConcept.new
+      expect(Thesaurus::UnmanagedConcept).to receive(:find_children).and_return(umtc)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
+      put :update, {id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
+      expected = [{:definition=>"", :extensible=>false, :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NUL1YxI2Zha2U=", :identifier=>"", :label=>"", :notation=>"NEW NOTATION", :preferred_term=>"", :synonym=>""}]
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      #token = Token.obtain(th, @user)
+      #expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "updates concept, token but errors" do
+      umtc = Thesaurus::UnmanagedConcept.new
+      umtc.notation = "NEW NOTATION"
+      umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
+      umtc.errors.add(:notation, "Notation fake error")
+      umtc.errors.add(:identifier, "Identifier fake error")
+      umtc.set_persisted # Needed for id method to work for paths
+      mtc = Thesaurus::ManagedConcept.new
+      expect(Thesaurus::UnmanagedConcept).to receive(:find_children).and_return(umtc)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
+      put :update, {id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
+      expected = [{name: "notation", status: "Notation fake error"}, {name: "identifier", status: "Identifier fake error"}]
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:fieldErrors]).to eq(expected)
+      #token = Token.obtain(th, @user)
+      #expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "updates concept, no token"
+
+    it "deletes concept, token" do
+      umtc = Thesaurus::UnmanagedConcept.new
+      umtc.notation = "NEW NOTATION"
+      umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
+      umtc.set_persisted # Needed for id method to work for paths
+      mtc = Thesaurus::ManagedConcept.new
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete).and_return(1)
+      put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
+      expected = []
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      #token = Token.obtain(th, @user)
+      #expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "deletes concept, token but errors" do
+      umtc = Thesaurus::UnmanagedConcept.new
+      umtc.notation = "NEW NOTATION"
+      umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
+      umtc.set_persisted # Needed for id method to work for paths
+      umtc.errors.add(:base, "Destroy error")
+      mtc = Thesaurus::ManagedConcept.new
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete).and_return(1)
+      put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
+      expected = ["Destroy error"]
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(expected)
+      #token = Token.obtain(th, @user)
+      #expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "deletes concept, no token"
+
   end
 
 =begin
@@ -121,122 +200,11 @@ describe Thesauri::UnmanagedConceptsController do
       expect(response.code).to eq("200")
       expect(response.body).to eq(result.to_json)
     end
+=end
 
-    it "updates concept with audit" do
-      params = 
-      {
-        :id => "THC-A00001", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesaurus_concept => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "",
-          :identifier => "A00001", 
-          :notation => "NEW NOTATION", 
-          :synonym => "New syn", 
-          :definition => "New def", 
-          :preferredTerm => "New PT"
-        }
-      }
-      audit_count = AuditTrail.count
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
-      put :update, params
-      tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(tc.errors.count).to eq(0)
-      expect(tc.label).to eq("")
-      expect(tc.identifier).to eq("A00001")
-      expect(tc.notation).to eq("NEW NOTATION")
-      expect(tc.definition).to eq("New def")
-      expect(tc.preferredTerm).to eq("New PT")
-      expect(tc.synonym).to eq("New syn")
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(AuditTrail.count).to eq(audit_count + 1)
-    end
 
-    it "updates concept with no audit, token refreshed" do
-      params = 
-      {
-        :id => "THC-A00001", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesaurus_concept => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :label => "New Notation with funnies '\".><",
-          :identifier => "A00001", 
-          :notation => "NEW NOTATION", 
-          :synonym => "New syn", 
-          :definition => "New def plus stuff", 
-          :preferredTerm => "New PT"
-        }
-      }
-      audit_count = AuditTrail.count
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
-      token.refresh
-      put :update, params
-      tc = ThesaurusConcept.find("THC-A00001", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      expect(tc.label).to eq("New Notation with funnies '\".><")
-      expect(tc.identifier).to eq("A00001")
-      expect(tc.notation).to eq("NEW NOTATION")
-      expect(tc.definition).to eq("New def plus stuff")
-      expect(tc.preferredTerm).to eq("New PT")
-      expect(tc.synonym).to eq("New syn")
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(AuditTrail.count).to eq(audit_count)
-    end
 
-    it "fails to update concept with error" do
-      params = 
-      {
-        :id => "THC-A00001", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesaurus_concept => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :identifier => "A00001", 
-          :notation => "NEW NOTATION!@£$%^&*", 
-          :synonym => "Ned syn", 
-          :definition => "New def", 
-          :preferredTerm => "New PT"
-        }
-      }
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
-      put :update, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      expect(response.body).to eq("{\"fieldErrors\":[{\"name\":\"notation\",\"status\":\"contains invalid characters\"}]}")
-    end
-
-    it "fails to update concept without token" do
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      params = 
-      {
-        :id => "THC-A00001", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-        :thesaurus_concept => 
-        {
-          :id => "", 
-          :namespace => "" ,
-          :identifier => "A00001", 
-          :notation => "NEW NOTATION!@£$%^&*", 
-          :synonym => "Ned syn", 
-          :definition => "New def", 
-          :preferredTerm => "New PT"
-        }
-      }
-      put :update, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      expect(response.body).to eq("{\"data\":null,\"link\":\"/thesauri/history?identifier=CDISC+EXT\\u0026scope_id=#{IsoHelpers.escape_id(th.scope.id)}\"}")
-    end
-
+=begin
     it "adds child concept" do
       params = 
       {
@@ -317,31 +285,7 @@ describe Thesauri::UnmanagedConceptsController do
       expect(response.code).to eq("422")
       expect(response.body).to eq("{\"errors\":[\"The changes were not saved as the edit lock timed out.\"]}")
     end
-    
-    it "fails to delete a concept, no token" do
-      params = 
-      {
-        :id => "THC-A00001_A0000999", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      delete :destroy, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("422")
-      expect(response.body).to eq("{\"errors\":[\"The changes were not saved as the edit lock timed out.\"]}")
-    end
-
-    it "deletes a concept" do
-      params = 
-      {
-        :id => "THC-A00001_A0000999", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      th = Thesaurus.find("TH-SPONSOR_CT-1", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-      token = Token.obtain(th, @user)
-      delete :destroy, params
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
+  
 
     it "returns a concept as JSON" do
       params = { :id => "THC-A00001", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }

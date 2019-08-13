@@ -138,7 +138,7 @@ EditorPanel.prototype.fill = function (offset) {
       }
       _this.editorTable.draw();
       if (result.count >= _this.count) {
-       _this.add(result.offset + _this.count)
+       _this.fill(result.offset + _this.count)
       } else {
         _this.editorTable.processing(false);
       }
@@ -175,7 +175,8 @@ EditorPanel.prototype.delete = function(url) {
     contentType: 'application/json',
     success: function(result){
       displaySuccess("The concept has been deleted.");
-      _this.editorTable.ajax.reload();
+      _this.editorTable.clear();
+      _this.fill(0);
       ttExtendLock(_this.tokenId);
     },
     error: function(xhr,status,error){

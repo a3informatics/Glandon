@@ -26,6 +26,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     end
   end
 
+  # Will be required for Hierarchical terminologies
   # def edit
   #   authorize ThesaurusConcept
   #   @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
@@ -40,31 +41,30 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   #   end
   # end
 
-  # def update
-  #   authorize ThesaurusConcept
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept.update(the_params)
-  #     if thesaurus_concept.errors.empty?
-  #       AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-  #       results = []
-  #       results << thesaurus_concept.to_json
-  #       render :json => {:data => results}, :status => 200
-  #     else
-  #       errors = []
-  #       thesaurus_concept.errors.each do |name, msg|
-  #         errors << {name: name, status: msg}
-  #       end
-  #       render :json => {:fieldErrors => errors}, :status => 200
-  #     end
-  #   else
-  #     flash[:error] = "The edit lock has timed out."
-  #     render :json => {:data => results, :link => edit_lock_lost_link(thesaurus)}, :status => 422
-  #   end
-  # end
-  
+  def update
+    authorize Thesaurus
+    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
+    #token = Token.find_token(parent, current_user)
+    #if !token.nil?
+      tc = tc.update(edit_params)
+      if tc.errors.empty?
+        #AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
+        render :json => {:data => [tc.simple_to_h]}, :status => 200
+      else
+        errors = []
+        tc.errors.each do |name, msg|
+          errors << {name: name, status: msg}
+        end
+        render :json => {:fieldErrors => errors}, :status => 200
+      end
+    #else
+    #  flash[:error] = "The edit lock has timed out."
+    #  render :json => {:data => {}, :link => edit_lock_lost_link(tc)}, :status => 422
+    #end
+  end
+
+  # Will be required for Hierarchical terminologies
   # def children
   #   authorize Thesaurus, :edit?
   #   results = []
@@ -75,6 +75,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   #   render :json => { data: results }, :status => 200
   # end
 
+  # Will be required for Hierarchical terminologies
   # def add_child
   #   authorize ThesaurusConcept, :create?
   #   parent_thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
@@ -88,18 +89,23 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   authorize ThesaurusConcept
-  #   thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(thesaurus_concept)
-  #   token = Token.find_token(thesaurus, current_user)
-  #   if !token.nil?
-  #     thesaurus_concept.destroy
-  #     audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   else
-  #     render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-  #   end
-  # end
+  def destroy
+    authorize Thesaurus
+    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
+    # token = Token.find_token(thesaurus, current_user)
+    # if !token.nil?
+      tc.delete
+      if tc.errors.empty?
+  #     AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+        render :json => {:data => []}, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
+      end
+    #else
+    #  render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+    #end
+  end
 
   def show
     authorize Thesaurus
@@ -143,9 +149,9 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
 
 private
 
-  # def edit_lock_lost_link(thesaurus)
-  #   return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
-  # end
+  def edit_lock_lost_link(thesaurus)
+    return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
+  end
 
   # def audit_and_respond(thesaurus, thesaurus_concept, token)
   #   if thesaurus_concept.errors.empty?
@@ -156,12 +162,6 @@ private
   #   else
   #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
   #   end
-  # end
-
-  # def get_thesaurus(thesaurus_concept)
-  #   info = IsoManaged.find_managed(thesaurus_concept.id, thesaurus_concept.namespace)
-  #   thesaurus = Thesaurus.find(info[:uri].id, info[:uri].namespace)
-  #   return thesaurus
   # end
 
   # def get_parent_link(thesaurus_concept)
@@ -178,7 +178,11 @@ private
   # end
 
   def the_params
-    params.require(:thesaurus_concept).permit(:identifier, :notation, :synonym, :definition, :preferredTerm, :namespace, :label, :type, :direction)
+    params.require(:unmanaged_concept).permit(:identifier, :parent_id)
   end
     
+  def edit_params
+    params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
+  end
+
 end
