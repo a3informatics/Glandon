@@ -137,12 +137,14 @@ Rails.application.routes.draw do
         post :add_child
         get :changes
         get :differences
+        get :synonym_links
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
       member do
         get :changes
         get :differences
+        get :synonym_links
       end
     end
   end

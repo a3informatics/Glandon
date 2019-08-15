@@ -429,4 +429,44 @@ describe Thesaurus::UnmanagedConcept do
 
   end
 
+  describe "synonym links" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..59)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "synonym links, empty with single synonym" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = tc.synonym_links({context_id: th.id})
+      check_file_actual_expected(results, sub_dir, "synonym_links_expected_1.yaml", write_file: true)
+    end
+
+    it "synonym links, empty with no synonym" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      results = tc.synonym_links({context_id: th.id})
+      check_file_actual_expected(results, sub_dir, "synonym_links_expected_2.yaml", write_file: true)
+    end
+
+    it "synonym links, empty with no synonym" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V57#C65047_C156534"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      results = tc.synonym_links({context_id: th.id})
+      check_file_actual_expected(results, sub_dir, "synonym_links_expected_3.yaml", write_file: true)
+    end
+
+  end
+
 end
