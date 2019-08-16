@@ -1,0 +1,43 @@
+function IndexPanel(url) {
+  this.url = url;
+  this.processing(false);
+
+  var _this = this;
+
+  $('#from_select :nth-child(2)').prop('selected', true); 
+  $('#to_select :nth-child(1)').prop('selected', true); 
+
+  $("#go_button").click(function(){
+    _this.get();
+  });
+  
+}
+
+IndexPanel.prototype.get = function (url) {
+  var _this = this;
+  _this.processing(true);
+  $.ajax({
+    url: pathInsertId(_this.url, $("#from_select").val()),
+    type: 'GET',
+    data: {cdisc_term: {other_id: $("#to_select").val()}},
+    dataType: 'json',
+    success: function(result) {
+      _this.processing(false);
+      $("#results_div").html("<pre>" + JSON.stringify(result.data, undefined, 2) + "</pre>");	
+    },
+    error: function(xhr,status,error){
+      _this.processing(false);
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}
+
+IndexPanel.prototype.processing = function (state) {
+  if (state) {
+    $('#spinner_div').show();
+    $('#results_div').hide();
+  } else {
+    $('#spinner_div').hide();
+    $('#results_div').show();
+  }
+}
