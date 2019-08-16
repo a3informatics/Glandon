@@ -244,6 +244,7 @@ defaults: &defaults
   AuditTrailPolicy:
     index:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -251,6 +252,7 @@ defaults: &defaults
       content_admin: true
     search:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -258,6 +260,7 @@ defaults: &defaults
       content_admin: true
     export_csv:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -266,6 +269,7 @@ defaults: &defaults
   BackgroundPolicy:
     index:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -273,6 +277,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -280,6 +285,7 @@ defaults: &defaults
       content_admin: true
     destroy_multiple:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -305,6 +311,7 @@ defaults: &defaults
   DashboardPolicy:
     index:
       sys_admin: true
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true
@@ -328,6 +335,7 @@ defaults: &defaults
       content_admin: true
     admin:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -582,6 +590,7 @@ defaults: &defaults
   TokenPolicy:
     index:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -589,6 +598,7 @@ defaults: &defaults
       content_admin: true
     release:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -596,6 +606,7 @@ defaults: &defaults
       content_admin: true
     status:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -743,6 +754,7 @@ defaults: &defaults
   UserPolicy:
     index:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -750,6 +762,7 @@ defaults: &defaults
       content_admin: false
     show:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -757,6 +770,7 @@ defaults: &defaults
       content_admin: false
     new:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -764,6 +778,7 @@ defaults: &defaults
       content_admin: false
     update:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -771,6 +786,7 @@ defaults: &defaults
       content_admin: false
     update_name:
       sys_admin: true
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -778,6 +794,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -785,6 +802,7 @@ defaults: &defaults
       content_admin: false
     edit:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -792,6 +810,7 @@ defaults: &defaults
       content_admin: false
     destroy:
       sys_admin: true
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -800,6 +819,7 @@ defaults: &defaults
   UserSettingPolicy:
     index:
       sys_admin: true
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -807,6 +827,7 @@ defaults: &defaults
       content_admin: true
     update:
       sys_admin: true
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true

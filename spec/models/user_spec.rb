@@ -18,6 +18,15 @@ describe User do
   	user.destroy
   end
 
+  it "determines if user is only a community reader" do
+    user = User.create email: "fred@fred.com", password: "12345678"
+    user.add_role :community_reader
+    expect(user.is_only_community?).to eq(false)
+    user.remove_role :reader
+    expect(user.is_only_community?).to eq(true)
+    user.destroy
+  end
+
   it "allows a user's roles to be listed" do
     user = User.create email: "fred@fred.com", password: "12345678"
     user.add_role :reader

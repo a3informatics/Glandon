@@ -39,6 +39,14 @@ class User < ActiveRecord::Base
   	return false
   end
 
+  # Is Only Community
+  #
+  # @return [Boolean] returns true if user only has community reader role
+  def is_only_community?
+    return true if self.role_ids.count == 1 && self.has_role?(:community_reader)
+    return false
+  end
+
   # User roles as an array of strings
   #
   # @return [array] Array of roles (strings)

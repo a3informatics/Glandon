@@ -4,10 +4,12 @@
 
 # Common Setup
 # 1. Create roles for Rolify
+Role.destroy_all
 Rails.configuration.roles[:roles].each { |k, v| Role.create(name: k) }
 
 # Enviornment-specific Setup
 # 1. Create sys admin user.
+User.destroy_all
 case Rails.env
 	when "development"
     NameValue.create(name: "thesaurus_parent_identifier", value: "1")
