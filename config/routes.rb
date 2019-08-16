@@ -223,6 +223,9 @@ Rails.application.routes.draw do
     collection do
       get :history
     end
+    member do
+      get :changes
+    end
   end
 
   # BCs

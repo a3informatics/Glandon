@@ -27,6 +27,7 @@ class CdiscTermsController < ApplicationController
   # end
 
   def index
+    @versions = CdiscTerm.version_dates.reverse
     render :index, layout: "full_width"
   end
 
@@ -45,6 +46,19 @@ class CdiscTermsController < ApplicationController
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
+  end
+
+  def changes
+    versions = CdiscTerm.version_dates
+    ct_from = Thesaurus.find_minimum(params[:id])
+    from_index = versions.find_index {|x| x[:id] == ct_from.id}
+    ct_to = Thesaurus.find_minimum(change_params[:other_id])
+    to_index = versions.find_index {|x| x[:id] == ct_to.id}
+    cls = ct_from.changes(to_index - from_index + 1)
+    cls[:items].each do |k,v| 
+      v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
+    end
+    render json: {data: cls}
   end
 
   # def import
@@ -239,8 +253,11 @@ class CdiscTermsController < ApplicationController
 private
 
   def the_params
-    params.require(:cdisc_term).permit(:identifier, :scope_id, :offset, :count)
-    #(:version, :date, :term, :textSearch, :namespace, :uri, :direction, :cCodeSearch, :files => [] )
+    params.require(:cdisc_term).permit(:offset, :count)
+  end
+
+  def change_params
+    params.require(:cdisc_term).permit(:other_id)
   end
 
   def authenticate_and_authorized

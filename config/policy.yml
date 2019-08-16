@@ -300,6 +300,14 @@ defaults: &defaults
       reader: true
       curator: true
       content_admin: true
+    changes:
+      sys_admin: false
+      community_reader: true
+      term_reader: false
+      term_curator: false
+      reader: false
+      curator: false
+      content_admin: false
     history:
       sys_admin: false
       community_reader: true
