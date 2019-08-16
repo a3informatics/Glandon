@@ -1,8 +1,9 @@
 class DashboardController < ApplicationController
 
-  before_action :authenticate_user!
+  #before_action :authenticate_user!
   
   def index
+    authenticate_user!
   	authorize Dashboard
   	access = user_access_on_role
   	if access == :all
@@ -12,9 +13,11 @@ class DashboardController < ApplicationController
       	@statusCounts << {:y => key, :a => value}
     	end
     elsif access == :term
-  		redirect_to history_cdisc_terms_path
+  		redirect_to thesauri_index_path
   	elsif access == :admin
   		redirect_to admin_dashboard_index_path
+    elsif access == :community
+      redirect_to cdisc_terms_path
   	else
   		render "error"
     end
@@ -44,6 +47,8 @@ private
   end  
 
   def user_access_on_role
+    return :community if current_user.is_only_community?
+    return :admin if current_user.is_only_sys_admin
 		result = true
 		klasses = [Thesaurus, BiomedicalConceptTemplate, BiomedicalConcept, Form, SdtmUserDomain]
 		klasses.each do |klass|
@@ -51,7 +56,6 @@ private
 		end
 		return :all if result
 		return :term if policy(Thesaurus).index? 
-		return :admin if current_user.is_only_sys_admin
 		return :none
 	end
 

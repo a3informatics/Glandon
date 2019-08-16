@@ -26,6 +26,10 @@ class CdiscTermsController < ApplicationController
   #   end
   # end
 
+  def index
+    render :index, layout: "full_width"
+  end
+
   def history
     respond_to do |format|
       format.html do

@@ -219,32 +219,11 @@ Rails.application.routes.draw do
   end
 
   # CDISC Terminology
-  resources :cdisc_terms do
+  resources :cdisc_terms, :only => [:index] do
     collection do
-      get :find_submission
       get :history
-      #get :search
-      #get :search_results
-    end
-    member do
-      #get :changes
-      #get :changes_results
-      #get :changes_report
-      #get :submission
-      #get :submission_results
-      #get :submission_report
-      #get :cross_reference
-      #get :import_cross_reference
-      #post :create_cross_reference
-      #get :export_csv
     end
   end
-  resources :cdisc_cls, :only => [:show] do
-    member do
-      get :export_csv
-    end
-  end
-  resources :cdisc_clis, :only => [:show]
 
   # BCs
   resources :biomedical_concept_templates do
