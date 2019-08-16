@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <%= favicon_link_tag %>
+
+  	<title><%= "#{APP_CONFIG['application_name']}" %></title>
+    <% if !Rails.application.config.assets.precompile.include? "#{params[:controller]}.js" %>
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+      <%= javascript_include_tag 'application' %>
+  	<% else %>
+      <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
+      <%= javascript_include_tag 'application', params[:controller] %>
+  	<% end %>
+    <%= stylesheet_link_tag 'print', :media => 'print'%>
+    <%= csrf_meta_tags %>
+
+    <style>
+      html, body {
+        height:100%;
+      }
+
+      body {
+      	padding-top: 51px;
+      }
+
+      .container-fluid, .full {
+      	height:100%;
+      }
+
+      #sidebar {
+      	background-color:#f5f5f5;
+      }
+      
+      @media (min-width:768px) {
+      
+        #sidebar {
+            width: inherit;
+            min-width: 270px;
+            max-width: 270px;
+            min-height: 100%;
+            position:relative;
+            padding-top: 15px;
+        }
+        #main_area {
+            width:calc(100% - 270px);
+            padding-top: 15px;
+        }
+
+        #sidebar ul  {
+          border-bottom: 2px solid #d9d9d9;
+        }
+
+        #sidebar .breadcrumb {
+          background-color: #d9d9d9; 
+        }
+
+        .breadcrumb a { 
+          font-size: 12px !important; 
+        }
+
+        .breadcrumb li { 
+          font-size: 12px !important; 
+        }
+
+        .breadcrumb > li + li:before {
+          color: #000000;
+          content: ">>";
+          /*padding: 0 5px;*/
+        }
+
+      }
+
+      .table td.fit, 
+			.table th.fit {
+    		white-space: nowrap;
+    		width: 1%;
+			}  
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              <img alt='Brand' src='<%= asset_path("#{APP_CONFIG['application_image']}") %>' height='25'>
+            </a>
+            <a class="navbar-brand" href="/"><%= ENV['organization_navbar'] %><small><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small></a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <p class="navbar-text">
+                <% if current_user.user_name_display == "Yes" %>
+                  <%= "#{current_user.name} "%>
+                <% end %>
+                <% if current_user.user_role_display == "Yes" %>
+                  <%= "[#{current_user.role_list_stripped}]"%>
+                <% end %>
+              </p>
+              <% if policy(User).index? %>
+                <li><a id="users_button" href="/users"><span class="glyphicon glyphicon-user"></span>&nbsp;</a></li>
+              <% end %>
+              <li>
+                <%= link_to "", id: 'print_button' do %>
+                  <span class="glyphicon glyphicon-print"></span>
+                <% end %>
+              </li>
+              <% if policy(UserSetting).index? %>
+              	<li><a id="settings_button" href="<%= user_settings_path %>"><span class="glyphicon glyphicon-cog"></span>&nbsp;</a></li>
+              <% end %>
+              <li><a id="home_button" href="/"><span class="glyphicon glyphicon-home"></span>&nbsp;</a></li>
+              <li>
+                <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
+                  <span class="glyphicon glyphicon-off"></span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="row full">
+        <div id="main_area" class="col-md-12">
+          <div id="datatables">
+            <!-- Datatables page length options-->
+            <%= javascript_tag "var pageLength = #{current_user.table_rows};" %>
+            <%= javascript_tag "var pageSettings = #{UserSettings.datatable_settings};" %>
+          </div>
+          <div id="alerts">
+            <% flash.each do |type, message| %>
+              <div class="alert <%= bootstrap_class_for(type) %> fade in">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <%= message %>
+              </div>
+            <% end %>
+          </div>
+  				<%= yield %>
+  				<p>&nbsp;</p>
+        </div> 
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>-->
+    
+		
+		
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+  </body>
+</html>
