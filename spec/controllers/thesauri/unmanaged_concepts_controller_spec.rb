@@ -137,7 +137,8 @@ describe Thesauri::UnmanagedConceptsController do
             {
               :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
               :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5"
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
             }
           ]
         }
@@ -163,7 +164,8 @@ describe Thesauri::UnmanagedConceptsController do
             {
               :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
               :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5"
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
             }
           ]
         }
@@ -189,7 +191,8 @@ describe Thesauri::UnmanagedConceptsController do
             {
               :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
               :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
-              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5"
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
             }
           ]
         }

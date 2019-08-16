@@ -150,10 +150,24 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def synonym_links
     authorize Thesaurus, :view?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
-    render :json => {:data => tc.synonym_links(link_params)}, :status => 200
+    results = tc.synonym_links(link_params)
+    add_link_paths(results)
+    render :json => {:data => results}, :status => 200
   end
 
 private
+
+  def add_link_paths(results)
+    results.each do |syn, syn_results|
+      syn_results[:references].each do |ref|
+        if ref[:child][:identifier].empty?
+          ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params}) 
+        else
+          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: link_params})
+        end
+      end
+    end
+  end
 
   def edit_lock_lost_link(thesaurus)
     return history_thesauri_index_path(identifier: thesaurus.identifier, scope_id: thesaurus.scope.id)
