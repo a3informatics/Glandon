@@ -2,6 +2,7 @@ defaults: &defaults
   ApplicationPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -9,6 +10,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -16,6 +18,7 @@ defaults: &defaults
       content_admin: true
     view:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -23,6 +26,7 @@ defaults: &defaults
       content_admin: true
     all:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -30,6 +34,7 @@ defaults: &defaults
       content_admin: true
     list:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -37,6 +42,7 @@ defaults: &defaults
       content_admin: true
     history:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -44,6 +50,7 @@ defaults: &defaults
       content_admin: true
     changes:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: true
@@ -51,6 +58,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -58,6 +66,7 @@ defaults: &defaults
       content_admin: true
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -65,6 +74,7 @@ defaults: &defaults
       content_admin: true
     update:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -72,6 +82,7 @@ defaults: &defaults
       content_admin: true
     edit:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -79,6 +90,7 @@ defaults: &defaults
       content_admin: true
     clone:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -86,6 +98,7 @@ defaults: &defaults
       content_admin: true
     branch:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -93,6 +106,7 @@ defaults: &defaults
       content_admin: true
     upgrade:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -100,6 +114,7 @@ defaults: &defaults
       content_admin: true
     impact:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -107,6 +122,7 @@ defaults: &defaults
       content_admin: true
     import:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -114,6 +130,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -121,6 +138,7 @@ defaults: &defaults
       content_admin: true
     export_json:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -128,6 +146,7 @@ defaults: &defaults
       content_admin: true
     export_xpt_metadata:
       sys_admin: false
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -135,6 +154,7 @@ defaults: &defaults
       content_admin: true
     export_ttl:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -142,6 +162,7 @@ defaults: &defaults
       content_admin: true
     export_csv:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -150,6 +171,7 @@ defaults: &defaults
   AdHocReportPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -157,6 +179,7 @@ defaults: &defaults
       content_admin: true
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -164,6 +187,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -171,6 +195,7 @@ defaults: &defaults
       content_admin: true
     run_start:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -178,6 +203,7 @@ defaults: &defaults
       content_admin: true
     run_progress:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -185,6 +211,7 @@ defaults: &defaults
       content_admin: true
     run_results:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -192,6 +219,7 @@ defaults: &defaults
       content_admin: true
     results:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -199,6 +227,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -206,6 +235,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -258,13 +288,7 @@ defaults: &defaults
   CdiscTermPolicy:
     index:
       sys_admin: false
-      term_reader: true
-      term_curator: true
-      reader: true
-      curator: true
-      content_admin: true
-    show:
-      sys_admin: false
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true
@@ -272,6 +296,7 @@ defaults: &defaults
       content_admin: true
     history:
       sys_admin: false
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true
@@ -287,6 +312,7 @@ defaults: &defaults
       content_admin: true
     view:
       sys_admin: false
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -294,6 +320,7 @@ defaults: &defaults
       content_admin: true
     database:
       sys_admin: false
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -309,6 +336,7 @@ defaults: &defaults
   IsoManagedPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -316,6 +344,7 @@ defaults: &defaults
       content_admin: true
     status:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -323,6 +352,7 @@ defaults: &defaults
       content_admin: true
     export:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -331,6 +361,7 @@ defaults: &defaults
   IsoNamesapcePolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -338,6 +369,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -345,6 +377,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -352,6 +385,7 @@ defaults: &defaults
       content_admin: true
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -359,6 +393,7 @@ defaults: &defaults
       content_admin: true
     update:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -366,6 +401,7 @@ defaults: &defaults
       content_admin: true
     edit:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -373,6 +409,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -381,6 +418,7 @@ defaults: &defaults
   IsoRegistrationAuthorityPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -388,6 +426,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -395,6 +434,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -402,6 +442,7 @@ defaults: &defaults
       content_admin: true
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -409,6 +450,7 @@ defaults: &defaults
       content_admin: true
     update:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -416,6 +458,7 @@ defaults: &defaults
       content_admin: true
     edit:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -423,6 +466,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -431,6 +475,7 @@ defaults: &defaults
   IsoRegistrationStatePolicy:
     current:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -438,6 +483,7 @@ defaults: &defaults
       content_admin: true
     update:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -446,6 +492,7 @@ defaults: &defaults
   IsoScopedIdentifierPolicy:
     update:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -454,6 +501,7 @@ defaults: &defaults
   ThesaurusPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -461,6 +509,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true
@@ -468,6 +517,7 @@ defaults: &defaults
       content_admin: true
     view:
       sys_admin: false
+      community_reader: false
       term_reader: true
       term_curator: true
       reader: true
@@ -475,6 +525,7 @@ defaults: &defaults
       content_admin: true
     history:
       sys_admin: false
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true
@@ -482,6 +533,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -489,6 +541,7 @@ defaults: &defaults
       content_admin: true
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -496,6 +549,7 @@ defaults: &defaults
       content_admin: true
     edit:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -503,6 +557,7 @@ defaults: &defaults
       content_admin: true
     impact:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -510,6 +565,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -517,49 +573,7 @@ defaults: &defaults
       content_admin: true
     export_ttl:
       sys_admin: false
-      term_reader: false
-      term_curator: true
-      reader: false
-      curator: true
-      content_admin: true
-  ThesaurusConceptPolicy:
-    index:
-      sys_admin: false
-      term_reader: true
-      term_curator: true
-      reader: true
-      curator: true
-      content_admin: true
-    show:
-      sys_admin: false
-      term_reader: true
-      term_curator: true
-      reader: true
-      curator: true
-      content_admin: true
-    create:
-      sys_admin: false
-      term_reader: false
-      term_curator: true
-      reader: false
-      curator: true
-      content_admin: true
-    edit:
-      sys_admin: false
-      term_reader: false
-      term_curator: true
-      reader: false
-      curator: true
-      content_admin: true
-    update:
-      sys_admin: false
-      term_reader: false
-      term_curator: true
-      reader: false
-      curator: true
-      content_admin: true
-    destroy:
-      sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: true
       reader: false
@@ -589,6 +603,7 @@ defaults: &defaults
       content_admin: true
     extend_token:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -597,6 +612,7 @@ defaults: &defaults
   UploadPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -604,6 +620,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -612,6 +629,7 @@ defaults: &defaults
   ImportPolicy:
     new:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -619,6 +637,7 @@ defaults: &defaults
       content_admin: true
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -626,6 +645,7 @@ defaults: &defaults
       content_admin: true
     show:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -633,6 +653,7 @@ defaults: &defaults
       content_admin: true
     create:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -640,6 +661,7 @@ defaults: &defaults
       content_admin: true
     destroy:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -647,6 +669,7 @@ defaults: &defaults
       content_admin: true
     destroy_multiple:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -654,6 +677,7 @@ defaults: &defaults
       content_admin: true
     items:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -661,6 +685,7 @@ defaults: &defaults
       content_admin: true
     list:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -669,6 +694,7 @@ defaults: &defaults
   ExportPolicy:
     index:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -676,6 +702,7 @@ defaults: &defaults
       content_admin: true
     start:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -683,6 +710,7 @@ defaults: &defaults
       content_admin: true
     terminologies:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -690,6 +718,7 @@ defaults: &defaults
       content_admin: true
     biomedical_concepts:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -697,6 +726,7 @@ defaults: &defaults
       content_admin: true
     forms:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false
@@ -704,6 +734,7 @@ defaults: &defaults
       content_admin: true
     download:
       sys_admin: false
+      community_reader: false
       term_reader: false
       term_curator: false
       reader: false

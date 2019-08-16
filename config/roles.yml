@@ -5,6 +5,11 @@ defaults: &defaults
       :description: "System administration rights. This role has no access to MDR content."
       :with_sys_admin: false
       :enabled: true
+    :community_reader:
+      :display_text: "Community Reader"
+      :description: "Specific role for use with the community version. Can be used as a simple reader role."
+      :with_sys_admin: false
+      :enabled: true
     :term_reader:
       :display_text: "Terminology Reader"
       :description: "The lowest level of access. A Terminology Reader access permits the user to have read-only access to the MDR's terminology content."

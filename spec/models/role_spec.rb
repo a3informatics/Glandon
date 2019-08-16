@@ -5,10 +5,9 @@ describe Role do
 	include DataHelpers
 
 	it "provides a list of roles" do
-		expected_key = [:sys_admin, :content_admin, :curator, :reader, :term_reader, :term_curator]
-		expected_text = ["System Admin", "Content Admin", "Curator", "Reader", "Terminology Reader", "Terminology Curator"]
+		expected_key = [:sys_admin, :content_admin, :curator, :reader, :term_reader, :term_curator, :community_reader]
+		expected_text = ["System Admin", "Content Admin", "Curator", "Reader", "Terminology Reader", "Terminology Curator", "Community Reader"]
 		Role.list.each do |k, v| 
-		#puts "#{k}, #{v}"
 			expect(expected_key.include?(k)).to eq(true) 
 			expect(expected_text.include?(v[:display_text])).to eq(true) 
 		end
