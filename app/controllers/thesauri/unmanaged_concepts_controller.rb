@@ -147,6 +147,12 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   #   render json: results
   # end
 
+  def synonym_links
+    authorize Thesaurus, :view?
+    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    render :json => {:data => tc.synonym_links(link_params)}, :status => 200
+  end
+
 private
 
   def edit_lock_lost_link(thesaurus)
@@ -177,8 +183,12 @@ private
   #   return link
   # end
 
+  def link_params
+    params.permit(:unmanaged_concept).permit(:context_id)
+  end
+    
   def the_params
-    params.require(:unmanaged_concept).permit(:identifier, :parent_id)
+    params.require(:unmanaged_concept).permit(:identifier, :parent_id, :context_id)
   end
     
   def edit_params
