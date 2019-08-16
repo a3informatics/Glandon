@@ -1,0 +1,68 @@
+/*
+* Links Panel
+* 
+*/
+
+/**
+* Links Panel Constructor
+* @param url [String] The url to make the ajax call
+* @param panelId [String] The id assigned to the panel
+*
+* @return [void]
+*/
+function LinksPanel(url, panelId) {
+  var _this = this;
+  this.url = url;
+  this.panelId = panelId;
+  this.getData();
+}
+
+/**
+ * Ajax Call
+ *
+ * @return [void]
+ */
+LinksPanel.prototype.getData = function () {
+  var _this = this;
+  $.ajax({
+    url: _this.url,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){        
+      _this.display(result);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError (xhr, status, error);
+    }
+  }); 
+}
+
+/**
+ * Display the result
+ * @param url [String] The url to make the ajax call 
+ *
+ * @return [void]
+ */
+LinksPanel.prototype.display = function (result) {
+  var _this= this;
+  return '<ul class="list-inline">';
+  $.each( result, function( key, value ) {
+    return '<strong><p id="description"></p></strong>';
+    return '<li><strong>'+key+'</strong></li>';
+    return '<li><strong>'+value+'</strong></li>';
+    _this.linkButton(path);
+  });
+  return '</ul>'; 
+}
+
+/**
+ * Link button
+ * @param path [String] The url to  
+ *
+ * @return [void]
+ */
+LinksPanel.prototype.linkButton = function (path) {
+
+    return '<a href="' + path + '" class="btn btn-primary btn-xs"><i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>';
+}
