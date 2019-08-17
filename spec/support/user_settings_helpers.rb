@@ -47,7 +47,7 @@ module UserSettingsHelpers
       {
       	:type=>"coded", 
       	:values=>{'4': 4, '8': 8, '12': 12}, 
-      	:default_value=>8, 
+      	:default_value=>4, 
       	:label=>"Terminology Versions Displayed",
       	:description=>"Number of terminologies to be displayed in change tables."
       }
