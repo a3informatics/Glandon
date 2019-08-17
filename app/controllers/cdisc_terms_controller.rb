@@ -28,6 +28,10 @@ class CdiscTermsController < ApplicationController
 
   def index
     @versions = CdiscTerm.version_dates.reverse
+    width = current_user.max_term_display.to_i
+    current_index = @versions.length > width ? width - 1 : 0
+    @current_id = @versions[current_index][:id]
+    @latest_id = @versions.first[:id]
     render :index, layout: "full_width"
   end
 

@@ -52,36 +52,16 @@ describe CdiscTermsController do
     load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
   end
 
-=begin
-    it "returns an error when it cannot find a code list, no current version" do
-      @request.env['HTTP_REFERER'] = 'http://test.host/cdisc_term'
-      params = { :notation => "VSTESTCDx" }
-      get :find_submission, params
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match("Not current version of the terminology.")
-      expect(response).to redirect_to("/cdisc_term")
+    it "index" do
+      return_values = []
+      (1..20).each_with_index {|x, index| return_values << {id: Uri.new(uri: "http://www.example.com/a##{index+1}").to_id, date: "2019-01-01"}}
+      expect(CdiscTerm).to receive(:version_dates).and_return(return_values)
+      get :index
+      expect(assigns(:current_id)).to eq(Uri.new(uri: "http://www.example.com/a#17").to_id) # 4th to end
+      expect(assigns(:latest_id)).to eq(Uri.new(uri: "http://www.example.com/a#20").to_id) # Latest
+      expect(assigns(:versions)).to eq(return_values.reverse)
+      expect(response).to render_template("index")
     end
-    
-    it "finds a code list based on submission value" do
-      th = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      IsoRegistrationState.make_current(th.registrationState.id)
-      params = { :notation => "VSTESTCD" }
-      get :find_submission, params
-      results = assigns(:cdiscCl)
-    #Xwrite_yaml_file(results.to_json, sub_dir, "find_submission_expected.yaml")
-      expected = read_yaml_file(sub_dir, "find_submission_expected.yaml")
-      expect(results.to_json).to eq(expected)
-    end
-    
-    it "returns an error when it cannot find a code list based on submission value" do
-      @request.env['HTTP_REFERER'] = 'http://test.host/cdisc_term'
-      params = { :notation => "VSTESTCDx" }
-      get :find_submission, params
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match("Could not find the Code List.")
-      expect(response).to redirect_to("/cdisc_term")
-    end
-=end
 
     it "shows the history, initial view" do
       params = {}

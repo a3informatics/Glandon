@@ -141,7 +141,7 @@ class ThesauriController < ApplicationController
     @thesaurus = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html 
-        @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.identifier, scope_id: @thesaurus.owner})
+        @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.owner})
       format.json do
         if Thesaurus.empty_search?(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
@@ -154,7 +154,7 @@ class ThesauriController < ApplicationController
   end
   
   def changes
-    authorize CdiscTerm, :view?
+    authorize Thesaurus, :view?
     respond_to do |format|
       format.html do
         @version_count = current_user.max_term_display.to_i
@@ -176,7 +176,7 @@ class ThesauriController < ApplicationController
   end
 
   def changes_report
-    authorize CdiscTerm, :view?
+    authorize Thesaurus, :view?
     ct = Thesaurus.find_minimum(params[:id])
     cls = ct.changes(current_user.max_term_display.to_i)
     respond_to do |format|
@@ -188,7 +188,7 @@ class ThesauriController < ApplicationController
   end
 
   def submission
-    authorize CdiscTerm, :view?
+    authorize Thesaurus, :view?
     respond_to do |format|
       format.html do
         @version_count = current_user.max_term_display.to_i
@@ -207,7 +207,7 @@ class ThesauriController < ApplicationController
   end
 
   def submission_report
-    authorize CdiscTerm, :view?
+    authorize Thesaurus, :view?
     ct = Thesaurus.find_minimum(params[:id])
     cls = ct.submission(current_user.max_term_display.to_i)
     respond_to do |format|

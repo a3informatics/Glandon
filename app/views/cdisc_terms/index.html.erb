@@ -9,9 +9,9 @@
   <div class="col-md-12">
     <div class="btn-group">
       <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Browse every version of CDISC CT</a>
-      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">See all the Changes across versions</a>
-      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">See just the Submission value changes across versions</a>
-      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Search the latest version of CDISC CT</a>
+      <a href="<%= changes_thesauri_path(@current_id) %>" class="btn btn-primary">See all the Changes across versions</a>
+      <a href="<%= submission_thesauri_path(@current_id) %>" class="btn btn-primary">See just the Submission value changes across versions</a>
+      <a href="<%= search_thesauri_path(@latest_id) %>" class="btn btn-primary">Search the latest version of CDISC CT</a>
     </div>
   </div>
 </div>
