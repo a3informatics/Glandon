@@ -9,13 +9,23 @@ describe IsoConceptSystem do
 
     before :each do
       clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Basic.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Data.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      # load_schema_file_into_triple_store("ISO11179Types.ttl")
+      # load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      # load_schema_file_into_triple_store("ISO11179Data.ttl")
+      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"    
+      ]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
     end
 
@@ -45,14 +55,23 @@ describe IsoConceptSystem do
 
   	before :all do
       clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Basic.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Data.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
+      # load_schema_file_into_triple_store("ISO11179Types.ttl")
+      # load_schema_file_into_triple_store("ISO11179Basic.ttl")
+      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      # load_schema_file_into_triple_store("ISO11179Data.ttl")
+      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"  
+      ]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
     end
 
@@ -153,7 +172,7 @@ describe IsoConceptSystem do
 
     it "handles a bad response error - create" do
       response = Typhoeus::Response.new(code: 200, body: "")
-      expect(Rest).to receive(:sendRequest).and_return(response)
+      expect(CRUD).to receive(:update).and_return(response)
       expect(response).to receive(:success?).and_return(false)
       json =     
         { 
@@ -165,10 +184,7 @@ describe IsoConceptSystem do
           :extension_properties => [],
           :children => []
         }
-      #new_object = IsoConceptSystem.create(json)
-      #expect(new_object.errors.count).to eq(1)
       expect{IsoConceptSystem.create(json)}.to raise_error(Exceptions::CreateError)
-
     end
 
     it "handles a bad response error - add" do
@@ -184,10 +200,8 @@ describe IsoConceptSystem do
           :children => []
         }
       response = Typhoeus::Response.new(code: 200, body: "")
-      expect(Rest).to receive(:sendRequest).and_return(response)
+      expect(CRUD).to receive(:update).and_return(response)
       expect(response).to receive(:success?).and_return(false)
-      #new_object = concept.add(json)
-      #expect(new_object.errors.count).to eq(1)
       expect{concept.add(json)}.to raise_error(Exceptions::CreateError)
     end
 
