@@ -23,7 +23,12 @@ IndexPanel.prototype.get = function (url) {
     dataType: 'json',
     success: function(result) {
       _this.processing(false);
-      $("#results_div").html("<pre>" + JSON.stringify(result.data, undefined, 2) + "</pre>");	
+      _this.results("#created_div", result.data.created)
+      _this.results("#deleted_div", result.data.deleted)
+      _this.results("#updated_div", result.data.updated)
+      //$("#created_div").html("<pre>" + JSON.stringify(result.data.created, undefined, 2) + "</pre>");	
+      //$("#deleted_div").html("<pre>" + JSON.stringify(result.data.deleted, undefined, 2) + "</pre>"); 
+      //$("#updated_div").html("<pre>" + JSON.stringify(result.data.updated, undefined, 2) + "</pre>"); 
     },
     error: function(xhr,status,error){
       _this.processing(false);
@@ -40,4 +45,16 @@ IndexPanel.prototype.processing = function (state) {
     $('#spinner_div').hide();
     $('#results_div').show();
   }
+}
+
+IndexPanel.prototype.results = function(div, data) {
+  html = '<div class="list-group">';
+  $.each( data, function( key, value ) {
+    html += '<a href="' + value.changes_path + '" class="list-group-item">';
+    html += '  <h5 class="list-group-item-heading">' + value.label + '</h5>';
+    html += '  <p class="list-group-item-text"><small>' + value.notation + ' ' + '(' + value.identifier + ')</small></p>';
+    html += '</a>';
+  });
+  html += '</div>';
+  $(div).html(html); 
 }

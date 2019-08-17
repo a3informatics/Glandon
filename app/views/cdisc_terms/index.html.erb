@@ -5,48 +5,79 @@
     padding-top: 20px;
   }
 </style>
-<div class="row full rowpad">
-  <div class="col-md-4">
-    <div>
-      <label for="from_select">From Version:</label>
-      <select class="form-control" id="from_select">
-        <% @versions.each do |x| %>
-          <option value="<%= x[:id] %>"><%= x[:date] %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-  <div class="col-md-4 text-center">
-    <buttom class="btn btn-primary" id="go_button">Difference</buttom>
-  </div>
-  <div class="col-md-4">
-    <div>
-      <label for="to_select">To Version:</label>
-      <select class="form-control" id="to_select">
-        <% @versions.each do |x| %>
-          <option value="<%= x[:id] %>"><%= x[:date] %></option>
-        <% end %>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="row full rowpad">
+<div class="row">
   <div class="col-md-12">
-    <div id="results_div"></div>
-    <div id="spinner_div"><p class="text-center"><img src="<%= asset_path('processing_large_2.gif') %>"></p></div>
+    <div class="btn-group">
+      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Browse every version of CDISC CT</a>
+      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">See all the Changes across versions</a>
+      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">See just the Submission value changes across versions</a>
+      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Search the latest version of CDISC CT</a>
+    </div>
   </div>
 </div>
-<div class="row full rowpad">
-  <div class="col-md-3 text-center">
-    <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Browse Every Version</a>
-  </div>
-  <div class="col-md-3 text-center">
-    <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Changes</a>
-  </div>
-  <div class="col-md-3 text-center">
-    <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Submission</a>
-  </div>
-  <div class="col-md-3 text-center">
-    <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary">Search Latest</a>
+<div class="row rowpad">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Changes</h3></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label for="from_select">From Version:</label>
+                  <select class="form-control" id="from_select">
+                    <% @versions.each do |x| %>
+                      <option value="<%= x[:id] %>"><%= x[:date] %></option>
+                    <% end %>
+                  </select>
+                </div>
+                ...
+                <div class="form-group">
+                  <label for="from_select">To Version:</label>
+                  <select class="form-control" id="to_select">
+                    <% @versions.each do |x| %>
+                      <option value="<%= x[:id] %>"><%= x[:date] %></option>
+                    <% end %>
+                  </select>
+                </div>
+                ...
+                <div class="form-group">
+                  <buttom class="btn btn-primary" id="go_button">Go</buttom>
+                </div>
+              </form>
+            
+          </div>
+        </div>
+        <div class="row rowpad">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div id="results_div">
+                  <div class="col-md-4">
+                    <div class="panel panel-danger">
+                      <div class="panel-heading"><h3 class="panel-title">Deleted Items</h3></div>
+                      <div class="panel-body" id="deleted_div"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="panel panel-warning">
+                      <div class="panel-heading"><h3 class="panel-title">Updated Items</h3></div>
+                      <div class="panel-body" id="updated_div"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="panel panel-success">
+                      <div class="panel-heading"><h3 class="panel-title">Created Items</h3></div>
+                      <div class="panel-body" id="created_div"></div>
+                    </div>
+                  </div>
+                </div>
+                <div id="spinner_div"><p class="text-center"><img src="<%= asset_path('processing_large_2.gif') %>"></p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

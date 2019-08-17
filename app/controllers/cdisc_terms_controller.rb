@@ -49,16 +49,27 @@ class CdiscTermsController < ApplicationController
   end
 
   def changes
+    results = {}
     versions = CdiscTerm.version_dates
     ct_from = Thesaurus.find_minimum(params[:id])
     from_index = versions.find_index {|x| x[:id] == ct_from.id}
     ct_to = Thesaurus.find_minimum(change_params[:other_id])
     to_index = versions.find_index {|x| x[:id] == ct_to.id}
     cls = ct_from.changes(to_index - from_index + 1)
-    cls[:items].each do |k,v| 
-      v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
+    results = {created: [], deleted: [], updated: []}
+    cls[:items].each do |key, value| 
+      value[:status].each do |status|
+        begin
+          next if status[:status] == :no_change
+          next if status[:status] == :not_present
+          results[status[:status]] << {identifier: key, label: value[:label], notation: value[:notation], changes_path: changes_thesauri_managed_concept_path(value[:id])}
+          break
+        rescue => e
+          byebug
+        end
+      end
     end
-    render json: {data: cls}
+    render json: {data: results}
   end
 
   # def import
