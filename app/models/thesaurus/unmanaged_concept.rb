@@ -161,26 +161,6 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     return self
   end
 
-  # Synonym Links. Find all items within the context that share the synonyms
-  #
-  # @param [Hash] params the parameters
-  # @option params [String] :context_id the identifier of the thesaurus context to work within. 
-  #   will find all if not present
-  # @return [Hash] the results hash
-  def synonym_links(params)
-    generic_links(params, :synonym)
-  end
-
-  # Preferred Term Links. Find all items within the context that share the preferred term
-  #
-  # @param [Hash] params the parameters
-  # @option params [String] :context_id the identifier of the thesaurus context to work within. 
-  #   will find all if not present
-  # @return [Hash] the results hash
-  def preferred_term_links(params)
-    generic_links(params, :preferred_term)
-  end
-
 private
 
   # Ignore for no change

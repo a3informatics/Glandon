@@ -433,7 +433,7 @@ describe Thesaurus::UnmanagedConcept do
 
   end
 
-  describe "synonym links" do
+  describe "synonym and preferred term links" do
 
     before :all do
       IsoHelpers.clear_cache
@@ -480,6 +480,20 @@ describe Thesaurus::UnmanagedConcept do
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
       results = tc.synonym_links({})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_5.yaml")
+    end
+
+    it "PT link" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = tc.preferred_term_links({context_id: th.id})
+      check_file_actual_expected(results, sub_dir, "preferred_term_links_expected_1.yaml")
+    end
+
+    it "PT link no context" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = tc.preferred_term_links({})
+      check_file_actual_expected(results, sub_dir, "preferred_term_links_expected_2.yaml")
     end
 
   end

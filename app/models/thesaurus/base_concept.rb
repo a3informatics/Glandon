@@ -121,22 +121,46 @@ class Thesaurus
       self.preferred_term.label
     end
     
-    # Generic Links. Find all items within the context that share synonyms or preferred terms
+    # Synonym Links. Find all items within the context that share the synonyms
     #
     # @param [Hash] params the parameters
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @return [Hash] the results hash
-    def generic_links(params, predicate)
+    def synonym_links(params)
+      generic_links(params, :synonym)
+    end
+
+    # Preferred Term Links. Find all items within the context that share the preferred term
+    #
+    # @param [Hash] params the parameters
+    # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+    #   will find all if not present
+    # @return [Hash] the results hash
+    def preferred_term_links(params)
+      generic_links(params, :preferred_term)
+    end
+
+  private
+
+    # Generic Links. Find all items within the context that share synonyms or preferred terms
+    #
+    # @param [Hash] params the parameters
+    # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+    #   will find all if not present
+    # @param [Symbol] the property name, either :synonym or :preferred_term
+    # @return [Hash] the results hash
+    def generic_links(params, property_name)
+      predicate = self.properties.property(property_name).predicate
       context_filter = params.key?(:context_id) ? %Q{?th th:isTopConceptReference/bo:reference ?p .
   FILTER (STR(?th) = "#{Uri.new(id: params[:context_id]).to_s}") .} : ""
       query_string = %Q{
   SELECT DISTINCT ?c ?p ?syn ?p_n ?p_id ?c_n ?c_id ?p_d WHERE
   {          
     {     
-      #{self.uri.to_ref} th:synonym ?s .
+      #{self.uri.to_ref} #{predicate.to_ref} ?s .
       ?s isoC:label ?syn .
-      ?c th:#{predicate} ?s .
+      ?c #{predicate.to_ref} ?s .
       FILTER (STR(?c) != "#{self.uri.to_s}") .
       {
         ?p th:narrower+ ?c .
@@ -161,7 +185,11 @@ class Thesaurus
   }}
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
       results = {}
-      self.synonym.each {|s| results[s.label] = {description: s.label, references: []}}
+      if property_name == :synonym 
+        self.synonym.each {|s| results[s.label] = {description: s.label, references: []}}
+      else
+        results[self.preferred_term.label] = {description: self.preferred_term.label, references: []}
+      end
       query_results.by_object_set([:c, :p, :syn, :p_id, :c_id]).each do |x|
         results[x[:syn]][:references] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
       end
