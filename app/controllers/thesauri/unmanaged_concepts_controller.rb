@@ -155,6 +155,14 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     render :json => {:data => results}, :status => 200
   end
 
+  def preferred_term_links
+    authorize Thesaurus, :view?
+    tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    results = tc.preferred_term_links(link_params)
+    add_link_paths(results)
+    render :json => {:data => results}, :status => 200
+  end
+
 private
 
   def add_link_paths(results)

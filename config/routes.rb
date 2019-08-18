@@ -138,6 +138,7 @@ Rails.application.routes.draw do
         get :changes
         get :differences
         get :synonym_links
+        get :preferred_term_links
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -145,6 +146,7 @@ Rails.application.routes.draw do
         get :changes
         get :differences
         get :synonym_links
+        get :preferred_term_links
       end
     end
   end
