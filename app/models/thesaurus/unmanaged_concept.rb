@@ -112,8 +112,8 @@ SELECT DISTINCT ?p WHERE\n
     {
       SELECT DISTINCT ?pi 
       {
-        ?parent th:narrower #{self.uri.to_ref} .
-        ?parent th:identifier ?pi .
+        ?p th:narrower #{self.uri.to_ref} .
+        ?p th:identifier ?pi .
       }
     }
   }
