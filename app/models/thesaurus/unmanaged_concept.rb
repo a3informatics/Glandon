@@ -168,44 +168,17 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   #   will find all if not present
   # @return [Hash] the results hash
   def synonym_links(params)
-    context_filter = params.key?(:context_id) ? %Q{?th th:isTopConceptReference/bo:reference ?p .
-FILTER (STR(?th) = "#{Uri.new(id: params[:context_id]).to_s}") .} : ""
-    query_string = %Q{
-SELECT DISTINCT ?c ?p ?syn ?p_n ?p_id ?c_n ?c_id ?p_d WHERE
-{          
-  {     
-    #{self.uri.to_ref} th:synonym ?s .
-    ?s isoC:label ?syn .
-    ?c th:synonym ?s .
-    FILTER (STR(?c) != "#{self.uri.to_s}") .
-    {
-      ?p th:narrower+ ?c .
-      ?p rdf:type th:ManagedConcept .
-      #{context_filter}
-      ?p th:notation ?p_n .
-      ?p th:identifier ?p_id .
-      ?p isoT:lastChangeDate ?p_d .
-    } UNION
-    {
-      ?c rdf:type th:ManagedConcept .
-      ?c th:identifier ?p_id .
-      ?c th:notation ?p_n .
-      ?c isoT:lastChangeDate ?p_d .
-      BIND (?c as ?p)
-      BIND ("" as ?c_n)
-      BIND ("" as ?c_id)
-    }
-    ?c th:identifier ?c_id .
-    ?c th:notation ?c_n .
-  } 
-}}
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
-    results = {}
-    self.synonym.each {|s| results[s.label] = {description: s.label, references: []}}
-    query_results.by_object_set([:c, :p, :syn, :p_id, :c_id]).each do |x|
-      results[x[:syn]][:references] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
-    end
-    results
+    generic_links(params, :synonym)
+  end
+
+  # Preferred Term Links. Find all items within the context that share the preferred term
+  #
+  # @param [Hash] params the parameters
+  # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+  #   will find all if not present
+  # @return [Hash] the results hash
+  def preferred_term_links(params)
+    generic_links(params, :preferred_term)
   end
 
 private
