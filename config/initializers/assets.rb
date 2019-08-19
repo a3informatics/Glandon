@@ -46,3 +46,5 @@ Rails.application.config.assets.precompile += %w( thesauri/managed_concepts/show
 Rails.application.config.assets.precompile += %w( thesauri/unmanaged_concepts/show.js)
 Rails.application.config.assets.precompile += %w( iso_managed/edit_tags.js )
 Rails.application.config.assets.precompile += %w( iso_concept_systems/index.js ) 
+Rails.application.config.assets.precompile += %w( shared/thesauri/links_panel.js)
+Rails.application.config.assets.precompile += %w( shared/thesauri/links_panel.css )

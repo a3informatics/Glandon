@@ -11,7 +11,7 @@
 * @return [void]
 */
 function LinksPanel(url, panelId) {
-  var _this = this;
+  // var _this = this;
   this.url = url;
   this.panelId = panelId;
   this.getData();
@@ -40,29 +40,27 @@ LinksPanel.prototype.getData = function () {
 
 /**
  * Display the result
- * @param url [String] The url to make the ajax call 
+ * @param result [String] The result obtained from Ajax call
  *
  * @return [void]
  */
 LinksPanel.prototype.display = function (result) {
-  var _this= this;
-  return '<ul class="list-inline">';
-  $.each( result, function( key, value ) {
-    return '<strong><p id="description"></p></strong>';
-    return '<li><strong>'+key+'</strong></li>';
-    return '<li><strong>'+value+'</strong></li>';
-    _this.linkButton(path);
-  });
-  return '</ul>'; 
-}
-
-/**
- * Link button
- * @param path [String] The url to  
- *
- * @return [void]
- */
-LinksPanel.prototype.linkButton = function (path) {
-
-    return '<a href="' + path + '" class="btn btn-primary btn-xs"><i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a>';
+  var _this = this;
+  for (var key in result) { //key is each synonym
+    for (var key2 in result[key]) { // key2 is the content of each synonym
+      var well = document.createElement("div");
+      well.className = "welll";
+      var description = result[key][key2].description;
+      var show_path = result[key][key2].show_path;
+      var identifier = result[key][key2].references.parent.identifier;
+      var notation = result[key][key2].references.parent.notation;
+      well.innerHTML= '<strong><p id="description">'+ description +'</p></strong>'+
+      '<ul class= "list-inline">'+
+        '<li><strong>'+ identifier +'</strong></li>'+
+        '<li><strong>'+ notation +'</strong></li>'+
+        '<li><a href="'+show_path +'" class="btn btn-primary btn-xs" role="button"><i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a></li>'+
+      '</ul>'
+      document.getElementById("linkspanel").appendChild(well);
+    }
+  }
 }
