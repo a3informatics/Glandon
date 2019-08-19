@@ -18,7 +18,7 @@ module Sparql
           # @return [Void] no return
           def initialize(node)
             str = node.to_s
-            @name = str.match(/\A<binding name=\"([a-z]*)\"/)[1]            
+            @name = str.match(/\A<binding name=\"([a-z_]*)\"/)[1]            
             uri = str.match(/<uri>(.*)<\/uri>/)
             if !uri.nil? 
               @value = Uri.new(uri: uri[1])

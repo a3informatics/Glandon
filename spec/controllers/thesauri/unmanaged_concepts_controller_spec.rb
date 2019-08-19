@@ -126,6 +126,141 @@ describe Thesauri::UnmanagedConceptsController do
 
     it "deletes concept, no token"
 
+    it "returns the synonym links, context" do
+      expected = 
+      {
+        :"Hair Cover" => 
+        {
+          :description => "Hair Cover", 
+          :references =>
+          [
+            {
+              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
+              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+            }
+          ]
+        }
+      }
+      load_cdisc_term_versions(1..30)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      get :synonym_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "returns the synonym links, no context" do
+      expected = 
+      {
+        :"Hair Cover" => 
+        {
+          :description => "Hair Cover", 
+          :references =>
+          [
+            {
+              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
+              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+            }
+          ]
+        }
+      }
+      load_cdisc_term_versions(1..30)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      get :synonym_links, {id: tc.id, unmanaged_concept: {context_id: ""}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "returns the synonym links, no context" do
+      expected = 
+      {
+        :"Hair Cover" => 
+        {
+          :description => "Hair Cover", 
+          :references =>
+          [
+            {
+              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
+              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+            }
+          ]
+        }
+      }
+      load_cdisc_term_versions(1..30)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      get :synonym_links, {id: tc.id, unmanaged_concept: {}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "returns the preferred term links, context" do
+      expected = 
+      {
+        :"Hair or Fur Cover" => 
+        {
+          :description => "Hair or Fur Cover", 
+          :references =>
+          [
+            {
+              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
+              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+            }
+          ]
+        }
+      }
+      load_cdisc_term_versions(1..30)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      get :preferred_term_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "returns the preferred term links, no context" do
+      expected = 
+      {
+        :"Hair or Fur Cover" => 
+        {
+          :description => "Hair or Fur Cover", 
+          :references =>
+          [
+            {
+              :parent => { :date => "2011-06-10T00:00:00+00:00", :identifier=>"C95121", :notation=>"PHSPRPCD" },
+              :child =>  { :identifier => "C95109", :notation=>"HAIRCOV" }, 
+              :id => "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5",
+              :show_path => "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk1MTIxL1YyNiNDOTUxMjFfQzk1MTA5?"
+            }
+          ]
+        }
+      }
+      load_cdisc_term_versions(1..30)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
+      get :preferred_term_links, {id: tc.id, unmanaged_concept: {}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
   end
 
 =begin
