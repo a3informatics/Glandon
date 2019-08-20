@@ -1,7 +1,7 @@
-<% synonym_panel_id = "panel_id" %>
+
 <%= javascript_include_tag 'thesauri/unmanaged_concepts/show', 'shared/thesauri/links_panel'  %>
-<%= javascript_tag "var url = '#{_path}';" %>
-<%= javascript_tag "var panel_id = 'synonym_panel_id'" %>
+<%= javascript_tag "var url = '#{synonym_links_thesauri_unmanaged_concept_path}';" %>
+<%= javascript_tag "var panel_id = 'linkspanel';" %>
 <% if @has_children %>
   <%= javascript_tag "var url_path = '#{thesauri_unmanaged_concept_path(@tc)}';" %>
 <% else %>
@@ -62,7 +62,7 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-2">
     <%= render partial: "shared/thesauri/links_panel", locals: {title: "Synonyms"} %>
   </div>
 </div>
