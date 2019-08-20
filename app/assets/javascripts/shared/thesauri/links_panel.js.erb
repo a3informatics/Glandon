@@ -30,8 +30,8 @@ LinksPanel.prototype.getData = function () {
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){ 
-    console.log(result);       
-    _this.display(result);
+    console.log(result.data);       
+    _this.display(result.data);
     },
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);
@@ -47,28 +47,25 @@ LinksPanel.prototype.getData = function () {
  */
 LinksPanel.prototype.display = function (result) {
   var _this = this;
-  for (var key in result) { //key is each synonym
-    for (var key2 in result[key]) { // key2 is the content of each synonym
-      var well = document.createElement("div");
-      well.className = "well";
-      var description = result[key][key2].description;
-      
-      for (var reference in result[key][key2].references ) {
-      var show_path = result[key][key2].references[reference].show_path;
-      var identifier = result[key][key2].references[reference].parent.identifier;
-      var notation = result[key][key2].references[reference].parent.notation;
-      well.innerHTML= '<strong><p id="description">'+ description +'</p></strong>'+
-      '<ul class= "list-inline">'+
-        '<li><strong>'+ identifier +'</strong></li>'+
-        '<li><strong>'+ notation +'</strong></li>'+
-        '<li><a href="'+show_path +'" class="btn btn-primary btn-xs" role="button"><i class="fa fa-arrow-circle-right fa-lg" aria-hidden="true"></i></a></li>'+
-      '</ul>';
-       document.getElementById("linkspanel").appendChild(well);
-      }
-
-      
-      
-     
-    }
+  var html = '';
+  for (var synonym in result) { //key is each synonym
+    html += 
+      '<div class="panel panel-default">' +
+        '<div class="panel-heading"><h4 class="panel-title">' + result[synonym].description + '</h4></div>' +
+        '<div class="panel-body">';
+    result[synonym].references.sort( function (item1, item2){
+      return new Date(item2.parent.date) - new Date(item1.parent.date)
+    });
+    html += '<div class="list-group">';
+    $.each( result[synonym].references, function( index, ref ) {
+      html += '<a href="' + ref.show_path + '" class="list-group-item">' +
+        '<p class="list-group-item-text"><small>' + ref.parent.date.split("T")[0] + ' ' + 
+        ref.parent.notation + ' (' + ref.parent.identifier + '), ' + 
+        ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
+        '</a>';
+    });
+    html += '</div></div></div>';
+    //console.log(well);
   }
+  $("#linkspanel").html(html);
 }
