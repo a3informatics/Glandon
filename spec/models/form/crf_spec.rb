@@ -20,6 +20,7 @@ schema_files =
       "form_crf_test_1.ttl", "ACME_ANNO 2_1.ttl", "ACME_ANNO 3_1.ttl", "ACME_ANNO 4_1.ttl", "ACME_ANNO_1.ttl", "form_example_fields.ttl",
       "ACME_BC C25298_1.ttl", "ACME_BC C25299_1.ttl", "ACME_BC C25206_1.ttl", "ACME_BC C25206_4.ttl",
       "ACME_BC C25208_1.ttl", "ACME_BC C25208_2.ttl", "ACME_BC C25347_1.ttl", "ACME_BC C17634_2.ttl",
+      "ACME_BC C49677_1.ttl", "ACME_BC C81255_1.ttl",
       "ACME_VS Domain.ttl", "ACME_LB Domain.ttl", "ACME_Topic.ttl"
     ]
     load_files(schema_files, data_files)

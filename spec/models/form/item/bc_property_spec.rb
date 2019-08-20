@@ -14,12 +14,12 @@ describe Form::Item::BcProperty do
     schema_files = 
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl"
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"
     ]
     data_files = 
     [
       "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
-      "form_example_vs_baseline_new.ttl"
+      "form_example_vs_baseline_new.ttl", "BC.ttl"
     ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))
@@ -106,9 +106,10 @@ describe Form::Item::BcProperty do
     result = item.thesaurus_concepts
     json = []
     result.each {|tc| json << tc.to_json}
-  #write_hash_to_yaml_file_2(json, sub_dir, "thesaurus_concepts_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_concepts_expected.yaml")
-    expect(json).to eq(expected)
+    check_file_actual_expected(json, sub_dir, "thesaurus_concepts_expected.yaml")
+  # write_hash_to_yaml_file_2(json, sub_dir, "thesaurus_concepts_expected.yaml")
+  #   expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_concepts_expected.yaml")
+  #   expect(json).to eq(expected)
   end 
 
   it "allows an object to be found from triples" #do
@@ -255,8 +256,7 @@ describe Form::Item::BcProperty do
     item.is_common = false
     tc_ref = OperationalReferenceV2.new
     tc_ref.ordinal = 1
-    tc_ref.subject_ref = UriV2.new({:id => "CLI-C66770_C49668", 
-    	:namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"})
+    tc_ref.subject_ref = UriV2.new({:id => "C66770_C49668", :namespace => "http://www.cdisc.org/C66770/V33"})
     item.children << tc_ref
  		item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml

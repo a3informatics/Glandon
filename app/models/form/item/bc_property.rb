@@ -16,7 +16,7 @@ class Form::Item::BcProperty < Form::Item
     results = Array.new
     children.each do |child|
       #results << ThesaurusConcept.find(child.subject_ref.id, child.subject_ref.namespace, false)
-      results << Thesaurus::UnmanagedConcept.find(Uri.new(fragment: child.subject_ref.id, namespace: child.subject_ref.namespace))
+      results << Thesaurus::UnmanagedConcept.find_children(Uri.new(fragment: child.subject_ref.id, namespace: child.subject_ref.namespace))
     end
     return results
   end

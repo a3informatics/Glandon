@@ -409,7 +409,7 @@ private
 
     # New faster query
     query = %Q(
-    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoT", "isoI", "iso25964"])} 
+    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoT", "isoI", "th"])} 
     	SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE 
     	{ 
 	      :#{self.id} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group .     
@@ -437,7 +437,7 @@ private
       	?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property .
       	?bc_topic_property cbc:hasThesaurusConcept ?valueRef .
       	?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj .     
-      	?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub .     
+      	?sdtmTopicValueObj th:notation ?sdtmTopicSub .     
     	} ORDER BY ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub
     )
     response = CRUD.query(query)
@@ -465,7 +465,7 @@ private
 
   def question_annotations()
     results = Array.new
-    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "bd", "isoI", "iso25964"])  +
+    query = UriManagement.buildNs(self.namespace, ["bf", "bo", "bd", "isoI"])  +
       "SELECT DISTINCT ?var ?domain ?item WHERE \n" +       
       "{ \n" +         
       "  ?col bd:name ?var .  \n" +        

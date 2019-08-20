@@ -64,6 +64,7 @@ describe Thesaurus do
 
     it "replaces references" do
       replace_old_reference("<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71620_C41139>")
+      replace_old_reference("<http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C66770_C49668>")
     end
 
     it "converts files" do
