@@ -64,7 +64,6 @@ describe("Links Panel", function() {
     '</div>';
     fixture.set(html);
     var linkspanel = new LinksPanel ("url", "linkspanel");
-    expect(document.getElementById("linkspanel").innerHTML).to.equal("");
     linkspanel.display(
               {
                 "umol/g":
@@ -90,17 +89,19 @@ describe("Links Panel", function() {
     );
 
     expect(document.getElementById("linkspanel").innerHTML).to.equal(
-        '<div class="panel panel-default">'+
-    '<div class="panel-heading">'+
-        '<h4 class="panel-title">umol/g</h4></div>'+
-    '<div class="panel-body">'+
-        '<div class="list-group">'+
-            '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzg1NzUy?" class="list-group-item">'+
+        '<div class="panel panel-default synonym_panel">'+
+          '<div class="panel-heading">'+
+            '<h4 class="panel-title">umol/g</h4>'+
+          '</div>'+
+          '<div class="panel-body">'+
+            '<div class="list-group">'+
+              '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzg1NzUy?" class="list-group-item" id="item">'+
                 '<p class="list-group-item-text"><small>2019-06-28 UNIT (C71620), nmol/g (C85752)</small></p>'+
-            '</a>'+
-        '</div>'+
-    '</div>'+
-'</div>');
+              '</a>'+
+            '</div>'+
+          '</div>'+
+        '</div>'
+    );
   });
 
 

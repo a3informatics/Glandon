@@ -11,7 +11,6 @@
 * @return [void]
 */
 function LinksPanel(url, panelId) {
-  // var _this = this;
   this.url = url;
   this.panelId = panelId;
   this.getData();
@@ -30,7 +29,6 @@ LinksPanel.prototype.getData = function () {
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){ 
-    console.log(result.data);       
     _this.display(result.data);
     },
     error: function(xhr,status,error){
@@ -46,18 +44,18 @@ LinksPanel.prototype.getData = function () {
  * @return [void]
  */
 LinksPanel.prototype.display = function (result) {
-  var _this = this;
+  var _this = this; 
   var html = '';
-  for (var synonym in result) {
+  $.each(result, function (index, item) {
     html += 
-      '<div class="panel panel-default synonym_panel ">' +
-        '<div class="panel-heading"><h4 class="panel-title">' + result[synonym].description + '</h4></div>' +
+      '<div class="panel panel-default synonym_panel">' +
+        '<div class="panel-heading"><h4 class="panel-title">' + item.description + '</h4></div>' +
         '<div class="panel-body ">';
-    result[synonym].references.sort( function (item1, item2){
+    item.references.sort( function (item1, item2){
       return new Date(item2.parent.date) - new Date(item1.parent.date)
     });
     html += '<div class="list-group">';
-    $.each( result[synonym].references, function( index, ref ) {
+    $.each( item.references, function( index, ref ) {
       html += '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +
         '<p class="list-group-item-text"><small>' + ref.parent.date.split("T")[0] + ' ' + 
         ref.parent.notation + ' (' + ref.parent.identifier + '), ' + 
@@ -65,6 +63,6 @@ LinksPanel.prototype.display = function (result) {
         '</a>';
     });
     html += '</div></div></div>';
-  }
-  $("#linkspanel").html(html);
+  });
+  $('#'+_this.panelId).html(html);
 }
