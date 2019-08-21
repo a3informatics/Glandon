@@ -105,4 +105,7 @@ class IsoRegistrationAuthority < Fuseki::Base
     object
   end
 
+  # To JSON. Alias to to_h
+  alias :to_json :to_h
+
 end
