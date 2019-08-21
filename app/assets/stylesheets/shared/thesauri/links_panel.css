@@ -1,37 +1,26 @@
-
-
 .synonym_panel {
-    padding: 0px;
-    margin-bottom: 0px;
-    border-radius: 0px;
-     border-left: none;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  border-left: none;
   border-right: none;
-
 }
-
-
 
 .synonym_panel .panel-body {
-    padding: 0px;
-    border: 0px ;
+  padding: 0px;
+  border: 0px ;
 }
-
 
 .synonym_panel .panel-body .list-group {
-     margin-bottom: 0px; 
-    padding-left: 0;
-    border: 0px ;
-    
-    border-left: none;
+  margin-bottom: 0px; 
+  padding-left: 0;
+  border: 0px ;
+  border-left: none;
   border-right: none;
 }
-
-
 
 #linkspanel {
   padding: 10px 0px 0px 0px;
-
-
 }
 
 #item {
@@ -45,4 +34,8 @@
 
 .list-group-item:first-child {
   border-top: none;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
 }
