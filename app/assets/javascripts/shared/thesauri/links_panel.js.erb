@@ -48,24 +48,23 @@ LinksPanel.prototype.getData = function () {
 LinksPanel.prototype.display = function (result) {
   var _this = this;
   var html = '';
-  for (var synonym in result) { //key is each synonym
+  for (var synonym in result) {
     html += 
-      '<div class="panel panel-default">' +
+      '<div class="panel panel-default synonym_panel ">' +
         '<div class="panel-heading"><h4 class="panel-title">' + result[synonym].description + '</h4></div>' +
-        '<div class="panel-body">';
+        '<div class="panel-body ">';
     result[synonym].references.sort( function (item1, item2){
       return new Date(item2.parent.date) - new Date(item1.parent.date)
     });
     html += '<div class="list-group">';
     $.each( result[synonym].references, function( index, ref ) {
-      html += '<a href="' + ref.show_path + '" class="list-group-item">' +
+      html += '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +
         '<p class="list-group-item-text"><small>' + ref.parent.date.split("T")[0] + ' ' + 
         ref.parent.notation + ' (' + ref.parent.identifier + '), ' + 
         ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
         '</a>';
     });
     html += '</div></div></div>';
-    //console.log(well);
   }
   $("#linkspanel").html(html);
 }
