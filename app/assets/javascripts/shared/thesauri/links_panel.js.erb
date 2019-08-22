@@ -54,7 +54,7 @@ LinksPanel.prototype.display = function (result) {
               '<div class="list-group">';
     $.each( item.references, function( index, ref ) {
       html +=   '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +
-                  '<p class="list-group-item-text"><small>'+ref.parent.notation + ' (' + ref.parent.identifier + '),' + ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
+                  '<p class="list-group-item-text"><small>'+ref.parent.notation + ' (' + ref.parent.identifier + '), ' + ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
                 '</a>';         
     }); 
       html +='</div></div>';   
