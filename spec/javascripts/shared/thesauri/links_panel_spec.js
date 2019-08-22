@@ -65,49 +65,132 @@ describe("Links Panel", function() {
     fixture.set(html);
     var linkspanel = new LinksPanel ("url", "linkspanel");
     linkspanel.display(
-              {
-                "umol/g":
-                        {
-                          "description": "umol/g",
-                          "references": [
-                                        {
-                                          "parent": {
-                                                    "identifier": "C71620",
-                                                    "notation": "UNIT",
-                                                    "date": "2019-06-28T00:00:00+00:00"
-                                          },
-                                          "child": {
-                                                    "identifier": "C85752",
-                                                    "notation": "nmol/g"
-                                          },
-                                          "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzg1NzUy",
-                                          "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzg1NzUy?"
-                          }
-                          ]
-                        }
-            }
+{
+  "Ehrlich Units": {
+    "description": "Ehrlich Units",
+    "references": [
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2012-08-03T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      },
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2012-06-29T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      },
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2012-03-23T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      },
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2011-12-09T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      },
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2011-07-22T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      },
+      {
+        "parent": {
+          "identifier": "C71620",
+          "notation": "UNIT",
+          "date": "2011-06-10T00:00:00+00:00"
+        },
+        "child": {
+          "identifier": "C96599",
+          "notation": "EU"
+        },
+        "id": "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5",
+        "show_path": "/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?"
+      }
+    ]
+  },
+  "EU/dL": {
+    "description": "EU/dL",
+    "references": []
+  }
+}
     );
 
     expect(document.getElementById("linkspanel").innerHTML).to.equal(
-        '<div class="panel panel-default synonym_panel">'+
-          '<div class="panel-heading">'+
-            '<h4 class="panel-title">umol/g</h4>'+
-          '</div>'+
-          '<div class="panel-body">'+
-            '<div class="list-group">'+
-              '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzg1NzUy?" class="list-group-item" id="item">'+
-                '<p class="list-group-item-text"><small>2019-06-28 UNIT (C71620), nmol/g (C85752)</small></p>'+
-              '</a>'+
-            '</div>'+
-          '</div>'+
-        '</div>'
+'<div class="panel panel-default">'+
+    '<div class="panel-heading">Ehrlich Units</div>'+
+    '<div class="list-group">'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '</a>'+
+    '</div>'+
+'</div>'+
+'<div class="panel panel-default">'+
+    '<div class="panel-heading">EU/dL</div>'+
+    '<div class="list-group"></div>'+
+'</div>'
     );
   });
 
 
     it("display content empty", function() {
     html =
-    '<div class="panel-body" id="linkspanel">'+ 
+    '<div id="linkspanel">'+ 
         
       '</div>';
     fixture.set(html);
