@@ -72,13 +72,70 @@ describe "CDISC Terminology", :type => :feature do
       #expect(page).to have_content 'History: CDISC Terminology'
     end
     
-    it "allows a search to be performed - another version (REQ-MDR-CT-060)", js: true do
+    it "allows a search to be performed - another CDISC version (REQ-MDR-CT-060)", js: true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_v_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
+    end
+
+    it "allows a search to be performed, searches (REQ-MDR-CT-060)", js: true do
+      visit '/cdisc_terms/history'
+      expect(page).to have_content 'History: CDISC Terminology'
+      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+
+      ui_term_column_search(:code_list, 'C100129')
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
+      ui_term_column_search(:definition, 'Hamilton')
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
+      ui_term_column_search(:notation, 'ADMINISTRATION')
+      ui_check_table_info("searchTable", 1, 2, 2)
+      
+      fill_in 'searchTable_csearch_submission_value', with: 'A' # In effect delete all bar one character
+      ui_hit_backspace('searchTable_csearch_submission_value') # Delete last character so now empty
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
+      fill_in 'searchTable_csearch_definition', with: 'H'
+      ui_hit_backspace('searchTable_csearch_definition')
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
+      ui_term_overall_search('Hamilton')
+      ui_check_table_info("searchTable", 1, 3, 3)
+      
+      input = find(:xpath, '//*[@id="searchTable_filter"]/label/input')
+      input.set('H')
+      input.native.send_keys(:backspace)
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 1, 10, 142)
+      
+      link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[3]/a')
+      link.click
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 11, 20, 142)
+      
+      link = find(:xpath, '//*[@id="searchTable_paginate"]/ul/li[4]/a')
+      link.click
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 21, 30, 142)
+      
+      link = find(:xpath, '//*[@id="searchTable_previous"]/a')
+      link.click
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 11, 20, 142)
+      
+      link = find(:xpath, '//*[@id="searchTable_next"]/a')
+      link.click
+      wait_for_ajax_long
+      ui_check_table_info("searchTable", 21, 30, 142)
     end
   end
 end
