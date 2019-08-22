@@ -1,0 +1,68 @@
+/*
+* Links Panel
+* 
+*/
+
+/**
+* Links Panel Constructor
+* @param url [String] The url to make the ajax call
+* @param panelId [String] The id assigned to the panel
+*
+* @return [void]
+*/
+function LinksPanel(url, panelId) {
+  this.url = url;
+  this.panelId = panelId;
+  this.getData();
+}
+
+/**
+ * Ajax Call
+ *
+ * @return [void]
+ */
+LinksPanel.prototype.getData = function () {
+  var _this = this;
+  $.ajax({
+    url: _this.url,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){ 
+    _this.display(result.data);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError (xhr, status, error);
+    }
+  }); 
+}
+
+/**
+ * Display the result
+ * @param result [String] The result obtained from Ajax call
+ *
+ * @return [void]
+ */
+LinksPanel.prototype.display = function (result) {
+  var _this = this; 
+  var html = '';
+  $.each(result, function (index, item) {
+    html += 
+      '<div class="panel panel-default synonym_panel">' +
+        '<div class="panel-heading"><h4 class="panel-title">' + item.description + '</h4></div>' +
+        '<div class="panel-body ">';
+    item.references.sort( function (item1, item2){
+      return new Date(item2.parent.date) - new Date(item1.parent.date)
+    });
+    html += '<div class="list-group">';
+    $.each( item.references, function( index, ref ) {
+      html += '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +
+        '<p class="list-group-item-text"><small>' + ref.parent.date.split("T")[0] + ' ' + 
+        ref.parent.notation + ' (' + ref.parent.identifier + '), ' + 
+        ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
+        '</a>';
+    });
+    html += '</div></div></div>';
+  });
+  $('#'+_this.panelId).html(html);
+}
