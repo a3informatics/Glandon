@@ -242,6 +242,16 @@ describe Fuseki::Resource do
 
     class TestR11 < TestR10
 
+      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoConceptV2"
+
+      object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
+
+    end 
+
+    class TestR12 < TestR11
+
+      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoManagedV2"
+
       object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
     end 
@@ -278,10 +288,15 @@ describe Fuseki::Resource do
       check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
     end
 
-    it "update property" do
+    it "updates property" do
       item = TestR11.new
       result = item.class.resources
       check_file_actual_expected(result, sub_dir, "properties_metadata_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "rdf type to klass" do
+      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoConceptV2")).to eq(TestR11)
+      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoManagedV2")).to eq(TestR12)
     end
 
   end

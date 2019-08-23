@@ -9,9 +9,10 @@ module Fuseki
   
   module Resource
 
+    # Resource Inherit. Builds the resource through the amcestor classes
+    #
+    # @return [Boolean] returns true
     def resource_inherit
-#      return true if self.instance_variable_defined?(:@resources)
-#puts "****** RESOURCES - #{self.name} ******"
       merged = {}
       klass_ancestors = self.ancestors.grep(Fuseki::Resource).reverse
       klass_ancestors.delete(Fuseki::Base) # Remove the base class
@@ -24,6 +25,9 @@ module Fuseki
       true
     end
 
+    # Resources. Returns the resources
+    #
+    # @return [Hash] the resources
     def resources
       resource_inherit
       self.instance_variable_get(:@resources)
@@ -71,6 +75,13 @@ module Fuseki
       managed_paths(:delete_exclude)
     end
 
+    # RDF Type To Klass
+    # 
+    # @return [Class] name of the class declared as handling the RDF type
+    def rdf_type_to_klass(rdf_type)
+      Fuseki::Base.instance_variable_get(:@type_map)[rdf_type]
+    end
+
     # Configure
     #
     # @param opts [Hash] the option hash
@@ -88,6 +99,9 @@ module Fuseki
       define_singleton_method :rdf_type do
         Uri.new(uri: opts[:rdf_type])
       end
+
+      # Add the RDF type to the class map
+      add_rdf_type_to_map(opts[:rdf_type])
 
       # Define instance method for the RDF Type
       define_method :rdf_type do
@@ -269,18 +283,28 @@ module Fuseki
       @resources["#{name}".to_sym] = opts
     end
     
+    # Create a unique URI extension
     def unique_extension
       SecureRandom.uuid
     end
 
-    def prefix_property_extension(opts)
-      return "" if !opts.key?(:prefix) && !opts.key?(:property)
-      return "#{opts[:prefix]}" if !opts.key?(:property)
-      return "#{opts[:prefix]}#{self.send(opts[:property])}"
-    end
+    # def prefix_property_extension(opts)
+    #   return "" if !opts.key?(:prefix) && !opts.key?(:property)
+    #   return "#{opts[:prefix]}" if !opts.key?(:property)
+    #   return "#{opts[:prefix]}#{self.send(opts[:property])}"
+    # end
 
+    # Builds the URI for a predicate
     def predicate_uri(name)
       Uri.new(namespace: self.rdf_type.namespace, fragment: Fuseki::Resource::Property.schema_predicate_name(name) )
+    end
+
+    # Adds to the RDF Type to Klass map
+    def add_rdf_type_to_map(rdf_type)
+      if !Fuseki::Base.instance_variable_defined?(:@type_map) || Fuseki::Base.instance_variable_get(:@type_map).nil?
+        Fuseki::Base.instance_variable_set(:@type_map, {})
+      end
+      Fuseki::Base.instance_variable_get(:@type_map)[rdf_type] = self
     end
 
   end
