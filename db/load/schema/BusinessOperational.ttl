@@ -52,11 +52,30 @@
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Biomedical Concept Property."^^xsd:string ;
 .
+# Deprecated
 :TcReference
   rdf:type owl:Class ;
   rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
   rdfs:subClassOf :Reference ;
   skos:definition "Holds the reference to a Thesaurus Concept."^^xsd:string ;
+.
+:TcReference
+  rdf:type owl:Class ;
+  rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to a Thesaurus Concept."^^xsd:string ;
+.
+:TUcReference
+  rdf:type owl:Class ;
+  rdfs:label "Thesaurus Unmanaged Concept Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to a Thesaurus Unmanaged Concept."^^xsd:string ;
+.
+:TMcReference
+  rdf:type owl:Class ;
+  rdfs:label "Thesaurus Managed Concept Reference"^^xsd:string ;
+  rdfs:subClassOf :Reference ;
+  skos:definition "Holds the reference to a Thesaurus Managed Concept."^^xsd:string ;
 .
 :TReference
   rdf:type owl:Class ;
