@@ -54,80 +54,41 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content '2015-09-25 Release'
     end
 
-    #Show CDISC code lists
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Controlled Terminology CT (V43.0.0, 43, Standard)'
-      ui_check_table_info("children_table", 1, 10, 460)
       ui_child_search("967")
-      ui_check_table_info("children_table", 1, 9, 9)
       expect(page).to have_content 'C96780'
       expect(page).to have_content 'C96779'
-      click_link 'Close'
-      expect(page).to have_content 'History: CDISC Terminology'
     end
 
-    #Show CDISC code list items
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2014-10-06 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Controlled Terminology CT (V40.0.0, 40, Standard)'
-      expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 409)
       ui_child_search("10013")
-      ui_check_table_info("children_table", 1, 10, 10)
-      expect(page).to have_content 'EQ-5D-3L TESTCD'
+      expect(page).to have_content 'C100136'
       expect(page).to have_content 'C100135'
-      expect(page).to have_content 'CDISC Questionnaire HAMD 17 Test Name Terminology'
+      expect(page).to have_content 'C100137'
       find(:xpath, "//tr[contains(.,'C100136')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: QS-European Quality of Life Five Dimension Three Level Scale Test Code C100136'
-      ui_check_table_info("children_table", 1, 6, 6)
       expect(page).to have_content 'C100393'
       expect(page).to have_content 'C100394'
-      expect(page).to have_content 'C100395'  
-      click_link 'Close'
-      click_link 'Close'
-      expect(page).to have_content 'History: CDISC Terminology'
+      expect(page).to have_content 'C100395'
+      find(:xpath, "//tr[contains(.,'C100397')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'EQ-5D-3L - EQ VAS Score C100397'
+      expect(page).to have_content 'European Quality of Life Five Dimension Three Level Scale - Indicate on this scale how good or bad your own health is today, in your opinion.'
     end
 
-    #Show a CDISC code list item details
-    it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
-      visit '/cdisc_terms/history'
-      expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Controlled Terminology CT (V45.0.0, 45, Standard)'
-      ui_check_table_info("children_table", 1, 10, 503)
-      ui_child_search("route")
-      ui_check_table_info("children_table", 1, 3, 3)
-      expect(page).to have_content 'C66729'
-      expect(page).to have_content 'CMROUTE'
-      expect(page).to have_content 'CDISC CDASH Exposure Route of Administration Terminology'
-      find(:xpath, "//tr[contains(.,'C66729')]/td/a", :text => 'Show').click
-      ui_check_table_info("children_table", 1, 10, 123)
-      expect(page).to have_content 'Show: Route of Administration C66729 (V41.0.0, 41, Standard)'
-      expect(page).to have_content 'C94636'
-      expect(page).to have_content 'ORAL GAVAGE'
-      expect(page).to have_content 'Dietary Route of Administration'
-      ui_child_search("oral")
-      ui_check_table_info("children_table", 1, 5, 5)
-      find(:xpath, "//tr[contains(.,'C38288')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Oral Route of Administration'
-      click_link 'Close'
-      click_link 'Close'
-      click_link 'Close'
-      expect(page).to have_content 'History: CDISC Terminology'
-    end
-
-    #Extensible
+    
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Controlled Terminology CT (V43.0.0, 43, Standard)'
-      ui_check_table_info("children_table", 1, 10, 460)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       ui_check_table_cell('children_table', 1, 5, 'true')
@@ -140,7 +101,6 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: Controlled Terminology CT (V43.0.0, 43, Standard)'
-      ui_check_table_info("searchTable", 0, 0, 0)
     end
 
     # currently not working
@@ -153,6 +113,13 @@ describe "CDISC Term", :type => :feature do
        expect(page).to have_content 'History: CDISC Terminology'
      end
 
+    it "history allows the change page to be viewed (REQ-MDR-CT-040)" do
+       visit '/cdisc_terms/history'
+       expect(page).to have_content 'History: CDISC Terminology'
+       click_link 'Changes'
+       expect(page).to have_content 'Changes: CDISC Terminology'
+    end
+
     it "history allows the code list changes to be viewed (REQ-MDR-CT-040)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -160,11 +127,8 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes: CDISC Terminology'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      ui_check_table_info("searchTable", 1, 2, 2)
       expect(page).to have_content 'C49650'
       expect(page).to have_content 'C66787'
-      click_link 'Close'
-      expect(page).to have_content 'History: CDISC Terminology'
     end
 
     it "allows the code list item changes to be viewed (REQ-MDR-CT-040)", js:true do
@@ -178,12 +142,9 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C66787'
       find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences: C66787, Diagnosis Group'
-      ui_check_table_info("differences_table", 1, 4, 4)
       expect(page).to have_content 'Changes: C66787, Diagnosis Group'
-      ui_check_table_info("changes", 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences: C49651, Healthy Subject'
-      ui_check_table_info("differences_table", 1, 3, 3)
     end
 
     it "allows changes to be viewed (REQ-MDR-CT-040) - test no longer required" 
@@ -199,7 +160,6 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_info("changes", 1, 9, 9)
     end
 
-
     it "allows the submission value changes to be viewed (REQ-MDR-CT-050)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -207,7 +167,6 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Submission: CDISC Terminology'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("C67152_C20587")
-     # currently not working
       find(:xpath, "//tr[contains(.,'Age Group')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Changes: C20587, Age Group'
     end
