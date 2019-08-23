@@ -218,6 +218,9 @@ describe Fuseki::Resource do
       raise if !response.success?
     end
     
+    FusekiBaseHelpers.clear
+    FusekiBaseHelpers.read_schema # Makes sure we have the schema loaded. It is all about the timing!! :)
+    
     before :all do
     end
 

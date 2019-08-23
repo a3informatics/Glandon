@@ -6,10 +6,11 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
-<http://www.example.com/path#parent> rdf:type bo:Reference . 
+<http://www.example.com/path#parent> rdf:type bo:TucReference . 
 <http://www.example.com/path#parent> isoC:label "label"^^xsd:string . 
 <http://www.example.com/path#parent> bo:enabled "true"^^xsd:boolean . 
 <http://www.example.com/path#parent> bo:optional "false"^^xsd:boolean . 
 <http://www.example.com/path#parent> bo:ordinal "1"^^xsd:positiveInteger . 
-<http://www.example.com/path#parent> bo:reference <http://www.example.com/path#ref> . 
+<http://www.example.com/path#parent> bo:reference <http://www.assero.co.uk/X/V1#REF> . 
+<http://www.example.com/path#parent> bo:localLabel ""^^xsd:string . 
 }
