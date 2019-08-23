@@ -29,6 +29,7 @@ LinksPanel.prototype.getData = function () {
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){ 
+      console.log(result.data);
     _this.display(result.data);
     },
     error: function(xhr,status,error){
