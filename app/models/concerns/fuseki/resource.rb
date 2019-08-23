@@ -1,7 +1,7 @@
 # Fuseki Resource. Handles the methods to create properties in a class
 #
 # @author Dave Iberson-Hurst
-# @since 2.21.0
+# @since 2.22.0
 require "active_support/core_ext/class"
 require "digest"
 
@@ -186,7 +186,8 @@ module Fuseki
 
         # Define a class method to get the children class
         define_singleton_method "children_klass" do
-          opts[:model_class]
+          #opts[:model_class]
+          @resources["#{name}".to_sym][:model_class]
         end
 
         # Define a class method to get the child predicate
@@ -214,6 +215,7 @@ module Fuseki
         read_exclude: false, 
         delete_exclude: false 
       }
+  #byebug if options[:base_type].nil?
       options[:default] = opts[:default] ? opts[:default] : ""
       add_to_resources(name, options)
     end

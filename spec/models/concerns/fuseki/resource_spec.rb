@@ -53,6 +53,9 @@ describe Fuseki::Resource do
       extend Fuseki::Schema
     end
 
+    class TestR7 < TestR6
+    end
+
     class TestRTarget
     end
 
@@ -203,6 +206,7 @@ describe Fuseki::Resource do
 
   describe "read metadata" do
 
+    #
     # This is naughty but ok-ish. Loads schema ready for the tests and the elaboration of class TestR10 which happens 
     # before the "before :all" block. Schema is required.
     sparql_query = "CLEAR DEFAULT"
@@ -230,6 +234,12 @@ describe Fuseki::Resource do
       data_property :owner, default: false
       object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
       object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
+
+    end 
+
+    class TestR11 < TestR10
+
+      object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
     end 
 
@@ -263,6 +273,12 @@ describe Fuseki::Resource do
       check_file_actual_expected(TestR10.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
       item = TestR10.new
       check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+    end
+
+    it "update property" do
+      item = TestR11.new
+      result = item.class.resources
+      check_file_actual_expected(result, sub_dir, "properties_metadata_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
