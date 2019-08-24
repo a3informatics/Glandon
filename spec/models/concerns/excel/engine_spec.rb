@@ -200,6 +200,19 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
   end
 
+  it "checks a cell for affirmative" do
+    full_path = test_file_path(sub_dir, "check_values_input_3.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    (2..7).each do |row|
+      result = object.column_affirmative?({row: row, col: 3})
+      expected = row <= 4 ? true : false
+      expect(result).to eq(expected)
+      expect(parent.errors.count).to eq(0)
+    end
+  end
+
   it "checks a cell for smart quotes" do
     full_path = test_file_path(sub_dir, "check_values_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
@@ -243,6 +256,24 @@ describe Excel::Engine do
     result = object.process_action?({method: :column_not_blank?, column: 2}, 4)
     expect(result).to eq(false)
     expect(parent.errors.count).to eq(0)
+  end
+
+  it "checks row condition" do
+    full_path = test_file_path(sub_dir, "check_values_input_3.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook)
+    logic = Rails.configuration.imports[:processing][:test_8][:sheets][:sheet_1]
+    (2..4).each do |row|
+      result = object.process_row?(logic, row)
+      expect(result).to eq(true)
+      expect(parent.errors.count).to eq(0)
+    end
+    (5..7).each do |row|
+      result = object.process_row?(logic, row)
+      expect(result).to eq(false)
+      expect(parent.errors.count).to eq(0)
+    end
   end
 
   it "creates parent" do
@@ -399,6 +430,76 @@ describe Excel::Engine do
     expect(parent.errors.any?).to eq(true)
     expect(parent.errors.count).to eq(1)
     expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'NONE' error detected in row 4 column 2.")
+  end
+
+  it "tokenize to property" do
+    full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    object.tokenize_and_set_property({row: 2, col: 1, object: parent, map: {}, property: "collection", additional: {token: ","}})
+    expect(parent.collection.count).to eq(2)
+    expect(parent.collection[0]).to eq("C12345")
+    expect(parent.collection[1]).to eq("C12346")
+    object.tokenize_and_set_property({row: 4, col: 1, object: parent, map: {}, property: "collection", additional: {token: ","}})
+    expect(parent.collection.count).to eq(7) # Results are combined
+    expect(parent.collection[2]).to eq("C1234")
+    expect(parent.collection[3]).to eq("")
+    expect(parent.collection[4]).to eq("C12354")
+    expect(parent.collection[5]).to eq("C1234")
+    expect(parent.collection[6]).to eq("C124456")
+  end
+
+  it "checks valid" do
+    full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    other = EET2Class.new
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(parent.errors.count).to eq(0)
+    
+    expect(other).to receive(:valid?).and_return(true)
+    object.check_valid({object: other})
+    expect(parent.errors.count).to eq(0)
+    
+    other.errors.add(:base, "Error added.")
+    expect(other).to receive(:valid?).and_return(false)
+    object.check_valid({object: other})
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Error added.")  
+  end
+
+  it "checks c codes" do
+    full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = DefinitionClass.all
+    expect(result.count).to eq(0)
+    result = object.c_codes?({row: 2, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.c_codes?({row: 3, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(true)
+    expect(parent.errors.count).to eq(0)
+    result = object.c_codes?({row: 4, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages[0]).to eq("C Code ' ' error detected in row 4 column 1.")
+    result = object.c_codes?({row: 5, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages[1]).to eq("C Code 'C12E' error detected in row 5 column 1.")
+    result = object.c_codes?({row: 6, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(3)
+    expect(parent.errors.full_messages[2]).to eq("C Code 'C1234 C4567' error detected in row 6 column 1.")
+    result = object.c_codes?({row: 7, col: 1, object: parent, additional: {token: ","}, can_be_empty: false})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(4)
+    expect(parent.errors.full_messages[3]).to eq("Empty cell detected in row 7 column 1.")
   end
 
   it "can create multiple shared definitions, I" do
