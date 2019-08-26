@@ -24,11 +24,7 @@ private
   def add_reference(collection, ct, reference)
     set = ct.find_by_identifier(reference)
     if set.key?(reference.last)
-      reference.count == 1
-        object = OperationalReferenceV3::TmcReference.new
-      else
-        object = OperationalReferenceV3::TucReference.new
-      end
+      object = reference.count == 1 ? OperationalReferenceV3::TmcReference.new : OperationalReferenceV3::TucReference.new
       object.ordinal = collection.count + 1
       object.reference set[reference.last]
       object.context = ct.uri
@@ -36,7 +32,7 @@ private
       object.optional = false
       collection << object
     else
-      errors.add(:base, "")
+      errors.add(:base, "Failed to find code list references #{reference} within CT.")
     end
   end
 
