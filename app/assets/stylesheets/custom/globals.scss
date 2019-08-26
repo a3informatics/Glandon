@@ -1,0 +1,144 @@
+/* FONTS */
+@font-face {
+  font-family:'Roboto-Thin';
+  src:font-url('Roboto-Light.ttf');
+  font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+  font-family:'Roboto';
+  src:font-url('Roboto-Regular.ttf');
+  font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+  font-family:'Roboto-Bold';
+  src:font-url('Roboto-Medium.ttf');
+  font-weight: bold;
+	font-style: normal;
+}
+
+body{
+  font-family: 'Roboto' !important;
+}
+
+/* COLORS */
+
+/* Primary color (blue) */
+$primary-color-dark: #2b4753;
+$primary-color-medium: #356d86;
+$primary-color-light: #53869c;
+$primary-color-bright: #9dc0cf;
+
+.bg-prim-dark{
+  background: $primary-color-dark;
+}
+
+.bg-prim-medium {
+  background: $primary-color-medium;
+}
+
+.bg-prim-light {
+  background: $primary-color-light;
+}
+
+.bg-prim-bright {
+  background: $primary-color-bright;
+}
+
+/* Secondary color (green) */
+$secondary-color-dark: #6e8a30;
+$secondary-color-medium: #96b947;
+$secondary-color-light: #c0dd78;
+$secondary-color-bright: #def3a9;
+
+.bg-sec-dark{
+  background: $secondary-color-dark;
+}
+
+.bg-sec-medium {
+  background: $secondary-color-medium;
+}
+
+.bg-sec-light {
+  background: $secondary-color-light;
+}
+
+.bg-sec-bright {
+  background: $secondary-color-bright;
+}
+
+/* Accent colors (orange & red) */
+$accent-color-1: #f5d684;
+$accent-color-2: #e48080;
+
+.bg-accent-1{
+  background: $accent-color-1;
+}
+
+.bg-accent-2{
+  background: $accent-color-2;
+}
+
+/* Text & grey colors */
+$text-color-dark: #414141;
+$text-color-medium: #6f6f6f;
+$text-color-light: #c4c4c4;
+$text-color-bright: #f4f4f4;
+$text-color-white: #ffffff;
+
+.bg-grey-dark{
+  background: $text-color-dark;
+}
+
+.bg-grey-medium {
+  background: $text-color-medium;
+}
+
+.bg-grey-light {
+  background: $text-color-light;
+}
+
+.bg-grey-bright {
+  background: $text-color-bright;
+}
+
+.text-dark{
+  color: $text-color-dark;
+}
+
+.text-medium {
+  color: $text-color-medium;
+}
+
+.text-light {
+  color: $text-color-light;
+}
+
+.text-bright {
+  color: $text-color-bright;
+}
+
+.text-white {
+  color: $text-color-white;
+}
+
+.text-accent-1 {
+  color: $accent-color-1;
+}
+
+.text-accent-2{
+  color: $accent-color-2;
+}
+
+/* SIZES */
+
+.text-tiny{
+  font-size: 7pt;
+}
+
+.text-small{
+  font-size: 10pt;
+}

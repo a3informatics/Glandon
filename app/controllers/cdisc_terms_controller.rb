@@ -3,11 +3,11 @@
 # @author Dave Iberson-Hurst
 # @since 0.0.0
 class CdiscTermsController < ApplicationController
-  
+
   include ControllerHelpers
 
   before_action :authenticate_and_authorized
-  
+
   # def find_submission
   #   authorize CdiscTerm, :view?
   #   ct = CdiscTerm.current
@@ -32,7 +32,7 @@ class CdiscTermsController < ApplicationController
     current_index = @versions.length > width ? width - 1 : 0
     @current_id = @versions[current_index][:id]
     @latest_id = @versions.first[:id]
-    render :index, layout: "full_width"
+    render :index #, layout: "full_width"
   end
 
   def history
@@ -61,7 +61,7 @@ class CdiscTermsController < ApplicationController
     to_index = versions.find_index {|x| x[:id] == ct_to.id}
     cls = ct_from.changes(to_index - from_index + 1)
     results = {created: [], deleted: [], updated: []}
-    cls[:items].each do |key, value| 
+    cls[:items].each do |key, value|
       value[:status].each do |status|
         begin
           next if status[:status] == :no_change
@@ -83,13 +83,13 @@ class CdiscTermsController < ApplicationController
   #   all = CdiscTerm.all
   #   @next_version = all.last.next_version
   # end
-  
+
   # def import_cross_reference
   #   authorize CdiscTerm, :import?
   #   @files = Dir.glob(Rails.root.join("public", "upload") + "*.xlsx")
   #   @cdisc_term = CdiscTerm.find(params[:id], the_params[:namespace], false)
   # end
-  
+
   # def create
   #   authorize CdiscTerm, :import?
   #   hash = CdiscTerm.create(the_params)
@@ -102,7 +102,7 @@ class CdiscTermsController < ApplicationController
   #     redirect_to import_cdisc_terms_path
   #   end
   # end
-  
+
   # def create_cross_reference
   #   authorize CdiscTerm, :import?
   #   cdisc_term = CdiscTerm.find(params[:id], the_params[:namespace], false)
@@ -114,18 +114,18 @@ class CdiscTermsController < ApplicationController
   #     redirect_to import_cdisc_terms_path
   #   end
   # end
-  
+
   # def search
   #   authorize CdiscTerm, :view?
   #   @cdiscTerm = CdiscTerm.find(params[:id], params[:namespace], false)
   #   # @items = Notepad.where(user_id: current_user).find_each
   #   @close_path = history_thesauri_index_path(identifier: @cdiscTerm.identifier, scope_id: @cdiscTerm.scope.id)
   # end
-  
+
   # def search_results
   #   authorize CdiscTerm, :view?
   #   results = Thesaurus.search(params)
-  #   render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, 
+  #   render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s,
   #   	:data => results[:items] }
   # end
 
@@ -160,7 +160,7 @@ class CdiscTermsController < ApplicationController
   #   @cls = CdiscTerm::Utility.transpose_results(@trimmed_results)
   #   render "changes"
   # end
-  
+
   # def changes_calc
   #   authorize CdiscTerm, :view?
   #   if CdiscCtChanges.exists?(CdiscCtChanges::C_ALL_CT)
@@ -191,7 +191,7 @@ class CdiscTermsController < ApplicationController
   #   authorize CdiscTerm, :view?
   #   ct = CdiscTerm.find(params[:id], false)
   #   cls = ct.changes(current_user.max_term_display.to_i)
-  #   cls[:items].each do |k,v| 
+  #   cls[:items].each do |k,v|
   #     v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
   #   end
   #   render json: {data: cls}
@@ -248,7 +248,7 @@ class CdiscTermsController < ApplicationController
   #   files = the_params[:files]
   #   files.each do |file|
   #     File.delete(file) if File.exist?(file)
-  #   end 
+  #   end
   #   redirect_to file_cdisc_terms_path
   # end
 
@@ -281,7 +281,7 @@ private
   end
 
   # def get_version
-  # 	return nil if params[:cdisc_term].blank? 
+  # 	return nil if params[:cdisc_term].blank?
   # 	return the_params[:version].to_i
   # end
 

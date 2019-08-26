@@ -1,0 +1,44 @@
+// SHADOWS
+.shadow-small{
+  -webkit-box-shadow: 4px 0px 10px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 4px 0px 10px 0px rgba(0,0,0,0.15);
+  box-shadow: 4px 0px 10px 0px rgba(0,0,0,0.15);
+}
+
+.shadow-medium{
+  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+}
+
+// TOOLTIP
+.ttip {
+  position: relative;
+  display: inline-block;
+}
+
+.ttip .ttip-text {
+  font-family: 'Roboto';
+  top: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  background-color: white;
+  text-align: center;
+  padding: 7px 12px;
+  position: absolute;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.ttip:hover .ttip-text {
+  visibility: visible;
+}
+
+.ttip-right{
+  left: 0%;
+}
+
+.ttip-left{
+  right: 0%;
+}

@@ -1,0 +1,39 @@
+.navbar{
+  font-family: 'Roboto-Thin';
+}
+
+a .text-light:hover{
+  color: #fff;
+}
+
+.user-badge-wrap{
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+}
+
+.user-badge{
+  margin: 0px 10px 0px 10px;
+}
+
+.user-icon{
+  font-family: 'Roboto-Bold';
+  font-size: 12pt;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 27px;
+}
+
+#user-name{
+  font-family: 'Roboto';
+}
+
+.vertical-divider{
+  width: 1px;
+  height: 50%;
+  background-color: #c4c4c4;
+  margin-right: 20px;
+  margin-left: 10px;
+}
