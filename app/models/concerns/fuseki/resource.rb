@@ -9,6 +9,9 @@ module Fuseki
   
   module Resource
 
+    # Resource Inherit. Builds the resource through the amcestor classes
+    #
+    # @return [Boolean] returns true
     def resource_inherit
       merged = {}
       klass_ancestors = self.ancestors.grep(Fuseki::Resource).reverse
@@ -25,7 +28,7 @@ module Fuseki
     # Resources. Returns the resources
     #
     # @return [Hash] the resources
-     def resources
+    def resources
       resource_inherit
       self.instance_variable_get(:@resources)
     end
