@@ -406,4 +406,43 @@ describe Thesaurus do
 
   end
 
+    describe "Complex Finds" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :all do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+      ]
+      load_files(schema_files, data_files)
+      load_versions(1..59)
+    end
+
+    after :all do
+      #
+    end
+
+    it "find by identifiers" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      actual = ct.find_by_identifiers(["C106655", "C161764"])
+      check_file_actual_expected(actual, sub_dir, "find_by_identifier_1.yaml")
+    end
+
+    it "find by identifiers" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      actual = ct.find_by_identifiers(["C106655"])
+      check_file_actual_expected(actual, sub_dir, "find_by_identifier_2.yaml")
+    end
+
+  end
+
+
 end

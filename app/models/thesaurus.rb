@@ -8,6 +8,38 @@ class Thesaurus <  IsoManagedV2
 
   include Thesaurus::Search
 
+  # Find By Identifier
+  def find_by_identifiers(identifiers)
+    results = {}
+    parts = []
+    base_identifier = identifiers.first
+    identifiers.drop(1)
+    parts[0] = %Q{
+      {
+        #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
+        ?s th:identifier "#{base_identifier}" .
+        BIND ("#{base_identifier}" as ?i) 
+      }}
+    identifiers.each do |identifier|
+      parts << %Q{
+        {
+          #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?b .
+          ?b th:identifier "#{base_identifier}" .
+          ?b th:narrower+ ?s .
+          ?s th:identifier "#{identifier}" . 
+          BIND ("#{identifier}" as ?i) 
+        }}
+    end
+    query_string = %Q{SELECT ?s ?i WHERE { #{parts.join("UNION")} }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    triples = query_results.by_object_set([:i, :s])
+    triples.each do |entry|
+      results[entry[:i]] = entry[:s]
+    end
+    results
+  end
+  
+    
   # Changes
   #
   # @param [Integer] window_size the required window size for changes

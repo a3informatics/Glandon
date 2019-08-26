@@ -37,6 +37,112 @@ defaults: &defaults
       link_text: "Import Terminology from ODM"
       link_path: "/imports/terms/new?imports[file_type]=1"
   processing: &default_processing
+    cdisc_change_instructions: 
+      sheets: 
+        main:
+          selection:
+            label: ADaM-IG
+          row:
+            condition:
+              method: column_affirmative?
+              column: 11
+          columns: 
+          - 
+            label: "Request Code"
+            actions: []
+          - 
+            label: "Change Type"
+            actions: []
+          - 
+            label: "NCI Code"
+            actions: []
+          - 
+            label: "CDISC Term Type"
+            actions: []
+          - 
+            label: "CDISC Codelist (Short Name)"
+            actions: []
+          - 
+            label: "CDISC Codelist (Long Name)"
+            actions: []
+          - 
+            label: "Change Summary"
+            actions: []
+          - 
+            label: "Original"
+            actions: []
+          - 
+            label: "New"
+            actions: []
+          - 
+            label: "Change Implementation Instructions"
+            actions: []
+          - 
+            label: "Use"
+            actions: []
+          - 
+            label: "Prev Codelist"
+            actions:
+              -
+                method: c_code?
+                object: NA
+                klass: NA
+                map: {}
+              -
+                method: create_parent
+                object: parent
+                klass: "???"
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: previous_parent
+          - 
+            label: "Prev Term"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                map: {}
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: previous_children
+                can_be_empty: true
+          - 
+            label: "New Codelists"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                map: {}
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_parent
+          - 
+            label: "New Terms"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                map: {}
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_children
+                can_be_empty: true
+          - 
+            label: "Comment"
+            actions: 
+                method: set_property
+                object: parent
+                klass: description
     cdisc_adam_ig: 
       sheets: 
         main:
@@ -1291,4 +1397,14 @@ test:
         sheet_1:
           selection:
             wrong: method
+          columns: [] 
+    test_8:
+      sheets: 
+        sheet_1:
+          selection:
+            label: Sheet1
+          row:
+            condition:
+              method: column_affirmative?
+              column: 3 
           columns: [] 

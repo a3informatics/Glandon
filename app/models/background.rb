@@ -451,67 +451,67 @@ private
     self.update( description: log_text, status: "Reading file.", started: Time.now())
   end
 
-  def process_cdisc_term_changes_import(params, results)
-  	ordinals = {}
-  	uri = UriV2.new(uri: params[:uri])
-    current_ct = CdiscTerm.find(uri.id, uri.namespace)
-    previous = CdiscTerm.all_previous(current_ct.version)
-    previous_ct = previous.last
-  	sparql = SparqlUpdateV2.new
-  	results.each do |result|
-  		result[:new_cl].each do |cl|
-	  		sources = []
-  			parent = find_terminology({identifier: cl}, current_ct)
-	  		if !parent.nil?
-		  		if result[:new_cli].empty?
-		  			sources << parent
-		  		else
-		  			result[:new_cli].each do |cli|
-		  				child = find_terminology_child(parent, cli)
-		  				if !child.nil?
-								sources << child if !child.nil?
-							else
-								report_general_error("Failed to find child terminology item [1] with identifier: #{cli}")
-								return
-							end
-						end
-					end			
-		  		sources.each do |source|
-						ordinal = 1
-		  			cr = CrossReference.new
-						cr.comments = result[:instructions]
-						cr.ordinal = get_ordinal(source, ordinals)
-						previous = find_terminology({identifier: result[:previous_cl]}, previous_ct)
-						if !previous.nil?	
-							if result[:previous_cli].empty?
-				  			cr.children << create_operational_ref(previous, source, ordinal)
-				  		else
-				  			result[:previous_cli].each do |cli|
-				  				child = find_terminology_child(previous, cli)
-		  					if !child.nil?
-										cr.children << create_operational_ref(child, source, ordinal)
-				  					ordinal += 1
-				  				else
-										report_general_error("Failed to child find terminology item [2] with identifier: #{cli}")
-										return
-				  				end
-								end
-							end	
-				  		ref_uri = cr.to_sparql_v2(source.uri, sparql)
-							sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
-						else
-							report_general_error("Failed to find terminology item [3] with identifier: #{result[:previous_cl]}")
-							return
-						end
-					end
-				else
-					report_general_error("Failed to find terminology item [4] with identifier: #{cl}")
-					return
-				end
-			end
-		end			
-		load_sparql(sparql, "CDISC_CT_Instructions_V#{current_ct.version}.txt") 
-  end
+  # def process_cdisc_term_changes_import(params, results)
+  # 	ordinals = {}
+  # 	uri = UriV2.new(uri: params[:uri])
+  #   current_ct = CdiscTerm.find(uri.id, uri.namespace)
+  #   previous = CdiscTerm.all_previous(current_ct.version)
+  #   previous_ct = previous.last
+  # 	sparql = SparqlUpdateV2.new
+  # 	results.each do |result|
+  # 		result[:new_cl].each do |cl|
+	 #  		sources = []
+  # 			parent = find_terminology({identifier: cl}, current_ct)
+	 #  		if !parent.nil?
+		#   		if result[:new_cli].empty?
+		#   			sources << parent
+		#   		else
+		#   			result[:new_cli].each do |cli|
+		#   				child = find_terminology_child(parent, cli)
+		#   				if !child.nil?
+		# 						sources << child if !child.nil?
+		# 					else
+		# 						report_general_error("Failed to find child terminology item [1] with identifier: #{cli}")
+		# 						return
+		# 					end
+		# 				end
+		# 			end			
+		#   		sources.each do |source|
+		# 				ordinal = 1
+		#   			cr = CrossReference.new
+		# 				cr.comments = result[:instructions]
+		# 				cr.ordinal = get_ordinal(source, ordinals)
+		# 				previous = find_terminology({identifier: result[:previous_cl]}, previous_ct)
+		# 				if !previous.nil?	
+		# 					if result[:previous_cli].empty?
+		# 		  			cr.children << create_operational_ref(previous, source, ordinal)
+		# 		  		else
+		# 		  			result[:previous_cli].each do |cli|
+		# 		  				child = find_terminology_child(previous, cli)
+		#   					if !child.nil?
+		# 								cr.children << create_operational_ref(child, source, ordinal)
+		# 		  					ordinal += 1
+		# 		  				else
+		# 								report_general_error("Failed to child find terminology item [2] with identifier: #{cli}")
+		# 								return
+		# 		  				end
+		# 						end
+		# 					end	
+		# 		  		ref_uri = cr.to_sparql_v2(source.uri, sparql)
+		# 					sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
+		# 				else
+		# 					report_general_error("Failed to find terminology item [3] with identifier: #{result[:previous_cl]}")
+		# 					return
+		# 				end
+		# 			end
+		# 		else
+		# 			report_general_error("Failed to find terminology item [4] with identifier: #{cl}")
+		# 			return
+		# 		end
+		# 	end
+		# end			
+		# load_sparql(sparql, "CDISC_CT_Instructions_V#{current_ct.version}.txt") 
+  # end
 
   def process_cdisc_sdtm_model_import(params, results)
   	proceed = true
