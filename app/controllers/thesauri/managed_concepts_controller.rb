@@ -98,11 +98,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def show
     authorize Thesaurus
     @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    @context_id = the_params[:context_id]
     respond_to do |format|
       format.html
       format.json do
         children = @tc.children_pagination(params)
-        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x[:id])})}
+        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: @context_id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
     end
@@ -202,7 +203,7 @@ private
   # end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier)
+    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id)
   end
     
   def edit_params
