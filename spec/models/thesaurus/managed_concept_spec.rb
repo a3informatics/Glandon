@@ -468,6 +468,21 @@ describe Thesaurus::ManagedConcept do
       expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
     end
 
+    it "determines if code list extended" do
+      tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
+      expect(tc1.extended?).to eq(false)
+      expect(tc2.extended?).to eq(false)
+      expect(tc1.extension?).to eq(false)
+      expect(tc2.extension?).to eq(false)
+      sparql = %Q{INSERT DATA { #{tc2.uri.to_ref} th:extends #{tc1.uri.to_ref} }}
+      Sparql::Update.new.sparql_update(sparql, "", [:th]) 
+      expect(tc1.extended?).to eq(true)
+      expect(tc2.extended?).to eq(false)
+      expect(tc1.extension?).to eq(false)
+      expect(tc2.extension?).to eq(true)
+    end
+
   end
 
   describe "changes and differences" do

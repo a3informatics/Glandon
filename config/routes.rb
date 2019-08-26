@@ -139,6 +139,10 @@ Rails.application.routes.draw do
         get :differences
         get :synonym_links
         get :preferred_term_links
+        post :extensions, to: :create_extensions
+        delete :extensions, to: :destroy_extensions
+        get :is_extended
+        get :is_extension
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -154,18 +158,12 @@ Rails.application.routes.draw do
   resources :thesauri, only: [:index, :show, :create, :edit, :destroy] do
     collection do
       get :history
-      #get :view
       get :search_current
-      #get :next
-      #get :export_ttl
-      #get :impact
-      #get :impact_start
-      #get :impact_next
-      #get :impact_report
     end
     member do
       get :children
       post :add_child
+      post :extension
       get :changes
       get :changes_report
       get :submission

@@ -25,8 +25,8 @@ describe Thesauri::ManagedConceptsController do
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
-      Token.delete_all
-      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
+#      Token.delete_all
+#      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
     end
 
     after :each do
@@ -42,6 +42,26 @@ describe Thesauri::ManagedConceptsController do
       expect(response).to render_template("changes")
     end
 
+    it "is_extended" do
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
+      get :is_extended, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      expect(actual).to eq({data: true})
+    end
+
+    it "is_extension" do
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extension?).and_return(false)
+      get :is_extension, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      expect(actual).to eq({data: false})
+    end
+    
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")

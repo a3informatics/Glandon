@@ -35,6 +35,24 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
 
+  # Extended? Is this item extended
+  #
+  # @result [Boolean] return true if extended
+  def extended?
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return !query_results.empty?
+  end
+
+  # Extends? Is this item extending another managed concept
+  #
+  # @result [Boolean] return true if extending another
+  def extension?
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:extends ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return !query_results.empty?
+  end
+
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, :explanatory_comment]})

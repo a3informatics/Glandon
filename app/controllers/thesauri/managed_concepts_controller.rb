@@ -138,6 +138,18 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
+  def is_extended
+    authorize Thesaurus, :view?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.extended?}      
+  end
+
+  def is_extension
+    authorize Thesaurus, :view?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.extension?}      
+  end
+
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
