@@ -135,7 +135,10 @@ module Fuseki
       # @return [Void] no return
       def replace_with_object(object)
         value = get
-        value.delete_if {|x| x.is_a?(Uri) && x == object.uri} if array?
+        if array?
+          uri = object.is_a?(Uri) ? object : object.uri
+          value.delete_if {|x| x.is_a?(Uri) && x == uri}
+        end
         set(object)
       end
 
