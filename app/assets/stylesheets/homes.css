@@ -1,0 +1,23 @@
+.spinner-box {
+  padding: 1em;
+}
+
+.modal-body {
+  font-size: 13px;
+}
+
+table.dataTable thead > tr > th > input {
+  font-size: 13px;
+}
+
+table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+  background: #dff0d8!important;
+  color: #333333;
+}
+
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 1100px;
+    max-width: 1100px;
+  }
+}

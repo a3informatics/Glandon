@@ -1,3 +1,14 @@
+/*
+* Modal Panel
+*/
+
+
+/**
+* Modal Panel Constructor
+* @param id [String] The id of the Code List
+*
+* @return [void]
+*/
 function ModalPanel(id) {
   this.id = id;  
   this.tsModalTable = null;
@@ -41,20 +52,34 @@ function ModalPanel(id) {
     }
   });
 
-  // Get selected th
+  // Ajax Post with selected th
   $('#select_th').click(function() {
-    // var id = _this.id;
-    //console.log(id);
+    var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
+    var data = { "thesauri": { "scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier }};
+    $.ajax({
+      url: "/thesauri/extension",
+      type: "POST",
+      data: JSON.stringify(data),
+      dataType: 'json',
+      contentType: 'application/json',
+      error: function (xhr, status, error) {
+        displayError("An error has occurred.");
+      },
+      success: function(result) {
+      }
+    });   
   });
 
 }
 
-// Initialise the table/datatable. Note the deferLoading setting.
+/**
+ * Initialise the table/datatable
+ * @return [void]
+ */
 ModalPanel.prototype.initTable = function() {
   var _this = this;
   this.tsModalTable = $('#thTable').DataTable( {
     "processing": true,
-    //"serverSide": true,
     "ajax": {
       "url": "/thesauri",
       "dataSrc": "data" 
