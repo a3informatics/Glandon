@@ -92,4 +92,13 @@ describe Fuseki::Persistence do
     expect(result.has_identifier.first.identifier).to eq("TEST")
   end
 
+  it "clones an object" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    item = TestFPe1.find(uri)
+    result = item.clone
+    expect(result.change_description).to eq("Creation")
+    expect(result.has_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1")
+    expect(result.has_state.to_s).to eq("http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1")
+  end
+
 end

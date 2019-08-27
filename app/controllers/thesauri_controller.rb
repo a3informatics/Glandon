@@ -73,15 +73,8 @@ class ThesauriController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    @token = get_token(@thesaurus)
-    if @thesaurus.new_version?
-      th = Thesaurus.find(params[:id])
-      new_th = Thesaurus.create(th.to_operation)
-      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
-      @token.release
-	    @token = get_token(@thesaurus)
-	  end
-  	@close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @thesaurus = edit_item(@thesaurus)
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
     @parent_identifier = ""
   end
 
@@ -219,6 +212,16 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def extension
+    authorize Thesaurus, :edit?
+    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    @thesaurus = Thesaurus.find_minimum(results.first)
+    @thesaurus = edit_item(@thesaurus)
+    @thesaurus.add_extension(the_params[:concept_id])
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @parent_identifier = ""
+  end
+
   def search_current
     authorize Thesaurus, :view?
     @close_path = thesauri_index_path
@@ -304,7 +307,7 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
     #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     

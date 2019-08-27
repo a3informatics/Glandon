@@ -321,6 +321,19 @@ module Fuseki
       end
     end   
 
+    # Clone. Clones an object copying each property.
+    #
+    # @return [Object] returns the cloned object
+    def clone
+      object = self.class.new
+      object_properties = object.properties
+      properties.each do |property|
+        object_property = object_properties.property(property.name)
+        object_property.set_raw(property.get.dup)
+      end
+      object
+    end   
+
   private
 
     # Get status of a property

@@ -195,7 +195,7 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Find With Properties. Finds the version management info and properties for the item. Does not find object links.
+  # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
@@ -455,6 +455,22 @@ class IsoManagedV2 < IsoConceptV2
       check[key] = true
     end
     results    
+  end
+
+  # Create Next Version. Creates the next version of the managed object if necessary
+  #
+  # @return [Object] the resulting object. Fail is there are errors.
+  def create_next_version
+    return if !self.new_version?
+    ra = IsoRegistrationAuthority.owner
+    object = self.clone
+    objct.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.identifier, version: self.next_version, semantic_version: self.next_semantic_version.to_s, has_scope: ra.ra_namespace)
+    object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
+    object.creation_date = Time.now
+    object.last_change_date = Time.now
+    object.set_uris(ra)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object
   end
 
   # Delete. Delete the managed item
