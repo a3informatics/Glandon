@@ -407,6 +407,9 @@ describe Thesaurus do
     it "add extension" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779"))
+    byebug
+      uri = Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")
+      tc_b = Thesaurus::ManagedConcept.find_raw(uri)
       x = tc.narrower_links?
       y = tc.narrower_links
     end

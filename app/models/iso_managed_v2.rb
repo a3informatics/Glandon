@@ -195,11 +195,11 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Find. Finds the version management info and properties for the item. Does not find object links.
+  # Find With Properties. Finds the version management info and properties for the item. Does not find object links.
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [object] The object.
-  def self.find(id)  
+  def self.find_with_properties(id)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
     parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }" 

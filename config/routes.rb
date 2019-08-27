@@ -158,12 +158,12 @@ Rails.application.routes.draw do
   resources :thesauri, only: [:index, :show, :create, :edit, :destroy] do
     collection do
       get :history
+      post :extension
       get :search_current
     end
     member do
       get :children
       post :add_child
-      post :extension
       get :changes
       get :changes_report
       get :submission

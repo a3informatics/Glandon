@@ -28,13 +28,13 @@ describe IsoManagedV2 do
 
   	it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       expect(item.valid?).to eq(true)
     end
 
     it "validates a valid object, markdown" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.origin = vh_all_chars
       item.explanatory_comment  = vh_all_chars
       item.change_description = vh_all_chars
@@ -43,7 +43,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.origin = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -52,7 +52,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.explanatory_comment  = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -61,7 +61,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.change_description = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -70,7 +70,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.label = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -165,7 +165,7 @@ describe IsoManagedV2 do
     end
 
     it "handles not finding an item correctly" do
-      expect{IsoManagedV2.find(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#XXX"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRForms/ACME/V1#XXX in IsoManagedV2.")
+      expect{IsoManagedV2.find_with_properties(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#XXX"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRForms/ACME/V1#XXX in IsoManagedV2.")
     end
 
     it "allows the item to be updated" do
@@ -176,7 +176,7 @@ describe IsoManagedV2 do
       result[:change_description] = "Description"
       result[:origin] = "Origin"
       item.update({:explanatory_comment => "New comment", :change_description => "Description", :origin => "Origin"})
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       result[:last_change_date] = date_check_now(item.last_change_date).iso8601
       expect(item.to_h).to eq(result)
     end
@@ -262,8 +262,8 @@ describe IsoManagedV2 do
 =begin
     it "allows an item to be created from Operation JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      old_item = IsoManagedV2.find(uri)
-      new_item = IsoManagedV2.find(uri)
+      old_item = IsoManagedV2.find_with_properties(uri)
+      new_item = IsoManagedV2.find_with_properties(uri)
       operation = 
         {
           :action => "CREATE",
@@ -359,7 +359,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       expect(item.to_operation).to eq(result)
     end
 
@@ -375,7 +375,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item.registrationState.registrationStatus = "Qualified"
       result = item.to_operation
       expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
@@ -395,7 +395,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item.registrationState.registrationStatus = "Qualified"
       result = item.update_operation
       expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
@@ -488,17 +488,17 @@ describe IsoManagedV2 do
       timer_stop("Find Minimum 100 times [1.65s -> 1.25s]")
     end
 
-    it "find I" do
+    it "find properties I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = IsoManagedV2.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+      results = IsoManagedV2.find_with_properties(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_properties_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "find II, speed" do
+    it "find properties II, speed" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
-      (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times [1.65s]")
+      (1..100).each {|x| results = CdiscTerm.find_with_properties(uri)}
+      timer_stop("Find Properties 100 times [1.65s]")
     end
 
     it "where, I" do
@@ -789,7 +789,7 @@ describe IsoManagedV2 do
 
     it "find, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = IsoManagedV2.comments(identifier: "TEST", scope: IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#BBB")))
+      results = IsoManagedV2.comments(identifier: "TEST", scope: IsoNamespace.find_with_properties(Uri.new(uri: "http://www.assero.co.uk/NS#BBB")))
       check_file_actual_expected(results, sub_dir, "comments_expected_1.yaml", equate_method: :hash_equal)
     end
 
