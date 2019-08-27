@@ -98,7 +98,7 @@ describe IsoManagedV2 do
 
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.version).to eq(1)   
       expect(item.semantic_version.to_s).to eq("1.2.3")   
       expect(item.version_label).to eq("0.1")   
@@ -107,7 +107,7 @@ describe IsoManagedV2 do
 
     it "allows the latest, later, earlier and same version to be assessed" do
      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.latest?).to eq(true)   
       expect(item.later_version?(0)).to eq(true)   
       expect(item.later_version?(1)).to eq(false)   
@@ -141,7 +141,7 @@ describe IsoManagedV2 do
 
     it "allows current and can be current status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_full(uri)
       expect(item.current?).to eq(false)   
       expect(item.can_be_current?).to eq(false)   
     end
@@ -170,7 +170,7 @@ describe IsoManagedV2 do
 
     it "allows the item to be updated" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_full(uri)
       result = item.to_h
       result[:explanatory_comment] = "New comment"
       result[:change_description] = "Description"
@@ -456,23 +456,23 @@ describe IsoManagedV2 do
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
     end
 
-    it "find, I" do
+    it "find full, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = IsoManagedV2.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+      results = IsoManagedV2.find_full(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "find, II" do
+    it "find full, II" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = CdiscTerm.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal)
+      results = CdiscTerm.find_full(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "find, III, speed" do
+    it "find full, III, speed" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
-      (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times [8.29s -> 6.48s]")
+      (1..100).each {|x| results = CdiscTerm.find_full(uri)}
+      timer_stop("Find Full 100 times [8.29s -> 6.48s]")
     end
 
     it "find minimum I" do
@@ -485,7 +485,20 @@ describe IsoManagedV2 do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find_minimum(uri)}
-      timer_stop("Find 100 times [1.65s -> 1.25s]")
+      timer_stop("Find Minimum 100 times [1.65s -> 1.25s]")
+    end
+
+    it "find I" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      results = IsoManagedV2.find(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "find II, speed" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      timer_start
+      (1..100).each {|x| results = CdiscTerm.find(uri)}
+      timer_stop("Find 100 times [1.65s]")
     end
 
     it "where, I" do
@@ -655,7 +668,7 @@ describe IsoManagedV2 do
       expect(object.errors.count).to eq(0)
       check_dates(object, sub_dir, "create_expected_1a.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal)
-      object = Thesaurus.find(object.uri)
+      object = Thesaurus.find_full(object.uri)
       check_dates(object, sub_dir, "create_expected_1b.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
     end

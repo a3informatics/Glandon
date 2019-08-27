@@ -195,11 +195,38 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Find. Full find of the managed item. Will find all children via paths that are not excluded.
+  # Find. Finds the version management info and properties for the item. Does not find object links.
+  #
+  # @param [Uri|id] the identifier, either a URI or the id
+  # @return [object] The object.
+  def self.find(id)  
+    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    parts = []
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
+    parts << "  { #{uri.to_ref} isoT:hasState ?o . BIND (<isoT:hasState> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"  
+    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }" 
+    property_relationships.map.each do |relationship|
+      parts << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?o . BIND ( #{relationship[:predicate].to_ref} as ?p) . BIND (#{uri.to_ref} as ?s)}"
+    end
+    query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if query_results.empty?
+    item = from_results_recurse(uri, query_results.by_subject)
+    ns_uri = item.has_identifier.has_scope
+    item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
+    ra_uri = item.has_state.by_authority
+    item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
+    ns_uri = item.has_state.by_authority.ra_namespace
+    item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
+    item
+  end
+
+  # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [IsoManagedV2] The managed item object.
-  def self.find(id)  
+  def self.find_full(id)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
     exclude = excluded_read_relationships
