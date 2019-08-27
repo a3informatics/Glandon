@@ -18,10 +18,19 @@
       <%= stylesheet_link_tag    'application', params[:controller], media: 'all' %>
       <%= javascript_include_tag 'application', params[:controller] %>
   	<% end %>
+
     <%= stylesheet_link_tag 'print', :media => 'print'%>
-    <%= stylesheet_link_tag 'custom/custom_navbar', media: 'all' %>
+    <%= stylesheet_link_tag 'custom/custom_navbar', 'custom/custom_sidebar', media: 'all' %>
+
     <!-- <script src="https://kit.fontawesome.com/45fbf30bd8.js"></script> -->
     <%= csrf_meta_tags %>
+
+    <!-- Convert controller name in the current context to the menu category title to which it belongs  -->
+    <% menu_category_title = controller_to_menu %>
+
+    <!-- Declare menu categories as vars  -->
+    <% c_sysadmin, c_impexp, c_util, c_term, c_biocon, c_forms, c_sdtm, c_adam =
+      "System Admin", "Import/Export", "Utilities", "Terminology", "Biomedical Concepts", "Forms", "SDTM", "ADaM"%>
 
     <style>
       html, body {
@@ -36,47 +45,10 @@
       	height:100%;
       }
 
-      #sidebar {
-      	background-color:#ffffff;
-      }
-
-      @media (min-width:768px) {
-
-        #sidebar {
-            width: inherit;
-            min-width: 270px;
-            max-width: 270px;
-            min-height: 100%;
-            position:relative;
-            padding-top: 15px;
-        }
-        #main_area {
-            width:calc(100% - 270px);
-            padding-top: 15px;
-        }
-
-        #sidebar ul  {
-          border-bottom: 2px solid #d9d9d9;
-        }
-
-        #sidebar .breadcrumb {
-          background-color: #d9d9d9;
-        }
-
-        .breadcrumb a {
-          font-size: 12px !important;
-        }
-
-        .breadcrumb li {
-          font-size: 12px !important;
-        }
-
-        .breadcrumb > li + li:before {
-          color: #000000;
-          content: ">>";
-          /*padding: 0 5px;*/
-        }
-
+      #main_area {
+        width: calc(100% - 270px);
+        padding-left: 30px;
+        transition: width .3s;
       }
 
       .table td.fit,
@@ -87,7 +59,8 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid bg-grey-bright">
+      <!-- NAVBAR BEGIN -->
       <nav class="navbar navbar-inverse navbar-fixed-top bg-prim-dark">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -102,22 +75,46 @@
             <a class="navbar-brand" href="/">
               <img alt='Brand' src='<%= asset_path("a3-logo") %>' width='25'>
             </a>
-            <a class="navbar-brand" href="/"><span class='text-light'><small><%= ENV['organization_navbar'] %><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small></span></a>
+            <a class="navbar-brand" href="/">
+              <span class='text-light'>
+                <small><%= ENV['organization_navbar'] %><%= "#{APP_CONFIG['application_name']}"%> (v<%= Version::VERSION %>)</small>
+              </span>
+            </a>
           </div>
           <!-- ICONS -->
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <!-- HOME -->
-              <li><a id="home_button" href="/"><span class="icon-home text-light ttip"><span class="ttip-text ttip-right shadow-small text-medium">Home</span></span></a></li>
+              <li>
+                <a id="home_button" href="/">
+                  <span class="icon-home text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Home
+                    </span>
+                  </span>
+                </a>
+              </li>
               <!-- PRINT -->
               <li>
                 <%= link_to "", id: 'print_button' do %>
-                  <span class="icon-print text-light ttip"><span class="ttip-text ttip-right shadow-small text-medium">Print page</span></span>
+                  <span class="icon-print text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Print page
+                    </span>
+                  </span>
                 <% end %>
               </li>
               <!-- USERS -->
               <% if policy(User).index? %>
-                <li><a id="users_button" href="/users"><span class="icon-users text-light ttip"><span class="ttip-text ttip-right shadow-small text-medium">Manage users</span></span></a></li>
+                <li>
+                  <a id="users_button" href="/users">
+                    <span class="icon-users text-light ttip">
+                      <span class="ttip-text ttip-right shadow-small text-medium">
+                        Manage users
+                      </span>
+                    </span>
+                  </a>
+                </li>
               <% end %>
               <!-- USER BADGE -->
               <li>
@@ -146,113 +143,147 @@
               </li>
               <!-- USER CONFIG -->
               <% if policy(UserSetting).index? %>
-                <li><a id="settings_button" href="<%= user_settings_path %>"><span class="icon-settings text-light ttip"><span class="ttip-text ttip-left shadow-small text-medium">Preferences</span></span></a></li>
+                <li>
+                  <a id="settings_button" href="<%= user_settings_path %>">
+                    <span class="icon-settings text-light ttip">
+                      <span class="ttip-text ttip-left shadow-small text-medium">
+                        Preferences
+                      </span>
+                    </span>
+                  </a>
+                </li>
               <% end %>
               <!-- LOG OFF -->
               <li>
                 <%= link_to destroy_user_session_path, :method => :delete, id: 'logoff_button' do %>
-                  <span class="icon-sign-out text-light ttip"><span class="ttip-text ttip-left shadow-small text-medium">Sign out</span></span>
+                  <span class="icon-sign-out text-light ttip">
+                    <span class="ttip-text ttip-left shadow-small text-medium">
+                      Sign out
+                    </span>
+                  </span>
                 <% end %>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      <!-- NAVBAR END -->
+      <!-- SIDEBAR BEGIN -->
       <div class="row full">
         <% if !current_user.is_only_community? %>
-          <div id="sidebar" class="col-md-2 shadow-medium">
+          <div id="sidebar" class="col-md-2 shadow-medium text-dark">
             <div class="nav nav_pills nav-stacked">
-              <div>
-                <%= session[:breadcrumbs].html_safe %>
-              </div>
+              <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="sidebarHandler(this);"></span>
               <% if link_group_on_role([Dashboard]) %>
-              	<ul class="nav">
-                	<%= render partial: "shared/link_on_user_role", :locals => {:klass => Dashboard, link_id: "main_nav_d",
-           					link_path: dashboard_index_path, link_text: "Dashboard"} %>
-              	</ul>
+              <%= render partial: "shared/menu_category", :locals => {:klass => Dashboard, link_id: "main_nav_d",
+                link_path: dashboard_index_path, selected_cat: menu_category_title, icon_id: "icon-dashboard", category_title: "Dashboard"} %>
               <% end %>
               <% if link_group_on_role([IsoNamespace, IsoRegistrationAuthority, IsoManaged, Token, AuditTrail]) %>
-                <ul class="nav">
-           				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoNamespace, link_id: "main_nav_in",
-           					link_path: iso_namespaces_path, link_text: "Namespaces"} %>
-           				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoRegistrationAuthority, link_id: "main_nav_ira",
-           					link_path: iso_registration_authorities_path, link_text: "Registration Authorities"} %>
-           				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoManaged, link_id: "main_nav_im",
-           					link_path: iso_managed_index_path, link_text: "Managed Items"} %>
-           				<%= render partial: "shared/link_on_user_role", :locals => {:klass => Token, link_id: "main_nav_el",
-           					link_path: tokens_path, link_text: "Edit Locks"} %>
-           				<%= render partial: "shared/link_on_user_role", :locals => {:klass => AuditTrail, link_id: "main_nav_at",
-           					link_path: audit_trail_index_path, link_text: "Audit Trail"} %>
-    	 		      </ul>
+                <div class="category-container <%= if c_sysadmin != menu_category_title then "collapsed" end %>">
+                  <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sysadmin", category_title: c_sysadmin} %>
+                  <ul class="nav">
+             				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoNamespace, link_id: "main_nav_in",
+             					link_path: iso_namespaces_path, link_text: "Namespaces", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoRegistrationAuthority, link_id: "main_nav_ira",
+             					link_path: iso_registration_authorities_path, link_text: "Registration Authorities", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoManaged, link_id: "main_nav_im",
+             					link_path: iso_managed_index_path, link_text: "Managed Items", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/link_on_user_role", :locals => {:klass => Token, link_id: "main_nav_el",
+             					link_path: tokens_path, link_text: "Edit Locks", current_link: controller_name.to_s} %>
+             				<%= render partial: "shared/link_on_user_role", :locals => {:klass => AuditTrail, link_id: "main_nav_at",
+             					link_path: audit_trail_index_path, link_text: "Audit Trail", current_link: controller_name.to_s} %>
+      	 		      </ul>
+                </div>
               <% end %>
-              <% if link_group_on_role([Upload, Import, Background, AdHocReport]) %>
+              <% if link_group_on_role([Upload, Import, Background]) %>
+              <div class="category-container <%= if c_impexp != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-impexp", category_title: c_impexp} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Upload, link_id: "main_nav_u",
-           					link_path: uploads_path, link_text: "Upload"} %>
+           					link_path: uploads_path, link_text: "Upload", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Import, link_id: "main_nav_i",
-                    link_path: list_imports_path, link_text: "Import"} %>
+                    link_path: list_imports_path, link_text: "Import", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Export, link_id: "main_nav_e",
-                    link_path: exports_path, link_text: "Export"} %>
+                    link_path: exports_path, link_text: "Export", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Background, link_id: "main_nav_bj",
-           					link_path: backgrounds_path, link_text: "Background Jobs"} %>
-                  <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdHocReport, link_id: "main_nav_ahr",
-           					link_path: ad_hoc_reports_path, link_text: "Ad Hoc Reports"} %>
+           					link_path: backgrounds_path, link_text: "Background Jobs", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
-              <% if link_group_on_role([IsoConceptSystem, MarkdownEngine]) %>
+              <% if link_group_on_role([IsoConceptSystem, MarkdownEngine, AdHocReport]) %>
+              <div class="category-container <%= if c_util != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-utils", category_title: c_util} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => IsoConceptSystem, link_id: "main_nav_ics",
-           					link_path: iso_concept_systems_path, link_text: "Tags"} %>
+           					link_path: iso_concept_systems_path, link_text: "Tags", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => MarkdownEngine, link_id: "main_nav_ma",
-           					link_path: markdown_engines_path, link_text: "Markdown"} %>
+           					link_path: markdown_engines_path, link_text: "Markdown", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdHocReport, link_id: "main_nav_ahr",
+           					link_path: ad_hoc_reports_path, link_text: "Ad Hoc Reports", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
               <% if link_group_on_role([Thesaurus, CdiscTerm]) %>
+              <div class="category-container <%= if c_term != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-terminology", category_title: c_term} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_te",
-           					link_path: thesauri_index_path, link_text: "Terminology"} %>
+           					link_path: thesauri_index_path, link_text: "Terminology", current_link: controller_name.to_s} %>
            				<%= render partial: "shared/link_on_user_role", :locals => {:klass => CdiscTerm, link_id: "main_nav_ct",
-           					link_path: history_cdisc_terms_path, link_text: "CDISC Terminology"} %>
+           					link_path: history_cdisc_terms_path, link_text: "CDISC Terminology", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
               <% if link_group_on_role([BiomedicalConceptTemplate, BiomedicalConcept]) %>
+              <div class="category-container <%= if c_biocon != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-biocon", category_title: c_biocon} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => BiomedicalConceptTemplate, link_id: "main_nav_bct",
-           					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates"} %>
+           					link_path: biomedical_concept_templates_path, link_text: "Biomedical Concept Templates", current_link: controller_name.to_s} %>
            				<%= render partial: "shared/link_on_user_role", :locals => {:klass => BiomedicalConcept, link_id: "main_nav_bc",
-           					link_path: biomedical_concepts_path, link_text: "Biomedical Concepts"} %>
+           					link_path: biomedical_concepts_path, link_text: "Biomedical Concepts", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
               <% if link_group_on_role([Form]) %>
+              <div class="category-container <%= if c_forms != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-forms", category_title: c_forms} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => Form, link_id: "main_nav_f",
-           					link_path: forms_path, link_text: "Forms"} %>
+           					link_path: forms_path, link_text: "Forms", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
               <% if link_group_on_role([SdtmModel, SdtmIg, SdtmUserDomain]) %>
+              <div class="category-container <%= if c_sdtm != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-sdtm", category_title: c_sdtm} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmModel, link_id: "main_nav_sm",
-           					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model"} %>
+           					link_path: history_sdtm_models_path, link_text: "CDISC SDTM Model", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmIg, link_id: "main_nav_sig",
-           					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs"} %>
+           					link_path: history_sdtm_igs_path, link_text: "CDISC SDTM IGs", current_link: controller_name.to_s} %>
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => SdtmUserDomain, link_id: "main_nav_sd",
-           					link_path: sdtm_user_domains_path, link_text: "Domains"} %>
+           					link_path: sdtm_user_domains_path, link_text: "Domains", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
               <% if link_group_on_role([AdamIg]) %>
+              <div class="category-container <%= if c_adam != menu_category_title then "collapsed" end %>">
+                <%= render partial: "shared/menu_category", :locals => { selected_cat: menu_category_title, icon_id: "icon-adam", category_title: c_adam} %>
                 <ul class="nav">
                   <%= render partial: "shared/link_on_user_role", :locals => {:klass => AdamIg, link_id: "main_nav_aig",
-                    link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs"} %>
+                    link_path: history_adam_igs_path, link_text: "CDISC ADaM IGs", current_link: controller_name.to_s} %>
                 </ul>
+              </div>
               <% end %>
             </div>
           </div>
         <% end %>
-        <% if current_user.is_only_community? %>
-          <% width_class =  "col-md-12" %>
-        <% else %>
-          <% width_class =  "col-md-10" %>
-        <% end %>
+        <!-- SIDEBAR END -->
+        <% if current_user.is_only_community? then width_class = "col-md-12" else width_class = "col-md-10" end%>
+        <div>
+          <%= session[:breadcrumbs].html_safe %>
+        </div>
         <div id="main_area" class="<%= width_class %>">
           <div id="datatables">
             <!-- Datatables page length options-->
@@ -274,7 +305,6 @@
         </div>
       </div>
     </div>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

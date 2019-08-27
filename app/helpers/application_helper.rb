@@ -2,8 +2,8 @@ module ApplicationHelper
 
 	def instance_title(title, item)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
-    status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus 
-		return raw("#{title} #{item.label} <small>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")	
+    status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus
+		return raw("#{title} #{item.label} <small>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")
 	end
 
 	# Bootstrap Class
@@ -120,8 +120,8 @@ module ApplicationHelper
   # @param third_level_action [String] the third-level prefix for the link text
   # @return [Null]
   def third_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text)
-    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
-      {link: second_level_link, text: "#{second_level_text}"}, 
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"},
+      {link: second_level_link, text: "#{second_level_text}"},
       {link: "#", text: "#{third_level_text}"}])
   end
 
@@ -135,8 +135,8 @@ module ApplicationHelper
   # @return [Null]
   def third_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action)
     identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
-  	breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
-  		{link: second_level_link, text: "#{identifier}"}, 
+  	breadcrumb ([{link: parent_link, text: "#{parent_text}"},
+  		{link: second_level_link, text: "#{identifier}"},
   		{link: "#", text: "#{third_level_action} V#{managed_item.semantic_version}"}])
   end
 
@@ -152,8 +152,8 @@ module ApplicationHelper
   # @param fourth_level_text [String] the third-level link
   # @return [Null]
   def fourth_level_breadcrumb(parent_text, parent_link, second_level_text, second_level_link, third_level_text, third_level_link, fourth_level_text)
-    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
-      {link: second_level_link, text: "#{second_level_text}"}, 
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"},
+      {link: second_level_link, text: "#{second_level_text}"},
       {link: third_level_link, text: "#{third_level_text}"},
       {link: "#", text: "#{fourth_level_text}"}])
   end
@@ -169,8 +169,8 @@ module ApplicationHelper
   # @param fourth_level_text [String] the third-level link
   # @return [Null]
   def fourth_level_managed_item_breadcrumb(managed_item, parent_text, parent_link, second_level_link, third_level_action, third_level_link, fourth_level_text)
-    breadcrumb ([{link: parent_link, text: "#{parent_text}"}, 
-      {link: second_level_link, text: "#{managed_item.identifier}"}, 
+    breadcrumb ([{link: parent_link, text: "#{parent_text}"},
+      {link: second_level_link, text: "#{managed_item.identifier}"},
       {link: third_level_link, text: "#{third_level_action} V#{managed_item.semantic_version}"},
       {link: "#", text: "#{fourth_level_text}"},
       ])
@@ -178,6 +178,7 @@ module ApplicationHelper
 
   # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
   #
+
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
   # @return [Null]
   def breadcrumb(items)
@@ -190,5 +191,34 @@ module ApplicationHelper
   	result += "</ol>"
   	session[:breadcrumbs] = raw(result)
   end
+
+	# Converts a controller reference to a string representing the menu parent under which it belongs
+	def controller_to_menu
+
+		@category_dashboard = "Dashboard"
+		@category_sysadmin = "System Admin"
+		@category_impexp = "Import/Export"
+		@category_util = "Utilities"
+		@category_term = "Terminology"
+		@category_biocon = "Biomedical Concepts"
+		@category_forms = "Forms"
+		@category_sdtm = "SDTM"
+		@category_adam = "ADaM"
+
+		@controller_map = {
+			dashboard: @category_dashboard,
+			iso_namespaces: @category_sysadmin, iso_registration_authorities: @category_sysadmin,	iso_managed: @category_sysadmin, tokens: @category_sysadmin, audit_trail: @category_sysadmin,
+			uploads: @category_impexp, imports: @category_impexp, exports: @category_impexp, backgrounds: @category_impexp,
+			ad_hoc_reports: @category_util, iso_concept_systems: @category_util, markdown_engines: @category_util,
+			thesauri: @category_term, cdisc_terms: @category_term,
+			biomedical_concept_templates: @category_biocon, biomedical_concepts: @category_biocon,
+			forms: @category_forms,
+			sdtm_models: @category_sdtm, sdtm_igs: @category_sdtm, sdtm_user_domains: @category_sdtm,
+			adam_igs: @category_adam
+		}
+
+		@controller_map[controller_name.to_sym]
+	end
+
 
 end

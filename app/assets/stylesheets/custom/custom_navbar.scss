@@ -1,0 +1,47 @@
+@import "custom/globals.scss";
+
+// Styling of the navbar element
+.navbar{
+  font-family: $font-light;
+  border-bottom: 4px solid;
+  border-image-source: linear-gradient(270deg, rgb(83,134,156), rgb(150,185,71));
+  border-image-slice: 1;
+}
+
+// User badge related styling
+.user-badge-wrap{
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+}
+
+.user-badge{
+  margin: 0px 10px 0px 10px;
+}
+
+.user-icon{
+  font-family: $font-bold;
+  font-size: 12pt;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 27px;
+}
+
+#user-name{
+  font-family: $font-primary;
+}
+
+// A vertical line acting as a divider of icons in the navbar
+.vertical-divider{
+  width: 1px;
+  height: 50%;
+  background-color: $grey-light;
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+a .text-light:hover{
+  color: #fff;
+}

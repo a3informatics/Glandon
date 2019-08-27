@@ -1,3 +1,5 @@
+@import "custom/globals.scss";
+
 // SHADOWS
 .shadow-small{
   -webkit-box-shadow: 4px 0px 10px 0px rgba(0,0,0,0.15);
@@ -18,7 +20,7 @@
 }
 
 .ttip .ttip-text {
-  font-family: 'Roboto';
+  font-family: $font-primary;
   top: 100%;
   margin-top: 10px;
   border-radius: 5px;
@@ -41,4 +43,42 @@
 
 .ttip-left{
   right: 0%;
+}
+
+// SCROLLBAR
+
+body::-webkit-scrollbar, #sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track  {
+    background-color: $grey-bright;
+}
+
+body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
+  background-color: $grey-light;
+}
+
+// BREADCRUMBS
+
+.breadcrumb a {
+  font-size: 12px !important;
+  margin-left: 0px !important;
+}
+
+.breadcrumb li {
+  font-size: 12px !important;
+}
+
+.breadcrumb > li + li:before {
+  content: "/";
+  /*padding: 0 5px;*/
+}
+
+.breadcrumb :first-child {
+  margin-left: 20px;
+}
+
+.breadcrumb {
+  border-bottom: 1px solid #c4c4c4;
 }

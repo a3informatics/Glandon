@@ -1,27 +1,31 @@
 /* FONTS */
+$font-primary: 'Roboto';
+$font-light: 'Roboto-Thin';
+$font-bold: 'Roboto-Bold';
+
 @font-face {
-  font-family:'Roboto-Thin';
+  font-family: $font-light;
   src:font-url('Roboto-Light.ttf');
   font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-  font-family:'Roboto';
+  font-family: $font-primary;
   src:font-url('Roboto-Regular.ttf');
   font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-  font-family:'Roboto-Bold';
+  font-family: $font-bold;
   src:font-url('Roboto-Medium.ttf');
   font-weight: bold;
 	font-style: normal;
 }
 
 body{
-  font-family: 'Roboto' !important;
+  font-family: $font-primary !important;
 }
 
 /* COLORS */
@@ -83,46 +87,46 @@ $accent-color-2: #e48080;
 }
 
 /* Text & grey colors */
-$text-color-dark: #414141;
-$text-color-medium: #6f6f6f;
-$text-color-light: #c4c4c4;
-$text-color-bright: #f4f4f4;
-$text-color-white: #ffffff;
+$grey-dark: #414141;
+$grey-medium: #6f6f6f;
+$grey-light: #c4c4c4;
+$grey-bright: #f4f4f4;
+$grey-white: #ffffff;
 
 .bg-grey-dark{
-  background: $text-color-dark;
+  background: $grey-dark;
 }
 
 .bg-grey-medium {
-  background: $text-color-medium;
+  background: $grey-medium;
 }
 
 .bg-grey-light {
-  background: $text-color-light;
+  background: $grey-light;
 }
 
 .bg-grey-bright {
-  background: $text-color-bright;
+  background: $grey-bright;
 }
 
 .text-dark{
-  color: $text-color-dark;
+  color: $grey-dark;
 }
 
 .text-medium {
-  color: $text-color-medium;
+  color: $grey-medium;
 }
 
 .text-light {
-  color: $text-color-light;
+  color: $grey-light;
 }
 
 .text-bright {
-  color: $text-color-bright;
+  color: $grey-bright;
 }
 
 .text-white {
-  color: $text-color-white;
+  color: $grey-white;
 }
 
 .text-accent-1 {
@@ -133,12 +137,24 @@ $text-color-white: #ffffff;
   color: $accent-color-2;
 }
 
+.text-link{
+  color: $primary-color-light;
+}
+
 /* SIZES */
 
+$font-tiny: 7pt;
+$font-small: 10pt;
+$font-large: 16pt;
+
 .text-tiny{
-  font-size: 7pt;
+  font-size: $font-tiny;
 }
 
 .text-small{
-  font-size: 10pt;
+  font-size: $font-small;
+}
+
+.text-large{
+  font-size: $font-large;
 }
