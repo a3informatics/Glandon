@@ -1,4 +1,5 @@
 $(document).ready( function() {
+  var modal = new ModalPanel(id);
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
@@ -9,3 +10,6 @@ $(document).ready( function() {
   ];
   var cp = new ChildrenPanel(url_path, 1000, columns);
 });
+
+
+
