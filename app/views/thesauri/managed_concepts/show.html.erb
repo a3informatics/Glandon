@@ -1,5 +1,5 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/show' %>
-<%= javascript_tag "var url_path = '#{thesauri_managed_concept_path(@tc)}';" %>
+<%= javascript_tag "var url_path = '#{thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
 <div class="row">
   <div class="col-md-8">
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @tc} %>
