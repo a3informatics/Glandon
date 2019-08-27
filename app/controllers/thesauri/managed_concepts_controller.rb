@@ -216,7 +216,7 @@ private
   # end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier)
+    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id)
   end
     
   def edit_params

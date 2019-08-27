@@ -110,12 +110,13 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def show
     authorize Thesaurus
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @context_id = the_params[:context_id]
     @has_children = @tc.children?
     respond_to do |format|
       format.html
       format.json do
         children = @tc.children_pagination(params)
-        results = children.map{|x| x.to_h.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x)})}
+        results = children.map{|x| x.to_h.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x, unmanaged_concept: {context_id: @context_id}})})}
         render json: {data: results, offset: params[:offset], count: results.count}, status: 200
       end
     end
@@ -206,7 +207,7 @@ private
   # end
 
   def link_params
-    params.permit(:unmanaged_concept).permit(:context_id)
+    params.require(:unmanaged_concept).permit(:context_id)
   end
     
   def the_params
