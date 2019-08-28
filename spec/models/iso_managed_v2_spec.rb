@@ -693,6 +693,21 @@ describe IsoManagedV2 do
       expect(object.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
     end
 
+    it "create next version" do
+      object = Thesaurus.create({label: "A new item", identifier: "NEW1"})
+      expect(object.errors.count).to eq(0)
+      check_file_actual_expected(object.to_h, sub_dir, "create_next_version_1.yaml", equate_method: :hash_equal)
+      result = object.create_next_version
+      expect(object.uri).to eq(result.uri) # Same item
+      object.has_state.registration_status = IsoRegistrationStateV2.released_state
+      object.explanatory_comment = "A comment"
+      object.change_description = "A description"
+      object.origin = "A ref"
+      result = object.create_next_version
+      expect(object.uri).to_not eq(result.uri) # New item
+      check_file_actual_expected(result.to_h, sub_dir, "create_next_version_2.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Create Permitted" do
