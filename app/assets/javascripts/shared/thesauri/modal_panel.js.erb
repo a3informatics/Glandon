@@ -55,7 +55,7 @@ function ModalPanel(id) {
   // Ajax Post with selected th
   $('#select_th').click(function() {
     var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
-    var data = { "thesauri": { "scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier }};
+    var data = { "thesauri": { "scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id  }};
     $.ajax({
       url: "/thesauri/extension",
       type: "POST",
