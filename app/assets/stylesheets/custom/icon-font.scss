@@ -24,8 +24,43 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
+.icon-file-pdf:before {
+  content: "\e917";
+}
+.icon-minus-circle:before {
+  content: "\e914";
+}
+.icon-plus-circle:before {
+  content: "\e916";
+}
 .icon-forms:before {
+  content: "\e91c";
+}
+.icon-times:before {
   content: "\e90f";
+}
+.icon-fast-backward:before {
+  content: "\e912";
+}
+.icon-fast-forward:before {
+  content: "\e913";
+}
+.icon-list-ul:before {
+  content: "\e915";
+}
+.icon-step-backward:before {
+  content: "\e918";
+}
+.icon-step-forward:before {
+  content: "\e919";
+}
+.icon-trash:before {
+  content: "\e91a";
+}
+.icon-upload:before {
+  content: "\e91b";
 }
 .icon-adam:before {
   content: "\e910";

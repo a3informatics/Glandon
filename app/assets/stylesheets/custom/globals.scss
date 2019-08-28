@@ -145,6 +145,7 @@ $grey-white: #ffffff;
 
 $font-tiny: 7pt;
 $font-small: 10pt;
+$font-normal: 12pt;
 $font-large: 16pt;
 
 .text-tiny{
@@ -153,6 +154,10 @@ $font-large: 16pt;
 
 .text-small{
   font-size: $font-small;
+}
+
+.text-normal{
+  font-size: $font-normal;
 }
 
 .text-large{

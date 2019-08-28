@@ -346,14 +346,16 @@ function sidebarHandler(arrow){
   // Animate main_area width
   $('#main_area').toggleClass('col-md-10');
   $('#main_area').toggleClass('col-md-11');
-  
-  if ($('#sidebar').hasClass('sidebar-collapsed')){
-    $('#main_area').css('transition', 'width .8s');
-    $('#main_area').css('width', 'calc(100% - 65px)');
-  }
-  else{
-    $('#main_area').css('transition', 'width .2s');
-    $('#main_area').css('width', 'calc(100% - 270px)');
+  $('#sidebar').toggleClass('col-md-2');
+  $('#sidebar').toggleClass('col-md-1');
+  //
+   if ($('#sidebar').hasClass('sidebar-collapsed')){
+     $('#main_area').css('transition', 'width .8s');
+     $('#main_area').css('width', 'calc(100% - 60px)');
+   }
+   else{
+     $('#main_area').css('transition', 'width .2s');
+     $('#main_area').css('width', 'calc(100% - 270px)');
   }
 }
 

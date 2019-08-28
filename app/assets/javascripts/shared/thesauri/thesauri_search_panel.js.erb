@@ -24,7 +24,7 @@ function ThesauriSearchPanel(url) {
   ];
   this.filterOutAll(); // Must be called before initTable so as to filter the page settings
   this.initTable();
-  this.setupColumnInput(); 
+  this.setupColumnInput();
   this.setupSearchInputEvent();
   this.setupOverallSearchEvent();
   this.setupClearButton();
@@ -61,11 +61,11 @@ function ThesauriSearchPanel(url) {
     // Set our parent identifier search and trigger.
     $('#searchTable_csearch_cl').val(data.parent_identifier);
     var e = jQuery.Event("keyup");
-    e.which = 13; 
+    e.which = 13;
     e.keyCode = 13;
     $('#searchTable_csearch_cl').trigger(e);
   });
-  
+
 }
 
 
@@ -78,7 +78,7 @@ ThesauriSearchPanel.prototype.initTable = function () {
   this.tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
       "url": _this.url,
-      "dataSrc": "data" 
+      "dataSrc": "data"
     },
     "deferLoading": 0,
     "processing": true,
@@ -106,7 +106,7 @@ ThesauriSearchPanel.prototype.initTable = function () {
 */
 ThesauriSearchPanel.prototype.setupClearButton = function () {
   var _this = this;
-  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default clear-button"><span class="fa fa-times"></span> Clear All</button>');
+  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default clear-button"><span class="icon-times text-small"></span> Clear All</button>');
   $('#clearbutton').click(function(){
     $("#searchTable_filter input").val("");
     _this.tsSearchTable.search("");
