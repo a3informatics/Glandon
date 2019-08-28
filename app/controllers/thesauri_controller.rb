@@ -215,11 +215,10 @@ class ThesauriController < ApplicationController
   def extension
     authorize Thesaurus, :edit?
     results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    @thesaurus = Thesaurus.find_minimum(results.first)
-    @thesaurus = edit_item(@thesaurus)
-    @thesaurus.add_extension(the_params[:concept_id])
-    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
-    @parent_identifier = ""
+    thesaurus = Thesaurus.find_minimum(results.first)
+    thesaurus = edit_item(thesaurus)
+    new_object = thesaurus.add_extension(the_params[:concept_id])
+    redirect_to thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}}) 
   end
 
   def search_current
