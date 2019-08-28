@@ -106,8 +106,9 @@ describe IsoManagedV2 do
     end
 
     it "allows the latest, later, earlier and same version to be assessed" do
-     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
+    #byebug
       expect(item.latest?).to eq(true)   
       expect(item.later_version?(0)).to eq(true)   
       expect(item.later_version?(1)).to eq(false)   
@@ -789,7 +790,7 @@ describe IsoManagedV2 do
 
     it "find, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = IsoManagedV2.comments(identifier: "TEST", scope: IsoNamespace.find_with_properties(Uri.new(uri: "http://www.assero.co.uk/NS#BBB")))
+      results = IsoManagedV2.comments(identifier: "TEST", scope: IsoNamespace.find(Uri.new(uri: "http://www.assero.co.uk/NS#BBB")))
       check_file_actual_expected(results, sub_dir, "comments_expected_1.yaml", equate_method: :hash_equal)
     end
 

@@ -8,9 +8,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   data_property :notation
   data_property :definition
   data_property :extensible
-  object_property :extended_with, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
-  object_property :is_subset, cardinality: :one, model_class: "Thesaurus::Subset"
+  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept"
+  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept"
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   
@@ -19,17 +19,17 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
   validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
-  config = 
-  {
-    relationships: 
-    [
-      Thesaurus::UnmanagedConcept.rdf_type.to_ref, 
-      Thesaurus::Synonym.rdf_type.to_ref, 
-      Thesaurus::PreferredTerm.rdf_type.to_ref,
-      Thesaurus::Subset.rdf_type.to_ref
-    ]
-  } 
-  self.class.instance_variable_set(:@configuration, config)
+  # config = 
+  # {
+  #   relationships: 
+  #   [
+  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref, 
+  #     Thesaurus::Synonym.rdf_type.to_ref, 
+  #     Thesaurus::PreferredTerm.rdf_type.to_ref,
+  #     Thesaurus::Subset.rdf_type.to_ref
+  #   ]
+  # } 
+  # self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers

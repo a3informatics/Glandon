@@ -6,6 +6,13 @@ module DataHelpers
     schema_files.each {|f| load_schema_file_into_triple_store(f)}
     test_files.each {|f| load_test_file_into_triple_store(f)}
     test_query # Make sure any loading has finished.
+    load_schema
+  end
+  
+  def load_schema
+    Fuseki::Base.instance_variable_set(:@schema, nil)
+    Fuseki::Base.class_variable_set(:@@subjects, nil)
+    Fuseki::Base.set_schema
   end
   
   def test_query
