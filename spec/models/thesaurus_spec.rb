@@ -336,7 +336,7 @@ describe Thesaurus do
       ]
       data_files = 
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"      
       ]
       load_files(schema_files, data_files)
       load_versions(1..59)
@@ -405,15 +405,21 @@ describe Thesaurus do
     end
 
     it "add extension" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      uri = Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")
-      item = ct.add_extension(uri.to_id)
+      uri1 = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
+      ct = Thesaurus.find_minimum(uri1)
+      ct1 = Thesaurus.find_full(uri1)
+      ct.is_top_concept_reference_objects
+      expect(ct.is_top_concept_reference.count).to eq(2)
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")
+      item = ct.add_extension(uri2.to_id)
       result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E")) 
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")) 
       expect(result.narrower.count).to eq(source.narrower.count)
       expect(result.extends.uri.to_s).to eq(source.uri.to_s)
-      ct.is_top_concept_reference_objects
-      expect(ct.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
+      ct2 = Thesaurus.find_full(uri1)
+    byebug
+      expect(ct2.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
+      expect(ct2.is_top_concept_reference.count).to eq(3)
     end
 
   end

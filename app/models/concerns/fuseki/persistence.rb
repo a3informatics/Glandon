@@ -187,6 +187,10 @@ module Fuseki
       @transaction = Sparql::Transaction.new
     end
 
+    def transaction_set(transaction)
+      @transaction = transaction
+    end
+    
     def transaction_execute
       @transaction.execute
     end
