@@ -14,8 +14,9 @@
         <%= back_close_button %>
         <%= link_to "Export CSV", export_csv_thesauri_path(@tc), :class => "btn btn-info" %>
         <% class_list = @can_be_extended ? "btn btn-primary" : "btn btn-primary disabled" %>
-        <%= link_to "Extend", "#tableModal", :class => class_list, "data-toggle" => "modal" %>
+        <%= link_to "Extend", "#tableModal",:id=> "extend", :class => class_list, "data-toggle" => "modal" %>
         <%= render partial: "shared/thesauri/modal_panel" %>
+        <%= link_to "Extension", "#", :id=> "extension", :class => "btn btn-primary"%>
       </div>
     </div>
   </div>

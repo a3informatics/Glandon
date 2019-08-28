@@ -218,7 +218,7 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_object = thesaurus.add_extension(the_params[:concept_id])
-    redirect_to thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}}) 
+    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
   end
 
   def search_current
