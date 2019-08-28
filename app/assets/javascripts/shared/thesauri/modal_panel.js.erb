@@ -9,7 +9,8 @@
 *
 * @return [void]
 */
-function ModalPanel(id) {
+function ModalPanel(id, callback) {
+  this.callback = callback;
   this.id = id;  
   this.tsModalTable = null;
   this.columns = [
@@ -51,23 +52,25 @@ function ModalPanel(id) {
       }
     }
   });
-
+  
   // Ajax Post with selected th
   $('#select_th').click(function() {
+    $('#tableModal').modal('hide');
     var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
-    var data = { "thesauri": { "scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id  }};
-    $.ajax({
-      url: "/thesauri/extension",
-      type: "POST",
-      data: JSON.stringify(data),
-      dataType: 'json',
-      contentType: 'application/json',
-      error: function (xhr, status, error) {
-        displayError("An error has occurred.");
-      },
-      success: function(result) {
-      }
-    });   
+    _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
+    // var data = { "thesauri": { "scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id  }};
+    // $.ajax({
+    //     url: "/thesauri/extension",
+    //     type: "POST",
+    //     data: JSON.stringify(data),
+    //     dataType: 'json',
+    //     contentType: 'application/json',
+    //     error: function (xhr, status, error) {
+    //       displayError("An error has occurred.");
+    //     },
+    //     success: function(result) {
+    //     }
+    // });
   });
 
 }

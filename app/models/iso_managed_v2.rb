@@ -461,7 +461,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Object] the resulting object. Fail is there are errors.
   def create_next_version
-    return if !self.new_version?
+    return self if !self.new_version?
     ra = IsoRegistrationAuthority.owner
     object = self.clone
     object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.next_semantic_version.to_s, has_scope: ra.ra_namespace)

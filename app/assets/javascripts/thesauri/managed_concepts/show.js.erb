@@ -1,5 +1,6 @@
 $(document).ready( function() {
-  var modal = new ModalPanel(id);
+  var nav = new NavPanel();
+  var modal = new ModalPanel(id, nav.callback);
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
@@ -10,6 +11,29 @@ $(document).ready( function() {
   ];
   var cp = new ChildrenPanel(url_path, 1000, columns);
 });
+
+function NavPanel() {
+}  
+
+NavPanel.prototype.callback = function(data) {
+  //console.log(data);
+  //window.location.href = '/thesauri/extension?thesauri%5Bscope_id%5D='+data.scope_id+'&%5Bidentifier%5D='+data.identifier+'&%5Bconcept_id%5D='+data.concept_id;
+  //window.location.href = '/thesauri/extension?thesauri[scope_id]='+data.scope_id+'&[identifier]='+data.identifier+'&[concept_id]='+data.concept_id;
+  $.ajax({
+        url: "/thesauri/extension",
+        type: "POST",
+        data: JSON.stringify({thesauri: data}),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          alert("XXXXXXX")
+        }
+      });
+
+}
 
 
 
