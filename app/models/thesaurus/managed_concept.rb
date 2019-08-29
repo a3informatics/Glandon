@@ -39,18 +39,32 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   #
   # @result [Boolean] return true if extended
   def extended?
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return !query_results.empty?
+    !extended_by.nil?
   end
 
-  # Extends? Is this item extending another managed concept
+  # Extended By. Get the URI of the extension item if it exists. 
+  #
+  # @result [Uri] the Uri or nil if not present.
+  def extended_by
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
+  end
+
+  # Extension? Is this item extending another managed concept
   #
   # @result [Boolean] return true if extending another
   def extension?
+    !extension_of.nil?
+  end
+
+  # Extension Of. Get the URI of the item being extended, if it exists. 
+  #
+  # @result [Uri] the Uri or nil if not present.
+  def extension_of
     query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:extends ?s }}
     query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return !query_results.empty?
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
   end
 
   def replace_if_no_change(previous)
