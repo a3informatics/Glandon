@@ -468,7 +468,7 @@ describe Thesaurus::ManagedConcept do
       expect(@tc_6.replace_if_no_change(@tc_5).uri).to eq(@tc_6.uri)
     end
 
-    it "determines if code list extended" do
+    it "determines if code list extended and finds the URIs" do
       tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
       expect(tc1.extended?).to eq(false)
@@ -481,6 +481,10 @@ describe Thesaurus::ManagedConcept do
       expect(tc2.extended?).to eq(false)
       expect(tc1.extension?).to eq(false)
       expect(tc2.extension?).to eq(true)
+      expect(tc1.extended_by).to eq(tc2.uri)
+      expect(tc1.extension_of).to eq(nil)
+      expect(tc2.extension_of).to eq(tc1.uri)
+      expect(tc2.extended_by).to eq(nil)
     end
 
   end
