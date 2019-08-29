@@ -272,7 +272,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     self.add_link(:is_top_concept, object)
     self.add_link(:is_top_concept_reference, ref)
     object.add_link(:extends, source)
-byebug
+# byebug
     transaction_execute
     object
   end
