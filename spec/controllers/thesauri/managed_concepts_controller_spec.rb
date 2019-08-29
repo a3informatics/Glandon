@@ -62,6 +62,54 @@ describe Thesauri::ManagedConceptsController do
       expect(actual).to eq({data: false})
     end
     
+    it "show, no extension" do
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:context_id)).to eq(th_uri.to_id)
+      expect(assigns(:can_be_extended)).to eq(false)
+      expect(assigns(:is_extended)).to eq(false)
+      expect(assigns(:is_extended_path)).to eq("")
+      expect(assigns(:is_extending)).to eq(false)
+      expect(assigns(:is_extending_path)).to eq("")
+      expect(response).to render_template("show")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:can_be_extended)).to eq(true)
+    end
+
+    it "show, extended" do
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
+      ext_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#XXXXX")
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended_by).and_return(ext_uri)
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:context_id)).to eq(th_uri.to_id)
+      expect(assigns(:can_be_extended)).to eq(false)
+      expect(assigns(:is_extended)).to eq(true)
+      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjQ1Q%3D")
+      expect(assigns(:is_extending)).to eq(false)
+      expect(assigns(:is_extending_path)).to eq("")
+      expect(response).to render_template("show")
+    end
+
+    it "show, extending" do
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
+      ext_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#XXXXX")
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(false) # Note, wrong way but useful for test
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extension_of).and_return(ext_uri)
+      get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
+      expect(assigns(:context_id)).to eq(th_uri.to_id)
+      expect(assigns(:can_be_extended)).to eq(true)
+      expect(assigns(:is_extended)).to eq(false)
+      expect(assigns(:is_extended_path)).to eq("")
+      expect(assigns(:is_extending)).to eq(true)
+      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjQ1Q%3D")
+      expect(response).to render_template("show")
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
