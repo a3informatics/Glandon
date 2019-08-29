@@ -42,7 +42,7 @@ class Thesaurus
       child[:transaction] = transaction_begin
       child = Thesaurus::UnmanagedConcept.create(child, self)
       return child if child.errors.any?
-      self.add_link(:narrower, child)
+      self.add_link(:narrower, child.uri)
       transaction_execute
       child
     end

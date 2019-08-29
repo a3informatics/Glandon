@@ -158,6 +158,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: tc.extension?}      
   end
 
+  def add_extensions
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: {}, error: []}
+  end
+
+  def destroy_extensions
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+    tc.delete_extensions(uris)
+    render json: {data: {}, error: []}
+  end
+    
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -222,7 +236,7 @@ private
   # end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id)
+    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
   end
     
   def edit_params

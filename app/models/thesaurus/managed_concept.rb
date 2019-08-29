@@ -248,6 +248,26 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.cl
     results
   end
 
+  # Add Extensions 
+  #
+  # @param uris [Array] set of uris of the items to be added
+  # @return [Void] no return
+  def add_extensions(uris)
+    transaction = transaction_begin
+    uris.each {|x| add_link(:narrower, x)}
+    transaction_execute
+  end
+
+  # Delete Extensions 
+  #
+  # @param uris [Array] set of uris of the items to be deleted
+  # @return [Void] no return
+  def delete_extensions(uris)
+    transaction = transaction_begin
+    uris.each {|x| delete_link(:narrower, x)}
+    transaction_execute
+  end
+
   class DiffResult < Hash
 
     def no_change?(other_hash)
