@@ -370,6 +370,11 @@ function sidebarCategoryHandler(item){
   $(item).parent().toggleClass('collapsed');
 }
 
+function sidebarVerticalScreenHandler(arrow){
+  $(arrow).toggleClass('arrow-rotate');
+  $("#sidebar").toggleClass('collapsed-vertical');
+}
+
 /*
 * Generic Print function
 */

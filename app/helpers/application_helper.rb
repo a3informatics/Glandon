@@ -182,7 +182,7 @@ module ApplicationHelper
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
   # @return [Null]
   def breadcrumb(items)
-  	result = "<ol class=\"breadcrumb\">"
+  	result = "<ol class=\"breadcrumb\">" 
   	index = 1
   	items.each do |item|
   		result += item.equal?(items.last) ? "<li id=\"breadcrumb_#{index}\" class=\"active\">#{item[:text]}</li>" : "<li id=\"breadcrumb_#{index}\"><a href=\"#{item[:link]}\">#{item[:text]}</a></li>"

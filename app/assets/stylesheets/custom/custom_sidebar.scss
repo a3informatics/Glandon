@@ -5,6 +5,11 @@
   font-family: $font-light;
   overflow-y: auto;
   max-height: 100%;
+  transition: max-height .5s;
+}
+
+#sidebar.collapsed-vertical{
+  max-height: 0px;
 }
 
 // Hide all sidebar arrows on vertical screen
@@ -23,14 +28,6 @@
   cursor: pointer;
   width: 100%;
   height: 60px;
-}
-
-.category-item.selected::before{
-  width: 4px;
-  height: 60px;
-  background: $secondary-color-medium;
-  content: "";
-  position: absolute;
 }
 
 .category-item:hover, #sidebar ul.nav li:hover{
@@ -111,6 +108,14 @@
   .category-container.collapsed ul.nav{
     max-height: 0px;
     overflow: hidden;
+  }
+
+  .category-item.selected::before{
+    width: 4px;
+    height: 60px;
+    background: $secondary-color-medium;
+    content: "";
+    position: absolute;
   }
 
   // Sidebar subitems styling

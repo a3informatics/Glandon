@@ -147,6 +147,7 @@ $font-tiny: 7pt;
 $font-small: 10pt;
 $font-normal: 12pt;
 $font-large: 16pt;
+$font-xlarge: 20pt;
 
 .text-tiny{
   font-size: $font-tiny;
@@ -163,3 +164,10 @@ $font-large: 16pt;
 .text-large{
   font-size: $font-large;
 }
+
+.text-xlarge{
+  font-size: $font-xlarge;
+}
+
+$card-border-radius: 10px;
+$button-border-radius: 20px;

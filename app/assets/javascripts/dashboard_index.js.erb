@@ -6,22 +6,12 @@ $(document).ready(function () {
   panel ("main4", "biomedical_concept_templates", "biomedical_concept_template");
   panel ("main5", "sdtm_user_domains", "");
 
-  var x  = $("#barGraph").html();
-  var barData = $.parseJSON(x);
-  Morris.Bar({
-    element: 'bar-example',
-    data: barData,
-    xkey: 'y',
-    ykeys: ['a'],
-    labels: ['Items']
-  });
-
   function panel(control, url, safe_parameter) {
     $("#" + control).DataTable({
       "pagingType": "full",
       "ajax": {
         "url": url,
-        "dataSrc": "data"  
+        "dataSrc": "data"
       },
       "language": {
         "infoFiltered": "",
@@ -30,15 +20,15 @@ $(document).ready(function () {
       "bProcessing": true,
       "pageLength": 5,
       "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-      "columns": [ 
-        {"data" : "owner", "width" : "10%"},
-        {"data" : "label", "width" : "70%"},
-        {"data" : "identifier", "render": function(data,type,full,meta) { 
+      "columns": [
+        {"data" : "owner"},
+        {"data" : "label", "width" : "80%"},
+        {"data" : "identifier", "render": function(data,type,full,meta) {
           var query_string = 'identifier='+ data +'&scope_id=' + full.scope_id;
           if(safe_parameter !== "") {
             query_string = safe_parameter + '[identifier]=' + data + '&' + safe_parameter + '[scope_id]=' + full.scope_id;
           }
-          return '<a href="' + url + '/history?' + query_string  + '"><button type="button" class="btn btn-primary btn-xs">History</button></a>';
+          return '<a href="' + url + '/history?' + query_string  + '"><button type="button" class="btn btn-primary btn-xs button-reg">History</button></a>';
         }}
       ]
     });

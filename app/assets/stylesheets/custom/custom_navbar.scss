@@ -45,3 +45,44 @@
 a .text-light:hover{
   color: #fff;
 }
+
+// Restyles the navbar menu into mobile-friendly version with text captions visible
+
+.navbar-toggle, .sidebar-toggle {
+  background: transparent !important;
+  border: 0px;
+}
+
+.navbar-collapse{
+  border: 0px;
+}
+
+.sidebar-toggle{
+  line-height: 2px;
+  transition: transform .3s;
+}
+
+#sidebar.collapsed-vertical{
+  max-height: 0px;
+}
+
+.navbar-collapse.collapse.in .ttip-text,
+  .navbar-collapse.collapsing .ttip-text{
+  visibility: visible;
+  top: initial;
+  margin: 0;
+  border-radius: 0;
+  background-color: initial;
+  text-align: initial;
+  padding: 0;
+  position: initial;
+  color: $grey-light;
+  -webkit-box-shadow: initial;
+  -moz-box-shadow: initial;
+  box-shadow: initial;
+}
+
+.navbar-collapse.collapse.in .user-badge-wrap,
+  .navbar-collapse.collapsing .user-badge-wrap{
+  display: none;
+}

@@ -24,8 +24,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
+.icon-arrow_d_nopadding:before {
+  content: "\e91e";
+}
+.icon-breadcrumb:before {
+  content: "\e91d";
+}
 .icon-file-pdf:before {
   content: "\e917";
 }

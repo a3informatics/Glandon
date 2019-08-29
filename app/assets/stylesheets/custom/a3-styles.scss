@@ -47,17 +47,24 @@
 
 // SCROLLBAR
 
+
 body::-webkit-scrollbar, #sidebar::-webkit-scrollbar {
     width: 6px;
 }
 
-body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track  {
+body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track {
     background-color: $grey-bright;
 }
 
 body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   background-color: $grey-light;
 }
+
+#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+  #main_area::-webkit-scrollbar {
+  display: none;
+}
+
 
 // BREADCRUMBS
 
@@ -75,10 +82,71 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   /*padding: 0 5px;*/
 }
 
-.breadcrumb :first-child {
-  margin-left: 20px;
+.breadcrumb {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px;
+  display: inline-block;
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0px;
+  width: 100%;
 }
 
-.breadcrumb {
-  border-bottom: 1px solid #c4c4c4;
+// CARDS
+
+.card{
+  background: $grey-white;
+  border-radius: $card-border-radius;
+  margin: 20px;
+  max-width: calc(50% - 40px);
+  min-width: 450px;
+
+  -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
 }
+
+.card-header{
+  background: $primary-color-bright;
+  color: $grey-white;
+  font-size: $font-normal;
+  font-family: $font-light;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0px 0px;
+  padding: 16px 24px;
+  width: 100%;
+}
+
+.card-content{
+  padding: 30px 20px;
+  color: $grey-medium;
+}
+
+.card-content table{
+  width: 100% !important;
+}
+
+.col-md-6.card{
+  padding: 0px;
+}
+
+// buttons
+.button-reg{
+  background: $primary-color-medium;
+  color: $grey-white;
+  font-family: $font-primary;
+  padding: 3px 10px;
+  border: 0px;
+  border-radius: $button-border-radius;
+}
+
+.button-reg:hover{
+  background-color: $primary-color-light;
+  border: 0px;
+}
+
+// TABLES
+table {
+}
+
+// GENERAL FIXES
