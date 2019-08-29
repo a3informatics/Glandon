@@ -102,6 +102,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
     respond_to do |format|
       format.html
         @can_be_extended = @tc.extensible && !@tc.extended?
+        extended_by_uri = @tc.extended_by
+        @is_extended = extended_by_uri.nil?
+        @is_entended_path = is_extended_uri.nil? : "" , thesauri_managed_concept_path({id: is_extended_uri.to_id, managed_concept: {context_id: @context_id}})
+        extension_of_uri = @tc.extension_of
+        @is_extending = extension_of_uri.nil?
+        @is_entending_path = extension_of_uri.nil? : "" , thesauri_managed_concept_path({id: is_extending_uri.to_id, managed_concept: {context_id: @context_id}})
       format.json do
         children = @tc.children_pagination(params)
         results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: @context_id}})})}
