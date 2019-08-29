@@ -55,6 +55,8 @@ describe Thesaurus::ManagedConcept do
       @tc_2.set_initial("A00002")
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept << @tc_1
+      @th_1.is_top_concept << @tc_2
       @th_1.set_initial("AIRPORTS")
     end
 
@@ -76,7 +78,6 @@ describe Thesaurus::ManagedConcept do
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
       file = sparql.to_file
-    byebug
     end 
 
   end

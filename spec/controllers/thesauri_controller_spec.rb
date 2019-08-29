@@ -441,6 +441,14 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/pdf")
     end
 
+    it "extension" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extension, {thesauri: {}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+    end
+
   end
 
   describe "Unauthorized User" do
