@@ -247,8 +247,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     child = Thesaurus::ManagedConcept.create(child)
     return child if child.errors.any?
     ref = OperationalReferenceV3::TcReference.create({reference: child, ordinal: ordinal}, self)
-    self.add_link(:is_top_concept, child)
-    self.add_link(:is_top_concept_reference, ref)
+    self.add_link(:is_top_concept, child.uri)
+    self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
     child
   end
@@ -267,14 +267,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     object.set_initial(object.identifier)
     object.transaction_set(transaction)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-    object.add_link(:extends, source)
+    object.add_link(:extends, source.uri)
     return object if object.errors.any?
     ordinal = next_ordinal(:is_top_concept_reference)
     ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
-    self.add_link(:is_top_concept, object)
-    self.add_link(:is_top_concept_reference, ref)
-    object.add_link(:extends, source)
-# byebug
+    self.add_link(:is_top_concept, object.uri)
+    self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
     object
   end

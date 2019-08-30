@@ -594,6 +594,47 @@ describe Thesaurus::ManagedConcept do
       expect(tc.preferred_term.label).to eq("Woah!")
     end
 
+    it "add and delete extensions" do
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+      tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Bristol",
+          identifier: "A00003",
+          definition: "A definition",
+          notation: "BRS"
+        })
+      tc_1.set_initial("A00003")
+      tc_1.save
+      tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Exeter",
+          identifier: "A00004",
+          definition: "A definition",
+          notation: "EXT"
+        })
+      tc_2.set_initial("A00004")
+      tc_2.save
+      tc_3 = Thesaurus::ManagedConcept.from_h({
+          label: "Birmingham",
+          identifier: "A00005",
+          definition: "A definition",
+          notation: "BXM"
+        })
+      tc_3.set_initial("A00005")
+      tc_3.save
+      tc.add_extensions([tc_1.uri, tc_2.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(4)
+      tc.add_extensions([tc_3.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(5)
+      tc.delete_extensions([tc_3.uri, tc_2.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(3)
+      tc.delete_extensions([tc_1.uri])
+      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect(tc.narrower.count).to eq(2)
+    end
+
   end
 
 end
