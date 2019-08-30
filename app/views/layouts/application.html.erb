@@ -56,11 +56,12 @@
       @media (min-width:768px) {
 
         #main_area {
-          width: calc(100% - 270px);
+          width: <%= if current_user.is_only_community? then "100%" else "calc(100% - 270px)" end %>;
+          max-height: 100%;
         }
 
         html, body {
-          overflow-y: hidden;
+          overflow-y: <%= if current_user.is_only_community? then "auto" else "hidden" end %>;
         }
 
       }
@@ -85,7 +86,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <button type="button" class="navbar-toggle sidebar-toggle" onclick="sidebarVerticalScreenHandler(this)">
+            <button type="button" class="navbar-toggle sidebar-toggle arrow-rotate" onclick="sidebarVerticalScreenHandler(this)">
               <span class="icon-arrow_d_nopadding text-white"></span>
             </button>
             <!-- LOGO AND TITLE -->

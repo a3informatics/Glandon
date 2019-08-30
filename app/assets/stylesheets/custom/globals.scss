@@ -24,6 +24,18 @@ $font-bold: 'Roboto-Bold';
 	font-style: normal;
 }
 
+.font-regular{
+  font-family: $font-primary;
+}
+
+.font-light{
+  font-family: $font-light;
+}
+
+.font-bold{
+  font-family: $font-bold;
+}
+
 body{
   font-family: $font-primary !important;
 }

@@ -24,6 +24,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-browse-all:before {
+  content: "\e91f";
+}
+.icon-search-latest:before {
+  content: "\e920";
+}
+.icon-see-changes:before {
+  content: "\e921";
+}
+.icon-submission-changes:before {
+  content: "\e922";
+}
 .icon-arrow_d_nopadding:before {
   content: "\e91e";
 }

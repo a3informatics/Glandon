@@ -1,0 +1,108 @@
+function TimelineSlider(c, l, r, tl_p){
+  var _this = this;
+
+  this.container = c;
+  this.l_slider = l;
+  this.r_slider = r;
+  this.tl_points = tl_p;
+  this.l_index = 0;
+  this.r_index = _this.tl_points.length-1;
+  this.highlight_class = "point-highlight";
+
+  _this.initDraggable(_this.l_slider);
+  _this.initDraggable(_this.r_slider);
+}
+
+TimelineSlider.prototype.initDraggable = function(el){
+  _this = this;
+  el.draggable({
+    axis: "x",
+    containment: _this.getContainmentCoords(el),
+    drag: function(event, ui) {
+      _this.onDrag(el);
+    }
+  });
+
+  _this.handleResponsiveness();
+}
+
+TimelineSlider.prototype.getContainmentCoords = function(el){
+  _this = this;
+  if(el == _this.l_slider)
+    return [_this.container.offset().left-((el.outerWidth()/2)-4), 0, _this.r_slider.offset().left - 1, 0];
+  else
+    return [_this.l_slider.offset().left + 1, 0, _this.container.offset().left + _this.container.width() - ((el.outerWidth()/2)-4), 0];
+}
+
+TimelineSlider.prototype.updateContainmentCoords = function(el){
+  _this = this;
+  el.draggable("option", "containment", _this.getContainmentCoords(el));
+}
+
+TimelineSlider.prototype.onDrag = function(el){
+  _this = this;
+  _this.updateContainmentCoords(_this.l_slider);
+  _this.updateContainmentCoords(_this.r_slider);
+  _this.updateTimeline(el);
+}
+
+TimelineSlider.prototype.updateTimeline = function(el){
+  _this = this;
+
+  // Clear current highlighted point
+  _this.tl_points.eq(el == _this.l_slider ? _this.l_index : _this.r_index).removeClass(_this.highlight_class);
+
+  // Get nearest point
+  var nearest_p_index = _this.findNearestPoint(el);
+  var nearest_p = _this.tl_points.eq(nearest_p_index);
+
+  // Update instance data
+  if(el === _this.l_slider)
+    _this.l_index = nearest_p_index;
+  else
+    _this.r_index = nearest_p_index;
+
+  // Update UI
+  el.find(".date-txt").html(nearest_p.find(".ttip-text").html());
+  nearest_p.addClass(_this.highlight_class);
+}
+
+TimelineSlider.prototype.findNearestPoint = function(el){
+  _this = this;
+
+  var nearest_index = (el == _this.l_slider ? _this.l_index : _this.r_index);
+  var min_distance = _this.calculateDistance(el, _this.tl_points.eq(nearest_index));
+
+  var start_index = (el == _this.l_slider ? 0 : _this.l_index + 1);
+  var end_index = (el == _this.l_slider ? _this.r_index : _this.tl_points.length);
+
+  for(i = start_index; i < end_index; i++){
+    var distance  = _this.calculateDistance(el, _this.tl_points.eq(i));
+    if(distance < min_distance){
+      min_distance = distance;
+      nearest_index = i;
+    }
+  }
+  return nearest_index;
+}
+
+TimelineSlider.prototype.calculateDistance = function(el1, el2){
+  return Math.abs((el1.offset().left + (el1.outerWidth()/2.0)) - (el2.offset().left + (el2.outerWidth()/2.0)));
+}
+
+TimelineSlider.prototype.handleResponsiveness = function(){
+  $(window).resize(function() {
+
+    var highlightedPoints = $("."+_this.highlight_class);
+
+    _this.l_slider.offset({
+      top: _this.l_slider.offset().top,
+      left: highlightedPoints.eq(0).offset().left + (highlightedPoints.outerWidth()/2.0) - (_this.l_slider.outerWidth()/2.0) 
+    });
+
+    _this.r_slider.offset({
+      top: _this.r_slider.offset().top,
+      left: highlightedPoints.eq(1).offset().left + (highlightedPoints.outerWidth()/2.0) - (_this.r_slider.outerWidth()/2.0)
+    });
+  });
+}
