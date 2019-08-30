@@ -161,6 +161,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def add_extensions
     authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+    tc.add_extensions(uris)
     render json: {data: {}, error: []}
   end
 
