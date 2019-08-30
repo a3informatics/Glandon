@@ -1,6 +1,6 @@
 $(document).ready( function() {
-  var nav = new NavPanel();
-  var modal = new ModalPanel(id, nav.callback);
+  var nav = new NavPanel(is_extended, is_extending);
+  var modal = new ModalPanel(tc_id, nav.callback);
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
@@ -9,17 +9,34 @@ $(document).ready( function() {
     {"data" : "extensible"},
     {"data" : "definition"}
   ];
-  var cp = new ChildrenPanel(url_path, 1000, columns);
+  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id);
+  var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
 });
 
-function NavPanel() {
-  $("#extension").hide(); 
+function NavPanel(is_extended,is_extending) {
+  this.is_extended = is_extended;
+  this.is_extending = is_extending;
+
+   if (this.is_extending === "true") {
+        $("#extend").hide();
+        $("#extension").hide();
+        $("#extending").show();
+        $("#add").show();  
+    } else if (this.is_extended === "true") {
+      $("#extend").show();
+        //$("#extension").hide();
+        $("#extending").hide();
+        $("#add").hide(); 
+    } else {
+         $("#extend").show();
+        $("#extension").hide();
+        $("#extending").hide();
+        $("#add").hide(); 
+    }
+
 }  
 
 NavPanel.prototype.callback = function(data) {
-  //console.log(data);
-  //window.location.href = '/thesauri/extension?thesauri%5Bscope_id%5D='+data.scope_id+'&%5Bidentifier%5D='+data.identifier+'&%5Bconcept_id%5D='+data.concept_id;
-  //window.location.href = '/thesauri/extension?thesauri[scope_id]='+data.scope_id+'&[identifier]='+data.identifier+'&[concept_id]='+data.concept_id;
   $.ajax({
         url: "/thesauri/extension",
         type: "POST",
@@ -35,7 +52,6 @@ NavPanel.prototype.callback = function(data) {
           $("#extension").show();
         }
       });
-
 }
 
 

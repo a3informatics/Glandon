@@ -1,6 +1,9 @@
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/modal_panel' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/modal_panel', 'shared/term_search_panel' %>
 <%= javascript_tag "var url_path = '#{thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
-<%= javascript_tag "var id = '#{@tc.id}';" %>
+<%= javascript_tag "var tc_id = '#{@tc.id}';" %>
+<%= javascript_tag "var is_extended = '#{@is_extended}';" %>
+<%= javascript_tag "var is_extending = '#{@is_extending}';" %>
+<%= javascript_tag "var context_id = '#{@context_id}';" %>
 <div class="row">
   <div class="col-md-8">
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @tc} %>
@@ -16,7 +19,8 @@
         <% class_list = @can_be_extended ? "btn btn-primary" : "btn btn-primary disabled" %>
         <%= link_to "Extend", "#tableModal",:id=> "extend", :class => class_list, "data-toggle" => "modal" %>
         <%= render partial: "shared/thesauri/modal_panel" %>
-        <%= link_to "Extension", "#", :id=> "extension", :class => "btn btn-primary"%>
+        <%= link_to "Extension", @is_extended_path, :id=> "extension", :class => "btn btn-primary" %>
+        <%= link_to "Extending", @is_extending_path, :id=> "extending", :class => "btn btn-primary" %>
       </div>
     </div>
   </div>
@@ -26,3 +30,6 @@
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists"} %>
   </div>
 </div>
+
+
+

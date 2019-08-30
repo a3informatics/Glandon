@@ -57,7 +57,7 @@ class Thesaurus
         query_results = Sparql::Query.new.query(query_string(params, uris), "", [:bo, :th, :isoC])
         triples = query_results.by_object_set([:pi, :i, :n, :d, :pt, :sys, :uri])
         triples.each do |t|
-          results << {uri: t[:uri].to_s, parent_identifier: t[:pi], identifier: t[:i], notation: t[:n], definition: t[:d], preferred_term: t[:pt], synonym: t[:sys]}
+          results << {id: t[:uri].to_id, uri: t[:uri].to_s, parent_identifier: t[:pi], identifier: t[:i], notation: t[:n], definition: t[:d], preferred_term: t[:pt], synonym: t[:sys]}
         end
         return { count: search_count(params, uris), items: results }
       end
