@@ -178,6 +178,14 @@ module Fuseki
       opts[:base_type] = ""
       add_to_resources(name, opts)
 
+      define_method "#{name}_links" do
+        generic_links(name)
+      end
+
+      define_method "#{name}_links?" do
+        generic_links?(name)
+      end
+
       define_method "#{name}_objects" do
         generic_objects(name)
       end

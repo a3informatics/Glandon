@@ -10,17 +10,21 @@
  *
  * @return [void]
  */
-function ChildrenPanel(url, count, columns) {
+function ChildrenPanel(url, count, columns, tc_id) {
   var _this = this;
   this.url = url;
+  this.tc_id = tc_id;
   this.count = count;
   this.columns = columns;
   this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
+  this.columns.push({"render" : function (data, type, row, meta) {
+    return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';
+  }});
   this.childrenTable = $('#children_table').DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": _this.columns,
-    "pageLength": pageLength, // Gloabl setting
-    "lengthMenu": pageSettings, // Gloabl setting
+    "pageLength": pageLength, // Global setting
+    "lengthMenu": pageSettings, // Global setting
     "processing": true,
     "language": {
       "infoFiltered": "",
@@ -29,6 +33,10 @@ function ChildrenPanel(url, count, columns) {
     }
   });
   this.add(0);
+
+  $(document).on('click', '.delete-child', function (event) {
+    _this.deleteExtension([this.value]);
+  });
 }
 
 /**
@@ -61,6 +69,63 @@ ChildrenPanel.prototype.add = function (offset) {
       _this.childrenTable.processing(false);
     }
   });
+}
+
+/**
+ * Refresh table
+ *
+ * @return [void]
+ */
+ChildrenPanel.prototype.refresh = function() {
+  var _this = this;
+  _this.childrenTable.clear();
+  _this.add(0);
+}
+
+/**
+ * Add New item to table
+ *
+ * @param ids [Array] the array with news id items
+ * @return [void]
+ */
+ChildrenPanel.prototype.addNew = function(ids) {
+  var _this = this;
+  $.ajax({
+        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
+        type: "POST",
+        data: JSON.stringify({managed_concept:{"extension_ids": ids} }),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          _this.refresh();
+        }
+      });
+}
+
+/**
+ * Delete item to table
+ *
+ * @param id [String] the id item to delete
+ * @return [void]
+ */
+ChildrenPanel.prototype.deleteExtension = function(id) {
+  var _this = this;
+  $.ajax({
+        url: "/thesauri/managed_concepts/"+_this.tc_id+"/extensions",
+        type: "DELETE",
+        data: JSON.stringify({managed_concept:{"extension_ids": id} }),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          _this.refresh();
+        }
+      });
 }
 
 ChildrenPanel.prototype.synonymList = function(entry) {

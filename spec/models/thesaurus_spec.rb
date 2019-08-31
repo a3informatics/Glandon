@@ -88,7 +88,7 @@ describe Thesaurus do
     end 
 
     it "allows a Thesaurus to be found" do
-      th =Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -230,25 +230,25 @@ describe Thesaurus do
     end
 
     it "calculates changes, window 4, general" do
-      ct = Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       actual = ct.changes(4)
       check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml")
     end
 
     it "calculates changes, window 10, large" do
-      ct = Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(10)
       check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml") 
     end
 
     it "calculates changes, window 4, first item" do
-      ct = Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = ct.changes(4)
       check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml")
     end
 
     it "calculates changes, window 4, second" do
-      ct = Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(4)
       check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml")
     end
@@ -336,7 +336,7 @@ describe Thesaurus do
       ]
       data_files = 
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"      
       ]
       load_files(schema_files, data_files)
       load_versions(1..59)
@@ -365,7 +365,7 @@ describe Thesaurus do
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
-      item = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
       actual = item.to_h
     #Xwrite_yaml_file(item.to_h, sub_dir, "add_child_expected_2.yaml")
       expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
@@ -383,7 +383,7 @@ describe Thesaurus do
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
-      item = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
       actual = item.to_h
     #Xwrite_yaml_file(actual.to_h, sub_dir, "add_child_expected_4.yaml")
       expected = read_yaml_file(sub_dir, "add_child_expected_4.yaml")
@@ -402,6 +402,25 @@ describe Thesaurus do
       expect(item.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Identifier contains a part with invalid characters")
       actual = ct.managed_children_pagination(count: 100, offset: 0) 
       check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
+    end
+
+    it "add extension" do
+      uri1 = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
+      ct = Thesaurus.find_minimum(uri1)
+      ct1 = Thesaurus.find_full(uri1)
+      ct.is_top_concept_reference_objects
+      expect(ct.is_top_concept_reference.count).to eq(2)
+      uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")
+      item = ct.add_extension(uri2.to_id)
+      result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E")) 
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")) 
+      expect(result.narrower.count).to eq(source.narrower.count)
+      expect(result.extends.uri.to_s).to eq(source.uri.to_s)
+      actual = Thesaurus.find_full(uri1)
+      actual.is_top_concept_objects
+      expect(actual.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
+      expect(actual.is_top_concept_reference.count).to eq(3)
+      check_file_actual_expected(actual.to_h, sub_dir, "add_extension_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

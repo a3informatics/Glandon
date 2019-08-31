@@ -1,3 +1,7 @@
+# Thesaurus. Class for an entire thesaurus
+#
+# @author Dave Iberson-Hurst
+# @since 2.22.0
 class Thesaurus <  IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#Thesaurus",
@@ -275,14 +279,39 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     child = Thesaurus::ManagedConcept.create(child)
     return child if child.errors.any?
     ref = OperationalReferenceV3::TcReference.create({reference: child, ordinal: ordinal}, self)
-    self.add_link(:is_top_concept, child)
-    self.add_link(:is_top_concept_reference, ref)
+    self.add_link(:is_top_concept, child.uri)
+    self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
     child
   end
 
+  # Add Extension. Adds an extension code list to the thresaurus
+  #
+  # @param id [String] the identifier of the code list to be extended
+  # @return [Object] the created object. Will contain errors if unsuccesful
+  def add_extension(id)
+    transaction = transaction_begin
+    source = Thesaurus::ManagedConcept.find_full(id)
+    source.narrower_links
+    object = source.clone
+    object.identifier = "#{source.scoped_identifier}E"
+    object.extensible = false # Make sure we cannot extend the extension
+    object.set_initial(object.identifier)
+    object.transaction_set(transaction)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object.add_link(:extends, source.uri)
+    return object if object.errors.any?
+    ordinal = next_ordinal(:is_top_concept_reference)
+    ref = OperationalReferenceV3::TcReference.create({reference: object, ordinal: ordinal, transaction: transaction}, self)
+    self.add_link(:is_top_concept, object.uri)
+    self.add_link(:is_top_concept_reference, ref.uri)
+    transaction_execute
+    object
+  end
+
 private
 
+  # Changes result comparison class
   class DiffResult < Hash
 
     def no_change?(other_hash)
@@ -299,6 +328,7 @@ private
 
   end
 
+  # Submission result comparison class
   class DiffResultSubmission < Hash
 
     def no_change?(other_hash)

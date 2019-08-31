@@ -1,0 +1,208 @@
+
+function TermSearch(context_id, callback) {
+  this.selected = {};
+  this.callback = callback; // Note that this can also be set in call to search
+  this.ref = "";            // Set in call to search
+  this.tsCurrentRef;
+  this.tsCurrentRow;
+  this.context_id = context_id;
+  this.tsSearchTable = null;
+  this.tsCurrentRef = null;
+  this.tsCurrentRow = null;
+  this.columns = [
+    {"data" : "parent_identifier", "width" : "10%"},
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "notation", "width" : "10%"},
+    {"data" : "preferred_term", "width" : "25%" },
+    {"data" : "synonym", "width" : "15%" },
+    {"data" : "definition", "width" : "40%"}
+  ];
+  this.initTable();
+
+  var _this = this;
+
+  $('#searchModal').on('shown.bs.modal', function () {
+   //helps the columns take their widths in modal
+   _this.tsSearchTable.columns.adjust();
+    var count = _this.tsSearchTable.rows( { selected: true } ).count();
+    if (count > 0) {
+      $('#add_terms').removeClass('disabled').removeAttr("disabled","disabled");
+    }
+    if (count === 0) {
+      $('#add_terms').addClass('disabled').attr("disabled","disabled");
+    }
+  });
+
+
+  // Enable add term button
+  _this.tsSearchTable.on( 'select', function ( e, dt, type, indexes ) {
+    if ( type === 'row' ) {
+      var count = _this.tsSearchTable.rows( { selected: true } ).count();
+      if (count > 0) {
+        $('#add_terms').removeClass('disabled').removeAttr("disabled","disabled");
+      }
+    }
+  });
+
+  // Disable add term button
+  _this.tsSearchTable.on( 'deselect', function ( e, dt, type, indexes ) {
+    if ( type === 'row' ) {
+      var count = _this.tsSearchTable.rows( { selected: true } ).count();
+      if (count === 0) {
+        $('#add_terms').addClass('disabled').attr("disabled","disabled");
+      }
+    }
+  });
+
+  // Get selected rows callback
+  $('#add_terms').click(function() {
+    $('#searchModal').modal('hide');
+      count=Object.keys(_this.selected).length;
+      if (count > 0) {
+        var rowdata = _this.tsSearchTable.rows( { selected: true } ).data();
+        var ids = [];
+        $.each(rowdata, function(i, id) {
+          ids.push(rowdata[i].id);
+        });
+        //console.log(ids);
+        _this.callback(ids);
+
+       }
+  });
+
+  // Open modal
+  $('.search-term').click(function(event){
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    $('#searchModal').modal('show');
+  })
+
+  //Clear search
+  $('#clear_search').click(function(){
+    $("#searchTable_filter input").val("");
+    _this.tsSearchTable.columns().every( function () {
+      $('#searchTable thead input').val("");
+    });
+    _this.tsSearchTable.search('');
+    _this.tsSearchTable.columns().search('');
+    _this.tsSearchTable.rows().remove().draw();
+  });
+
+  $("#searchTable input").css("width", "100%");
+
+  // Setup - add a text input to each header cell
+  $('#searchTable thead tr:eq(1) th').each( function () {
+    var title = $(this).text();
+    var id = "searchTable_csearch_" + title.toLowerCase();
+    if (title == "Extensible") {
+      // Do nothing
+    } else if (title == "Definition") {
+      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="20" placeholder="Search ..." />' );
+    } else {
+      $(this).html( '<input id="' + id + '" type="text" class="form-control" size="10" placeholder="Search ..." />' );
+    }
+  });
+
+  // Add search functionality to search inputs 
+  _this.tsSearchTable.columns().every(function (index) {
+    var that = this;
+      $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
+      if (e.which == 13 || this.value == "") {
+        if (that.search() !== this.value) {
+          that.search(this.value).draw();
+        }
+      }
+    });
+  });
+
+  // Apply the overall search. Fires on return or field empty assuming not the
+  // current search value (i.e. something has changed).
+  $("#searchTable_filter input")
+    .unbind() // Unbind previous default bindings
+    .bind("keyup", function(e) { // Bind our desired behavior
+    if(this.value == "" || e.keyCode == 13) {
+      if (_this.tsSearchTable.search() !== this.value) {
+        _this.tsSearchTable.search(this.value).draw();
+      }
+    }
+    return;
+  });
+
+  // handle double click on terminology table 
+  $('#searchTable tbody').on('dblclick', 'tr', function () {
+    if (_this.tsSearchTable.data().any() ) {
+      if (_this.tsCurrentRef != null) {
+      }
+      var row = _this.tsSearchTable.row(this).index();
+      _this.tsCurrentRef = this;
+      _this.tsCurrentRow = row;
+      var data = _this.tsSearchTable.row(row).data();
+      // Clear search fields in UI and within datatables.
+      $("#searchTable_filter input").val("");
+      _this.tsSearchTable.columns().every( function () {
+        $('#searchTable thead input').val("");
+      });
+      _this.tsSearchTable.search('');
+      _this.tsSearchTable.columns().search('');
+      // Set our parent identifier search and trigger.
+      $('#searchTable_csearch_cl').val(data.parent_identifier);
+      var e = jQuery.Event("keyup");
+      e.which = 13; 
+      e.keyCode = 13;
+      $('#searchTable_csearch_cl').trigger(e);
+    }
+  });
+
+  $('#searchTable tbody').on('click', 'tr', function () {
+        var id = this.id;
+        if (_this.selected.hasOwnProperty(id)) {
+          delete _this.selected[id];  
+        } else {
+          _this.selected[id] = id;
+        };
+        $(_this).toggleClass('selected');
+      
+  });
+
+}
+
+// Initialise the table/datatable. Note the deferLoading setting.
+TermSearch.prototype.initTable = function() {
+  var _this = this;
+  this.tsSearchTable = $('#searchTable').DataTable( {
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+      "url": "/thesauri/"+this.context_id+"/search",
+      "data": function( d ) {
+      },
+    "dataSrc": "data" 
+    },
+    "rowId": "id",
+    "deferLoading": 0,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "Make a new column or global search to see data",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+    },
+    "rowCallback": function( row, data ) {
+            if (_this.selected.hasOwnProperty(data.id)) {
+                $(row).addClass('selected');
+            }
+    },
+    "pageLength": 5,
+    "columns": this.columns,
+    "orderCellsTop": true,
+    "select": {
+        style: 'multi'
+    },
+  });
+};
+
+// Make the modal visiable.
+TermSearch.prototype.search = function(ref, div, callback) {
+  this.ref = ref;
+  this.div = div;
+  this.callback = callback;
+  $('#searchModal').modal('show');
+}

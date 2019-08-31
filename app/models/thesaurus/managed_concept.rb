@@ -8,9 +8,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   data_property :notation
   data_property :definition
   data_property :extensible
-  object_property :extended_with, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept"
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
-  object_property :is_subset, cardinality: :one, model_class: "Thesaurus::Subset"
+  object_property :extends, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
+  object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
   
@@ -19,21 +19,53 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
   validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
-  config = 
-  {
-    relationships: 
-    [
-      Thesaurus::UnmanagedConcept.rdf_type.to_ref, 
-      Thesaurus::Synonym.rdf_type.to_ref, 
-      Thesaurus::PreferredTerm.rdf_type.to_ref,
-      Thesaurus::Subset.rdf_type.to_ref
-    ]
-  } 
-  self.class.instance_variable_set(:@configuration, config)
+  # config = 
+  # {
+  #   relationships: 
+  #   [
+  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref, 
+  #     Thesaurus::Synonym.rdf_type.to_ref, 
+  #     Thesaurus::PreferredTerm.rdf_type.to_ref,
+  #     Thesaurus::Subset.rdf_type.to_ref
+  #   ]
+  # } 
+  # self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
+
+  # Extended? Is this item extended
+  #
+  # @result [Boolean] return true if extended
+  def extended?
+    !extended_by.nil?
+  end
+
+  # Extended By. Get the URI of the extension item if it exists. 
+  #
+  # @result [Uri] the Uri or nil if not present.
+  def extended_by
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:extends ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
+  end
+
+  # Extension? Is this item extending another managed concept
+  #
+  # @result [Boolean] return true if extending another
+  def extension?
+    !extension_of.nil?
+  end
+
+  # Extension Of. Get the URI of the item being extended, if it exists. 
+  #
+  # @result [Uri] the Uri or nil if not present.
+  def extension_of
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:extends ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
+  end
 
   def replace_if_no_change(previous)
     return self if previous.nil?
@@ -214,6 +246,26 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.cl
       results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], uri: x[:s].to_s, id: x[:s].to_id}
     end
     results
+  end
+
+  # Add Extensions 
+  #
+  # @param uris [Array] set of uris of the items to be added
+  # @return [Void] no return
+  def add_extensions(uris)
+    transaction = transaction_begin
+    uris.each {|x| add_link(:narrower, x)}
+    transaction_execute
+  end
+
+  # Delete Extensions 
+  #
+  # @param uris [Array] set of uris of the items to be deleted
+  # @return [Void] no return
+  def delete_extensions(uris)
+    transaction = transaction_begin
+    uris.each {|x| delete_link(:narrower, x)}
+    transaction_execute
   end
 
   class DiffResult < Hash

@@ -195,11 +195,38 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Find. Full find of the managed item. Will find all children via paths that are not excluded.
+  # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
+  #
+  # @param [Uri|id] the identifier, either a URI or the id
+  # @return [object] The object.
+  def self.find_with_properties(id)  
+    uri = id.is_a?(Uri) ? id : Uri.new(id: id)
+    parts = []
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?o . BIND (<isoT:hasIdentifier> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
+    parts << "  { #{uri.to_ref} isoT:hasState ?o . BIND (<isoT:hasState> as ?p) . BIND (#{uri.to_ref} as ?s) }" 
+    parts << "  { #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o }"  
+    parts << "  { #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }" 
+    property_relationships.map.each do |relationship|
+      parts << "{ #{uri.to_ref} #{relationship[:predicate].to_ref} ?o . BIND ( #{relationship[:predicate].to_ref} as ?p) . BIND (#{uri.to_ref} as ?s)}"
+    end
+    query_string = "SELECT ?s ?p ?o ?e WHERE { { #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
+    raise Errors::NotFoundError.new("Failed to find #{uri} in #{self.name}.") if query_results.empty?
+    item = from_results_recurse(uri, query_results.by_subject)
+    ns_uri = item.has_identifier.has_scope
+    item.has_identifier.has_scope = IsoNamespace.find(ns_uri)
+    ra_uri = item.has_state.by_authority
+    item.has_state.by_authority = IsoRegistrationAuthority.find(ra_uri)
+    ns_uri = item.has_state.by_authority.ra_namespace
+    item.has_state.by_authority.ra_namespace = IsoNamespace.find(ns_uri)
+    item
+  end
+
+  # Find Full. Full find of the managed item. Will find all children via paths that are not excluded.
   #
   # @param [Uri|id] the identifier, either a URI or the id
   # @return [IsoManagedV2] The managed item object.
-  def self.find(id)  
+  def self.find_full(id)  
     uri = id.is_a?(Uri) ? id : Uri.new(id: id)
     parts = []
     exclude = excluded_read_relationships
@@ -428,6 +455,22 @@ class IsoManagedV2 < IsoConceptV2
       check[key] = true
     end
     results    
+  end
+
+  # Create Next Version. Creates the next version of the managed object if necessary
+  #
+  # @return [Object] the resulting object. Fail is there are errors.
+  def create_next_version
+    return self if !self.new_version?
+    ra = IsoRegistrationAuthority.owner
+    object = self.clone
+    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.next_semantic_version.to_s, has_scope: ra.ra_namespace)
+    object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
+    object.creation_date = Time.now
+    object.last_change_date = Time.now
+    object.set_uris(ra)
+    object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+    object
   end
 
   # Delete. Delete the managed item

@@ -1,0 +1,90 @@
+/*
+* Modal Panel
+*/
+
+
+/**
+* Modal Panel Constructor
+* @param id [String] The id of the Code List
+*
+* @return [void]
+*/
+function ModalPanel(id, callback) {
+  this.callback = callback;
+  this.id = id;  
+  this.tsModalTable = null;
+  this.columns = [
+    {"data" : "owner", "width" : "10%"},
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "label", "width" : "10%"}
+  ];
+  this.initTable();
+  var _this = this;
+
+  $('#tableModal').on('shown.bs.modal', function () {
+   //helps the columns take their widths in modal
+   _this.tsModalTable.columns.adjust();
+    var count = _this.tsModalTable.rows( { selected: true } ).count();
+    if (count > 0) {
+      $('#select_th').removeClass('disabled').removeAttr("disabled","disabled");
+    }
+    if (count === 0) {
+      $('#select_th').addClass('disabled').attr("disabled","disabled");
+    }
+  });
+
+  // Enable th select button
+  _this.tsModalTable.on( 'select', function ( e, dt, type, indexes ) {
+    if ( type === 'row' ) {
+      var count = _this.tsModalTable.rows( { selected: true } ).count();
+      if (count > 0) {
+        $('#select_th').removeClass('disabled').removeAttr("disabled","disabled");
+      }
+    }
+  });
+
+  // Disable th select button
+  _this.tsModalTable.on( 'deselect', function ( e, dt, type, indexes ) {
+    if ( type === 'row' ) {
+      var count = _this.tsModalTable.rows( { selected: true } ).count();
+      if (count === 0) {
+        $('#select_th').addClass('disabled').attr("disabled","disabled");
+      }
+    }
+  });
+  
+  // Get selected th callback
+  $('#select_th').click(function() {
+    $('#tableModal').modal('hide');
+    var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
+    _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
+  });
+
+}
+
+/**
+ * Initialise the table/datatable
+ * @return [void]
+ */
+ModalPanel.prototype.initTable = function() {
+  var _this = this;
+  this.tsModalTable = $('#thTable').DataTable( {
+    "processing": true,
+    "ajax": {
+      "url": "/thesauri",
+      "dataSrc": "data" 
+    },
+    "rowId": "id",
+    "deferLoading": 0,
+    "language": {
+      "infoFiltered": "",
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+    },
+    "pageLength": 3,
+    "columns": this.columns,
+    "orderCellsTop": true,
+    "select": {
+        style: 'single'
+    },
+  });
+};

@@ -52,7 +52,7 @@ class ThesauriController < ApplicationController
       format.json do
         results = []
         children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
-        children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path(c[:id])})}
+        children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: @ct.id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
     end
@@ -73,15 +73,8 @@ class ThesauriController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    @token = get_token(@thesaurus)
-    if @thesaurus.new_version?
-      th = Thesaurus.find(params[:id])
-      new_th = Thesaurus.create(th.to_operation)
-      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
-      @token.release
-	    @token = get_token(@thesaurus)
-	  end
-  	@close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @thesaurus = edit_item(@thesaurus)
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
     @parent_identifier = ""
   end
 
@@ -219,6 +212,15 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def extension
+    authorize Thesaurus, :edit?
+    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    thesaurus = Thesaurus.find_minimum(results.first)
+    thesaurus = edit_item(thesaurus)
+    new_object = thesaurus.add_extension(the_params[:concept_id])
+    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
+  end
+
   def search_current
     authorize Thesaurus, :view?
     @close_path = thesauri_index_path
@@ -304,7 +306,7 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
     #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
     

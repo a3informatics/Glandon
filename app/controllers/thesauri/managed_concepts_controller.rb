@@ -97,12 +97,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
-    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @context_id = the_params[:context_id]
     respond_to do |format|
       format.html
+        @can_be_extended = @tc.extensible && !@tc.extended?
+        extended_by_uri = @tc.extended_by
+        @is_extended = !extended_by_uri.nil?
+        @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
+        extension_of_uri = @tc.extension_of
+        @is_extending = !extension_of_uri.nil?
+        @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
       format.json do
         children = @tc.children_pagination(params)
-        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path(x[:id])})}
+        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: @context_id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
     end
@@ -138,6 +146,34 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
+  def is_extended
+    authorize Thesaurus, :view?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.extended?}      
+  end
+
+  def is_extension
+    authorize Thesaurus, :view?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.extension?}      
+  end
+
+  def add_extensions
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+    tc.add_extensions(uris)
+    render json: {data: {}, error: []}
+  end
+
+  def destroy_extensions
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+    tc.delete_extensions(uris)
+    render json: {data: {}, error: []}
+  end
+    
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -202,7 +238,7 @@ private
   # end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier)
+    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
   end
     
   def edit_params
