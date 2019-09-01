@@ -34,7 +34,7 @@ class Import::ChangeInstructions < Import
   def self.configuration
     {
       description: "Import of CDISC Change Instructions",
-      parent_klass: ChangeInstruction,
+      parent_klass: Import::ChangeInstructions::Instruction,
       import_type: :cdisc_change_instructions
     }
   end
@@ -44,55 +44,6 @@ class Import::ChangeInstructions < Import
   # @return [Hash] the configuration hash
   def configuration
     self.class.configuration
-  end
-
-  class ChangeInstruction
-
-    attr_accessor previous_parent
-    attr_accessor previous_children
-    attr_accessor current_parent
-    attr_accessor current_children
-
-    def initialize
-      previous_parent = []
-      previous_children = []
-      current_parent = []
-      current_children = []
-    end
-
-    def previous
-      results = []
-      previous_parent.each do |p|
-        if previous_children.empty?
-          results << [p]
-        else
-          previous_children.each do |c|
-            results << [p, c]
-          end
-        end
-      end
-    end
-
-    def current
-      results = []
-      current_parent.each do |p|
-        if current_children.empty?
-          results << [p]
-        else
-          current_children.each do |c|
-            results << [p, c]
-          end
-        end
-      end
-    end
-
-    def valid?
-      return false if previous_children.count == 0 && current_children.count > 0 
-      return false if previous_children.count > 0 && current_children.count == 0 
-      return false if previous_children.count > 1 && current_parent.count > 1
-      return true
-    end
-
   end
 
 private
@@ -120,67 +71,5 @@ private
       results << ci
     end
   end
-
-  # def process_cdisc_term_changes_import(params, results)
-  #   ordinals = {}
-  #   uri = UriV2.new(uri: params[:uri])
-  #   current_ct = CdiscTerm.find(uri.id, uri.namespace)
-  #   previous = CdiscTerm.all_previous(current_ct.version)
-  #   previous_ct = previous.last
-  #   sparql = SparqlUpdateV2.new
-  #   results.each do |result|
-  #     result[:new_cl].each do |cl|
-  #       sources = []
-  #       parent = find_terminology({identifier: cl}, current_ct)
-  #       if !parent.nil?
-  #         if result[:new_cli].empty?
-  #           sources << parent
-  #         else
-  #           result[:new_cli].each do |cli|
-  #             child = find_terminology_child(parent, cli)
-  #             if !child.nil?
-  #               sources << child if !child.nil?
-  #             else
-  #               report_general_error("Failed to find child terminology item [1] with identifier: #{cli}")
-  #               return
-  #             end
-  #           end
-  #         end     
-  #         sources.each do |source|
-  #           ordinal = 1
-  #           cr = CrossReference.new
-  #           cr.comments = result[:instructions]
-  #           cr.ordinal = get_ordinal(source, ordinals)
-  #           previous = find_terminology({identifier: result[:previous_cl]}, previous_ct)
-  #           if !previous.nil? 
-  #             if result[:previous_cli].empty?
-  #               cr.children << create_operational_ref(previous, source, ordinal)
-  #             else
-  #               result[:previous_cli].each do |cli|
-  #                 child = find_terminology_child(previous, cli)
-  #               if !child.nil?
-  #                   cr.children << create_operational_ref(child, source, ordinal)
-  #                   ordinal += 1
-  #                 else
-  #                   report_general_error("Failed to child find terminology item [2] with identifier: #{cli}")
-  #                   return
-  #                 end
-  #               end
-  #             end 
-  #             ref_uri = cr.to_sparql_v2(source.uri, sparql)
-  #             sparql.triple({uri: source.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => ref_uri})
-  #           else
-  #             report_general_error("Failed to find terminology item [3] with identifier: #{result[:previous_cl]}")
-  #             return
-  #           end
-  #         end
-  #       else
-  #         report_general_error("Failed to find terminology item [4] with identifier: #{cl}")
-  #         return
-  #       end
-  #     end
-  #   end     
-  #   load_sparql(sparql, "CDISC_CT_Instructions_V#{current_ct.version}.txt") 
-  # end
-
+  
 end
