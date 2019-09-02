@@ -15,10 +15,13 @@
           <th class="fit">Extensible</th>
           <th>Definition</th>
           <th class="fit"></th>
+          <th class="fit"></th>
         </tr>
       </thead>
       <tbody>
       </tbody>
     </table>
+    <%= link_to "Add", "#searchModal", :id => "add", :class => "btn btn-primary pull-right", "data-toggle" => "modal" %>
+    <%= render partial: "shared/edit_panel" %>
   </div>
 </div>

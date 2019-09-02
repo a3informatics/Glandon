@@ -14,7 +14,7 @@ module IsoHelpers
   end
 
   def self.clear_cache
-    Fuseki::Base.class_variable_set(:@@schema, nil)
+    Fuseki::Base.instance_variable_set(:@schema, nil)
     Fuseki::Base.class_variable_set(:@@subjects, nil)
   end
 

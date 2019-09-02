@@ -1,4 +1,6 @@
 $(document).ready( function() {
+  var nav = new NavPanel(is_extended, is_extending);
+  var modal = new ThesauriSelect(tc_id, nav.callback);
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
@@ -7,5 +9,50 @@ $(document).ready( function() {
     {"data" : "extensible"},
     {"data" : "definition"}
   ];
-  var cp = new ChildrenPanel(url_path, 1000, columns);
+  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id);
+  var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
 });
+
+function NavPanel(is_extended,is_extending) {
+  this.is_extended = is_extended;
+  this.is_extending = is_extending;
+
+   if (this.is_extending) {
+        $("#extend").hide();
+        $("#extension").hide();
+        $("#extending").show();
+        $("#add").show();  
+    } else if (this.is_extended) {
+      $("#extend").show();
+        //$("#extension").hide();
+        $("#extending").hide();
+        $("#add").hide(); 
+    } else {
+         $("#extend").show();
+        $("#extension").hide();
+        $("#extending").hide();
+        $("#add").hide(); 
+    }
+
+}  
+
+NavPanel.prototype.callback = function(data) {
+  $.ajax({
+        url: "/thesauri/extension",
+        type: "POST",
+        data: JSON.stringify({thesauri: data}),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          $("#extension").attr("href", result.show_path);
+          $('#extend').addClass('disabled').attr("disabled","disabled");
+          $("#extension").show();
+        }
+      });
+}
+
+
+

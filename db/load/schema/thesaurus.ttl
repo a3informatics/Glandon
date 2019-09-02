@@ -100,16 +100,23 @@
   rdfs:range :UnmanagedConcept ;
   skos:definition "Concepts narrower relationship."^^xsd:string ;
 .
-:extendedWith
+:extends
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:subPropertyOf skos:narrower ;
-  rdfs:label "Extended With relationship"^^xsd:string ;
-  rdfs:domain  [ a owl:Class ;
-    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
-    ] ;
-  rdfs:range :UnmanagedConcept ;
-  skos:definition "A relationship linking an concept set with one extending the set."^^xsd:string ;
+  rdfs:label "Extends relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :ManagedConcept ;
+  skos:definition "A relationship linking the concept with the one being extended."^^xsd:string ;
+.
+:subsets
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:subPropertyOf skos:narrower ;
+  rdfs:label "Subsets relationship"^^xsd:string ;
+  rdfs:domain :ManagedConcept ;
+  rdfs:range :ManagedConcept ;
+  skos:definition "A relationship linking the concept with the one being subsetted."^^xsd:string ;
 .
 :definition
   rdf:type owl:DatatypeProperty ;

@@ -1,11 +1,11 @@
 ---
-:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVY
-:uri: http://www.acme-pharma.com/S12345X/V1#S12345X
-:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-:label: Not Set
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMSNUSA==
+:uri: http://www.acme-pharma.com/NEW1/V1#TH
+:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:label: A new item
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVYX1JT
-  :uri: http://www.acme-pharma.com/S12345X/V1#S12345X_RS
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMSNUSF9SUw==
+  :uri: http://www.acme-pharma.com/NEW1/V1#TH_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
   :registration_status: Incomplete
   :administrative_note: ''
@@ -29,10 +29,10 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vUzEyMzQ1WC9WMSNTMTIzNDVYX1NJ
-  :uri: http://www.acme-pharma.com/S12345X/V1#S12345X_SI
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMSNUSF9TSQ==
+  :uri: http://www.acme-pharma.com/NEW1/V1#TH_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: S12345X
+  :identifier: NEW1
   :version_label: ''
   :version: 1
   :semantic_version: 0.0.1
@@ -45,19 +45,8 @@
     :authority: www.acme-pharma.com
 :origin: ''
 :change_description: ''
-:creation_date: '2019-08-27T20:25:01+02:00'
-:last_change_date: '2019-08-27T20:25:01+02:00'
+:creation_date: '2019-08-28T18:22:01+02:00'
+:last_change_date: '2019-08-28T18:22:01+02:00'
 :explanatory_comment: ''
-:identifier: S12345X
-:notation: Not Set
-:definition: Not Set
-:extensible: false
-:narrower: []
-:extends: 
-:subsets: 
-:preferred_term:
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMWZmM2Y3N2UtZjgyNS00NDRkLTlkMjAtZmE4ZTdiMDc5Yzhi
-  :uri: http://www.assero.co.uk/PT#1ff3f77e-f825-444d-9d20-fa8e7b079c8b
-  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
-  :label: Not Set
-:synonym: []
+:is_top_concept_reference: []
+:is_top_concept: []

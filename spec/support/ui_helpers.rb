@@ -124,6 +124,12 @@ module UiHelpers
     input.native.send_keys(:return)
   end
 
+  def ui_child_search(text)
+    input = find(:xpath, '//*[@id="children_table_filter"]/label/input')
+    input.set(text)
+    #input.native.send_keys(:return)
+  end
+
   # check table cell
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
