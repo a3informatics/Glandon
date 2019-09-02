@@ -21,9 +21,9 @@ class Import::AdamIg < Import::Rectangular
     }
   end
 
-  # Format. Returns info about the sheet name. Specific to the import
+  # Format. Returns the key for the sheet info
   # 
-  # @return [Hash] the configuration hash
+  # @return [Symbol] the key
   def format(params)
     return :main
   end

@@ -4,6 +4,8 @@
 # @since 2.21.0
 class Import::ChangeInstructions < Import
 
+  C_CLASS_NAME = self.name
+
   @changes = []
 
   # Import. Import the change instructions
@@ -15,11 +17,12 @@ class Import::ChangeInstructions < Import
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
-    previous_ct = Thesaurus.find_minimum(params[:previous_ct])
-    current_ct = Thesaurus.find_minimum(params[:current_ct])
+    @previous_ct = Thesaurus.find_minimum(params[:previous_ct])
+    @current_ct = Thesaurus.find_minimum(params[:current_ct])
     read_all_excel(params)
-    objects = self.errors.empty? ? process_changes(previous_ct, current_ct) : [self]
-    object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
+    objects = self.errors.empty? ? process_changes(previous_ct, current_ct) : []
+byebug
+    !self.errors.empty? || object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     params[:job].end("Complete")   
   rescue => e
     msg = "An exception was detected during the import processes."
@@ -35,7 +38,10 @@ class Import::ChangeInstructions < Import
     {
       description: "Import of CDISC Change Instructions",
       parent_klass: Import::ChangeInstructions::Instruction,
-      import_type: :cdisc_change_instructions
+      import_type: :cdisc_change_instructions,
+      reader_klass: Excel,
+      sheet_name: :format,
+      #version_label: :date,
     }
   end
   
@@ -44,6 +50,33 @@ class Import::ChangeInstructions < Import
   # @return [Hash] the configuration hash
   def configuration
     self.class.configuration
+  end
+
+  def save_error_file(objects)
+    objects.each {|c| merge_errors(c, self) if c.errors.any?}
+    self.update(output_file: "", error_file: ImportFileHelpers.save_errors(self.errors.full_messages, 
+      "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
+  end
+
+  # Save Load File. Will save the import load file and load if auto load set
+  def save_load_file(objects)
+    path = Rails.application.routes.url_helpers.thesauri_path(@current_ct)
+    sparql = Sparql::Update.new()
+    sparql.default_namespace(objects.first.uri.namespace)
+    objects.each do |c| 
+      c.to_sparql(sparql, true)
+    end
+    filename = sparql.to_file
+    response = CRUD.file(filename) if self.auto_load
+    self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"), 
+      error_file: "", success: true, success_path: path)
+  end
+
+  # Format. Returns the key for the sheet info
+  # 
+  # @return [Symbol] the key
+  def format(params)
+    return :main
   end
 
 private
@@ -61,15 +94,25 @@ private
     end
   end
 
+
+  # Check no errors in the objects structure.
+  def object_errors?(objects)
+    objects.each {|c| return true if c.errors.any?}
+    return false
+  end
+
   # Process all the changes
   def process_changes(previous_ct, current_ct)
     results = []
+byebug
     @changes.each do |change|
       ci = CrossReference::ChangeInstruction.new
       change.previous.each {|p| ci.add_previous(previous_ct, x)}
       change.current.each {|p| ci.add_current(current_ct, x)}
+      ci.create_uri
       results << ci
     end
+    results
   end
   
 end

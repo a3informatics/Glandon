@@ -41,12 +41,14 @@ defaults: &defaults
       sheets: 
         main:
           selection:
-            label: ADaM-IG
+            first: true
           row:
             condition:
               method: column_affirmative?
-              column: 11
-          columns: 
+              column: 12
+          - 
+            label: "Release Date"
+            actions: []
           - 
             label: "Request Code"
             actions: []
@@ -91,7 +93,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: "???"
+                klass: "Import::ChangeInstructions::Instruction"
                 map: {}
               -
                 method: set_property

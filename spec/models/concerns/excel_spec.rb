@@ -23,7 +23,7 @@ describe Excel do
 
   it "initialize object, fails to read the excel file" do
     full_path = test_file_path(sub_dir, "missing.xlsx") #dodgy filename
-    error_msg = "Exception raised opening Excel workbook filename=#{full_path}."
+    error_msg = "Exception raised opening Excel workbook filename=#{full_path}. file #{full_path} does not exist"
     object = Excel.new(full_path)
     expect(object.errors.count).to eq(1)
     expect(object.errors.full_messages.to_sentence).to eq(error_msg)  
@@ -80,11 +80,20 @@ describe Excel do
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
-    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name. Expected NOT EMPTYXXX, found NOT EMPTY.")    
+    expect(object.errors.full_messages.to_sentence).to eq("First sheet in the excel file, incorrect 1st column name. Expected 'NOT EMPTYXXX', found 'NOT EMPTY'.")    
   end
 
   it "checks a sheet, include the name check" do
     expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {label: "irs"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
+    full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
+    object = Excel.new(full_path)
+    result = object.check_sheet(:test, :something)
+    expect(result).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks a sheet, first" do
+    expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return({selection: {first: true}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]})
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
     result = object.check_sheet(:test, :something)
