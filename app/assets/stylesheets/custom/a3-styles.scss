@@ -196,8 +196,18 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   color: $grey-white;
 }
 
+.btn.nomargin{
+  margin: 0px;
+}
+
+.btn.medium{
+  padding: 5px 10px;
+  font-size: $font-small;
+}
+
 .btn.big{
   padding: 10px 10px;
+  font-size: $font-normal;
 }
 
 // Wrapper for multiple buttons, takes 100% width and the contents are centered
@@ -207,8 +217,7 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 10px 5px;
-  margin-top: 20px;
+  padding: 5px 5px;
 }
 
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
@@ -236,6 +245,24 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
 
 .ico-btn .ico-btn-text{
   margin: 0px 5px;
+}
+
+//PAGINATION buttons
+.paginate_button.active a{
+  background: $primary-color-medium !important;
+  color: $grey-white !important;
+}
+
+.paginate_button a{
+  color: $primary-color-medium !important;
+}
+
+button:focus{
+  outline: none !important;
+}
+
+.paginate_button a:focus{
+  outline: none !important;
 }
 
 // GENERAL FIXES
