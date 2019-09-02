@@ -64,6 +64,16 @@
           overflow-y: <%= if current_user.is_only_community? then "auto" else "hidden" end %>;
         }
 
+        .ma-sb-col{
+          transition: width .8s;
+          width: calc(100% - 60px) !important;
+        }
+
+        .ma-sb-exp{
+          transition: width .2s;
+          width: calc(100% - 270px);
+        }
+
       }
 
       .table td.fit,
@@ -86,9 +96,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <button type="button" class="navbar-toggle sidebar-toggle arrow-rotate" onclick="sidebarVerticalScreenHandler(this)">
-              <span class="icon-arrow_d_nopadding text-white"></span>
-            </button>
+            <% if !current_user.is_only_community? %>
+              <button type="button" class="navbar-toggle sidebar-toggle arrow-rotate" onclick="sidebarVerticalScreenHandler(this)">
+                <span class="icon-arrow_d_nopadding text-white"></span>
+              </button>
+            <% end %>
             <!-- LOGO AND TITLE -->
             <a class="navbar-brand" href="/">
               <img alt='Brand' src='<%= asset_path("a3-logo") %>' width='25'>
@@ -299,7 +311,7 @@
         <% end %>
         <!-- SIDEBAR END -->
         <% if current_user.is_only_community? then width_class = "col-sm-12" else width_class = "col-sm-10" end%>
-        <div id="main_area" class="<%= width_class %>">
+        <div id="main_area" class="<%= width_class %> ma-sb-exp">
           <div>
             <%= session[:breadcrumbs].html_safe %>
           </div>

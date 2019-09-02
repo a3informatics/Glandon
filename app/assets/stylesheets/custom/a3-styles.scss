@@ -151,6 +151,11 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
 
 .btn:hover{
   background-color: $primary-color-light;
+  color: $grey-white;
+}
+
+.btn.big{
+  padding: 10px 10px;
 }
 
 // Wrapper for multiple buttons, takes 100% width and the contents are centered

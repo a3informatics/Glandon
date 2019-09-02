@@ -10,7 +10,6 @@ function TimelineSlider(c, l, r, tl_p){
   this.l_index = 0;
   this.r_index = _this.tl_points.length-1;
   this.highlight_class = "point-highlight";
-  this.click_var = true;
 
   _this.initDraggable(_this.l_slider);
   _this.initDraggable(_this.r_slider);
@@ -18,6 +17,7 @@ function TimelineSlider(c, l, r, tl_p){
 }
 
 // Initiates an element to become draggable horizontally, contained within the bounding div
+// Also adds handlers for the ui dynamics of the timeline
 TimelineSlider.prototype.initDraggable = function(el){
   _this = this;
   el.draggable({
@@ -25,7 +25,20 @@ TimelineSlider.prototype.initDraggable = function(el){
     containment: _this.getContainmentCoords(el),
     drag: function(event, ui) {
       _this.onDrag(el);
+    },
+    stop: function(event, ui) {
+      _this.resetTlPoints();
+    },
+    start: function(event, ui){
+      _this.zoomTlPointsOnDrag(el);
     }
+  });
+
+  el.mousedown(function () {
+    _this.zoomTlPointsOnDrag(el);
+  });
+  el.mouseup(function () {
+    _this.resetTlPoints();
   });
 }
 
@@ -50,6 +63,38 @@ TimelineSlider.prototype.onDrag = function(el){
   _this.updateContainmentCoords(_this.l_slider);
   _this.updateContainmentCoords(_this.r_slider);
   _this.updateTimeline(el);
+  _this.zoomTlPointsOnDrag(el);
+}
+
+// Resets all the transforms of the tl points to 0
+TimelineSlider.prototype.resetTlPoints = function(){
+  _this = this;
+  _this.tl_points.each(function (i, e){
+    $(this).css("transform","none");
+  });
+}
+
+// Updates the x-axis transform on the 5 nearest tl points (left and right from the current one),
+// so that the spaces between the points spread out - zoom
+TimelineSlider.prototype.zoomTlPointsOnDrag = function(el) {
+  _this.resetTlPoints();
+
+  var nearest_p_index = el == _this.l_slider ? _this.l_index : _this.r_index;
+  var count = 1, sensitivity = 5, nr_of_points_affected = 4.5; // Params (sensitivity: the larger, the bigger the spaces)
+
+  // Left side loop
+  for(i = nearest_p_index - 1; i >= nearest_p_index - nr_of_points_affected; i--){
+    if(i > 4)
+      _this.tl_points.eq(i).css("transform", "translateX(-"+(count*sensitivity)+"px)");
+    count++;
+  }
+  // Right side loop
+  count = 1;
+  for(i = nearest_p_index + 1; i <= nearest_p_index + nr_of_points_affected; i++){
+    if(i < (_this.tl_points.length - 4))
+      _this.tl_points.eq(i).css("transform", "translateX("+(count*sensitivity)+"px)");
+    count++;
+  }
 }
 
 // Updates the timeline intereface, when a slider is being dragged

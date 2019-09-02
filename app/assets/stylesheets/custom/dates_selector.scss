@@ -30,6 +30,7 @@ $drag-timeline-btn-width: 130px;
   border-radius: 50%;
   position: absolute;
   z-index: 5;
+  transition: transform .3s;
 }
 
 .point-highlight{

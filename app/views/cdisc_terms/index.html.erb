@@ -1,6 +1,6 @@
 <%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
 <%= stylesheet_link_tag 'custom/dates_selector', media: 'all' %>
-<%= javascript_include_tag 'jquery','jquery-ui.min.js', 'application' %>
+<%= javascript_include_tag 'jquery','jquery-ui.min.js', 'all' %>
 <%= javascript_include_tag 'cdisc_term/index', 'shared/cdisc_term/index_panel', 'shared/timeline_slider'%>
 
 <style>
@@ -9,10 +9,6 @@
   }
 
   html,body { min-width: 1000px; }
-
-  @media (min-width:1310px) {
-
-  }
 
 </style>
 <div class="row">
