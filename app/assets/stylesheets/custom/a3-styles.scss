@@ -126,12 +126,54 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   width: 100% !important;
 }
 
-.col-md-6.card, .col-md-12.card{
+.col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
+.col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
+.col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
   padding: 0px;
+}
+
+.col-md-1.card{
+  max-width: calc(8.3% - 40px);
+}
+
+.col-md-2.card{
+  max-width: calc(16.6% - 40px);
+}
+
+.col-md-3.card{
+  max-width: calc(25% - 40px);
+}
+
+.col-md-4.card{
+  max-width: calc(33.3% - 40px);
+}
+
+.col-md-5.card{
+  max-width: calc(41.6% - 40px);
 }
 
 .col-md-6.card{
   max-width: calc(50% - 40px);
+}
+
+.col-md-7.card{
+  max-width: calc(58.3% - 40px);
+}
+
+.col-md-8.card{
+  max-width: calc(66.6% - 40px);
+}
+
+.col-md-9.card{
+  max-width: calc(75% - 40px);
+}
+
+.col-md-10.card{
+  max-width: calc(83.3% - 40px);
+}
+
+.col-md-11.card{
+  max-width: calc(91.6% - 40px);
 }
 
 .col-md-12.card{
