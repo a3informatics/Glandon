@@ -9,7 +9,7 @@
 *
 * @return [void]
 */
-function ModalPanel(id, callback) {
+function ThesauriSelect(id, callback) {
   this.callback = callback;
   this.id = id;  
   this.tsModalTable = null;
@@ -66,7 +66,7 @@ function ModalPanel(id, callback) {
  * Initialise the table/datatable
  * @return [void]
  */
-ModalPanel.prototype.initTable = function() {
+ThesauriSelect.prototype.initTable = function() {
   var _this = this;
   this.tsModalTable = $('#thTable').DataTable( {
     "processing": true,

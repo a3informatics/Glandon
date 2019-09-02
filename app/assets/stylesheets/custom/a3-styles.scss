@@ -1,0 +1,199 @@
+@import "custom/globals.scss";
+
+// SHADOWS
+.shadow-small{
+  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+}
+
+.shadow-medium{
+  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+}
+
+// TOOLTIP
+.ttip {
+  position: relative;
+  display: inline-block;
+}
+
+.ttip .ttip-text {
+  font-family: $font-light;
+  top: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  background-color: white;
+  text-align: center;
+  padding: 7px 12px;
+  position: absolute;
+  z-index: 12;
+  white-space: nowrap;
+}
+
+.ttip:hover .ttip-text {
+  visibility: visible;
+}
+
+.ttip-right{
+  left: 0%;
+}
+
+.ttip-left{
+  right: 0%;
+}
+
+// SCROLLBAR
+
+
+body::-webkit-scrollbar, #sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track {
+    background-color: $grey-bright;
+}
+
+body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
+  background-color: $grey-light;
+}
+
+#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+  #main_area::-webkit-scrollbar {
+  display: none;
+}
+
+
+// BREADCRUMBS
+
+.breadcrumb a {
+  font-size: 12px !important;
+  margin-left: 0px !important;
+}
+
+.breadcrumb li {
+  font-size: 12px !important;
+}
+
+.breadcrumb > li + li:before {
+  content: "/";
+  /*padding: 0 5px;*/
+}
+
+.breadcrumb {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px;
+  display: inline-block;
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0px;
+  width: 100%;
+}
+
+// CARDS
+
+.card{
+  background: $grey-white;
+  border-radius: $card-border-radius;
+  margin: 20px;
+  min-width: 450px;
+
+  -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+}
+
+.card-header{
+  background: $primary-color-bright;
+  color: $grey-white;
+  font-size: $font-normal;
+  font-family: $font-light;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0px 0px;
+  padding: 16px 24px;
+  width: 100%;
+}
+
+.card-content{
+  padding: 30px 20px;
+  color: $grey-medium;
+  overflow: auto;
+}
+
+.card-content table{
+  width: 100% !important;
+}
+
+.col-md-6.card, .col-md-12.card{
+  padding: 0px;
+}
+
+.col-md-6.card{
+  max-width: calc(50% - 40px);
+}
+
+.col-md-12.card{
+  max-width: calc(100% - 40px);
+}
+
+// BUTTONS
+.btn{
+  background: $primary-color-medium;
+  color: $grey-white;
+  font-family: $font-light;
+  padding: 3px 10px;
+  border: 0;
+  border-radius: $button-border-radius;
+  margin: 0px 5px;
+}
+
+.btn:hover{
+  background-color: $primary-color-light;
+  color: $grey-white;
+}
+
+.btn.big{
+  padding: 10px 10px;
+}
+
+// Wrapper for multiple buttons, takes 100% width and the contents are centered
+.btns-wrap{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 5px;
+  margin-top: 20px;
+}
+
+// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
+.ico-btn{
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  color: $primary-color-medium;
+  background: $grey-white;
+  margin: 5px 5px;
+}
+
+.ico-btn.highlight{
+  color: $grey-white;
+  background: $primary-color-medium;
+}
+
+.ico-btn.highlight:hover{
+  background: $primary-color-light;
+}
+
+.ico-btn .ico{
+  font-size: $font-large;
+}
+
+.ico-btn .ico-btn-text{
+  margin: 0px 5px;
+}
+
+// GENERAL FIXES

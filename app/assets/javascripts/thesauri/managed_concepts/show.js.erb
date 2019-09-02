@@ -1,6 +1,6 @@
 $(document).ready( function() {
   var nav = new NavPanel(is_extended, is_extending);
-  var modal = new ModalPanel(tc_id, nav.callback);
+  var modal = new ThesauriSelect(tc_id, nav.callback);
   var columns = [
     {"data" : "identifier"},
     {"data" : "notation"},
@@ -17,12 +17,12 @@ function NavPanel(is_extended,is_extending) {
   this.is_extended = is_extended;
   this.is_extending = is_extending;
 
-   if (this.is_extending === "true") {
+   if (this.is_extending) {
         $("#extend").hide();
         $("#extension").hide();
         $("#extending").show();
         $("#add").show();  
-    } else if (this.is_extended === "true") {
+    } else if (this.is_extended) {
       $("#extend").show();
         //$("#extension").hide();
         $("#extending").hide();
