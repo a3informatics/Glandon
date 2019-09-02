@@ -50,6 +50,8 @@ class Excel::Engine
               create_parent(params) {|result| parent = result}
             elsif action_method == :create_child
               create_child(params) {|result| child = result; parent.children << result}
+            elsif action_method == :create_item
+              create_item(params) {|result| parent = result}
             elsif action_method == :ordinal
               params[:object].send("#{action[:property]}=", parent.children.count)
             elsif action_method == :c_code?
@@ -157,6 +159,21 @@ class Excel::Engine
   def create_child(params)
     check_params(__method__.to_s, params, [:row, :col, :klass])
     result = params[:klass].constantize.new
+    yield(result) if block_given?
+  end
+
+  # Create Item. Create an item identifier by the row number
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @param [Object] object the object. Not used 
+  # @param [Hash] map the mapping from spreadsheet values to internal values
+  # @param [String] klass the class name for the object being created
+  # @return [Void] no return
+  def create_item(params)
+    check_params(__method__.to_s, params, [:row, :col, :map, :klass])
+    result = params[:klass].constantize.new
+    @parent_set[params[:row]] = result
     yield(result) if block_given?
   end
 
@@ -424,6 +441,5 @@ private
     @parent_set[identifier] = item
     return item
   end
-
 
 end    

@@ -6,8 +6,6 @@ class Import::ChangeInstructions < Import
 
   C_CLASS_NAME = self.name
 
-  @changes = []
-
   # Import. Import the change instructions
   #
   # @param [Hash] params a parameter hash
@@ -17,8 +15,9 @@ class Import::ChangeInstructions < Import
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
-    @previous_ct = Thesaurus.find_minimum(params[:previous_ct])
-    @current_ct = Thesaurus.find_minimum(params[:current_ct])
+    @changes = []
+    previous_ct = Thesaurus.find_minimum(params[:previous_ct])
+    current_ct = Thesaurus.find_minimum(params[:current_ct])
     read_all_excel(params)
     objects = self.errors.empty? ? process_changes(previous_ct, current_ct) : []
 byebug
@@ -90,7 +89,7 @@ private
       reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
       merge_errors(reader, self)
       next if !reader.errors.empty?
-      @changes = @changes + reader.engine.parent_set
+      @changes += reader.engine.parent_set.map {|k,v| v}
     end
   end
 
@@ -104,12 +103,12 @@ private
   # Process all the changes
   def process_changes(previous_ct, current_ct)
     results = []
-byebug
     @changes.each do |change|
       ci = CrossReference::ChangeInstruction.new
-      change.previous.each {|p| ci.add_previous(previous_ct, x)}
-      change.current.each {|p| ci.add_current(current_ct, x)}
-      ci.create_uri
+      change.previous.each {|p| ci.add_previous(previous_ct, p)}
+      change.current.each {|p| ci.add_current(current_ct, p)}
+byebug
+      ci.create_uri(current_ct.uri)
       results << ci
     end
     results

@@ -12,21 +12,21 @@ class CrossReference::ChangeInstruction < CrossReference
   object_property :current, cardinality: :many, model_class: "OperationalReferenceV3"
 
   def add_previous(ct, reference)
-    add_reference(self.previous, reference)
+    add_reference(self.previous, ct, reference)
   end
 
   def add_current(ct, reference)
-    add_reference(self.current, reference)
+    add_reference(self.current, ct, reference)
   end
 
 private
   
   def add_reference(collection, ct, reference)
-    set = ct.find_by_identifier(reference)
+    set = ct.find_by_identifiers(reference)
     if set.key?(reference.last)
       object = reference.count == 1 ? OperationalReferenceV3::TmcReference.new : OperationalReferenceV3::TucReference.new
       object.ordinal = collection.count + 1
-      object.reference set[reference.last]
+      object.reference = set[reference.last]
       object.context = ct.uri
       object.enabled = true
       object.optional = false

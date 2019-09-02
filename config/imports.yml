@@ -46,6 +46,7 @@ defaults: &defaults
             condition:
               method: column_affirmative?
               column: 12
+          columns: 
           - 
             label: "Release Date"
             actions: []
@@ -86,19 +87,24 @@ defaults: &defaults
             label: "Prev Codelist"
             actions:
               -
-                method: c_code?
+                method: c_codes?
                 object: NA
                 klass: NA
                 map: {}
+                additional: 
+                  token: ","
               -
-                method: create_parent
+                method: create_item
                 object: parent
                 klass: "Import::ChangeInstructions::Instruction"
                 map: {}
               -
-                method: set_property
+                method: tokenize_and_set_property
                 object: parent
                 property: previous_parent
+                can_be_empty: false
+                additional: 
+                  token: ","
           - 
             label: "Prev Term"
             actions:
@@ -108,11 +114,15 @@ defaults: &defaults
                 klass: NA
                 can_be_empty: true
                 map: {}
+                additional: 
+                  token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: previous_children
                 can_be_empty: true
+                additional: 
+                  token: ","
           - 
             label: "New Codelists"
             actions:
@@ -121,10 +131,14 @@ defaults: &defaults
                 object: NA
                 klass: NA
                 map: {}
+                additional: 
+                  token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: current_parent
+                additional: 
+                  token: ","
           - 
             label: "New Terms"
             actions:
@@ -134,17 +148,23 @@ defaults: &defaults
                 klass: NA
                 can_be_empty: true
                 map: {}
+                additional: 
+                  token: ","
               -
                 method: tokenize_and_set_property
                 object: parent
                 property: current_children
                 can_be_empty: true
+                additional: 
+                  token: ","
           - 
             label: "Comment"
             actions: 
+              -
                 method: set_property
                 object: parent
-                klass: description
+                property: description
+                map: {}
     cdisc_adam_ig: 
       sheets: 
         main:
