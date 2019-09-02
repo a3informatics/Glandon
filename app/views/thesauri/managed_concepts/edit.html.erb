@@ -8,11 +8,9 @@
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Edit:", :item => @thesaurus_concept} %>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Navigation</h3>
-      </div>
-      <div class="panel-body">
+    <div class="card">
+        <h3 class="card-header">Navigation</h3>
+      <div class="card-content">
         <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
       </div>
     </div>
