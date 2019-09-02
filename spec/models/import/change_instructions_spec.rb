@@ -5,6 +5,7 @@ describe Import::ChangeInstructions do
 	include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
+  include SparqlHelpers
 
 	def sub_dir
     return "models/import/change_instructions"
@@ -36,7 +37,9 @@ describe Import::ChangeInstructions do
     expected = {
       description: "Import of CDISC Change Instructions",
       parent_klass: Import::ChangeInstructions::Instruction,
-      import_type: :cdisc_change_instructions
+      import_type: :cdisc_change_instructions,
+      reader_klass: Excel,
+      sheet_name: :format
     }
     expect(Import::ChangeInstructions.configuration).to eq(expected)
     object = Import::ChangeInstructions.new
@@ -51,14 +54,12 @@ describe Import::ChangeInstructions do
       files: [full_path], previous_ct: Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"), current_ct: Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"), job: @job
     }
     result = @object.import(params)
-byebug
     filename = "cdisc_change_instructions_#{@object.id}_errors.yml"
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_change_instructions_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
-  #Xcopy_file_from_public_files_rename("test", filename, sub_dir, "import_load_1b.ttl")
+  #copy_file_from_public_files_rename("test", filename, sub_dir, "import_expected_1a.ttl")
     check_ttl_fix(filename, "import_expected_1a.ttl", {last_change_date: true})
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)

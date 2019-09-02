@@ -25,7 +25,8 @@ private
     set = ct.find_by_identifiers(reference)
     if set.key?(reference.last)
       object = reference.count == 1 ? OperationalReferenceV3::TmcReference.new : OperationalReferenceV3::TucReference.new
-      object.ordinal = collection.count + 1
+      object.ordinal = self.previous.count + self.current.count + 1
+      object.uri = object.create_uri(self.uri)
       object.reference = set[reference.last]
       object.context = ct.uri
       object.enabled = true

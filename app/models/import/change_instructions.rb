@@ -16,11 +16,10 @@ class Import::ChangeInstructions < Import
   # @return [Void] no return value
   def import(params)
     @changes = []
-    previous_ct = Thesaurus.find_minimum(params[:previous_ct])
-    current_ct = Thesaurus.find_minimum(params[:current_ct])
+    @previous_ct = Thesaurus.find_minimum(params[:previous_ct])
+    @current_ct = Thesaurus.find_minimum(params[:current_ct])
     read_all_excel(params)
-    objects = self.errors.empty? ? process_changes(previous_ct, current_ct) : []
-byebug
+    objects = self.errors.empty? ? process_changes : []
     !self.errors.empty? || object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
     params[:job].end("Complete")   
   rescue => e
@@ -61,7 +60,7 @@ byebug
   def save_load_file(objects)
     path = Rails.application.routes.url_helpers.thesauri_path(@current_ct)
     sparql = Sparql::Update.new()
-    sparql.default_namespace(objects.first.uri.namespace)
+    sparql.default_namespace(Uri.namespaces.namespace_from_prefix(:bo))
     objects.each do |c| 
       c.to_sparql(sparql, true)
     end
@@ -101,14 +100,14 @@ private
   end
 
   # Process all the changes
-  def process_changes(previous_ct, current_ct)
+  def process_changes
     results = []
-    @changes.each do |change|
+    @changes.each_with_index do |change, index|
       ci = CrossReference::ChangeInstruction.new
-      change.previous.each {|p| ci.add_previous(previous_ct, p)}
-      change.current.each {|p| ci.add_current(current_ct, p)}
-byebug
-      ci.create_uri(current_ct.uri)
+      ci.ordinal = index + 1
+      ci.uri = ci.create_uri(@current_ct.uri)
+      change.previous.each {|p| ci.add_previous(@previous_ct, p)}
+      change.current.each {|p| ci.add_current(@current_ct, p)}
       results << ci
     end
     results
