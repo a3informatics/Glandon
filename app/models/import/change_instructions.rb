@@ -103,8 +103,7 @@ private
   def process_changes
     results = []
     @changes.each_with_index do |change, index|
-      ci = CrossReference::ChangeInstruction.new
-      ci.ordinal = index + 1
+      ci = CrossReference::ChangeInstruction.new(ordinal: index + 1, description: change.description, semantic: "related terminology")
       ci.uri = ci.create_uri(@current_ct.uri)
       change.previous.each {|p| ci.add_previous(@previous_ct, p)}
       change.current.each {|p| ci.add_current(@current_ct, p)}
