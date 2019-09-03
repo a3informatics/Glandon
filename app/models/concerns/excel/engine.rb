@@ -184,7 +184,7 @@ class Excel::Engine
   # @return [Void] no return
   def check_valid(params)
     check_params(__method__.to_s, params, [:object])
-    params[:object].errors.each {|k, e| @errors.add(:base, e)} if !params[:object].valid?
+    params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
   end
 
   # Set Property

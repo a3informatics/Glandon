@@ -164,6 +164,11 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: description
+                can_be_empty: false
+                map: {}
+              -
+                method: check_valid
+                object: parent
                 map: {}
     cdisc_adam_ig: 
       sheets: 

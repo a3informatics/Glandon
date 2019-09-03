@@ -7,11 +7,14 @@ class Import::ChangeInstructions::Instruction
   #include ActiveModel::Naming
   #include ActiveModel::Conversion
   #include ActiveModel::Validations
-      
+  extend ActiveModel::Naming
+
   attr_accessor :previous_parent
   attr_accessor :previous_children
   attr_accessor :current_parent
   attr_accessor :current_children
+  attr_accessor :description
+  attr_reader :errors
 
   # Initialize
   #
@@ -21,6 +24,7 @@ class Import::ChangeInstructions::Instruction
     @previous_children = []
     @current_parent = []
     @current_children = []
+    @errors = ActiveModel::Errors.new(self)
   end
 
   # Previous. The previous results. A set of parent and optional child references as an array
@@ -61,11 +65,18 @@ class Import::ChangeInstructions::Instruction
   #
   # @return [Boolean] true if valid, false otherwise
   def valid?
-    return false if @previous_children.count == 0 && @current_children.count > 0 
-    return false if @previous_children.count > 0 && @current_children.count == 0 
-    return false if @previous_children.count > 1 && @current_children.count > 1
-    return false if @previous_parent.count > 1 && @current_parent.count > 1
-    return true
+    @errors.clear
+    add_error("Previous term empty but current term is not.") if @previous_children.count == 0 && @current_children.count > 0 
+    add_error("Previous term is not empty but current term is.") if @previous_children.count > 0 && @current_children.count == 0 
+    add_error("Multiple previous and current terms.") if @previous_children.count > 1 && @current_children.count > 1
+    add_error("Multiple previous and current code lists.") if @previous_parent.count > 1 && @current_parent.count > 1
+    return @errors.empty?
   end
 
+private
+
+  def add_error(text)
+    @errors.add(:base, text)
+    false
+  end
 end

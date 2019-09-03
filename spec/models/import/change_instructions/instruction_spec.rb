@@ -47,6 +47,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.previous_children << "C3331"
     expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Previous term is not empty but current term is.")
     item.current_children << "C4441"
     expect(item.valid?).to eq(true)
   end
@@ -58,6 +60,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.current_children << "C4441"
     expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Previous term empty but current term is not.")
     item.previous_children << "C3331"
     expect(item.valid?).to eq(true)
   end
@@ -72,6 +76,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.current_children << "C4442"
     expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Multiple previous and current terms.")
   end
 
   it "valid, multiple children mapping II" do
@@ -84,6 +90,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.previous_children << "C3332"
     expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Multiple previous and current terms.")
   end
 
   it "valid, multiple parent mapping I" do
@@ -94,6 +102,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.current_parent << "C12347"
     expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Multiple previous and current code lists.")
   end
 
   it "valid, multiple parent mapping II" do
@@ -104,16 +114,8 @@ describe Import::ChangeInstructions::Instruction do
     expect(item.valid?).to eq(true)
     item.previous_parent << "C12346"
     expect(item.valid?).to eq(false)
-  end
-
-  it "valid, multiple current parent" do
-    item = Import::ChangeInstructions::Instruction.new 
-    item.previous_parent << "C12345"
-    item.current_parent << "C12346"
-    item.current_parent << "C12347"
-    item.previous_children << "C3331"
-    item.previous_children << "C3332"
-    expect(item.valid?).to eq(false)
+    expect(item.errors.count).to eq(1)    
+    expect(item.errors.full_messages.to_sentence).to eq("Multiple previous and current code lists.")
   end
 
 end
