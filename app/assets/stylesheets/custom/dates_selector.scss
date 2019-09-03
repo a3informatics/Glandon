@@ -67,6 +67,10 @@ $drag-timeline-btn-width: 130px;
   cursor: pointer;
 }
 
+.timeline-date-btn:hover{
+  border-color: $accent-color-2;
+}
+
 .timeline-controls{
   z-index: 2;
 }
