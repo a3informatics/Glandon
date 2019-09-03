@@ -10,6 +10,7 @@ describe Excel::Engine do
 
 	before :each do
     clear_triple_store
+    load_schema
     @child_object = ChildClass.new
   end
 
@@ -468,7 +469,7 @@ describe Excel::Engine do
     expect(other).to receive(:valid?).and_return(false)
     object.check_valid({object: other})
     expect(parent.errors.count).to eq(1)
-    expect(parent.errors.full_messages.to_sentence).to eq("Error added.")  
+    expect(parent.errors.full_messages.to_sentence).to eq("Row . Error added.")  
   end
 
   it "checks c codes" do

@@ -1,0 +1,23 @@
+---
+:description: This term replaces term from the Microbiology Susceptibility TEST codelist.
+  Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication,
+  please use the newly released EC50 terms; for tests concerning 50% inhibition on
+  microbial enzymatic activity, please use the newly released IC50 and IC95 terms.
+:previous:
+- :parent:
+    :identifier: C128687
+    :notation: MSTEST
+    :date: '2017-06-30T00:00:00+00:00'
+  :child:
+    :identifier: C116254
+    :notation: IC95 Fold Change from Baseline
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDgjQzEyODY4N19DMTE2MjU0
+- :parent:
+    :identifier: C128687
+    :notation: MSTEST
+    :date: '2017-06-30T00:00:00+00:00'
+  :child:
+    :identifier: C116250
+    :notation: IC50 Fold Change from Baseline
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4Ny9WNDgjQzEyODY4N19DMTE2MjUw
+:current: []

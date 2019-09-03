@@ -498,4 +498,36 @@ describe Thesaurus::UnmanagedConcept do
 
   end
 
+  describe "cross reference links" do
+
+    before :all do
+      IsoHelpers.clear_cache
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", 
+        "BusinessOperational.ttl", "cross_reference.ttl"
+      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_52_53.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..59)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "cross reference links I" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C101846/V49#C101846_C130056"))
+      results = tc.linked_change_instructions
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml")
+    end
+
+    it "cross reference links II" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V52#C128687_C139114"))
+      results = tc.linked_change_instructions
+      check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
+    end
+
+  end
+
 end

@@ -4,7 +4,7 @@
 # @since 2.22.1
 class CrossReference::ChangeInstruction < CrossReference
   
-  configure rdf_type: "http://www.assero.co.uk/CrossReference#ChanegInstruction",
+  configure rdf_type: "http://www.assero.co.uk/CrossReference#ChangeInstruction",
             uri_suffix: "CI",
             uri_property: :ordinal
 
