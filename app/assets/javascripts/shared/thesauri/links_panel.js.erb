@@ -10,9 +10,10 @@
 *
 * @return [void]
 */
-function LinksPanel(url, panelId) {
+function LinksPanel(url, panelId, panelTitle) {
   this.url = url;
   this.panelId = panelId;
+  this.panelTitle = panelTitle;
   this.getData();
 }
 
@@ -29,7 +30,6 @@ LinksPanel.prototype.getData = function () {
     dataType: 'json',
     contentType: 'application/json',
     success: function(result){ 
-      console.log(result.data);
     _this.display(result.data);
     },
     error: function(xhr,status,error){
@@ -51,7 +51,7 @@ LinksPanel.prototype.display = function (result) {
     item.references.sort( function (item1, item2){
       return new Date(item2.parent.date) - new Date(item1.parent.date)
     });
-    html += '<div class="panel panel-default"><div class="panel-heading">'+item.description+'</div>'+
+    html += '<div class="card"><div class="card-header">'+_this.panelTitle+': '+item.description+'</div>'+
               '<div class="list-group">';
     $.each( item.references, function( index, ref ) {
       html +=   '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +

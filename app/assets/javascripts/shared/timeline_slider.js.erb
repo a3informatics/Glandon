@@ -1,0 +1,164 @@
+// Initiates a TimelineSlider
+// c: container div, l, r: left and right slider divs, tl_p: a set of points on the timeline
+function TimelineSlider(c, l, r, tl_p){
+  var _this = this;
+
+  this.container = c;
+  this.l_slider = l;
+  this.r_slider = r;
+  this.tl_points = tl_p;
+  this.l_index = 0;
+  this.r_index = _this.tl_points.length-1;
+  this.highlight_class = "point-highlight";
+
+  _this.initDraggable(_this.l_slider);
+  _this.initDraggable(_this.r_slider);
+  _this.handleResponsiveness();
+}
+
+// Initiates an element to become draggable horizontally, contained within the bounding div
+// Also adds handlers for the ui dynamics of the timeline
+TimelineSlider.prototype.initDraggable = function(el){
+  _this = this;
+  el.draggable({
+    axis: "x",
+    containment: _this.getContainmentCoords(el),
+    drag: function(event, ui) {
+      _this.onDrag(el);
+    },
+    stop: function(event, ui) {
+      _this.resetTlPoints();
+    },
+    start: function(event, ui){
+      _this.zoomTlPointsOnDrag(el);
+    }
+  });
+
+  el.mousedown(function () {
+    _this.zoomTlPointsOnDrag(el);
+  });
+  el.mouseup(function () {
+    _this.resetTlPoints();
+  });
+}
+
+// Creates a containment for both the left and right slider, limited by the bounding div and the other slider
+TimelineSlider.prototype.getContainmentCoords = function(el){
+  _this = this;
+  if(el == _this.l_slider)
+    return [_this.container.offset().left-((el.outerWidth()/2)-4), 0, _this.r_slider.offset().left - 1, 0];
+  else
+    return [_this.l_slider.offset().left + 1, 0, _this.container.offset().left + _this.container.width() - ((el.outerWidth()/2)-4), 0];
+}
+
+// Updates the containment bounding coords
+TimelineSlider.prototype.updateContainmentCoords = function(el){
+  _this = this;
+  el.draggable("option", "containment", _this.getContainmentCoords(el));
+}
+
+// Called, when the slider is being dragged
+TimelineSlider.prototype.onDrag = function(el){
+  _this = this;
+  _this.updateContainmentCoords(_this.l_slider);
+  _this.updateContainmentCoords(_this.r_slider);
+  _this.updateTimeline(el);
+  _this.zoomTlPointsOnDrag(el);
+}
+
+// Resets all the transforms of the tl points to 0
+TimelineSlider.prototype.resetTlPoints = function(){
+  _this = this;
+  _this.tl_points.each(function (i, e){
+    $(this).css("transform","none");
+  });
+}
+
+// Updates the x-axis transform on the 5 nearest tl points (left and right from the current one),
+// so that the spaces between the points spread out - zoom
+TimelineSlider.prototype.zoomTlPointsOnDrag = function(el) {
+  _this.resetTlPoints();
+
+  var nearest_p_index = el == _this.l_slider ? _this.l_index : _this.r_index;
+  var count = 1, sensitivity = 5, nr_of_points_affected = 4.5; // Params (sensitivity: the larger, the bigger the spaces)
+
+  // Left side loop
+  for(i = nearest_p_index - 1; i >= nearest_p_index - nr_of_points_affected; i--){
+    if(i > 4)
+      _this.tl_points.eq(i).css("transform", "translateX(-"+(count*sensitivity)+"px)");
+    count++;
+  }
+  // Right side loop
+  count = 1;
+  for(i = nearest_p_index + 1; i <= nearest_p_index + nr_of_points_affected; i++){
+    if(i < (_this.tl_points.length - 4))
+      _this.tl_points.eq(i).css("transform", "translateX("+(count*sensitivity)+"px)");
+    count++;
+  }
+}
+
+// Updates the timeline intereface, when a slider is being dragged
+TimelineSlider.prototype.updateTimeline = function(el){
+  _this = this;
+
+  // Clear current highlighted point
+  _this.tl_points.eq(el == _this.l_slider ? _this.l_index : _this.r_index).removeClass(_this.highlight_class);
+
+  // Get nearest point
+  var nearest_p_index = _this.findNearestPoint(el);
+  var nearest_p = _this.tl_points.eq(nearest_p_index);
+
+  // Update instance data
+  if(el === _this.l_slider)
+    _this.l_index = nearest_p_index;
+  else
+    _this.r_index = nearest_p_index;
+
+  // Update UI
+  el.find(".date-txt").html(nearest_p.find(".ttip-text").html());
+  nearest_p.addClass(_this.highlight_class);
+}
+
+// Finds point on the timeline closest to the slider (el)
+TimelineSlider.prototype.findNearestPoint = function(el){
+  _this = this;
+
+  var nearest_index = (el == _this.l_slider ? _this.l_index : _this.r_index);
+  var min_distance = _this.calculateDistance(el, _this.tl_points.eq(nearest_index));
+
+  var start_index = (el == _this.l_slider ? 0 : _this.l_index + 1);
+  var end_index = (el == _this.l_slider ? _this.r_index : _this.tl_points.length);
+
+  for(i = start_index; i < end_index; i++){
+    var distance  = _this.calculateDistance(el, _this.tl_points.eq(i));
+    if(distance < min_distance){
+      min_distance = distance;
+      nearest_index = i;
+    }
+  }
+  return nearest_index;
+}
+
+// Calculates the distance (x axis only) between the two elements' center points
+TimelineSlider.prototype.calculateDistance = function(el1, el2){
+  return Math.abs((el1.offset().left + (el1.outerWidth()/2.0)) - (el2.offset().left + (el2.outerWidth()/2.0)));
+}
+
+// Moves a slider to match the horizontal location of a target (does not update the target highlights!)
+TimelineSlider.prototype.moveSliderTo = function(slider, target){
+  slider.offset({
+    top: slider.offset().top,
+    left: target.offset().left + (target.outerWidth()/2.0) - (slider.outerWidth()/2.0)
+  });
+}
+
+// Maintains the position of the sliders when the window is being resized
+TimelineSlider.prototype.handleResponsiveness = function(){
+  $(window).resize(function() {
+
+    var highlightedPoints = $("."+_this.highlight_class);
+
+    _this.moveSliderTo(_this.l_slider, highlightedPoints.eq(0));
+    _this.moveSliderTo(_this.r_slider, highlightedPoints.eq(1));
+  });
+}

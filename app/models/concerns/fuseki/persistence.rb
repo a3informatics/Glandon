@@ -187,6 +187,10 @@ module Fuseki
       @transaction = Sparql::Transaction.new
     end
 
+    def transaction_set(transaction)
+      @transaction = transaction
+    end
+    
     def transaction_execute
       @transaction.execute
     end
@@ -230,23 +234,51 @@ module Fuseki
       return 1
     end
 
-    def generic_objects(name)
+    # Generic Links. Gets the links for the named property. Gets as URIs
+    #
+    # @param name [Symbol] the property name
+    # @return [URI|Array] single or array of URIs
+    def generic_links(name)
       objects = []
       property = self.properties.property(name)
-      query_string = "SELECT ?s ?p ?o WHERE {" +
-        "  #{uri.to_ref} #{property.predicate.to_ref} ?s ." +
-        "  ?s ?p ?o ." +
-        "}"
+      query_string = "SELECT ?s ?p ?o WHERE { #{uri.to_ref} #{property.predicate.to_ref} ?s }"
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      query_results.by_object_set([:s]).each do |entry|
+        property.replace_with_object(entry[:s])
+      end
+      property.get
+    end
+
+    # Generic Links? Property populated with URIs
+    #
+    # @param name [Symbol] the property name
+    # @return [Boolean] true if not empty
+    def generic_links?(name)
+      property = self.properties.property(name)
+      property_status(property) != :empty
+    end
+
+    # Generic Objects. Gets the objects for the named property.
+    #
+    # @param name [Symbol] the property name
+    # @return [Object|Array] single or array of objects
+    def generic_objects(name)
+      property = self.properties.property(name)
+      query_string = "SELECT ?s ?p ?o WHERE { #{uri.to_ref} #{property.predicate.to_ref} ?s .\n ?s ?p ?o }"
       results = Sparql::Query.new.query(query_string, "", [])
-      objects = []
       results.by_subject.each do |subject, triples|
         property.replace_with_object(property.klass.from_results(Uri.new(uri: subject), triples))
       end
       property.get
     end
 
+    # Generic Objects? Property populated with Objects
+    #
+    # @param name [Symbol] the property name
+    # @return [Boolean] true if not empty and not URIs
     def generic_objects?(name)
-      !self.properties.property(name).uri?
+      property = self.properties.property(name)
+      property_status(property) == :object
     end
 
     def not_used?
@@ -293,7 +325,34 @@ module Fuseki
       end
     end   
 
+    # Clone. Clones an object copying each property.
+    #
+    # @return [Object] returns the cloned object
+    def clone
+      object = self.class.new
+      object_properties = object.properties
+      properties.each do |property|
+        object_property = object_properties.property(property.name)
+        object_property.set_raw(property.get.dup)
+      end
+      object
+    end   
+
   private
+
+    # Get status of a property
+    def property_status(property)
+      value = property.get
+      if property.array?
+        return :empty if value.empty?
+        return :uri if value.first.is_a?(Uri)
+        return :object if value.first.is_a?(property.klass)
+      else
+        return :empty if value.nil?
+        return :uri if value.is_a?(Uri)
+        return :object if value.is_a?(property.klass)        
+      end
+    end
 
     # Set a simple typed value
     def self.to_typed(base_type, value)

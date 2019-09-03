@@ -1,0 +1,52 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMiNUSA==
+:uri: http://www.acme-pharma.com/NEW1/V2#TH
+:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:label: A new item
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMiNUSF9SUw==
+  :uri: http://www.acme-pharma.com/NEW1/V2#TH_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vTkVXMS9WMiNUSF9TSQ==
+  :uri: http://www.acme-pharma.com/NEW1/V2#TH_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: NEW1
+  :version_label: ''
+  :version: 2
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: A ref
+:change_description: A description
+:creation_date: '2019-08-28T18:22:01+02:00'
+:last_change_date: '2019-08-28T18:22:01+02:00'
+:explanatory_comment: A comment
+:is_top_concept_reference: []
+:is_top_concept: []

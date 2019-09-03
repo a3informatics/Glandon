@@ -43,7 +43,11 @@ describe Fuseki::Resource::Property do
     item.set_value(uri)
     expect(item.get).to eq(uri)
     expect(item.uri?).to eq(true)
-
+    uri = Uri.new(uri: "http://wwww.a.com/pathsec#2")
+    item.set_raw(uri)
+    expect(item.get).to eq(uri)
+    expect(item.uri?).to eq(true)
+    
     ref_2 = TestFRP.new
     ref_2.instance_variable_set(:@fred, [])
     item = Fuseki::Resource::Property.new(ref_2, :fred, {model_class: TestFRP, cardinality: :multiple, predicate: "XXX", type: :object, default: [], base_type: ""})
@@ -55,6 +59,10 @@ describe Fuseki::Resource::Property do
     item.set_value(uri_2)
     expect(item.get).to eq([uri_1, uri_2])
     expect(item.uri?).to eq(true)
+    item.set_raw([])
+    expect(item.get).to eq([])
+    item.set_raw([uri_1, uri_2])
+    expect(item.get).to eq([uri_1, uri_2])
     ref_2a = TestFRP.new
     ref_2a.instance_variable_set(:@uri, uri_2)
     ref_2a.instance_variable_set(:@sid, "XXXXX")

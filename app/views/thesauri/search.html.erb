@@ -4,11 +4,9 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<div class="panel panel-default">
-  <div class="panel-heading">
+<div class="card">
     <%= render partial: "shared/stdInstanceTitlePanel", :locals => {:title => "Search:", :item => @thesaurus} %>
-  </div>
-  <div class="panel-body">
+  <div class="card-content">
     <div class="col-md-12">
       <%= render partial: "shared/thesauri/search" %>
       <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>

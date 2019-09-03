@@ -70,7 +70,7 @@ gem 'roo', '~> 2.7.0'
 
 # ODM support
 gem 'odm', "1.0.5", :git => 'git@github.com:daveih/odm.git'
-gem "font-awesome-rails"
+# gem "font-awesome-rails"
 
 # SAS support
 gem 'sas_xpt', :git => 'git@github.com:daveih/sas_xpt'
@@ -89,7 +89,7 @@ group :development do
   gem 'better_errors'
   gem 'hub', :require=>nil
   gem 'quiet_assets'
-  gem 'rails_layout' 
+  gem 'rails_layout'
 end
 
 group :development, :test do

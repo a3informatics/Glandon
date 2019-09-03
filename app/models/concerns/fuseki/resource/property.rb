@@ -135,7 +135,10 @@ module Fuseki
       # @return [Void] no return
       def replace_with_object(object)
         value = get
-        value.delete_if {|x| x.is_a?(Uri) && x == object.uri} if array?
+        if array?
+          uri = object.is_a?(Uri) ? object : object.uri
+          value.delete_if {|x| x.is_a?(Uri) && x == uri}
+        end
         set(object)
       end
 
@@ -145,6 +148,14 @@ module Fuseki
       # @return [Void] no return
       def set(value)
         array? ? @parent.instance_variable_get(@instance_variable_name).push(value) : @parent.instance_variable_set(@instance_variable_name, value)
+      end
+
+      # Set Raw. Sets the property to exactly as the value passed. Use with care.
+      #
+      # @param [Object] value the property value
+      # @return [Void] no return
+      def set_raw(value)
+        @parent.instance_variable_set(@instance_variable_name, value)
       end
 
       # Get

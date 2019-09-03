@@ -4,31 +4,30 @@ function IndexPanel(url) {
 
   var _this = this;
 
-  $('#from_select :nth-child(2)').prop('selected', true); 
-  $('#to_select :nth-child(1)').prop('selected', true); 
-
   $("#go_button").click(function(){
     _this.get();
   });
-  
 }
 
 IndexPanel.prototype.get = function (url) {
   var _this = this;
+
+  console.log($("#from_select").val());
+
   _this.processing(true);
   $.ajax({
-    url: pathInsertId(_this.url, $("#from_select").val()),
+    url: pathInsertId(_this.url, $(".point-highlight").eq(0).find(".ttip-text").attr("data-index")),
     type: 'GET',
-    data: {cdisc_term: {other_id: $("#to_select").val()}},
+    data: {cdisc_term: {other_id: $(".point-highlight").eq(1).find(".ttip-text").attr("data-index")}},
     dataType: 'json',
     success: function(result) {
       _this.processing(false);
       _this.results("#created_div", result.data.created)
       _this.results("#deleted_div", result.data.deleted)
       _this.results("#updated_div", result.data.updated)
-      //$("#created_div").html("<pre>" + JSON.stringify(result.data.created, undefined, 2) + "</pre>");	
-      //$("#deleted_div").html("<pre>" + JSON.stringify(result.data.deleted, undefined, 2) + "</pre>"); 
-      //$("#updated_div").html("<pre>" + JSON.stringify(result.data.updated, undefined, 2) + "</pre>"); 
+      //$("#created_div").html("<pre>" + JSON.stringify(result.data.created, undefined, 2) + "</pre>");
+      //$("#deleted_div").html("<pre>" + JSON.stringify(result.data.deleted, undefined, 2) + "</pre>");
+      //$("#updated_div").html("<pre>" + JSON.stringify(result.data.updated, undefined, 2) + "</pre>");
     },
     error: function(xhr,status,error){
       _this.processing(false);
@@ -56,5 +55,5 @@ IndexPanel.prototype.results = function(div, data) {
     html += '</a>';
   });
   html += '</div>';
-  $(div).html(html); 
+  $(div).html(html);
 }

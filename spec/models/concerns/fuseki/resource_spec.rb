@@ -199,6 +199,16 @@ describe Fuseki::Resource do
       expect(item.respond_to?(:children)).to eq(true)
     end
 
+    it "object and link properties" do
+      TestR4.configure({rdf_type: "http://www.example.com/B#YYY"})
+      TestR4.object_property(:fred, {cardinality: :one, model_class: "TestRTarget", children: true})
+      item = TestR4.new
+      expect(item.respond_to?(:fred_links)).to eq(true)
+      expect(item.respond_to?(:fred_links?)).to eq(true)
+      expect(item.respond_to?(:fred_objects)).to eq(true)
+      expect(item.respond_to?(:fred_objects?)).to eq(true)
+    end
+
   end
 
   describe "read metadata" do
@@ -214,6 +224,9 @@ describe Fuseki::Resource do
       raise if !response.success?
     end
     
+    FusekiBaseHelpers.clear
+    FusekiBaseHelpers.read_schema # Makes sure we have the schema loaded. It is all about the timing!! :)
+
     before :all do
     end
 
@@ -230,6 +243,22 @@ describe Fuseki::Resource do
       data_property :owner, default: false
       object_property :ra_namespace, cardinality: :one, model_class: "IsoNamespace", delete_exclude: true
       object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", read_exclude: true
+
+    end 
+
+    class TestR11 < TestR10
+
+      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoConceptV2"
+
+      object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
+
+    end 
+
+    class TestR12 < TestR11
+
+      configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#IsoManagedV2"
+
+      object_property :ra_namespace, cardinality: :many, model_class: "TestRTarget"
 
     end 
 
@@ -263,6 +292,17 @@ describe Fuseki::Resource do
       check_file_actual_expected(TestR10.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
       item = TestR10.new
       check_file_actual_expected(item.class.delete_paths, sub_dir, "managed_paths_expected_2.yaml")
+    end
+
+    it "updates property" do
+      item = TestR11.new
+      result = item.class.resources
+      check_file_actual_expected(result, sub_dir, "properties_metadata_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it "rdf type to klass" do
+      expect(TestR11.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoConceptV2")).to eq(TestR11)
+      expect(TestR12.rdf_type_to_klass("http://www.assero.co.uk/ISO11179Registration#IsoManagedV2")).to eq(TestR12)
     end
 
   end

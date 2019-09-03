@@ -1,0 +1,185 @@
+/* FONTS */
+$font-primary: 'Roboto';
+$font-light: 'Roboto-Thin';
+$font-bold: 'Roboto-Bold';
+
+@font-face {
+  font-family: $font-light;
+  src:font-url('Roboto-Light.ttf');
+  font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: $font-primary;
+  src:font-url('Roboto-Regular.ttf');
+  font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+  font-family: $font-bold;
+  src:font-url('Roboto-Medium.ttf');
+  font-weight: bold;
+	font-style: normal;
+}
+
+.font-regular{
+  font-family: $font-primary;
+}
+
+.font-light{
+  font-family: $font-light;
+}
+
+.font-bold{
+  font-family: $font-bold;
+}
+
+body{
+  font-family: $font-primary !important;
+}
+
+/* COLORS */
+
+/* Primary color (blue) */
+$primary-color-dark: #2b4753;
+$primary-color-medium: #356d86;
+$primary-color-light: #53869c;
+$primary-color-bright: #9dc0cf;
+
+.bg-prim-dark{
+  background: $primary-color-dark;
+}
+
+.bg-prim-medium {
+  background: $primary-color-medium;
+}
+
+.bg-prim-light {
+  background: $primary-color-light;
+}
+
+.bg-prim-bright {
+  background: $primary-color-bright;
+}
+
+/* Secondary color (green) */
+$secondary-color-dark: #6e8a30;
+$secondary-color-medium: #96b947;
+$secondary-color-light: #c0dd78;
+$secondary-color-bright: #def3a9;
+
+.bg-sec-dark{
+  background: $secondary-color-dark;
+}
+
+.bg-sec-medium {
+  background: $secondary-color-medium;
+}
+
+.bg-sec-light {
+  background: $secondary-color-light;
+}
+
+.bg-sec-bright {
+  background: $secondary-color-bright;
+}
+
+/* Accent colors (orange & red) */
+$accent-color-1: #f5d684;
+$accent-color-2: #e48080;
+
+.bg-accent-1{
+  background: $accent-color-1;
+}
+
+.bg-accent-2{
+  background: $accent-color-2;
+}
+
+/* Text & grey colors */
+$grey-dark: #414141;
+$grey-medium: #6f6f6f;
+$grey-light: #c4c4c4;
+$grey-bright: #f4f4f4;
+$grey-white: #ffffff;
+
+.bg-grey-dark{
+  background: $grey-dark;
+}
+
+.bg-grey-medium {
+  background: $grey-medium;
+}
+
+.bg-grey-light {
+  background: $grey-light;
+}
+
+.bg-grey-bright {
+  background: $grey-bright;
+}
+
+.text-dark{
+  color: $grey-dark;
+}
+
+.text-medium {
+  color: $grey-medium;
+}
+
+.text-light {
+  color: $grey-light;
+}
+
+.text-bright {
+  color: $grey-bright;
+}
+
+.text-white {
+  color: $grey-white;
+}
+
+.text-accent-1 {
+  color: $accent-color-1;
+}
+
+.text-accent-2{
+  color: $accent-color-2;
+}
+
+.text-link{
+  color: $primary-color-light;
+}
+
+/* SIZES */
+
+$font-tiny: 7pt;
+$font-small: 10pt;
+$font-normal: 12pt;
+$font-large: 16pt;
+$font-xlarge: 20pt;
+
+.text-tiny{
+  font-size: $font-tiny;
+}
+
+.text-small{
+  font-size: $font-small;
+}
+
+.text-normal{
+  font-size: $font-normal;
+}
+
+.text-large{
+  font-size: $font-large;
+}
+
+.text-xlarge{
+  font-size: $font-xlarge;
+}
+
+$card-border-radius: 10px;
+$button-border-radius: 20px;

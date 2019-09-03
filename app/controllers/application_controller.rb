@@ -71,5 +71,14 @@ class ApplicationController < ActionController::Base
     return token
   end
 
-
+  # Edit an item
+  def edit_item(item)
+    @token = get_token(item)
+    new_item = item.create_next_version
+    return item if new_item.uri == item.uri
+    @token.release
+    @token = get_token(new_item)
+    return new_item
+  end
+  
 end

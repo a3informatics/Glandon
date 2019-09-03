@@ -28,13 +28,13 @@ describe IsoManagedV2 do
 
   	it "validates a valid object, general" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       expect(item.valid?).to eq(true)
     end
 
     it "validates a valid object, markdown" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.origin = vh_all_chars
       item.explanatory_comment  = vh_all_chars
       item.change_description = vh_all_chars
@@ -43,7 +43,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.origin = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -52,7 +52,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.explanatory_comment  = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -61,7 +61,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.change_description = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -70,7 +70,7 @@ describe IsoManagedV2 do
 
     it "does not validate an invalid object" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       item.label = "£"
       result = item.valid?
       expect(result).to eq(false)
@@ -98,7 +98,7 @@ describe IsoManagedV2 do
 
     it "allows the version, semantic_version, version_label and indentifier to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_minimum(uri)
       expect(item.version).to eq(1)   
       expect(item.semantic_version.to_s).to eq("1.2.3")   
       expect(item.version_label).to eq("0.1")   
@@ -106,8 +106,9 @@ describe IsoManagedV2 do
     end
 
     it "allows the latest, later, earlier and same version to be assessed" do
-     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      item = IsoManagedV2.find_minimum(uri)
+    #byebug
       expect(item.latest?).to eq(true)   
       expect(item.later_version?(0)).to eq(true)   
       expect(item.later_version?(1)).to eq(false)   
@@ -141,7 +142,7 @@ describe IsoManagedV2 do
 
     it "allows current and can be current status to be determined" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_full(uri)
       expect(item.current?).to eq(false)   
       expect(item.can_be_current?).to eq(false)   
     end
@@ -165,18 +166,18 @@ describe IsoManagedV2 do
     end
 
     it "handles not finding an item correctly" do
-      expect{IsoManagedV2.find(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#XXX"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRForms/ACME/V1#XXX in IsoManagedV2.")
+      expect{IsoManagedV2.find_with_properties(Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#XXX"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRForms/ACME/V1#XXX in IsoManagedV2.")
     end
 
     it "allows the item to be updated" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_full(uri)
       result = item.to_h
       result[:explanatory_comment] = "New comment"
       result[:change_description] = "Description"
       result[:origin] = "Origin"
       item.update({:explanatory_comment => "New comment", :change_description => "Description", :origin => "Origin"})
-      item = IsoManagedV2.find(uri)
+      item = IsoManagedV2.find_with_properties(uri)
       result[:last_change_date] = date_check_now(item.last_change_date).iso8601
       expect(item.to_h).to eq(result)
     end
@@ -262,8 +263,8 @@ describe IsoManagedV2 do
 =begin
     it "allows an item to be created from Operation JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      old_item = IsoManagedV2.find(uri)
-      new_item = IsoManagedV2.find(uri)
+      old_item = IsoManagedV2.find_with_properties(uri)
+      new_item = IsoManagedV2.find_with_properties(uri)
       operation = 
         {
           :action => "CREATE",
@@ -359,7 +360,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       expect(item.to_operation).to eq(result)
     end
 
@@ -375,7 +376,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item.registrationState.registrationStatus = "Qualified"
       result = item.to_operation
       expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
@@ -395,7 +396,7 @@ describe IsoManagedV2 do
           }, 
           :managed_item => form
         }
-      item = IsoManagedV2.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item.registrationState.registrationStatus = "Qualified"
       result = item.update_operation
       expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
@@ -456,23 +457,23 @@ describe IsoManagedV2 do
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
     end
 
-    it "find, I" do
+    it "find full, I" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = IsoManagedV2.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+      results = IsoManagedV2.find_full(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_1.yaml", equate_method: :hash_equal)
     end
 
-    it "find, II" do
+    it "find full, II" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      results = CdiscTerm.find(uri)
-      check_file_actual_expected(results.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal)
+      results = CdiscTerm.find_full(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_full_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "find, III, speed" do
+    it "find full, III, speed" do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
-      (1..100).each {|x| results = CdiscTerm.find(uri)}
-      timer_stop("Find 100 times [8.29s -> 6.48s]")
+      (1..100).each {|x| results = CdiscTerm.find_full(uri)}
+      timer_stop("Find Full 100 times [8.29s -> 6.48s]")
     end
 
     it "find minimum I" do
@@ -485,7 +486,20 @@ describe IsoManagedV2 do
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       timer_start
       (1..100).each {|x| results = CdiscTerm.find_minimum(uri)}
-      timer_stop("Find 100 times [1.65s -> 1.25s]")
+      timer_stop("Find Minimum 100 times [1.65s -> 1.25s]")
+    end
+
+    it "find properties I" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      results = IsoManagedV2.find_with_properties(uri)
+      check_file_actual_expected(results.to_h, sub_dir, "find_properties_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "find properties II, speed" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      timer_start
+      (1..100).each {|x| results = CdiscTerm.find_with_properties(uri)}
+      timer_stop("Find Properties 100 times [1.65s]")
     end
 
     it "where, I" do
@@ -655,7 +669,7 @@ describe IsoManagedV2 do
       expect(object.errors.count).to eq(0)
       check_dates(object, sub_dir, "create_expected_1a.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1a.yaml", equate_method: :hash_equal)
-      object = Thesaurus.find(object.uri)
+      object = Thesaurus.find_full(object.uri)
       check_dates(object, sub_dir, "create_expected_1b.yaml", :last_change_date, :creation_date)
       check_file_actual_expected(object.to_h, sub_dir, "create_expected_1b.yaml", equate_method: :hash_equal)
     end
@@ -677,6 +691,21 @@ describe IsoManagedV2 do
       object = Thesaurus.create({label: "A new item", identifier: "XXXXX"})
       expect(object.errors.count).to eq(1)
       expect(object.errors.full_messages.to_sentence).to eq("The item cannot be created. The identifier is already in use.")
+    end
+
+    it "create next version" do
+      object = Thesaurus.create({label: "A new item", identifier: "NEW1"})
+      expect(object.errors.count).to eq(0)
+      check_file_actual_expected(object.to_h, sub_dir, "create_next_version_1.yaml", equate_method: :hash_equal)
+      result = object.create_next_version
+      expect(object.uri).to eq(result.uri) # Same item
+      object.has_state.registration_status = IsoRegistrationStateV2.released_state
+      object.explanatory_comment = "A comment"
+      object.change_description = "A description"
+      object.origin = "A ref"
+      result = object.create_next_version
+      expect(object.uri).to_not eq(result.uri) # New item
+      check_file_actual_expected(result.to_h, sub_dir, "create_next_version_2.yaml", equate_method: :hash_equal)
     end
 
   end

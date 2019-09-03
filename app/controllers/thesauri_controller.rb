@@ -1,9 +1,9 @@
 class ThesauriController < ApplicationController
-  
+
   include ControllerHelpers
 
   before_action :authenticate_user!
-  
+
   # def new
   #   authorize Thesaurus
   #   @thesaurus = Thesaurus.new
@@ -13,20 +13,20 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @thesauri = Thesaurus.unique
     respond_to do |format|
-      format.html 
+      format.html
       format.json do
         render json: {data: @thesauri}
       end
     end
   end
-  
+
   def history
     authorize Thesaurus
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        if results.empty? 
-          redirect_to thesauri_index_path 
+        if results.empty?
+          redirect_to thesauri_index_path
         else
           @thesauri_id = results.first.to_id
           @identifier = the_params[:identifier]
@@ -41,7 +41,7 @@ class ThesauriController < ApplicationController
       end
     end
   end
-  
+
   def show
     authorize Thesaurus
     @ct = Thesaurus.find_minimum(params[:id])
@@ -57,7 +57,7 @@ class ThesauriController < ApplicationController
       end
     end
   end
-  
+
   def create
     authorize Thesaurus
     @thesaurus = Thesaurus.create(the_params)
@@ -73,15 +73,8 @@ class ThesauriController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus = Thesaurus.find_minimum(params[:id])
-    @token = get_token(@thesaurus)
-    if @thesaurus.new_version?
-      th = Thesaurus.find(params[:id])
-      new_th = Thesaurus.create(th.to_operation)
-      @thesaurus = Thesaurus.find(new_th.id, new_th.namespace, false)
-      @token.release
-	    @token = get_token(@thesaurus)
-	  end
-  	@close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @thesaurus = edit_item(@thesaurus)
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
     @parent_identifier = ""
   end
 
@@ -90,7 +83,7 @@ class ThesauriController < ApplicationController
     results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}), 
+    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
       delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})}
     render :json => { data: results }, :status => 200
   end
@@ -140,7 +133,7 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :view?
     @thesaurus = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
-      format.html 
+      format.html
         @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.owner})
       format.json do
         if Thesaurus.empty_search?(params)
@@ -148,11 +141,11 @@ class ThesauriController < ApplicationController
         else
           results = @thesaurus.search(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
-        end        
+        end
       end
     end
   end
-  
+
   def changes
     authorize Thesaurus, :view?
     respond_to do |format|
@@ -167,7 +160,7 @@ class ThesauriController < ApplicationController
       format.json do
         ct = Thesaurus.find_minimum(params[:id])
         cls = ct.changes(current_user.max_term_display.to_i)
-        cls[:items].each do |k,v| 
+        cls[:items].each do |k,v|
           v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
         end
         render json: {data: cls}
@@ -219,11 +212,20 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def extension
+    authorize Thesaurus, :edit?
+    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    thesaurus = Thesaurus.find_minimum(results.first)
+    thesaurus = edit_item(thesaurus)
+    new_object = thesaurus.add_extension(the_params[:concept_id])
+    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
+  end
+
   def search_current
     authorize Thesaurus, :view?
     @close_path = thesauri_index_path
   end
-  
+
    def export_ttl
     authorize Thesaurus
     item = IsoManaged::find(params[:id], params[:namespace])
@@ -238,14 +240,14 @@ class ThesauriController < ApplicationController
 
   def impact_start
   	authorize Thesaurus, :impact?
-  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])  	
+  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
   	render json: @thesaurus.impact
   end
 
   def impact_report
   	authorize Thesaurus, :impact?
   	results = []
-  	thesaurus = Thesaurus.find(params[:id], params[:namespace])  	
+  	thesaurus = Thesaurus.find(params[:id], params[:namespace])
   	results = impact_report_start(thesaurus)
   	respond_to do |format|
       format.pdf do
@@ -264,7 +266,7 @@ private
 		thesaurus.impact.each do |x|
   		uri = UriV2.new({uri: x})
 	  	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
-  			item = ThesaurusConcept.find(a, b)  	
+  			item = ThesaurusConcept.find(a, b)
   			item.set_parent
   			item
   		}
@@ -277,7 +279,7 @@ private
   		end
   	end
   	results.each do |k,v|
-  		v[:children] = v[:children].inject([]) do |new_children, item| 
+  		v[:children] = v[:children].inject([]) do |new_children, item|
   			new_children << { uri: item[:uri].to_s }
   		end
   	end
@@ -296,16 +298,16 @@ private
       managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
 		  result[:children] << managed_item
 		  uri_s = managed_item[:uri].to_s
-      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b| 
-      	item = IsoManaged.find(a, b, false) 
+      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b|
+      	item = IsoManaged.find(a, b, false)
       }
     end
     return results
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
     #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
-    
+
 end

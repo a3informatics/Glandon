@@ -1,0 +1,76 @@
+@import "custom/globals.scss";
+
+$drag-timeline-btn-width: 130px;
+
+.timeline-outer-container{
+  margin: 10px 10px 10px 10px;
+  display: block;
+}
+
+.timeline-container{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-family: $font-light;
+  min-height: 30px;
+}
+
+.timeline{
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  z-index: 1;
+  background: $grey-light;
+}
+
+.timeline-point{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  transition: transform .3s;
+}
+
+.point-highlight{
+  z-index: 6;
+  background-color: $accent-color-2;
+}
+
+.timeline-start-end{
+  color: $grey-light;
+  position: absolute;
+  z-index: 1;
+}
+
+.timeline-start-end:first-of-type{
+  left: -40px;
+}
+
+.timeline-start-end:last-of-type{
+  right: -50px;
+}
+
+.timeline-date-btn{
+  width: $drag-timeline-btn-width;
+  padding: 6px 10px 4px 10px;
+  border: 1px solid $grey-light;
+  border-radius: 20px;
+  background: $grey-white;
+  color: $accent-color-2;
+  font-size: $font-small;
+  text-align: center;
+  position: absolute;
+  z-index: 10;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.timeline-controls{
+  z-index: 2;
+}
+
+#timeline-end-btn{
+  top: -60px;
+}
