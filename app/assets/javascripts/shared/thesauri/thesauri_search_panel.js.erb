@@ -106,7 +106,7 @@ ThesauriSearchPanel.prototype.initTable = function () {
 */
 ThesauriSearchPanel.prototype.setupClearButton = function () {
   var _this = this;
-  $('#searchTable_filter').append('<button id="clearbutton" class="btn btn-default clear-button"><span class="icon-times text-small"></span> Clear All</button>');
+  $('#searchTable_filter').append('<button id="clearbutton" class="btn medium btn-default clear-button"><span class="icon-times text-small"></span> Clear All</button>');
   $('#clearbutton').click(function(){
     $("#searchTable_filter input").val("");
     _this.tsSearchTable.search("");
