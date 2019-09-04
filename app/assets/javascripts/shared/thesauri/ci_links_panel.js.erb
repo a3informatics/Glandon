@@ -1,0 +1,82 @@
+/*
+* Change Instruction Panel
+* 
+*/
+
+/**
+* Change Instruction Panel Constructor
+* @param url [String] The url to make the ajax call
+* @param panelId [String] The id assigned to the panel
+*
+* @return [void]
+*/
+function CiPanel(url, panelId, panelTitle) {
+  this.url = url;
+  this.panelId = panelId;
+  this.panelTitle = panelTitle;
+  this.getData();
+}
+
+/**
+ * Ajax Call
+ *
+ * @return [void]
+ */
+CiPanel.prototype.getData = function () {
+  var _this = this;
+  $.ajax({
+    url: _this.url,
+    type: 'GET',
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function(result){ 
+      console.log(result.data);
+    _this.display(result.data);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError (xhr, status, error);
+    }
+  }); 
+}
+
+/**
+ * Display the result
+ * @param result [String] The result obtained from Ajax call
+ *
+ * @return [void]
+ */
+CiPanel.prototype.display = function (result) {
+  var _this = this; 
+  var html = '';
+  if(result.current.length == 0 && result.previous.length == 0) {
+    html +=   '<div class="card">'+
+              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
+              '<span class="list-group-item">' +
+                  '<p class="list-group-item-text">None</p>' +
+                '</span></div>';   
+              }else if (result.current.length == 0)  {
+    html += '<div class="card">'+
+              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
+              '<div class="card-content"><div class="text-small font-light p-justified">'+result.description+'</div><br>'+
+              '<div class="list-group">';   
+      $.each( result.previous, function( index, prev ) {
+        html +=   '<a href="' + prev.show_path + '" class="list-group-item">' +
+                    '<p class="list-group-item-text"><small>'+prev.parent.notation + ' (' + prev.parent.identifier + '), ' + prev.child.notation + ' (' + prev.child.identifier + ')</small></p>' +
+                  '</a>';         
+      });
+      html +='</div></div>';   
+   } else {
+    html += '<div class="card">'+
+              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
+              '<div class="card-content"><div class="text-small font-light p-justified">'+result.description+'</div><br>'+
+              '<div class="list-group">';   
+      $.each( result.current, function( index, curr ) {
+        html +=   '<a href="' + curr.show_path + '" class="list-group-item">' +
+                    '<p class="list-group-item-text"><small>'+curr.parent.notation + ' (' + curr.parent.identifier + '), ' + curr.child.notation + ' (' + curr.child.identifier + ')</small></p>' +
+                  '</a>';         
+      });
+      html +='</div></div>';   
+
+   };
+  $('#'+_this.panelId).html(html);
+}
