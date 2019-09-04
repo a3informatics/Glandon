@@ -450,49 +450,49 @@ describe Thesaurus::UnmanagedConcept do
     it "synonym links, single synonym" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = tc.synonym_links({context_id: th.id})
+      results = tc.linked_by_synonym({context_id: th.id})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_1.yaml")
     end
 
     it "synonym links, empty with no synonym" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
-      results = tc.synonym_links({context_id: th.id})
+      results = tc.linked_by_synonym({context_id: th.id})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_2.yaml")
     end
 
     it "synonym links, empty with no synonym" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V57#C65047_C156534"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
-      results = tc.synonym_links({context_id: th.id})
+      results = tc.linked_by_synonym({context_id: th.id})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_3.yaml")
     end
 
     it "synonym links, empty with single synonym, no context" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = tc.synonym_links({})
+      results = tc.linked_by_synonym({})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_4.yaml")
     end
 
     it "synonym links, empty with no synonym" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V57#C65047_C156534"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
-      results = tc.synonym_links({})
+      results = tc.linked_by_synonym({})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_5.yaml")
     end
 
     it "PT link" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = tc.preferred_term_links({context_id: th.id})
+      results = tc.linked_by_preferred_term({context_id: th.id})
       check_file_actual_expected(results, sub_dir, "preferred_term_links_expected_1.yaml")
     end
 
     it "PT link no context" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
-      results = tc.preferred_term_links({})
+      results = tc.linked_by_preferred_term({})
       check_file_actual_expected(results, sub_dir, "preferred_term_links_expected_2.yaml")
     end
 

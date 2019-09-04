@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require d3 
+//= require d3
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
@@ -75,7 +75,7 @@ var C_IGVARIABLE = "http://www.assero.co.uk/BusinessDomain#IgVariable";
 var C_CLASSVARIABLE = "http://www.assero.co.uk/BusinessDomain#ClassVariable";
 var C_MODELVARIABLE = "http://www.assero.co.uk/BusinessDomain#ModelVariable";
 var C_SDTM_IG = "http://www.assero.co.uk/BusinessDomain#ImplementationGuide";
-      
+
 var C_SDTM_CLASSIFICATION = "http://www.assero.co.uk/BusinessDomain#VariableClassification"
 var C_SDTM_TYPE = "http://www.assero.co.uk/BusinessDomain#VariableType"
 var C_SDTM_COMPLIANCE = "http://www.assero.co.uk/BusinessDomain#VariableCompliance"
@@ -131,33 +131,33 @@ typeToString[C_TAG] = "Concept System Tag";
 * General Alert handling functions
 */
 function alertError(text) {
-    html = '<div class="alert alert-danger alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            text + 
+    html = '<div class="alert alert-danger alert-dismissible" role="alert">' +
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' +
+            text +
             '</div>'
     return html
 }
 
 function alertSuccess(text) {
-    html = '<div class="alert alert-success alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            text + 
+    html = '<div class="alert alert-success alert-dismissible" role="alert">' +
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' +
+            text +
             '</div>'
     return html
 }
 
 function alertWarning(text) {
-    html = '<div class="alert alert-warning alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            text + 
+    html = '<div class="alert alert-warning alert-dismissible" role="alert">' +
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' +
+            text +
             '</div>'
     return html
 }
 
 function alertInfo(text) {
-    html = '<div class="alert alert-info alert-dismissible" role="alert">' + 
-            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' + 
-            text + 
+    html = '<div class="alert alert-info alert-dismissible" role="alert">' +
+            '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' +
+            text +
             '</div>'
     return html
 }
@@ -165,10 +165,10 @@ function alertInfo(text) {
 function displayAlerts(html) {
     var alertsId = document.getElementById("alerts")
   	alertsId.innerHTML = html;
-    window.setTimeout(function() 
+    window.setTimeout(function()
       {
         alertsId.innerHTML = "";
-      }, 
+      },
       5000);
 }
 
@@ -239,7 +239,7 @@ function removeErrorText(element) {
 
 /*
 * URI functions
-*/ 
+*/
 function getNamespace(uri) {
   if (uri === null) {
     return "";
@@ -295,7 +295,7 @@ function pad(n, width, z) {
 */
 function getPath(rdfType) {
   if (rdfType == C_FORM) {
-    return "/forms/";    
+    return "/forms/";
   } else if (rdfType == C_BC) {
     return "/biomedical_concepts/";
   } else if (rdfType == C_BCT) {
@@ -336,11 +336,45 @@ function linkTo(path, namespace, id) {
 }
 
 /*
+* Expands / collapses the sidebar
+* Handles main_area's responsiveness
+*/
+function sidebarHandler(arrow){
+  $(arrow).toggleClass('arrow-rotate');
+  $('#sidebar').toggleClass('sidebar-collapsed');
+
+  // Animate main_area width
+  $('#main_area').toggleClass('col-sm-10');
+  $('#main_area').toggleClass('col-sm-11');
+  $('#sidebar').toggleClass('col-sm-2');
+  $('#sidebar').toggleClass('col-sm-1');
+
+  $('#main_area').toggleClass('ma-sb-col');
+  $('#main_area').toggleClass('ma-sb-exp');
+}
+
+/*
+* Expands / collapses a menu category
+*/
+function sidebarCategoryHandler(item){
+  if ($('#sidebar').hasClass('sidebar-collapsed'))
+    $('#sidebar').removeClass('sidebar-collapsed');
+
+  $(item).find('.arrow').toggleClass('arrow-rotate');
+  $(item).parent().toggleClass('collapsed');
+}
+
+function sidebarVerticalScreenHandler(arrow){
+  $(arrow).toggleClass('arrow-rotate');
+  $("#sidebar").toggleClass('collapsed-vertical');
+}
+
+/*
 * Generic Print function
 */
 $(document).ready(function() {
   $('#print_button').click(function() {
-    window.print()
+    window.print();
   });
 });
 
@@ -353,5 +387,3 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
     ctx.oApi._fnProcessingDisplay( ctx, show );
   });
 });
-
-

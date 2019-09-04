@@ -4,19 +4,15 @@
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 <% top_level_breadcrumb ("CDISC Terminology") %>
-<div class="col-md-9">
+<div class="col-md-9 card">
 	<%= render partial: "shared/history_panel", locals: {title: "History: CDISC Terminology"} %>
 </div>
-<div class="col-md-3">
-	<div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Changes</h3>
-    </div>
-    <div class="panel-body">
+<div class="col-md-3 card">
+    <h3 class="card-header">Changes</h3>
+    <div class="card-content">
       <p>View changes across versions:</p>
       <p><%= link_to "Changes", changes_thesauri_path(@cdisc_term_id), :class => "btn btn-primary" %></p>
       <p>View submission value changes across versions:</p>
       <p><%= link_to "Submission", submission_thesauri_path(@cdisc_term_id) , :class => "btn btn-primary" %></p>
     </div>
-  </div>
-</div> 
+</div>

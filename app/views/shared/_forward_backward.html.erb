@@ -1,4 +1,4 @@
-<% button_class = "btn btn-primary" %>
+<% button_class = "btn medium nomargin" %>
 <% start_class = links[:start].blank? ? button_class + " disabled" : button_class %>
 <% backward_single_class = links[:backward_single].blank? ? button_class + " disabled" : button_class %>
 <% backward_multiple_class = links[:backward_multiple].blank? ? button_class + " disabled" : button_class %>
@@ -10,16 +10,16 @@
     Start
   <% end %>
   <%= link_to links[:backward_multiple], id: "fb_bm_button", class: "#{backward_multiple_class}" do %>
-    <span class="fa fa-fast-backward"></span>
+    <span class="icon-fast-backward"></span>
   <% end %>
   <%= link_to links[:backward_single], id: "fb_bs_button", class: "#{backward_single_class}" do %>
-    <span class="fa fa-step-backward"></span>
+    <span class="icon-step-backward"></span>
   <% end %>
   <%= link_to links[:forward_single], id: "fb_fs_button", class: "#{forward_single_class}" do %>
-    <span class="fa fa-step-forward"></span>
+    <span class="icon-step-forward"></span>
   <% end %>
   <%= link_to links[:forward_multiple], id: "fb_fm_button", class: "#{forward_multiple_class}" do %>
-    <span class="fa fa-fast-forward"></span>
+    <span class="icon-fast-forward"></span>
   <% end %>
   <%= link_to links[:end], id: "fb_e_button", class: "#{end_class}" do %>
     End

@@ -42,7 +42,7 @@ class Thesaurus
       child[:transaction] = transaction_begin
       child = Thesaurus::UnmanagedConcept.create(child, self)
       return child if child.errors.any?
-      self.add_link(:narrower, child)
+      self.add_link(:narrower, child.uri)
       transaction_execute
       child
     end
@@ -127,8 +127,8 @@ class Thesaurus
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @return [Hash] the results hash
-    def synonym_links(params)
-      generic_links(params, :synonym)
+    def linked_by_synonym(params)
+      generic_find_links(params, :synonym)
     end
 
     # Preferred Term Links. Find all items within the context that share the preferred term
@@ -137,20 +137,20 @@ class Thesaurus
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @return [Hash] the results hash
-    def preferred_term_links(params)
-      generic_links(params, :preferred_term)
+    def linked_by_preferred_term(params)
+      generic_find_links(params, :preferred_term)
     end
 
   private
 
-    # Generic Links. Find all items within the context that share synonyms or preferred terms
+    # Generic Find Links. Find all items within the context that share synonyms or preferred terms
     #
     # @param [Hash] params the parameters
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @param [Symbol] the property name, either :synonym or :preferred_term
     # @return [Hash] the results hash
-    def generic_links(params, property_name)
+    def generic_find_links(params, property_name)
       predicate = self.properties.property(property_name).predicate
       context_filter = params.key?(:context_id) ? %Q{?th th:isTopConceptReference/bo:reference ?p .
   FILTER (STR(?th) = "#{Uri.new(id: params[:context_id]).to_s}") .} : ""

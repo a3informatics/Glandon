@@ -1,0 +1,71 @@
+---
+:organization_identifier:
+  :cardinality: :one
+  :model_class: 
+  :type: :data
+  :base_type: string
+  :read_exclude: false
+  :delete_exclude: false
+  :default: "<Not Set>"
+  :name: :organization_identifier
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: organizationIdentifier
+:international_code_designator:
+  :cardinality: :one
+  :model_class: 
+  :type: :data
+  :base_type: string
+  :read_exclude: false
+  :delete_exclude: false
+  :default: XXX
+  :name: :international_code_designator
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: internationalCodeDesignator
+:owner:
+  :cardinality: :one
+  :model_class: 
+  :type: :data
+  :base_type: boolean
+  :read_exclude: false
+  :delete_exclude: false
+  :default: ''
+  :name: :owner
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: owner
+:ra_namespace:
+  :cardinality: :many
+  :model_class: !ruby/class 'TestRTarget'
+  :default: []
+  :type: :object
+  :read_exclude: false
+  :delete_exclude: false
+  :base_type: ''
+  :name: :ra_namespace
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: raNamespace
+:by_authority:
+  :cardinality: :one
+  :model_class: !ruby/class 'IsoRegistrationAuthority'
+  :read_exclude: true
+  :default: 
+  :type: :object
+  :delete_exclude: false
+  :base_type: ''
+  :name: :by_authority
+  :predicate: !ruby/object:Uri
+    scheme: http
+    authority: www.assero.co.uk
+    path: ISO11179Registration
+    fragment: byAuthority

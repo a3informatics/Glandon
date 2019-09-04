@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-	<div class="panel-heading">Full History</div>
-	<div class="panel-body">
+<div class="card">
+	<div class="card-header">Full History</div>
+	<div class="card-content">
     <% if type == "CT" %>
 			<%= link_to "History", history_cdisc_terms_path(:id => currTerm.id), :class => "btn btn-info btn-xs" %>
     <% elsif type == "CL" %>

@@ -31,7 +31,7 @@ module Glandon
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
-    
+
     # Environment variable extra
     config.before_configuration do
         file = Rails.root.to_s + "/config/local_env.yml"
@@ -49,6 +49,7 @@ module Glandon
     config.imports = config_for(:imports).deep_symbolize_keys
     config.namespaces = config_for(:namespaces).deep_symbolize_keys
     config.thesauri = config_for(:thesauri).deep_symbolize_keys
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     # Rspec additions
     config.generators do |g|
@@ -61,6 +62,6 @@ module Glandon
             request_specs: false
         g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
-    
+
   end
 end

@@ -79,6 +79,28 @@ describe IsoConceptV2 do
 
   describe "Utility Methods" do
 
+    def check_count(ct, n) 
+      query_string = %Q{
+        SELECT ?o
+        {
+          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> ?o .
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      expect(query_results.by_object(:o).count).to eq(n)
+    end
+
+    def check_uri(ct, set) 
+      query_string = %Q{
+        SELECT ?o
+        {
+          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> ?o .
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      expect(query_results.by_object(:o)).to eq(set)
+    end
+
     before :all  do
       IsoHelpers.clear_cache
     end
@@ -96,15 +118,30 @@ describe IsoConceptV2 do
       item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX")
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       ct.add_link(:is_top_concept, item)
-      query_string = %Q{
-        SELECT ?o
+      check_count(ct, 1)
+      check_uri(ct, [item.uri])
+    end
+
+    it "delete link" do
+      item1 = Thesaurus::ManagedConcept.new
+      item1.uri = Uri.new(uri: "http://www.assero.co.uk/XXX1")
+      item2 = Thesaurus::ManagedConcept.new
+      item2.uri = Uri.new(uri: "http://www.assero.co.uk/XXX2")
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      update_query = %Q{
+        INSERT  
         {
-          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> ?o .
-        }
+          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> #{item1.uri.to_ref} .
+          #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> #{item2.uri.to_ref} .
+        } WHERE {}
       }
-      query_results = Sparql::Query.new.query(query_string, "", [])
-      expect(query_results.by_object(:o).count).to eq(1)
-      expect(query_results.by_object(:o).first.to_s).to eq("http://www.assero.co.uk/XXX")
+      ct.partial_update(update_query, [])
+      check_count(ct, 2)
+      check_uri(ct, [item1.uri, item2.uri])
+      ct.delete_link(:is_top_concept, item1.uri)
+      check_uri(ct, [item2.uri])
+      ct.delete_link(:is_top_concept, item2.uri)
+      check_uri(ct, [])
     end
 
   end

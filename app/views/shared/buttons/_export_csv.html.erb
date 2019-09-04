@@ -1,0 +1,7 @@
+<% classes = "btn medium" %>
+<% if small %>
+  <% classes += " btn-xs" %>
+<% end %>
+<%= link_to link_path, class: classes, id: id, :target => "_blank" do %>
+  <span class="icon-file-csv text-small"></span> Export CSV
+<% end %>

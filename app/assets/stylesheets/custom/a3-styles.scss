@@ -1,0 +1,415 @@
+@import "custom/globals.scss";
+
+// SHADOWS
+.shadow-small{
+  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+}
+
+.shadow-medium{
+  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+}
+
+// TOOLTIP
+.ttip {
+  position: relative;
+  display: inline-block;
+}
+
+.ttip .ttip-text {
+  font-family: $font-light;
+  top: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  visibility: hidden;
+  background-color: white;
+  text-align: center;
+  padding: 7px 12px;
+  position: absolute;
+  z-index: 12;
+  white-space: nowrap;
+}
+
+.ttip:hover .ttip-text {
+  visibility: visible;
+}
+
+.ttip-right{
+  left: 0%;
+}
+
+.ttip-left{
+  right: 0%;
+}
+
+
+// BREADCRUMBS
+
+.breadcrumb a {
+  font-size: 12px !important;
+  margin-left: 0px !important;
+}
+
+.breadcrumb li {
+  font-size: 12px !important;
+}
+
+.breadcrumb > li + li:before {
+  content: "/";
+  /*padding: 0 5px;*/
+}
+
+.breadcrumb {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0px;
+  display: inline-block;
+  border-bottom: 1px solid lightgrey;
+  border-radius: 0px;
+  width: 100%;
+}
+
+// CARDS
+
+.card{
+  background: $grey-white;
+  border-radius: $card-border-radius;
+  margin: 20px;
+  // min-width: 450px;
+
+  -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+}
+
+.card-header{
+  background: $primary-color-light;
+  color: $grey-white;
+  font-size: $font-normal;
+  font-family: $font-light;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0px 0px;
+  padding: 18px 24px;
+  width: 100%;
+}
+
+.card-content{
+  padding: 30px 20px;
+  color: $grey-medium;
+  overflow: auto;
+}
+
+.card-content table{
+  width: 100% !important;
+}
+
+// TEXT
+
+.text-centered{
+  width: 100%;
+  text-align: center;
+}
+
+// BUTTONS
+.btn{
+  background: $primary-color-medium;
+  color: $grey-white;
+  font-family: $font-light;
+  padding: 3px 10px;
+  border: 0;
+  border-radius: $button-border-radius;
+  margin: 0px 5px;
+}
+
+.btn:hover{
+  background-color: $primary-color-light;
+  color: $grey-white !important;
+}
+
+.btn.nomargin{
+  margin: 0px;
+}
+
+.btn.medium{
+  padding: 5px 10px;
+  font-size: $font-small;
+}
+
+.btn.big{
+  padding: 10px 10px;
+  font-size: $font-normal;
+}
+
+// Wrapper for multiple buttons, takes 100% width and the contents are centered
+.btns-wrap{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px 5px;
+}
+
+// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
+.ico-btn{
+  width: min-content;
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  background: $grey-white;
+  color: $primary-color-medium;
+  margin: 5px 5px;
+}
+
+.ico-btn:hover .ico-btn-text{
+  color: $grey-white !important;
+}
+
+.ico-btn .ico{
+  display: flex;
+  align-self: center;
+  font-size: $font-large;
+}
+
+.ico-btn .ico-btn-text{
+  margin: 0px 5px;
+}
+
+.ico-btn.light{
+  color: $primary-color-bright;
+}
+
+.ico-btn.light:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.light:active{
+  background: $primary-color-light;
+}
+
+.ico-btn.light .ico-btn-text{
+  color: $grey-medium;
+}
+
+.ico-btn.highlight, ico-btn.light.highlight{
+  color: $grey-white;
+  background: $primary-color-light;
+}
+
+.ico-btn.highlight:hover, ico-btn.light.highlight:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.highlight .ico-btn-text, .ico-btn.light.highlight .ico-btn-text{
+  color: $grey-white;
+}
+
+// HEADERS
+
+.ico-header{
+  width: 50%;
+  min-width: 250px;
+  background: $grey-white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  border: 1px solid $grey-bright;
+  margin: 0 auto;
+}
+
+.ico-header .ico{
+  width: 40px;
+  margin: 8px 10px;
+  transition: transform .3s;
+}
+
+.ico-header .title{
+  font-size: $font-large;
+  color: $grey-medium;
+  font-family: $font-light;
+  margin: 0px 10px;
+}
+
+.ico-header:hover .ico{
+  transform: scale(1.1);
+}
+
+// LOADING SIZES
+.loading-small{
+  width: 50px;
+}
+
+.loading-medium{
+  width: 100px;
+}
+
+.loading-large{
+  width: 200px;
+}
+
+// LIST WRAP (CDISC_TERMS)
+
+.list-wrap{
+  margin: 10px auto;
+  padding: 5px 10px;
+  max-width: 600px;
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list-wrap a{
+  white-space: nowrap !important;
+}
+
+.list-wrap a:hover{
+  text-decoration: none;
+}
+
+.list-wrap a:hover .text{
+  transform: translateX(5px);
+}
+
+// LIST CARDS
+
+.list-card{
+  background: $grey-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 8px;
+  padding: 8px 8px;
+  position: relative;
+  min-height: 50px;
+}
+
+.list-card .card-badge{
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  display: block;
+}
+
+.list-card .text{
+  color: $grey-medium;
+  font-size: $font-small;
+  font-family: $font-normal;
+  margin-left: 20px;
+  white-space: normal;
+  transition: transform .3s;
+}
+
+.list-card .sub-text{
+  font-size: $font-small;
+  font-family: $font-light;
+}
+
+// FIXES: #ignore, do not change
+.paginate_button.active a{
+  background: $primary-color-medium !important;
+  color: $grey-white !important;
+}
+
+.paginate_button a{
+  color: $primary-color-medium !important;
+}
+
+button:focus{
+  outline: none !important;
+}
+
+.btn:active{
+  background: $primary-color-medium !important;
+}
+
+.paginate_button a:focus{
+  outline: none !important;
+}
+
+
+.col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
+.col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
+.col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
+  padding: 0px;
+}
+
+.col-md-1.card{
+  max-width: calc(8.3% - 40px);
+}
+
+.col-md-2.card{
+  max-width: calc(16.6% - 40px);
+}
+
+.col-md-3.card{
+  max-width: calc(25% - 40px);
+}
+
+.col-md-4.card{
+  max-width: calc(33.3% - 40px);
+}
+
+.col-md-5.card{
+  max-width: calc(41.6% - 40px);
+}
+
+.col-md-6.card{
+  max-width: calc(50% - 40px);
+}
+
+.col-md-7.card{
+  max-width: calc(58.3% - 40px);
+}
+
+.col-md-8.card{
+  max-width: calc(66.6% - 40px);
+}
+
+.col-md-9.card{
+  max-width: calc(75% - 40px);
+}
+
+.col-md-10.card{
+  max-width: calc(83.3% - 40px);
+}
+
+.col-md-11.card{
+  max-width: calc(91.6% - 40px);
+}
+
+.col-md-12.card{
+  max-width: calc(100% - 40px);
+}
+
+// SCROLLBARS
+
+body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
+  .list-wrap::-webkit-scrollbar{
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track,
+{
+    background-color: $grey-bright;
+}
+
+body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
+{
+  background-color: #e8e8e8;
+}
+
+.list-wrap::-webkit-scrollbar-track{
+  background: white;
+}
+
+.list-wrap::-webkit-scrollbar-thumb{
+  background-color: $grey-bright;
+}
+
+#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+  #main_area::-webkit-scrollbar {
+  display: none;
+}

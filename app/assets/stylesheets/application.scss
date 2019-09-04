@@ -1,11 +1,14 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "font-awesome";
+// @import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "datatables.min";
 @import "buttons.bootstrap.min";
 @import "select.bootstrap.min";
 @import "editor.bootstrap.min";
+@import "custom/globals.scss";
+@import "custom/icon-font.scss";
+@import "custom/a3-styles.scss";
 
 // For adding white space at top of rows
 .top-buffer { margin-top:20px; }

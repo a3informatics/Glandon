@@ -1,3 +1,3 @@
 <% if policy(klass).index? %>
-		<li><a id="<%= link_id %>" href="<%= link_path %>"><%= link_text %></a></li>
+		<li><a id="<%= link_id %>" class="text-medium <%= if link_path.include? current_link then "text-link" end %>"  href="<%= link_path %>"><%= link_text %></a></li>
 <% end %>
