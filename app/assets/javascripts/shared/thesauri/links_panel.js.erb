@@ -51,13 +51,19 @@ LinksPanel.prototype.display = function (result) {
     item.references.sort( function (item1, item2){
       return new Date(item2.parent.date) - new Date(item1.parent.date)
     });
-    html += '<div class="card"><div class="card-header">'+_this.panelTitle+': '+item.description+'</div>'+
+    html += '<div class="card"><h3 class="card-header">'+_this.panelTitle+': '+item.description+'</h3>'+
               '<div class="list-group">';
+              if(item.references.length === 0) {
+                   html +=   '<span class="list-group-item">' +
+                  '<p class="list-group-item-text">None</p>' +
+                '</span>';    
+              }else {
     $.each( item.references, function( index, ref ) {
-      html +=   '<a href="' + ref.show_path + '" class="list-group-item" id="item">' +
+      html +=   '<a href="' + ref.show_path + '" class="list-group-item">' +
                   '<p class="list-group-item-text"><small>'+ref.parent.notation + ' (' + ref.parent.identifier + '), ' + ref.child.notation + ' (' + ref.child.identifier + ')</small></p>' +
                 '</a>';         
-    }); 
+    })
+  }; 
       html +='</div></div>';   
   });
   $('#'+_this.panelId).html(html);

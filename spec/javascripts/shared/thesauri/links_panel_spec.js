@@ -16,10 +16,12 @@ describe("Links Panel", function() {
   it("initialises the panel", function() {
     url="url";
     panelId="panelId";
+    panelTitle="panelTitle";
     get_data_stub = sinon.stub(LinksPanel.prototype , "getData");
-    var links_panel = new LinksPanel(url, panelId);
+    var links_panel = new LinksPanel(url, panelId, panelTitle);
     expect(links_panel.url).to.equal(url);            
     expect(links_panel.panelId).to.equal(panelId);
+    expect(links_panel.panelTitle).to.equal(panelTitle);
     expect(get_data_stub.calledOnce).to.be.true;
     get_data_stub.restore();        
   });
@@ -27,7 +29,7 @@ describe("Links Panel", function() {
 
   it("get data", function() {
     display_stub = sinon.stub(LinksPanel.prototype , "display");
-    var links_panel = new LinksPanel ("url", "panel-id");
+    var links_panel = new LinksPanel ("url", "panel-id", "panelTitle");
     data = {"data":               {
                 "umol/g":
                         {
@@ -53,17 +55,17 @@ describe("Links Panel", function() {
     server.respondWith("GET", "url", [200, {"Content-Type":"application/json"}, JSON.stringify(data)]);
     links_panel.getData();
     server.respond();
-    expect(display_stub.calledTwice).to.be.true;
+    expect(display_stub.called).to.be.true;
     display_stub.restore();
   });
 
 
   it("display content", function() {
     html =
-    '<div class="panel-body" id="linkspanel">'+  
+    '<div id="linkspanel">'+  
     '</div>';
     fixture.set(html);
-    var linkspanel = new LinksPanel ("url", "linkspanel");
+    var linkspanel = new LinksPanel ("url", "linkspanel", "Shared Synonym");
     linkspanel.display(
 {
   "Ehrlich Units": {
@@ -156,33 +158,35 @@ describe("Links Panel", function() {
 }
     );
 
-    expect(document.getElementById("linkspanel").innerHTML).to.equal(
-'<div class="panel panel-default">'+
-    '<div class="panel-heading">Ehrlich Units</div>'+
+     expect(document.getElementById("linkspanel").innerHTML).to.equal(           
+'<div class="card">'+
+    '<h3 class="card-header">Shared Synonym: Ehrlich Units</h3>'+
     '<div class="list-group">'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
-        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item" id="item">'+
-            '<p class="list-group-item-text"><small>UNIT (C71620),EU (C96599)</small></p>'+
+        '<a href="/thesauri/unmanaged_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1YyNiNDNzE2MjBfQzk2NTk5?" class="list-group-item">'+
+            '<p class="list-group-item-text"><small>UNIT (C71620), EU (C96599)</small></p>'+
         '</a>'+
     '</div>'+
 '</div>'+
-'<div class="panel panel-default">'+
-    '<div class="panel-heading">EU/dL</div>'+
-    '<div class="list-group"></div>'+
+'<div class="card">'+
+    '<h3 class="card-header">Shared Synonym: EU/dL</h3>'+
+    '<div class="list-group">'+
+    '<span class="list-group-item"><p class="list-group-item-text">None</p></span>'+
+    '</div>'+
 '</div>'
     );
   });

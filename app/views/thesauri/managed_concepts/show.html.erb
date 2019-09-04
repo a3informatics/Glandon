@@ -5,29 +5,24 @@
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-8 card">
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @tc} %>
   </div>
-  <div class="col-md-4">
-    <div class="card">
-        <h3 class="card-header">Navigation</h3>
-      <div class="card-content">
-        <%= back_close_button %>
-        <%= link_to "Export CSV", export_csv_thesauri_path(@tc), :class => "btn btn-info" %>
-        <% class_list = @can_be_extended ? "btn btn-primary" : "btn btn-primary disabled" %>
-        <%= link_to "Extend", "#tableModal",:id=> "extend", :class => class_list, "data-toggle" => "modal" %>
-        <%= render partial: "shared/thesauri/thesauri_select" %>
-        <%= link_to "Extension", @is_extended_path, :id=> "extension", :class => "btn btn-primary" %>
-        <%= link_to "Extending", @is_extending_path, :id=> "extending", :class => "btn btn-primary" %>
-      </div>
+  <div class="col-md-4 card">
+    <h3 class="card-header">Navigation</h3>
+    <div class="card-content">
+      <%= back_close_button %>
+      <%= link_to "Export CSV", export_csv_thesauri_path(@tc), :class => "btn btn-info" %>
+      <% class_list = @can_be_extended ? "btn btn-primary" : "btn btn-primary disabled" %>
+      <%= link_to "Extend", "#tableModal",:id=> "extend", :class => class_list, "data-toggle" => "modal" %>
+      <%= render partial: "shared/thesauri/thesauri_select" %>
+      <%= link_to "Extension", @is_extended_path, :id=> "extension", :class => "btn btn-primary" %>
+      <%= link_to "Extending", @is_extending_path, :id=> "extending", :class => "btn btn-primary" %>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 card">
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>
-
-
-

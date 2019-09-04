@@ -2,23 +2,19 @@
 <%= javascript_tag "var url_path = '#{thesauri_path(@ct)}';" %>
 <% third_level_managed_item_breadcrumb(@ct, "Terminology", thesauri_index_path, @close_path, "Show:") %>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-8 card">
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @ct} %>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Navigation</h3>
-      </div>
-      <div class="panel-body">
-        <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
-        <%= link_to "Export CSV", export_csv_thesauri_path(@ct), :class => "btn btn-info" %>
-      </div>
+  <div class="col-md-4 card">
+    <h3 class="card-header">Navigation</h3>
+    <div class="card-content">
+      <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
+      <%= render partial: "shared/buttons/export_csv", :locals => {link_path: export_csv_thesauri_path(@ct), id: "export-csv", small: false} %>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 card">
     <%= render partial: "shared/iso_managed/managed_children_panel", :locals => {:title => "Code Lists"} %>
   </div>
 </div>

@@ -45,26 +45,6 @@
   right: 0%;
 }
 
-// SCROLLBAR
-
-
-body::-webkit-scrollbar, #sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track {
-    background-color: $grey-bright;
-}
-
-body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
-  background-color: $grey-light;
-}
-
-#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
-  #main_area::-webkit-scrollbar {
-  display: none;
-}
-
 
 // BREADCRUMBS
 
@@ -98,7 +78,7 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   background: $grey-white;
   border-radius: $card-border-radius;
   margin: 20px;
-  min-width: 450px;
+  // min-width: 450px;
 
   -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
   -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
@@ -106,13 +86,13 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
 }
 
 .card-header{
-  background: $primary-color-bright;
+  background: $primary-color-light;
   color: $grey-white;
   font-size: $font-normal;
   font-family: $font-light;
   margin: 0;
   border-radius: $card-border-radius $card-border-radius 0px 0px;
-  padding: 16px 24px;
+  padding: 18px 24px;
   width: 100%;
 }
 
@@ -125,6 +105,230 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
 .card-content table{
   width: 100% !important;
 }
+
+// TEXT
+
+.text-centered{
+  width: 100%;
+  text-align: center;
+}
+
+// BUTTONS
+.btn{
+  background: $primary-color-medium;
+  color: $grey-white;
+  font-family: $font-light;
+  padding: 3px 10px;
+  border: 0;
+  border-radius: $button-border-radius;
+  margin: 0px 5px;
+}
+
+.btn:hover{
+  background-color: $primary-color-light;
+  color: $grey-white !important;
+}
+
+.btn.nomargin{
+  margin: 0px;
+}
+
+.btn.medium{
+  padding: 5px 10px;
+  font-size: $font-small;
+}
+
+.btn.big{
+  padding: 10px 10px;
+  font-size: $font-normal;
+}
+
+// Wrapper for multiple buttons, takes 100% width and the contents are centered
+.btns-wrap{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px 5px;
+}
+
+// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
+.ico-btn{
+  width: min-content;
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  background: $grey-white;
+  color: $primary-color-medium;
+  margin: 5px 5px;
+}
+
+.ico-btn:hover .ico-btn-text{
+  color: $grey-white !important;
+}
+
+.ico-btn .ico{
+  display: flex;
+  align-self: center;
+  font-size: $font-large;
+}
+
+.ico-btn .ico-btn-text{
+  margin: 0px 5px;
+}
+
+.ico-btn.light{
+  color: $primary-color-bright;
+}
+
+.ico-btn.light:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.light:active{
+  background: $primary-color-light;
+}
+
+.ico-btn.light .ico-btn-text{
+  color: $grey-medium;
+}
+
+.ico-btn.highlight, ico-btn.light.highlight{
+  color: $grey-white;
+  background: $primary-color-light;
+}
+
+.ico-btn.highlight:hover, ico-btn.light.highlight:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.highlight .ico-btn-text, .ico-btn.light.highlight .ico-btn-text{
+  color: $grey-white;
+}
+
+// HEADERS
+
+.ico-header{
+  width: 50%;
+  min-width: 250px;
+  background: $grey-white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  border: 1px solid $grey-bright;
+  margin: 0 auto;
+}
+
+.ico-header .ico{
+  width: 40px;
+  margin: 8px 10px;
+  transition: transform .3s;
+}
+
+.ico-header .title{
+  font-size: $font-large;
+  color: $grey-medium;
+  font-family: $font-light;
+  margin: 0px 10px;
+}
+
+.ico-header:hover .ico{
+  transform: scale(1.1);
+}
+
+// LOADING SIZES
+.loading-small{
+  width: 50px;
+}
+
+.loading-medium{
+  width: 100px;
+}
+
+.loading-large{
+  width: 200px;
+}
+
+// LIST WRAP (CDISC_TERMS)
+
+.list-wrap{
+  margin: 10px auto;
+  padding: 5px 10px;
+  max-width: 600px;
+  max-height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.list-wrap a{
+  white-space: nowrap !important;
+}
+
+.list-wrap a:hover{
+  text-decoration: none;
+}
+
+.list-wrap a:hover .text{
+  transform: translateX(5px);
+}
+
+// LIST CARDS
+
+.list-card{
+  background: $grey-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 8px;
+  padding: 8px 8px;
+  position: relative;
+  min-height: 50px;
+}
+
+.list-card .card-badge{
+  width: 10px;
+  height: 100%;
+  position: absolute;
+  display: block;
+}
+
+.list-card .text{
+  color: $grey-medium;
+  font-size: $font-small;
+  font-family: $font-normal;
+  margin-left: 20px;
+  white-space: normal;
+  transition: transform .3s;
+}
+
+.list-card .sub-text{
+  font-size: $font-small;
+  font-family: $font-light;
+}
+
+// FIXES: #ignore, do not change
+.paginate_button.active a{
+  background: $primary-color-medium !important;
+  color: $grey-white !important;
+}
+
+.paginate_button a{
+  color: $primary-color-medium !important;
+}
+
+button:focus{
+  outline: none !important;
+}
+
+.btn:active{
+  background: $primary-color-medium !important;
+}
+
+.paginate_button a:focus{
+  outline: none !important;
+}
+
 
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
@@ -180,89 +384,32 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb {
   max-width: calc(100% - 40px);
 }
 
-// BUTTONS
-.btn{
-  background: $primary-color-medium;
-  color: $grey-white;
-  font-family: $font-light;
-  padding: 3px 10px;
-  border: 0;
-  border-radius: $button-border-radius;
-  margin: 0px 5px;
+// SCROLLBARS
+
+body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
+  .list-wrap::-webkit-scrollbar{
+    width: 6px;
 }
 
-.btn:hover{
-  background-color: $primary-color-light;
-  color: $grey-white;
+body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track,
+{
+    background-color: $grey-bright;
 }
 
-.btn.nomargin{
-  margin: 0px;
+body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
+{
+  background-color: #e8e8e8;
 }
 
-.btn.medium{
-  padding: 5px 10px;
-  font-size: $font-small;
+.list-wrap::-webkit-scrollbar-track{
+  background: white;
 }
 
-.btn.big{
-  padding: 10px 10px;
-  font-size: $font-normal;
+.list-wrap::-webkit-scrollbar-thumb{
+  background-color: $grey-bright;
 }
 
-// Wrapper for multiple buttons, takes 100% width and the contents are centered
-.btns-wrap{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 5px 5px;
+#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+  #main_area::-webkit-scrollbar {
+  display: none;
 }
-
-// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
-.ico-btn{
-  padding: 6px 6px;
-  display: flex;
-  align-items: center;
-  color: $primary-color-medium;
-  background: $grey-white;
-  margin: 5px 5px;
-}
-
-.ico-btn.highlight{
-  color: $grey-white;
-  background: $primary-color-medium;
-}
-
-.ico-btn.highlight:hover{
-  background: $primary-color-light;
-}
-
-.ico-btn .ico{
-  font-size: $font-large;
-}
-
-.ico-btn .ico-btn-text{
-  margin: 0px 5px;
-}
-
-//PAGINATION buttons
-.paginate_button.active a{
-  background: $primary-color-medium !important;
-  color: $grey-white !important;
-}
-
-.paginate_button a{
-  color: $primary-color-medium !important;
-}
-
-button:focus{
-  outline: none !important;
-}
-
-.paginate_button a:focus{
-  outline: none !important;
-}
-
-// GENERAL FIXES
