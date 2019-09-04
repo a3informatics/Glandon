@@ -110,6 +110,8 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def show
     authorize Thesaurus
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
     @context_id = the_params[:context_id]
     @has_children = @tc.children?
     respond_to do |format|
@@ -151,7 +153,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def synonym_links
     authorize Thesaurus, :view?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
-    results = tc.synonym_links(link_params)
+    results = tc.linked_by_synonym(link_params)
     add_link_paths(results)
     render :json => {:data => results}, :status => 200
   end
@@ -159,7 +161,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def preferred_term_links
     authorize Thesaurus, :view?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
-    results = tc.preferred_term_links(link_params)
+    results = tc.linked_by_preferred_term(link_params)
     add_link_paths(results)
     render :json => {:data => results}, :status => 200
   end

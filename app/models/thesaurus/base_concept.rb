@@ -127,7 +127,7 @@ class Thesaurus
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @return [Hash] the results hash
-    def synonym_links(params)
+    def linked_by_synonym(params)
       generic_find_links(params, :synonym)
     end
 
@@ -137,7 +137,7 @@ class Thesaurus
     # @option params [String] :context_id the identifier of the thesaurus context to work within. 
     #   will find all if not present
     # @return [Hash] the results hash
-    def preferred_term_links(params)
+    def linked_by_preferred_term(params)
       generic_find_links(params, :preferred_term)
     end
 

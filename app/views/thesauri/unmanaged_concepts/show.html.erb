@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-md-8">
     <div class="card">
-        <h3 class="card-header">Show: <%= @tc.notation %><small>(<%= @tc.identifier %>)</small></h3>
+        <h3 class="card-header">Show: <%=  @tc.notation %><span class="text-small"> (<%= @tc.identifier %>)</span></h3>
       <div class="card-content">
         <table class="table table-striped table-bordered table-condensed">
           <thead>
@@ -25,7 +25,6 @@
               <th>Submission Value</th>
               <th>Preferred</th>
               <th>Synonym</th>
-              <!-- <th>Extensible</th> -->
               <th>Definition</th>
             </tr>
           </thead>
@@ -34,9 +33,10 @@
               <td><%= @tc.label %></td>
               <td><%= @tc.identifier %></td>
               <td><%= @tc.notation %></td>
-              <td><%= @tc.preferred_term.to_s %></td>
-              <td></td>
-             <!--  <%= true_false_glyphicon(@tc.extensible) %> -->
+              <td><%= @tc.preferred_term.label %></td>
+              <td><% @tc.synonym.each do |element| %>
+                    <%= element.label %>;
+                  <% end %></td>
               <td><%= @tc.definition %></td>
             </tr>
           </tbody>
