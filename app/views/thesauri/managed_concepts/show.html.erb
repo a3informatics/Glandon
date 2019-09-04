@@ -9,11 +9,9 @@
     <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Show:", :item => @tc} %>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Navigation</h3>
-      </div>
-      <div class="panel-body">
+    <div class="card">
+        <h3 class="card-header">Navigation</h3>
+      <div class="card-content">
         <%= back_close_button %>
         <%= link_to "Export CSV", export_csv_thesauri_path(@tc), :class => "btn btn-info" %>
         <% class_list = @can_be_extended ? "btn btn-primary" : "btn btn-primary disabled" %>
@@ -27,7 +25,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists"} %>
+    <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>
 

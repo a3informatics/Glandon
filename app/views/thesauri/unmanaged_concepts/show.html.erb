@@ -4,7 +4,9 @@
 <%= javascript_tag "var syn_url = '#{synonym_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var syn_panel_id = '#{synonym_panel_id}';" %>
 <%= javascript_tag "var pt_url = '#{preferred_term_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}';" %>
-<%= javascript_tag "var pt_panel_id = '#{preferred_term_panel_id}';" %>  
+<%= javascript_tag "var pt_panel_id = '#{preferred_term_panel_id}';" %>
+<%= javascript_tag "var syn_panel_title = 'Shared Synonym';" %>
+<%= javascript_tag "var pt_panel_title = 'Shared Preferred Term';" %>
 <% if @has_children %>
   <%= javascript_tag "var url_path = '#{thesauri_unmanaged_concept_path(@tc)}';" %>
 <% else %>
@@ -12,11 +14,9 @@
 <% end %>
 <div class="row">
   <div class="col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">???</h3>
-      </div>
-      <div class="panel-body">
+    <div class="card">
+        <h3 class="card-header">Show: <%=  @tc.notation %><span class="text-small"> (<%= @tc.identifier %>)</span></h3>
+      <div class="card-content">
         <table class="table table-striped table-bordered table-condensed">
           <thead>
             <tr>
@@ -25,7 +25,6 @@
               <th>Submission Value</th>
               <th>Preferred</th>
               <th>Synonym</th>
-              <th>Extensible</th>
               <th>Definition</th>
             </tr>
           </thead>
@@ -34,9 +33,10 @@
               <td><%= @tc.label %></td>
               <td><%= @tc.identifier %></td>
               <td><%= @tc.notation %></td>
-              <td></td>
-              <td></td>
-              <%= true_false_glyphicon(@tc.extensible) %>
+              <td><%= @tc.preferred_term.label %></td>
+              <td><% @tc.synonym.each do |element| %>
+                    <%= element.label %>;
+                  <% end %></td>
               <td><%= @tc.definition %></td>
             </tr>
           </tbody>
@@ -45,11 +45,9 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Navigation</h3>
-      </div>
-      <div class="panel-body">
+    <div class="card">
+        <h3 class="card-header">Navigation</h3>
+      <div class="card-content">
         <%= back_close_button %>
         <%= link_to "Export CSV", export_csv_thesauri_path(@tc), :class => "btn btn-info" %>
       </div>
@@ -66,10 +64,10 @@
 
 <div class="row">
   <div class="col-md-4">
-    <%= render partial: "shared/thesauri/links_panel", locals: {title: "Synonyms", panelId: synonym_panel_id } %>
+    <%= render partial: "shared/thesauri/links_panel", locals: {panelId: preferred_term_panel_id} %>
   </div>
-  <div class="col-md-4">
-    <%= render partial: "shared/thesauri/links_panel", locals: {title: "Preferred Terms", panelId: preferred_term_panel_id } %>
+    <div class="col-md-4">
+    <%= render partial: "shared/thesauri/links_panel", locals: {panelId: synonym_panel_id} %>
   </div>
 </div>
 

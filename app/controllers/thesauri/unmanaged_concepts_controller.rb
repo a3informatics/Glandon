@@ -110,6 +110,8 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def show
     authorize Thesaurus
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
     @context_id = the_params[:context_id]
     @has_children = @tc.children?
     respond_to do |format|

@@ -1,4 +1,15 @@
+/*
+* Term Search
+*/
 
+
+/**
+* Term Search Constructor
+* @param context_id [String] The context_id of the Th
+* @param callback [Function] 
+*
+* @return [void]
+*/
 function TermSearch(context_id, callback) {
   this.selected = {};
   this.callback = callback; // Note that this can also be set in call to search
@@ -64,9 +75,7 @@ function TermSearch(context_id, callback) {
         $.each(rowdata, function(i, id) {
           ids.push(rowdata[i].id);
         });
-        //console.log(ids);
         _this.callback(ids);
-
        }
   });
 
@@ -76,6 +85,10 @@ function TermSearch(context_id, callback) {
     event.stopImmediatePropagation();
     $('#searchModal').modal('show');
   })
+
+$('#searchModal').on('hidden.bs.modal', function () {
+    
+});
 
   //Clear search
   $('#clear_search').click(function(){
