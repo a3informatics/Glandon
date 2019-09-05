@@ -37,6 +37,139 @@ defaults: &defaults
       link_text: "Import Terminology from ODM"
       link_path: "/imports/terms/new?imports[file_type]=1"
   processing: &default_processing
+    cdisc_change_instructions: 
+      sheets: 
+        main:
+          selection:
+            first: true
+          row:
+            condition:
+              method: column_affirmative?
+              column: 12
+          columns: 
+          - 
+            label: "Release Date"
+            actions: []
+          - 
+            label: "Request Code"
+            actions: []
+          - 
+            label: "Change Type"
+            actions: []
+          - 
+            label: "NCI Code"
+            actions: []
+          - 
+            label: "CDISC Term Type"
+            actions: []
+          - 
+            label: "CDISC Codelist (Short Name)"
+            actions: []
+          - 
+            label: "CDISC Codelist (Long Name)"
+            actions: []
+          - 
+            label: "Change Summary"
+            actions: []
+          - 
+            label: "Original"
+            actions: []
+          - 
+            label: "New"
+            actions: []
+          - 
+            label: "Change Implementation Instructions"
+            actions: []
+          - 
+            label: "Use"
+            actions: []
+          - 
+            label: "Prev Codelist"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                map: {}
+                additional: 
+                  token: ","
+              -
+                method: create_item
+                object: parent
+                klass: "Import::ChangeInstructions::Instruction"
+                map: {}
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: previous_parent
+                can_be_empty: false
+                additional: 
+                  token: ","
+          - 
+            label: "Prev Term"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: previous_children
+                can_be_empty: true
+                additional: 
+                  token: ","
+          - 
+            label: "New Codelists"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                map: {}
+                additional: 
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_parent
+                additional: 
+                  token: ","
+          - 
+            label: "New Terms"
+            actions:
+              -
+                method: c_codes?
+                object: NA
+                klass: NA
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ","
+              -
+                method: tokenize_and_set_property
+                object: parent
+                property: current_children
+                can_be_empty: true
+                additional: 
+                  token: ","
+          - 
+            label: "Comment"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: description
+                can_be_empty: false
+                map: {}
+              -
+                method: check_valid
+                object: parent
+                map: {}
     cdisc_adam_ig: 
       sheets: 
         main:
@@ -1291,4 +1424,14 @@ test:
         sheet_1:
           selection:
             wrong: method
+          columns: [] 
+    test_8:
+      sheets: 
+        sheet_1:
+          selection:
+            label: Sheet1
+          row:
+            condition:
+              method: column_affirmative?
+              column: 3 
           columns: [] 

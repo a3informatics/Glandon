@@ -237,6 +237,7 @@ module Fuseki
         read_exclude: false, 
         delete_exclude: false 
       }
+  #byebug if options[:base_type].nil?
       options[:default] = opts[:default] ? opts[:default] : ""
       add_to_resources(name, options)
     end

@@ -141,6 +141,55 @@ class Thesaurus
       generic_find_links(params, :preferred_term)
     end
 
+    # Linked Change Instructions. Find all items linked by change instructions
+    #
+    # @return [Hash] the results hash
+    def linked_change_instructions
+      results = {description: nil, previous: [], current: []}
+      query_string = %Q{
+  SELECT DISTINCT ?c ?p ?desc ?p_n ?p_id ?c_n ?c_id ?p_d ?t WHERE
+  {          
+    {     
+      ?ci (cr:previous/bo:reference) #{self.uri.to_ref} .
+      ?ci (cr:current/bo:reference) ?c .
+      ?ci (cr:current/bo:context) ?th .
+      BIND ("current" as ?t)
+    } UNION
+    {
+      ?ci (cr:current/bo:reference) #{self.uri.to_ref} .
+      ?ci (cr:previous/bo:reference) ?c .
+      ?ci (cr:previous/bo:context) ?th .
+      BIND ("previous" as ?t)
+    }
+    ?ci cr:description ?desc .
+    {
+      ?th th:isTopConceptReference/bo:reference ?p .
+      ?p rdf:type th:ManagedConcept .
+      ?p th:narrower+ ?c .
+      ?p th:notation ?p_n .
+      ?p th:identifier ?p_id .
+      ?p isoT:lastChangeDate ?p_d .
+      ?c th:notation ?c_n .
+      ?c th:identifier ?c_id 
+    } UNION
+    {
+      ?c rdf:type th:ManagedConcept .
+      ?c th:identifier ?p_id .
+      ?c th:notation ?p_n .
+      ?c isoT:lastChangeDate ?p_d .
+      BIND (?c as ?p)
+      BIND ("" as ?c_n)
+      BIND ("" as ?c_id)
+    }
+  }}
+      query_results = Sparql::Query.new.query(query_string, "", [:cr, :th, :bo, :isoC, :isoT])
+      query_results.by_object_set([:c, :p, :desc, :p_id, :c_id, :p_n, :c_n, :t]).each do |x|
+        results[:description] = x[:desc] if results[:description].nil?
+        results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}
+      end
+      results
+    end
+
   private
 
     # Generic Find Links. Find all items within the context that share synonyms or preferred terms

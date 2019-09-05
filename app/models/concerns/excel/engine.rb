@@ -33,8 +33,10 @@ class Excel::Engine
   def process(import, sheet)
     parent = nil
     child = nil
+    sheet_logic = Rails.configuration.imports[:processing][import][:sheets][sheet]
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
-      Rails.configuration.imports[:processing][import][:sheets][sheet][:columns].each_with_index do |column, col_index|
+      next unless process_row?(sheet_logic, row)
+      sheet_logic[:columns].each_with_index do |column, col_index|
         col = col_index + 1
         column[:actions].each do |action| 
           begin
@@ -48,6 +50,8 @@ class Excel::Engine
               create_parent(params) {|result| parent = result}
             elsif action_method == :create_child
               create_child(params) {|result| child = result; parent.children << result}
+            elsif action_method == :create_item
+              create_item(params) {|result| parent = result}
             elsif action_method == :ordinal
               params[:object].send("#{action[:property]}=", parent.children.count)
             elsif action_method == :c_code?
@@ -61,6 +65,17 @@ class Excel::Engine
         end
       end
     end
+  end
+
+  # Process Row?
+  #
+  # @param sheet_logic [Hash] hash containing the row logic. May not be present
+  # @param row [Integer] the cell row on which the condition is being tested
+  # @return [Boolean] true if the condition is met, false otherwise
+  def process_row?(sheet_logic, row)
+    condition = sheet_logic.dig(:row, :condition) 
+    return true if condition.nil? # No condition present
+    return self.send(condition[:method], {row: row, col: condition[:column]})
   end
 
   # Process Action?
@@ -95,6 +110,28 @@ class Excel::Engine
     return !column_blank?(params)
   end
 
+  # Column Affirmative?
+  #
+  # @param [Hash] params the parameters
+  # @option params [Integer] row the cell row
+  # @option params [Integer] col the cell column
+  # @return [Boolean] true if affirmative (boolean true), false otherwise
+  def column_affirmative?(params)
+    check_params(__method__.to_s, params, [:row, :col])
+    return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
+  end
+
+  # Valid?
+  #
+  # @param [Hash] params the parameters
+  # @option params [Integer] row the cell row
+  # @option params [Integer] col the cell column
+  # @return [Boolean] true if affirmative (boolean true), false otherwise
+  def column_affirmative?(params)
+    check_params(__method__.to_s, params, [:row, :col])
+    return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
+  end
+
   # Create Parent
   #
   # @param [Integer] row the cell row
@@ -125,6 +162,31 @@ class Excel::Engine
     yield(result) if block_given?
   end
 
+  # Create Item. Create an item identifier by the row number
+  #
+  # @param [Integer] row the cell row
+  # @param [Integer] col the cell column
+  # @param [Object] object the object. Not used 
+  # @param [Hash] map the mapping from spreadsheet values to internal values
+  # @param [String] klass the class name for the object being created
+  # @return [Void] no return
+  def create_item(params)
+    check_params(__method__.to_s, params, [:row, :col, :map, :klass])
+    result = params[:klass].constantize.new
+    @parent_set[params[:row]] = result
+    yield(result) if block_given?
+  end
+
+  # Check Valid. Checks if the object is valid. 
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Object] :object the object tocheck for validity
+  # @return [Void] no return
+  def check_valid(params)
+    check_params(__method__.to_s, params, [:object])
+    params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
+  end
+
   # Set Property
   #
   # @param [Integer] row the cell row
@@ -138,6 +200,46 @@ class Excel::Engine
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty])
     x = params[:map].empty? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
     params[:object].instance_variable_set("@#{params[:property]}", x)
+  end
+
+  # Tokenize And Set Property
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank.
+  # @option params [Hash] :additonal hash containing the tokenize separator character
+  # @return [Void] no return
+  def tokenize_and_set_property(params)
+    check_params(__method__.to_s, params, [:row, :col, :object, :property, :can_be_empty, :additional])
+    x = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if x.empty?
+    parts = x.split(params[:additional][:token]).uniq # Make the array a set of unique entries
+    property = params[:object].instance_variable_get("@#{params[:property]}")
+    parts.each {|p| property << p.strip}
+  end
+
+  # C Codes. Check cell is a series of C Codes
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Hash] :additonal hash containing the tokenize separator character
+  # @return [Void] no return
+  def c_codes?(params)
+    result = true
+    check_params(__method__.to_s, params, [:row, :col, :object, :property, :can_be_empty, :additional])
+    x = check_value(params[:row], params[:col], params[:can_be_empty])
+    return false if x.empty?
+    parts = x.split(params[:additional][:token]).uniq # Make the array a set of unique entries
+    parts.each do |value| 
+      next if NciThesaurusUtility.c_code?(value.strip)
+      @errors.add(:base, "C Code '#{value}' error detected in row #{params[:row]} column #{params[:col]}.") 
+      result = false
+    end
+    result
   end
 
   # Tokenize And Create Shared
@@ -339,6 +441,5 @@ private
     @parent_set[identifier] = item
     return item
   end
-
 
 end    

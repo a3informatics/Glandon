@@ -1,6 +1,7 @@
 $(document).ready( function() {
   var lp = new LinksPanel(syn_url, syn_panel_id, syn_panel_title);
   var pp = new LinksPanel(pt_url, pt_panel_id, pt_panel_title);
+  var ci = new CiPanel(ci_url, ci_panel_id, ci_panel_title);
   if (url_path !== "") {
     var columns = [
       {"data" : "identifier"},

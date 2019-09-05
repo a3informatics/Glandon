@@ -53,6 +53,9 @@ describe Fuseki::Resource do
       extend Fuseki::Schema
     end
 
+    class TestR7 < TestR6
+    end
+
     class TestRTarget
     end
 
@@ -213,6 +216,7 @@ describe Fuseki::Resource do
 
   describe "read metadata" do
 
+    #
     # This is naughty but ok-ish. Loads schema ready for the tests and the elaboration of class TestR10 which happens 
     # before the "before :all" block. Schema is required.
     sparql_query = "CLEAR DEFAULT"

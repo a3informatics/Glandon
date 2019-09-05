@@ -1,0 +1,44 @@
+@prefix : <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cr: <http://www.assero.co.uk/CrossReference#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/BusinessOperational>
+	rdf:type owl:Ontology ;
+.
+<http://www.cdisc.org/CT/V59#TH_CI1>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Please use CVTEST = Mean Blood Pressure, Estimated; LOC = Heart, Right Atrium (or other chambers of the heart)."^^xsd:string ;
+	cr:ordinal "1"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V59#TH_CI1_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V59#TH_CI1_TUC2> ;
+.
+<http://www.cdisc.org/CT/V59#TH_CI1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C101846/V51#C101846_C135378> ;
+	:context <http://www.cdisc.org/CT/V58#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V59#TH_CI1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C101846/V51#C101846_C135376> ;
+	:context <http://www.cdisc.org/CT/V59#TH> ;
+	:localLabel ""^^xsd:string ;
+.

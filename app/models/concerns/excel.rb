@@ -97,7 +97,7 @@ private
     elsif info[:selection].key?(:label)
       return by_label(info)
     elsif info[:selection].key?(:first)
-      by_first_sheet(info)
+      return by_first_sheet(info)
     end
     Errors.application_error(C_CLASS_NAME, __method__.to_s, "Invalid mechanism to find sheet.")
   end

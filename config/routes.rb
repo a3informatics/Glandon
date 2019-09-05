@@ -139,6 +139,7 @@ Rails.application.routes.draw do
         get :differences
         get :synonym_links
         get :preferred_term_links
+        get :change_instruction_links
         post :extensions, action: :add_extensions
         delete :extensions, action: :destroy_extensions
         get :is_extended
@@ -151,6 +152,7 @@ Rails.application.routes.draw do
         get :differences
         get :synonym_links
         get :preferred_term_links
+        get :change_instruction_links
       end
     end
   end
