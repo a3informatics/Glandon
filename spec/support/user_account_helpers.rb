@@ -7,6 +7,7 @@ module UserAccountHelpers
 	C_CONTENT_ADMIN = "content_admin@example.com"
   C_TERM_READER = "term_reader@example.com"
 	C_TERM_CURATOR = "term_curator@example.com"
+  C_COMM_READER = "comm_reader@example.com"
   
   def ua_create
     @user_c = User.create :email => C_CURATOR, :password => C_PASSWORD 
@@ -26,6 +27,9 @@ module UserAccountHelpers
     @user_tc = User.create :email => C_TERM_CURATOR, :password => C_PASSWORD 
     @user_tc.add_role :term_curator
     @user_tc.remove_role :reader # Get reader on the create
+    @user_cr = User.create :email => C_COMM_READER, :password => C_PASSWORD 
+    @user_cr.add_role :community_reader
+    @user_cr.remove_role :reader # Get reader on the create
   end
 
   def ua_destroy
@@ -40,6 +44,8 @@ module UserAccountHelpers
     user = User.where(:email => C_TERM_READER).first
     user.destroy
     user = User.where(:email => C_TERM_CURATOR).first
+    user.destroy
+    user = User.where(:email => C_COMM_READER).first
     user.destroy
   end
 
@@ -65,6 +71,10 @@ module UserAccountHelpers
 
   def ua_term_curator_login
   	ua_generic_login C_TERM_CURATOR, C_PASSWORD
+  end
+
+  def ua_comm_reader_login
+    ua_generic_login C_COMM_READER, C_PASSWORD
   end
 
   def ua_logoff

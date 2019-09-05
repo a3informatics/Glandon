@@ -4,6 +4,7 @@ describe "CDISC Terminology", :type => :feature do
   
   include DataHelpers
   include UiHelpers
+  include UserAccountHelpers
   include PauseHelpers
   include WaitForAjaxHelper
 
@@ -26,9 +27,8 @@ describe "CDISC Terminology", :type => :feature do
   describe "Reader Search", :type => :feature do
       
     before :all do
-      user = User.create :email => "reader@example.com", :password => "12345678" 
-      user.add_role :reader
       clear_triple_store
+      ua_create
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -48,17 +48,12 @@ describe "CDISC Terminology", :type => :feature do
       clear_cdisc_term_object
     end
 
-    after :all do
-      #Notepad.destroy_all
-      user = User.where(:email => "reader@example.com").first
-      user.destroy
+    before :each do
+      ua_reader_login
     end
 
-    before :each do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'reader@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+    after :all do
+      ua_destroy
     end
 
     it "allows a search to be performed (REQ-MDR-CT-060)", js: true do

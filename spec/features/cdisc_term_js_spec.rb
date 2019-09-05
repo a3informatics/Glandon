@@ -4,8 +4,8 @@ describe "CDISC Term", :type => :feature do
   
   include DataHelpers
   include PublicFileHelpers
-  include UserAccountHelpers
   include UiHelpers
+  include UserAccountHelpers
   include WaitForAjaxHelper
 
   def wait_for_ajax_v_long
@@ -16,6 +16,7 @@ describe "CDISC Term", :type => :feature do
   
     before :all do
       clear_triple_store
+      ua_create
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -30,7 +31,6 @@ describe "CDISC Term", :type => :feature do
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       delete_all_public_test_files
-      ua_create
     end
 
     after :all do
@@ -41,11 +41,13 @@ describe "CDISC Term", :type => :feature do
       ua_curator_login
     end
 
+    #CL history
     it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)" do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
+    #CDISC history
     it "allows for several versions of CDISC Terminology (REQ-MDR-CT-010)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -54,7 +56,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content '2015-09-25 Release'
     end
 
-    #Show CDISC code lists
+    #CDISC Th show
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -68,7 +70,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
-    #Show CDISC code list items
+    #CDISC CL show
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -92,7 +94,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
      end
 
-    #Show a CDISC code list item details
+    #CDISC CLI show
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
@@ -120,7 +122,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
-     #extensible
+     #CDISC CL extensible
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
