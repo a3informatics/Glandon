@@ -61,7 +61,7 @@ CiPanel.prototype.display = function (result) {
               '<div class="list-group">';   
       $.each( result.previous, function( index, prev ) {
         html +=   '<a href="' + prev.show_path + '" class="list-group-item">' +
-                    '<p class="list-group-item-text"><small>'+prev.parent.notation + ' (' + prev.parent.identifier + '), ' + prev.child.notation + ' (' + prev.child.identifier + ')</small></p>' +
+                    '<p class="list-group-item-text"><small>Old: '+prev.parent.notation + ' (' + prev.parent.identifier + '), ' + prev.child.notation + ' (' + prev.child.identifier + ')</small></p>' +
                   '</a>';         
       });
       html +='</div></div>';   
@@ -72,11 +72,12 @@ CiPanel.prototype.display = function (result) {
               '<div class="list-group">';   
       $.each( result.current, function( index, curr ) {
         html +=   '<a href="' + curr.show_path + '" class="list-group-item">' +
-                    '<p class="list-group-item-text"><small>'+curr.parent.notation + ' (' + curr.parent.identifier + '), ' + curr.child.notation + ' (' + curr.child.identifier + ')</small></p>' +
+                    '<p class="list-group-item-text"><small>New: '+curr.parent.notation + ' (' + curr.parent.identifier + '), ' + curr.child.notation + ' (' + curr.child.identifier + ')</small></p>' +
                   '</a>';         
       });
-      html +='</div></div>';   
-
+      
+    html +='</div></div>';  
    };
+
   $('#'+_this.panelId).html(html);
 }
