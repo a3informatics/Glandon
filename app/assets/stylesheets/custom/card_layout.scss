@@ -1,0 +1,105 @@
+@import "custom/globals.scss";
+
+// CARDS
+
+.card{
+  background: $grey-white;
+  border-radius: $card-border-radius;
+  margin: 20px;
+  // min-width: 450px;
+
+  -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
+}
+
+.card-header{
+  background: $primary-color-light;
+  color: $grey-white;
+  font-size: $font-normal;
+  font-family: $font-light;
+  margin: 0;
+  border-radius: $card-border-radius $card-border-radius 0px 0px;
+  padding: 18px 24px;
+  width: 100%;
+}
+
+.card-content{
+  padding: 30px 20px;
+  color: $grey-medium;
+  overflow: auto;
+}
+
+.card-content table{
+  width: 100% !important;
+}
+
+.card.warning .card-content{
+  padding: 25px 15px;
+}
+
+.card.warning {
+  border: 5px solid $accent-color-1;
+}
+
+.card.danger{
+  border: 5px solid $accent-color-2;
+}
+
+.card.danger .card-content{
+  padding: 25px 15px;
+}
+
+.col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
+.col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
+.col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
+  padding: 0px;
+}
+
+.col-md-1.card{
+  max-width: calc(8.3% - 40px);
+}
+
+.col-md-2.card{
+  max-width: calc(16.6% - 40px);
+}
+
+.col-md-3.card{
+  max-width: calc(25% - 40px);
+}
+
+.col-md-4.card{
+  max-width: calc(33.3% - 40px);
+}
+
+.col-md-5.card{
+  max-width: calc(41.6% - 40px);
+}
+
+.col-md-6.card{
+  max-width: calc(50% - 40px);
+}
+
+.col-md-7.card{
+  max-width: calc(58.3% - 40px);
+}
+
+.col-md-8.card{
+  max-width: calc(66.6% - 40px);
+}
+
+.col-md-9.card{
+  max-width: calc(75% - 40px);
+}
+
+.col-md-10.card{
+  max-width: calc(83.3% - 40px);
+}
+
+.col-md-11.card{
+  max-width: calc(91.6% - 40px);
+}
+
+.col-md-12.card{
+  max-width: calc(100% - 40px);
+}

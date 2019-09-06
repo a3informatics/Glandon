@@ -6,9 +6,11 @@
 @import "buttons.bootstrap.min";
 @import "select.bootstrap.min";
 @import "editor.bootstrap.min";
-@import "custom/globals.scss";
-@import "custom/icon-font.scss";
-@import "custom/a3-styles.scss";
+@import "custom/globals";
+@import "custom/icon-font";
+@import "custom/a3-styles";
+@import "custom/buttons";
+@import "custom/card_layout";
 
 // For adding white space at top of rows
 .top-buffer { margin-top:20px; }
