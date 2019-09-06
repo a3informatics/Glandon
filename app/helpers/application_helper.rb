@@ -3,7 +3,7 @@ module ApplicationHelper
 	def instance_title(title, item)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus
-		return raw("#{title} #{item.label} <small>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</small>")
+		return raw("#{title} #{item.label} <span class='text-tiny'>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</span>")
 	end
 
 	# Bootstrap Class
@@ -182,7 +182,7 @@ module ApplicationHelper
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
   # @return [Null]
   def breadcrumb(items)
-  	result = "<ol class=\"breadcrumb\">" 
+  	result = "<ol class=\"breadcrumb\">"
   	index = 1
   	items.each do |item|
   		result += item.equal?(items.last) ? "<li id=\"breadcrumb_#{index}\" class=\"active\">#{item[:text]}</li>" : "<li id=\"breadcrumb_#{index}\"><a href=\"#{item[:link]}\">#{item[:text]}</a></li>"

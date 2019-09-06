@@ -1,7 +1,7 @@
 <%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
-<%= stylesheet_link_tag 'custom/dates_selector', media: 'all' %>
-<%= javascript_include_tag 'jquery','jquery-ui.min.js', 'all' %>
-<%= javascript_include_tag 'cdisc_term/index', 'shared/cdisc_term/index_panel', 'shared/timeline_slider'%>
+<%= javascript_include_tag 'jquery','jquery-ui.min.js' %>
+<%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
+<%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
 
 <style>
   .rowpad {
@@ -10,8 +10,14 @@
 
   html,body { min-width: 1000px; }
 
+  #results_div .ico-btn{
+    margin: 20px auto 0px auto;
+ }
+  #results_div .icon-filter{  margin-left:4px; }
+
+
 </style>
-<div class="row">
+<div class="row rowpad">
   <div class="col-md-12">
     <div class="btns-wrap">
       <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary ico-btn shadow-small">
@@ -19,17 +25,17 @@
         <span class="ico-btn-text">Browse every version of CDISC CT</span></a>
       <a href="<%= changes_thesauri_path(@current_id) %>" class="btn btn-primary ico-btn shadow-small">
         <span class="icon-see-changes text-xlarge"></span>
-        <span class="ico-btn-text">See all the Changes across versions</span></a>
+        <span class="ico-btn-text">See the changes across versions</span></a>
       <a href="<%= submission_thesauri_path(@current_id) %>" class="btn btn-primary ico-btn shadow-small">
         <span class="icon-submission-changes text-xlarge"></span>
-        <span class="ico-btn-text">See just the Submission value changes across versions</span></a>
+        <span class="ico-btn-text">See submission value changes across versions</span></a>
       <a href="<%= search_thesauri_path(@latest_id) %>" class="btn btn-primary ico-btn shadow-small">
         <span class="icon-search-latest text-xlarge"></span>
         <span class="ico-btn-text">Search the latest version of CDISC CT</span></a>
     </div>
   </div>
 </div>
-<div class="row rowpad">
+<div class="row">
   <div class="col-md-12 card">
       <h3 class="card-header">Changes in CDISC Terminology versions</h3>
       <div class="card-content">
@@ -59,9 +65,9 @@
               </div>
             </div>
             <!-- TIMELINE SELECTOR END -->
-            <button class="btn btn btn-primary ico-btn shadow-small highlight" id="go_button">
+            <div class="btn ico-btn shadow-small highlight" id="go_button">
               <span class="icon-browse-all text-xlarge"></span><span class="ico-btn-text">Display</span>
-            </button>
+            </div>
           </center>
         </div>
         <div class="row rowpad">
@@ -69,26 +75,28 @@
               <div class="panel-body">
                 <div id="results_div">
                   <div class="col-md-4">
-                    <div class="panel panel-danger">
-                      <div class="panel-heading"><h3 class="panel-title">Deleted Items</h3></div>
-                      <div class="panel-body" id="deleted_div">
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Created Items", img_path: "cdisc_terms/ct_badge_plus"} %>
+                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_created"} %>
+                      <div class="list-wrap" id="created_div">
+                        <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
                       </div>
+                  </div>
+                  <div class="col-md-4">
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Updated Items", img_path: "cdisc_terms/ct_badge_update"} %>
+                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_updated"} %>
+                    <div class="list-wrap" id="updated_div">
+                      <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="panel panel-warning">
-                      <div class="panel-heading"><h3 class="panel-title">Updated Items</h3></div>
-                      <div class="panel-body" id="updated_div"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="panel panel-success">
-                      <div class="panel-heading"><h3 class="panel-title">Created Items</h3></div>
-                      <div class="panel-body" id="created_div"></div>
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Deleted Items", img_path: "cdisc_terms/ct_badge_minus"} %>
+                    <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_deleted"} %>
+                    <div class="list-wrap" id="deleted_div">
+                      <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
                     </div>
                   </div>
                 </div>
-                <div id="spinner_div"><p class="text-center"><img src="<%= asset_path('processing_large_2.gif') %>"></p></div>
+                <div id="spinner_div"><p class="text-center text-medium font-light"><img src="<%= asset_path('loading.svg') %>" class="loading-medium"><br/> Fetching results...</p></div>
               </div>
           </div>
         </div>

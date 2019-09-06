@@ -24,6 +24,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-filter:before {
+  content: "\e923";
+}
 .icon-browse-all:before {
   content: "\e91f";
 }
@@ -44,6 +47,9 @@
 }
 .icon-file-pdf:before {
   content: "\e917";
+}
+.icon-file-csv:before {
+  content: "\e924";
 }
 .icon-minus-circle:before {
   content: "\e914";

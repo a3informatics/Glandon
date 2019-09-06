@@ -1,4 +1,31 @@
 $(document).ready( function() {
   var ip = new IndexPanel(changes_path);
   var tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), $("#timeline-end-btn"), $(".timeline-point"));
+
+  var filters = Array();
+
+  $(".filter-wrap").each(function(i, e) {
+    // Init each filter handler 
+    filters[i] = new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap"));
+  });
+
+  $(".filter-btn").each(function (i, e){
+    $(this).click(function (){
+      if($(this).parent().next().find(".item").length != 0){ // Filter possible to enable only when the query results are nonempty
+
+        // Reset no-results message
+        $(this).parent().parent().find(".no-results-msg").hide();
+
+        // Filter div update
+        $(this).next().toggleClass("collapsed");
+        $(this).toggleClass("highlight");
+
+        // Results update
+        if($(this).hasClass("highlight"))
+          filters[i].filter();
+        else
+          filters[i].resetFilter();
+      }
+    })
+  });
 });
