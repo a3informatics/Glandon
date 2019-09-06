@@ -70,21 +70,21 @@
               <div class="panel-body">
                 <div id="results_div">
                   <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Created Items", img_path: "cdisc_terms/ct_badge_plus"} %>
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Created Code List", img_path: "cdisc_terms/ct_badge_plus"} %>
                     <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_created"} %>
                       <div class="list-wrap" id="created_div">
                         <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
                       </div>
                   </div>
                   <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Updated Items", img_path: "cdisc_terms/ct_badge_update"} %>
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Updated Code List", img_path: "cdisc_terms/ct_badge_update"} %>
                     <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_updated"} %>
                     <div class="list-wrap" id="updated_div">
                       <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <%= render partial: "shared/ico_header", :locals => { header_title: "Deleted Items", img_path: "cdisc_terms/ct_badge_minus"} %>
+                    <%= render partial: "shared/ico_header", :locals => { header_title: "Deleted Code List", img_path: "cdisc_terms/ct_badge_minus"} %>
                     <%= render partial: "shared/alphabetical_filter", :locals => { btn_id: "btn_f_deleted"} %>
                     <div class="list-wrap" id="deleted_div">
                       <div class='text-medium font-light text-centered no-results-msg' hidden>No results</div>

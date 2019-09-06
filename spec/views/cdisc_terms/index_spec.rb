@@ -26,9 +26,9 @@ describe 'cdisc_terms/index.html.erb', :type => :view do
   	#puts response.body
     expect(rendered).to have_content("Changes in CDISC Terminology versions")
     expect(rendered).to have_content("Select version timespan by dragging the sliders below:")
-    expect(rendered).to have_content("Deleted Items")
-    expect(rendered).to have_content("Updated Items")
-    expect(rendered).to have_content("Created Items")
+    expect(rendered).to have_content("Deleted Code List")
+    expect(rendered).to have_content("Updated Code List")
+    expect(rendered).to have_content("Created Code List")
     expect(rendered).to have_content("Display")
     expect(rendered).to have_content("Filter", count: 3)
     expect(rendered).to have_link "Browse every version of CDISC CT"
