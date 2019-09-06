@@ -21,7 +21,7 @@
 
 .ttip .ttip-text {
   font-family: $font-light;
-  top: 100%;
+  top: 60%;
   margin-top: 10px;
   border-radius: 5px;
   visibility: hidden;
@@ -44,7 +44,6 @@
 .ttip-left{
   right: 0%;
 }
-
 
 // BREADCRUMBS
 
@@ -72,143 +71,13 @@
   width: 100%;
 }
 
-// CARDS
-
-.card{
-  background: $grey-white;
-  border-radius: $card-border-radius;
-  margin: 20px;
-  // min-width: 450px;
-
-  -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
-  -moz-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
-  box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
-}
-
-.card-header{
-  background: $primary-color-light;
-  color: $grey-white;
-  font-size: $font-normal;
-  font-family: $font-light;
-  margin: 0;
-  border-radius: $card-border-radius $card-border-radius 0px 0px;
-  padding: 18px 24px;
-  width: 100%;
-}
-
-.card-content{
-  padding: 30px 20px;
-  color: $grey-medium;
-  overflow: auto;
-}
-
-.card-content table{
-  width: 100% !important;
-}
-
 // TEXT
-
 .text-centered{
   width: 100%;
   text-align: center;
 }
 
-// BUTTONS
-.btn{
-  background: $primary-color-medium;
-  color: $grey-white;
-  font-family: $font-light;
-  padding: 3px 10px;
-  border: 0;
-  border-radius: $button-border-radius;
-  margin: 0px 5px;
-}
-
-.btn:hover{
-  background-color: $primary-color-light;
-  color: $grey-white !important;
-}
-
-.btn.nomargin{
-  margin: 0px;
-}
-
-.btn.medium{
-  padding: 5px 10px;
-  font-size: $font-small;
-}
-
-.btn.big{
-  padding: 10px 10px;
-  font-size: $font-normal;
-}
-
-// Wrapper for multiple buttons, takes 100% width and the contents are centered
-.btns-wrap{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 5px 5px;
-}
-
-// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
-.ico-btn{
-  width: min-content;
-  padding: 6px 6px;
-  display: flex;
-  align-items: center;
-  background: $grey-white;
-  color: $primary-color-medium;
-  margin: 5px 5px;
-}
-
-.ico-btn:hover .ico-btn-text{
-  color: $grey-white !important;
-}
-
-.ico-btn .ico{
-  display: flex;
-  align-self: center;
-  font-size: $font-large;
-}
-
-.ico-btn .ico-btn-text{
-  margin: 0px 5px;
-}
-
-.ico-btn.light{
-  color: $primary-color-bright;
-}
-
-.ico-btn.light:hover{
-  background: $primary-color-bright;
-}
-
-.ico-btn.light:active{
-  background: $primary-color-light;
-}
-
-.ico-btn.light .ico-btn-text{
-  color: $grey-medium;
-}
-
-.ico-btn.highlight, ico-btn.light.highlight{
-  color: $grey-white;
-  background: $primary-color-light;
-}
-
-.ico-btn.highlight:hover, ico-btn.light.highlight:hover{
-  background: $primary-color-bright;
-}
-
-.ico-btn.highlight .ico-btn-text, .ico-btn.light.highlight .ico-btn-text{
-  color: $grey-white;
-}
-
 // HEADERS
-
 .ico-header{
   width: 50%;
   min-width: 250px;
@@ -274,7 +143,6 @@
 }
 
 // LIST CARDS
-
 .list-card{
   background: $grey-white;
   display: flex;
@@ -307,85 +175,41 @@
   font-family: $font-light;
 }
 
-// FIXES: #ignore, do not change
-.paginate_button.active a{
-  background: $primary-color-medium !important;
-  color: $grey-white !important;
+// BADGES
+.circular-badge{
+  font-family: $font-bold;
+  font-size: 12pt;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  display: inline-block;
 }
 
-.paginate_button a{
-  color: $primary-color-medium !important;
+.circular-badge.big{
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 22pt;
 }
 
-button:focus{
-  outline: none !important;
+.circular-badge.small{
+  width: 30px;
+  height:30px;
+  line-height: 32px;
+  font-size: 10pt;
 }
 
-.btn:active{
-  background: $primary-color-medium !important;
-}
-
-.paginate_button a:focus{
-  outline: none !important;
-}
-
-
-.col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
-.col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
-.col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
-  padding: 0px;
-}
-
-.col-md-1.card{
-  max-width: calc(8.3% - 40px);
-}
-
-.col-md-2.card{
-  max-width: calc(16.6% - 40px);
-}
-
-.col-md-3.card{
-  max-width: calc(25% - 40px);
-}
-
-.col-md-4.card{
-  max-width: calc(33.3% - 40px);
-}
-
-.col-md-5.card{
-  max-width: calc(41.6% - 40px);
-}
-
-.col-md-6.card{
-  max-width: calc(50% - 40px);
-}
-
-.col-md-7.card{
-  max-width: calc(58.3% - 40px);
-}
-
-.col-md-8.card{
-  max-width: calc(66.6% - 40px);
-}
-
-.col-md-9.card{
-  max-width: calc(75% - 40px);
-}
-
-.col-md-10.card{
-  max-width: calc(83.3% - 40px);
-}
-
-.col-md-11.card{
-  max-width: calc(91.6% - 40px);
-}
-
-.col-md-12.card{
-  max-width: calc(100% - 40px);
+// DIVIDERS
+.divider{
+  width: 100%;
+  height: 1px;
+  display: block;
+  margin: 5px auto;
 }
 
 // SCROLLBARS
-
 body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
   .list-wrap::-webkit-scrollbar{
     width: 6px;

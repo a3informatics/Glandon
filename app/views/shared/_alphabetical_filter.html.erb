@@ -1,7 +1,6 @@
 <div class="filter-wrap">
-  <div class="btn ico-btn light shadow-small filter-btn" id="<%= btn_id %>">
-    <span class="icon-filter text-normal"></span><span class="ico-btn-text">Filter</span>
-  </div>
+  <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: btn_id,
+    icon: "icon-filter", btn_text: "Filter", btn_class: "small-ico light filter-btn"} %>
   <div class="filter-expandable collapsed">
     <div class="circular-badge bg-grey-bright text-medium">
       A
