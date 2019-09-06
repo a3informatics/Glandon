@@ -29,10 +29,11 @@ describe 'cdisc_terms/index.html.erb', :type => :view do
     expect(rendered).to have_content("Deleted Items")
     expect(rendered).to have_content("Updated Items")
     expect(rendered).to have_content("Created Items")
-    expect(rendered).to have_button 'Display'
+    expect(rendered).to have_content("Display")
+    expect(rendered).to have_content("Filter", count: 3)
     expect(rendered).to have_link "Browse every version of CDISC CT"
-    expect(rendered).to have_link "See all the Changes across versions"
-    expect(rendered).to have_link "See just the Submission value changes across versions"
+    expect(rendered).to have_link "See the changes across versions"
+    expect(rendered).to have_link "See submission value changes across versions"
     expect(rendered).to have_link "Search the latest version of CDISC CT"
 
   end
