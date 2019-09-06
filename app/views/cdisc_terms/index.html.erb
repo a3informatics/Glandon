@@ -20,18 +20,14 @@
 <div class="row rowpad">
   <div class="col-md-12">
     <div class="btns-wrap">
-      <a href="<%= history_cdisc_terms_path %>" class="btn btn-primary ico-btn shadow-small">
-        <span class="icon-browse-all text-xlarge"></span>
-        <span class="ico-btn-text">Browse every version of CDISC CT</span></a>
-      <a href="<%= changes_thesauri_path(@current_id) %>" class="btn btn-primary ico-btn shadow-small">
-        <span class="icon-see-changes text-xlarge"></span>
-        <span class="ico-btn-text">See the changes across versions</span></a>
-      <a href="<%= submission_thesauri_path(@current_id) %>" class="btn btn-primary ico-btn shadow-small">
-        <span class="icon-submission-changes text-xlarge"></span>
-        <span class="ico-btn-text">See submission value changes across versions</span></a>
-      <a href="<%= search_thesauri_path(@latest_id) %>" class="btn btn-primary ico-btn shadow-small">
-        <span class="icon-search-latest text-xlarge"></span>
-        <span class="ico-btn-text">Search the latest version of CDISC CT</span></a>
+      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: history_cdisc_terms_path, id: "btn-browse-cdisc",
+        icon: "icon-browse-all", btn_text: "Browse every version of CDISC CT", btn_class: ""} %>
+      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: changes_thesauri_path(@current_id), id: "btn-see-changes",
+        icon: "icon-see-changes", btn_text: "See the changes across versions", btn_class: ""} %>
+      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: submission_thesauri_path(@current_id), id: "btn-submission-changes",
+        icon: "icon-submission-changes", btn_text: "See submission value changes across versions", btn_class: ""} %>
+      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: search_thesauri_path(@latest_id), id: "btn-search-latest",
+        icon: "icon-search-latest", btn_text: "Search the latest version of CDISC CT", btn_class: ""} %>
     </div>
   </div>
 </div>
@@ -65,9 +61,8 @@
               </div>
             </div>
             <!-- TIMELINE SELECTOR END -->
-            <div class="btn ico-btn shadow-small highlight" id="go_button">
-              <span class="icon-browse-all text-xlarge"></span><span class="ico-btn-text">Display</span>
-            </div>
+            <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button",
+              icon: "icon-browse-all", btn_text: "Display", btn_class: "highlight"} %>
           </center>
         </div>
         <div class="row rowpad">

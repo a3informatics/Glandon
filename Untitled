@@ -1,0 +1,8 @@
+// CHEATSHEET FOR PARTIALS
+
+// ICO-BTN-SECONDARY
+<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "PATH", id: "ID",
+  icon: "ICON-NAME", btn_text: "BUTTON-TEXT", dt_toggle: "WILL APPEAR IN DATA-TOGGLE. IF NOT NEEDED, LEAVE EMPTY", disabled: True/False} %>
+
+// WIDE HEADER CARD FOR CT AND CL
+<%= render partial: "shared/iso_managed/managed_header_card", :locals => {:item => @tc, :badge => "CL"} %>
