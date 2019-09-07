@@ -8,12 +8,12 @@
 <% index_path = thesauri_index_path %>
 <% second_level_breadcrumb(index_label, index_path, @identifier) %>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 card">
 		<%= render partial: "shared/history_panel", locals: {title: "History: #{@identifier}"} %>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 card">
 		<%= render partial: "shared/iso_managed/comments_panel" %>
 	</div>
 </div>

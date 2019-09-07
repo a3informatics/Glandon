@@ -44,8 +44,8 @@ body{
 
 /* Primary color (blue) */
 $primary-color-dark: #2b4753;
-$primary-color-medium: #356d86;
-$primary-color-light: #53869c;
+$primary-color-medium: #407085;
+$primary-color-light: #6d91a1;
 $primary-color-bright: #9dc0cf;
 
 .bg-prim-dark{
@@ -89,6 +89,8 @@ $secondary-color-bright: #def3a9;
 /* Accent colors (orange & red) */
 $accent-color-1: #f5d684;
 $accent-color-2: #e48080;
+$accent-color-2-light: #f2a6a6;
+$accent-color-2-dark: #c95c5c;
 
 .bg-accent-1{
   background: $accent-color-1;
@@ -155,7 +157,7 @@ $grey-white: #ffffff;
 
 /* SIZES */
 
-$font-tiny: 7pt;
+$font-tiny: 8pt;
 $font-small: 10pt;
 $font-normal: 12pt;
 $font-large: 16pt;

@@ -12,8 +12,6 @@ function IndexPanel(url) {
 IndexPanel.prototype.get = function (url) {
   var _this = this;
 
-  console.log($("#from_select").val());
-
   _this.processing(true);
   $.ajax({
     url: pathInsertId(_this.url, $(".point-highlight").eq(0).find(".ttip-text").attr("data-index")),
@@ -47,13 +45,50 @@ IndexPanel.prototype.processing = function (state) {
 }
 
 IndexPanel.prototype.results = function(div, data) {
-  html = '<div class="list-group">';
+  var _this = this;
+
+  var badge_class = _this.getBadgeClass(div);
+
+  // Reset
+  _this.resetViewToDefault($(div).parent());
+  var html = '';
+
   $.each( data, function( key, value ) {
-    html += '<a href="' + value.changes_path + '" class="list-group-item">';
-    html += '  <h5 class="list-group-item-heading">' + value.label + '</h5>';
-    html += '  <p class="list-group-item-text"><small>' + value.notation + ' ' + '(' + value.identifier + ')</small></p>';
+    html += '<a href="' + value.changes_path + '" class="item '+value.label.replace(/^[0-9\s]+/, '')[0].toUpperCase() +'">';
+    html += ' <div class="list-card shadow-small">';
+    html += '   <div class="card-badge '+badge_class+'"></div>';
+    html += '     <div class="text">' + value.label + '</div>';
+    html += '     <div class="text sub-text">' + value.notation + ' ' + '(' + value.identifier + ')</div>';
+    html += ' </div>';
     html += '</a>';
   });
-  html += '</div>';
-  $(div).html(html);
+
+  if(data.length == 0)
+    $(div).find(".no-results-msg").show();
+
+  $(div).append(html);
+}
+
+IndexPanel.prototype.getBadgeClass = function(div){
+  switch (div) {
+    case "#created_div":
+      return "bg-sec-light";
+      break;
+    case "#updated_div":
+      return "bg-accent-1";
+      break;
+    case "#deleted_div":
+      return "bg-accent-2";
+      break;
+  }
+}
+
+// Resets UI to default, called when new query is triggered
+IndexPanel.prototype.resetViewToDefault = function(div){
+  div.find(".item").remove();
+  div.find(".no-results-msg").hide();
+  div.find(".alph-slider").val(1);
+  div.find(".circular-badge").html('A');
+  div.find(".filter-expandable").addClass("collapsed");
+  div.find(".filter-btn").removeClass("highlight");
 }

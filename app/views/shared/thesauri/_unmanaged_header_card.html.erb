@@ -1,0 +1,22 @@
+<div class="h-outside-wrap">
+  <div class="h-inner-wrap">
+    <span class="circular-badge big bg-accent-1 text-white"><%= badge %></span>
+    <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.identifier %></span>
+  </div>
+  <div class="h-inner-wrap mid">
+    <div class="text-large"> <%= item.notation %> </div>
+    <div>Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
+    <div style="margin-top: 10px;">
+      Synonym(s):
+      <% @tc.synonym.each do |s| %>
+        <div class="synonym-label font-light"><%= s.label %></div>
+      <% end %>
+      <%= "<span class='font-light'>None</span>".html_safe if @tc.synonym.empty? %>
+    </div>
+    <div class="definition-label" style="margin-top: 10px;">
+      Definition: <span class="font-light"><%= item.definition %> </span></div>
+  </div>
+  <div class="h-inner-wrap">
+    <%= yield %>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+@import "custom/globals.scss";
+
+// BUTTONS
+.btn{
+  background: $primary-color-medium;
+  color: $grey-white;
+  font-family: $font-light;
+  padding: 3px 10px;
+  border: 0;
+  border-radius: $button-border-radius;
+  margin: 0px 5px;
+}
+
+.btn:hover{
+  background-color: $primary-color-light;
+  color: $grey-white !important;
+}
+
+.btn.nomargin{
+  margin: 0px;
+}
+
+.btn.medium{
+  padding: 5px 10px;
+  font-size: $font-small;
+}
+
+.btn.big{
+  padding: 10px 10px;
+  font-size: $font-normal;
+}
+
+// Wrapper for multiple in-line buttons, takes 100% width and the contents are centered
+.btns-wrap{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 5px 5px;
+}
+
+// An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
+.ico-btn{
+  width: min-content;
+  padding: 6px 6px;
+  display: flex;
+  align-items: center;
+  background: $grey-white;
+  color: $primary-color-medium;
+  margin: 5px 5px;
+}
+
+.ico-btn:hover .ico-btn-text{
+  color: $grey-white !important;
+}
+
+.ico-btn .ico{
+  display: flex;
+  align-self: center;
+  font-size: $font-xlarge;
+}
+
+.ico-btn .ico-btn-text{
+  margin: 0px 5px;
+}
+
+.ico-btn.light{
+  color: $primary-color-bright;
+}
+
+.ico-btn.light:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.light:active{
+  background: $primary-color-light;
+}
+
+.ico-btn.light .ico-btn-text{
+  color: $grey-medium;
+}
+
+.ico-btn.highlight, ico-btn.light.highlight{
+  color: $grey-white;
+  background: $primary-color-light;
+}
+
+.ico-btn.highlight:hover, ico-btn.light.highlight:hover{
+  background: $primary-color-bright;
+}
+
+.ico-btn.highlight .ico-btn-text, .ico-btn.light.highlight .ico-btn-text{
+  color: $grey-white;
+}
+
+.ico-btn.small-ico .ico{
+  font-size: $font-normal;
+}
+
+// Ico btn secondary
+
+.ico-btn-sec{
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 10px;
+  flex-wrap: wrap;
+  color: $grey-medium;
+}
+
+.ico-btn-sec.disabled {
+  pointer-events: none;
+}
+
+.ico-btn-sec:focus{
+  text-decoration: none;
+}
+
+.ico-btn-sec.disabled .circular-badge{
+  background: $grey-light !important;
+}
+
+.ico-btn-sec .ico-btn-sec-text{
+  font-family: $font-light;
+  margin-left: 6px;
+}
+
+.ico-btn-sec .circular-badge{
+  background: $accent-color-2;
+  color: $grey-white;
+}
+
+.ico-btn-sec:hover .circular-badge{
+  background: $accent-color-2-light;
+}
+
+.ico-btn-sec:hover{
+  text-decoration: none;
+  color: $grey-medium;
+}
+
+// FIXES: #ignore, do not change
+.paginate_button.active a{
+  background: $primary-color-medium !important;
+  color: $grey-white !important;
+}
+
+.paginate_button a{
+  color: $primary-color-medium !important;
+}
+
+button:focus{
+  outline: none !important;
+}
+
+.btn:active{
+  background: $primary-color-medium !important;
+}
+
+.paginate_button a:focus{
+  outline: none !important;
+}

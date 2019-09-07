@@ -1,0 +1,14 @@
+<div class="filter-wrap">
+  <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: btn_id,
+    icon: "icon-filter", btn_text: "Filter", btn_class: "small-ico light filter-btn"} %>
+  <div class="filter-expandable collapsed">
+    <div class="circular-badge bg-grey-bright text-medium">
+      A
+    </div>
+    <div class="alph-slider-wrap">
+      <div class="alph-slider-sides">A</div>
+      <input type="range" min="1" max="26" value="1" class="alph-slider">
+      <div class="alph-slider-sides">Z</div>
+    </div>
+  </div>
+</div>

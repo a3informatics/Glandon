@@ -24,6 +24,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-version-circle:before {
+  content: "\e92d";
+}
+.icon-extend:before {
+  content: "\e92c";
+}
+.icon-info-circle:before {
+  content: "\e926";
+}
+.icon-info:before {
+  content: "\e927";
+}
+.icon-tag-circle:before {
+  content: "\e92a";
+}
+.icon-tag:before {
+  content: "\e92b";
+}
+.icon-long-arrow:before {
+  content: "\e929";
+}
+.icon-arrow-circle:before {
+  content: "\e925";
+}
+.icon-file:before {
+  content: "\e928";
+}
+.icon-filter:before {
+  content: "\e923";
+}
 .icon-browse-all:before {
   content: "\e91f";
 }
@@ -44,6 +74,9 @@
 }
 .icon-file-pdf:before {
   content: "\e917";
+}
+.icon-file-csv:before {
+  content: "\e924";
 }
 .icon-minus-circle:before {
   content: "\e914";
