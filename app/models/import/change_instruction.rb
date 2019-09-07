@@ -2,22 +2,33 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.0
-class Import::ChangeInstructions < Import
+class Import::ChangeInstruction < Import
 
   C_CLASS_NAME = self.name
+
+  def create(params)
+    job = Background.create
+    klass = self.configuration[:parent_klass]
+    params[:job] = job
+    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: ::CdiscTerm.configuration[:identifier], 
+      owner: owner_short_name(klass), background_id: job.id, file_type: params[:file_type].to_i)
+    # @todo We need to lock the import somehow.
+    job.start(self.description(params), "Starting ...") {self.import(params)} 
+  rescue => e
+    save_error_file({parent: self, children:[]})
+    job.exception("An exception was detected during the import processes.", e)
+  end  
 
   # Import. Import the change instructions
   #
   # @param [Hash] params a parameter hash
-  # @option params [URI] :previous_ct
-  # @option params [URI] :current_cy
+  # @option params [String] :current_id
   # @option params [Array] :files
   # @option params [Background] :job the background job
   # @return [Void] no return value
   def import(params)
     @changes = []
-    @previous_ct = Thesaurus.find_minimum(params[:previous_ct])
-    @current_ct = Thesaurus.find_minimum(params[:current_ct])
+    set_ct(params)
     read_all_excel(params)
     objects = self.errors.empty? ? process_changes : []
     !self.errors.empty? || object_errors?(objects) ? save_error_file(objects) : save_load_file(objects) 
@@ -27,7 +38,7 @@ class Import::ChangeInstructions < Import
     save_exception(e, msg)
     params[:job].exception(msg, e)
   end 
-  handle_asynchronously :import unless Rails.env.test?
+  #handle_asynchronously :import unless Rails.env.test?
 
   # Configuration. Sets the parameters for the import
   # 
@@ -35,7 +46,7 @@ class Import::ChangeInstructions < Import
   def self.configuration
     {
       description: "Import of CDISC Change Instructions",
-      parent_klass: Import::ChangeInstructions::Instruction,
+      parent_klass: Import::ChangeInstruction::Instruction,
       import_type: :cdisc_change_instructions,
       reader_klass: Excel,
       sheet_name: :format,
@@ -77,7 +88,24 @@ class Import::ChangeInstructions < Import
     return :main
   end
 
+  # def owner
+  #   ::CdiscTerm.owner
+  # end
+
 private
+
+  def set_ct(params)
+    begin
+      @current_ct = Thesaurus.find_minimum(params[:current_id])
+    rescue => e
+      self.errors.add(:base, "Current version of terminology not set.")
+    end
+    begin
+      @previous_ct = @current_ct.history_previous
+    rescue => e
+      self.errors.add(:base, "Previous version of terminology not set.")
+    end
+  end
 
   # Read all the Excel files
   def read_all_excel(params)

@@ -573,6 +573,20 @@ describe IsoManagedV2 do
       expect(current.last.version).to eq(1)
     end
 
+    it "history previous next" do
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_n = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      item = CdiscTerm.find_minimum(uri)
+      expect(item.history_previous).to eq(nil)
+      expect(item.history_next.uri).to eq(uri_n)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      uri_p = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_n = Uri.new(uri: "http://www.cdisc.org/CT/V3#TH")
+      item = CdiscTerm.find_minimum(uri)
+      expect(item.history_previous.uri).to eq(uri_p)
+      expect(item.history_next.uri).to eq(uri_n)
+    end
+
   end
 
   describe "Unique" do

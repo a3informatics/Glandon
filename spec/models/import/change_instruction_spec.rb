@@ -8,7 +8,7 @@ describe Import::ChangeInstructions do
   include SparqlHelpers
 
 	def sub_dir
-    return "models/import/change_instructions"
+    return "models/import/change_instruction"
   end
 
   def simple_setup

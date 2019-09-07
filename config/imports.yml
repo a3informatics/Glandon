@@ -9,9 +9,15 @@ defaults: &defaults
     cdisc_term: 
       title: CDISC Terminology Import - Excel
       background: true
-      description: This facilty allows for the CDISC Terminology to be imported from an MS Excel file.
+      description: This facilty allows for the CDISC Terminology to be imported from one or more MS Excel files.
       link_text: "Import CDISC Term"
       link_path: "/imports/cdisc_terms/new?imports[file_type]=0"
+    cdisc_change_instructions: 
+      title: CDISC Terminology Change Instructions - Excel
+      background: true
+      description: This facilty allows for the CDISC Terminology change instructions to be imported from one or more MS Excel files.
+      link_text: "Import Change Instructions"
+      link_path: "/imports/change_instructions/new?imports[file_type]=0"
     form_als:
       title: Form Import - ALS
       background: true
@@ -96,7 +102,7 @@ defaults: &defaults
               -
                 method: create_item
                 object: parent
-                klass: "Import::ChangeInstructions::Instruction"
+                klass: "Import::ChangeInstruction::Instruction"
                 map: {}
               -
                 method: tokenize_and_set_property

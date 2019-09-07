@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-describe Import::ChangeInstructions::Instruction do
+describe Import::ChangeInstruction::Instruction do
 	
 	include DataHelpers
   include ImportHelpers
   include PublicFileHelpers
 
 	def sub_dir
-    return "models/import/change_instructions/instruction"
+    return "models/import/change_instruction/instruction"
   end
 
 	before :each do

@@ -321,6 +321,20 @@ class IsoManagedV2 < IsoConceptV2
     results
   end
 
+  # History Previous
+  #
+  # @return [Uri] uri of the previous item in the history or nil if not found
+  def history_previous
+    history_previous_next(-1)
+  end
+
+  # History Next
+  #
+  # @return [Uri] uri of the next item in the history or nil if not found
+  def history_next
+    history_previous_next(1)
+  end
+
   # History. Find the history for a given identifier within a scope by page
   #
   # @params [Hash] params
@@ -594,6 +608,20 @@ class IsoManagedV2 < IsoConceptV2
   end
 
 private
+
+  # History previous / next
+  def history_previous_next(step)
+    results = []
+    base =  "?e rdf:type #{rdf_type.to_ref} . " +
+            "?e isoT:hasIdentifier ?si . " +
+            "?si isoI:identifier '#{self.scoped_identifier}' . " +
+            "?si isoI:version  #{self.version + step}. " +
+            "?si isoI:hasScope #{self.scope.uri.to_ref} . " 
+    query_string = "SELECT ?e WHERE { #{base} }"
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    return nil if query_results.empty?
+    return self.class.find_minimum(query_results.by_object_set([:e]).first[:e])
+  end
 
   # Set the scopes, will use the cache so quick.
   def self.set_cached_scopes(object, si_scope)

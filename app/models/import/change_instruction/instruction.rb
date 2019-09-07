@@ -2,12 +2,11 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.22.2
-class Import::ChangeInstructions::Instruction
+class Import::ChangeInstruction::Instruction
 
-  #include ActiveModel::Naming
-  #include ActiveModel::Conversion
-  #include ActiveModel::Validations
   extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
 
   attr_accessor :previous_parent
   attr_accessor :previous_children
@@ -71,6 +70,10 @@ class Import::ChangeInstructions::Instruction
     add_error("Multiple previous and current terms.") if @previous_children.count > 1 && @current_children.count > 1
     add_error("Multiple previous and current code lists.") if @previous_parent.count > 1 && @current_parent.count > 1
     return @errors.empty?
+  end
+
+  def self.owner
+    ::CdiscTerm.owner
   end
 
 private

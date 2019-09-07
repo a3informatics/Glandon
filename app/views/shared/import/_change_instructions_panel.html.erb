@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag 'concerns/check_box' %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= title %></h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for @model, url: create_path do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= label_tag :version, "Version:" %><br/>
+            <%= select_tag("imports[current_id]", options_for_select(@history.map{ |u| ["#{u.version_label}", u.id]}), class: "form-control", :include_blank => true) %>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <%= label_tag :auto_load, "Auto load:" %><br/>
+            <div class="material-switch pull-left">
+              <input id="imports_auto_load" name="imports[auto_load]" type="checkbox"/>
+              <label for="imports_auto_load" class="label-success"></label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= label_tag :files, "File:" %><br/>
+            <%= select_tag("imports[files][]", options_for_select(@files), multiple: multiple, class: "form-control", :size => 20) %>
+          </div>
+        </div>
+      </div>
+      <%= f.submit "Import", class: "btn btn-default btn-success" %>
+      <%= link_to "Close", imports_path, :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
