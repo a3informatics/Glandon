@@ -40,18 +40,18 @@ describe Import::ChangeInstruction::Instruction do
     expect(item.current).to hash_equal([["C12345", "C333"], ["C12345", "C3334"], ["C12346", "C333"], ["C12346", "C3334"]])
   end
 
-  it "valid, previous children but no current children" do
-    item = Import::ChangeInstruction::Instruction.new 
-    item.previous_parent << "C12345"
-    item.current_parent << "C12346"
-    expect(item.valid?).to eq(true)
-    item.previous_children << "C3331"
-    expect(item.valid?).to eq(false)
-    expect(item.errors.count).to eq(1)    
-    expect(item.errors.full_messages.to_sentence).to eq("Previous term is not empty but current term is.")
-    item.current_children << "C4441"
-    expect(item.valid?).to eq(true)
-  end
+  # it "valid, previous children but no current children" do
+  #   item = Import::ChangeInstruction::Instruction.new 
+  #   item.previous_parent << "C12345"
+  #   item.current_parent << "C12346"
+  #   expect(item.valid?).to eq(true)
+  #   item.previous_children << "C3331"
+  #   expect(item.valid?).to eq(false)
+  #   expect(item.errors.count).to eq(1)    
+  #   expect(item.errors.full_messages.to_sentence).to eq("Previous term is not empty but current term is.")
+  #   item.current_children << "C4441"
+  #   expect(item.valid?).to eq(true)
+  # end
 
   it "valid, no previous children but current children" do
     item = Import::ChangeInstruction::Instruction.new 
