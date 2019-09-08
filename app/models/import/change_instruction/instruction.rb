@@ -72,6 +72,9 @@ class Import::ChangeInstruction::Instruction
     return @errors.empty?
   end
 
+  # Owner. Same as CDISC CT Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
   def self.owner
     ::CdiscTerm.owner
   end

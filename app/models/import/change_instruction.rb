@@ -6,6 +6,13 @@ class Import::ChangeInstruction < Import
 
   C_CLASS_NAME = self.name
 
+  # Create. Create the import
+  #
+  # @param [Hash] params a parameter hash
+  # @option params [String] :current_id
+  # @option params [Boolean] :auto_load
+  # @option params [Array] :files
+  # @return [Void] no return value
   def create(params)
     job = Background.create
     klass = self.configuration[:parent_klass]
@@ -61,13 +68,14 @@ class Import::ChangeInstruction < Import
     self.class.configuration
   end
 
+  # Save the error file
   def save_error_file(objects)
     objects.each {|c| merge_errors(c, self) if c.errors.any?}
     self.update(output_file: "", error_file: ImportFileHelpers.save_errors(self.errors.full_messages, 
       "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
   end
 
-  # Save Load File. Will save the import load file and load if auto load set
+  # Save the load file
   def save_load_file(objects)
     path = Rails.application.routes.url_helpers.thesauri_path(@current_ct)
     sparql = Sparql::Update.new()
@@ -88,12 +96,9 @@ class Import::ChangeInstruction < Import
     return :main
   end
 
-  # def owner
-  #   ::CdiscTerm.owner
-  # end
-
 private
 
+  # Set CDISC CT, current and previous 
   def set_ct(params)
     begin
       @current_ct = Thesaurus.find_minimum(params[:current_id])

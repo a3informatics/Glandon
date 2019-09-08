@@ -17,7 +17,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "previous" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     expect(item.previous).to hash_equal([["C12345"]])
     item.previous_children << "C333"
@@ -29,7 +29,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "current" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.current_parent << "C12345"
     expect(item.current).to hash_equal([["C12345"]])
     item.current_children << "C333"
@@ -41,7 +41,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, previous children but no current children" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.current_parent << "C12346"
     expect(item.valid?).to eq(true)
@@ -54,7 +54,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, no previous children but current children" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.current_parent << "C12346"
     expect(item.valid?).to eq(true)
@@ -67,7 +67,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, multiple children mapping I" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.current_parent << "C12346"
     item.previous_children << "C3331"
@@ -81,7 +81,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, multiple children mapping II" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.current_parent << "C12346"
     item.previous_children << "C3331"
@@ -95,7 +95,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, multiple parent mapping I" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.previous_parent << "C12346"
     item.current_parent << "C12346"
@@ -107,7 +107,7 @@ describe Import::ChangeInstruction::Instruction do
   end
 
   it "valid, multiple parent mapping II" do
-    item = Import::ChangeInstructions::Instruction.new 
+    item = Import::ChangeInstruction::Instruction.new 
     item.previous_parent << "C12345"
     item.current_parent << "C12346"
     item.current_parent << "C12347"
@@ -116,6 +116,10 @@ describe Import::ChangeInstruction::Instruction do
     expect(item.valid?).to eq(false)
     expect(item.errors.count).to eq(1)    
     expect(item.errors.full_messages.to_sentence).to eq("Multiple previous and current code lists.")
+  end
+
+  it "returns owner" do
+    expect(Import::ChangeInstruction::Instruction.owner.uri).to eq(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS084433759"))
   end
 
 end
