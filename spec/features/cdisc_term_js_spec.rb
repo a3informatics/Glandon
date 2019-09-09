@@ -61,12 +61,12 @@ describe "CDISC Term", :type => :feature do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Controlled Terminology CT (V43.0.0, 43, Standard)'
+      expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)
       ui_child_search("967")
       expect(page).to have_content 'C96780'
       expect(page).to have_content 'C96779'
-      click_link 'Close'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
@@ -75,7 +75,6 @@ describe "CDISC Term", :type => :feature do
       visit '/cdisc_terms/history'
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2014-10-06 Release')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Controlled Terminology CT (V40.0.0, 40, Standard)'
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 409)
       ui_child_search("10013")  
@@ -89,8 +88,8 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100393'
       expect(page).to have_content 'C100394'
       expect(page).to have_content 'C100395'  
-      click_link 'Close'
-      click_link 'Close'
+      click_link 'Return'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC Terminology'
      end
 

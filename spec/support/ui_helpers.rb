@@ -274,6 +274,56 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
+  def ui_click_sidebar
+      page.execute_script("$('#sidebar').find('.category-container').removeClass('collapsed')")
+
+  end
+
+  def navbar_click (parent, child)
+      #page.execute_script("$('#main_nav_util').removeClass('collapsed')")
+  end
+
+  def ui_visit (id)
+      ui_click_sidebar
+      click_link "#{id}"
+      #url = page.execute_script("$(#{id}).attr('href')")
+  end
+
+  #Scenario
+  def click_navbar_terminology
+    ui_visit('main_nav_te')
+  end
+
+  def click_navbar_bc
+    ui_visit('main_nav_bc')
+  end
+
+  def click_navbar_form
+    ui_visit('main_nav_f')
+  end
+
+  def click_navbar_ig_domain
+    ui_visit('main_nav_sig')
+  end
+
+  def click_navbar_adam_ig_domain
+    ui_visit('main_nav_aig')
+  end
+
+  def click_navbar_sponsor_domain
+    ui_visit('main_nav_sd')
+  end
+
+  def click_navbar_import
+    ui_visit('main_nav_i')
+  end
+
+  def click_navbar_utilities
+    ui_visit('main_nav_ics')
+  end
+
+
+
   # Return
   def ui_hit_return(id)
     # Amended to allow for spaces in id

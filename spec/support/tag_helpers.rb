@@ -1,9 +1,8 @@
 module TagHelper
 
   def create_classification
-      click_link 'Dashboard'
       expect(page).to have_content 'Registration Status Counts'   
-      click_link 'Tags'
+      visit 'iso_concept_systems'
       expect(page).to have_content 'Classifications'  
       click_link 'New'
       fill_in 'iso_concept_system_label', with: 'Root'
@@ -13,9 +12,8 @@ module TagHelper
     end
 
   def create_tag_first_level(label, description)
-      click_link 'Dashboard'
       expect(page).to have_content 'Registration Status Counts'   
-      click_link 'Tags'
+      visit 'iso_concept_systems'
       expect(page).to have_content 'Tag Viewer'  
       ui_check_input("edit_label", 'Tags')
       fill_in 'add_label', with: "#{label}"
@@ -26,9 +24,9 @@ module TagHelper
   end
 
   def create_tag_child(parent, identifier, label)
-      click_link 'Dashboard'
+      
       expect(page).to have_content 'Registration Status Counts'   
-      click_link 'Tags'
+      visit 'iso_concept_systems'
       expect(page).to have_content 'Tag Viewer'  
       ui_click_node_name ("#{parent}")
       ui_check_input("edit_label", "#{parent}")
@@ -39,7 +37,7 @@ module TagHelper
   end
 
   def create_tag_form(identifier, label)
-    click_link 'Forms'
+    visit 'forms'
     expect(page).to have_content 'Index: Forms'  
     click_link 'New'
     fill_in 'form_identifier', with: "#{identifier}"
@@ -50,7 +48,7 @@ module TagHelper
 
   def create_tag_bc(identifier, label, template)
     #ui_scroll_to_id("biomedical_concept_identifier")
-    click_link 'Biomedical Concepts'
+    visit 'biomedical_concepts'
     wait_for_ajax
     expect(page).to have_content 'Index: Biomedical Concepts'  
     click_link 'New'
@@ -64,7 +62,7 @@ module TagHelper
   end
 
   def create_tag_term(identifier, label)
-      click_link 'Terminology'
+      visit 'thesauri'
       expect(page).to have_content 'Index: Terminology'
       click_link 'New'
       expect(page).to have_content 'New Terminology:'
