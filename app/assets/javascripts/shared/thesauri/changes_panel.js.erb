@@ -104,13 +104,13 @@ ChangesPanel.prototype.showButtons = function () {
  */
 ChangesPanel.prototype.status = function (status) {
   if (status == "created") {
-    return '<span class="glyphicon glyphicon-ok text-success"/>';
+    return '<span class="icon-plus-circle text-secondary-clr text-xnormal"/>';
   } else if (status == "no_change") {
-    return '<span class="glyphicon glyphicon-minus text-success"/>';
+    return '<span class="icon-arrow-circle cir-ar-right i-centered text-light text-xnormal"/>';
   } else if (status == "updated") {
-    return '<span class="text-center glyphicon glyphicon-edit text-warning"/>';
+    return '<span class="icon-edit-circle text-link text-xnormal"/>';
   } else if (status == "deleted") {
-    return '<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>';
+    return '<td class="text-center"><span class="icon-times-circle text-accent-2 text-xnormal"/></td>';
   } else if (status == "not_present") {
     return '<td class="text-center">&nbsp;</td>';
   } else {

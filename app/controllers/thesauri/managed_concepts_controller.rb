@@ -1,9 +1,9 @@
 class Thesauri::ManagedConceptsController < ApplicationController
- 
+
   before_action :authenticate_user!
-  
+
   C_CLASS_NAME = "ThesaurusConceptsController"
-  
+
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
@@ -40,13 +40,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
       render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
     end
   end
-  
+
   def children
     authorize Thesaurus, :edit?
     results = []
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     children = tc.children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}}), 
+    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}}),
       delete_path: thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})})}
     render :json => { data: results }, :status => 200
   end
@@ -60,7 +60,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       if new_tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Code list updated.") if token.refresh == 1
         result = new_tc.simple_to_h
-        result.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}}), 
+        result.reverse_merge!({edit_path: edit_thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}}),
           delete_path: thesauri_unmanaged_concept_path({id: result[:id], unmanaged_concept: {parent_id: tc.id}})})
         render :json => {data: result}, :status => 200
       else
@@ -85,9 +85,9 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   # ************************
-  # CSV Export 
+  # CSV Export
   # ************************
-  
+
   # def export_csv
   #   authorize CdiscCl, :view?
   #   uri = UriV3.new(id: params[:id]) # Using new mechanism
@@ -98,6 +98,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def show
     authorize Thesaurus
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
     @context_id = the_params[:context_id]
     respond_to do |format|
       format.html
@@ -115,7 +117,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       end
     end
   end
-  
+
   def changes
     authorize Thesaurus, :view?
     @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
@@ -128,7 +130,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
         @close_path = request.referer
       format.json do
         clis = @tc.changes(current_user.max_term_display.to_i)
-        clis[:items].each do |k,v| 
+        clis[:items].each do |k,v|
           v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
         end
         render json: {data: clis}
@@ -149,13 +151,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def is_extended
     authorize Thesaurus, :view?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    render json: {data: tc.extended?}      
+    render json: {data: tc.extended?}
   end
 
   def is_extension
     authorize Thesaurus, :view?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    render json: {data: tc.extension?}      
+    render json: {data: tc.extension?}
   end
 
   def add_extensions
@@ -173,7 +175,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc.delete_extensions(uris)
     render json: {data: {}, error: []}
   end
-    
+
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -231,7 +233,7 @@ private
   #     if info[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s
   #       link = edit_thesauri_path(id: info[:uri].id, namespace: info[:uri].namespace)
   #     else
-  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)        
+  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)
   #     end
   #   end
   #   return link
@@ -240,7 +242,7 @@ private
   def the_params
     params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
   end
-    
+
   def edit_params
     params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
   end

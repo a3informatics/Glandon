@@ -1,6 +1,6 @@
 /*
 * Children Panel
-* 
+*
 * Requires:
 * children_table [Table] the managed item table
 */
@@ -55,6 +55,7 @@ ChildrenPanel.prototype.add = function (offset) {
     dataType: 'json',
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
+        result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();
@@ -69,6 +70,10 @@ ChildrenPanel.prototype.add = function (offset) {
       _this.childrenTable.processing(false);
     }
   });
+}
+
+ChildrenPanel.prototype.extensibleConvert = function(extensible) {
+    return "<span class='i-centered icon-extend"+(extensible ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>";
 }
 
 /**

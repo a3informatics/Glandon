@@ -10,9 +10,11 @@
   <div class="col-md-12 card">
     <div class="card-content">
       <!-- RENDER CARD CONTENTS -->
-      <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @tc, :badge => "CL"} do %>
+      <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
         <!-- BUTTONS WRAP -->
         <div class="actions-wrap">
+          <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
+            icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
           <!-- BUTTON EXPORT CSV -->
           <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@tc),
             id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
@@ -20,7 +22,7 @@
           <!-- EXTEND BUTTONS -->
           <% class_list = @can_be_extended ? e_disabled = false : e_disabled = true %>
           <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#tableModal", id: "extend",
-            icon: "icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>
+            icon: e_disabled ? "icon-extend-disabled ":"icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>
 
           <%= render partial: "shared/thesauri/thesauri_select" %>
           <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @is_extended_path, id: "extension",

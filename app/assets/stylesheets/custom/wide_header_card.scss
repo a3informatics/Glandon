@@ -18,6 +18,10 @@
   color: $grey-medium;
 }
 
+.h-inner-wrap.centered{
+  align-items: center;
+}
+
 .h-inner-wrap:first-of-type{
   justify-content: center;
   align-self: flex-start;
@@ -64,3 +68,36 @@
   font-family: $font-light;
   color: $grey-medium;
 }
+
+.circular-badge.big.is-ext{
+  border: 3px solid $secondary-color-light;
+  line-height: 65px;
+}
+
+.circular-badge.big.not-ext{
+  border: 3px solid $accent-color-2-light;
+  line-height: 65px;
+}
+
+.label-w-margin{
+  margin-top: 6px;
+}
+
+// .circular-badge.big{
+//   position: relative;
+// }
+
+// .extensible-ico-badge{
+//   position: absolute;
+//   font-size: $font-small;
+//   right: 0%;
+//   top: 0%;
+// }
+//
+// .extensible-ico-badge.is-ext{
+//   color: $secondary-color-medium;
+// }
+//
+// .extensible-ico-badge.not-ext{
+//   color: $grey-light;
+// }
