@@ -274,55 +274,59 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
-  def ui_click_sidebar
-      page.execute_script("$('#sidebar').find('.category-container').removeClass('collapsed')")
+  # Navigation
+  # ==========
 
+  def ui_section_expanded?(section)
+    x = page.execute_script("$('##{section}').hasClass('collapsed')")
+byebug
   end
 
-  def navbar_click (parent, child)
-      #page.execute_script("$('#main_nav_util').removeClass('collapsed')")
+  def ui_expand_section(section)
+    page.execute_script("$('##{section}').removeClass('collapsed')")
   end
 
-  def ui_visit (id)
-      ui_click_sidebar
-      click_link "#{id}"
-      #url = page.execute_script("$(#{id}).attr('href')")
+  def ui_collapse_section(section)
+    page.execute_script("$('##{section}').addClass('collapsed')")
+  end
+
+  def ui_navbar_click (id)
+    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_bc: "???"} # Add more
+    section = id_to_section_map[id.to_sym]
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    click_link "#{id}"
   end
 
   #Scenario
   def click_navbar_terminology
-    ui_visit('main_nav_te')
+    ui_navbar_click('main_nav_te')
+  end
+
+  def click_navbar_cdisc_terminology
+    ui_navbar_click('main_nav_ct')
   end
 
   def click_navbar_bc
-    ui_visit('main_nav_bc')
+    ui_navbar_click('main_nav_bc')
   end
 
   def click_navbar_form
-    ui_visit('main_nav_f')
+    ui_navbar_click('main_nav_f')
   end
 
   def click_navbar_ig_domain
-    ui_visit('main_nav_sig')
+    ui_navbar_click('main_nav_sig')
   end
 
   def click_navbar_adam_ig_domain
-    ui_visit('main_nav_aig')
+    ui_navbar_click('main_nav_aig')
   end
 
   def click_navbar_sponsor_domain
-    ui_visit('main_nav_sd')
+    ui_navbar_click('main_nav_sd')
   end
 
-  def click_navbar_import
-    ui_visit('main_nav_i')
-  end
-
-  def click_navbar_utilities
-    ui_visit('main_nav_ics')
-  end
-
-
+  # Add more of these ...
 
   # Return
   def ui_hit_return(id)
