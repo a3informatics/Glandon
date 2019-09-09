@@ -291,7 +291,7 @@ byebug
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util"} # Add more
+    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon"} # Add more
     section = id_to_section_map[id.to_sym]
     byebug
     ui_expand_section(section) if !ui_section_expanded?(section)
@@ -315,7 +315,7 @@ byebug
     ui_navbar_click('main_nav_bc')
   end
 
-  def click_navbar_form
+  def click_navbar_forms
     ui_navbar_click('main_nav_f')
   end
 
