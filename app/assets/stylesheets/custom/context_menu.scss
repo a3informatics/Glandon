@@ -1,0 +1,60 @@
+@import "custom/globals.scss";
+
+.icon-context-menu{
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px 5px;
+  color: $grey-light;
+  font-size: $font-normal;
+}
+
+.icon-context-menu:hover{
+  color: $grey-medium;
+}
+
+.icon-context-menu:focus{
+  outline: none;
+}
+
+.icon-context-menu:focus .context-menu {
+  display: block;
+}
+
+.context-menu:hover{
+  display: block;
+}
+
+.context-menu{
+  position: absolute;
+  background: $grey-white;
+  z-index: 20;
+  display: none;
+}
+
+.context-menu.left{
+  left: -130px;
+}
+
+.context-menu .option{
+  padding: 10px 14px;
+  min-width: 150px;
+  font-family: $font-light;
+  color: $grey-medium;
+  display: block;
+  white-space: nowrap;
+}
+
+.context-menu .option.disabled{
+  pointer-events: none;
+  color: $grey-light;
+}
+
+.context-menu [class^="icon-"]{
+  margin-right: 10px;
+}
+
+.context-menu .option:hover{
+  background: $secondary-color-medium;
+  color: $grey-white;
+  text-decoration: none;
+}
