@@ -1,10 +1,12 @@
+<!-- CARD FOR TERMINOLOGY -->
 <div class="h-outside-wrap">
+  <!-- BADGE COLUMN -->
   <div class="h-inner-wrap">
-    <span class="circular-badge big bg-accent-1 text-white"><%= badge %></span>
-    <% if item.scoped_identifier.length > 2 %>
-      <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.scoped_identifier %></span>
-    <% end %>
+    <span class="circular-badge big bg-accent-1 text-white">
+      <%= badge %>
+    </span>
   </div>
+  <!-- INFO COLUMN -->
   <div class="h-inner-wrap mid">
     <div class="text-small font-light"> <%= item.owner_short_name %> (Owner) </div>
     <div class="text-large"> <%= item.label %> </div>
@@ -14,6 +16,7 @@
         <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
       </div>
   </div>
+  <!-- BUTTONS COLUMN -->
   <div class="h-inner-wrap">
     <%= yield %>
   </div>

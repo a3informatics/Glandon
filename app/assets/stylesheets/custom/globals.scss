@@ -155,11 +155,16 @@ $grey-white: #ffffff;
   color: $primary-color-light;
 }
 
+.text-secondary-clr{
+  color: $secondary-color-medium;
+}
+
 /* SIZES */
 
 $font-tiny: 8pt;
 $font-small: 10pt;
 $font-normal: 12pt;
+$font-xnormal: 14pt;
 $font-large: 16pt;
 $font-xlarge: 20pt;
 
@@ -173,6 +178,10 @@ $font-xlarge: 20pt;
 
 .text-normal{
   font-size: $font-normal;
+}
+
+.text-xnormal{
+  font-size: $font-xnormal;
 }
 
 .text-large{

@@ -1,9 +1,18 @@
-<!-- CARD FOR CODELIST ITEMS -->
+<!-- CARD FOR CODELISTS -->
 <div class="h-outside-wrap">
   <!-- BADGE COLUMN -->
-  <div class="h-inner-wrap">
-    <span class="circular-badge big bg-accent-1 text-white"><%= badge %></span>
-    <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.identifier %></span>
+  <div class="h-inner-wrap centered">
+    <span class="circular-badge big bg-accent-1 text-white">
+      <%= badge %>
+    </span>
+    <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.scoped_identifier %></span>
+    <div>
+      <% if item.extensible %>
+        <span class="icon-extend text-secondary-clr"></span> <span class="font-light text-tiny">Extensible</span>
+      <% else %>
+        <span class="icon-extend-disabled text-accent-2"></span> <span class="font-light text-tiny">Not extensible</span>
+      <% end %>
+    </div>
   </div>
   <!-- INFO COLUMN -->
   <div class="h-inner-wrap mid">

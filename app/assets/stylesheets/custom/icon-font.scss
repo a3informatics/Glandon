@@ -24,14 +24,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.i-centered{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.icon-context-menu:before {
+  content: "\e933";
+}
+.icon-edit-circle:before {
+  content: "\e930";
+}
+.icon-arrow-circle:before {
+  content: "\e925";
+}
+.icon-edit:before {
+  content: "\e931";
+}
+.icon-times-circle:before {
+  content: "\e932";
+}
+.icon-extend-disabled:before {
+  content: "\e92f";
+}
+.icon-history:before {
+  content: "\e92e";
+}
+.icon-info-circle:before {
+  content: "\e926";
+}
 .icon-version-circle:before {
   content: "\e92d";
 }
 .icon-extend:before {
   content: "\e92c";
-}
-.icon-info-circle:before {
-  content: "\e926";
 }
 .icon-info:before {
   content: "\e927";
@@ -44,9 +71,6 @@
 }
 .icon-long-arrow:before {
   content: "\e929";
-}
-.icon-arrow-circle:before {
-  content: "\e925";
 }
 .icon-file:before {
   content: "\e928";

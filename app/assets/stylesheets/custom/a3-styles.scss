@@ -45,6 +45,19 @@
   right: 0%;
 }
 
+// ARROW ROTATION
+
+.cir-ar-right{
+  transform: rotate(90deg);
+}
+
+.cir-ar-down{
+  transform: rotate(180deg);
+}
+
+.cir-ar-left{
+  transform: rotate(270deg);
+}
 // BREADCRUMBS
 
 .breadcrumb a {

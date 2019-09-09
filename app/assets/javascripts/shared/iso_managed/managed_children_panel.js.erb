@@ -1,6 +1,6 @@
 /*
 * Managed Item Panel
-* 
+*
 * Requires:
 * managed_item_table [Table] the managed item table
 */
@@ -49,6 +49,7 @@ ManagedChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       for (i=0; i<result.data.length; i++) {
         //_this.synonymList(result.data[i]);
+        result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();
@@ -63,6 +64,10 @@ ManagedChildrenPanel.prototype.add = function (offset) {
       _this.childrenTable.processing(false);
     }
   });
+}
+
+ManagedChildrenPanel.prototype.extensibleConvert = function(extensible) {
+    return "<span class='i-centered icon-extend"+(extensible ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>";
 }
 
 // ManagedChildrenPanel.prototype.synonymList = function(entry) {

@@ -1,6 +1,6 @@
 /*
 * Differences Panel
-* 
+*
 * Requires:
 * differences_table [Table] the differences table
 */
@@ -38,7 +38,7 @@ function DifferencesPanel(url) {
   this.differencesTable = $('#differences_table').DataTable( {
     "ajax": {
       "url": _this.url,
-      "dataSrc": "data"  
+      "dataSrc": "data"
     },
     "columns": columns,
     "pageLength": pageLength, // Gloabl setting
@@ -54,9 +54,9 @@ function DifferencesPanel(url) {
 
 DifferencesPanel.prototype.status = function (data) {
   if (data.status === "deleted") {
-    return '<td class="text-center"><span class="glyphicon glyphicon-remove text-danger"/></td>';
+    return '<td class="text-center"><span class="icon-times-circle text-accent-2 i-centered text-xnormal"></span></td>';
   } else if (data.status === "no_change") {
-    return '<td class="text-center"><span class="glyphicon glyphicon-arrow-down text-success"/></td>';
+    return '<td class="text-center"><span class="icon-arrow-circle cir-ar-down text-light i-centered text-xnormal"></span></td>';
   } else if (data.status === "created") {
     return '<td><div class="diff">' + data.current + '</div></td>';
   } else if(data.status === "updated") {

@@ -2,10 +2,15 @@ $(document).ready( function() {
   var ip = new IndexPanel(changes_path);
   var tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), $("#timeline-end-btn"), $(".timeline-point"));
 
+  // INITIALIZE ON CORRECT DATES
+  var newest_date = tl_slider.tl_points.eq(-1).children().first().html(), second_newest_date = tl_slider.tl_points.eq(-2).children().first().html();
+  tl_slider.moveToDate(tl_slider.r_slider, newest_date);
+  tl_slider.moveToDate(tl_slider.l_slider, second_newest_date);
+
   var filters = Array();
 
   $(".filter-wrap").each(function(i, e) {
-    // Init each filter handler 
+    // Init each filter handler
     filters[i] = new AlphabeticalSlider($(this).find(".alph-slider"), $(this).find(".circular-badge"), $(this).next(".list-wrap"));
   });
 
