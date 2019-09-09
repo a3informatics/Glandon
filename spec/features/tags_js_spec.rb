@@ -43,7 +43,7 @@ describe "Tags", :type => :feature do
 
     ###  Manage Tags (MDR-TAG-20, MDR-TAG-30, MDR-TAG-40, MDR-TAG-45, MDR-TAG-60, MDR-TAG-110)
     it "only creat tags when both label and description is provided (REQ-MDR-TAG-040)", js: true do
-      navbar_click('main_nav_util', 'Tags')
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_check_input("edit_label", 'Tags')  
       fill_in 'add_label', with: 'Tag1'

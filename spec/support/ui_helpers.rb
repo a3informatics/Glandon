@@ -291,8 +291,9 @@ byebug
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_bc: "???"} # Add more
+    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util"} # Add more
     section = id_to_section_map[id.to_sym]
+    byebug
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
@@ -304,6 +305,10 @@ byebug
 
   def click_navbar_cdisc_terminology
     ui_navbar_click('main_nav_ct')
+  end
+
+  def click_navbar_tags
+    ui_navbar_click('main_nav_ics')
   end
 
   def click_navbar_bc
