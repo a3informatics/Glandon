@@ -15,7 +15,7 @@ describe "Thesaurus", :type => :feature do
       load_schema_file_into_triple_store("ISO11179Concepts.ttl")
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
+      load_test_file_into_triple_store("iso_namespace_real.ttl")
 
       load_test_file_into_triple_store("thesaurus_concept.ttl")
       clear_iso_concept_object
@@ -34,13 +34,13 @@ describe "Thesaurus", :type => :feature do
       ua_curator_login
     end
 
-    it "allows access to index page" do
+    it "allows access to index page (REQ-MDR-ST-015)" do
       visit '/'
       find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
       expect(page).to have_content 'Index: Terminology'
     end
 
-    it "allows a terminology to be created" do
+    it "allows a terminology to be created (REQ-MDR-ST-015)" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       click_link 'New'
@@ -54,14 +54,14 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: TEST test'
     end
 
-    it "allows the history page to be viewed" do
+    it "allows the history page to be viewed (REQ-MDR-ST-015)" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: TEST test'
     end
 
-    it "history allows the show page to be viewed" do
+    it "history allows the show page to be viewed (REQ-MDR-ST-015)" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
@@ -73,7 +73,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'A00020'
     end
 
-    it "history allows the view page to be viewed" do
+    it "history allows the view page to be viewed (REQ-MDR-ST-015)" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
@@ -84,7 +84,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
     end
 
-    it "history allows the status page to be viewed" do
+    it "history allows the status page to be viewed (REQ-MDR-ST-050)" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
@@ -95,7 +95,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
     end
     
-    it "history allows the search page to be viewed" do
+    it "history allows the search page to be viewed ()" do
       visit '/thesauri'
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click

@@ -3,8 +3,9 @@ require 'rails_helper'
 describe "CDISC Terminology", :type => :feature do
   
   include DataHelpers
-  include UiHelpers
   include PauseHelpers
+  include UiHelpers
+  include UserAccountHelpers
   include WaitForAjaxHelper
 
   def sub_dir
@@ -26,9 +27,8 @@ describe "CDISC Terminology", :type => :feature do
   describe "Curator Search", :type => :feature do
   
     before :all do
-      user = User.create :email => "curator@example.com", :password => "12345678" 
-      user.add_role :curator
       clear_triple_store
+      ua_create
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -48,17 +48,12 @@ describe "CDISC Terminology", :type => :feature do
       clear_cdisc_term_object
     end
 
-    after :all do
-      #Notepad.destroy_all
-      user = User.where(:email => "curator@example.com").first
-      user.destroy
+    before :each do
+      ua_curator_login
     end
 
-    before :each do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+    after :all do
+      ua_destroy
     end
 
     it "allows a search to be performed (REQ-MDR-CT-060)", js: true do
@@ -66,9 +61,9 @@ describe "CDISC Terminology", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2014-12-19 Release')]/td/a", :text => 'Search').click
       expect(page).to have_content 'Search: Controlled Terminology CT (V41.0.0, 41, Standard)'
-      wait_for_ajax_long 
       ui_check_table_info("searchTable", 0, 0, 0)
-      click_link 'Close'
+      #currently doesn't work
+      click_link 'close'
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
