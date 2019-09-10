@@ -336,9 +336,9 @@ module UiHelpers
 
   #Dashboard
   def click_navbar_dashboard
-    click('main_nav_d')
+    click_link('main_nav_d')
   end
-  
+
   # Add more of these ...
 
   # Return
