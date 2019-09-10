@@ -336,10 +336,16 @@ module UiHelpers
 
   #Dashboard
   def click_navbar_dashboard
-    click_link('main_nav_d')
+    visit 'dashboard'
   end
 
   # Add more of these ...
+
+  #Context Menu
+
+  def context_menu_element (content, link_text)
+    find(:xpath, "//tr[contains(.,'#{content}')]/td/span/div/a", :text => "#{link_text}").click
+  end
 
   # Return
   def ui_hit_return(id)
