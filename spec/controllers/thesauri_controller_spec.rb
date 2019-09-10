@@ -451,6 +451,48 @@ describe ThesauriController do
 
   end
 
+  describe "Community Reader" do
+    
+    login_community_reader
+
+    before :each do
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+      ]
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
+      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+      Token.delete_all
+      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
+    end
+
+    after :each do
+      user = User.where(:email => "lock@example.com").first
+      user.destroy
+    end
+
+    it "index" do
+      expected = [{x: "a1", y: true, z: "something"}, {x: "a2", y: true, z: "something else"}]
+      expect(Thesaurus).to receive(:unique).and_return(expected)
+      get :index
+      expect(assigns(:thesauri)).to eq(expected)
+      expect(response).to redirect_to("/")
+    end
+
+    it "history" do
+      params = {}
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
+      expect(response).to redirect_to("/cdisc_terms/history")
+    end
+
+  end
+
   describe "Unauthorized User" do
     
     login_reader

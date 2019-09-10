@@ -517,7 +517,7 @@ defaults: &defaults
   ThesaurusPolicy:
     index:
       sys_admin: false
-      community_reader: false
+      community_reader: true
       term_reader: true
       term_curator: true
       reader: true

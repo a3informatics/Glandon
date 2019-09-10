@@ -13,7 +13,10 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @thesauri = Thesaurus.unique
     respond_to do |format|
-      format.html
+      format.html do
+        # @todo This is a bit evil but short term solution. Think of a more elgant fix.
+        redirect_to root_path if current_user.is_only_community?
+      end
       format.json do
         render json: {data: @thesauri}
       end
@@ -24,6 +27,8 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     respond_to do |format|
       format.html do
+        # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
+        redirect_to history_cdisc_terms_path if current_user.is_only_community?
         results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         if results.empty?
           redirect_to thesauri_index_path
@@ -134,7 +139,7 @@ class ThesauriController < ApplicationController
     @thesaurus = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html
-        @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.owner})
+        @close_path = history_thesauri_index_path(thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope.id})
       format.json do
         if Thesaurus.empty_search?(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
