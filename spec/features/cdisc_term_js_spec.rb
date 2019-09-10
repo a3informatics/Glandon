@@ -42,14 +42,14 @@ describe "CDISC Term", :type => :feature do
     end
 
     #CL history
-    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)" do
-      visit '/cdisc_terms/history'
+    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
     #CDISC history
     it "allows for several versions of CDISC Terminology (REQ-MDR-CT-010)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       expect(page).to have_content '2016-03-25 Release'
       expect(page).to have_content '2015-12-18 Release'
@@ -58,7 +58,7 @@ describe "CDISC Term", :type => :feature do
 
     #CDISC Th show
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content '2015-06-26 Release'
@@ -72,7 +72,7 @@ describe "CDISC Term", :type => :feature do
 
     #CDISC CL show
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2014-10-06 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content '2014-10-06 Release'
@@ -83,7 +83,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100135'
       expect(page).to have_content 'CDISC Questionnaire HAMD 17 Test Name Terminology'
       find(:xpath, "//tr[contains(.,'C100136')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: QS-European Quality of Life Five Dimension Three Level Scale Test Code C100136'
+      expect(page).to have_content 'EQ-5D-3L TESTCD'
       ui_check_table_info("children_table", 1, 6, 6)
       expect(page).to have_content 'C100393'
       expect(page).to have_content 'C100394'
@@ -95,10 +95,10 @@ describe "CDISC Term", :type => :feature do
 
     #CDISC CLI show
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Controlled Terminology CT (V45.0.0, 45, Standard)'
+      expect(page).to have_content '2015-12-18 Release'
       ui_check_table_info("children_table", 1, 10, 503)
       ui_child_search("route")
       ui_check_table_info("children_table", 1, 3, 3)
@@ -115,15 +115,15 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_info("children_table", 1, 5, 5)
       find(:xpath, "//tr[contains(.,'C38288')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Oral Route of Administration'
-      click_link 'Close'
-      click_link 'Close'
-      click_link 'Close'
+      click_link 'Return'
+      click_link 'Return'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
      #CDISC CL extensible
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: Controlled Terminology CT (V43.0.0, 43, Standard)'
@@ -136,24 +136,24 @@ describe "CDISC Term", :type => :feature do
     end
 
     # currently not working
-    it "history allows the status page to be viewed (REQ-MDR-CT-NONE)" do
-       visit '/cdisc_terms/history'
+    it "history allows the status page to be viewed (REQ-MDR-CT-NONE)", js:true do
+       click_navbar_cdisc_terminology
        expect(page).to have_content 'History: CDISC Terminology'
        find(:xpath, "//tr[contains(.,'2015-09-25 Release')]/td/a", :text => 'Status').click
        expect(page).to have_content 'Status: CDISC Terminology 2015-09-25 CDISC Terminology (V42.0.0, 42, Standard)'
-       click_link 'Close'
+       click_link 'Return'
        expect(page).to have_content 'History: CDISC Terminology'
      end
 
-    it "history allows the change page to be viewed (REQ-MDR-CT-040)" do
-       visit '/cdisc_terms/history'
+    it "history allows the change page to be viewed (REQ-MDR-CT-040)", js:true do
+       click_navbar_cdisc_terminology
        expect(page).to have_content 'History: CDISC Terminology'
        click_link 'Changes'
        expect(page).to have_content 'Changes: CDISC Terminology'
     end
 
     it "history allows the code list changes to be viewed (REQ-MDR-CT-040)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Changes'
       expect(page).to have_content 'Changes: CDISC Terminology'
@@ -162,12 +162,12 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_info("changes", 1, 2, 2)
       expect(page).to have_content 'C49650'
       expect(page).to have_content 'C66787'
-      click_link 'Close'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC Terminology'
     end
 
     it "allows the code list item changes to be viewed (REQ-MDR-CT-040)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Changes'
       expect(page).to have_content 'Changes: CDISC Terminology'
@@ -190,7 +190,7 @@ describe "CDISC Term", :type => :feature do
     it "allows changes report to be produced (REQ-MDR-CT-NONE)"
 
     it "allows the submission value with changes to be viewed (REQ-MDR-CT-050)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Submission'
       wait_for_ajax_v_long
@@ -199,7 +199,7 @@ describe "CDISC Term", :type => :feature do
     end
 
     it "allows the submission value changes to be viewed (REQ-MDR-CT-050)", js:true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Submission'
       expect(page).to have_content 'Submission: CDISC Terminology'

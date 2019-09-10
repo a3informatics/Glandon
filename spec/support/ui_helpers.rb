@@ -279,7 +279,7 @@ module UiHelpers
 
   def ui_section_expanded?(section)
     x = page.execute_script("$('##{section}').hasClass('collapsed')")
-byebug
+    #x = page.find("##{section}")[:class].include?("collapsed")
   end
 
   def ui_expand_section(section)
@@ -293,12 +293,11 @@ byebug
   def ui_navbar_click (id)
     id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon"} # Add more
     section = id_to_section_map[id.to_sym]
-    byebug
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
 
-  #Scenario
+  #Terminology
   def click_navbar_terminology
     ui_navbar_click('main_nav_te')
   end
@@ -307,18 +306,22 @@ byebug
     ui_navbar_click('main_nav_ct')
   end
 
+  #Utilities
   def click_navbar_tags
     ui_navbar_click('main_nav_ics')
   end
 
+  #Biomedical Concepts
   def click_navbar_bc
     ui_navbar_click('main_nav_bc')
   end
 
+  #Forms
   def click_navbar_forms
     ui_navbar_click('main_nav_f')
   end
 
+  #SDTM
   def click_navbar_ig_domain
     ui_navbar_click('main_nav_sig')
   end
