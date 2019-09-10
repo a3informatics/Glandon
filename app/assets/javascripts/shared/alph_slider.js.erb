@@ -46,3 +46,11 @@ AlphabeticalSlider.prototype.resetFilter = function(){
   _this.slider.val(1);
   _this.letter_view.html('A');
 }
+
+AlphabeticalSlider.prototype.moveToLetter = function(letter){
+  var _this = this;
+
+  var charCode = letter.charCodeAt(0);
+  _this.slider.val(charCode - 64);
+  _this.updateCurrentLetter(letter);
+}
