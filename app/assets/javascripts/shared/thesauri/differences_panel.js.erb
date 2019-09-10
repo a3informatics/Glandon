@@ -54,15 +54,15 @@ function DifferencesPanel(url) {
 
 DifferencesPanel.prototype.status = function (data) {
   if (data.status === "deleted") {
-    return '<td class="text-center"><span class="icon-times-circle text-accent-2 i-centered text-xnormal"></span></td>';
+    return '<div class="text-centered"><span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text text-medium text-small shadow-small">Deleted</span></span></div>';
   } else if (data.status === "no_change") {
-    return '<td class="text-center"><span class="icon-arrow-circle cir-ar-down text-light i-centered text-xnormal"></span></td>';
+    return '<div class="text-centered"><span class="icon-arrow-circle-d text-light text-xnormal ttip"><span class="ttip-text text-medium text-small">No change</span></span></div>';
   } else if (data.status === "created") {
-    return '<td><div class="diff">' + data.current + '</div></td>';
+    return '<div class="diff">' + data.current + '</div>';
   } else if(data.status === "updated") {
-    return '<td>' + data.difference + '</td>';
+    return '' + data.difference + '';
   } else {
-    return '<td></td>';
+    return '&nbsp;';
   }
 }
 

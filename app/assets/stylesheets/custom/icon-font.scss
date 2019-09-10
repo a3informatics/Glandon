@@ -30,11 +30,29 @@
   justify-content: center;
 }
 
+.icon-context-menu-hor:before {
+  content: "\e937";
+}
+.icon-view:before {
+  content: "\e934";
+}
+.icon-document:before {
+  content: "\e935";
+}
+.icon-search:before {
+  content: "\e936";
+}
 .icon-context-menu:before {
   content: "\e933";
 }
 .icon-edit-circle:before {
   content: "\e930";
+}
+.icon-arrow-circle-d:before {
+  content: "\e938";
+}
+.icon-arrow-circle-r:before {
+  content: "\e939";
 }
 .icon-arrow-circle:before {
   content: "\e925";
