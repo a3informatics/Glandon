@@ -6,6 +6,7 @@
   background: $grey-white;
   border-radius: $card-border-radius;
   margin: 20px;
+  //position: relative;
   // min-width: 450px;
 
   -webkit-box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
@@ -49,6 +50,36 @@
 .card.danger .card-content{
   padding: 25px 15px;
 }
+
+// CARD-STYLE TABLE
+
+.table-cardstyle th{
+  vertical-align: middle;
+}
+
+.table-cardstyle th:last-child{
+  text-indent: -10000px;
+}
+
+.table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr{
+  border: 0px !important;
+  background: transparent !important;
+}
+
+.table-cardstyle td{
+  vertical-align: middle !important;
+  font-family: $font-light;
+}
+
+.table-cardstyle td, .table-cardstyle th{
+  border-bottom: 1px solid $grey-light !important;
+}
+
+.table-cardstyle td{
+  height: 40px !important;
+}
+
+// SCALING
 
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,

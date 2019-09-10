@@ -104,16 +104,16 @@ ChangesPanel.prototype.showButtons = function () {
  */
 ChangesPanel.prototype.status = function (status) {
   if (status == "created") {
-    return '<span class="icon-plus-circle text-secondary-clr text-xnormal"/>';
+    return '<span class="icon-plus-circle text-secondary-clr text-xnormal ttip"><span class="ttip-text text-medium text-small">Created</span></span>';
   } else if (status == "no_change") {
-    return '<span class="icon-arrow-circle cir-ar-right i-centered text-light text-xnormal"/>';
+    return '<span class="icon-arrow-circle-r text-light text-xnormal ttip"><span class="ttip-text text-medium text-small">No change</span></span>';
   } else if (status == "updated") {
-    return '<span class="icon-edit-circle text-link text-xnormal"/>';
+    return '<span class="icon-edit-circle text-link text-xnormal ttip"><span class="ttip-text text-medium text-small">Updated</span></span>';
   } else if (status == "deleted") {
-    return '<td class="text-center"><span class="icon-times-circle text-accent-2 text-xnormal"/></td>';
+    return '<span class="icon-times-circle text-accent-2 text-xnormal ttip"><span class="ttip-text text-medium text-small">Deleted</span></span>';
   } else if (status == "not_present") {
-    return '<td class="text-center">&nbsp;</td>';
+    return '&nbsp;';
   } else {
-    return '<td class="text-center">' + status + '</td>';
+    return '<span class="font-light text-medium">' + status + '</span>';
   }
 }

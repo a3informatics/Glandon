@@ -1,0 +1,27 @@
+// A reusable html generator for context menus. Also defined in a partial: views/shared/context_menu/. If you change one, you have to change the other too !
+
+// ID: String id for the menu itself
+// items: an array of objects with data, containing the fields: link_path, disabled (string 'true' or 'false'), icon (string icon class), text
+// Returns HTML code as a string.
+function generateContextMenu(id, items){
+  var html = '';
+  html += '<span id="' + id + '" class="icon-context-menu text-normal" tabindex="1">';
+  html +=   '<div class="context-menu shadow-small collapsed">';
+  $.each(items, function(i, e){
+    html += generateContextItem(e.link_path, e.disabled, e.icon, e.text);
+  });
+  html +=   '</div>';
+  html += '</span>';
+
+  return html;
+}
+
+function generateContextItem(link_path, disabled, icon, text){
+  var item_html = '';
+  item_html += '<a href="' + link_path + '" class="option ' + (disabled === 'true' ? 'disabled' : '')  + '">';
+  item_html +=  '<span class="' + icon + ' text-small"></span>';
+  item_html +=  '<span class="text-small">' + text + '</span>';
+  item_html += '</a>';
+
+  return item_html;
+}
