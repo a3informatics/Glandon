@@ -334,6 +334,11 @@ module UiHelpers
     ui_navbar_click('main_nav_sd')
   end
 
+  #Dashboard
+  def click_navbar_dashboard
+    click('main_nav_d')
+  end
+  
   # Add more of these ...
 
   # Return
