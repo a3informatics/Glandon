@@ -75,7 +75,7 @@ function rhGetCommon(key) {
       return "not common"
     }
   }
-  return "";  
+  return "";
 }
 
 function rhGetViaName(text) {
@@ -84,7 +84,7 @@ function rhGetViaName(text) {
     var node = d3GetData(gRef);
     return node.key;
   }
-  return C_NULL; 
+  return C_NULL;
 }
 
 function rhGetViaPath(path) {
@@ -94,7 +94,7 @@ function rhGetViaPath(path) {
   } else if (path[0] === rootNode.name && path.length === 1) {
     return rootNode.key;
   }
-  return C_NULL; 
+  return C_NULL;
 }
 
 function getNextInPath(node, path, index) {
@@ -133,4 +133,23 @@ function rhDblClickNodeByKey(nodeKey) {
   if (node !== null) {
     simulateDblClick(node);
   }
+}
+
+function contextMenuElement(tableId, columnNr, matchText, targetBtnText){
+  var rows = $("#"+tableId).find("tr");
+  var element;
+
+  $.each(rows, function(i, e){ // Take each row in table
+    var targetColumn = $(e).children()[columnNr-1]; // Find correct column nr
+    if($(targetColumn).html() == matchText){ // Find column that matches the text
+      var contextMenuIcon = $(e).children().eq(-1).find(".icon-context-menu"); // Find context menu icon (last col)
+      $.each($(contextMenuIcon).find("a"), function (i, e){ // Go through each menu option
+        if($(e).html().indexOf(targetBtnText) != -1){ // Find matching targetBtnText
+          element = e;
+        }
+      });
+    }
+  });
+
+  return element;
 }

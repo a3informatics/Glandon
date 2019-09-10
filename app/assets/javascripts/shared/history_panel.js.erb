@@ -34,7 +34,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
       {"data" : "has_identifier.version_label"},
-      {"render" : function (data, type, row, meta) {
+      {className: "text-right", "render" : function (data, type, row, meta) {
         var id = "con-menu-" + counter;
 
         var menu_items =
@@ -56,7 +56,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       "infoFiltered": "",
       "emptyTable": "No changes.",
       "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
-    }
+    },
   });
   this.add(0);
 }
