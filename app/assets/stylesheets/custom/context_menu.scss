@@ -34,7 +34,7 @@
 }
 
 .context-menu.left{
-  left: -130px;
+  transform: translateX(-150px);
 }
 
 .context-menu .option{
@@ -59,4 +59,20 @@
   background: $secondary-color-medium;
   color: $grey-white;
   text-decoration: none;
+}
+
+// FIXES
+
+table .row{
+  margin: 0;
+  padding: 0;
+}
+
+.col-sm-12{
+  position: initial;
+}
+
+div.dataTables_wrapper div.dataTables_processing{
+  margin-top: 60px !important;
+  margin-bottom: 0 !important;
 }

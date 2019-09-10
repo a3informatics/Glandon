@@ -55,7 +55,13 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium\" src='<%= asset_path('loading.svg') %>'></div>"
+    },
+    "drawCallback": function(){
+      // THIS WILL OPEN THE CONTEXT MENU ON THE LEFT SIDE IF THERE IS NOT ENOUGH SPACE ON THE RIGHT
+      if($('#history').offset().left + $('#history').outerWidth() + $('#history').find(".context-menu").outerWidth() > $(document).width()-100){
+        $('#history').find(".context-menu").addClass("left");
+      }
     },
   });
   this.add(0);
