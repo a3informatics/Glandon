@@ -38,11 +38,11 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
         var id = "con-menu-" + counter;
 
         var menu_items =
-        [ { link_path: row.show_path, disabled: "false", icon: "icon-view", text: "Show", },
-          { link_path: row.search_path, disabled: "false", icon: "icon-search", text: "Search", },
-          { link_path: row.edit_path, disabled: "true", icon: "icon-edit", text: "Edit", },
-          { link_path: row.status_path, disabled: "false", icon: "icon-document", text: "Document control", },
-          { link_path: row.delete_path, disabled: "true", icon: "icon-trash", text: "Delete", }, ];
+        [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show", },
+          { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search", },
+          { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit", },
+          { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control", },
+          { link_path: row.delete_path, disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete", }, ];
         counter ++;
 
         return generateContextMenu(id, menu_items);
