@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'custom/context_menu', media: 'all' %>
+<%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_include_tag 'cdisc_term/history' %>
 <%= javascript_tag "var url_path = '#{history_cdisc_terms_path}';" %>
 <%= javascript_tag "var strict_params = 'cdisc_term';" %>
@@ -5,7 +7,7 @@
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 
 <% top_level_breadcrumb ("CDISC Terminology") %>
-<div class="col-md-9 card">
+<div class="col-md-9 card table-cardstyle">
 	<%= render partial: "shared/history_panel", locals: {title: "History: CDISC Terminology"} %>
 </div>
 <div class="col-md-3 card">
