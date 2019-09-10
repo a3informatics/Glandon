@@ -14,7 +14,7 @@ class ThesauriController < ApplicationController
     @thesauri = Thesaurus.unique
     respond_to do |format|
       format.html do
-        # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
+        # @todo This is a bit evil but short term solution. Think of a more elgant fix.
         redirect_to root_path if current_user.is_only_community?
       end
       format.json do
