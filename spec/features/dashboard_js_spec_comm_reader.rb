@@ -28,6 +28,10 @@ describe "Community Dashboard JS", :type => :feature do
       ua_comm_reader_login
     end
 
+    #after :each do
+    #  ua_log_off
+    #end
+
   after :all do
     ua_destroy
   end
@@ -35,22 +39,22 @@ describe "Community Dashboard JS", :type => :feature do
   describe "Community Reader User", :type => :feature do
 
     it "allows the dashboard to be viewed (REQ-MDR-UD-090)", js: true do
-      expect(page).to have_content 'Changes in CDISC CT versions'
-      expect(page).to have_content 'Created Items'
-      expect(page).to have_content 'Updated Items'
-      expect(page).to have_content 'Deleted Items'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      expect(page).to have_content 'Created Code List'
+      expect(page).to have_content 'Updated Code List'
+      expect(page).to have_content 'Deleted Code List'
     end
 
     it "allows access to CDISC history (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'Changes in CDISC CT versions'
-      click_link 'Browse every version of CDISC CT'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      click_link 'btn-browse-cdisc'
       expect(page).to have_content 'History: CDISC Terminology'
       expect(page).to have_content '2019-06-28 Release'
       expect(page).to have_content '2017-09-29 Release'
     end
 
     it "allows access to CDISC changes (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'Changes in CDISC CT versions'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
       click_link 'See the changes across versions'
       expect(page).to have_content 'Changes: CDISC Terminology'
       fill_in 'Search:', with: 'C67154'
@@ -58,17 +62,31 @@ describe "Community Dashboard JS", :type => :feature do
     end
 
     it "allows access to CDISC submission changes (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'Changes in CDISC CT versions'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
       click_link 'See submission value changes across versions'
       expect(page).to have_content 'Submission: CDISC Terminology'
     end
     
     it "allows access to CDISC search (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'Changes in CDISC CT versions'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
       click_link 'Search the latest version of CDISC CT'
       expect(page).to have_content 'Search: Controlled Terminology CT '    
     end
 
+    it "allows to versions to be selected and chnages to be displayed", js: true do
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      script = 'var tl_slider = $(".timeline-container").data(); '
+      script += 'tl_slider.moveToDate(tl_slider.l_slider, "2012-08-03");'
+      script += 'tl_slider.moveToDate(tl_slider.r_slider, "2013-04-12");'
+      page.execute_script(script)
+      click_link 'Display'
+      pause
+
+    end
+
+
+# var tl_slider = $(".timeline-container").data();
+# tl_slider.moveToDate(tl_slider.r_slider, "date");
   end
 
 end
