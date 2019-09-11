@@ -28,13 +28,13 @@ describe "Community Dashboard JS", :type => :feature do
       ua_comm_reader_login
     end
 
-    #after :each do
-    #  ua_log_off
-    #end
+    after :each do
+      ua_logoff
+    end
 
-  after :all do
-    ua_destroy
-  end
+    after :all do
+      ua_destroy
+    end
 
   describe "Community Reader User", :type => :feature do
 
@@ -73,30 +73,32 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Search: Controlled Terminology CT '    
     end
 
-    it "allows to versions to be selected and chnages to be displayed", js: true do
+    it "allows to versions to be selected and changes to be displayed (REQ-MDR-UD-090)", js: true do
       expect(page).to have_content 'Changes in CDISC Terminology versions'
       
-      script = 'var tl_slider = $(".timeline-container").data(); '
-      script += 'tl_slider.moveToDate(tl_slider.l_slider, "2012-08-03");'
-      script += 'tl_slider.moveToDate(tl_slider.r_slider, "2013-04-12");'
+      ui_dashboard_slider("2012-08-03", "2013-04-12")
 
-      script_filter = 'var filter_created = $(".alph-slider").eq(0).data(), filter_updated = $(".alph-slider").eq(1).data(), filter_deleted = $(".alph-slider").eq(2).data(); '
-      script_filter += ' filter_created.moveToLetter("A"); '
-      script_filter += ' filter_updated.moveToLetter("B"); '
-      script_filter += ' filter_deleted.moveToLetter("C"); '
-      page.execute_script(script)
       click_link 'Display'
-      click_link 'btn_f_created'
-      click_link 'btn_f_updated'
-      click_link 'btn_f_deleted'
-      page.execute_script(script_filter)
+      find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
+      find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
+      find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
       pause
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 6)
+    end
+
+   
+   it "allows to versions to be selected and changes to be displayed", js: true do
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      ui_dashboard_slider("2012-08-03", "2013-04-12")
+      click_link 'Display'
+      ui_dashboard_alpha_filter(:created, "B")
+      ui_dashboard_alpha_filter(:updated, "B")
+      ui_dashboard_alpha_filter(:deleted, "B")
 
     end
 
-
-# var tl_slider = $(".timeline-container").data();
-# tl_slider.moveToDate(tl_slider.r_slider, "date");
   end
 
 end
