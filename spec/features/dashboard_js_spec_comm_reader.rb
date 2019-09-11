@@ -73,30 +73,65 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Search: Controlled Terminology CT '    
     end
 
-    it "allows to versions to be selected and changes to be displayed (REQ-MDR-UD-090)", js: true do
+    it "allows two CDISC versions to be selected and changes between versions displayed (REQ-MDR-UD-090)", js: true do
       expect(page).to have_content 'Changes in CDISC Terminology versions'
-      
       ui_dashboard_slider("2012-08-03", "2013-04-12")
-
       click_link 'Display'
       find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
       find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
       find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
-      pause
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 6)
+      find(:xpath, "//div[@id='created_div']/a[2]").click
+      expect(page).to have_content 'Differences: C102584, Reason For Treatment'
+      expect(page).to have_content 'Changes: C102584, Reason For Treatment'
     end
 
-   
-   it "allows to versions to be selected and changes to be displayed", js: true do
+    it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
       expect(page).to have_content 'Changes in CDISC Terminology versions'
-      ui_dashboard_slider("2012-08-03", "2013-04-12")
+      ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
-      ui_dashboard_alpha_filter(:created, "B")
-      ui_dashboard_alpha_filter(:updated, "B")
-      ui_dashboard_alpha_filter(:deleted, "B")
+      expect(page).to have_xpath("//div[@id='created_div']/a", count: 328)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 19)
+      ui_dashboard_alpha_filter(:created, "Y")
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 0)
+      ui_dashboard_alpha_filter(:created, "J")
+      expect(page).to have_xpath("//div[@id='created_div']/a[@class='item J']", count: 0)
+    end
 
+    it "allows two CDISC versions to be selected and updated CL between them to be filtered and displayed", js: true do
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      ui_dashboard_slider("2014-06-27", "2014-09-26")
+      click_link 'Display'
+      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 227)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 11)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 13)
+      ui_dashboard_alpha_filter(:updated, "Z")
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item Z']", count: 0)
+      ui_dashboard_alpha_filter(:updated, "D")
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 11)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 0)
+      find(:xpath, "//div[@id='updated_div']/a[13]").click
+      expect(page).to have_content 'Differences: C111109, Device Events Category'
+      expect(page).to have_content 'Changes: C111109, Device Events Category'
+    end
+
+    it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      ui_dashboard_slider("2013-04-12", "2013-06-28")
+      click_link 'Display'
+      expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 15)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 4)
+      ui_dashboard_alpha_filter(:deleted, "E")
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 4)
+      find(:xpath, "//div[@id='deleted_div']/a[6]").click
+      expect(page).to have_content 'Differences: C101817, European Quality of Life Five Dimension Five Level Scale Test Name'
+      expect(page).to have_content 'Changes: C101817, European Quality of Life Five Dimension Five Level Scale Test Name'
     end
 
   end
