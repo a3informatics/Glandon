@@ -35,10 +35,10 @@ $(document).ready( function() {
   });
 
   // TESTING HELPERS
-  <%# if Rails.env == "test" || Rails.env == "development" %>
+  <% if Rails.env == "test" || Rails.env == "development" %>
     $(".timeline-container").data(tl_slider);
     $.each($(".alph-slider"), function(i, e){
       $(e).data(filters[i]);
     });
-  <%# end %>
+  <% end %>
 });

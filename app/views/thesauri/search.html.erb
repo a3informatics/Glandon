@@ -9,7 +9,8 @@
   <div class="card-content">
     <div class="col-md-12">
       <%= render partial: "shared/thesauri/search" %>
-      <%= render partial: "shared/buttons/close_v2", :locals => {link_path:  @close_path, id: "close", small: false} %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   </div>
 </div>
