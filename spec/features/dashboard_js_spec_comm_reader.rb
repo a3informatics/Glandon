@@ -75,11 +75,21 @@ describe "Community Dashboard JS", :type => :feature do
 
     it "allows to versions to be selected and chnages to be displayed", js: true do
       expect(page).to have_content 'Changes in CDISC Terminology versions'
+      
       script = 'var tl_slider = $(".timeline-container").data(); '
       script += 'tl_slider.moveToDate(tl_slider.l_slider, "2012-08-03");'
       script += 'tl_slider.moveToDate(tl_slider.r_slider, "2013-04-12");'
+
+      script_filter = 'var filter_created = $(".alph-slider").eq(0).data(), filter_updated = $(".alph-slider").eq(1).data(), filter_deleted = $(".alph-slider").eq(2).data(); '
+      script_filter += ' filter_created.moveToLetter("A"); '
+      script_filter += ' filter_updated.moveToLetter("B"); '
+      script_filter += ' filter_deleted.moveToLetter("C"); '
       page.execute_script(script)
       click_link 'Display'
+      click_link 'btn_f_created'
+      click_link 'btn_f_updated'
+      click_link 'btn_f_deleted'
+      page.execute_script(script_filter)
       pause
 
     end

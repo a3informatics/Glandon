@@ -53,4 +53,5 @@ AlphabeticalSlider.prototype.moveToLetter = function(letter){
   var charCode = letter.charCodeAt(0);
   _this.slider.val(charCode - 64);
   _this.updateCurrentLetter(letter);
+  _this.filterResults(letter);
 }
