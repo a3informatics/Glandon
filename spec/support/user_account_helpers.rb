@@ -78,7 +78,7 @@ module UserAccountHelpers
   end
 
   def ua_logoff
-  	click_link "logoff_button"
+  	click_on 'logoff_button'
   end
 
   def ua_generic_login(email, password)

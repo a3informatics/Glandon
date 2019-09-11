@@ -97,9 +97,8 @@ describe "CDISC Term", :type => :feature do
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      #find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Show').click
-
-      context_menu_element('2015-12-18 Release', 'show')
+      context_menu_element("history", 5, "2015-12-18 Release", "Show")
+      pause
       expect(page).to have_content '2015-12-18 Release'
       ui_check_table_info("children_table", 1, 10, 503)
       ui_child_search("route")
@@ -109,7 +108,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'CDISC CDASH Exposure Route of Administration Terminology'
       find(:xpath, "//tr[contains(.,'C66729')]/td/a", :text => 'Show').click
       ui_check_table_info("children_table", 1, 10, 123)
-      expect(page).to have_content 'Show: Route of Administration C66729 (V41.0.0, 41, Standard)'
+      expect(page).to have_content 'Route'
       expect(page).to have_content 'C94636'
       expect(page).to have_content 'ORAL GAVAGE'
       expect(page).to have_content 'Dietary Route of Administration'
@@ -128,7 +127,7 @@ describe "CDISC Term", :type => :feature do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Controlled Terminology CT (V43.0.0, 43, Standard)'
+      expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")

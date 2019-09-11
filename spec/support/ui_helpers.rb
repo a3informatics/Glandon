@@ -341,10 +341,35 @@ module UiHelpers
 
   # Add more of these ...
 
-  #Context Menu
+  #Community Version
 
-  def context_menu_element (content, link_text)
-    find(:xpath, "//tr[contains(.,'#{content}')]/td/span/div/a", :text => "#{link_text}").click
+  def click_browse_every_version
+    click_link 'btn-browse-cdisc'
+  end
+
+  def click_search_the_latest_version
+    click_link 'btn-search-latest'
+  end
+
+  def ui_check_table_cell_extensible(table_id, row, col, text)
+    cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").has_css?(".icon-extend")
+    expect(cell).to eq(text)
+  end
+
+  #Context Menu
+  def context_menu_element (table_id, column_nr, text, action )
+        action_to_option_map = 
+    { 
+      show: "Show", 
+      search: "Search", 
+      edit: "Edit",
+      delete: "Delete" 
+    }  
+    option = action_to_option_map[action]
+    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
+    js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
+
+    page.execute_script(js_code)
   end
 
   # Return
