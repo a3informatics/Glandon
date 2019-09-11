@@ -120,7 +120,9 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def changes
     authorize Thesaurus, :view?
-    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
     respond_to do |format|
       format.html
         @version_count = @tc.changes_count(current_user.max_term_display.to_i)

@@ -11,29 +11,24 @@
 <%= javascript_tag "var syn_panel_title = 'Shared Synonym';" %>
 <%= javascript_tag "var pt_panel_title = 'Shared Preferred Term';" %>
 <%= javascript_tag "var ci_panel_title = 'Change Instruction';" %>
-<%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+
 <% if @has_children %>
   <%= javascript_tag "var url_path = '#{thesauri_unmanaged_concept_path(@tc)}';" %>
 <% else %>
   <%= javascript_tag "var url_path = '';" %>
 <% end %>
 <div class="row">
-  <div class="col-md-12 card">
-    <div class="card-content">
-
-      <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :badge => "CI"} do %>
-        <!-- BUTTONS WRAP -->
-        <div class="actions-wrap">
-        <!-- BUTTON EXPORT CSV -->
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@tc), id: "export-csv",
-          icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
-        <!-- RETURN BUTTON -->
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
-          icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-        </div>
-      <% end %>
+  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :badge => "CI"} do %>
+    <!-- BUTTONS WRAP -->
+    <div class="actions-wrap">
+    <!-- BUTTON EXPORT CSV -->
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@tc), id: "export-csv",
+      icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
+    <!-- RETURN BUTTON -->
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <% if @has_children %>

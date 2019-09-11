@@ -6,7 +6,14 @@
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 
+<style>
+	.card{
+		min-width: initial !important;
+	}
+</style>
+
 <% top_level_breadcrumb ("CDISC Terminology") %>
+
 <div class="col-md-9 card table-cardstyle">
 	<%= render partial: "shared/history_panel", locals: {title: "History: CDISC Terminology"} %>
 </div>

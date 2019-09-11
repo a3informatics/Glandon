@@ -1,23 +1,29 @@
-<!-- CARD FOR TERMINOLOGY -->
-<div class="h-outside-wrap">
-  <!-- BADGE COLUMN -->
-  <div class="h-inner-wrap">
-    <span class="circular-badge big bg-accent-1 text-white">
-      <%= badge %>
-    </span>
-  </div>
-  <!-- INFO COLUMN -->
-  <div class="h-inner-wrap mid">
-    <div class="text-small font-light"> <%= item.owner_short_name %> (Owner) </div>
-    <div class="text-large"> <%= item.label %> </div>
-    <div class="font-light">
-        <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
-        <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
-        <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
+<%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+
+<div class="col-md-12 card">
+  <div class="card-content">
+    <!-- CARD FOR TERMINOLOGY -->
+    <div class="h-outside-wrap">
+      <!-- BADGE COLUMN -->
+      <div class="h-inner-wrap">
+        <span class="circular-badge big bg-accent-1 text-white">
+          <%= badge %>
+        </span>
       </div>
-  </div>
-  <!-- BUTTONS COLUMN -->
-  <div class="h-inner-wrap">
-    <%= yield %>
+      <!-- INFO COLUMN -->
+      <div class="h-inner-wrap mid">
+        <div class="text-small font-light"> <%= item.owner_short_name %> (Owner) </div>
+        <div class="text-large"> <%= item.label %> </div>
+        <div class="font-light">
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
+          </div>
+      </div>
+      <!-- BUTTONS COLUMN -->
+      <div class="h-inner-wrap">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 </div>

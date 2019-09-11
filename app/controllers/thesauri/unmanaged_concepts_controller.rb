@@ -1,10 +1,12 @@
 class Thesauri::UnmanagedConceptsController < ApplicationController
- 
+
   before_action :authenticate_user!
-  
+
   def changes
     authorize Thesaurus, :view?
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
     respond_to do |format|
       format.html
         @version_count = @tc.changes_count(current_user.max_term_display.to_i)
@@ -123,7 +125,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
       end
     end
   end
-  
+
   # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -180,7 +182,7 @@ private
     results.each do |syn, syn_results|
       syn_results[:references].each do |ref|
         if ref[:child][:identifier].empty?
-          ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params}) 
+          ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params})
         else
           ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: link_params})
         end
@@ -193,7 +195,7 @@ private
       next if type == :description
       content.each do |ref|
         if ref[:child][:identifier].empty?
-          ref[:show_path] = thesauri_managed_concept_path(ref[:id]) 
+          ref[:show_path] = thesauri_managed_concept_path(ref[:id])
         else
           ref[:show_path] = thesauri_unmanaged_concept_path(ref[:id])
         end
@@ -223,7 +225,7 @@ private
   #     if info[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s
   #       link = edit_thesauri_path(id: info[:uri].id, namespace: info[:uri].namespace)
   #     else
-  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)        
+  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)
   #     end
   #   end
   #   return link
@@ -232,11 +234,11 @@ private
   def link_params
     params.require(:unmanaged_concept).permit(:context_id)
   end
-    
+
   def the_params
     params.require(:unmanaged_concept).permit(:identifier, :parent_id, :context_id)
   end
-    
+
   def edit_params
     params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
   end

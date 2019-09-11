@@ -1,35 +1,41 @@
-<!-- CARD FOR CODELISTS -->
-<div class="h-outside-wrap">
-  <!-- BADGE COLUMN -->
-  <div class="h-inner-wrap centered">
-    <span class="circular-badge big bg-accent-1 text-white">
-      <%= badge %>
-    </span>
-    <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.scoped_identifier %></span>
-    <div>
-      <% if item.extensible %>
-        <span class="icon-extend text-secondary-clr"></span> <span class="font-light text-tiny">Extensible</span>
-      <% else %>
-        <span class="icon-extend-disabled text-accent-2"></span> <span class="font-light text-tiny">Not extensible</span>
-      <% end %>
+<%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+
+<div class="col-md-12 card">
+  <div class="card-content">
+    <!-- CARD FOR CODELISTS -->
+    <div class="h-outside-wrap">
+      <!-- BADGE COLUMN -->
+      <div class="h-inner-wrap centered">
+        <span class="circular-badge big bg-accent-1 text-white">
+          <%= badge %>
+        </span>
+        <span class="text-centered text-normal text-light" style="margin-top: 5px;"><%= item.scoped_identifier %></span>
+        <div>
+          <% if item.extensible %>
+            <span class="icon-extend text-secondary-clr"></span> <span class="font-light text-tiny">Extensible</span>
+          <% else %>
+            <span class="icon-extend-disabled text-accent-2"></span> <span class="font-light text-tiny">Not extensible</span>
+          <% end %>
+        </div>
+      </div>
+      <!-- INFO COLUMN -->
+      <div class="h-inner-wrap mid">
+        <div class="text-large"> <%= item.notation %> </div>
+        <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
+        <div class="label-w-margin">
+          Synonym(s):
+          <% @tc.synonym.each do |s| %>
+            <div class="synonym-label font-light"><%= s.label %></div>
+          <% end %>
+          <%= "<span class='font-light'>None</span>".html_safe if @tc.synonym.empty? %>
+        </div>
+        <div class="definition-label label-w-margin">
+          Definition: <span class="font-light"><%= item.definition %> </span></div>
+      </div>
+      <!-- BUTTONS COLUMN -->
+      <div class="h-inner-wrap">
+        <%= yield %>
+      </div>
     </div>
-  </div>
-  <!-- INFO COLUMN -->
-  <div class="h-inner-wrap mid">
-    <div class="text-large"> <%= item.notation %> </div>
-    <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
-    <div class="label-w-margin">
-      Synonym(s):
-      <% @tc.synonym.each do |s| %>
-        <div class="synonym-label font-light"><%= s.label %></div>
-      <% end %>
-      <%= "<span class='font-light'>None</span>".html_safe if @tc.synonym.empty? %>
-    </div>
-    <div class="definition-label label-w-margin">
-      Definition: <span class="font-light"><%= item.definition %> </span></div>
-  </div>
-  <!-- BUTTONS COLUMN -->
-  <div class="h-inner-wrap">
-    <%= yield %>
   </div>
 </div>
