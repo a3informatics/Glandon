@@ -24,7 +24,7 @@ describe "CDISC Terminology", :type => :feature do
     wait_for_ajax(7)
   end
 
-  describe "Reader Search", :type => :feature do
+  describe "Community Reader Search", :type => :feature do
       
     before :all do
       clear_triple_store
@@ -40,7 +40,7 @@ describe "CDISC Terminology", :type => :feature do
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
       load_test_file_into_triple_store("iso_namespace_real.ttl")
 
-      load_cdisc_term_versions(1..45)
+      load_cdisc_term_versions(1..46)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -49,17 +49,23 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     before :each do
-      ua_reader_login
+      ua_comm_reader_login
     end
+
+    after :each do
+      ua_logoff
+    end
+    
 
     after :all do
       ua_destroy
     end
 
     it "allows a search to be performed (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-09-25 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax_short
+      context_menu_element("history", 5, "2015-09-25 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V44.0.0, 44, Standard)'
       wait_for_ajax_v_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -68,20 +74,23 @@ describe "CDISC Terminology", :type => :feature do
     end
     
     it "allows a search to be performed - another CDISC version (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax_short
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
-      wait_for_ajax_v_long # Big load
+      #wait_for_ajax_v_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
     end
 
     it "allows a search to be performed, searches (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      #find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax_short
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
-      wait_for_ajax_long # Big load
+      #wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
 
       ui_term_column_search(:code_list, 'C100129')

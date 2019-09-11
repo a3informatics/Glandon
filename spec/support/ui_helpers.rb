@@ -274,6 +274,124 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
+  # Navigation
+  # ==========
+
+  def ui_section_expanded?(section)
+    x = page.execute_script("$('##{section}').hasClass('collapsed')")
+    #x = page.find("##{section}")[:class].include?("collapsed")
+  end
+
+  def ui_expand_section(section)
+    page.execute_script("$('##{section}').removeClass('collapsed')")
+  end
+
+  def ui_collapse_section(section)
+    page.execute_script("$('##{section}').addClass('collapsed')")
+  end
+
+  def ui_navbar_click (id)
+    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon"} # Add more
+    section = id_to_section_map[id.to_sym]
+    ui_expand_section(section) if !ui_section_expanded?(section)
+    click_link "#{id}"
+  end
+
+  #Terminology
+  def click_navbar_terminology
+    ui_navbar_click('main_nav_te')
+  end
+
+  def click_navbar_cdisc_terminology
+    ui_navbar_click('main_nav_ct')
+  end
+
+  #Utilities
+  def click_navbar_tags
+    ui_navbar_click('main_nav_ics')
+  end
+
+  #Biomedical Concepts
+  def click_navbar_bc
+    ui_navbar_click('main_nav_bc')
+  end
+
+  #Forms
+  def click_navbar_forms
+    ui_navbar_click('main_nav_f')
+  end
+
+  #SDTM
+  def click_navbar_ig_domain
+    ui_navbar_click('main_nav_sig')
+  end
+
+  def click_navbar_adam_ig_domain
+    ui_navbar_click('main_nav_aig')
+  end
+
+  def click_navbar_sponsor_domain
+    ui_navbar_click('main_nav_sd')
+  end
+
+  #Dashboard
+  def click_navbar_dashboard
+    visit 'dashboard'
+  end
+
+  # Add more of these ...
+
+  #Community Version
+
+  def click_browse_every_version
+    click_link 'btn-browse-cdisc'
+  end
+
+  def click_search_the_latest_version
+    click_link 'btn-search-latest'
+  end
+
+  def ui_check_table_cell_extensible(table_id, row, col, text)
+    cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").has_css?(".icon-extend")
+    expect(cell).to eq(text)
+  end
+
+  #Context Menu
+  def context_menu_element (table_id, column_nr, text, action )
+    action_to_option_map = 
+    { 
+      show: "Show", 
+      search: "Search", 
+      edit: "Edit",
+      delete: "Delete" 
+    }  
+    option = action_to_option_map[action]
+    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
+    js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
+    page.execute_script(js_code)
+  end
+
+  def ui_dashboard_slider (start_date, end_date)
+    slider = "var tl_slider = $('.timeline-container').data(); "
+    slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
+    slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
+    page.execute_script(slider) 
+  end
+
+  def ui_dashboard_alpha_filter (filter, filter_text)
+    filter_control_map = 
+    { 
+      created: { index: 0, id: 'btn_f_created' },
+      updated: { index: 1, id: 'btn_f_updated' },
+      deleted: { index: 2, id: 'btn_f_deleted' }
+    }
+    id = filter_control_map[filter][:id]
+    eq = filter_control_map[filter][:index]
+    click_link "#{id}"
+    js_script = "$('.alph-slider').eq(#{eq}).data().moveToLetter('#{filter_text}'); "
+    page.execute_script(js_script)
+  end
+
   # Return
   def ui_hit_return(id)
     # Amended to allow for spaces in id
