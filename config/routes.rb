@@ -135,7 +135,9 @@ Rails.application.routes.draw do
       member do
         get :children
         post :add_child
+        get :show_data
         get :changes
+        get :changes_data
         get :differences
         get :synonym_links
         get :preferred_term_links

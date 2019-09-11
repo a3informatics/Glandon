@@ -44,6 +44,18 @@ describe Thesauri::ManagedConceptsController do
       expect(response).to render_template("changes")
     end
 
+    it "changes data" do
+      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
+      get :changes_data, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
     it "is_extended" do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
@@ -110,6 +122,21 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:is_extending)).to eq(true)
       expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjQ1Q%3D")
       expect(response).to render_template("show")
+    end
+
+    it "show data" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expected = [
+        {id: "1", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb"},
+        {id: "2", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
+      ]       
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1"}, {id: "2"}])
+      get :show_data, {id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
     # it "edit" do

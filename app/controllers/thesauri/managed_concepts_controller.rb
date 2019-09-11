@@ -101,47 +101,46 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @tc.synonym_objects
     @tc.preferred_term_objects
     @context_id = the_params[:context_id]
-    respond_to do |format|
-      format.html
-        @can_be_extended = @tc.extensible && !@tc.extended?
-        extended_by_uri = @tc.extended_by
-        @is_extended = !extended_by_uri.nil?
-        @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
-        extension_of_uri = @tc.extension_of
-        @is_extending = !extension_of_uri.nil?
-        @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-      format.json do
-        children = @tc.children_pagination(params)
-        results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: @context_id}})})}
-        render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
-      end
-    end
+    @can_be_extended = @tc.extensible && !@tc.extended?
+    extended_by_uri = @tc.extended_by
+    @is_extended = !extended_by_uri.nil?
+    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
+    extension_of_uri = @tc.extension_of
+    @is_extending = !extension_of_uri.nil?
+    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+  end
+
+  def show_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    context_id = the_params[:context_id]
+    children = tc.children_pagination(params)
+    results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
+    render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
   end
 
   def changes
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    respond_to do |format|
-      format.html
-        @version_count = @tc.changes_count(current_user.max_term_display.to_i)
-        link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
-        @links = {}
-        link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
-        @close_path = request.referer
-      format.json do
-        clis = @tc.changes(current_user.max_term_display.to_i)
-        clis[:items].each do |k,v|
-          v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
-        end
-        render json: {data: clis}
-      end
-    end
+    @version_count = @tc.changes_count(current_user.max_term_display.to_i)
+    link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
+    @close_path = request.referer
+  end
+
+  def changes_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    clis = tc.changes(current_user.max_term_display.to_i)
+    clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
+    render json: {data: clis}
   end
 
   def differences
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     respond_to do |format|
       format.json do
@@ -151,13 +150,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
   end
 
   def is_extended
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     render json: {data: tc.extended?}
   end
 
   def is_extension
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     render json: {data: tc.extension?}
   end
