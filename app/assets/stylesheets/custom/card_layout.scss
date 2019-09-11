@@ -58,7 +58,8 @@
 }
 
 .table-cardstyle th:last-child{
-  text-indent: -10000px;
+  color: transparent;
+  pointer-events: none;
 }
 
 .table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr{
@@ -80,11 +81,11 @@
 }
 
 // SCALING
-
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
 .col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
   padding: 0px;
+  min-width: 400px; // ???
 }
 
 .col-md-1.card{
@@ -133,4 +134,13 @@
 
 .col-md-12.card{
   max-width: calc(100% - 40px);
+}
+
+@media (max-width:768px) {
+  .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
+  .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
+  .col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
+    min-width: initial;
+    max-width: calc(100% - 40px) !important;
+  }
 }
