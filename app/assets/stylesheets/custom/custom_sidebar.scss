@@ -128,4 +128,12 @@
     background: initial;
   }
 
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+    .category-item.selected::before{
+      top: 0px;
+    }
+
+  }
+
 }

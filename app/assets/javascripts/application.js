@@ -26,6 +26,7 @@
 //= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require app-js-erb-extension
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
@@ -387,3 +388,11 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
     ctx.oApi._fnProcessingDisplay( ctx, show );
   });
 });
+
+function isIE() {
+  ua = navigator.userAgent;
+  /* MSIE used to detect old browsers and Trident used to newer ones*/
+  var is_ie = ua.indexOf("MSIE ") > -1 || ua.indexOf("Trident/") > -1 || ua.indexOf("Edge") > -1;
+
+  return is_ie;
+}

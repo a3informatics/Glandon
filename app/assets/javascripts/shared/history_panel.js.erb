@@ -15,6 +15,8 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
 
   var counter = 0;
 
+  var loading_html = generateSpinner("medium");
+
   this.url = url;
   this.strict_params = strict_params;
   this.identifier = identifier;
@@ -55,7 +57,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium\" src='<%= asset_path('loading.svg') %>'></div>"
+      "processing": loading_html
     },
     "drawCallback": function(){
       // THIS WILL OPEN THE CONTEXT MENU ON THE LEFT SIDE IF THERE IS NOT ENOUGH SPACE ON THE RIGHT

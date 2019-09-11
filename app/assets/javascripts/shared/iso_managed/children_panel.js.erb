@@ -20,6 +20,9 @@ function ChildrenPanel(url, count, columns, tc_id) {
   this.columns.push({"render" : function (data, type, row, meta) {
     return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';
   }});
+
+  var loading_html = generateSpinner("medium");
+
   this.childrenTable = $('#children_table').DataTable( {
     "order": [[ 0, "desc" ]],
     "columns": _this.columns,
@@ -29,7 +32,7 @@ function ChildrenPanel(url, count, columns, tc_id) {
     "language": {
       "infoFiltered": "",
       "emptyTable": "No child items.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium \" src='<%= asset_path('loading.svg') %>'></div>"
+      "processing": loading_html
     }
   });
   this.add(0);

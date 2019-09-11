@@ -30,6 +30,9 @@ function ChangesPanel(url, column_count) {
   columns.push({className: "text-center", "render" : function (data, type, row, meta) {
     return '<a href="' + row.changesPath + '" class="btn btn-primary btn-xs">Changes</a>';
   }});
+
+  var loading_html = generateSpinner("medium");
+
   this.changesTable = $('#changes').DataTable( {
     "columns": columns,
     "pageLength": pageLength, // Gloabl setting
@@ -38,7 +41,7 @@ function ChangesPanel(url, column_count) {
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium\" src='<%= asset_path('loading.svg') %>'></div>"
+      "processing": loading_html
     }
   });
   this.hideButtons();
