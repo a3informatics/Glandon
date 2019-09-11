@@ -358,7 +358,7 @@ module UiHelpers
 
   #Context Menu
   def context_menu_element (table_id, column_nr, text, action )
-        action_to_option_map = 
+    action_to_option_map = 
     { 
       show: "Show", 
       search: "Search", 
@@ -368,8 +368,28 @@ module UiHelpers
     option = action_to_option_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
-
     page.execute_script(js_code)
+  end
+
+  def ui_dashboard_slider (start_date, end_date)
+    slider = "var tl_slider = $('.timeline-container').data(); "
+    slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
+    slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
+    page.execute_script(slider) 
+  end
+
+  def ui_dashboard_alpha_filter (filter, filter_text)
+    filter_control_map = 
+    { 
+      created: { index: 0, id: 'btn_f_created' },
+      updated: { index: 1, id: 'btn_f_updated' },
+      deleted: { index: 2, id: 'btn_f_deleted' }
+    }
+    id = filter_control_map[filter][:id]
+    eq = filter_control_map[filter][:index]
+    click_link "#{id}"
+    js_script = "$('.alph-slider').eq(#{eq}).data().moveToLetter('#{filter_text}'); "
+    page.execute_script(js_script)
   end
 
   # Return
