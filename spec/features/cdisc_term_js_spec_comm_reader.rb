@@ -41,6 +41,10 @@ describe "CDISC Term", :type => :feature do
       ua_comm_reader_login
     end
 
+    after :each do
+      ua_logoff
+    end
+
     #CL history
     it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
       click_browse_every_version
@@ -60,6 +64,7 @@ describe "CDISC Term", :type => :feature do
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
       click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)
@@ -74,6 +79,7 @@ describe "CDISC Term", :type => :feature do
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 409)
@@ -97,6 +103,7 @@ describe "CDISC Term", :type => :feature do
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :show)
       expect(page).to have_content '2015-12-18 Release'
       ui_check_table_info("children_table", 1, 10, 503)
@@ -125,6 +132,7 @@ describe "CDISC Term", :type => :feature do
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
       click_browse_every_version
       expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)

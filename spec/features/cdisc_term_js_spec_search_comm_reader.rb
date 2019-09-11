@@ -24,7 +24,7 @@ describe "CDISC Terminology", :type => :feature do
     wait_for_ajax(7)
   end
 
-  describe "Reader Search", :type => :feature do
+  describe "Community Reader Search", :type => :feature do
       
     before :all do
       clear_triple_store
