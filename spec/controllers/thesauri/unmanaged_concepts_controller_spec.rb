@@ -31,6 +31,8 @@ describe Thesauri::UnmanagedConceptsController do
     it "changes" do
       @user.write_setting("max_term_display", 2)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes_count).and_return(5)
       get :changes, id: "aaa"
       expect(response).to render_template("changes")

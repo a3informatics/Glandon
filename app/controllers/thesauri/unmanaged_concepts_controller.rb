@@ -232,6 +232,8 @@ private
   # end
 
   def link_params
+    return {} if params.dig(:unmanaged_concept, :context_id).nil?
+    return {} if params.dig(:unmanaged_concept, :context_id).empty?
     params.require(:unmanaged_concept).permit(:context_id)
   end
 

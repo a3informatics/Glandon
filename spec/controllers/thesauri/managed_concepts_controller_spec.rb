@@ -34,7 +34,9 @@ describe Thesauri::ManagedConceptsController do
 
     it "changes" do
       @user.write_setting("max_term_display", 2)
-      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:synonym_objects).and_return([])
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_count).and_return(5)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:forward_backward).and_return({start: nil, end: Uri.new(uri: "http://www.xxx.com/aaa#1")})
       get :changes, id: "aaa"
