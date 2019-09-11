@@ -28,6 +28,33 @@ describe Thesauri::UnmanagedConceptsController do
     after :each do
     end
 
+    it "show" do
+      @user.write_setting("max_term_display", 2)
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
+      get :show, {id: "aaa", unmanaged_concept: {context_id: "bbb"}}
+      expect(assigns(:context_id)).to eq("bbb")
+      expect(assigns(:has_children)).to eq(false)
+      expect(response).to render_template("show")
+    end
+
+    it "show data" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expected = [
+        {id: "1", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb"},
+        {id: "2", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
+      ]       
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children_pagination).and_return([{id: "1"}, {id: "2"}])
+      get :show_data, {id: "aaa", offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
     it "changes" do
       @user.write_setting("max_term_display", 2)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
@@ -36,6 +63,17 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes_count).and_return(5)
       get :changes, id: "aaa"
       expect(response).to render_template("changes")
+    end
+
+    it "changes data" do
+      @user.write_setting("max_term_display", 2)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:changes).and_return({a: "1", b: "2"})
+      get :changes_data, id: "aaa"
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({a: "1", b: "2"})
     end
 
     it "differences" do
@@ -176,7 +214,8 @@ describe Thesauri::UnmanagedConceptsController do
       request.env['HTTP_ACCEPT'] = "application/json"
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      get :synonym_links, {id: tc.id, unmanaged_concept: {context_id: ""}}
+      get :synonym_links, {id: tc.id, unmanaged_concept: {
+      }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)

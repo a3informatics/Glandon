@@ -13,7 +13,7 @@
 <%= javascript_tag "var ci_panel_title = 'Change Instruction';" %>
 
 <% if @has_children %>
-  <%= javascript_tag "var url_path = '#{thesauri_unmanaged_concept_path(@tc)}';" %>
+  <%= javascript_tag "var url_path = '#{show_data_thesauri_unmanaged_concept_path(@tc)}';" %>
 <% else %>
   <%= javascript_tag "var url_path = '';" %>
 <% end %>

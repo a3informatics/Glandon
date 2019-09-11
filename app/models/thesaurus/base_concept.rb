@@ -47,6 +47,43 @@ class Thesaurus
       child
     end
 
+    def children_pagination(params)
+      results =[]
+      count = params[:count].to_i
+      offset = params[:offset].to_i
+
+      # Get the URIs for each child
+      query_string = %Q{SELECT ?e WHERE
+  {
+    #{self.uri.to_ref} th:narrower ?e . 
+    ?e th:identifier ?v
+  } ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+  }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+      uris = query_results.by_object_set([:e]).map{|x| x[:e]}
+
+      # Get the final result
+      query_string = %Q{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+  {        
+    VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+    {
+      ?s th:identifier ?i .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
+  }
+      query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], uri: x[:s].to_s, id: x[:s].to_id}
+      end
+      results
+    end
+
     # Delete. Don't allow if children present.
     #
     # @return [Integer] the number of rows deleted.

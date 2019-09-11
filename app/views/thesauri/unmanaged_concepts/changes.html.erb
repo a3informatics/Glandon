@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'thesauri/unmanaged_concepts/changes' %>
 <%= javascript_tag "var differences_url_path = '#{differences_thesauri_unmanaged_concept_path(@tc)}';" %>
-<%= javascript_tag "var changes_url_path = '#{changes_thesauri_managed_concept_path(@tc)}';" %>
+<%= javascript_tag "var changes_url_path = '#{changes_data_thesauri_unmanaged_concept_path(@tc)}';" %>
 <%= javascript_tag "var children = #{@tc.children?};" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <div class="row">

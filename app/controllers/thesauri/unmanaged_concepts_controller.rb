@@ -3,29 +3,24 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   before_action :authenticate_user!
 
   def changes
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    respond_to do |format|
-      format.html
-        @version_count = @tc.changes_count(current_user.max_term_display.to_i)
-        @close_path = request.referer
-      format.json do
-        clis = @tc.changes(current_user.max_term_display.to_i)
-        render json: {data: clis}
-      end
-    end
+    @version_count = @tc.changes_count(current_user.max_term_display.to_i)
+    @close_path = request.referer
+  end
+
+  def changes_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    render json: {data: tc.changes(current_user.max_term_display.to_i)}
   end
 
   def differences
-    authorize Thesaurus, :view?
-    @tc = Thesaurus::UnmanagedConcept.find(params[:id])
-    respond_to do |format|
-      format.json do
-        render json: {data: @tc.differences}
-      end
-    end
+    authorize Thesaurus, :show?
+    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    render json: {data: tc.differences}
   end
 
   # Will be required for Hierarchical terminologies
@@ -116,14 +111,15 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     @tc.preferred_term_objects
     @context_id = the_params[:context_id]
     @has_children = @tc.children?
-    respond_to do |format|
-      format.html
-      format.json do
-        children = @tc.children_pagination(params)
-        results = children.map{|x| x.to_h.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x, unmanaged_concept: {context_id: @context_id}})})}
-        render json: {data: results, offset: params[:offset], count: results.count}, status: 200
-      end
-    end
+  end
+
+  def show_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    context_id = the_params[:context_id]
+    children = tc.children_pagination(params)
+    results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
+    render json: {data: results, offset: params[:offset], count: results.count}, status: 200
   end
 
   # def cross_reference_start
@@ -153,7 +149,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   # end
 
   def synonym_links
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
     results = tc.linked_by_synonym(link_params)
     add_link_paths(results)
@@ -161,7 +157,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   end
 
   def preferred_term_links
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
     results = tc.linked_by_preferred_term(link_params)
     add_link_paths(results)
@@ -169,7 +165,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   end
 
   def change_instruction_links
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
     results = tc.linked_change_instructions
     add_ci_link_paths(results)
@@ -215,7 +211,7 @@ private
   #     render :json => {:data => results}, :status => 200
   #   else
   #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-  #   end
+  #   endz
   # end
 
   # def get_parent_link(thesaurus_concept)

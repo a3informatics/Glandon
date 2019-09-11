@@ -148,7 +148,9 @@ Rails.application.routes.draw do
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
       member do
+        get :show_data
         get :changes
+        get :changes_data
         get :differences
         get :synonym_links
         get :preferred_term_links
