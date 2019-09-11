@@ -78,3 +78,22 @@ $drag-timeline-btn-width: 130px;
 #timeline-end-btn{
   top: -60px;
 }
+
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .timeline-point{
+    top: -4px;
+  }
+
+  .timeline-date-btn{
+    top: -10px;
+  }
+
+  #timeline-end-btn{
+    top: -80px;
+  }
+
+  .timeline-outer-container{
+    margin: 30px 10px 10px 10px;
+  }
+}

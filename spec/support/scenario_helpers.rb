@@ -17,33 +17,33 @@ module ScenarioHelpers
     page.execute_script("document.getElementById('sidebar').scrollIntoView(false);")
   end
 
-  def click_navbar_terminology
-    click_link 'main_nav_te'
-  end
+  # def click_navbar_terminology
+  #   click_link 'main_nav_te'
+  # end
 
-  def click_navbar_bc
-    click_link 'main_nav_bc'
-  end
+  # def click_navbar_bc
+  #   click_link 'main_nav_bc'
+  # end
 
-  def click_navbar_form
-    click_link 'main_nav_f'
-  end
+  # def click_navbar_form
+  #   click_link 'main_nav_f'
+  # end
 
-  def click_navbar_ig_domain
-    click_link 'main_nav_sig'
-  end
+  # def click_navbar_ig_domain
+  #   click_link 'main_nav_sig'
+  # end
 
-  def click_navbar_adam_ig_domain
-    click_link 'main_nav_aig'
-  end
+  # def click_navbar_adam_ig_domain
+  #   click_link 'main_nav_aig'
+  # end
 
-  def click_navbar_sponsor_domain
-    click_link 'main_nav_sd'
-  end
+  # def click_navbar_sponsor_domain
+  #   click_link 'main_nav_sd'
+  # end
 
-  def click_navbar_import
-    click_link 'main_nav_i'
-  end
+  # def click_navbar_import
+  #   click_link 'main_nav_i'
+  # end
 
   def expect_page(text)
     expect(page).to have_content(text)

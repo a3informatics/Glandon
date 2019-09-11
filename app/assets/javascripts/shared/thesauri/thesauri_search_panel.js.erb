@@ -75,6 +75,9 @@ function ThesauriSearchPanel(url) {
 */
 ThesauriSearchPanel.prototype.initTable = function () {
   var _this = this;
+
+  var loading_html = generateSpinner("medium");
+
   this.tsSearchTable = $('#searchTable').DataTable( {
     "ajax": {
       "url": _this.url,
@@ -86,7 +89,7 @@ ThesauriSearchPanel.prototype.initTable = function () {
     "language": {
       "infoFiltered": "",
       "emptyTable": "Make a new column or global search to see data",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium\" src='<%= asset_path('loading.svg') %>'></div>",
+      "processing": loading_html,
       "search": "_INPUT_",
       "searchPlaceholder": "Overall Search ..."
     },

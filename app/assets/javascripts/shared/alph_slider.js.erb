@@ -4,7 +4,9 @@ function AlphabeticalSlider(slider, letter_view, target_list){
   this.letter_view = letter_view; // Ref to the element, whose HTML refers to the value of the input range
   this.target_list = target_list; // The target list to be filtered
 
-  this.slider.on("input", function() {
+  var event = isIE() ? "change" : "input";
+
+  this.slider.on(event, function() {
     _this.filter();
   });
 }
@@ -53,4 +55,5 @@ AlphabeticalSlider.prototype.moveToLetter = function(letter){
   var charCode = letter.charCodeAt(0);
   _this.slider.val(charCode - 64);
   _this.updateCurrentLetter(letter);
+  _this.filterResults(letter);
 }

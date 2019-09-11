@@ -14,7 +14,7 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     },
     table: "#editor_table",
     idSrc: "id",
-    fields: 
+    fields:
     [
       {
           name: "parent_id"
@@ -38,6 +38,8 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     ]
   });
 
+  var loading_html = generateSpinner("medium");
+
   this.editorTable = $('#editor_table').DataTable({
     pageLength: pageLength,
     lengthMenu: pageSettings,
@@ -45,7 +47,7 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     language: {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+      "processing": loading_html
     },
     columns: [
       { data: "identifier" },
@@ -53,10 +55,10 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
       { data: "preferred_term" },
       { data: "synonym" },
       { data: "definition" },
-      { data: null, "render": function(data,type,full,meta) { 
+      { data: null, "render": function(data,type,full,meta) {
         return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
       }},
-      { data: null, "render": function(data,type,full,meta) { 
+      { data: null, "render": function(data,type,full,meta) {
         return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
       }}
     ],
@@ -182,11 +184,9 @@ EditorPanel.prototype.delete = function(url) {
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
     }
-  }); 
+  });
 }
 
 // Null function for page unload. Nothing to do
 function pageUnloadAction() {
 }
-
-  

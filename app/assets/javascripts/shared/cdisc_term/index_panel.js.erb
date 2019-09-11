@@ -7,6 +7,9 @@ function IndexPanel(url) {
   $("#go_button").click(function(){
     _this.get();
   });
+
+  if(isIE())
+    $('#spinner_div').find("img").attr("src", "<%= asset_path('loading.gif') %>");
 }
 
 IndexPanel.prototype.get = function (url) {

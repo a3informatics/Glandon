@@ -35,6 +35,9 @@ function DifferencesPanel(url) {
     {"render" : function (data, type, row, meta) {
       return _this.status(row.differences.definition);
     }}];
+
+  var loading_html = generateSpinner("medium");
+
   this.differencesTable = $('#differences_table').DataTable( {
     "ajax": {
       "url": _this.url,
@@ -47,7 +50,7 @@ function DifferencesPanel(url) {
     "language": {
       "infoFiltered": "",
       "emptyTable": "No changes.",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner loading-medium\" src='<%= asset_path('loading.svg') %>'></div>"
+      "processing": loading_html
     }
   });
 }

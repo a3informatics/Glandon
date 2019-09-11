@@ -7,27 +7,27 @@
 <% end_class = links[:end].blank? ? button_class + " disabled" : button_class %>
 <div id="forward_backward_div" class="btn-group" role="group" aria-label="Forward backward buttons">
   <%= link_to links[:start], id: "fb_s_button", class: "#{start_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move to the first version</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move to the first version</span>
     Start
   <% end %>
   <%= link_to links[:backward_multiple], id: "fb_bm_button", class: "#{backward_multiple_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move back multiple versions (by window size)</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move back multiple versions (by window size)</span>
     <span class="icon-fast-backward"></span>
   <% end %>
   <%= link_to links[:backward_single], id: "fb_bs_button", class: "#{backward_single_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move back one version</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move back one version</span>
     <span class="icon-step-backward"></span>
   <% end %>
   <%= link_to links[:forward_single], id: "fb_fs_button", class: "#{forward_single_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move forward one version</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move forward one version</span>
     <span class="icon-step-forward"></span>
   <% end %>
   <%= link_to links[:forward_multiple], id: "fb_fm_button", class: "#{forward_multiple_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move forward multiple versions (by window size)</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move forward multiple versions (by window size)</span>
     <span class="icon-fast-forward"></span>
   <% end %>
   <%= link_to links[:end], id: "fb_e_button", class: "#{end_class} ttip" do %>
-    <span class="ttip-text shadow-small text-medium text-small">Move to the last version</span>
+    <span class="ttip-text ttip-top shadow-small text-medium text-small">Move to the last version</span>
     End
   <% end %>
 </div>

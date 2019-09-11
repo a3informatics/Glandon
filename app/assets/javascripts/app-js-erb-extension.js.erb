@@ -1,0 +1,5 @@
+// Returns HTML code for animated spinner. Size values can be a string of value: small / medium / large
+function generateSpinner(size) {
+  var iePath = "<%= asset_path('loading.gif') %>", path = "<%= asset_path('loading.svg') %>";
+  return "<div class='spinner-container'><img class='spinner loading-"+size+"' src='" + (isIE() ? iePath : path) +"'></div>";
+}

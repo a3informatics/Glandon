@@ -30,7 +30,8 @@ describe "Tags", :type => :feature do
   end 
 
   after :each do
-    click_link 'logoff_button'
+    #click_link 'logoff_button'
+    #ui_visit('logoff_button')
   end 
 
   after :all do
@@ -42,7 +43,7 @@ describe "Tags", :type => :feature do
 
     ###  Manage Tags (MDR-TAG-20, MDR-TAG-30, MDR-TAG-40, MDR-TAG-45, MDR-TAG-60, MDR-TAG-110)
     it "only creat tags when both label and description is provided (REQ-MDR-TAG-040)", js: true do
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_check_input("edit_label", 'Tags')  
       fill_in 'add_label', with: 'Tag1'
@@ -56,20 +57,18 @@ describe "Tags", :type => :feature do
     end
 
     it "create tags (REQ-MDR-TAG-040)", js: true do
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_check_input("edit_label", 'Tags')  
       fill_in 'add_label', with: 'Tag1'
       fill_in 'add_description', with: 'Tag 1 level 1'     
       click_button 'Add tag'
-      #pause
       expect(page).to have_content 'Tag1'      
     end
 
-    it "create child tags organized in a hierarchical structure (REQ-MDR-TAG-020, REQ-MDR-TAG-040)", js: true do
-      visit '/dashboard' 
+    it "create child tags organized in a hierarchical structure (REQ-MDR-TAG-020, REQ-MDR-TAG-040)", js: true do 
       create_tag_first_level("Tag1", "Tag 1 level 1")
-      click_link 'Tags'
+      #click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("Tag1")
       fill_in 'add_label', with: 'Tag1_1'
@@ -80,7 +79,6 @@ describe "Tags", :type => :feature do
     end
 
     it "create child tags with identical labels in different entities of the hierarchy (REQ-MDR-TAG-040)", js: true do
-      visit '/dashboard'
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_first_level("Tag2", "Tag 2 level 1")
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2") 
@@ -96,42 +94,38 @@ describe "Tags", :type => :feature do
     end
 
     it "still create tags with identical labels (REQ-MDR-TAG-040)", js: true do
-      visit '/dashboard'
       create_tag_first_level("Tag1", "Tag 1 level 1")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags' 
       expect(page).to have_content 'Tag1' 
-      #pause
       fill_in 'add_label', with: 'Tag1'
       fill_in 'add_description', with: 'Tag is identical with already existing tag!'
       click_button 'Add tag'
-      #pause
       #not implemented expect(page).to have_content 'You cannot create identical tags at the same level..........'      
     end
 
     it "view all managed items instances for each tag when managing tags (REQ-MDR-TAG-030)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
+      #currently not working
       create_tag_form("TAGFORM", "Tag test form" )
       add_tags("Forms", "TAGFORM", "TAG1-1-3")
       create_tag_bc("TAGBC", "Tag test BC", "Obs PQR")
       add_tags("Biomedical Concepts", "TAGBC", "TAG1-1-3")
       create_tag_term("TAGTERM", "Tag terminology")
       add_tags("Terminology", "TAGTERM", "TAG1-1-3")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       key1 = ui_get_key_by_path('["Tags", "TAG1", "TAG1-1", "TAG1-1-3"]')
       ui_click_node_key(key1)
-      #pause
       expect(page).to have_content 'TAGBC'
       expect(page).to have_content 'TAGFORM'
       expect(page).to have_content 'TAGTERM'
     end
 
     it "not delete tags with children (REQ-MDR-TAG-045)", js: true do
-      visit '/dashboard'
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       ui_click_node_name ("Tag1")
       ui_check_input("edit_label", 'Tag1') 
@@ -141,20 +135,18 @@ describe "Tags", :type => :feature do
   
     it "deleted tags and child tags (REQ-MDR-TAG-045)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       ui_click_node_name ("TAG4-1-1")
       ui_check_input('edit_label','TAG4-1-1')
       click_button 'Delete'
       wait_for_ajax
-      #pause
       expect(page).not_to have_content 'TAG4-1-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4-1")
       ui_check_input('edit_label','TAG4-1')
       click_button 'Delete'
       wait_for_ajax
-      #pause
       expect(page).not_to have_content 'TAG4-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4")
@@ -162,28 +154,26 @@ describe "Tags", :type => :feature do
       click_button 'Delete'
       wait_for_ajax
       expect(page).not_to have_content 'TAG4'
-      #pause
     end
 
     #not implemented
     it "still (not) delete tags used by managed items (REQ-MDR-TAG-060)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
+      #currently not working
       create_tag_form("TAGFORM", "Tag test form" )
       add_tags("Forms", "TAGFORM", "TAG4-1-1")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       ui_click_node_name ("TAG4-1-1")
       ui_check_input('edit_label','TAG4-1-1')
       click_button 'Delete'
       wait_for_ajax
-      #must be updated
-      #pause
       expect(page).not_to have_content 'TAG4-1-1' 
     end
 
     it "update tag labels (REQ-MDR-TAG-110)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       ui_click_node_name ("TAG1")
       ui_check_input("edit_label", 'TAG1')  
@@ -194,14 +184,13 @@ describe "Tags", :type => :feature do
       wait_for_ajax
       ui_click_node_name ("UPDTAG1")
       ui_check_input("edit_label", 'UPDTAG1')  
-      #pause
       ui_check_input("edit_description", 'Tag 1 updated')     
     end
 
      ### Add Tags to Content (MDR-TAG-15, MDR-TAG-50, MDR-TAG-70, MDR-TAG-100)
     
     it "add tags to forms auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
-      visit '/dashboard'
+      #currently not working
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_form("TAGFORM", "Form for Tag Testing" )
       add_tags("Forms", "TAGFORM", "Tag1")
@@ -214,20 +203,19 @@ describe "Tags", :type => :feature do
       #1. check child tag is added to TAGFORM
       ui_click_node_name ("Tag1_1")
       #not implemented ui_check_table_cell('iso_managed_table',1,1,'TAGFORM')
-      #pause
       #2. check child tag is added to TAGFORM
-      click_link 'Forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms' 
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'Update Tags').click 
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
-      #pause
     end
 
      it "add tags to BCs auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
-      visit '/dashboard'
       create_tag_first_level("Tag1", "Tag 1 level 1")
+      #currently not working
       create_tag_bc("TAGBC", "BC for Tag Testing", "Obs PQR")
+      pause
       add_tags("Biomedical Concepts", "TAGBC", "Tag1")
       wait_for_ajax
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
@@ -238,98 +226,92 @@ describe "Tags", :type => :feature do
       #1. check child tag is added to TAGBC
       ui_click_node_name ("Tag1_1")
       #not implemented ui_check_table_cell('iso_managed_table',1,1,'TAGBC')
-      #pause
       #2. check child tag is added to TAGFORM
-      click_link 'Biomedical Concepts'
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts' 
       find(:xpath, "//tr[contains(.,'TAGBC')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGBC')]/td/a", :text => 'Update Tags').click 
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
-      #pause
     end
 
      it "add tags to terminology auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
-      visit '/dashboard'
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_term("TAGTERM", "Terminology for Tag Testing")
-      add_tags("Terminology", "TAGTERM", "Tag1")
+      pause
+      add_tags_term("TAGTERM", "Tag1")
       wait_for_ajax
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
       #create child tag
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
       ui_click_node_name ("Tag1")
       ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
+      pause
       #1. check child tag is added to TAGTERM
       ui_click_node_name ("Tag1_1")
       #not implemented ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
-      # pause
       #2. check child tag is added to TAGTERM
-      click_link 'Terminology'
+      click_navbar_dashboard
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology' 
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
-      find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click 
+      pause
+      #find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click 
+      pause
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
-      #pause
     end
 
      it "remove tags and child tags from forms (REQ-MDR-15)", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_form("TAGFORM", "Form for Tag Testing" )
       add_tags("Forms", "TAGFORM", "Tag1")
-      click_link 'Tags'
+      click_navbar_tags
       wait_for_ajax
       ui_click_node_name ("Tag1")
       ui_check_table_cell("iso_managed_table", 1, 1, "TAGFORM")
-      click_link 'Forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms' 
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'Update Tags').click
       wait_for_ajax
-      #pause
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1").click
       X = find(:xpath, "//div[@id='tags_container']", visible: false).text
       expect(X).to have_content "" 
-      #pause
     end
  
      it "remove tags and child tags from BCs (REQ-MDR-15)", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_bc("TAGBC", "BC for Tag Testing", "Obs PQR")
       add_tags("Biomedical Concepts", "TAGBC", "Tag1")
-      click_link 'Tags'
+      click_navbar_tags
       wait_for_ajax
       ui_click_node_name ("Tag1")
       ui_check_table_cell("iso_managed_table", 1, 1, "TAGBC")
-      click_link 'Biomedical Concepts'
+      main_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts' 
       find(:xpath, "//tr[contains(.,'TAGBC')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGBC')]/td/a", :text => 'Update Tags').click
       wait_for_ajax
-      #pause
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1").click
       X = find(:xpath, "//div[@id='tags_container']", visible: false).text
       expect(X).to have_content "" 
-      #pause
     end
 
      it "remove tags and child tags from terminology (REQ-MDR-15)", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_term("TAGTERM", "Term for Tag Testing")
       add_tags("Terminology", "TAGTERM", "Tag1")
-      click_link 'Tags'
+      click_navbar_tags
       wait_for_ajax
       ui_click_node_name ("Tag1")
       ui_check_table_cell("iso_managed_table", 1, 1, "TAGTERM")
-      click_link 'Terminology'
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology' 
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click
       wait_for_ajax
-      #pause
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1").click
       X = find(:xpath, "//div[@id='tags_container']", visible: false).text
       expect(X).to have_content "" 
-      #pause
     end
 
      it "view a list of managed items being tagged to a selected tag when adding tags to a form,  (REQ-MDR-TAG-100)", js:true do
@@ -341,11 +323,10 @@ describe "Tags", :type => :feature do
       add_tags("Biomedical Concepts", "TAGBC", "TAG1-1-1")
       add_tags("Biomedical Concepts", "TAGBC", "TAG2-1")
       add_tags("Terminology", "TAGTERM", "TAG1-1-1")
-      click_link 'Forms'
+      click_navbar_terminology
       expect(page).to have_content 'Index: Forms' 
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'History').click
       find(:xpath, "//tr[contains(.,'TAGFORM')]/td/a", :text => 'Update Tags').click 
-      #pause
       wait_for_ajax
       ui_click_node_name ("TAG1-1-1")
       wait_for_ajax
@@ -363,7 +344,7 @@ describe "Tags", :type => :feature do
 
     it "can performed a search from the Managed Tags(REQ-MDR-TAG-120)", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
-      click_link 'Tags'
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'  
       fill_in 'search for tag', with: 'TAG1-3'
       ui_hit_return("d3Search_input")

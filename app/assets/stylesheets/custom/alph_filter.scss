@@ -44,7 +44,7 @@
   position: absolute;
 }
 
-.alph-slider::-webkit-slider-thumb {
+.alph-slider::-webkit-slider-thumb{
   -webkit-appearance: none;
   appearance: none;
   width: 10px;
@@ -74,4 +74,57 @@
 
 .alph-slider-sides:last-of-type{
   right: -20px;
+}
+
+// IE AND EDGE FIXES
+
+@mixin ieandedge() {
+
+    /* all IE versions <= 11 */
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+
+    /* all edge versions */
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.alph-slider{
+  @include ieandedge {
+    height: auto;
+    background: none;
+    padding: 5px 0px;
+  }
+}
+
+::-ms-fill-lower, ::-ms-fill-upper {
+  @include ieandedge {
+    background: $grey-bright;
+    color: transparent;
+  }
+}
+
+::-ms-thumb {
+  @include ieandedge {
+    background: $primary-color-medium;
+    border: 0;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+::-ms-track{
+  @include ieandedge {
+    color: transparent;
+    border: 0;
+  }
+}
+
+::-ms-tooltip {
+  @include ieandedge {
+    display: none;
+  }
 }
