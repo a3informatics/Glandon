@@ -42,9 +42,8 @@
 
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
 .ico-btn{
-  width: min-content;
   padding: 6px 6px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   background: $grey-white;
   color: $primary-color-medium;

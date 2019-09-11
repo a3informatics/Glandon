@@ -6,7 +6,7 @@
 /**
 * Term Search Constructor
 * @param context_id [String] The context_id of the Th
-* @param callback [Function] 
+* @param callback [Function]
 *
 * @return [void]
 */
@@ -87,7 +87,7 @@ function TermSearch(context_id, callback) {
   })
 
 $('#searchModal').on('hidden.bs.modal', function () {
-    
+
 });
 
   //Clear search
@@ -116,7 +116,7 @@ $('#searchModal').on('hidden.bs.modal', function () {
     }
   });
 
-  // Add search functionality to search inputs 
+  // Add search functionality to search inputs
   _this.tsSearchTable.columns().every(function (index) {
     var that = this;
       $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
@@ -141,7 +141,7 @@ $('#searchModal').on('hidden.bs.modal', function () {
     return;
   });
 
-  // handle double click on terminology table 
+  // handle double click on terminology table
   $('#searchTable tbody').on('dblclick', 'tr', function () {
     if (_this.tsSearchTable.data().any() ) {
       if (_this.tsCurrentRef != null) {
@@ -160,7 +160,7 @@ $('#searchModal').on('hidden.bs.modal', function () {
       // Set our parent identifier search and trigger.
       $('#searchTable_csearch_cl').val(data.parent_identifier);
       var e = jQuery.Event("keyup");
-      e.which = 13; 
+      e.which = 13;
       e.keyCode = 13;
       $('#searchTable_csearch_cl').trigger(e);
     }
@@ -169,12 +169,12 @@ $('#searchModal').on('hidden.bs.modal', function () {
   $('#searchTable tbody').on('click', 'tr', function () {
         var id = this.id;
         if (_this.selected.hasOwnProperty(id)) {
-          delete _this.selected[id];  
+          delete _this.selected[id];
         } else {
           _this.selected[id] = id;
         };
         $(_this).toggleClass('selected');
-      
+
   });
 
 }
@@ -182,6 +182,9 @@ $('#searchModal').on('hidden.bs.modal', function () {
 // Initialise the table/datatable. Note the deferLoading setting.
 TermSearch.prototype.initTable = function() {
   var _this = this;
+
+  var loading_html = generateSpinner("medium");
+
   this.tsSearchTable = $('#searchTable').DataTable( {
     "processing": true,
     "serverSide": true,
@@ -189,14 +192,14 @@ TermSearch.prototype.initTable = function() {
       "url": "/thesauri/"+this.context_id+"/search",
       "data": function( d ) {
       },
-    "dataSrc": "data" 
+    "dataSrc": "data"
     },
     "rowId": "id",
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
       "emptyTable": "Make a new column or global search to see data",
-      "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+      "processing": loading_html
     },
     "rowCallback": function( row, data ) {
             if (_this.selected.hasOwnProperty(data.id)) {

@@ -10,6 +10,7 @@ function TimelineSlider(c, l, r, tl_p){
   this.l_index = 0;
   this.r_index = _this.tl_points.length-1;
   this.highlight_class = "point-highlight";
+  this.is_ie = isIE();
 
   _this.initDraggable(_this.l_slider);
   _this.initDraggable(_this.r_slider);
@@ -37,6 +38,7 @@ TimelineSlider.prototype.initDraggable = function(el){
   el.mousedown(function () {
     _this.zoomTlPointsOnDrag(el);
   });
+
   el.mouseup(function () {
     _this.resetTlPoints();
   });
@@ -78,6 +80,10 @@ TimelineSlider.prototype.resetTlPoints = function(){
 // so that the spaces between the points spread out - zoom
 TimelineSlider.prototype.zoomTlPointsOnDrag = function(el) {
   var _this = this;
+
+  if(_this.is_ie)
+    return;
+
   _this.resetTlPoints();
 
   var nearest_p_index = el == _this.l_slider ? _this.l_index : _this.r_index;

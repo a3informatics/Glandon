@@ -206,8 +206,10 @@
             <div class="nav nav_pills nav-stacked">
               <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="sidebarHandler(this);"></span>
               <% if link_group_on_role([Dashboard]) %>
+              <div class="category-container collapsed">
               <%= render partial: "shared/menu_category", :locals => {:klass => Dashboard, link_id: "main_nav_d",
                 link_path: dashboard_index_path, selected_cat: menu_category_title, icon_id: "icon-dashboard", category_title: "Dashboard"} %>
+              </div>
               <% end %>
               <% if link_group_on_role([IsoNamespace, IsoRegistrationAuthority, IsoManaged, Token, AuditTrail]) %>
                 <div id="main_nav_sysadmin" class="category-container <%= if c_sysadmin != menu_category_title then "collapsed" end %>">
