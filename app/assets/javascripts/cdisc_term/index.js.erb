@@ -7,6 +7,9 @@ $(document).ready( function() {
   tl_slider.moveToDate(tl_slider.r_slider, newest_date);
   tl_slider.moveToDate(tl_slider.l_slider, second_newest_date);
 
+
+  $(".timeline-container").data(tl_slider);
+
   var filters = Array();
 
   $(".filter-wrap").each(function(i, e) {
@@ -33,4 +36,12 @@ $(document).ready( function() {
       }
     })
   });
+
+  // TESTING HELPERS
+  <%# if Rails.env == "test" || Rails.env == "development" %>
+    $(".timeline-container").data(tl_slider);
+    $.each($(".alph-slider"), function(i, e){
+      $(e).data(filters[i]);
+    });
+  <%# end %>
 });
