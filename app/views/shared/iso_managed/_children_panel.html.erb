@@ -12,7 +12,9 @@
         <th class="fit">Extensible</th>
         <th>Definition</th>
         <th class="fit"></th>
-        <th class="fit"></th>
+        <% if (policy(Thesaurus).edit? && @tc.owned?) %>
+          <th class="fit"></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
