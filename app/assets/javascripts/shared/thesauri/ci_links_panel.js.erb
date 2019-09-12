@@ -1,6 +1,6 @@
 /*
 * Change Instruction Panel
-* 
+*
 */
 
 /**
@@ -29,14 +29,14 @@ CiPanel.prototype.getData = function () {
     type: 'GET',
     dataType: 'json',
     contentType: 'application/json',
-    success: function(result){ 
+    success: function(result){
       console.log(result.data);
     _this.display(result.data);
     },
     error: function(xhr,status,error){
       handleAjaxError (xhr, status, error);
     }
-  }); 
+  });
 }
 
 /**
@@ -46,38 +46,52 @@ CiPanel.prototype.getData = function () {
  * @return [void]
  */
 CiPanel.prototype.display = function (result) {
-  var _this = this; 
+  var _this = this;
   var html = '';
-  if(result.current.length == 0 && result.previous.length == 0) {
-    html +=   '<div class="card">'+
-              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
-              '<span class="list-group-item">' +
-                  '<p class="list-group-item-text">None</p>' +
-                '</span></div>';   
-              }else if (result.current.length == 0)  {
-    html += '<div class="card">'+
-              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
-              '<div class="card-content"><div class="text-small font-light p-justified">'+result.description+'</div><br>'+
-              '<div class="list-group">';   
-      $.each( result.previous, function( index, prev ) {
-        html +=   '<a href="' + prev.show_path + '" class="list-group-item">' +
-                    '<p class="list-group-item-text"><small>Old: '+prev.parent.notation + ' (' + prev.parent.identifier + '), ' + prev.child.notation + ' (' + prev.child.identifier + ')</small></p>' +
-                  '</a>';         
-      });
-      html +='</div></div>';   
-   } else {
-    html += '<div class="card">'+
-              '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
-              '<div class="card-content"><div class="text-small font-light p-justified">'+result.description+'</div><br>'+
-              '<div class="list-group">';   
-      $.each( result.current, function( index, curr ) {
-        html +=   '<a href="' + curr.show_path + '" class="list-group-item">' +
-                    '<p class="list-group-item-text"><small>New: '+curr.parent.notation + ' (' + curr.parent.identifier + '), ' + curr.child.notation + ' (' + curr.child.identifier + ')</small></p>' +
-                  '</a>';         
-      });
-      
-    html +='</div></div>';  
-   };
+
+  html += '<div class="card">' +
+            '<h3 class="card-header">'+_this.panelTitle+'</h3>'+
+            '<div class="card-content">';
+
+  html +=     '<div class="list-wrap">';
+
+  if (result.current.length == 0 && result.previous.length == 0) {  // NO CI
+    html += generateNoResultsMsg("No " + _this.panelTitle + ".");
+  }
+  else if (result.current.length == 0)  {   // OLD CI
+    html += '<div class="font-light ci-card-title text-small p-justified"><span class="font-regular">Instruction: </span>'+ result.description +'</div>';
+
+    $.each(result.previous, function(index, prev) {
+      html += '<a href="' + prev.show_path + '">';
+      html += ' <div class="list-card i-lc shadow-small">';
+      html += '   <div class="card-badge bg-prim-bright"></div>';
+      html += '   <div class="icon icon-old text-light text-large ttip"><span class="ttip-text shadow-small text-medium text-small">Old version</span></div>';
+      html += '   <div class="text-wrap">'
+      html += '     <div class="text">' + prev.parent.notation + ' (' + prev.parent.identifier + ') </div>';
+      html += '     <div class="text sub-text">' + prev.child.notation + ' (' + prev.child.identifier + ') </div>';
+      html += '   </div>';
+      html += ' </div>';
+      html += '</a>';
+    });
+  }
+  else {  // NEW CI
+    html += '<div class="font-light ci-card-title text-small p-justified"><span class="font-regular">Instruction: </span>'+ result.description +'</div>';
+
+    $.each(result.current, function(index, curr) {
+      html += '<a href="' + curr.show_path + '">';
+      html += ' <div class="list-card i-lc shadow-small">';
+      html += '   <div class="card-badge bg-prim-bright"></div>';
+      html += '   <div class="icon icon-new text-light text-large ttip"><span class="ttip-text shadow-small text-medium text-small">New version</span></div>';
+      html += '   <div class="text-wrap">'
+      html += '     <div class="text">' + curr.parent.notation + ' (' + curr.parent.identifier + ') </div>';
+      html += '     <div class="text sub-text">' + curr.child.notation + ' (' + curr.child.identifier + ') </div>';
+      html += '   </div>';
+      html += ' </div>';
+      html += '</a>';
+    });
+  }
+
+  html +='</div></div></div>';
 
   $('#'+_this.panelId).html(html);
 }

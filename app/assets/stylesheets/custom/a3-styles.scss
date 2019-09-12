@@ -143,10 +143,10 @@
 // LIST WRAP (CDISC_TERMS)
 
 .list-wrap{
-  margin: 10px auto;
+  margin: 0 auto;
   padding: 5px 10px;
   max-width: 600px;
-  max-height: 800px;
+  max-height: 700px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -194,6 +194,42 @@
 .list-card .sub-text{
   font-size: $font-small;
   font-family: $font-light;
+}
+
+// ICON LIST CARD
+
+.list-card.i-lc{
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.list-card.i-lc .text-wrap{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-card.i-lc .icon{
+  margin: -5px 10px 0 20px;
+}
+
+.list-card.i-lc .icon:hover{
+  color: $grey-light;
+}
+
+.list-card.i-lc .text{
+  margin-left: 0 !important;
+}
+
+.ci-card-title{
+  border-bottom: 1px solid $primary-color-bright;
+  margin-bottom: 14px;
+  margin-top: 30px;
+}
+
+.ci-card-title:first-of-type{
+  margin-top: 0px;
 }
 
 // BADGES
@@ -267,6 +303,14 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
     scrollbar-arrow-color: #e8e8e8;
     scrollbar-shadow-color: $grey-bright;
     scrollbar-dark-shadow-color: $grey-bright;
+  }
+
+  .list-card .card-badge{
+    margin-top: -8px;
+  }
+
+  .list-card.i-lc .card-badge{
+    margin-top: -26px;
   }
 }
 // .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3,
