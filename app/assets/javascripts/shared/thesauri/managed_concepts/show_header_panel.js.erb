@@ -1,0 +1,39 @@
+function ShowHeaderPanel(is_extended, is_extending) {
+  this.is_extended = is_extended;
+  this.is_extending = is_extending;
+
+   if (this.is_extending) {
+        $("#extend").hide();
+        $("#extension").hide();
+        $("#extending").show();
+        $("#add").show();  
+    } else if (this.is_extended) {
+        $("#extend").show();
+        $("#extending").hide();
+        $("#add").hide(); 
+    } else {
+         $("#extend").show();
+        $("#extension").hide();
+        $("#extending").hide();
+        $("#add").hide(); 
+    }
+
+}  
+
+ShowHeaderPanel.prototype.callback = function(data) {
+  $.ajax({
+        url: "/thesauri/extension",
+        type: "POST",
+        data: JSON.stringify({thesauri: data}),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          $("#extension").attr("href", result.show_path);
+          $('#extend').addClass('disabled').attr("disabled","disabled");
+          $("#extension").show();
+        }
+      });
+}
