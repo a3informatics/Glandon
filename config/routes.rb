@@ -163,6 +163,7 @@ Rails.application.routes.draw do
 
   resources :thesauri, only: [:index, :show, :create, :edit, :destroy] do
     collection do
+      get :index_owned
       get :history
       post :extension
       get :search_current
