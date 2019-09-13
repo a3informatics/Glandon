@@ -12,16 +12,21 @@
  */
 function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
   var _this = this;
+  this.policy_edit = policy_edit;
+  this.edit_enable = edit_enable;
   this.url = url;
   this.tc_id = tc_id;
   this.count = count;
   this.columns = columns;
   this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
-  if (policy_edit && edit_enable) {
+
     this.columns.push({"render" : function (data, type, row, meta) {
-      return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}
+      if (row.delete_path === ""){ 
+        return "&nbsp;"
+      } else {
+        return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
     });
-  }
+  
 
   var loading_html = generateSpinner("medium");
 
@@ -39,6 +44,7 @@ function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
   });
   this.add(0);
 
+  
   $(document).on('click', '.delete-child', function (event) {
     _this.deleteExtension([this.value]);
   });
@@ -59,15 +65,25 @@ ChildrenPanel.prototype.add = function (offset) {
     type: 'GET',
     dataType: 'json',
     success: function(result) {
+      var show_delete = false
       for (i=0; i<result.data.length; i++) {
         result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
-        var row = _this.childrenTable.row.add(result.data[i]);
+        var row = _this.childrenTable.row.add(result.data[i]);  
+        if (result.data[i].delete_path !== "" ) {
+          show_delete = true 
+        }
       }
       _this.childrenTable.draw();
       if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count)
+        _this.add(result.offset + _this.count);        
       } else {
         _this.childrenTable.processing(false);
+      }
+      _this.childrenTable.columns( [7] ).visible( false );
+      if (_this.policy_edit && _this.edit_enable && show_delete) {
+
+        _this.childrenTable.columns( [7] ).visible( true );
+
       }
     },
     error: function(xhr,status,error){
@@ -75,6 +91,7 @@ ChildrenPanel.prototype.add = function (offset) {
       _this.childrenTable.processing(false);
     }
   });
+
 }
 
 ChildrenPanel.prototype.extensibleConvert = function(extensible) {
