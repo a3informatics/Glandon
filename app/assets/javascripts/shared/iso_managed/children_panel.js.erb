@@ -19,14 +19,12 @@ function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
   this.count = count;
   this.columns = columns;
   this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
-
-    this.columns.push({"render" : function (data, type, row, meta) {
-      if (row.delete_path === ""){ 
-        return "&nbsp;"
-      } else {
-        return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
-    });
-  
+  this.columns.push({"render" : function (data, type, row, meta) {
+    if (row.delete_path === ""){ 
+      return "&nbsp;"
+    } else {
+      return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
+  });
 
   var loading_html = generateSpinner("medium");
 
@@ -42,9 +40,9 @@ function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
       "processing": loading_html
     }
   });
+
   this.add(0);
 
-  
   $(document).on('click', '.delete-child', function (event) {
     _this.deleteExtension([this.value]);
   });
@@ -81,9 +79,7 @@ ChildrenPanel.prototype.add = function (offset) {
       }
       _this.childrenTable.columns( [7] ).visible( false );
       if (_this.policy_edit && _this.edit_enable && show_delete) {
-
         _this.childrenTable.columns( [7] ).visible( true );
-
       }
     },
     error: function(xhr,status,error){
