@@ -74,7 +74,7 @@ ThesauriSelect.prototype.initTable = function() {
   this.tsModalTable = $('#thTable').DataTable( {
     "processing": true,
     "ajax": {
-      "url": "/thesauri",
+      "url": "/thesauri/index_owned",
       "dataSrc": "data"
     },
     "rowId": "id",

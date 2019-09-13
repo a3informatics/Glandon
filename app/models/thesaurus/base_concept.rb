@@ -28,7 +28,7 @@ class Thesaurus
     #
     # @return [Boolean] True if there are children, false otherwise
     def children?
-      return extended_with.any? || narrower.any? || !is_subset.blank?
+      return narrower.any?
     end
   
     # Add a child concept
@@ -47,6 +47,12 @@ class Thesaurus
       child
     end
 
+    # Children Pagination. Get the children in pagination manner
+    #
+    # @params [Hash] params the params hash 
+    # @option params [String] :offset the offset to be obtained
+    # @option params [String] :count the count to be obtained
+    # @return [Array] array of hashes containing the child data
     def children_pagination(params)
       results =[]
       count = params[:count].to_i
@@ -64,7 +70,7 @@ class Thesaurus
 
       # Get the final result
       query_string = %Q{
-  SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
   {        
     VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
     {
@@ -72,14 +78,15 @@ class Thesaurus
       ?s th:notation ?n .
       ?s th:definition ?d .
       ?s th:extensible ?e .
+      BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
       OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
     }
-  } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
+  } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], uri: x[:s].to_s, id: x[:s].to_id}
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
     end

@@ -23,6 +23,13 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def index_owned
+    authorize Thesaurus, :index?
+    owner_scoped_id = IsoRegistrationAuthority.repository_scope.id
+    render json: {data: Thesaurus.unique.select{|x| x[:scope_id] == owner_scoped_id}}
+  end
+
+
   def history
     authorize Thesaurus
     respond_to do |format|
