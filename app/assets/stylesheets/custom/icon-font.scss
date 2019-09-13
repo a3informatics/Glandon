@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.icon-old:before {
+  content: "\e93a";
+}
+.icon-new:before {
+  content: "\e93b";
+}
 .icon-context-menu-hor:before {
   content: "\e937";
 }
