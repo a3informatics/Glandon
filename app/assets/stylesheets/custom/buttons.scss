@@ -16,6 +16,11 @@
   color: $grey-white !important;
 }
 
+.btn:focus, .btn:active{
+  color: $grey-white;
+  background: $primary-color-dark;
+}
+
 .btn.nomargin{
   margin: 0px;
 }

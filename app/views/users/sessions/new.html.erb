@@ -1,25 +1,34 @@
 <%= form_for(resource, as: resource_name, url: user_session_path, class: "form-signin") do |f| %>
-	<h2 class="form-signin-heading">Log in</h2>
-  <div class="form-group">
-    <%= f.label :email, "Email:" %><br/>
-    <%= f.email_field :email, class: "form-control", autofocus: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :password, "Password:" %>
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+	<div class="text-xxlarge font-regular text-light">
+		Welcome
 	</div>
-  <% if devise_mapping.rememberable? -%>
-    <div class="form-group">
-      <div class="checkbox">
-	      <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-      </div>
-    </div>
-  <% end %>
-  <%= f.submit "Log in", class: "btn big btn-primary btn-block" %>
-  <br/>
+	<div class="p-justified font-light text-light text-normal">
+		The A3 Community MDR is a tool for stuff and things and it allows you to do other stuff and things.
+	</div>
+	<div class="form-wrap">
+	  <div class="form-group">
+	    <%= f.email_field :email, class: "", id: "email-input", autofocus: true, placeholder: "Email" %>
+	  </div>
+
+	  <div class="form-group">
+	    <%= f.password_field :password, autocomplete: "off", class: "", placeholder: "Password" %>
+		</div>
+
+	  <% if devise_mapping.rememberable? -%>
+	    <div class="form-group">
+	      <div class="checkbox">
+		      <%= f.check_box :remember_me %>
+	        <%= f.label :remember_me %>
+	      </div>
+	    </div>
+	  <% end %>
+	</div>
+
+  <%= f.submit "Log in", class: "btn big", id: "login-btn" %>
+  <br>
+
 	<% if APP_CONFIG['self_registration'] %>
-    <%= link_to "Sign up", new_user_registration_path %><br/>
+    <%= link_to "Sign up", new_user_registration_path, class: "form-link text-small" %><br/>
   <% end %>
-  <%= link_to "Forgot your password?", new_user_password_path %>
+  <%= link_to "Forgot your password?", new_user_password_path, class: "form-link text-small" %>
 <% end %>

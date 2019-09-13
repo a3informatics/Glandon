@@ -1,0 +1,122 @@
+@import "custom/globals.scss";
+
+body, html, .container{
+  height: 100%;
+}
+
+body {
+  background: $grey-bright;
+  width: 100%;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.m-card {
+  min-width: 60%;
+  min-height: 60%;
+  display: flex;
+}
+
+.m-card .half{
+  width: 50%;
+  margin: 0;
+  padding: 60px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width:768px){
+  .m-card{
+    flex-direction: column-reverse;
+  }
+  .m-card .half{
+    width: 100%;
+  }
+
+  body, html{
+    min-height: 100%;
+    height: auto;
+  }
+}
+
+.half:first-of-type{
+  justify-content: left;
+  border-radius: $card-border-radius 0 0 $card-border-radius;
+}
+
+.half:last-of-type{
+  justify-content: center;
+  background: $primary-color-dark;
+
+}
+
+// FORM STUFF
+
+.form-wrap{
+  margin: 60px 0;
+}
+
+.form-wrap input, .form-wrap .checkbox{
+  min-width: 80%;
+  font-size: $font-normal;
+  font-family: $font-light;
+  color: $grey-medium;
+  border: 0px;
+  outline: none;
+  background: transparent;
+}
+
+.form-wrap input[type="email"], .form-wrap input[type="password"]{
+  padding: 10px 5px;
+  border-bottom: 2px solid $secondary-color-light;
+}
+
+.form-wrap .checkbox input[type="checkbox"] {
+    margin-left: 0;
+}
+
+#login-btn{
+  background: $primary-color-light;
+  padding: 8px 60px;
+}
+
+#login-btn:hover{
+  background: $primary-color-medium;
+}
+
+#login-btn:focus{
+  outline: none;
+}
+
+.form-link{
+  display: inline-block;
+  margin: 12px 12px 0 0;
+  color: $grey-light;
+  text-decoration: underline;
+  font-family: $font-light;
+}
+
+.form-link:hover{
+  color: $grey-medium;
+  cursor: pointer;
+}
+
+.form-link:focus, .form-link:active{
+  color: $grey-medium;
+  outline: none;
+}
+
+/* CHROMEFIX */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  font-size: $font-normal;
+  -webkit-text-fill-color: $grey-medium;
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
