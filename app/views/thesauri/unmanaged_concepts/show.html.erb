@@ -8,8 +8,8 @@
 <%= javascript_tag "var pt_panel_id = '#{preferred_term_panel_id}';" %>
 <%= javascript_tag "var ci_url = '#{change_instruction_links_thesauri_unmanaged_concept_path(id: @tc)}';" %>
 <%= javascript_tag "var ci_panel_id = '#{ci_panel_id}';" %>
-<%= javascript_tag "var syn_panel_title = 'Shared Synonym';" %>
-<%= javascript_tag "var pt_panel_title = 'Shared Preferred Term';" %>
+<%= javascript_tag "var syn_panel_title = 'Shared Synonyms';" %>
+<%= javascript_tag "var pt_panel_title = 'Shared Preferred Terms';" %>
 <%= javascript_tag "var ci_panel_title = 'Change Instruction';" %>
 
 <% if @has_children %>
