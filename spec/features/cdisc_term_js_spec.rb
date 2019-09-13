@@ -145,8 +145,106 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_cell_extensible('children_table', 1, 5, true)
       ui_child_search("C99078")
       ui_check_table_cell_extensible('children_table', 1, 5, false)
+    end
+
+    it "if a CDISC code list is extensible should extend button clicked (REQ-MDR-CT-???)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      click_button 'Close'
+    end
+
+    it "if a CDISC code list is not extensible, extend button disabled (REQ-MDR-CT-???)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99078")
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      find(:xpath, "//tr[contains(.,'C99078')]/td/a", :text => 'Show').click
+      expect(page).to have_xpath("//*[@id='extend'][@class='disabled']")      
+    end
+
+    it "Select Terminology (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      pause
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      expect(page).to have_content 'Extension'
+    end
+
+
+    it "Select Extension (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-09-25 Release", :show)
+      expect(page).to have_content '2015-09-25 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
+      click_link 'Extend'
+      wait_for_ajax(7)
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      wait_for_ajax(7)
+      expect(page).to have_content 'Extension'
+      click_link 'Extension'
+      wait_for_ajax(7)
+      expect(page).to have_content 'C99079E'
 
     end
+
+
+    it "Select Extending (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      click_link 'Extension'
+      expect(page).to have_content 'C99079E'
+      click_link 'Extending'
+      expect(page).to have_content 'C99079'
+    end
+
+
+
+    
 
     # currently not working
     it "history allows the status page to be viewed (REQ-MDR-CT-NONE)", js:true do
