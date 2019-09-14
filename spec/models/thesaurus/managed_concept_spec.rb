@@ -637,4 +637,49 @@ describe Thesaurus::ManagedConcept do
 
   end
 
+  describe "child pagination" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..30)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "normal" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
+      results = tc.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_1.yaml")
+    end
+
+    it "normal, count and offset" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
+      results = tc.children_pagination(count: 10, offset: 10)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml")
+    end
+
+    it "normal, extended" do
+      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V30#C99079"))
+      item = thesaurus.add_extension(tc.id)
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml")
+      ext = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C99078/V28#C99078_C307"))
+      item.add_extensions([ext.uri])
+      results = item.children_pagination(count: 20, offset: 0)
+      check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
+    end
+
+  end
+
+
 end
