@@ -23,6 +23,18 @@ class Excel::Engine
     @errors = owner.errors
     @parent_set = {}
     @classifications = {}
+    @tag = ""
+  end
+
+  # ---------
+  # Test Only
+  # ---------
+  if Rails.env.test?
+
+    def tag
+      @tag
+    end
+
   end
 
   # Process. Process a sheet according to the configuration
@@ -34,6 +46,7 @@ class Excel::Engine
     parent = nil
     child = nil
     sheet_logic = Rails.configuration.imports[:processing][import][:sheets][sheet]
+    process_sheet(sheet_logic)  
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
       next unless process_row?(sheet_logic, row)
       sheet_logic[:columns].each_with_index do |column, col_index|
@@ -65,6 +78,17 @@ class Excel::Engine
         end
       end
     end
+  end
+
+  # Process Sheet
+  #
+  # @param sheet_logic [Hash] hash containing the sheet logic. May not be present
+  # @return [Boolean] true if the condition is met, false otherwise
+  def process_sheet(sheet_logic)
+    actions = sheet_logic.dig(:sheet, :actions) 
+    return true if actions.nil? # No conditions present
+    return true if actions.empty? # No conditions present
+    actions.each {|action| self.send(action[:method], action.slice(:map, :can_be_empty, :additional))}
   end
 
   # Process Row?
@@ -126,12 +150,27 @@ class Excel::Engine
   # @param [Hash] params the parameters
   # @option params [Integer] row the cell row
   # @option params [Integer] col the cell column
-  # @return [Boolean] true if affirmative (boolean true), false otherwise
+  # @return [String] true if affirmative (boolean true), false otherwise
   def column_affirmative?(params)
     check_params(__method__.to_s, params, [:row, :col])
     return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
   end
 
+  # Tag From Sheet Name
+  #
+  # @param [Hash] params the parameters
+  # @option params [map] :map the mapping
+  # @return [String] the tag
+  def tag_from_sheet_name(params)
+    check_params(__method__.to_s, params, [:map])
+    params[:map].each do |key, word| 
+      next if !@workbook.default_sheet.include?(word)
+      @tag = key
+      return @tag
+    end
+    @tag = nil
+  end
+    
   # Create Parent
   #
   # @param [Integer] row the cell row

@@ -277,6 +277,52 @@ describe Excel::Engine do
     end
   end
 
+  it "checks sheet condition" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook)
+    logic = 
+    {
+      sheet: 
+      { 
+        actions: 
+        [ 
+          { method: :tag_from_sheet_name,
+            map: { ADaM: "ADaM", CDASH: "CDASH", SDTM: "SDTM" }
+          }
+        ]
+      }
+    }
+    object.process_sheet(logic)
+    expect(object.tag).to eq(:CDASH)
+    logic = 
+    {
+      sheet: 
+      { 
+        actions: 
+        [ 
+          { method: :tag_from_sheet_name,
+            map: { ADaM: "ADaM", CDASH: "CDash", SDTM: "SDTM" }
+          }
+        ]
+      }
+    }
+    object.process_sheet(logic)
+    expect(object.tag).to eq(nil)
+  end
+
+  it "tag from sheet name" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.tag_from_sheet_name({map: {cdash: "CDASH", x: "X"}})
+    expect(result).to eq(:cdash)
+    result = object.tag_from_sheet_name({map: {cdash: "XXX", x: "X"}})
+    expect(result).to eq(nil)
+  end
+
   it "creates parent" do
     the_result = nil
     full_path = test_file_path(sub_dir, "create_parent_input_1.xlsx")

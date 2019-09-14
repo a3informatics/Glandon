@@ -181,6 +181,14 @@ defaults: &defaults
         main:
           selection:
             label: ADaM-IG
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
           columns: 
           - 
             label: "Data Structure Name"
