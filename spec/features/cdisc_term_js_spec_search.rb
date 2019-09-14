@@ -52,25 +52,30 @@ describe "CDISC Terminology", :type => :feature do
       ua_curator_login
     end
 
+    after :each do
+      ua_logoff
+    end
+
     after :all do
       ua_destroy
     end
 
     it "allows a search to be performed (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2014-12-19 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2014-12-19 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V41.0.0, 41, Standard)'
       ui_check_table_info("searchTable", 0, 0, 0)
-      #currently doesn't work
-      click_link 'close'
-      expect(page).to have_content 'History: CDISC Terminology'
+      click_link 'Return'
+      expect(page).to have_content 'History: CT'
     end
 
     it "allows a search to be performed, searches (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -125,9 +130,10 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     it "allows a search to be performed, code list double click (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -154,9 +160,10 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     it "clearing overall search input (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -168,9 +175,10 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     it "clearing column search inputs with one input (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -182,9 +190,10 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     it "searching for same value after clearing overall search input (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -205,9 +214,10 @@ describe "CDISC Terminology", :type => :feature do
     end
 
     it "searching for same value after clearing overall search input in another date (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-09-25 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-09-25 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V44.0.0, 44, Standard)'
       wait_for_ajax_long 
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -229,9 +239,10 @@ describe "CDISC Terminology", :type => :feature do
 
 
     it "clearing column search inputs with more inputs (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -247,9 +258,10 @@ describe "CDISC Terminology", :type => :feature do
 
 
     it "clearing both overall search input and all column search input (REQ-MDR-CT-060)", js: true do
-      visit '/cdisc_terms/history'
+      click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-12-18 Release')]/td/a", :text => 'Search').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
       expect(page).to have_content 'Search: Controlled Terminology CT (V45.0.0, 45, Standard)'
       wait_for_ajax_long # Big load
       ui_check_table_info("searchTable", 0, 0, 0)

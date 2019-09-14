@@ -392,6 +392,19 @@ module UiHelpers
     page.execute_script(js_script)
   end
 
+
+  def ui_create_terminology
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      expect(page).to have_content 'New Terminology'
+      fill_in 'thesauri_identifier', with: 'SELECT TEST'
+      fill_in 'thesauri_label', with: 'Test Terminology'
+      click_button 'Create'
+  end
+
+
+
+
   # Return
   def ui_hit_return(id)
     # Amended to allow for spaces in id

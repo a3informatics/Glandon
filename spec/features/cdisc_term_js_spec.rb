@@ -41,6 +41,10 @@ describe "CDISC Term", :type => :feature do
       ua_curator_login
     end
 
+    after :each do
+      ua_logoff
+    end
+
     #CL history
     it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
       click_navbar_cdisc_terminology
@@ -60,7 +64,9 @@ describe "CDISC Term", :type => :feature do
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
+      # find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)
       ui_child_search("967")
@@ -74,7 +80,9 @@ describe "CDISC Term", :type => :feature do
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2014-10-06 Release')]/td/a", :text => 'Show').click
+      #find(:xpath, "//tr[contains(.,'2014-10-06 Release')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 409)
       ui_child_search("10013")  
@@ -97,8 +105,8 @@ describe "CDISC Term", :type => :feature do
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      context_menu_element("history", 5, "2015-12-18 Release", "Show")
-      pause
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :show)
       expect(page).to have_content '2015-12-18 Release'
       ui_check_table_info("children_table", 1, 10, 503)
       ui_child_search("route")
@@ -107,12 +115,14 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'CMROUTE'
       expect(page).to have_content 'CDISC CDASH Exposure Route of Administration Terminology'
       find(:xpath, "//tr[contains(.,'C66729')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
       ui_check_table_info("children_table", 1, 10, 123)
       expect(page).to have_content 'Route'
       expect(page).to have_content 'C94636'
       expect(page).to have_content 'ORAL GAVAGE'
       expect(page).to have_content 'Dietary Route of Administration'
       ui_child_search("oral")
+      wait_for_ajax(7)
       ui_check_table_info("children_table", 1, 5, 5)
       find(:xpath, "//tr[contains(.,'C38288')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Oral Route of Administration'
@@ -126,15 +136,115 @@ describe "CDISC Term", :type => :feature do
     it "displays if a CDISC code list is extensible or not (REQ-MDR-CT-080)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'2015-06-26 Release')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 460)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
-      ui_check_table_cell('children_table', 1, 5, 'true')
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
       ui_child_search("C99078")
-      ui_check_table_cell('children_table', 1, 5, 'false')
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
     end
+
+    it "if a CDISC code list is extensible should extend button clicked (REQ-MDR-CT-???)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      click_button 'Close'
+    end
+
+    it "if a CDISC code list is not extensible, extend button disabled (REQ-MDR-CT-???)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99078")
+      ui_check_table_cell_extensible('children_table', 1, 5, false)
+      find(:xpath, "//tr[contains(.,'C99078')]/td/a", :text => 'Show').click
+      expect(page).to have_xpath("//*[@id='extend'][@class='disabled']")      
+    end
+
+    it "Select Terminology (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      pause
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      expect(page).to have_content 'Extension'
+    end
+
+
+    it "Select Extension (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-09-25 Release", :show)
+      expect(page).to have_content '2015-09-25 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax(7)
+      click_link 'Extend'
+      wait_for_ajax(7)
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      wait_for_ajax(7)
+      expect(page).to have_content 'Extension'
+      click_link 'Extension'
+      wait_for_ajax(7)
+      expect(page).to have_content 'C99079E'
+
+    end
+
+
+    it "Select Extending (REQ-MDR-CT-???)", js:true do
+      ui_create_terminology
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-06-26 Release", :show)
+      expect(page).to have_content '2015-06-26 Release'
+      ui_check_table_info("children_table", 1, 10, 460)
+      expect(page).to have_content 'Extensible'
+      ui_child_search("C99079")
+      ui_check_table_cell_extensible('children_table', 1, 5, true)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      click_link 'Extension'
+      expect(page).to have_content 'C99079E'
+      click_link 'Extending'
+      expect(page).to have_content 'C99079'
+    end
+
+
+
+    
 
     # currently not working
     it "history allows the status page to be viewed (REQ-MDR-CT-NONE)", js:true do
@@ -150,14 +260,14 @@ describe "CDISC Term", :type => :feature do
        click_navbar_cdisc_terminology
        expect(page).to have_content 'History: CDISC Terminology'
        click_link 'Changes'
-       expect(page).to have_content 'Changes: CDISC Terminology'
+       expect(page).to have_content 'Changes'
     end
 
     it "history allows the code list changes to be viewed (REQ-MDR-CT-040)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Changes'
-      expect(page).to have_content 'Changes: CDISC Terminology'
+      expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
       ui_check_table_info("changes", 1, 2, 2)
@@ -171,18 +281,18 @@ describe "CDISC Term", :type => :feature do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Changes'
-      expect(page).to have_content 'Changes: CDISC Terminology'
+      expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
       expect(page).to have_content 'C49650'
       expect(page).to have_content 'C66787'
       find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
-      expect(page).to have_content 'Differences: C66787, Diagnosis Group'
+      expect(page).to have_content 'Differences'
       ui_check_table_info("differences_table", 1, 3, 3)
-      expect(page).to have_content 'Changes: C66787, Diagnosis Group'
+      expect(page).to have_content 'Changes'
       ui_check_table_info("changes", 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
-      expect(page).to have_content 'Differences: C49651, Healthy Subject'
+      expect(page).to have_content 'Differences'
       ui_check_table_info("differences_table", 1, 3, 3)
     end
 
@@ -195,7 +305,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Submission'
       wait_for_ajax_v_long
-      expect(page).to have_content 'Submission: CDISC Terminology'
+      expect(page).to have_content 'Submission'
       ui_check_table_info("changes", 1, 9, 9)
     end
 
@@ -203,7 +313,7 @@ describe "CDISC Term", :type => :feature do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History: CDISC Terminology'
       click_link 'Submission'
-      expect(page).to have_content 'Submission: CDISC Terminology'
+      expect(page).to have_content 'Submission'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("C67152_C20587")
       # currently not working
