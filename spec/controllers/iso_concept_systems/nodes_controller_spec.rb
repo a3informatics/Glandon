@@ -13,36 +13,32 @@ describe IsoConceptSystems::NodesController do
     end
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
-      load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
-      clear_iso_concept_object
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"     
+      ]
+      load_files(schema_files, data_files)
     end
 
     it "allows a node to be added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {:id => "GSC-C2", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
-      concept_system = IsoConceptSystem.find("GSC-C", "http://www.assero.co.uk/MDRConcepts")
-    #write_yaml_file(concept_system.to_json, sub_dir, "concept_system_2.yaml")
+      post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Node Label", :description => "New Node Description"}}
+      concept_system = IsoConceptSystem.find_children(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
+    #Xwrite_yaml_file(concept_system.to_h, sub_dir, "concept_system_2.yaml")
       expected = read_yaml_file(sub_dir, "concept_system_2.yaml")
-      json = concept_system.to_json
-      node = json[:children].select {|x| x[:id] == "GSC-C2" }
-      new_node_id = node[0][:children][0][:id]
-      expected_node = expected[:children].select {|x| x[:id] == "GSC-C2" }
-      expected_node[0][:children][0][:id] = new_node_id
-      expect(concept_system.to_json).to eq(expected)
+      expect(concept_system.to_h).to eq(expected)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
     end
 
     it "prevents an invalid node being added" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add, {:id => "GSC-C2", :namespace => "http://www.assero.co.uk/MDRConcepts", :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
+      post :add, {:id => Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2").to_id, :iso_concept_systems_node => {:label => "New Label", :description => "New Description±±"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")    
       expect(response.body).to eq("{\"errors\":[\"Description contains invalid characters or is empty\"]}")    
@@ -50,37 +46,37 @@ describe IsoConceptSystems::NodesController do
 
     it "allows a node to be destroyed" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      parent_node = IsoConceptSystem::Node.find("GSC-C2", "http://www.assero.co.uk/MDRConcepts")
+      parent_node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
       node = parent_node.add({label: "A label", description: "A new system"})
-      delete :destroy, {:id => node.id, :namespace => node.namespace}
+      delete :destroy, :id => node.id
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
     end
 
     it "prevents a node being destroyed if it has children" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
-      delete :destroy, {:id => node.id, :namespace => node.namespace}
+      node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+      delete :destroy, {:id => node.id}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("500")    
-      expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags\"]}")    
+      expect(response.body).to eq("{\"errors\":[\"Cannot destroy tag as it has children tags or is currently in use.\"]}")    
     end
 
     it "update a node" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
-      post :update, {:id => node.id, :namespace => node.namespace, :iso_concept_systems_node => {:label => "Updated Label", :description => "Updated Description"}}
+      node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+      post :update, {:id => node.id, :iso_concept_systems_node => {:label => "Updated Label", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    
     end
 
     it "update a node, errors" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      node = IsoConceptSystem::Node.find("GSC-C3", "http://www.assero.co.uk/MDRConcepts")
-      post :update, {:id => node.id, :namespace => node.namespace, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
+      node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+      post :update, {:id => node.id, :iso_concept_systems_node => {:label => "Updated Label±±", :description => "Updated Description"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("400")   
-      expect(response.body).to eq("{\"errors\":[\"Label contains invalid characters\"]}") 
+      expect(response.body).to eq("{\"errors\":[\"Pref label contains invalid characters\"]}") 
     end
 
   end

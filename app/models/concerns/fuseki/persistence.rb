@@ -281,6 +281,28 @@ module Fuseki
       property_status(property) == :object
     end
 
+    # Add Link. Add a object to a collection
+    #
+    # @param [Symbol] name the name of the property holding the collection
+    # @param [Uri] the uri of the object to be linked. Does not delete the object
+    # @return [Void] no return
+    def add_link(name, uri)
+      predicate = self.properties.property(name).predicate
+      update_query = %Q{ INSERT { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . } WHERE {} }
+      partial_update(update_query, [])
+    end
+
+    # Delete Link. Delete an object from the collection. Does not delete the object.
+    #
+    # @param [Symbol] name the name of the property holding the collection
+    # @param [Uri] the uri of the object to be unlinked. Does not delete the object
+    # @return [Void] no return
+    def delete_link(name, uri)
+      predicate = self.properties.property(name).predicate
+      update_query = %Q{ DELETE WHERE { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . }}
+      partial_update(update_query, [])
+    end
+
     def not_used?
       query_string = "SELECT ?s WHERE {" +
           "  ?s ?p #{instance_variable_get(:@uri).to_ref} ." +

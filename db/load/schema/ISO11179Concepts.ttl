@@ -26,18 +26,18 @@
   rdfs:subClassOf owl:Thing ;
   skos:definition "An extension to a concept defining the characteristics of the property."^^xsd:string ;
 .
-# Deprecated
 :ConceptSystem
   rdf:type owl:Class ;
   rdfs:label "Concept System"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf skos:ConceptScheme ;
   skos:definition "Set of concepts structured according to the relations among them."^^xsd:string ;
 .
-# Deprecated
 :ConceptSystemNode
   rdf:type owl:Class ;
   rdfs:label "Concept System Node"^^xsd:string ;
   rdfs:subClassOf owl:Thing ;
+  rdfs:subClassOf skos:Concept ;
   skos:definition "A node in a concept system."^^xsd:string ;
 .
 :link
@@ -71,6 +71,17 @@
   rdfs:range xsd:anySimpleType ;
   skos:definition "A user-defined extension property for a concept"^^xsd:string ;
 .
+:narrower
+  rdf:type owl:ObjectProperty ;
+  rdfs:label "Narrower relationship."^^xsd:string ;
+  rdfs:subPropertyOf :link ;
+  rdfs:subPropertyOf skos:narrower ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
+    ] ;
+  rdfs:range :ConceptSystemNode ;
+  skos:definition "Relationship to relate the nodes within a concept system."^^xsd:string ;
+.
 # Deprecated
 :hasMember
   rdf:type owl:ObjectProperty ;
@@ -82,24 +93,35 @@
   rdfs:range :ConceptSystemNode ;
   skos:definition "Relationship to relate the nodes within a concept system."^^xsd:string ;
 .
-# Deprecated
-:description
-  rdf:type owl:DatatypeProperty ;
-  rdfs:subPropertyOf :property ;
-  rdfs:label "Concept system node description."^^xsd:string ;
-  rdfs:domain  [ a owl:Class ;
-    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
-    ] ;
-  rdfs:range xsd:string ;
-  skos:definition "Concept system node description."^^xsd:string ;
-.
 :tagged
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf :link ;
   rdfs:label "Is tagged with relationship."^^xsd:string ;
   rdfs:domain :Concept ;
-  rdfs:range skos:Concept ;
+  rdfs:range :conceptSystemNode ;
   skos:definition "Relationship to relate a concept to its tags."^^xsd:string ;
+.
+:prefLabel
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf :property ;
+  rdfs:subPropertyOf skos:prefLabel ;
+  rdfs:label "Label"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The concept's preferred label."^^xsd:string ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Concept system node description."^^xsd:string ;
+  rdfs:subPropertyOf :property ;
+  rdfs:subPropertyOf skos:definition ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :ConceptSystem :ConceptSystemNode )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "Concept system node description."^^xsd:string ;
 .
 :extended
   rdf:type owl:ObjectProperty ;
