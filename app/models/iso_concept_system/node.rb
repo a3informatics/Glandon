@@ -1,6 +1,6 @@
 class IsoConceptSystem::Node < Fuseki::Base
 
-  configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
+  configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
             base_uri: "http://#{ENV["url_authority"]}/CSN",
             uri_unique: true
   

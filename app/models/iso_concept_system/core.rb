@@ -5,10 +5,11 @@ module IsoConceptSystem::Core
   # @raise [CreateError] If object not created.
   # @return [Object] The new object created if no exception raised
   def add(params)
+    klass = self.properties.property(children_property).klass
     transaction_begin
     params[:pref_label] = params.delete(:label) # rename lable to pref_label, legacy reasons.
     params[:uri] = create_uri(self.uri)
-    child = self.class.create(params) 
+    child = klass.create(params) 
     return child if child.errors.any?
     self.add_link(children_property, child.uri)
     transaction_execute
