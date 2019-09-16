@@ -1,5 +1,5 @@
 <%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
-<%= javascript_include_tag 'jquery','jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
+<%= javascript_include_tag 'jquery','jquery-ui.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
 <%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
 
@@ -8,10 +8,7 @@
     padding-top: 20px;
   }
 
-  html,body {
-    height: unset !important;
-    min-width: 1000px;
-  }
+  html,body { min-width: 1000px; }
 
   #results_div .ico-btn{
     margin: 20px auto 0px auto;
