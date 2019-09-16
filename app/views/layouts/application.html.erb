@@ -49,7 +49,7 @@
       #main_area {
         width: 100%;
         min-height: 100%;
-        padding: 0px 50px;
+        padding: 0px 10px;
         overflow-y: auto;
         margin: 0px;
       }
@@ -59,6 +59,7 @@
         #main_area {
           width: <%= if current_user.is_only_community? then "100%" else "calc(100% - 270px)" end %>;
           max-height: 100%;
+          padding: 0 50px;
         }
 
         html, body {

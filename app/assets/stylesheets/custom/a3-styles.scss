@@ -98,7 +98,7 @@
   text-align: right;
 }
 
-// HEADERS
+// ICO HEADERS used in the community version dashboard
 .ico-header{
   width: 50%;
   min-width: 250px;
@@ -266,18 +266,44 @@
   margin: 5px auto;
 }
 
+.form-wrap input{
+  min-width: 170px;
+  font-size: $font-small;
+  font-family: $font-light;
+  color: $grey-medium;
+  border: 0px;
+  outline: none;
+  background: transparent;
+  margin: 6px 0;
+  padding: 6px;
+  border-bottom: 2px solid $primary-color-bright;
+}
+
+// ALERTS
+
+.alert{
+  margin: 10px 0;
+  font-family: $font-light;
+  background-color: $grey-white !important;
+  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+}
+
 // SCROLLBARS
 body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
-  .list-wrap::-webkit-scrollbar{
+  .list-wrap::-webkit-scrollbar, #main_area::-webkit-scrollbar{
     width: 6px;
 }
 
 body::-webkit-scrollbar-track, #sidebar::-webkit-scrollbar-track,
+  #main_area::-webkit-scrollbar-track
 {
     background-color: $grey-bright;
 }
 
 body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
+  #main_area::-webkit-scrollbar-thumb
 {
   background-color: #e8e8e8;
 }
@@ -290,10 +316,10 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
   background-color: $grey-bright;
 }
 
-#main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
-  #main_area::-webkit-scrollbar {
-  display: none;
-}
+// #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+//   #main_area::-webkit-scrollbar {
+//   display: none;
+// }
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   body{

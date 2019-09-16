@@ -30,6 +30,15 @@
   font-size: $font-normal;
 }
 
+.btn.small{
+  padding: 3px 6px;
+  font-size: $font-tiny;
+}
+
+.btn.sm-margin{
+  margin: 4px 2px;
+}
+
 // Wrapper for multiple in-line buttons, takes 100% width and the contents are centered
 .btns-wrap{
   width: 100%;
