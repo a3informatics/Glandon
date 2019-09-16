@@ -52,7 +52,7 @@ body {
 .half:last-of-type{
   justify-content: center;
   background: $primary-color-dark;
-
+  border-radius: 0 $card-border-radius $card-border-radius 0;
 }
 
 // FORM STUFF
@@ -61,7 +61,7 @@ body {
   margin: 60px 0;
 }
 
-.form-wrap input, .form-wrap .checkbox{
+.form-wrap input, .checkbox{
   min-width: 80%;
   font-size: $font-normal;
   font-family: $font-light;
@@ -80,17 +80,18 @@ body {
     margin-left: 0;
 }
 
-#login-btn{
+.btn.submit-btn{
   background: $primary-color-light;
-  padding: 8px 60px;
+  color: $grey-white;
+  padding: 8px 60px !important;
 }
 
-#login-btn:hover{
+.btn.submit-btn:hover{
   background: $primary-color-medium;
 }
 
-#login-btn:focus{
-  outline: none;
+.btn.submit-btn:focus{
+  outline: none !important;
 }
 
 .form-link{
