@@ -34,6 +34,7 @@ function ChangesPanel(url, column_count) {
   var loading_html = generateSpinner("medium");
 
   this.changesTable = $('#changes').DataTable( {
+    "stateSave": true,
     "columns": columns,
     "pageLength": pageLength, // Gloabl setting
     "lengthMenu": pageSettings, // Gloabl setting

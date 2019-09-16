@@ -321,6 +321,24 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes: C20587, Age Group'
     end
 
+    it "allows the submission value changes to save table state  (REQ-MDR-CT-050)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History: CDISC Terminology'
+      click_link 'Submission'
+      expect(page).to have_content 'Submission'
+      input = find(:xpath, '//*[@id="changes_filter"]/label/input')
+      input.set("C67152_C20587")
+      wait_for_ajax_v_long
+      # find(:xpath, "//tr[contains(.,'Age Group')]/td/a", :text => 'Changes').click
+      expect(page).to have_content 'C67152_C20587'
+      click_link 'fb_fs_button'
+      wait_for_ajax_v_long
+      click_link 'fb_bs_button'
+      wait_for_ajax_v_long
+      expect(page).to have_content 'C67152_C20587'
+      ui_check_table_info("changes", 1, 1, 1)
+    end
+
     it "allows submission to be viewed (REQ-MDR-CT-050) - test no longer required" 
 
     it "allows submission report to be produced (REQ-MDR-CT-NONE)"
