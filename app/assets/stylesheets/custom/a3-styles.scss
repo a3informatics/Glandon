@@ -316,10 +316,12 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
   background-color: $grey-bright;
 }
 
-// #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
-//   #main_area::-webkit-scrollbar {
-//   display: none;
-// }
+@media (max-width: 768px){
+  #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+    #main_area::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 @media (max-width: 768px){
   #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
