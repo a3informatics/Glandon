@@ -3,7 +3,7 @@
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <% second_level_breadcrumb("#{@ct.scoped_identifier}", @close_path, "Changes") %>
 <div class="row">
-  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct} do %>
+  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Submission value changes"} do %>
     <div class="actions-wrap">
     <!-- BUTTON EXPORT PDF -->
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_report_thesauri_path(@ct, format: :pdf), id: "report",
