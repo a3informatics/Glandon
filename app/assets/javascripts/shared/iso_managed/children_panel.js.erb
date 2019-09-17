@@ -65,7 +65,6 @@ ChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       var show_delete = false
       for (i=0; i<result.data.length; i++) {
-        result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
         var row = _this.childrenTable.row.add(result.data[i]);  
         if (result.data[i].delete_path !== "" ) {
           show_delete = true 
@@ -77,9 +76,9 @@ ChildrenPanel.prototype.add = function (offset) {
       } else {
         _this.childrenTable.processing(false);
       }
-      _this.childrenTable.columns( [7] ).visible( false );
+      _this.childrenTable.columns( [6] ).visible( false );
       if (_this.policy_edit && _this.edit_enable && show_delete) {
-        _this.childrenTable.columns( [7] ).visible( true );
+        _this.childrenTable.columns( [6] ).visible( true );
       }
     },
     error: function(xhr,status,error){
@@ -88,10 +87,6 @@ ChildrenPanel.prototype.add = function (offset) {
     }
   });
 
-}
-
-ChildrenPanel.prototype.extensibleConvert = function(extensible) {
-    return "<span class='i-centered icon-extend"+(extensible ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>";
 }
 
 /**
