@@ -18,11 +18,20 @@
 	<%= render partial: "shared/history_panel", locals: {title: "History: CDISC Terminology"} %>
 </div>
 <div class="col-md-3 card">
-    <h3 class="card-header">Changes</h3>
+    <h3 class="card-header">Shortcuts</h3>
     <div class="card-content">
-      <p>View changes across versions:</p>
+      <!-- <p>View changes across versions:</p>
       <p><%= link_to "Changes", changes_thesauri_path(@cdisc_term_id), :class => "btn btn-primary" %></p>
       <p>View submission value changes across versions:</p>
-      <p><%= link_to "Submission", submission_thesauri_path(@cdisc_term_id) , :class => "btn btn-primary" %></p>
+      <p><%= link_to "Submission", submission_thesauri_path(@cdisc_term_id) , :class => "btn btn-primary" %></p> -->
+	    <!-- RETURN BUTTON -->
+			<div class="actions-wrap" style="justify-content:left;">
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
+		      icon: "icon-changes", btn_text: "View changes across versions", dt_toggle: "", disabled: false } %>
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_thesauri_path(@cdisc_term_id), id: "changes_btn",
+		      icon: "icon-sub-value-changes", btn_text: "View submission value changes across versions", dt_toggle: "", disabled: false } %>
+		    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+		      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			</div>
     </div>
 </div>

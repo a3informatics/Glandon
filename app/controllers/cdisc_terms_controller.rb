@@ -44,6 +44,7 @@ class CdiscTermsController < ApplicationController
         @cdisc_term_id = results.last.to_id
         @identifier = CdiscTerm::C_IDENTIFIER
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
+        @close_path = request.referer
       end
       format.json do
         results = []
