@@ -295,6 +295,13 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
   display: none;
 }
 
+@media (max-width: 768px){
+  #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
+    #main_area::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   body{
     scrollbar-base-color: $grey-bright;
