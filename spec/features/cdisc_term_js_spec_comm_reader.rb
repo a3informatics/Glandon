@@ -118,6 +118,30 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_cell_extensible('children_table', 1, 5, false)
     end
 
+    #CDISC CL check table columns
+    it "Checks table columns (REQ-MDR-CT-???)", js:true do
+      click_browse_every_version
+      expect(page).to have_content 'History: CDISC Terminology'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2014-10-06 Release", :show)
+      expect(page).to have_content '2014-10-06 Release'
+      ui_check_table_info("children_table", 1, 10, 409)
+      ui_child_search("10013")  
+      ui_check_table_info("children_table", 1, 10, 10)
+      expect(page).to have_content 'EQ-5D-3L TESTCD'
+      expect(page).to have_content 'C100135'
+      expect(page).to have_content 'CDISC Questionnaire HAMD 17 Test Name Terminology'
+      find(:xpath, "//tr[contains(.,'C100136')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'EQ-5D-3L TESTCD'
+      expect(page).to have_content 'EQ-5D-3L TESTCD'
+      ui_check_table_head("children_table", 1, "Identifier")
+      ui_check_table_head("children_table", 2, "Submission Value")
+      ui_check_table_head("children_table", 3, "Preferred Term")
+      ui_check_table_head("children_table", 4, "Synonym(s)")
+      ui_check_table_head("children_table", 5, "Definition")
+      expect(page).to have_xpath("//*[@id='children_table']/thead/tr/th", count: 6)
+    end
+
     #CDISC CLI show
     it "allows the details of an entry in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_browse_every_version
