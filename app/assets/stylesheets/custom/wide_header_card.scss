@@ -83,6 +83,19 @@
   margin-top: 6px;
 }
 
+@media (max-width: 768px){
+  .h-inner-wrap{
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .actions-wrap{
+    justify-content: center;
+  }
+}
+
 // .circular-badge.big{
 //   position: relative;
 // }
