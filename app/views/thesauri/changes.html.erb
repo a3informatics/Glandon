@@ -4,7 +4,7 @@
 <% second_level_breadcrumb("#{@ct.scoped_identifier}", @close_path, "Changes") %>
 
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @ct, :badge => @ct.scoped_identifier} do %>
+  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Changes across versions"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
       <!-- BUTTON EXPORT PDF -->
