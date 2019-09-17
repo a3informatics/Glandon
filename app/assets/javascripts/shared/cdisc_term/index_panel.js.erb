@@ -70,6 +70,7 @@ IndexPanel.prototype.results = function(div, data) {
     $(div).find(".no-results-msg").show();
 
   $(div).append(html);
+  $(div).parent().find(".amount").html(data.length);
 }
 
 IndexPanel.prototype.getBadgeClass = function(div){
