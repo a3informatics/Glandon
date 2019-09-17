@@ -14,24 +14,20 @@
 
 <% top_level_breadcrumb ("CDISC Terminology") %>
 
-<div class="col-md-9 card table-cardstyle">
-	<%= render partial: "shared/history_panel", locals: {title: "History: CDISC Terminology"} %>
-</div>
-<div class="col-md-3 card">
-    <h3 class="card-header">Shortcuts</h3>
-    <div class="card-content">
-      <!-- <p>View changes across versions:</p>
-      <p><%= link_to "Changes", changes_thesauri_path(@cdisc_term_id), :class => "btn btn-primary" %></p>
-      <p>View submission value changes across versions:</p>
-      <p><%= link_to "Submission", submission_thesauri_path(@cdisc_term_id) , :class => "btn btn-primary" %></p> -->
-	    <!-- RETURN BUTTON -->
-			<div class="actions-wrap" style="justify-content:left;">
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
-		      icon: "icon-changes", btn_text: "View changes across versions", dt_toggle: "", disabled: false } %>
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_thesauri_path(@cdisc_term_id), id: "changes_btn",
-		      icon: "icon-sub-value-changes", btn_text: "View submission value changes across versions", dt_toggle: "", disabled: false } %>
-		    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
-		      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
-			</div>
+<div class="row">
+  <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>
+    <div class="actions-wrap">
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_path(@cdisc_term_id), id: "changes_btn",
+				icon: "icon-changes", btn_text: "View Changes", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_thesauri_path(@cdisc_term_id), id: "sub_changes_btn",
+				icon: "icon-sub-value-changes", btn_text: "View Submission value changes", dt_toggle: "", disabled: false } %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
+  <% end %>
+</div>
+<div class="row" style="display: flex; justify-content: center;">
+	<div class="col-md-9 card table-cardstyle">
+		<%= render partial: "shared/history_panel", locals: {title: "History"} %>
+	</div>
 </div>
