@@ -318,7 +318,8 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
 
 @media (max-width: 768px){
   #main_area::-webkit-scrollbar-thumb, #main_area::-webkit-scrollbar-track,
-    #main_area::-webkit-scrollbar {
+    #main_area::-webkit-scrollbar, body::-webkit-scrollbar-thumb,
+      body::-webkit-scrollbar-track, body::-webkit-scrollbar {
     display: none;
   }
 }
