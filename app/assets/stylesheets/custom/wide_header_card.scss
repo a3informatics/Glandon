@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: -20px;
 }
 
 .h-inner-wrap{
@@ -14,7 +13,6 @@
   flex-direction: column;
   text-align: left;
   padding-left: 16px;
-  margin-top: 20px;
   color: $grey-medium;
 }
 
@@ -81,6 +79,16 @@
 
 .label-w-margin{
   margin-top: 6px;
+}
+
+.header-title{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 4px 18px;
+  display: inline-block;
+  color: white;
+  background: $primary-color-bright;
+  font-family: $font-light;
 }
 
 // .circular-badge.big{
