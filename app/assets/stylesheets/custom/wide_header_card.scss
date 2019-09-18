@@ -95,21 +95,30 @@
   font-family: $font-light;
 }
 
-// .circular-badge.big{
-//   position: relative;
-// }
+// Mobile view fix
+@media (max-width: 768px){
+  .header-title{
+    margin: 5px auto;
+  }
 
-// .extensible-ico-badge{
-//   position: absolute;
-//   font-size: $font-small;
-//   right: 0%;
-//   top: 0%;
-// }
-//
-// .extensible-ico-badge.is-ext{
-//   color: $secondary-color-medium;
-// }
-//
-// .extensible-ico-badge.not-ext{
-//   color: $grey-light;
-// }
+  .rb{
+    flex-direction: column !important;
+  }
+}
+
+// Fix of icon positioning in the buttons in the header for IE and EDGE
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.ico-btn-sec .circular-badge{
+  @include ieandedge {
+    line-height: 30px;
+  }
+}
