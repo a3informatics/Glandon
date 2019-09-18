@@ -150,7 +150,7 @@ describe Thesaurus do
     def build
       @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       @th_1 = Thesaurus.new
-      @th_1.label = "CDISC Extension"
+      @th_1.label = "CDISC Extensions"
       @tc_1 = Thesaurus::ManagedConcept.from_h({
           label: "Vital Sign Test Codes Extension",
           identifier: "A00001",
@@ -191,9 +191,15 @@ describe Thesaurus do
       @tc_3a.extensible = false
       @tc_3a.notation = "OTHER OR MIXED"
       @tc_3.narrower << @tc_3a
+      @tc_1.set_initial(@tc_1.identifier)
+      @tc_2.set_initial(@tc_2.identifier)
+      @tc_3.set_initial(@tc_3.identifier)
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+      @th_1.set_initial("CDISC EXT")
+      @th_1.has_identifier.semantic_version = "1.0.0"
+      @th_1.has_state.registration_status = "Standard"
     end
 
     def load_definitions
@@ -217,10 +223,6 @@ describe Thesaurus do
     it "allows a TC to be exported as SPARQL" do
       sparql = Sparql::Update.new
       build
-      @th_1.set_initial("CDISC EXT")
-      @tc_1.set_initial(@tc_1.identifier)
-      @tc_2.set_initial(@tc_2.identifier)
-      @tc_3.set_initial(@tc_3.identifier)
       sparql.default_namespace(@th_1.uri.namespace)
       @th_1.to_sparql(sparql, true)
       @tc_1.to_sparql(sparql, true)
@@ -228,6 +230,12 @@ describe Thesaurus do
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
     copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
+    end
+
+    it "check for loading" do
+      uri = Uri.new(uri: "http://www.acme-pharma.com/CDISC_EXT/V1#TH")
+      th = Thesaurus.find_minimum(uri)
+      children = th.is_top_concept_reference_objects
     end
 
   end
