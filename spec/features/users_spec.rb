@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe "Users", :type => :feature do
-  
+
   include UserAccountHelpers
-  
-  def check_user_role(email, audit_count, roles)    
+
+  def check_user_role(email, audit_count, roles)
     expect(page).to have_content 'Index: User'
     edit_user(email)
     expect(page).to have_content "User Email:#{email}"
@@ -18,7 +18,7 @@ describe "Users", :type => :feature do
   end
 
   describe "Login and Logout", :type => :feature do
-  
+
     before :all do
       ua_create
     end
@@ -72,7 +72,7 @@ describe "Users", :type => :feature do
   end
 
   describe "User Management", :type => :feature do
-  
+
     before :all do
       ua_create
     end
@@ -85,20 +85,22 @@ describe "Users", :type => :feature do
     	@user_r.name = "Mr Reader"
     	@user_r.save
       ua_reader_login
-      expect(page).to have_content 'Mr Reader [Reader]'
+      expect(page).to have_content 'Mr Reader'
+      expect(page).to have_content 'Reader'
     end
 
     it "allows correct sys admin access" do
       @user_sa.name = "God!"
     	@user_sa.save
       ua_sys_admin_login
-      expect(page).to have_content 'God! [System Admin]'
+      expect(page).to have_content 'God!'
+      expect(page).to have_content 'System Admin'
       click_link 'users_button'
       expect(page).to have_content 'Index: Users'
-      expect(page).to have_content 'sys_admin@example.com'      
-      expect(page).to have_content 'reader@example.com'      
-      expect(page).to have_content 'curator@example.com'      
-      expect(page).to have_content 'content_admin@example.com'      
+      expect(page).to have_content 'sys_admin@example.com'
+      expect(page).to have_content 'reader@example.com'
+      expect(page).to have_content 'curator@example.com'
+      expect(page).to have_content 'content_admin@example.com'
     end
 
     it "allows new user to be created" do
@@ -130,7 +132,7 @@ describe "Users", :type => :feature do
       fill_in 'Password Confirmation:', with: '1234567'
       click_button 'Create'
       expect(page).to have_content 'User was not created.'
-    end    
+    end
 
     it "allows a user's role to be modified" do
       audit_count = AuditTrail.count
@@ -154,7 +156,7 @@ describe "Users", :type => :feature do
 
     it "allows a user to be deleted" do
       audit_count = AuditTrail.count
-      user = User.create :email => "delete@example.com", :password => "changeme" 
+      user = User.create :email => "delete@example.com", :password => "changeme"
       user.add_role :reader
       ua_sys_admin_login
       expect(AuditTrail.count).to eq(audit_count + 2)
@@ -164,10 +166,10 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 3)
       # Needs more here to confirm the deletion. Cannot do it without Javascript
     end
-      
+
     it "allows a user to change their password" do
       audit_count = AuditTrail.count
-      user = User.create :email => "edit@example.com", :password => "changeme" 
+      user = User.create :email => "edit@example.com", :password => "changeme"
       user.add_role :reader
       visit '/users/sign_in'
       fill_in 'Email', with: 'edit@example.com'
@@ -178,7 +180,7 @@ describe "Users", :type => :feature do
       #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'newpassword'
       fill_in 'user_password_confirmation', with: 'newpassword'
-      fill_in 'Current Password', with: 'changeme'
+      fill_in 'user_current_password', with: 'changeme'
       click_button 'password_update_button'
       expect(page).to have_content 'Your account has been updated successfully.'
       expect(AuditTrail.count).to eq(audit_count + 3)
@@ -186,7 +188,7 @@ describe "Users", :type => :feature do
 
     it "allows a user to change their password - incorrect current password" do
       audit_count = AuditTrail.count
-      user = User.create :email => "edit@example.com", :password => "changeme" 
+      user = User.create :email => "edit@example.com", :password => "changeme"
       user.add_role :reader
       visit '/users/sign_in'
       fill_in 'Email', with: 'edit@example.com'
@@ -197,9 +199,9 @@ describe "Users", :type => :feature do
       #expect(page).to have_content 'Edit: edit@example.com'
       fill_in 'user_password', with: 'newpassword'
       fill_in 'user_password_confirmation', with: 'newpassword'
-      fill_in 'Current Password', with: 'newpassword'
+      fill_in 'user_current_password', with: 'newpassword'
       click_button 'password_update_button'
-      expect(page).to have_content 'Edit: edit@example.com'
+      expect(page).to have_content 'Changing the password for edit@example.com'
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
