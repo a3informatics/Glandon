@@ -79,13 +79,9 @@
 // IE AND EDGE FIXES
 
 @mixin ieandedge() {
-
-    /* all IE versions <= 11 */
     @media screen and (-ms-high-contrast: none) {
         @content;
     }
-
-    /* all edge versions */
     @supports (-ms-ime-align:auto) {
         @content;
     }
