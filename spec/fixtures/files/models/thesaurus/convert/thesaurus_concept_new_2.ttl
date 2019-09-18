@@ -22,7 +22,7 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-18T15:53:58+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-09-18T17:46:18+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
 	th:isTopConceptReference :TH_TCR1 ;
 	th:isTopConceptReference :TH_TCR2 ;
@@ -82,14 +82,15 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-18T15:53:58+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-09-18T17:46:18+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "A00001"^^xsd: ;
-	th:notation "VSTEST"^^xsd: ;
-	th:definition "A set of additional Vital Sign Test Codes to extend the CDISC set."^^xsd: ;
-	th:extensible ""^^xsd: ;
+	th:identifier "A00001"^^xsd:string ;
+	th:notation "VSTEST"^^xsd:string ;
+	th:definition "A set of additional Vital Sign Test Codes to extend the CDISC set."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A00002> ;
 	th:narrower <http://www.acme-pharma.com/A00001/V1#A00001_A00003> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#042b608522c2ba273a4e79fa7bc81a2fe51462fc> ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -113,18 +114,32 @@
 <http://www.acme-pharma.com/A00001/V1#A00001_A00002>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "APGAR Score"^^xsd:string ;
-	th:identifier "A00002"^^xsd: ;
-	th:notation "APGAR"^^xsd: ;
-	th:definition "An APGAR Score"^^xsd: ;
-	th:extensible ""^^xsd: ;
+	th:identifier "A00002"^^xsd:string ;
+	th:notation "APGAR"^^xsd:string ;
+	th:definition "An APGAR Score"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1f53b69f1321bfdd54a8ec2b16e8efe51be23901> ;
+.
+<http://www.assero.co.uk/PT#1f53b69f1321bfdd54a8ec2b16e8efe51be23901>
+	rdf:type th:PreferredTerm ;
+	isoC:label "APGAR Score"^^xsd:string ;
 .
 <http://www.acme-pharma.com/A00001/V1#A00001_A00003>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mid upper arm circumference"^^xsd:string ;
-	th:identifier "A00003"^^xsd: ;
-	th:notation "MUAC"^^xsd: ;
-	th:definition "The measurement of the mid upper arm circumference"^^xsd: ;
-	th:extensible ""^^xsd: ;
+	th:identifier "A00003"^^xsd:string ;
+	th:notation "MUAC"^^xsd:string ;
+	th:definition "The measurement of the mid upper arm circumference"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6dd0344a1013ea743129164e0fa018f72e53c9e7> ;
+.
+<http://www.assero.co.uk/PT#6dd0344a1013ea743129164e0fa018f72e53c9e7>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Mid upper arm circumference"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#042b608522c2ba273a4e79fa7bc81a2fe51462fc>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Vital Sign Test Codes Extension"^^xsd:string ;
 .
 <http://www.acme-pharma.com/A00010/V1#A00010>
 	rdf:type th:ManagedConcept ;
@@ -134,13 +149,13 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-18T15:53:58+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-09-18T17:46:18+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "A00010"^^xsd: ;
-	th:notation "ETHNIC SUBGROUP"^^xsd: ;
-	th:definition "Ethnic Subgroup"^^xsd: ;
-	th:extensible "false"^^xsd: ;
-	th:preferredTerm <http://www.assero.co.uk/PT#78327aa1-4e84-4204-9362-8bcf90c95a37> ;
+	th:identifier "A00010"^^xsd:string ;
+	th:notation "ETHNIC SUBGROUP"^^xsd:string ;
+	th:definition "Ethnic Subgroup"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0c7449eb6b5d946337d568d9db5ff424a3b15336> ;
 .
 <http://www.acme-pharma.com/A00010/V1#A00010_RS>
 	rdf:type isoR:RegistrationState ;
@@ -161,6 +176,10 @@
 	isoI:semanticVersion "0.0.1"^^xsd:string ;
 	isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
+<http://www.assero.co.uk/PT#0c7449eb6b5d946337d568d9db5ff424a3b15336>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Ethnic Subgroup"^^xsd:string ;
+.
 <http://www.acme-pharma.com/A00020/V1#A00020>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Race Extension"^^xsd:string ;
@@ -169,13 +188,14 @@
 	isoT:origin ""^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
-	isoT:lastChangeDate "2019-09-18T15:53:58+02:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2019-09-18T17:46:18+02:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "A00020"^^xsd: ;
-	th:notation "RACE OTHER"^^xsd: ;
-	th:definition "Extension to Race Code List"^^xsd: ;
-	th:extensible "false"^^xsd: ;
+	th:identifier "A00020"^^xsd:string ;
+	th:notation "RACE OTHER"^^xsd:string ;
+	th:definition "Extension to Race Code List"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
 	th:narrower <http://www.acme-pharma.com/A00020/V1#A00020_A00021> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0fec12f046fcedb65827ac6b2ec0e673b3659a6a> ;
 .
 <http://www.acme-pharma.com/A00020/V1#A00020_RS>
 	rdf:type isoR:RegistrationState ;
@@ -204,8 +224,17 @@
 	isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:explanatoryComment ""^^xsd:string ;
-	th:identifier "A00021"^^xsd: ;
-	th:notation "OTHER OR MIXED"^^xsd: ;
-	th:definition "Other or mixed race"^^xsd: ;
-	th:extensible "false"^^xsd: ;
+	th:identifier "A00021"^^xsd:string ;
+	th:notation "OTHER OR MIXED"^^xsd:string ;
+	th:definition "Other or mixed race"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ede026c200e945ce97df5c4e64c353cff5b9b817> ;
+.
+<http://www.assero.co.uk/PT#ede026c200e945ce97df5c4e64c353cff5b9b817>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Other or mixed race"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#0fec12f046fcedb65827ac6b2ec0e673b3659a6a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Race Extension"^^xsd:string ;
 .

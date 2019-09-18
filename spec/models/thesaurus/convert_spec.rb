@@ -157,18 +157,21 @@ describe Thesaurus do
           definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
           notation: "VSTEST"
         })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
       @tc_1a = Thesaurus::UnmanagedConcept.from_h({
           label: "APGAR Score",
           identifier: "A00002",
           definition: "An APGAR Score",
           notation: "APGAR"
         })
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label: "APGAR Score")
       @tc_1b = Thesaurus::UnmanagedConcept.from_h({
           label: "Mid upper arm circumference",
           identifier: "A00003",
           definition: "The measurement of the mid upper arm circumference",
           notation: "MUAC"
         })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
       @tc_2 = Thesaurus::ManagedConcept.new
@@ -177,19 +180,21 @@ describe Thesaurus do
       @tc_2.definition = "Ethnic Subgroup"
       @tc_2.extensible = false
       @tc_2.notation = "ETHNIC SUBGROUP"
-      @tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Ethnic Subgroup")
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Ethnic Subgroup")
       @tc_3 = Thesaurus::ManagedConcept.new
       @tc_3.identifier = "A00020"
       @tc_3.label = "Race Extension" 
       @tc_3.definition = "Extension to Race Code List"
       @tc_3.extensible = false
       @tc_3.notation = "RACE OTHER"
+      @tc_3.preferred_term = Thesaurus::PreferredTerm.new(label: "Race Extension")
       @tc_3a = Thesaurus::ManagedConcept.new
       @tc_3a.identifier = "A00021"
       @tc_3a.label = "Other or mixed race" 
       @tc_3a.definition = "Other or mixed race"
       @tc_3a.extensible = false
       @tc_3a.notation = "OTHER OR MIXED"
+      @tc_3a.preferred_term = Thesaurus::PreferredTerm.new(label: "Other or mixed race")
       @tc_3.narrower << @tc_3a
       @tc_1.set_initial(@tc_1.identifier)
       @tc_2.set_initial(@tc_2.identifier)
@@ -202,7 +207,7 @@ describe Thesaurus do
       @th_1.has_state.registration_status = "Standard"
     end
 
-    def load_definitions
+    before :all do
       schema_files = 
       [
         "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
@@ -210,10 +215,6 @@ describe Thesaurus do
       ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions((1..59))
-    end
-
-    before :all do
     end
 
     after :all do
@@ -229,13 +230,17 @@ describe Thesaurus do
       @tc_2.to_sparql(sparql, true)
       @tc_3.to_sparql(sparql, true)
       full_path = sparql.to_file
-    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
     end
 
     it "check for loading" do
+      load_local_file_into_triple_store(sub_dir, "thesaurus_concept_new_2.ttl")
       uri = Uri.new(uri: "http://www.acme-pharma.com/CDISC_EXT/V1#TH")
-      th = Thesaurus.find_minimum(uri)
-      children = th.is_top_concept_reference_objects
+      th_x = Thesaurus.find_minimum(uri)
+      children = th_x.managed_children_pagination(offset:0, count:10)
+      expect(children.count).to eq(3)
+      expect(children.first[:identifier]).to eq("A00001")
+      expect(children.last[:identifier]).to eq("A00020")
     end
 
   end
