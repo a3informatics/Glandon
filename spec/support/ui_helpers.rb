@@ -136,6 +136,11 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
+  def ui_check_table_head(table_id, col, text)
+    head = find(:xpath, "//*[@id='#{table_id}']/thead/tr/th[#{col}]").text
+    expect(head).to eq(text)
+  end
+
   # check table cell, start with text
   def ui_check_table_cell_starts_with(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
