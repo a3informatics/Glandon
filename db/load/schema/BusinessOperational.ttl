@@ -1,6 +1,7 @@
 @prefix : <http://www.assero.co.uk/BusinessOperational#> .
 @prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
 @prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -53,12 +54,6 @@
   skos:definition "Holds the reference to a Biomedical Concept Property."^^xsd:string ;
 .
 # Deprecated
-:TcReference
-  rdf:type owl:Class ;
-  rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
-  rdfs:subClassOf :Reference ;
-  skos:definition "Holds the reference to a Thesaurus Concept."^^xsd:string ;
-.
 :TcReference
   rdf:type owl:Class ;
   rdfs:label "Thesaurus Concept Reference"^^xsd:string ;
@@ -137,7 +132,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:domain :TcReference ;
   rdfs:label "Thesaurus Concept relationship."^^xsd:string ;
-  rdfs:range iso25964:ThesaurusConcept ;
+  rdfs:range th:UnmanagedConcept ;
   skos:definition "Thesaurus Concept relationship."^^xsd:string ;
 .
 # Deprecated
