@@ -95,6 +95,16 @@
   font-family: $font-light;
 }
 
+@media (max-width: 768px){
+  .header-title{
+    margin: 5px auto;
+  }
+
+  .rb{
+    flex-direction: column !important;
+  }
+}
+
 // .circular-badge.big{
 //   position: relative;
 // }

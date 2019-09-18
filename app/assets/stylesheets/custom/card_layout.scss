@@ -155,8 +155,8 @@
   .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
   .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
   .col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
-    min-width: initial;
+    min-width: initial !important;
     max-width: calc(100% - 20px) !important;
-    margin: 10px;
+    margin: 10px !important;
   }
 }
