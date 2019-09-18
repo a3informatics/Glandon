@@ -145,4 +145,91 @@ describe Thesaurus do
 
   end
 
+  describe "generate test thesaurus" do
+
+    def build
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @th_1 = Thesaurus.new
+      @th_1.label = "CDISC Extension"
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Vital Sign Test Codes Extension",
+          identifier: "A00001",
+          definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
+          notation: "VSTEST"
+        })
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "APGAR Score",
+          identifier: "A00002",
+          definition: "An APGAR Score",
+          notation: "APGAR"
+        })
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Mid upper arm circumference",
+          identifier: "A00003",
+          definition: "The measurement of the mid upper arm circumference",
+          notation: "MUAC"
+        })
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_2 = Thesaurus::ManagedConcept.new
+      @tc_2.identifier = "A00010"
+      @tc_2.label = "Ethnic Subgroup" 
+      @tc_2.definition = "Ethnic Subgroup"
+      @tc_2.extensible = false
+      @tc_2.notation = "ETHNIC SUBGROUP"
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Ethnic Subgroup")
+      @tc_3 = Thesaurus::ManagedConcept.new
+      @tc_3.identifier = "A00020"
+      @tc_3.label = "Race Extension" 
+      @tc_3.definition = "Extension to Race Code List"
+      @tc_3.extensible = false
+      @tc_3.notation = "RACE OTHER"
+      @tc_3a = Thesaurus::ManagedConcept.new
+      @tc_3a.identifier = "A00021"
+      @tc_3a.label = "Other or mixed race" 
+      @tc_3a.definition = "Other or mixed race"
+      @tc_3a.extensible = false
+      @tc_3a.notation = "OTHER OR MIXED"
+      @tc_3.narrower << @tc_3a
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_3.uri, local_label: "", enabled: true, ordinal: 3, optional: true})
+    end
+
+    def load_definitions
+      schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions((1..59))
+    end
+
+    before :all do
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "allows a TC to be exported as SPARQL" do
+      sparql = Sparql::Update.new
+      build
+      @th_1.set_initial("CDISC EXT")
+      @tc_1.set_initial(@tc_1.identifier)
+      @tc_2.set_initial(@tc_2.identifier)
+      @tc_3.set_initial(@tc_3.identifier)
+      sparql.default_namespace(@th_1.uri.namespace)
+      @th_1.to_sparql(sparql, true)
+      @tc_1.to_sparql(sparql, true)
+      @tc_2.to_sparql(sparql, true)
+      @tc_3.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    copy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_concept_new_2.ttl")
+    end
+
+  end
+
 end
