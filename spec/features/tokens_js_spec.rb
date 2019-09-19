@@ -52,25 +52,22 @@ describe "Tokens", :type => :feature do
     Token.restore_timeout
   end
 
+  before :each do
+    visit '/users/sign_in'
+    fill_in 'Email', with: 'admin_user@example.com'
+    fill_in 'Password', with: '12345678'
+    click_button 'Log in'
+  end
+
   describe "System Admin User", :type => :feature do
   
-    it "allows the tokens to be viewed", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
+    it "allows the tokens to be viewed", js: true do 
+      click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'  
     end
 
-    it "allows a lock to be released", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
+    it "allows a lock to be released", js: true do 
+      click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'  
       expect(page.all('table#main tr').count).to eq(5)
       find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#2')]/td/a", :text => 'Release').click
@@ -79,16 +76,10 @@ describe "Tokens", :type => :feature do
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#1"
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#3"
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#4"
-      #pause
     end
 
     it "allows a lock to be released, rejection", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
+      click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'  
       find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#3')]/td/a", :text => 'Release').click
       ui_click_cancel("Are you sure?")

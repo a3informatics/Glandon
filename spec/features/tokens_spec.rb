@@ -8,18 +8,13 @@ describe "Tokens", :type => :feature do
   include BrowserSessionHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
+
+
+schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+                      "thesaurus.ttl", "BusinessOperational.ttl", "CDISCBiomedicalConcept.ttl", "BusinessForm.ttl", "BusinessDomain.ttl" ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+   
 
     load_test_file_into_triple_store("thesaurus.ttl")
     load_test_file_into_triple_store("form_crf_test_1.ttl")
@@ -45,7 +40,7 @@ describe "Tokens", :type => :feature do
 
   describe "Curator User", :type => :feature do
 
-    it "locks a terminology" do
+    it "locks a terminology", js: true do
 
       in_browser(:one) do
         visit '/users/sign_in'
@@ -53,10 +48,10 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/thesauri'
+        click_navbar_terminology
         find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: CDISC EXT'
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+        context_menu_element("history", 3, "CDISC EXT", :edit)
         expect(page).to have_content 'Edit:'
       end
 
@@ -66,10 +61,10 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/thesauri'
+        click_navbar_terminology
         find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: CDISC EXT'
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+        context_menu_element("history", 3, "CDISC EXT", :edit)
         expect(page).to have_content 'The item is locked for editing by another user.'
       end
 
@@ -77,7 +72,7 @@ describe "Tokens", :type => :feature do
 
     it "locks a biomedical concept"
 
-    it "locks a form" do
+    it "locks a form" , js: true do
 
       in_browser(:one) do
         visit '/users/sign_in'
@@ -85,7 +80,7 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/forms'
+        click_navbar_forms
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: CRF TEST 1'
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
@@ -98,7 +93,7 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/forms'
+        click_navbar_forms
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: CRF TEST 1'
         find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
@@ -107,7 +102,7 @@ describe "Tokens", :type => :feature do
 
     end
 
-    it "locks a domain" do
+    it "locks a domain" , js: true do
 
       in_browser(:one) do
         visit '/users/sign_in'
@@ -115,7 +110,7 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/sdtm_user_domains'
+        click_navbar_sponsor_domain
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: DS Domain'
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
@@ -128,7 +123,7 @@ describe "Tokens", :type => :feature do
         fill_in 'Password', with: '12345678'
         click_button 'Log in'
         expect(page).to have_content 'Signed in successfully'  
-        visit '/sdtm_user_domains'
+        click_navbar_sponsor_domain
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
         expect(page).to have_content 'History: DS Domain'
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click

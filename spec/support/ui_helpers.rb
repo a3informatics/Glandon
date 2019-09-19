@@ -296,10 +296,21 @@ module UiHelpers
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon"} # Add more
+    id_to_section_map = {
+                             main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util",
+                             main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin"} # Add more
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
+  end
+ 
+  #System Admin
+  def click_navbar_at
+    ui_navbar_click('main_nav_at')
+  end
+ 
+  def click_navbar_el
+    ui_navbar_click('main_nav_el')
   end
 
   #Terminology
