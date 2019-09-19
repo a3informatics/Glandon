@@ -27,17 +27,37 @@ describe "Users", :type => :feature do
       ua_destroy
     end
 
-    it "allows valid credentials and logs" do
+    it "allows valid credentials and logs (REQ-GENERIC-PM-020)" do
       audit_count = AuditTrail.count
       ua_reader_login
       expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
-    it "rejects invalid credentials" do
+    it "rejects invalid credentials - wrong password (REQ-GENERIC-PM-020)" do
       audit_count = AuditTrail.count
       visit '/users/sign_in'
       fill_in 'Email', with: 'reader@example.com'
       fill_in 'Password', with: 'example1234'
+      click_button 'Log in'
+      expect(page).to have_content 'Log in'
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
+    it "rejects invalid credentials - missing password (REQ-GENERIC-PM-020)", js: true do
+      audit_count = AuditTrail.count
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader@example.com'
+      click_button 'Log in'
+      pause
+      expect(page).to have_content 'Log in'
+      expect(AuditTrail.count).to eq(audit_count)
+    end
+
+    it "rejects invalid credentials - wrong username (REQ-GENERIC-PM-020)" do
+      audit_count = AuditTrail.count
+      visit '/users/sign_in'
+      fill_in 'Email', with: 'reader1@example.com'
+      fill_in 'Password', with: '12345678'
       click_button 'Log in'
       expect(page).to have_content 'Log in'
       expect(AuditTrail.count).to eq(audit_count)
@@ -50,7 +70,7 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
-    it "allows password reset email to be sent" do
+    it "allows password reset email to be sent (REQ-GENERIC-PM-080)" do
       email_count = ActionMailer::Base.deliveries.count
       visit '/users/sign_in'
       click_link 'Forgot your password?'
@@ -81,18 +101,19 @@ describe "Users", :type => :feature do
       ua_destroy
     end
 
-    it "allows correct reader access" do
+    it "allows correct reader access", js: true do
     	@user_r.name = "Mr Reader"
     	@user_r.save
       ua_reader_login
-      expect(page).to have_content 'Mr Reader [Reader]'
+      #expect(page).to have_content 'Mr Reader [Reader]'
+      expect(page).to have_content 'Reader'
     end
 
     it "allows correct sys admin access" do
       @user_sa.name = "God!"
     	@user_sa.save
       ua_sys_admin_login
-      expect(page).to have_content 'God! [System Admin]'
+      expect(page).to have_content 'System Admin'
       click_link 'users_button'
       expect(page).to have_content 'Index: Users'
       expect(page).to have_content 'sys_admin@example.com'      
@@ -101,7 +122,9 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'content_admin@example.com'      
     end
 
-    it "allows new user to be created" do
+
+
+    it "allows new user to be created (REQ-GENERIC-UM-040)" do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
@@ -118,7 +141,7 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 3)
     end
 
-    it "prevents a new user with short password being created" do
+    it "prevents a new user with short password being created (REQ-GENERIC-PM-NONE)" do
       ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'Index: User'
@@ -130,9 +153,33 @@ describe "Users", :type => :feature do
       fill_in 'Password Confirmation:', with: '1234567'
       click_button 'Create'
       expect(page).to have_content 'User was not created.'
+    end 
+
+    it "prevents a two users with identical username being created (REQ-GENERIC-PM-030)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'Index: User'
+      click_link 'New'
+      expect(page).to have_content 'New: User'
+      fill_in 'Email:', with: 'new_user_4@example.com'
+      fill_in 'Name:', with: 'New user'
+      fill_in 'Password:', with: '12345678'
+      fill_in 'Password Confirmation:', with: '12345678'
+      click_button 'Create'
+      expect(page).to have_content 'User was successfully created.'
+      click_link 'users_button'
+      expect(page).to have_content 'Index: User'
+      click_link 'New'
+      expect(page).to have_content 'New: User'
+      fill_in 'Email:', with: 'new_user_4@example.com'
+      fill_in 'Name:', with: 'New user'
+      fill_in 'Password:', with: '12345678'
+      fill_in 'Password Confirmation:', with: '12345678'
+      click_button 'Create'
+      expect(page).to have_content 'User was not created. Email has already been taken.'
     end    
 
-    it "allows a user's role to be modified" do
+    it "allows a user's role to be modified (REQ-GENERIC-UM-110)" do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
@@ -152,7 +199,7 @@ describe "Users", :type => :feature do
       click_link 'Set Reader Role'
     end
 
-    it "allows a user to be deleted" do
+    it "allows a user to be deleted (REQ-GENERIC-UM-090)" do
       audit_count = AuditTrail.count
       user = User.create :email => "delete@example.com", :password => "changeme" 
       user.add_role :reader
@@ -165,7 +212,7 @@ describe "Users", :type => :feature do
       # Needs more here to confirm the deletion. Cannot do it without Javascript
     end
       
-    it "allows a user to change their password" do
+    it "allows a user to change their password (REQ-GENERIC-PM-050)" do
       audit_count = AuditTrail.count
       user = User.create :email => "edit@example.com", :password => "changeme" 
       user.add_role :reader
@@ -184,7 +231,7 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 3)
     end
 
-    it "allows a user to change their password - incorrect current password" do
+    it "allows a user to change their password - incorrect current password (REQ-GENERIC-PM-050)" do
       audit_count = AuditTrail.count
       user = User.create :email => "edit@example.com", :password => "changeme" 
       user.add_role :reader
