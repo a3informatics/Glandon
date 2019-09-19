@@ -297,14 +297,38 @@ module UiHelpers
 
   def ui_navbar_click (id)
     id_to_section_map = {
-      main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", 
-      main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin", main_nav_ma: "main_nav_util"} # Add more
+			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
+			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
+			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
+			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
+			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
+			main_nav_f: "main_nav_forms",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
+			main_nav_aig: "main_nav_adam"
+			} 
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
 
+	#Dashboard
+	def click_navbar_dashboard
+		visit 'dashboard'
+	end
+
 	#System Admin
+	def click_navbar_namespaces
+		ui_navbar_click('main_nav_in')
+	end
+
+	def click_navbar_regauthorities
+		ui_navbar_click('main_nav_ira')
+	end
+
+	def click_navbar_manitems
+		ui_navbar_click('main_nav_im')
+	end
+
 	def click_navbar_at
 		ui_navbar_click('main_nav_at')
 	end
@@ -312,6 +336,36 @@ module UiHelpers
 	def click_navbar_el
 		ui_navbar_click('main_nav_el')
 	end
+
+	#Import/Export
+	def click_navbar_upload
+		ui_navbar_click('main_nav_u')
+	end
+
+	def click_navbar_import
+		ui_navbar_click('main_nav_i')
+	end
+
+	def click_navbar_export
+		ui_navbar_click('main_nav_e')
+	end
+
+	def click_navbar_background_jobs
+		ui_navbar_click('main_nav_bj')
+	end
+
+  #Utilities
+  def click_navbar_tags
+    ui_navbar_click('main_nav_ics')
+  end
+
+	def click_navbar_ma
+    ui_navbar_click('main_nav_ma')
+  end
+
+	def click_navbar_ahr
+    ui_navbar_click('main_nav_ahr')
+  end
 
   #Terminology
   def click_navbar_terminology
@@ -322,16 +376,11 @@ module UiHelpers
     ui_navbar_click('main_nav_ct')
   end
 
-  #Utilities
-  def click_navbar_tags
-    ui_navbar_click('main_nav_ics')
+  #Biomedical Concepts
+	def click_navbar_bct
+    ui_navbar_click('main_nav_bct')
   end
 
-	def click_navbar_ma
-		ui_navbar_click('main_nav_ma')
-	end
-
-  #Biomedical Concepts
   def click_navbar_bc
     ui_navbar_click('main_nav_bc')
   end
@@ -346,20 +395,18 @@ module UiHelpers
     ui_navbar_click('main_nav_sig')
   end
 
-  def click_navbar_adam_ig_domain
-    ui_navbar_click('main_nav_aig')
+	def click_navbar_sdtm_model
+    ui_navbar_click('main_nav_sm')
   end
 
   def click_navbar_sponsor_domain
     ui_navbar_click('main_nav_sd')
   end
 
-  #Dashboard
-  def click_navbar_dashboard
-    visit 'dashboard'
+	#ADaM
+	def click_navbar_adam_ig_domain
+    ui_navbar_click('main_nav_aig')
   end
-
-  # Add more of these ...
 
   #Community Version
 
