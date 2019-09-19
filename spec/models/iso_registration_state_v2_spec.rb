@@ -233,7 +233,7 @@ describe IsoRegistrationStateV2 do
     expected = 
     {
       :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
-      :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
+      :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
       :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
       :registration_status => "Standard",
       :administrative_note => "", 
@@ -260,7 +260,7 @@ describe IsoRegistrationStateV2 do
     [
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -273,7 +273,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-3", 
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTM=",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTM=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -286,7 +286,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_2-2", 
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8yLTI=",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8yLTI=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -299,7 +299,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-5", 
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -312,7 +312,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-4", 
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTQ=",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTQ=",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "", 
@@ -325,7 +325,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV1-5",
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjEtNQ==",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjEtNQ==",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -338,7 +338,7 @@ describe IsoRegistrationStateV2 do
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV2-5",
-        :uuid=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjItNQ==",
+        :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF9TVjItNQ==",
         :by_authority => ra.uri.to_s, 
         :registration_status => "Standard",
         :administrative_note => "",
@@ -364,7 +364,7 @@ describe IsoRegistrationStateV2 do
     expected = 
       {
         :uri => "http://www.assero.co.uk/RS/BBB/NEW",
-        :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUlMvQkJCL05FVw==",
+        :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUlMvQkJCL05FVw==",
         :by_authority => ra.to_h, 
         :registration_status => "Incomplete",
         :administrative_note => "", 
@@ -438,6 +438,8 @@ describe IsoRegistrationStateV2 do
     object = IsoRegistrationStateV2.find(uri)
     object.make_current
     object = IsoRegistrationStateV2.find(uri)
+    expect(object.effective_date).to be_within(1.second).of Time.now
+    expect(object.until_date.iso8601).to eq("2100-01-01T00:00:00+00:00")
     expect(object.current?).to eq(true)
   end
   
@@ -446,6 +448,8 @@ describe IsoRegistrationStateV2 do
     object = IsoRegistrationStateV2.find(uri)
     object.make_not_current
     object = IsoRegistrationStateV2.find(uri)
+    expect(object.effective_date.iso8601).to eq("2016-01-01T00:00:00+00:00")
+    expect(object.until_date < Time.now).to eq(true)
     expect(object.current?).to eq(false)
   end
   
@@ -466,7 +470,7 @@ describe IsoRegistrationStateV2 do
     }
     expected = input.except(:identifier)
     expected[:uri] = {} # Will be empty until saved.
-    expected[:uuid] = nil # Will be empty until saved.
+    expected[:id] = nil # Will be empty until saved.
     expect(IsoRegistrationStateV2.from_h(input).to_h).to eq(expected)
   end
   
@@ -477,7 +481,7 @@ describe IsoRegistrationStateV2 do
     expected = 
     {
       :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_3-5",
-      :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
+      :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8zLTU=",
       :by_authority => ra.to_h, 
       :registration_status => "Standard",
       :administrative_note => "", 

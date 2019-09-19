@@ -47,7 +47,6 @@ describe AlsExcel do
     full_path = test_file_path(sub_dir, "als_1.xlsx")
     object = AlsExcel.new(full_path)
     item = object.form("DM_ALL")
-  byebug
     expect(object.errors.count).to eq(0)
     result = item.to_json
   #Xwrite_yaml_file(result, sub_dir, "form_expected_1.yaml")

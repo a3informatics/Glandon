@@ -856,15 +856,15 @@ describe IsoManagedV2 do
         item.to_sparql(sparql, true)
         sparql.upload
       end 
-byebug
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
       item.has_state.make_current
-      item.has_state.registration_status = "Standard"
       expect(CdiscTerm.current_set.count).to eq(2)
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM2/V1#TH"))
       item.has_state.make_current
-      item.has_state.registration_status = "Standard"
       expect(CdiscTerm.current_set.count).to eq(3)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM3/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(4)
     end
 
   end
