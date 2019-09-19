@@ -112,6 +112,7 @@ describe IsoRegistrationState do
       :registration_authority => 
       {
         :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+        :id=>Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789").to_id, 
         :organization_identifier=>"123456789", 
         :international_code_designator=>"DUNS", 
         :owner=>true, 
@@ -123,6 +124,7 @@ describe IsoRegistrationState do
           :rdf_type=>"http://www.assero.co.uk/ISO11179Identification#Namespace", 
           :short_name=>"BBB", 
           :uri=>"http://www.assero.co.uk/NS#BBB",
+          :id=>Uri.new(uri: "http://www.assero.co.uk/NS#BBB").to_id
         }
       }
     }
@@ -156,6 +158,7 @@ describe IsoRegistrationState do
         :registration_authority => 
         {
           :uri=>"http://www.assero.co.uk/RA#DUNS123456789", 
+          :id=>Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789").to_id, 
           :organization_identifier=>"123456789", 
           :international_code_designator=>"DUNS", 
           :owner=>true, 
@@ -166,7 +169,8 @@ describe IsoRegistrationState do
             :name=>"BBB Pharma", 
             :rdf_type=>"http://www.assero.co.uk/ISO11179Identification#Namespace", 
             :short_name=>"BBB", 
-            :uri=>"http://www.assero.co.uk/NS#BBB"
+            :uri=>"http://www.assero.co.uk/NS#BBB",
+            :id=>Uri.new(uri: "http://www.assero.co.uk/NS#BBB").to_id
           }
         }
       }

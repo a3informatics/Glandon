@@ -147,6 +147,7 @@ describe IsoScopedIdentifierV2 do
     result = 
     {
       :uri => "http://www.assero.co.uk/MDRItems#SI-TEST_1-1", 
+      :id => Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_1-1").to_id,
       :identifier => "TEST1", 
       :version => 1, 
       :version_label => "0.1", 
@@ -162,6 +163,7 @@ describe IsoScopedIdentifierV2 do
     result = 
     {
       :uri => "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5", 
+      :id => Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5").to_id,
       :identifier => "TESTSV 1", 
       :version => 7, 
       :version_label => "0.7", 
@@ -177,6 +179,7 @@ describe IsoScopedIdentifierV2 do
     result = 
     {
       :uri => "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5", 
+      :id => Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5").to_id,
       :identifier => "TESTSV 1", 
       :version => 7, 
       :version_label => "0.7", 
@@ -184,6 +187,7 @@ describe IsoScopedIdentifierV2 do
       has_scope: 
       {
         :authority=>"www.bbb.com", :name=>"BBB Pharma", :short_name=>"BBB", :uri=>"http://www.assero.co.uk/NS#BBB",
+        :id => Uri.new(uri: "http://www.assero.co.uk/NS#BBB").to_id,
         :rdf_type=>"http://www.assero.co.uk/ISO11179Identification#Namespace"
       },
       rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
@@ -199,37 +203,51 @@ describe IsoScopedIdentifierV2 do
     expected = 
     [
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_1-1", :identifier => "TEST1", :version => 1, :version_label => "0.1", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_1-1", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_1-1").to_id, 
+        :identifier => "TEST1", :version => 1, :version_label => "0.1", 
         :semantic_version => "", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-3", :identifier => "TEST3", :version => 3, :version_label => "0.3", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-3", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-3").to_id, 
+        :identifier => "TEST3", :version => 3, :version_label => "0.3", 
         :semantic_version => "", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_2-2", :identifier => "TEST2", :version => 2, :version_label => "0.2", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_2-2", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_2-2").to_id, 
+        :identifier => "TEST2", :version => 2, :version_label => "0.2", 
         :semantic_version => "", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4", :identifier => "TEST3", :version => 4, :version_label => "0.4", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4").to_id, 
+        :identifier => "TEST3", :version => 4, :version_label => "0.4", 
         :semantic_version => "", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-5", :identifier => "TEST3", :version => 5, :version_label => "0.5", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-5", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-5").to_id, 
+        :identifier => "TEST3", :version => 5, :version_label => "0.5", 
         :semantic_version => "", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5", :identifier => "TESTSV 1", :version => 7, :version_label => "0.7", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV1-5").to_id, 
+        :identifier => "TESTSV 1", :version => 7, :version_label => "0.7", 
         :semantic_version => "0.0.7", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       },
       {
-        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV2-5", :identifier => "TESTSV 2", :version => 6, :version_label => "0.6", 
+        uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV2-5", 
+        id: Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_SV2-5").to_id, 
+        :identifier => "TESTSV 2", :version => 6, :version_label => "0.6", 
         :semantic_version => "3.1.6", has_scope: "http://www.assero.co.uk/NS#BBB",
         rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"
       }
@@ -244,7 +262,11 @@ describe IsoScopedIdentifierV2 do
 
   it "allows an object to be created" do
     org = IsoNamespace.find_by_short_name("BBB")
-    result = {uri: "http://www.assero.co.uk/SI/BBB/NEW-1", :identifier => "NEW 1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", has_scope: org.to_h,
+    result = 
+    {
+      uri: "http://www.assero.co.uk/SI/BBB/NEW-1", 
+      id: Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW-1").to_id,
+      :identifier => "NEW 1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", has_scope: org.to_h,
       rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"}
     si = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org)
     expect(si.to_h).to eq(result)
@@ -286,7 +308,7 @@ describe IsoScopedIdentifierV2 do
   
   it "allows an object to be created from JSON" do
     org = IsoNamespace.find_by_short_name("BBB")
-    result = {uri: "http://www.assero.co.uk/SI/BBB/NEW_1", :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", has_scope: org.to_h,
+    result = {uri: "http://www.assero.co.uk/SI/BBB/NEW_1", id: Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW_1").to_id, :identifier => "NEW_1", :version => 1, :version_label => "0.1", :semantic_version => "1.2.3", has_scope: org.to_h,
       rdf_type: "http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier"}
     json = {uri: "http://www.assero.co.uk/SI/BBB/NEW_1", identifier: "NEW_1", semantic_version: "1.2.3", version_label: "0.1", version: 1, has_scope: org.to_h }
     expect(IsoScopedIdentifierV2.from_h(json).to_h).to eq(result)
@@ -297,6 +319,7 @@ describe IsoScopedIdentifierV2 do
     result = 
     {
       :uri=>"http://www.assero.co.uk/MDRItems#SI-TEST_3-4", 
+      :id=>Uri.new(uri: "http://www.assero.co.uk/MDRItems#SI-TEST_3-4").to_id,
       :identifier => "TEST3", 
       :version => 4, 
       :version_label => "0.4", 

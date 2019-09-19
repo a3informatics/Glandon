@@ -54,7 +54,7 @@ describe IsoRegistrationAuthority do
       result.international_code_designator = "DUNS"
       result.ra_namespace = IsoNamespace.find_by_short_name("BBB")
       result.owner = false
-      expected = {uri: "http://www.assero.co.uk/MDRItems#XXX", uuid: result.uuid, organization_identifier: "123456777",
+      expected = {uri: "http://www.assero.co.uk/MDRItems#XXX", id: result.uuid, organization_identifier: "123456777",
         rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
         international_code_designator: "DUNS", owner: false, ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h }
       expect(result.to_h).to eq(expected)
@@ -62,10 +62,10 @@ describe IsoRegistrationAuthority do
 
     it "finds authority" do
       expected = {organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
+        id: Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789").to_id,
         rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
         ra_namespace: "http://www.assero.co.uk/NS#BBB",}
       result = IsoRegistrationAuthority.find(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-      expected[:uuid] = result.uuid
       expect(result.to_h).to eq(expected)   
       expect(result.persisted?).to eq(true)   
     end
@@ -77,12 +77,12 @@ describe IsoRegistrationAuthority do
         { 
           organization_identifier: "123456789", international_code_designator: "DUNS", owner: true, uri: "http://www.assero.co.uk/RA#DUNS123456789",
           rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
-          ra_namespace: "http://www.assero.co.uk/NS#BBB", uuid: result_1.uuid
+          ra_namespace: "http://www.assero.co.uk/NS#BBB", id: result_1.uuid
         },
         {
           organization_identifier: "111111111", international_code_designator: "DUNS", owner: false, uri: "http://www.assero.co.uk/RA#DUNS111111111", 
           rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority", 
-          ra_namespace: "http://www.assero.co.uk/NS#AAA", uuid: result_2.uuid
+          ra_namespace: "http://www.assero.co.uk/NS#AAA", id: result_2.uuid
         }
       ]
       expect(IsoRegistrationAuthority.all.map{|x| x.to_h}).to eq(results)   
@@ -139,7 +139,7 @@ describe IsoRegistrationAuthority do
         international_code_designator: "DUNS", 
         owner: true, 
         ra_namespace: IsoNamespace.find_by_short_name("BBB").to_h,
-        uuid: result.uuid 
+        id: result.uuid 
       }
       expect(result.to_h).to eq(expected)
     end
