@@ -24,8 +24,8 @@
 						<% ordered_metadata.each do |key, md| %>
 							<tr>
 					    	<th class="col-md-5 text-medium text-small">
-									<%= md[:label] %>
-					    		<div class="font-light"><%= md[:description] %></div>
+									<div class="setting-title"><%= md[:label] %></div>
+					    		<div class="font-light setting-descr"><%= md[:description] %></div>
 								</th>
 								<td class="col-md-5" style="vertical-align: middle;">
 						    	<% if md[:type] == "enum" %>
