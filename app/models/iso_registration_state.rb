@@ -8,9 +8,9 @@ class IsoRegistrationState
   include ActiveModel::Naming
   include ActiveModel::Conversion
   include ActiveModel::Validations
-      
+
   attr_accessor :id, :registrationAuthority, :registrationStatus, :administrativeNote, :effective_date, :until_date, :current, :unresolvedIssue , :administrativeStatus, :previousState
-  
+
   # Constants
   C_NS_PREFIX = "mdrItems"
   C_CID_PREFIX = "RS"
@@ -26,13 +26,13 @@ class IsoRegistrationState
   def persisted?
     id.present?
   end
- 
+
  	def self.table
  		return Rails.configuration.iso_registration_state.has_key?(bridg)
  	end
 
   # Initialize the object (new)
-  # 
+  #
   # @param triples [hash] Hash of triples
   # @return [string] The owner's short name
   def initialize(triples=nil)
@@ -72,7 +72,7 @@ class IsoRegistrationState
   end
 
   # Test if registered
-  # 
+  #
   # @return [boolean] True if a registration state present
   def registered?()
   	return false if self.registrationStatus == "" # Preserve backwards compatibility
@@ -81,14 +81,14 @@ class IsoRegistrationState
   end
 
   # Get the No State status
-  # 
+  #
   # @return [string] The no state string
   def self.no_state()
     return :Not_Set.to_s
   end
 
   # Get the next state
-  # 
+  #
   # @param state [string] The current state
   # @return [string] The next state
   def self.nextState(state)
@@ -120,21 +120,21 @@ class IsoRegistrationState
   def self.releasedState
     return :Standard.to_s
   end
-  
+
   # Is the item at the released state
   #
   # @return [boolean] True if in the released state, false otherwise
   def released_state?
     self.registrationStatus == :Standard.to_s
   end
-  
+
   # Has the item been at the released state
   #
   # @return [Boolean] true if it has been in the released state, false otherwise
   def has_been_released_state?
     self.registrationStatus == :Retired.to_s || self.registrationStatus == :Superseded.to_s
   end
-  
+
   # Can the item be edited
   #
   # @return [string] The next state
@@ -215,11 +215,11 @@ class IsoRegistrationState
       "  :" + id + " rdf:type isoR:RegistrationState . \n" +
       "  :" + id + " isoR:byAuthority ?b . \n" +
       "  :" + id + " isoR:registrationStatus ?c . \n" +
-      "  :" + id + " isoR:administrativeNote ?d . \n" +       
-      "  :" + id + " isoR:effectiveDate ?e . \n" + 
-      "  :" + id + " isoR:untilDate ?i . \n" + 
+      "  :" + id + " isoR:administrativeNote ?d . \n" +
+      "  :" + id + " isoR:effectiveDate ?e . \n" +
+      "  :" + id + " isoR:untilDate ?i . \n" +
       "  :" + id + " isoR:unresolvedIssue ?f . \n" +
-      "  :" + id + " isoR:administrativeStatus ?g . \n" +   
+      "  :" + id + " isoR:administrativeStatus ?g . \n" +
       "  :" + id + " isoR:previousState ?h . \n" +
       "}"
     # Send the request, wait the resonse
@@ -268,11 +268,11 @@ class IsoRegistrationState
       "{ \n" +
       "	 ?a rdf:type isoR:RegistrationState . \n" +
       "	 ?a isoR:registrationStatus ?c . \n" +
-      "	 ?a isoR:administrativeNote ?d . \n" +       
-      "	 ?a isoR:effectiveDate ?e . \n" + 
-      "  ?a isoR:untilDate ?i . \n" + 
+      "	 ?a isoR:administrativeNote ?d . \n" +
+      "	 ?a isoR:effectiveDate ?e . \n" +
+      "  ?a isoR:untilDate ?i . \n" +
       "	 ?a isoR:unresolvedIssue ?f . \n" +
-      "	 ?a isoR:administrativeStatus ?g . \n" +   
+      "	 ?a isoR:administrativeStatus ?g . \n" +
       "	 ?a isoR:previousState ?h . \n" +
       "}"
     # Send the request, wait the resonse
@@ -290,7 +290,7 @@ class IsoRegistrationState
       asSet = node.xpath("binding[@name='g']/literal")
       psSet = node.xpath("binding[@name='h']/literal")
       if uriSet.length == 1
-        object = self.new 
+        object = self.new
         object.id = ModelUtility.extractCid(uriSet[0].text)
         object.registrationStatus = rsSet[0].text
         object.administrativeNote = rnSet[0].text
@@ -316,10 +316,10 @@ class IsoRegistrationState
   # @param version [integer] The version.
   # @param ra [object] The registration authority
   # @return [object] The created object.
-  def self.create(identifier, version, ra)   
+  def self.create(identifier, version, ra)
     object = IsoRegistrationState.from_data(identifier, version, ra)
     if object.valid?
-      if !object.exists?  
+      if !object.exists?
         update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
           "INSERT DATA \n" +
           "{ \n" +
@@ -342,7 +342,7 @@ class IsoRegistrationState
         object.errors.add(:base, "The registration state is already in use.")
       end
     end
-    return object    
+    return object
   end
 
   # Get a set of counts for each registration state
@@ -377,7 +377,7 @@ class IsoRegistrationState
   # @option param [String] :unresolvedIssue Any unresolved issues
   # @option param [String] :effectiveDate The effective date
   # @return [void]
-  def update(params)  
+  def update(params)
     self.registrationStatus = params[:registrationStatus]
     self.previousState  = params[:previousState]
     self.administrativeNote = params[:administrativeNote]
@@ -414,10 +414,10 @@ class IsoRegistrationState
       end
     end
   end
-  
+
   # Create the object in the triple store.
   #
-  def self.make_current(id)  
+  def self.make_current(id)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE \n" +
       "{ \n" +
@@ -446,7 +446,7 @@ class IsoRegistrationState
 
   # Create the object in the triple store.
   #
-  def self.make_not_current(id)  
+  def self.make_not_current(id)
     update = UriManagement.buildPrefix(C_NS_PREFIX, ["isoB", "isoR"]) +
       "DELETE \n" +
       "{ \n" +
@@ -511,19 +511,19 @@ class IsoRegistrationState
   #
   # @return [hash] The JSON hash.
   def to_json
-    result = 
-    { 
-      :namespace => C_INSTANCE_NS, 
-      :id => self.id, 
+    result =
+    {
+      :namespace => C_INSTANCE_NS,
+      :id => self.id,
       :registration_authority => self.registrationAuthority.to_h,
       :registration_status => self.registrationStatus,
       :administrative_note => self.administrativeNote,
       :effective_date => "#{self.effective_date.iso8601}",
       :until_date => "#{self.until_date.iso8601}",
-      :current => self.current,  
+      :current => self.current,
       :unresolved_issue => self.unresolvedIssue,
       :administrative_status => self.administrativeStatus,
-      :previous_state => self.previousState 
+      :previous_state => self.previousState
     }
     return result
   end
@@ -558,11 +558,11 @@ class IsoRegistrationState
       end
     end
     result = ra_valid &&
-      FieldValidation.valid_registration_state?(:registrationStatus, self.registrationStatus.to_sym, self) && 
-      FieldValidation.valid_registration_state?(:previousState, self.previousState.to_sym, self) && 
+      FieldValidation.valid_registration_state?(:registrationStatus, self.registrationStatus.to_sym, self) &&
+      FieldValidation.valid_registration_state?(:previousState, self.previousState.to_sym, self) &&
       FieldValidation.valid_label?(:administrativeNote, self.administrativeNote, self) &&
       FieldValidation.valid_label?(:unresolvedIssue, self.unresolvedIssue, self) &&
-      FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self) 
+      FieldValidation.valid_label?(:administrativeStatus, self.administrativeStatus, self)
     return result
   end
 
