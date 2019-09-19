@@ -1,24 +1,26 @@
 ---
-:type: http://www.assero.co.uk/ISO25964#Thesaurus
-:id: TH-CDISC_CDISCTerminology
-:namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-:label: CDISC Terminology 2015-09-25
+:type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:id: TH
+:namespace: http://www.cdisc.org/CT/V42
+:label: Controlled Terminology
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2015-09-25T00:00:00+02:00'
-:last_changed_date: '2015-09-25T00:00:00+02:00'
+:creation_date: '2015-03-27T00:00:00+00:00'
+:last_changed_date: '2015-03-27T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
-  :id: RS-CDISC_CDISCTerminology-42
+  :id: TH_RS
   :registration_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
     :uri: http://www.assero.co.uk/RA#DUNS084433759
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: '084433759'
     :international_code_designator: DUNS
     :owner: false
     :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
       :uri: http://www.assero.co.uk/NS#CDISC
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
       :short_name: CDISC
@@ -26,19 +28,20 @@
       :authority: www.cdisc.org
   :registration_status: Standard
   :administrative_note: ''
-  :effective_date: '2015-09-25T00:00:00Z'
-  :until_date: '2015-09-25T00:00:00Z'
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
   :current: false
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Qualified
+  :previous_state: Standard
 :scoped_identifier:
-  :id: SI-CDISC_CDISCTerminology-42
-  :identifier: CDISC Terminology
-  :version_label: '2015-09-25'
+  :id: TH_SI
+  :identifier: CT
+  :version_label: 2015-03-27 Release
   :version: 42
   :semantic_version: 42.0.0
   :namespace:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
     :uri: http://www.assero.co.uk/NS#CDISC
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: CDISC
