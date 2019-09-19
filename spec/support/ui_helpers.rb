@@ -297,8 +297,8 @@ module UiHelpers
 
   def ui_navbar_click (id)
     id_to_section_map = {
-			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util",
-			main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin"} # Add more
+      main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", 
+      main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin", main_nav_ma: "main_nav_util"} # Add more
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
@@ -326,6 +326,10 @@ module UiHelpers
   def click_navbar_tags
     ui_navbar_click('main_nav_ics')
   end
+
+	def click_navbar_ma
+		ui_navbar_click('main_nav_ma')
+	end
 
   #Biomedical Concepts
   def click_navbar_bc
