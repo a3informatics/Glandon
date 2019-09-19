@@ -13,12 +13,14 @@
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_VSBASELINE1-1
   :registration_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
     :uri: http://www.assero.co.uk/RA#DUNS123456789
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: '123456789'
     :international_code_designator: DUNS
     :owner: true
     :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
       :uri: http://www.assero.co.uk/NS#ACME
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
       :short_name: ACME
@@ -39,6 +41,7 @@
   :version: 1
   :semantic_version: 0.0.0
   :namespace:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: ACME
@@ -191,8 +194,8 @@
         :ordinal: 1
         :local_label: International Foot
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71620_C71253
+          :namespace: http://www.cdisc.org/C71620/V6
+          :id: C71620_C71253
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G2_I3_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -203,8 +206,8 @@
         :ordinal: 2
         :local_label: Meter
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71620_C41139
+          :namespace: http://www.cdisc.org/C71620/V6
+          :id: C71620_C41139
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G2_I3_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -215,8 +218,8 @@
         :ordinal: 3
         :local_label: Inch
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C48500
+          :namespace: http://www.cdisc.org/C66770/V41
+          :id: C66770_C48500
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G2_I3_VR4
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -227,8 +230,8 @@
         :ordinal: 4
         :local_label: Centimeter
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C49668
+          :namespace: http://www.cdisc.org/C66770/V33
+          :id: C66770_C49668
     :repeating: false
     :bc_ref:
       :type: http://www.assero.co.uk/BusinessOperational#BcReference
@@ -335,8 +338,8 @@
         :ordinal: 1
         :local_label: Ounce
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71620_C48519
+          :namespace: http://www.cdisc.org/C71620/V6
+          :id: C71620_C48519
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G3_I3_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -347,8 +350,8 @@
         :ordinal: 2
         :local_label: Gram
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C48155
+          :namespace: http://www.cdisc.org/C66770/V54
+          :id: C66770_C48155
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G3_I3_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -359,8 +362,8 @@
         :ordinal: 3
         :local_label: Pound
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C48531
+          :namespace: http://www.cdisc.org/C66770/V4
+          :id: C66770_C48531
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G3_I3_VR4
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -371,8 +374,8 @@
         :ordinal: 4
         :local_label: Kilogram
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C28252
+          :namespace: http://www.cdisc.org/C66770/V48
+          :id: C66770_C28252
     :repeating: false
     :bc_ref:
       :type: http://www.assero.co.uk/BusinessOperational#BcReference
@@ -479,8 +482,8 @@
         :ordinal: 1
         :local_label: Millimeter of Mercury
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C49670
+          :namespace: http://www.cdisc.org/C66770/V37
+          :id: C66770_C49670
     - :type: http://www.assero.co.uk/BusinessForm#BcProperty
       :id: F-ACME_VSBASELINE1_G1_G4_I4
       :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -515,8 +518,8 @@
         :ordinal: 1
         :local_label: Supine Position
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62167
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62167
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G4_I4_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -527,8 +530,8 @@
         :ordinal: 2
         :local_label: Standing
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62166
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62166
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G4_I4_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -539,8 +542,8 @@
         :ordinal: 3
         :local_label: Sitting
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62122
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62122
     :repeating: false
     :bc_ref:
       :type: http://www.assero.co.uk/BusinessOperational#BcReference
@@ -647,8 +650,8 @@
         :ordinal: 1
         :local_label: Millimeter of Mercury
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C49670
+          :namespace: http://www.cdisc.org/C66770/V37
+          :id: C66770_C49670
     - :type: http://www.assero.co.uk/BusinessForm#BcProperty
       :id: F-ACME_VSBASELINE1_G1_G5_I4
       :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -683,8 +686,8 @@
         :ordinal: 1
         :local_label: Supine Position
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62167
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62167
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G5_I4_VR2
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -695,8 +698,8 @@
         :ordinal: 2
         :local_label: Standing
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62166
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62166
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: F-ACME_VSBASELINE1_G1_G5_I4_VR3
         :namespace: http://www.assero.co.uk/MDRForms/ACME/V1
@@ -707,8 +710,8 @@
         :ordinal: 3
         :local_label: Sitting
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C71148_C62122
+          :namespace: http://www.cdisc.org/C71148/V6
+          :id: C71148_C62122
     :repeating: false
     :bc_ref:
       :type: http://www.assero.co.uk/BusinessOperational#BcReference

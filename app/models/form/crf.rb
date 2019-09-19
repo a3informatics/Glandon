@@ -143,7 +143,7 @@ private
       end
       html += end_row
     elsif node[:type] == OperationalReferenceV2::C_TC_RDF_TYPE_URI.to_s
-      tc = ThesaurusConcept.find(node[:subject_ref][:id], node[:subject_ref][:namespace])
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(fragment: node[:subject_ref][:id], namespace: node[:subject_ref][:namespace]))
       if node[:enabled]
         html += "<p><input type=\"radio\" name=\"#{tc.identifier}\" value=\"#{tc.identifier}\"></input>#{tc.label}</p>"
       end
