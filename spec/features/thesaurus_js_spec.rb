@@ -5,6 +5,7 @@ describe "Thesaurus", :type => :feature do
   include PauseHelpers
   include DataHelpers
   include UiHelpers
+  include UserAccountHelpers
   include WaitForAjaxHelper
   include DownloadHelpers
   include SparqlHelpers
@@ -14,7 +15,7 @@ describe "Thesaurus", :type => :feature do
   end
 
   def editor_table_fill_in(input, text)
-    expect(page).to have_css("##{input}", wait: 15) 
+    expect(page).to have_css("##{input}", wait: 15)
     fill_in "#{input}", with: "#{text}"
     wait_for_ajax(5)
   end
@@ -22,42 +23,48 @@ describe "Thesaurus", :type => :feature do
   def editor_table_click(row, col)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
   end
-      
+
   describe "Curator User", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("thesaurus_concept.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_TEST.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
+      load_files(schema_files, data_files)
+      # clear_triple_store
+      # load_schema_file_into_triple_store("ISO11179Types.ttl")
+      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      # load_schema_file_into_triple_store("ISO25964.ttl")
+      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+      # load_test_file_into_triple_store("iso_namespace_real.ttl")
+      # load_test_file_into_triple_store("thesaurus_concept.ttl")
+      # load_test_file_into_triple_store("CT_V43.ttl")
+      # load_test_file_into_triple_store("CT_ACME_TEST.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      @user = User.create :email => "curator@example.com", :password => "12345678" 
+      @user = User.create :email => "curator@example.com", :password => "12345678"
       @user.add_role :curator
       Token.set_timeout(30)
     end
 
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
     after :all do
-      user = User.where(:email => "curator@example.com").first
-      user.destroy
+      ua_destroy
       Token.restore_timeout
     end
-  
+
     it "allows a thesaurus to be viewed, sponsor", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -68,14 +75,14 @@ describe "Thesaurus", :type => :feature do
       ui_check_anon_table_row(2, ["Identifier:", "CDISC EXT"])
       ui_check_anon_table_row(3, ["Version Label:", "0.1"])
       ui_check_anon_table_row(4, ["Version:", "1"])
-      key1 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup"]')      
+      key1 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup"]')
       ui_click_node_key(key1)
       wait_for_ajax
       ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
       ui_check_td_with_id("conceptId", "A00010")
       ui_double_click_node_key(key1)
       wait_for_ajax
-      key2 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup", "Ethnic Subgroup 1"]')      
+      key2 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup", "Ethnic Subgroup 1"]')
       ui_click_node_key(key2)
       ui_check_td_with_id("conceptLabel", "Ethnic Subgroup 1")
       ui_check_td_with_id("conceptId", "A00011")
@@ -85,13 +92,9 @@ describe "Thesaurus", :type => :feature do
       ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
       ui_check_td_with_id("conceptId", "A00010")
     end
-    
+
     it "allows a thesaurus to be viewed, CDISC", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Terminology')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC Terminology'
@@ -102,7 +105,7 @@ describe "Thesaurus", :type => :feature do
       ui_check_anon_table_row(2, ["Identifier:", "CDISC Terminology"])
       ui_check_anon_table_row(3, ["Version Label:", "2015-12-18"])
       ui_check_anon_table_row(4, ["Version:", "43"])
-      key1 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex"]')      
+      key1 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex"]')
       ui_click_node_key(key1)
       wait_for_ajax
       ui_check_td_with_id("conceptLabel", "Sex")
@@ -110,7 +113,7 @@ describe "Thesaurus", :type => :feature do
       ui_check_td_with_id("conceptNotation", "SEX")
       ui_double_click_node_key(key1)
       wait_for_ajax
-      key2 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex", "Male"]')      
+      key2 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex", "Male"]')
       ui_click_node_key(key2)
       ui_check_td_with_id("conceptLabel", "Male")
       ui_check_td_with_id("conceptId", "C20197")
@@ -119,11 +122,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows for terminology to be exported as TTL", js: true do
       clear_downloads
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -139,16 +138,12 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows terminology to be edited", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' 
+      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
       ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
       fill_in 'Identifier', with: 'A00030'
       click_button 'New'
@@ -194,11 +189,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows terminology to be edited, identifier check", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -226,11 +217,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows terminology to be edited, identifier validation", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -250,11 +237,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows the edit session to be closed, parent page", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -265,11 +248,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows the edit session to be closed, child page", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -281,13 +260,9 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
       expect(page).to have_content 'History: CDISC EXT'
     end
-    
+
     it "allows the parent page to be returned to", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -302,14 +277,10 @@ describe "Thesaurus", :type => :feature do
       click_button 'Parent'
       expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
     end
-    
+
     it "allows a thesauri to be created, field validation", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      visit '/thesauri/new'
-      expect(page).to have_content 'New Terminology:'
+      click_navbar_terminology
+      expect(page).to have_content 'New Terminology'
       fill_in 'thesauri[identifier]', with: '@@@'
       fill_in 'thesauri[label]', with: '€€€'
       click_button 'Create'
@@ -327,11 +298,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows a thesaurus to be deleted", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      visit '/thesauri'
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'TEST')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: TEST'
@@ -344,11 +311,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "allows a search to be performed", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      visit '/thesauri'
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -359,14 +322,10 @@ describe "Thesaurus", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'History: CDISC EXT'
-    end  
+    end
 
     it "allows a search to be performed on all current versions", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      visit '/thesauri'
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       click_link 'Search Current'
       expect(page).to have_content 'Search: All Current Terminology'
@@ -374,15 +333,11 @@ describe "Thesaurus", :type => :feature do
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Close'
       expect(page).to have_content 'Index: Terminology'
-    end  
+    end
 
     it "edit timeout warnings and expiration", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -407,11 +362,7 @@ describe "Thesaurus", :type => :feature do
 
     it "edit timeout warnings and extend", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -443,11 +394,7 @@ describe "Thesaurus", :type => :feature do
 
     it "edit timeout warnings and child pages", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -478,15 +425,11 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Close'
-    end  
+    end
 
     it "edit clears token on close", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -499,15 +442,11 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
-    end  
+    end
 
     it "edit clears token on back button", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      find(:xpath, "//a[@href='/thesauri']").click # Clash with 'CDISC Terminology', so use this method to make unique
+      click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
@@ -521,8 +460,8 @@ describe "Thesaurus", :type => :feature do
       wait_for_ajax
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
-    end 
-    
+    end
+
   end
 
 end

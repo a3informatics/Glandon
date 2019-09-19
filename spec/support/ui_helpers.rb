@@ -1,5 +1,5 @@
 module UiHelpers
-  
+
   # General Tag helpers
 	def ui_click_tag_add
     ui_click_by_id('tag_add')
@@ -11,7 +11,7 @@ module UiHelpers
 
   # General UI helpers
   # ==================
-  
+
   def ui_check_page_has(text)
   	expect(page).to have_content(text)
   end
@@ -19,7 +19,7 @@ module UiHelpers
   def ui_click_ok(text="")
     a = page.driver.browser.switch_to.alert
     expect(a.text).to eq(text) if !text.empty?
-    a.accept 
+    a.accept
   end
 
   def ui_click_cancel(text="")
@@ -27,14 +27,14 @@ module UiHelpers
     expect(a.text).to eq(text) if !text.empty?
     a.dismiss
   end
-  
+
   def ui_table_row_link_click(content, link_text)
     find(:xpath, "//tr[contains(.,'#{content}')]/td/a", :text => "#{link_text}").click
   end
 
   def ui_table_row_click(table, content)
     within "##{table}" do
-      find('td', :text => "#{content}").click 
+      find('td', :text => "#{content}").click
     end
   end
 
@@ -58,8 +58,8 @@ module UiHelpers
   end
 
   def ui_check_checkbox(id, value)
-    assert page.has_no_checked_field?(id) if !value 
-    assert page.has_checked_field?(id) if value 
+    assert page.has_no_checked_field?(id) if !value
+    assert page.has_checked_field?(id) if value
   end
 
   def ui_check_radio(id, value)
@@ -85,15 +85,15 @@ module UiHelpers
 
   def ui_button_disabled(id)
     expect(page).to have_button("#{id}", disabled: true)
-  end       
+  end
 
   def ui_button_enabled(id)
     expect(page).to have_button("#{id}", disabled: false)
-  end       
+  end
 
   def ui_link_disabled(id)
     expect(page).to have_no_link("#{id}")
-  end       
+  end
 
   def ui_button_label(id, text)
     expect(find("##{id}").text).to eq(text)
@@ -101,16 +101,16 @@ module UiHelpers
 
   def ui_select_check_selected(id, value)
     expect(page).to have_select(id, selected: value)
-  end   
+  end
 
   def ui_select_check_options(id, options)
     expect(page).to have_select(id, with_options: options)
-  end   
+  end
 
   # Check this, not used so far! :)
   def ui_select_check_all_options(id, options)
     expect(page).to have_select(id, options: options)
-  end   
+  end
 
   # Datatables
   #
@@ -215,12 +215,12 @@ module UiHelpers
   end
 
   def ui_term_column_search(column, text)
-    column_input_map = 
-    { 
-      notation: "searchTable_csearch_submission_value", 
-      code_list: "searchTable_csearch_cl", 
-      definition: "searchTable_csearch_definition" 
-    }  
+    column_input_map =
+    {
+      notation: "searchTable_csearch_submission_value",
+      code_list: "searchTable_csearch_cl",
+      definition: "searchTable_csearch_definition"
+    }
     input = column_input_map[column]
     fill_in input, with: text
     ui_hit_return(input)
@@ -241,11 +241,11 @@ module UiHelpers
     if !crumb_3.empty?
       li = find(:xpath, '//*[@id="breadcrumb_3"]')
       expect(li.text).to eq(crumb_3)
-    end    
+    end
     if !crumb_4.empty?
       li = find(:xpath, '//*[@id="breadcrumb_4"]')
       expect(li.text).to eq(crumb_4)
-    end    
+    end
   end
 
   def ui_click_breadcrumb(index)
@@ -363,13 +363,14 @@ module UiHelpers
 
   #Context Menu
   def context_menu_element (table_id, column_nr, text, action )
-    action_to_option_map = 
-    { 
-      show: "Show", 
-      search: "Search", 
+    action_to_option_map =
+    {
+      show: "Show",
+      search: "Search",
       edit: "Edit",
-      delete: "Delete" 
-    }  
+      delete: "Delete",
+      document_control: "Document control"
+    }
     option = action_to_option_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
@@ -380,12 +381,12 @@ module UiHelpers
     slider = "var tl_slider = $('.timeline-container').data(); "
     slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
     slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
-    page.execute_script(slider) 
+    page.execute_script(slider)
   end
 
   def ui_dashboard_alpha_filter (filter, filter_text)
-    filter_control_map = 
-    { 
+    filter_control_map =
+    {
       created: { index: 0, id: 'btn_f_created' },
       updated: { index: 1, id: 'btn_f_updated' },
       deleted: { index: 2, id: 'btn_f_deleted' }
