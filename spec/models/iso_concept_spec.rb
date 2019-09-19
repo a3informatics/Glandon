@@ -41,28 +41,34 @@ describe IsoConcept do
 	context "Main Tests" do
 
 	  before :all do
-      IsoHelpers.clear_cache
-	    clear_triple_store
-	    load_schema_file_into_triple_store("ISO11179Types.ttl")
-	    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-	    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-	    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-	    load_schema_file_into_triple_store("ISO25964.ttl")
-	    load_schema_file_into_triple_store("BusinessOperational.ttl")
-	    load_schema_file_into_triple_store("BusinessForm.ttl")
-	    load_schema_file_into_triple_store("business_operational_extension.ttl")
-	    load_schema_file_into_triple_store("business_cross_reference.ttl")
-	    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-	    load_test_file_into_triple_store("iso_concept_extension.ttl")
-	    load_test_file_into_triple_store("iso_concept_data.ttl")
-	    load_test_file_into_triple_store("iso_concept_data_2.ttl")
-	    load_test_file_into_triple_store("CT_V42.ttl")
-	    load_test_file_into_triple_store("CT_V46.ttl")
-	    load_test_file_into_triple_store("CT_V47.ttl")
-	    load_test_file_into_triple_store("BC.ttl")
-	    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
+        "BusinessForm.ttl", "business_operational_extension.ttl", "CDISCBiomedicalConcept.ttl" ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", "iso_concept_data.ttl", "iso_concept_data_2.ttl",
+        "form_example_vs_baseline_new.ttl", "BC.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..59)
+     #  IsoHelpers.clear_cache
+	    # clear_triple_store
+	    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+	    # load_schema_file_into_triple_store("ISO25964.ttl")
+	    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+	    # load_schema_file_into_triple_store("BusinessForm.ttl")
+	    # load_schema_file_into_triple_store("business_operational_extension.ttl")
+	    # load_schema_file_into_triple_store("business_cross_reference.ttl")
+	    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+	    # load_test_file_into_triple_store("iso_concept_extension.ttl")
+	    # load_test_file_into_triple_store("iso_concept_data.ttl")
+	    # load_test_file_into_triple_store("iso_concept_data_2.ttl")
+	    # load_test_file_into_triple_store("CT_V42.ttl")
+	    # load_test_file_into_triple_store("CT_V46.ttl")
+	    # load_test_file_into_triple_store("CT_V47.ttl")
+	    # load_test_file_into_triple_store("BC.ttl")
+	    # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+     #  load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+     #  load_test_file_into_triple_store("iso_namespace_real.ttl")
 	    clear_iso_concept_object
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
@@ -263,26 +269,26 @@ describe IsoConcept do
 	  end
 
 		it "find by properties, ThesaurusConcept identifier" do
-      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-	    results = concept.find_by_property({identifier: "C62122"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
-			expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122")  
+      concept = IsoConcept.find("TH", "http://www.cdisc.org/CT/V42", false)
+	    results = concept.find_by_property({identifier: "C85659"}, ["isTopConcept", "narrower"], "UnmanagedConcept", "http://www.assero.co.uk/Thesaurus")
+			expect(results[0].to_s).to eq("http://www.cdisc.org/C85494/V42#C85494_C85659")  
 	  end
 
 		it "find by properties, ThesaurusConcept, notation" do
-      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      results = concept.find_by_property({notation: "BPI125"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
-      expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
+      concept = IsoConcept.find("TH", "http://www.cdisc.org/CT/V42", false)
+      results = concept.find_by_property({notation: "(L/min)/g"}, ["isTopConcept", "narrower"], "UnmanagedConcept", "http://www.assero.co.uk/Thesaurus")
+      expect(results[0].to_s).to eq("http://www.cdisc.org/C85494/V42#C85494_C85659")   
 	  end
 
 		it "find by properties, ThesaurusConcept, notation and identifier" do
-      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      results = concept.find_by_property({notation: "BPI125", identifier: "C100339"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
-      expect(results[0].to_s).to eq("http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C100162_C100339")  
+      concept = IsoConcept.find("TH", "http://www.cdisc.org/CT/V42", false)
+      results = concept.find_by_property({notation: "(mL/day)/ug", identifier: "C120775"}, ["isTopConcept", "narrower"], "UnmanagedConcept", "http://www.assero.co.uk/Thesaurus")
+      expect(results[0].to_s).to eq("http://www.cdisc.org/C85494/V42#C85494_C120775")  
 	  end
 
 		it "find by properties, ThesaurusConcept, notation and identifier, fail" do
-      concept = IsoConcept.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      results = concept.find_by_property({notation: "BPI125", identifier: "C100339x"}, ["hasConcept", "hasChild"], "ThesaurusConcept", "http://www.assero.co.uk/ISO25964")
+      concept = IsoConcept.find("TH", "http://www.cdisc.org/CT/V42", false)
+      results = concept.find_by_property({notation: "(mL/day)/ug", identifier: "C120775x"}, ["isTopConcept", "narrower"], "UnmanagedConcept", "http://www.assero.co.uk/Thesaurus")
       expect(results.length).to eq(0)  
 	  end
 
@@ -719,84 +725,88 @@ describe IsoConcept do
 
 	  it "allows the links from a concept to be determined, TC Ref" do
 	    results = IsoConcept.links_from("F-ACME_VSBASELINE1_G1_G4_I4","http://www.assero.co.uk/MDRForms/ACME/V1")
-	    expected = 
-	    [ 
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-          label: "Sitting",
-	        local: false  
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-          label: "Standing",
-	        local: false 
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-          label: "Supine Position",
-	        local: false  
-	      },
-	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      }
-	    ]
-      compare_link_to_results(results, expected)
+      results.each {|x| x[:uri] = x[:uri].to_json}
+	    check_file_actual_expected(results, sub_dir, "links_from_expected_1.yaml", eq_method: :hash_equal)
+     #  expected = 
+	    # [ 
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62122"}).to_json, 
+	    #     rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+     #      label: "Sitting",
+	    #     local: false  
+	    #   },
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62166"}).to_json, 
+	    #     rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+     #      label: "Standing",
+	    #     local: false 
+	    #   },
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71148_C62167"}).to_json, 
+	    #     rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+     #      label: "Supine Position",
+	    #     local: false  
+	    #   },
+	    #   {
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
+	    #     rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+     #      label: "",
+	    #     local: false 
+	    #   }
+	    # ]
+     #  compare_link_to_results(results, expected)
 	  end
 
 		it "allows the links to a concept to be determined, BC Property Ref" do
 	    results = IsoConcept.links_to("CLI-C71148_C62122","http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    expected = 
-	    [ 
-	      {
-          uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CL-C71148"}).to_json,
-          rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
-          label: "Position",
-          local: true
-        },
-        { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      },
-	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      },
-	      {
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
-	        rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-          label: "",
-	        local: false 
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5_I4"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          label: "Body Position (--POS)",
-	        local: false  
-	      },
-	      { 
-	        uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4_I4"}).to_json, 
-	        rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
-          label: "Body Position (--POS)",
-	        local: false  
-	      }
-	    ]
-	    compare_link_to_results(results, expected)
+      results.each {|x| x[:uri] = x[:uri].to_json}
+      check_file_actual_expected(results, sub_dir, "links_to_expected_1.yaml", eq_method: :hash_equal)
+	    # expected = 
+	    # [ 
+	    #   {
+     #      uri: UriV2.new({uri: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CL-C71148"}).to_json,
+     #      rdf_type: "http://www.assero.co.uk/ISO25964#ThesaurusConcept",
+     #      label: "Position",
+     #      local: true
+     #    },
+     #    { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C49677_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
+	    #     rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+     #      label: "",
+	    #     local: false 
+	    #   },
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_A00003_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
+	    #     rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+     #      label: "",
+	    #     local: false 
+	    #   },
+	    #   {
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25299_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
+	    #     rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+     #      label: "",
+	    #     local: false 
+	    #   },
+	    #   {
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRBCs/V1#BC-ACME_BC_C25298_PerformedObservation_bodyPositionCode_CD_code"}).to_json,
+	    #     rdf_type: "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
+     #      label: "",
+	    #     local: false 
+	    #   },
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G5_I4"}).to_json, 
+	    #     rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+     #      label: "Body Position (--POS)",
+	    #     local: false  
+	    #   },
+	    #   { 
+	    #     uri: UriV2.new({uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G4_I4"}).to_json, 
+	    #     rdf_type: "http://www.assero.co.uk/BusinessForm#BcProperty",
+     #      label: "Body Position (--POS)",
+	    #     local: false  
+	    #   }
+	    # ]
+	    #compare_link_to_results(results, expected)
 	  end
 
 	  it "allows the parent object to be determined, concept -> concept" do
@@ -931,321 +941,321 @@ describe IsoConcept do
 
 	end
 
-	context "Cross Reference Tests" do
+	# context "Cross Reference Tests" do
 
-		before :all do
-      IsoHelpers.clear_cache
-    end
+	# 	before :all do
+ #      IsoHelpers.clear_cache
+ #    end
     
-    before :each do
-			clear_triple_store
-	    load_schema_file_into_triple_store("ISO11179Types.ttl")
-	    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-	    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-	    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-	    load_schema_file_into_triple_store("ISO25964.ttl")
-	    load_schema_file_into_triple_store("BusinessOperational.ttl")
-	    load_schema_file_into_triple_store("BusinessForm.ttl")
-	    load_schema_file_into_triple_store("business_operational_extension.ttl")
-	    load_schema_file_into_triple_store("business_cross_reference.ttl")
-	    load_test_file_into_triple_store("CT_V42.ttl")
-	    load_test_file_into_triple_store("CT_V46.ttl")
-			# Set up references
-		  object_1 = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    object_2 = IsoConcept.find("CLI-C100144_C103635", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    object_3 = IsoConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-	    object_4 = IsoConcept.find("CLI-C74456_C114198", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-			object_new_1 = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
-	    object_new_2 = IsoConcept.find("CLI-C128685_C119517", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
-			or_1 = OperationalReferenceV2.new
-			or_1.ordinal = 1
-			or_1.subject_ref = object_1.uri
-			or_2 = OperationalReferenceV2.new
-			or_2.ordinal = 1
-			or_2.subject_ref = object_2.uri
-			or_3 = OperationalReferenceV2.new
-			or_3.ordinal = 1
-			or_3.subject_ref = object_3.uri
-			or_4 = OperationalReferenceV2.new
-			or_4.ordinal = 1
-			or_4.subject_ref = object_4.uri
-			cr_1 = CrossReference.new
-			cr_1.comments = "Linking v46 to v42 for some reason" 
-			cr_1.ordinal = 1
-			cr_1.children << or_1
-			cr_1.children << or_2
-			cr_2 = CrossReference.new
-			cr_2.comments = "Linking v46 to v42 for some reason" 
-			cr_2.ordinal = 1
-			cr_2.children << or_3
-			cr_3 = CrossReference.new
-			cr_3.comments = "Linking v46 to v42 for some reason" 
-			cr_3.ordinal = 1
-			cr_3.children << or_4
-			sparql = SparqlUpdateV2.new
-			uri = cr_1.to_sparql_v2(object_new_1.uri, sparql)
-			sparql.triple({uri: object_new_1.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
-			uri = cr_2.to_sparql_v2(object_new_1.uri, sparql)
-			sparql.triple({uri: object_new_1.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
-			uri = cr_3.to_sparql_v2(object_new_2.uri, sparql)
-			sparql.triple({uri: object_new_2.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
-			response = CRUD.update(sparql.to_s)
-	    expect(response.success?).to eq(true)
-	  end
+ #    before :each do
+	# 		clear_triple_store
+	#     load_schema_file_into_triple_store("ISO11179Types.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Identification.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Registration.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+	#     load_schema_file_into_triple_store("ISO25964.ttl")
+	#     load_schema_file_into_triple_store("BusinessOperational.ttl")
+	#     load_schema_file_into_triple_store("BusinessForm.ttl")
+	#     load_schema_file_into_triple_store("business_operational_extension.ttl")
+	#     load_schema_file_into_triple_store("business_cross_reference.ttl")
+	#     load_test_file_into_triple_store("CT_V42.ttl")
+	#     load_test_file_into_triple_store("CT_V46.ttl")
+	# 		# Set up references
+	# 	  object_1 = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+	#     object_2 = IsoConcept.find("CLI-C100144_C103635", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+	#     object_3 = IsoConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+	#     object_4 = IsoConcept.find("CLI-C74456_C114198", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+	# 		object_new_1 = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
+	#     object_new_2 = IsoConcept.find("CLI-C128685_C119517", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
+	# 		or_1 = OperationalReferenceV2.new
+	# 		or_1.ordinal = 1
+	# 		or_1.subject_ref = object_1.uri
+	# 		or_2 = OperationalReferenceV2.new
+	# 		or_2.ordinal = 1
+	# 		or_2.subject_ref = object_2.uri
+	# 		or_3 = OperationalReferenceV2.new
+	# 		or_3.ordinal = 1
+	# 		or_3.subject_ref = object_3.uri
+	# 		or_4 = OperationalReferenceV2.new
+	# 		or_4.ordinal = 1
+	# 		or_4.subject_ref = object_4.uri
+	# 		cr_1 = CrossReference.new
+	# 		cr_1.comments = "Linking v46 to v42 for some reason" 
+	# 		cr_1.ordinal = 1
+	# 		cr_1.children << or_1
+	# 		cr_1.children << or_2
+	# 		cr_2 = CrossReference.new
+	# 		cr_2.comments = "Linking v46 to v42 for some reason" 
+	# 		cr_2.ordinal = 1
+	# 		cr_2.children << or_3
+	# 		cr_3 = CrossReference.new
+	# 		cr_3.comments = "Linking v46 to v42 for some reason" 
+	# 		cr_3.ordinal = 1
+	# 		cr_3.children << or_4
+	# 		sparql = SparqlUpdateV2.new
+	# 		uri = cr_1.to_sparql_v2(object_new_1.uri, sparql)
+	# 		sparql.triple({uri: object_new_1.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
+	# 		uri = cr_2.to_sparql_v2(object_new_1.uri, sparql)
+	# 		sparql.triple({uri: object_new_1.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
+	# 		uri = cr_3.to_sparql_v2(object_new_2.uri, sparql)
+	# 		sparql.triple({uri: object_new_2.uri}, {:prefix => UriManagement::C_BCR, :id => "crossReference"}, {:uri => uri})
+	# 		response = CRUD.update(sparql.to_s)
+	#     expect(response.success?).to eq(true)
+	#   end
 
-		it "allows the cross references from the object and children to be determined" do
-	    result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46", :from)
-	  #write_yaml_file(result, sub_dir, "cross_references_from_expected.yaml")
-	    expected = read_yaml_file(sub_dir, "cross_references_from_expected.yaml")
-	    compare_cross_references(result, expected)
-		end
+	# 	it "allows the cross references from the object and children to be determined" do
+	#     result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46", :from)
+	#   #write_yaml_file(result, sub_dir, "cross_references_from_expected.yaml")
+	#     expected = read_yaml_file(sub_dir, "cross_references_from_expected.yaml")
+	#     compare_cross_references(result, expected)
+	# 	end
 	    
-		it "allows the cross references to the object and children to be determined" do
-	  	result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :to)
-	  #write_yaml_file(result, sub_dir, "cross_references_to_expected.yaml")
-	    expected = read_yaml_file(sub_dir, "cross_references_to_expected.yaml")
-      compare_cross_references(result, expected)
-	  end
+	# 	it "allows the cross references to the object and children to be determined" do
+	#   	result = IsoConcept.cross_references("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", :to)
+	#   #write_yaml_file(result, sub_dir, "cross_references_to_expected.yaml")
+	#     expected = read_yaml_file(sub_dir, "cross_references_to_expected.yaml")
+ #      compare_cross_references(result, expected)
+	#   end
 
-		it "allows the cross references from the object to be determined" do
-			ic = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
-			result = ic.cross_reference_details(:from)
-	  #write_yaml_file(result, sub_dir, "cross_references_details_from_expected.yaml")
-	    expected = read_yaml_file(sub_dir, "cross_references_details_from_expected.yaml")
-      compare_cross_reference_details(result, expected)
-		end
+	# 	it "allows the cross references from the object to be determined" do
+	# 		ic = IsoConcept.find("CLI-C71148_C62122", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
+	# 		result = ic.cross_reference_details(:from)
+	#   #write_yaml_file(result, sub_dir, "cross_references_details_from_expected.yaml")
+	#     expected = read_yaml_file(sub_dir, "cross_references_details_from_expected.yaml")
+ #      compare_cross_reference_details(result, expected)
+	# 	end
 
-		it "allows the cross references to the object to be determined" do
-			ic = IsoConcept.find("CLI-C100144_C103635", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-			result = ic.cross_reference_details(:to)
-	  #write_yaml_file(result, sub_dir, "cross_reference_details_to_expected.yaml")
-	    expected = read_yaml_file(sub_dir, "cross_reference_details_to_expected.yaml")
-	    compare_cross_reference_details(result, expected)
-		end
+	# 	it "allows the cross references to the object to be determined" do
+	# 		ic = IsoConcept.find("CLI-C100144_C103635", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+	# 		result = ic.cross_reference_details(:to)
+	#   #write_yaml_file(result, sub_dir, "cross_reference_details_to_expected.yaml")
+	#     expected = read_yaml_file(sub_dir, "cross_reference_details_to_expected.yaml")
+	#     compare_cross_reference_details(result, expected)
+	# 	end
 
-	end
+	# end
 
-  context "Terminology Tests" do
+  # context "Terminology Tests" do
 
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCTerm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
-      load_test_file_into_triple_store("CT_V41.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_V44.ttl")
-      load_test_file_into_triple_store("CT_V45.ttl")
-      load_test_file_into_triple_store("CT_V46.ttl")
-      load_test_file_into_triple_store("CT_V47.ttl")
-      clear_iso_concept_object
-    end
+  #   before :all do
+  #     clear_triple_store
+  #     load_schema_file_into_triple_store("ISO11179Types.ttl")
+  #     load_schema_file_into_triple_store("ISO11179Identification.ttl")
+  #     load_schema_file_into_triple_store("ISO11179Registration.ttl")
+  #     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+  #     load_schema_file_into_triple_store("ISO25964.ttl")
+  #     load_schema_file_into_triple_store("CDISCTerm.ttl")
+  #     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+  #     load_test_file_into_triple_store("iso_namespace_real.ttl")
+  #     load_test_file_into_triple_store("CT_V39.ttl")
+  #     load_test_file_into_triple_store("CT_V40.ttl")
+  #     load_test_file_into_triple_store("CT_V41.ttl")
+  #     load_test_file_into_triple_store("CT_V42.ttl")
+  #     load_test_file_into_triple_store("CT_V43.ttl")
+  #     load_test_file_into_triple_store("CT_V44.ttl")
+  #     load_test_file_into_triple_store("CT_V45.ttl")
+  #     load_test_file_into_triple_store("CT_V46.ttl")
+  #     load_test_file_into_triple_store("CT_V47.ttl")
+  #     clear_iso_concept_object
+  #   end
 
-    it "detects two different objects" do
-      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.diff?(previous, current)
-      expect(result).to eq(true)
-    end
+  #   it "detects two different objects" do
+  #     previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.diff?(previous, current)
+  #     expect(result).to eq(true)
+  #   end
 
-    it "detects if two objects are the same" do
-      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      current = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.diff?(previous, current)
-      expect(result).to eq(false)
-    end
+  #   it "detects if two objects are the same" do
+  #     previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     current = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.diff?(previous, current)
+  #     expect(result).to eq(false)
+  #   end
 
-    it "shows differences between two different objects" do
-      previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.difference(previous, current)
-    #write_yaml_file(result, sub_dir, "difference_expected_1.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "shows differences between two different objects" do
+  #     previous = IsoConcept.find("CLI-C105134_C105261", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.difference(previous, current)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_1.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_1.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "shows differences between two different objects, no previous" do
-      previous = nil
-      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.difference(previous, current)
-    #write_yaml_file(result, sub_dir, "difference_expected_2.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "shows differences between two different objects, no previous" do
+  #     previous = nil
+  #     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.difference(previous, current)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_2.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_2.yaml")
+  #     expect(result).to eq(expected)
+  #   end
     
-    it "shows differences between two different objects, no current" do
-      current = nil
-      previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.difference(previous, current)
-    #write_yaml_file(result, sub_dir, "difference_expected_3.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "shows differences between two different objects, no current" do
+  #     current = nil
+  #     previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.difference(previous, current)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_3.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_3.yaml")
+  #     expect(result).to eq(expected)
+  #   end
     
-    it "shows differences between same objects" do
-      previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = IsoConcept.difference(previous, current)
-    #write_yaml_file(result, sub_dir, "difference_expected_4.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_4.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "shows differences between same objects" do
+  #     previous = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     current = IsoConcept.find("CLI-C105134_C105262", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = IsoConcept.difference(previous, current)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_4.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_4.yaml")
+  #     expect(result).to eq(expected)
+  #   end
    
-    it "shows differences between two different objects, no previous or current" do
-      current = nil
-      previous = nil
-      result = IsoConcept.difference(previous, current)
-    #write_yaml_file(result, sub_dir, "difference_expected_5.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_5.yaml")
-      expect(result).to eq(expected)
-    end  
+  #   it "shows differences between two different objects, no previous or current" do
+  #     current = nil
+  #     previous = nil
+  #     result = IsoConcept.difference(previous, current)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_5.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_5.yaml")
+  #     expect(result).to eq(expected)
+  #   end  
 
-    it "checks if the children are the same for two objects, 1" do
-      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = current.child_match?(previous, "children", "identifier")
-      expect(result).to eq(true)
-    end
+  #   it "checks if the children are the same for two objects, 1" do
+  #     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = current.child_match?(previous, "children", "identifier")
+  #     expect(result).to eq(true)
+  #   end
 
-    it "checks if the children are different for two objects, 2" do
-      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = current.child_match?(previous, "children", "identifier")
-      expect(result).to eq(false)
-    end
+  #   it "checks if the children are different for two objects, 2" do
+  #     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = current.child_match?(previous, "children", "identifier")
+  #     expect(result).to eq(false)
+  #   end
 
-    it "checks if the children are different for two objects, 3" do
-      current = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
-      previous = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
-      result = current.child_match?(previous, "children", "identifier")
-      expect(result).to eq(false)
-    end
+  #   it "checks if the children are different for two objects, 3" do
+  #     current = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V47")
+  #     previous = ThesaurusConcept.find("CL-C100129", "http://www.assero.co.uk/MDRThesaurus/CDISC/V46")
+  #     result = current.child_match?(previous, "children", "identifier")
+  #     expect(result).to eq(false)
+  #   end
 
-    it "determines the items deleted from the previous objects, same" do
-      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = current.deleted_set(previous, "children", "identifier")
-      expect(result).to eq([])
-    end
+  #   it "determines the items deleted from the previous objects, same" do
+  #     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     previous = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = current.deleted_set(previous, "children", "identifier")
+  #     expect(result).to eq([])
+  #   end
 
-    it "determines the items deleted from the previous objects, different" do
-      current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
-      result = current.deleted_set(previous, "children", "identifier")
-      expect(result).to eq(["C85563", "C102633", "C17745"])
-    end
+  #   it "determines the items deleted from the previous objects, different" do
+  #     current = ThesaurusConcept.find("CL-C101865", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     previous = ThesaurusConcept.find("CL-C102577", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42")
+  #     result = current.deleted_set(previous, "children", "identifier")
+  #     expect(result).to eq(["C85563", "C102633", "C17745"])
+  #   end
 
-    it "CLs different object, different" do
-      cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.diff?(cl_1, cl_2)
-      expect(result).to eq(true)    
-    end
+  #   it "CLs different object, different" do
+  #     cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.diff?(cl_1, cl_2)
+  #     expect(result).to eq(true)    
+  #   end
 
-    it "CLs different object, same" do
-      cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
-    #write_yaml_file(result, sub_dir, "difference_expected_6.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_6.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CLs different object, same" do
+  #     cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
+  #   #write_yaml_file(result, sub_dir, "difference_expected_6.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_6.yaml")
+  #     expect(result).to eq(expected)
+  #   end
     
-    it "CLs different object, same" do
-      cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
-    #write_yaml_file(result, sub_dir, "difference_expected_7.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_7.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CLs different object, same" do
+  #     cl_1 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCli.find("CLI-C66741_C84372", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference(cl_1, cl_2, {ignore: [:synonym]})
+  #   #write_yaml_file(result, sub_dir, "difference_expected_7.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_7.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "CLs different object with children, same" do
-      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      result = IsoConcept.diff_with_children?(cl_1, cl_2, "identifier")
-      expect(result).to eq(false)    
-    end
+  #   it "CLs different object with children, same" do
+  #     cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     result = IsoConcept.diff_with_children?(cl_1, cl_2, "identifier")
+  #     expect(result).to eq(false)    
+  #   end
     
-    it "CL difference object, same" do
-      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      result = IsoConcept.difference(cl_1, cl_2)
-    #write_yaml_file(result, sub_dir, "difference_expected_8.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_8.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object, same" do
+  #     cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     result = IsoConcept.difference(cl_1, cl_2)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_8.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_8.yaml")
+  #     expect(result).to eq(expected)
+  #   end
     
-    it "CL difference object with children, same" do
-      cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
-      result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
-    #write_yaml_file(result, sub_dir, "difference_expected_9.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_9.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object with children, same" do
+  #     cl_1 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     cl_2 = CdiscCl.find("CL-C101843", "http://www.assero.co.uk/MDRThesaurus/CDISC/V39")
+  #     result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
+  #   #write_yaml_file(result, sub_dir, "difference_expected_9.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_9.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "CLs different object, different" do
-      cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
-    #write_yaml_file(result, sub_dir, "difference_expected_10.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_10.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CLs different object, different" do
+  #     cl_1 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C66741", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
+  #   #write_yaml_file(result, sub_dir, "difference_expected_10.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_10.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "CLs different object with children, different" do
-      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.diff_with_children?(cl_1, cl_2, "identifier")
-      expect(result).to eq(true)    
-    end
+  #   it "CLs different object with children, different" do
+  #     cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.diff_with_children?(cl_1, cl_2, "identifier")
+  #     expect(result).to eq(true)    
+  #   end
     
-    it "CL difference object, different" do
-      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2)
-    #write_yaml_file(result, sub_dir, "difference_expected_11.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_11.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object, different" do
+  #     cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference(cl_1, cl_2)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_11.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_11.yaml")
+  #     expect(result).to eq(expected)
+  #   end
     
-    it "CL difference object with children, different" do
-      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
-    write_yaml_file(result, sub_dir, "difference_expected_12.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_12.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object with children, different" do
+  #     cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
+  #   write_yaml_file(result, sub_dir, "difference_expected_12.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_12.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "CL difference object, different" do
-      cl_1 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference(cl_1, cl_2)
-    #write_yaml_file(result, sub_dir, "difference_expected_14.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_14.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object, different" do
+  #     cl_1 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference(cl_1, cl_2)
+  #   #write_yaml_file(result, sub_dir, "difference_expected_14.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_14.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-    it "CL difference object with children, different" do
-      cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
-      cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
-      result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
-    #write_yaml_file(result, sub_dir, "difference_expected_15.yaml")
-      expected = read_yaml_file(sub_dir, "difference_expected_15.yaml")
-      expect(result).to eq(expected)
-    end
+  #   it "CL difference object with children, different" do
+  #     cl_1 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V40")
+  #     cl_2 = CdiscCl.find("CL-C65047", "http://www.assero.co.uk/MDRThesaurus/CDISC/V41")
+  #     result = IsoConcept.difference_with_children(cl_1, cl_2, "identifier")
+  #   #write_yaml_file(result, sub_dir, "difference_expected_15.yaml")
+  #     expected = read_yaml_file(sub_dir, "difference_expected_15.yaml")
+  #     expect(result).to eq(expected)
+  #   end
 
-  end
+  # end
 
   context "SDTM Difference Tests" do
   
@@ -1466,26 +1476,30 @@ describe IsoConcept do
   context "Form Difference Tests" do
   
     before :all do
-      IsoHelpers.clear_cache
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("form_example_dm1.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
+        "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl" ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_general.ttl",
+        "form_example_vs_baseline_new.ttl", "BC.ttl", "BCT.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..59)
+      # IsoHelpers.clear_cache
+      # clear_triple_store
+      # load_schema_file_into_triple_store("ISO11179Types.ttl")
+      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      # load_schema_file_into_triple_store("BusinessOperational.ttl")
+      # load_schema_file_into_triple_store("BusinessForm.ttl")
+      # load_schema_file_into_triple_store("ISO25964.ttl")
+      # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+      # load_test_file_into_triple_store("iso_namespace_real.ttl")
+      # load_test_file_into_triple_store("form_example_dm1.ttl")
+      # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+      # load_test_file_into_triple_store("form_example_general.ttl")
+    #load_test_file_into_triple_store("CT_ACME_V1.ttl")
+      # load_test_file_into_triple_store("BCT.ttl")
+      # load_test_file_into_triple_store("BC.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -1659,6 +1673,7 @@ describe IsoConcept do
 
   end
 
+=begin
   context "Sponsor Terminology Difference Tests" do
   
     before :all do
@@ -1853,7 +1868,8 @@ describe IsoConcept do
       expected = read_yaml_file(sub_dir, "difference_expected_33.yaml")
       expect(result).to eq(expected)
     end
-=end
 
   end
+=end
+
 end
