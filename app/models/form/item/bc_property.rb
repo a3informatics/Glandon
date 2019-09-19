@@ -15,7 +15,8 @@ class Form::Item::BcProperty < Form::Item
   def thesaurus_concepts
     results = Array.new
     children.each do |child|
-      results << ThesaurusConcept.find(child.subject_ref.id, child.subject_ref.namespace, false)
+      #results << ThesaurusConcept.find(child.subject_ref.id, child.subject_ref.namespace, false)
+      results << Thesaurus::UnmanagedConcept.find_children(Uri.new(fragment: child.subject_ref.id, namespace: child.subject_ref.namespace))
     end
     return results
   end
@@ -139,7 +140,8 @@ class Form::Item::BcProperty < Form::Item
       code_list_ref = item_def.add_code_list_ref("#{self.id}-CL")
       code_list = metadata_version.add_code_list("#{self.id}-CL", "Code list for #{self.label}", "text", "")
       children.each do |tc_ref|
-      	cli = ThesaurusConcept.find(tc_ref.subject_ref.id, tc_ref.subject_ref.namespace)
+      	#cli = ThesaurusConcept.find(tc_ref.subject_ref.id, tc_ref.subject_ref.namespace)
+        cli = Thesaurus::UnmanagedConcept.find(Uri.new(fragment: tc_ref.subject_ref.id, namespace: tc_ref.subject_ref.namespace))
         code_list_item = code_list.add_code_list_item(cli.notation, "", "#{tc_ref.ordinal}")
         decode = code_list_item.add_decode()
         decode.add_translated_text(cli.label)

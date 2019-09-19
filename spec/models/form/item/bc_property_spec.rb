@@ -11,20 +11,32 @@ describe Form::Item::BcProperty do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
+      "form_example_vs_baseline_new.ttl", "BC.ttl"
+    ]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions((1..59))
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_schema_file_into_triple_store("ISO25964.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+    # load_test_file_into_triple_store("BC.ttl")
+    # load_test_file_into_triple_store("CT_V42.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -94,9 +106,10 @@ describe Form::Item::BcProperty do
     result = item.thesaurus_concepts
     json = []
     result.each {|tc| json << tc.to_json}
-  #write_hash_to_yaml_file_2(json, sub_dir, "thesaurus_concepts_expected.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_concepts_expected.yaml")
-    expect(json).to eq(expected)
+    check_file_actual_expected(json, sub_dir, "thesaurus_concepts_expected.yaml")
+  # write_hash_to_yaml_file_2(json, sub_dir, "thesaurus_concepts_expected.yaml")
+  #   expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_concepts_expected.yaml")
+  #   expect(json).to eq(expected)
   end 
 
   it "allows an object to be found from triples" #do
@@ -243,8 +256,7 @@ describe Form::Item::BcProperty do
     item.is_common = false
     tc_ref = OperationalReferenceV2.new
     tc_ref.ordinal = 1
-    tc_ref.subject_ref = UriV2.new({:id => "CLI-C66770_C49668", 
-    	:namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"})
+    tc_ref.subject_ref = UriV2.new({:id => "C66770_C49668", :namespace => "http://www.cdisc.org/C66770/V33"})
     item.children << tc_ref
  		item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml

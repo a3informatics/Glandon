@@ -156,10 +156,21 @@ class Thesaurus
       result
     end
 
+    # Simple To Hash. Output the concept as a sinple hash.
+    #
+    # @return [Hash] the hash for the object
     def simple_to_h
       {identifier: self.identifier, definition: self.definition, label: self.label, notation: self.notation, preferred_term: preferred_term_to_s, synonym: synonyms_to_s, extensible: self.extensible, id: self.uri.to_id}
     end
 
+    # To Json
+    #
+    # @return [Hash] the hash for the object
+    alias :to_json :simple_to_h
+
+    # Preferred Term To String
+    #
+    # @return [String] the label or empty string if no preferred term
     def preferred_term_to_s
       return "" if self.preferred_term.nil?
       self.preferred_term.label

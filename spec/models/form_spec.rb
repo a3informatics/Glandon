@@ -11,25 +11,38 @@ describe Form do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_dm1.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    load_test_file_into_triple_store("form_example_general.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("CT_ACME_V1.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
+      "form_example_dm1.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl",
+      "BCT.ttl", "BC.ttl"
+    ]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions((1..59))
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_schema_file_into_triple_store("ISO25964.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("form_example_dm1.ttl")
+    # load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
+    # load_test_file_into_triple_store("form_example_general.ttl")
+    # load_test_file_into_triple_store("CT_V42.ttl")
+    # load_test_file_into_triple_store("CT_V43.ttl")
+    # load_test_file_into_triple_store("CT_ACME_V1.ttl")
+    # load_test_file_into_triple_store("BCT.ttl")
+    # load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -64,8 +77,9 @@ describe Form do
   it "allows a form to be found, BC based" do
     result = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
   #Xwrite_hash_to_yaml_file_2(result.to_json, sub_dir, "example_vs_baseline_new.yaml")
-    expected = read_yaml_file_to_hash_2(sub_dir, "example_vs_baseline_new.yaml")
-    expect(result.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
+    #expected = read_yaml_file_to_hash_2(sub_dir, "example_vs_baseline_new.yaml")
+    #expect(result.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
+    check_file_actual_expected(result.to_json, sub_dir, "example_vs_baseline_new.yaml", equate_method: :hash_equal)
   end
 
   it "handles a form not being found" do
@@ -235,8 +249,7 @@ describe Form do
     item = Form.find("F-ACME_TEST1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     expected = read_yaml_file_to_hash_2(sub_dir, "base_core_result.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate,5).iso8601
-    #expect(item.to_json).to eq(expected)
-    expect(item.to_json).to hash_equal(expected) # Better hash comparison, items refs are not ordered
+    expect(item.to_json).to hash_equal(expected) 
   end
 
   it "can serialize as json, BC form" do
@@ -245,6 +258,7 @@ describe Form do
     expected = read_yaml_file_to_hash_2(sub_dir, "base_bc_json.yaml")
     expected[:last_changed_date] = item.lastChangeDate # Last changed data is dynamic
     expect(item.to_json).to hash_equal(expected) 
+    check_file_actual_expected(result.to_json, sub_dir, "example_vs_baseline_new.yaml", equate_method: :hash_equal)
   end
 
   it "can create the sparql for core form" do
