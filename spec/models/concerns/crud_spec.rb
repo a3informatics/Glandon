@@ -69,7 +69,7 @@ Update succeeded
   it "loads a file" do
     testDir = Rails.root.join("db","load", "test")
     filename = File.join(testDir, "crud_spec.ttl")
-    sparql_result = "<html>\n<head>\n</head>\n<body>\n<h1>Success</h1>\n<p>\nTriples = 6\n\n<p>\n</p>\n<button onclick=\"timeFunction()\">Back to Fuseki</button>\n</p>\n<script type=\"text/javascript\">\nfunction timeFunction(){\nwindow.location.href = \"/fuseki.html\";}\n</script>\n</body>\n</html>\n"
+    sparql_result = "<html>\n<head>\n</head>\n<body>\n<h1>Success</h1>\n<p>\nTriples = 9\n\n<p>\n</p>\n<button onclick=\"timeFunction()\">Back to Fuseki</button>\n</p>\n<script type=\"text/javascript\">\nfunction timeFunction(){\nwindow.location.href = \"/fuseki.html\";}\n</script>\n</body>\n</html>\n"
     expect(CRUD.file(filename).body).to eq(sparql_result)
   end
 
