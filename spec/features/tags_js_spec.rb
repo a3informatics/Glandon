@@ -215,7 +215,7 @@ describe "Tags", :type => :feature do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       #currently not working
       create_tag_bc("TAGBC", "BC for Tag Testing", "Obs PQR")
-      pause
+#pause
       add_tags("Biomedical Concepts", "TAGBC", "Tag1")
       wait_for_ajax
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
@@ -237,7 +237,7 @@ describe "Tags", :type => :feature do
      it "add tags to terminology auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_term("TAGTERM", "Terminology for Tag Testing")
-      pause
+#pause
       add_tags_term("TAGTERM", "Tag1")
       wait_for_ajax
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
@@ -245,7 +245,7 @@ describe "Tags", :type => :feature do
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
       ui_click_node_name ("Tag1")
       ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
-      pause
+#pause
       #1. check child tag is added to TAGTERM
       ui_click_node_name ("Tag1_1")
       #not implemented ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
@@ -254,9 +254,9 @@ describe "Tags", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology' 
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
-      pause
+#pause
       #find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click 
-      pause
+#pause
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
     end
 
