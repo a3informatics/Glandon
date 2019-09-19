@@ -113,7 +113,7 @@ describe "Thesaurus", :type => :feature do
       context_menu_element('history', 4, 'CDISC Extensions', :search)
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       #save_and_open_page
-      click_link 'Close'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC EXT'
     end
 
@@ -131,11 +131,13 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'A00010'
       expect(page).to have_content 'A00020'
       find(:xpath, "//tr[contains(.,'VSTEST')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Vital Sign Test Codes Extension A00001'
+      expect(page).to have_content 'Vital Sign Test Codes Extension'
+      expect(page).to have_content 'A00001'
       expect(page).to have_content 'A00003'
       expect(page).to have_content 'A00002'
       find(:xpath, "//tr[contains(.,'MUAC')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show: Mid upper arm circumference A00003'
+      expect(page).to have_content 'Mid upper arm circumference'
+      expect(page).to have_content 'A00003'
       #save_and_open_page
     end
 

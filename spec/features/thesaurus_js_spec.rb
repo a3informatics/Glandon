@@ -27,8 +27,8 @@ describe "Thesaurus", :type => :feature do
   describe "Curator User", :type => :feature do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
       load_files(schema_files, data_files)
       # clear_triple_store
       # load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -51,10 +51,14 @@ describe "Thesaurus", :type => :feature do
     end
 
     before :each do
+      #NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "10")
+      NameValue.create(name: "thesaurus_child_identifier", value: "999")
       ua_curator_login
     end
 
     after :each do
+      #NameValue.destroy_all
       ua_logoff
     end
 
@@ -63,62 +67,62 @@ describe "Thesaurus", :type => :feature do
       Token.restore_timeout
     end
 
-    it "allows a thesaurus to be viewed, sponsor", js: true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: CDISC EXT'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'View').click
-      expect(page).to have_content 'View: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
-      expect(page).to have_content 'Thesauri Details'
-      ui_check_anon_table_row(1, ["Label:", "CDISC Extensions"])
-      ui_check_anon_table_row(2, ["Identifier:", "CDISC EXT"])
-      ui_check_anon_table_row(3, ["Version Label:", "0.1"])
-      ui_check_anon_table_row(4, ["Version:", "1"])
-      key1 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup"]')
-      ui_click_node_key(key1)
-      wait_for_ajax
-      ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
-      ui_check_td_with_id("conceptId", "A00010")
-      ui_double_click_node_key(key1)
-      wait_for_ajax
-      key2 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup", "Ethnic Subgroup 1"]')
-      ui_click_node_key(key2)
-      ui_check_td_with_id("conceptLabel", "Ethnic Subgroup 1")
-      ui_check_td_with_id("conceptId", "A00011")
-      ui_check_td_with_id("conceptNotation", "ETHNIC SUBGROUP [1]")
-      ui_click_node_key(key1)
-      wait_for_ajax
-      ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
-      ui_check_td_with_id("conceptId", "A00010")
-    end
+    # it "allows a thesaurus to be viewed, sponsor", js: true do
+    #   click_navbar_terminology
+    #   expect(page).to have_content 'Index: Terminology'
+    #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+    #   expect(page).to have_content 'History: CDISC EXT'
+    #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'View').click
+    #   expect(page).to have_content 'View: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
+    #   expect(page).to have_content 'Thesauri Details'
+    #   ui_check_anon_table_row(1, ["Label:", "CDISC Extensions"])
+    #   ui_check_anon_table_row(2, ["Identifier:", "CDISC EXT"])
+    #   ui_check_anon_table_row(3, ["Version Label:", "0.1"])
+    #   ui_check_anon_table_row(4, ["Version:", "1"])
+    #   key1 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup"]')
+    #   ui_click_node_key(key1)
+    #   wait_for_ajax
+    #   ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
+    #   ui_check_td_with_id("conceptId", "A00010")
+    #   ui_double_click_node_key(key1)
+    #   wait_for_ajax
+    #   key2 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup", "Ethnic Subgroup 1"]')
+    #   ui_click_node_key(key2)
+    #   ui_check_td_with_id("conceptLabel", "Ethnic Subgroup 1")
+    #   ui_check_td_with_id("conceptId", "A00011")
+    #   ui_check_td_with_id("conceptNotation", "ETHNIC SUBGROUP [1]")
+    #   ui_click_node_key(key1)
+    #   wait_for_ajax
+    #   ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
+    #   ui_check_td_with_id("conceptId", "A00010")
+    # end
 
-    it "allows a thesaurus to be viewed, CDISC", js: true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'CDISC Terminology')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: CDISC Terminology'
-      find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'View').click
-      expect(page).to have_content 'View: CDISC Terminology 2015-12-18 CDISC Terminology (V43.0.0, 43, Standard)'
-      expect(page).to have_content 'Thesauri Details'
-      ui_check_anon_table_row(1, ["Label:", "CDISC Terminology 2015-12-18"])
-      ui_check_anon_table_row(2, ["Identifier:", "CDISC Terminology"])
-      ui_check_anon_table_row(3, ["Version Label:", "2015-12-18"])
-      ui_check_anon_table_row(4, ["Version:", "43"])
-      key1 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex"]')
-      ui_click_node_key(key1)
-      wait_for_ajax
-      ui_check_td_with_id("conceptLabel", "Sex")
-      ui_check_td_with_id("conceptId", "C66731")
-      ui_check_td_with_id("conceptNotation", "SEX")
-      ui_double_click_node_key(key1)
-      wait_for_ajax
-      key2 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex", "Male"]')
-      ui_click_node_key(key2)
-      ui_check_td_with_id("conceptLabel", "Male")
-      ui_check_td_with_id("conceptId", "C20197")
-      ui_check_td_with_id("conceptNotation", "M")
-    end
+    # it "allows a thesaurus to be viewed, CDISC", js: true do
+    #   click_navbar_terminology
+    #   expect(page).to have_content 'Index: Terminology'
+    #   find(:xpath, "//tr[contains(.,'CDISC Terminology')]/td/a", :text => 'History').click
+    #   expect(page).to have_content 'History: CDISC Terminology'
+    #   find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'View').click
+    #   expect(page).to have_content 'View: CDISC Terminology 2015-12-18 CDISC Terminology (V43.0.0, 43, Standard)'
+    #   expect(page).to have_content 'Thesauri Details'
+    #   ui_check_anon_table_row(1, ["Label:", "CDISC Terminology 2015-12-18"])
+    #   ui_check_anon_table_row(2, ["Identifier:", "CDISC Terminology"])
+    #   ui_check_anon_table_row(3, ["Version Label:", "2015-12-18"])
+    #   ui_check_anon_table_row(4, ["Version:", "43"])
+    #   key1 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex"]')
+    #   ui_click_node_key(key1)
+    #   wait_for_ajax
+    #   ui_check_td_with_id("conceptLabel", "Sex")
+    #   ui_check_td_with_id("conceptId", "C66731")
+    #   ui_check_td_with_id("conceptNotation", "SEX")
+    #   ui_double_click_node_key(key1)
+    #   wait_for_ajax
+    #   key2 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex", "Male"]')
+    #   ui_click_node_key(key2)
+    #   ui_check_td_with_id("conceptLabel", "Male")
+    #   ui_check_td_with_id("conceptId", "C20197")
+    #   ui_check_td_with_id("conceptNotation", "M")
+    # end
 
     it "allows for terminology to be exported as TTL", js: true do
       clear_downloads
@@ -126,8 +130,8 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
-      find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'Show').click
-      expect(page).to have_content 'Show:'
+      context_menu_element('history', 4, 'CDISC Extensions', :show)
+      expect(page).to have_content 'Code Lists'
       click_link 'Export Turtle'
       file = download_content
       write_text_file_2(file, sub_dir, "thesaurus_export_results.ttl")
@@ -137,17 +141,19 @@ describe "Thesaurus", :type => :feature do
       delete_data_file(sub_dir, "thesaurus_export_results.ttl")
     end
 
-    it "allows terminology to be edited", js: true do
+    it "allows terminology to be edited, manual-identifier"
+
+    it "allows terminology to be edited, auto-identifier", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
+      context_menu_element('history', 4, 'CDISC Extensions', :edit)
       expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
-      ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "20" => 20, "25" => 25, "50" => 50, "All" => -1})
-      fill_in 'Identifier', with: 'A00030'
+      ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100, "All" => -1})
+      # fill_in 'Identifier', with: 'A00030'
       click_button 'New'
-      expect(page).to have_content 'A00030' # Note up version
+      expect(page).to have_content 'NP000010P' # Note up version
       editor_table_click(4,2)
       editor_table_fill_in("DTE_Field_label", "Label text\t")
       editor_table_fill_in("DTE_Field_notation", "SUBMISSION\t")
