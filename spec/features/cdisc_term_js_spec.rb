@@ -494,8 +494,6 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
     end
 
-    # currently not working
-
     it "history allows the change page to be viewed (REQ-MDR-CT-040)", js:true do
        click_browse_every_version
        expect(page).to have_content 'History'
