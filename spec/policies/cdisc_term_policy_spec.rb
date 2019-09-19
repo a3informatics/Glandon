@@ -16,16 +16,30 @@ describe CdiscTermPolicy do
     ua_destroy
   end
   
+  context "for a community reader" do
+
+    let (:user) { @user_cr }
+
+    it "allows access" do
+      allow_list [:index, :changes, :history]
+    end
+
+    it "denies access" do
+      deny_list [], true
+    end
+
+  end
+
   context "for a reader" do
 
     let (:user) { @user_r }
 
 		it "allows access" do
-      allow_list [:index, :show, :view, :history]
+      allow_list [:index, :history]
     end
 
 		it "denies access" do
-      deny_list [:import]
+      deny_list [:changes], true
     end
 
   end
@@ -35,11 +49,11 @@ describe CdiscTermPolicy do
     let (:user) { @user_tr }
 
 		it "allows access" do
-      allow_list [:index, :show, :view, :history]
+      allow_list [:index, :history]
     end
 
 		it "denies access" do
-      deny_list [:import]
+      deny_list [:changes]
     end
 
   end
@@ -49,11 +63,11 @@ describe CdiscTermPolicy do
     let (:user) { @user_tc }
 
 		it "allows access" do
-      allow_list [:index, :show, :view, :history]
+      allow_list [:index, :history]
     end
 
 		it "denies access" do
-      deny_list [:import]
+      deny_list [:changes]
     end
 
   end
@@ -63,11 +77,11 @@ describe CdiscTermPolicy do
     let (:user) { @user_c }
 
 		it "allows access" do
-      allow_list [:index, :show, :view, :history]
+      allow_list [:index, :history]
     end
 
 		it "denies access" do
-      deny_list [:import]
+      deny_list [:changes]
     end
 
   end
@@ -77,11 +91,11 @@ describe CdiscTermPolicy do
     let (:user) { @user_ca }
 
 		it "allows access" do
-      allow_list [:index, :show, :view, :history, :import]
+      allow_list [:index, :history]
     end
 
 		it "denies access" do
-      deny_list []
+      deny_list [:changes]
     end
 
   end
@@ -95,7 +109,7 @@ describe CdiscTermPolicy do
     end
 
 		it "denies access" do
-      deny_list [:index, :show, :view, :history, :import]
+      deny_list [:index, :changes, :history]
     end
 
   end
