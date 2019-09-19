@@ -9,6 +9,7 @@ describe "Thesaurus", :type => :feature do
   include WaitForAjaxHelper
   include DownloadHelpers
   include SparqlHelpers
+  include NameValueHelpers
 
   def sub_dir
     return "features"
@@ -45,25 +46,23 @@ describe "Thesaurus", :type => :feature do
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
-      @user = User.create :email => "curator@example.com", :password => "12345678"
-      @user.add_role :curator
+      ua_create
       Token.set_timeout(30)
+      nv_create(parent: "10", child: "999")
     end
 
     before :each do
       #NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "10")
-      NameValue.create(name: "thesaurus_child_identifier", value: "999")
       ua_curator_login
     end
 
     after :each do
-      #NameValue.destroy_all
       ua_logoff
     end
 
     after :all do
       ua_destroy
+      nv_destroy
       Token.restore_timeout
     end
 
