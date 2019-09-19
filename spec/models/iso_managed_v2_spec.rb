@@ -846,6 +846,27 @@ describe IsoManagedV2 do
       expect(ct.next_ordinal(:is_top_concept_reference)).to eq(1)
     end
 
+    it "allows the current set to be found" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(2)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM2/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(3)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM3/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(4)
+    end
+
   end
 
   describe "Delete" do

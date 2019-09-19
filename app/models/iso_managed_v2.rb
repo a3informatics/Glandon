@@ -607,6 +607,27 @@ class IsoManagedV2 < IsoConceptV2
     query_results.by_object(:max).first.to_i + 1
   end
 
+  # Current Set. Find the set of current items for the class
+  #
+  # @return [Array] array of Uri objects
+  def self.current_set
+    #date_time = Time.now.iso8601.gsub('+',"%2B")
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT ?a WHERE
+      {
+        ?a rdf:type #{rdf_type.to_ref} .
+        ?a isoT:hasState ?c .
+        ?c isoR:effectiveDate ?d .
+        ?c isoR:untilDate ?e .
+        FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) .
+        FILTER ( xsd:dateTime(?e) >= \"#{date_time}\"^^xsd:dateTime ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR])
+    query_results.by_object(:a)
+  end
+
 private
 
   # History previous / next
