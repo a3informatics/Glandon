@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe "Audit Trail", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
-  
+
   before :all do
     clear_triple_store
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
@@ -17,8 +17,8 @@ describe "Audit Trail", :type => :feature do
     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
 
     ua_create
-    user1 = User.create :email => "audit_trail_user_1@example.com", :password => "changeme" 
-    user2 = User.create :email => "audit_trail_user_2@example.com", :password => "changeme" 
+    user1 = User.create :email => "audit_trail_user_1@example.com", :password => "changeme"
+    user2 = User.create :email => "audit_trail_user_2@example.com", :password => "changeme"
     AuditTrail.delete_all
     @now1 = Time.now - 70
     @now2 = Time.now - 80
@@ -40,55 +40,67 @@ describe "Audit Trail", :type => :feature do
   end
 
   after :all do
-    ua_destroy
     user = User.where(:email => "audit_trail_user_1@example.com").first
     user.destroy
     user = User.where(:email => "audit_trail_user_2@example.com").first
     user.destroy
+    ua_destroy
   end
 
   describe "curator allowed access to audit", :type => :feature do
 
-		before :each do
-			ua_curator_login
-      click_link 'Audit Trail'
-      expect(page).to have_content 'Index: Audit Trail'
-		end
+    before :each do
+      ua_curator_login
+    end
 
-    it "allows viewing" do
+    after :each do
+      ua_logoff
+    end
+
+    it "allows viewing", js:true do
+      click_navbar_at
+      expect(page).to have_content 'Index: Audit Trail'
     end
 
     it "check ordering with latest in first row", js: true do
+      click_navbar_at
       expect(page).to have_content 'Index: Audit Trail'
-      ui_check_table_row("main", 2, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
-      ui_check_table_row("main", 3, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
+      ui_check_table_row("main", 4, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
+      ui_check_table_row("main", 5, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
 
-    it "allows searching - event" do
+    it "allows searching - event", js:true do
+      click_navbar_at
+      expect(page).to have_content 'Index: Audit Trail'
       select 'User', from: "audit_trail_event"
       click_button 'Submit'
-      expect(page.all('table#main tr').count).to eq(7) # Note, these counts are records expected + 1 for the header row. Also include logins in the tests (3)
+      expect(page.all('table#main tr').count).to eq(10) # Note, these counts are records expected + 1 for the header row. Also include logins in the tests (3)
     end
 
-    it "allows searching - user" do
+    it "allows searching - user", js:true do
+      click_navbar_at
+      expect(page).to have_content 'Index: Audit Trail'
       select 'audit_trail_user_2@example.com', from: "audit_trail_user"
       click_button 'Submit'
       expect(page.all('table#main tr').count).to eq(3)
     end
 
-    it "allows searching - owner" do
+    it "allows searching - owner", js:true do
+      click_navbar_at
       select 'ACME', from: "audit_trail_owner"
       click_button 'Submit'
       expect(page.all('table#main tr').count).to eq(10)
     end
 
-    it "allows searching - identifier" do
+    it "allows searching - identifier", js:true do
+      click_navbar_at
       fill_in 'Identifier', with: 'T1'
       click_button 'Submit'
       expect(page.all('table#main tr').count).to eq(4)
     end
 
-    it "allows searching - combined" do
+    it "allows searching - combined", js:true do
+      click_navbar_at
       select 'CDISC', from: "audit_trail_owner"
       fill_in 'Identifier', with: 'I2'
       click_button 'Submit'
@@ -98,38 +110,51 @@ describe "Audit Trail", :type => :feature do
   end
 
   describe "content admin allowed access to audit", :type => :feature do
-  
-    before :each do
-			ua_content_admin_login
-      click_link 'Audit Trail'
-      expect(page).to have_content 'Index: Audit Trail'
-		end
 
-    it "allows viewing" do
+    before :each do
+      ua_content_admin_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows viewing", js:true do
+      click_navbar_at
+      expect(page).to have_content 'Index: Audit Trail'
     end
 
   end
 
   describe "system admin allowed access to audit", :type => :feature do
-  
+
     before :each do
 			ua_sys_admin_login
-      click_link 'main_nav_at'
-      expect(page).to have_content 'Index: Audit Trail'
 		end
 
-    it "allows viewing" do
+    after :each do
+      ua_logoff
+    end
+
+    it "allows viewing", js:true do
+      click_navbar_at
+      expect(page).to have_content 'Index: Audit Trail'
     end
 
   end
 
   describe "reader not allowed access to audit", :type => :feature do
-  
+
     before :each do
 			ua_reader_login
 		end
 
-    it "does not allow viewing" do
+    after :each do
+      ua_logoff
+    end
+
+    it "does not allow viewing", js:true do
+      ui_expand_section("main_nav_sysadmin") if !ui_section_expanded?("main_nav_sysadmin")
       expect(page).to have_no_link 'Audit Trail'
     end
 
