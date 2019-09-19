@@ -530,4 +530,38 @@ describe Thesaurus::UnmanagedConcept do
 
   end
 
+  describe "other tests" do
+  
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :each do
+    end
+
+    it "simple hash" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      check_file_actual_expected(tc.simple_to_h, sub_dir, "simple_to_h_expected.yaml")
+    end 
+
+    it "JSON alias" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      check_file_actual_expected(tc.to_json, sub_dir, "simple_to_h_expected.yaml")
+    end 
+
+    it "Preferred Term to string" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      expect(tc.preferred_term_to_s).to eq("Terminal 5")
+      tc.preferred_term = nil
+      expect(tc.preferred_term_to_s).to eq("")
+    end 
+
+  end
+
 end
