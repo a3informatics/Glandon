@@ -43,7 +43,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   # Test if registered
   # 
   # @return [Boolean] True if a registration state present
-  def registered?()
+  def registered?
   	return false if ["", C_NOT_SET].include?(self.registration_status) # Keep empty string to preserve backwards compatibility
     return true
   end
