@@ -48,7 +48,6 @@ describe "Users", :type => :feature do
       visit '/users/sign_in'
       fill_in 'Email', with: 'reader@example.com'
       click_button 'Log in'
-      pause
       expect(page).to have_content 'Log in'
       expect(AuditTrail.count).to eq(audit_count)
     end
