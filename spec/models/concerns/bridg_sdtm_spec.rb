@@ -3,6 +3,7 @@ require 'rails_helper'
 describe BridgSdtm do
 	
 	it "finds entry that exists I" do
+byebug
 		expect(BridgSdtm.get("DefinedObservation.nameCode.CD.code")).to eq("--TESTCD")
 	end
 
