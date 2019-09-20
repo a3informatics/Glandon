@@ -57,7 +57,6 @@ class AlsExcel
   def form(identifier)
     # Get the set of current terminologies
     thesauri = []
-byebug
     Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find_minimum(uri) }
     # Process form
     label = get_label(identifier)
@@ -103,7 +102,6 @@ byebug
     end
     return result
   rescue => e
-byebug
     msg = "Exception raised building form."
     ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
     @errors.add(:base, msg)
@@ -237,7 +235,6 @@ private
   end
   
   def get_cl(notation, thesauri)   
-byebug
     thcs = []
     thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
     if thcs.empty?
