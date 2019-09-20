@@ -457,9 +457,8 @@ describe BiomedicalConceptCore::Property do
     property.add({ tc_refs: refs })
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
   #Xwrite_yaml_file(property.to_json, sub_dir, "add_term.yaml")
-    expected = read_yaml_file(sub_dir, "add_term.yaml")
+    check_file_actual_expected(property.to_json, sub_dir, "add_term.yaml", eq_method: hash_equal)
     expect(property.tc_refs.count).to eq(6)
-    expect(property.to_json).to eq(expected)
   end
 
   it "handles error adding term references" do
