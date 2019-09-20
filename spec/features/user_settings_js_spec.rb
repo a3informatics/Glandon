@@ -171,10 +171,10 @@ describe "User Settings", :type => :feature do
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
       expect(page).to have_content 'Email: amend@assero.co.uk'
-      expect(page).to have_content 'Display Name: A Amend'
+      expect(page).to have_content 'A Amend'
       fill_in 'user_name', with: 'New Name for A Amend'
       click_button 'name_update_button'
-      expect(page).to have_content 'Display Name: New Name for A Amend'
+      expect(page).to have_content 'New Name for A Amend'
     end
 
   end
