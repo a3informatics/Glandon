@@ -169,7 +169,7 @@ describe SdtmUserDomain do
   #Xwrite_yaml_file(item.to_json, sub_dir, "add_2_expected.yaml")
     # expected = read_yaml_file(sub_dir, "add_2_expected.yaml")
     # expect(item.to_json).to eq(expected)
-    check_file_actual_expected(item.to_json, sub_dir, "add_2_expected.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(item.to_json, sub_dir, "add_2_expected.yaml", equate_method: :hash_equal)
 
   end
 
