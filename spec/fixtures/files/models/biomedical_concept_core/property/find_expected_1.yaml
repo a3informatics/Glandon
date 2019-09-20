@@ -1,19 +1,19 @@
 ---
+:type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
 :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code
 :namespace: http://www.assero.co.uk/MDRBCs/V1
-:type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-:extension_properties: []
 :label: ''
-:alias: Result Units (--ORRESU)
+:extension_properties: []
 :ordinal: 2
+:alias: Result Units (--ORRESU)
+:coded: true
 :collect: true
 :enabled: true
-:format: ''
-:prompt_text: Units
 :question_text: Result units?
+:prompt_text: Units
 :simple_datatype: string
+:format: ''
 :bridg_path: PerformedClinicalResult.value.PQR.code
-:coded: true
 :children:
 - :type: http://www.assero.co.uk/BusinessOperational#TcReference
   :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1
@@ -25,8 +25,8 @@
   :ordinal: 1
   :local_label: ''
   :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-    :id: CLI-C66770_C49668
+    :namespace: http://www.cdisc.org/C66770/V33
+    :id: C66770_C49668
 - :type: http://www.assero.co.uk/BusinessOperational#TcReference
   :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_2
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -37,8 +37,8 @@
   :ordinal: 2
   :local_label: ''
   :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-    :id: CLI-C66770_C48500
+    :namespace: http://www.cdisc.org/C66770/V41
+    :id: C66770_C48500
 - :type: http://www.assero.co.uk/BusinessOperational#TcReference
   :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_3
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -49,8 +49,8 @@
   :ordinal: 3
   :local_label: ''
   :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-    :id: CLI-C71620_C41139
+    :namespace: http://www.cdisc.org/C71620/V6
+    :id: C71620_C41139
 - :type: http://www.assero.co.uk/BusinessOperational#TcReference
   :id: BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_4
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -61,5 +61,5 @@
   :ordinal: 4
   :local_label: ''
   :subject_ref:
-    :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-    :id: CLI-C71620_C71253
+    :namespace: http://www.cdisc.org/C71620/V6
+    :id: C71620_C71253
