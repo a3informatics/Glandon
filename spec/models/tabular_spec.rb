@@ -67,29 +67,18 @@ describe Tabular do
   it "allows object to be initialized from triples" do
     triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     result = TabularSubClass.new(triples, "D-ACME_VSDomain")
-  # write_yaml_file(result.to_json, sub_dir, "from_triples_expected.yaml")
-  #   expected = read_yaml_file(sub_dir, "from_triples_expected.yaml")
-  #   expect(result.to_json).to eq(expected) 
     check_file_actual_expected(result.to_json, sub_dir, "from_triples_expected.yaml", equate_method: :hash_equal)
   end  
 
   it "allows an object to be found" do
     uri = UriV3.new(uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain")
     tabular = TabularSubClass.find(uri.to_id)
-  #write_yaml_file(tabular.triples, sub_dir, "from_triples_input.yaml") # Used in above test
-  #write_yaml_file(tabular.to_json, sub_dir, "find_expected.yaml")
-    # expected = read_yaml_file(sub_dir, "find_expected.yaml")
-    # expect(tabular.to_json).to eq(expected)
     check_file_actual_expected(tabular.to_json, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
-
   end
 
   it "allows an object to be created from JSON" do
     json = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = TabularSubClass.from_json(json)
-  #write_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
-    # expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-    # expect(item.to_json).to eq(expected)
     check_file_actual_expected(item.to_json, sub_dir, "from_json_expected.yaml", equate_method: :hash_equal)
   end
   
@@ -99,9 +88,6 @@ describe Tabular do
     item.label = "test label"
     item.ordinal = 12
     item.rule = ""
-  #write_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
-    # expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
-    # expect(item.to_json).to eq(expected)
     check_file_actual_expected(item.to_json, sub_dir, "to_json_expected.yaml", equate_method: :hash_equal)
   end
   
