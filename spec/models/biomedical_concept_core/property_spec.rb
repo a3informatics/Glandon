@@ -7,7 +7,7 @@ describe BiomedicalConceptCore::Property do
   include SparqlHelpers
 
   def sub_dir
-    return "models/biomedical_concept_core"
+    return "models/biomedical_concept_core/property"
   end
 
   before :all do
@@ -224,93 +224,8 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows the object to be found - TC Refs" do
-    result = 
-      {
-        :id => "BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", 
-        :namespace => "http://www.assero.co.uk/MDRBCs/V1", 
-        :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
-        :extension_properties => [],
-        :label => "",
-        :alias => "Result Units (--ORRESU)",
-        :ordinal => 2,
-        :collect => true,
-        :enabled => true,
-        :format => "",
-        :prompt_text => "Units",
-        :question_text => "Result units?",
-        :simple_datatype => "string",
-        :bridg_path => "PerformedClinicalResult.value.PQR.code",
-        :coded => true,
-        :children => 
-        [ 
-          {
-            :type=>"http://www.assero.co.uk/BusinessOperational#TcReference",
-            :id=>"BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_1",
-            :namespace=>"http://www.assero.co.uk/MDRBCs/V1",
-            :label=>"Thesaurus Concept Reference",
-            :extension_properties=>[],
-            :enabled=>true,
-            :optional=>true,
-            :ordinal=>1,
-            :local_label=>"",
-            :subject_ref=>
-            {
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/CDISC/V42",
-              :id=>"CLI-C66770_C49668"
-            }
-          },
-          {
-            :type=>"http://www.assero.co.uk/BusinessOperational#TcReference",
-            :id=>"BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_2",
-            :namespace=>"http://www.assero.co.uk/MDRBCs/V1",
-            :label=>"Thesaurus Concept Reference",
-            :extension_properties=>[],
-            :enabled=>true,
-            :optional=>true,
-            :ordinal=>2,
-            :local_label=>"",
-            :subject_ref=>
-            {
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/CDISC/V42",
-              :id=>"CLI-C66770_C48500"
-            }
-          },
-          {
-            :type=>"http://www.assero.co.uk/BusinessOperational#TcReference",
-            :id=>"BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_3",
-            :namespace=>"http://www.assero.co.uk/MDRBCs/V1",
-            :label=>"Thesaurus Concept Reference",
-            :extension_properties=>[],
-            :enabled=>true,
-            :optional=>true,
-            :ordinal=>3,
-            :local_label=>"",
-            :subject_ref=>
-            {
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/CDISC/V42",
-              :id=>"CLI-C71620_C41139"
-            }
-          },
-          {
-            :type=>"http://www.assero.co.uk/BusinessOperational#TcReference",
-            :id=>"BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code_TR_4",
-            :namespace=>"http://www.assero.co.uk/MDRBCs/V1",
-            :label=>"Thesaurus Concept Reference",
-            :extension_properties=>[],
-            :enabled=>true,
-            :optional=>true,
-            :ordinal=>4,
-            :local_label=>"",
-            :subject_ref=>
-            {
-              :namespace=>"http://www.assero.co.uk/MDRThesaurus/CDISC/V42",
-              :id=>"CLI-C71620_C71253"
-            }
-          }
-        ]
-      }
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    expect(property.to_json).to eq (result)
+    check_file_actual_expected(property.to_json, sub_dir, "find_expected_1.yaml", eq_method: hash_equal)
   end
 
   it "allows the object to be exported as JSON" do
@@ -435,10 +350,10 @@ describe BiomedicalConceptCore::Property do
     item.bridg_path = "ddd.eee.fff"
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-  #Xwrite_text_file_2(sparql.to_s, sub_dir, "property_sparql_simple.txt")
-    #expected = read_text_file_2(sub_dir, "property_sparql_simple.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "sparql_simple.txt")
+    #expected = read_text_file_2(sub_dir, "sparql_simple.txt")
     #expect(sparql.to_s).to eq(expected)
-    check_sparql_no_file(sparql.to_s, "property_sparql_simple.txt")
+    check_sparql_no_file(sparql.to_s, "sparql_simple.txt")
   end
   
   it "allows an object to be exported as SPARQL, complex datatype" do
@@ -486,10 +401,10 @@ describe BiomedicalConceptCore::Property do
     item = BiomedicalConceptCore::Property.from_json(result)
     parent_uri = UriV2.new({:id => "XXX", :namespace => "http://www.example.com/path"})
     item.to_sparql_v2(parent_uri, sparql)
-  #Xwrite_text_file_2(sparql.to_s, sub_dir, "property_sparql_complex.txt")
-    #expected = read_text_file_2(sub_dir, "property_sparql_complex.txt")
+  #Xwrite_text_file_2(sparql.to_s, sub_dir, "sparql_complex.txt")
+    #expected = read_text_file_2(sub_dir, "sparql_complex.txt")
     #expect(sparql.to_s).to eq(expected)
-    check_sparql_no_file(sparql.to_s, "property_sparql_complex.txt")
+    check_sparql_no_file(sparql.to_s, "sparql_complex.txt")
   end
 
   it "allows the property to be updated" do
@@ -503,8 +418,8 @@ describe BiomedicalConceptCore::Property do
     property.update(params)
     expect(property.errors.count).to eq(0)
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    write_yaml_file(property.to_json, sub_dir, "property_update.yaml")
-    expected = read_yaml_file(sub_dir, "property_update.yaml")
+  #write_yaml_file(property.to_json, sub_dir, "update.yaml")
+    expected = read_yaml_file(sub_dir, "update.yaml")
     expect(property.to_json).to eq(expected)
   end
 
@@ -543,8 +458,8 @@ describe BiomedicalConceptCore::Property do
     refs << { :subject_ref => {id: "new_2", namespace: "http://example.com/term" }, ordinal: 6}
     property.add({ tc_refs: refs })
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #Xwrite_yaml_file(property.to_json, sub_dir, "property_add_term.yaml")
-    expected = read_yaml_file(sub_dir, "property_add_term.yaml")
+  #Xwrite_yaml_file(property.to_json, sub_dir, "add_term.yaml")
+    expected = read_yaml_file(sub_dir, "add_term.yaml")
     expect(property.tc_refs.count).to eq(6)
     expect(property.to_json).to eq(expected)
   end
@@ -564,8 +479,8 @@ describe BiomedicalConceptCore::Property do
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
     property.remove
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #Xwrite_yaml_file(property.to_json, sub_dir, "property_remove_term.yaml")
-    expected = read_yaml_file(sub_dir, "property_remove_term.yaml")
+  #Xwrite_yaml_file(property.to_json, sub_dir, "remove_term.yaml")
+    expected = read_yaml_file(sub_dir, "remove_term.yaml")
     expect(property.tc_refs.count).to eq(0)
     expect(property.to_json).to eq(expected)
   end
