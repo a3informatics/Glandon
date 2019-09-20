@@ -16,6 +16,10 @@
   color: $grey-white !important;
 }
 
+.btn:active, .btn:focus{
+  color: $grey-white;
+}
+
 .btn.nomargin{
   margin: 0px;
 }
@@ -37,6 +41,35 @@
 
 .btn.sm-margin{
   margin: 4px 2px;
+}
+
+.btn.red{
+  background: $accent-color-2;
+}
+
+.btn.red:hover{
+  background: $accent-color-2-light;
+}
+
+.btn.red:active, .btn.red:focus{
+  background: $accent-color-2-dark !important;
+}
+
+.green.green{
+  background: $secondary-color-medium;
+}
+
+.btn.green:hover{
+  background: $secondary-color-light;
+}
+
+.btn.green:active, .btn.green:focus{
+  background: $secondary-color-dark !important;
+}
+
+.btn.disabled{
+  background: $grey-medium;
+  pointer-events: none;
 }
 
 // Wrapper for multiple in-line buttons, takes 100% width and the contents are centered
@@ -72,6 +105,10 @@
 
 .ico-btn:hover .ico-btn-text{
   color: $grey-white !important;
+}
+
+.ico-btn:active, .ico-btn:focus{
+  color: $primary-color-medium;
 }
 
 .ico-btn .ico{
@@ -137,8 +174,20 @@
   text-decoration: none;
 }
 
+.ico-btn-sec:active, .ico-btn-sec:focus{
+  color: $grey-medium;
+}
+
 .ico-btn-sec.disabled .circular-badge{
   background: $grey-light !important;
+}
+
+.ico-btn-sec .circular-badge.green{
+  background: $secondary-color-medium;
+}
+
+.ico-btn-sec:hover .circular-badge.green{
+  background: $secondary-color-light;
 }
 
 .ico-btn-sec .ico-btn-sec-text{
