@@ -37,9 +37,7 @@ describe SdtmModelDomain do
 
 	it "allows a domain to be found" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODELINTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "find_expected.yaml")
-    expected = read_yaml_file(sub_dir, "find_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "find_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows a domain to be found, not found error" do
@@ -64,17 +62,13 @@ describe SdtmModelDomain do
   
   it "allows the domain class to be exported as JSON" do
     item = SdtmModelDomain.find("M-CDISC_SDTMMODELINTERVENTIONS", "http://www.assero.co.uk/MDRSdtmMd/CDISC/V3")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "to_json_expected.yaml", equate_method: :hash_equal)
   end
 
 	it "allows the domain class to be created from JSON" do 
 		input = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmModelDomain.from_json(input)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
-    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-    expect(item.to_json).to eq(expected)	
+    check_file_actual_expected(item.to_json, sub_dir, "from_json_expected.yaml", equate_method: :hash_equal)
   end
 
 	it "allows the object to be output as sparql" do
@@ -110,9 +104,7 @@ describe SdtmModelDomain do
     #expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "to_sparql_expected_2.txt")
-	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
-    expected = read_yaml_file(sub_dir, "build_expected.yaml")
-		expect(result.to_json).to eq(expected)
+    check_file_actual_expected(result.to_json, sub_dir, "build_expected.yaml", equate_method: :hash_equal)
 		expect(result.errors.count).to eq(0)
   end
 

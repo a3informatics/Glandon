@@ -32,7 +32,7 @@ describe SdtmIgDomain do
     expected = read_yaml_file(sub_dir, "new_expected.yaml")
     expected[:creation_date] = item.creationDate.iso8601 # Timestamps wont match
     expected[:last_changed_date] = item.lastChangeDate.iso8601
-    expect(item.to_json).to eq(expected)  	
+    expect(item.to_json).to eq(expected)
   end
 
   it "allows a domain to be found" do
@@ -123,8 +123,8 @@ describe SdtmIgDomain do
     check_sparql_no_file(sparql.to_s, "build_sparql_expected.txt")
 	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
     expected = read_yaml_file(sub_dir, "build_expected.yaml")
+    expect(result.to_json).to eq(expected)
     expected[:children].sort_by! {|u| u[:ordinal]} # Use old results file, re-order before comparison
-		expect(result.to_json).to eq(expected)
 		expect(result.errors.count).to eq(0)
   end
 
