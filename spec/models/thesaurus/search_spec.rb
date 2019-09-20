@@ -165,17 +165,18 @@ describe Thesaurus do
     check_file_actual_expected(results, sub_dir, "search_11.yaml", equate_method: :hash_equal)
   end 
 
-  it "allows the current terminologies to be searched, initial search, no parameters" do
+  it "allows the current terminologies to be searched, initial search, no parameters - WILL CURRENTLY FAIL" do
     params = standard_params
     results = Thesaurus.search_current(params)
     check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
+    expect(true).to eq(false)
   end
 
-  it "allows the current terminologies to be searched, several terminologies returning results" do
+  it "allows the current terminologies to be searched, several terminologies returning results - WILL CURRENTLY FAIL" do
     params = standard_params
     params[:search][:value] = "RACE"
     results = Thesaurus.search_current(params)
-    check_file_actual_expected(results, sub_dir, "search_13.yaml", equate_method: :hash_equal, write_file: true)
+    check_file_actual_expected(results, sub_dir, "search_13.yaml", equate_method: :hash_equal)
     expect(true).to eq(false)
   end
 
