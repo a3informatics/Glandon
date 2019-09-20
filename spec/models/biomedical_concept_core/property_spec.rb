@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'biomedical_concept_core/property'
 
 describe BiomedicalConceptCore::Property do
-  
+
   include DataHelpers
   include SparqlHelpers
 
@@ -118,10 +118,10 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows object to be initialized from triples" do
-    result = 
+    result =
       {
-        :id => "N_1", 
-        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1", 
+        :id => "N_1",
+        :namespace => "http://www.assero.co.uk/MDRForms/ACME/V1",
         :extension_properties => [],
         :label => "Text Label",
         :alias => "XXXXX",
@@ -151,7 +151,7 @@ describe BiomedicalConceptCore::Property do
     triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#simple_datatype", object: "string" }
     triples ["N_1"] << { subject: "http://www.assero.co.uk/MDRForms/ACME/V1#N_1", predicate: "http://www.assero.co.uk/CDISCBiomedicalConcept#bridg_path", object: "a.b.c" }
     item = BiomedicalConceptCore::Property.new(triples, "N_1")
-    expect(item.to_json).to eq(result)    
+    expect(item.to_json).to eq(result)
   end
 
   it "detects complex property" do
@@ -178,32 +178,32 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows the object to be found - Complex datatype" do
-    result = 
+    result =
       {
-        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
-        :namespace => "http://www.assero.co.uk/MDRBCTs/V1", 
+        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText",
+        :namespace => "http://www.assero.co.uk/MDRBCTs/V1",
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
         :extension_properties => [],
         :label => "",
         :alias => "Name",
         :ordinal => 2,
-        :complex_datatype => 
+        :complex_datatype =>
           {
-            :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
-            :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED", 
-            :namespace =>"http://www.assero.co.uk/MDRBCTs/V1", 
-            :label =>"", :extension_properties=>[], 
-            :ordinal =>1, 
-            :alias =>"", 
-            :iso21090_datatype =>"ED", 
+            :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+            :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED",
+            :namespace =>"http://www.assero.co.uk/MDRBCTs/V1",
+            :label =>"", :extension_properties=>[],
+            :ordinal =>1,
+            :alias =>"",
+            :iso21090_datatype =>"ED",
             :children =>
               [
-                { 
+                {
                   :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
                   :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
                   :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
                   :label=>"",
-                  :extension_properties=>[],    
+                  :extension_properties=>[],
                   :alias => "Test Name (--TEST)",
                   :question_text => "",
                   :prompt_text => "",
@@ -229,10 +229,10 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows the object to be exported as JSON" do
-    result = 
+    result =
       {
-        :id => "123", 
-        :namespace => "http://www.example.com/path", 
+        :id => "123",
+        :namespace => "http://www.example.com/path",
         :extension_properties => [],
         :label => "Test",
         :alias => "alias",
@@ -266,32 +266,32 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows the object to be created from JSON, complex datatype" do
-    result = 
+    result =
       {
-        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
-        :namespace => "http://www.assero.co.uk/MDRBCTs/V1", 
+        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText",
+        :namespace => "http://www.assero.co.uk/MDRBCTs/V1",
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
         :extension_properties => [],
         :label => "",
         :alias => "Name",
         :ordinal => 1,
-        :complex_datatype => 
+        :complex_datatype =>
         {
-          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
-          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED", 
-          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1", 
-          :label =>"", :extension_properties=>[], 
-          :ordinal =>1, 
-          :alias =>"", 
-          :iso21090_datatype =>"ED", 
+          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED",
+          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label =>"", :extension_properties=>[],
+          :ordinal =>1,
+          :alias =>"",
+          :iso21090_datatype =>"ED",
           :children =>
             [
-              { 
+              {
                 :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
                 :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
                 :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
                 :label=>"",
-                :extension_properties=>[],    
+                :extension_properties=>[],
                 :alias => "Test Name (--TEST)",
                 :question_text => "",
                 :prompt_text => "",
@@ -311,10 +311,10 @@ describe BiomedicalConceptCore::Property do
   end
 
   it "allows the object to be created from JSON" do
-    result = 
+    result =
       {
-        :id => "123", 
-        :namespace => "http://www.example.com/path", 
+        :id => "123",
+        :namespace => "http://www.example.com/path",
         :extension_properties => [],
         :label => "Test",
         :alias => "alias",
@@ -355,35 +355,35 @@ describe BiomedicalConceptCore::Property do
     #expect(sparql.to_s).to eq(expected)
     check_sparql_no_file(sparql.to_s, "sparql_simple.txt")
   end
-  
+
   it "allows an object to be exported as SPARQL, complex datatype" do
     sparql = SparqlUpdateV2.new
-    result = 
+    result =
       {
-        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText", 
-        :namespace => "http://www.assero.co.uk/MDRBCTs/V1", 
+        :id => "BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText",
+        :namespace => "http://www.assero.co.uk/MDRBCTs/V1",
         :type => "http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
         :extension_properties => [],
         :label => "",
         :alias => "Name",
         :ordinal => 1,
-        :complex_datatype => 
+        :complex_datatype =>
         {
-          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype", 
-          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED", 
-          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1", 
-          :label =>"", :extension_properties=>[], 
-          :ordinal =>1, 
-          :alias =>"", 
-          :iso21090_datatype =>"", 
+          :type =>"http://www.assero.co.uk/CDISCBiomedicalConcept#Datatype",
+          :id =>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED",
+          :namespace =>"http://www.assero.co.uk/MDRBCTs/V1",
+          :label =>"", :extension_properties=>[],
+          :ordinal =>1,
+          :alias =>"",
+          :iso21090_datatype =>"",
           :children =>
             [
-              { 
+              {
                 :type=>"http://www.assero.co.uk/CDISCBiomedicalConcept#Property",
                 :id=>"BCT-Obs_PQR_DefinedObservation_nameCode_CD_originalText_ED_value",
                 :namespace=>"http://www.assero.co.uk/MDRBCTs/V1",
                 :label=>"",
-                :extension_properties=>[],    
+                :extension_properties=>[],
                 :alias => "Test Name (--TEST)",
                 :question_text => "",
                 :prompt_text => "",
@@ -418,9 +418,7 @@ describe BiomedicalConceptCore::Property do
     property.update(params)
     expect(property.errors.count).to eq(0)
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-  #write_yaml_file(property.to_json, sub_dir, "update.yaml")
-    expected = read_yaml_file(sub_dir, "update.yaml")
-    expect(property.to_json).to eq(expected)
+    check_file_actual_expected(property.to_json, sub_dir, "update.yaml", eq_method: hash_equal)
   end
 
   it "prevents a property being updated with invalid data" do
@@ -495,4 +493,3 @@ describe BiomedicalConceptCore::Property do
   end
 
 end
-  
