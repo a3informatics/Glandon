@@ -514,6 +514,17 @@ describe IsoManagedV2 do
       check_file_actual_expected(results, sub_dir, "where_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "where full, I" do
+      uri = Uri.new(uri: "http://www.cdisc.org/C64388/V1#C64388")
+      th = Thesaurus::ManagedConcept.find_minimum(uri)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_1.yaml", equate_method: :hash_equal)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399", "<http://www.assero.co.uk/Thesaurus#notation>" => "CONGENITAL, FAMILIAL AND GENETIC DISORDERS"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_2.yaml", equate_method: :hash_equal)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399", "<http://www.assero.co.uk/Thesaurus#notation>" => "CONGENITAL, xxx FAMILIAL AND GENETIC DISORDERS"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "History Pagination" do

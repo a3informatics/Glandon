@@ -57,7 +57,8 @@ class AlsExcel
   def form(identifier)
     # Get the set of current terminologies
     thesauri = []
-    Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
+byebug
+    Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find_minimum(uri) }
     # Process form
     label = get_label(identifier)
     return self if !@errors.empty?
@@ -236,6 +237,7 @@ private
   end
   
   def get_cl(notation, thesauri)   
+byebug
     thcs = []
     thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
     if thcs.empty?
