@@ -67,17 +67,18 @@ describe Tabular do
   it "allows object to be initialized from triples" do
     triples = read_yaml_file(sub_dir, "from_triples_input.yaml")
     result = TabularSubClass.new(triples, "D-ACME_VSDomain")
-  #Xwrite_yaml_file(result.to_json, sub_dir, "from_triples_expected.yaml")
-    expected = read_yaml_file(sub_dir, "from_triples_expected.yaml")
-    expect(result.to_json).to eq(expected) 
+  # write_yaml_file(result.to_json, sub_dir, "from_triples_expected.yaml")
+  #   expected = read_yaml_file(sub_dir, "from_triples_expected.yaml")
+  #   expect(result.to_json).to eq(expected) 
+    check_file_actual_expected(result.to_json, sub_dir, "from_triples_expected.yaml", equate_method: :hash_equal)
   end  
 
   it "allows an object to be found" do
     uri = UriV3.new(uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_VSDomain")
     tabular = TabularSubClass.find(uri.to_id)
-  write_yaml_file(tabular.to_json, sub_dir, "find_expected.yaml")
+  #write_yaml_file(tabular.triples, sub_dir, "from_triples_input.yaml") # Used in above test
+  #write_yaml_file(tabular.to_json, sub_dir, "find_expected.yaml")
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
-  #write_yaml_file(tabular.triples, sub_dir, "from_triples_input.yaml")
     expect(tabular.to_json).to eq(expected)
   end
 
