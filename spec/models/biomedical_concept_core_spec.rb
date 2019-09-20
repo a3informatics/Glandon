@@ -60,7 +60,7 @@ describe BiomedicalConceptCore do
   it "allows the properties to be returned" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
-    check_file_actual_expected(json, sub_dir, "bc_core_properties_find.yaml", eq_method: hash_equal)
+    check_file_actual_expected(json, sub_dir, "bc_core_properties_find.yaml", equate_method: :hash_equal)
   end
 
   it "allows the properties to be update the object" do
@@ -70,18 +70,18 @@ describe BiomedicalConceptCore do
     item.set_properties(json)
     actual = item.get_properties
     actual[:children].sort_by! {|x| x[:id]}
-    check_file_actual_expected(actual, sub_dir, "bc_core_properties_update.yaml", eq_method: hash_equal)
+    check_file_actual_expected(actual, sub_dir, "bc_core_properties_update.yaml", equate_method: :hash_equal)
   end
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-    check_file_actual_expected(item.to_json, sub_dir, "bc_core_json.yaml", eq_method: hash_equal)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_core_json.yaml", equate_method: :hash_equal)
   end
 
   it "allows the object to be created from JSON" do
     hash = read_yaml_file(sub_dir, "bc_core_json.yaml")
     item = BiomedicalConceptCore.from_json(hash)
-    check_file_actual_expected(item.to_json, sub_dir, "bc_core_from_json.yaml", eq_method: hash_equal)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_core_from_json.yaml", equate_method: :hash_equal)
 
   end
 

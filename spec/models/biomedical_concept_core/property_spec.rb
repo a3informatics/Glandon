@@ -225,7 +225,7 @@ describe BiomedicalConceptCore::Property do
 
   it "allows the object to be found - TC Refs" do
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    check_file_actual_expected(property.to_json, sub_dir, "find_expected_1.yaml", eq_method: hash_equal)
+    check_file_actual_expected(property.to_json, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "allows the object to be exported as JSON" do
@@ -418,7 +418,7 @@ describe BiomedicalConceptCore::Property do
     property.update(params)
     expect(property.errors.count).to eq(0)
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
-    check_file_actual_expected(property.to_json, sub_dir, "update.yaml", eq_method: hash_equal)
+    check_file_actual_expected(property.to_json, sub_dir, "update.yaml", equate_method: :hash_equal)
   end
 
   it "prevents a property being updated with invalid data" do
@@ -457,7 +457,7 @@ describe BiomedicalConceptCore::Property do
     property.add({ tc_refs: refs })
     property = BiomedicalConceptCore::Property.find("BC-ACME_BC_C25347_PerformedClinicalResult_value_PQR_code", "http://www.assero.co.uk/MDRBCs/V1")
   #Xwrite_yaml_file(property.to_json, sub_dir, "add_term.yaml")
-    check_file_actual_expected(property.to_json, sub_dir, "add_term.yaml", eq_method: hash_equal)
+    check_file_actual_expected(property.to_json, sub_dir, "add_term.yaml", equate_method: :hash_equal)
     expect(property.tc_refs.count).to eq(6)
   end
 
