@@ -12,6 +12,23 @@ class Thesaurus <  IsoManagedV2
 
   include Thesaurus::Search
 
+  # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
+  #
+  # @return [Array] Array of URIs 
+  def current_set_where(params)
+    where_parts = []
+    params.each do |predicate, value|
+      where_parts << "?s #{predicate} \"#{value}\""
+    end
+    where_clause = where_parts.join(" .\n")
+    parts = []
+    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }" 
+    self.class.read_paths.each {|p| parts << "{ #{self.uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . #{where_clause} }" }
+    query_string = "SELECT DISTINCT ?s WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, uri.namespace, [])
+    query_results.by_object(:s)
+  end
+
   # Find By Identifier
   def find_by_identifiers(identifiers)
     results = {}
@@ -42,7 +59,6 @@ class Thesaurus <  IsoManagedV2
     end
     results
   end
-  
     
   # Changes
   #

@@ -15,7 +15,7 @@ describe AlsExcel do
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..49)
     th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V49#TH"))
-    IsoRegistrationState.make_current(th.has_state.id)
+    th.has_state.make_current
   end
 
   it "initialize object, fails to read the model file" do
