@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'biomedical_concept_core'
 
 describe BiomedicalConceptCore do
-  
+
   include DataHelpers
   include SparqlHelpers
 
@@ -50,7 +50,7 @@ describe BiomedicalConceptCore do
     valid = result.valid?
     expect(result.errors.count).to eq(0)
     expect(valid).to eq(true)
-  end 
+  end
 
   it "allows the object to be found" do
     item = BiomedicalConceptCore.find("BCT-Obs_PQR", "http://www.assero.co.uk/MDRBCTs/V1")
@@ -60,9 +60,7 @@ describe BiomedicalConceptCore do
   it "allows the properties to be returned" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     json = item.get_properties
-  #Xwrite_yaml_file(json, sub_dir, "bc_core_properties_find.yaml")
-    properties_json = read_yaml_file(sub_dir, "bc_core_properties_find.yaml")
-    expect(json).to hash_equal(properties_json)
+    check_file_actual_expected(json, sub_dir, "bc_core_properties_find.yaml", eq_method: hash_equal)
   end
 
   it "allows the properties to be update the object" do
@@ -71,35 +69,28 @@ describe BiomedicalConceptCore do
     json[:children][3][:question_text] = "Updated Question text"
     item.set_properties(json)
     actual = item.get_properties
-  #Xwrite_yaml_file(actual, sub_dir, "bc_core_properties_update.yaml")
-    expected = read_yaml_file(sub_dir, "bc_core_properties_update.yaml")
     actual[:children].sort_by! {|x| x[:id]}
-    expected[:children].sort_by! {|x| x[:id]}
-    expect(actual).to hash_equal(expected)
+    check_file_actual_expected(actual, sub_dir, "bc_core_properties_update.yaml", eq_method: hash_equal)
   end
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_core_json.yaml")
-    expected = read_yaml_file(sub_dir, "bc_core_json.yaml")
-    expect(item.to_json).to hash_equal(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_core_json.yaml", eq_method: hash_equal)
   end
 
   it "allows the object to be created from JSON" do
     hash = read_yaml_file(sub_dir, "bc_core_json.yaml")
     item = BiomedicalConceptCore.from_json(hash)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_core_from_json.yaml")
-    expected = read_yaml_file(sub_dir, "bc_core_from_json.yaml")
-    expect(item.to_json).to eq(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_core_from_json.yaml", eq_method: hash_equal)
+
   end
 
   it "allows an object to be exported as SPARQL" do
     item = BiomedicalConceptCore.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     sparql = SparqlUpdateV2.new
     item.to_sparql_v2(sparql)
-  #Xwrite_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
+#X write_text_file_2(sparql.to_s, sub_dir, "bc_core_sparql.txt")
     check_sparql_no_file(sparql.to_s, "bc_core_sparql.txt")
   end
-  
+
 end
-  
