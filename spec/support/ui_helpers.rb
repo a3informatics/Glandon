@@ -430,7 +430,8 @@ module UiHelpers
       show: "Show",
       search: "Search",
       edit: "Edit",
-      delete: "Delete"
+      delete: "Delete",
+      document_control: "Document control"
     }
     option = action_to_option_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
