@@ -3,9 +3,9 @@ require 'rails_helper'
 describe IsoNamespacesController do
 
   include DataHelpers
-  
+
   describe "Authrorized User" do
-  	
+
     login_curator
 
     before :each do
@@ -19,14 +19,16 @@ describe IsoNamespacesController do
     it "index namespaces" do
       namespaces = IsoNamespace.all
       get :index
-      expect(assigns(:namespaces).to_json).to eq(namespaces.to_json)
+      expected = namespaces.map{|x| x.to_h}
+      actual = assigns(:namespaces).map{|x| x.to_h}
+      expect(actual).to eq(expected)
       expect(response).to render_template("index")
     end
 
     it "new namespace" do
       namespace = IsoNamespace.new
       get :new
-      expect(assigns(:namespace).to_json).to eq(namespace.to_json)
+      expect(assigns(:namespace).to_h).to eq(namespace.to_h)
       expect(response).to render_template("new")
     end
 
@@ -78,7 +80,7 @@ describe IsoNamespacesController do
   end
 
   describe "Unauthorized User" do
-    
+
     login_sys_admin
 
     it "index registration state" do
@@ -105,7 +107,7 @@ describe IsoNamespacesController do
   end
 
   describe "Not logged in" do
-    
+
     it "index namespace" do
       get :index
       expect(response).to redirect_to("/users/sign_in")

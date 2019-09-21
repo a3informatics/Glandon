@@ -1,2 +1,0 @@
-class NotepadPolicy < ApplicationPolicy
-end

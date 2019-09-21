@@ -1,9 +1,9 @@
 class DashboardController < ApplicationController
 
-  #before_action :authenticate_user!
-  
+  before_action :authenticate_user!
+
   def index
-    authenticate_user!
+    # authenticate_user!
   	authorize Dashboard
   	access = user_access_on_role
   	if access == :all
@@ -44,7 +44,7 @@ private
 
   def the_params
     params.require(:dashboard).permit(:id, :namespace)
-  end  
+  end
 
   def user_access_on_role
     return :community if current_user.is_only_community?
@@ -52,10 +52,10 @@ private
 		result = true
 		klasses = [Thesaurus, BiomedicalConceptTemplate, BiomedicalConcept, Form, SdtmUserDomain]
 		klasses.each do |klass|
-			result = result && policy(klass).index? 
+			result = result && policy(klass).index?
 		end
 		return :all if result
-		return :term if policy(Thesaurus).index? 
+		return :term if policy(Thesaurus).index?
 		return :none
 	end
 

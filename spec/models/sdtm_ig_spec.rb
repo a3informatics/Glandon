@@ -28,9 +28,7 @@ describe SdtmIg do
 
   it "allows a IG to be found" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "find_input.yaml")
-    expected = read_yaml_file(sub_dir, "find_input.yaml")
-    expect(item.to_json).to hash_equal(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "find_input.yaml", equate_method: :hash_equal)
   end
 
   it "allows a IG to be found, not found error" do
@@ -50,17 +48,13 @@ describe SdtmIg do
   
   it "allows the model to be exported as JSON" do
     item = SdtmIg.find("IG-CDISC_SDTMIG", "http://www.assero.co.uk/MDRSdtmIg/CDISC/V3")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "to_json_expected.yaml")
-    expected = read_yaml_file(sub_dir, "to_json_expected.yaml")
-    expect(item.to_json).to hash_equal(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "to_json_expected.yaml", equate_method: :hash_equal)
   end
 
 	it "allows the model to be created from JSON" do 
 		input = read_yaml_file(sub_dir, "from_json_input.yaml")
     item = SdtmIg.from_json(input)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "from_json_expected.yaml")
-    expected = read_yaml_file(sub_dir, "from_json_expected.yaml")
-    expect(item.to_json).to eq(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "from_json_expected.yaml", equate_method: :hash_equal)
   end
 
 	it "allows the object to be output as sparql" do
@@ -100,12 +94,11 @@ describe SdtmIg do
     sparql = SparqlUpdateV2.new
   	json = read_yaml_file(sub_dir, "build_input.yaml")
 		result = SdtmIg.build(json, sparql)
-	#Xwrite_yaml_file(result.to_json, sub_dir, "build_expected.yaml")
-    expected = read_yaml_file(sub_dir, "build_expected.yaml")
-		expect(result.to_json).to eq(expected)
+    check_file_actual_expected(sparql.to_s, sub_dir, "build_expected.yaml", equate_method: :hash_equal)
 		expect(result.errors.count).to eq(0)
   #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected_2.txt")
     expected = read_text_file_2(sub_dir, "to_sparql_expected_2.txt")
+
   end
 
   it "allows for the addition of a domain" do

@@ -5,18 +5,21 @@
 	}
 </style>
 <div class="row">
+	<% s_texts =
+	[{:title => "Email", :value => current_user.email},
+	 {:title => "Current Roles", :value => current_user.role_list_stripped},
+	 {:title => "Login Count", :value => current_user.sign_in_count}]%>
+
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-settings", header_title: "Preferences",
+		main_text: current_user.name, sub_texts: s_texts} do %>
+  <% end %>
+</div>
+<div class="row">
 	<div class="col-md-8 card wide">
 			<div class="card-header">
 				Application Settings
 			</div>
   		<div class="card-content">
-				<div id="user_info">
-						<div class="font-regular text-medium text-normal text-centered">
-							Display Name: <span class="font-light"> <%= current_user.name %> </span><br>
-							Email: <span class="font-light"> <%= current_user.email %> </span>
-						</div>
-				</div>
-				<br>
 				<!-- <p>Your current settings are listed below. These may be changed by using the buttons to the right.</p> -->
 				<% ordered_metadata = @settings_metadata.sort_by {|key, x| x[:label]} %>
 				<table id="user_settings" class="table table-condensed">

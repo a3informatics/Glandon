@@ -7,18 +7,20 @@
 :origin: ''
 :change_description: ''
 :creation_date: '2016-12-31T09:13:12+00:00'
-:last_changed_date: '2019-03-18T18:38:22+00:00'
+:last_changed_date: '2019-09-20T11:46:39+02:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_DSDomain-1
   :registration_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
     :uri: http://www.assero.co.uk/RA#DUNS123456789
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: '123456789'
     :international_code_designator: DUNS
     :owner: true
     :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
       :uri: http://www.assero.co.uk/NS#ACME
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
       :short_name: ACME
@@ -39,6 +41,7 @@
   :version: 1
   :semantic_version: 0.0.0
   :namespace:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: ACME

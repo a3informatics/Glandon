@@ -3,13 +3,13 @@ require 'rails_helper'
 describe DashboardController do
 
   include DataHelpers
-  
+
   def sub_dir
     return "controllers"
   end
 
   describe "Reader User" do
-  	
+
     login_reader
 
     before :all do
@@ -56,7 +56,7 @@ describe DashboardController do
 	end
 
   describe "System Admin User" do
-    
+
     login_sys_admin
 
     it "prevents access, index, redirects to admin" do
@@ -86,12 +86,12 @@ describe DashboardController do
   end
 
   describe "Term Reader User" do
-    
+
     login_term_reader
 
     it "index, redirects to CDISC term" do
       get :index
-      expect(response).to redirect_to history_cdisc_terms_path
+      expect(response).to redirect_to thesauri_index_path
     end
 
 		it "displays triples" do
@@ -122,7 +122,7 @@ describe DashboardController do
   end
 
   describe "No matching roles" do
-    
+
     login_reader
 
     it "prevents access, index, redirects to error" do
@@ -134,7 +134,7 @@ describe DashboardController do
   end
 
 	describe "No Role User" do
-    
+
     login_no_role
 
   	it "displays triples" do
@@ -161,7 +161,7 @@ describe DashboardController do
   end
 
   describe "Not logged in" do
-    
+
     it "prevents access, index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
