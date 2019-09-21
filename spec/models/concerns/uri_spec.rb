@@ -156,11 +156,16 @@ describe Uri do
     expect(uri_1==uri_3).to eq(true)
   end
 
-  it "Will create fron a string or URI" do
+  it "Will create from a string or URI" do
     uri_1 = Uri.new({uri: "http://www.example.com/path1/path2#1"})
     expect(Uri.from_uri_or_string(uri_1.to_s)).to eq(uri_1)
     expect(Uri.from_uri_or_string(uri_1)).to eq(uri_1)
     expect{Uri.from_uri_or_string(1)}.to raise_error(Errors::ApplicationLogicError, "The value is not a string or an existing URI.")
+  end
+
+  it "to Version 2" do
+    uri = Uri.new({uri: "http://www.example.com/path1/path2#1"})
+    expect(uri.to_v2.to_s).to eq(uri.to_s)
   end
 
   it "speed test" do

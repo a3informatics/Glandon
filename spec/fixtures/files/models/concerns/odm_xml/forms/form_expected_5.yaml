@@ -6,19 +6,20 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2019-03-19T10:19:28+00:00'
-:last_changed_date: '2019-03-19T10:19:28+00:00'
+:creation_date: '2019-09-21T11:18:25+02:00'
+:last_changed_date: '2019-09-21T11:18:25+02:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
   :id: ''
   :registration_authority:
+    :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: "<Not Set>"
     :international_code_designator: DUNS
     :owner: false
-    :ra_namespace: {}
+    :ra_namespace: 
   :registration_status: Not_Set
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
@@ -34,6 +35,7 @@
   :version: 0
   :semantic_version: 0.0.0
   :namespace:
+    :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: ''
@@ -116,8 +118,8 @@
       :ordinal: 1
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C66781_C29848
+        :namespace: http://www.cdisc.org/C66781/V33
+        :id: C66781_C29848
   :repeating: false
   :bc_ref: {}
 - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
@@ -154,8 +156,8 @@
       :ordinal: 1
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C66731_C20197
+        :namespace: http://www.cdisc.org/C66731/V16
+        :id: C66731_C20197
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -166,8 +168,8 @@
       :ordinal: 2
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C66731_C16576
+        :namespace: http://www.cdisc.org/C66731/V4
+        :id: C66731_C16576
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -192,8 +194,8 @@
       :ordinal: 1
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C66790_C17459
+        :namespace: http://www.cdisc.org/C66790/V16
+        :id: C66790_C17459
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -204,8 +206,8 @@
       :ordinal: 2
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C66790_C41222
+        :namespace: http://www.cdisc.org/C66790/V4
+        :id: C66790_C41222
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -231,8 +233,8 @@
       :ordinal: 1
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41261
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41261
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -243,8 +245,8 @@
       :ordinal: 2
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C16352
+        :namespace: http://www.cdisc.org/C74457/V48
+        :id: C74457_C16352
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -255,8 +257,8 @@
       :ordinal: 3
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41260
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41260
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -267,8 +269,8 @@
       :ordinal: 4
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41259
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41259
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -279,8 +281,8 @@
       :ordinal: 5
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41219
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41219
   - :type: http://www.assero.co.uk/BusinessForm#Question
     :id: ''
     :namespace: ''
@@ -307,8 +309,8 @@
       :ordinal: 1
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41261
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41261
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -319,8 +321,8 @@
       :ordinal: 2
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C16352
+        :namespace: http://www.cdisc.org/C74457/V48
+        :id: C74457_C16352
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -331,8 +333,8 @@
       :ordinal: 3
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41260
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41260
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -343,8 +345,8 @@
       :ordinal: 4
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41259
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41259
     - :type: http://www.assero.co.uk/BusinessOperational#Reference
       :id: ''
       :namespace: ''
@@ -355,8 +357,8 @@
       :ordinal: 5
       :local_label: ''
       :subject_ref:
-        :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V49
-        :id: CLI-C74457_C41219
+        :namespace: http://www.cdisc.org/C74457/V10
+        :id: C74457_C41219
   :repeating: false
   :bc_ref: {}
 - :type: http://www.assero.co.uk/BusinessForm#NormalGroup
