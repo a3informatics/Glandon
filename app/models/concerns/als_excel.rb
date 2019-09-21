@@ -85,7 +85,7 @@ class AlsExcel
               if !cli.nil?
                 ref = OperationalReferenceV2.new
                 ref.ordinal = entry[:ordinal]
-                ref.subject_ref = cli.uri
+                ref.subject_ref = cli.uri.to_v2
                 question.tc_refs << ref
               else
                 question.note += "* Failed to find item with \n" if !cl_result[:note].empty?

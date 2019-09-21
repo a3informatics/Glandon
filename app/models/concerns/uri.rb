@@ -180,6 +180,13 @@ class Uri
     return self.to_s == other.to_s
   end
 
+  # to_v2
+  #
+  # @return [UriV2] returns a version 2 URI. For conversion purposes in older code.
+  def to_v2
+    UriV2.new(uri: self.to_s)
+  end
+
 private
 
   # Prefixed?  
