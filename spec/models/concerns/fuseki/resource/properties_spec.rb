@@ -20,8 +20,8 @@ describe Fuseki::Resource::Properties do
     load_files(schema_files, data_files)
   end
 
-  class TestR10 < Fuseki::Base
-    
+  class TestFRP10 < Fuseki::Base
+
     configure rdf_type: "http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority",
               base_uri: "http://www.assero.co.uk/RA" 
 
@@ -34,16 +34,16 @@ describe Fuseki::Resource::Properties do
   end 
 
   it "setup properties" do
-    metadata = TestR10.resources
-    item = TestR10.new
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
-    expect(properties.parent.class).to eq(TestR10)
+    expect(properties.parent.class).to eq(TestFRP10)
     check_file_actual_expected(properties.metadata, sub_dir, "properties_new_expected_1.yaml")
   end
   
   it "ignore property" do
-    metadata = TestR10.resources
-    item = TestR10.new
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     expect(properties.ignore?(:fred)).to eq(true)
     expect(properties.ignore?(:owner)).to eq(false)
@@ -51,24 +51,24 @@ describe Fuseki::Resource::Properties do
   end  
 
   it "property" do
-    metadata = TestR10.resources
-    item = TestR10.new
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     result = properties.property(:owner)
     check_file_actual_expected(result.metadata, sub_dir, "property_expected_1.yaml")
   end  
 
   it "assign" do
-    metadata = TestR10.resources
-    item = TestR10.new
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
     item.properties.assign(organization_identifier: "NEW", owner: true)
     expect(item.owner).to eq(true)
     expect(item.organization_identifier).to eq("NEW")
   end  
 
   it "sets property from triple" do
-    metadata = TestR10.resources
-    item = TestR10.new
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
     properties = Fuseki::Resource::Properties.new(item, metadata)
     result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), object: ""})
     expect(result).to eq(nil)
