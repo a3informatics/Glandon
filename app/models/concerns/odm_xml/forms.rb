@@ -25,9 +25,7 @@ class OdmXml::Forms < OdmXml
   # @param [String] identifier the identifier of the code list required. Form OID is used.
   # @return [Form] object containing the form.
   def form(identifier)
-    thesauri = []
-    Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find(uri.id, uri.namespace, false) }
-    odm_form = OdmForm.new(self.list, identifier, thesauri, self)
+    odm_form = OdmForm.new(self.list, identifier, self)
     return self if self.errors.any?
     odm_form.groups(@doc)
     return odm_form.form
@@ -59,8 +57,7 @@ class OdmXml::Forms < OdmXml
     attr_reader :oid
     attr_reader :form
 
-    def initialize(list, identifier, thesauri, parent)
-      @thesauri = thesauri
+    def initialize(list, identifier, parent)
       @oid = identifier
       source_form = list.find { |f| f[:identifier] == identifier }
       if source_form.nil?
@@ -74,7 +71,7 @@ class OdmXml::Forms < OdmXml
 
     def groups(doc)
       results = []
-      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n, @thesauri) }
+      doc.xpath("//FormDef[@OID = '#{@oid}']/ItemGroupRef").each { |n| results << OdmGroup.new(doc, n) }
       results.sort_by! {|r| r.group.ordinal}
       ordinal = 1
       results.each do |r| 
@@ -95,8 +92,7 @@ class OdmXml::Forms < OdmXml
     attr_reader :oid
     attr_reader :group
 
-    def initialize(doc, node, thesauri)
-      @thesauri = thesauri
+    def initialize(doc, node)
       @oid = node.attributes["ItemGroupOID"].value
       group_node = doc.xpath("//ItemGroupDef[@OID = '#{@oid}']")
       @group = Form::Group::Normal.new
@@ -106,7 +102,7 @@ class OdmXml::Forms < OdmXml
 
     def items(doc)
       results = []
-      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n, @thesauri) }
+      doc.xpath("//ItemGroupDef[@OID = '#{@oid}']/ItemRef").each { |n| results << OdmItem.new(doc, n) }
       results.sort_by! {|r| r.items.first.ordinal}
       ordinal = 1
       results.each do |result|
@@ -128,9 +124,8 @@ class OdmXml::Forms < OdmXml
     attr_reader :oid
     attr_reader :items
 
-    def initialize(doc, node, thesauri)  
+    def initialize(doc, node)  
       @items = []
-      @thesauri = thesauri
       @oid = node.attributes["ItemOID"].value
       item_node = doc.xpath("//ItemDef[@OID = '#{@oid}']")
       item = Form::Item::Question.new
@@ -273,7 +268,7 @@ class OdmXml::Forms < OdmXml
       pt_nodes = cli_node.xpath("Decode/TranslatedText")
       return false if pt_nodes.empty?
       info[:preferred_term] = pt_nodes.first.text.strip
-      cli = result[:tc].children.find { |x| x.preferredTerm.upcase == info[:preferred_term].upcase}
+      cli = result[:tc].children.find { |x| x.preferred_term_objects.label.upcase == info[:preferred_term].upcase}
       return false if cli.nil?
       add_op_ref(cli, question, ordinal)
       return true
@@ -282,7 +277,7 @@ class OdmXml::Forms < OdmXml
     def add_op_ref(cli, question, ordinal)
       ref = OperationalReferenceV2.new
       ref.ordinal = ordinal.value
-      ref.subject_ref = cli.uri
+      ref.subject_ref = cli.uri.to_v2
       question.tc_refs << ref
       ordinal.increment
       return true
@@ -303,14 +298,11 @@ class OdmXml::Forms < OdmXml
     end
 
     def get_tc(params)   
-      thcs = []
-      @thesauri.each do |th| 
-        thcs = th.find_by_property(params)
-        break if !thcs.empty?
-      end
+      thcs = Thesaurus.where_children_current(params)
       if thcs.empty?
         return {tc: nil, note: "No entries found for parameters #{params_to_s(params)}."}
       elsif thcs.count == 1
+        thcs.first.children_objects
         return {tc: thcs.first, note: ""}
       else
         entries = thcs.map { |tc| tc.identifier }.join(',')
