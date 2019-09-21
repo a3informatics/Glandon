@@ -11,6 +11,7 @@ class Thesaurus <  IsoManagedV2
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
 
   include Thesaurus::Search
+  include Thesaurus::Where
 
   # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
   #

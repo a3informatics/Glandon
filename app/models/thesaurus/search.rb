@@ -31,10 +31,10 @@ class Thesaurus
       # Search Current. Search the current set. 
       # 
       # @param params [Hash] the hash sent by datatables for a search.
-      # @return [Hash] a hash containing :count wiht the number of records that could be returned and
+      # @return [Hash] a hash containing :count with the number of records that could be returned and
       #    :items which is an array of results.
       def search_current(params)
-        search_multiple(params, []) # << Needs array of current terminology URIs
+        search_multiple(params, self.current_set)
       end
 
       # Empty Search? No search parameters
@@ -51,10 +51,11 @@ class Thesaurus
       # 
       # @param params [Hash] the hash sent by datatables for a search.
       # @param uris [Array] an array of URIs of the items to be searched.
-      # @return [Boolean] true if empty, otherwise false
+      # @return [Hash] a hash containing :count with the number of records that could be returned and
+      #    :items which is an array of results.
       def search_multiple(params, uris)
         results = []
-        query_results = Sparql::Query.new.query(query_string(params, uris), "", [:bo, :th, :isoC])
+        query_results = Sparql::Query.new.query(search_query_string(params, uris), "", [:bo, :th, :isoC])
         triples = query_results.by_object_set([:pi, :i, :n, :d, :pt, :sys, :uri])
         triples.each do |t|
           results << {id: t[:uri].to_id, uri: t[:uri].to_s, parent_identifier: t[:pi], identifier: t[:i], notation: t[:n], definition: t[:d], preferred_term: t[:pt], synonym: t[:sys]}
@@ -67,12 +68,12 @@ class Thesaurus
       # Search resut count
       def search_count(params, uris)
         results = []
-        query_results = Sparql::Query.new.query(query_string(params, uris, false), "", [:bo, :th, :isoC])
+        query_results = Sparql::Query.new.query(search_query_string(params, uris, false), "", [:bo, :th, :isoC])
         query_results.results.count
       end
 
       # Build the search query string
-      def query_string(params, uris, limit=true)
+      def search_query_string(params, uris, limit=true)
         search = params[:search]
         columns = params[:columns]
         variable = get_order_variable(params[:order]["0"][:column])
@@ -86,8 +87,8 @@ class Thesaurus
                 ?mc th:identifier ?pi .
                 ?uc th:identifier ?i .
                 ?uc th:notation ?n .
-                ?uc th:preferredTerm/isoC:label ?pt .
                 ?uc th:definition ?d .
+                ?uc th:preferredTerm/isoC:label ?pt .
                 OPTIONAL {?uc th:synonym/isoC:label ?sy .}
                 BIND (?uc as ?uri)
               } UNION
@@ -95,9 +96,8 @@ class Thesaurus
                 ?mc th:identifier ?pi .
                 ?mc th:identifier ?i .
                 ?mc th:notation ?n .
-                ?mc th:preferredTerm/isoC:label ?pt .
-                ?mc th:synonym/isoC:label ?sy .
                 ?mc th:definition ?d .    
+                ?mc th:preferredTerm/isoC:label ?pt .
                 OPTIONAL {?mc th:synonym/isoC:label ?sy .}
                 BIND (?mc as ?uri)
               }
@@ -140,7 +140,7 @@ class Thesaurus
     # Search. 
     # 
     # @param params [Hash] the hash sent by datatables for a search.
-    # @return [Hash] a hash containing :count wiht the number of records that could be returned and
+    # @return [Hash] a hash containing :count with the number of records that could be returned and
     #    :items which is an array of results.
     def search(params)
       self.class.search_multiple(params, [self.uri])
