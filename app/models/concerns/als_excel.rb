@@ -55,9 +55,6 @@ class AlsExcel
   # @param [String] identifier the identifier of the desired form
   # @return [Array] Array of hash form info
   def form(identifier)
-    # Get the set of current terminologies
-    thesauri = []
-    Thesaurus.current_set.each { |uri| thesauri << Thesaurus.find_minimum(uri) }
     # Process form
     label = get_label(identifier)
     return self if !@errors.empty?
@@ -80,8 +77,9 @@ class AlsExcel
         question.ordinal = item[:ordinal]
         question.note = item[:note]
         if !item[:code_list].empty? 
-          cl_result = get_cl(item[:code_list], thesauri)
+          cl_result = get_cl(item[:code_list])
           if !cl_result[:cl].nil?
+            cl_result[:cl].children_objects
             read_data_dictionary_entries_sheet(item[:code_list]).each do |entry|
               cli = cl_result[:cl].children.find { |x| x.notation == entry[:code]}
               if !cli.nil?
@@ -234,9 +232,8 @@ private
     return results
   end
   
-  def get_cl(notation, thesauri)   
-    thcs = []
-    thesauri.each { |th| thcs += th.find_by_property({notation: notation}) }
+  def get_cl(notation)   
+    thcs = Thesaurus.where_children_current(notation: notation)
     if thcs.empty?
       return {cl: nil, note: "No entries found for code list #{notation}."}
     elsif thcs.count == 1
