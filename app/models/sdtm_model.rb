@@ -107,6 +107,8 @@ class SdtmModel < Tabular
   # @return [SdtmModel] The created object. Valid if no errors set.
   def self.build(params, sparql)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    params[:managed_item][:scoped_identifier][:namespace] = cdisc_ra.ra_namespace.to_h
+    params[:managed_item][:registration_state][:registration_authority] = cdisc_ra.to_json
     object = SdtmModel.from_json(params[:managed_item])
     build_datatypes(object.datatypes, params[:managed_item])
     build_classifications(object.classifications, params[:managed_item])

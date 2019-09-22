@@ -91,7 +91,7 @@ describe Thesaurus do
         # "ACME_Topic.ttl",
         # "form_example_general.ttl",
         # "form_example_vs_baseline_new.ttl",
-        "form_example_dm1.ttl"
+        #"form_example_dm1.ttl"
       ]
       files.each do |filename|
   puts "***** Processing #{filename} *****"
@@ -126,7 +126,7 @@ describe Thesaurus do
     it "converts ttl files" do
       files = 
       [
-        "BC.ttl"
+        #"BC.ttl"
       ]
       files.each do |filename|
         clear_triple_store

@@ -97,6 +97,8 @@ class SdtmIg < Tabular
   def self.build(params, sparql)
   	ig_params = params.select { |x| x[:type] == "IG" } # At least one assumed to exist
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    ig_params.first[:instance][:managed_item][:scoped_identifier][:namespace] = cdisc_ra.ra_namespace.to_h
+    ig_params.first[:instance][:managed_item][:registration_state][:registration_authority] = cdisc_ra.to_json
     object = SdtmIg.from_json(ig_params.first[:instance][:managed_item])
     object.from_operation(ig_params.first[:instance][:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
     build_compliance(object.compliance, params)
