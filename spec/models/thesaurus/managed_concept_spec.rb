@@ -219,9 +219,9 @@ describe Thesaurus::ManagedConcept do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(0)
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_1.yaml")
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "add_child_expected_2.yaml")
     end
 
@@ -350,14 +350,14 @@ describe Thesaurus::ManagedConcept do
     end
 
     it "allows the object to be exported as Hash" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "to_hash_expected.yaml")
     end
 
     it "allows a TC to be created from Hash" do
       input = read_yaml_file(sub_dir, "from_hash_input.yaml")
       tc = Thesaurus::ManagedConcept.from_h(input)
-      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "to_hash_expected.yaml")
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
     end
 
     it "allows a TC to be exported as SPARQL" do
@@ -382,7 +382,7 @@ describe Thesaurus::ManagedConcept do
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt") 
     end
 
-    it "allows a TC to be exported as SPARQL, II" do
+    it "allows a TC to be exported as SPARQL, II - WILL CURRENTLY FAIL (Timestamp Issue)" do
       sparql = Sparql::Update.new
       simple_thesaurus_1
       @tc_1.set_initial(@tc_1.identifier)
@@ -394,7 +394,7 @@ describe Thesaurus::ManagedConcept do
     
     it "allows a TC to be created" do
       object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
-      tc = Thesaurus::ManagedConcept.find(object.uri)
+      tc = Thesaurus::ManagedConcept.find_full(object.uri)
       expect(tc.scoped_identifier).to eq("A000001")
       expect(tc.identifier).to eq("A000001")
       expect(tc.notation).to eq("A")
@@ -563,31 +563,31 @@ describe Thesaurus::ManagedConcept do
     end
 
     it "assigns properties, synonyms" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("A definition")    
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.first.label).to eq("LHR")
       expect(tc.synonym.last.label).to eq("Heathrow")
       tc.update({definition: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever"})
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("Updated")    
       expect(tc.synonym.count).to eq(3)
       expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
       tc.update({synonym: "aaaa; bbbb"})
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.definition).to eq("Updated")    
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.map{|x| x.label}).to match_array(["aaaa", "bbbb"])
     end
 
     it "assigns properties, preferred term and label" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("London Heathrow")    
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.first.label).to eq("LHR")
       expect(tc.synonym.last.label).to eq("Heathrow")
       tc.update({synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.label).to eq("Woah!")    
       expect(tc.synonym.count).to eq(3)
       expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
