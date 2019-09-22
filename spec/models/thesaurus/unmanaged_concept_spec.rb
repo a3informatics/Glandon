@@ -293,15 +293,15 @@ describe Thesaurus::UnmanagedConcept do
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "unmanaged_concept.ttl")
     #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_input.yaml")    
-      #check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt")  
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")  
     end
     
     it "allows a TC to be exported as SPARQL" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       sparql = Sparql::Update.new
       tc.to_sparql(sparql, true)
-    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt") 
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt") 
     end
     
     it "allows a TC to be destroyed" do
