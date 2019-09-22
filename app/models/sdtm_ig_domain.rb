@@ -77,6 +77,8 @@ class SdtmIgDomain < Tabular
     build_class_reference(map, params[:managed_item])
     build_variable_references(map, params[:managed_item])
     build_compliance(ig, params[:managed_item])
+    params[:managed_item][:scoped_identifier][:namespace] = cdisc_ra.ra_namespace.to_h
+    params[:managed_item][:registration_state][:registration_authority] = cdisc_ra.to_json
     object = SdtmIgDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)
     object.adjust_next_version # Versions are assumed, may not be so
