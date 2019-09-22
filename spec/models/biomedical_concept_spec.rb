@@ -177,7 +177,7 @@ it "allows a BC to be found" do
     item = BiomedicalConcept.create_simple({:bct_id => bct.id, :bct_namespace => bct.namespace, :identifier => "NEW BC", :label => "New BC"})
     expect(item.errors.full_messages.to_sentence).to eq("")
     expect(item.errors.count).to eq(0)
-    # write_yaml_file(item.to_json, sub_dir, "bc_simple.yaml")
+  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_simple.yaml")
     expected = read_yaml_file(sub_dir, "bc_simple.yaml")
     expected[:creation_date] = date_check_now(item.creationDate).iso8601
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601

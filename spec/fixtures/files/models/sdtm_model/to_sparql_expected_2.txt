@@ -1,6 +1,5 @@
 PREFIX : <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#>
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
-PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
 PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>
@@ -12,8 +11,8 @@ INSERT DATA
 { 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> rdf:type <http:///> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> rdfs:label "SDTM Model 2017-10-18"^^xsd:string . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> . 
-<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> . 
+<http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:creationDate "2017-10-01T00:00:00%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:lastChangeDate "2017-10-01T00:00:00%2B00:00"^^xsd:dateTime . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> isoT:changeDescription ""^^xsd:string . 
@@ -34,7 +33,7 @@ INSERT DATA
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_xxSCAT> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL> bd:includesVariable <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_xxPRESP> . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> rdf:type isoR:RegistrationState . 
-<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:byAuthority mdrItems:RA-084433759 . 
+<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:registrationStatus "Incomplete"^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:administrativeNote ""^^xsd:string . 
 <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMMODEL-6> isoR:effectiveDate "2016-01-01T00:00:00%2B00:00"^^xsd:dateTime . 
@@ -46,8 +45,8 @@ INSERT DATA
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> rdf:type isoI:ScopedIdentifier . 
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:version "6"^^xsd:positiveInteger . 
 <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:versionLabel "1111111"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:semantic_version "0.1.0"^^xsd:string . 
-<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:hasScope mdrItems:NS-CDISC . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:semanticVersion "0.1.0"^^xsd:string . 
+<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMMODEL-6> isoI:hasScope <http://www.assero.co.uk/NS#CDISC> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_CHAR> rdfs:label "Char"^^xsd:string . 
 <http://www.assero.co.uk/MDRSdtmM/CDISC/V6#M-CDISC_SDTMMODEL_DT_NUM> rdf:type <http://www.assero.co.uk/BusinessDomain#VariableType> . 
