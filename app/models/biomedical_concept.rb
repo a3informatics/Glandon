@@ -84,6 +84,7 @@ class BiomedicalConcept < BiomedicalConceptCore
   def self.create_simple(params)
   	if !params[:bct_id].blank? && !params[:bct_namespace].blank?
 	    object = BiomedicalConceptTemplate.find(params[:bct_id], params[:bct_namespace])
+      object.initial_scope_and_state(params)
 	    ref = OperationalReferenceV2.new
 	    ref.subject_ref = object.uri
 	    operational_hash = object.to_clone
@@ -108,6 +109,7 @@ class BiomedicalConcept < BiomedicalConceptCore
   # @return [Object] The BC created. Includes errors if failed.
   def self.create_clone(params)
     base_bc = BiomedicalConcept.find(params[:bc_id], params[:bc_namespace])
+    base_bc.initial_scope_and_state(params)
     operational_hash = base_bc.to_clone
     managed_item = operational_hash[:managed_item]
     managed_item[:scoped_identifier][:identifier] = params[:identifier]
@@ -247,7 +249,7 @@ class BiomedicalConcept < BiomedicalConceptCore
     if references
       managed_item[:children].each do |child|
         child[:children].each do |ref|
-          tc = ThesaurusConcept.find(ref[:subject_ref][:id], ref[:subject_ref][:namespace])
+          tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(namespace: ref[:subject_ref][:namespace], fragment:ref[:subject_ref][:id]))
           ref[:subject_data] = tc.to_json if !tc.nil?
         end
       end
