@@ -31,10 +31,11 @@ describe BiomedicalConceptCore do
   it "allows validity of the object to be checked - error" do
     result = BiomedicalConceptCore.new
     result.valid?
-    expect(result.errors.count).to eq(3)
-    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Namespace error: Short name is empty")
-    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Number does not contains 9 digits")
-    expect(result.errors.full_messages[2]).to eq("Scoped Identifier error: Identifier contains invalid characters")
+    expect(result.errors.count).to eq(4)
+    expect(result.errors.full_messages[0]).to eq("Registration State error: Registration authority error: Uri can't be blank")
+    expect(result.errors.full_messages[1]).to eq("Registration State error: Registration authority error: Organization identifier is invalid")
+    expect(result.errors.full_messages[2]).to eq("Registration State error: Registration authority error: Ra namespace: Empty object")
+    expect(result.errors.full_messages[3]).to eq("Scoped Identifier error: Identifier contains invalid characters")
     expect(result.valid?).to eq(false)
   end
 
