@@ -10,13 +10,16 @@ describe CrossReference do
   end
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-		load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("cross_reference.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "BusinessOperational.ttl", "cross_reference.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+  	# load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("cross_reference.ttl")
   end
 
   it "will initialize an object" do
