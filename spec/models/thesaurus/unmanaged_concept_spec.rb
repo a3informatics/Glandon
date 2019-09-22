@@ -261,7 +261,7 @@ describe Thesaurus::UnmanagedConcept do
       check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
     end
 
-    it "allows a TC to be exported as SPARQL" do
+    it "allows a TC to be exported as SPARQL I, WILL CURRENT FILE (Timestamp issue)" do
       ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       sparql = Sparql::Update.new
       th = Thesaurus.new
@@ -290,18 +290,17 @@ describe Thesaurus::UnmanagedConcept do
       th.to_sparql(sparql, true)
       tc_1.to_sparql(sparql, true)
       tc_2.to_sparql(sparql, true)
-      full_path = sparql.to_file
-    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "unmanaged_concept.ttl")
-    #Xwrite_yaml_file(tc.to_h, sub_dir, "from_hash_input.yaml")    
-      #check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt")  
+      #full_path = sparql.to_file << May fix timestamp issue
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")  
     end
     
-    it "allows a TC to be exported as SPARQL" do
+    it "allows a TC to be exported as SPARQL II" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       sparql = Sparql::Update.new
       tc.to_sparql(sparql, true)
-    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected.txt") 
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.ttl") 
     end
     
     it "allows a TC to be destroyed" do
