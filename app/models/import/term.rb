@@ -12,8 +12,8 @@ class Import::Term < Import
 
   def import(params)
     results = []
-    uri = UriV2.new(uri: params[:uri])
-    th = Thesaurus.find(uri.id, uri.namespace)
+    uri = Uri.new(uri: params[:uri])
+    th = Thesaurus.find_minimum(uri)
     model = odm?(params[:file_type]) ? OdmXml::Terminology.new(params[:files].first) : TermExcel.new(params[:files].first)
     if model.errors.empty?
       results = model.code_list(params[:identifier])
@@ -48,12 +48,12 @@ private
   def add_cl(parent, results)
     cl = empty_results(results)
     return cl if cl.errors.any?
-    add_params(results[:code_list], parent.namespace)
+    #add_params(results[:code_list], parent.namespace)
     return parent.add_child(results[:code_list])
   end
 
   def empty_results(results)
-    cl = ThesaurusConcept.new
+    cl = Thesaurus::ManagedConcept.new
     return cl if !results.empty?
     cl.errors.add(:base, "Failed to find the code list, possible identifier mismatch.")
     return cl
@@ -61,16 +61,16 @@ private
 
   def add_cli(parent, results)
     results[:items].each do |cli| 
-      add_params(cli, parent.namespace)
+      #add_params(cli, parent.namespace)
       cli = parent.add_child(cli)
     end
     return parent
   end
 
-  def add_params(params, namespace)
-    params[:namespace] = namespace
-    params[:type] = ThesaurusConcept::C_RDF_TYPE_URI.to_s
-  end
+  # def add_params(params, namespace)
+  #   params[:namespace] = namespace
+  #   params[:type] = ThesaurusConcept::C_RDF_TYPE_URI.to_s
+  # end
 
   def odm?(file_type)
     file_type.to_i == Import.file_types["odm"]
