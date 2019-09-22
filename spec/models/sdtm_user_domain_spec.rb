@@ -36,7 +36,7 @@ describe SdtmUserDomain do
 
   it "allows a domain to be found" do
     item = SdtmUserDomain.find("D-ACME_VSDomain", "http://www.assero.co.uk/MDRSdtmUD/ACME/V1")
-  write_yaml_file(item.to_json, sub_dir, "find_expected.yaml")  
+  #Xwrite_yaml_file(item.to_json, sub_dir, "find_expected.yaml")  
     expected = read_yaml_file(sub_dir, "find_expected.yaml")
     expect(item.to_json).to eq(expected)
   end
@@ -73,24 +73,22 @@ describe SdtmUserDomain do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGVS", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XX", :label => "Clone VS as XX"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  #Xwrite_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected.yaml")  
-    # expected = read_yaml_file(sub_dir, "clone_ig_expected.yaml")
+  write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected.yaml")  
+    expected = read_yaml_file(sub_dir, "clone_ig_expected.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601
-    # expect(new_domain.to_json).to eq(expected)
-    check_file_actual_expected(new_domain.to_json, sub_dir, "clone_ig_expected.yaml", equate_method: :hash_equal, write_file: true)
+    expect(new_domain.to_json).to eq(expected)
   end
   
   it "allows a clone of an IG domain to be created, AE" do
     ig_domain = SdtmIgDomain.find("IG-CDISC_SDTMIGAE", "http://www.assero.co.uk/MDRSdtmIgD/CDISC/V3")
     new_domain = SdtmUserDomain.create_clone_ig({:prefix => "XY", :label => "Clone AE as XY"}, ig_domain)
     expect(new_domain.errors.count).to eq(0)
-  #Xwrite_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
-    # expected = read_yaml_file(sub_dir, "clone_ig_expected_2.yaml")
+  write_yaml_file(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml")  
+    expected = read_yaml_file(sub_dir, "clone_ig_expected_2.yaml")
     expected[:last_changed_date] = date_check_now(new_domain.lastChangeDate).iso8601
     expected[:creation_date] = date_check_now(new_domain.creationDate).iso8601
-    # expect(new_domain.to_json).to eq(expected)
-    check_file_actual_expected(new_domain.to_json, sub_dir, "clone_ig_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+    expect(new_domain.to_json).to eq(expected)
   end
   
   it "allows a domain to be created" do
