@@ -177,7 +177,8 @@ class Form < IsoManaged
   # @return [oject] The form object. Valid if no errors set.
   def self.create_placeholder(params)
     object = self.new 
-    object.scopedIdentifier.identifier = params[:identifier]
+    #object.scopedIdentifier.identifier = params[:identifier]
+    object.initial_scope_and_state(params)
     object.label = params[:label]
     group = Form::Group::Normal.new
     group.label = "Placeholder Group"

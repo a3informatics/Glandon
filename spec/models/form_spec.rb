@@ -20,7 +20,7 @@ describe Form do
     [
       "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", 
       "form_example_dm1.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl",
-      "BCT.ttl", "BC.ttl"
+      "BCT.ttl", "BC.ttl", "thesaurus_concept_new_2.ttl"
     ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))
@@ -258,7 +258,6 @@ describe Form do
     expected = read_yaml_file_to_hash_2(sub_dir, "base_bc_json.yaml")
     expected[:last_changed_date] = item.lastChangeDate # Last changed data is dynamic
     expect(item.to_json).to hash_equal(expected) 
-    check_file_actual_expected(result.to_json, sub_dir, "example_vs_baseline_new.yaml", equate_method: :hash_equal)
   end
 
   it "can create the sparql for core form" do
@@ -286,7 +285,7 @@ describe Form do
   it "to_xml, I" do
   	item = Form.find("F-ACME_DM101", "http://www.assero.co.uk/MDRForms/ACME/V1")
   	xml = item.to_xml
-  #write_text_file_2(xml, sub_dir, "to_xml_1.xml")
+  #Xwrite_text_file_2(xml, sub_dir, "to_xml_1.xml")
     expected = read_text_file_2(sub_dir, "to_xml_1.xml")
     odm_fix_datetimes(xml, expected)
     odm_fix_system_version(xml, expected)

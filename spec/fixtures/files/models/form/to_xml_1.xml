@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-F-ACME_DM101" FileType="Snapshot" Granularity="Metadata" FileOID="2018-04-12T14:30:24+01:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="2.18.0" CreationDateTime="2018-04-12T14:30:24+01:00">
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" Description="ODM-F-ACME_DM101" FileType="Snapshot" Granularity="Metadata" FileOID="2019-09-22T08:00:15+02:00" ODMVersion="1.3.2" Originator="Assero" SourceSystem="Glandon" SourceSystemVersion="2.22.1 [Build 004]" CreationDateTime="2019-09-22T08:00:15+02:00">
   <Study OID="S-F-ACME_DM101">
     <GlobalVariables>
       <StudyName>Form Export Demographics (DM1 01)</StudyName>
@@ -89,7 +89,7 @@
         </CodeListItem>
         <CodeListItem CodedValue="BLACK OR AFRICAN AMERICAN" OrderNumber="3">
           <Decode>
-            <TranslatedText xml:lang="en">African American</TranslatedText>
+            <TranslatedText xml:lang="en">Black or African American</TranslatedText>
           </Decode>
         </CodeListItem>
         <CodeListItem CodedValue="NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER" OrderNumber="4">
@@ -104,7 +104,7 @@
         </CodeListItem>
         <CodeListItem CodedValue="OTHER OR MIXED" OrderNumber="6">
           <Decode>
-            <TranslatedText xml:lang="en">Other or Mixed</TranslatedText>
+            <TranslatedText xml:lang="en">Other or mixed race</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>
@@ -121,9 +121,9 @@
         </CodeListItem>
       </CodeList>
       <CodeList OID="F-ACME_DM101_G1_I7-CL" Name="Code list for Ethnic Subgroup" DataType="text">
-        <CodeListItem CodedValue="ETHNIC SUBGROUP [1]" OrderNumber="1">
+        <CodeListItem CodedValue="OTHER OR MIXED" OrderNumber="1">
           <Decode>
-            <TranslatedText xml:lang="en">Ethnic Subgroup 1</TranslatedText>
+            <TranslatedText xml:lang="en">Other or mixed race</TranslatedText>
           </Decode>
         </CodeListItem>
       </CodeList>

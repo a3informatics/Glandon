@@ -90,7 +90,8 @@ describe Thesaurus do
         # "ACME_LB Domain.ttl",      
         # "ACME_Topic.ttl",
         # "form_example_general.ttl",
-        # "form_example_vs_baseline_new.ttl"
+        # "form_example_vs_baseline_new.ttl",
+        "form_example_dm1.ttl"
       ]
       files.each do |filename|
   puts "***** Processing #{filename} *****"
@@ -177,10 +178,19 @@ describe Thesaurus do
       @tc_2 = Thesaurus::ManagedConcept.new
       @tc_2.identifier = "A00010"
       @tc_2.label = "Ethnic Subgroup" 
-      @tc_2.definition = "Ethnic Subgroup"
+      @tc_2.definition = "Ethnic Subgroup Def"
       @tc_2.extensible = false
       @tc_2.notation = "ETHNIC SUBGROUP"
       @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Ethnic Subgroup")
+
+      @tc_2a = Thesaurus::ManagedConcept.new
+      @tc_2a.identifier = "A00011"
+      @tc_2a.label = "Ethnic Subgroup 1" 
+      @tc_2a.definition = "Ethnic Subgroup 1 Def"
+      @tc_2a.extensible = false
+      @tc_2a.notation = "ETHNIC SUBGROUP [1]"
+      @tc_2a.preferred_term = Thesaurus::PreferredTerm.new(label: "Ethnic Subgroup 1")
+      @tc_2.narrower << @tc_2a
       @tc_3 = Thesaurus::ManagedConcept.new
       @tc_3.identifier = "A00020"
       @tc_3.label = "Race Extension" 

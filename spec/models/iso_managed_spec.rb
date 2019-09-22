@@ -318,7 +318,7 @@ describe IsoManaged do
     results = []
     items = IsoManaged.list("Form", "http://www.assero.co.uk/BusinessForm")
     items.each { |x| results << x.to_json }
-  write_yaml_file(results, sub_dir, "iso_managed_list.yaml")
+  #Xwrite_yaml_file(results, sub_dir, "iso_managed_list.yaml")
     expected = read_yaml_file(sub_dir, "iso_managed_list.yaml")
     i = items.find { |x| x.id == "F-BBB_VSW" } # We know this got edited in an above test, modify time
     e = expected.find { |x| x[:id] == "F-BBB_VSW" }
@@ -616,6 +616,17 @@ describe IsoManaged do
   #Xwrite_hash_to_yaml_file_2(result, sub_dir, "import_operation_expected.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "import_operation_expected.yaml")
     expected[:managed_item][:last_changed_date] = result[:managed_item][:last_changed_date]
+    expect(result).to eq(expected)
+  end
+
+  it "sets initial scope amd state" do
+    object = IsoManaged.new
+    object.initial_scope_and_state(identifier: "IDENT")
+    result = object.to_json
+  #Xwrite_hash_to_yaml_file_2(result, sub_dir, "initial_scope_and_state_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "initial_scope_and_state_expected.yaml")
+    expected[:last_changed_date] = result[:last_changed_date]
+    expected[:creation_date] = result[:creation_date]
     expect(result).to eq(expected)
   end
 
