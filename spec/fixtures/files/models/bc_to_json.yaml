@@ -6,19 +6,21 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2016-01-01T00:00:00+01:00'
-:last_changed_date: '2016-01-01T00:00:00+01:00'
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_changed_date: '2016-01-01T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_BC_C25206-1
   :registration_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
     :uri: http://www.assero.co.uk/RA#DUNS123456789
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: '123456789'
     :international_code_designator: DUNS
     :owner: true
     :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
       :uri: http://www.assero.co.uk/NS#ACME
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
       :short_name: ACME
@@ -39,6 +41,7 @@
   :version: 1
   :semantic_version: 1.0.0
   :namespace:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: ACME
@@ -107,8 +110,8 @@
             :ordinal: 1
             :local_label: ''
             :subject_ref:
-              :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-              :id: CLI-C67153_C25206
+              :namespace: http://www.cdisc.org/C67153/V4
+              :id: C67153_C25206
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
       :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code
       :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -135,8 +138,8 @@
         :ordinal: 1
         :local_label: ''
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66741_C25206
+          :namespace: http://www.cdisc.org/C66741/V4
+          :id: C66741_C25206
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
   :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -410,8 +413,8 @@
         :ordinal: 1
         :local_label: ''
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66770_C42559
+          :namespace: http://www.cdisc.org/C66770/V4
+          :id: C66770_C42559
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
       :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
       :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -473,8 +476,8 @@
         :ordinal: 1
         :local_label: ''
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66742_C49487
+          :namespace: http://www.cdisc.org/C66742/V4
+          :id: C66742_C49487
       - :type: http://www.assero.co.uk/BusinessOperational#TcReference
         :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2
         :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -485,8 +488,8 @@
         :ordinal: 2
         :local_label: ''
         :subject_ref:
-          :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-          :id: CLI-C66742_C49488
+          :namespace: http://www.cdisc.org/C66742/V4
+          :id: C66742_C49488
 :template_ref:
   :type: http://www.assero.co.uk/BusinessOperational#BctReference
   :id: BC-ACME_BC_C25206_TPR

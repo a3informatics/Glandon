@@ -1,5 +1,5 @@
 <%= javascript_tag "var changes_path = '/cdisc_terms/:id/changes';" %>
-<%= javascript_include_tag 'jquery','jquery-ui.min.js' %>
+<%= javascript_include_tag 'jquery','jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/cdisc_term/index_panel', 'shared/timeline_slider', 'shared/alph_slider', 'cdisc_term/index'%>
 <%= stylesheet_link_tag 'custom/alph_filter','custom/dates_selector', media: 'all' %>
 
@@ -8,11 +8,15 @@
     padding-top: 20px;
   }
 
-  html,body { min-width: 1000px; }
+  html,body {
+    height: unset !important;
+    min-width: 768px;
+  }
 
-  #results_div .ico-btn{
-    margin: 20px auto 0px auto;
- }
+  #main_area{
+    overflow-x: hidden !important;
+  }
+
   #results_div .icon-filter{  margin-left:4px; }
 
 
@@ -33,11 +37,11 @@
 </div>
 <div class="row">
   <div class="col-md-12 card">
-      <h3 class="card-header">Changes in CDISC Terminology versions</h3>
+    <div class="card-header">Changes between two CDISC Terminology versions</div>
       <div class="card-content">
         <div class="row">
           <center>
-            <span class="text-medium text-small font-light">Select version timespan by dragging the sliders below:</span><br><br>
+            <span class="text-medium text-small font-light">Select versions by dragging the sliders and click Display to display changes:</span><br><br>
             <!-- TIMELINE SELECTOR START -->
             <div class="timeline-outer-container">
               <div class="timeline-container">
@@ -96,4 +100,5 @@
           </div>
         </div>
       </div>
-      </div>
+    </div>
+  </div>

@@ -1,49 +1,37 @@
----
-:type: http://www.assero.co.uk/BusinessDomain#Model
-:id: IG-CDISC_SDTMIG
-:namespace: http://www.assero.co.uk/MDRSdtmIg/CDISC/V1
-:label: SDTM Implementation Guide 2017-01-01
-:extension_properties: []
-:origin: ''
-:change_description: ''
-:creation_date: '2017-01-01T00:00:00+00:00'
-:last_changed_date: '2017-01-01T00:00:00+00:00'
-:explanatory_comment: ''
-:registration_state:
-  :namespace: http://www.assero.co.uk/MDRItems
-  :id: RS-CDISC_SDTMIG-1
-  :registration_authority:
-    :uri: http://www.assero.co.uk/RA#DUNS084433759
-    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
-    :organization_identifier: '084433759'
-    :international_code_designator: DUNS
-    :owner: false
-    :ra_namespace:
-      :uri: http://www.assero.co.uk/NS#CDISC
-      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-      :short_name: CDISC
-      :name: Clinical Data Interchange Standards Consortium
-      :authority: www.cdisc.org
-  :registration_status: Standard
-  :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00+00:00'
-  :until_date: '2016-01-01T00:00:00+00:00'
-  :current: false
-  :unresolved_issue: ''
-  :administrative_status: ''
-  :previous_state: Incomplete
-:scoped_identifier:
-  :id: SI-CDISC_SDTMIG-1
-  :identifier: SDTM IG
-  :version_label: Version Label
-  :version: 1
-  :semantic_version: 0.1.0
-  :namespace:
-    :uri: http://www.assero.co.uk/NS#CDISC
-    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
-    :short_name: CDISC
-    :name: Clinical Data Interchange Standards Consortium
-    :authority: www.cdisc.org
-:ordinal: 1
-:rule: ''
-:domain_refs: []
+--- "PREFIX : <http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#>\nPREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\nPREFIX
+  isoI: <http://www.assero.co.uk/ISO11179Identification#>\nPREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\nPREFIX
+  bd: <http://www.assero.co.uk/BusinessDomain#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX
+  rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX
+  skos: <http://www.w3.org/2004/02/skos/core#>\nINSERT DATA \n{ \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  rdf:type <http://www.assero.co.uk/BusinessDomain#Model> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  rdfs:label \"SDTM Implementation Guide 2017-01-01\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:hasState <http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:creationDate \"2017-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:lastChangeDate \"2017-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:changeDescription \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:explanatoryComment \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  isoT:origin \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  bd:ordinal \"1\"^^xsd:positiveInteger . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG>
+  bd:rule \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  rdf:type isoR:RegistrationState . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:registrationStatus \"Standard\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:administrativeNote \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:unresolvedIssue \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:administrativeStatus \"\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#RS-CDISC_SDTMIG-1>
+  isoR:previousState \"Incomplete\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  isoI:identifier \"SDTM IG\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  rdf:type isoI:ScopedIdentifier . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  isoI:version \"1\"^^xsd:positiveInteger . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  isoI:versionLabel \"Version Label\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  isoI:semanticVersion \"0.1.0\"^^xsd:string . \n<http://www.assero.co.uk/MDRItems#SI-CDISC_SDTMIG-1>
+  isoI:hasScope <http://www.assero.co.uk/NS#CDISC> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_REQUIRED>
+  rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_REQUIRED>
+  rdfs:label \"Required\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_PERMISSIBLE>
+  rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_PERMISSIBLE>
+  rdfs:label \"Permissible\"^^xsd:string . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_EXPECTED>
+  rdf:type <http://www.assero.co.uk/BusinessDomain#VariableCompliance> . \n<http://www.assero.co.uk/MDRSdtmIg/CDISC/V1#IG-CDISC_SDTMIG_C_EXPECTED>
+  rdfs:label \"Expected\"^^xsd:string . \n}"

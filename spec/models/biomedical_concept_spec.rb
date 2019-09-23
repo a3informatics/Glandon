@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe BiomedicalConcept do
-  
+
   include DataHelpers
   include SparqlHelpers
 
@@ -10,21 +10,31 @@ describe BiomedicalConcept do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("CT_V41.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"
+    ]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions((1..43))
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("BCT.ttl")
+    # load_test_file_into_triple_store("BC.ttl")
+    # load_test_file_into_triple_store("CT_V41.ttl")
+    # load_test_file_into_triple_store("CT_V42.ttl")
+    # load_test_file_into_triple_store("CT_V43.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -54,7 +64,7 @@ describe BiomedicalConcept do
     valid = result.valid?
     expect(result.errors.count).to eq(0)
     expect(valid).to eq(true)
-  end 
+  end
 
 it "allows a BC to be found" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
@@ -82,8 +92,8 @@ it "allows a BC to be found" do
     expected[12] = "BC-ACME_BC_C98785"
     result = BiomedicalConcept.all
     expect(result.count).to eq(expected.count)
-    result.each do |e| 
-      expect(expected.include?(e.id)).to be(true) 
+    result.each do |e|
+      expect(expected.include?(e.id)).to be(true)
     end
   end
 
@@ -159,9 +169,7 @@ it "allows a BC to be found" do
 
   it "allows the object to be exported as JSON" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_to_json.yaml")
-    expected = read_yaml_file(sub_dir, "bc_to_json.yaml")
-    expect(item.to_json).to hash_equal(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_to_json.yaml", equate_method: :hash_equal)
   end
 
   it "creates an object based on a template" do
@@ -210,11 +218,11 @@ it "allows a BC to be found" do
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
     expect(item.to_json).to eq(expected)
   end
-    
+
   it "allows the object to be created, create error" do
     json = read_yaml_file(sub_dir, "bc_operation.yaml")
-    allow_any_instance_of(BiomedicalConcept).to receive(:valid?).and_return(true) 
-    allow_any_instance_of(BiomedicalConcept).to receive(:create_permitted?).and_return(true) 
+    allow_any_instance_of(BiomedicalConcept).to receive(:valid?).and_return(true)
+    allow_any_instance_of(BiomedicalConcept).to receive(:create_permitted?).and_return(true)
     response = Typhoeus::Response.new(code: 200, body: "")
     expect(CRUD).to receive(:update).and_return(response)
     expect{BiomedicalConcept.create(json)}.to raise_error(Exceptions::CreateError)
@@ -253,9 +261,7 @@ it "allows a BC to be found" do
   it "allows the object to be created from JSON" do
     json = read_yaml_file(sub_dir, "bc_to_json.yaml")
     item = BiomedicalConcept.from_json(json)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_from_json.yaml")
-    expected = read_yaml_file(sub_dir, "bc_from_json.yaml")
-    expect(item.to_json).to hash_equal(expected)
+    check_file_actual_expected(item.to_json, sub_dir, "bc_from_json.yaml", equate_method: :hash_equal)
   end
 
   it "allows an object to be exported as SPARQL" do
@@ -272,11 +278,9 @@ it "allows a BC to be found" do
   it "get the properties, no references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(false)
-  #Xwrite_yaml_file(result, sub_dir, "bc_properties_no_ref.yaml")
-    expected = read_yaml_file(sub_dir, "bc_properties_no_ref.yaml")
-    expect(result).to hash_equal(expected)
+    check_file_actual_expected(result, sub_dir, "bc_properties_no_ref.yaml", equate_method: :hash_equal)
   end
-    
+
   it "get the properties with references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     result = item.get_properties(true)
@@ -284,7 +288,7 @@ it "allows a BC to be found" do
     expected = read_yaml_file(sub_dir, "bc_properties_with_refs.yaml")
     expect(result).to hash_equal(expected)
   end
-    
+
   it "get unique references" do
     item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
     items = item.get_properties(true)
@@ -309,4 +313,3 @@ it "allows a BC to be found" do
   it "returns domains linked, multiple"
 
 end
-  

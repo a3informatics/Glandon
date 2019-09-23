@@ -69,6 +69,7 @@ describe IsoScopedIdentifier do
         :namespace => 
           {
             :uri => "http://www.assero.co.uk/NS#AAA",
+            :id => Uri.new(uri: "http://www.assero.co.uk/NS#AAA").to_id,
             :name => "AAA Long",
             :short_name => "AAA",
             authority: "www.aaa.com",
@@ -263,7 +264,7 @@ describe IsoScopedIdentifier do
 
   it "does not allow an invalid object to be created" do
     org = IsoNamespace.find_by_short_name("BBB")
-    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW@@@@ 1", :version => 1, :version_label => "0.1", :namespace => org.to_json}
+    result = {:id=>"SI-BBB_NEW_1-1", :identifier => "NEW@@@@ 1", :version => 1, :version_label => "0.1", :namespace => org.to_h}
     si = IsoScopedIdentifier.create("NEW@@@@ 1", 1, "0.1", "4.5.6", org)
     expect(si.errors.count).to eq(1)
     expect(si.errors.full_messages.to_sentence).to eq("Identifier contains invalid characters")

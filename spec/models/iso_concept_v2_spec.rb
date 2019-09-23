@@ -18,12 +18,15 @@ describe IsoConceptV2 do
     end
 
 	  before :each do
-	    clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_test_file_into_triple_store("iso_concept_data_3.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_data_3.ttl"]
+      load_files(schema_files, data_files)
+      # clear_triple_store
+      # load_schema_file_into_triple_store("ISO11179Types.ttl")
+      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+      # load_test_file_into_triple_store("iso_concept_data_3.ttl")
 	  end
 
 		it "validates a valid object" do
@@ -105,8 +108,7 @@ describe IsoConceptV2 do
       IsoHelpers.clear_cache
     end
 
-    before :all do
-      IsoHelpers.clear_cache
+    before :each do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
@@ -117,7 +119,7 @@ describe IsoConceptV2 do
       item = Thesaurus::ManagedConcept.new
       item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX")
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      ct.add_link(:is_top_concept, item)
+      ct.add_link(:is_top_concept, item.uri)
       check_count(ct, 1)
       check_uri(ct, [item.uri])
     end

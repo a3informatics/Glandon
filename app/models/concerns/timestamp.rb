@@ -10,7 +10,7 @@ class Timestamp
     if "#{text}".empty?
       @time = Time.now
     else
-      @time = text.to_time
+      @time = text.to_time(:utc)
     end
   end
 
@@ -19,7 +19,7 @@ class Timestamp
   # @param text [string] Time string
   # @return [null]
   def from_timestamp(text)
-    @time = text.to_time
+    @time = text.to_time(:utc)
   end
 
   # To Datetime 
@@ -41,6 +41,18 @@ class Timestamp
   # @return [string] Time formatted as YYYY-MM-DDTHH:MM:SS+/-HH:MM
   def to_8601
     return @time.iso8601.to_s
+  end
+
+  # ---------
+  # Test Only
+  # ---------
+  
+  if Rails.env.test?
+
+    def time
+      @time
+    end
+
   end
 
 end

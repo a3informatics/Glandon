@@ -73,7 +73,9 @@ class Excel::Engine
               self.send(action[:method], params)
             end
           rescue => e
-            @errors.add(:base, "Process error #{e} when processing action '#{action}' on row #{row} column #{col}.")
+            msg = "Exception raised when processing action '#{action}' on row #{row} column #{col}."
+            ConsoleLogger::log(C_CLASS_NAME, __method__.to_s, "#{msg}\n#{e}\n#{e.backtrace}")
+            @errors.add(:base, msg)
           end
         end
       end

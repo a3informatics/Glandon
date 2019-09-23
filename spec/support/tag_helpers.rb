@@ -3,7 +3,7 @@ module TagHelper
   def create_classification
       click_navbar_dashboard
       expect(page).to have_content 'Registration Status Counts'   
-      visit 'iso_concept_systems'
+      click_navbar_tags
       expect(page).to have_content 'Classifications'  
       click_link 'New'
       fill_in 'iso_concept_system_label', with: 'Root'
@@ -39,7 +39,7 @@ module TagHelper
   end
 
   def create_tag_form(identifier, label)
-    click_navbar_dashboard
+    # click_navbar_dashboard
     click_navbar_forms
     expect(page).to have_content 'Index: Forms'  
     click_link 'New'
@@ -50,7 +50,7 @@ module TagHelper
   end
 
   def create_tag_bc(identifier, label, template)
-    click_navbar_dashboard
+    # click_navbar_dashboard
     click_navbar_bc
     wait_for_ajax
     expect(page).to have_content 'Index: Biomedical Concepts'  
@@ -64,7 +64,7 @@ module TagHelper
   end
 
   def create_tag_term(identifier, label)
-      click_navbar_dashboard
+      # click_navbar_dashboard
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "#{identifier}"
@@ -74,7 +74,7 @@ module TagHelper
     end
  
   def add_tags_term(identifier, tag)
-    click_navbar_dashboard
+    # click_navbar_dashboard
     click_navbar_terminology
     expect(page).to have_content 'Index: Terminology' 
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click

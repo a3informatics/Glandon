@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus do
+describe Thesaurus::Search do
 
   include DataHelpers
 
@@ -39,10 +39,12 @@ describe Thesaurus do
 
   before :all do
     IsoHelpers.clear_cache
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..50)
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V45#TH"))
+    ct.has_state.make_current
   end
 
   after :all do
@@ -168,15 +170,14 @@ describe Thesaurus do
   it "allows the current terminologies to be searched, initial search, no parameters" do
     params = standard_params
     results = Thesaurus.search_current(params)
-    check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
   end
 
   it "allows the current terminologies to be searched, several terminologies returning results" do
     params = standard_params
-    params[:search][:value] = "RACE"
+    params[:columns]["0"][:search][:value] = "C66770"
     results = Thesaurus.search_current(params)
-    check_file_actual_expected(results, sub_dir, "search_13.yaml", equate_method: :hash_equal, write_file: true)
-    expect(true).to eq(false)
+    check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
   end
 
   it "allows a terminology to be searched, overall, case sensitivity" do

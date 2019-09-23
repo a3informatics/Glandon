@@ -200,6 +200,7 @@ describe Fuseki::Resource do
       expect(TestR4.respond_to?(:children_klass)).to eq(true)
       expect(TestR4.respond_to?(:children_predicate)).to eq(true)
       expect(item.respond_to?(:children)).to eq(true)
+      expect(item.respond_to?(:children_objects)).to eq(true)
     end
 
     it "object and link properties" do

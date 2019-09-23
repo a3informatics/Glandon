@@ -16,6 +16,10 @@
   color: $grey-white !important;
 }
 
+.btn:active, .btn:focus{
+  color: $grey-white;
+}
+
 .btn.nomargin{
   margin: 0px;
 }
@@ -30,6 +34,44 @@
   font-size: $font-normal;
 }
 
+.btn.small{
+  padding: 3px 6px;
+  font-size: $font-tiny;
+}
+
+.btn.sm-margin{
+  margin: 4px 2px;
+}
+
+.btn.red{
+  background: $accent-color-2;
+}
+
+.btn.red:hover{
+  background: $accent-color-2-light;
+}
+
+.btn.red:active, .btn.red:focus{
+  background: $accent-color-2-dark !important;
+}
+
+.green.green{
+  background: $secondary-color-medium;
+}
+
+.btn.green:hover{
+  background: $secondary-color-light;
+}
+
+.btn.green:active, .btn.green:focus{
+  background: $secondary-color-dark !important;
+}
+
+.btn.disabled{
+  background: $grey-medium;
+  pointer-events: none;
+}
+
 // Wrapper for multiple in-line buttons, takes 100% width and the contents are centered
 .btns-wrap{
   width: 100%;
@@ -38,6 +80,17 @@
   justify-content: center;
   flex-wrap: wrap;
   padding: 5px 5px;
+}
+
+.actions-wrap{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: -6px;
+  flex-wrap: wrap;
 }
 
 // An icon button, inside of which is an icon symbol span element, and a ico-btn-text span element.
@@ -52,6 +105,10 @@
 
 .ico-btn:hover .ico-btn-text{
   color: $grey-white !important;
+}
+
+.ico-btn:active, .ico-btn:focus{
+  color: $primary-color-medium;
 }
 
 .ico-btn .ico{
@@ -104,6 +161,7 @@
   flex-direction: row;
   align-items: center;
   margin: 0 10px;
+  margin-top: 6px;
   flex-wrap: wrap;
   color: $grey-medium;
 }
@@ -116,8 +174,20 @@
   text-decoration: none;
 }
 
+.ico-btn-sec:active, .ico-btn-sec:focus{
+  color: $grey-medium;
+}
+
 .ico-btn-sec.disabled .circular-badge{
   background: $grey-light !important;
+}
+
+.ico-btn-sec .circular-badge.green{
+  background: $secondary-color-medium;
+}
+
+.ico-btn-sec:hover .circular-badge.green{
+  background: $secondary-color-light;
 }
 
 .ico-btn-sec .ico-btn-sec-text{

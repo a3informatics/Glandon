@@ -6,19 +6,21 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2016-01-01T00:00:00+01:00'
-:last_changed_date: '2016-01-01T00:00:00+01:00'
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_changed_date: '2016-01-01T00:00:00+00:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
   :id: RS-ACME_BC_C25206-1
   :registration_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
     :uri: http://www.assero.co.uk/RA#DUNS123456789
     :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
     :organization_identifier: '123456789'
     :international_code_designator: DUNS
     :owner: true
     :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
       :uri: http://www.assero.co.uk/NS#ACME
       :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
       :short_name: ACME
@@ -39,6 +41,7 @@
   :version: 1
   :semantic_version: 1.0.0
   :namespace:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
     :short_name: ACME
@@ -71,22 +74,17 @@
     :ordinal: 1
     :local_label: ''
     :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-      :id: CLI-C66742_C49487
+      :namespace: http://www.cdisc.org/C66742/V4
+      :id: C66742_C49487
     :subject_data:
-      :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-      :id: CLI-C66742_C49487
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+      :identifier: C49487
+      :definition: The non-affirmative response to a question. (NCI)
       :label: 'No'
-      :extension_properties: []
-      :identifier: ''
-      :notation: ''
-      :synonym: ''
-      :definition: ''
-      :preferredTerm: ''
-      :topLevel: false
-      :parentIdentifier: ''
-      :children: []
+      :notation: N
+      :preferred_term: 'No'
+      :synonym: 'No'
+      :extensible: false
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Ml9DNDk0ODc=
   - :type: http://www.assero.co.uk/BusinessOperational#TcReference
     :id: BC-ACME_BC_C25206_PerformedClinicalResult_baselineIndicator_BL_value_TR_2
     :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -97,22 +95,17 @@
     :ordinal: 2
     :local_label: ''
     :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-      :id: CLI-C66742_C49488
+      :namespace: http://www.cdisc.org/C66742/V4
+      :id: C66742_C49488
     :subject_data:
-      :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-      :id: CLI-C66742_C49488
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+      :identifier: C49488
+      :definition: The affirmative response to a question. (NCI)
       :label: 'Yes'
-      :extension_properties: []
-      :identifier: ''
-      :notation: ''
-      :synonym: ''
-      :definition: ''
-      :preferredTerm: ''
-      :topLevel: false
-      :parentIdentifier: ''
-      :children: []
+      :notation: Y
+      :preferred_term: 'Yes'
+      :synonym: 'Yes'
+      :extensible: false
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQyL1Y0I0M2Njc0Ml9DNDk0ODg=
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_DefinedObservation_targetAnatomicSiteCode_CD_code
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -187,22 +180,24 @@
     :ordinal: 1
     :local_label: ''
     :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-      :id: CLI-C67153_C25206
+      :namespace: http://www.cdisc.org/C67153/V4
+      :id: C67153_C25206
     :subject_data:
-      :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-      :id: CLI-C67153_C25206
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+      :identifier: C25206
+      :definition: 'The property of a body or region of space that determines whether
+        or not there will be a net flow of heat into it or out of it from a neighboring
+        body or region and in which direction (if any) the heat will flow, perceptible
+        by living organism as a somatic sensation of cold or heat. It is a measure
+        of the average translational kinetic energy associated with the disordered
+        microscopic motion of atoms and molecules. Temperature is measured in one
+        of the three standard temperature scales: Celsius, Kelvin, and Fahrenheit.
+        (NCI)'
       :label: Temperature
-      :extension_properties: []
-      :identifier: ''
-      :notation: ''
-      :synonym: ''
-      :definition: ''
-      :preferredTerm: ''
-      :topLevel: false
-      :parentIdentifier: ''
-      :children: []
+      :notation: Temperature
+      :preferred_term: Temperature
+      :synonym: Temperature
+      :extensible: false
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUzL1Y0I0M2NzE1M19DMjUyMDY=
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_DefinedObservation_nameCode_CD_code
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -229,22 +224,24 @@
     :ordinal: 1
     :local_label: ''
     :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-      :id: CLI-C66741_C25206
+      :namespace: http://www.cdisc.org/C66741/V4
+      :id: C66741_C25206
     :subject_data:
-      :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-      :id: CLI-C66741_C25206
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+      :identifier: C25206
+      :definition: 'The property of a body or region of space that determines whether
+        or not there will be a net flow of heat into it or out of it from a neighboring
+        body or region and in which direction (if any) the heat will flow, perceptible
+        by living organism as a somatic sensation of cold or heat. It is a measure
+        of the average translational kinetic energy associated with the disordered
+        microscopic motion of atoms and molecules. Temperature is measured in one
+        of the three standard temperature scales: Celsius, Kelvin, and Fahrenheit.
+        (NCI)'
       :label: Temperature
-      :extension_properties: []
-      :identifier: ''
-      :notation: ''
-      :synonym: ''
-      :definition: ''
-      :preferredTerm: ''
-      :topLevel: false
-      :parentIdentifier: ''
-      :children: []
+      :notation: TEMP
+      :preferred_term: Temperature
+      :synonym: Temperature
+      :extensible: false
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzQxL1Y0I0M2Njc0MV9DMjUyMDY=
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_PerformedObservation_targetAnatomicSiteLateralityCode_CD_code
   :namespace: http://www.assero.co.uk/MDRBCs/V1
@@ -303,22 +300,23 @@
     :ordinal: 1
     :local_label: ''
     :subject_ref:
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
-      :id: CLI-C66770_C42559
+      :namespace: http://www.cdisc.org/C66770/V4
+      :id: C66770_C42559
     :subject_data:
-      :type: http://www.assero.co.uk/ISO25964#ThesaurusConcept
-      :id: CLI-C66770_C42559
-      :namespace: http://www.assero.co.uk/MDRThesaurus/CDISC/V42
+      :identifier: C42559
+      :definition: A unit of temperature of the temperature scale designed so that
+        the freezing point of water is 0 degrees and the boiling point is 100 degrees
+        at standard atmospheric pressure. The current official definition of the Celsius
+        sets 0.01 C to be at the triple point of water and a degree to be 1/273.16
+        of the difference in temperature between the triple point of water and absolute
+        zero. One degree Celsius represents the same temperature difference as one
+        Kelvin. (NCI)
       :label: Degree Celsius
-      :extension_properties: []
-      :identifier: ''
-      :notation: ''
-      :synonym: ''
-      :definition: ''
-      :preferredTerm: ''
-      :topLevel: false
-      :parentIdentifier: ''
-      :children: []
+      :notation: C
+      :preferred_term: Degree Celsius
+      :synonym: Degree Celsius
+      :extensible: false
+      :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0I0M2Njc3MF9DNDI1NTk=
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
   :id: BC-ACME_BC_C25206_PerformedClinicalResult_value_PQR_value
   :namespace: http://www.assero.co.uk/MDRBCs/V1

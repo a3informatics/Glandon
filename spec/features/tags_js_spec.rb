@@ -14,14 +14,22 @@ describe "Tags", :type => :feature do
   end
 
   before :each do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
+
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"
+    ]
+    load_files(schema_files, data_files)
+
+    clear_iso_concept_object
+    clear_iso_namespace_object
+    clear_iso_registration_authority_object
+    clear_iso_registration_state_object
+
     visit '/users/sign_in'
     fill_in 'Email', with: 'content_admin@example.com'
     fill_in 'Password', with: '12345678'
@@ -68,13 +76,13 @@ describe "Tags", :type => :feature do
 
     it "create child tags organized in a hierarchical structure (REQ-MDR-TAG-020, REQ-MDR-TAG-040)", js: true do 
       create_tag_first_level("Tag1", "Tag 1 level 1")
-      #click_navbar_tags
+      click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("Tag1")
       fill_in 'add_label', with: 'Tag1_1'
       fill_in 'add_description', with: 'Tag 1 level 2'
       click_button 'Add tag'
-      wait_for_ajax
+      wait_for_ajax(120)
       expect(page).to have_content 'Tag1_1'    
     end
 
@@ -104,7 +112,7 @@ describe "Tags", :type => :feature do
       #not implemented expect(page).to have_content 'You cannot create identical tags at the same level..........'      
     end
 
-    it "view all managed items instances for each tag when managing tags (REQ-MDR-TAG-030)", js: true do
+    it "view all managed items instances for each tag when managing tags (REQ-MDR-TAG-030), currently not working", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
       #currently not working
       create_tag_form("TAGFORM", "Tag test form" )
@@ -157,7 +165,7 @@ describe "Tags", :type => :feature do
     end
 
     #not implemented
-    it "still (not) delete tags used by managed items (REQ-MDR-TAG-060)", js: true do
+    it "still (not) delete tags used by managed items (REQ-MDR-TAG-060), currently not working", js: true do
       load_test_file_into_triple_store("tag_test_data.ttl")
       #currently not working
       create_tag_form("TAGFORM", "Tag test form" )
@@ -189,7 +197,7 @@ describe "Tags", :type => :feature do
 
      ### Add Tags to Content (MDR-TAG-15, MDR-TAG-50, MDR-TAG-70, MDR-TAG-100)
     
-    it "add tags to forms auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
+    it "add tags to forms auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050), currently not working", js: true do
       #currently not working
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_form("TAGFORM", "Form for Tag Testing" )
@@ -211,11 +219,11 @@ describe "Tags", :type => :feature do
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
     end
 
-     it "add tags to BCs auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
+     it "add tags to BCs auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050), currently not working", js: true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       #currently not working
       create_tag_bc("TAGBC", "BC for Tag Testing", "Obs PQR")
-      pause
+#pause
       add_tags("Biomedical Concepts", "TAGBC", "Tag1")
       wait_for_ajax
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
@@ -234,33 +242,33 @@ describe "Tags", :type => :feature do
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
     end
 
-     it "add tags to terminology auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050)", js: true do
+     it "add tags to terminology auto add child tags when created (REQ-MDR-15, REQ-MDR-TAG-050). Currently not working", js: true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_term("TAGTERM", "Terminology for Tag Testing")
-      pause
       add_tags_term("TAGTERM", "Tag1")
-      wait_for_ajax
+
+      wait_for_ajax(120)
       find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1")
       #create child tag
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
       ui_click_node_name ("Tag1")
       ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
-      pause
+#pause
       #1. check child tag is added to TAGTERM
       ui_click_node_name ("Tag1_1")
       #not implemented ui_check_table_cell('iso_managed_table',1,1,'TAGTERM')
       #2. check child tag is added to TAGTERM
-      click_navbar_dashboard
+      # click_navbar_dashboard
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology' 
       find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'History').click
-      pause
+#pause
       #find(:xpath, "//tr[contains(.,'TAGTERM')]/td/a", :text => 'Update Tags').click 
-      pause
+#pause
       #not implemented find(:xpath, "//div[@id='tags_container']/span", :text => "Tag1_1")
     end
 
-     it "remove tags and child tags from forms (REQ-MDR-15)", js:true do
+     it "remove tags and child tags from forms (REQ-MDR-15). Currently not working", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_form("TAGFORM", "Form for Tag Testing" )
       add_tags("Forms", "TAGFORM", "Tag1")
@@ -278,7 +286,7 @@ describe "Tags", :type => :feature do
       expect(X).to have_content "" 
     end
  
-     it "remove tags and child tags from BCs (REQ-MDR-15)", js:true do
+     it "remove tags and child tags from BCs (REQ-MDR-15). Currently not working", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_bc("TAGBC", "BC for Tag Testing", "Obs PQR")
       add_tags("Biomedical Concepts", "TAGBC", "Tag1")
@@ -296,7 +304,7 @@ describe "Tags", :type => :feature do
       expect(X).to have_content "" 
     end
 
-     it "remove tags and child tags from terminology (REQ-MDR-15)", js:true do
+     it "remove tags and child tags from terminology (REQ-MDR-15). Not working", js:true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
       create_tag_term("TAGTERM", "Term for Tag Testing")
       add_tags("Terminology", "TAGTERM", "Tag1")
@@ -314,7 +322,7 @@ describe "Tags", :type => :feature do
       expect(X).to have_content "" 
     end
 
-     it "view a list of managed items being tagged to a selected tag when adding tags to a form,  (REQ-MDR-TAG-100)", js:true do
+     it "view a list of managed items being tagged to a selected tag when adding tags to a form,  (REQ-MDR-TAG-100) Not working: The value is not a string or an existing URI", js:true do
       load_test_file_into_triple_store("tag_test_data.ttl")
       create_tag_form("TAGFORM", "Form for Tag Test" )
       create_tag_bc("TAGBC", "BC for Tag Test", "Obs PQR")

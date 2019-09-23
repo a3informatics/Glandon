@@ -44,7 +44,7 @@ describe Thesaurus::PreferredTerm do
         :uuid => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvWC9WMSNGLUFDTUVfT1JfRzFfSTE="
       }
     item = Thesaurus::PreferredTerm.from_h(result)
-    expect(item.to_h).to eq(result)
+    check_file_actual_expected(item.to_h, sub_dir, "from_h_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows an object to be exported as SPARQL" do

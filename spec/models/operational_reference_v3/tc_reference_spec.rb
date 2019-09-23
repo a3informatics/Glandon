@@ -47,9 +47,7 @@ describe OperationalReferenceV3::TcReference do
         :rdf_type => "http://www.assero.co.uk/BusinessOperational#TcReference"
       }
     item = OperationalReferenceV3::TcReference.from_h(input)
-  #Xwrite_yaml_file(item.to_h, sub_dir, "from_h_expected.yaml")
-    expected = read_yaml_file(sub_dir, "from_h_expected.yaml")
-    expect(item.to_h).to eq(expected)
+    check_file_actual_expected(item.to_h, sub_dir, "from_h_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows an object to be exported as SPARQL" do

@@ -4,16 +4,21 @@
   <div class="card-content">
     <!-- CARD FOR TERMINOLOGY -->
     <div class="h-outside-wrap">
-      <!-- BADGE COLUMN -->
-      <div class="h-inner-wrap">
-        <span class="circular-badge big bg-accent-1 text-white">
-          <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
-        </span>
-      </div>
-      <!-- INFO COLUMN -->
       <div class="h-inner-wrap mid">
-        <div class="text-large"> <%= item.label %> </div>
-        <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
+        <div class="h-inner-wrap text-small header-title"><%= header_title %></div>
+        <div class="h-inner-wrap rb" style="flex-direction: row;">
+          <!-- BADGE COLUMN -->
+          <div class="h-inner-wrap">
+            <span class="circular-badge big bg-accent-1 text-white">
+              <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
+            </span>
+          </div>
+          <!-- INFO COLUMN -->
+          <div class="h-inner-wrap mid">
+            <div class="text-large"> <%= item.label %> </div>
+            <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
+          </div>
+        </div>
       </div>
       <!-- BUTTONS COLUMN -->
       <div class="h-inner-wrap">

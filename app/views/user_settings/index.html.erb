@@ -1,128 +1,93 @@
 <% top_level_breadcrumb ("User Settings") %>
+<style>
+	#user_settings .btn{
+		min-width: 50px;
+	}
+</style>
 <div class="row">
-	<div class="col-md-9">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Current Settings: <%= current_user.name %> (<%= current_user.email %>)</h4>
-					</div>
-		  		<div class="panel-body">
-		    		<div class="row">
-							<div class="col-md-6">
-								<table id="user_info" class="table table-striped table-condensed">
-									<tbody>
-										<tr>
-											<th class="col-md-4">Display Name:</th><td><%= current_user.name %></td>
-										</tr>
-										<tr>
-											<th>Email:</th><td><%= current_user.email %></td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<p>Your current settings are listed below. These may be changed by using the buttons to the right.</p>
-								<% ordered_metadata = @settings_metadata.sort_by {|key, x| x[:label]} %>
-								<table id="user_settings" class="table table-striped table-condensed">
-									<tbody>
-										<% ordered_metadata.each do |key, md| %>
-											<tr>
-									    	<th class="col-md-2"><%= md[:label] %>:</th>
-									    	<td class="col-md-6"><%= md[:description] %></td>
-									    	<% if md[:type] == "enum" %>
-									    		<% md[:values].each do |option| %>
-									    			<% if option == @settings[key] %>
-									    				<td class="col-md-1">
-									    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn btn-success btn-xs" %>
-									    			 	</td>
-									    			<% end %>
-									    		<% end %>
-									    		<td class="col-md-3">
-											  		<% md[:values].each do |option| %>
-											  			<% if option != @settings[key] %>
-											  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn btn-primary btn-xs" %>
-											  			<% end %>
-											  		<% end %>
-											  	</td>
-									    	<% elsif md[:type] == "coded" %>
-									    		<% md[:values].each do |value_key, option| %>
-									    			<% if option.to_s == @settings[key] %>
-									    				<td class="col-md-1">
-									    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn btn-success btn-xs" %>
-									    			 	</td>
-									    			<% end %>
-									    		<% end %>
-		  										<td class="col-md-3">
-											  		<% md[:values].each do |value_key, option| %>
-											  			<% if option.to_s != @settings[key] %>
-											  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn btn-primary btn-xs" %>
-											  			<% end %>
-											  		<% end %>
-		  										</td>
-									    	<% end %>
-										  </tr>
-										<% end %>
-									</tbody>
-								</table>
-							</div>
-						</div>
-		  		</div>
-				</div>
+	<% s_texts =
+	[{:title => "Email", :value => current_user.email},
+	 {:title => "Current Roles", :value => current_user.role_list_stripped},
+	 {:title => "Login Count", :value => current_user.sign_in_count}]%>
+
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-settings", header_title: "Preferences",
+		main_text: current_user.name, sub_texts: s_texts} do %>
+  <% end %>
+</div>
+<div class="row">
+	<div class="col-md-8 card wide">
+			<div class="card-header">
+				Application Settings
+			</div>
+  		<div class="card-content">
+				<!-- <p>Your current settings are listed below. These may be changed by using the buttons to the right.</p> -->
+				<% ordered_metadata = @settings_metadata.sort_by {|key, x| x[:label]} %>
+				<table id="user_settings" class="table table-condensed">
+					<tbody>
+						<% ordered_metadata.each do |key, md| %>
+							<tr>
+					    	<th class="col-md-5 text-medium text-small">
+									<div class="setting-title"><%= md[:label] %></div>
+					    		<div class="font-light setting-descr"><%= md[:description] %></div>
+								</th>
+								<td class="col-md-5" style="vertical-align: middle;">
+						    	<% if md[:type] == "enum" %>
+							    		<% md[:values].each do |option| %>
+							    			<% if option == @settings[key] %>
+							    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+							    			<% end %>
+							    		<% end %>
+									  		<% md[:values].each do |option| %>
+									  			<% if option != @settings[key] %>
+									  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+									  			<% end %>
+									  		<% end %>
+						    	<% elsif md[:type] == "coded" %>
+						    		<% md[:values].each do |value_key, option| %>
+						    			<% if option.to_s == @settings[key] %>
+						    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+						    			<% end %>
+						    		<% end %>
+								  		<% md[:values].each do |value_key, option| %>
+								  			<% if option.to_s != @settings[key] %>
+								  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+								  			<% end %>
+								  		<% end %>
+						    	<% end %>
+								</td>
+						  </tr>
+						<% end %>
+					</tbody>
+				</table>
 			</div>
 		</div>
-	</div>
-	<div class="col-md-3">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Change Password</h4>
-					</div>
-		  		<div class="panel-body">
-	  			  <%= form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
-					    <div class="form-group">
-					      <%= f.label :current_password, "Current Password:" %>
-					      <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-					    </div>
-					    <div class="form-group">
-					      <%= f.label :password, "New Password:" %>
-					      <% if @minimum_password_length %>
-					        <em>(<%= @minimum_password_length %> characters minimum)</em>
-					      <% end %><br />
-					      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-					    </div>
-					    <div class="form-group">
-					      <%= f.label :password_confirmation, "Confirm New Password:" %>
-					      <% if @minimum_password_length %>
-					        <em>(<%= @minimum_password_length %> characters minimum)</em>
-					      <% end %><br />
-					      <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-					    </div>
-					    <%= f.submit "Update", id: "password_update_button", class: "btn btn-default btn-primary" %>
-					  <% end %>
-		  		</div>
-			  </div>
-		  </div>
+	<div class="col-md-4 card narrow">
+		<div class="card-header">
+			Account settings
 		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Change Display Name</h4>
-					</div>
-		  		<div class="panel-body">
-	  			  <%= form_for(current_user, url: update_name_user_path(current_user), html: { method: :put }) do |f| %>
-					    <div class="form-group">
-					      <%= f.label :name, "New Display Name:" %>
-					      <%= f.text_field :name, class: "form-control" %>
-					    </div>
-					    <%= f.submit "Update", id: "name_update_button", class: "btn btn-default btn-primary" %>
-					  <% end %>
-		  		</div>
-			  </div>
-		  </div>
+		<div class="card-content">
+			<%= form_for(current_user, url: update_name_user_path(current_user), html: { method: :put }) do |f| %>
+				<div class="font-regular text-medium">Change your display name</div>
+		    <span class="form-wrap">
+		      <%= f.text_field :name %>
+		    </span>
+				<%= f.submit "Update", id: "name_update_button", class: "btn medium" %>
+		  <% end %>
+			<br>
+			<div class="font-regular text-medium">
+				Change your account password
+				<% if @minimum_password_length %>
+					<span class="font-light">(<%= @minimum_password_length %> characters minimum)</span>
+				<% end %>
+			</div>
+		  <%= form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+		    <span class="form-wrap">
+		      <%= f.password_field :current_password, autocomplete: "off", placeholder: "Current password" %><br>
+		      <%= f.password_field :password, autocomplete: "off", placeholder: "New password" %><br>
+		      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm new password" %>
+		    </span>
+		    <%= f.submit "Update", id: "password_update_button", class: "btn medium" %>
+		  <% end %>
 		</div>
+  </div>
 </div>

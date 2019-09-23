@@ -12,6 +12,26 @@ module ThesauriHelpers
     expect(actual).to thesauri_concept_equal(expected)   
   end
 
+  def replace_old_reference(old_uri)
+    # Except subject references such as
+    # <http://www.assero.co.uk/MDRThesaurus/CDISC/V42#CLI-C71620_C41139>
+    uri_s = old_uri.gsub(/(<|>)/, '')
+    uri = Uri.new(uri: uri_s)
+    parts = uri.fragment.dup.gsub(/CLI-/, '').split("_")
+    query_string = %Q{
+SELECT DISTINCT ?cli WHERE 
+{ 
+  <http://www.cdisc.org/CT/V59#TH> (th:isTopConceptReference/bo:reference) ?cl .
+  ?cl th:identifier "#{parts.first}" .
+  ?cl th:narrower ?cli .
+  ?cli th:identifier "#{parts.last}" .
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    result = query_results.by_object_set([:cli]).first[:cli]
+puts "Previous URI: #{uri_s} translated to Current URI: #{result}"
+    result
+  end
+
 private
 
   def fill_out(item)

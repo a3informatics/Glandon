@@ -201,6 +201,11 @@ module Fuseki
           instance_variable_get("@#{name}")
         end
 
+        # Define an instance method to return the children objects
+        define_method "children_objects" do
+          generic_objects(name)
+        end
+
         # Define an instance method to return the children
         define_method "children?" do
           instance_variable_get("@#{name}").any?

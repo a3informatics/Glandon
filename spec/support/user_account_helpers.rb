@@ -73,7 +73,12 @@ module UserAccountHelpers
   	ua_generic_login C_TERM_CURATOR, C_PASSWORD
   end
 
+  # Deprecate, use the pne below, just a better name
   def ua_comm_reader_login
+    ua_generic_login C_COMM_READER, C_PASSWORD
+  end
+
+  def ua_community_reader_login
     ua_generic_login C_COMM_READER, C_PASSWORD
   end
 
