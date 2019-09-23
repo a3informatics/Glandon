@@ -69,11 +69,34 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   def replace_if_no_change(previous)
     return self if previous.nil?
-    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, :explanatory_comment]})
+    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, 
+      :creation_date, :last_change_date, :explanatory_comment]})
     replace_children_if_no_change(previous)
     return self
   rescue => e
     byebug
+  end
+
+  def merge(other)
+    self.errors.clear
+    return false if diff_self?(other)
+    self_ids = self.narrower.map{|x| x.identifier}
+    other_ids = other.narrower.map{|x| x.identifier}
+    common_ids = self_ids & other_ids
+    missing_ids = other_ids - self_ids
+    common_ids.each do |identifier|
+      this_child = self.narrower.find{|x| x.identifier == identifier}
+      other_child = self.narrower.find{|x| x.identifier == identifier}
+      next if !this_child.diff?(other_child)
+      msg = "When merging #{self.identifier} a difference was detected in child #{identifier}."
+      errors.add(:base, msg) 
+      ConsoleLogger.info(self.class.name, __method__.to_s, msg)
+    end
+    missing_ids.each do |identifier|
+      other_child = self.narrower.find{|x| x.identifier == identifier}
+      self.narrower << other_child
+    end
+    !self.errors.empty?
   end
 
   # Changes Count
@@ -248,6 +271,15 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   end
 
 private
+
+  def diff_self?(other)
+    return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 
+      :explanatory_comment, :narrower, :extends, :subsets]}))
+    msg = "When merging #{self.identifier} a difference was detected in the item."
+    self.errors.add(:base, msg) 
+    ConsoleLogger.info(self.class.name, __method__.to_s, msg)
+    true
+  end
 
   # Replace children if no change
   def replace_children_if_no_change(previous)
