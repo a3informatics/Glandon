@@ -4,7 +4,7 @@ module DeviseHelper
   #
   # @return [String] The user message
   def password_message
-    "Your password must be bewtween #{Devise.password_length.min} and #{Devise.password_length.max} characters and must include at least #{Devise.password_complexity.map {|k, v| format_password_setting(k, v)}.to_sentence} characters."
+    "Your password must be between #{Devise.password_length.min} and #{Devise.password_length.max} characters and must include at least #{Devise.password_complexity.map {|k, v| format_password_setting(k, v)}.to_sentence} characters."
   end
 
   # Format Password Setting. Formats a password setting from Devise Security
@@ -17,7 +17,7 @@ module DeviseHelper
     "#{value} #{password_map[name]}"
   end
 
-  # Devise Error Messages 
+  # Devise Error Messages
 	# Overwrites the devise implementation to convert error messages into flash error messages
 	#
 	# @return [string] Empty string

@@ -4,9 +4,7 @@
     Change your password
   </div>
   <div class="p-justified font-light text-light text-normal">
-    <% if @minimum_password_length %>
-      Your new password must be at least <%= @minimum_password_length %> characters long.
-    <% end %>
+    <%= password_message %>
 	</div>
   <%= f.hidden_field :reset_password_token %>
   <div class="form-wrap">

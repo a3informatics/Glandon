@@ -9,9 +9,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title><%= "#{APP_CONFIG['application_name']}" %></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <%= favicon_link_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', id: "maincss" %>
   <%= stylesheet_link_tag 'custom/card_layout', media: 'all'%>
   <%= stylesheet_link_tag 'custom/devise/general', media: 'all'%>
@@ -24,7 +25,7 @@
   			     <%= yield %>
         </div>
         <div class="half">
-          <img src="<%= asset_path("a3_outline_graph") %>" width="200"/>
+          <img src="<%= asset_path("a3_outline_graph") %>" width="250" id="a3-devise-logo"/>
         </div>
   			<%= javascript_include_tag 'application' %>
       </div>
