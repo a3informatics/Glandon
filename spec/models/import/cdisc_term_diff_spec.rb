@@ -160,7 +160,9 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       sdtm: "sdtm/SDTM Terminology", 
       qrs: "qrs/QRS Terminology", 
       qs: "qs/QS Terminology",
-      qsft: "qs-ft/QS-FT Terminology"
+      qsft: "qs-ft/QS-FT Terminology",
+      send: "send/SEND Terminology",
+      protocol: "protocol/Protocol Terminology"
     }
     load_versions(1..(current_version-1))
     reqd_files.each {|k,v| files << "#{file_pattern[k]} #{v}.xlsx" if reqd_files.key?(k)}
@@ -647,7 +649,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create version 26: 2011", :speed => 'slow' do
       version = 26
-      results = execute_import(version, "2011-06-10", {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08"}, set_write_file)
+      results = execute_import(version, "2011-06-10", {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -660,7 +662,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C71620, status: :updated},
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :no_change},
-        {cl: :C78735, status: :no_change}
+        {cl: :C78735, status: :no_change},
+        {cl: :C90007, status: :created}
       ]
       check_cl_results(results, expected) 
     end
