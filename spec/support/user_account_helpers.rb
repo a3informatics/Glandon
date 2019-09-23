@@ -50,27 +50,27 @@ module UserAccountHelpers
   end
 
   def ua_reader_login
-  	ua_generic_login C_READER, C_PASSWORD
+  	ua_generic_login C_READER
   end
 
   def ua_curator_login
-  	ua_generic_login C_CURATOR, C_PASSWORD
+  	ua_generic_login C_CURATOR
   end
 
   def ua_content_admin_login
-  	ua_generic_login C_CONTENT_ADMIN, C_PASSWORD
+  	ua_generic_login C_CONTENT_ADMIN
   end
 
   def ua_sys_admin_login
-  	ua_generic_login C_SYS_ADMIN, C_PASSWORD
+  	ua_generic_login C_SYS_ADMIN
   end
 
   def ua_term_reader_login
-  	ua_generic_login C_TERM_READER, C_PASSWORD
+  	ua_generic_login C_TERM_READER
   end
 
   def ua_term_curator_login
-  	ua_generic_login C_TERM_CURATOR, C_PASSWORD
+  	ua_generic_login C_TERM_CURATOR
   end
 
   # Deprecate, use the pne below, just a better name
@@ -86,12 +86,26 @@ module UserAccountHelpers
   	click_on 'logoff_button'
   end
 
-  def ua_generic_login(email, password)
+  def ua_generic_login(email, password=C_PASSWORD)
   	visit "/users/sign_in"
     fill_in :placeholder => "Email", :with => email
     fill_in :placeholder => "Password", :with => password
     click_button "Log in"
     expect(page).to have_content "Signed in successfully"
   end
+
+	# Custom users
+	def ua_add_user(args)
+		args[:password] = C_PASSWORD if !args.key?(:password)
+		args[:role] = :reader if !args.key?(:role)
+
+		@usr = User.create :email => args[:email], :password => args[:password]
+		@usr.add_role args[:role]
+		return @usr
+	end
+
+	def ua_remove_user(email)
+		User.where(:email => email).first.destroy
+	end
 
 end

@@ -4,25 +4,25 @@ class Timestamp
 
   # Initialize
   #
-  # @param text [string] Time string
+  # @param value [String!Time] Time string or object
   # @return [null]
-  def initialize(text=nil)
-    if "#{text}".empty?
+  def initialize(value=nil)
+    if "#{value}".empty?
       @time = Time.now
     else
-      @time = text.to_time(:utc)
+      @time = "#{value}".to_time(:utc)
     end
   end
 
   # Set from timestamp string
   #
-  # @param text [string] Time string
+  # @param value [String!Time] Time string or object
   # @return [null]
-  def from_timestamp(text)
-    @time = text.to_time(:utc)
+  def from_timestamp(value)
+    @time = "#{value}".to_time(:utc)
   end
 
-  # To Datetime 
+  # To Datetime
   #
   # @return [string] Time formatted as YYYY-MMM-DD, HH:MM
   def to_datetime
@@ -46,7 +46,7 @@ class Timestamp
   # ---------
   # Test Only
   # ---------
-  
+
   if Rails.env.test?
 
     def time
@@ -56,5 +56,3 @@ class Timestamp
   end
 
 end
-
-    

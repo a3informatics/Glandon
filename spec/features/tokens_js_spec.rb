@@ -1,35 +1,38 @@
 require 'rails_helper'
 
 describe "Tokens", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
+  include UserAccountHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_vs_baseline.ttl"]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("ISO25964.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    #
+    # load_test_file_into_triple_store("form_example_vs_baseline.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
     Token.delete_all
     Token.set_timeout(60)
-    @user1 = User.create :email => "token@example.com", :password => "12345678" 
-    @user1.add_role :reader
-    @user2 = User.create :email => "admin_user@example.com", :password => "12345678" 
-    @user2.add_role :sys_admin
+    @user1 = ua_add_user email: "token@example.com", role: :reader
+    @user2 = ua_add_user email: "admin_user@example.com", role: :sys_admin
     item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item1.id = "1"
     item2 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -45,33 +48,23 @@ describe "Tokens", :type => :feature do
   end
 
   after :all do
-    user = User.where(:email => "token@example.com").first
-    user.destroy
-    user = User.where(:email => "admin_user@example.com").first
-    user.destroy
+    ua_remove_user "token@example.com"
+    ua_remove_user "admin_user@example.com"
     Token.restore_timeout
   end
 
   describe "System Admin User", :type => :feature do
-  
+
     it "allows the tokens to be viewed", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
-      expect(page).to have_content 'Index: Edit Locks'  
+      ua_generic_login 'admin_user@example.com'
+      click_navbar_el
+      expect(page).to have_content 'Index: Edit Locks'
     end
 
     it "allows a lock to be released", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
-      expect(page).to have_content 'Index: Edit Locks'  
+      ua_generic_login 'admin_user@example.com'
+      click_navbar_el
+      expect(page).to have_content 'Index: Edit Locks'
       expect(page.all('table#main tr').count).to eq(5)
       find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#2')]/td/a", :text => 'Release').click
       ui_click_ok("Are you sure?")
@@ -83,13 +76,9 @@ describe "Tokens", :type => :feature do
     end
 
     it "allows a lock to be released, rejection", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'admin_user@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
-      expect(page).to have_content 'Signed in successfully'  
-      click_link 'Edit Locks'
-      expect(page).to have_content 'Index: Edit Locks'  
+      ua_generic_login 'admin_user@example.com'
+      click_navbar_el
+      expect(page).to have_content 'Index: Edit Locks'
       find(:xpath, "//tr[contains(.,'http://www.assero.co.uk/MDRForms/ACME/V1#3')]/td/a", :text => 'Release').click
       ui_click_cancel("Are you sure?")
     end

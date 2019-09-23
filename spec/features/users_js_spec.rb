@@ -7,8 +7,7 @@ describe "Users", :type => :feature do
 
   before :all do
     ua_create
-    user = User.create :email => "delete@example.com", :password => "Changeme1#"
-    user.add_role :curator
+    ua_add_user email: 'delete@example.com', password: 'Changeme1#', role: :curator
   end
 
   after :all do

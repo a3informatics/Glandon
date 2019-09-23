@@ -137,11 +137,11 @@ describe "Users", :type => :feature do
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       click_link 'New'
-      expect(page).to have_content 'New: User'
-      fill_in 'Email:', with: 'new_user@example.com'
-      fill_in 'Name:', with: 'New user'
-      fill_in 'Password:', with: 'Changeme1#'
-      fill_in 'Password Confirmation:', with: 'Changeme1#'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'new_user@example.com'
+      fill_in :placeholder => 'Display name', :with => 'New user'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
       click_button 'Create'
       expect(page).to have_content 'User was successfully created.'
       expect(page).to have_content 'new_user@example.com'
@@ -153,11 +153,11 @@ describe "Users", :type => :feature do
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       click_link 'New'
-      expect(page).to have_content 'New: User'
-      fill_in 'Email:', with: 'new_user_2@example.com'
-      fill_in 'Name:', with: 'New user'
-      fill_in 'Password:', with: '1234567'
-      fill_in 'Password Confirmation:', with: '1234567'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'new_user_2@example.com'
+      fill_in :placeholder => 'Display name', :with => 'New user'
+      fill_in :placeholder => 'Password', :with => '12345'
+      fill_in :placeholder => 'Confirm password', :with => '12345'
       click_button 'Create'
       expect(page).to have_content 'User was not created.'
     end
@@ -167,21 +167,21 @@ describe "Users", :type => :feature do
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       click_link 'New'
-      expect(page).to have_content 'New: User'
-      fill_in 'Email:', with: 'new_user_4@example.com'
-      fill_in 'Name:', with: 'New user'
-      fill_in 'Password:', with: 'Changeme1#'
-      fill_in 'Password Confirmation:', with: 'Changeme1#'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'new_user_4@example.com'
+      fill_in :placeholder => 'Display name', :with => 'New user'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
       click_button 'Create'
       expect(page).to have_content 'User was successfully created.'
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       click_link 'New'
-      expect(page).to have_content 'New: User'
-      fill_in 'Email:', with: 'new_user_4@example.com'
-      fill_in 'Name:', with: 'New user'
-      fill_in 'Password:', with: 'Changeme1#'
-      fill_in 'Password Confirmation:', with: 'Changeme1#'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'new_user_4@example.com'
+      fill_in :placeholder => 'Display name', :with => 'New user'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
       click_button 'Create'
       expect(page).to have_content 'User was not created. Email has already been taken.'
     end
@@ -208,8 +208,7 @@ describe "Users", :type => :feature do
 
     it "allows a user to be deleted (REQ-GENERIC-UM-090)" do
       audit_count = AuditTrail.count
-      user = User.create :email => "delete@example.com", :password => "Changeme1#"
-      user.add_role :reader
+      ua_add_user email: 'delete@example.com', role: :reader
       ua_sys_admin_login
       expect(AuditTrail.count).to eq(audit_count + 2)
       click_link 'users_button'
@@ -221,12 +220,8 @@ describe "Users", :type => :feature do
 
     it "allows a user to change their password (REQ-GENERIC-PM-050)" do
       audit_count = AuditTrail.count
-      user = User.create :email => "edit@example.com", :password => "Changeme1#"
-      user.add_role :reader
-      visit '/users/sign_in'
-      fill_in :placeholder => 'Email', :with => 'edit@example.com'
-      fill_in :placeholder => 'Password', :with => 'Changeme1#'
-      click_button 'Log in'
+      ua_add_user email: 'edit@example.com', role: :reader
+      ua_generic_login 'edit@example.com'
       click_link 'settings_button'
       #click_link 'Password'
       #expect(page).to have_content 'Edit: edit@example.com'
@@ -240,12 +235,8 @@ describe "Users", :type => :feature do
 
     it "allows a user to change their password - incorrect current password (REQ-GENERIC-PM-050)" do
       audit_count = AuditTrail.count
-      user = User.create :email => "edit@example.com", :password => "Changeme1#"
-      user.add_role :reader
-      visit '/users/sign_in'
-      fill_in :placeholder => 'Email', :with => 'edit@example.com'
-      fill_in :placeholder => 'Password', :with => 'Changeme1#'
-      click_button 'Log in'
+      ua_add_user email: 'edit@example.com', role: :reader
+      ua_generic_login 'edit@example.com'
       click_link 'settings_button'
       #click_link 'Password'
       #expect(page).to have_content 'Edit: edit@example.com'
