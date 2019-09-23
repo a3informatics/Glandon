@@ -162,10 +162,13 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created.'
     end
 
-    it "prevents a two users with identical username being created (REQ-GENERIC-PM-030)" do
+    it "prevents a two users with identical username being created (REQ-GENERIC-PM-030)", js:true do
       ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
+      if page.has_content?('new_user_4@example.com')
+        find(:xpath, "//tr[contains(.,'new_user_4@example.com')]/td/a", :text => 'Delete').click
+      end
       click_link 'New'
       expect(page).to have_content 'New: User'
       fill_in 'Email:', with: 'new_user_4@example.com'
