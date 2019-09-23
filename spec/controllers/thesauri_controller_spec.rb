@@ -68,6 +68,30 @@ describe ThesauriController do
       expect(response).to render_template("index")
     end
 
+    it "index owned" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri = Uri.new(uri: "http://www.assero.co.uk/eee#aaa")
+      scope_id = uri.to_id
+      namespace = IsoNamespace.new
+      namespace.uri = uri
+      list = 
+      [
+        {scope_id: scope_id, x: "a1", y: true, z: "something"}, 
+        {scope_id: scope_id, x: "a2", y: true, z: "something else"},
+        {scope_id: "#{scope_id}BBB", x: "a1", y: true, z: "pah"}, 
+        {scope_id: "#{scope_id}CCC", x: "a1", y: true, z: "not intersted"},
+        {scope_id: scope_id, x: "a3", y: true, z: "something else and more"}
+      ]
+      expected = list.select{|x| x[:scope_id] == scope_id}
+      expect(Thesaurus).to receive(:unique).and_return(list)
+      expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(namespace)
+      get :index_owned
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      expect(actual).to eq(expected)
+    end
+
     it "shows the history, initial view" do
       params = {}
       expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])

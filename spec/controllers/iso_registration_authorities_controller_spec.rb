@@ -4,7 +4,7 @@ describe IsoRegistrationAuthoritiesController do
 
   include DataHelpers
   include IsoHelpers
-  
+
   before :each do
     clear_triple_store
     load_schema_file_into_triple_store("ISO11179Identification.ttl")
@@ -12,16 +12,18 @@ describe IsoRegistrationAuthoritiesController do
     load_test_file_into_triple_store("iso_namespace_fake.ttl")
     load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
   end
-  
+
   describe "Authrorized User" do
-  	
+
     login_curator
 
     it "index registration authorities" do
       ras = IsoRegistrationAuthority.all.each {|ra| ra.ra_namespace_objects}
       get :index
-      expect(assigns(:registrationAuthorities).to_json).to eq(ras.to_json)
-      expect(assigns(:owner).to_json).to eq(ras[0].to_json)
+      expected_ras = assigns(:registrationAuthorities).map{|x| x.to_h}
+      actual_ras = ras.map{|x| x.to_h}
+      expect(expected_ras).to eq(actual_ras)
+      expect(assigns(:owner).to_h).to eq(ras[0].to_h)
       expect(response).to render_template("index")
     end
 
@@ -70,7 +72,7 @@ describe IsoRegistrationAuthoritiesController do
   end
 
   describe "Unauthorized User" do
-    
+
     login_sys_admin
 
     it "index registration authority" do
@@ -98,7 +100,7 @@ describe IsoRegistrationAuthoritiesController do
   end
 
   describe "Not logged in" do
-    
+
     it "index registration authority" do
       get :index
       expect(response).to redirect_to("/users/sign_in")

@@ -38,12 +38,15 @@ class CdiscTermsController < ApplicationController
   end
 
   def history
+    authorize Thesaurus
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
         @cdisc_term_id = results.last.to_id
         @identifier = CdiscTerm::C_IDENTIFIER
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
+        @close_path = request.referer
+        @ct = Thesaurus.find_minimum(@cdisc_term_id)
       end
       format.json do
         results = []

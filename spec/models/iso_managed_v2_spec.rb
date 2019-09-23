@@ -514,6 +514,17 @@ describe IsoManagedV2 do
       check_file_actual_expected(results, sub_dir, "where_expected_2.yaml", equate_method: :hash_equal)
     end
 
+    it "where full, I" do
+      uri = Uri.new(uri: "http://www.cdisc.org/C64388/V1#C64388")
+      th = Thesaurus::ManagedConcept.find_minimum(uri)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_1.yaml", equate_method: :hash_equal)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399", "<http://www.assero.co.uk/Thesaurus#notation>" => "CONGENITAL, FAMILIAL AND GENETIC DISORDERS"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_2.yaml", equate_method: :hash_equal)
+      results = th.where_full({"<http://www.assero.co.uk/Thesaurus#identifier>" => "C49399", "<http://www.assero.co.uk/Thesaurus#notation>" => "CONGENITAL, xxx FAMILIAL AND GENETIC DISORDERS"})
+      check_file_actual_expected(results, sub_dir, "where_full_expected_3.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "History Pagination" do
@@ -844,6 +855,27 @@ describe IsoManagedV2 do
       expect(ct.next_ordinal(:is_top_concept_reference)).to eq(35)
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(ct.next_ordinal(:is_top_concept_reference)).to eq(1)
+    end
+
+    it "allows the current set to be found" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(2)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM2/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(3)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM3/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current_set.count).to eq(4)
     end
 
   end

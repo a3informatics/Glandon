@@ -1,5 +1,5 @@
 module UiHelpers
-  
+
   # General Tag helpers
 	def ui_click_tag_add
     ui_click_by_id('tag_add')
@@ -11,7 +11,7 @@ module UiHelpers
 
   # General UI helpers
   # ==================
-  
+
   def ui_check_page_has(text)
   	expect(page).to have_content(text)
   end
@@ -19,7 +19,7 @@ module UiHelpers
   def ui_click_ok(text="")
     a = page.driver.browser.switch_to.alert
     expect(a.text).to eq(text) if !text.empty?
-    a.accept 
+    a.accept
   end
 
   def ui_click_cancel(text="")
@@ -27,14 +27,14 @@ module UiHelpers
     expect(a.text).to eq(text) if !text.empty?
     a.dismiss
   end
-  
+
   def ui_table_row_link_click(content, link_text)
     find(:xpath, "//tr[contains(.,'#{content}')]/td/a", :text => "#{link_text}").click
   end
 
   def ui_table_row_click(table, content)
     within "##{table}" do
-      find('td', :text => "#{content}").click 
+      find('td', :text => "#{content}").click
     end
   end
 
@@ -58,8 +58,8 @@ module UiHelpers
   end
 
   def ui_check_checkbox(id, value)
-    assert page.has_no_checked_field?(id) if !value 
-    assert page.has_checked_field?(id) if value 
+    assert page.has_no_checked_field?(id) if !value
+    assert page.has_checked_field?(id) if value
   end
 
   def ui_check_radio(id, value)
@@ -85,15 +85,15 @@ module UiHelpers
 
   def ui_button_disabled(id)
     expect(page).to have_button("#{id}", disabled: true)
-  end       
+  end
 
   def ui_button_enabled(id)
     expect(page).to have_button("#{id}", disabled: false)
-  end       
+  end
 
   def ui_link_disabled(id)
     expect(page).to have_no_link("#{id}")
-  end       
+  end
 
   def ui_button_label(id, text)
     expect(find("##{id}").text).to eq(text)
@@ -101,16 +101,16 @@ module UiHelpers
 
   def ui_select_check_selected(id, value)
     expect(page).to have_select(id, selected: value)
-  end   
+  end
 
   def ui_select_check_options(id, options)
     expect(page).to have_select(id, with_options: options)
-  end   
+  end
 
   # Check this, not used so far! :)
   def ui_select_check_all_options(id, options)
     expect(page).to have_select(id, options: options)
-  end   
+  end
 
   # Datatables
   #
@@ -134,6 +134,11 @@ module UiHelpers
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     expect(cell).to eq(text)
+  end
+
+  def ui_check_table_head(table_id, col, text)
+    head = find(:xpath, "//*[@id='#{table_id}']/thead/tr/th[#{col}]").text
+    expect(head).to eq(text)
   end
 
   # check table cell, start with text
@@ -210,12 +215,12 @@ module UiHelpers
   end
 
   def ui_term_column_search(column, text)
-    column_input_map = 
-    { 
-      notation: "searchTable_csearch_submission_value", 
-      code_list: "searchTable_csearch_cl", 
-      definition: "searchTable_csearch_definition" 
-    }  
+    column_input_map =
+    {
+      notation: "searchTable_csearch_submission_value",
+      code_list: "searchTable_csearch_cl",
+      definition: "searchTable_csearch_definition"
+    }
     input = column_input_map[column]
     fill_in input, with: text
     ui_hit_return(input)
@@ -236,11 +241,11 @@ module UiHelpers
     if !crumb_3.empty?
       li = find(:xpath, '//*[@id="breadcrumb_3"]')
       expect(li.text).to eq(crumb_3)
-    end    
+    end
     if !crumb_4.empty?
       li = find(:xpath, '//*[@id="breadcrumb_4"]')
       expect(li.text).to eq(crumb_4)
-    end    
+    end
   end
 
   def ui_click_breadcrumb(index)
@@ -291,10 +296,75 @@ module UiHelpers
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_ics: "main_nav_util", main_nav_f: "main_nav_forms", main_nav_bc: "main_nav_biocon"} # Add more
+    id_to_section_map = {
+			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
+			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
+			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
+			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
+			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
+			main_nav_f: "main_nav_forms",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
+			main_nav_aig: "main_nav_adam"
+			} 
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
+  end
+
+	#Dashboard
+	def click_navbar_dashboard
+		visit 'dashboard'
+	end
+
+	#System Admin
+	def click_navbar_namespaces
+		ui_navbar_click('main_nav_in')
+	end
+
+	def click_navbar_regauthorities
+		ui_navbar_click('main_nav_ira')
+	end
+
+	def click_navbar_manitems
+		ui_navbar_click('main_nav_im')
+	end
+
+	def click_navbar_at
+		ui_navbar_click('main_nav_at')
+	end
+
+	def click_navbar_el
+		ui_navbar_click('main_nav_el')
+	end
+
+	#Import/Export
+	def click_navbar_upload
+		ui_navbar_click('main_nav_u')
+	end
+
+	def click_navbar_import
+		ui_navbar_click('main_nav_i')
+	end
+
+	def click_navbar_export
+		ui_navbar_click('main_nav_e')
+	end
+
+	def click_navbar_background_jobs
+		ui_navbar_click('main_nav_bj')
+	end
+
+  #Utilities
+  def click_navbar_tags
+    ui_navbar_click('main_nav_ics')
+  end
+
+	def click_navbar_ma
+    ui_navbar_click('main_nav_ma')
+  end
+
+	def click_navbar_ahr
+    ui_navbar_click('main_nav_ahr')
   end
 
   #Terminology
@@ -306,12 +376,11 @@ module UiHelpers
     ui_navbar_click('main_nav_ct')
   end
 
-  #Utilities
-  def click_navbar_tags
-    ui_navbar_click('main_nav_ics')
+  #Biomedical Concepts
+	def click_navbar_bct
+    ui_navbar_click('main_nav_bct')
   end
 
-  #Biomedical Concepts
   def click_navbar_bc
     ui_navbar_click('main_nav_bc')
   end
@@ -326,20 +395,18 @@ module UiHelpers
     ui_navbar_click('main_nav_sig')
   end
 
-  def click_navbar_adam_ig_domain
-    ui_navbar_click('main_nav_aig')
+	def click_navbar_sdtm_model
+    ui_navbar_click('main_nav_sm')
   end
 
   def click_navbar_sponsor_domain
     ui_navbar_click('main_nav_sd')
   end
 
-  #Dashboard
-  def click_navbar_dashboard
-    visit 'dashboard'
+	#ADaM
+	def click_navbar_adam_ig_domain
+    ui_navbar_click('main_nav_aig')
   end
-
-  # Add more of these ...
 
   #Community Version
 
@@ -358,13 +425,14 @@ module UiHelpers
 
   #Context Menu
   def context_menu_element (table_id, column_nr, text, action )
-    action_to_option_map = 
-    { 
-      show: "Show", 
-      search: "Search", 
+    action_to_option_map =
+    {
+      show: "Show",
+      search: "Search",
       edit: "Edit",
-      delete: "Delete" 
-    }  
+      delete: "Delete",
+      document_control: "Document control"
+    }
     option = action_to_option_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
@@ -375,12 +443,12 @@ module UiHelpers
     slider = "var tl_slider = $('.timeline-container').data(); "
     slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "
     slider += "tl_slider.moveToDate(tl_slider.r_slider, '#{end_date}'); "
-    page.execute_script(slider) 
+    page.execute_script(slider)
   end
 
   def ui_dashboard_alpha_filter (filter, filter_text)
-    filter_control_map = 
-    { 
+    filter_control_map =
+    {
       created: { index: 0, id: 'btn_f_created' },
       updated: { index: 1, id: 'btn_f_updated' },
       deleted: { index: 2, id: 'btn_f_deleted' }
@@ -391,6 +459,17 @@ module UiHelpers
     js_script = "$('.alph-slider').eq(#{eq}).data().moveToLetter('#{filter_text}'); "
     page.execute_script(js_script)
   end
+
+
+  def ui_create_terminology
+      click_navbar_terminology
+      fill_in 'thesauri_identifier', with: 'SELECT TEST'
+      fill_in 'thesauri_label', with: 'Test Terminology'
+      click_button 'Create'
+  end
+
+
+
 
   # Return
   def ui_hit_return(id)

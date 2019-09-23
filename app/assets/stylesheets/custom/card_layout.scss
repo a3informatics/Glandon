@@ -14,6 +14,14 @@
   box-shadow: 5px 5px 11px -5px rgba(0,0,0,0.2);
 }
 
+.card.wide{
+  min-width: 450px;
+}
+
+.card.narrow{
+  min-width: 300px;
+}
+
 .card-header{
   background: $primary-color-light;
   color: $grey-white;
@@ -93,7 +101,6 @@
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
 .col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
   padding: 0px;
-  min-width: 400px; // ???
 }
 
 .col-md-1.card{
@@ -104,7 +111,7 @@
   max-width: calc(16.6% - 40px);
 }
 
-.col-md-3.card{
+.col-md-3.card, .col-md-3{
   max-width: calc(25% - 40px);
 }
 
@@ -148,7 +155,8 @@
   .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
   .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
   .col-md-9.card, .col-md-10.card, .col-md-11.card, .col-md-12.card{
-    min-width: initial;
-    max-width: calc(100% - 40px) !important;
+    min-width: initial !important;
+    max-width: calc(100% - 20px) !important;
+    margin: 10px !important;
   }
 }

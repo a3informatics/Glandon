@@ -8,6 +8,10 @@
   border-image-slice: 1;
 }
 
+.navbar-brand{
+  font-size: $font-normal;
+}
+
 // User badge related styling
 .user-badge-wrap{
   height: 50px !important;
@@ -81,4 +85,16 @@ a .text-light:hover{
 .navbar-collapse.collapse.in .user-badge-wrap,
   .navbar-collapse.collapsing .user-badge-wrap{
   display: none;
+}
+
+
+@media (max-width: 768px){
+  .navbar-brand{
+    font-size: $font-small;
+  }
+
+  .navbar-toggle{
+    margin-left:0;
+    margin-right:0;
+  }
 }

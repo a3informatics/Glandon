@@ -119,19 +119,19 @@ class Background < ActiveRecord::Base
   # @option params [String] :version The version of the term to which the changes relate
   # @option params [String] :files Array of files being used 
   # @return [void] no return
-  def import_cdisc_term_changes(params)
-    start_cdisc_import("Import CDISC terminology change information. Internal Version: #{params[:version]}.")
-    results = TermChangeExcel.read_changes(params, errors)
-    if self.errors.empty?
-    	report_file_successfully_read
-      process_cdisc_term_changes_import(params, results)
-    else
-      report_excel_errors
-    end
-  rescue => e
-		report_import_exception(e)
-  end
-  handle_asynchronously :import_cdisc_term_changes unless Rails.env.test?
+  # def import_cdisc_term_changes(params)
+  #   start_cdisc_import("Import CDISC terminology change information. Internal Version: #{params[:version]}.")
+  #   results = TermChangeExcel.read_changes(params, errors)
+  #   if self.errors.empty?
+  #   	report_file_successfully_read
+  #     process_cdisc_term_changes_import(params, results)
+  #   else
+  #     report_excel_errors
+  #   end
+  # rescue => e
+		# report_import_exception(e)
+  # end
+  # handle_asynchronously :import_cdisc_term_changes unless Rails.env.test?
 
 	# Import CDISC SDTM Model
   #
@@ -189,138 +189,138 @@ class Background < ActiveRecord::Base
   # @option params [String] :si The CID of the scoped identifier
   # @option params [String] :rs The CID of the registration status
   # @return null No return, kicks off the background job
-  def import_cdisc_term(params)
-    # Create the background job status
-    self.update(
-    	description: "Import CDISC terminology file(s). Date: #{params[:date]}, Internal Version: #{params[:version]}.", 
-    	status: "Building manifest file.",
-    	started: Time.now())
-    # Create manifest file
-    manifest = build_cdisc_term_import_manifest(params[:date], params[:version], params[:files])
-    # Create the thesaurus (does not actually create the database entries).
-    # Entries in DB created as part of the XSLT and load
-    self.update(status: "Transforming terminology file.", percentage: 10)
-    # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
-    filename = "CT_V#{params[:version]}.ttl"
-    Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", 
-      { :UseVersion => "#{params[:version]}", :Namespace => "'#{params[:ns]}'", 
-        :SI => "'#{params[:si]}'", :RS => "'#{params[:rs]}'", :CID => "'#{params[:cid]}'" }, filename)
-    # upload the file to the database. Send the request, wait the resonse
-    self.update(status: "Loading file into database.", percentage: 50)
-    publicDir = Rails.root.join("public","upload")
-    outputFile = File.join(publicDir, filename)
-    response = CRUD.file(outputFile)
-    # And report ...
-    if response.success?
-      self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
-    else
-      self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
-    end
-  rescue => e
-    self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
-  end
-  handle_asynchronously :import_cdisc_term unless Rails.env.test?
+  # def import_cdisc_term(params)
+  #   # Create the background job status
+  #   self.update(
+  #   	description: "Import CDISC terminology file(s). Date: #{params[:date]}, Internal Version: #{params[:version]}.", 
+  #   	status: "Building manifest file.",
+  #   	started: Time.now())
+  #   # Create manifest file
+  #   manifest = build_cdisc_term_import_manifest(params[:date], params[:version], params[:files])
+  #   # Create the thesaurus (does not actually create the database entries).
+  #   # Entries in DB created as part of the XSLT and load
+  #   self.update(status: "Transforming terminology file.", percentage: 10)
+  #   # Transform the files and upload. Note the quotes around the namespace & II but not version, important!!
+  #   filename = "CT_V#{params[:version]}.ttl"
+  #   Xslt.execute(manifest, "thesaurus/import/cdisc/cdiscTermImport.xsl", 
+  #     { :UseVersion => "#{params[:version]}", :Namespace => "'#{params[:ns]}'", 
+  #       :SI => "'#{params[:si]}'", :RS => "'#{params[:rs]}'", :CID => "'#{params[:cid]}'" }, filename)
+  #   # upload the file to the database. Send the request, wait the resonse
+  #   self.update(status: "Loading file into database.", percentage: 50)
+  #   publicDir = Rails.root.join("public","upload")
+  #   outputFile = File.join(publicDir, filename)
+  #   response = CRUD.file(outputFile)
+  #   # And report ...
+  #   if response.success?
+  #     self.update(status: "Complete. Successful import.", percentage: 100, complete: true, completed: Time.now())
+  #   else
+  #     self.update(status: "Complete. Unsuccessful import.", percentage: 100, complete: true, completed: Time.now())
+  #   end
+  # rescue => e
+  #   self.update(status: "Complete. Unsuccessful import. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+  # end
+  # handle_asynchronously :import_cdisc_term unless Rails.env.test?
 
   # Compare CDISC Terminology
   #
   # @param cdisc_terms [Array] Array of the terminologies to be compared
   # @param all [Boolean] All or two items to be compared. Defaults to false
   # @return null No return, kicks off the background job
-  def compare_cdisc_term(cdisc_terms, all=false)
-    version_labels = cdisc_terms.map {|x| "#{x.versionLabel}"}.join ', '
-    self.update(
-      description: "Detect CDISC Terminology changes, versions: #{version_labels}.", 
-      status: "Starting.",
-      started: Time.now())
-    data = Array.new
-    total_ct_count = cdisc_terms.length
-    counts = Hash.new
-    counts[:cl_count] = 0
-    counts[:ct_count] = 0
-    cdisc_terms.each do |term|
-      load_term(data, term, counts, total_ct_count)
-    end
-    results = term_changes(data, counts[:cl_count])
-    if all
-      CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
-    else
-      version_hash = {:new_version => cdisc_terms[1].version.to_s, :old_version => cdisc_terms[0].version.to_s} 
-      CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
-    end
-    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
-  rescue => e
-    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
-  end
-  handle_asynchronously :compare_cdisc_term unless Rails.env.test?
+  # def compare_cdisc_term(cdisc_terms, all=false)
+  #   version_labels = cdisc_terms.map {|x| "#{x.versionLabel}"}.join ', '
+  #   self.update(
+  #     description: "Detect CDISC Terminology changes, versions: #{version_labels}.", 
+  #     status: "Starting.",
+  #     started: Time.now())
+  #   data = Array.new
+  #   total_ct_count = cdisc_terms.length
+  #   counts = Hash.new
+  #   counts[:cl_count] = 0
+  #   counts[:ct_count] = 0
+  #   cdisc_terms.each do |term|
+  #     load_term(data, term, counts, total_ct_count)
+  #   end
+  #   results = term_changes(data, counts[:cl_count])
+  #   if all
+  #     CdiscCtChanges.save(CdiscCtChanges::C_ALL_CT, results)
+  #   else
+  #     version_hash = {:new_version => cdisc_terms[1].version.to_s, :old_version => cdisc_terms[0].version.to_s} 
+  #     CdiscCtChanges.save(CdiscCtChanges::C_TWO_CT, results, version_hash)
+  #   end
+  #   self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
+  # rescue => e
+  #   self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+  # end
+  # handle_asynchronously :compare_cdisc_term unless Rails.env.test?
 
   # Compare CDISC Terminology. Compares all versions
   #
   # @return null No return, kicks off the background job
-  def changes_cdisc_term()
-    cdisc_terms = CdiscTerm.all()
-    compare_cdisc_term(cdisc_terms, true)
-  end
+  # def changes_cdisc_term()
+  #   cdisc_terms = CdiscTerm.all()
+  #   compare_cdisc_term(cdisc_terms, true)
+  # end
 
   # Compare Submission Values (notation field). Compares all versions
   #
   # @return null No return, kicks off the background job
-  def submission_changes_cdisc_term()
-    # start
-    self.update(
-      description: "Detect CDISC Terminology submission value changes, all versions.", 
-      status: "Starting.",
-      started: Time.now())
-    # Get the changes
-    prev_ct = nil
-    results = []
-    cdisc_terms = CdiscTerm.all()
-    cdisc_terms.each_with_index do |ct, index|
-      results << { version_label: ct.versionLabel, version: ct.version, children: {} }
-      if index != 0 
-        results[index][:children] = CdiscTerm.submission_difference(prev_ct, ct)
-      end
-      prev_ct = ct
-      p = 90.0 * (index.to_f/cdisc_terms.count.to_f)
-      self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
-    end
-    # Format the results
-    check = {}
-    list = []
-    versions = []
-    transformed_results = {}
-    results.each do |result|
-      list = list | result[:children].keys
-      versions << { version_label: result[:version_label], version: result[:version] }
-    end
-    list.each do |key|
-      transformed_results[key] = { parent_identifier: "", label: "", preferred_term: "", notation: "", result: Array.new(versions.length, { previous: "", current: "", status: :no_change }) }
-    end
-    index = 0
-    results.each do |result|
-      result[:children].each do |key, child|
-        if !check.has_key?(CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier]))
-          transformed_results[key][:identifier] = child[:identifier]
-          transformed_results[key][:parent_identifier] = child[:parent_identifier]
-          transformed_results[key][:label] = child[:label]
-          transformed_results[key][:notation] = child[:result][:previous]
-          transformed_results[key][:preferred_term] = child[:preferred_term]
-          transformed_results[key][:id] = child[:previous_uri].id
-          transformed_results[key][:namespace] = child[:previous_uri].namespace
-          check[CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier])] = true
-        end      
-        transformed_results[key][:result][index] = child[:result]
-        transformed_results[key][:result][index][:status] = :updated
-      end
-      index += 1
-    end
-    # Finish up.
-    transformed_results = transformed_results.sort.to_h
-    CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, { :versions => versions, :children => transformed_results })
-    self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
-  rescue => e
-    self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
-  end
-  handle_asynchronously :submission_changes_cdisc_term unless Rails.env.test?
+  # def submission_changes_cdisc_term()
+  #   # start
+  #   self.update(
+  #     description: "Detect CDISC Terminology submission value changes, all versions.", 
+  #     status: "Starting.",
+  #     started: Time.now())
+  #   # Get the changes
+  #   prev_ct = nil
+  #   results = []
+  #   cdisc_terms = CdiscTerm.all()
+  #   cdisc_terms.each_with_index do |ct, index|
+  #     results << { version_label: ct.versionLabel, version: ct.version, children: {} }
+  #     if index != 0 
+  #       results[index][:children] = CdiscTerm.submission_difference(prev_ct, ct)
+  #     end
+  #     prev_ct = ct
+  #     p = 90.0 * (index.to_f/cdisc_terms.count.to_f)
+  #     self.update(status: "Checked " + ct.versionLabel + ".", percentage: p.to_i)
+  #   end
+  #   # Format the results
+  #   check = {}
+  #   list = []
+  #   versions = []
+  #   transformed_results = {}
+  #   results.each do |result|
+  #     list = list | result[:children].keys
+  #     versions << { version_label: result[:version_label], version: result[:version] }
+  #   end
+  #   list.each do |key|
+  #     transformed_results[key] = { parent_identifier: "", label: "", preferred_term: "", notation: "", result: Array.new(versions.length, { previous: "", current: "", status: :no_change }) }
+  #   end
+  #   index = 0
+  #   results.each do |result|
+  #     result[:children].each do |key, child|
+  #       if !check.has_key?(CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier]))
+  #         transformed_results[key][:identifier] = child[:identifier]
+  #         transformed_results[key][:parent_identifier] = child[:parent_identifier]
+  #         transformed_results[key][:label] = child[:label]
+  #         transformed_results[key][:notation] = child[:result][:previous]
+  #         transformed_results[key][:preferred_term] = child[:preferred_term]
+  #         transformed_results[key][:id] = child[:previous_uri].id
+  #         transformed_results[key][:namespace] = child[:previous_uri].namespace
+  #         check[CdiscTermUtility.cli_key(child[:parent_identifier], child[:identifier])] = true
+  #       end      
+  #       transformed_results[key][:result][index] = child[:result]
+  #       transformed_results[key][:result][index][:status] = :updated
+  #     end
+  #     index += 1
+  #   end
+  #   # Finish up.
+  #   transformed_results = transformed_results.sort.to_h
+  #   CdiscCtChanges.save(CdiscCtChanges::C_ALL_SUB, { :versions => versions, :children => transformed_results })
+  #   self.update(status: "Complete. Successful comparison.", percentage: 100, complete: true, completed: Time.now())
+  # rescue => e
+  #   self.update(status: "Complete. Unsuccessful comparison. Exception detected: #{e.to_s}. Backtrace: #{e.backtrace}", percentage: 100, complete: true, completed: Time.now())
+  # end
+  # handle_asynchronously :submission_changes_cdisc_term unless Rails.env.test?
 
   # Assess impact of submission values (notation field) changes. Compares two versions
   #
@@ -389,51 +389,51 @@ class Background < ActiveRecord::Base
 private
 
   # Builds the CDISC Terminology import manifest file
-  def build_cdisc_term_import_manifest(date, version, files)
-    builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
-      xml.CDISCTerminology() {
-        xml.Update(:date => date, :version => version) {
-          files.each do |file|
-            xml.File(:filename => file) 
-          end
-        }
-      }
-    end
-    path = PublicFile.save("upload", "cdiscImportManifest.xml", builder.to_xml)
-    return path
-  end
+  # def build_cdisc_term_import_manifest(date, version, files)
+  #   builder = Nokogiri::XML::Builder.new(:encoding => 'utf-8') do |xml|
+  #     xml.CDISCTerminology() {
+  #       xml.Update(:date => date, :version => version) {
+  #         files.each do |file|
+  #           xml.File(:filename => file) 
+  #         end
+  #       }
+  #     }
+  #   end
+  #   path = PublicFile.save("upload", "cdiscImportManifest.xml", builder.to_xml)
+  #   return path
+  # end
 
   # Load a single version of the terminology.
-  def load_term(data, ct, counts, total_ct_count)
-    cdisc_term = CdiscTerm.find(ct.id, ct.namespace)
-    data << {:term => cdisc_term}
-    counts[:cl_count] += cdisc_term.children.length
-    counts[:ct_count] += 1
-    p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
-    self.update(status: "Loaded release of #{ct.versionLabel}.", percentage: p.to_i)
-    return counts
-  end
+  # def load_term(data, ct, counts, total_ct_count)
+  #   cdisc_term = CdiscTerm.find(ct.id, ct.namespace)
+  #   data << {:term => cdisc_term}
+  #   counts[:cl_count] += cdisc_term.children.length
+  #   counts[:ct_count] += 1
+  #   p = (counts[:ct_count].to_f / total_ct_count.to_f) * 10.0
+  #   self.update(status: "Loaded release of #{ct.versionLabel}.", percentage: p.to_i)
+  #   return counts
+  # end
 
   # Determine the changes across the terminologies.
-  def term_changes(data, total_count)
-  	current_count = 0
-    results = []
-    prev_term = nil
-    data.each_with_index do |curr, index|
-      curr_term = curr[:term]
-      if index >= 1
-        prev_term = data[index - 1][:term]
-      end
-      result = CdiscTerm.difference(prev_term, curr_term) 
-      result[:version] = curr_term.version
-      result[:date] = curr_term.versionLabel
-      results << result
-      current_count += curr_term.children.length
-      p = 10.0 + ((current_count.to_f * 90.0)/total_count.to_f)
-      self.update(status: "Checked #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
-    end
-    return results
-  end
+  # def term_changes(data, total_count)
+  # 	current_count = 0
+  #   results = []
+  #   prev_term = nil
+  #   data.each_with_index do |curr, index|
+  #     curr_term = curr[:term]
+  #     if index >= 1
+  #       prev_term = data[index - 1][:term]
+  #     end
+  #     result = CdiscTerm.difference(prev_term, curr_term) 
+  #     result[:version] = curr_term.version
+  #     result[:date] = curr_term.versionLabel
+  #     results << result
+  #     current_count += curr_term.children.length
+  #     p = 10.0 + ((current_count.to_f * 90.0)/total_count.to_f)
+  #     self.update(status: "Checked #{curr_term.versionLabel} [#{current_count} of #{total_count}].", percentage: p.to_i)
+  #   end
+  #   return results
+  # end
 
   def linked_from(results)
     items = []

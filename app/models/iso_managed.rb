@@ -1119,6 +1119,19 @@ class IsoManaged < IsoConcept
     self.id = uri.id
   end
 
+  # Initial Scope and State
+  #
+  # @param [Hash] params 
+  # @param params [String] :identifier the identifier to be setThe prefix for the URI fragment
+  # @return [Void] no return
+  def initial_scope_and_state(params)
+    ra = IsoRegistrationAuthority.owner
+    self.scopedIdentifier = IsoScopedIdentifier.from_data(params[:identifier], 0, "", SemanticVersion.new({}), ra.ra_namespace)
+    self.registrationState = IsoRegistrationState.from_data(params[:identifier], 0, ra)
+    self.registrationState.registrationStatus = IsoRegistrationState.no_state
+    self.registrationState.previousState  = IsoRegistrationState.no_state
+  end
+
   # Adjust Version. Update the version depending on what the next version should be.
   # This is useful for impors where not everything is at the same version.
   #
@@ -1255,8 +1268,9 @@ class IsoManaged < IsoConcept
     # To clone, reset RS and SI (resets the version info etc). Then edit.
     # This leaves current content intact but resets version info.
     # Allow the identifier to be edited.
-    self.scopedIdentifier = IsoScopedIdentifier.new
-    self.registrationState = IsoRegistrationState.new
+    #self.scopedIdentifier = IsoScopedIdentifier.new
+    #self.registrationState = IsoRegistrationState.new
+    self.initial_scope_and_state(identifier: "")
     result = to_operation
     result[:operation][:identifier_edit] = true
     return result

@@ -46,7 +46,6 @@
 :notation: LHR
 :definition: A definition
 :extensible: false
-:extended_with: []
 :narrower:
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDEy
   :uri: http://www.acme-pharma.com/A00001/V1#A00001_A000012
@@ -56,9 +55,7 @@
   :notation: T1
   :definition: The oldest LHR Terminal
   :extensible: false
-  :extended_with: []
   :narrower: []
-  :is_subset: 
   :preferred_term:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYzAzMTNhMjYtNjNkNS00Y2E5LThlNTgtMmU1ZTYwNGM3YzAy
     :uri: http://www.assero.co.uk/PT#c0313a26-63d5-4ca9-8e58-2e5e604c7c02
@@ -73,9 +70,7 @@
   :notation: T5
   :definition: The 5th LHR Terminal
   :extensible: false
-  :extended_with: []
   :narrower: []
-  :is_subset: 
   :preferred_term:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzFiMWU3MjEtOWM0MC00M2U5LTkyNzMtY2I4NGU0ZTU0ZWY3
     :uri: http://www.assero.co.uk/PT#31b1e721-9c40-43e9-9273-cb84e4e54ef7
@@ -106,16 +101,15 @@
   :notation: T2
   :definition: The Queen's Terminal, the second terminal at Heathrow
   :extensible: false
-  :extended_with: []
   :narrower: []
-  :is_subset: 
   :preferred_term:
-    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNTJjNDAyZDUtZjQ4OS00OWM1LWFhMzctNGM3ZTRlYWJmZTQ1
-    :uri: http://www.assero.co.uk/PT#52c402d5-f489-49c5-aa37-4c7e4eabfe45
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYmNmNDQ0M2EtMTg0Yi00MTQyLTg1ZWItY2Y3MjE2ZjgzMTlm
+    :uri: http://www.assero.co.uk/PT#bcf4443a-184b-4142-85eb-cf7216f8319f
     :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
     :label: Not Set
   :synonym: []
-:is_subset: 
+:extends: 
+:subsets: 
 :preferred_term:
   :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZjcwZGY3N2EtZjcwMy00YzAxLTgxOTAtNWJhNzk2Njk5ODJh
   :uri: http://www.assero.co.uk/PT#f70df77a-f703-4c01-8190-5ba79669982a

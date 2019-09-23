@@ -67,22 +67,33 @@ describe Background do
   describe "Background Jobs" do
 
 	  before :all do
-	    clear_triple_store
-	    load_schema_file_into_triple_store("ISO11179Types.ttl")
-	    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-	    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-	    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-	    load_schema_file_into_triple_store("ISO25964.ttl")
-	    load_schema_file_into_triple_store("BusinessOperational.ttl")
-	    load_schema_file_into_triple_store("BusinessDomain.ttl")
-	    load_schema_file_into_triple_store("CDISCTerm.ttl")
-	    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-	    load_test_file_into_triple_store("CT_V34.ttl")
-	    load_test_file_into_triple_store("CT_V35.ttl")
-	    load_test_file_into_triple_store("CT_V36.ttl")
-	    load_test_file_into_triple_store("BC.ttl")
-	    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+	    schema_files = 
+      [
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessDomain.ttl"
+      ]
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "form_example_vs_baseline.ttl"
+      ]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions((1..36))
+      # clear_triple_store
+	    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+	    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+	    # load_schema_file_into_triple_store("ISO25964.ttl")
+	    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+	    # load_schema_file_into_triple_store("BusinessDomain.ttl")
+	    # load_schema_file_into_triple_store("CDISCTerm.ttl")
+	    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+      # load_test_file_into_triple_store("iso_namespace_real.ttl")
+	    # load_test_file_into_triple_store("CT_V34.ttl")
+	    # load_test_file_into_triple_store("CT_V35.ttl")
+	    # load_test_file_into_triple_store("CT_V36.ttl")
+	    # load_test_file_into_triple_store("BC.ttl")
+	    # load_test_file_into_triple_store("form_example_vs_baseline.ttl")
 	    clear_iso_concept_object
 	    clear_iso_namespace_object
 	    clear_iso_registration_authority_object
@@ -94,36 +105,36 @@ describe Background do
 	    delete_all_public_files
 	  end
 
-	  it "compares CDISC terminology" do
-	  	terms = []
-	    terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
-	    terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
-	    job = Background.create
-	    job.compare_cdisc_term(terms)
-	    results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, {new_version: 36, old_version: 35})
-    #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_two_expected.yaml")
-      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_two_expected.yaml")
-	    expect(results).to eq(expected)
-	  end
+	  # it "compares CDISC terminology - DELETED"
+	  # 	terms = []
+	  #   terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V35")
+	  #   terms << CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V36")
+	  #   job = Background.create
+	  #   job.compare_cdisc_term(terms)
+	  #   results = CdiscCtChanges.read(CdiscCtChanges::C_TWO_CT, {new_version: 36, old_version: 35})
+   #  #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_two_expected.yaml")
+   #    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_two_expected.yaml")
+	  #   expect(results).to eq(expected)
+	  # end
 
-	  it "compares all CDISC terminology" do
-	    job = Background.create
-	    job.changes_cdisc_term()
-	    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
-    #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_all_expected.yaml")
-      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_all_expected.yaml")
-	    expect(results).to eq(expected)
-	  end
+	  # it "compares all CDISC terminology" do
+	  #   job = Background.create
+	  #   job.changes_cdisc_term()
+	  #   results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_CT)
+   #  #Xwrite_yaml_file(results, sub_dir, "cdisc_compare_all_expected.yaml")
+   #    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_compare_all_expected.yaml")
+	  #   expect(results).to eq(expected)
+	  # end
 
-	  it "compares all CDISC terminology submission values" do
-	    job = Background.create
-	    job.submission_changes_cdisc_term()
-	    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
-	    results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
-    #Xwrite_yaml_file(results, sub_dir, "cdisc_submission_difference_expected.yaml")
-      expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
-	    expect(results).to eq(expected)
-	  end
+	  # it "compares all CDISC terminology submission values" do
+	  #   job = Background.create
+	  #   job.submission_changes_cdisc_term()
+	  #   expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
+	  #   results = CdiscCtChanges.read(CdiscCtChanges::C_ALL_SUB)
+   #  #Xwrite_yaml_file(results, sub_dir, "cdisc_submission_difference_expected.yaml")
+   #    expected = read_yaml_file_to_hash_2(sub_dir, "cdisc_submission_difference_expected.yaml")
+	  #   expect(results).to eq(expected)
+	  # end
 
 	  it "ad-hoc report" do
 	    copy_file_to_public_files("models", "ad_hoc_report_test_1_sparql.yaml", "test")
@@ -138,35 +149,35 @@ describe Background do
 	    expect(results).to eq(expected)
 	  end 
 
-	  it "imports a cdisc terminology" do
-	    job = Background.create
-	    params = 
-	    { 
-	      :date => "2016-12-22", 
-	      :version => "99", 
-	      :files => ["xxx.ttl"], 
-	      :ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V99", 
-	      :cid => "TH-CDISC_CDISCTerminology", 
-	      :si => "SI-CDISC_CDISCTerminology-99" , 
-	      :rs => "RS-CDISC_CDISCTerminology-99" 
-	    }
-	    xslt_params = 
-	    { 
-	      :UseVersion => "99", 
-	      :Namespace => "'http://www.assero.co.uk/MDRThesaurus/CDISC/V99'", 
-	      :SI => "'SI-CDISC_CDISCTerminology-99'", 
-	      :RS => "'RS-CDISC_CDISCTerminology-99'", 
-	      :CID => "'TH-CDISC_CDISCTerminology'"
-	    }
-	    expect(Xslt).to receive(:execute).with("/Users/daveih/Documents/rails/Glandon/public/upload/cdiscImportManifest.xml", 
-	      "thesaurus/import/cdisc/cdiscTermImport.xsl", 
-	      xslt_params, 
-	      "CT_V99.ttl")
-	    response = Typhoeus::Response.new(code: 200, body: "")
-	    expect(Rest).to receive(:sendFile).and_return(response)
-	    expect(response).to receive(:success?).and_return(true)
-	    job.import_cdisc_term(params)
-	  end
+	  # it "imports a cdisc terminology" do
+	  #   job = Background.create
+	  #   params = 
+	  #   { 
+	  #     :date => "2016-12-22", 
+	  #     :version => "99", 
+	  #     :files => ["xxx.ttl"], 
+	  #     :ns => "http://www.assero.co.uk/MDRThesaurus/CDISC/V99", 
+	  #     :cid => "TH-CDISC_CDISCTerminology", 
+	  #     :si => "SI-CDISC_CDISCTerminology-99" , 
+	  #     :rs => "RS-CDISC_CDISCTerminology-99" 
+	  #   }
+	  #   xslt_params = 
+	  #   { 
+	  #     :UseVersion => "99", 
+	  #     :Namespace => "'http://www.assero.co.uk/MDRThesaurus/CDISC/V99'", 
+	  #     :SI => "'SI-CDISC_CDISCTerminology-99'", 
+	  #     :RS => "'RS-CDISC_CDISCTerminology-99'", 
+	  #     :CID => "'TH-CDISC_CDISCTerminology'"
+	  #   }
+	  #   expect(Xslt).to receive(:execute).with("/Users/daveih/Documents/rails/Glandon/public/upload/cdiscImportManifest.xml", 
+	  #     "thesaurus/import/cdisc/cdiscTermImport.xsl", 
+	  #     xslt_params, 
+	  #     "CT_V99.ttl")
+	  #   response = Typhoeus::Response.new(code: 200, body: "")
+	  #   expect(Rest).to receive(:sendFile).and_return(response)
+	  #   expect(response).to receive(:success?).and_return(true)
+	  #   job.import_cdisc_term(params)
+	  # end
 
 	  it "imports sdtm model, 1.2" do
 	  	job = Background.create
@@ -246,119 +257,118 @@ describe Background do
 
 	end
 
-  describe "CDISC Term Change Instructions" do
+ #  describe "CDISC Term Change Instructions" do
 
-  	before :each do
-  		clear_triple_store
-	    load_schema_file_into_triple_store("ISO11179Types.ttl")
-	    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-	    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-	    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-	    load_schema_file_into_triple_store("ISO25964.ttl")
-	    load_schema_file_into_triple_store("BusinessOperational.ttl")
-	    load_schema_file_into_triple_store("BusinessDomain.ttl")
-	    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
+ #  	before :each do
+ #  		clear_triple_store
+	#     load_schema_file_into_triple_store("ISO11179Types.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Identification.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Registration.ttl")
+	#     load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+	#     load_schema_file_into_triple_store("ISO25964.ttl")
+	#     load_schema_file_into_triple_store("BusinessOperational.ttl")
+	#     load_schema_file_into_triple_store("BusinessDomain.ttl")
+	#     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+ #      load_test_file_into_triple_store("iso_namespace_real.ttl")
+	# 		clear_iso_concept_object
+	#     clear_iso_namespace_object
+	#     clear_iso_registration_authority_object
+	#     clear_iso_registration_state_object
+	#   end
 
-			clear_iso_concept_object
-	    clear_iso_namespace_object
-	    clear_iso_registration_authority_object
-	    clear_iso_registration_state_object
-	  end
+	#   after :each do
+ #      delete_all_public_files
+ #    end
 
-	  after :each do
-      delete_all_public_files
-    end
+ #    it "import cdisc term changes, March 2016" do
+	#   	load_test_file_into_triple_store("CT_V43.ttl")
+	# 		load_test_file_into_triple_store("CT_V44.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
+	#   	job = Background.create
+	#   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	# 	#puts job.status
+	#   	expect(job.status).to eq("Complete. Successful import.")  
+	#   #results = read_public_text_file("test", "CDISC_CT_Instructions_V44.txt")
+	#   #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
+ #      check_ttl_local("CDISC_CT_Instructions_V44.txt", "cdisc_term_changes_expected_2.txt")
+	#   end
 
-    it "import cdisc term changes, March 2016" do
-	  	load_test_file_into_triple_store("CT_V43.ttl")
-			load_test_file_into_triple_store("CT_V44.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V44")
-	  	job = Background.create
-	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2016-03-25.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-		#puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")  
-	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V44.txt")
-	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_2.txt")
-      check_ttl_local("CDISC_CT_Instructions_V44.txt", "cdisc_term_changes_expected_2.txt")
-	  end
+	#   it "import cdisc term changes, June 2017" do
+	#     load_test_file_into_triple_store("CT_V48.ttl")
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
+	#   	job = Background.create
+	#   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	# 	#puts job.status
+	#   	expect(job.status).to eq("Complete. Successful import.")  
+	#   #results = read_public_text_file("test", "CDISC_CT_Instructions_V49.txt")
+	#   #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
+ #      check_ttl_local("CDISC_CT_Instructions_V49.txt", "cdisc_term_changes_expected_1.txt")
+	#   end
 
-	  it "import cdisc term changes, June 2017" do
-	    load_test_file_into_triple_store("CT_V48.ttl")
-	    load_test_file_into_triple_store("CT_V49.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V49")
-	  	job = Background.create
-	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-06-30.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-		#puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")  
-	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V49.txt")
-	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_1.txt")
-      check_ttl_local("CDISC_CT_Instructions_V49.txt", "cdisc_term_changes_expected_1.txt")
-	  end
+	#   it "import cdisc term changes, September 2017" do
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	# 		load_test_file_into_triple_store("CT_V50.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
+	#   	job = Background.create
+	#   	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-09-29.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	# 	#puts job.status
+	#   	expect(job.status).to eq("Complete. Successful import.")  
+	#   #results = read_public_text_file("test", "CDISC_CT_Instructions_V50.txt")
+	#   #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_3.txt")
+ #      check_ttl_local("CDISC_CT_Instructions_V50.txt", "cdisc_term_changes_expected_3.txt")
+	#   end
 
-	  it "import cdisc term changes, September 2017" do
-	    load_test_file_into_triple_store("CT_V49.ttl")
-			load_test_file_into_triple_store("CT_V50.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
-	  	job = Background.create
-	  	filename = db_load_file_path("cdisc", "SDTM Terminology Changes 2017-09-29.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-		#puts job.status
-	  	expect(job.status).to eq("Complete. Successful import.")  
-	  #results = read_public_text_file("test", "CDISC_CT_Instructions_V50.txt")
-	  #write_text_file_2(results, sub_dir, "cdisc_term_changes_expected_3.txt")
-      check_ttl_local("CDISC_CT_Instructions_V50.txt", "cdisc_term_changes_expected_3.txt")
-	  end
+	#   it "import cdisc term changes, errors 1" do
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	# 		load_test_file_into_triple_store("CT_V50.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
+	#   	job = Background.create
+	#   	filename = test_file_path(sub_dir, "cdisc_term_changes_error_1.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	#   	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find terminology item [3] with identifier: C1018422222.")  
+	#   end
 
-	  it "import cdisc term changes, errors 1" do
-	    load_test_file_into_triple_store("CT_V49.ttl")
-			load_test_file_into_triple_store("CT_V50.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
-	  	job = Background.create
-	  	filename = test_file_path(sub_dir, "cdisc_term_changes_error_1.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-	  	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find terminology item [3] with identifier: C1018422222.")  
-	  end
+	#   it "import cdisc term changes, errors 2" do
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	# 		load_test_file_into_triple_store("CT_V50.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
+	#   	job = Background.create
+	#   	filename = test_file_path(sub_dir, "cdisc_term_changes_error_2.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	#   	expect(job.status).to eq("Complete. Unsuccessful import. Failed to child find terminology item [2] with identifier: C130.")  
+	#   end
 
-	  it "import cdisc term changes, errors 2" do
-	    load_test_file_into_triple_store("CT_V49.ttl")
-			load_test_file_into_triple_store("CT_V50.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
-	  	job = Background.create
-	  	filename = test_file_path(sub_dir, "cdisc_term_changes_error_2.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-	  	expect(job.status).to eq("Complete. Unsuccessful import. Failed to child find terminology item [2] with identifier: C130.")  
-	  end
+	#   it "import cdisc term changes, errors 3" do
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	# 		load_test_file_into_triple_store("CT_V50.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
+	#   	job = Background.create
+	#   	filename = test_file_path(sub_dir, "cdisc_term_changes_error_3.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	#   	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find terminology item [4] with identifier: C10184611111111.")  
+	#   end
 
-	  it "import cdisc term changes, errors 3" do
-	    load_test_file_into_triple_store("CT_V49.ttl")
-			load_test_file_into_triple_store("CT_V50.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
-	  	job = Background.create
-	  	filename = test_file_path(sub_dir, "cdisc_term_changes_error_3.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-	  	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find terminology item [4] with identifier: C10184611111111.")  
-	  end
+	#   it "import cdisc term changes, errors 4" do
+	#     load_test_file_into_triple_store("CT_V49.ttl")
+	# 		load_test_file_into_triple_store("CT_V50.ttl")
+	#   	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
+	#   	job = Background.create
+	#   	filename = test_file_path(sub_dir, "cdisc_term_changes_error_4.xlsx")
+	#   	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
+	#   	job.import_cdisc_term_changes(params)
+	#   	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find child terminology item [1] with identifier: C1353763333.")  
+	#   end
 
-	  it "import cdisc term changes, errors 4" do
-	    load_test_file_into_triple_store("CT_V49.ttl")
-			load_test_file_into_triple_store("CT_V50.ttl")
-	  	ct = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V50")
-	  	job = Background.create
-	  	filename = test_file_path(sub_dir, "cdisc_term_changes_error_4.xlsx")
-	  	params = {files: ["#{filename}"], uri: ct.uri.to_s, version: ct.version}
-	  	job.import_cdisc_term_changes(params)
-	  	expect(job.status).to eq("Complete. Unsuccessful import. Failed to find child terminology item [1] with identifier: C1353763333.")  
-	  end
-
-	end
+	# end
 
 end

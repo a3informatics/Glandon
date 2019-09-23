@@ -24,7 +24,7 @@ describe UserSettings do
     		:edit_lock_warning=>"60", 
     		:user_name_display=>"Yes", 
     		:user_role_display=>"Yes", 
-    		:max_term_display=>"8"
+    		:max_term_display=>"4"
     	}
     expect(the_settings).to eq(expected)
   end

@@ -262,6 +262,23 @@ class IsoManagedV2 < IsoConceptV2
     item
   end
 
+  # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
+  #
+  # @return [Array] Array of URIs 
+  def where_full(params)
+    where_parts = []
+    params.each do |predicate, value|
+      where_parts << "?s #{predicate} \"#{value}\""
+    end
+    where_clause = where_parts.join(" .\n")
+    parts = []
+    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }" 
+    self.class.read_paths.each {|p| parts << "{ #{self.uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . #{where_clause} }" }
+    query_string = "SELECT DISTINCT ?s WHERE {{ #{parts.join(" UNION\n")} }}"
+    query_results = Sparql::Query.new.query(query_string, uri.namespace, [])
+    query_results.by_object(:s)
+  end
+
   # Create. Creates a managed object.
   #
   # @params [Hash] params a set of initial vaues for any attributes
@@ -605,6 +622,27 @@ class IsoManagedV2 < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:bo])
     return 1 if query_results.empty?
     query_results.by_object(:max).first.to_i + 1
+  end
+
+  # Current Set. Find the set of current items for the class
+  #
+  # @return [Array] array of Uri objects
+  def self.current_set
+    #date_time = Time.now.iso8601.gsub('+',"%2B")
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT ?a WHERE
+      {
+        ?a rdf:type #{rdf_type.to_ref} .
+        ?a isoT:hasState ?c .
+        ?c isoR:effectiveDate ?d .
+        ?c isoR:untilDate ?e .
+        FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) .
+        FILTER ( xsd:dateTime(?e) >= \"#{date_time}\"^^xsd:dateTime ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR])
+    query_results.by_object(:a)
   end
 
 private

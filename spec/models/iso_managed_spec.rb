@@ -14,23 +14,30 @@ describe IsoManaged do
 	before :all do
     IsoHelpers.clear_cache
     clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_managed_data.ttl")
-    load_test_file_into_triple_store("iso_managed_data_2.ttl")
-    load_test_file_into_triple_store("iso_managed_data_3.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("CT_V41.ttl")
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("ISO25964.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_managed_data.ttl")
+    # load_test_file_into_triple_store("iso_managed_data_2.ttl")
+    # load_test_file_into_triple_store("iso_managed_data_3.ttl")
+    # load_test_file_into_triple_store("CT_V42.ttl")
+    # load_test_file_into_triple_store("CT_V43.ttl")
+    # load_test_file_into_triple_store("CT_V41.ttl")
+
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl", 
+      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl" ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", "iso_managed_data_3.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..59)
+
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -106,17 +113,19 @@ describe IsoManaged do
 	end
 
 	it "allows an item to be found" do
-		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-  #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_form.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
-    expect(item.to_json).to hash_equal(expected)   
+		results = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_form.yaml", eq_method: :hash_equal)
+  # #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_form.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
+  #   expect(item.to_json).to hash_equal(expected)   
 	end
 
   it "allows an item to be found, II" do
-    item = IsoManaged.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_th.yaml")
-    expect(item.to_json).to hash_equal(expected)   
+    results = IsoManaged.find("TH", "http://www.cdisc.org/CT/V42", false)
+    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_th.yaml", eq_method: :hash_equal)
+  # #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_th.yaml")
+  #   expect(item.to_json).to hash_equal(expected)   
   end
 
   it "allows the version, semantic_version, version_label and indentifier to be found" do
@@ -288,9 +297,10 @@ describe IsoManaged do
 
   it "finds all entries" do
     items = IsoManaged.all
-  #Xwrite_yaml_file(items, sub_dir, "iso_managed_all.yaml")
-  	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
-    expect(items).to match_array(expected)
+  # #Xwrite_yaml_file(items, sub_dir, "iso_managed_all.yaml")
+  # 	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
+  #   expect(items).to match_array(expected)
+  check_file_actual_expected(items, sub_dir, "iso_managed_all.yaml", eq_method: :hash_equal)
   end
 
   it "finds history of an item entries" do
@@ -322,12 +332,12 @@ describe IsoManaged do
     expect(item.scopedIdentifier.version).to eq(1)    
   end
 
-  it "allows the current set to be found, terminology" do
-    items = IsoManaged.current_set("Thesaurus", "http://www.assero.co.uk/ISO25964")
-  #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_term.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_current_set_term.yaml")
-    expect(items.to_json).to hash_equal(expected)
-  end
+  # it "allows the current set to be found, terminology" do
+  #   items = IsoManaged.current_set("Thesaurus", "http://www.assero.co.uk/Thesaurus")
+  # #write_yaml_file(items.to_json, sub_dir, "iso_managed_current_set_term.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_current_set_term.yaml")
+  #   expect(items.to_json).to hash_equal(expected)
+  # end
 
   it "allows the current set to be found, Forms" do
     items = IsoManaged.current_set("Form", "http://www.assero.co.uk/BusinessForm")
@@ -410,7 +420,7 @@ describe IsoManaged do
     old_item.registrationState.effective_date = new_item.registrationState.effective_date
     old_item.registrationState.until_date = new_item.registrationState.until_date
     # -----
-    old_item.scopedIdentifier.id = "SI-BBB_TEST-1"
+    old_item.scopedIdentifier.id = "SI-ACME_TEST-1"
     old_item.scopedIdentifier.semantic_version = SemanticVersion.from_s("2.2.2")
     old_item.registrationState.id = "RS-ACME_TEST-1"
     old_item.registrationState.registrationStatus = "Standard"
@@ -575,25 +585,28 @@ describe IsoManaged do
   it "finds by properties, I, upper case" do
     results = []
     IsoManaged.find_by_property({text: "VSB"}).each { |x| results << x.to_json }
-  #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
-    expect(results).to hash_equal(expected)
+  # #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
+  #   expect(results).to hash_equal(expected)
+    check_file_actual_expected(results, sub_dir, "iso_managed_find_by_property_2.yaml", eq_method: :hash_equal)
   end
 
   it "finds by properties, I, lower case" do
     results = []
     IsoManaged.find_by_property({text: "vsb"}).each { |x| results << x.to_json }
-  #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
-    expect(results).to hash_equal(expected)
+  # #write_yaml_file(results, sub_dir, "iso_managed_find_by_property_2.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_2.yaml")
+  #   expect(results).to hash_equal(expected)
+    check_file_actual_expected(results, sub_dir, "iso_managed_find_by_property_2.yaml", eq_method: :hash_equal)
   end
   
   it "finds by properties, II" do
     results = []
     IsoManaged.find_by_property({text: "Baseline"}).each { |x| results << x.to_json }
-  #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_3.yaml")
-    expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_3.yaml")
-    expect(results).to hash_equal(expected)
+  # #Xwrite_yaml_file(results, sub_dir, "iso_managed_find_by_property_3.yaml")
+  #   expected = read_yaml_file(sub_dir, "iso_managed_find_by_property_3.yaml")
+  #   expect(results).to hash_equal(expected)
+    check_file_actual_expected(results, sub_dir, "iso_managed_find_by_property_3.yaml", eq_method: :hash_equal)
   end
 
   it "builds an import operation" do
@@ -603,6 +616,17 @@ describe IsoManaged do
   #Xwrite_hash_to_yaml_file_2(result, sub_dir, "import_operation_expected.yaml")
     expected = read_yaml_file_to_hash_2(sub_dir, "import_operation_expected.yaml")
     expected[:managed_item][:last_changed_date] = result[:managed_item][:last_changed_date]
+    expect(result).to eq(expected)
+  end
+
+  it "sets initial scope amd state" do
+    object = IsoManaged.new
+    object.initial_scope_and_state(identifier: "IDENT")
+    result = object.to_json
+  #Xwrite_hash_to_yaml_file_2(result, sub_dir, "initial_scope_and_state_expected.yaml")
+    expected = read_yaml_file_to_hash_2(sub_dir, "initial_scope_and_state_expected.yaml")
+    expected[:last_changed_date] = result[:last_changed_date]
+    expected[:creation_date] = result[:creation_date]
     expect(result).to eq(expected)
   end
 

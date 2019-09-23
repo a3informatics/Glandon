@@ -13,6 +13,7 @@ describe UriManagement do
   C_BF = "bf"
   C_BD = "bd"
   C_ISO_25964 = "iso25964"
+  C_TH = "th"
   C_ISO_21090 = "iso21090"
   C_MDR_ITEMS = "mdrItems"
   C_MDR_BCTS = "mdrBcts"
@@ -45,6 +46,7 @@ describe UriManagement do
         C_ISO_C => "http://www.assero.co.uk/ISO11179Concepts" , 
         C_ISO_T => "http://www.assero.co.uk/ISO11179Types" , 
         C_ISO_25964 => "http://www.assero.co.uk/ISO25964" , 
+        C_TH => "http://www.assero.co.uk/Thesaurus" ,
         C_ISO_21090 => "http://www.assero.co.uk/ISO21090" ,
         C_CBC => "http://www.assero.co.uk/CDISCBiomedicalConcept",
         C_BO => "http://www.assero.co.uk/BusinessOperational" ,
@@ -108,6 +110,18 @@ describe UriManagement do
       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
       "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n"
     expect(UriManagement.buildPrefix("bo", ["bf", "bd"])).to eq(result)
+  end
+
+  it "build the list of namespaces" do
+    result = "PREFIX : <http://www.assero.co.uk/BusinessOperational#>\n" +
+      "PREFIX bf: <http://www.assero.co.uk/BusinessForm#>\n" +
+      "PREFIX bd: <http://www.assero.co.uk/BusinessDomain#>\n" +
+      "PREFIX th: <http://www.assero.co.uk/Thesaurus#>\n" +
+      "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
+      "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+      "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
+      "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n"
+    expect(UriManagement.buildPrefix("bo", ["bf", "bd", "th"])).to eq(result)
   end
 
   it "build the list of namespaces with only default" do

@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: -20px;
 }
 
 .h-inner-wrap{
@@ -14,7 +13,6 @@
   flex-direction: column;
   text-align: left;
   padding-left: 16px;
-  margin-top: 20px;
   color: $grey-medium;
 }
 
@@ -38,15 +36,6 @@
 .ttip-ico{
   color: $primary-color-light;
   font-size: 13pt;
-}
-
-.actions-wrap{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  align-self: flex-start;
 }
 
 .synonym-label{
@@ -96,21 +85,40 @@
   }
 }
 
-// .circular-badge.big{
-//   position: relative;
-// }
+.header-title{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 4px 18px;
+  display: inline-block;
+  color: white;
+  background: $primary-color-bright;
+  font-family: $font-light;
+}
 
-// .extensible-ico-badge{
-//   position: absolute;
-//   font-size: $font-small;
-//   right: 0%;
-//   top: 0%;
-// }
-//
-// .extensible-ico-badge.is-ext{
-//   color: $secondary-color-medium;
-// }
-//
-// .extensible-ico-badge.not-ext{
-//   color: $grey-light;
-// }
+// Mobile view fix
+@media (max-width: 768px){
+  .header-title{
+    margin: 5px auto;
+  }
+
+  .rb{
+    flex-direction: column !important;
+  }
+}
+
+// Fix of icon positioning in the buttons in the header for IE and EDGE
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+
+.ico-btn-sec .circular-badge{
+  @include ieandedge {
+    line-height: 30px;
+  }
+}

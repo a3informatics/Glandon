@@ -87,6 +87,8 @@ class SdtmModelDomain < Tabular
   # @return [SdtmModelDomain] The created object. Valid if no errors set.
   def self.build(params, model, sparql)
     cdisc_ra = IsoRegistrationAuthority.find_by_short_name("CDISC")
+    params[:managed_item][:scoped_identifier][:namespace] = cdisc_ra.ra_namespace.to_h
+    params[:managed_item][:registration_state][:registration_authority] = cdisc_ra.to_json
     SdtmModelDomain.variable_references(params[:managed_item], model)
     object = SdtmModelDomain.from_json(params[:managed_item])
     object.from_operation(params[:operation], C_CID_PREFIX, C_INSTANCE_NS, cdisc_ra)

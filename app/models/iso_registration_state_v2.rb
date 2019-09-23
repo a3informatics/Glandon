@@ -43,7 +43,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   # Test if registered
   # 
   # @return [Boolean] True if a registration state present
-  def registered?()
+  def registered?
   	return false if ["", C_NOT_SET].include?(self.registration_status) # Keep empty string to preserve backwards compatibility
     return true
   end
@@ -204,8 +204,8 @@ private
     "} \n" +
     "INSERT \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:effectiveDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
-    " #{self.uri.to_ref} isoR:untilDate \"#{SparqlUtility.replace_special_chars(C_UNTIL_DATETIME)}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate \"#{Time.now.iso8601}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{C_UNTIL_DATETIME}\"^^xsd:dateTime . \n" +
     "} \n" +
     "WHERE \n" +
     "{ \n" +
@@ -221,7 +221,7 @@ private
     "} \n" +
     "INSERT \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate \"#{SparqlUtility.replace_special_chars(Time.now.iso8601)}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{Time.now.iso8601}\"^^xsd:dateTime . \n" +
     "} \n" +
     "WHERE \n" +
     "{ \n" +
