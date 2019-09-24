@@ -58,14 +58,12 @@ describe "Ad Hoc Reports", :type => :feature do
     it "allows a report to be exported as CSV", js: true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
-      pause
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Run').click
       expect(page).to have_content 'Results'
       click_link "Export CSV"
       file = download_content
       #write_text_file_2(file, sub_dir, "ad_hoc_csv_export.csv")
       expected = read_text_file_2(sub_dir, "ad_hoc_csv_export.csv")
-      pause
       expect(file).to eq(expected)
     end
 

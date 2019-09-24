@@ -49,7 +49,6 @@ describe "ISO Concept JS", :type => :feature do
 
     it "allows a impact page to be displayed", js: true do
       click_navbar_cdisc_terminology
-      pause
       ui_check_page_has('Item History')
       ui_check_page_has('Controlled Terminology')
       context_menu_element("history", 1, "42.0.0", :show)
