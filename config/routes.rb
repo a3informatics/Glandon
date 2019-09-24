@@ -172,8 +172,10 @@ Rails.application.routes.draw do
       get :children
       post :add_child
       get :changes
+      get :changes_data
       get :changes_report
       get :submission
+      get :submission_data
       get :submission_report
       get :search
       get :export_csv

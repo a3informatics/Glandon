@@ -142,6 +142,22 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Changes'
     end
 
+    it "changes back / forward button bug (GLAN-811) extra test", js:true do
+      click_see_changes_all_versions
+      expect(page).to have_content 'Changes across versions'
+      ui_click_back_button
+      ui_click_forward_button
+      expect(page).to have_content 'Changes across versions'
+    end
+
+    it "submission changes back / forward button bug (GLAN-811) extra test", js:true do
+      click_submission_value_changes
+      expect(page).to have_content 'Submission value changes'
+      ui_click_back_button
+      ui_click_forward_button
+      expect(page).to have_content 'Submission value changes'
+    end
+
   end
 
 end
