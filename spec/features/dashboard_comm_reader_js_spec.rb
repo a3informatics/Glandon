@@ -12,6 +12,10 @@ describe "Community Dashboard JS", :type => :feature do
     wait_for_ajax(120)
   end
   
+  def check_on_commumity_dashboard
+    expect(page).to have_content 'Changes between two CDISC Terminology versions'
+  end
+
   before :all do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
       "BusinessOperational.ttl", "BusinessForm.ttl"]
@@ -24,7 +28,7 @@ describe "Community Dashboard JS", :type => :feature do
 
     before :each do
       ua_comm_reader_login
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     after :each do
@@ -38,60 +42,56 @@ describe "Community Dashboard JS", :type => :feature do
   describe "Community Reader User", :type => :feature do
 
     it "allows the dashboard to be viewed (REQ-MDR-UD-090)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
       expect(page).to have_content 'Created Code List'
       expect(page).to have_content 'Updated Code List'
       expect(page).to have_content 'Deleted Code List'
     end
 
     it "allows access to CDISC history (REQ-MDR-CT-031)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
-      click_link 'btn-browse-cdisc'
+      click_browse_every_version
       expect(page).to have_content 'Item History'
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '2019-06-28 Release'
       expect(page).to have_content '2017-09-29 Release'
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows access to CDISC changes (REQ-MDR-CT-040)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
-      click_link 'See the changes across versions'
+      click_see_changes_all_versions
       expect(page).to have_content 'Changes across versions'
       expect(page).to have_content 'Controlled Terminology'
       fill_in 'Search:', with: 'C67154'
+      wait_for_ajax_v_long
       ui_check_table_info("changes", 1, 1, 1)
       click_link 'Return'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows access to CDISC submission changes (REQ-MDR-CT-050)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
-      click_link 'See submission value changes across versions'
+      click_submission_value_changes
       expect(page).to have_content 'Submission value changes'
       expect(page).to have_content 'Controlled Terminology'
       fill_in 'Search:', with: 'Calcium'
+      wait_for_ajax_v_long
       ui_check_table_info("changes", 1, 1, 1)
       click_link 'Start'
       wait_for_ajax_v_long
       ui_check_table_info("changes", 1, 9, 9)
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows access to CDISC search (REQ-MDR-CT-060)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
-      click_link 'Search the latest version of CDISC CT'
+      click_search_the_latest_version
       expect(page).to have_content 'Search: Controlled Terminology CT '
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows to clear all CDISC search areas (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
-      click_link 'Search the latest version of CDISC CT'
+      click_search_the_latest_version
       ui_check_breadcrumb('Terminology', 'CT', 'Search: V59.0.0', '')
       expect(page).to have_content 'Search: Controlled Terminology CT ' 
       ui_check_table_info("searchTable", 0, 0, 0)
@@ -110,11 +110,10 @@ describe "Community Dashboard JS", :type => :feature do
       expect(find('#searchTable_csearch_preferred_term')).to have_content('')
       expect(find('#searchTable_csearch_synonym')).to have_content('')
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows two CDISC versions to be selected and changes between versions displayed (REQ-MDR-UD-090)", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
       ui_dashboard_slider("2012-08-03", "2013-04-12")
       click_link 'Display'
       find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
@@ -129,11 +128,10 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Reason For Treatment'
       expect(page).to have_content 'Changes'
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
       ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
       expect(page).to have_xpath("//div[@id='created_div']/a", count: 328)
@@ -144,10 +142,11 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 0)
       ui_dashboard_alpha_filter(:created, "J")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item J']", count: 0)
+      click_link 'Home'
+      check_on_commumity_dashboard
     end
 
     it "allows two CDISC versions to be selected and updated CL between them to be filtered and displayed", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
       ui_dashboard_slider("2014-06-27", "2014-09-26")
       click_link 'Display'
       expect(page).to have_xpath("//div[@id='updated_div']/a", count: 227)
@@ -164,11 +163,10 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Device Events Category'
       expect(page).to have_content 'Changes'
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
     it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
-      expect(page).to have_content 'Changes between two CDISC Terminology versions'
       ui_dashboard_slider("2013-04-12", "2013-06-28")
       click_link 'Display'
       expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 15)
@@ -182,6 +180,8 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'C101817'
       expect(page).to have_content 'European Quality of Life Five Dimension Five Level Scale Test Name'
       expect(page).to have_content 'Changes'
+      click_link 'Home'
+      check_on_commumity_dashboard
     end
 
     it "changes back / forward button bug (GLAN-811) extra test", js:true do
@@ -190,6 +190,8 @@ describe "Community Dashboard JS", :type => :feature do
       ui_click_back_button
       ui_click_forward_button
       expect(page).to have_content 'Changes across versions'
+      click_link 'Home'
+      check_on_commumity_dashboard
     end
 
     it "submission changes back / forward button bug (GLAN-811) extra test", js:true do
@@ -198,11 +200,8 @@ describe "Community Dashboard JS", :type => :feature do
       ui_click_back_button
       ui_click_forward_button
       expect(page).to have_content 'Submission value changes'
-      ui_check_breadcrumb('CDISC Terminology', 'Changes', '', '')
-      expect(page).to have_content 'Differences'
-      expect(page).to have_content 'Changes'
       click_link 'Home'
-      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      check_on_commumity_dashboard
     end
 
   end
