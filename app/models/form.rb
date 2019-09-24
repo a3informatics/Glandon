@@ -1,9 +1,9 @@
 require 'odm'
 
 class Form < IsoManaged
-  
+
   attr_accessor :children, :completion, :note
-  
+
   # Constants
   C_SCHEMA_PREFIX = "bf"
   C_INSTANCE_PREFIX = "mdrForms"
@@ -138,7 +138,7 @@ class Form < IsoManaged
       object.children = Form::Group::Normal.find_for_parent(object.triples, object.get_links("bf", "hasGroup"))
     end
     object.triples = ""
-    return object     
+    return object
   end
 
   # Find all managed items based on their type.
@@ -176,7 +176,7 @@ class Form < IsoManaged
   # @param params [hash] {identifier:, :label, :freeText} The operational hash
   # @return [oject] The form object. Valid if no errors set.
   def self.create_placeholder(params)
-    object = self.new 
+    object = self.new
     #object.scopedIdentifier.identifier = params[:identifier]
     object.initial_scope_and_state(params)
     object.label = params[:label]
@@ -192,13 +192,14 @@ class Form < IsoManaged
     object = Form.create(object.to_operation)
     return object
   end
-  
+
   # Create Simple
   #
   # @param params
   def self.create_simple(params)
-    object = self.new 
-    object.scopedIdentifier.identifier = params[:identifier]
+    object = self.new
+    # object.scopedIdentifier.identifier = params[:identifier]
+    object.initial_scope_and_state(params)
     object.label = params[:label]
     object = Form.create(object.to_operation)
     return object
@@ -265,7 +266,7 @@ class Form < IsoManaged
 
   # To JSON
   #
-  # @return [hash] The object hash 
+  # @return [hash] The object hash
   def to_json
     json = super
     json[:completion] = self.completion
@@ -309,7 +310,7 @@ class Form < IsoManaged
     metadata_version = study.add_metadata_version("MDV-#{self.id}", "Metadata for #{self.label}", "Not applicable. Single form export.")
     protocol = metadata_version.add_protocol()
     protocol.add_study_event_ref("SE-#{self.id}", "1", "Yes", "")
-    study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")    
+    study_event_def = metadata_version.add_study_event_def("SE-#{self.id}", "Not applicable. Single form export.", "No", "Scheduled", "")
     study_event_def.add_form_ref("#{self.id}", "1", "Yes", "")
     form_def = metadata_version.add_form_def("#{self.id}", "#{self.label}", "No")
     self.children.sort_by! {|u| u.ordinal}
@@ -321,7 +322,7 @@ class Form < IsoManaged
 
   # From JSON
   #
-  # @param json [hash] The hash of values for the object 
+  # @param json [hash] The hash of values for the object
   # @return [object] The object
   def self.from_json(json)
     object = super(json)
@@ -372,73 +373,73 @@ private
     #  "SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE \n" +
     #  "{ \n " +
     #  "  ?topic_var bd:hasProperty ?op_ref3 . \n " +
-    #  "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +     
+    #  "  ?op_ref3 bo:hasProperty ?bc_topic_property . \n " +
     #  "  ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property . \n " +
     #  "  ?bc_topic_property cbc:hasThesaurusConcept ?valueRef . \n " +
-    #  "  ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . \n " +     
-    #  "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +     
+    #  "  ?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj . \n " +
+    #  "  ?sdtmTopicValueObj iso25964:notation ?sdtmTopicSub . \n " +
     #  "  {\n " +
     #  "    SELECT ?form ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?domain ?sdtmTopicName ?topic_var WHERE \n " +
-    #  "    { \n " + 
-    #  "      ?var bd:name ?sdtmVarName . \n " +              
-    #  "      ?dataset bd:includesColumn ?var . \n " +              
-    #  "      ?dataset bd:prefix ?domain . \n " +              
-    #  "      ?dataset bd:includesColumn ?topic_var . \n " +              
-    #  "      ?topic_var bd:classifiedAs ?classification . \n " +              
-    #  "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +              
-    #  "      ?topic_var bd:name ?sdtmTopicName . \n " +              
+    #  "    { \n " +
+    #  "      ?var bd:name ?sdtmVarName . \n " +
+    #  "      ?dataset bd:includesColumn ?var . \n " +
+    #  "      ?dataset bd:prefix ?domain . \n " +
+    #  "      ?dataset bd:includesColumn ?topic_var . \n " +
+    #  "      ?topic_var bd:classifiedAs ?classification . \n " +
+    #  "      ?classification rdfs:label \"Topic\"^^xsd:string . \n " +
+    #  "      ?topic_var bd:name ?sdtmTopicName . \n " +
     #  "      { \n " +
-    #  "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " + 
-    #  "        { \n " +    
-    #  "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +     
-    #  "          ?group bf:ordinal ?gord . \n " +      
-    #  "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +        
+    #  "        SELECT ?group ?item ?bcProperty ?bcRoot ?bcIdent ?sdtmVarName ?dataset ?var ?gord ?pord WHERE \n " +
+    #  "        { \n " +
+    #  "          :" + self.id + " (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group . \n " +
+    #  "          ?group bf:ordinal ?gord . \n " +
+    #  "          ?group (bf:hasItem|bf:hasCommonItem)%2B ?item . \n " +
     #  "          ?item bf:hasProperty ?op_ref1 . \n " +
-    #  "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +             
+    #  "          ?op_ref1 bo:hasProperty ?bcProperty  . \n " +
     #  "          ?op_ref2 bo:hasProperty ?bcProperty . \n " +
     #  "          ?var bd:hasProperty ?op_ref2 . \n " +
     #  "          ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty . \n" +
     #  "          ?bcRoot rdf:type cbc:BiomedicalConceptInstance . \n " +
-    #  "          ?bcProperty cbc:ordinal ?pord . \n " +     
-    #  "          ?bcRoot isoI:hasIdentifier ?si . \n " +     
-    #  "          ?si isoI:identifier ?bcIdent . \n " +     
-    #  "        }  \n " + 
+    #  "          ?bcProperty cbc:ordinal ?pord . \n " +
+    #  "          ?bcRoot isoI:hasIdentifier ?si . \n " +
+    #  "          ?si isoI:identifier ?bcIdent . \n " +
+    #  "        }  \n " +
     #  "      } \n " +
     #  "    } \n " +
     #  "  } \n " +
-    #  "} ORDER BY ?gord ?pord \n " 
+    #  "} ORDER BY ?gord ?pord \n "
 
     # New faster query
     query = %Q(
-    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoT", "isoI", "th"])} 
-    	SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE 
-    	{ 
-	      :#{self.id} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group .     
-        ?group bf:ordinal ?gord .      
-        ?group (bf:hasItem|bf:hasCommonItem)%2B ?item .        
+    	#{query = UriManagement.buildNs(self.namespace, ["bf", "bo", "cbc", "bd", "isoT", "isoI", "th"])}
+    	SELECT ?item ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub WHERE
+    	{
+	      :#{self.id} (bf:hasGroup|bf:hasSubGroup|bf:hasCommon)%2B ?group .
+        ?group bf:ordinal ?gord .
+        ?group (bf:hasItem|bf:hasCommonItem)%2B ?item .
         ?item bf:hasProperty ?op_ref1 .
-        ?op_ref1 bo:hasProperty ?bcProperty  .             
+        ?op_ref1 bo:hasProperty ?bcProperty  .
         ?op_ref2 bo:hasProperty ?bcProperty .
         ?var bd:hasProperty ?op_ref2 .
         ?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bcProperty .
         ?bcRoot rdf:type cbc:BiomedicalConceptInstance .
-        ?bcProperty cbc:ordinal ?pord .     
-        ?bcRoot isoT:hasIdentifier ?si .     
-        ?si isoI:identifier ?bcIdent .     
-        ?var bd:name ?sdtmVarName .              
-        ?dataset bd:includesColumn ?var .              
-        ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} .              
-        ?dataset bd:prefix ?domain .              
-        ?dataset bd:includesColumn ?topic_var .              
-        ?topic_var bd:classifiedAs ?classification .              
-        ?classification rdfs:label "Topic"^^xsd:string .              
-        ?topic_var bd:name ?sdtmTopicName .              
+        ?bcProperty cbc:ordinal ?pord .
+        ?bcRoot isoT:hasIdentifier ?si .
+        ?si isoI:identifier ?bcIdent .
+        ?var bd:name ?sdtmVarName .
+        ?dataset bd:includesColumn ?var .
+        ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} .
+        ?dataset bd:prefix ?domain .
+        ?dataset bd:includesColumn ?topic_var .
+        ?topic_var bd:classifiedAs ?classification .
+        ?classification rdfs:label "Topic"^^xsd:string .
+        ?topic_var bd:name ?sdtmTopicName .
       	?topic_var bd:hasProperty ?op_ref3 .
-      	?op_ref3 bo:hasProperty ?bc_topic_property .     
+      	?op_ref3 bo:hasProperty ?bc_topic_property .
       	?bcRoot (cbc:hasProperty|cbc:hasDatatype|cbc:hasItem|cbc:hasComplexDatatype)%2B ?bc_topic_property .
       	?bc_topic_property cbc:hasThesaurusConcept ?valueRef .
-      	?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj .     
-      	?sdtmTopicValueObj th:notation ?sdtmTopicSub .     
+      	?valueRef bo:hasThesaurusConcept ?sdtmTopicValueObj .
+      	?sdtmTopicValueObj th:notation ?sdtmTopicSub .
     	} ORDER BY ?domain ?sdtmVarName ?sdtmTopicName ?sdtmTopicSub
     )
     response = CRUD.query(query)
@@ -456,7 +457,7 @@ private
           domain_long_name = @@domain_map[domain]
         end
         results << {
-          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
+          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item),
           :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => sdtm_var, :sdtm_topic_variable => sdtm_topic, :sdtm_topic_value => sdtm_topic_value
         }
       end
@@ -467,24 +468,24 @@ private
   def question_annotations()
     results = Array.new
     query = UriManagement.buildNs(self.namespace, ["bf", "bo", "bd", "isoI"])  +
-      "SELECT DISTINCT ?var ?domain ?item WHERE \n" +       
-      "{ \n" +         
-      "  ?col bd:name ?var .  \n" +        
-      "  ?dataset bd:includesColumn ?col . \n" + 
-      "  ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} . \n" +                    
-      "  ?dataset bd:prefix ?domain . \n " +              
-      #"  ?dataset rdfs:label ?domain . \n" +         
-      "  { \n" +           
-      "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +           
-      "    { \n" +             
+      "SELECT DISTINCT ?var ?domain ?item WHERE \n" +
+      "{ \n" +
+      "  ?col bd:name ?var .  \n" +
+      "  ?dataset bd:includesColumn ?col . \n" +
+      "  ?dataset rdf:type #{SdtmUserDomain::C_RDF_TYPE_URI.to_ref} . \n" +
+      "  ?dataset bd:prefix ?domain . \n " +
+      #"  ?dataset rdfs:label ?domain . \n" +
+      "  { \n" +
+      "    SELECT ?group ?item ?var ?gord ?pord WHERE \n" +
+      "    { \n" +
       "      :" + self.id + " (bf:hasGroup|bf:hasSubGroup)%2B ?group . \n" +
-      "      ?group bf:ordinal ?gord . \n" +   
-      "      ?group (bf:hasItem)+ ?item . \n" +             
-      "      ?item bf:mapping ?var . \n" +  
-      "      ?item bf:ordinal ?pord \n" + 
-      "    } \n" +          
-      "  } \n" +       
-      "} ORDER BY ?domain ?var \n"   
+      "      ?group bf:ordinal ?gord . \n" +
+      "      ?group (bf:hasItem)+ ?item . \n" +
+      "      ?item bf:mapping ?var . \n" +
+      "      ?item bf:ordinal ?pord \n" +
+      "    } \n" +
+      "  } \n" +
+      "} ORDER BY ?domain ?var \n"
     # Send the request, wait the resonse
     response = CRUD.query(query)
     # Process the response
@@ -501,7 +502,7 @@ private
           domain_long_name = @@domain_map[domain]
         end
         results << {
-          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item), 
+          :id => ModelUtility.extractCid(item), :namespace => ModelUtility.extractNs(item),
           :domain_prefix => domain, :domain_long_name => domain_long_name, :sdtm_variable => variable, :sdtm_topic_variable => "", :sdtm_topic_value => ""
         }
       end

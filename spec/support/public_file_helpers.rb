@@ -5,11 +5,11 @@ module PublicFileHelpers
   end
 
   def public_file_exists?(sub_dir, filename)
-    expect(File.exists?(Rails.root.join "public/#{sub_dir}/#{filename}")).to be(true)
+    expect(File.exists?(Rails.root.join("public","#{sub_dir}","#{filename}"))).to be(true)
   end
 
   def public_file_does_not_exist?(sub_dir, filename)
-    expect(File.exists?(Rails.root.join "public/#{sub_dir}/#{filename}")).to be(false)
+    expect(File.exists?(Rails.root.join("public","#{sub_dir}","#{filename}"))).to be(false)
   end
 
   # Deprecated
@@ -30,26 +30,26 @@ module PublicFileHelpers
   end
 
   def delete_public_file(sub_dir, filename)
-    file = Rails.root.join "public/#{sub_dir}/#{filename}"
+    file = Rails.root.join("public","#{sub_dir}","#{filename}")
 		File.delete(file)
   rescue => e
   end
 
   def copy_file_to_public_files(source_sub_dir, filename, dest_sub_dir)
-  	source_file = Rails.root.join "spec/fixtures/files/#{source_sub_dir}/#{filename}"
-  	dest_file = Rails.root.join "public/#{dest_sub_dir}/#{filename}"
+  	source_file = Rails.root.join("spec","fixtures","files","#{source_sub_dir}","#{filename}")
+  	dest_file = Rails.root.join("public","#{dest_sub_dir}","#{filename}")
   	FileUtils.cp source_file, dest_file
   end
 
   def copy_file_from_public_files(source_sub_dir, filename, dest_sub_dir)
-  	source_file = Rails.root.join "public/#{source_sub_dir}/#{filename}"
-  	dest_file = Rails.root.join "spec/fixtures/files/#{dest_sub_dir}/#{filename}"
+  	source_file = Rails.root.join("public","#{source_sub_dir}","#{filename}")
+  	dest_file = Rails.root.join("spec","fixtures","files","#{dest_sub_dir}","#{filename}")
   	FileUtils.cp source_file, dest_file
   end
 
   def copy_file_from_public_files_rename(source_sub_dir, filename, dest_sub_dir, new_filename)
-    source_file = Rails.root.join "public/#{source_sub_dir}/#{filename}"
-    dest_file = Rails.root.join "spec/fixtures/files/#{dest_sub_dir}/#{new_filename}"
+    source_file = Rails.root.join("public","#{source_sub_dir}","#{filename}")
+    dest_file = Rails.root.join("spec","fixtures","files","#{dest_sub_dir}","#{new_filename}")
     FileUtils.cp source_file, dest_file
   end
 
