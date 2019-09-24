@@ -418,6 +418,15 @@ module UiHelpers
     click_link 'btn-search-latest'
   end
 
+  def click_see_changes_all_versions
+    click_link 'btn-see-changes'
+  end
+
+  def click_submission_value_changes
+    click_link 'btn-submission-changes'
+  end
+
+
   def ui_check_table_cell_extensible(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").has_css?(".icon-extend")
     expect(cell).to eq(text)

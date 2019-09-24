@@ -285,6 +285,16 @@
   border-bottom: 2px solid $primary-color-bright;
 }
 
+.form-wrap .checkbox input[type="checkbox"] {
+  min-width: 0px;
+  border-bottom: 0px;
+  position: relative;
+}
+
+.form-wrap .checkbox label {
+  padding-left: 5px;
+}
+
 // ALERTS
 
 .alert{

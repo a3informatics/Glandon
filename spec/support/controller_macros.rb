@@ -1,6 +1,6 @@
 module ControllerMacros
   
-  C_PASSWORD = "12345678"
+  C_PASSWORD = "Changeme1%"
   C_EMAIL = "base@example.com"
   
   def login_admin

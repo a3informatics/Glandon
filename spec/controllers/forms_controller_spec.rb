@@ -4,6 +4,7 @@ describe FormsController do
 
   include DataHelpers
   include PauseHelpers
+  include UserAccountHelpers
   
   describe "Curator User" do
   	
@@ -16,7 +17,7 @@ describe FormsController do
     before :all do
       clear_triple_store
       Token.delete_all
-      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
+      @lock_user = ua_add_user :email => "lock@example.com"
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -39,8 +40,7 @@ describe FormsController do
     end
 
     after :all do
-      user = User.where(:email => "lock@example.com").first
-      user.destroy
+      ua_remove_user "lock@example.com"
     end
 
     it "provides a new object" do
