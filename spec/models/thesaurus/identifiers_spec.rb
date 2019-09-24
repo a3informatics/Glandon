@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::Identifiers do
+describe "Thesaurus::Identifiers" do
 
   include DataHelpers
 

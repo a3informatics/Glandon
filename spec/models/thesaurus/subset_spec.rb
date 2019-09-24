@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::Subset do
+describe "Thesaurus::Subset" do
 
 	include DataHelpers
   include SparqlHelpers
@@ -39,6 +39,7 @@ describe Thesaurus::Subset do
     result = 
       {
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1",
+        :id => Uri.new(uri:  "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1").to_id,
         :label => "First member", 
         :members => "http://www.assero.co.uk/X/V1#M1",
         :rdf_type => "http://www.assero.co.uk/Thesaurus#Subset"

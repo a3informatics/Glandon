@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::ManagedConcept do
+describe "Thesaurus::ManagedConcept" do
 
   include DataHelpers
   include ValidationHelpers

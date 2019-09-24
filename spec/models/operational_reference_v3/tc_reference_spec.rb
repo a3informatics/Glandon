@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OperationalReferenceV3::TcReference do
+describe "OperationalReferenceV3::TcReference" do
 
 	include DataHelpers
   include SparqlHelpers

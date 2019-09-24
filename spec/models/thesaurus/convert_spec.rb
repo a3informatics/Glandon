@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus do
+describe "Thesaurus Convert" do
 
   include DataHelpers
   include PublicFileHelpers

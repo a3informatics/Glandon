@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Token, type: :model do
+describe "Token" do
 
   include DataHelpers
 	include PauseHelpers
+  include UserAccountHelpers
 
   before :all do
     clear_triple_store
@@ -17,24 +18,21 @@ RSpec.describe Token, type: :model do
     load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
     load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
-
     load_test_file_into_triple_store("form_example_vs_baseline.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
     clear_token_object
-    @user = User.create :email => "token_user@example.com", :password => "changeme" 
+    @user = ua_add_user(email: "token_user_1@example.com")
     @user.add_role :reader
-    @user2 = User.create :email => "token_user2@example.com", :password => "changeme" 
+    @user2 = ua_add_user(email: "token_user_2@example.com")
     @user2.add_role :reader
   end
 
   after :all do
-    user = User.where(:email => "token_user@example.com").first
-    user.destroy
-    user = User.where(:email => "token_user2@example.com").first
-    user.destroy
+    ua_remove_user("token_user_1@example.com")
+    ua_remove_user("token_user_2@example.com")
     Token.restore_timeout
   end
 

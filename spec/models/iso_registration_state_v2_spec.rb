@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe IsoRegistrationStateV2 do
+describe "IsoRegistrationStateV2" do
   
   include DataHelpers
   include PauseHelpers

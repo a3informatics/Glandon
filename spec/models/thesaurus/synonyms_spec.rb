@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::Synonyms do
+describe "Thesaurus::Synonyms" do
 
 	include DataHelpers
   include SparqlHelpers

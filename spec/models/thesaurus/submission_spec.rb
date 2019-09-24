@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus do
+describe "Thesaurus Submission" do
 
   include DataHelpers
   include PublicFileHelpers
