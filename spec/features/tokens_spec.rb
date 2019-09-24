@@ -102,7 +102,6 @@ describe "Tokens", :type => :feature do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_sponsor_domain
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
-        pause
         expect(page).to have_content 'History: DS Domain'
         find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
         expect(page).to have_content 'Edit:'
