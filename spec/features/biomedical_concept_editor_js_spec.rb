@@ -13,9 +13,9 @@ describe "Biomedical Concept Editor", :type => :feature do
   before :all do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
       "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_V42.ttl", "CT_V43.ttl",
-      "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl","CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl"]
     load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..43)
 
     # clear_triple_store
     # load_schema_file_into_triple_store("ISO11179Types.ttl")

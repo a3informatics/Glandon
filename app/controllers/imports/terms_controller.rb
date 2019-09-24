@@ -3,7 +3,7 @@
 # @author Dave Iberson-Hurst
 # @since 2.21.0
 class Imports::TermsController < Imports::BaseController
-  
+
   def new
     @th = []
     Thesaurus.all.each { |t| @th << t if t.registrationStatus == :Incomplete.to_s }
@@ -11,7 +11,7 @@ class Imports::TermsController < Imports::BaseController
   end
 
 private
- 
+
   def the_params
     super([:uri])
   end

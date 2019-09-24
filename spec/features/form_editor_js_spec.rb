@@ -2,53 +2,44 @@ require 'rails_helper'
 require 'selenium-webdriver'
 
 describe "Form Editor", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
   include ValidationHelpers
   include FormHelpers
+  include UserAccountHelpers
 
   before :all do
     clear_triple_store
     Token.destroy_all
     Token.set_timeout(5)
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("CT_ACME_V1.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "CT_ACME_V1.ttl", "form_crf_test_1.ttl", "form_crf_test_2.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..43)
+    ua_create
+  end
 
-    load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("form_crf_test_1.ttl")
-    load_test_file_into_triple_store("form_crf_test_2.ttl")
-    @user = User.create :email => "form_edit@example.com", :password => "12345678" 
-    @user.add_role :curator
+  before :each do
+    ua_curator_login
   end
 
   after :each do
-    click_link 'logoff_button'
+    ua_logoff
   end
 
   after :all do
-    user = User.where(:email => "form_edit@example.com").first
-    user.destroy
+    ua_destroy
     Token.restore_timeout
   end
 
   describe "Curator User", :type => :feature do
-  
+
     it "has correct initial state", js: true do
-      create_form("TEST INITIAL", "Initial", "Initial Layout Test") 
+      create_form("TEST INITIAL", "Initial", "Initial Layout Test")
       expect(page).to have_content("Edit: Initial TEST INITIAL (V0.1.0, 1, Incomplete)")
       expect(page).to have_content("Form Details")
       expect(page).to have_content("G+")
@@ -94,7 +85,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows a common group to be added, Common Panel", js: true do
-      create_form("TEST 3", "Test", "Test 3") 
+      create_form("TEST 3", "Test", "Test 3")
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
       fill_in 'groupCompletion', with: "Completion for group 1"
@@ -111,7 +102,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows a question to be added, Question Panel (REQ-MDR-CRF-020)", js: true do
-      create_form("TEST 4", "Test", "Test 4") 
+      create_form("TEST 4", "Test", "Test 4")
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
       fill_in 'groupCompletion', with: "Completion for group 1"
@@ -121,7 +112,7 @@ describe "Form Editor", :type => :feature do
       #expect(page).to have_content 'Notepad'
       fill_in 'questionLabel', with: "Q 1"
       fill_in 'questionText', with: "What is?"
-      check 'questionOptional'  
+      check 'questionOptional'
       fill_in 'questionMapping', with: "[NOT SUBMITTED]"
       choose 'form_datatype_s'
       fill_in 'questionCompletion', with: "Completion for question"
@@ -138,8 +129,8 @@ describe "Form Editor", :type => :feature do
       ui_check_radio('form_datatype_s', true)
     end
 
-    it "allows a label to be added, Label Panel (REQ-MDR-CRF-020)", js: true do 
-      create_form("TEST 5", "Test", "Test 5") 
+    it "allows a label to be added, Label Panel (REQ-MDR-CRF-020)", js: true do
+      create_form("TEST 5", "Test", "Test 5")
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
       fill_in 'groupCompletion', with: "Completion for group 1"
@@ -155,8 +146,8 @@ describe "Form Editor", :type => :feature do
       ui_check_input('labelTextText', "This is a markdown label")
     end
 
-    it "allows a placeholder to be added, Placeholder Panel", js: true do 
-      create_form("TEST 6", "Test", "Test 6") 
+    it "allows a placeholder to be added, Placeholder Panel", js: true do
+      create_form("TEST 6", "Test", "Test 6")
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
       fill_in 'groupCompletion', with: "Completion for group 1"
@@ -171,7 +162,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows a mapping to be added, Mapping Panel (REQ-MDR-CRF-020)", js: true do
-      create_form("TEST 7", "Test", "Test 7") 
+      create_form("TEST 7", "Test", "Test 7")
       click_button 'formAddGroup'
       fill_in 'groupLabel', with: "Group 1"
       fill_in 'groupCompletion', with: "Completion for group 1"
@@ -185,7 +176,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "Common Item Panel", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Date and Time (--DTC)"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Common Item Details'
@@ -193,7 +184,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows items to be moved up and down (REQ-MDR-CRF-080)", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 2"]')
       ui_click_node_key(key1)
@@ -240,15 +231,15 @@ describe "Form Editor", :type => :feature do
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       ui_click_node_key(key1)
       click_button "questionUp"
-      expect(page).to have_content("You cannot move the node up.")      
+      expect(page).to have_content("You cannot move the node up.")
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Placeholder 5"]')
       ui_click_node_key(key1)
       click_button "placeholderDown"
-      expect(page).to have_content("You cannot move the node down.")      
+      expect(page).to have_content("You cannot move the node down.")
     end
 
     it "allows groups to be moved up and down (REQ-MDR-CRF-080)", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "Q Repeating Group"]')
       ui_click_node_key(key1)
@@ -259,11 +250,11 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows for BCs to be moved up and down (REQ-MDR-CRF-080)", js: true do
-    	load_form("CRF TEST 1") 
+    	load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       ui_click_node_key(key1)
 			click_button "bcUp"
-			expect(page).to have_content("You cannot move the node up.")  
+			expect(page).to have_content("You cannot move the node up.")
 			ui_check_node_ordinal(key1, 2)
 			click_button "bcDown"
 			ui_check_node_ordinal(key1, 3)
@@ -278,12 +269,12 @@ describe "Form Editor", :type => :feature do
 			click_button "bcDown"
 			ui_check_node_ordinal(key1, 3)
 			click_button "bcDown"
-			expect(page).to have_content("You cannot move the node down.")  
+			expect(page).to have_content("You cannot move the node down.")
 			ui_check_node_ordinal(key1, 3)
 		end
 
     it "allows for BC Items to be moved up and down (REQ-MDR-CRF-080)", js: true do
-    	load_form("CRF TEST 1") 
+    	load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Diastolic Blood Pressure (BC C25299)", "Result Value (--ORRES)"]')
       ui_click_node_key(key1)
 			click_button "itemUp"
@@ -291,7 +282,7 @@ describe "Form Editor", :type => :feature do
 			click_button "itemUp"
 			ui_check_node_ordinal(key1, 1)
 			click_button "itemUp"
-			expect(page).to have_content("You cannot move the node up.")  
+			expect(page).to have_content("You cannot move the node up.")
 			ui_check_node_ordinal(key1, 1)
 			click_button "itemDown"
 			ui_check_node_ordinal(key1, 2)
@@ -300,7 +291,7 @@ describe "Form Editor", :type => :feature do
 			click_button "itemDown"
 			ui_check_node_ordinal(key1, 4)
 			click_button "itemDown"
-			expect(page).to have_content("You cannot move the node down.")  
+			expect(page).to have_content("You cannot move the node down.")
 			ui_check_node_ordinal(key1, 4)
 		end
 
@@ -510,7 +501,7 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(3)
       fill_in 'questionLabel', with: "Q 1"
       fill_in 'questionText', with: "What is?"
-      check 'questionOptional'  
+      check 'questionOptional'
       fill_in 'questionMapping', with: "[NOT SUBMITTED]"
       choose 'form_datatype_s'
       fill_in 'questionCompletion', with: "Completion for question"
@@ -582,7 +573,7 @@ describe "Form Editor", :type => :feature do
       fill_in 'questionFormat', with: "50"
       ui_click_node_key(2)
       ui_click_node_key(3)
-      ui_check_input('questionFormat', "50")  
+      ui_check_input('questionFormat', "50")
       choose 'form_datatype_i'
       fill_in 'questionFormat', with: "5"
       ui_click_node_key(2)
@@ -597,7 +588,7 @@ describe "Form Editor", :type => :feature do
       fill_in 'questionFormat', with: "50"
       ui_click_node_key(2)
       ui_click_node_key(3)
-      ui_check_input('questionFormat', "50")  
+      ui_check_input('questionFormat', "50")
       choose 'form_datatype_s'
       click_button 'tfe_add_item'
       expect(page).to have_content("You need to select an item.")
@@ -614,7 +605,7 @@ describe "Form Editor", :type => :feature do
       ui_click_node_key(3)
       wait_for_ajax
       expect(page).to have_content 'Question Details' # Wait for page to settle
-    
+
     #pause
 
       ui_table_row_click('tfe_item_table', 'C100394')
@@ -682,7 +673,7 @@ describe "Form Editor", :type => :feature do
       expect(ui_get_key_by_name("Pound")).not_to eq(-1)
       expect(ui_get_key_by_name("Degree Celsius")).not_to eq(-1)
     end
-    
+
     it "allows items to be made common and restored", js: true do
       create_form("TEST BC 2", "Test", "Test BC 2")
       click_button 'formAddGroup'
@@ -725,7 +716,7 @@ describe "Form Editor", :type => :feature do
       key = ui_get_key_by_path('["Test BC 2", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
       ui_check_node_is_common(key,"not common")
     end
-    
+
     it "allows items to be made common and restored, items moved", js: true do
       create_form("TEST BC 2A", "Test", "Test BC 2A")
       click_button 'formAddGroup'
@@ -774,7 +765,7 @@ describe "Form Editor", :type => :feature do
       key = ui_get_key_by_path('["Test BC 2A", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
       ui_check_node_is_common(key,"not common")
     end
-    
+
     it "allows items to be made common and restored, items moved", js: true do
       create_form("TEST BC 2B", "Test", "Test BC 2B")
       click_button 'formAddGroup'
@@ -823,11 +814,11 @@ describe "Form Editor", :type => :feature do
       key = ui_get_key_by_path('["Test BC 2B", "Group 1", "Weight (BC C25208)", "Date and Time (--DTC)"]')
       ui_check_node_is_common(key,"not common")
     end
-    
+
     it "allows items to be made common when BC added"
 
     it "allows common items to be moved up and down", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Date and Time (--DTC)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)"]')
       ui_click_node_key(key1)
@@ -845,7 +836,7 @@ describe "Form Editor", :type => :feature do
     end
 
     it "allows BCs to have completion instructions and notes", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
@@ -858,17 +849,17 @@ describe "Form Editor", :type => :feature do
       ui_check_input('bcCompletion', "Completion for BC")
       ui_check_input('bcNote', "Notes for BC")
     end
-    
+
     it "allows a BC property to have enabled and optional, completion instructions and notes (REQ-MDR-CRF-050)", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)", "Result Value (--ORRES)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
       expect(page).to have_content("BC Item Details")
       fill_in 'bcItemCompletion', with: "Completion for BC Item"
       fill_in 'bcItemNote', with: "Notes for BC Item"
-      check 'bcItemOptional'  
-      check 'bcItemEnable'  
+      check 'bcItemOptional'
+      check 'bcItemEnable'
       ui_click_node_key(key2)
       ui_click_node_key(key1)
       expect(page).to have_content("BC Item Details")
@@ -876,51 +867,51 @@ describe "Form Editor", :type => :feature do
       ui_check_input('bcItemNote', "Notes for BC Item")
       ui_check_checkbox('bcItemOptional', true)
       ui_check_checkbox('bcItemEnable', true)
-      uncheck 'bcItemOptional'  
-      uncheck 'bcItemEnable'  
+      uncheck 'bcItemOptional'
+      uncheck 'bcItemEnable'
       ui_click_node_key(key2)
       ui_click_node_key(key1)
       expect(page).to have_content("BC Item Details")
       ui_check_checkbox('bcItemOptional', false)
       ui_check_checkbox('bcItemEnable', false)
     end
-    
-    it "allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY", js: true do 
-      load_form("CRF TEST 1") 
+
+    it "allows the CL to be moved up and down for BC common group - WILL FAIL CURRENTLY", js: true do
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Supine Position"]')
       ui_click_node_key(key1)
       wait_for_ajax
-      ui_check_node_ordinal(key1, 3)    
+      ui_check_node_ordinal(key1, 3)
       #click_button "clUp"
       ui_click_by_id("clUp")
-      ui_check_node_ordinal(key1, 2)    
+      ui_check_node_ordinal(key1, 2)
       #click_button "clDown"
       ui_click_by_id("clDown")
-      ui_check_node_ordinal(key1, 3)    
+      ui_check_node_ordinal(key1, 3)
     end
 
-    it "allows the CL to be moved up and down for BC group", js: true do 
-      load_form("CRF TEST 1") 
+    it "allows the CL to be moved up and down for BC group", js: true do
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Repeating Group", "Weight (BC C25208)", "Result Units (--ORRESU)", "Gram"]')
       ui_click_node_key(key1)
-      ui_check_node_ordinal(key1, 3)    
+      ui_check_node_ordinal(key1, 3)
       click_button "clUp"
-      ui_check_node_ordinal(key1, 2)    
+      ui_check_node_ordinal(key1, 2)
       click_button "clDown"
-      ui_check_node_ordinal(key1, 3)    
+      ui_check_node_ordinal(key1, 3)
     end
 
-    it "displays the CL Item Panel for BCs", js: true do 
-      load_form("CRF TEST 1") 
+    it "displays the CL Item Panel for BCs", js: true do
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Common Group", "Body Position (--POS)", "Standing"]')
       ui_click_node_key(key1)
       expect(page).to have_content("Code List Details")
       expect(page).to have_content("C62166")
       expect(page).to have_content("STANDING")
-    end      
+    end
 
-    it "allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY", js: true do 
-      load_form("CRF TEST 1") 
+    it "allows the CL to be moved up and down for Questions, checks CL Item Panel - WILL FAIL CURRENTLY", js: true do
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "Q Group", "Question 1"]')
       ui_click_node_key(key1)
       wait_for_ajax
@@ -937,17 +928,17 @@ describe "Form Editor", :type => :feature do
       expect(page).to have_content("Code List Details")
       expect(page).to have_content("C25157")
       expect(page).to have_content("BSA")
-      ui_check_node_ordinal(key2, 2)    
+      ui_check_node_ordinal(key2, 2)
       #click_button "clUp"
       ui_click_by_id("clUp")
-      ui_check_node_ordinal(key2, 1)    
+      ui_check_node_ordinal(key2, 1)
       #click_button "clDown"
       ui_click_by_id("clDown")
-      ui_check_node_ordinal(key2, 2)    
+      ui_check_node_ordinal(key2, 2)
     end
 
     it "allows a BC to be deleted", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       key1 = ui_get_key_by_path('["CRF Test Form", "BC Group", "Systolic Blood Pressure (BC C25298)"]')
       key2 = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
       ui_click_node_key(key1)
@@ -966,9 +957,9 @@ describe "Form Editor", :type => :feature do
       expect(key1).to eq(-1)
     end
 
-  
+
     it "loads current terminology", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       expect(page).to have_content 'Current Terminologies'
       ui_check_table_info("searchTable", 0, 0, 0)
       fill_in 'searchTable_csearch_cl', with: 'C100129'
@@ -979,7 +970,7 @@ describe "Form Editor", :type => :feature do
 
     it "form edit timeout warnings and expiration", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
@@ -1000,7 +991,7 @@ describe "Form Editor", :type => :feature do
 
     it "form edit timeout warnings and extend", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       token = tokens[0]
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
@@ -1027,7 +1018,7 @@ describe "Form Editor", :type => :feature do
 
     it "edit clears token on close", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
@@ -1035,11 +1026,11 @@ describe "Form Editor", :type => :feature do
       wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
-    end  
+    end
 
     it "edit clears token on back button", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       expect(page).to have_content("Edit: CRF Test Form CRF TEST 1 (V0.0.0, 1, Incomplete)")
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
@@ -1047,10 +1038,10 @@ describe "Form Editor", :type => :feature do
       wait_for_ajax(10)
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_CRFTEST1")
       expect(tokens).to match_array([])
-    end  
+    end
 
     it "allows the fields to be validated", js: true do
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       # Keys
       key_form = ui_get_key_by_path('["CRF Test Form"]')
       key_bc_group = ui_get_key_by_path('["CRF Test Form", "BC Group"]')
@@ -1125,7 +1116,7 @@ describe "Form Editor", :type => :feature do
 
     it "allows the form to be saved", js: true do
       Token.set_timeout(100) # Just make sure
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       fill_in 'formLabel', with: "Updated And Wonderful Label"
       ui_click_save
       wait_for_ajax
@@ -1137,11 +1128,11 @@ describe "Form Editor", :type => :feature do
 
     it "allows the edit session to be closed", js: true do
       Token.set_timeout(100) # Just make sure
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2"
       ui_click_close
       wait_for_ajax
-      reload_form("CRF TEST 1") 
+      reload_form("CRF TEST 1")
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2")
       ui_click_close
     end
@@ -1149,11 +1140,11 @@ describe "Form Editor", :type => :feature do
     it "allows the edit session to be closed indirectly, saves data - WILL CURRENTLY FAIL", js: true do
       #set_screen_size(1500, 900)
       Token.set_timeout(100) # Just make sure
-      load_form("CRF TEST 1") 
+      load_form("CRF TEST 1")
       fill_in 'formLabel', with: "Updated And Wonderful Label No. 2, 2nd Time"
       ui_click_back_button
       wait_for_ajax(10)
-      reload_form("CRF TEST 1") 
+      reload_form("CRF TEST 1")
       wait_for_ajax(10)
       ui_check_input('formLabel', "Updated And Wonderful Label No. 2, 2nd Time")
       ui_click_close

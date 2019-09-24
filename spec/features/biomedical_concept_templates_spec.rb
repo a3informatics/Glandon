@@ -1,24 +1,19 @@
 require 'rails_helper'
 
 describe "Biomedical Concept Templates", :type => :feature do
-  
+
   include DataHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   describe "BCTs", :type => :feature do
-  
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
 
-      load_test_file_into_triple_store("BCT.ttl")
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
+      load_files(schema_files, data_files)
+
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -35,23 +30,25 @@ describe "Biomedical Concept Templates", :type => :feature do
       ua_curator_login
     end
 
-    it "allows access to index page" do
-      visit '/'
-      find(:xpath, "//a[@href='/biomedical_concept_templates']").click # Clash with 'CDISC Terminology', so use this method to make unique
+    after :each do
+      ua_logoff
+    end
+
+    it "allows access to index page", js: true do
+      click_navbar_bct
       expect(page).to have_content 'Index: Biomedical Concept Templates'
     end
 
-    it "allows the history page to be viewed" do
-      visit '/biomedical_concept_templates'
-      expect(page).to have_content 'Index: Biomedical Concept Templates'
+    it "allows the history page to be viewed", js: true do
+      click_navbar_bct
       #save_and_open_page
       find(:xpath, "//tr[contains(.,'Obs CD')]/td/a", :text => 'History').click
       #save_and_open_page
       expect(page).to have_content 'History: Obs CD'
     end
 
-    it "history allows the show page to be viewed" do
-      visit '/biomedical_concept_templates'
+    it "history allows the show page to be viewed", js: true do
+      click_navbar_bct
       expect(page).to have_content 'Index: Biomedical Concept Templates'
       find(:xpath, "//tr[contains(.,'Obs PQR')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: Obs PQR'
@@ -60,8 +57,8 @@ describe "Biomedical Concept Templates", :type => :feature do
       expect(page).to have_content 'Show: Simple Observation PQR Biomedical Research Concept Template Obs PQR (V1.0.0, 1, Standard)'
     end
 
-    it "history allows the status page to be viewed" do
-      visit '/biomedical_concept_templates'
+    it "history allows the status page to be viewed", js: true do
+      click_navbar_bct
       expect(page).to have_content 'Index: Biomedical Concept Templates'
       find(:xpath, "//tr[contains(.,'Obs CD')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: Obs CD'

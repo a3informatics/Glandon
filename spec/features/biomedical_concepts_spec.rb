@@ -1,32 +1,25 @@
 require 'rails_helper'
 
 describe "Biomedical Concepts", :type => :feature do
-  
+
   include DataHelpers
   include DownloadHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   def sub_dir
     return "features"
   end
 
   describe "BCs", :type => :feature do
-  
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
 
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..42)
+
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -43,21 +36,25 @@ describe "Biomedical Concepts", :type => :feature do
       ua_curator_login
     end
 
-    it "allows access to index page" do
-      visit '/'
+    after :each do
+      ua_logoff
+    end
+
+    it "allows access to index page", js:true do
+      click_navbar_bc
       find(:xpath, "//a[@href='/biomedical_concepts']").click # Clash with 'CDISC Terminology', so use this method to make unique
       expect(page).to have_content 'Index: Biomedical Concepts'
     end
 
-    it "allows the history page to be viewed" do
-      visit '/biomedical_concepts'
+    it "allows the history page to be viewed", js:true do
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C49677')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C49677'
     end
 
-    it "history allows the show page to be viewed (REQ-MDR-BC-010)" do
-      visit '/biomedical_concepts'
+    it "history allows the show page to be viewed (REQ-MDR-BC-010)", js:true do
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
@@ -66,8 +63,8 @@ describe "Biomedical Concepts", :type => :feature do
       expect(page).to have_content 'Show: Temperature (BC C25206) BC C25206 (V1.0.0, 1, Standard)'
     end
 
-    it "history allows the status page to be viewed" do
-      visit '/biomedical_concepts'
+    it "history allows the status page to be viewed", js:true do
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
@@ -76,9 +73,9 @@ describe "Biomedical Concepts", :type => :feature do
       click_link 'Close'
       expect(page).to have_content 'History: BC C25206'
     end
-    
-    it "allows for a BC to be cloned" do
-      visit '/biomedical_concepts'
+
+    it "allows for a BC to be cloned", js:true do
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'
@@ -89,12 +86,13 @@ describe "Biomedical Concepts", :type => :feature do
       fill_in "biomedical_concept[identifier]", with: 'NEW NEW BC'
       fill_in "biomedical_concept[label]", with: 'A very new new BC'
       #save_and_open_page
+
       click_button 'Clone'
       expect(page).to have_content("Biomedical Concept was successfully created.")
     end
 
-    it "allows for a BC to be edited (REQ-MDR-BC-010)" do
-      visit '/biomedical_concepts'
+    it "allows for a BC to be edited (REQ-MDR-BC-010)", js:true do
+      click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C25206')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: BC C25206'

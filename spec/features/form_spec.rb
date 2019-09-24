@@ -1,26 +1,20 @@
 require 'rails_helper'
 
 describe "Forms", :type => :feature do
-  
+
   include DataHelpers
   include UserAccountHelpers
-  
+  include UiHelpers
+
   describe "Forms", :type => :feature do
-  
+
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("form_example_dm1.ttl")
-      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_dm1_branch.ttl",
+        "form_example_vs_baseline_new.ttl", "form_example_general.ttl"]
+      load_files(schema_files, data_files)
+
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -37,14 +31,17 @@ describe "Forms", :type => :feature do
       ua_curator_login
     end
 
-    it "allows access to index page" do
-      visit '/'
-      find(:xpath, "//a[@href='/forms']").click # Clash with 'CDISC Terminology', so use this method to make unique
+    after :each do
+      ua_logoff
+    end
+
+    it "allows access to index page", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
     end
 
-    it "allows the history page to be viewed" do
-      visit '/forms'
+    it "allows the history page to be viewed", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       #save_and_open_page
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
@@ -52,8 +49,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: T2'
     end
 
-    it "history allows the show page to be viewed (REQ-MDR-CRF-010)" do
-      visit '/forms'
+    it "history allows the show page to be viewed (REQ-MDR-CRF-010)", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -62,8 +59,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Show: Test 2 T2 (V0.0.0, 1, Incomplete)'
     end
 
-    it "history allows the view page to be viewed (REQ-MDR-CRF-010)" do
-      visit '/forms'
+    it "history allows the view page to be viewed (REQ-MDR-CRF-010)", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -74,8 +71,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'History: DM1 01'
     end
 
-    it "history allows the status page to be viewed" do
-      visit '/forms'
+    it "history allows the status page to be viewed", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -85,9 +82,9 @@ describe "Forms", :type => :feature do
       click_link 'Close'
       expect(page).to have_content 'History: DM1 01'
     end
-    
-    it "history allows the edit page to be viewed (REQ-MDR-CRF-010)" do 
-      visit '/forms'
+
+    it "history allows the edit page to be viewed (REQ-MDR-CRF-010)", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -96,8 +93,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Edit: Test 2 T2 (V0.0.0, 1, Incomplete)'
     end
 
-    it "allows a form to be cloned" do
-      visit '/forms'
+    it "allows a form to be cloned", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -111,9 +108,9 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       expect(page).to have_content 'Test Clone Form'
     end
-    
-    it "prevents a duplicate form being cloned." do
-      visit '/forms'
+
+    it "prevents a duplicate form being cloned.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -128,8 +125,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a form to be cloned, identifier error." do
-      visit '/forms'
+    it "prevents a form to be cloned, identifier error.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -144,8 +141,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 
-    it "allows a form to be created (REQ-MDR-CRF-010)" do
-      visit '/forms'
+    it "allows a form to be created (REQ-MDR-CRF-010)", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New'
       expect(page).to have_content 'New Form:'
@@ -155,9 +152,9 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       expect(page).to have_content 'Test New Form'
     end
-    
-    it "prevents a duplicate form being created." do
-      visit '/forms'
+
+    it "prevents a duplicate form being created.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New'
       expect(page).to have_content 'New Form:'
@@ -168,8 +165,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a form to be created, identifier error." do
-      visit '/forms'
+    it "prevents a form to be created, identifier error.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New'
       expect(page).to have_content 'New Form:'
@@ -180,8 +177,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 
-    it "allows a placeholder form to be created" do
-      visit '/forms'
+    it "allows a placeholder form to be created", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
@@ -192,9 +189,9 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Index: Forms'
       expect(page).to have_content 'Test Placeholder Form'
     end
-    
-    it "prevents a placeholder duplicate form being created." do
-      visit '/forms'
+
+    it "prevents a placeholder duplicate form being created.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
@@ -205,8 +202,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a placeholder form to be created, identifier error." do
-      visit '/forms'
+    it "prevents a placeholder form to be created, identifier error.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
@@ -217,8 +214,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Identifier contains invalid characters'
     end
 
-    it "allows a form to be branched" do
-      visit '/forms'
+    it "allows a form to be branched", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
@@ -233,8 +230,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Test Branch Form'
     end
 
-    it "prevents a duplicate form being branched." do
-      visit '/forms'
+    it "prevents a duplicate form being branched.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
@@ -249,8 +246,8 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'The item cannot be created. The identifier is already in use.'
     end
 
-    it "prevents a form to be branched, identifier error." do
-      visit '/forms'
+    it "prevents a form to be branched, identifier error.", js:true do
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
