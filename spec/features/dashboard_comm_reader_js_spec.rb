@@ -51,6 +51,8 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '2019-06-28 Release'
       expect(page).to have_content '2017-09-29 Release'
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows access to CDISC changes (REQ-MDR-CT-040)", js: true do
@@ -60,6 +62,8 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       fill_in 'Search:', with: 'C67154'
       ui_check_table_info("changes", 1, 1, 1)
+      click_link 'Return'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows access to CDISC submission changes (REQ-MDR-CT-050)", js: true do
@@ -67,12 +71,46 @@ describe "Community Dashboard JS", :type => :feature do
       click_link 'See submission value changes across versions'
       expect(page).to have_content 'Submission value changes'
       expect(page).to have_content 'Controlled Terminology'
+      fill_in 'Search:', with: 'Calcium'
+      ui_check_table_info("changes", 1, 1, 1)
+      click_link 'Start'
+      wait_for_ajax_v_long
+      ui_check_table_info("changes", 1, 9, 9)
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows access to CDISC search (REQ-MDR-CT-060)", js: true do
       expect(page).to have_content 'Changes between two CDISC Terminology versions'
       click_link 'Search the latest version of CDISC CT'
       expect(page).to have_content 'Search: Controlled Terminology CT '
+      ui_check_table_info("searchTable", 0, 0, 0)
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+    end
+
+    it "allows to clear all CDISC search areas (REQ-MDR-UD-NONE)", js: true do
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
+      click_link 'Search the latest version of CDISC CT'
+      ui_check_breadcrumb('Terminology', 'CT', 'Search: V59.0.0', '')
+      expect(page).to have_content 'Search: Controlled Terminology CT ' 
+      ui_check_table_info("searchTable", 0, 0, 0)
+      fill_in 'searchTable_csearch_cl', with: 'C' 
+      fill_in 'searchTable_csearch_item', with: 'C' 
+      fill_in 'searchTable_csearch_submission_value', with: 'TEST' 
+      fill_in 'searchTable_csearch_preferred_term', with: 'TEST' 
+      fill_in 'searchTable_csearch_synonym', with: 'TEST CODE' 
+      ui_hit_return('searchTable_csearch_synonym')
+      wait_for_ajax_v_long
+      ui_check_table_info("searchTable", 1, 10, 307)
+      click_button 'clearbutton'
+      expect(find('#searchTable_csearch_cl')).to have_content('')
+      expect(find('#searchTable_csearch_item')).to have_content('')
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+      expect(find('#searchTable_csearch_preferred_term')).to have_content('')
+      expect(find('#searchTable_csearch_synonym')).to have_content('')
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows two CDISC versions to be selected and changes between versions displayed (REQ-MDR-UD-090)", js: true do
@@ -90,6 +128,8 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'C102584'
       expect(page).to have_content 'Reason For Treatment'
       expect(page).to have_content 'Changes'
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
@@ -123,6 +163,8 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_content 'C111109'
       expect(page).to have_content 'Device Events Category'
       expect(page).to have_content 'Changes'
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
     it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
@@ -156,6 +198,11 @@ describe "Community Dashboard JS", :type => :feature do
       ui_click_back_button
       ui_click_forward_button
       expect(page).to have_content 'Submission value changes'
+      ui_check_breadcrumb('CDISC Terminology', 'Changes', '', '')
+      expect(page).to have_content 'Differences'
+      expect(page).to have_content 'Changes'
+      click_link 'Home'
+      expect(page).to have_content 'Changes in CDISC Terminology versions'
     end
 
   end
