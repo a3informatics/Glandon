@@ -129,7 +129,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
     @links = {}
     link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
-    @close_path = request.referer
+    @close_path = dashboard_index_path
   end
 
   def changes_data
