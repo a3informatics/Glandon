@@ -53,7 +53,6 @@ describe "Ad Hoc Reports", :type => :feature do
     it "should allow the results to be viewed", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
-      pause
       find(:xpath, "//tr[contains(.,'Report No. 3')]/td/a", :text => 'Results').click
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 3")
     end

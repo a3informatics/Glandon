@@ -115,7 +115,6 @@ describe "Imports", :type => :feature do
     end
 
     it "import into terminolgy, initial setup", scenario: true, js: true do
-      pause
       click_table_link 'IMPORT 1', 'History'
       expect_page "History: IMPORT 1"
       click_navbar_import
