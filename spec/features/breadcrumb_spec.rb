@@ -1,33 +1,19 @@
 require 'rails_helper'
 
 describe "Breadcrumb", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
-  
+
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("form_crf_test_1.ttl")
-    load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "form_crf_test_1.ttl", "sdtm_model_and_ig.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..43)
     ua_create
-    @user_sa.add_role :content_admin # Ensure access to everything, sys & content admin
   end
 
   after :all do
@@ -35,36 +21,33 @@ describe "Breadcrumb", :type => :feature do
   end
 
   before :each do
-    visit '/users/sign_in'
-    fill_in 'Email', with: 'sys_admin@example.com'
-    fill_in 'Password', with: '12345678'
-    click_button 'Log in'
+    ua_sys_admin_login
   end
 
   after :each do
-    click_link 'logoff_button'
+    ua_logoff
   end
 
   def next_link(link, title, crumb_1, crumb_2, crumb_3, crumb_4="")
     click_link link
     expect(page).to have_content title
-    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)    
+    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
   end
 
   def next_link_crumb(index, title, crumb_1, crumb_2, crumb_3, crumb_4="")
     ui_click_breadcrumb(index)
     expect(page).to have_content title
-    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)    
+    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
   end
 
   def next_link_table(row_content, row_link, title, crumb_1, crumb_2, crumb_3, crumb_4="")
     find(:xpath, "//tr[contains(.,'#{row_content}')]/td/a", :text => "#{row_link}").click
     expect(page).to have_content title
-    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)    
+    ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
   end
 
   describe "check all breadcrumbs", :type => :feature do
-  
+
     it "has dashboard breadcrumbs" do
       next_link('Dashboard', "Registration Status Counts", "Dashboard", "", "")
     end
@@ -92,11 +75,11 @@ describe "Breadcrumb", :type => :feature do
     it "has Background Jobs breadcrumbs" do
       next_link('Background', 'Index: Background Jobs', "Background", "", "")
     end
-    
+
     it "has Audit Trail breadcrumbs" do
       next_link('main_nav_at', 'Index: Audit Trail', "Audit Trail", "", "") # Two links, use ids to get both
     end
-    
+
     it "has Ad Hoc Reports breadcrumbs" do
       next_link('Ad Hoc Reports', 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
       next_link('New', 'New Ad-Hoc Report:', "Ad-hoc Reports", "New", "")
@@ -106,7 +89,7 @@ describe "Breadcrumb", :type => :feature do
     it "has Tags breadcrumbs" do
       next_link('Tags', 'Tag Viewer', "", "", "")
     end
-    
+
     #it "has Notepad breadcrumbs" do
     #  next_link('Notepad', 'Index: Notepad', "Notepad", "", "")
     #end
@@ -138,11 +121,11 @@ describe "Breadcrumb", :type => :feature do
       next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "BC Templates", "Obs CD", "Show: V1.0.0")
       next_link_crumb(2, 'History', "BC Templates", "Obs CD", "")
     end
-    
+
     it "has Biomedical Concepts breadcrumbs" do
       next_link('main_nav_bc', 'Index: Biomedical Concepts', "Biomedical Concepts", "", "")
       next_link('New', 'New: Biomedical Concept', "Biomedical Concept", "New", "")
-      next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")      
+      next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
       next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "BC C49677", "")
       next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Show: V1.0.0")
       next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
@@ -151,11 +134,11 @@ describe "Breadcrumb", :type => :feature do
       next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Comments: V1.0.0")
       next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
     end
-    
+
     it "has Forms breadcrumbs" do
       next_link('Forms', 'Index: Forms', "Forms", "", "")
       next_link('New', 'New Form:', "Forms", "New", "")
-      next_link_crumb(1, 'Forms', "Forms", "", "")      
+      next_link_crumb(1, 'Forms', "Forms", "", "")
       next_link('New Placeholder', 'New Placeholder Form:', "Forms", "New Placeholder", "")
       next_link_crumb(1, 'Forms', "Forms", "", "")
       next_link_table("CRF TEST 1", "History", "History: CRF TEST 1", "Forms", "CRF TEST 1", "")
@@ -174,14 +157,14 @@ describe "Breadcrumb", :type => :feature do
       next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "CRF TEST 1", "Status: V0.0.0")
       next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
     end
-    
-    it "has CDISC SDTM Model breadcrumbs" do 
+
+    it "has CDISC SDTM Model breadcrumbs" do
       next_link('CDISC SDTM Model', 'History: CDISC SDTM Model', "CDISC SDTM Models", "", "")
     #save_and_open_page
       #next_link_table("SDTM Model 2012-07-16", "Show", "Show: SDTM Model 2012-07-16", "CDISC SDTM Model", "V0.0.0", "")
     end
-    
-    it "has CDISC SDTM IGs breadcrumbs" do 
+
+    it "has CDISC SDTM IGs breadcrumbs" do
       next_link('CDISC SDTM IGs', 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
     #save_and_open_page
       next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V3.2.0", "")
