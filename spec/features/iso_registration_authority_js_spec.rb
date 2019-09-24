@@ -1,23 +1,22 @@
 require 'rails_helper'
 
 describe "ISO Registration Authority JS", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")  
+    schema_files = ["ISO11179Identification.ttl", "ISO11179Registration.ttl"]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+    load_files(schema_files, data_files)
     ua_create
-  end 
+  end
 
   after :all do
     ua_destroy
-  end 
+  end
 
   before :each do
     ua_content_admin_login
@@ -30,7 +29,7 @@ describe "ISO Registration Authority JS", :type => :feature do
   describe "valid user", :type => :feature, js: true do
 
     it "deletes registration authority" do
-      click_link 'Registration Authorities'
+      click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
       find(:xpath, "//tr[contains(.,'111111111')]/td/a", :text => 'Delete').click
       page.accept_alert

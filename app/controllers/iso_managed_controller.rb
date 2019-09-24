@@ -1,9 +1,9 @@
 class IsoManagedController < ApplicationController
-  
+
   before_action :authenticate_user!
 
   C_CLASS_NAME = self.class.to_s
-  
+
   def index
   	authorize IsoManaged
   	@managed_items = IsoManaged.all
@@ -12,7 +12,7 @@ class IsoManagedController < ApplicationController
   def update
     authorize IsoManaged
     managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
-    managed_item.update_comments(this_params)
+    managed_item.update(this_params)
     redirect_to this_params[:referer]
   end
 
@@ -56,7 +56,7 @@ class IsoManagedController < ApplicationController
   def comments
     authorize IsoManaged, :edit?
     comments = IsoManagedV2.comments(identifier: this_params[:identifier], scope: IsoNamespace.find(this_params[:scope_id]))
-    comments.each do |x| 
+    comments.each do |x|
       x[:edit_path] = edit_iso_managed_path({id: x[:uri].fragment, iso_managed: {namespace: x[:uri].namespace}})
       x[:uri] = x[:uri].to_s
     end
@@ -123,8 +123,8 @@ class IsoManagedController < ApplicationController
     render :json => results, :status => 200
   end
 
-    
-  def show 
+
+  def show
     authorize IsoManaged
     @item = IsoManaged.find(params[:id], params[:namespace], false)
     render :json => @item.to_json, :status => 200

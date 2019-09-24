@@ -18,27 +18,11 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
   describe "Curator User", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("CT_V38.ttl")
-      load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
-      load_test_file_into_triple_store("CT_V41.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_temp_file_into_triple_store("ACME_QS_TERM_STD.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "ACME_QS_TERM_STD.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -53,10 +37,14 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
     after :all do
       ua_destroy
     end
-    
+
     before :each do
       #set_screen_size(1500, 900)
       ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
     end
 
     it "allows Biomedical Concepts to be created", scenario: true, js: true do
@@ -77,7 +65,7 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       wait_for_ajax(15) # Wait for everything to load
 
       bc_scroll_to_editor_table
-      expect(page).to have_css("#editor_table", wait: 15) 
+      expect(page).to have_css("#editor_table", wait: 15)
       bc_set_cat([{ cl: "C100129", cli: "C66957" }])
       bc_scroll_to_editor_table
       bc_set_test_code([{ cl: "C100136", cli: "C100392" }])
@@ -86,8 +74,8 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       bc_set_date_and_time("Date & Time\n")
       bc_scroll_to_editor_table
-      bc_set_result_value_coded("Mobility\n", 
-        [ { cl: "EQ5D3L.MOBILITY", cli: "EQ5D3L.MOBILITY.NONE" }, 
+      bc_set_result_value_coded("Mobility\n",
+        [ { cl: "EQ5D3L.MOBILITY", cli: "EQ5D3L.MOBILITY.NONE" },
           { cl: "EQ5D3L.MOBILITY", cli: "EQ5D3L.MOBILITY.SOME" },
           { cl: "EQ5D3L.MOBILITY", cli: "EQ5D3L.MOBILITY.CONFINED" }
         ])
@@ -102,8 +90,8 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       bc_set_date_and_time("Date & Time\n")
       bc_scroll_to_editor_table
-      bc_set_result_value_coded("Self-Care\n", 
-        [ { cl: "EQ5D3L.SELFCARE", cli: "EQ5D3L.SELFCARE.NONE" }, 
+      bc_set_result_value_coded("Self-Care\n",
+        [ { cl: "EQ5D3L.SELFCARE", cli: "EQ5D3L.SELFCARE.NONE" },
           { cl: "EQ5D3L.SELFCARE", cli: "EQ5D3L.SELFCARE.SOME" },
           { cl: "EQ5D3L.SELFCARE", cli: "EQ5D3L.SELFCARE.UNABLE" }
         ])
@@ -118,8 +106,8 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       bc_set_date_and_time("Date & Time\n")
       bc_scroll_to_editor_table
-      bc_set_result_value_coded("Usual Activities (e.g. work, study, housework, family or leisure activities)\n", 
-        [ { cl: "EQ5D3L.ACTIVITY", cli: "EQ5D3L.ACTIVITY.NONE" }, 
+      bc_set_result_value_coded("Usual Activities (e.g. work, study, housework, family or leisure activities)\n",
+        [ { cl: "EQ5D3L.ACTIVITY", cli: "EQ5D3L.ACTIVITY.NONE" },
           { cl: "EQ5D3L.ACTIVITY", cli: "EQ5D3L.ACTIVITY.SOME" },
           { cl: "EQ5D3L.ACTIVITY", cli: "EQ5D3L.ACTIVITY.UNABLE" }
         ])
@@ -134,8 +122,8 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       bc_set_date_and_time("Date & Time\n")
       bc_scroll_to_editor_table
-      bc_set_result_value_coded("Pain / Discomfort\n", 
-        [ { cl: "EQ5D3L.PAIN", cli: "EQ5D3L.PAIN.NONE" }, 
+      bc_set_result_value_coded("Pain / Discomfort\n",
+        [ { cl: "EQ5D3L.PAIN", cli: "EQ5D3L.PAIN.NONE" },
           { cl: "EQ5D3L.PAIN", cli: "EQ5D3L.PAIN.MODERATE" },
           { cl: "EQ5D3L.PAIN", cli: "EQ5D3L.PAIN.EXTREME" }
         ])
@@ -150,8 +138,8 @@ describe "Scenario 3 - Biomedical Concepts", :type => :feature do
       bc_scroll_to_editor_table
       bc_set_date_and_time("Date & Time\n")
       bc_scroll_to_editor_table
-      bc_set_result_value_coded("Anxiety / Depression\n", 
-        [ { cl: "EQ5D3L.ANXIETY", cli: "EQ5D3L.ANXIETY.NONE" }, 
+      bc_set_result_value_coded("Anxiety / Depression\n",
+        [ { cl: "EQ5D3L.ANXIETY", cli: "EQ5D3L.ANXIETY.NONE" },
           { cl: "EQ5D3L.ANXIETY", cli: "EQ5D3L.ANXIETY.MODERATE" },
           { cl: "EQ5D3L.ANXIETY", cli: "EQ5D3L.ANXIETY.EXTREME" }
         ])

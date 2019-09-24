@@ -10,7 +10,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
   include UserAccountHelpers
   include AuditTrailHelpers
   include ScenarioHelpers
-  
+
   def sub_dir
     return "features/scenarios"
   end
@@ -18,33 +18,13 @@ describe "Scenario 4 - BC Form", :type => :feature do
   describe "Curator User", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("CT_V38.ttl")
-      load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
-      load_test_file_into_triple_store("CT_V41.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_temp_file_into_triple_store("ACME_QS_TERM_STD.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100392_DFT.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100393_DFT.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100394_DFT.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100395_DFT.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100396_DFT.ttl")
-      load_test_temp_file_into_triple_store("ACME_BC_C100397_DFT.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "ACME_QS_TERM_STD.ttl",
+        "ACME_BC_C100392_DFT.ttl", "ACME_BC_C100393_DFT.ttl", "ACME_BC_C100394_DFT.ttl", "ACME_BC_C100395_DFT.ttl",
+        "ACME_BC_C100396_DFT.ttl", "ACME_BC_C100397_DFT.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -58,10 +38,14 @@ describe "Scenario 4 - BC Form", :type => :feature do
     after :all do
       ua_destroy
     end
-    
+
     before :each do
       #set_screen_size(1500, 900)
       ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
     end
 
     def to_standard(item)
@@ -72,10 +56,10 @@ describe "Scenario 4 - BC Form", :type => :feature do
       expect_page 'History:'
       click_main_table_link "BC #{item}", 'Status'
       expect_page 'Status:'
-      click_button 'state_submit'     
-      click_button 'state_submit'     
-      click_button 'state_submit'     
-      click_button 'state_submit'     
+      click_button 'state_submit'
+      click_button 'state_submit'
+      click_button 'state_submit'
+      click_button 'state_submit'
       click_link "Close"
       expect_page 'History:'
     end
@@ -98,19 +82,19 @@ describe "Scenario 4 - BC Form", :type => :feature do
       expect(page).to have_content 'Common Group Details'
       fill_in 'commonLabel', with: "Common"
 
-      key1 = ui_get_key_by_path('["EQ-5D-3L", "Group 1"]') 
-      
+      key1 = ui_get_key_by_path('["EQ-5D-3L", "Group 1"]')
+
       ui_click_node_key(key1)
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "General Instructions"
-      fill_in 'labelTextText', with: instruction_text 
+      fill_in 'labelTextText', with: instruction_text
 
       ui_click_node_key(key1)
       form_bc_search("C100392")
       form_bc_click
       click_button 'groupAddBc'
       wait_for_ajax(10)
-    
+
       ui_click_node_key(key1)
       form_bc_search("C100393")
       form_bc_click
@@ -138,7 +122,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       ui_click_node_key(key1)
       click_button 'groupAddLabelText'
       fill_in 'labelTextLabel', with: "VAS Instructions"
-      fill_in 'labelTextText', with: vas_text 
+      fill_in 'labelTextText', with: vas_text
 
       ui_click_node_key(key1)
       form_bc_search("C100397")
@@ -146,7 +130,7 @@ describe "Scenario 4 - BC Form", :type => :feature do
       click_button 'groupAddBc'
       wait_for_ajax(10)
 
-      key2 = ui_get_key_by_path('["EQ-5D-3L", "Group 1", "EQ-5D-3L Mobility", "Date Time (--DTC)"]') 
+      key2 = ui_get_key_by_path('["EQ-5D-3L", "Group 1", "EQ-5D-3L Mobility", "Date Time (--DTC)"]')
       ui_click_node_key(key2)
       click_button "itemCommon"
       #ui_click_node_key(key1)

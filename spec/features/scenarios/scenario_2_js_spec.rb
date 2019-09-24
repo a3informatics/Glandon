@@ -18,27 +18,11 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
   describe "Curator User", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("CT_V38.ttl")
-      load_test_file_into_triple_store("CT_V39.ttl")
-      load_test_file_into_triple_store("CT_V40.ttl")
-      load_test_file_into_triple_store("CT_V41.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_temp_file_into_triple_store("ACME_QS_TERM_DFT.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl", "ACME_QS_TERM_DFT.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -52,9 +36,13 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
     after :all do
       ua_destroy
     end
-    
+
     before :each do
       ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
     end
 
     it "allows an item to move through the lifecyle", scenario: true, js: true do
@@ -62,8 +50,9 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       expect_page 'Index: Terminology'
       click_table_link 'QS TERM', 'History'
       expect_page "History: QS TERM"
-      click_table_link 'QS TERM', 'Status'
-      
+      context_menu_element("history", 3, "QS Term", :document_control)
+      #click_table_link 'QS TERM', 'Status'
+
       expect_page "Status: Questionnaire Terminology"
       fill_in 'iso_registration_state_administrativeNote', with: 'First step in the lifecyle.'
       fill_in 'iso_registration_state_unresolvedIssue', with: 'None that we know of.'
@@ -75,7 +64,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
       click_button 'state_submit'
       click_link "Close"
       expect_page 'History: QS TERM'
-      
+
       click_secondary_table_link("0.1.0", "Edit")
       fill_in 'iso_managed_changeDescription', with: 'All initial EQ-5D-3L result values entered'
       fill_in 'iso_managed_explanatoryComment', with: 'No difficulties encountered'
@@ -102,7 +91,7 @@ describe "Secnario 2 - Life Cycle", :type => :feature do
     #pause
       click_link "Close"
       expect_page 'History: QS TERM'
-      
+
       click_main_table_link("0.2.0", "Edit")
       term_editor_edit_children('EQ5D 3L EXTRA')
     #pause

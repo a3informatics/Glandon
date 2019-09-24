@@ -1,7 +1,7 @@
 module ScenarioHelpers
 
   def instruction_text
-    return "By placing a tick in one box in each group below, please indicate which " + 
+    return "By placing a tick in one box in each group below, please indicate which " +
       "statements best describe your own health state today."
   end
 
@@ -9,7 +9,7 @@ module ScenarioHelpers
     return "To help people say how good or bad a health state is, we have drawn a scale (rather like a thermometer) " +
       "on which the best state you can imagine is marked 100 and the worst state you can imagine is marked 0. \n\n" +
       "We would like you to indicate on this scale how good or bad your own health is today, in your opinion. " +
-      " Please do this by drawing a line from the box below to whichever point on the scale indicates how good or " + 
+      " Please do this by drawing a line from the box below to whichever point on the scale indicates how good or " +
       " bad your health state is today."
   end
 
@@ -101,7 +101,7 @@ module ScenarioHelpers
   end
 
   def term_editor_field(name, text, exit_key)
-    expect(page).to have_css("#DTE_Field_#{name}", wait: 10) 
+    expect(page).to have_css("#DTE_Field_#{name}", wait: 10)
     fill_in "DTE_Field_#{name}", with: "#{text}\t" if exit_key == :tab
     fill_in "DTE_Field_#{name}", with: "#{text}\n" if exit_key == :return
     wait_for_ajax(10)
@@ -114,7 +114,7 @@ module ScenarioHelpers
   def term_editor_concept(prefix, identifier, label, notation, preferred_term, synonym, definition)
     fill_in 'Identifier', with: identifier
     click_button 'New'
-    expect(page).to have_xpath("//table[@id='editor_table']/tbody/tr/td", text: "#{prefix}.#{identifier}", wait: 10) 
+    expect(page).to have_xpath("//table[@id='editor_table']/tbody/tr/td", text: "#{prefix}.#{identifier}", wait: 10)
     row = editor_get_row("#{prefix}.#{identifier}")
     term_editor_row_label(row, label, :tab)
     term_editor_notation(notation, :tab)
@@ -211,14 +211,14 @@ module ScenarioHelpers
   end
 
   def bc_editor_field(row, column, field_name, text)
-    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
-    expect(page).to have_css("#DTE_Field_#{field_name}", wait: 10) 
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click
+    expect(page).to have_css("#DTE_Field_#{field_name}", wait: 10)
     fill_in "DTE_Field_#{field_name}", with: text
     wait_for_ajax(10)
   end
 
   def bc_editor_click(row, column)
-    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click 
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{column}]").click
     wait_for_ajax(10)
   end
 
@@ -262,8 +262,8 @@ module ScenarioHelpers
   end
 
   def form_create(identifier, label, new_label)
-    click_navbar_form
-    expect(page).to have_content 'Index: Forms'  
+    click_navbar_forms
+    expect(page).to have_content 'Index: Forms'
     click_link 'New'
     fill_in 'form_identifier', with: "#{identifier}"
     fill_in 'form_label', with: "#{label}"
