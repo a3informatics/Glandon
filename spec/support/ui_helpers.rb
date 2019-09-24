@@ -279,6 +279,10 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
+  def ui_click_forward_button
+    page.evaluate_script('window.history.forward()')
+  end
+
   # Navigation
   # ==========
 
