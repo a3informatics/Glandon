@@ -42,10 +42,12 @@ class CdiscTermsController < ApplicationController
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
-        @cdisc_term_id = results.last.to_id
+        width = current_user.max_term_display.to_i
+        current_index = results.length < width ? (result.length - 1) : (width - 1)
+        @cdisc_term_id = results[current_index].to_id
         @identifier = CdiscTerm::C_IDENTIFIER
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
-        @close_path = request.referer
+        @close_path = dashboard_index_path
         @ct = Thesaurus.find_minimum(@cdisc_term_id)
       end
       format.json do
