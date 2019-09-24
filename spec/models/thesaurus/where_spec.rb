@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::Where do
+describe "Thesaurus::Where" do
 
   include DataHelpers
 
@@ -19,10 +19,6 @@ describe Thesaurus::Where do
   after :all do
   end
 
-  before :each do
-    load_schema
-  end
-  
   it "allows a terminology where search, single" do
     ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V25#TH"))
     actual = ct.where_children(identifier: "C66770")

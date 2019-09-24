@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OperationalReferenceV3::TucReference do
+describe "OperationalReferenceV3::TucReference" do
 
 	include DataHelpers
   include SparqlHelpers
@@ -17,8 +17,8 @@ describe OperationalReferenceV3::TucReference do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
     load_files(schema_files, data_files)
-    FusekiBaseHelpers.clear
-    FusekiBaseHelpers.read_schema
+    # FusekiBaseHelpers.clear
+    # FusekiBaseHelpers.read_schema
   end
  
   it "validates a valid object" do
