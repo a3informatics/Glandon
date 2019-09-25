@@ -17,9 +17,10 @@ describe "Form Editor", :type => :feature do
     Token.set_timeout(5)
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
       "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "CT_ACME_V1.ttl", "form_crf_test_1.ttl", "form_crf_test_2.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "CT_ACME_V1.ttl", "form_crf_test_1.ttl",
+      "form_crf_test_2.ttl",  "thesaurus_concept_new_2.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..43)
+    load_cdisc_term_versions(1..48)
     ua_create
   end
 

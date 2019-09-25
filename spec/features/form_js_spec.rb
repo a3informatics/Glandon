@@ -23,9 +23,9 @@ describe "Forms", :type => :feature do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
         "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl",
-         "form_example_dm1.ttl", "form_example_dm1_branch.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl"]
+         "form_example_dm1.ttl", "form_example_dm1_branch.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl", "thesaurus_concept_new_2.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..43)
+      load_cdisc_term_versions(1..48)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
