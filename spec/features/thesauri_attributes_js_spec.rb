@@ -127,7 +127,6 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: NEW TERM'
-      pause
       context_menu_element('history', 4, 'New Terminology', :edit)
       expect(page).to have_content 'Edit: New Terminology NEW TERM (V0.0.1, 1, Incomplete)'
       click_button 'New'
