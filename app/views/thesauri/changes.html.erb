@@ -11,7 +11,7 @@
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@ct, format: :pdf), id: "report",
         icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
       <!-- RETURN BUTTON -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>

@@ -172,30 +172,33 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      ui_check_table_info("changes", 1, 2, 2)
-      expect(page).to have_content 'C49650'
+      ui_check_table_info("changes", 1, 3, 3)
+      expect(page).to have_content 'C106656'
       expect(page).to have_content 'C66787'
       click_link 'Return'
       expect(page).to have_content 'History'
     end
 
-    it "allows the code list item changes to be viewed (REQ-MDR-CT-040)", js:true do
+    it "allows the code list item changes to be viewed (REQ-MDR-CT-040). Currently failing, see GLAN-850 bug", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       click_link 'View Changes'
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      expect(page).to have_content 'C49650'
       expect(page).to have_content 'C66787'
       find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 3, 3)
+      ui_check_table_info("differences_table", 1, 4, 4)
       expect(page).to have_content 'Changes'
       ui_check_table_info("changes", 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
       ui_check_table_info("differences_table", 1, 3, 3)
+      click_link 'Return'
+      expect(page).to have_content 'Changes'
+      click_link 'Return'
+      expect(page).to have_content 'Changes'
     end
 
     it "allows changes to be viewed (REQ-MDR-CT-040) - test no longer required" 
@@ -208,7 +211,7 @@ describe "CDISC Term", :type => :feature do
       click_link 'View Submission value changes'
       wait_for_ajax_v_long
       expect(page).to have_content 'Submission'
-      ui_check_table_info("changes", 1, 9, 9)
+      ui_check_table_info("changes", 1, 10, 63)
     end
 
     it "allows the submission value changes to be viewed (REQ-MDR-CT-050). Currently failing, see GLAN-827 bug", js:true do
