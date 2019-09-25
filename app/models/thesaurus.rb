@@ -224,7 +224,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
       version[:children].each do |entry|
         key = entry[:key].to_sym
         next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], label: entry[:label] , notation: entry[:notation], identifier: entry[:identifier], status: initial_status.dup}
+        final_results[key] = {id: entry[:uri].to_id, key: entry[:key], label: entry[:label] , notation: entry[:notation], identifier: entry[:identifier], status: initial_status.dup}
       end
     end
 

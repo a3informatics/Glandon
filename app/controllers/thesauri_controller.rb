@@ -204,6 +204,9 @@ class ThesauriController < ApplicationController
     authorize Thesaurus, :show?
     ct = Thesaurus.find_minimum(params[:id])
     cls = ct.submission(current_user.max_term_display.to_i)
+    cls[:items].each do |k,v|
+      v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
+    end
     render json: {data: cls}
   end
 
