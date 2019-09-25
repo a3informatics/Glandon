@@ -7,23 +7,21 @@ describe 'iso_registration_authorities/index.html.erb', :type => :view do
   include DataHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_test_file_into_triple_store("iso_namespace_fake.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_fake.ttl")
+    schema_files = ["ISO11179Identification.ttl", "ISO11179Registration.ttl"]
+    data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+    load_files(schema_files, data_files)
   end
-      
-  it 'displays the form' do 
+
+  it 'displays the form' do
 
     ras = IsoRegistrationAuthority.all
     ras.each {|ra| ra.ra_namespace_objects}
-    
+
     assign(:registrationAuthorities, ras)
     assign(:owner, IsoRegistrationAuthority.owner)
 
     render
-    
+
   #puts rendered
 
     expect(rendered).to have_content("Registration Authorities")

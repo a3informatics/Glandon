@@ -11,25 +11,12 @@ describe 'forms/history.html.erb', :type => :view do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("form_example_dm1.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    load_test_file_into_triple_store("form_example_general.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("CT_ACME_V1.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessDomain.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_vs_baseline_new.ttl",
+    "form_example_general.ttl", "CT_ACME_V1.ttl", "BC.ttl", "BCT.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..43)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -37,7 +24,7 @@ describe 'forms/history.html.erb', :type => :view do
     clear_cdisc_term_object
   end
 
-  it 'displays the form history' do 
+  it 'displays the form history' do
 
     def view.policy(name)
       # Do nothing
@@ -61,9 +48,9 @@ describe 'forms/history.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(4)", text: '')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(5)", text: 'ACME')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(11)", text: 'Candidate')
-  
+
     expect(rendered).to have_link "Changes"
-    
+
   end
 
 end

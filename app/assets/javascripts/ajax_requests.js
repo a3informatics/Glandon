@@ -7,9 +7,8 @@
 */
 function getThesaurusConcept(node, callback) {
   $.ajax({
-    url: "/thesaurus_concepts/" + node.data.subject_ref.id,
+    url: "/thesauri/unmanaged_concepts/" + $.base64.encode(toUri(node.data.subject_ref.namespace, node.data.subject_ref.id)),
     type: "GET",
-    data: { "namespace": node.data.subject_ref.namespace },
     dataType: 'json',
     error: function (xhr, status, error) {
       var html = alertError("An error has occurred loading a Terminology reference.");
@@ -45,7 +44,7 @@ function getBc(node, callback) {
 }
 
 /*
-* Obtain a BC Property 
+* Obtain a BC Property
 *
 * @param node [Object] The D3 data node
 * @param callback [Function] The callback function to be called on success
@@ -68,7 +67,7 @@ function getBcProperty(node, callback) {
 }
 
 /*
-* Obtain a BC Property 
+* Obtain a BC Property
 *
 * @param node [Object] The D3 data node
 * @param callback [Function] The callback function to be called on success
@@ -91,7 +90,7 @@ function getBcPropertyCommon(node, callback) {
 }
 
 /*
-* Get Markdown 
+* Get Markdown
 *
 * @param object [UI Control] The object to be quoted in the callback
 * @param text [String] The text to be converted

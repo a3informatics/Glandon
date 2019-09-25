@@ -11,19 +11,11 @@ describe 'cdisc_terms/import_cross_reference.html.erb', :type => :view do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("CT_V48.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessDomain.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..48)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -31,13 +23,13 @@ describe 'cdisc_terms/import_cross_reference.html.erb', :type => :view do
     clear_cdisc_term_object
   end
 
-  it 'displays the form, import and files' do 
+  it 'displays the form, import and files' do
 
     files = [ "a.xlsx", "b.xlsx", "c.xlsx" ]
-    cdisc_term = CdiscTerm.find("TH-CDISC_CDISCTerminology", "http://www.assero.co.uk/MDRThesaurus/CDISC/V48", false)
+    cdisc_term = CdiscTerm.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V48#TH"))
     assign(:cdisc_term, cdisc_term)
     assign(:files, files)
-    
+
     render
 
   #puts response.body
@@ -46,10 +38,10 @@ describe 'cdisc_terms/import_cross_reference.html.erb', :type => :view do
     expect(rendered).to have_selector("select option", text: 'a.xlsx')
     expect(rendered).to have_selector("select option", text: 'b.xlsx')
     expect(rendered).to have_selector("select option", text: 'c.xlsx')
-    
+
     expect(rendered).to have_button "Import"
     expect(rendered).to have_link "Close"
-    
+
   end
 
 end

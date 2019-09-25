@@ -19,11 +19,11 @@ describe 'imports/index.html.erb', :type => :view do
   end
 
   class Other
-  
+
     def self.owner
       return Owner.new
     end
-  
+
     def self.configuration
       {identifier: "XXX"}
     end
@@ -31,7 +31,7 @@ describe 'imports/index.html.erb', :type => :view do
   end
 
   class ImportTest < Import
-    
+
     def import(params)
     end
 
@@ -64,12 +64,12 @@ describe 'imports/index.html.erb', :type => :view do
     ["AAA", "BBB"].each{|x| simple_import(x)}
   end
 
-  it 'displays the form history' do 
+  it 'displays the form history' do
 
     assign(:items, Import.all)
     render
 
-  	#puts response.body
+	#puts response.body
 
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(2)", text: 'OWNER')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(3)", text: 'AAA')
@@ -77,7 +77,7 @@ describe 'imports/index.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(2)", text: 'OWNER')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(3)", text: 'BBB')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(4)", text: 'BBB.txt')
-    expect(rendered).to have_link "Delete All"    
+    expect(rendered).to have_link "Delete All"
   end
 
 end
