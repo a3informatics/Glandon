@@ -1,12 +1,16 @@
 require 'rails_helper'
 
-describe CrossReference do
+describe "CrossReference" do
 	
   include DataHelpers
   include SparqlHelpers
 
   def sub_dir
     return "models/cross_reference"
+  end
+
+  before :all  do
+    IsoHelpers.clear_cache
   end
 
   before :each do

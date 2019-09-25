@@ -82,7 +82,7 @@ module DataHelpers
   end
 
   def load_file_into_triple_store(full_path)
-    i = 1
+    i = 0
     begin
       i += 1
       response = CRUD.file(full_path)
