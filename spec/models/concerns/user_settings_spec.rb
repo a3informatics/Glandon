@@ -2,21 +2,31 @@ require 'rails_helper'
 
 describe UserSettings do
 
+  C_EMAIL = "settings@example.com"
+
   # Note, easier to use User class that includes UserSettings module
   # Results depend on config.yml content
 
   include UserSettingsHelpers
+  include UserAccountHelpers
+
+  before :all do
+    @user = ua_add_user(email: C_EMAIL)
+  end
+
+  after :all do
+    ua_remove_user(C_EMAIL)
+  end
 
   it "read and write a setting" do
-    user = User.create :email => "settings@example.com", :password => "changeme"
-    user.write_setting(:test1, true)
-    setting = user.read_setting(:test1)
+    @user.write_setting(:test1, true)
+    setting = @user.read_setting(:test1)
 		expect(setting.value.to_bool).to eq(true)
 	end
 
   it "read settings" do
-    user = User.create :email => "settings@example.com", :password => "changeme"
-    the_settings = user.settings
+    user = ua_add_user(email: C_EMAIL)
+    the_settings = @user.settings
     expected = 
     	{
     		:paper_size => "A4", 
@@ -30,17 +40,14 @@ describe UserSettings do
   end
 
   it "read setting metadata" do
-    user = User.create :email => "settings@example.com", :password => "changeme"
-    expect(user.settings_metadata).to eq(us_expected_metadata)
+    expect(@user.settings_metadata).to eq(us_expected_metadata)
   end
 
   it "returns the datatables settings" do
-    user = User.create :email => "settings@example.com", :password => "changeme"
     expect(UserSettings.datatable_settings).to eq("[[5,10,15,25,50,100,-1], [\"5\",\"10\",\"15\",\"25\",\"50\",\"100\",\"All\"]]")
   end
 
   it "returns the datatables settings, default" do
-    user = User.create :email => "settings@example.com", :password => "changeme"
     UserSettings.clear_settings_metadata
     expect(UserSettings.datatable_settings).to eq("[[5,10,25,50,100,-1], [\"5\",\"10\",\"25\",\"50\",\"100\",\"All\"]]")
   end

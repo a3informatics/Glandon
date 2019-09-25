@@ -721,7 +721,12 @@ describe "IsoManagedV2" do
     it "create next version" do
       object = Thesaurus.create({label: "A new item", identifier: "NEW1"})
       expect(object.errors.count).to eq(0)
-      check_file_actual_expected(object.to_h, sub_dir, "create_next_version_1.yaml", equate_method: :hash_equal)
+      actual = object.to_h
+    #Xwrite_yaml_file(results, sub_dir, "create_next_version_1.yaml")
+      expected = read_yaml_file(sub_dir, "create_next_version_1.yaml")
+      expected[:creation_date] = date_check_now(object.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
+      expect(actual).to hash_equal(expected)
       result = object.create_next_version
       expect(object.uri).to eq(result.uri) # Same item
       object.has_state.registration_status = IsoRegistrationStateV2.released_state
@@ -730,7 +735,10 @@ describe "IsoManagedV2" do
       object.origin = "A ref"
       result = object.create_next_version
       expect(object.uri).to_not eq(result.uri) # New item
-      check_file_actual_expected(result.to_h, sub_dir, "create_next_version_2.yaml", equate_method: :hash_equal)
+    #Xwrite_yaml_file(results, sub_dir, "create_next_version_2.yaml")
+      expected = read_yaml_file(sub_dir, "create_next_version_2.yaml")
+      expected[:creation_date] = date_check_now(object.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
     end
 
   end
