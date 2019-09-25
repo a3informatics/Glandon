@@ -10,7 +10,7 @@ describe 'iso_concept/impact.html.erb', :type => :view do
     return "views/iso_concept"
   end
 
-  it 'displays the basic page' do 
+  it 'displays the basic page' do
 
     item = IsoManaged.new
     item.label = "Test Label"
@@ -22,7 +22,7 @@ describe 'iso_concept/impact.html.erb', :type => :view do
 
     assign(:item, item)
     assign(:results, results)
-    
+
     render
 
   #puts response.body
@@ -32,7 +32,7 @@ describe 'iso_concept/impact.html.erb', :type => :view do
     expect(rendered).to have_content("Impact Graph")
     expect(rendered).to have_xpath("//table[@id = 'managed_item_table']")
     expect(rendered).to have_button "Close"
-    
+
   end
 
 end

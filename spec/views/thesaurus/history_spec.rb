@@ -14,7 +14,7 @@ describe 'thesauri/history.html.erb', :type => :view do
     clear_triple_store
   end
 
-  it 'displays the form, import and files' do 
+  it 'displays the form, import and files' do
 
     def view.policy(name)
       # Do nothing
@@ -31,8 +31,8 @@ describe 'thesauri/history.html.erb', :type => :view do
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Version')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Owner')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(3)", text: 'Identifier')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(4)", text: 'Version Label')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(5)", text: 'Label')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(4)", text: 'Label')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(5)", text: 'Version Label')
 
     expect(rendered).to have_content("Comments By Version")
     expect(rendered).to have_selector("table#comments_table thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Version')
