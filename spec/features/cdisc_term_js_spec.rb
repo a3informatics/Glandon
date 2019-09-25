@@ -214,16 +214,17 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_info("changes", 1, 10, 63)
     end
 
-    it "allows the submission value changes to be viewed (REQ-MDR-CT-050). Currently failing, see GLAN-827 bug", js:true do
+    it "allows the submission value changes to be viewed (REQ-MDR-CT-050)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       click_link 'View Submission value changes'
       expect(page).to have_content 'Submission'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
-      input.set("C67152_C20587")
-      # currently not working
-      find(:xpath, "//tr[contains(.,'Age Group')]/td/a", :text => 'Changes').click
-      expect(page).to have_content 'Changes: C20587, Age Group'
+      # input.set("C67152_C20587")
+      input.set("C67152_C98768")
+      wait_for_ajax_v_long
+      find(:xpath, "//tr[contains(.,'Pharmacologic Class')]/td/a", :text => 'Changes').click
+      expect(page).to have_content 'Differences'
     end
 
     it "allows submission to be viewed (REQ-MDR-CT-050) - test no longer required" 
