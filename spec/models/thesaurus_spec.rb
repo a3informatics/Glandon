@@ -161,9 +161,7 @@ describe Thesaurus do
     it "allows the current item to be retrived" do
       owner = IsoRegistrationAuthority.owner
       result = Thesaurus.current({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
-      expect(result.identifier).to eq("CDISC EXT")
-      expect(result.id).to eq("TH-SPONSOR_CT-1")
-      expect(result.namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      expect(result.to_s).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
     end
     
     it "allows a creation of a thesaurus" do
