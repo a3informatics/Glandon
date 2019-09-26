@@ -251,6 +251,43 @@ describe "Users", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count + 2)
     end
 
+    it "prevents last sys admin to be deleted", js:true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'sys_admin@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'Email: sys_admin@example.com'
+      click_link 'Set Curator Role'
+      expect(page).to have_content 'You cannot remove the last system administrator.'
+    end
+
+    it "allows sys admin role to be deleted if another sys admin exists", js:true do
+      ua_sys_admin_login
+      # Manually create user
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      click_link 'New'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'admin2@example.com'
+      fill_in :placeholder => 'Display name', :with => 'New user'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
+      click_button 'Create'
+
+      admin_user = User.find_by(:email => "admin2@example.com")
+      admin_user.add_role(:sys_admin)
+
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'admin2@example.com')]/td/a", :text => 'Edit').click
+      expect(page).to have_content 'Set user roles for:'
+      expect(page).to have_content 'Email: admin2@example.com'
+      click_link 'Set Curator Role'
+      expect(page).to have_content 'All user accounts'
+      expect(find(:xpath, '//tr[contains(.,"admin2@example.com")]/td[2]').text).to eq("Curator")
+    end
+
   end
 
 end

@@ -4,15 +4,16 @@ describe UsersController do
 
   include DataHelpers
   include PauseHelpers
-  
+  include UserAccountHelpers
+
   describe "Authorized User" do
-  	
+
     login_sys_admin
 
     it "index users" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
       users = User.all
       get :index
       expect(assigns(:users).to_json).to eq(users.to_json)
@@ -25,9 +26,9 @@ describe UsersController do
     end
 
     it 'creates user' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
       count = User.all.count
       post :create, user: { email: "new1@example.com", password: "12345678", password_confirmation: "12345678", name: "New" }
       expect(User.all.count).to eq(count + 1)
@@ -36,9 +37,9 @@ describe UsersController do
     end
 
     it 'creates user, fails, short password' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
       count = User.all.count
       post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567", name: "New"  }
       expect(User.all.count).to eq(count)
@@ -47,30 +48,30 @@ describe UsersController do
     end
 
     it 'deletes user' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
-      user4 = User.create :email => "new@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
+      user4 = User.create :email => "new@example.com", :password => "changeme"
       count = User.all.count
       delete :destroy, :id => user4.id
       expect(User.all.count).to eq(count - 1)
     end
 
     it "edits user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
       user = User.find_by(:email => "sid@example.com")
       get :edit, :id => user.id
       expect(response).to render_template("edit")
     end
 
     it "updates user" do
-    	user1 = User.create :email => "fred@example.com", :password => "changeme" 
-      user1.add_role :sys_admin 
-      user2 = User.create :email => "sid@example.com", :password => "changeme" 
+    	user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user1.add_role :sys_admin
+      user2 = User.create :email => "sid@example.com", :password => "changeme"
       user1.add_role :curator
-      user3 = User.create :email => "boris@example.com", :password => "changeme" 
+      user3 = User.create :email => "boris@example.com", :password => "changeme"
       user1.add_role :content_admin
       role_sa = Role.where(name: "sys_admin").first
       role_r = Role.where(name: "reader").first
@@ -95,10 +96,44 @@ describe UsersController do
       expect(response).to redirect_to("/user_settings")
     end
 
+    it "prevents removing last sys admin user role" do
+      current_user = User.find_by(:email => "base@example.com")
+      put :update, {id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You cannot remove the last system administrator.*/)
+
+      current_user.add_role(:sys_admin)
+    end
+
+    it "allows removing sys admin user role if another sys admin exists" do
+      admin_user = ua_add_user(email: "admin@example.com", role: :sys_admin)
+      expect(admin_user.role_list_stripped).to eq("Reader, System Admin")
+
+      put :update, {id: admin_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}
+
+      admin_user = User.find_by(:email => "admin@example.com")
+      expect(admin_user.role_list_stripped).to eq("Curator")
+      expect(response).to redirect_to("/users")
+    end
+
+    it "allows removing any role that's not sys admin" do
+      admin_user = User.find_by(:email => "base@example.com")
+      curator_user = ua_add_user(email: "curator@example.com", role: :curator)
+
+      expect(admin_user.role_list_stripped).to eq("System Admin")
+      expect(curator_user.role_list_stripped).to eq("Curator, Reader")
+
+      put :update, {id: curator_user.id, :user => {role_ids: ["#{Role.to_id(:reader)}"]}}
+
+      curator_user = User.find_by(:email => "curator@example.com")
+      expect(curator_user.role_list_stripped).to eq("Reader")
+      expect(response).to redirect_to("/users")
+    end
+
   end
 
   describe "Unauthorized User" do
-    
+
     login_reader
 
     it "index registration authority" do
@@ -130,7 +165,7 @@ describe UsersController do
     end
 
     it "edits user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
       get :edit, :id => user1.id
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
@@ -138,7 +173,7 @@ describe UsersController do
     end
 
     it "updates user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme" 
+      user1 = User.create :email => "fred@example.com", :password => "changeme"
       put :update, {id: user1.id, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
@@ -148,7 +183,7 @@ describe UsersController do
   end
 
   describe "Not logged in" do
-    
+
     it "index scoped identifier" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
