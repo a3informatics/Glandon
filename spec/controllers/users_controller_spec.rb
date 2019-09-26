@@ -11,9 +11,9 @@ describe UsersController do
     login_sys_admin
 
     it "index users" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = ua_add_user email: "sid@example.com"
+      user3 = ua_add_user email: "boris@example.com"
       users = User.all
       get :index
       expect(assigns(:users).to_json).to eq(users.to_json)
@@ -26,53 +26,50 @@ describe UsersController do
     end
 
     it 'creates user' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = ua_add_user email: "sid@example.com"
+      user3 = ua_add_user email: "boris@example.com"
       count = User.all.count
-      post :create, user: { email: "new1@example.com", password: "12345678", password_confirmation: "12345678", name: "New" }
+      post :create, user: { email: "new1@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#", name: "New" }
       expect(User.all.count).to eq(count + 1)
       expect(flash[:success]).to be_present
       expect(response).to redirect_to("/users")
     end
 
     it 'creates user, fails, short password' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = ua_add_user email: "sid@example.com"
+      user3 = ua_add_user email: "boris@example.com"
       count = User.all.count
-      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567", name: "New"  }
+      post :create, user: { email: "new2@example.com", password: "Change", password_confirmation: "Change", name: "New"  }
       expect(User.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/users")
     end
 
     it 'deletes user' do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
-      user4 = User.create :email => "new@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = ua_add_user email: "sid@example.com"
+      user3 = ua_add_user email: "boris@example.com"
+      user4 = ua_add_user email: "new@example.com"
       count = User.all.count
       delete :destroy, :id => user4.id
       expect(User.all.count).to eq(count - 1)
     end
 
     it "edits user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = ua_add_user email: "sid@example.com"
+      user3 = ua_add_user email: "boris@example.com"
       user = User.find_by(:email => "sid@example.com")
       get :edit, :id => user.id
       expect(response).to render_template("edit")
     end
 
     it "updates user" do
-    	user1 = User.create :email => "fred@example.com", :password => "changeme"
-      user1.add_role :sys_admin
-      user2 = User.create :email => "sid@example.com", :password => "changeme"
-      user1.add_role :curator
-      user3 = User.create :email => "boris@example.com", :password => "changeme"
-      user1.add_role :content_admin
+      user1 = ua_add_user email: "fred@example.com", role: :sys_admin
+      user2 = ua_add_user email: "sid@example.com", role: :curator
+      user3 = ua_add_user email: "boris@example.com", role: :content_admin
       role_sa = Role.where(name: "sys_admin").first
       role_r = Role.where(name: "reader").first
       role_cr = Role.where(name: "curator").first
@@ -87,7 +84,7 @@ describe UsersController do
     end
 
     it "updates user name" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme", name: "x"
+      user1 = User.create :email => "fred@example.com", :password => "Changeme1#", name: "x"
       user = User.find_by(:email => "fred@example.com")
       expect(user.name).to eq("x")
       put :update_name, {id: user.id, :user => {name: "Updated Name"}}
@@ -151,7 +148,7 @@ describe UsersController do
     end
 
     it 'creates namespace' do
-      post :create, user: { email: "new2@example.com", password: "1234567", password_confirmation: "1234567" }
+      post :create, user: { email: "new2@example.com", password: "Changeme1#", password_confirmation: "Changeme1#" }
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
@@ -165,7 +162,7 @@ describe UsersController do
     end
 
     it "edits user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
       get :edit, :id => user1.id
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
@@ -173,7 +170,7 @@ describe UsersController do
     end
 
     it "updates user" do
-      user1 = User.create :email => "fred@example.com", :password => "changeme"
+      user1 = ua_add_user email: "fred@example.com"
       put :update, {id: user1.id, :user => {role_ids: ["1", "2", "3", "4"]}}
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
