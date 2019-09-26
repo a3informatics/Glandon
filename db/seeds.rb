@@ -9,20 +9,22 @@ Rails.configuration.roles[:roles].each { |k, v| Role.create(name: k) }
 
 # Enviornment-specific Setup
 # 1. Create sys admin user.
+default_password = "Changeme1%1"
 User.destroy_all
+NameValue.destroy_all
+NameValue.create(name: "thesaurus_parent_identifier", value: "1")
+NameValue.create(name: "thesaurus_child_identifier", value: "1")
 case Rails.env
 	when "development"
-    NameValue.create(name: "thesaurus_parent_identifier", value: "1")
-    NameValue.create(name: "thesaurus_child_identifier", value: "1")
-		user1 = User.create :email => "daveih1664@gmail.com", :password => "changeme" 
+		user1 = User.create :email => "daveih1664@gmail.com", :password => default_password
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
 	when "test"
-		user1 = User.create :email => "test_seed@example.com", :password => "changeme" 
+		user1 = User.create :email => "test_seed@example.com", :password => default_password
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
 	when "production"
-		user1 = User.create :email => "daveih1664@gmail.com", :password => "changeme" 
+		user1 = User.create :email => "daveih1664@gmail.com", :password => default_password
 		user1.add_role :sys_admin
 		user1.add_role :content_admin
 end
