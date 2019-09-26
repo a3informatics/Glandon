@@ -5,11 +5,12 @@ describe UserSettingsController do
   include DataHelpers
   include PauseHelpers
   include UserSettingsHelpers
+  include UserAccountHelpers
 
   describe "user settings as curator" do
-  	
+
     login_curator
-   
+
     it "index settings" do
       get :index
       expect(assigns(:settings_metadata)).to eq(us_expected_metadata)
@@ -25,7 +26,7 @@ describe UserSettingsController do
   end
 
   describe "user settings as sys admin" do
-  
+
   	login_sys_admin
 
     it "prevents access, index" do
@@ -50,7 +51,7 @@ describe UserSettingsController do
     end
 
     it 'updates user' do
-      user = User.create :email => "fred@example.com", :password => "changeme" 
+      user = ua_add_user email: "fred@example.com"
       put :update, {id: user.id, :user_settings => {:name => :paper_size, :value => "LETTER"}}
       expect(response).to redirect_to("/users/sign_in")
     end
