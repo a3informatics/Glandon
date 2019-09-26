@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   # Include the user settings
   include UserSettings
- 
+
 	# Constants
   C_CLASS_NAME = "User"
 
@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   after_create :set_extra
   after_save :user_update
 
+  validates :name, length: { minimum: 1 }
+
   # Set any extra items we need when a user is created
   def set_extra
   	# Set the reader default role.
@@ -27,7 +29,7 @@ class User < ActiveRecord::Base
 
   # Do any processing after user is changed
   def user_update
-    # Audit if password changed  
+    # Audit if password changed
     if encrypted_password_changed?
       AuditTrail.user_event(self, "User changed password.")
     end
@@ -59,7 +61,7 @@ class User < ActiveRecord::Base
     roles.each do |role|
       result << Role.to_display(role.name.to_sym) if ids.include?(role.id)
     end
-    return result 
+    return result
   end
 
   # User roles stripped
@@ -67,7 +69,7 @@ class User < ActiveRecord::Base
   # @return [array] Array of roles (strings)
   def role_list_stripped
     result = "#{self.role_list}"
-    return result.gsub(/[^A-Za-z, ]/, '') 
+    return result.gsub(/[^A-Za-z, ]/, '')
   end
 
 end
