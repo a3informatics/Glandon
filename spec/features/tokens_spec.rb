@@ -48,7 +48,7 @@ describe "Tokens", :type => :feature do
 
   describe "Curator User", :type => :feature do
 
-    it "locks a terminology", js:true do
+    it "locks a terminology (REQ-MDR-EL-010)", js:true do
 
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
@@ -74,7 +74,7 @@ describe "Tokens", :type => :feature do
 
     it "locks a biomedical concept"
 
-    it "locks a form", js:true do
+    it "locks a form (REQ-MDR-EL-010)", js:true do
 
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
@@ -96,7 +96,7 @@ describe "Tokens", :type => :feature do
 
     end
 
-    it "locks a domain", js:true do
+    it "locks a domain (REQ-MDR-EL-010)", js:true do
 
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'

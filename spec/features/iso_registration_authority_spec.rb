@@ -28,14 +28,14 @@ describe "ISO Registration Authority", :type => :feature do
 
   describe "View", :type => :feature, js:true do
 
-    it "allows all registration authorities to be viewed" do
+    it "allows all registration authorities to be viewed (REQ-MDR-RA-010)" do
       click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
       expect(page).to have_content '123456789'
       expect(page).to have_content '111111111'
     end
 
-    it "allows a new namespace to be added" do
+    it "allows a new namespace to be added (REQ-MDR-RA-010)" do
       click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
       click_link 'New'

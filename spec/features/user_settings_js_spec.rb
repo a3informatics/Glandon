@@ -70,7 +70,7 @@ describe "User Settings", :type => :feature do
       check_options(title, description, options)
     end
 
-    it "allows edit lock timeout to be amended", js: true do
+    it "allows edit lock timeout to be amended (REQ-MDR-EL-040)", js: true do
       title = "Edit Lock Warning"
       description = "The time at which a warning will be issued before an edit lock is lost. Half way to the lock being lost a second warning " +
       	"will be issued. Times are expressed in minutes and seconds."

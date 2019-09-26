@@ -37,7 +37,7 @@ describe "Ad Hoc Reports", :type => :feature do
       ua_content_admin_login
     end
 
-    it "allows a report to be created", js: true do
+    it "allows a report to be created (REQ-MDR-AR-010, REQ-MDR-AR-060)", js: true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       click_link 'New'
@@ -48,14 +48,14 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content 'Report was successfully created.'
     end
 
-    it "allows a report to be run", js: true do
+    it "allows a report to be run (REQ-MDR-AR-020, REQ-MDR-AR-030)", js: true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Run').click
       expect(page).to have_content 'Results'
     end
 
-    it "allows a report to be exported as CSV", js: true do
+    it "allows a report to be exported as CSV (REQ-MDR-AR-040)", js: true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Run').click
@@ -67,7 +67,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(file).to eq(expected)
     end
 
-    it "allows a report to be deleted", js: true do
+    it "allows a report to be deleted (REQ-MDR-AR-070)", js: true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Delete').click
