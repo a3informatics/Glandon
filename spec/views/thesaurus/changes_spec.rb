@@ -29,7 +29,6 @@ describe 'thesauri/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -51,7 +50,7 @@ describe 'thesauri/changes.html.erb', :type => :view do
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn medium nomargin ttip']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn medium nomargin ttip']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn medium nomargin ttip']")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
 
   end
@@ -66,7 +65,6 @@ describe 'thesauri/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -76,7 +74,7 @@ describe 'thesauri/changes.html.erb', :type => :view do
     ui_link_disabled("fb_fs_button")
     ui_link_disabled("fb_fm_button")
     ui_link_disabled("fb_end_button")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
 
   end
@@ -91,7 +89,6 @@ describe 'thesauri/changes.html.erb', :type => :view do
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -103,7 +100,7 @@ describe 'thesauri/changes.html.erb', :type => :view do
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn medium nomargin ttip']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn medium nomargin ttip']")
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn medium nomargin ttip']")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
 
   end
