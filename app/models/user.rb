@@ -19,12 +19,15 @@ class User < ActiveRecord::Base
   after_create :set_extra
   after_save :user_update
 
-  validates :name, length: { minimum: 1 }
+  validates :name, length: { minimum: 1 }, on: :update
 
   # Set any extra items we need when a user is created
   def set_extra
   	# Set the reader default role.
     self.add_role :reader
+    return if !self.name.blank?
+    self.name = "Anonymous"
+    self.save
   end
 
   # Do any processing after user is changed
