@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "User" do
 
   C_EMAIL = "fred@example.com"
-  
+
 	include DataHelpers
   include PauseHelpers
   include UserAccountHelpers
@@ -68,6 +68,38 @@ describe "User" do
     expect(user).to receive(:encrypted_password_changed?) {false}
     user.user_update
     expect(AuditTrail.count).to eq(0)
+  end
+
+  it "detects if removing the last administrator role in the system, one admin" do
+    User.destroy_all
+    user = ua_add_user(email: C_EMAIL, role: :sys_admin)
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(true)
+  end
+
+  it "detects if removing the last administrator role in the system, two admins" do
+    User.destroy_all
+    user = ua_add_user(email: "admin1@example.com", role: :sys_admin)
+    user2 = ua_add_user(email: "admin2@example.com", role: :sys_admin)
+    user3 = ua_add_user(email: "reader@example.com")
+
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user2.role_list_stripped).to eq("Reader, System Admin")
+
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(false)
+  end
+
+  it "does not prohibit removing last user role, if not sys administrator" do
+    User.destroy_all
+    user = ua_add_user(email: C_EMAIL, role: :sys_admin)
+    user2 = ua_add_user(email: "user@example.com")
+
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user2.role_list_stripped).to eq("Reader")
+
+    expect(user2.removing_last_admin?({:role_ids => [Role.to_id(:curator)]})).to eq(false)
   end
 
 end

@@ -56,8 +56,9 @@
   :enabled: true
   :optional: true
   :ordinal: 2
-  :local_label: ''
   :reference: http://www.acme-pharma.com/A00002/V1#A00002
+  :context: 
+  :local_label: ''
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfVENSMQ==
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
@@ -65,8 +66,9 @@
   :enabled: true
   :optional: true
   :ordinal: 1
-  :local_label: ''
   :reference: http://www.acme-pharma.com/A00001/V1#A00001
+  :context: 
+  :local_label: ''
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfVENSMw==
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR3
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
@@ -74,52 +76,10 @@
   :enabled: true
   :optional: false
   :ordinal: 3
-  :local_label: ''
   :reference: http://www.acme-pharma.com/C96779E/V1#C96779E
+  :context: 
+  :local_label: ''
 :is_top_concept:
-- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk2Nzc5RS9WMSNDOTY3NzlF
-  :uri: http://www.acme-pharma.com/C96779E/V1#C96779E
-  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-  :label: Oncology Tumor Properties Test Code
-  :has_state: http://www.acme-pharma.com/C96779E/V1#C96779E_RS
-  :has_identifier: http://www.acme-pharma.com/C96779E/V1#C96779E_SI
-  :origin: ''
-  :change_description: ''
-  :creation_date: '2012-12-21T00:00:00+00:00'
-  :last_change_date: '2019-08-29T09:38:07+02:00'
-  :explanatory_comment: ''
-  :identifier: C96779E
-  :notation: TRTESTCD
-  :definition: Terminology relevant to the test codes that describe the measurement
-    of a tumor.
-  :extensible: false
-  :narrower:
-  - http://www.cdisc.org/C96779/V26#C96779_C96622
-  - http://www.cdisc.org/C96779/V26#C96779_C96635
-  - http://www.cdisc.org/C96779/V26#C96779_C96643
-  - http://www.cdisc.org/C96779/V26#C96779_C96685
-  - http://www.cdisc.org/C96779/V26#C96779_C25244
-  - http://www.cdisc.org/C96779/V26#C96779_C96621
-  - http://www.cdisc.org/C96779/V26#C96779_C96634
-  - http://www.cdisc.org/C96779/V26#C96779_C96684
-  - http://www.cdisc.org/C96779/V26#C96779_C96566
-  - http://www.cdisc.org/C96779/V26#C96779_C96633
-  - http://www.cdisc.org/C96779/V26#C96779_C96646
-  - http://www.cdisc.org/C96779/V26#C96779_C25285
-  - http://www.cdisc.org/C96779/V26#C96779_C25335
-  - http://www.cdisc.org/C96779/V26#C96779_C96632
-  - http://www.cdisc.org/C96779/V26#C96779_C94982
-  - http://www.cdisc.org/C96779/V26#C96779_C96631
-  - http://www.cdisc.org/C96779/V26#C96779_C96627
-  - http://www.cdisc.org/C96779/V32#C96779_C103441
-  - http://www.cdisc.org/C96779/V32#C96779_C103347
-  - http://www.cdisc.org/C96779/V32#C96779_C96630
-  - http://www.cdisc.org/C96779/V32#C96779_C103421
-  :extends: http://www.cdisc.org/C96779/V32#C96779
-  :subsets: 
-  :preferred_term: http://www.assero.co.uk/PT#87ebcaea5002eb3d2c4c63262ff7c330d7030625
-  :synonym:
-  - http://www.assero.co.uk/SYN#6cda302813e4d1ca46baf853899b6e54fbdc2df1
 - :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfQTAwMDAy
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
@@ -164,3 +124,46 @@
   :synonym:
   - http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
   - http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzk2Nzc5RS9WMSNDOTY3NzlF
+  :uri: http://www.acme-pharma.com/C96779E/V1#C96779E
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Oncology Tumor Properties Test Code
+  :has_state: http://www.acme-pharma.com/C96779E/V1#C96779E_RS
+  :has_identifier: http://www.acme-pharma.com/C96779E/V1#C96779E_SI
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2012-12-21T00:00:00+00:00'
+  :last_change_date: '2019-09-26T12:51:35+02:00'
+  :explanatory_comment: ''
+  :identifier: C96779E
+  :notation: TRTESTCD
+  :definition: Terminology relevant to the test codes that describe the measurement
+    of a tumor.
+  :extensible: false
+  :narrower:
+  - http://www.cdisc.org/C96779/V26#C96779_C96622
+  - http://www.cdisc.org/C96779/V26#C96779_C96635
+  - http://www.cdisc.org/C96779/V26#C96779_C96643
+  - http://www.cdisc.org/C96779/V26#C96779_C96685
+  - http://www.cdisc.org/C96779/V26#C96779_C25244
+  - http://www.cdisc.org/C96779/V26#C96779_C96621
+  - http://www.cdisc.org/C96779/V26#C96779_C96634
+  - http://www.cdisc.org/C96779/V26#C96779_C96684
+  - http://www.cdisc.org/C96779/V26#C96779_C96566
+  - http://www.cdisc.org/C96779/V26#C96779_C96633
+  - http://www.cdisc.org/C96779/V26#C96779_C96646
+  - http://www.cdisc.org/C96779/V26#C96779_C25285
+  - http://www.cdisc.org/C96779/V26#C96779_C25335
+  - http://www.cdisc.org/C96779/V26#C96779_C96632
+  - http://www.cdisc.org/C96779/V26#C96779_C94982
+  - http://www.cdisc.org/C96779/V26#C96779_C96631
+  - http://www.cdisc.org/C96779/V26#C96779_C96627
+  - http://www.cdisc.org/C96779/V32#C96779_C103441
+  - http://www.cdisc.org/C96779/V32#C96779_C103347
+  - http://www.cdisc.org/C96779/V32#C96779_C96630
+  - http://www.cdisc.org/C96779/V32#C96779_C103421
+  :extends: http://www.cdisc.org/C96779/V32#C96779
+  :subsets: 
+  :preferred_term: http://www.assero.co.uk/PT#87ebcaea5002eb3d2c4c63262ff7c330d7030625
+  :synonym:
+  - http://www.assero.co.uk/SYN#6cda302813e4d1ca46baf853899b6e54fbdc2df1

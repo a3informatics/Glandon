@@ -75,4 +75,15 @@ class User < ActiveRecord::Base
     return result.gsub(/[^A-Za-z, ]/, '')
   end
 
+  # Validates removal of sys admin role allowed before executing it
+  #
+  # @return [Boolean] returns true if removing last admin
+  def removing_last_admin?(params)
+    return false if !self.has_role?(:sys_admin)
+    return false if User.all.select{ |u| u.role_list.include?("System Admin")}.size > 1
+    return false if params[:role_ids].include?(Role.to_id(:sys_admin))
+    return true
+    #if params[:role_ids]
+  end
+
 end

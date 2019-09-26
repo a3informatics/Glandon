@@ -49,12 +49,17 @@ class UsersController < ApplicationController
   def update
     authorize User
     current_roles = @user.role_list
-    if @user.update(user_params)
-      AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
-      redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
-    else
-      flash[:error] = "Failed to update roles for #{@user.email}."
+    if @user.removing_last_admin?(user_params)
+      flash[:error] = "You cannot remove the last system administrator."
       redirect_to users_path
+    else
+      if @user.update(user_params)
+        AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
+        redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
+      else
+        flash[:error] = "Failed to update roles for #{@user.email}."
+        redirect_to users_path
+      end
     end
   end
 
