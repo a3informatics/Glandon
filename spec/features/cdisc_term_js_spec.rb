@@ -179,7 +179,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
     end
 
-    it "allows the code list item changes to be viewed (REQ-MDR-CT-040). Currently failing, see GLAN-850 bug", js:true do
+    it "allows the code list item changes to be viewed (REQ-MDR-CT-040)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       click_link 'View Changes'
@@ -189,7 +189,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C66787'
       find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 4, 4)
+      ui_check_table_info("differences_table", 1, 3, 3)
       expect(page).to have_content 'Changes'
       ui_check_table_info("changes", 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
