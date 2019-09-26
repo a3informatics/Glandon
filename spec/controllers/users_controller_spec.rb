@@ -127,6 +127,23 @@ describe UsersController do
       expect(response).to redirect_to("/users")
     end
 
+    it "assigns user a default name if none is provided" do
+      post :create, user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}
+      user = User.find_by(email: "user@example.com")
+      expect(user.name).to eq("Anonymous")
+    end
+
+    it "prohibits the user from changing the name to an empty string" do
+      post :create, user: { email: "user@example.com", password: "ChangeMe1#", password_confirmation: "ChangeMe1#"}
+      user = User.find_by(email: "user@example.com")
+      expect(user.name).to eq("Anonymous")
+
+      post :update_name, {id: user.id, :user => {name: ""}}
+
+      user = User.find_by(email: "user@example.com")
+      expect(user.name).to eq("Anonymous")
+    end
+
   end
 
   describe "Unauthorized User" do

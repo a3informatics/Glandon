@@ -102,4 +102,18 @@ describe "User" do
     expect(user2.removing_last_admin?({:role_ids => [Role.to_id(:curator)]})).to eq(false)
   end
 
+  it "assigns user a default name if none is provided" do
+    user = ua_add_user(email: C_EMAIL)
+    expect(user.name).to eq("Anonymous")
+  end
+
+  it "prohibits the user from changing the name to an empty string" do
+    user = ua_add_user(email: C_EMAIL)
+    user.name = ""
+    user.save
+
+    user = User.find_by(email: C_EMAIL)
+    expect(user.name).to eq("Anonymous")
+  end
+
 end
