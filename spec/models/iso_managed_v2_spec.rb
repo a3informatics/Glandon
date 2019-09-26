@@ -178,7 +178,7 @@ describe "IsoManagedV2" do
       result[:origin] = "Origin"
       item.update({:explanatory_comment => "New comment", :change_description => "Description", :origin => "Origin"})
       item = IsoManagedV2.find_with_properties(uri)
-      result[:last_change_date] = date_check_now(item.last_change_date).iso8601
+      result[:last_change_date] = item.last_change_date.iso8601
       expect(item.to_h).to eq(result)
     end
 
@@ -884,6 +884,21 @@ describe "IsoManagedV2" do
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM3/V1#TH"))
       item.has_state.make_current
       expect(CdiscTerm.current_set.count).to eq(4)
+    end
+
+    it "allows the current item to be found" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
     end
 
   end

@@ -628,7 +628,6 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Array] array of Uri objects
   def self.current_set
-    #date_time = Time.now.iso8601.gsub('+',"%2B")
     date_time = Time.now.iso8601
     query_string = %Q{
       SELECT ?a WHERE
@@ -643,6 +642,30 @@ class IsoManagedV2 < IsoConceptV2
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR])
     query_results.by_object(:a)
+  end
+
+  # Current. Find the current item for the scope.
+  #
+  # @return [object] the current item if founc, nil otherwise
+  def self.current(params)
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT ?s WHERE
+      {
+        ?s rdf:type #{rdf_type.to_ref} .
+        ?s isoT:hasIdentifier ?si .
+        ?s isoT:hasState ?rs .
+        ?si isoI:identifier '#{params[:identifier]}' . 
+        ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+        ?rs isoR:effectiveDate ?d .
+        ?rs isoR:untilDate ?e .
+        FILTER ( xsd:dateTime(?d) <= \"#{date_time}\"^^xsd:dateTime ) .
+        FILTER ( xsd:dateTime(?e) >= \"#{date_time}\"^^xsd:dateTime ) .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR, :isoI])
+    return nil if query_results.empty?
+    query_results.by_object(:s).first
   end
 
 private
