@@ -240,15 +240,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     CSVHelpers.format(headers, to_csv_data(self.identifier))
   end
 
-
   # To CSV No Header. A CSV record with no header
   def to_csv_data(parent)
     this = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
     this.insert(4, self.synonyms_to_s)
     this.insert(6, self.preferred_term.label)
-  byebug
     results = [this.insert(1, parent)]
-  
     children.each do |c|
       data = c.to_csv_data
       data.insert(1, self.identifier)

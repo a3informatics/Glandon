@@ -141,6 +141,14 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "export csv" do
+      tc = Thesaurus::ManagedConcept.new
+      expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(tc)
+      send_data tc.to_csv, filename: "CDISC_CL_#{tc.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+
+
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
