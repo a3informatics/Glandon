@@ -1,5 +1,3 @@
-require "/concerns/csv_helpers"
-
 class Thesaurus::ManagedConcept < IsoManagedV2
 
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#ManagedConcept",
@@ -36,7 +34,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
-  #include CSVHelpers
 
   # Extended? Is this item extended
   #
@@ -240,7 +237,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def to_csv
     headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name", 
       "CDISC Submission Value", "CDISC Synonym(s)", "CDISC Definition", "NCI Preferred Term"]
-    ::CSVHelper.format(headers, csv_data(self.identifier))
+    CSVHelpers.format(headers, csv_data(self.identifier))
   end
 
 
