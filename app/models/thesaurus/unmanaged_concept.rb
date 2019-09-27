@@ -159,6 +159,14 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     return self
   end
 
+   # To CSV No Header. A CSV record with no header
+  def to_csv_data
+    data = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
+    data.insert(4, self.synonyms_to_s)
+    data.insert(6, self.preferred_term.label)
+    data
+  end
+
 private
 
   # Ignore for no change

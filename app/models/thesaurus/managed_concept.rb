@@ -237,9 +237,27 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def to_csv
     headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name", 
       "CDISC Submission Value", "CDISC Synonym(s)", "CDISC Definition", "NCI Preferred Term"]
-    CSVHelpers.format(headers, csv_data(self.identifier))
+    CSVHelpers.format(headers, to_csv_data(self.identifier))
   end
 
+
+  # To CSV No Header. A CSV record with no header
+  def to_csv_data(parent)
+    this = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
+    this.insert(4, self.synonyms_to_s)
+    this.insert(6, self.preferred_term.label)
+  byebug
+    results = [this.insert(1, parent)]
+  
+    children.each do |c|
+      data = c.to_csv_data
+      data.insert(1, self.identifier)
+      data[2] = ""
+      data[3] = ""
+      results << data
+    end
+    return results
+  end
 
   class DiffResult < Hash
 
@@ -258,20 +276,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   end
 
 private
-
-  # To CSV No Header. A CSV record with no header
-  def csv_data(parent)
-    this = to_a_by_key(:identifier, :extensible, :label, :notation, :synonym, :definition, :preferredTerm)
-    results = [this.insert(1, parent)]
-    children.each do |c|
-      data = c.to_a_by_key(:identifier, :extensible, :label, :notation, :synonym, :definition, :preferredTerm)
-      data.insert(1, self.identifier)
-      data[2] = ""
-      data[3] = ""
-      results << data
-    end
-    return results
-  end
 
   # Replace children if no change
   def replace_children_if_no_change(previous)
