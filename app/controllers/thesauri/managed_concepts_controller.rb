@@ -87,6 +87,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def export_csv
     authorize CdiscCl, :show?
     tc = Thesaurus::ManagedConcept.find_full(params[:id])
+  byebug
     send_data tc.to_csv, filename: "CDISC_CL_#{tc.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
   end
 

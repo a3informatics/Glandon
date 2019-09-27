@@ -142,11 +142,9 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "export csv" do
-      tc = Thesaurus::ManagedConcept.new
-      expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(tc)
-      send_data tc.to_csv, filename: "CDISC_CL_#{tc.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
-
-
+      expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:to_csv).and_return(["XXX", "YYY"])
+      expect(@controller).to receive(:send_data).with("csv_string", {filename: "CDISC_CL_identifier.csv", disposition: 'attachment', type: 'text/csv; charset=utf-8; header=present'})
     end
 
     # it "edit" do
