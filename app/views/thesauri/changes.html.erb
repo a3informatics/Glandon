@@ -8,8 +8,10 @@
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
       <!-- BUTTON EXPORT PDF -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@ct, format: :pdf), id: "report",
+      <div onclick="showFullPageSpinner(30, 'Generating report...', 'Error occurred while generating the report.');">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@ct, format: :pdf), id: "report",
         icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
+      </div>
       <!-- RETURN BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
