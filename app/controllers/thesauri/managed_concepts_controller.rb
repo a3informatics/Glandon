@@ -84,16 +84,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
-  # ************************
-  # CSV Export
-  # ************************
-
-  # def export_csv
-  #   authorize CdiscCl, :view?
-  #   uri = UriV3.new(id: params[:id]) # Using new mechanism
-  #   cl = CdiscCl.find(uri.fragment, uri.namespace)
-  #   send_data cl.to_csv, filename: "CDISC_CL_#{cl.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
-  # end
+  def export_csv
+    authorize CdiscCl, :show?
+    tc = Thesaurus::ManagedConcept.find_full(params[:id])
+    send_data tc.to_csv, filename: "CDISC_CL_#{tc.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
 
   def show
     authorize Thesaurus
