@@ -109,7 +109,8 @@
 }
 
 .ico-btn:active, .ico-btn:focus{
-  color: $primary-color-medium;
+  color: $grey-white;
+  background: $primary-color-medium;
 }
 
 .ico-btn .ico{
@@ -130,7 +131,7 @@
   background: $primary-color-bright;
 }
 
-.ico-btn.light:active{
+.ico-btn.light:active, .ico-btn.light:focus{
   background: $primary-color-light;
 }
 
@@ -138,12 +139,17 @@
   color: $grey-medium;
 }
 
-.ico-btn.highlight, ico-btn.light.highlight{
+.ico-btn.light:focus .ico-btn-text, .ico-btn.light:active .ico-btn-text,
+.ico-btn.light:focus .ico, .ico-btn.light:active .ico{
+  color: $grey-white;
+}
+
+.ico-btn.highlight, .ico-btn.light.highlight{
   color: $grey-white;
   background: $primary-color-light;
 }
 
-.ico-btn.highlight:hover, ico-btn.light.highlight:hover{
+.ico-btn.highlight:hover, .ico-btn.light.highlight:hover{
   background: $primary-color-bright;
 }
 
