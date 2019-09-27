@@ -637,6 +637,37 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "csv test" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "to csv" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
+      results = tc.to_csv
+      check_file_actual_expected(results, sub_dir, "csv_expected_1.yaml")
+    end
+
+    it "to csv 2" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66788/V2#C66788"))
+      results = tc.to_csv
+      check_file_actual_expected(results, sub_dir, "csv_expected_2.yaml")
+    end
+    
+  end
+
   describe "child pagination" do
 
     before :all  do
