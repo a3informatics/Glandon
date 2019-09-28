@@ -184,6 +184,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def differences
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    history_xxx = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    used = used_history
+    item_was_deleted = used.first != history_xxx.first
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {        
@@ -207,6 +210,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       diffs = previous.nil? ? difference_record_baseline(current) : difference_record(current, previous)
       results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
       previous = current
+    end
+    if item_was_deleted
+      deleted_version = history_xxx.index{|x| x == used.first} - 1
+      ct = Thesaurus.find_minimum(history_xxx[deleted_version])
+      results << {id: x.last[:s].to_id, date: ct.creation_date.strftime("%Y-%m-%d"), differences: difference_record_deleted} 
     end
     results
   end
@@ -273,6 +281,25 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   end
 
 private
+
+  # History URIs. Find the history for a given identifier within a scope return just the URIs. 
+  #  Written for speed
+  #
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [Array] An array of objects.
+  def used_history
+    query_string = %Q{
+      SELECT ?s WHERE {
+        #{self.uri.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .
+        ?s isoT:hasIdentifier ?si . 
+        ?si isoI:version ?v 
+      } ORDER BY DESC (?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:s)
+  end
 
   # Replace children if no change
   def replace_children_if_no_change(previous)
