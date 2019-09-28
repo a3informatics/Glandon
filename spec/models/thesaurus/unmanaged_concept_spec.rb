@@ -441,6 +441,12 @@ describe "Thesaurus::UnmanagedConcept" do
       check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
     end
 
+    it "differences, IV" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129_C100763"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml", write_file: true)
+    end
+
   end
 
   describe "synonym and preferred term links" do

@@ -207,9 +207,10 @@ private
     query_string = %Q{
       SELECT DISTINCT ?s WHERE\n
       {        
-        #{self.uri.to_ref} ^th:narrower ?p .
+        #{self.uri.to_ref} ^th:narrower+ ?p .
         ?p th:identifier ?pi .
         ?s th:identifier ?pi .
+        ?s th:narrower+/th:identifier "#{self.identifier}" .
         ?s isoT:hasIdentifier ?si . 
         ?si isoI:version ?v 
       } ORDER BY DESC (?v)
