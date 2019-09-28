@@ -485,14 +485,11 @@ describe "Thesaurus::ManagedConcept" do
       IsoHelpers.clear_cache
     end
 
-    before :each do
+    before :all do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..30)
-    end
-
-    after :all do
+      load_cdisc_term_versions(1..59)
       delete_all_public_test_files
     end
 
@@ -500,7 +497,9 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V29#C65047"))
-      expect(tc.changes_count(40)).to eq(19)
+      expect(tc.changes_count(40)).to eq(29)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
+      expect(tc.changes_count(40)).to eq(40)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(4)).to eq(4)
     end
@@ -517,10 +516,28 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
     end
 
-    it "differences" do
+    it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
+    end
+
+    it "differences, II" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
+    end
+
+    it "differences, III" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
+    end
+
+    it "differences, IV" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
 
   end

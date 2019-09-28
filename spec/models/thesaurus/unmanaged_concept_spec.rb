@@ -444,7 +444,7 @@ describe "Thesaurus::UnmanagedConcept" do
     it "differences, IV" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129_C100763"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
 
   end
