@@ -417,16 +417,6 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00001 due to the concept having children")
     end
 
-    it "generates a CSV record with no header" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expected = 
-      [ 
-        "A00001", "Vital Sign Test Codes Extension", 
-        "VSTEST", "", "A set of additional Vital Sign Test Codes to extend the CDISC set.", ""
-      ]
-      expect(tc.to_csv_no_header).to eq(expected)
-    end
-
     it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       params = 
@@ -654,6 +644,12 @@ describe "Thesaurus::ManagedConcept" do
       delete_all_public_test_files
     end
 
+    it "to csv data" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
+      results = tc.to_csv_data
+      check_file_actual_expected(results, sub_dir, "csv_data_expected_1.yaml")
+    end
+
     it "to csv" do
       tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
       results = tc.to_csv
@@ -711,6 +707,5 @@ describe "Thesaurus::ManagedConcept" do
     end
 
   end
-
 
 end

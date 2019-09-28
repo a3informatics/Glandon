@@ -245,15 +245,18 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def to_csv
     headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name", 
       "CDISC Submission Value", "CDISC Synonym(s)", "CDISC Definition", "NCI Preferred Term"]
-    CSVHelpers.format(headers, to_csv_data(self.identifier))
+    CSVHelpers.format(headers, to_csv_data)
   end
 
   # To CSV No Header. A CSV record with no header
-  def to_csv_data(parent)
+  #
+  # @param parent [String] the parent identifier
+  # @return [Array] the results as an array of array of strings
+  def to_csv_data
     this = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
     this.insert(4, self.synonyms_to_s)
     this.insert(6, self.preferred_term.label)
-    results = [this.insert(1, parent)]
+    results = [this.insert(1, self.identifier)]
     children.each do |c|
       data = c.to_csv_data
       data.insert(1, self.identifier)
@@ -264,6 +267,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
+private
+
+  # Class for a difference result
   class DiffResult < Hash
 
     def no_change?(other_hash)
@@ -279,8 +285,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
 
   end
-
-private
 
   # History URIs. Find the history for a given identifier within a scope return just the URIs. 
   #  Written for speed
