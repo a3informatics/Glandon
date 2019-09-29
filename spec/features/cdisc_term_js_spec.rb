@@ -177,9 +177,9 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      ui_check_table_info("changes", 1, 3, 3)
+      ui_check_table_info("changes", 1, 2, 2)
       expect(page).to have_content 'C106656'
-      expect(page).to have_content 'C66787'
+      expect(page).to have_content 'C106657'
       click_link 'Return'
       expect(page).to have_content 'History'
     end
@@ -191,15 +191,15 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      expect(page).to have_content 'C66787'
-      find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
+      expect(page).to have_content 'C106656'
+      find(:xpath, "//tr[contains(.,'C106656')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 3, 3)
+      ui_check_table_info("differences_table", 1, 4, 4)
       expect(page).to have_content 'Changes'
-      ui_check_table_info("changes", 1, 1, 1)
-      find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
+      ui_check_table_info("changes", 1, 3, 3)
+      find(:xpath, "//tr[contains(.,'C106704')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 3, 3)
+      ui_check_table_info("differences_table", 1, 1, 1)
       click_link 'Return'
       expect(page).to have_content 'Changes'
       click_link 'Return'
