@@ -339,6 +339,15 @@ module UiHelpers
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
+ 
+  #System Admin
+  def click_navbar_at
+    ui_navbar_click('main_nav_at')
+  end
+ 
+  def click_navbar_el
+    ui_navbar_click('main_nav_el')
+  end
 
 	#Dashboard
 	def click_navbar_dashboard

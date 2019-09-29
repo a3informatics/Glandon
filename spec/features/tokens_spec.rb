@@ -10,28 +10,18 @@ describe "Tokens", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
-      "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl", "CDISCBiomedicalConcept.ttl"]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "form_crf_test_1.ttl",
-      "sdtm_user_domain_ds.ttl", "sdtm_model_and_ig.ttl"]
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+      "thesaurus.ttl", "BusinessOperational.ttl", "CDISCBiomedicalConcept.ttl", "BusinessForm.ttl", "BusinessDomain.ttl" 
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "form_crf_test_1.ttl",
+      "sdtm_user_domain_ds.ttl", "sdtm_model_and_ig.ttl"
+    ]
     load_files(schema_files, data_files)
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("ISO25964.ttl")
-    # load_schema_file_into_triple_store("BusinessOperational.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_schema_file_into_triple_store("BusinessDomain.ttl")
-    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    #
-    # load_test_file_into_triple_store("thesaurus.ttl")
-    # load_test_file_into_triple_store("form_crf_test_1.ttl")
-    # load_test_file_into_triple_store("sdtm_user_domain_ds.ttl")
-    # load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    load_cdisc_term_versions((1..59))
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
