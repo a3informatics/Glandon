@@ -147,6 +147,10 @@ class Thesaurus <  IsoManagedV2
       previous_version = version
     end
 
+    # Remove blank entries (those with no changes)
+    no_change_entry = [{status: :no_change}] * versions.length
+    final_results.delete_if {|k,v| v[:status] == no_change_entry}
+    
     # And return
     {versions: versions, items: final_results}
   end
