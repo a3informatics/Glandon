@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :update_name]
 
   C_CLASS_NAME = "UsersController"
-  
+
   def new
     authorize User
   end
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:error] = "User was not created. #{new_user.errors.full_messages.to_sentence}."
       redirect_to users_path
     end
-  end  
+  end
 
   def index
     authorize User
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       flash[:success] = "User display name sucessfully updated."
     else
-      flash[:error] = "Failed to update user display name."
+      flash[:error] = "Failed to update user display name. " + (@user.errors.full_messages.to_sentence if !@user.errors.empty?)
     end
     redirect_to user_settings_path
   end
@@ -49,12 +49,17 @@ class UsersController < ApplicationController
   def update
     authorize User
     current_roles = @user.role_list
-    if @user.update(user_params)
-      AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
-      redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
-    else
-      flash[:error] = "Failed to update roles for #{@user.email}."
+    if @user.removing_last_admin?(user_params)
+      flash[:error] = "You cannot remove the last system administrator."
       redirect_to users_path
+    else
+      if @user.update(user_params)
+        AuditTrail.update_event(current_user, "User #{@user.email} roles updated from #{current_roles} to #{@user.role_list}")
+        redirect_to users_path, success: "User roles for #{@user.email} successfully updated."
+      else
+        flash[:error] = "Failed to update roles for #{@user.email}."
+        redirect_to users_path
+      end
     end
   end
 
@@ -64,10 +69,10 @@ class UsersController < ApplicationController
     # you need to be admin to delete.
     user = User.find(params[:id])
     delete_email = user.email
-    if current_user.id != user.id 
+    if current_user.id != user.id
       user.destroy
       AuditTrail.delete_event(current_user, "User #{delete_email} deleted.")
-      flash[:success] = "User #{delete_email} was successfully deleted."  
+      flash[:success] = "User #{delete_email} was successfully deleted."
     else
       flash[:error] = "You cannot delete your own user!"
     end

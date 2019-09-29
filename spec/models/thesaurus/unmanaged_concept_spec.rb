@@ -330,16 +330,6 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
     end
 
-    it "generates a CSV record with no header" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      expected = 
-      [ 
-        "A00001", "Vital Sign Test Codes Extension", 
-        "VSTEST", "", "A set of additional Vital Sign Test Codes to extend the CDISC set.", ""
-      ]
-      expect(tc.to_csv_no_header).to eq(expected)
-    end
-
     it "returns the parent concept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       params = 
@@ -390,20 +380,17 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all  do
       IsoHelpers.clear_cache
-    end
-
-    before :each do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..30)
+      load_cdisc_term_versions(1..59)
     end
 
     after :all do
       delete_all_public_test_files
     end
 
-    it "finds changes count" do
+    it "finds changes count - NEEDS WORK" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       expect(tc.changes_count(4)).to eq(2)
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
@@ -412,22 +399,52 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(tc.changes_count(4)).to eq(2)
     end
 
-    it "finds changes, 4" do
+    it "finds changes, 4 - NEEDS WORK" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.changes(4)
       check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
     end
 
-    it "finds changes, 8" do
+    it "finds changes, 8 - NEEDS WORK" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.changes(8)
       check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
     end
 
-    it "differences" do
+    it "finds changes, 4 - NEEDS WORK" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661_C124716"))
+      results = tc.changes(4)
+      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
+    end
+
+    it "finds changes, 4 - NEEDS WORK" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129_C147585"))
+      results = tc.changes(4)
+      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
+    end
+
+    it "differences, I" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
+    end
+
+    it "differences, II" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661_C124716"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
+    end
+
+    it "differences, III" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129_C147585"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
+    end
+
+    it "differences, IV" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129_C100763"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
 
   end
@@ -525,6 +542,36 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V52#C128687_C139114"))
       results = tc.linked_change_instructions
       check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
+    end
+
+  end
+
+  describe "csv test" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "generates a CSV record with no header" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
+      expected = 
+      [ 
+        "C43820",false,"MedDRA","MedDRA","Medical Dictionary for Regulatory Activities; MedDRA",
+        "MedDRA is an international medical terminology designed to support the classification, retrieval, presentation, and communication of medical information throughout the medical product regulatory cycle. MedDRA was developed under the auspices of the International Conference on Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH). The MedDRA Maintenance and Support Services Organization (MSSO) holds a contract with the International Federation of Pharmaceutical Manufacturers Associations (IFPMA) to maintain and support the implementation of the terminology. (NCI)",
+        "MedDRA"
+      ]
+      expect(tc.to_csv_data).to eq(expected)
     end
 
   end

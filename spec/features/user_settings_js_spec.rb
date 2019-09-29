@@ -144,6 +144,7 @@ describe "User Settings", :type => :feature do
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1%", :name => "A Amend"
       ua_generic_login "amend@assero.co.uk", "Changeme1%"
       click_link 'settings_button'
+      expect(page).to have_content "Account settings"
       fill_in 'user_password', with: 'Changeme1@'
       fill_in 'user_password_confirmation', with: 'Changeme1@'
       fill_in 'user_current_password', with: 'Changeme1%'
@@ -157,6 +158,7 @@ describe "User Settings", :type => :feature do
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1@", :name => "A Amend"
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
+      expect(page).to have_content "Account settings"
       fill_in 'user_password', with: 'Changeme1^'
       fill_in 'user_password_confirmation', with: 'Changeme1^'
       fill_in 'user_current_password', with: 'Changeme1x'
@@ -170,11 +172,21 @@ describe "User Settings", :type => :feature do
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1@", :name => "A Amend"
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
+      expect(page).to have_content "Account settings"
       expect(page).to have_content 'Email: amend@assero.co.uk'
       expect(page).to have_content 'A Amend'
       fill_in 'user_name', with: 'New Name for A Amend'
       click_button 'name_update_button'
       expect(page).to have_content 'New Name for A Amend'
+    end
+
+    it "prohibits the user from changing their display name to an empty string" do
+      ua_sys_admin_login
+      click_link 'settings_button'
+      expect(page).to have_content "Account settings"
+      fill_in 'user_name', with: ''
+      click_button 'name_update_button'
+      expect(page).to have_content 'Failed to update user display name. Name is too short (minimum is 1 character)'
     end
 
   end

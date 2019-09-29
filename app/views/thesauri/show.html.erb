@@ -7,9 +7,6 @@
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @ct, :badge => "icon-terminology"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-    <!-- BUTTON EXPORT CSV -->
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@ct), id: "export-csv",
-      icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
     <!-- RETURN BUTTON -->
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
