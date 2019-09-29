@@ -217,6 +217,13 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax_v_long
       expect(page).to have_content 'Submission'
       ui_check_table_info("changes", 1, 10, 63)
+      ui_check_table_cell("changes", 1, 1, "C100391")
+      ui_check_table_cell("changes", 1, 2, "Corrected QT Interval")
+      ui_check_table_cell("changes", 1, 3, "QTc Correction Method Unspecified")
+      ui_check_table_cell_no_change_right("changes", 1, 4)
+      ui_check_table_cell_edit("changes", 1, 5)
+      ui_check_table_cell_no_change_right("changes", 1, 6)
+      ui_check_table_cell_no_change_right("changes", 1, 7)
     end
 
     it "allows the submission value changes to be viewed (REQ-MDR-CT-050)", js:true do
@@ -225,8 +232,8 @@ describe "CDISC Term", :type => :feature do
       click_link 'View Submission value changes'
       expect(page).to have_content 'Submission'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
-      # input.set("C67152_C20587")
-      input.set("C67152_C98768")
+      #input.set("C67152_C98768")
+      input.set("C98768")
       wait_for_ajax_v_long
       find(:xpath, "//tr[contains(.,'Pharmacologic Class')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'

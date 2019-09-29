@@ -141,6 +141,11 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
+  def ui_check_table_cell_edit(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-edit-circle', visible: :all)).to_not eq(nil)
+  end
+
   def ui_check_table_cell_delete(table_id, row, col)
     td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
     expect(td.find('div span.icon-times-circle', visible: :all)).to_not eq(nil)

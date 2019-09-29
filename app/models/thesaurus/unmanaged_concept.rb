@@ -92,7 +92,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
       version[:children].each do |entry|
         key = entry[:key].to_sym
         next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+        final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
     final_results
