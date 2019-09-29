@@ -7,6 +7,11 @@ describe "CDISC Term", :type => :feature do
   include UiHelpers
   include UserAccountHelpers
   include WaitForAjaxHelper
+  include DownloadHelpers
+
+  def sub_dir
+    return "features/cdisc_term"
+  end
 
   def wait_for_ajax_v_long
     wait_for_ajax(120)
@@ -261,10 +266,22 @@ describe "CDISC Term", :type => :feature do
       ua_logoff
     end
 
-    it "edit, delete, document control disabled", js:true do
+    it "edit, delete, document control disabled" #, js:true do
 
+    it "allows for code list to be exported as CSV", js: true do
+      clear_downloads
+      click_browse_every_version
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2016-03-25 Release", :show)
+      wait_for_ajax(5)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax(5)
+      expect(page).to have_content 'EPOCH'
+      click_link 'Export CSV'
+      file = download_content
+    #Xwrite_text_file_2(file, sub_dir, "export_csv_expected.csv")
+      expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
     end
-
 
   end
 

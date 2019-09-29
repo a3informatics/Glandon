@@ -413,7 +413,6 @@ module UiHelpers
   end
 
   #Community Version
-
   def click_browse_every_version
     click_link 'btn-browse-cdisc'
   end

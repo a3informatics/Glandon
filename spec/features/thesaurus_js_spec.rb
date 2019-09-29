@@ -99,6 +99,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
     end
 
+    it "allows for terminology to be exported as CSV"
     # it "allows for terminology to be exported as CSV", js: true do
     #   clear_downloads
     #   click_navbar_terminology
