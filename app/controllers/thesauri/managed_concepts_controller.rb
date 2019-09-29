@@ -137,12 +137,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def differences
     authorize Thesaurus, :show?
-    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    respond_to do |format|
-      format.json do
-        render json: {data: @tc.differences}
-      end
-    end
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.differences}
   end
 
   def is_extended

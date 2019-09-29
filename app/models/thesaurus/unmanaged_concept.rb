@@ -50,7 +50,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
 
     # Get the version set. Work out if we need a dummy first one.
     items = self.class.where(identifier: self.identifier)
-    first_index = items.index {|x| x == self.uri}    
+    first_index = items.index {|x| x.uri == self.uri}    
     if first_index.nil? 
       first_index = 0
       start_index = 0 
@@ -68,7 +68,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     # Get the raw results
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
-  #{version_set.map{|x| "{ #{x.uri.to_ref} th:narrower ?cl . #{x.uri.to_ref} ^th:narrower+ ?r . ?r rdf:type th:ManagedConcept . ?r isoT:creationDate ?d . ?r isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.uri.to_ref} as ?e)} "}.join(" UNION\n")}
+  #{version_set.map{|x| "{ #{x.uri.to_ref} ^th:narrower ?cl . #{x.uri.to_ref} ^th:narrower+ ?r . ?r rdf:type th:ManagedConcept . ?r isoT:creationDate ?d . ?r isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{x.uri.to_ref} as ?e)} "}.join(" UNION\n")}
   ?cl th:identifier ?i .
   ?cl isoC:label ?l .
   ?cl th:notation ?n .
@@ -95,34 +95,20 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
         final_results[key] = {key: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
+    final_results
   end
 
   # Differences
   #
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def differences
-    results =[]
-    query_string = %Q{
-SELECT DISTINCT ?p WHERE\n
-{        
-  {
-    ?p th:identifier ?pi .
-    {
-      SELECT DISTINCT ?pi 
-      {
-        ?p th:narrower #{self.uri.to_ref} .
-        ?p th:identifier ?pi .
-      }
-    }
-  }
-}
-}
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
-    items = query_results.by_object_set([:p])
+    results = []
+    items = item_set
+    item_was_deleted_info = deleted_from_ct_version(items.first)
     query_string = %Q{
 SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) WHERE\n
 {        
-  VALUES ?p { #{items.map{|x| x[:p].to_ref}.join(" ")} }
+  VALUES ?p { #{items.map{|x| x.to_ref}.join(" ")} }
   {
     ?p th:narrower ?s .
     ?p isoT:creationDate ?date .
@@ -146,6 +132,9 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
       end
       previous = current
     end
+    if item_was_deleted_info[:deleted]
+      results << {id: nil, date: item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d"), differences: difference_record_deleted} 
+    end
     results
   end
 
@@ -168,6 +157,67 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   end
 
 private
+
+  # Class for a difference result
+  class DiffResult < Hash
+
+    def no_change?(other_hash)
+      self[:uri] == other_hash[:uri]
+    end
+
+    def eql?(other_hash)
+      self[:key] == other_hash[:key]
+    end
+
+    def hash
+      self[:key].hash
+    end
+
+  end
+
+  def deleted_from_ct_version(last_item)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    used_in = thesarus_set(last_item)
+    item_was_deleted = used_in.first != ct_history.first
+    return {deleted: item_was_deleted, ct: nil} if !item_was_deleted
+    deleted_version = ct_history.index{|x| x == used_in.first} - 1
+    ct = Thesaurus.find_minimum(ct_history[deleted_version])
+    {deleted: item_was_deleted, ct: ct}
+  end
+
+  def deleted_from_ct?(last_item)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    used_in = thesarus_set(last_item)
+    used_in.first != ct_history.first
+  end
+
+  def thesarus_set(last_item)
+    query_string = %Q{
+      SELECT ?s WHERE {
+        #{last_item.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .
+        ?s isoT:hasIdentifier ?si . 
+        ?si isoI:version ?v 
+      } ORDER BY DESC (?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:s)
+  end
+
+  def item_set
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE\n
+      {        
+        #{self.uri.to_ref} ^th:narrower+ ?p .
+        ?p th:identifier ?pi .
+        ?s th:identifier ?pi .
+        ?s th:narrower+/th:identifier "#{self.identifier}" .
+        ?s isoT:hasIdentifier ?si . 
+        ?si isoI:version ?v 
+      } ORDER BY DESC (?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:s)
+  end
 
   # Ignore for no change
   def ignore?(current, previous)
