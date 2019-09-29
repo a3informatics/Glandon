@@ -246,7 +246,7 @@ describe "CDISC Term", :type => :feature do
                       "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..46)
+      load_cdisc_term_versions(1..59)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -272,7 +272,7 @@ describe "CDISC Term", :type => :feature do
       clear_downloads
       click_browse_every_version
       wait_for_ajax(10)
-      context_menu_element("history", 5, "2016-03-25 Release", :show)
+      context_menu_element("history", 5, "2018-12-21 Release", :show)
       wait_for_ajax(5)
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
       wait_for_ajax(5)
@@ -281,6 +281,31 @@ describe "CDISC Term", :type => :feature do
       file = download_content
     #Xwrite_text_file_2(file, sub_dir, "export_csv_expected.csv")
       expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
+    end
+
+    it "checks for deleted changes", js: true do
+      clear_downloads
+      click_see_changes_all_versions
+      wait_for_ajax(10)
+      ui_table_search("changes", 'TANN02TN')
+      find(:xpath, "//tr[contains(.,'TANN02TN')]/td/a", :text => 'Changes').click
+      wait_for_ajax(5)
+      expect(page).to have_content 'TANN02TN'
+      ui_check_table_cell("differences_table", 1, 1, "2015-12-18")
+
+      ui_check_table_cell("differences_table", 1, 2, "C124661")
+      ui_check_table_cell("differences_table", 1, 3, "TANNER SCALE BOY TEST")
+      ui_check_table_cell("differences_table", 2, 1, "2016-03-25")
+      ui_check_table_cell_no_change_down("differences_table", 2, 2)
+      ui_check_table_cell("differences_table", 3, 1, "2019-03-29")
+      ui_check_table_cell_delete("differences_table", 3, 2)
+
+      ui_check_table_cell("changes", 1, 1, "C124716")
+      ui_check_table_cell("changes", 1, 2, "Tanner Scale-Boy - Genitalia Stages")
+      ui_check_table_cell("changes", 1, 3, "TANN02-Genitalia Stages")
+      ui_check_table_cell_no_change_right("changes", 1, 4)
+      ui_check_table_cell_delete("changes", 1, 5)
+      ui_check_table_cell("changes", 1, 6, "Changes")
     end
 
   end

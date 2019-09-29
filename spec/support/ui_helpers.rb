@@ -130,10 +130,30 @@ module UiHelpers
     #input.native.send_keys(:return)
   end
 
+  def ui_table_search(table_id, text)
+    input = find(:xpath, "//*[@id=\"#{table_id}_filter\"]/label/input")
+    input.set(text)
+  end
+
   # check table cell
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     expect(cell).to eq(text)
+  end
+
+  def ui_check_table_cell_delete(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-times-circle', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_no_change_right(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-arrow-circle-r', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_no_change_down(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-arrow-circle-d', visible: :all)).to_not eq(nil)
   end
 
   def ui_check_table_head(table_id, col, text)
