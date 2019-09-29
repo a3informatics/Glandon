@@ -43,6 +43,8 @@ private
       current_id = object.current? ? current_item.registrationState.id : ""
       result[:status_path] = status_iso_managed_index_path(:id => object.uri.fragment, :iso_managed => 
         {:index_label => "", :index_path => "", :current_id => current_id})
+    else
+      result[:status_path] = ""
     end
     if delete && object.delete?
       result[:delete_path] = path_for(controller, :destroy, object)
