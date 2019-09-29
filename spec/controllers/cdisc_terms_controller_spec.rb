@@ -65,12 +65,15 @@ describe CdiscTermsController do
     end
 
     it "shows the history, initial view" do
-      params = {}
+      ct = Thesaurus.new
+      ct.uri = Uri.new(uri: "http://www.example.com/th#th")
       expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
       expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
       expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
       expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
+      expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")
     end
 
@@ -93,8 +96,15 @@ describe CdiscTermsController do
     login_content_admin
 
     it "shows the history, initial view" do
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      ct = Thesaurus.new
+      ct.uri = Uri.new(uri: "http://www.example.com/th#th")
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
+      expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
+      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
+      expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")
     end
 
@@ -105,8 +115,15 @@ describe CdiscTermsController do
     login_reader
 
     it "shows the history, initial view" do
-      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      ct = Thesaurus.new
+      ct.uri = Uri.new(uri: "http://www.example.com/th#th")
+      expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1"),Uri.new(uri: "http://www.example.com/a#2")])
+      expect(Thesaurus).to receive(:find_minimum).with(Uri.new(uri: "http://www.example.com/a#2").to_id).and_return(ct)
       get :history
+      expect(assigns(:cdisc_term_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzI=")
+      expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
+      expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
+      expect(assigns(:ct).uri).to eq(ct.uri)
       expect(response).to render_template("history")
     end
 
