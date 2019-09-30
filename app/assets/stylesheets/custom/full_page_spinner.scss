@@ -35,6 +35,6 @@ body {
 
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   .spinner-el {
-    background: url(asset_path("loading.gif"));
+    background: url(asset_path("loading.gif")) no-repeat center !important;
   }
 }
