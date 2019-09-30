@@ -17,8 +17,8 @@
   <% end %>
 </div>
 <div class="row">
-  <%= render partial: "shared/thesauri/differences_panel", :locals => {title: "Differences", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/differences_panel_v2", :locals => {title: "Differences", info: "Row of 'No change' indicates only child items have changed. See the changes window below.", column_count: @version_count, links: @links} %>
 </div>
 <div class="row">
-  <%= render partial: "shared/thesauri/changes_panel", :locals => {title: "Changes", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/changes_panel_v2", :locals => {title: "Changes", info: "Changes in the items.", column_count: @version_count, links: @links} %>
 </div>
