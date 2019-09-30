@@ -41,7 +41,7 @@ describe "Thesaurus::Synonyms" do
     object.synonym << Thesaurus::Synonym.where_only_or_create("Y")
     expect(object.synonyms_to_s).to eq("X; Y")
     object.synonym << Thesaurus::Synonym.where_only_or_create("A Third")
-    expect(object.synonyms_to_s).to eq("X; Y; A Third")
+    expect(object.synonyms_to_s).to eq("A Third; X; Y")
   end
 
   it "creates a synonym set" do
