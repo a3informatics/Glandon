@@ -34,7 +34,7 @@ describe "Ad Hoc Reports", :type => :feature do
       ua_destroy
     end
 
-    it "allows access but no new or delete buttons", js:true do
+    it "allows access but no new or delete buttons (REQ-MDR-AR-NONE)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       expect(page).to have_no_link 'New'
@@ -42,7 +42,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_no_link 'Delete'
     end
 
-    it "shoud allow a report to be run", js:true do
+    it "shoud allow a report to be run (REQ-MDR-AR-020)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 2')]/td/a", :text => 'Run').click
@@ -50,7 +50,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 2")
     end
 
-    it "should allow the results to be viewed", js:true do
+    it "should allow the results to be viewed (REQ-MDR-AR-050)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 3')]/td/a", :text => 'Results').click
@@ -84,14 +84,14 @@ describe "Ad Hoc Reports", :type => :feature do
       ua_destroy
     end
 
-    it "allows access and the new and delete buttons", js:true do
+    it "allows access and the new and delete buttons (REQ-MDR-AR-010)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       expect(page).to have_link 'New'
       expect(page).to have_link 'Delete'
     end
 
-    it "shoud allow a report to be created", js:true do
+    it "shoud allow a report to be created (REQ-MDR-AR-010, REQ-MDR-AR-060)", js:true do
       delete_all_public_test_files
       copy_file_to_public_files("controllers", "ad_hoc_report_test_1_sparql.yaml", "upload")
       click_navbar_ahr
@@ -104,7 +104,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content 'Report was successfully created.'
     end
 
-    it "shoud allow a report to be run", js:true do
+    it "shoud allow a report to be run (REQ-MDR-AR-020)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 2')]/td/a", :text => 'Run').click
@@ -112,14 +112,14 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 2")
     end
 
-    it "should allow the results to be viewed", js:true do
+    it "should allow the results to be viewed (REQ-MDR-AR-050)", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 3')]/td/a", :text => 'Results').click
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 3")
     end
 
-    it "should handle errors in import files", js:true do
+    it "should handle errors in import files (REQ-MDR-AR-010)", js:true do
       copy_file_to_public_files("models", "ad_hoc_report_test_err_6_sparql.yaml", "upload")
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'

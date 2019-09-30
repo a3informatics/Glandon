@@ -307,7 +307,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Terminology'
     end
 
-    it "edit timeout warnings and expiration (REQ-MDR-ST-NONE)", js: true do
+    it "edit timeout warnings and expiration (REQ-MDR-EL-020)", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -332,7 +332,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit timeout warnings and extend (REQ-MDR-ST-NONE)", js: true do
+    it "edit timeout warnings and extend (REQ-MDR-EL-030)", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -364,7 +364,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit timeout warnings and child pages (REQ-MDR-ST-NONE)", js: true do
+    it "edit timeout warnings and child pages (REQ-MDR-EL-NONE)", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -399,7 +399,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit clears token on close (REQ-MDR-ST-NONE)", js: true do
+    it "edit clears token on close (REQ-MDR-EL-030)", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -416,7 +416,7 @@ describe "Thesaurus", :type => :feature do
       expect(tokens).to match_array([])
     end
 
-    it "edit clears token on back button (REQ-MDR-ST-NONE)", js: true do
+    it "edit clears token on back button (REQ-MDR-EL-030)", js: true do
       Token.set_timeout(@user.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
