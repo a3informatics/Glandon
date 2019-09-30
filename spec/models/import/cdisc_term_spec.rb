@@ -197,9 +197,7 @@ describe Import::CdiscTerm do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2008-09-22.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2008-09-22.yaml")
-    expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2008-09-22.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -242,7 +240,7 @@ describe Import::CdiscTerm do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, Multiple Version 4 Format, no errors" do
+  it "import, Multiple Version 4 Format, errors" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2018-12-21.xlsx")
     full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2018-12-21.xlsx")
     full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2018-12-21.xlsx")
@@ -261,8 +259,9 @@ describe Import::CdiscTerm do
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
   #Xwrite_yaml_file(actual, sub_dir, "import_version_2018-12-21.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2018-12-21.yaml")
-    expect(actual).to eq(expected)
+    #expected = read_yaml_file(sub_dir, "import_version_2018-12-21.yaml")
+    #expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2018-12-21.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
