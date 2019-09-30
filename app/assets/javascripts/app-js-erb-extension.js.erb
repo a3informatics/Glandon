@@ -15,7 +15,7 @@ function showFullPageSpinner(durationInSec, loading_message, timeout_message){
   var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
   $("body").prepend(html);
 
-  setTimeout(function(){
+  pdfLoadingTimeout = setTimeout(function(){
     $(".spinner-wrap").remove();
     displayError("Loading timeout: " + timeout_message);
   }, durationInSec * 1000);
@@ -29,7 +29,7 @@ function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout
     window.location.href = redirectPath;
   }, 50)
 
-  setTimeout(function(){
+  pdfLoadingTimeout = setTimeout(function(){
     $(".spinner-wrap").remove();
     displayError("Loading timeout: " + timeout_message);
   }, durationInSec * 1000);
