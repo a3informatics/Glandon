@@ -387,7 +387,7 @@ defaults: &defaults
                 method: create_shared
                 object: parent
                 property: preferred_term
-                can_be_empty: true
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_not_blank?

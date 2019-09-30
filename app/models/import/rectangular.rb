@@ -60,7 +60,8 @@ private
       if @parent_set.key?(k)
         next if @parent_set[k].merge(v)
         msg =  "Duplicate identifier #{k} detected during import of #{reader.full_path} and cannot merge as a difference has been detected"
-        self.errors.add(:base, msg) 
+        self.errors.add(:base, msg)
+        merge_errors(@parent_set[k], self)
         ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, msg)
         dup_count += 1
       else

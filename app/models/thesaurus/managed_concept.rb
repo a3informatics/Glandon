@@ -94,6 +94,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       msg = "When merging #{self.identifier} a difference was detected in child #{identifier}"
       errors.add(:base, msg) 
       ConsoleLogger.info(self.class.name, __method__.to_s, msg)
+      ConsoleLogger.info(self.class.name, __method__.to_s, this_child.to_h)  
+      ConsoleLogger.info(self.class.name, __method__.to_s, other_child.to_h)  
     end
     missing_ids.each do |identifier|
       other_child = other.narrower.find{|x| x.identifier == identifier}

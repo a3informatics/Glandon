@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CdiscTerm do
+describe "CdiscTerm Difference" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -86,27 +86,6 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
   end
 
-  # def check_cli_result(old_version, new_version, cl, cli, *args)
-		# created = args[0][:created].blank? ? false : args[0][:created]
-  # 	deleted = args[0][:deleted].blank? ? false : args[0][:deleted]
-  # 	updated = args[0][:updated].blank? ? [] : args[0][:updated]
-  #   old_ct = find_term(old_version)
-  #   new_ct = find_term(new_version)
-  #   previous = CdiscCl.find_child(cl, cli, old_ct.namespace)
-  #   current = CdiscCl.find_child(cl, cli, new_ct.namespace)
-		# base = [:Definition, :"Preferred Term", :Notation, :Synonym, :Identifier]
-	 #  no_change = base - updated
-  #   result = CdiscTerm::Utility.compare_cli(new_ct, previous, current)
-  # 	if created
-  # 		base.each { |f| expect(result[:results][f][:status]).to eq(:created) }
-  # 	elsif deleted
-  # 		base.each { |f| expect(result[:results][f][:status]).to eq(:deleted) }
-  # 	else
-  # 		no_change.each { |f| expect(result[:results][f][:status]).to eq(:no_change) }
-  # 		updated.each { |f| expect(result[:results][f][:status]).to eq(:updated) }
-  # 	end
-  # end
-
   def dump_errors_if_present(filename, version, date)
     full_path = Rails.root.join "public/test/#{filename}"
     return if !File.exists?(full_path)
@@ -143,7 +122,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
   def process_load_and_compare(filenames, date, version, create_file=false)
     files = []
-    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct/", filenames[index])}
+    filenames.each_with_index {|f, index| files << db_load_file_path("cdisc/ct", filenames[index])}
     process_term(version, date, files, create_file)
     load_version(version)
     th = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
@@ -650,6 +629,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     it "Create version 26: 2011", :speed => 'slow' do
       version = 26
       results = execute_import(version, "2011-06-10", {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
+  byebug
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
