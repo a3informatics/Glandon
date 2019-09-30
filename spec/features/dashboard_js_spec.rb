@@ -38,7 +38,7 @@ describe "Dashboard JS", :type => :feature do
 
   describe "Reader User", :type => :feature do
 
-    it "allows the triples to be viewed", js: true do
+    it "allows the triples to be viewed (REQ-MDR-UD-NONE)", js: true do
       click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_main_search("C16358")
@@ -64,7 +64,7 @@ describe "Dashboard JS", :type => :feature do
       expect(current_path).to eq("/dashboard")
     end
 
-    it "allows the graph to be viewed", js: true do
+    it "allows the graph to be viewed (REQ-MDR-UD-NONE)", js: true do
       click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
@@ -79,7 +79,7 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Graph:'
     end
 
-    it "allows the dashboard to be viewed", js: true do
+    it "allows the dashboard to be viewed (REQ-MDR-UD-NONE)", js: true do
       expect(page).to have_content 'CDISC'
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'Temperature (BC C25206)'
@@ -87,12 +87,12 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Vital Signs Baseline'
     end
 
-    it "allows the history to be accessed", js: true do
+    it "allows the history to be accessed (REQ-MDR-UD-NONE)", js: true do
       find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
       expect(page).to have_content 'History: BC A00002'
     end
 
-    it "displays the organization name", js: true do
+    it "displays the organization name (REQ-MDR-UD-NONE)", js: true do
       expect(page).to have_content "#{APP_CONFIG['application_name']} (v#{Version::VERSION})"
     end
 
