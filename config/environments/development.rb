@@ -35,14 +35,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+
   config.serve_static_files = false
 
   # Email options:
   # Don't care if the mailer can't send.
   # Default URL
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = {host: ENV["HOST_NAME"], port: ENV["HOST_PORT"].to_i}
+  config.action_mailer.default_url_options = {host: ENV["HOST_NAME"], port: ENV["HOST_PORT"].to_i, protocol: ENV["HOST_PROTOCOL"]}
 
   # Email settings
   config.action_mailer.smtp_settings = {
@@ -54,5 +54,5 @@ Rails.application.configure do
     user_name: ENV["EMAIL_USERNAME"],
     password: ENV["EMAIL_PASSWORD"]
   }
-  
+
 end

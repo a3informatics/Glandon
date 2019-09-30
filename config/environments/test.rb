@@ -45,7 +45,7 @@ Rails.application.configure do
   # Default URL
   # Test delivery method
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = {host: ENV["HOST_NAME"], port: ENV["HOST_PORT"].to_i}
+  config.action_mailer.default_url_options = {host: ENV["HOST_NAME"], port: ENV["HOST_PORT"].to_i, protocol: ENV["HOST_PROTOCOL"]}
   config.action_mailer.delivery_method = :test
 
   # Email settings
@@ -58,5 +58,5 @@ Rails.application.configure do
     user_name: ENV["EMAIL_USERNAME"],
     password: ENV["EMAIL_PASSWORD"]
   }
-  
+
 end

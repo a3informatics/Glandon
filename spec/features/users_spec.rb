@@ -83,6 +83,8 @@ describe "Users", :type => :feature do
     	expect(ActionMailer::Base.deliveries[0].from).to eq([ENV['EMAIL_USERNAME']])
     	expect(ActionMailer::Base.deliveries[0].to).to eq(['reader@example.com'])
 			expect(ActionMailer::Base.deliveries[0].subject).to eq('Reset password instructions')
+      expect(ActionMailer::Base.deliveries[0].body).to include("#{ENV['HOST_PROTOCOL']}://#{ENV['HOST_NAME']}")
+      expect(ActionMailer::Base.deliveries[0].body).to include('users/password/edit?reset_password_token=')
     	expect(ActionMailer::Base.smtp_settings[:address]).to eq(ENV['EMAIL_SMTP'])
 			expect(ActionMailer::Base.smtp_settings[:port]).to eq(ENV['EMAIL_PORT'].to_i)
 			expect(ActionMailer::Base.smtp_settings[:domain]).to eq(ENV['EMAIL_DOMAIN'])
