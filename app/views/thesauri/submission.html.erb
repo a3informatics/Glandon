@@ -10,7 +10,7 @@
   <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Submission value changes"} do %>
     <div class="actions-wrap">
       <div onclick="showFullPageSpinner(pdfLoadingDur, loadingMessage, errTimeoutMessage);">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@ct, format: :pdf), id: "report",
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: submission_report_thesauri_path(@ct, format: :pdf), id: "report",
         icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
       </div>
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
