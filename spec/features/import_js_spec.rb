@@ -44,18 +44,16 @@ describe "Imports", :type => :feature do
     click_table_link "#{identifier}", 'History'
     click_table_link "#{identifier}", 'Delete'
     ui_click_ok
-    expect_page 'Index: Terminology'     
+    expect_page 'Index: Terminology'
   end
 
   def create_terminology(identifier)
     click_navbar_terminology
     expect_page 'Index: Terminology'
-    click_link 'New'
-    expect_page 'New Terminology:'
-    fill_in 'thesauri[identifier]', with: identifier
-    fill_in 'thesauri[label]', with: 'Import Terminology'
+    fill_in 'thesauri_identifier', with: identifier
+    fill_in 'thesauri_label', with: 'Import Terminology'
     click_button 'Create'
-    expect_page "Terminology was successfully created."   
+    expect_page "Terminology was successfully created."
   end
 
   def get_excel_code_lists
@@ -79,14 +77,9 @@ describe "Imports", :type => :feature do
   describe "Import Terminology, Curator User, Excel", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -108,7 +101,7 @@ describe "Imports", :type => :feature do
       delete_public_file("test", "import_2.xlsx")
       Import.delete_all
     end
-    
+
     before :each do
       ua_content_admin_login
       create_terminology("IMPORT 1")
@@ -118,6 +111,7 @@ describe "Imports", :type => :feature do
     after :each do
       delete_terminology("IMPORT 1")
       Import.delete_all
+      ua_logoff
     end
 
     it "import into terminolgy, initial setup", scenario: true, js: true do
@@ -219,15 +213,9 @@ describe "Imports", :type => :feature do
  describe "Import Terminology, Curator User, ODM", :type => :feature do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -249,7 +237,7 @@ describe "Imports", :type => :feature do
       delete_public_file("test", "import_3.xml")
       delete_public_file("test", "import_4.xml")
     end
-    
+
     before :each do
       Import.delete_all
       ua_content_admin_login
@@ -259,6 +247,7 @@ describe "Imports", :type => :feature do
     after :each do
       Import.delete_all
       delete_terminology("IMPORT 1")
+      ua_logoff
     end
 
     it "import into terminolgy, import, multiple, clear terminology, re-import", scenario: true, js: true do

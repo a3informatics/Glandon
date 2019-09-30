@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'selenium-webdriver'
 
 describe "Biomedical Concept Editor", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
@@ -11,21 +11,27 @@ describe "Biomedical Concept Editor", :type => :feature do
   include ValidationHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("CT_V42.ttl")
-    load_test_file_into_triple_store("CT_V43.ttl")
-    load_test_file_into_triple_store("CT_ACME_V1.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+      "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl","CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..43)
+
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("CT_V42.ttl")
+    # load_test_file_into_triple_store("CT_V43.ttl")
+    # load_test_file_into_triple_store("CT_ACME_V1.ttl")
+    # load_test_file_into_triple_store("BCT.ttl")
+    # load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -41,14 +47,11 @@ describe "Biomedical Concept Editor", :type => :feature do
 
   before :each do
       #set_screen_size(1500, 900)
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_curator_login
     end
 
   after :each do
-    click_link 'logoff_button'
+    ua_logoff
   end
 
   def wait_for_ajax_long
@@ -60,7 +63,7 @@ describe "Biomedical Concept Editor", :type => :feature do
   end
 
   def open_edit_multiple
-    click_link 'main_nav_bc'
+    click_navbar_bc
     click_link 'Edit Multiple'
     wait_for_ajax(15)
   end
@@ -72,7 +75,7 @@ describe "Biomedical Concept Editor", :type => :feature do
     select template, from: "biomedical_concept_uri"
     click_button 'Create'
     wait_for_ajax_short
-    #expect(page).to have_content("The Biomedical Concept was succesfully created.") 
+    #expect(page).to have_content("The Biomedical Concept was succesfully created.")
   end
 
   def scroll_to_editor_table
@@ -149,7 +152,7 @@ describe "Biomedical Concept Editor", :type => :feature do
   end
 
   describe "Curator User, Multiple Edit", :type => :feature do
-  
+
     it "has correct initial state", js: true do
       open_edit_multiple
       expect(page).to have_content("Edit Multiple Biomedical Concepts")
@@ -204,7 +207,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       select "Obs PQR", from: "biomedical_concept_uri"
       click_button 'Create'
       wait_for_ajax_long
-      expect(page).to have_content("") 
+      expect(page).to have_content("")
     end
 
     it "allows BCs to be moved left and right", js: true do
@@ -289,7 +292,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("Test BC No. 47")
     end
 
-    
+
     it "allows a property to be updated (REQ-MDR-BC-010)", js: true do
       #set_screen_size(1500, 900)
       open_edit_multiple
@@ -389,11 +392,11 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(page).to have_content("You need to select an item.")
       ui_term_overall_search("QSCAT")
       ui_table_row_double_click('searchTable', 'CDISC Questionnaire Category Terminology')
-      wait_for_ajax_short
+      wait_for_ajax_long
       ui_table_row_click('searchTable', 'C100760')
       ui_click_by_id 'tfe_add_item'
-      wait_for_ajax_short
-     
+      wait_for_ajax_long
+
     end
 
     it "allows BC creation, form validation", js: true do
@@ -404,29 +407,29 @@ describe "Biomedical Concept Editor", :type => :feature do
       click_button 'Create'
       expect(page).to have_content 'The form is not valid. Please correct the errors.'
       expect(page).to have_content 'This field is required.'
-      
+
       fill_in "biomedical_concept_identifier", with: 'A12345 XXX§'
       fill_in "biomedical_concept_label", with: 'Well this is not going well'
       select "Obs PQR", from: "biomedical_concept_uri"
       click_button 'Create'
       expect(page).to have_content 'The form is not valid. Please correct the errors.'
       expect(page).to have_content 'Please enter a valid identifier. Upper and lower case alphanumeric and space characters only.'
-      
+
       fill_in 'Identifier', with: 'A12345'
       click_button 'Create'
       wait_for_ajax_short
       expect(page).to have_content 'The Biomedical Concept was succesfully created.'
-      
+
       fill_in "biomedical_concept_identifier", with: 'A12346'
       fill_in "biomedical_concept_label", with: ''
       select "Obs PQR", from: "biomedical_concept_uri"
       click_button 'Create'
       expect(page).to have_content 'This field is required.'
-      
+
       fill_in "biomedical_concept_label", with: '±±±'
       click_button 'Create'
       expect(page).to have_content vh_label_error
-      
+
       fill_in "biomedical_concept_label", with: vh_all_chars
       click_button 'Create'
       wait_for_ajax_short
@@ -482,7 +485,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(tokens).to match_array([])
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC102")
       expect(tokens).to match_array([])
-    end  
+    end
 
     it "edit clears token on back button", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
@@ -501,7 +504,7 @@ describe "Biomedical Concept Editor", :type => :feature do
       expect(tokens).to match_array([])
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRBCs/ACME/V1#BC-ACME_TESTBC104")
       expect(tokens).to match_array([])
-    end 
+    end
 
     it "edit timeout warnings (REQ-MDR-EL-020)", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
@@ -543,8 +546,8 @@ describe "Biomedical Concept Editor", :type => :feature do
       ui_button_label("token_timer_1", "00:00")
       ui_button_label("token_timer_2", "00:00")
       click_button 'close_button'
-    end  
-    
+    end
+
   end
 
 end

@@ -2,15 +2,12 @@
 
 <div class="col-md-12 card">
   <div class="card-content">
-    <!-- CARD FOR TERMINOLOGY -->
     <div class="h-outside-wrap">
-      <!-- BADGE COLUMN -->
       <div class="h-inner-wrap">
         <span class="circular-badge big bg-accent-1 text-white">
           <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
         </span>
       </div>
-      <!-- INFO COLUMN -->
       <div class="h-inner-wrap mid">
         <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
         <div class="text-large"> <%= item.label %> </div>
@@ -20,7 +17,6 @@
             <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
           </div>
       </div>
-      <!-- BUTTONS COLUMN -->
       <div class="h-inner-wrap">
         <%= yield %>
       </div>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Forms", :type => :feature do
-  
+
   include DataHelpers
   include UiHelpers
   include PauseHelpers
@@ -9,65 +9,46 @@ describe "Forms", :type => :feature do
   include ValidationHelpers
   include DownloadHelpers
   include SparqlHelpers
-  
+  include UserAccountHelpers
+
   def sub_dir
     return "features"
   end
 
   describe "Forms", :type => :feature do
-  
+
     before :all do
       Token.destroy_all
       Token.set_timeout(5)
-      user = User.create :email => "curator@example.com", :password => "12345678" 
-      user.add_role :curator
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("form_example_dm1.ttl")
-      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl",
+         "form_example_dm1.ttl", "form_example_dm1_branch.ttl", "form_example_vs_baseline_new.ttl", "form_example_general.ttl", "thesaurus_concept_new_2.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..48)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
       clear_cdisc_term_object
+      ua_create
     end
 
     after :all do
-      user = User.where(:email => "curator@example.com").first
-      user.destroy
+      ua_destroy
       Token.restore_timeout
     end
 
     before :each do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'curator@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+      ua_curator_login
     end
 
     after :each do
-      click_link 'logoff_button'
+      ua_logoff
     end
 
     it "allows a placeholder form to be created", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
@@ -83,7 +64,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a CRF and aCRF to be viewed", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -103,7 +84,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -114,7 +95,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed, show table details (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -133,7 +114,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed, show table details, VS BC (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: VS BASELINE'
@@ -146,7 +127,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed, edit button check (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: VS BASELINE'
@@ -158,7 +139,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -168,7 +149,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form show page to be viewed, view tree details, DM (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -179,13 +160,13 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(1, ["Identifier:", "DM1 01"])
       ui_check_anon_table_row(2, ["Label:", "Demographics"])
       ui_check_anon_table_row(3, ["Completion Instructions:", ""])
-      key = ui_get_key_by_path('["Demographics", "Question Group"]')      
+      key = ui_get_key_by_path('["Demographics", "Question Group"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Group'
       ui_check_anon_table_row(1, ["Label:", "Question Group"])
       ui_check_anon_table_row(2, ["Repeating:", "false"])
       ui_check_anon_table_row(3, ["Optional:", "false"])
-      key = ui_get_key_by_path('["Demographics", "Question Group", "Race"]')      
+      key = ui_get_key_by_path('["Demographics", "Question Group", "Race"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Question'
       ui_check_anon_table_row(1, ["Label:", "Race"])
@@ -194,7 +175,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(4, ["Mapping:", "RACE"])
       ui_check_anon_table_row(5, ["Datatype:", "string"])
       ui_check_anon_table_row(6, ["Format:", ""])
-      key = ui_get_key_by_path('["Demographics", "Question Group", "Race", "Asian"]')      
+      key = ui_get_key_by_path('["Demographics", "Question Group", "Race", "Asian"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Code List'
       ui_check_anon_table_row(1, ["Identifier:", "C41260"])
@@ -203,21 +184,21 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(4, ["Submission Value:", "ASIAN"])
       ui_check_anon_table_row(5, ["Enabled:", "true"])
       ui_check_anon_table_row(6, ["Optional:", "false"])
-      key = ui_get_key_by_path('["Demographics", "Question Group", "CRF Number"]')      
+      key = ui_get_key_by_path('["Demographics", "Question Group", "CRF Number"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Question'
       ui_check_anon_table_row(1, ["Label:", "CRF Number"])
-      ui_check_anon_table_row(4, ["Mapping:", "[NOT SUBMITTED]"])      
+      ui_check_anon_table_row(4, ["Mapping:", "[NOT SUBMITTED]"])
       ui_check_anon_table_row(5, ["Datatype:", "integer"])
-      key = ui_get_key_by_path('["Demographics"]')      
+      key = ui_get_key_by_path('["Demographics"]')
       ui_click_node_key(key)
       ui_check_anon_table_row(1, ["Identifier:", "DM1 01"])
       ui_check_anon_table_row(2, ["Label:", "Demographics"])
-      ui_check_anon_table_row(3, ["Completion Instructions:", ""])     
+      ui_check_anon_table_row(3, ["Completion Instructions:", ""])
     end
 
     it "allows a form show page to be viewed, view tree details, VS BC - WILL FAIL CURRENTLY (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: VS BASELINE'
@@ -228,13 +209,13 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(1, ["Identifier:", "VS BASELINE"])
       ui_check_anon_table_row(2, ["Label:", "Vital Signs Baseline"])
       ui_check_anon_table_row(3, ["Completion Instructions:", ""])
-      key = ui_get_key_by_path('["Vital Signs Baseline", "Group"]')      
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Group'
       ui_check_anon_table_row(1, ["Label:", "Group"])
       ui_check_anon_table_row(2, ["Repeating:", "false"])
       ui_check_anon_table_row(3, ["Optional:", "false"])
-      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')      
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Group'
       ui_check_anon_table_row(1, ["Label:", "Height (BC_C25347)"])
@@ -242,8 +223,8 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(3, ["Optional:", "false"])
       ui_check_anon_table_row(4, ["Completion Instructions:", ""])
       ui_check_anon_table_row(5, ["Notes:", ""])
-      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)"]') 
-      #pause     
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)"]')
+      #pause
       ui_click_node_key(key)
       expect(page).to have_content 'Biomedical Concept Item'
       ui_check_anon_table_row(1, ["Label:", "Result Units (--ORRESU)"])
@@ -254,32 +235,32 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(6, ["Format:", ""])
       ui_check_anon_table_row(7, ["Completion Instructions:", ""])
       ui_check_anon_table_row(8, ["Notes:", ""])
-      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)", "Meter"]')      
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)", "Result Units (--ORRESU)", "Meter"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Code List'
       ui_check_anon_table_row(1, ["Identifier:", "C41139"])
       ui_check_anon_table_row(2, ["Label:", "Meter"])
       ui_check_anon_table_row(3, ["Default Label:", "Meter"])
-      ui_check_anon_table_row(4, ["Submission Value:", "m"])      
+      ui_check_anon_table_row(4, ["Submission Value:", "m"])
       ui_check_anon_table_row(5, ["Enabled:", "true"])
       ui_check_anon_table_row(6, ["Optional:", "false"])
-      key = ui_get_key_by_path('["Vital Signs Baseline"]')      
+      key = ui_get_key_by_path('["Vital Signs Baseline"]')
       ui_click_node_key(key)
       ui_check_anon_table_row(1, ["Identifier:", "VS BASELINE"])
       ui_check_anon_table_row(2, ["Label:", "Vital Signs Baseline"])
       ui_check_anon_table_row(3, ["Completion Instructions:", ""])
-      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')      
+      key = ui_get_key_by_path('["Vital Signs Baseline", "Group", "Height (BC_C25347)"]')
       ui_click_node_key(key)
       expect(page).to have_content 'Group'
       ui_check_anon_table_row(1, ["Label:", "Height (BC_C25347)"])
       ui_check_anon_table_row(2, ["Repeating:", "false"])
       ui_check_anon_table_row(3, ["Optional:", "false"])
       ui_check_anon_table_row(4, ["Completion Instructions:", ""])
-      ui_check_anon_table_row(5, ["Notes:", ""])  
+      ui_check_anon_table_row(5, ["Notes:", ""])
     end
 
     it "allows a form to be deleted (REQ-MDR-CRF-010)", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: T2'
@@ -292,7 +273,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a placeholder form to be created, field validation", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       click_link 'New Placeholder'
       expect(page).to have_content 'New Placeholder Form:'
@@ -316,9 +297,10 @@ describe "Forms", :type => :feature do
       expect(page).to have_content "BETTER"
       expect(page).to have_content "Nice Label"
     end
-    
+
     it "allows a form to be created, field validation (REQ-MDR-CRF-010)", js: true do
-      visit '/forms/new'
+      click_navbar_forms
+      click_link 'New'
       expect(page).to have_content 'New Form:'
       fill_in 'form[identifier]', with: '£££'
       fill_in 'form[label]', with: '€€€'
@@ -337,7 +319,7 @@ describe "Forms", :type => :feature do
     end
 
     it "allows a form to be branched, presents a parent button", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
@@ -364,7 +346,7 @@ describe "Forms", :type => :feature do
     end
 
     it "shows the forms that have been branched", js: true do
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 BRANCH')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 BRANCH'
@@ -377,7 +359,7 @@ describe "Forms", :type => :feature do
 
     it "allows for a Form to be exported as JSON (REQ-MDR-CRF-100)", js: true do
       clear_downloads
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -385,7 +367,7 @@ describe "Forms", :type => :feature do
       expect(page).to have_content 'Show: Demographics DM1 01 (V0.0.0, 1, Candidate)'
       wait_for_ajax
       click_link 'Export JSON'
-      file = download_content 
+      file = download_content
     #Xwrite_text_file_2(file, sub_dir, "form_export.json")
       expected = read_text_file_2(sub_dir, "form_export.json")
       expect(file).to eq(expected)
@@ -393,7 +375,7 @@ describe "Forms", :type => :feature do
 
     it "allows for a Forms to be exported as TTL (REQ-MDR-CRF-100)", js: true do
       clear_downloads
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -408,7 +390,7 @@ describe "Forms", :type => :feature do
       check_triples("form_export_results.ttl", "form_export.ttl")
       delete_data_file(sub_dir, "form_export_results.ttl")
     end
-    
+
   end
 
 end

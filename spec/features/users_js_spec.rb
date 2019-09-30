@@ -7,8 +7,7 @@ describe "Users", :type => :feature do
 
   before :all do
     ua_create
-    user = User.create :email => "delete@example.com", :password => "12345678"
-    user.add_role :curator
+    ua_add_user email: 'delete@example.com', password: 'Changeme1#', role: :curator
   end
 
   after :all do
@@ -18,11 +17,8 @@ describe "Users", :type => :feature do
 
   describe "System Admin User", :type => :feature do
 
-    it "allows a user to be deleted", js: true do
-      visit '/users/sign_in'
-      fill_in 'Email', with: 'sys_admin@example.com'
-      fill_in 'Password', with: '12345678'
-      click_button 'Log in'
+    it "allows a user to be deleted (REQ-GENERIC-UM-090)", js: true do
+      ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
       audit_count = AuditTrail.count

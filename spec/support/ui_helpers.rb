@@ -130,10 +130,35 @@ module UiHelpers
     #input.native.send_keys(:return)
   end
 
+  def ui_table_search(table_id, text)
+    input = find(:xpath, "//*[@id=\"#{table_id}_filter\"]/label/input")
+    input.set(text)
+  end
+
   # check table cell
   def ui_check_table_cell(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").text
     expect(cell).to eq(text)
+  end
+
+  def ui_check_table_cell_edit(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-edit-circle', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_delete(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-times-circle', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_no_change_right(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-arrow-circle-r', visible: :all)).to_not eq(nil)
+  end
+
+  def ui_check_table_cell_no_change_down(table_id, row, col)
+    td = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]")
+    expect(td.find('div span.icon-arrow-circle-d', visible: :all)).to_not eq(nil)
   end
 
   def ui_check_table_head(table_id, col, text)
@@ -279,6 +304,10 @@ module UiHelpers
     page.evaluate_script('window.history.back()')
   end
 
+  def ui_click_forward_button
+    page.evaluate_script('window.history.forward()')
+  end
+
   # Navigation
   # ==========
 
@@ -309,6 +338,15 @@ module UiHelpers
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
+  end
+ 
+  #System Admin
+  def click_navbar_at
+    ui_navbar_click('main_nav_at')
+  end
+ 
+  def click_navbar_el
+    ui_navbar_click('main_nav_el')
   end
 
 	#Dashboard
@@ -409,7 +447,6 @@ module UiHelpers
   end
 
   #Community Version
-
   def click_browse_every_version
     click_link 'btn-browse-cdisc'
   end
@@ -417,6 +454,15 @@ module UiHelpers
   def click_search_the_latest_version
     click_link 'btn-search-latest'
   end
+
+  def click_see_changes_all_versions
+    click_link 'btn-see-changes'
+  end
+
+  def click_submission_value_changes
+    click_link 'btn-submission-changes'
+  end
+
 
   def ui_check_table_cell_extensible(table_id, row, col, text)
     cell = find(:xpath, "//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]").has_css?(".icon-extend")

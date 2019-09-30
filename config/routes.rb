@@ -138,6 +138,7 @@ Rails.application.routes.draw do
         get :show_data
         get :changes
         get :changes_data
+        get :changes_report
         get :differences
         get :synonym_links
         get :preferred_term_links
@@ -146,6 +147,7 @@ Rails.application.routes.draw do
         delete :extensions, action: :destroy_extensions
         get :is_extended
         get :is_extension
+        get :export_csv
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -172,8 +174,10 @@ Rails.application.routes.draw do
       get :children
       post :add_child
       get :changes
+      get :changes_data
       get :changes_report
       get :submission
+      get :submission_data
       get :submission_report
       get :search
       get :export_csv

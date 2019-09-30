@@ -105,7 +105,20 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Integer] the number of changes
   def changes_count(window_size)
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
-    items.count < window_size ? items.count : window_size
+    first_index = items.index {|x| x == self.uri}    
+    if first_index.nil? 
+      first_index = 0
+      start_index = 0 
+    elsif first_index == 0 
+      start_index = 0 
+    else
+      start_index = first_index - 1
+    end    
+    last_index = first_index + window_size - 1
+    last_index = last_index < items.count ? last_index : items.count - 1
+    count = last_index - first_index + 1
+    count += 1 if deleted_from_ct?(items.last)
+    count
   end
     
   # Changes
@@ -152,18 +165,26 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       raw_results[uri][:children] << DiffResult[key: entry[:i], uri: entry[:cl], label: entry[:l], notation: entry[:n]]
     end
 
+    # Item deleted?
+    item_was_deleted_info = deleted_from_ct_version(items.last)
+
     # Get the version array
     raw_results.sort_by {|k,v| v[:version]}
     raw_results.each {|k,v| versions << v[:date]}
     versions = versions.drop(1)
 
+    
     # Build the skeleton final results with a default value.
     initial_status = [{ status: :not_present}] * versions.length
+    if item_was_deleted_info[:deleted]
+      versions << item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d") 
+      initial_status << { status: :deleted}
+    end
     raw_results.each do |uri, version|
       version[:children].each do |entry|
         key = entry[:key].to_sym
         next if final_results.key?(key)
-        final_results[key] = {key: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+        final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
 
@@ -207,6 +228,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def differences
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    item_was_deleted_info = deleted_from_ct_version(items.first)
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {        
@@ -231,6 +253,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
       previous = current
     end
+    if item_was_deleted_info[:deleted]
+      results << {id: nil, date: item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d"), differences: difference_record_deleted} 
+    end
     results
   end
 
@@ -254,6 +279,37 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
+  # To CSV. The code list as a set of CSV record with a header.
+  #
+  # @return [Array] the set of CSV record, each is an array of stirngs
+  def to_csv
+    headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name", 
+      "CDISC Submission Value", "CDISC Synonym(s)", "CDISC Definition", "NCI Preferred Term"]
+    CSVHelpers.format(headers, to_csv_data)
+  end
+
+  # To CSV No Header. A CSV record with no header
+  #
+  # @param parent [String] the parent identifier
+  # @return [Array] the results as an array of array of strings
+  def to_csv_data
+    this = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
+    this.insert(4, self.synonyms_to_s)
+    this.insert(6, self.preferred_term.label)
+    results = [this.insert(1, self.identifier)]
+    children.each do |c|
+      data = c.to_csv_data
+      data.insert(1, self.identifier)
+      data[2] = ""
+      data[3] = ""
+      results << data
+    end
+    return results
+  end
+
+private
+
+  # Class for a difference result
   class DiffResult < Hash
 
     def no_change?(other_hash)
@@ -270,7 +326,33 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 
   end
 
-private
+  def deleted_from_ct_version(last_item)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    used_in = thesarus_set(last_item)
+    item_was_deleted = used_in.first != ct_history.first
+    return {deleted: item_was_deleted, ct: nil} if !item_was_deleted
+    deleted_version = ct_history.index{|x| x == used_in.first} - 1
+    ct = Thesaurus.find_minimum(ct_history[deleted_version])
+    {deleted: item_was_deleted, ct: ct}
+  end
+
+  def deleted_from_ct?(last_item)
+    ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
+    used_in = thesarus_set(last_item)
+    used_in.first != ct_history.first
+  end
+
+  def thesarus_set(last_item)
+    query_string = %Q{
+      SELECT ?s WHERE {
+        #{last_item.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .
+        ?s isoT:hasIdentifier ?si . 
+        ?si isoI:version ?v 
+      } ORDER BY DESC (?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
+    query_results.by_object(:s)
+  end
 
   def diff_self?(other)
     return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 

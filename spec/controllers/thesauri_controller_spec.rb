@@ -3,6 +3,7 @@ require 'rails_helper'
 describe ThesauriController do
 
   include DataHelpers
+  include UserAccountHelpers
   
   def standard_params
     params = 
@@ -46,13 +47,12 @@ describe ThesauriController do
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+      @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
-      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
     end
 
     after :each do
-      user = User.where(:email => "lock@example.com").first
-      user.destroy
+      ua_remove_user("lock@example.com")
     end
 
     # it "new thesaurus" do
@@ -421,7 +421,7 @@ describe ThesauriController do
       expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       expect_any_instance_of(Thesaurus).to receive(:changes).with(2).and_return({versions: ["2019-01-01"], items: {}})
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :changes, id: "aaa"
+      get :changes_data, id: "aaa"
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200") 
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
@@ -450,7 +450,7 @@ describe ThesauriController do
       expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       expect_any_instance_of(Thesaurus).to receive(:submission).with(2).and_return({versions: ["2019-01-01"], items: {}})
       request.env['HTTP_ACCEPT'] = "application/json"
-      get :submission, id: "aaa"
+      get :submission_data, id: "aaa"
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200") 
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
@@ -492,13 +492,12 @@ describe ThesauriController do
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+      ua_add_user(email: "lock@example.com")
       Token.delete_all
-      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
     end
 
     after :each do
-      user = User.where(:email => "lock@example.com").first
-      user.destroy
+      ua_remove_user("lock@example.com")
     end
 
     it "index" do

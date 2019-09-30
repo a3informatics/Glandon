@@ -1,29 +1,26 @@
 <% second_level_breadcrumb("Users", users_path, "New") %>
-<h3>New: User</h3>
+<div class="text-medium font-light text-large">New user account</div>
+<div class="p-justified font-light text-small text-medium">
+  <%= password_message %>
+</div>
 <div class="row">
   <div class="col-md-4">
     <%= form_for User.new, url: create_user_path do |f| %>
+    <div class="form-wrap">
       <div class="form-group">
-        <%= f.label :email, "Email:" %><br />
-        <%= f.email_field :email, class: "form-control", autofocus: true %>
+        <%= f.email_field :email, class: "", placeholder: "Email", autofocus: true %>
       </div>
       <div class="form-group">
-        <%= f.label :name, "Display Name:" %><br />
-        <%= f.text_field :name, class: "form-control", autofocus: true %>
+        <%= f.text_field :name, class: "", placeholder: "Display name", autofocus: true %>
       </div>
       <div class="form-group">
-      	<%= f.label :password, "Password:"  %>
-        <% if @minimum_password_length %>
-        	<em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, class: "form-control", autocomplete: "off" %>
+        <%= f.password_field :password, class: "", placeholder: "Password", autocomplete: "off" %>
       </div>
       <div class="form-group">
-        <%= f.label :password_confirmation, "Password Confirmation:"  %><br />
-        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+        <%= f.password_field :password_confirmation, class: "", placeholder: "Confirm password", autocomplete: "off" %>
       </div>
-      <%= f.submit "Create", id: "create_button", class: "btn btn-primary" %>
-      <br/>
+    </div>
+    <%= f.submit "Create account", id: "create_button", class: "btn medium submit-btn" %>
     <% end %>
   </div>
 </div>

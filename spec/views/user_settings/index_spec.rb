@@ -5,7 +5,7 @@ describe 'user_settings/index.html.erb', :type => :view do
   include UserAccountHelpers
 
   it 'displays user details correctly, I' do
-    
+
     def view.policy(name)
       # Do nothing
     end
@@ -23,47 +23,52 @@ describe 'user_settings/index.html.erb', :type => :view do
 
     render
 
-    expect(rendered).to have_content("Current Settings: User Fred (user@assero.co.uk)")
-    expect(rendered).to have_content("Display Name:User Fred")
-    expect(rendered).to have_content("Email:user@assero.co.uk")
+    puts response.body
 
-    expect(rendered).to have_content("Change Password")
-    expect(rendered).to have_content("New Password:")
-    expect(rendered).to have_content("Confirm New Password:")
-    expect(rendered).to have_content("Current Password:")
-    
-    expect(rendered).to have_content("Change Display Name")
-    expect(rendered).to have_content("New Display Name:")
+    expect(rendered).to have_content("Preferences")
+    expect(rendered).to have_content("User Fred")
+    expect(rendered).to have_content("Email: user@assero.co.uk")
 
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(2) a", text: 'Yes')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(2) a", text: 'Yes')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(2) a", text: '1m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(2) a", text: 'A4')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(2) a", text: '10')
-    
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(3) a", text: 'No')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(3) a", text: 'No')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[1]", text: '30s')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[2]", text: '1m 30s')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[3]", text: '2m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[4]", text: '3m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[5]", text: '5m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(3) a[1]", text: 'A3')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(3) a[2]", text: 'Letter')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[1]", text: '5')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[2]", text: '15')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[3]", text: '25')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[4]", text: '50')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[5]", text: '100')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[6]", text: 'All')
-    
+    expect(rendered).to have_content("Change your account password")
+    expect(rendered).to have_selector("input#user_current_password")
+    expect(rendered).to have_selector("input#user_password")
+    expect(rendered).to have_selector("input#user_password_confirmation")
+
+    expect(rendered).to have_content("Change your display name")
+    expect(rendered).to have_selector("input#user_name")
+
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(1) a", text: 'Yes')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(1) a", text: 'Yes')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a", text: '1m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a", text: 'A4')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a", text: '10')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a", text: '4')
+
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(1) a:nth-of-type(2)", text: 'No')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(1) a:nth-of-type(2)", text: 'No')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(2)", text: '30s')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(3)", text: '1m 30s')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(4)", text: '2m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(5)", text: '3m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(6)", text: '5m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a:nth-of-type(2)", text: 'A3')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a:nth-of-type(3)", text: 'Letter')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(2)", text: '5')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(3)", text: '15')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(4)", text: '25')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(5)", text: '50')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(6)", text: '100')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(7)", text: 'All')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a:nth-of-type(2)", text: '8')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a:nth-of-type(3)", text: '12')
+
     expect(rendered).to have_selector("input#password_update_button")
     expect(rendered).to have_selector("input#name_update_button")
 
   end
 
   it 'displays user details correctly, II' do
-    
+
     def view.policy(name)
       # Do nothing
     end
@@ -82,40 +87,43 @@ describe 'user_settings/index.html.erb', :type => :view do
     assign(:user, user)
 
     render
-    expect(rendered).to have_content("Current Settings: User Fred (user@assero.co.uk)")
-    expect(rendered).to have_content("Display Name:User Fred")
-    expect(rendered).to have_content("Email:user@assero.co.uk")
+    expect(rendered).to have_content("Preferences")
+    expect(rendered).to have_content("User Fred")
+    expect(rendered).to have_content("Email: user@assero.co.uk")
 
-    expect(rendered).to have_content("Change Password")
-    expect(rendered).to have_content("New Password:")
-    expect(rendered).to have_content("Confirm New Password:")
-    expect(rendered).to have_content("Current Password:")
-    
-    expect(rendered).to have_content("Change Display Name")
-    expect(rendered).to have_content("New Display Name:")
+    expect(rendered).to have_content("Change your account password")
+    expect(rendered).to have_selector("input#user_current_password")
+    expect(rendered).to have_selector("input#user_password")
+    expect(rendered).to have_selector("input#user_password_confirmation")
 
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(2) a", text: 'No')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(2) a", text: 'Yes')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(2) a", text: '1m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(2) a", text: 'A4')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(2) a", text: '25')
-    
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(3) a", text: 'Yes')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(3) a", text: 'No')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[1]", text: '30s')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[2]", text: '1m 30s')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[3]", text: '2m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[4]", text: '3m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(3) a[5]", text: '5m')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(3) a[1]", text: 'A3')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(3) a[2]", text: 'Letter')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[1]", text: '5')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[2]", text: '10')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[3]", text: '15')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[4]", text: '50')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[5]", text: '100')
-    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(3) a[6]", text: 'All')
-    
+    expect(rendered).to have_content("Change your display name")
+    expect(rendered).to have_selector("input#user_name")
+
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(1) a", text: 'No')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(1) a", text: 'Yes')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a", text: '1m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a", text: 'A4')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a", text: '25')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a", text: '4')
+
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(1) td:nth-of-type(1) a:nth-of-type(2)", text: 'Yes')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(2) td:nth-of-type(1) a:nth-of-type(2)", text: 'No')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(2)", text: '30s')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(3)", text: '1m 30s')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(4)", text: '2m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(5)", text: '3m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(3) td:nth-of-type(1) a:nth-of-type(6)", text: '5m')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a:nth-of-type(2)", text: 'A3')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(4) td:nth-of-type(1) a:nth-of-type(3)", text: 'Letter')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(2)", text: '5')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(3)", text: '10')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(4)", text: '15')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(5)", text: '50')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(6)", text: '100')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(5) td:nth-of-type(1) a:nth-of-type(7)", text: 'All')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a:nth-of-type(2)", text: '8')
+    expect(rendered).to have_selector("table#user_settings tbody tr:nth-of-type(6) td:nth-of-type(1) a:nth-of-type(3)", text: '12')
+
     expect(rendered).to have_selector("input#password_update_button")
     expect(rendered).to have_selector("input#name_update_button")
 

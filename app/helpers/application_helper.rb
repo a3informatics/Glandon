@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-	def instance_title(title, item)
+  def instance_title(title, item)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus
 		return raw("#{title} #{item.label} <span class='text-tiny'>#{identifier} (V#{item.semantic_version}, #{item.version}, #{status})</span>")

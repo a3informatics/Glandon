@@ -142,7 +142,7 @@ class ThesauriController < ApplicationController
   # end
 
   def search
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     @thesaurus = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html
@@ -159,60 +159,59 @@ class ThesauriController < ApplicationController
   end
 
   def changes
-    authorize Thesaurus, :view?
-    respond_to do |format|
-      format.html do
-        @version_count = current_user.max_term_display.to_i
-        @ct = Thesaurus.find_minimum(params[:id])
-        link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
-        @links = {}
-        link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_path(v.to_id)}
-        @close_path = request.referer #history_thesauri_index_path(thesauri: {identifier: @ct.identifier, scope_id: @ct.owner})
-      end
-      format.json do
-        ct = Thesaurus.find_minimum(params[:id])
-        cls = ct.changes(current_user.max_term_display.to_i)
-        cls[:items].each do |k,v|
-          v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
-        end
-        render json: {data: cls}
-      end
+    authorize Thesaurus, :show?
+    @version_count = current_user.max_term_display.to_i
+    @ct = Thesaurus.find_minimum(params[:id])
+    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_path(v.to_id)}
+    @close_path = request.referer #history_thesauri_index_path(thesauri: {identifier: @ct.identifier, scope_id: @ct.owner})
+  end
+
+  def changes_data
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    cls = ct.changes(current_user.max_term_display.to_i)
+    cls[:items].each do |k,v|
+      v[:changes_path] = changes_thesauri_managed_concept_path(v[:id])
     end
+    render json: {data: cls}
   end
 
   def changes_report
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     ct = Thesaurus.find_minimum(params[:id])
     cls = ct.changes(current_user.max_term_display.to_i)
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(cls, current_user)
-        render pdf: "terminology_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+        render pdf: "terminology_changes", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
   end
 
   def submission
-    authorize Thesaurus, :view?
-    respond_to do |format|
-      format.html do
-        @version_count = current_user.max_term_display.to_i
-        @ct = Thesaurus.find_minimum(params[:id])
-        link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
-        @links = {}
-        link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_thesauri_path(v.to_id)}
-        @close_path = request.referer
-      end
-      format.json do
-        ct = Thesaurus.find_minimum(params[:id])
-        cls = ct.submission(current_user.max_term_display.to_i)
-        render json: {data: cls}
-      end
+    authorize Thesaurus, :show?
+    @version_count = current_user.max_term_display.to_i
+    @ct = Thesaurus.find_minimum(params[:id])
+    link_objects = @ct.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : submission_thesauri_path(v.to_id)}
+    @close_path = request.referer
+  end
+
+  def submission_data
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    cls = ct.submission(current_user.max_term_display.to_i)
+    cls[:items].each do |k,v|
+      v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])
     end
+    render json: {data: cls}
   end
 
   def submission_report
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     ct = Thesaurus.find_minimum(params[:id])
     cls = ct.submission(current_user.max_term_display.to_i)
     respond_to do |format|
@@ -234,7 +233,7 @@ class ThesauriController < ApplicationController
   end
 
   def search_current
-    authorize Thesaurus, :view?
+    authorize Thesaurus, :show?
     @close_path = thesauri_index_path
   end
 

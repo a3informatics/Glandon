@@ -12,7 +12,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 3.2'
 
 # Devise
-gem 'devise'
+gem 'devise', '4.5.0'
+gem 'devise-security', '0.13.0'
+gem 'rails_email_validator'
 
 # REST
 gem 'typhoeus'

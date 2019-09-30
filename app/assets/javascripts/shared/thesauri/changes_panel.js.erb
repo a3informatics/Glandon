@@ -12,9 +12,10 @@
  */
 function ChangesPanel(url, column_count) {
   this.url = url;
+  this.column_count = column_count;
   var _this = this;
   var columns = [
-    {"data" : "key", className: "fit"},
+    {"data" : "identifier", className: "fit"},
     {"data" : "label"},
     {"data" : "notation", className: "fit"}];
   for (i=0; i<column_count; i++) {
@@ -65,9 +66,12 @@ ChangesPanel.prototype.add = function () {
         $(_this.changesTable.column(3+i).header()).text(result.data.versions[i]);
       }
       $.each(result.data.items, function(key, item){
-        var row = {key: item.key, changesPath: item.changes_path, label: item.label, notation: item.notation};
+        var row = {identifier: item.identifier, key: item.key, changesPath: item.changes_path, label: item.label, notation: item.notation};
         for (j=0; j<item.status.length; j++) {
           row["status"+j] = item.status[j].status
+        }
+        for (j=item.status.length; j<_this.column_count; j++) {
+          row["status"+j] = "not_present"
         }
         _this.changesTable.row.add(row);
       });

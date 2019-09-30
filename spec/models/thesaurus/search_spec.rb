@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::Search do
+describe "Thesaurus::Search" do
 
   include DataHelpers
 

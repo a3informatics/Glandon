@@ -76,9 +76,7 @@
 			<br>
 			<div class="font-regular text-medium">
 				Change your account password
-				<% if @minimum_password_length %>
-					<span class="font-light">(<%= @minimum_password_length %> characters minimum)</span>
-				<% end %>
+				<div class="text-small font-light text-light"><%= password_message %></div>
 			</div>
 		  <%= form_for(current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
 		    <span class="form-wrap">

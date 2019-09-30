@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "SDTM IG", :type => :feature do
-  
+
   include DataHelpers
   include UiHelpers
   include PauseHelpers
@@ -10,34 +10,21 @@ describe "SDTM IG", :type => :feature do
   include DownloadHelpers
   include SparqlHelpers
   include UserAccountHelpers
-  
+
   def sub_dir
     return "features"
   end
 
   describe "SDTM IGs Features, Curator", :type => :feature do
-  
+
     before :all do
       Token.destroy_all
       Token.set_timeout(5)
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+      schema_files = ["ISO11179Types.ttl","ISO11179Identification.ttl", "ISO11179Registration.ttl","ISO11179Concepts.ttl", "thesaurus.ttl",
+        "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl"]
+      data_files = ["iso_registration_authority_real.ttl", "iso_namespace_real.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl", "sdtm_model_and_ig.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -56,18 +43,18 @@ describe "SDTM IG", :type => :feature do
     end
 
     after :each do
-      click_link 'logoff_button'
+      ua_logoff
     end
 
     it "allows for a IG to be exported as JSON", js: true do
       clear_downloads
-      visit '/sdtm_igs/history'
+      click_navbar_ig_domain
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       find(:xpath, "//tr[contains(.,'3.2')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
       wait_for_ajax
       click_link 'Export JSON'
-      file = download_content 
+      file = download_content
     #Xwrite_text_file_2(file, sub_dir, "sdtm_ig_export.json")
       expected = read_text_file_2(sub_dir, "sdtm_ig_export.json")
       expect(file).to eq(expected)
@@ -75,7 +62,7 @@ describe "SDTM IG", :type => :feature do
 
     it "allows for a IG to be exported as TTL", js: true do
       clear_downloads
-      visit '/sdtm_igs/history'
+      click_navbar_ig_domain
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       find(:xpath, "//tr[contains(.,'3.2')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Show: '
@@ -88,33 +75,20 @@ describe "SDTM IG", :type => :feature do
       check_triples("sdtm_ig_export_results.ttl", "sdtm_ig_export.ttl")
       delete_data_file(sub_dir, "sdtm_ig_export_results.ttl")
     end
-    
+
   end
 
   describe "SDTM IGs Features, Content Admin", :type => :feature do
-  
+
     before :all do
       Background.destroy_all
       Token.destroy_all
       Token.set_timeout(5)
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("ISO25964.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("CT_V43.ttl")
-      load_test_file_into_triple_store("CT_ACME_V1.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+      schema_files = ["ISO11179Types.ttl","ISO11179Identification.ttl", "ISO11179Registration.ttl","ISO11179Concepts.ttl", "thesaurus.ttl",
+        "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessForm.ttl", "BusinessDomain.ttl"]
+      data_files = ["iso_registration_authority_real.ttl", "iso_namespace_real.ttl", "CT_ACME_V1.ttl", "BCT.ttl", "BC.ttl", "sdtm_model_and_ig.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -124,6 +98,7 @@ describe "SDTM IG", :type => :feature do
     end
 
     after :all do
+      Token.destroy_all
       ua_destroy
     end
 
@@ -132,11 +107,11 @@ describe "SDTM IG", :type => :feature do
     end
 
     after :each do
-      click_link 'logoff_button'
+      ua_logoff
     end
 
     it "allows an IG to be imported", js: true do
-      visit '/sdtm_igs/history'
+      click_navbar_ig_domain
       expect(page).to have_content 'History: CDISC SDTM Implementation Guide'
       click_link 'import_button'
       expect(page).to have_content 'Import CDISC SDTM Implementation Guide Version'
@@ -151,7 +126,7 @@ describe "SDTM IG", :type => :feature do
     	ui_check_table_cell("main", 1, 1, "Import CDISC SDTM Implementation Guide. Date: 2017-10-24 Internal Version: 4.")
     	# Note that we expect the actual import to fail because we are trying to link to an SDTM model that does not have an FA class.
     	# The test is about the pages linking together etc not about the import. The import is tested elsewhere.
-    	ui_check_table_cell_starts_with("main", 1, 2, 
+    	ui_check_table_cell_starts_with("main", 1, 2,
     		"Complete. Unsuccessful import. Exception detected: {:message=>\"Reference for class Findings About not found in SdtmIgDomain.\"}")
     end
 

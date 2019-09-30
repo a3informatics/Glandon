@@ -67,6 +67,14 @@ module Fuseki
       result
     end
     
+    # To Array By Key. Get a array of values using specific keys
+    #
+    # @param [Array] keys the set of keys/properties required
+    # @return [Array] the resulting array of strings
+    def to_a_by_key(*keys)
+      instance_values.symbolize_keys.slice(*keys).collect{|k,v| v}
+    end
+
   private
 
     # Set a simple typed value

@@ -1,26 +1,18 @@
 require 'rails_helper'
 
 describe "History", :type => :feature do
-  
+
   include DataHelpers
 	include PauseHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("form_example_dm1.ttl")
-    load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-    load_test_file_into_triple_store("form_example_vs_baseline_new.ttl")
-    load_test_file_into_triple_store("form_example_general.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
+      "BusinessOperational.ttl", "BusinessForm.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "form_example_dm1.ttl", "form_example_dm1_branch.ttl",
+    "form_example_vs_baseline_new.ttl", "form_example_general.ttl"]
+    load_files(schema_files, data_files)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -33,11 +25,15 @@ describe "History", :type => :feature do
     ua_destroy
   end
 
-  describe "Check Views", :type => :feature do
-  
+  after :each do
+    ua_logoff
+  end
+
+  describe "Check Views", :type => :feature, js:true do
+
     it "reader"  do
       ua_reader_login
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'
@@ -61,7 +57,7 @@ describe "History", :type => :feature do
 
     it "curator"  do
       ua_curator_login
-      visit '/forms'
+      click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'DM1 01')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: DM1 01'

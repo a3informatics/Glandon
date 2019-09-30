@@ -12,36 +12,29 @@ describe 'thesauri/changes.html.erb', :type => :view do
   end
 
   before :all do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-    ]
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
+      "BusinessOperational.ttl", "thesaurus.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
   end
 
-  it 'displays the form, next and previous links' do 
+  it 'displays the form, next and previous links' do
 
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
     links = read_yaml_file(sub_dir, "changes_links_1.yaml")
-    ct = Thesaurus.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
 
     assign(:cls, cls)
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("Changes: CDISC Terminology")
+    expect(rendered).to have_content("Changes across versions")
     expect(rendered).to have_selector("table#changes thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Identifier')
     expect(rendered).to have_selector("table#changes thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Label')
     expect(rendered).to have_selector("table#changes thead tr:nth-of-type(1) th:nth-of-type(3)", text: "Submission")
@@ -51,53 +44,51 @@ describe 'thesauri/changes.html.erb', :type => :view do
     expect(rendered).to have_selector("table#changes thead tr:nth-of-type(1) th:nth-of-type(7)", text: "\u00A0")
     expect(rendered).to have_selector("table#changes thead tr:nth-of-type(1) th:nth-of-type(8)", text: '')
 
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
-    
+
   end
 
-  it 'displays the form, previous link only' do 
+  it 'displays the form, previous link only' do
 
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
     links = read_yaml_file(sub_dir, "changes_links_2.yaml")
-    ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
+    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
 
     assign(:cls, cls)
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn btn-primary']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa1/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa2/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa3/changes' and @class='btn medium nomargin ttip']")
     ui_link_disabled("fb_fs_button")
     ui_link_disabled("fb_fm_button")
     ui_link_disabled("fb_end_button")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
-    
+
   end
 
-  it 'displays the form, next link only' do 
+  it 'displays the form, next link only' do
 
     cls = read_yaml_file(sub_dir, "changes_cls.yaml")
     links = read_yaml_file(sub_dir, "changes_links_3.yaml")
-    ct = CdiscTerm.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"), false)
+    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
 
     assign(:cls, cls)
     assign(:links, links)
     assign(:ct, ct)
     assign(:version_count, 4)
-    assign(:close_path, thesauri_path(ct))
 
     render
 
@@ -106,12 +97,12 @@ describe 'thesauri/changes.html.erb', :type => :view do
     ui_link_disabled("fb_start_button")
     ui_link_disabled("fb_bs_button")
     ui_link_disabled("fb_bm_button")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn btn-primary']")
-    expect(rendered).to have_xpath("//a[@href = '#{thesauri_path(ct)}']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa4/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa5/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/aaa6/changes' and @class='btn medium nomargin ttip']")
+    expect(rendered).to have_xpath("//a[@href = 'javascript: history.back()']")
     expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/changes_report.pdf']")
-    
+
   end
 
 end

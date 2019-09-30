@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe IsoScopedIdentifierV2 do
+describe "IsoScopedIdentifierV2" do
   
   include DataHelpers
   include SparqlHelpers

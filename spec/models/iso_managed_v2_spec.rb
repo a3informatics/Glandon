@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe IsoManagedV2 do
+describe "IsoManagedV2" do
 
 	include DataHelpers
   include PublicFileHelpers
@@ -178,7 +178,7 @@ describe IsoManagedV2 do
       result[:origin] = "Origin"
       item.update({:explanatory_comment => "New comment", :change_description => "Description", :origin => "Origin"})
       item = IsoManagedV2.find_with_properties(uri)
-      result[:last_change_date] = date_check_now(item.last_change_date).iso8601
+      result[:last_change_date] = item.last_change_date.iso8601
       expect(item.to_h).to eq(result)
     end
 
@@ -721,7 +721,12 @@ describe IsoManagedV2 do
     it "create next version" do
       object = Thesaurus.create({label: "A new item", identifier: "NEW1"})
       expect(object.errors.count).to eq(0)
-      check_file_actual_expected(object.to_h, sub_dir, "create_next_version_1.yaml", equate_method: :hash_equal)
+      actual = object.to_h
+    #Xwrite_yaml_file(results, sub_dir, "create_next_version_1.yaml")
+      expected = read_yaml_file(sub_dir, "create_next_version_1.yaml")
+      expected[:creation_date] = date_check_now(object.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
+      expect(actual).to hash_equal(expected)
       result = object.create_next_version
       expect(object.uri).to eq(result.uri) # Same item
       object.has_state.registration_status = IsoRegistrationStateV2.released_state
@@ -730,7 +735,10 @@ describe IsoManagedV2 do
       object.origin = "A ref"
       result = object.create_next_version
       expect(object.uri).to_not eq(result.uri) # New item
-      check_file_actual_expected(result.to_h, sub_dir, "create_next_version_2.yaml", equate_method: :hash_equal)
+    #Xwrite_yaml_file(results, sub_dir, "create_next_version_2.yaml")
+      expected = read_yaml_file(sub_dir, "create_next_version_2.yaml")
+      expected[:creation_date] = date_check_now(object.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
     end
 
   end
@@ -876,6 +884,21 @@ describe IsoManagedV2 do
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM3/V1#TH"))
       item.has_state.make_current
       expect(CdiscTerm.current_set.count).to eq(4)
+    end
+
+    it "allows the current item to be found" do
+      (1..10).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+      end 
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
+      item.has_state.make_current
+      expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
     end
 
   end

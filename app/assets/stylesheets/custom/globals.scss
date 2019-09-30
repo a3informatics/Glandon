@@ -168,6 +168,7 @@ $font-normal: 12pt;
 $font-xnormal: 14pt;
 $font-large: 16pt;
 $font-xlarge: 20pt;
+$font-xxlarge: 30pt;
 
 .text-tiny{
   font-size: $font-tiny;
@@ -191,6 +192,10 @@ $font-xlarge: 20pt;
 
 .text-xlarge{
   font-size: $font-xlarge;
+}
+
+.text-xxlarge{
+  font-size: $font-xxlarge;
 }
 
 .p-justified{

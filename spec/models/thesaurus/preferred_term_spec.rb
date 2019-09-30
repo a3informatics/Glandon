@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::PreferredTerm do
+describe "Thesaurus::PreferredTerm" do
 
 	include DataHelpers
   include SparqlHelpers

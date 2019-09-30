@@ -2,56 +2,46 @@ require 'rails_helper'
 require 'selenium-webdriver'
 
 describe "SDTM User Domain Editor", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UiHelpers
   include WaitForAjaxHelper
   include ValidationHelpers
   include DomainHelpers
+  include UserAccountHelpers
 
   before :all do
     Token.destroy_all
     Token.set_timeout(5)
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
-    load_test_file_into_triple_store("sdtm_user_domain_dm.ttl")
-    load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
-    load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    schema_files = ["ISO11179Types.ttl","ISO11179Identification.ttl", "ISO11179Registration.ttl","ISO11179Concepts.ttl", "thesaurus.ttl",
+      "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessDomain.ttl"]
+    data_files = ["iso_registration_authority_real.ttl", "iso_namespace_real.ttl", "BCT.ttl", "BC.ttl", "sdtm_user_domain_dm.ttl",
+      "sdtm_user_domain_vs.ttl", "sdtm_model_and_ig.ttl"]
+    load_files(schema_files, data_files)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
     clear_cdisc_term_object
     clear_token_object
-    @user = User.create :email => "domain_edit@example.com", :password => "12345678" 
-    @user.add_role :curator
+    ua_create
+  end
+
+  before :each do
+    ua_curator_login
   end
 
   after :all do
-    user = User.where(:email => "domain_edit@example.com").first
-    user.destroy
-    Token.restore_timeout
+    ua_destroy
   end
 
   after :each do
-    click_link 'logoff_button'
+    ua_logoff
   end
 
   describe "Curator User", :type => :feature do
-  
+
     it "has correct initial state", js: true do
       load_domain("DM Domain")
       expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
@@ -117,8 +107,8 @@ describe "SDTM User Domain Editor", :type => :feature do
       fill_in 'variableFormat', with: "ISO 1234"
       fill_in 'variableNotes', with: "This is a new variable"
       fill_in 'variableComment', with: "Some comments for the new kid"
-      select "Num", :from => "variableDatatype"         
-      select "Expected", :from => "variableCompliance"         
+      select "Num", :from => "variableDatatype"
+      select "Expected", :from => "variableCompliance"
       select "Qualifier", :from => "variableClassification"
       wait_for_ajax
       select "Grouping Qualifier", :from => "variableSubClassification"
@@ -129,12 +119,12 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_input('variableLabel', "New label")
       ui_check_input('variableFormat', "ISO 1234")
       ui_check_input('variableNotes', "This is a new variable")
-      ui_check_input('variableComment', "Some comments for the new kid")  
+      ui_check_input('variableComment', "Some comments for the new kid")
       ui_check_input('variableDatatype', "http://www.assero.co.uk/MDRSdtmM/CDISC/V3#M-CDISC_SDTMMODEL_DT_NUM")
       click_button 'variableDelete'
       key_variable = ui_get_key_by_path('["Demographics", "DMNEW"]')
       expect(key_variable).to eq(-1)
-    end  
+    end
 
     it "allows non-standard variable details to be updated", js: true do
       load_domain("DM Domain")
@@ -150,10 +140,10 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_check_input('variableName', "DMNEW")
       ui_check_input('variableLabel', "New label")
       fill_in 'variableLabel', with: "New label updated"
-      ui_click_node_name("Demographics")      
+      ui_click_node_name("Demographics")
       #wait_for_ajax
       ui_click_node_name("DMNEW")
-      ui_check_input('variableLabel', "New label updated")    
+      ui_check_input('variableLabel', "New label updated")
       click_button 'variableDelete'
       ui_click_by_id 'save'
       wait_for_ajax(10)
@@ -294,7 +284,7 @@ describe "SDTM User Domain Editor", :type => :feature do
     end
 
     it "domain edit timeout warnings and expiration", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
@@ -304,19 +294,19 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
-      sleep (@user.edit_lock_warning.to_i / 2)
+      sleep (@user_c.edit_lock_warning.to_i / 2)
       expect(page).to have_content("The edit lock is about to timeout!")
       sleep 5
       page.find("#token_timer_1")[:class].include?("btn-danger")
-      sleep (@user.edit_lock_warning.to_i / 2)
+      sleep (@user_c.edit_lock_warning.to_i / 2)
       expect(page).to have_content("00:00")
       expect(token.timed_out?).to eq(true)
     end
 
     it "domain edit timeout warnings and extend", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
@@ -326,7 +316,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Save'
       wait_for_ajax
@@ -334,7 +324,7 @@ describe "SDTM User Domain Editor", :type => :feature do
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
       Capybara.ignore_hidden_elements = true
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i
       Capybara.ignore_hidden_elements = false
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
@@ -344,29 +334,29 @@ describe "SDTM User Domain Editor", :type => :feature do
     end
 
     it "edit clears token on close", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Close'
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       expect(tokens).to match_array([])
-    end  
+    end
 
     it "edit clears token on back button", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       load_domain("DM Domain")
       wait_for_ajax
       expect(page).to have_content("Edit: Demographics DM Domain (V0.1.0, 1, Incomplete)")
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       ui_click_back_button
       wait_for_ajax
       tokens = Token.where(item_uri: "http://www.assero.co.uk/MDRSdtmUD/ACME/V1#D-ACME_DMDomain")
       expect(tokens).to match_array([])
-    end  
+    end
 
   end
 

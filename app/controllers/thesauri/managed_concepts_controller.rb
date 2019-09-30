@@ -84,16 +84,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
-  # ************************
-  # CSV Export
-  # ************************
-
-  # def export_csv
-  #   authorize CdiscCl, :view?
-  #   uri = UriV3.new(id: params[:id]) # Using new mechanism
-  #   cl = CdiscCl.find(uri.fragment, uri.namespace)
-  #   send_data cl.to_csv, filename: "CDISC_CL_#{cl.identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
-  # end
+  def export_csv
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_full(params[:id])
+    send_data tc.to_csv, filename: "CDISC_CL_#{tc.scoped_identifier}.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
+  end
 
   def show
     authorize Thesaurus
@@ -129,7 +124,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
     @links = {}
     link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
-    @close_path = request.referer
+    @close_path = dashboard_index_path
   end
 
   def changes_data
@@ -140,14 +135,22 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: clis}
   end
 
-  def differences
+  def changes_report
     authorize Thesaurus, :show?
-    @tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    clis = tc.changes(current_user.max_term_display.to_i)
     respond_to do |format|
-      format.json do
-        render json: {data: @tc.differences}
+      format.pdf do
+        @html = Reports::CdiscChangesReport.new.create(clis, current_user)
+        render pdf: "CDISC_CL_#{tc.scoped_identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
+  end
+
+  def differences
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    render json: {data: tc.differences}
   end
 
   def is_extended

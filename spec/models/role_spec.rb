@@ -7,9 +7,9 @@ describe Role do
 	it "provides a list of roles" do
 		expected_key = [:sys_admin, :content_admin, :curator, :reader, :term_reader, :term_curator, :community_reader]
 		expected_text = ["System Admin", "Content Admin", "Curator", "Reader", "Terminology Reader", "Terminology Curator", "Community Reader"]
-		Role.list.each do |k, v| 
-			expect(expected_key.include?(k)).to eq(true) 
-			expect(expected_text.include?(v[:display_text])).to eq(true) 
+		Role.list.each do |k, v|
+			expect(expected_key.include?(k)).to eq(true)
+			expect(expected_text.include?(v[:display_text])).to eq(true)
 		end
 	end
 
@@ -47,5 +47,14 @@ describe Role do
 	it "detects if role can be combined with sys admin, yes" do
     expect(Role.with_sys_admin(:content_admin)).to eq(true)
   end
+
+	it "converts a role name to an id" do
+		sa_r = Role.all.find{ |x| x.name == "sys_admin"}
+		expect(Role.to_id(:sys_admin)).to eq(sa_r.id)
+	end
+
+	it "converts a role to an id, non-existing role" do
+		expect{Role.to_id(:nonexistent)}.to raise_error(Errors::ApplicationLogicError, "No role found. Searching for nonexistent.")
+	end
 
 end

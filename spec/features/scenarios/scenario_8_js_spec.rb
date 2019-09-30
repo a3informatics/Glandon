@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "S8 General", :type => :feature do
-  
+
   include PauseHelpers
   include UiHelpers
   include UserAccountHelpers
@@ -13,9 +13,13 @@ describe "S8 General", :type => :feature do
   after :all do
     ua_destroy
   end
-  
+
   before :each do
     ua_curator_login
+  end
+
+  after :each do
+    ua_logoff
   end
 
   describe "Curator User", :type => :feature do

@@ -27,8 +27,8 @@ describe 'roles one rake task' do
     	post_roles = []
     	Role.all.each { |x| post_roles << x.name }
     	diff = post_roles - pre_roles
-      expect(diff.count).to eq(2)
-      diff.each { |x| expect(["term_reader", "term_curator"].include?(x)) }
+      expect(diff.count).to eq(3)
+      diff.each { |x| expect(["term_reader", "term_curator", "community_reader"].include?(x)) }
     end
 
   end

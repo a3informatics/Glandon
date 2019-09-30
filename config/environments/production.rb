@@ -79,8 +79,8 @@ Rails.application.configure do
 
   # Email options:
   # Default URL
-  config.action_mailer.default_url_options = { host: ENV["HOST_NAME"] }
-  
+  config.action_mailer.default_url_options = { host: ENV["HOST_NAME"], protocol: ENV["HOST_PROTOCOL"] }
+
   # Email settings
   config.action_mailer.smtp_settings = {
     address: ENV["EMAIL_SMTP"],
@@ -91,5 +91,5 @@ Rails.application.configure do
     user_name: ENV["EMAIL_USERNAME"],
     password: ENV["EMAIL_PASSWORD"]
   }
-  
+
 end

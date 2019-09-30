@@ -161,9 +161,7 @@ describe Thesaurus do
     it "allows the current item to be retrived" do
       owner = IsoRegistrationAuthority.owner
       result = Thesaurus.current({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
-      expect(result.identifier).to eq("CDISC EXT")
-      expect(result.id).to eq("TH-SPONSOR_CT-1")
-      expect(result.namespace).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1")
+      expect(result.to_s).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
     end
     
     it "allows a creation of a thesaurus" do
@@ -416,10 +414,11 @@ describe Thesaurus do
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")) 
       expect(result.narrower.count).to eq(source.narrower.count)
       expect(result.extends.uri.to_s).to eq(source.uri.to_s)
-      actual = Thesaurus.find_full(uri1)
-      actual.is_top_concept_objects
-      expect(actual.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
-      expect(actual.is_top_concept_reference.count).to eq(3)
+      item = Thesaurus.find_full(uri1)
+      item.is_top_concept_objects
+      expect(item.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
+      expect(item.is_top_concept_reference.count).to eq(3)
+      actual = item.to_h
       check_file_actual_expected(actual.to_h, sub_dir, "add_extension_expected_1.yaml", equate_method: :hash_equal)
     end
 

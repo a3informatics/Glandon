@@ -1,25 +1,19 @@
 require 'rails_helper'
 
 describe "ISO Concept System", :type => :feature do
-  
+
   include PauseHelpers
   include DataHelpers
   include UserAccountHelpers
+  include UiHelpers
 
   describe "General", :type => :feature do
-  
-    before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
 
-      load_test_file_into_triple_store("iso_concept_system_generic_data.ttl")
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
+        "BusinessOperational.ttl", "BusinessForm.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_system_generic_data.ttl"]
+      load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -30,7 +24,7 @@ describe "ISO Concept System", :type => :feature do
 
 	  after :all do
 	    ua_destroy
-	  end 
+	  end
 
 	  before :each do
 	    ua_content_admin_login
@@ -40,14 +34,14 @@ describe "ISO Concept System", :type => :feature do
 	    ua_logoff
 	  end
 
-    it "allows concept systems to be displayed" do
-      click_link 'Tags'
+    it "allows concept systems to be displayed", js:true do
+      click_navbar_tags
       expect(page).to have_content 'Classifications'
       expect(page).to have_content 'Tags'
     end
 
-    it "allows a new system to be added" do
-      click_link 'Tags'
+    it "allows a new system to be added", js:true do
+      click_navbar_tags
       click_link 'New'
       expect(page).to have_content 'New Classification'
       fill_in 'iso_concept_system_label', with: 'XXXX'

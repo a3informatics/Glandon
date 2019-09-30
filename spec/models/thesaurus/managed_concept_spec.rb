@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Thesaurus::ManagedConcept do
+describe "Thesaurus::ManagedConcept" do
 
   include DataHelpers
   include ValidationHelpers
@@ -417,16 +417,6 @@ describe Thesaurus::ManagedConcept do
       expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00001 due to the concept having children")
     end
 
-    it "generates a CSV record with no header" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expected = 
-      [ 
-        "A00001", "Vital Sign Test Codes Extension", 
-        "VSTEST", "", "A set of additional Vital Sign Test Codes to extend the CDISC set.", ""
-      ]
-      expect(tc.to_csv_no_header).to eq(expected)
-    end
-
     it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       params = 
@@ -495,14 +485,11 @@ describe Thesaurus::ManagedConcept do
       IsoHelpers.clear_cache
     end
 
-    before :each do
+    before :all do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..30)
-    end
-
-    after :all do
+      load_cdisc_term_versions(1..59)
       delete_all_public_test_files
     end
 
@@ -510,7 +497,9 @@ describe Thesaurus::ManagedConcept do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V29#C65047"))
-      expect(tc.changes_count(40)).to eq(19)
+      expect(tc.changes_count(40)).to eq(29)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
+      expect(tc.changes_count(40)).to eq(40)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(4)).to eq(4)
     end
@@ -527,10 +516,28 @@ describe Thesaurus::ManagedConcept do
       check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
     end
 
-    it "differences" do
+    it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
+    end
+
+    it "differences, II" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
+    end
+
+    it "differences, III" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
+    end
+
+    it "differences, IV" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
 
   end
@@ -637,6 +644,43 @@ describe Thesaurus::ManagedConcept do
 
   end
 
+  describe "csv test" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "to csv data" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
+      results = tc.to_csv_data
+      check_file_actual_expected(results, sub_dir, "csv_data_expected_1.yaml")
+    end
+
+    it "to csv" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66790/V2#C66790"))
+      results = tc.to_csv
+      check_file_actual_expected(results, sub_dir, "csv_expected_1.yaml")
+    end
+
+    it "to csv 2" do
+      tc = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C66788/V2#C66788"))
+      results = tc.to_csv
+      check_file_actual_expected(results, sub_dir, "csv_expected_2.yaml")
+    end
+    
+  end
+
   describe "child pagination" do
 
     before :all  do
@@ -680,6 +724,5 @@ describe Thesaurus::ManagedConcept do
     end
 
   end
-
 
 end

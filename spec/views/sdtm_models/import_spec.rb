@@ -11,19 +11,10 @@ describe 'sdtm_models/import.html.erb', :type => :view do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("ISO25964.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("BusinessDomain.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
-    load_test_file_into_triple_store("sdtm_model_and_ig.ttl")
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
+      "thesaurus.ttl", "CDISCBiomedicalConcept.ttl", "BusinessOperational.ttl", "BusinessDomain.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "sdtm_model_and_ig.ttl"]
+    load_files(schema_files, data_files)
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object
@@ -31,7 +22,7 @@ describe 'sdtm_models/import.html.erb', :type => :view do
     clear_cdisc_term_object
   end
 
-  it 'displays the form, import and files' do 
+  it 'displays the form, import and files' do
 
     files = [ "a.xlsx", "b.xlsx", "c.xlsx" ]
     next_version = SdtmModel.all.last.next_version
@@ -40,7 +31,7 @@ describe 'sdtm_models/import.html.erb', :type => :view do
     assign(:cdiscTerm, CdiscTerm.new)
     assign(:files, files)
     assign(:next_version, next_version)
-    
+
     render
 
   #puts response.body
@@ -50,10 +41,10 @@ describe 'sdtm_models/import.html.erb', :type => :view do
     expect(rendered).to have_selector("select option", text: 'a.xlsx')
     expect(rendered).to have_selector("select option", text: 'b.xlsx')
     expect(rendered).to have_selector("select option", text: 'c.xlsx')
-    
+
     expect(rendered).to have_button "Create"
     expect(rendered).to have_link "Close"
-    
+
   end
 
 end

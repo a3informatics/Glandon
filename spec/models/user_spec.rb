@@ -1,56 +1,59 @@
 require 'rails_helper'
 
-describe User do
+describe "User" do
+
+  C_EMAIL = "fred@example.com"
 
 	include DataHelpers
   include PauseHelpers
+  include UserAccountHelpers
 
 	before :all do
     AuditTrail.delete_all
   end
 
   it "determines if user is only a system admin" do
-  	user = User.create email: "fred@fred.com", password: "12345678"
+  	user = ua_add_user(email: C_EMAIL)
   	user.add_role :sys_admin
   	expect(user.is_only_sys_admin).to eq(false)
   	user.remove_role :reader
   	expect(user.is_only_sys_admin).to eq(true)
-  	user.destroy
+  	ua_remove_user(C_EMAIL)
   end
 
   it "determines if user is only a community reader" do
-    user = User.create email: "fred@fred.com", password: "12345678"
+    user = ua_add_user(email: C_EMAIL)
     user.add_role :community_reader
     expect(user.is_only_community?).to eq(false)
     user.remove_role :reader
     expect(user.is_only_community?).to eq(true)
-    user.destroy
+    ua_remove_user(C_EMAIL)
   end
 
   it "allows a user's roles to be listed" do
-    user = User.create email: "fred@fred.com", password: "12345678"
+    user = ua_add_user(email: C_EMAIL)
     user.add_role :reader
     expect(user.role_list.to_s).to eq("[\"Reader\"]")
     user.add_role :curator
     expect(user.role_list.to_s).to eq("[\"Curator\", \"Reader\"]")
-    user.destroy
+    ua_remove_user(C_EMAIL)
   end
 
   it "allows a user's roles to be listed as a string" do
-    user = User.create email: "fred@fred.com", password: "12345678"
+    user = ua_add_user(email: C_EMAIL)
     user.add_role :reader
     expect(user.role_list_stripped).to eq("Reader")
     user.add_role :curator
     expect(user.role_list_stripped).to eq("Curator, Reader")
     user.add_role :content_admin
     expect(user.role_list_stripped).to eq("Content Admin, Curator, Reader")
-    user.destroy
+    ua_remove_user(C_EMAIL)
   end
 
   it "sets the reader role when a user is created" do
-    user = User.create :email => "fred@fred.com", :password => "password" 
+    user = ua_add_user(email: C_EMAIL)
     expect(user.role_list).to match_array(["Reader"])
-    user.destroy
+    ua_remove_user(C_EMAIL)
   end
 
   it "logs an audit event when a user password is changed" do
@@ -65,6 +68,52 @@ describe User do
     expect(user).to receive(:encrypted_password_changed?) {false}
     user.user_update
     expect(AuditTrail.count).to eq(0)
+  end
+
+  it "detects if removing the last administrator role in the system, one admin" do
+    User.destroy_all
+    user = ua_add_user(email: C_EMAIL, role: :sys_admin)
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(true)
+  end
+
+  it "detects if removing the last administrator role in the system, two admins" do
+    User.destroy_all
+    user = ua_add_user(email: "admin1@example.com", role: :sys_admin)
+    user2 = ua_add_user(email: "admin2@example.com", role: :sys_admin)
+    user3 = ua_add_user(email: "reader@example.com")
+
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user2.role_list_stripped).to eq("Reader, System Admin")
+
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:sys_admin)]})).to eq(false)
+    expect(user.removing_last_admin?({:role_ids => [Role.to_id(:reader)]})).to eq(false)
+  end
+
+  it "does not prohibit removing last user role, if not sys administrator" do
+    User.destroy_all
+    user = ua_add_user(email: C_EMAIL, role: :sys_admin)
+    user2 = ua_add_user(email: "user@example.com")
+
+    expect(user.role_list_stripped).to eq("Reader, System Admin")
+    expect(user2.role_list_stripped).to eq("Reader")
+
+    expect(user2.removing_last_admin?({:role_ids => [Role.to_id(:curator)]})).to eq(false)
+  end
+
+  it "assigns user a default name if none is provided" do
+    user = ua_add_user(email: C_EMAIL)
+    expect(user.name).to eq("Anonymous")
+  end
+
+  it "prohibits the user from changing the name to an empty string" do
+    user = ua_add_user(email: C_EMAIL)
+    user.name = ""
+    user.save
+
+    user = User.find_by(email: C_EMAIL)
+    expect(user.name).to eq("Anonymous")
   end
 
 end

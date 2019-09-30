@@ -51,6 +51,7 @@ def editor_table_fill_in(input, text)
     end
 
     after :each do
+      wait_for_ajax
       ua_logoff
     end
 
@@ -116,6 +117,7 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'UNKNOWN (C17998)'
     end
 
+    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign a synonyms on a code list (REQ-MDR-SY-060)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -135,6 +137,7 @@ def editor_table_fill_in(input, text)
       click_button 'Close'
     end
 
+    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign more synonyms on a code list (REQ-MDR-SY-060)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -154,6 +157,7 @@ def editor_table_fill_in(input, text)
       click_button 'Close'
     end
 
+   # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign a synonyms on a code list item (REQ-MDR-SY-060)", js: true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
@@ -180,6 +184,7 @@ def editor_table_fill_in(input, text)
 
     it "allows to assign more synonyms on a code list item (REQ-MDR-SY-060)"
 
+    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to update a synonyms on a code list (REQ-MDR-SY-060)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
@@ -208,6 +213,7 @@ def editor_table_fill_in(input, text)
 
     it "allows to update a synonyms on a code list item (REQ-MDR-SY-060)"
 
+    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to delete a synonyms on a code list (REQ-MDR-SY-060)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
@@ -232,7 +238,7 @@ def editor_table_fill_in(input, text)
 
     it "allows to delete a synonyms on a code list item (REQ-MDR-SY-060)"
 
-    it "allows Preferred Term to be displayed for code lists (REQ-MDR-PT-010)", js:true do
+    it "allows Preferred Term to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
@@ -248,7 +254,7 @@ def editor_table_fill_in(input, text)
       ui_check_table_cell("children_table", 4, 4, "ECG Result")
     end
 
-    it "allows Preferred Term to be displayed for code list items (REQ-MDR-PT-010)", js:true do
+    it "allows Preferred Term to be displayed for CDISC code list items (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
