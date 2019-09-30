@@ -2,9 +2,7 @@
 
 <div class="col-md-12 card">
   <div class="card-content">
-    <!-- CARD FOR CODELISTS -->
     <div class="h-outside-wrap">
-      <!-- BADGE COLUMN -->
       <div class="h-inner-wrap centered">
         <span class="circular-badge big bg-accent-1 text-white">
           <%= badge %>
@@ -18,7 +16,6 @@
           <% end %>
         </div>
       </div>
-      <!-- INFO COLUMN -->
       <div class="h-inner-wrap mid">
         <div class="text-large"> <%= item.notation %> </div>
         <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
@@ -32,7 +29,6 @@
         <div class="definition-label label-w-margin">
           Definition: <span class="font-light"><%= item.definition %> </span></div>
       </div>
-      <!-- BUTTONS COLUMN -->
       <div class="h-inner-wrap">
         <%= yield %>
       </div>
