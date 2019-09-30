@@ -57,9 +57,11 @@ private
   def merge_parent_set(reader)
     dup_count = 0
     reader.engine.parent_set.each do |k, v| 
-      if @parent_set.key?(k) 
-        self.errors.add(:base, "Duplicate identifier #{k} detected during import of #{reader.full_path} and a difference has been detected.") if @parent_set[k].diff?(v)
-        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, "Duplicate identifier #{k} detected during import of #{reader.full_path}")
+      if @parent_set.key?(k)
+        next if @parent_set[k].merge(v)
+        msg =  "Duplicate identifier #{k} detected during import of #{reader.full_path} and cannot merge as a difference has been detected"
+        self.errors.add(:base, msg) 
+        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, msg)
         dup_count += 1
       else
         @parent_set[k] = v

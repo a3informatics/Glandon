@@ -77,6 +77,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     byebug
   end
 
+  # Merge. Merge two concepts. Concepts must be the same with common children being the same.
+  #
+  # @result [Boolean] returns true if the concepts merged.
   def merge(other)
     self.errors.clear
     return false if diff_self?(other)
@@ -86,17 +89,17 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     missing_ids = other_ids - self_ids
     common_ids.each do |identifier|
       this_child = self.narrower.find{|x| x.identifier == identifier}
-      other_child = self.narrower.find{|x| x.identifier == identifier}
+      other_child = other.narrower.find{|x| x.identifier == identifier}
       next if !this_child.diff?(other_child)
-      msg = "When merging #{self.identifier} a difference was detected in child #{identifier}."
+      msg = "When merging #{self.identifier} a difference was detected in child #{identifier}"
       errors.add(:base, msg) 
       ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     end
     missing_ids.each do |identifier|
-      other_child = self.narrower.find{|x| x.identifier == identifier}
+      other_child = other.narrower.find{|x| x.identifier == identifier}
       self.narrower << other_child
     end
-    !self.errors.empty?
+    self.errors.empty?
   end
 
   # Changes Count
@@ -356,8 +359,8 @@ private
 
   def diff_self?(other)
     return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 
-      :explanatory_comment, :narrower, :extends, :subsets]}))
-    msg = "When merging #{self.identifier} a difference was detected in the item."
+      :explanatory_comment, :narrower, :extends, :subsets]})
+    msg = "When merging #{self.identifier} a difference was detected in the item"
     self.errors.add(:base, msg) 
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     true

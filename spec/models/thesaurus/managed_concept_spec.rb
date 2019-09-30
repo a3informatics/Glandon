@@ -725,4 +725,145 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "merge" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    def merge_base
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Vital Sign Test Codes Extension",
+          identifier: "A00001",
+          definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
+          notation: "VSTEST"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "APGAR Score",
+          identifier: "A00002",
+          definition: "An APGAR Score",
+          notation: "APGAR"
+        })
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label: "APGAR Score")
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Mid upper arm circumference",
+          identifier: "A00003",
+          definition: "The measurement of the mid upper arm circumference",
+          notation: "MUAC"
+        })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
+      @tc_1b.synonym = Thesaurus::Synonym.new(label: "Upper Arm")
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Vital Sign Test Codes Extension",
+          identifier: "A00001",
+          definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
+          notation: "VSTEST"
+        })
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
+      @tc_2a = Thesaurus::UnmanagedConcept.from_h({
+          label: "APGAR Score",
+          identifier: "A00002",
+          definition: "An APGAR Score",
+          notation: "APGAR"
+        })
+      @tc_2a.preferred_term = Thesaurus::PreferredTerm.new(label: "APGAR Score")
+      @tc_2b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Mid upper arm circumference",
+          identifier: "A00003",
+          definition: "The measurement of the mid upper arm circumference",
+          notation: "MUAC"
+        })
+      @tc_2b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
+      @tc_2b.synonym = Thesaurus::Synonym.new(label: "Upper Arm")
+      @tc_2.narrower << @tc_2a
+      @tc_2.narrower << @tc_2b
+    end
+
+    it "equal" do
+      merge_base
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+    end
+
+    it "not equal, I" do
+      merge_base
+      @tc_1.label = "Argh!!!!"
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(1)
+      expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in the item")
+    end
+
+    it "not equal, II" do
+      merge_base
+      @tc_1b.label = "Argh!!!!"
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(1)
+      expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in child A00003")
+    end
+
+    it "extra child in other" do
+      merge_base
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower << @tc_2c
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+      expect(@tc_1.narrower.count).to eq(3)
+      expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC", "EXTRA"])
+    end
+
+    it "extra child in other, error I" do
+      merge_base
+      @tc_1a.notation = "Argh!!!!"
+      @tc_1b.definition = "Argh!!!!"
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower << @tc_2c
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(2)
+      expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in child A00002 and When merging A00001 a difference was detected in child A00003")
+    end
+
+    it "less children in other" do
+      merge_base
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower = []
+      @tc_2.narrower << @tc_2a
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+      expect(@tc_1.narrower.count).to eq(2)
+      expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC"])
+    end
+
+  end
+
 end
