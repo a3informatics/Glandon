@@ -242,7 +242,7 @@ describe Import::CdiscTerm do
     delete_data_file(sub_dir, filename)
   end
 
-  it "import, Multiple Version 4 Format, no errors" do
+  it "import, Multiple Version 4 Format, errors" do
     full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2018-12-21.xlsx")
     full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2018-12-21.xlsx")
     full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2018-12-21.xlsx")
