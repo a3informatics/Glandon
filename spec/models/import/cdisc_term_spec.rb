@@ -197,9 +197,7 @@ describe Import::CdiscTerm do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2008-09-22.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2008-09-22.yaml")
-    expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2008-09-22.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
