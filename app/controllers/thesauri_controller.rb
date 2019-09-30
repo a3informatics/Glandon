@@ -185,7 +185,7 @@ class ThesauriController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(cls, current_user)
-        render pdf: "terminology_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+        render pdf: "terminology_changes", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
   end

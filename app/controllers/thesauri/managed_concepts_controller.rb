@@ -142,7 +142,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     respond_to do |format|
       format.pdf do
         @html = Reports::CdiscChangesReport.new.create(clis, current_user)
-        render pdf: "terminology_changes.pdf", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+        render pdf: "CDISC_CL_#{tc.scoped_identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
       end
     end
   end

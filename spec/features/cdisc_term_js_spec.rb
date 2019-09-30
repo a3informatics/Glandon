@@ -290,6 +290,40 @@ describe "CDISC Term", :type => :feature do
       expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
     end
 
+    it "allows for changes across versions to be dowloaded as PDF", js: true do
+      clear_downloads
+      click_see_changes_all_versions
+      wait_for_ajax(10)
+      click_link 'PDF Report'
+      url = URI.parse(current_url).to_s.split('/')[-1]
+      expect(url).to eq("changes_report.pdf")
+      page.execute_script "window.history.back();"
+      expect(page).to have_content 'Changes across versions'
+    end
+
+    it "allows for changes in code list to be dowloaded as PDF", js: true do
+      clear_downloads
+      click_see_changes_all_versions
+      wait_for_ajax(10)
+      find(:xpath, "//tr[contains(.,'C100129')]/td/a", :text => 'Changes').click
+      click_link 'PDF Report'
+      url = URI.parse(current_url).to_s.split('/')[-1]
+      expect(url).to eq("changes_report.pdf")
+      page.execute_script "window.history.back();"
+      expect(page).to have_content 'C100129'
+    end
+
+    it "allows for submission value changes to be dowloaded as PDF", js: true do
+      clear_downloads
+      click_submission_value_changes
+      wait_for_ajax(10)
+      click_link 'PDF Report'
+      url = URI.parse(current_url).to_s.split('/')[-1]
+      expect(url).to eq("changes_report.pdf")
+      page.execute_script "window.history.back();"
+      expect(page).to have_content 'Submission value changes'
+    end
+
     it "checks for deleted changes", js: true do
       clear_downloads
       click_see_changes_all_versions
