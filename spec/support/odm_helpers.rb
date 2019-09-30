@@ -41,7 +41,7 @@ module OdmHelpers
   end
 
   def extract_system_version(text)
-    return text[/SourceSystemVersion=\"\d+.\d+.\d+( \[[a-zA-Z0-9 ]*\])?\"/]
+    return text[/SourceSystemVersion=\"\d+.\d+.\d+( \[[a-zA-Z0-9. ]*\])?\"/]
   end
 
 end
