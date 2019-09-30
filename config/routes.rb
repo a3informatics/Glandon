@@ -138,6 +138,7 @@ Rails.application.routes.draw do
         get :show_data
         get :changes
         get :changes_data
+        get :changes_report
         get :differences
         get :synonym_links
         get :preferred_term_links

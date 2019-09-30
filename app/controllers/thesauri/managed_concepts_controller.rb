@@ -135,6 +135,18 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: clis}
   end
 
+  def changes_report
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    clis = tc.changes(current_user.max_term_display.to_i)
+    respond_to do |format|
+      format.pdf do
+        @html = Reports::CdiscChangesReport.new.create(clis, current_user)
+        render pdf: "CDISC_CL_#{tc.scoped_identifier}", page_size: current_user.paper_size, orientation: 'Landscape', lowquality: true
+      end
+    end
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])

@@ -10,3 +10,13 @@ function generateNoResultsMsg(message){
             '<div class="text-centered font-light text-medium text-normal">' + (message == null ? 'No results.' : message) + '</div>' +
          '</div>';
 }
+
+function showFullPageSpinner(durationInSec, loading_message, timeout_message){
+  var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
+  $("body").prepend(html);
+
+  setTimeout(function(){
+    $(".spinner-wrap").remove();
+    displayAlerts(alertError("Loading timeout: " + message));
+  }, durationInSec * 1000);
+}

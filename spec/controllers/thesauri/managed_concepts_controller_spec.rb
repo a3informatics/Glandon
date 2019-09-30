@@ -150,6 +150,18 @@ describe Thesauri::ManagedConceptsController do
       get :export_csv, id: "aaa"
     end
 
+    it "pdf report" do      
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:scoped_identifier).and_return("C12345")
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
+      expect(Reports::CdiscChangesReport).to receive(:new).and_return(Reports::CdiscChangesReport.new)
+      expect_any_instance_of(Reports::CdiscChangesReport).to receive(:create).and_return("abcd")
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :changes_report, id: "aaa"  
+      expect(response.content_type).to eq("application/pdf")
+      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CDISC_CL_C12345.pdf\"")
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
