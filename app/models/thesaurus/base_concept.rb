@@ -156,6 +156,14 @@ class Thesaurus
       result
     end
 
+    def difference_record_deleted
+      result = {}
+      [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+        result[x] = {status: :deleted, previous: "", current: "", difference: ""} 
+      end
+      result
+    end
+
     # Simple To Hash. Output the concept as a sinple hash.
     #
     # @return [Hash] the hash for the object

@@ -15,7 +15,7 @@
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
         icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
       <!-- BUTTON EXPORT CSV -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@tc),
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc),
         id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
 
       <% if policy(Thesaurus).edit? %>

@@ -146,6 +146,7 @@ Rails.application.routes.draw do
         delete :extensions, action: :destroy_extensions
         get :is_extended
         get :is_extension
+        get :export_csv
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do

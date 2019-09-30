@@ -21,9 +21,6 @@
   <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-    <!-- BUTTON EXPORT CSV -->
-    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_path(@tc), id: "export-csv",
-      icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
     <!-- RETURN BUTTON -->
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>

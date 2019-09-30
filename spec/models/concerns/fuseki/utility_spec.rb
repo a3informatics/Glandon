@@ -217,4 +217,10 @@ describe Fuseki::Utility do
     expect(result.uri).to eq(uri_s)
   end
 
+  it "to array by key" do
+    result = TestFU1.from_h(owner: true, organization_identifier: "123")
+    expect(result.to_a_by_key(:owner)).to eq([true])
+    expect(result.to_a_by_key(:owner, :organization_identifier)).to eq([true, "123"])
+  end
+
 end

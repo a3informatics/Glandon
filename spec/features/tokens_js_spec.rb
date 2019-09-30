@@ -40,6 +40,10 @@ describe "Tokens", :type => :feature do
     Token.restore_timeout
   end
 
+  before :each do
+    #
+  end
+
   describe "System Admin User", :type => :feature do
 
     it "allows the tokens to be viewed", js: true do
@@ -59,7 +63,6 @@ describe "Tokens", :type => :feature do
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#1"
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#3"
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#4"
-      #pause
     end
 
     it "allows a lock to be released, rejection", js: true do

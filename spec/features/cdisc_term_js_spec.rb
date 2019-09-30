@@ -7,6 +7,11 @@ describe "CDISC Term", :type => :feature do
   include UiHelpers
   include UserAccountHelpers
   include WaitForAjaxHelper
+  include DownloadHelpers
+
+  def sub_dir
+    return "features/cdisc_term"
+  end
 
   def wait_for_ajax_v_long
     wait_for_ajax(120)
@@ -172,9 +177,9 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      ui_check_table_info("changes", 1, 3, 3)
+      ui_check_table_info("changes", 1, 2, 2)
       expect(page).to have_content 'C106656'
-      expect(page).to have_content 'C66787'
+      expect(page).to have_content 'C106657'
       click_link 'Return'
       expect(page).to have_content 'History'
     end
@@ -186,15 +191,15 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
-      expect(page).to have_content 'C66787'
-      find(:xpath, "//tr[contains(.,'C66787')]/td/a", :text => 'Changes').click
+      expect(page).to have_content 'C106656'
+      find(:xpath, "//tr[contains(.,'C106656')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 3, 3)
+      ui_check_table_info("differences_table", 1, 4, 4)
       expect(page).to have_content 'Changes'
-      ui_check_table_info("changes", 1, 1, 1)
-      find(:xpath, "//tr[contains(.,'C49651')]/td/a", :text => 'Changes').click
+      ui_check_table_info("changes", 1, 3, 3)
+      find(:xpath, "//tr[contains(.,'C106704')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 3, 3)
+      ui_check_table_info("differences_table", 1, 1, 1)
       click_link 'Return'
       expect(page).to have_content 'Changes'
       click_link 'Return'
@@ -212,6 +217,13 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax_v_long
       expect(page).to have_content 'Submission'
       ui_check_table_info("changes", 1, 10, 63)
+      ui_check_table_cell("changes", 1, 1, "C100391")
+      ui_check_table_cell("changes", 1, 2, "Corrected QT Interval")
+      ui_check_table_cell("changes", 1, 3, "QTc Correction Method Unspecified")
+      ui_check_table_cell_no_change_right("changes", 1, 4)
+      ui_check_table_cell_edit("changes", 1, 5)
+      ui_check_table_cell_no_change_right("changes", 1, 6)
+      ui_check_table_cell_no_change_right("changes", 1, 7)
     end
 
     it "allows the submission value changes to be viewed (REQ-MDR-CT-050)", js:true do
@@ -220,8 +232,8 @@ describe "CDISC Term", :type => :feature do
       click_link 'View Submission value changes'
       expect(page).to have_content 'Submission'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
-      # input.set("C67152_C20587")
-      input.set("C67152_C98768")
+      #input.set("C67152_C98768")
+      input.set("C98768")
       wait_for_ajax_v_long
       find(:xpath, "//tr[contains(.,'Pharmacologic Class')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
@@ -241,7 +253,7 @@ describe "CDISC Term", :type => :feature do
                       "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..46)
+      load_cdisc_term_versions(1..59)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -261,10 +273,47 @@ describe "CDISC Term", :type => :feature do
       ua_logoff
     end
 
-    it "edit, delete, document control disabled", js:true do
+    it "edit, delete, document control disabled" #, js:true do
 
+    it "allows for code list to be exported as CSV", js: true do
+      clear_downloads
+      click_browse_every_version
+      wait_for_ajax(10)
+      context_menu_element("history", 5, "2018-12-21 Release", :show)
+      wait_for_ajax(5)
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax(5)
+      expect(page).to have_content 'EPOCH'
+      click_link 'Export CSV'
+      file = download_content
+    #Xwrite_text_file_2(file, sub_dir, "export_csv_expected.csv")
+      expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
     end
 
+    it "checks for deleted changes", js: true do
+      clear_downloads
+      click_see_changes_all_versions
+      wait_for_ajax(10)
+      ui_table_search("changes", 'TANN02TN')
+      find(:xpath, "//tr[contains(.,'TANN02TN')]/td/a", :text => 'Changes').click
+      wait_for_ajax(5)
+      expect(page).to have_content 'TANN02TN'
+      ui_check_table_cell("differences_table", 1, 1, "2015-12-18")
+
+      ui_check_table_cell("differences_table", 1, 2, "C124661")
+      ui_check_table_cell("differences_table", 1, 3, "TANNER SCALE BOY TEST")
+      ui_check_table_cell("differences_table", 2, 1, "2016-03-25")
+      ui_check_table_cell_no_change_down("differences_table", 2, 2)
+      ui_check_table_cell("differences_table", 3, 1, "2019-03-29")
+      ui_check_table_cell_delete("differences_table", 3, 2)
+
+      ui_check_table_cell("changes", 1, 1, "C124716")
+      ui_check_table_cell("changes", 1, 2, "Tanner Scale-Boy - Genitalia Stages")
+      ui_check_table_cell("changes", 1, 3, "TANN02-Genitalia Stages")
+      ui_check_table_cell_no_change_right("changes", 1, 4)
+      ui_check_table_cell_delete("changes", 1, 5)
+      ui_check_table_cell("changes", 1, 6, "Changes")
+    end
 
   end
 

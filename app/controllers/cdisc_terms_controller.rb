@@ -43,7 +43,7 @@ class CdiscTermsController < ApplicationController
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
         width = current_user.max_term_display.to_i
-        current_index = results.length < width ? (result.length - 1) : (width - 1)
+        current_index = results.length < width ? (results.length - 1) : (width - 1)
         @cdisc_term_id = results[current_index].to_id
         @identifier = CdiscTerm::C_IDENTIFIER
         @scope_id = IsoRegistrationAuthority.cdisc_scope.id
