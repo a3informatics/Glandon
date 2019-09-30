@@ -8,7 +8,7 @@
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
       <!-- BUTTON EXPORT PDF -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@tc, format: :pdf), id: "report",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_managed_concept_path(@tc, format: :pdf), id: "report",
         icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
       <!-- RETURN BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
