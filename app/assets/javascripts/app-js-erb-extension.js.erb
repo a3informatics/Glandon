@@ -17,6 +17,20 @@ function showFullPageSpinner(durationInSec, loading_message, timeout_message){
 
   setTimeout(function(){
     $(".spinner-wrap").remove();
-    displayAlerts(alertError("Loading timeout: " + message));
+    displayError("Loading timeout: " + timeout_message);
+  }, durationInSec * 1000);
+}
+
+function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout_message, redirectPath){
+  var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
+  $("body").prepend(html);
+
+  setTimeout(function(){
+    window.location.href = redirectPath;
+  }, 50)
+
+  setTimeout(function(){
+    $(".spinner-wrap").remove();
+    displayError("Loading timeout: " + timeout_message);
   }, durationInSec * 1000);
 }

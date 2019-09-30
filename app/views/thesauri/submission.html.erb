@@ -1,16 +1,18 @@
 <%= javascript_include_tag 'thesauri/changes' %>
+<%= javascript_include_tag 'safari_nav_fix' %>
 <%= javascript_tag "var url_path = '#{submission_data_thesauri_path(@ct)}';" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <%= javascript_tag "var pdfLoadingDur = 30,
                         loadingMessage = 'Generating report...',
-                        errTimeoutMessage = 'Error occurred while generating the report.';" %>
+                        errTimeoutMessage = 'Error occurred while generating the report.',
+                        redirectPath = '"+changes_report_thesauri_path(@ct, format: :pdf)+"';" %>
 
 <% second_level_breadcrumb("#{@ct.scoped_identifier}", @close_path, "Changes") %>
 <div class="row">
   <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Submission value changes"} do %>
     <div class="actions-wrap">
-      <div onclick="showFullPageSpinner(pdfLoadingDur, loadingMessage, errTimeoutMessage);">
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_report_thesauri_path(@ct, format: :pdf), id: "report",
+      <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
         icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
       </div>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
