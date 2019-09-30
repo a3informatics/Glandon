@@ -46,13 +46,13 @@ describe "Tokens", :type => :feature do
 
   describe "System Admin User", :type => :feature do
 
-    it "allows the tokens to be viewed", js: true do
+    it "allows the tokens to be viewed (REQ-MDR-EL-050)", js: true do
       ua_generic_login 'admin_user@example.com'
       click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'
     end
 
-    it "allows a lock to be released", js: true do
+    it "allows a lock to be released (REQ-MDR-EL-050)", js: true do
       ua_generic_login 'admin_user@example.com'
       click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'
@@ -65,7 +65,7 @@ describe "Tokens", :type => :feature do
       expect(page).to have_content "http://www.assero.co.uk/MDRForms/ACME/V1#4"
     end
 
-    it "allows a lock to be released, rejection", js: true do
+    it "allows a lock to be released, rejection (REQ-MDR-EL-050)", js: true do
       ua_generic_login 'admin_user@example.com'
       click_navbar_el
       expect(page).to have_content 'Index: Edit Locks'

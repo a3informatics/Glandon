@@ -28,14 +28,14 @@ describe "ISO Namespace", :type => :feature do
 
   describe "View", :type => :feature, js:true do
 
-    it "allows all namespaces to be viewed" do
+    it "allows all namespaces to be viewed (REQ-MDR-NS-010)" do
       click_navbar_namespaces
       expect(page).to have_content 'Namespaces'
       expect(page).to have_content 'BBB Pharma'
       expect(page).to have_content 'AAA Long'
     end
 
-    it "allows a new namespace to be added" do
+    it "allows a new namespace to be added (REQ-MDR-NS-010)" do
       click_navbar_namespaces
       click_link 'New'
       expect(page).to have_content 'New Scope Namespace'

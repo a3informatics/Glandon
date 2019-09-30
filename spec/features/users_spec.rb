@@ -109,7 +109,7 @@ describe "Users", :type => :feature do
       ua_logoff
     end
 
-    it "allows correct reader access" do
+    it "allows correct reader access (REQ-GENERIC-UR-010)" do
     	@user_r.name = "Mr Reader"
     	@user_r.save
       ua_reader_login
@@ -117,7 +117,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'Reader'
     end
 
-    it "allows correct sys admin access" do
+    it "allows correct sys admin access (REQ-GENERIC-UM-010, REQ-GENERIC-UR-010)" do
       @user_sa.name = "God!"
     	@user_sa.save
       ua_sys_admin_login
@@ -131,7 +131,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'content_admin@example.com'
     end
 
-    it "allows new user to be created (REQ-GENERIC-UM-040)" do
+    it "allows new user to be created (REQ-GENERIC-UM-040)", js:true do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
@@ -189,7 +189,7 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was not created. Email has already been taken.'
     end
 
-    it "allows a user's role to be modified (REQ-GENERIC-UM-110)" do
+    it "allows a user's role to be modified (REQ-GENERIC-UM-025, REQ-GENERIC-UM-110)" do
       audit_count = AuditTrail.count
       ua_sys_admin_login
       click_link 'users_button'
@@ -207,6 +207,8 @@ describe "Users", :type => :feature do
       click_link 'Set Terminology Curator Role'
       check_user_role("reader@example.com", audit_count+7, "Terminology Curator")
       click_link 'Set Reader Role'
+      check_user_role("comm_reader@example.com", audit_count+8, "Community Reader")
+      click_link 'Set Community Reader Role'
     end
 
     it "allows a user to be deleted (REQ-GENERIC-UM-090)" do

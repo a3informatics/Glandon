@@ -28,7 +28,7 @@ describe "ISO Namespace JS", :type => :feature do
 
   describe "valid user", :type => :feature, js: true do
 
-    it "deletes namespace" do
+    it "deletes namespace (REQ-MDR-NS-020)" do
       click_navbar_namespaces
       click_link 'New'
       expect(page).to have_content 'New Scope Namespace'

@@ -17,7 +17,7 @@ describe "Users", :type => :feature do
 
   describe "System Admin User", :type => :feature do
 
-    it "allows a user to be deleted", js: true do
+    it "allows a user to be deleted (REQ-GENERIC-UM-090)", js: true do
       ua_sys_admin_login
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'

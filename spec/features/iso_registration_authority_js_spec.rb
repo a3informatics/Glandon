@@ -28,7 +28,7 @@ describe "ISO Registration Authority JS", :type => :feature do
 
   describe "valid user", :type => :feature, js: true do
 
-    it "deletes registration authority" do
+    it "deletes registration authority (REQ-MDR-RA-020)" do
       click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
       find(:xpath, "//tr[contains(.,'111111111')]/td/a", :text => 'Delete').click

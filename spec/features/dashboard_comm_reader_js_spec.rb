@@ -61,9 +61,6 @@ describe "Community Dashboard JS", :type => :feature do
       click_see_changes_all_versions
       expect(page).to have_content 'Changes across versions'
       expect(page).to have_content 'Controlled Terminology'
-      fill_in 'Search:', with: 'C67154'
-      wait_for_ajax_v_long
-      ui_check_table_info("changes", 1, 1, 1)
       click_link 'Return'
       check_on_commumity_dashboard
     end
@@ -72,12 +69,6 @@ describe "Community Dashboard JS", :type => :feature do
       click_submission_value_changes
       expect(page).to have_content 'Submission value changes'
       expect(page).to have_content 'Controlled Terminology'
-      fill_in 'Search:', with: 'Calcium'
-      wait_for_ajax_v_long
-      ui_check_table_info("changes", 1, 1, 1)
-      click_link 'Start'
-      wait_for_ajax_v_long
-      ui_check_table_info("changes", 1, 9, 9)
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -86,29 +77,6 @@ describe "Community Dashboard JS", :type => :feature do
       click_search_the_latest_version
       expect(page).to have_content 'Search: Controlled Terminology CT '
       ui_check_table_info("searchTable", 0, 0, 0)
-      click_link 'Home'
-      check_on_commumity_dashboard
-    end
-
-    it "allows to clear all CDISC search areas (REQ-MDR-UD-NONE)", js: true do
-      click_search_the_latest_version
-      ui_check_breadcrumb('Terminology', 'CT', 'Search: V59.0.0', '')
-      expect(page).to have_content 'Search: Controlled Terminology CT ' 
-      ui_check_table_info("searchTable", 0, 0, 0)
-      fill_in 'searchTable_csearch_cl', with: 'C' 
-      fill_in 'searchTable_csearch_item', with: 'C' 
-      fill_in 'searchTable_csearch_submission_value', with: 'TEST' 
-      fill_in 'searchTable_csearch_preferred_term', with: 'TEST' 
-      fill_in 'searchTable_csearch_synonym', with: 'TEST CODE' 
-      ui_hit_return('searchTable_csearch_synonym')
-      wait_for_ajax_v_long
-      ui_check_table_info("searchTable", 1, 10, 307)
-      click_button 'clearbutton'
-      expect(find('#searchTable_csearch_cl')).to have_content('')
-      expect(find('#searchTable_csearch_item')).to have_content('')
-      expect(find('#searchTable_csearch_submission_value')).to have_content('')
-      expect(find('#searchTable_csearch_preferred_term')).to have_content('')
-      expect(find('#searchTable_csearch_synonym')).to have_content('')
       click_link 'Home'
       check_on_commumity_dashboard
     end
