@@ -9,7 +9,7 @@ defaults: &defaults
   # Host Name
   HOST_NAME: localhost
   HOST_PORT: "3000"
-  HOST_PROTOCOL: 'http'
+  HOST_PROTOCOL: "https"
   # API details
   api_username: "mdr_api_base_45edfwedhn"
   api_password: "a12password"
@@ -35,7 +35,7 @@ defaults: &defaults
   RDBMS_PASSWORD: ""
   # Base URL authority
   url_authority: "www.assero.co.uk"
-  welcome_text: "The A3 Community MDR is a free version of the A3 MDR. Crafted for the benefit of the community, the application provides tools that help those working with the CDISC standards.
+  welcome_text: "The A3 Community MDR is a free version of the A3 MDR. Crafted for the benefit of the community, the application provides tools that help those working with the CDISC standards."
 
 development:
   <<: *defaults
@@ -54,7 +54,7 @@ production:
   # Host Name
   #HOST_NAME: www.assero-demo.co.uk
   HOST_PROTOCOL: 'https'
-  
+
 test:
   <<: *defaults
   organization_title: 'ACME Test' # Changing these upsets results files
@@ -70,6 +70,5 @@ test:
   url_authority: "www.assero.co.uk" # Changing upsets results files
   # Host Name
   #HOST_NAME: www.assero-demo.co.uk
-  HOST_PROTOCOL: 'https'
+  HOST_PROTOCOL: "https"
   welcome_text: "Welcome text displayed here."
-

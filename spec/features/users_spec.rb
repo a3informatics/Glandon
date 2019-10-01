@@ -93,6 +93,11 @@ describe "Users", :type => :feature do
 			expect(ActionMailer::Base.smtp_settings[:password]).to eq(ENV['EMAIL_PASSWORD'])
     end
 
+    it "allows the login page welcome text to be checked" do
+      visit '/users/sign_in'
+      expect(page).to have_content 'Welcome text displayed here.'
+    end
+
   end
 
   describe "User Management", :type => :feature do
