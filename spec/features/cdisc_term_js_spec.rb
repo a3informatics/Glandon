@@ -46,7 +46,7 @@ describe "CDISC Term", :type => :feature do
     end
 
     #CL history
-    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
+    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031, REQ-MDR-MIT-015)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
     end

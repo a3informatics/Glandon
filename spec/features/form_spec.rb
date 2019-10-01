@@ -35,7 +35,7 @@ describe "Forms", :type => :feature do
       ua_logoff
     end
 
-    it "allows access to index page", js:true do
+    it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_forms
       expect(page).to have_content 'Index: Forms'
     end

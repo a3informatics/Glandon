@@ -32,7 +32,7 @@ describe "SDTM Models", :type => :feature do
       ua_logoff
     end
 
-    it "allows the history page to be viewed" do
+    it "allows the history page to be viewed (REQ-MDR-MIT-015)" do
       click_navbar_sdtm_model
       expect(page).to have_content 'History: CDISC SDTM Model'
       #save_and_open_page

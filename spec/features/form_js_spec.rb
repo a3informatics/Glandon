@@ -259,7 +259,7 @@ describe "Forms", :type => :feature do
       ui_check_anon_table_row(5, ["Notes:", ""])
     end
 
-    it "allows a form to be deleted (REQ-MDR-CRF-010)", js: true do
+    it "allows a form to be deleted (REQ-MDR-CRF-010, REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
       click_navbar_forms
       expect(page).to have_content 'Index: Forms'
       find(:xpath, "//tr[contains(.,'T2')]/td/a", :text => 'History').click
