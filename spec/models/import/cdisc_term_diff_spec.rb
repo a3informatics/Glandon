@@ -82,6 +82,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   end
 
 	def check_cl_result(results, cl, status)
+    return if status == :no_change
   	puts "***** Error checking CL Result: #{cl} for expected result #{status} *****" if results[:items][cl.to_sym][:status][0][:status] != status
     expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
   end
@@ -629,7 +630,6 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     it "Create version 26: 2011", :speed => 'slow' do
       version = 26
       results = execute_import(version, "2011-06-10", {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
-  byebug
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -643,14 +643,16 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change},
-        {cl: :C90007, status: :created}
+        {cl: :C90007, status: :created},
+        {cl: :C89969, status: :created},
+        {cl: :C89970, status: :created}
       ]
       check_cl_results(results, expected) 
     end
 
     it "Create version 27: 2011", :speed => 'slow' do
       version = 27
-      results = execute_import(version, "2011-07-22", {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22"}, set_write_file)
+      results = execute_import(version, "2011-07-22", {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22", send: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
