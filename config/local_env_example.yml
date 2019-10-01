@@ -9,6 +9,7 @@ defaults: &defaults
   # Host Name
   HOST_NAME: localhost
   HOST_PORT: "3000"
+  HOST_PROTOCOL: "https"
   # API details
   api_username: "mdr_api_base_45edfwedhn"
   api_password: "a12password"
@@ -17,7 +18,7 @@ defaults: &defaults
   organization_title: A3 Informatics # Installation organisation title
   organization_image_file: a3.jpg # File in images directory for orgnaization image
   token_timeout: '600' # Edit lock timeout in seconds. Note must be a string
-  # Semantic Triple Store: Fuseki 
+  # Semantic Triple Store: Fuseki
   SEMANTIC_DB_API_KEY: ""
   SEMANTIC_DB_API_SECRET: ""
   SEMANTIC_DB_PROTOCOL: "http"
@@ -29,6 +30,8 @@ defaults: &defaults
   RDBMS_PASSWORD: ""
   # Base URL authority
   url_authority: "www.assero.co.uk"
+  welcome_text: "The A3 Community MDR is a free version of the A3 MDR. Crafted for the benefit of the community, the application provides tools that help those working with the CDISC standards."
+
 
 development:
   <<: *defaults
@@ -37,13 +40,14 @@ development:
   # API details
   api_username: "mdr_api_dev_34efgdwsde"
   api_password: "a12passwordIsSetItIs3456tg"
+  HOST_PROTOCOL: "http"
 
 production:
   <<: *defaults
   organization_navbar: 'Demo ' # Installation navbar title
   token_timeout: '1200' # Edit lock timeout in seconds. Note must be a string
   #HOST_NAME: www.assero-demo.co.uk
-  
+
 test:
   <<: *defaults
   organization_title: 'ACME Test' # Changing these upsets results files
@@ -57,4 +61,5 @@ test:
   SEMANTIC_DB_DATASET: "test"
   # Base URL authority
   url_authority: "www.assero.co.uk" # Changing upsets results files
-
+  HOST_PROTOCOL: "https"
+  welcome_text: "Welcome text displayed here."
