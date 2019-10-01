@@ -58,4 +58,22 @@ describe UserSettingsController do
 
   end
 
+  describe "user settings as community reader" do
+
+    login_community_reader
+
+    it "index settings" do
+      get :index
+      expect(assigns(:settings_metadata)).to eq(us_expected_metadata)
+      expect(response).to render_template("index")
+    end
+
+    it "updates user" do
+      put :update, {id: @user.id, :user_settings => {:name => "paper_size", :value => "Letter"}}
+      expect(@user.read_setting(:paper_size).value).to eq("Letter")
+      expect(response).to redirect_to("/user_settings")
+    end
+
+  end
+
 end
