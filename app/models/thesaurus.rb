@@ -268,16 +268,19 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     # Get the final result
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) ?s WHERE\n
-{        
-  VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
-  {
-    ?s th:identifier ?i .
-    ?s th:notation ?n .
-    ?s th:definition ?d .
-    ?s th:extensible ?e .
-    ?s th:preferredTerm/isoC:label ?pt .
-    OPTIONAL {?s th:synonym/isoC:label ?sy .}
-  }
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE   
+  {        
+    VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+    {
+      ?s th:identifier ?i .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      ?s th:preferredTerm/isoC:label ?pt .
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } ORDER BY ?i ?sy
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
