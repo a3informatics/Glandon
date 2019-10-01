@@ -11,6 +11,31 @@ describe "CdiscTerm Difference" do
     return "models/import/cdisc_term"
   end
 
+  before :all do
+    IsoHelpers.clear_cache
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
+    ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    create_maps
+  end
+
+  after :all do
+    #
+  end
+
+  before :each do
+    setup
+  end
+
+  after :each do
+    Import.destroy_all
+    delete_all_public_test_files
+  end
+
   def setup
     #@object = Import::CdiscTerm.new
     @object = Import.new(:type => "Import::CdiscTerm") # Use this rather than above.
@@ -20,24 +45,11 @@ describe "CdiscTerm Difference" do
     @object.save
   end
 
-  before :each do
-    IsoHelpers.clear_cache
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-    load_files(schema_files, data_files)
-    setup
-  end
-
-  after :each do
-    Import.destroy_all
-    delete_all_public_test_files
-  end
-
-  def check_count(version, expected)
+  def check_count(issue_date)
+    version_index = @date_to_version_map.index(issue_date)
+    version = version_index + 1
+    expected = @version_to_info_map[version_index][:size]
+    return if expected == -1
     uri_sting = "http://www.cdisc.org/CT/V#{version}#TH"
     query_string = %Q{
 SELECT DISTINCT (count(?uri) as ?count) WHERE {            
@@ -60,7 +72,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)
@@ -130,7 +142,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     results = th.changes(2)
   end
 
-  def execute_import(current_version, issue_date, reqd_files, create_file=false)
+  def execute_import(issue_date, reqd_files, create_file=false)
+    current_version = @date_to_version_map.index(issue_date) + 1
     files = []
     file_pattern = 
     {
@@ -149,11 +162,47 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     results = process_load_and_compare(files, issue_date, current_version, create_file)
   end
 
+  def create_maps
+    @date_to_version_map = 
+    [
+      "2007-03-06", "2007-04-20", "2007-04-26", "2007-05-31", "2007-06-05",
+      "2008-01-15", "2008-01-25", "2008-08-26", "2008-09-22", "2008-09-24", "2008-09-30", "2008-10-09", "2008-10-15", 
+      "2009-02-17", "2009-02-18", "2009-05-01", "2009-07-06", "2009-10-06", 
+      "2010-03-05", "2010-04-08", "2010-07-02", "2010-10-06", "2010-10-22", 
+      "2011-01-07", "2011-04-08", "2011-06-10", "2011-07-22", "2011-12-09",
+      "2012-03-23", "2012-06-29", "2012-08-03", "2012-12-21",
+      "2013-04-12", "2013-06-28", "2013-10-04", "2013-12-20",
+      "2014-03-28", "2014-06-27", "2014-09-26", "2014-10-06", "2014-12-19",
+      "2015-03-27", "2015-06-26", "2015-09-25", "2015-12-18",
+      "2016-03-25", "2016-06-24", "2016-09-30", "2016-12-16", 
+      "2017-03-31", "2017-06-30", "2017-09-29", "2017-12-22",
+      "2018-03-30", "2018-06-29", "2018-09-28", "2018-12-21",
+      "2019-03-29", "2019-06-28"
+    ]
+
+    @version_to_info_map =
+    [
+      { size:  881}, { size: 1003 }, { size: 1003 }, { size: -1 }, { size: -1 },                                        # 2007
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 2301 }, { size: -1 }, { size: -1 }, # 2008
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2009
+      { size: -1 }, { size: -1 }, { size: 4190+134+26 }, { size: -1 }, { size: -1 },                                    # 2010
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }
+    ]
+  end
+
   describe "2007" do
 
-    it "Base create, version 1: 2007", :speed => 'slow' do
-      version = 1
-      results = execute_import(version, "2007-03-06", {sdtm: "2007-03-06"}, set_write_file)
+    it "Base create, 2007-03-06", :speed => 'slow' do
+      release_date = "2007-03-06"
+      results = execute_import(release_date, {sdtm: "2007-03-06"}, set_write_file)
       expected = [
         {cl: :C16564, status: :created},
         {cl: :C20587, status: :created},
@@ -162,12 +211,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C49499, status: :created}
       ]
       check_cl_results(results, expected)
-      check_count(version, 881)
+      check_count(release_date)
     end
 
-    it "Create version 2: 2007", :speed => 'slow' do
-      version = 2
-      results = execute_import(version, "2007-04-20", {sdtm: "2007-04-20"}, set_write_file)
+    it "Create 2007-04-20", :speed => 'slow' do
+      release_date = "2007-04-20"
+      results = execute_import(release_date, {sdtm: "2007-04-20"}, set_write_file)
       expected = [
         {cl: :C16564, status: :deleted},
         {cl: :C20587, status: :deleted},
@@ -180,12 +229,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C66737, status: :created}
       ]
       check_cl_results(results, expected) 
-      check_count(version, 1003)
+      check_count(release_date)
     end
 
-    it "Create version 3: 2007", :speed => 'slow' do
-      version = 3
-      results = execute_import(version, "2007-04-26", {sdtm: "2007-04-26"}, set_write_file)
+    it "Create 2007-04-26", :speed => 'slow' do
+      release_date = "2007-04-26"
+      results = execute_import(release_date, {sdtm: "2007-04-26"}, set_write_file)
       expected = [
         {cl: :C66785, status: :created},
         {cl: :C66787, status: :no_change},
@@ -193,13 +242,14 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C67153, status: :no_change},
         {cl: :C66737, status: :updated}
       ]
-      check_cl_results(results, expected)
-      check_count(version, 1003)
+      check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 4: 2007", :speed => 'slow' do
+    it "Create 2007-05-31", :speed => 'slow' do
+      release_date = "2007-05-31"
       version = 4
-      results = execute_import(version, "2007-05-31", {sdtm: "2007-05-31"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2007-05-31"}, set_write_file)
       expected = [
         {cl: :C66785, status: :updated},
         {cl: :C66787, status: :updated},
@@ -209,11 +259,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C67152, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 5: 2007", :speed => 'slow' do
-      version = 5
-      results = execute_import(version, "2007-06-05", {sdtm: "2007-06-05"}, set_write_file)
+    it "Create 2007-06-05", :speed => 'slow' do
+      release_date = "2007-06-05"
+      results = execute_import(release_date, {sdtm: "2007-06-05"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -224,15 +275,16 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C67153, status: :no_change}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
   end
 
   describe "2008" do
 
-    it "Create version 6: 2008", :speed => 'slow' do
-      version = 6
-      results = execute_import(version, "2008-01-15", {sdtm: "2008-01-15"}, set_write_file)
+    it "Create 2008-01-15", :speed => 'slow' do
+      release_date = "2008-01-15"
+      results = execute_import(release_date, {sdtm: "2008-01-15"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -245,11 +297,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C71620, status: :created}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 7: 2008", :speed => 'slow' do
-      version = 7
-      results = execute_import(version, "2008-01-25", {sdtm: "2008-01-25"}, set_write_file)
+    it "Create 2008-01-25", :speed => 'slow' do
+      release_date = "2008-01-25"
+      results = execute_import(release_date, {sdtm: "2008-01-25"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -262,11 +315,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C71620, status: :no_change}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 8: 2008", :speed => 'slow' do
-      version = 8
-      results = execute_import(version, "2008-08-26", {sdtm: "2008-08-26"}, set_write_file)
+    it "Create 2008-08-26", :speed => 'slow' do
+      release_date = "2008-08-26"
+      results = execute_import(release_date, {sdtm: "2008-08-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :no_change},
@@ -280,11 +334,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74559, status: :created}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 9: 2008", :speed => 'slow' do
-      version = 9
-      results = execute_import(version, "2008-09-22", {sdtm: "2008-09-22"}, set_write_file)
+    it "Create 2008-09-22", :speed => 'slow' do
+      release_date = "2008-09-22"
+      results = execute_import(release_date, {sdtm: "2008-09-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :no_change},
@@ -298,11 +353,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74559, status: :no_change}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 10: 2008", :speed => 'slow' do
-      version = 10
-      results = execute_import(version, "2008-09-24", {sdtm: "2008-09-24"}, set_write_file)
+    it "Create 2008-09-24", :speed => 'slow' do
+      release_date = "2008-09-24"
+      results = execute_import(release_date, {sdtm: "2008-09-24"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -319,11 +375,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C25188, status: :deleted}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 11: 2008", :speed => 'slow' do
-      version = 11
-      results = execute_import(version, "2008-09-30", {sdtm: "2008-09-30"}, set_write_file)
+    it "Create 2008-09-30", :speed => 'slow' do
+      release_date = "2008-09-30"
+      results = execute_import(release_date, {sdtm: "2008-09-30"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -338,12 +395,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change}
       ]
       check_cl_results(results, expected)
-      check_count(version, 2301)
+      check_count(release_date)
     end
 
-    it "Create version 12: 2008", :speed => 'slow' do
-      version = 12
-      results = execute_import(version, "2008-10-09", {sdtm: "2008-10-09"}, set_write_file)
+    it "Create 2008-10-09", :speed => 'slow' do
+      release_date = "2008-10-09"
+      results = execute_import(release_date, {sdtm: "2008-10-09"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -357,12 +414,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 13: 2008", :speed => 'slow' do
-      version = 13
-      results = execute_import(version, "2008-10-15", {sdtm: "2008-10-15"}, set_write_file)
+    it "Create 2008-10-15", :speed => 'slow' do
+      release_date = "2008-10-15"
+      results = execute_import(release_date, {sdtm: "2008-10-15"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -376,16 +434,17 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
   end
 
   describe "2009" do
 
-    it "Create version 14: 2009", :speed => 'slow' do
-      version = 14
-      results = execute_import(version, "2009-02-17", {sdtm: "2009-02-17"}, set_write_file)
+    it "Create 2009-02-17", :speed => 'slow' do
+      release_date = "2009-02-17"
+      results = execute_import(release_date, {sdtm: "2009-02-17"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -399,12 +458,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 15: 2009", :speed => 'slow' do
-      version = 15
-      results = execute_import(version, "2009-02-18", {sdtm: "2009-02-18"}, set_write_file)
+    it "Create 2009-02-18", :speed => 'slow' do
+      release_date = "2009-02-18"
+      results = execute_import(release_date, {sdtm: "2009-02-18"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -418,12 +478,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 16: 2009", :speed => 'slow' do
-      version = 16
-      results = execute_import(version, "2009-05-01", {sdtm: "2009-05-01"}, set_write_file)
+    it "Create 2009-05-01", :speed => 'slow' do
+      release_date = "2009-05-01"
+      results = execute_import(release_date, {sdtm: "2009-05-01"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -437,12 +498,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :updated}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 17: 2009", :speed => 'slow' do
-      version = 17
-      results = execute_import(version, "2009-07-06", {sdtm: "2009-07-06"}, set_write_file)
+    it "Create 2009-07-06", :speed => 'slow' do
+      release_date = "2009-07-06"
+      results = execute_import(release_date, {sdtm: "2009-07-06"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -456,12 +518,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 18: 2009", :speed => 'slow' do
-      version = 18
-      results = execute_import(version, "2009-10-06", {sdtm: "2009-10-06"}, set_write_file)
+    it "Create 2009-10-06", :speed => 'slow' do
+      release_date = "2009-10-06"
+      results = execute_import(release_date, {sdtm: "2009-10-06"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -475,16 +538,17 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :no_change},
         {cl: :C76351, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
   end
 
   describe "2010" do
 
-    it "Create version 19: 2010", :speed => 'slow' do
-      version = 19
-      results = execute_import(version, "2010-03-05", {sdtm: "2010-03-05", cdash: "2010-03-05", adam: "2010-03-05"}, set_write_file)
+    it "Create 2010-03-05", :speed => 'slow' do
+      release_date = "2010-03-05"
+      results = execute_import(release_date, {sdtm: "2010-03-05", cdash: "2010-03-05", adam: "2010-03-05"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -499,12 +563,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :updated}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 20: 2010", :speed => 'slow' do
-      version = 20
-      results = execute_import(version, "2010-04-08", {sdtm: "2010-04-08", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
+    it "Create 2010-04-08", :speed => 'slow' do
+      release_date = "2010-04-08"
+      results = execute_import(release_date, {sdtm: "2010-04-08", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -519,12 +584,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 21: 2010", :speed => 'slow' do
-      version = 21
-      results = execute_import(version, "2010-07-02", {sdtm: "2010-07-02", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
+    it "Create 2010-07-02", :speed => 'slow' do
+      release_date = "2010-07-02"
+      results = execute_import(release_date, {sdtm: "2010-07-02", cdash: "2010-04-08", adam: "2010-04-08"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -540,12 +606,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change}
       ]
       check_cl_results(results, expected)
-      check_count(version, 4190+134+26)
+      check_count(release_date)
     end
 
-    it "Create version 22: 2010", :speed => 'slow' do
-      version = 22
-      results = execute_import(version, "2010-10-06", {sdtm: "2010-10-06", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
+    it "Create 2010-10-06", :speed => 'slow' do
+      release_date = "2010-10-06"
+      results = execute_import(release_date, {sdtm: "2010-10-06", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -560,12 +626,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 23: 2010", :speed => 'slow' do
-      version = 23
-      results = execute_import(version, "2010-10-22", {sdtm: "2010-10-22", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
+    it "Create 2010-10-22", :speed => 'slow' do
+      release_date = "2010-10-22"
+      results = execute_import(release_date, {sdtm: "2010-10-22", cdash: "2010-04-08", adam: "2010-10-06"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -580,16 +647,17 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
   end
 
   describe "2011" do
 
-    it "Create version 24: 2011", :speed => 'slow' do
-      version = 24
-      results = execute_import(version, "2011-01-07", {sdtm: "2011-01-07", adam: "2011-01-07", cdash: "2011-01-07"}, set_write_file)
+    it "Create 2011-01-07", :speed => 'slow' do
+      release_date = "2011-01-07"
+      results = execute_import(release_date, {sdtm: "2011-01-07", adam: "2011-01-07", cdash: "2011-01-07"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -604,12 +672,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 25: 2011", :speed => 'slow' do
-      version = 25
-      results = execute_import(version, "2011-04-08", {sdtm: "2011-04-08", adam: "2011-01-07", cdash: "2011-04-08"}, set_write_file)
+    it "Create 2011-04-08", :speed => 'slow' do
+      release_date = "2011-04-08"
+      results = execute_import(release_date, {sdtm: "2011-04-08", adam: "2011-01-07", cdash: "2011-04-08"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -624,12 +693,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 26: 2011", :speed => 'slow' do
-      version = 26
-      results = execute_import(version, "2011-06-10", {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
+    it "Create 2011-06-10", :speed => 'slow' do
+      release_date = "2011-06-10"
+      results = execute_import(release_date, {sdtm: "2011-06-10", adam: "2011-01-07", cdash: "2011-04-08", send: "2011-06-10"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -647,12 +717,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C89969, status: :created},
         {cl: :C89970, status: :created}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 27: 2011", :speed => 'slow' do
-      version = 27
-      results = execute_import(version, "2011-07-22", {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22", send: "2011-07-22"}, set_write_file)
+    it "Create 2011-07-22", :speed => 'slow' do
+      release_date = "2011-07-22"
+      results = execute_import(release_date, {sdtm: "2011-07-22", adam: "2011-07-22", cdash: "2011-07-22", send: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -667,12 +738,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C76351, status: :no_change},
         {cl: :C78735, status: :no_change}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 28: 2011", :speed => 'slow' do
-      version = 28
-      results = execute_import(version, "2011-12-09", {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09"}, set_write_file)
+    it "Create 2011-12-09", :speed => 'slow' do
+      release_date = "2011-12-09"
+      results = execute_import(release_date, {sdtm: "2011-12-09", adam: "2011-07-22", cdash: "2011-12-09", send: "2011-12-09"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -688,7 +760,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change},
         {cl: :C88025, status: :created}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
   end
@@ -696,8 +769,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2012" do
 
     it "Create version 29: 2012", :speed => 'slow' do
-      version = 29
-      results = execute_import(version, "2012-03-23", {sdtm: "2012-03-23", adam: "2011-07-22", cdash: "2011-12-09", qs: "2012-03-23"}, set_write_file)
+      release_date = "2012-03-23"
+      results = execute_import(release_date, {sdtm: "2012-03-23", adam: "2011-07-22", cdash: "2011-12-09", qs: "2012-03-23"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -717,8 +790,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 30: 2012", :speed => 'slow' do
-      version = 30
-      results = execute_import(version, "2012-06-29", {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29"}, set_write_file)
+      release_date = "2012-06-29"
+      results = execute_import(release_date, {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -738,8 +811,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 31: 2012", :speed => 'slow' do
-      version = 31
-      results = execute_import(version, "2012-08-03", {sdtm: "2012-08-03", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-08-03"}, set_write_file)
+      release_date = "2012-08-03"
+      results = execute_import(release_date, {sdtm: "2012-08-03", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-08-03"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -760,8 +833,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 32: 2012", :speed => 'slow' do
-      version = 32
-      results = execute_import(version, "2012-12-21", {sdtm: "2012-12-21", qs: "2012-12-21", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
+      release_date = "2012-12-21"
+      results = execute_import(release_date, {sdtm: "2012-12-21", qs: "2012-12-21", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -785,8 +858,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2013" do
 
     it "Create version 33: 2013", :speed => 'slow' do
-      version = 33
-      results = execute_import(version, "2013-04-12", {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
+      release_date = "2013-04-12"
+      results = execute_import(release_date, {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -806,8 +879,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 34: 2013", :speed => 'slow' do
-      version = 34
-      results = execute_import(version, "2013-06-28", {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22"}, set_write_file)
+      release_date = "2013-06-28"
+      results = execute_import(release_date, {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -828,8 +901,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 35: 2013", :speed => 'slow' do
-      version = 35
-      results = execute_import(version, "2013-10-04", {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22"}, set_write_file)
+      release_date = "2013-10-04"
+      results = execute_import(release_date, {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -849,8 +922,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 36: 2013", :speed => 'slow' do
-      version = 36
-      results = execute_import(version, "2013-12-20", {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22"}, set_write_file)
+      release_date = "2013-12-20"
+      results = execute_import(release_date, {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -874,8 +947,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2014" do
 
     it "Create version 37: 2014", :speed => 'slow' do
-      version = 37
-      results = execute_import(version, "2014-03-28", {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
+      release_date = "2014-03-28"
+      results = execute_import(release_date, {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -895,8 +968,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 38: 2014", :speed => 'slow' do
-      version = 38
-      results = execute_import(version, "2014-06-27", {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
+      release_date = "2014-06-27"
+      results = execute_import(release_date, {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -916,8 +989,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 39: 2014", :speed => 'slow' do
-      version = 39
-      results = execute_import(version, "2014-09-26", {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      release_date = "2014-09-26"
+      results = execute_import(release_date, {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -937,8 +1010,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 40: 2014", :speed => 'slow' do
-      version = 40
-      results = execute_import(version, "2014-10-06", {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      release_date = "2014-10-06"
+      results = execute_import(release_date, {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -958,8 +1031,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 41: 2014", :speed => 'slow' do
-      version = 41
-      results = execute_import(version, "2014-12-19", {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      release_date = "2014-12-19"
+      results = execute_import(release_date, {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -984,8 +1057,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2015" do
 
     it "Create version 42: 2015", :speed => 'slow' do
-      version = 42
-      results = execute_import(version, "2015-03-27", {sdtm: "2015-03-27", coa: "2015-03-27", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
+      release_date = "2015-03-27"
+      results = execute_import(release_date, {sdtm: "2015-03-27", coa: "2015-03-27", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1005,8 +1078,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 43: 2015", :speed => 'slow' do
-      version = 43
-      results = execute_import(version, "2015-06-26", {sdtm: "2015-06-26", qrs: "2015-06-26", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
+      release_date = "2015-06-26"
+      results = execute_import(release_date, {sdtm: "2015-06-26", qrs: "2015-06-26", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1026,8 +1099,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 44: 2015", :speed => 'slow' do
-      version = 44
-      results = execute_import(version, "2015-09-25", {sdtm: "2015-09-25", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
+      release_date = "2015-09-25"
+      results = execute_import(release_date, {sdtm: "2015-09-25", qrs: "2015-09-25", cdash: "2015-03-27", adam: "2014-09-26"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1047,8 +1120,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 45: 2015", :speed => 'slow' do
-      version = 45
-      results = execute_import(version, "2015-12-18", {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18"}, set_write_file)
+      release_date = "2015-12-18"
+      results = execute_import(release_date, {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1073,8 +1146,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2016" do
 
     it "Create version 46: 2016", :speed => 'slow' do
-      version = 46
-      results = execute_import(version, "2016-03-25", {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25"}, set_write_file)
+      release_date = "2016-03-25"
+      results = execute_import(release_date, {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1094,8 +1167,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 47: 2016", :speed => 'slow' do
-      version = 47
-      results = execute_import(version, "2016-06-24", {sdtm: "2016-06-24", cdash: "2016-03-25", adam: "2016-03-25"}, set_write_file)
+      release_date = "2016-06-24"
+      results = execute_import(release_date, {sdtm: "2016-06-24", cdash: "2016-03-25", adam: "2016-03-25"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1115,8 +1188,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 48: 2016", :speed => 'slow' do
-      version = 48
-      results = execute_import(version, "2016-09-30", {sdtm: "2016-09-30", cdash: "2016-09-30", adam: "2016-09-30"}, set_write_file)
+      release_date = "2016-09-30"
+      results = execute_import(release_date, {sdtm: "2016-09-30", cdash: "2016-09-30", adam: "2016-09-30"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1136,8 +1209,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 49: 2016", :speed => 'slow' do
-      version = 49
-      results = execute_import(version, "2016-12-16", {sdtm: "2016-12-16", cdash: "2016-12-16", adam: "2016-12-16"}, set_write_file)
+      release_date = "2016-12-16"
+      results = execute_import(release_date, {sdtm: "2016-12-16", cdash: "2016-12-16", adam: "2016-12-16"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1160,8 +1233,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2017" do
 
     it "Create version 50: 2017", :speed => 'slow' do
-      version = 50
-      results = execute_import(version, "2017-03-31", {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31"}, set_write_file)
+      release_date = "2017-03-31"
+      results = execute_import(release_date, {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -1180,8 +1253,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 51: 2017", :speed => 'slow' do
-      version = 51
-      results = execute_import(version, "2017-06-30", {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31"}, set_write_file)
+      release_date = "2017-06-30"
+      results = execute_import(release_date, {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1201,8 +1274,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 52: 2017", :speed => 'slow' do
-      version = 52
-      results = execute_import(version, "2017-09-29", {sdtm: "2017-09-29", cdash: "2017-09-29", adam: "2017-09-29"}, set_write_file)
+      release_date = "2017-09-29"
+      results = execute_import(release_date, {sdtm: "2017-09-29", cdash: "2017-09-29", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1221,8 +1294,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 53: 2017", :speed => 'slow' do
-      version = 53
-      results = execute_import(version, "2017-12-22", {sdtm: "2017-12-22", cdash: "2017-09-29", adam: "2017-09-29"}, set_write_file)
+      release_date = "2017-12-22"
+      results = execute_import(release_date, {sdtm: "2017-12-22", cdash: "2017-09-29", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1245,8 +1318,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
   describe "2018" do
 
     it "Create version 54: 2018", :speed => 'slow' do
-      version = 54
-      results = execute_import(version, "2018-03-30", {sdtm: "2018-03-30", cdash: "2018-03-30", adam: "2017-09-29"}, set_write_file)
+      release_date = "2018-03-30"
+      results = execute_import(release_date, {sdtm: "2018-03-30", cdash: "2018-03-30", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1265,8 +1338,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 55: 2018", :speed => 'slow' do
-      version = 55
-      results = execute_import(version, "2018-06-29", {sdtm: "2018-06-29", cdash: "2018-06-29", adam: "2017-09-29"}, set_write_file)
+      release_date = "2018-06-29"
+      results = execute_import(release_date, {sdtm: "2018-06-29", cdash: "2018-06-29", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1285,8 +1358,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 56: 2018", :speed => 'slow' do
-      version = 56
-      results = execute_import(version, "2018-09-28", {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2017-09-29"}, set_write_file)
+      release_date = "2018-09-28"
+      results = execute_import(release_date, {sdtm: "2018-09-28", cdash: "2018-09-28", adam: "2017-09-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1305,8 +1378,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     end
 
     it "Create version 57: 2018", :speed => 'slow' do
-      version = 57
-      results = execute_import(version, "2018-12-21", {sdtm: "2018-12-21", cdash: "2018-12-21", adam: "2018-12-21"}, set_write_file)
+      release_date = "2018-12-21"
+      results = execute_import(release_date, {sdtm: "2018-12-21", cdash: "2018-12-21", adam: "2018-12-21"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1328,9 +1401,9 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
   describe "2019" do
 
-    it "Create version 58: 2019", :speed => 'slow' do
-      version = 58
-      results = execute_import(version, "2019-03-29", {sdtm: "2019-03-29", cdash: "2019-03-29", adam: "2019-03-29"}, set_write_file)
+    it "Create 2019-03-29", :speed => 'slow' do
+      release_date = "2019-03-29"
+      results = execute_import(release_date, {sdtm: "2019-03-29", cdash: "2019-03-29", adam: "2019-03-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1349,9 +1422,9 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       check_count(version, 28590+289+50-155) # Duplicates (155) in CDASH C128690, C128689 
     end
 
-    it "Create version 59: 2019", :speed => 'slow' do
-      version = 59
-      results = execute_import(version, "2019-06-28", {sdtm: "2019-06-28", cdash: "2019-06-28", adam: "2019-03-29"}, set_write_file)
+    it "Create 2019-06-28", :speed => 'slow' do
+      release_date = "2019-06-28"
+      results = execute_import(release_date, {sdtm: "2019-06-28", cdash: "2019-06-28", adam: "2019-03-29"}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
