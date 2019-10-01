@@ -6,4 +6,32 @@
   a[href]:after {
     content: none;
   }
+
+  html, body{
+    height: unset !important;
+    padding: 0px !important;
+    position: static !important;
+  }
+
+  .list-wrap{
+    max-height: unset !important;
+    max-width: unset !important;
+  }
+
+  .card-content{
+    padding: 5px !important;
+    overflow: visible !important;
+  }
+
+  .timeline-date-btn{
+    position: static !important;
+  }
+
+  .timeline-container:first-of-type{
+    display: none !important;
+  }
+
+  .btns-wrap{
+    display: none !important;
+  }
 }
