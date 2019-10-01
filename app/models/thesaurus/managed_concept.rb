@@ -236,17 +236,20 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     item_was_deleted_info = deleted_from_ct_version(items.first)
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
-{        
-  VALUES ?s { #{items.map{|x| x.to_ref}.join(" ")} }
-  {
-    ?s th:identifier ?i .
-    ?s isoT:creationDate ?date .
-    ?s th:notation ?n .
-    ?s th:definition ?d .
-    ?s th:extensible ?e .
-    OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
-    OPTIONAL {?s th:synonym/isoC:label ?sy .}
-  }
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE   
+  {        
+    VALUES ?s { #{items.map{|x| x.to_ref}.join(" ")} }
+    {
+      ?s th:identifier ?i .
+      ?s isoT:creationDate ?date .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } ORDER BY ?i ?sy
 } GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?i
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
