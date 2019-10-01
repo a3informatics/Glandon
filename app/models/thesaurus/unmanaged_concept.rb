@@ -107,18 +107,21 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     item_was_deleted_info = deleted_from_ct_version(items.first)
     query_string = %Q{
 SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) WHERE\n
-{        
-  VALUES ?p { #{items.map{|x| x.to_ref}.join(" ")} }
-  {
-    ?p th:narrower ?s .
-    ?p isoT:creationDate ?date .
-    ?s th:identifier '#{self.identifier}' .
-    ?s th:notation ?n .
-    ?s th:definition ?d .
-    ?s th:extensible ?e .
-    OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
-    OPTIONAL {?s th:synonym/isoC:label ?sy .}
-  }
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE   
+  {      
+    VALUES ?p { #{items.map{|x| x.to_ref}.join(" ")} }
+    {
+      ?p th:narrower ?s .
+      ?p isoT:creationDate ?date .
+      ?s th:identifier '#{self.identifier}' .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } ORDER BY ?i ?sy
 } GROUP BY ?s ?n ?d ?pt ?e ?s ?date ORDER BY ?date
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
