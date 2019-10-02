@@ -33,8 +33,17 @@ body {
   margin: 0;
 }
 
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .spinner-el {
+@mixin ieandedge() {
+    @media screen and (-ms-high-contrast: none) {
+        @content;
+    }
+    @supports (-ms-ime-align:auto) {
+        @content;
+    }
+}
+
+.spinner-el{
+  @include ieandedge {
     background: url(asset_path("loading.gif")) no-repeat center !important;
   }
 }

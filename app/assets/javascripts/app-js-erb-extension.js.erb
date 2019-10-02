@@ -11,26 +11,37 @@ function generateNoResultsMsg(message){
          '</div>';
 }
 
+// Should be used with safari_nav_js_fix
 function showFullPageSpinner(durationInSec, loading_message, timeout_message){
   var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
   $("body").prepend(html);
 
   pdfLoadingTimeout = setTimeout(function(){
-    $(".spinner-wrap").remove();
-    displayError("Loading timeout: " + timeout_message);
+    if($(".spinner-wrap").length){
+      $(".spinner-wrap").remove();
+      displayError("Loading timeout: " + timeout_message);
+    }
   }, durationInSec * 1000);
 }
 
+// Opens loading & redirects within a new tab/window. Safari_nav_js_fix not required.
 function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout_message, redirectPath){
+  var w = window.open();
+
+  var data = "<link rel=\"stylesheet\" type=\"text/css\" href=\""+$(location).attr('protocol')+"//"+$(location).attr('host')+"<%= asset_path('custom/full_page_spinner') %>\">";
   var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
-  $("body").prepend(html);
 
-  setTimeout(function(){
-    window.location.href = redirectPath;
-  }, 50)
+  $(w.document).find("head").append(data);
+  $(w.document.body).html(html);
 
-  pdfLoadingTimeout = setTimeout(function(){
-    $(".spinner-wrap").remove();
-    displayError("Loading timeout: " + timeout_message);
+  setTimeout(function() {
+    w.location.href = redirectPath;
+  }, 200);
+
+  w.setTimeout(function(){
+    if($(w.document.body).find(".spinner-wrap").length){
+      w.alert("Loading timeout: " + timeout_message);
+      w.close();
+    }
   }, durationInSec * 1000);
 }
