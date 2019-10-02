@@ -5,7 +5,7 @@
 <%= javascript_tag "var pdfLoadingDur = 30,
                         loadingMessage = 'Generating report...',
                         errTimeoutMessage = 'Error occurred while generating the report.',
-                        redirectPath = '"+changes_report_thesauri_path(@ct, format: :pdf)+"';" %>
+                        redirectPath = '"+changes_report_thesauri_managed_concept_path(@tc, format: :pdf)+"';" %>
 
 <% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
 <div class="row">
