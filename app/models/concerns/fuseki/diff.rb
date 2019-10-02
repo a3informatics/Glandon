@@ -59,6 +59,7 @@ module Fuseki
       results = {}
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if !other.nil? && incomptible_klass?(other)
       #properties = properties_read_instance
+byebug
       @properties.each do |property|
         #variable = Fuseki::Persistence::Naming.new(name).as_symbol
         name = property.name

@@ -803,7 +803,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create 2012-06-29", :speed => 'slow' do
       release_date = "2012-06-29"
-      results = execute_import(release_date, {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29", send: "2012-03-23"}, true)
+      # Note the SEND file used for this release has been hand crafted. If not there would have been serious misalignment.
+      results = execute_import(release_date, {sdtm: "2012-06-29", adam: "2011-07-22", cdash: "2012-06-29", qs: "2012-06-29", send: release_date}, true)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},

@@ -91,11 +91,13 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       this_child = self.narrower.find{|x| x.identifier == identifier}
       other_child = other.narrower.find{|x| x.identifier == identifier}
       next if !this_child.diff?(other_child)
-      msg = "When merging #{self.identifier} a difference was detected in child #{identifier}"
+      uri = Uri.new(uri: "http://www.temp.com/") # Temporary nasty
+      this_child.uri = uri
+      other_child.uri = uri
+      record = this_child.difference_record(this_child.simple_to_h, other_child.simple_to_h)    
+      msg = "When merging #{self.identifier} a difference was detected in child #{identifier}\n#{record.map {|k, v| "#{k}: #{v[:previous]} -> #{v[:current]}" if v[:status] != :no_change}.compact.join("\n")}"
       errors.add(:base, msg) 
       ConsoleLogger.info(self.class.name, __method__.to_s, msg)
-      ConsoleLogger.info(self.class.name, __method__.to_s, this_child.to_h)  
-      ConsoleLogger.info(self.class.name, __method__.to_s, other_child.to_h)  
     end
     missing_ids.each do |identifier|
       other_child = other.narrower.find{|x| x.identifier == identifier}
