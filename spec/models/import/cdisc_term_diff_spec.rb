@@ -191,8 +191,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       { size: -1 }, { size: -1 }, { size: 4190+134+26 }, { size: -1 }, { size: -1 },                                    # 2010
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2011
       { size: -1 }, { size: -1 }, { size: -1 }, { size: 6781+28+134+2305}, { size: -1 },                                # 2012
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
+      { size: -1 }, { size: -1 }, { size: 7334+3689+134+28 }, { size: -1 },                                             # 2013
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 9524+5921+134+37 },                               # 2014
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, 
@@ -872,9 +872,9 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
   describe "2013" do
 
-    it "Create version 33: 2013", :speed => 'slow' do
+    it "Create 2013-04-12", :speed => 'slow' do
       release_date = "2013-04-12"
-      results = execute_import(release_date, {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-04-12", qs: "2013-04-12", cdash: "2012-12-21", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -890,12 +890,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :updated},
         {cl: :C88025, status: :updated}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 34: 2013", :speed => 'slow' do
+    it "Create 2013-06-28", :speed => 'slow' do
       release_date = "2013-06-28"
-      results = execute_import(release_date, {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-06-28", qs: "2013-06-28", cdash: "2013-06-28", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -912,12 +913,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :no_change} 
       ]
       check_cl_results(results, expected) 
-      check_count(version, 7334+3689+134+28)
+      check_count(release_date)
     end
 
-    it "Create version 35: 2013", :speed => 'slow' do
+    it "Create 2013-10-04", :speed => 'slow' do
       release_date = "2013-10-04"
-      results = execute_import(release_date, {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-10-04", qs: "2013-10-04", cdash: "2013-10-04", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -933,12 +934,13 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change},    
         {cl: :C88025, status: :updated}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
-    it "Create version 36: 2013", :speed => 'slow' do
+    it "Create 2013-12-20", :speed => 'slow' do
       release_date = "2013-12-20"
-      results = execute_import(release_date, {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2013-12-20", qs: "2013-12-20", cdash: "2013-12-20", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -954,16 +956,17 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change},
         {cl: :C88025, status: :updated}
       ]
-      check_cl_results(results, expected) 
+      check_cl_results(results, expected)
+      check_count(release_date)
     end
 
   end
 
   describe "2014" do
 
-    it "Create version 37: 2014", :speed => 'slow' do
+    it "Create 2014-03-28", :speed => 'slow' do
       release_date = "2014-03-28"
-      results = execute_import(release_date, {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-03-28", qs: "2014-03-28", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -980,11 +983,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 38: 2014", :speed => 'slow' do
+    it "Create 2014-06-27", :speed => 'slow' do
       release_date = "2014-06-27"
-      results = execute_import(release_date, {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-06-27", qsft: "2014-06-27", cdash: "2014-03-28", adam: "2011-07-22", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1001,11 +1005,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 39: 2014", :speed => 'slow' do
+    it "Create 2014-09-26", :speed => 'slow' do
       release_date = "2014-09-26"
-      results = execute_import(release_date, {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-09-26", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1022,11 +1027,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 40: 2014", :speed => 'slow' do
+    it "Create 2014-10-06", :speed => 'slow' do
       release_date = "2014-10-06"
-      results = execute_import(release_date, {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-10-06", qsft: "2014-09-26", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1043,11 +1049,12 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :no_change}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
-    it "Create version 41: 2014", :speed => 'slow' do
+    it "Create 2014-12-19", :speed => 'slow' do
       release_date = "2014-12-19"
-      results = execute_import(release_date, {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26"}, set_write_file)
+      results = execute_import(release_date, {sdtm: "2014-12-19", coa: "2014-12-19", cdash: "2014-09-26", adam: "2014-09-26", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :updated},
         {cl: :C66738, status: :updated},
@@ -1064,7 +1071,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
-      check_count(version, 9524+5921+134+37)
+      check_count(release_date)
     end
 
   end
