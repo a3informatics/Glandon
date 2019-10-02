@@ -189,6 +189,14 @@ describe "User Settings", :type => :feature do
       expect(page).to have_content 'Failed to update user display name. Name is too short (minimum is 1 character)'
     end
 
+    it "validates access to user settings for a community reader" do
+      ua_community_reader_login
+      click_link 'settings_button'
+      expect(page).to have_content 'Email: comm_reader@example.com'
+      expect(page).to have_content 'Application Settings'
+      expect(page).to have_content 'Account settings'
+    end
+
   end
 
 end
