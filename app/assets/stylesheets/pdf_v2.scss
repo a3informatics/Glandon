@@ -1,0 +1,13 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+@include make-grid(sm);
+@include make-grid(md);
+@include make-grid(lg);
+
+th {
+  font-family: 'Roboto Medium' !important;
+}
