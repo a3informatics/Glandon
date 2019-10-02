@@ -4,6 +4,15 @@ function generateSpinner(size) {
   return "<div class='spinner-container'><img class='spinner loading-"+size+"' src='" + (isIE() ? iePath : path) +"'></div>";
 }
 
+function generateFullPageSpinner(loadingMessage){
+  return '<div class="spinner-wrap">'+
+            '<div class="lds-css ng-scope">'+
+              '<div class="spinner-el medium"><div></div><div></div><div><div></div></div><div><div></div></div>'+
+            '</div>'+
+            '<div class="spinner-msg">'+loadingMessage+'</div>'+
+          '</div>';
+}
+
 function generateNoResultsMsg(message){
   return '<div style="width: 100%; text-align: center;">'+
             '<img src="<%= asset_path("no-results.svg") %>" width="120"/>'+
@@ -13,7 +22,7 @@ function generateNoResultsMsg(message){
 
 // Should be used with safari_nav_js_fix
 function showFullPageSpinner(durationInSec, loading_message, timeout_message){
-  var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
+  var html = generateFullPageSpinner(loading_message);
   $("body").prepend(html);
 
   pdfLoadingTimeout = setTimeout(function(){
@@ -27,12 +36,13 @@ function showFullPageSpinner(durationInSec, loading_message, timeout_message){
 // Opens loading & redirects within a new tab/window. Safari_nav_js_fix not required.
 function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout_message, redirectPath){
   var w = window.open();
+  w.document.title = 'A3 MDR';
 
-  var data = "<link rel=\"stylesheet\" type=\"text/css\" href=\""+$(location).attr('protocol')+"//"+$(location).attr('host')+"<%= asset_path('custom/full_page_spinner') %>\">";
-  var html = "<div class='spinner-wrap'><div class='spinner-el'></div><div class='spinner-msg'>"+loading_message+"</div></div>";
+  var style = "<link rel=\"stylesheet\" type=\"text/css\" href=\""+$(location).attr('protocol')+"//"+$(location).attr('host')+"<%= asset_path('custom/full_page_spinner') %>\">";
+  var spinner = generateFullPageSpinner(loading_message);
 
-  $(w.document).find("head").append(data);
-  $(w.document.body).html(html);
+  $(w.document).find("head").append(style);
+  $(w.document.body).html(spinner);
 
   setTimeout(function() {
     w.location.href = redirectPath;

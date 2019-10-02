@@ -1,4 +1,5 @@
 @import 'custom/globals.scss';
+@import 'custom/spinner-css-anim.scss';
 
 body {
   position: relative;
@@ -16,34 +17,11 @@ body {
   justify-content: center;
 }
 
-.spinner-el {
-  background: url(asset_path("loading.svg")) no-repeat center;
-  background-size: cover;
-  width: 150px;
-  height: 150px;
-  display: block;
-  margin: 0;
-}
-
 .spinner-msg{
   color: $grey-medium;
-  font-family: $font-bold;
+  font-family: $font-primary;
   font-size: $font-normal;
   display: block;
   margin: 0;
-}
-
-@mixin ieandedge() {
-    @media screen and (-ms-high-contrast: none) {
-        @content;
-    }
-    @supports (-ms-ime-align:auto) {
-        @content;
-    }
-}
-
-.spinner-el{
-  @include ieandedge {
-    background: url(asset_path("loading.gif")) no-repeat center !important;
-  }
+  text-align: center;
 }
