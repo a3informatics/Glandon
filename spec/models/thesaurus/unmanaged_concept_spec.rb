@@ -567,7 +567,7 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
       expected = 
       [ 
-        "C43820",false,"MedDRA","MedDRA","Medical Dictionary for Regulatory Activities; MedDRA",
+        "C43820",false,"MedDRA","MedDRA","MedDRA; Medical Dictionary for Regulatory Activities",
         "MedDRA is an international medical terminology designed to support the classification, retrieval, presentation, and communication of medical information throughout the medical product regulatory cycle. MedDRA was developed under the auspices of the International Conference on Harmonisation of Technical Requirements for Registration of Pharmaceuticals for Human Use (ICH). The MedDRA Maintenance and Support Services Organization (MSSO) holds a contract with the International Federation of Pharmaceutical Manufacturers Associations (IFPMA) to maintain and support the implementation of the terminology. (NCI)",
         "MedDRA"
       ]

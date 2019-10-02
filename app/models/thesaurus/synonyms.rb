@@ -12,14 +12,11 @@ class Thesaurus
 
     module ClassMethods
 
-      # Where Only Or Create Set. Checks the synonym set and creates any new ones. 
-      #  Returns the new set as a set of URIs
-      #     
-      # @param params [String] the set of synonyms as a ";" separated list
-      # @return [String] the separator character for a synonym list
-      def synonym_separator 
-        ";"
-      end
+    # Synonym_separator. 
+    # @return [String] a character that separates synonyms
+    def synonym_separator 
+      ";"
+    end
 
     end
 
@@ -52,8 +49,10 @@ class Thesaurus
       results
     end
 
+    # Synonyms To String
+    # @return [String] string of synonyms separated by a separator character
     def synonyms_to_s
-      self.synonym.map {|x| x.label}.join("#{self.class.synonym_separator} ")
+      self.synonym.map {|x| x.label}.sort.join("#{self.class.synonym_separator} ")
     end
 
   end

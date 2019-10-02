@@ -4,6 +4,7 @@ describe SdtmUserDomainsController do
 
   include DataHelpers
   include PauseHelpers
+  include UserAccountHelpers
   
   describe "Curator User" do
     
@@ -16,7 +17,7 @@ describe SdtmUserDomainsController do
     before :all do
       clear_triple_store
       Token.delete_all
-      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
+      @lock_user = ua_add_user(email: "lock@example.com")
       load_schema_file_into_triple_store("ISO11179Types.ttl")
       load_schema_file_into_triple_store("ISO11179Identification.ttl")
       load_schema_file_into_triple_store("ISO11179Registration.ttl")
@@ -40,8 +41,7 @@ describe SdtmUserDomainsController do
     end
 
     after :all do
-      user = User.where(:email => "lock@example.com").first
-      user.destroy
+      ua_remove_user("lock@example.com")
     end
 
     it "lists all unique user domains, HTML" do
@@ -55,7 +55,7 @@ describe SdtmUserDomainsController do
       get :index
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    write_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
+    #Xwrite_text_file_2(response.body, sub_dir, "sdtm_user_domain_controller_index.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_controller_index.txt")
       expect(response.body).to eq(expected)
     end
@@ -141,7 +141,7 @@ describe SdtmUserDomainsController do
       put :update, params.merge(format: :json)
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_error.txt")
+    #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_error.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_update_error.txt")
       expect(response.body).to eq(expected)
     end
@@ -152,7 +152,7 @@ describe SdtmUserDomainsController do
       put :update, { :id => "D-ACME_DMDomain", :sdtm_user_domain => { :namespace => "http://www.assero.co.uk/MDRSdtmUD/ACME/V1" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
-      #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_locked.txt")
+    #write_text_file_2(response.body, sub_dir, "sdtm_user_domain_update_locked.txt")
       expected = read_text_file_2(sub_dir, "sdtm_user_domain_update_locked.txt")
       expect(response.body).to eq(expected)
     end
