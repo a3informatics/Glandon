@@ -46,7 +46,7 @@ describe "CDISC Term", :type => :feature do
     end
 
     #CL history
-    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
+    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031, REQ-MDR-MIT-015)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
     end
@@ -319,7 +319,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(10)
       click_link 'PDF Report'
       url = URI.parse(current_url).to_s.split('/')[-1]
-      expect(url).to eq("changes_report.pdf")
+      expect(url).to eq("submission_report.pdf")
       page.execute_script "window.history.back();"
       expect(page).to have_content 'Submission value changes'
     end

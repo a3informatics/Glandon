@@ -376,6 +376,7 @@ function sidebarVerticalScreenHandler(arrow){
 $(document).ready(function() {
   $('#print_button').click(function() {
     window.print();
+    return false;
   });
 });
 

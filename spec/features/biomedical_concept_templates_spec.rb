@@ -34,7 +34,7 @@ describe "Biomedical Concept Templates", :type => :feature do
       ua_logoff
     end
 
-    it "allows access to index page", js: true do
+    it "allows access to index page (REQ-MDR-MIT-015)", js: true do
       click_navbar_bct
       expect(page).to have_content 'Index: Biomedical Concept Templates'
     end

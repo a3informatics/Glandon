@@ -40,7 +40,7 @@ describe "Biomedical Concepts", :type => :feature do
       ua_logoff
     end
 
-    it "allows access to index page", js:true do
+    it "allows access to index page (REQ-MDR-MIT-015)", js:true do
       click_navbar_bc
       find(:xpath, "//a[@href='/biomedical_concepts']").click # Clash with 'CDISC Terminology', so use this method to make unique
       expect(page).to have_content 'Index: Biomedical Concepts'

@@ -286,7 +286,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content "Nice Label"
     end
 
-    it "allows a code list to be deleted (REQ-MDR-ST-015)", js: true do
+    it "allows a code list to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri[identifier]', with: 'TT'

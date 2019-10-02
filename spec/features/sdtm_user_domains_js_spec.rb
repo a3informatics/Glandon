@@ -44,7 +44,7 @@ describe "SDTM User Domains", :type => :feature do
       ua_logoff
     end
 
-    it "allows for a domain to be deleted, cancel", js: true do
+    it "allows for a domain to be deleted, cancel (REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
       click_navbar_sponsor_domain
       expect(page).to have_content 'Index: Domains'
       find(:xpath, "//tr[contains(.,'VS Domain')]/td/a", :text => 'History').click
@@ -54,7 +54,7 @@ describe "SDTM User Domains", :type => :feature do
       expect(page).to have_content 'History: VS Domain'
     end
 
-    it "allows for a domain to be deleted, ok", js: true do
+    it "allows for a domain to be deleted, ok (REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
       click_navbar_sponsor_domain
       expect(page).to have_content 'Index: Domains'
       find(:xpath, "//tr[contains(.,'VS Domain')]/td/a", :text => 'History').click
