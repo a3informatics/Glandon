@@ -5,7 +5,7 @@ body {
   position: relative;
 }
 
-.spinner-wrap {
+.fp-spinner-wrap {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -17,7 +17,7 @@ body {
   justify-content: center;
 }
 
-.spinner-msg{
+.fp-spinner-msg{
   color: $grey-medium;
   font-family: $font-primary;
   font-size: $font-normal;

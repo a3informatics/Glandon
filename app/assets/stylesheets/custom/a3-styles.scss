@@ -1,5 +1,4 @@
 @import "custom/globals.scss";
-@import "custom/full_page_spinner.scss";
 
 .row.centered{
    display: flex;
@@ -132,19 +131,6 @@
 
 .ico-header:hover .ico{
   transform: scale(1.1);
-}
-
-// LOADING SIZES
-.loading-small{
-  width: 50px;
-}
-
-.loading-medium{
-  width: 100px;
-}
-
-.loading-large{
-  width: 200px;
 }
 
 // LIST WRAP (CDISC_TERMS)

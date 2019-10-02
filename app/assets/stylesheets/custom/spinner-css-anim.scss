@@ -1,19 +1,39 @@
+@import "custom/globals.scss";
+
 .spinner-el {
   width: 200px !important;
   height: 200px !important;
   display: block;
 }
 
+.spinner-txt{
+  width: 100%;
+  text-align: center;
+  display: block;
+  color: $grey-medium;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height:  100%;
+}
+
 .spinner-el.small{
-  transform: scale(.5);
+  transform: scale(.3);
+  margin: -50px;
 }
 
 .spinner-el.medium{
-  transform: scale(.75);
+  transform: scale(.5);
+  margin: -30px;
 }
 
 .spinner-el.large{
-  transform: scale(1);
+  transform: scale(.75);
+  margin: -10px;
 }
 
 @keyframes lds-double-ring {
