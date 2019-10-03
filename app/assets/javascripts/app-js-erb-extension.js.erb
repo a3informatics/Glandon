@@ -1,16 +1,24 @@
-// Returns HTML code for animated spinner. Size values can be a string of value: small / medium / large
-function generateSpinner(size) {
-  var iePath = "<%= asset_path('loading.gif') %>", path = "<%= asset_path('loading.svg') %>";
-  return "<div class='spinner-container'><img class='spinner loading-"+size+"' src='" + (isIE() ? iePath : path) +"'></div>";
+// Returns HTML code for animated spinner with text. Size values can be a string of value: small/medium/large.
+//Pass an empty string "" to exclude text from the spinner
+function generateSpinnerWText(size, loadingMessage) {
+  return  '<div class="spinner-container">' +
+            '<div class="lds-css ng-scope">'+
+              '<div class="spinner-el '+size+'"><div></div><div></div><div><div></div></div><div><div></div></div>'+
+            '</div>'+
+            (loadingMessage == "" ? "" : '<div class="spinner-txt">'+loadingMessage+'</div>') +
+          '</div>';
 }
 
+// Returns HTML code for animated spinner. No loading message.
+function generateSpinner(size) {
+  return generateSpinnerWText(size, "");
+}
+
+// Returns HTML code for a full page animated spinner with a loading message.
 function generateFullPageSpinner(loadingMessage){
-  return '<div class="spinner-wrap">'+
-            '<div class="lds-css ng-scope">'+
-              '<div class="spinner-el medium"><div></div><div></div><div><div></div></div><div><div></div></div>'+
-            '</div>'+
-            '<div class="spinner-msg">'+loadingMessage+'</div>'+
-          '</div>';
+  var html = generateSpinnerWText("medium", loadingMessage);
+  html = html.replace("spinner-container", "fp-spinner-wrap").replace("spinner-txt", "fp-spinner-msg");
+  return html;
 }
 
 function generateNoResultsMsg(message){
@@ -26,8 +34,8 @@ function showFullPageSpinner(durationInSec, loading_message, timeout_message){
   $("body").prepend(html);
 
   pdfLoadingTimeout = setTimeout(function(){
-    if($(".spinner-wrap").length){
-      $(".spinner-wrap").remove();
+    if($(".fp-spinner-wrap").length){
+      $(".fp-spinner-wrap").remove();
       displayError("Loading timeout: " + timeout_message);
     }
   }, durationInSec * 1000);
@@ -49,7 +57,7 @@ function showFullPageSpinnerWithRedirect(durationInSec, loading_message, timeout
   }, 200);
 
   w.setTimeout(function(){
-    if($(w.document.body).find(".spinner-wrap").length){
+    if($(w.document.body).find(".fp-spinner-wrap").length){
       w.alert("Loading timeout: " + timeout_message);
       w.close();
     }
