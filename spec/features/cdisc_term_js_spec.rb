@@ -296,7 +296,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(30)
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 1
+        sleep 10
         pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
         expect(pdfdoc['src']).to include("changes_report.pdf")
         expect(pdfdoc['src']).to include("thesauri")
@@ -312,7 +312,7 @@ describe "CDISC Term", :type => :feature do
       find(:xpath, "//tr[contains(.,'C100129')]/td/a", :text => 'Changes').click
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 1
+        sleep 10
         pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
         expect(pdfdoc['src']).to include("changes_report.pdf")
         expect(pdfdoc['src']).to include("thesauri/managed_concepts")
@@ -327,7 +327,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(30)
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 1
+        sleep 10
         pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
         expect(pdfdoc['src']).to include("submission_report.pdf")
         page.execute_script "window.close();"
