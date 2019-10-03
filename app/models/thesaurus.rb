@@ -155,6 +155,28 @@ class Thesaurus <  IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  # Changes_CDU
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_cdu (window_size)
+  byebug
+    cls = changes(window_size)
+    results = {created: [], deleted: [], updated: []}
+    cls[:items].each do |key, value|
+      value[:status].each do |status|
+        begin
+          next if status[:status] == :no_change
+          next if status[:status] == :not_present
+          results[status[:status]] << {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
+          break
+        end
+      end
+    end
+    results
+  end
+
+
   # Submisison
   #
   # @param [Integer] window_size the required window size for changes
