@@ -44,7 +44,7 @@ describe 'thesauri/show.html.erb', :type => :view do
     expect(rendered).to have_selector("table#children_table thead tr:nth-of-type(1) th:nth-of-type(6)", text: 'Definition')
 
     expect(rendered).to have_xpath("//a[@href = '/cdisc_terms/history']")
-    expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/export_csv']")
+    # expect(rendered).to have_xpath("//a[@href = '/thesauri/#{ct.id}/export_csv']")
 
   end
 
