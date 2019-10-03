@@ -126,12 +126,9 @@ describe CdiscTermsController do
       expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
       expect_any_instance_of(Thesaurus).to receive(:changes_cdu).with(2).and_return({created: [{identifier: "1234", label: "Severity", notation: "AESEV", id: "aaa"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"},
-                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"},
-                                                                                                {identifier: "123457", label: "Severity", notation: "AESEV", id: "aaa4"},
-                                                                                                {identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"}
+                                                                                                {identifier: "123456", label: "Severity", notation: "AESEV", id: "aaa3"}
                                                                                                 ], 
-                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"},
-                                                                                                {identifier: "123457", label: "Severity", notation: "AESEV", id: "aaa4"}
+                                                                                      deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "aaa3"}
                                                                                                 ], 
                                                                                       updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
