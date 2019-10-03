@@ -160,7 +160,6 @@ class Thesaurus <  IsoManagedV2
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes_cdu (window_size)
-  byebug
     cls = changes(window_size)
     results = {created: [], deleted: [], updated: []}
     cls[:items].each do |key, value|

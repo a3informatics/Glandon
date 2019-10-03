@@ -59,7 +59,6 @@ class CdiscTermsController < ApplicationController
   end
 
   def changes
-  # byebug
     results = {}
     versions = CdiscTerm.version_dates
     ct_from = Thesaurus.find_minimum(params[:id])
