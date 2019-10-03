@@ -278,7 +278,7 @@ describe "CDISC Term", :type => :feature do
     it "allows for code list to be exported as CSV", js: true do
       clear_downloads
       click_browse_every_version
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       context_menu_element("history", 5, "2018-12-21 Release", :show)
       wait_for_ajax(5)
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
@@ -293,13 +293,13 @@ describe "CDISC Term", :type => :feature do
     it "allows for changes across versions to be dowloaded as PDF", js: true do
       clear_downloads
       click_see_changes_all_versions
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 3
-        url = URI.parse(current_url).to_s
-        expect(url).to include("changes_report.pdf")
-        expect(url).to include("thesauri")
+        sleep 1
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("changes_report.pdf")
+        expect(pdfdoc['src']).to include("thesauri")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'Changes across versions'
@@ -308,14 +308,14 @@ describe "CDISC Term", :type => :feature do
     it "allows for changes in code list to be dowloaded as PDF", js: true do
       clear_downloads
       click_see_changes_all_versions
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       find(:xpath, "//tr[contains(.,'C100129')]/td/a", :text => 'Changes').click
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 3
-        url = URI.parse(current_url).to_s
-        expect(url).to include("changes_report.pdf")
-        expect(url).to include("thesauri/managed_concepts")
+        sleep 1
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("changes_report.pdf")
+        expect(pdfdoc['src']).to include("thesauri/managed_concepts")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'C100129'
@@ -324,12 +324,12 @@ describe "CDISC Term", :type => :feature do
     it "allows for submission value changes to be dowloaded as PDF", js: true do
       clear_downloads
       click_submission_value_changes
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       new_window = window_opened_by { click_link 'PDF Report' }
       within_window new_window do
-        sleep 3
-        url = URI.parse(current_url).to_s
-        expect(url).to include("submission_report.pdf")
+        sleep 1
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("submission_report.pdf")
         page.execute_script "window.close();"
       end
       expect(page).to have_content 'Submission value changes'
