@@ -4,7 +4,7 @@ describe Reports::WickedCore do
 
   include DataHelpers
   include ReportHelpers
-  
+
   def sub_dir
     return "models/reports"
   end
@@ -28,7 +28,7 @@ describe Reports::WickedCore do
   end
 
   it "Initiates a report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     html = report.html
@@ -37,13 +37,16 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Initiates a full report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     mi = Form.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    history = 
+    history =
     [
       {
         :last_changed_date => "2012-12-01T19:00:00+00:00",
@@ -58,7 +61,7 @@ describe Reports::WickedCore do
         :origin => "Humph!!!!!!!"
 
       }
-    ] 
+    ]
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", history, user)
     html = report.html
@@ -67,11 +70,14 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the body to be set" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     report.add_to_body("<h1>THIS IS THE BODY ITEM 1</h1>")
@@ -82,11 +88,14 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows a page break to be set" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     report.add_to_body("<h1>THIS IS THE BODY</h1>")
@@ -99,11 +108,14 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the document to be closed" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     report.add_to_body("<h1>THIS IS THE BODY. Close check</h1>")
@@ -117,11 +129,14 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the document html to be returned" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     report.add_to_body("<h1>THIS IS THE BODY. This is the html check</h1>")
@@ -135,11 +150,14 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "Allows the PDF to be generated" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     report = Reports::WickedCore.new
     report.open("TEST DOC", "Title", [], user)
     report.open("TEST DOC", "Title", [], user)
@@ -155,6 +173,9 @@ describe Reports::WickedCore do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
     expect(pdf[0,4]).to eq('%PDF')
   end

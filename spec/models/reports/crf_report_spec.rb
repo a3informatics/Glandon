@@ -5,7 +5,7 @@ describe Reports::CrfReport do
   include DataHelpers
   include ReportHelpers
   include PublicFileHelpers
-  
+
   def sub_dir
     return "models/reports"
   end
@@ -32,7 +32,7 @@ describe Reports::CrfReport do
   end
 
   it "creates simple non-annotated report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => false, :full => false}, user)
@@ -42,7 +42,7 @@ describe Reports::CrfReport do
   end
 
   it "creates simple annotated report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => false}, user)
@@ -52,7 +52,7 @@ describe Reports::CrfReport do
   end
 
   it "creates full non-annotated report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
@@ -61,11 +61,14 @@ describe Reports::CrfReport do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "creates full annotated report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_T2", "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
@@ -74,11 +77,14 @@ describe Reports::CrfReport do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "creates a full annotated all features report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => true, :full => true}, user)
@@ -87,11 +93,14 @@ describe Reports::CrfReport do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 
   it "creates a simple non-annotated all features report" do
-    user = User.create email: "wicked@example.com", password: "12345678"
+    user = User.create email: "wicked@example.com", password: "Changeme1#"
     form = Form.find("F-ACME_CRFTEST1" , "http://www.assero.co.uk/MDRForms/ACME/V1")
     report = Reports::CrfReport.new
     html = report.create(form, {:annotate => false, :full => false}, user)
