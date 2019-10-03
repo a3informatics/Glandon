@@ -1,4 +1,7 @@
 require 'rails_helper'
 
-describe CdiscCli do
+describe "CdiscCli" do
+
+  # No tests required
+  
 end

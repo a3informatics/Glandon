@@ -304,16 +304,16 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'All user accounts'
       click_link 'New'
       expect(page).to have_content 'New user account'
-      fill_in :placeholder => 'Email', :with => 'user@example.com'
+      fill_in :placeholder => 'Email', :with => 'usr@example.com'
       fill_in :placeholder => 'Password', :with => 'Changeme1#'
       fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
       click_button 'Create'
 
       click_link 'users_button'
       expect(page).to have_content 'All user accounts'
-      find(:xpath, "//tr[contains(.,'user@example.com')]/td/a", :text => 'Edit').click
+      find(:xpath, "//tr[contains(.,'usr@example.com')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Set user roles for:'
-      expect(page).to have_content 'Email: user@example.com'
+      expect(page).to have_content 'Email: usr@example.com'
       expect(page).to have_content 'Anonymous'
     end
 

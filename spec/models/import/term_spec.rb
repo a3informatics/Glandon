@@ -74,7 +74,7 @@ describe Import::Term do
     expect(result).to eq(expected)
   end
 
-  it "gets code list, AE example, ODM" do
+  it "gets code list, AE example, ODM - WILL CURRENTLY FAIL - Allocation of identifiers" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "CL_SMOKING", files: [full_path], file_type: "1", uri: @th.uri.to_s, job: @job})
