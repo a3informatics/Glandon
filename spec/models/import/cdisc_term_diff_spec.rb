@@ -1147,7 +1147,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create 2015-12-18", :speed => 'slow' do
       release_date = "2015-12-18"
-      results = execute_import(release_date, {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18", send: release_date}, true)
+      results = execute_import(release_date, {sdtm: "2015-12-18", cdash: "2015-03-27", adam: "2015-12-18", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1173,7 +1173,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create 2016-03-25", :speed => 'slow' do
       release_date = "2016-03-25"
-      results = execute_import(release_date, {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, true)
+      results = execute_import(release_date, {sdtm: "2016-03-25", cdash: "2016-03-25", adam: "2016-03-25", send: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
@@ -1190,6 +1190,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
     it "Create 2016-06-24", :speed => 'slow' do
@@ -1211,6 +1212,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
     it "Create 2016-09-30", :speed => 'slow' do
@@ -1229,9 +1231,10 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :updated},
         {cl: :C78735, status: :no_change},
-        {cl: :C88025, status: :deleted}
+        {cl: :C88025, status: :updated}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
     it "Create 2016-12-16", :speed => 'slow' do
@@ -1252,6 +1255,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
         {cl: :C78735, status: :no_change}
       ]
       check_cl_results(results, expected) 
+      check_count(release_date)
     end
 
   end
