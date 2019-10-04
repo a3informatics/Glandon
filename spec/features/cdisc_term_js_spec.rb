@@ -208,7 +208,7 @@ describe "CDISC Term", :type => :feature do
 
     it "allows changes to be viewed (REQ-MDR-CT-040) - test no longer required" 
 
-    it "allows changes report to be produced (REQ-MDR-CT-NONE)"
+    it "allows changes report to be produced (REQ-GENERIC-E-010)"
 
     it "allows the submission value with changes to be viewed (REQ-MDR-CT-050)", js:true do
       click_navbar_cdisc_terminology
@@ -241,7 +241,7 @@ describe "CDISC Term", :type => :feature do
 
     it "allows submission to be viewed (REQ-MDR-CT-050) - test no longer required" 
 
-    it "allows submission report to be produced (REQ-MDR-CT-NONE)"
+    it "allows submission report to be produced (REQ-GENERIC-E-010)"
 
   end
 
@@ -275,7 +275,7 @@ describe "CDISC Term", :type => :feature do
 
     it "edit, delete, document control disabled" #, js:true do
 
-    it "allows for code list to be exported as CSV", js: true do
+    it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_browse_every_version
       wait_for_ajax(10)
@@ -290,7 +290,7 @@ describe "CDISC Term", :type => :feature do
       expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
     end
 
-    it "allows for changes across versions to be dowloaded as PDF", js: true do
+    it "allows for changes across versions to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_see_changes_all_versions
       wait_for_ajax(10)
@@ -301,7 +301,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes across versions'
     end
 
-    it "allows for changes in code list to be dowloaded as PDF", js: true do
+    it "allows for changes in code list to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_see_changes_all_versions
       wait_for_ajax(10)
@@ -313,7 +313,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100129'
     end
 
-    it "allows for submission value changes to be dowloaded as PDF", js: true do
+    it "allows for submission value changes to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_submission_value_changes
       wait_for_ajax(10)

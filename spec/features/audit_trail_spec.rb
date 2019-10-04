@@ -51,7 +51,7 @@ describe "Audit Trail", :type => :feature do
       ua_logoff
     end
 
-    it "allows viewing", js:true do
+    it "allows viewing (REQ-MDR-GENERIC-A-015)", js:true do
       click_navbar_at
       expect(page).to have_content 'Index: Audit Trail'
     end
