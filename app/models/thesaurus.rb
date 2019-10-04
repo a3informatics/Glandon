@@ -158,7 +158,7 @@ class Thesaurus <  IsoManagedV2
   # Changes_CDU
   #
   # @param [Integer] window_size the required window size for changes
-  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions
   def changes_cdu (window_size)
     cls = changes(window_size)
     results = {created: [], deleted: [], updated: []}
@@ -176,7 +176,7 @@ class Thesaurus <  IsoManagedV2
   end
 
 
-  # Submisison
+  # Submission
   #
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
