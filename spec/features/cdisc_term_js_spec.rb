@@ -75,6 +75,18 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
     end
 
+    #CDISC Th show
+    it "shows version 1 (GLAN-652) (REQ-MDR-CT-031)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History'
+      wait_for_ajax(10)
+      ui_table_search("history", "2007-03-06")
+      context_menu_element("history", 5, "2007-03-06 Release", :show)
+      expect(page).to have_content '2007-03-06 Release'
+      ui_check_table_info("children_table", 1, 10, 32)
+      expect(page).to have_content 'History'
+    end
+
     #CDISC CL show
     it "allows the entries in a CDISC Terminology code list can be viewed (REQ-MDR-CT-070)", js:true do
       click_navbar_cdisc_terminology
