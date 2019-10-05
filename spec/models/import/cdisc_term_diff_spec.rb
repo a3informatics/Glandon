@@ -1264,7 +1264,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create 2017-03-31", :speed => 'slow' do
       release_date = "2017-03-31"
-      results = execute_import(release_date, {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, true)
+      results = execute_import(release_date, {sdtm: "2017-03-31", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :no_change},
@@ -1285,7 +1285,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
 
     it "Create 2017-06-30", :speed => 'slow' do
       release_date = "2017-06-30"
-      results = execute_import(release_date, {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, true)
+      results = execute_import(release_date, {sdtm: "2017-06-30", cdash: "2016-12-16", adam: "2017-03-31", send: release_date, protocol: release_date}, set_write_file)
       expected = [
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
