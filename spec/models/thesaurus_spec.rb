@@ -350,6 +350,13 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_1.yaml")
     end
 
+    it "get children, V1 all items (GLAN-652)" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = ct.managed_children_pagination(offset: 0, count: 100)
+      expect(actual.count).to eq(32)
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_2.yaml")
+    end
+
     it "get children, speed" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       timer_start

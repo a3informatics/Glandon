@@ -126,7 +126,13 @@ private
     parent.set_import(identifier: klass.configuration[:identifier], label: params[:label], 
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
+    parent.origin = import_files(params)
     return {parent: parent, managed_children: []}
   end
-  
+
+  # Format files used in import
+  def import_files(params)
+    "Created from files: #{params[:files].map {|x| "'#{File.basename(x)}'"}.join(", ")}"
+  end
+
 end
