@@ -781,6 +781,10 @@
 	th:isTopConceptReference :TH_TCR755 ;
 	th:isTopConceptReference :TH_TCR756 ;
 	th:isTopConceptReference :TH_TCR757 ;
+	th:isTopConceptReference :TH_TCR758 ;
+	th:isTopConceptReference :TH_TCR759 ;
+	th:isTopConceptReference :TH_TCR760 ;
+	th:isTopConceptReference :TH_TCR761 ;
 	th:isTopConcept <http://www.cdisc.org/C115388/V47#C115388> ;
 	th:isTopConcept <http://www.cdisc.org/C115387/V47#C115387> ;
 	th:isTopConcept <http://www.cdisc.org/C101805/V47#C101805> ;
@@ -1538,6 +1542,10 @@
 	th:isTopConcept <http://www.cdisc.org/C90006/V26#C90006> ;
 	th:isTopConcept <http://www.cdisc.org/C90005/V26#C90005> ;
 	th:isTopConcept <http://www.cdisc.org/C132321/V51#C132321> ;
+	th:isTopConcept <http://www.cdisc.org/C139020/V53#C139020> ;
+	th:isTopConcept <http://www.cdisc.org/C132308/V52#C132308> ;
+	th:isTopConcept <http://www.cdisc.org/C132310/V53#C132310> ;
+	th:isTopConcept <http://www.cdisc.org/C132309/V52#C132309> ;
 .
 :TH_RS
 	rdf:type isoR:RegistrationState ;
@@ -8369,6 +8377,42 @@
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "757"^^xsd:positiveInteger ;
 	bo:reference <http://www.cdisc.org/C132321/V51#C132321> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR758
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "758"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C139020/V53#C139020> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR759
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "759"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C132308/V52#C132308> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR760
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "760"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C132310/V53#C132310> ;
+	bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR761
+	rdf:type bo:TcReference ;
+	isoC:label ""^^xsd:string ;
+	bo:enabled "true"^^xsd:boolean ;
+	bo:optional "false"^^xsd:boolean ;
+	bo:ordinal "761"^^xsd:positiveInteger ;
+	bo:reference <http://www.cdisc.org/C132309/V52#C132309> ;
 	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/C74456/V53#C74456>
@@ -44623,6 +44667,7 @@
 	th:narrower <http://www.cdisc.org/C66736/V53#C66736_C71485> ;
 	th:narrower <http://www.cdisc.org/C66736/V53#C66736_C71486> ;
 	th:narrower <http://www.cdisc.org/C66736/V53#C66736_C49656> ;
+	th:narrower <http://www.cdisc.org/C66736/V53#C66736_C48262> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d6910b7c364e6ec360367776f790975a7a1292c8> ;
 	th:synonym <http://www.assero.co.uk/SYN#a4c28aa107e8a5eee6485a04d9e661659bef15eb> ;
 .
@@ -44751,6 +44796,15 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#944a43e6c7fb4517a5154301814f9eb21a4e37e0> ;
 	th:synonym <http://www.assero.co.uk/SYN#9d70e3edced4887e6a13ffbdaa944b91bd81105c> ;
+.
+<http://www.cdisc.org/C66736/V53#C66736_C48262>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Screening"^^xsd:string ;
+	th:identifier "C48262"^^xsd:string ;
+	th:notation "SCREENING"^^xsd:string ;
+	th:definition "A type of study designed to assess or examine methods of identifying a condition (or risk factors for a condition) in people who are not yet known to have the condition (or risk factor). (ClinicalTrials.gov)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#716ec4895092b5d6db6f3f01d7cfe670bbf37464> ;
 .
 <http://www.cdisc.org/C66737/V53#C66737>
 	rdf:type th:ManagedConcept ;
@@ -48335,4 +48389,373 @@
 <http://www.assero.co.uk/SYN#d199b402cce84a7be48aa105aa74a5e79308fb94>
 	rdf:type th:Synonym ;
 	isoC:label "Maxilloturbinate"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Clinical Trial Attribute Terminology"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C139020/V53#C139020_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C139020/V53#C139020_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2017-09-29T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2017-09-29T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C139020"^^xsd:string ;
+	th:notation "Clinical Trial Attribute Terminology"^^xsd:string ;
+	th:definition "A terminology value set relevant to the attributes of the clinical trial entity."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139170> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139171> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C25370> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C25532> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C127796> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C94496> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139168> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139173> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139169> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139167> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139172> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C101302> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C15787> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C112038> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C49652> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C48281> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C85826> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C139166> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C85827> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C85838> ;
+	th:narrower <http://www.cdisc.org/C139020/V53#C139020_C49660> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#20a54add9cf91a2e1aa5ef13f9c112e517e4e899> ;
+	th:synonym <http://www.assero.co.uk/SYN#b9fca94bcb9d2cd628a00e6e761fa51b2498bdae> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C139020"^^xsd:string ;
+	isoI:versionLabel "2017-09-29 Release"^^xsd:string ;
+	isoI:version "53"^^xsd:positiveInteger ;
+	isoI:semanticVersion "53.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139170>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Country of Recruitment"^^xsd:string ;
+	th:identifier "C139170"^^xsd:string ;
+	th:notation "Country of Recruitment"^^xsd:string ;
+	th:definition "The country in which subjects are located when enrolling in a trial or study. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a9f38d5f4602c71eb3d5db3eeb45e6d6686d33f9> ;
+.
+<http://www.assero.co.uk/PT#a9f38d5f4602c71eb3d5db3eeb45e6d6686d33f9>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Country of Recruitment"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139171>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Date of First Enrollment into Study"^^xsd:string ;
+	th:identifier "C139171"^^xsd:string ;
+	th:notation "Date of First Enrollment"^^xsd:string ;
+	th:definition "Date or date and time of first subject enrollment into a study, as verifiable by a convention that is consistent with authoritative regulatory criteria. Compare with study start. [Modified from ICH E3] (CDISC Glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4098a33796524c205d60acf84ce4d3dac72c8328> ;
+.
+<http://www.assero.co.uk/PT#4098a33796524c205d60acf84ce4d3dac72c8328>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Date of First Enrollment into Study"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C25370>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Exclusion Criteria"^^xsd:string ;
+	th:identifier "C25370"^^xsd:string ;
+	th:notation "Exclusion Criteria"^^xsd:string ;
+	th:definition "List of characteristics in a protocol, any one of which may exclude a potential subject from participation in a study. (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#6447817241918c62d3555a7b5147d673ad878aad> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C25532>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Inclusion Criteria"^^xsd:string ;
+	th:identifier "C25532"^^xsd:string ;
+	th:notation "Inclusion Criteria"^^xsd:string ;
+	th:definition "The criteria in a protocol that prospective subjects must meet to be eligible for participation in a study. NOTE: Exclusion and inclusion criteria define the study population. See also exclusion criteria. (CDISC glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2fdb81fca373978977fa7a7c7e39620597be5e49> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C127796>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Planned Trial Duration"^^xsd:string ;
+	th:identifier "C127796"^^xsd:string ;
+	th:notation "Planned Trial Duration"^^xsd:string ;
+	th:definition "The approximate period of time over which the clinical trial is expected to occur."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#c1abf0853c70cd0cfd17a32886ddaaafef5e488f> ;
+	th:synonym <http://www.assero.co.uk/SYN#c1abf0853c70cd0cfd17a32886ddaaafef5e488f> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C94496>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Primary Endpoint"^^xsd:string ;
+	th:identifier "C94496"^^xsd:string ;
+	th:notation "Primary Endpoint"^^xsd:string ;
+	th:definition "The principal endpoint associated with the study or trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#ede6609ce10961ae3b7847862625f941c23b3762> ;
+.
+<http://www.assero.co.uk/PT#ede6609ce10961ae3b7847862625f941c23b3762>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Primary Endpoint"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139168>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Primary Study Sponsor Name"^^xsd:string ;
+	th:identifier "C139168"^^xsd:string ;
+	th:notation "Primary Sponsor Name"^^xsd:string ;
+	th:definition "The name of the entity that is considered the primary sponsor for the trial or study. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4ab40e73acc592da6875314da2f83d7775a31770> ;
+.
+<http://www.assero.co.uk/PT#4ab40e73acc592da6875314da2f83d7775a31770>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Primary Study Sponsor Name"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139173>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Secondary Endpoint"^^xsd:string ;
+	th:identifier "C139173"^^xsd:string ;
+	th:notation "Secondary Endpoint"^^xsd:string ;
+	th:definition "An auxiliary endpoint associated with the study or trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#90d2c0dfcb4be79e9ec09f7b3c6a374d5c31eddc> ;
+.
+<http://www.assero.co.uk/PT#90d2c0dfcb4be79e9ec09f7b3c6a374d5c31eddc>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Secondary Endpoint"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139169>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Secondary Study Sponsor Name"^^xsd:string ;
+	th:identifier "C139169"^^xsd:string ;
+	th:notation "Secondary Sponsor Name"^^xsd:string ;
+	th:definition "The name of the entity that is considered the secondary sponsor for the trial or study. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#cc41e87ddf09c146fdd823e874cb7d07351d7e7e> ;
+.
+<http://www.assero.co.uk/PT#cc41e87ddf09c146fdd823e874cb7d07351d7e7e>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Secondary Study Sponsor Name"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139167>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Source of Monetary or Material Support for Study"^^xsd:string ;
+	th:identifier "C139167"^^xsd:string ;
+	th:notation "Source of Monetary or Material Support for Study"^^xsd:string ;
+	th:definition "The major organizations providing monetary or material support for the conduct of the trial, including, but not limited to, funding, design, implementation, data analysis and reporting. (EudraCT)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#81460939a82f6d4606e4801b5b6ead6d89df9e4c> ;
+.
+<http://www.assero.co.uk/PT#81460939a82f6d4606e4801b5b6ead6d89df9e4c>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Source of Monetary or Material Support for Study"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139172>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Target Sample Size"^^xsd:string ;
+	th:identifier "C139172"^^xsd:string ;
+	th:notation "Target Sample Size"^^xsd:string ;
+	th:definition "The total number of planned participants in a study or trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#d432dd14c44c4c77c1e1e5b598e6d7232c631384> ;
+.
+<http://www.assero.co.uk/PT#d432dd14c44c4c77c1e1e5b598e6d7232c631384>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Target Sample Size"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C101302>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Therapeutic Area"^^xsd:string ;
+	th:identifier "C101302"^^xsd:string ;
+	th:notation "Therapeutic Area"^^xsd:string ;
+	th:definition "A knowledge field that focuses on research and development of specific treatments for diseases and pathologic findings, as well as prevention of conditions that negatively impact the health of an individual. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#2fa6e6c481304b0f2e78e984b0c3f233843415f0> ;
+	th:synonym <http://www.assero.co.uk/SYN#2fa6e6c481304b0f2e78e984b0c3f233843415f0> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C15787>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Clinical Trials Design"^^xsd:string ;
+	th:identifier "C15787"^^xsd:string ;
+	th:notation "Trial Design"^^xsd:string ;
+	th:definition "The detailed planning of a study of the safety, efficacy, or optimum dosage schedule (if appropriate) of one or more diagnostic, therapeutic, or prophylactic drugs, devices, or techniques selected according to predetermined criteria of eligibility and observed for predefined evidence of favorable and unfavorable effects. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#e35082a514a377131982b4fab6493167ce81c467> ;
+.
+<http://www.assero.co.uk/PT#e35082a514a377131982b4fab6493167ce81c467>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Clinical Trials Design"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C112038>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Indication"^^xsd:string ;
+	th:identifier "C112038"^^xsd:string ;
+	th:notation "Trial Disease/Condition Indication"^^xsd:string ;
+	th:definition "The condition, disease or disorder that the clinical trial is intended to investigate or address."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#393d1737d0f0239c1d385ee9da806aa5907251a2> ;
+	th:synonym <http://www.assero.co.uk/SYN#2293b07d6f1a5f05e3982590affe5c0aa58bba8e> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C49652>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Clinical Study by Intent"^^xsd:string ;
+	th:identifier "C49652"^^xsd:string ;
+	th:notation "Trial Intent"^^xsd:string ;
+	th:definition "The planned purpose of the therapy, device, or agent under study in the clinical trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#dabce0ab35991c758d05090a5028faee956f4bf2> ;
+	th:synonym <http://www.assero.co.uk/SYN#eac9de30323c9a71c91c9f07840b115cbab5c6ea> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C48281>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Phase"^^xsd:string ;
+	th:identifier "C48281"^^xsd:string ;
+	th:notation "Trial Phase"^^xsd:string ;
+	th:definition "Any defined stage in the lifecycle of a clinical trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#73056984706139d0dc7464d5c079e1b1dca9efff> ;
+	th:synonym <http://www.assero.co.uk/SYN#a13c7a697ee5fbebc9ad2f4320d4968f4da6f836> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C85826>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Primary Objective"^^xsd:string ;
+	th:identifier "C85826"^^xsd:string ;
+	th:notation "Trial Primary Objective"^^xsd:string ;
+	th:definition "The principal purpose of the trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#0d6565ab3d5e5406f5f369f8cde551da77497c39> ;
+	th:synonym <http://www.assero.co.uk/SYN#0d6565ab3d5e5406f5f369f8cde551da77497c39> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C139166>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Registration Indicator"^^xsd:string ;
+	th:identifier "C139166"^^xsd:string ;
+	th:notation "Trial Registration Indicator"^^xsd:string ;
+	th:definition "An indication as to whether the clinical trial has been registered with a trial registry system."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a975b29fa63e6d89903977c9d04b220e879fa30a> ;
+.
+<http://www.assero.co.uk/PT#a975b29fa63e6d89903977c9d04b220e879fa30a>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Trial Registration Indicator"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C85827>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Secondary Objective"^^xsd:string ;
+	th:identifier "C85827"^^xsd:string ;
+	th:notation "Trial Secondary Objective"^^xsd:string ;
+	th:definition "The auxiliary purpose of the trial."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#1d90ed1f2ec728edc2d058116d409a3e08ac2c61> ;
+	th:synonym <http://www.assero.co.uk/SYN#1d90ed1f2ec728edc2d058116d409a3e08ac2c61> ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C85838>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Clinical Trial Site"^^xsd:string ;
+	th:identifier "C85838"^^xsd:string ;
+	th:notation "Trial Site"^^xsd:string ;
+	th:definition "Any healthcare organization, institution, facility or provider directly involved in conducting or facilitating a particular clinical trial. (NCI)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#aac5041d21b07845ada754c1a3fb5fa3db41cbf0> ;
+	th:synonym <http://www.assero.co.uk/SYN#5eef962a5e29aa0257f7d721cf529497dd24f7e7> ;
+	th:synonym <http://www.assero.co.uk/SYN#083e53f6552a3e573dbe287559d473131bd99145> ;
+.
+<http://www.assero.co.uk/PT#aac5041d21b07845ada754c1a3fb5fa3db41cbf0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Clinical Trial Site"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#5eef962a5e29aa0257f7d721cf529497dd24f7e7>
+	rdf:type th:Synonym ;
+	isoC:label "Investigative Site"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#083e53f6552a3e573dbe287559d473131bd99145>
+	rdf:type th:Synonym ;
+	isoC:label "Investigator Site"^^xsd:string ;
+.
+<http://www.cdisc.org/C139020/V53#C139020_C49660>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Trial Type"^^xsd:string ;
+	th:identifier "C49660"^^xsd:string ;
+	th:notation "Trial Type"^^xsd:string ;
+	th:definition "The type of primary outcome or endpoint that the protocol is designed to evaluate. (clinicaltrials.gov)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#33e3f47cc88a0d2703b32f08cd9c8eff8ab0f071> ;
+	th:synonym <http://www.assero.co.uk/SYN#3e4b74b697daf582f1e60bb544fd15523518f3d4> ;
+	th:synonym <http://www.assero.co.uk/SYN#33e3f47cc88a0d2703b32f08cd9c8eff8ab0f071> ;
+.
+<http://www.assero.co.uk/PT#20a54add9cf91a2e1aa5ef13f9c112e517e4e899>
+	rdf:type th:PreferredTerm ;
+	isoC:label "CDISC Protocol Entities Clinical Trial Attribute Terminology"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b9fca94bcb9d2cd628a00e6e761fa51b2498bdae>
+	rdf:type th:Synonym ;
+	isoC:label "Clinical Trial Attribute Terminology"^^xsd:string ;
+.
+<http://www.cdisc.org/C132310/V53#C132310>
+	rdf:type th:ManagedConcept ;
+	isoC:label "Protocol Entity Terminology"^^xsd:string ;
+	isoT:hasState <http://www.cdisc.org/C132310/V53#C132310_RS> ;
+	isoT:hasIdentifier <http://www.cdisc.org/C132310/V53#C132310_SI> ;
+	isoT:origin ""^^xsd:string ;
+	isoT:changeDescription ""^^xsd:string ;
+	isoT:creationDate "2017-09-29T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:lastChangeDate "2017-09-29T00:00:00+00:00"^^xsd:dateTime ;
+	isoT:explanatoryComment ""^^xsd:string ;
+	th:identifier "C132310"^^xsd:string ;
+	th:notation "Protocol Entity Terminology"^^xsd:string ;
+	th:definition "A terminology value set relevant to the entities within a protocol."^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:narrower <http://www.cdisc.org/C132310/V53#C132310_C71104> ;
+	th:narrower <http://www.cdisc.org/C132310/V51#C132310_C25407> ;
+	th:narrower <http://www.cdisc.org/C132310/V51#C132310_C70817> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#4b4bee352aaf9a870a7b550a9b90a4a4c71a3788> ;
+	th:synonym <http://www.assero.co.uk/SYN#b4de5f6c704ceaa59e0e5f98aa5d7bb88c2fe456> ;
+.
+<http://www.cdisc.org/C132310/V53#C132310_RS>
+	rdf:type isoR:RegistrationState ;
+	isoR:registrationStatus "Standard"^^xsd:string ;
+	isoR:administrativeNote ""^^xsd:string ;
+	isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+	isoR:unresolvedIssue ""^^xsd:string ;
+	isoR:administrativeStatus ""^^xsd:string ;
+	isoR:previousState "Standard"^^xsd:string ;
+	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C132310/V53#C132310_SI>
+	rdf:type isoI:ScopedIdentifier ;
+	isoI:identifier "C132310"^^xsd:string ;
+	isoI:versionLabel "2017-09-29 Release"^^xsd:string ;
+	isoI:version "53"^^xsd:positiveInteger ;
+	isoI:semanticVersion "53.0.0"^^xsd:string ;
+	isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C132310/V53#C132310_C71104>
+	rdf:type th:UnmanagedConcept ;
+	isoC:label "Clinical Trial"^^xsd:string ;
+	th:identifier "C71104"^^xsd:string ;
+	th:notation "Clinical Trial"^^xsd:string ;
+	th:definition "1) A research investigation involving human subjects that is designed to answer specific questions about the safety and efficacy of a biomedical intervention (drug, treatment, device) or new ways of using a known drug, treatment, or device). 2) A research study in which one or more human subjects are prospectively assigned to one or more interventions (which may include placebo or other control) to evaluate the effects of those interventions on health-related biomedical or behavioral outcomes.(1. modified from ICH E6 Glossary, Directive 2001/20/EC. 2. NIH revised definition 2015) (CDISC Glossary)"^^xsd:string ;
+	th:extensible "false"^^xsd:boolean ;
+	th:preferredTerm <http://www.assero.co.uk/PT#a4781b4e531e406a69c0092ff5dcf176feecc6dd> ;
+.
+<http://www.assero.co.uk/PT#a4781b4e531e406a69c0092ff5dcf176feecc6dd>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Clinical Trial"^^xsd:string ;
 .
