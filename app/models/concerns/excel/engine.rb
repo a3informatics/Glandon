@@ -228,6 +228,16 @@ class Excel::Engine
     params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
   end
 
+  # Set Tag
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Object] :object the object tocheck for validity
+  # @return [Void] no return
+  def set_tag(params)
+    check_params(__method__.to_s, params, [:object])
+    params[:object].tagged << @tag
+  end
+
   # Set Property
   #
   # @param [Integer] row the cell row
