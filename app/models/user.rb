@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :timeoutable,
     :password_expirable, :password_archivable , :secure_validatable
 
-  after_create :set_extra
+  after_create :set_extra, :expire_password!
   after_save :user_update
 
   validates :name, length: { minimum: 1 }, on: :update
@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
       AuditTrail.user_event(self, "User changed password.")
     end
   end
+
+  # Is called by devise and super becomes true when session timed out. Use for displaying an error msg to the user? 
+  # def timedout?(last_access)
+  #   super
+  # end
 
   # Is Only System Admin
   #

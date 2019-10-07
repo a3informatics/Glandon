@@ -144,7 +144,7 @@ Devise.setup do |config|
   # Range for password length.
   mpl = ENV['min_password_length'].to_i
   config.password_length = mpl..128
-  
+
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
@@ -154,6 +154,7 @@ Devise.setup do |config|
   # The time you want to timeout the user session without activity. After this
   # time the user will be asked for credentials again. Default is 30 minutes.
   # config.timeout_in = 30.minutes
+  config.timeout_in = ENV['password_timeout'].to_i.minutes
 
   # If true, expires auth token on session timeout.
   # config.expire_auth_token_on_timeout = false
