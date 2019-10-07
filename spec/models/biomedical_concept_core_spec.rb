@@ -11,10 +11,7 @@ describe BiomedicalConceptCore do
   end
 
   before :all do
-    data_files = 
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"
-    ]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
     load_files(schema_files, data_files)
     # clear_triple_store
     # load_schema_file_into_triple_store("ISO11179Types.ttl")

@@ -67,12 +67,7 @@ describe Background do
   describe "Background Jobs" do
 
 	  before :all do
-	    schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessDomain.ttl"
-      ]
-      data_files = 
+	    data_files = 
       [
         "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "form_example_vs_baseline.ttl"
       ]
