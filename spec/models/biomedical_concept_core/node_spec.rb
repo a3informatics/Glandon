@@ -5,7 +5,7 @@ describe BiomedicalConceptCore::Node do
   
   include DataHelpers
 
-  it "clears triple store and loads test data" do
+  before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
     load_files(schema_files, data_files)
     clear_iso_concept_object
