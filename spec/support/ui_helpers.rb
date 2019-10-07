@@ -334,17 +334,17 @@ module UiHelpers
 			main_nav_f: "main_nav_forms",
 			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
 			main_nav_aig: "main_nav_adam"
-			} 
+			}
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
   end
- 
+
   #System Admin
   def click_navbar_at
     ui_navbar_click('main_nav_at')
   end
- 
+
   def click_navbar_el
     ui_navbar_click('main_nav_el')
   end
@@ -462,6 +462,10 @@ module UiHelpers
   def click_submission_value_changes
     click_link 'btn-submission-changes'
   end
+
+	def click_show_latest_version
+		click_link 'btn-show-latest'
+	end
 
 
   def ui_check_table_cell_extensible(table_id, row, col, text)

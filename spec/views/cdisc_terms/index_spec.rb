@@ -36,6 +36,7 @@ describe 'cdisc_terms/index.html.erb', :type => :view do
     expect(rendered).to have_link "See the changes across versions"
     expect(rendered).to have_link "See submission value changes across versions"
     expect(rendered).to have_link "Search the latest version of CDISC CT"
+    expect(rendered).to have_link "Show the latest version of CDISC CT"
 
   end
 
