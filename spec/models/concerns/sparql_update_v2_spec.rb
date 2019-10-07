@@ -11,7 +11,8 @@ describe SparqlUpdateV2 do
   end
 
   before :each do
-    clear_triple_store
+    data_files = []
+    load_files(schema_files, data_files)
   end
 
   it "allows for the class to be created" do
