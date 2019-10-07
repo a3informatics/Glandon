@@ -198,19 +198,25 @@ module Fuseki
 
       # Set a simple typed value
       def to_typed(base_type, value)
+        x = false
         if base_type == BaseDatatype.to_xsd(BaseDatatype::C_STRING)
-          "#{value}"
+          result = "#{value}"
         elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_BOOLEAN)
-          value.to_bool
+          result = value.to_bool
         elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME)
-          value.to_time_with_default
+          result = value.to_time_with_default
         elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_INTEGER)
-          value.to_i
+          result = value.to_i
         elsif base_type == BaseDatatype.to_xsd(BaseDatatype::C_POSITIVE_INTEGER)
-          value.to_i
+          result = value.to_i
         else
-          "#{value}"
+          x = true
+          result = "#{value}"
         end
+      puts "***** Schema Issue, Extensible *****" if @name == :extensible && x
+        return result
+      rescue => e
+        byebug
       end
 
     end
