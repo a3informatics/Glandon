@@ -51,10 +51,6 @@
   width: 100% !important;
 }
 
-.card.warning .card-content{
-  padding: 25px 15px;
-}
-
 .card.warning {
   border: 5px solid $accent-color-1;
 }
@@ -63,9 +59,15 @@
   border: 5px solid $accent-color-2;
 }
 
-.card.danger .card-content{
+.card.info{
+  border: 5px solid $primary-color-bright;
+}
+
+.card.danger .card-content, .card.warning .card-content,
+.card.info .card-content{
   padding: 25px 15px;
 }
+
 
 // CARD-STYLE TABLE
 
