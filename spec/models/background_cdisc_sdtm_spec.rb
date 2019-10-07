@@ -68,16 +68,20 @@ describe Background do
 	context "SDTM Model" do
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessDomain.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-
+      data_files = 
+      [
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BC.ttl", "form_example_vs_baseline.ttl"
+      ]
+      load_files(schema_files, data_files)
+    #   clear_triple_store
+    #   load_schema_file_into_triple_store("ISO11179Types.ttl")
+    #   load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    #   load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    #   load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    #   load_schema_file_into_triple_store("BusinessOperational.ttl")
+    #   load_schema_file_into_triple_store("BusinessDomain.ttl")
+    #   load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    #   load_test_file_into_triple_store("iso_namespace_real.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-2.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-3.ttl")
       load_data_file_into_triple_store("SDTM_Model_1-4.ttl")

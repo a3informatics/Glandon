@@ -10,8 +10,8 @@ describe User do
   end
 
   before :all do
-    clear_triple_store
-    load_test_file_into_triple_store("form_example_vs_baseline.ttl")
+    data_files = [ "form_example_vs_baseline.ttl" ]
+    load_files(schema_files, data_files)
   end
 
   it "finds all triples" do

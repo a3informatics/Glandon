@@ -9,20 +9,22 @@ describe AuditTrail do
   end
 
   before :all do
-    clear_triple_store
-    AuditTrail.delete_all
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessForm.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_managed_data.ttl")
-    load_test_file_into_triple_store("iso_managed_data_2.ttl")
-    load_test_file_into_triple_store("iso_managed_data_3.ttl")
-    clear_iso_concept_object
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", "iso_managed_data_3.ttl"]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessForm.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_managed_data.ttl")
+    # load_test_file_into_triple_store("iso_managed_data_2.ttl")
+    # load_test_file_into_triple_store("iso_managed_data_3.ttl")
+    # clear_iso_concept_object
     load_cdisc_term_versions(1..2)
+    AuditTrail.delete_all
   end
 
   it "returns a human readable label for an instance" do
