@@ -464,7 +464,7 @@ module UiHelpers
   end
 
 	def click_show_latest_version
-		click_link 'btn-show-latest'
+		click_link 'btn-browse-latest'
 	end
 
 
