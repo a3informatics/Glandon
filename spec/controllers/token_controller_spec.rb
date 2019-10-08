@@ -4,11 +4,12 @@ describe TokensController do
 
   include DataHelpers
   include PauseHelpers
+  include UserAccountHelpers
 
   describe "Token as Sys Admin" do
-  	
+
     login_sys_admin
-   
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -18,7 +19,7 @@ describe TokensController do
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
 
@@ -29,8 +30,7 @@ describe TokensController do
       clear_iso_registration_state_object
       clear_token_object
       Token.delete_all
-      @user1 = User.create :email => "token@example.com", :password => "changeme" 
-      @user1.add_role :reader
+      @user1 = ua_add_user email: "token@example.com", role: :reader
       item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item1.id = "1"
       item2 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
@@ -44,10 +44,9 @@ describe TokensController do
       @token3 = Token.obtain(item3, @user1)
       @token4 = Token.obtain(item4, @user1)
     end
-    
+
     after :all do
-      @user1 = User.where(:email => "token@example.com")
-      @user1[0].destroy
+      ua_remove_user "token@example.com"
       Token.delete_all
       Token.restore_timeout
     end
@@ -56,7 +55,7 @@ describe TokensController do
       Token.set_timeout(5)
       get :index
       tokens = assigns(:tokens)
-      expected = 
+      expected =
       [
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#1", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#2", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
@@ -68,9 +67,9 @@ describe TokensController do
       expected.each_with_index do |item, index|
         #token = tokens[index]
         token = tokens.find{|x| x.item_uri == item[:item_uri]}
-        expect(token.refresh_count).to eq(item[:refresh_count]) 
-        expect(token.item_uri).to eq(item[:item_uri]) 
-        expect(token.item_info).to eq(item[:item_info]) 
+        expect(token.refresh_count).to eq(item[:refresh_count])
+        expect(token.item_uri).to eq(item[:item_uri])
+        expect(token.item_info).to eq(item[:item_info])
         expect(token.user_id).to eq(item[:user_id])
         expect(token.locked_at).to be_within(2.second).of Time.now
       end
@@ -80,7 +79,7 @@ describe TokensController do
     it "will release a token, HTTP" do
       post :release, :id => @token1.id
       tokens = Token.all
-      expected = 
+      expected =
       [
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#2", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#3", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
@@ -90,9 +89,9 @@ describe TokensController do
       expected.each_with_index do |item, index|
         #token = tokens[index]
         token = tokens.find{|x| x.item_uri == item[:item_uri]}
-        expect(token.refresh_count).to eq(item[:refresh_count]) 
-        expect(token.item_uri).to eq(item[:item_uri]) 
-        expect(token.item_info).to eq(item[:item_info]) 
+        expect(token.refresh_count).to eq(item[:refresh_count])
+        expect(token.item_uri).to eq(item[:item_uri])
+        expect(token.item_info).to eq(item[:item_info])
         expect(token.user_id).to eq(item[:user_id])
         expect(token.locked_at).to be_within(2.second).of Time.now
       end
@@ -103,11 +102,11 @@ describe TokensController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :release, :id => @token2.id
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
       tokens = Token.all
       expect(tokens.count).to eq(3)
-      expected = 
+      expected =
       [
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#1", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
         { refresh_count: 0, item_uri: "http://www.assero.co.uk/MDRForms/ACME/V1#3", item_info: "[ACME, VS BASELINE, 1]", user_id: @user1.id },
@@ -116,9 +115,9 @@ describe TokensController do
       expected.each_with_index do |item, index|
         #token = tokens[index]
         token = tokens.find{|x| x.item_uri == item[:item_uri]}
-        expect(token.refresh_count).to eq(item[:refresh_count]) 
-        expect(token.item_uri).to eq(item[:item_uri]) 
-        expect(token.item_info).to eq(item[:item_info]) 
+        expect(token.refresh_count).to eq(item[:refresh_count])
+        expect(token.item_uri).to eq(item[:item_uri])
+        expect(token.item_info).to eq(item[:item_info])
         expect(token.user_id).to eq(item[:user_id])
         expect(token.locked_at).to be_within(2.second).of Time.now
       end
@@ -130,7 +129,7 @@ describe TokensController do
       remaining = @token1.remaining
       post :status, :id => @token1.id
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       result = JSON.parse(response.body)
       expect(result["running"]).to eq(true)
       expect(result["remaining"]).to eq(remaining)
@@ -139,7 +138,7 @@ describe TokensController do
   end
 
   describe "Not logged in" do
-    
+
     it "index" do
       get :index
       expect(response).to redirect_to("/users/sign_in")
@@ -159,9 +158,9 @@ describe TokensController do
   end
 
   describe "Curator User" do
-    
+
     login_curator
-   
+
     before :all do
       clear_triple_store
       load_schema_file_into_triple_store("ISO11179Types.ttl")
@@ -171,7 +170,7 @@ describe TokensController do
       load_schema_file_into_triple_store("ISO25964.ttl")
       load_schema_file_into_triple_store("BusinessOperational.ttl")
       load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
+      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
       load_test_file_into_triple_store("iso_registration_authority_real.ttl")
     load_test_file_into_triple_store("iso_namespace_real.ttl")
 
@@ -182,16 +181,14 @@ describe TokensController do
       clear_iso_registration_state_object
       clear_token_object
       Token.delete_all
-      @user1 = User.create :email => "token@example.com", :password => "changeme" 
-      @user1.add_role :reader
+      @user1 = ua_add_user email: "token@example.com", role: :reader
       item1 = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
       item1.id = "1"
       @token1 = Token.obtain(item1, @user1)
     end
-    
+
     after :all do
-      @user1 = User.where(:email => "token@example.com")
-      @user1[0].destroy
+      ua_remove_user "token@example.com"
       Token.delete_all
     end
 
@@ -205,7 +202,7 @@ describe TokensController do
       remaining = @token1.remaining
       post :status, :id => @token1.id
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       result = JSON.parse(response.body)
       expect(result["running"]).to eq(true)
       expect(result["remaining"]).to eq(remaining)
@@ -215,7 +212,7 @@ describe TokensController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :status, :id => 6
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       result = JSON.parse(response.body)
       expect(result["running"]).to eq(false)
       expect(result["remaining"]).to eq(0)
@@ -225,7 +222,7 @@ describe TokensController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :extend_token, :id => 6
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
     end
 
@@ -233,7 +230,7 @@ describe TokensController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :extend_token, :id => @token1.id
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
       expect(@token1.remaining).to eq(Token.get_timeout)
     end
@@ -242,7 +239,7 @@ describe TokensController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :extend_token, :id => 6
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq("{}")
     end
 

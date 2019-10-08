@@ -142,6 +142,7 @@ describe "User Settings", :type => :feature do
     it "allows a user to change their password" do
       audit_count = AuditTrail.count
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1%", :name => "A Amend"
+      unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1%"
       click_link 'settings_button'
       expect(page).to have_content "Account settings"
@@ -156,6 +157,7 @@ describe "User Settings", :type => :feature do
     it "allows a user to change their password - incorrect current password" do
       audit_count = AuditTrail.count
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1@", :name => "A Amend"
+      unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
       expect(page).to have_content "Account settings"
@@ -170,6 +172,7 @@ describe "User Settings", :type => :feature do
     it "allows a user to update the display name" do
       audit_count = AuditTrail.count
       user = User.create :email => "amend@assero.co.uk", :password => "Changeme1@", :name => "A Amend"
+      unforce_first_pass_change user
       ua_generic_login "amend@assero.co.uk", "Changeme1@"
       click_link 'settings_button'
       expect(page).to have_content "Account settings"
