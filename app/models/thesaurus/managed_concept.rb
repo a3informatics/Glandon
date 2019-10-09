@@ -204,6 +204,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   def differences_summary (last)
   byebug
     results =[]
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {
@@ -225,7 +226,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).first
     first = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
-    diffs = difference_record_baseline(first)
+    diffs = x[:s] == items.last ? difference_record_baseline(first) : difference_record_summary_baseline(first)
     results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
     x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).last
     last = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
