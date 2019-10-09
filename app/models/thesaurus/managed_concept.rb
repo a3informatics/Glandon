@@ -103,6 +103,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes(window_size)
+  byebug
     raw_results = {}
     final_results = {}
     versions = []
@@ -198,11 +199,102 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  # Changes_summary
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_summary(last)
+  byebug
+    raw_results = {}
+    final_results = {}
+    versions = []
+    # Get the version set. Work out if we need a dummy first one. Note the identifier
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
+
+    raw_results["dummy"] = {version: 0, date: "", children: []} 
+ 
+    # Get the raw results
+    query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
+{
+  { #{self.uri.to_ref} th:narrower ?cl . #{self.uri.to_ref} isoT:creationDate ?d . #{self.uri.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{self.uri.to_ref} as ?e)} UNION\n
+  { #{last.uri.to_ref} th:narrower ?cl . #{last.uri.to_ref} isoT:creationDate ?d . #{last.uri.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{last.uri.to_ref} as ?e)} 
+
+  ?cl th:identifier ?i .
+  ?cl isoC:label ?l .
+  ?cl th:notation ?n .
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    x = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n]).first
+      uri = x[:e].to_s
+      raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
+    x = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n]).last
+      uri = x[:e].to_s
+      raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
+
+
+    # Item deleted?
+    item_was_deleted_info = deleted_from_ct_version(items.last)
+
+    # Get the version array
+    raw_results.sort_by {|k,v| v[:version]}
+    raw_results.each {|k,v| versions << v[:date]}
+    versions = versions.drop(1)
+
+    
+    # Build the skeleton final results with a default value.
+    initial_status = [{ status: :not_present}] * versions.length
+    if item_was_deleted_info[:deleted]
+      versions << item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d") 
+      initial_status << { status: :deleted}
+    end
+    raw_results.each do |uri, version|
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if final_results.key?(key)
+        final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+      end
+    end
+
+    # Process the changes
+    previous_version = nil
+    version_index = 0
+    raw_results.each do |uri, version|
+      if previous_version.nil?
+        # nothing needed?
+      else
+        # :created = B-A
+        # :updated = A Union B URI != URI
+        # :no_change = A Union B URI == URI
+        # :deleted = A-B
+        new_items = version[:children] - previous_version[:children]
+        common_items = version[:children] & previous_version[:children]
+        deleted_items = previous_version[:children] - version[:children]
+        new_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+        end
+        common_items.each do |entry|
+          prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
+          curr = version[:children].find{|x| x[:key] == entry[:key]}
+          final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+        end
+        deleted_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
+        end
+        version_index += 1
+      end
+      previous_version = version
+    end
+
+    # And return
+    {versions: versions, items: final_results}
+  end
+
   # Differences_summary
   #
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
   def differences_summary (last)
-  # byebug
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{

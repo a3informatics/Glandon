@@ -569,7 +569,14 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
       results = tc.differences_summary(last)
-      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml")
+    end
+
+    it "changes_summary" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      results = tc.changes_summary(last)
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml")
     end
 
   end
