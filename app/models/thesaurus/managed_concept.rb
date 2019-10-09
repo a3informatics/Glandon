@@ -90,7 +90,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     common_ids.each do |identifier|
       this_child = self.narrower.find{|x| x.identifier == identifier}
       other_child = other.narrower.find{|x| x.identifier == identifier}
-      next if !this_child.diff?(other_child)
+      next if children_are_the_same?(this_child, other_child)
       uri = Uri.new(uri: "http://www.temp.com/") # Temporary nasty
       this_child.uri = uri
       other_child.uri = uri
@@ -103,6 +103,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       other_child = other.narrower.find{|x| x.identifier == identifier}
       self.narrower << other_child
     end
+    self.tagged = self.tagged | other.tagged
     self.errors.empty?
   end
 
@@ -336,6 +337,13 @@ private
 
   end
 
+  def children_are_the_same?(this_child, other_child)
+    result = this_child.diff?(other_child, {ignore: [:tagged]})
+    return false if result
+    this_child.tagged = this_child.tagged | other_child.tagged
+    return true
+  end
+
   def deleted_from_ct_version(last_item)
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
@@ -366,7 +374,7 @@ private
 
   def diff_self?(other)
     return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 
-      :explanatory_comment, :narrower, :extends, :subsets]})
+      :explanatory_comment, :narrower, :extends, :subsets, :tagged]})
     msg = "When merging #{self.identifier} a difference was detected in the item"
     self.errors.add(:base, msg) 
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
