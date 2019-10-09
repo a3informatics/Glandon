@@ -155,7 +155,57 @@ class Thesaurus <  IsoManagedV2
     {versions: versions, items: final_results}
   end
 
-  # Submisison
+  # Changes_CDU
+  #
+  # @param [Integer] window_size the required window size for changes
+  # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions
+  def changes_cdu (window_size)
+    cls = changes(window_size)
+    results = {created: [], deleted: [], updated: []}
+    cls[:items].each do |key, value|
+      value[:status].each do |status|
+        next if status[:status] == :no_change
+        next if status[:status] == :not_present
+        if status[:status] == :deleted
+            value[:overall_status] = :deleted
+            break
+        end
+        if status[:status] == :created
+            value[:overall_status] = :created
+        end
+        if status[:status] == :updated
+          if value[:overall_status].blank?
+            value[:overall_status] = :updated
+          end
+        end
+      end
+    end
+    cls[:items].each do |key, value|
+      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
+      #   begin
+      #   # byebug
+      #     next if status[:status] == :no_change
+      #     next if status[:status] == :not_present
+      #     if status[:status] == :deleted
+      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
+      #       break
+      #     end
+      #     if status[:status] == :created
+      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
+      #     end 
+      #     if status[:status] == :updated
+      #       if results[status[:]].blank?
+      #         results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]} 
+      #       end
+      #     end
+      #   end
+    
+    end
+    results
+  end
+
+
+  # Submission
   #
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version

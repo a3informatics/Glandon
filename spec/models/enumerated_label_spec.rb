@@ -4,13 +4,15 @@ describe EnumeratedLabel do
 	
   include DataHelpers
 
-  it "clears triple store and loads test data" do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_test_file_into_triple_store("enumerated_label.ttl")
+  before :all do
+    data_files = ["enumerated_label.ttl"]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_test_file_into_triple_store("enumerated_label.ttl")
   end
 
   it "allows all labels to be returned" do

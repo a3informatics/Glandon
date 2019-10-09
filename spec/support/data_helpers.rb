@@ -1,7 +1,14 @@
 module DataHelpers
 
+  def schema_files
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+      "BusinessOperational.ttl", "thesaurus.ttl", "cross_reference.ttl",
+      "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl"
+    ]
+  end
+
   def load_files(schema_files, test_files)
-    ConsoleLogger.debug("DataHelpers", "load_files", "***** Next Test ***** #{self.class.metadata[:location]}")
     clear_triple_store
     schema_files.each {|f| load_schema_file_into_triple_store(f)}
     test_files.each {|f| load_test_file_into_triple_store(f)}

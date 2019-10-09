@@ -23,19 +23,23 @@
 </style>
 <div class="row rowpad">
   <div class="col-md-12">
-    <div class="btns-wrap">
-      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: history_cdisc_terms_path, id: "btn-browse-cdisc",
-        icon: "icon-browse-all", btn_text: "Browse every version of CDISC CT", btn_class: ""} %>
-      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: changes_thesauri_path(@current_id), id: "btn-see-changes",
-        icon: "icon-see-changes", btn_text: "See the changes across versions", btn_class: ""} %>
-      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: submission_thesauri_path(@current_id), id: "btn-submission-changes",
-        icon: "icon-submission-changes", btn_text: "See submission value changes across versions", btn_class: ""} %>
-      <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: search_thesauri_path(@latest_id), id: "btn-search-latest",
-        icon: "icon-search-latest", btn_text: "Search the latest version of CDISC CT", btn_class: ""} %>
-    </div>
+      <div class="btns-wrap">
+        <div class="font-light">Shortcuts:</div>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: history_cdisc_terms_path, id: "btn-browse-cdisc",
+          icon: "icon-browse-all", btn_text: "Browse every version of CDISC CT", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: changes_thesauri_path(@current_id), id: "btn-see-changes",
+          icon: "icon-see-changes", btn_text: "See the changes across versions", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: submission_thesauri_path(@current_id), id: "btn-submission-changes",
+          icon: "icon-submission-changes", btn_text: "See submission value changes across versions", btn_class: ""} %>
+        <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: search_thesauri_path(@latest_id), id: "btn-search-latest",
+          icon: "icon-search-latest", btn_text: "Search the latest version of CDISC CT", btn_class: ""} %>
+          <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: thesauri_path(@latest_id), id: "btn-browse-latest",
+            icon: "icon-view-circle", btn_text: "Browse the latest version of CDISC CT", btn_class: ""} %>
+      </div>
   </div>
 </div>
 <div class="row">
+  <div class="divider bg-grey-light" style="width: 90%; margin-bottom: 0px;"></div>
   <div class="col-md-12 card">
     <div class="card-header">Changes between two CDISC Terminology versions</div>
       <div class="card-content">

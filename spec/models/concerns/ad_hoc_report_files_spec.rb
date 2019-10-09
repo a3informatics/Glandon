@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe AdHocReportFiles do
 
+  include DataHelpers
   include PublicFileHelpers
 	
   test_json = 
@@ -15,6 +16,7 @@ describe AdHocReportFiles do
   ] 
   
   before :all do
+    load_files(schema_files, [])
     delete_all_public_files
   end
 

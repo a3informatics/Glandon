@@ -11,7 +11,6 @@ describe IsoNamespace do
     end
 
     before :each do
-      schema_files = ["ISO11179Identification.ttl"]
       data_files = ["iso_namespace_fake.ttl"]
       load_files(schema_files, data_files)
     end
