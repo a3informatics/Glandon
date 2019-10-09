@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   include Pundit
 
   # Prevent CSRF attacks by raising an exception.
@@ -28,13 +28,13 @@ class ApplicationController < ActionController::Base
 
   # Report a CRUD error
   def crud_error(exception)
-    # TODO: This is wierd but not going to worry about it for the mo. Something odd in the 
+    # TODO: This is wierd but not going to worry about it for the mo. Something odd in the
     # exception def?
     flash[:error] = 'A database operation failed. ' + exception.message[:message].to_s
     redirect_to root_path
     true
   end
-  
+
   # Convert triples to a string
   # @todo Move to a better location?
   def to_turtle(triples)
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
           result += "<#{triple[:subject]}> \t\t\t<#{triple[:predicate]}> \t\t\t<#{triple[:object]}> . \n"
         else
           object_text = triple[:object]
-          # TODO: Compare with SparqlUtility::replace_special_char 
+          # TODO: Compare with SparqlUtility::replace_special_char
           object_text.gsub!("\r", "\\r")
           object_text.gsub!("\n", "\\n")
           object_text.gsub!("\"", "\\\"")
@@ -80,5 +80,9 @@ class ApplicationController < ActionController::Base
     @token = get_token(new_item)
     return new_item
   end
-  
+
+  def after_sign_out_path_for(*)
+   new_user_session_path
+  end
+
 end
