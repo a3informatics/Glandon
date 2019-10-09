@@ -3,6 +3,7 @@ require 'rails_helper'
 describe 'dashboard/error.html.erb' do
 
   include UiHelpers
+  include UserAccountHelpers
 
   it 'displays the error screen, reader & curator' do
 

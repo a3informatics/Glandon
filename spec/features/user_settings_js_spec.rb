@@ -41,6 +41,9 @@ describe "User Settings", :type => :feature do
   end
 
   before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..1)
     ua_create
   end
 
