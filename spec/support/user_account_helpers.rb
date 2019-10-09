@@ -13,23 +13,30 @@ module UserAccountHelpers
     @user_c = User.create :email => C_CURATOR, :password => C_PASSWORD
     @user_c.add_role :curator
     @user_c.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_c
     @user_r = User.create :email => C_READER, :password => C_PASSWORD
     @user_r.add_role :reader
+		unforce_first_pass_change @user_r
     @user_sa = User.create :email => C_SYS_ADMIN, :password => C_PASSWORD
     @user_sa.add_role :sys_admin # Sys Admin will have reader access here.
-    @user_sa.remove_role :reader # Get reader on the create
+		@user_sa.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_sa
     @user_ca = User.create :email => C_CONTENT_ADMIN, :password => C_PASSWORD
     @user_ca.add_role :content_admin
     @user_ca.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_ca
     @user_tr = User.create :email => C_TERM_READER, :password => C_PASSWORD
     @user_tr.add_role :term_reader
     @user_tr.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_tr
     @user_tc = User.create :email => C_TERM_CURATOR, :password => C_PASSWORD
     @user_tc.add_role :term_curator
     @user_tc.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_tc
     @user_cr = User.create :email => C_COMM_READER, :password => C_PASSWORD
     @user_cr.add_role :community_reader
     @user_cr.remove_role :reader # Get reader on the create
+		unforce_first_pass_change @user_cr
   end
 
   def ua_destroy
@@ -101,11 +108,17 @@ module UserAccountHelpers
 
 		@usr = User.create :email => args[:email], :password => args[:password]
 		@usr.add_role args[:role]
+		unforce_first_pass_change @usr
 		return @usr
 	end
 
 	def ua_remove_user(email)
 		User.where(:email => email).first.destroy
+	end
+
+	def unforce_first_pass_change(user)
+		user.password_changed_at = Time.now
+		user.save
 	end
 
 end

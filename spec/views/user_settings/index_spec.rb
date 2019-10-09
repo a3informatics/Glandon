@@ -12,6 +12,7 @@ describe 'user_settings/index.html.erb', :type => :view do
 
     UserSettings.reset_settings_metadata
     user = User.create :email => "user@assero.co.uk", :password => "cHangeMe14%", :name => "User Fred"
+    unforce_first_pass_change user
 
     allow(view).to receive(:policy).and_return double(index?: true)
     allow(view).to receive(:user_signed_in?) { true }
@@ -74,6 +75,7 @@ describe 'user_settings/index.html.erb', :type => :view do
     end
 
     user = User.create :email => "user@assero.co.uk", :password => "cHangeMe14%", :name => "User Fred"
+    unforce_first_pass_change user
     allow(view).to receive(:policy).and_return double(index?: true)
     allow(view).to receive(:user_signed_in?) { true }
     allow(view).to receive(:current_user).and_return(user)

@@ -315,6 +315,41 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'Set user roles for:'
       expect(page).to have_content 'Email: usr@example.com'
       expect(page).to have_content 'Anonymous'
+
+      ua_remove_user "usr@example.com"
+    end
+
+    it "forces first-login password reset when a new user is added" do
+      ua_sys_admin_login
+      # Manually create user
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      click_link 'New'
+      expect(page).to have_content 'New user account'
+      fill_in :placeholder => 'Email', :with => 'usr@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      fill_in :placeholder => 'Confirm password', :with => 'Changeme1#'
+      click_button 'Create'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme1#'
+      click_button 'Log in'
+
+      expect(page).to have_content 'Renew your password'
+      fill_in :placeholder => 'Current password', :with => 'Changeme1#'
+      fill_in :placeholder => 'New password', :with => 'Changeme2#'
+      fill_in :placeholder => 'Confirm new password', :with => 'Changeme2#'
+      click_button 'Change password'
+      expect(page).to have_content 'Your new password is saved'
+
+      ua_logoff
+
+      fill_in :placeholder => 'Email', :with => 'usr@example.com'
+      fill_in :placeholder => 'Password', :with => 'Changeme2#'
+      click_button 'Log in'
+      expect(page).to have_content 'Signed in successfully'
     end
 
   end

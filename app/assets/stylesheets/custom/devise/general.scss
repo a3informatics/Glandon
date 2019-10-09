@@ -7,6 +7,7 @@ body, html, .container{
 body {
   background: $grey-bright;
   width: 100%;
+  position: relative;
 }
 
 .container{
@@ -14,6 +15,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
+  flex-direction: column;
 }
 
 .m-card {
@@ -104,6 +106,14 @@ form{
   outline: none;
 }
 
+#alerts{
+  position: absolute;
+  z-index: 10;
+  width: 80%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 // MOBILE VIEW
 @media (max-width:768px){
   .m-card{
@@ -130,6 +140,10 @@ form{
 
   #a3-devise-logo{
     width: 150px;
+  }
+
+  #alerts{
+    position: relative;
   }
 }
 
