@@ -159,6 +159,14 @@ class Thesaurus
       result
     end
 
+    def difference_record_summary_baseline(current)
+      result = {}
+      [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
+        result[x] = {status: :no_change, previous: "", current: current[x], difference: ""} 
+      end
+      result
+    end
+
     def difference_record_deleted
       result = {}
       [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
