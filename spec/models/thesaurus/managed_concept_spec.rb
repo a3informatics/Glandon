@@ -558,11 +558,18 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml")
     end
 
-    it "differences_summary, I" do
+    it "differences_summary, first item first version" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
       results = tc.differences_summary(last)
       check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml")
+    end
+
+    it "differences_summary, first item other version" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      results = tc.differences_summary(last)
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml", write_file: true)
     end
 
   end

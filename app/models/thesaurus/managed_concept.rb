@@ -202,7 +202,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   #
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
   def differences_summary (last)
-  byebug
+  # byebug
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{
