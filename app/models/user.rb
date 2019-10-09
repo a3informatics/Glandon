@@ -38,11 +38,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # Is called by devise and super becomes true when session timed out. Use for displaying an error msg to the user? 
-  # def timedout?(last_access)
-  #   super
-  # end
-
   # Is Only System Admin
   #
   # @return [Boolean] returns true if user only has sys admin role
