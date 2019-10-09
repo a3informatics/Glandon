@@ -516,6 +516,12 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
     end
 
+    it "finds changes, 8" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      results = tc.changes(8)
+      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml", write_file: true)
+    end
+
     it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
@@ -538,6 +544,25 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
+    end
+
+    it "differences, V" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml")
+    end
+
+    it "differences, VI" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
+      results = tc.differences
+      check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml")
+    end
+
+    it "differences_summary, I" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      results = tc.differences_summary(last)
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml")
     end
 
   end

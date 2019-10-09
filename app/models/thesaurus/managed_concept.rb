@@ -108,7 +108,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     versions = []
     start_index = 0
     first_index = 0
-
     # Get the version set. Work out if we need a dummy first one. Note the identifier
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
     first_index = items.index {|x| x == self.uri}    
@@ -199,6 +198,42 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  # Differences_summary
+  #
+  # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
+  def differences_summary (last)
+  byebug
+    results =[]
+    query_string = %Q{
+SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE   
+  {        
+    VALUES ?s { #{self.uri.to_ref} #{last.uri.to_ref} }
+    {
+      ?s th:identifier ?i .
+      ?s isoT:creationDate ?date .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } ORDER BY ?i ?sy
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?date
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
+    x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).first
+    first = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+    diffs = difference_record_baseline(first)
+    results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+    x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).last
+    last = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+    diffs = difference_record(last, first)
+    results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+    results
+  end
+
   # Differences
   #
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
@@ -222,7 +257,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
     }
   } ORDER BY ?i ?sy
-} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?i
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?date
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     previous = nil

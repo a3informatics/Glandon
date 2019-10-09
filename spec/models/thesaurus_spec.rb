@@ -251,6 +251,12 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml")
     end
 
+    it "calculates changes, window 8, second" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V30#TH"))
+      actual = ct.changes(8)
+      check_file_actual_expected(actual, sub_dir, "changes_expected_5.yaml")
+    end
+
     it "calculates changes_cdu, window 3 " do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes_cdu(3)
