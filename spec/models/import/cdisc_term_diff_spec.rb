@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "CdiscTerm Difference" do
+describe "Import::CdiscTerm Difference" do
 
   include DataHelpers
   include PublicFileHelpers
@@ -13,11 +13,6 @@ describe "CdiscTerm Difference" do
 
   before :all do
     IsoHelpers.clear_cache
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     create_maps

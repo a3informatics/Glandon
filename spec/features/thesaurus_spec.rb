@@ -45,7 +45,7 @@ describe "Thesaurus", :type => :feature do
 
     #test of Terminology show and search
 
-    it "allows the index page to be viewed (REQ-MDR-ST-015)", js: true do
+    it "allows the index page to be viewed (REQ-MDR-ST-015, REQ-MDR-MIT-015)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
     end

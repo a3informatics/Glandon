@@ -397,3 +397,7 @@ function isIE() {
 
   return is_ie;
 }
+
+function isSafari(){
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}

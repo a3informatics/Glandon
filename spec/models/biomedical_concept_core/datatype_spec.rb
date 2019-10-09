@@ -11,15 +11,17 @@ describe BiomedicalConceptCore::Datatype do
   end
 
   before :all do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
-    load_test_file_into_triple_store("BC.ttl")
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "BC.ttl"]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("BCT.ttl")
+    # load_test_file_into_triple_store("BC.ttl")
     clear_iso_concept_object
   end
 

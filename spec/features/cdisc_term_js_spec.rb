@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "CDISC Term", :type => :feature do
-  
+
   include DataHelpers
   include PublicFileHelpers
   include UiHelpers
@@ -18,10 +18,10 @@ describe "CDISC Term", :type => :feature do
   end
 
   describe "CDISC Terminology. Curator Login", :type => :feature do
-  
+
     before :all do
       ua_create
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
                       "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -46,7 +46,7 @@ describe "CDISC Term", :type => :feature do
     end
 
     #CL history
-    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031)", js:true do
+    it "allows the CDISC Terminology History page to be viewed (REQ-MDR-CT-031, REQ-MDR-MIT-015)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
     end
@@ -95,7 +95,7 @@ describe "CDISC Term", :type => :feature do
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 409)
-      ui_child_search("10013")  
+      ui_child_search("10013")
       ui_check_table_info("children_table", 1, 10, 10)
       expect(page).to have_content 'EQ-5D-3L TESTCD'
       expect(page).to have_content 'C100135'
@@ -105,7 +105,7 @@ describe "CDISC Term", :type => :feature do
       ui_check_table_info("children_table", 1, 6, 6)
       expect(page).to have_content 'C100393'
       expect(page).to have_content 'C100394'
-      expect(page).to have_content 'C100395'  
+      expect(page).to have_content 'C100395'
       click_link 'Return'
       click_link 'Return'
       expect(page).to have_content 'History'
@@ -119,7 +119,7 @@ describe "CDISC Term", :type => :feature do
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 409)
-      ui_child_search("10013")  
+      ui_child_search("10013")
       ui_check_table_info("children_table", 1, 10, 10)
       expect(page).to have_content 'EQ-5D-3L TESTCD'
       expect(page).to have_content 'C100135'
@@ -218,9 +218,9 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Changes'
     end
 
-    it "allows changes to be viewed (REQ-MDR-CT-040) - test no longer required" 
+    it "allows changes to be viewed (REQ-MDR-CT-040) - test no longer required"
 
-    it "allows changes report to be produced (REQ-MDR-CT-NONE)"
+    it "allows changes report to be produced (REQ-GENERIC-E-010)"
 
     it "allows the submission value with changes to be viewed (REQ-MDR-CT-050)", js:true do
       click_navbar_cdisc_terminology
@@ -251,17 +251,17 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Differences'
     end
 
-    it "allows submission to be viewed (REQ-MDR-CT-050) - test no longer required" 
+    it "allows submission to be viewed (REQ-MDR-CT-050) - test no longer required"
 
-    it "allows submission report to be produced (REQ-MDR-CT-NONE)"
+    it "allows submission report to be produced (REQ-GENERIC-E-010)"
 
   end
 
   describe "CDISC Terminology. Community Reader Login ", :type => :feature do
-  
+
     before :all do
       ua_create
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
                       "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -287,10 +287,10 @@ describe "CDISC Term", :type => :feature do
 
     it "edit, delete, document control disabled" #, js:true do
 
-    it "allows for code list to be exported as CSV", js: true do
+    it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_browse_every_version
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       context_menu_element("history", 5, "2018-12-21 Release", :show)
       wait_for_ajax(5)
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
@@ -302,37 +302,48 @@ describe "CDISC Term", :type => :feature do
       expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
     end
 
-    it "allows for changes across versions to be dowloaded as PDF", js: true do
+    it "allows for changes across versions to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_see_changes_all_versions
-      wait_for_ajax(10)
-      click_link 'PDF Report'
-      url = URI.parse(current_url).to_s.split('/')[-1]
-      expect(url).to eq("changes_report.pdf")
-      page.execute_script "window.history.back();"
+      wait_for_ajax(30)
+      new_window = window_opened_by { click_link 'PDF Report' }
+      within_window new_window do
+        sleep 10
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("changes_report.pdf")
+        expect(pdfdoc['src']).to include("thesauri")
+        page.execute_script "window.close();"
+      end
       expect(page).to have_content 'Changes across versions'
     end
 
-    it "allows for changes in code list to be dowloaded as PDF", js: true do
+    it "allows for changes in code list to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_see_changes_all_versions
-      wait_for_ajax(10)
+      wait_for_ajax(30)
       find(:xpath, "//tr[contains(.,'C100129')]/td/a", :text => 'Changes').click
-      click_link 'PDF Report'
-      url = URI.parse(current_url).to_s.split('/')[-1]
-      expect(url).to eq("changes_report.pdf")
-      page.execute_script "window.history.back();"
+      new_window = window_opened_by { click_link 'PDF Report' }
+      within_window new_window do
+        sleep 10
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("changes_report.pdf")
+        expect(pdfdoc['src']).to include("thesauri/managed_concepts")
+        page.execute_script "window.close();"
+      end
       expect(page).to have_content 'C100129'
     end
 
-    it "allows for submission value changes to be dowloaded as PDF", js: true do
+    it "allows for submission value changes to be dowloaded as PDF (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_submission_value_changes
-      wait_for_ajax(10)
-      click_link 'PDF Report'
-      url = URI.parse(current_url).to_s.split('/')[-1]
-      expect(url).to eq("submission_report.pdf")
-      page.execute_script "window.history.back();"
+      wait_for_ajax(30)
+      new_window = window_opened_by { click_link 'PDF Report' }
+      within_window new_window do
+        sleep 10
+        pdfdoc = find(:xpath, '/HTML/BODY[1]/EMBED[1]')
+        expect(pdfdoc['src']).to include("submission_report.pdf")
+        page.execute_script "window.close();"
+      end
       expect(page).to have_content 'Submission value changes'
     end
 

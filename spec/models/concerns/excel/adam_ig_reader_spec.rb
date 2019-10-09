@@ -9,7 +9,7 @@ describe Excel::AdamIgReader do
   end
 
 	before :each do
-    clear_triple_store
+    load_files(schema_files, [])
   end
 
   it "initialize object, success" do

@@ -11,7 +11,7 @@ describe "Community Dashboard JS", :type => :feature do
   def wait_for_ajax_v_long
     wait_for_ajax(120)
   end
-  
+
   def check_on_commumity_dashboard
     expect(page).to have_content 'Changes between two CDISC Terminology versions'
   end
@@ -77,6 +77,16 @@ describe "Community Dashboard JS", :type => :feature do
       click_search_the_latest_version
       expect(page).to have_content 'Search: Controlled Terminology CT '
       ui_check_table_info("searchTable", 0, 0, 0)
+      click_link 'Home'
+      check_on_commumity_dashboard
+    end
+
+    it "allows access to CDISC show (latest)", js: true do
+      click_show_latest_version
+      wait_for_ajax
+      expect(page).to have_content "Controlled Terminology"
+      expect(page).to have_content "59.0.0"
+      ui_check_table_info("children_table", 1, 10, 797)
       click_link 'Home'
       check_on_commumity_dashboard
     end

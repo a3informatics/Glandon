@@ -20,8 +20,6 @@ describe Import::Term do
 
 	before :all do
     IsoHelpers.clear_cache
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", 
-      "BusinessOperational.ttl", "BusinessForm.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..49)
@@ -74,7 +72,7 @@ describe Import::Term do
     expect(result).to eq(expected)
   end
 
-  it "gets code list, AE example, ODM" do
+  it "gets code list, AE example, ODM - WILL CURRENTLY FAIL - Allocation of identifiers" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "CL_SMOKING", files: [full_path], file_type: "1", uri: @th.uri.to_s, job: @job})

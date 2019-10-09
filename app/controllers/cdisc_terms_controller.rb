@@ -38,7 +38,6 @@ class CdiscTermsController < ApplicationController
   end
 
   def history
-    authorize Thesaurus
     respond_to do |format|
       format.html do
         results = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
@@ -66,19 +65,10 @@ class CdiscTermsController < ApplicationController
     from_index = versions.find_index {|x| x[:id] == ct_from.id}
     ct_to = Thesaurus.find_minimum(change_params[:other_id])
     to_index = versions.find_index {|x| x[:id] == ct_to.id}
-    cls = ct_from.changes(to_index - from_index + 1)
-    results = {created: [], deleted: [], updated: []}
-    cls[:items].each do |key, value|
-      value[:status].each do |status|
-        begin
-          next if status[:status] == :no_change
-          next if status[:status] == :not_present
-          results[status[:status]] << {identifier: key, label: value[:label], notation: value[:notation], changes_path: changes_thesauri_managed_concept_path(value[:id])}
-          break
-        rescue => e
-          byebug
-        end
-      end
+    window_size = to_index - from_index + 1
+    results = ct_from.changes_cdu(window_size)
+    results.each do |k,v|
+       v.each {|x| x[:changes_path] = changes_thesauri_managed_concept_path(x[:id])}
     end
     render json: {data: results}
   end

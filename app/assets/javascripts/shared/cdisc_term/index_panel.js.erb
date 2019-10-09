@@ -8,8 +8,8 @@ function IndexPanel(url) {
     _this.get();
   });
 
-  if(isIE())
-    $('#spinner_div').find("img").attr("src", "<%= asset_path('loading.gif') %>");
+  $("#results_div").parent().append(generateSpinnerWText("medium", "Fetching results..."));
+  $('.spinner-container').hide();
 }
 
 IndexPanel.prototype.get = function (url) {
@@ -39,10 +39,10 @@ IndexPanel.prototype.get = function (url) {
 
 IndexPanel.prototype.processing = function (state) {
   if (state) {
-    $('#spinner_div').show();
+    $('.spinner-container').show();
     $('#results_div').hide();
   } else {
-    $('#spinner_div').hide();
+    $('.spinner-container').hide();
     $('#results_div').show();
   }
 }

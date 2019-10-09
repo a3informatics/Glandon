@@ -16,17 +16,6 @@ div.dataTables_wrapper div.dataTables_processing{
   box-shadow: none;
 }
 
-/* parent to centered spinner */
 .spinner-container {
   position: relative;
-  width: 100%;
-  height:  100%;
-}
-
-/* vertical and horizontal center spinner */
-.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }

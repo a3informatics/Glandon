@@ -13,7 +13,7 @@ describe "IsoManagedV2" do
   def sub_dir
     return "models/iso_managed_v2"
   end
-    
+  
   describe "General" do
 
   	before :all  do
@@ -21,7 +21,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
       load_files(schema_files, data_files)
     end
@@ -260,149 +259,11 @@ describe "IsoManagedV2" do
       expect(item.to_h).to eq(new_item.to_h)
     end
 
-=begin
-    it "allows an item to be created from Operation JSON" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      old_item = IsoManagedV2.find_with_properties(uri)
-      new_item = IsoManagedV2.find_with_properties(uri)
-      operation = 
-        {
-          :action => "CREATE",
-          :new_version => 1,
-          :new_semantic_version => "2.2.2",
-          :new_state => "Standard",
-          :identifier_edit => true
-        }
-      new_item.from_operation(operation, "F", "http://www.assero.co.uk/NewNamespace", IsoRegistrationAuthority.owner)
-      old_item.id = "F-BBB_TEST"
-      old_item.namespace = "http://www.assero.co.uk/NewNamespace/BBB/V1"
-      old_item.lastChangeDate = date_check_now(new_item.lastChangeDate)
-      old_item.scopedIdentifier.id = "SI-BBB_TEST-1"
-      old_item.scopedIdentifier.semantic_version = SemanticVersion.from_s("2.2.2")
-      old_item.registrationState.id = "RS-BBB_TEST-1"
-      old_item.registrationState.registrationStatus = "Standard"
-      expect(new_item.to_json).to eq(old_item.to_json)
-    end
-=end
-
-    #it "allows the next version of an object to be adjusted" do
-    #  uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    #  item = IsoManagedV2.find_minimum(uri)
-    #  expected = item.version + 1
-    #  item.adjust_next_version
-    #  expect(item.version).to eq(expected)
-    #end
-
-=begin
-  	it "permits the item to be exported as SPARQL" do
-      result = "PREFIX : <http://www.assero.co.uk/MDRForms/ACME/V1#>\n" +
-         "PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>\n" +
-         "PREFIX mdrItems: <http://www.assero.co.uk/MDRItems#>\n" +
-         "PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>\n" +
-         "PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>\n" +
-         "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
-         "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-         "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
-         "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\n" +
-         "INSERT DATA \n" + 
-         "{ \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdf:type <http://www.assero.co.uk/BusinessForm#Form> . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> rdfs:label \"Iso Concept Test Form\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> rdf:type isoR:RegistrationState . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:byAuthority mdrItems:RA-123456789 . \n" + 
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:registrationStatus \"Incomplete\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeNote \"\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:effectiveDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:untilDate \"2016-01-01T00:00:00%2B00:00\"^^xsd:dateTime . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:unresolvedIssue \"\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:administrativeStatus \"\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> isoR:previousState \"Incomplete\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:identifier \"TEST\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> rdf:type isoI:ScopedIdentifier . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:version \"1\"^^xsd:positiveInteger . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:versionLabel \"0.1\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:semantic_version \"1.2.3\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> isoI:hasScope mdrItems:NS-BBB . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoI:hasIdentifier <http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1> . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoR:hasState <http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1> . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:creationDate \"2016-06-15T21:06:10%2B01:00\"^^xsd:dateTime . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:lastChangeDate \"2016-06-16T13:14:24%2B01:00\"^^xsd:dateTime . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:changeDescription \"Creation\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:explanatoryComment \"\"^^xsd:string . \n" +
-         "<http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST> isoT:origin \"\"^^xsd:string . \n" +
-         "}"
-    #Xwrite_text_file_2(result, sub_dir, "to_sparql_expected.txt")
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      item = IsoManagedV2.find_minimum(uri)
-      sparql = SparqlUpdateV2.new
-      result_uri = item.to_sparql_v2(sparql, "bf")
-      #expect(sparql.to_s).to eq(result)
-      check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
-      expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-    end
-=end
-
     it "permits the item to be exported as JSON" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(item.to_h, sub_dir, "to_json_1.yaml", equate_method: :hash_equal)
     end
-
-=begin
-    it "permits the item to be exported as operational hash, same version" do
-      form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
-      result = 
-        { 
-          :operation => 
-          { 
-          	:action => "UPDATE", :new_version => 1, :new_semantic_version=>"1.2.3", 
-          	:new_state => "Incomplete", :identifier_edit => false 
-          }, 
-          :managed_item => form
-        }
-      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      expect(item.to_operation).to eq(result)
-    end
-
-    it "permits the item to be exported as the operational hash, new version" do
-      form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
-      form[:registration_state][:registration_status] = "Qualified"
-      expected = 
-        { 
-          :operation => 
-          { 
-          	:action => "CREATE", :new_version => 2, :new_semantic_version=>"1.3.0", 
-          	:new_state => "Qualified", :identifier_edit => false 
-          }, 
-          :managed_item => form
-        }
-      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      item.registrationState.registrationStatus = "Qualified"
-      result = item.to_operation
-      expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
-      expect(result).to eq(expected)
-    end
-
-    it "permits the item to be exported as the operational hash, update" do
-      form = read_yaml_file(sub_dir, "iso_managed_form.yaml")
-      form[:registration_state][:registration_status] = "Qualified"
-      expected = 
-        { 
-          :operation => 
-          { 
-          	:action => "UPDATE", :new_version => 1, 
-          	:new_semantic_version=>"1.2.3", :new_state => "Qualified", 
-          	:identifier_edit => false 
-          }, 
-          :managed_item => form
-        }
-      item = IsoManagedV2.find_with_properties("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      item.registrationState.registrationStatus = "Qualified"
-      result = item.update_operation
-      expected[:managed_item][:creation_date] = result[:managed_item][:creation_date] # Fix the date for comparison
-      expect(result).to eq(expected)
-    end
-=end
 
     it "gets all" do
       all = IsoManagedV2.all # Empty search will find all items
@@ -450,8 +311,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
-        "BusinessOperational.ttl", "thesaurus.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data_4.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
@@ -531,7 +390,6 @@ describe "IsoManagedV2" do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
@@ -607,7 +465,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
@@ -680,7 +537,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
@@ -750,7 +606,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
@@ -852,7 +707,6 @@ describe "IsoManagedV2" do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..5)
@@ -911,7 +765,6 @@ describe "IsoManagedV2" do
 
     before :each do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)

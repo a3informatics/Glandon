@@ -5,16 +5,26 @@ describe BiomedicalConceptTemplate do
   include DataHelpers
 
   it "clears triple store and loads test data" do
-    clear_triple_store
-    load_schema_file_into_triple_store("ISO11179Types.ttl")
-    load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    load_schema_file_into_triple_store("BusinessOperational.ttl")
-    load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    load_test_file_into_triple_store("iso_namespace_real.ttl")
-    load_test_file_into_triple_store("BCT.ttl")
+    schema_files = 
+    [
+      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "CDISCBiomedicalConcept.ttl"
+    ]
+    data_files = 
+    [
+      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"
+    ]
+    load_files(schema_files, data_files)
+    # clear_triple_store
+    # load_schema_file_into_triple_store("ISO11179Types.ttl")
+    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
+    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
+    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
+    # load_schema_file_into_triple_store("BusinessOperational.ttl")
+    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
+    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
+    # load_test_file_into_triple_store("iso_namespace_real.ttl")
+    # load_test_file_into_triple_store("BCT.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object

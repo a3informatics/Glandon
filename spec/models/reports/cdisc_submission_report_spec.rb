@@ -11,7 +11,7 @@ describe Reports::CdiscSubmissionReport do
   end
 
   before :each do
-    @user = User.create email: "wicked@example.com", password: "12345678"
+    @user = User.create email: "wicked@example.com", password: "Changeme1#"
   end
 
   after :each do
@@ -29,6 +29,9 @@ describe Reports::CdiscSubmissionReport do
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
     html.sub!(run_at_2, run_at_1) # Need to fix the run at date and time for the comparison
+    path_to_proj_1 = extract_path(expected)
+    path_to_proj_2 = Rails.root.to_s
+    expected.sub!(path_to_proj_1, path_to_proj_2)
     expect(html).to eq(expected)
   end
 

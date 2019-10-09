@@ -220,7 +220,7 @@ describe Thesaurus do
         "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
       ]
       load_files(schema_files, data_files)
-      load_versions(1..13)
+      load_versions(1..59)
     end
 
     after :each do
@@ -249,6 +249,36 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(4)
       check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml")
+    end
+
+    it "calculates changes_cdu, window 3 " do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      actual = ct.changes_cdu(3)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_1.yaml")
+    end
+
+    it "calculates changes_cdu, window 3 " do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
+      actual = ct.changes_cdu(3)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_2.yaml")
+    end
+
+    it "calculates changes_cdu, window 4 " do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
+      actual = ct.changes_cdu(4)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_3.yaml")
+    end
+
+    it "calculates changes_cdu, window 4 " do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      actual = ct.changes_cdu(4)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_4.yaml")
+    end
+
+    it "calculates changes_cdu, window 3 " do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      actual = ct.changes_cdu(3)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_5.yaml")
     end
 
   end
