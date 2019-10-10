@@ -421,6 +421,7 @@
 <http://www.cdisc.org/C66785/V3#C66785>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Control Type"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66785/V3#C66785_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66785/V3#C66785_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -495,6 +496,7 @@
 <http://www.cdisc.org/C66737/V3#C66737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Phase"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66737/V3#C66737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V3#C66737_SI> ;
 	isoT:origin ""^^xsd:string ;
