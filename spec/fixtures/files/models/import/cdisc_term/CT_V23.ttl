@@ -960,6 +960,7 @@
 <http://www.cdisc.org/C71150/V23#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V23#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V23#C71150_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1115,6 +1116,7 @@
 <http://www.cdisc.org/C71150/V23#C71150_C92227>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "RSR'"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C92227"^^xsd:string ;
 	th:notation "RSR PRIME"^^xsd:string ;
 	th:definition "An electrocardiographic finding in which there are two R waves, which are two deflections above the baseline resulting from a single ventricular depolarization. The first upward deflection in the complex is the R wave. The S is the first downward deflection. A second upward deflection is called the R-prime wave."^^xsd:string ;
@@ -1125,6 +1127,7 @@
 <http://www.cdisc.org/C78733/V23#C78733>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Specimen Condition"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78733/V23#C78733_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78733/V23#C78733_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1169,6 +1172,7 @@
 <http://www.cdisc.org/C78733/V23#C78733_C70719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Specimen at Room Temperature"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70719"^^xsd:string ;
 	th:notation "ROOM TEMPERATURE"^^xsd:string ;
 	th:definition "A specimen that has been subjected to and adjusted to the average ambient temperature of a room, usually considered to be around 20 degrees C (68 degrees F). (NCI)"^^xsd:string ;
@@ -1179,6 +1183,7 @@
 <http://www.cdisc.org/C85495/V23#C85495>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microbiology Susceptibility Testing Result Category"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C85495/V23#C85495_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85495/V23#C85495_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1222,6 +1227,7 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85560>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Intermediate Susceptibility Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C85560"^^xsd:string ;
 	th:notation "INTERMEDIATE"^^xsd:string ;
 	th:definition "The growth of microorganisms may be inhibited by antimicrobials that approach usually attainable blood and tissue concentrations. The response rates may be lower than for susceptible isolates. This category also includes a buffer zone, which should prevent small, uncontrolled, technical factors from causing major discrepancies in interpretations, especially for drugs with narrow pharmacotoxicity margins."^^xsd:string ;
@@ -1232,6 +1238,7 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85561>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Nonsusceptibility Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C85561"^^xsd:string ;
 	th:notation "NONSUSCEPTIBLE"^^xsd:string ;
 	th:definition "A category used for microorganisms that have only a susceptible interpretive criteria, but not an intermediate or resistant interpretive category (i.e., susceptible-only interpretive category). This category may be applied to new antimicrobial agents for which no resistant microorganisms have been encountered at the time the initial interpretive criteria are determined. Microorganisms that test with an MIC above or a zone measurement below the susceptible interpretive criteria are designated as nonsusceptible. A designation of nonsusceptible does not necessarily mean that a resistance mechanism(s) exists in the microorganism."^^xsd:string ;
@@ -1242,6 +1249,7 @@
 <http://www.cdisc.org/C85495/V23#C85495_C85562>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antimicrobial Resistance Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C85562"^^xsd:string ;
 	th:notation "RESISTANT"^^xsd:string ;
 	th:definition "The growth of microorganisms are not inhibited by the usually achievable concentrations of the antimicrobial agent with normal dosages, and/or microorganisms demonstrate MICs or zone diameters that fall in the range where specific microbial resistance mechanisms (e.g. Beta-lactamases) are likely, and clinical efficacy of the agent against the microorganism has not been reliably shown in treatment studies."^^xsd:string ;
@@ -1252,6 +1260,7 @@
 <http://www.cdisc.org/C85491/V23#C85491>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microorganism"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C85491/V23#C85491_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85491/V23#C85491_SI> ;
 	isoT:origin ""^^xsd:string ;

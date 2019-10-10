@@ -35,7 +35,7 @@ module Fuseki
         self_object = self.instance_variable_get(property.instance_name)
         other_object = other.instance_variable_get(property.instance_name)
         if self_object.is_a?(Array)
-          return true if array_diff?(self_object, other_object)
+          return true if array_diff?(self_object, other_object, options)
         elsif self_object.nil? 
           return diff(name, self_object, other_object) if !other_object.nil?
         elsif self_object.respond_to? :diff?
@@ -58,10 +58,7 @@ module Fuseki
       options[:ignore] = [] if options[:ignore].blank?
       results = {}
       Errors.application_error(self.class.name, __method__.to_s, "Comparing different classes. #{self.class.name} to #{other.class.name}") if !other.nil? && incomptible_klass?(other)
-      #properties = properties_read_instance
-byebug
       @properties.each do |property|
-        #variable = Fuseki::Persistence::Naming.new(name).as_symbol
         name = property.name
         next if options[:ignore].include?(name)
         self_object = self.instance_variable_get(property.instance_name)
@@ -90,9 +87,7 @@ byebug
     def difference_baseline(options={})
       options[:ignore] = [] if options[:ignore].blank?
       results = {}
-      #properties = properties_read_instance
       @properties.each do |property|
-        #variable = Fuseki::Persistence::Naming.new(name).as_symbol
         name = property.name
         next if options[:ignore].include?(variable)
         self_object = self.instance_variable_get(name)
@@ -123,26 +118,26 @@ puts "\nDiff: #{name}: \nSELF:  #{self_object}\nOTHER: #{other_object}\n\n" if n
     end
 
     # Array diff?
-    def array_diff?(a, b)
-      return true if a.count != b.count
+    def array_diff?(a, b, options)
+      return diff("Array diff count", a.count, b.count) if a.count != b.count
       return diff_uris?(a, b) if a.first.is_a? Uri
       if a.first.class.respond_to?(:key_property)
         key_method = a.first.class.key_property
         a.each do |a_obj|
           b_obj = b.select {|x| x.send(key_method) == a_obj.send(key_method)}
           return true if b_obj.empty?
-          return diff("array", a_obj, b_obj) if a_obj.diff?(b_obj.first)
+          return diff("Array key", a_obj, b_obj) if a_obj.diff?(b_obj.first, options)
         end    
       elsif a.first.respond_to?(:diff?)
         a.each_with_index do |a_obj, index|
           match_by_uri = b.select {|x| x.uri == a_obj.uri}
           b_obj = match_by_uri.empty? ? b[index] : match_by_uri.first
-          return true if a_obj.diff?(b_obj)
+          return diff("Array diff", a_obj, b_obj) if a_obj.diff?(b_obj, options)
         end    
       else
         a.each_with_index do |a_obj, index|
           b_obj = b[index]
-          return true if a_obj != b_obj
+          return diff("Array else", a_obj, b_obj) if a_obj != b_obj
         end    
       end
       return false

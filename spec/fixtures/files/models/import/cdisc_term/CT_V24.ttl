@@ -960,6 +960,7 @@
 <http://www.cdisc.org/C85494/V24#C85494>
 	rdf:type th:ManagedConcept ;
 	isoC:label "PK Parameter Units of Measure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C85494/V24#C85494_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85494/V24#C85494_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1203,6 +1204,7 @@
 <http://www.cdisc.org/C85494/V24#C85494_C85659>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liter per Gram per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C85659"^^xsd:string ;
 	th:notation "L/g/min"^^xsd:string ;
 	th:definition "Liters per gram per minute."^^xsd:string ;
@@ -1220,6 +1222,7 @@
 <http://www.cdisc.org/C85494/V24#C85494_C73755>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liter per Kilogram per Day"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C73755"^^xsd:string ;
 	th:notation "L/kg/day"^^xsd:string ;
 	th:definition "Liters per kilogram per day."^^xsd:string ;

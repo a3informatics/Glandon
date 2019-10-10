@@ -290,15 +290,15 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
-            map: { ADaM: "ADaM", CDASH: "CDASH", SDTM: "SDTM", XXX: "CDASH" }
+            map: { ADaM: ["ADaM"], CDASH: ["CDASH", "XXX"], SDTM: ["SDTM"] }
           }
         ]
       }
     }
     tag_a = IsoConceptSystem::Node.new(pref_label: "SDTM TAG", uri: Uri.new(uri: "http://www.example.com/path#a"))
     tag_b = IsoConceptSystem::Node.new(pref_label: "OTHER TAG", uri: Uri.new(uri: "http://www.example.com/path#b"))
-    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :CDASH]).and_return(tag_a)
-    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :XXX]).and_return(tag_b)
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return(tag_a)
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "XXX"]).and_return(tag_b)
     object.process_sheet(logic)
     expect(object.tags).to match_array([tag_a, tag_b])
   end
@@ -315,7 +315,7 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
-            map: { ADaM: "ADaM", CDASH: "CDash", SDTM: "SDTM" }
+            map: { ADaM: ["ADaM"], CDash: ["CDASH"], SDTM: ["SDTM"] }
           }
         ]
       }
@@ -329,10 +329,10 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :cdash]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {cdash: "CDASH", x: "X"}})
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
+    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
-    result = object.tag_from_sheet_name({map: {cdash: "XXX", x: "X"}})
+    result = object.tag_from_sheet_name({map: {cdash: ["XXX"], x: ["X"]}})
     expect(result).to eq([])
   end
 
@@ -341,8 +341,9 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :cdash]).and_return({tag: "A"})
-    result = object.tag_from_sheet_name({map: {cdash: "CDASH", x: "X"}})
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
+byebug
+    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
     result = object.set_tags({object: parent})
     expect(parent.tagged).to eq([{:tag=>"A"}])

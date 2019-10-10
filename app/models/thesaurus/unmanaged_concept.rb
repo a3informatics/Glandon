@@ -146,7 +146,7 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
-    return previous if !self.diff?(previous)
+    return previous if !self.diff?(previous, {ignore: [:tagged]})
     replace_children_if_no_change(previous)
     return self
   end

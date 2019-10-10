@@ -663,6 +663,7 @@
 <http://www.cdisc.org/C66780/V17#C66780>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Age Span"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66780/V17#C66780_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66780/V17#C66780_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -707,6 +708,7 @@
 <http://www.cdisc.org/C66780/V17#C66780_C49641>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "In Utero"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49641"^^xsd:string ;
 	th:notation "IN UTERO"^^xsd:string ;
 	th:definition "The period of time during which the embryo or fetus is present in the uterus of the female. Also describes the location of the embryo or fetus as being in the uterus in contrast to outside the uterus (ex utero). (NCI)"^^xsd:string ;
@@ -716,6 +718,7 @@
 <http://www.cdisc.org/C66784/V17#C66784>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Common Terminology Criteria for Adverse Events"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66784/V17#C66784_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66784/V17#C66784_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -757,6 +760,7 @@
 <http://www.cdisc.org/C66784/V17#C66784_C41340>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severe Adverse Event"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C41340"^^xsd:string ;
 	th:notation "3"^^xsd:string ;
 	th:definition "A type of adverse event that interrupts usual activities of daily living, or significantly affects clinical status, or may require intensive therapeutic intervention."^^xsd:string ;
@@ -768,6 +772,7 @@
 <http://www.cdisc.org/C66786/V17#C66786>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Country"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66786/V17#C66786_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66786/V17#C66786_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1047,6 +1052,7 @@
 <http://www.cdisc.org/C66786/V17#C66786_C16334>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bermuda"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C16334"^^xsd:string ;
 	th:notation "BMU"^^xsd:string ;
 	th:definition "A group of islands in the North Atlantic Ocean, east of South Carolina."^^xsd:string ;
@@ -1057,6 +1063,7 @@
 <http://www.cdisc.org/C66727/V17#C66727>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Completion/Reason for Non-Completion"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66727/V17#C66727_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66727/V17#C66727_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1109,6 +1116,7 @@
 <http://www.cdisc.org/C66727/V17#C66727_C48227>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lost To Follow-up"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48227"^^xsd:string ;
 	th:notation "LOST TO FOLLOW-UP"^^xsd:string ;
 	th:definition "The loss or lack of continuation of a subject to follow-up."^^xsd:string ;
@@ -1118,6 +1126,7 @@
 <http://www.cdisc.org/C66769/V17#C66769>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Severity/Intensity Scale for Adverse Events"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66769/V17#C66769_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66769/V17#C66769_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1157,6 +1166,7 @@
 <http://www.cdisc.org/C66769/V17#C66769_C41340>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severe Adverse Event"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C41340"^^xsd:string ;
 	th:notation "SEVERE"^^xsd:string ;
 	th:definition "A type of adverse event that interrupts usual activities of daily living, or significantly affects clinical status, or may require intensive therapeutic intervention."^^xsd:string ;
@@ -1168,6 +1178,7 @@
 <http://www.cdisc.org/C66770/V17#C66770>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Vital Signs Results"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66770/V17#C66770_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66770/V17#C66770_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1218,6 +1229,7 @@
 <http://www.cdisc.org/C66770/V17#C66770_C44277>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Degree Fahrenheit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C44277"^^xsd:string ;
 	th:notation "F"^^xsd:string ;
 	th:definition "The Fahrenheit temperature scale is named after the German physicist Gabriel Fahrenheit (1686-1736), who proposed it in 1724. In this scale, the freezing point of water is 32 degrees Fahrenheit and the boiling point is 212 degrees, placing the boiling and melting points of water 180 degrees apart. In this scale a degree Fahrenheit is 5/9ths of a Kelvin (or of a degree Celsius), and minus 40 degrees Fahrenheit is equal to minus 40 degrees Celsius. (NCI)"^^xsd:string ;
@@ -1228,6 +1240,7 @@
 <http://www.cdisc.org/C66770/V17#C66770_C42554>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ohm"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42554"^^xsd:string ;
 	th:notation "ohm"^^xsd:string ;
 	th:definition "A unit of electrical resistance equal to the resistance between two points on a conductor when a potential difference of one volt between them produces a current of one Ampere. Ohm is also used to measure impedance and reactance for complex resistance. A measurement in ohms is the reciprocal of a measurement in Siemens. (NCI)"^^xsd:string ;
@@ -1238,6 +1251,7 @@
 <http://www.cdisc.org/C65047/V17#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V17#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V17#C65047_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1693,6 +1707,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C51946>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51946"^^xsd:string ;
 	th:notation "RBC"^^xsd:string ;
 	th:definition "A measurement of the total erythrocytes per unit of a biological specimen."^^xsd:string ;
@@ -1708,6 +1723,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C51948>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51948"^^xsd:string ;
 	th:notation "WBC"^^xsd:string ;
 	th:definition "A count of the leukocytes per unit of a biological specimen."^^xsd:string ;
@@ -1723,6 +1739,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C61032>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serum Total Cholesterol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C61032"^^xsd:string ;
 	th:notation "CHOL"^^xsd:string ;
 	th:definition "A measurement of the cholesterol in a biological specimen."^^xsd:string ;
@@ -1738,6 +1755,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64433>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alanine Aminotransferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64433"^^xsd:string ;
 	th:notation "ALT"^^xsd:string ;
 	th:definition "A measurement of the alanine aminotransferase in a biological specimen."^^xsd:string ;
@@ -1753,6 +1771,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64467>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aspartate Aminotransferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64467"^^xsd:string ;
 	th:notation "AST"^^xsd:string ;
 	th:definition "A measurement of the aspartate aminotransferase in a biological specimen."^^xsd:string ;
@@ -1767,6 +1786,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Elliptocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64549"^^xsd:string ;
 	th:notation "ELLIPCY"^^xsd:string ;
 	th:definition "A measurement of the elliptocytes per unit of a biological specimen."^^xsd:string ;
@@ -1782,6 +1802,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64798>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Mean Corpuscular Hemoglobin Concentration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64798"^^xsd:string ;
 	th:notation "MCHC"^^xsd:string ;
 	th:definition "A quantitative measurement of the mean amount of hemoglobin per erythrocytes in a specified volume of a biological specimen."^^xsd:string ;
@@ -1796,6 +1817,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dacryocyte Analysis"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64801"^^xsd:string ;
 	th:notation "TEARDCY"^^xsd:string ;
 	th:definition "A measurement of dacryocytes per unit of a biological specimen."^^xsd:string ;
@@ -1811,6 +1833,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Urate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64814"^^xsd:string ;
 	th:notation "URATE"^^xsd:string ;
 	th:definition "A measurement of the urate in a biological specimen."^^xsd:string ;
@@ -1826,6 +1849,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64847>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gamma Glutamyl Transpeptidase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64847"^^xsd:string ;
 	th:notation "GGT"^^xsd:string ;
 	th:definition "A measurement of the gamma glutamyl transferase in a biological specimen."^^xsd:string ;
@@ -1836,6 +1860,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Choriogonadotropin Beta Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64851"^^xsd:string ;
 	th:notation "HCG"^^xsd:string ;
 	th:definition "A measurement of the Choriogonadotropin Beta in a biological specimen."^^xsd:string ;
@@ -1851,6 +1876,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C64857>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phosphate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64857"^^xsd:string ;
 	th:notation "PHOS"^^xsd:string ;
 	th:definition "A measurement of the phosphate in a biological specimen."^^xsd:string ;
@@ -1866,6 +1892,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74614>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "May-Hegglin Anomaly Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74614"^^xsd:string ;
 	th:notation "MAYHEG"^^xsd:string ;
 	th:definition "A measurement of the May-Hegglin anomaly in a blood sample. This anomaly is characterized by large, misshapen platelets and the presence of Dohle bodies in leukocytes."^^xsd:string ;
@@ -1876,6 +1903,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74647>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nucleated Red Blood Cell to Erythrocyte Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74647"^^xsd:string ;
 	th:notation "RBCNURBC"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the nucleated erythrocytes (large, immature nucleated erythrocytes) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -1891,6 +1919,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74676>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Folic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74676"^^xsd:string ;
 	th:notation "VITB9"^^xsd:string ;
 	th:definition "A measurement of the folic acid in a biological specimen."^^xsd:string ;
@@ -1902,6 +1931,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74700>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74700"^^xsd:string ;
 	th:notation "BITECE"^^xsd:string ;
 	th:definition "A measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) in a biological specimen ."^^xsd:string ;
@@ -1912,6 +1942,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74705>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nucleated Red Blood Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74705"^^xsd:string ;
 	th:notation "RBCNUC"^^xsd:string ;
 	th:definition "A measurement of the nucleated erythrocytes (large, immature nucleated erythrocytes) in a biological specimen."^^xsd:string ;
@@ -1927,6 +1958,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74739>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutamate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74739"^^xsd:string ;
 	th:notation "GLUTAM"^^xsd:string ;
 	th:definition "A measurement of the glutamate in a biological specimen."^^xsd:string ;
@@ -1942,6 +1974,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74768>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Granular Cast Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74768"^^xsd:string ;
 	th:notation "CSGRAN"^^xsd:string ;
 	th:definition "A measurement of the granular (coarse and fine) casts present in a urine specimen."^^xsd:string ;
@@ -1952,6 +1985,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C74782>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estradiol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74782"^^xsd:string ;
 	th:notation "ESTRDIOL"^^xsd:string ;
 	th:definition "A measurement of the estradiol in a biological specimen."^^xsd:string ;
@@ -1967,6 +2001,7 @@
 <http://www.cdisc.org/C65047/V17#C65047_C80360>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Somatotropin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C80360"^^xsd:string ;
 	th:notation "SOMATRO"^^xsd:string ;
 	th:definition "A measurement of the somatotrophin (growth) hormone in a biological specimen."^^xsd:string ;
@@ -1982,6 +2017,7 @@
 <http://www.cdisc.org/C67154/V17#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V17#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V17#C67154_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2437,6 +2473,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C51946>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51946"^^xsd:string ;
 	th:notation "Erythrocytes"^^xsd:string ;
 	th:definition "A measurement of the total erythrocytes per unit of a biological specimen."^^xsd:string ;
@@ -2448,6 +2485,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C51948>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51948"^^xsd:string ;
 	th:notation "Leukocytes"^^xsd:string ;
 	th:definition "A count of the leukocytes per unit of a biological specimen."^^xsd:string ;
@@ -2459,6 +2497,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C61032>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serum Total Cholesterol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C61032"^^xsd:string ;
 	th:notation "Cholesterol"^^xsd:string ;
 	th:definition "A measurement of the cholesterol in a biological specimen."^^xsd:string ;
@@ -2470,6 +2509,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64433>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alanine Aminotransferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64433"^^xsd:string ;
 	th:notation "Alanine Aminotransferase"^^xsd:string ;
 	th:definition "A measurement of the alanine aminotransferase in a biological specimen."^^xsd:string ;
@@ -2481,6 +2521,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64467>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aspartate Aminotransferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64467"^^xsd:string ;
 	th:notation "Aspartate Aminotransferase"^^xsd:string ;
 	th:definition "A measurement of the aspartate aminotransferase in a biological specimen."^^xsd:string ;
@@ -2496,6 +2537,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Elliptocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64549"^^xsd:string ;
 	th:notation "Elliptocytes"^^xsd:string ;
 	th:definition "A measurement of the elliptocytes per unit of a biological specimen."^^xsd:string ;
@@ -2507,6 +2549,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64798>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Mean Corpuscular Hemoglobin Concentration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64798"^^xsd:string ;
 	th:notation "Ery. Mean Corpuscular HGB Concentration"^^xsd:string ;
 	th:definition "A quantitative measurement of the mean amount of hemoglobin per erythrocytes in a specified volume of a biological specimen."^^xsd:string ;
@@ -2517,6 +2560,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dacryocyte Analysis"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64801"^^xsd:string ;
 	th:notation "Dacryocytes"^^xsd:string ;
 	th:definition "A measurement of dacryocytes per unit of a biological specimen."^^xsd:string ;
@@ -2528,6 +2572,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Urate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64814"^^xsd:string ;
 	th:notation "Urate"^^xsd:string ;
 	th:definition "A measurement of the urate in a biological specimen."^^xsd:string ;
@@ -2539,6 +2584,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64847>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gamma Glutamyl Transpeptidase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64847"^^xsd:string ;
 	th:notation "Gamma Glutamyl Transferase"^^xsd:string ;
 	th:definition "A measurement of the gamma glutamyl transferase in a biological specimen."^^xsd:string ;
@@ -2549,6 +2595,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Choriogonadotropin Beta Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64851"^^xsd:string ;
 	th:notation "Choriogonadotropin Beta"^^xsd:string ;
 	th:definition "A measurement of the Choriogonadotropin Beta in a biological specimen."^^xsd:string ;
@@ -2560,6 +2607,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C64857>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phosphate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64857"^^xsd:string ;
 	th:notation "Phosphate"^^xsd:string ;
 	th:definition "A measurement of the phosphate in a biological specimen."^^xsd:string ;
@@ -2571,6 +2619,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74614>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "May-Hegglin Anomaly Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74614"^^xsd:string ;
 	th:notation "May-Hegglin Anomaly"^^xsd:string ;
 	th:definition "A measurement of the May-Hegglin anomaly in a blood sample. This anomaly is characterized by large, misshapen platelets and the presence of Dohle bodies in leukocytes."^^xsd:string ;
@@ -2581,6 +2630,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74647>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nucleated Red Blood Cell to Erythrocyte Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74647"^^xsd:string ;
 	th:notation "Nucleated Erythrocytes/Erythrocytes"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the nucleated erythrocytes (large, immature nucleated erythrocytes) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -2592,6 +2642,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74676>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Folic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74676"^^xsd:string ;
 	th:notation "Vitamin B9"^^xsd:string ;
 	th:definition "A measurement of the folic acid in a biological specimen."^^xsd:string ;
@@ -2603,6 +2654,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74700>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74700"^^xsd:string ;
 	th:notation "Bite Cells"^^xsd:string ;
 	th:definition "A measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) in a biological specimen ."^^xsd:string ;
@@ -2613,6 +2665,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74705>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nucleated Red Blood Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74705"^^xsd:string ;
 	th:notation "Nucleated Erythrocytes"^^xsd:string ;
 	th:definition "A measurement of the nucleated erythrocytes (large, immature nucleated erythrocytes) in a biological specimen."^^xsd:string ;
@@ -2624,6 +2677,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74739>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutamate Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74739"^^xsd:string ;
 	th:notation "Glutamate"^^xsd:string ;
 	th:definition "A measurement of the glutamate in a biological specimen."^^xsd:string ;
@@ -2635,6 +2689,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74768>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Granular Cast Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74768"^^xsd:string ;
 	th:notation "Granular Casts"^^xsd:string ;
 	th:definition "A measurement of the granular (coarse and fine) casts present in a urine specimen."^^xsd:string ;
@@ -2645,6 +2700,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C74782>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estradiol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74782"^^xsd:string ;
 	th:notation "Estradiol"^^xsd:string ;
 	th:definition "A measurement of the estradiol in a biological specimen."^^xsd:string ;
@@ -2656,6 +2712,7 @@
 <http://www.cdisc.org/C67154/V17#C67154_C80360>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Somatotropin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C80360"^^xsd:string ;
 	th:notation "Somatotrophin"^^xsd:string ;
 	th:definition "A measurement of the somatotrophin (growth) hormone in a biological specimen."^^xsd:string ;
@@ -2667,6 +2724,7 @@
 <http://www.cdisc.org/C71113/V17#C71113>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Frequency"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71113/V17#C71113_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71113/V17#C71113_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2752,6 +2810,7 @@
 <http://www.cdisc.org/C71113/V17#C71113_C71325>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intermittent"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71325"^^xsd:string ;
 	th:notation "INTERMITTENT"^^xsd:string ;
 	th:definition "Periodically stopping and starting. (NCI)"^^xsd:string ;
@@ -2762,6 +2821,7 @@
 <http://www.cdisc.org/C71150/V17#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V17#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V17#C71150_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2905,6 +2965,7 @@
 <http://www.cdisc.org/C71150/V17#C71150_C34786>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Long QT Syndrome"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C34786"^^xsd:string ;
 	th:notation "VENTRICULAR ARRHYTHMIA ASSOCIATED WITH LONG QT SYNDROME"^^xsd:string ;
 	th:definition "A ventricular arrhythmia characterized by syncopal episodes and a long QT interval, sometimes leading to sudden death due to paroxysmal ventricular arrhythmia. This arrhythmia is associated with a prolongation of repolarization following depolarization of the cardiac ventricles. The prolongation of the Q-T interval combined with torsades de pointes manifests as several different forms; some may be acquired or congenital; some may lead to serious arrhythmia and sudden cardiac death. (NCI)"^^xsd:string ;
@@ -2915,6 +2976,7 @@
 <http://www.cdisc.org/C71150/V17#C71150_C71061>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fascicular Tachycardia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71061"^^xsd:string ;
 	th:notation "FASCICULAR TACHYCARDIA"^^xsd:string ;
 	th:definition "A distinct subgroup of idiopathic ventricular tachycardia (VT) that may be confused with either typical VT or supraventricular tachycardia (SVT). It is characterized by the absence of structural heart disease and classic electrocardiographic and electrophysiological features. It originates from the region of the posterior fascicle (or occasionally the anterior fascicle) of the left bundle branch and is partly propagated by the His-Purkinje network. It therefore produces QRS complexes of relatively short duration (0.11-0.14)s. (NCI)"^^xsd:string ;
@@ -2925,6 +2987,7 @@
 <http://www.cdisc.org/C71150/V17#C71150_C71089>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "U Waves"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71089"^^xsd:string ;
 	th:notation "U WAVES"^^xsd:string ;
 	th:definition "An electrocardiographic finding of a small hump following the T wave occurring during the final phase of Purkinje repolarization. (NCI)"^^xsd:string ;
@@ -2935,6 +2998,7 @@
 <http://www.cdisc.org/C71620/V17#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V17#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V17#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3275,6 +3339,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C42554>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ohm"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42554"^^xsd:string ;
 	th:notation "ohm"^^xsd:string ;
 	th:definition "A unit of electrical resistance equal to the resistance between two points on a conductor when a potential difference of one volt between them produces a current of one Ampere. Ohm is also used to measure impedance and reactance for complex resistance. A measurement in ohms is the reciprocal of a measurement in Siemens.(NCI)"^^xsd:string ;
@@ -3285,6 +3350,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C42555>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Siemens"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42555"^^xsd:string ;
 	th:notation "Siemens"^^xsd:string ;
 	th:definition "A unit of electrical conductance, admittance, and susceptance. A conductor has a conductance of one Siemens if an electrical potential difference of one volt produces a one Ampere current in it. The conductance in Siemens is the reciprocal of its resistance in ohms.(NCI)"^^xsd:string ;
@@ -3295,6 +3361,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C42558>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Henry"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42558"^^xsd:string ;
 	th:notation "Henry"^^xsd:string ;
 	th:definition "A unit of electric inductance. A coil with an inductance of one Henry requires a flux of one Weber for each Ampere of induced current. If it is the current which changes, then the induced field will generate a potential difference within the coil: if the inductance is one Henry a current change of one Ampere per second generates a potential difference of one volt. The Henry is a large unit; inductances in practical circuits are measured in millihenrys or microhenrys.(NCI)"^^xsd:string ;
@@ -3305,6 +3372,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C54711>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atmosphere"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C54711"^^xsd:string ;
 	th:notation "atm"^^xsd:string ;
 	th:definition "A unit of pressure, equal to a barometer reading of 760 mm Hg. 1 atmosphere is 101325 Pascals and 1.01325 bar. This unit of pressure is roughly equal to the average atmospheric pressure at sea level on the earth.(NCI)"^^xsd:string ;
@@ -3315,6 +3383,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C68915>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gauss"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C68915"^^xsd:string ;
 	th:notation "Gauss"^^xsd:string ;
 	th:definition "The unit of magnetic flux density. A field of one Gauss exerts a force on a conductor, placed in the field of 0.1 dyne per Ampere of current per centimeter of conductor. One Gauss represents a magnetic flux of one Maxwell per square centimeter of cross-section perpendicular to the field. One Gauss equals 10-4 Tesla.(NCI)"^^xsd:string ;
@@ -3325,6 +3394,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C70511>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kilobecquerel"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70511"^^xsd:string ;
 	th:notation "kBq"^^xsd:string ;
 	th:definition "A unit of radioactivity equal to one thousand nuclear disintegrations or other nuclear transformations per second, or to 10E3 Becquerels.(NCI)"^^xsd:string ;
@@ -3335,6 +3405,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C70512>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Megabecquerel"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70512"^^xsd:string ;
 	th:notation "MBq"^^xsd:string ;
 	th:definition "A unit of radioactivity equal to one million nuclear disintegrations or other nuclear transformations per second, or to 10E6 Becquerels.(NCI)"^^xsd:string ;
@@ -3345,6 +3416,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C70513>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gigabecquerel"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70513"^^xsd:string ;
 	th:notation "GBq"^^xsd:string ;
 	th:definition "A unit of radioactivity equal to one billion nuclear disintegrations or other nuclear transformations per second, or to 10E9 Becquerels.(NCI)"^^xsd:string ;
@@ -3355,6 +3427,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C70526>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gigabecquerel per Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70526"^^xsd:string ;
 	th:notation "GBq/ug"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one gigabecquerel of the sample with total mass of one microgram.(NCI)"^^xsd:string ;
@@ -3374,6 +3447,7 @@
 <http://www.cdisc.org/C71620/V17#C71620_C71168>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kilobecquerel per Microliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71168"^^xsd:string ;
 	th:notation "kBq/uL"^^xsd:string ;
 	th:definition "A unit of volumetric radioactivity concentration defined as a concentration of a radionuclide with an activity equal to one thousand Becquerels per unit volume equal to one millionth of a liter.(NCI)"^^xsd:string ;
@@ -3388,6 +3462,7 @@
 <http://www.cdisc.org/C78735/V17#C78735>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Evaluator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78735/V17#C78735_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78735/V17#C78735_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3438,6 +3513,7 @@
 <http://www.cdisc.org/C78735/V17#C78735_C42708>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Child"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42708"^^xsd:string ;
 	th:notation "CHILD"^^xsd:string ;
 	th:definition "A son or a daughter."^^xsd:string ;

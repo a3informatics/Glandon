@@ -13,7 +13,7 @@ describe "Import::CdiscTerm Difference" do
 
   before :all do
     IsoHelpers.clear_cache
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
     load_files(schema_files, data_files)
     create_maps
   end

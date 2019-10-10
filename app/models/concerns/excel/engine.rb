@@ -167,12 +167,13 @@ class Excel::Engine
     @tags = []
     tags = []
     check_params(__method__.to_s, params, [:map])
-    params[:map].each do |key, word| 
-      next if !@workbook.default_sheet.include?(word)
-      tags << key
+    params[:map].each do |word, tag_set| 
+      next if !@workbook.default_sheet.include?(word.to_s)
+      tags = tag_set
+      break
     end
     tags.each do |tag|
-      @tags << IsoConceptSystem.path([:CDISC] + [tag])
+      @tags << IsoConceptSystem.path(["CDISC"] + [tag])
     end
     @tags
   end
