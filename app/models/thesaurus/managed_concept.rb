@@ -135,6 +135,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
     triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+  byebug
     triples.each do |entry|
       uri = entry[:e].to_s
       raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
@@ -203,7 +204,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
   def changes_summary(last)
-  # byebug
     raw_results = {}
     final_results = {}
     versions = []
@@ -223,16 +223,14 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   ?cl th:notation ?n .
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
-    x = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n]).first
+    triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+
+    triples.each do |x|
       uri = x[:e].to_s
       raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
       raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
-    x = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n]).last
-      uri = x[:e].to_s
-      raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
-      raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
-
-
+    end
+    
     # Item deleted?
     item_was_deleted_info = deleted_from_ct_version(items.last)
 
@@ -285,7 +283,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       end
       previous_version = version
     end
-
+    
     # And return
     {versions: versions, items: final_results}
   end

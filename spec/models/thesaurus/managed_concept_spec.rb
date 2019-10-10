@@ -522,6 +522,12 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
     end
 
+    it "finds changes, 3" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      results = tc.changes(3)
+      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml", write_file: true)
+    end
+
     it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
