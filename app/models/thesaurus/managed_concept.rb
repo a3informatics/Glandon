@@ -135,7 +135,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
     triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-  byebug
     triples.each do |entry|
       uri = entry[:e].to_s
       raw_results[uri] = {version: entry[:v].to_i, date: entry[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
@@ -224,7 +223,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
     triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-
+byebug
     triples.each do |x|
       uri = x[:e].to_s
       raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)

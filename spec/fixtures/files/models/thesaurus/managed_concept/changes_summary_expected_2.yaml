@@ -1,0 +1,298 @@
+---
+:versions:
+- '2015-09-25'
+- '2016-06-24'
+- '2017-03-31'
+:items:
+  :C95149:
+    :key: C95149
+    :identifier: C95149
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzk1MTQ5
+    :label: Ishak Score
+    :notation: Ishak Fibrosis Score
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - &1
+      :status: :deleted
+  :C119570:
+    :key: C119570
+    :identifier: C119570
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzExOTU3MA==
+    :label: Batts-Ludwig Fibrosis Score
+    :notation: Batts-Ludwig Fibrosis Score
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+  :C119573:
+    :key: C119573
+    :identifier: C119573
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzExOTU3Mw==
+    :label: Scheuer Fibrosis Score
+    :notation: Scheuer Fibrosis Score
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+  :C90424:
+    :key: C90424
+    :identifier: C90424
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzkwNDI0
+    :label: Microscopic Examination
+    :notation: Microscopic Examination
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C119571:
+    :key: C119571
+    :identifier: C119571
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzExOTU3MQ==
+    :label: Knodell Fibrosis Score
+    :notation: Knodell Fibrosis Score
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+  :C119572:
+    :key: C119572
+    :identifier: C119572
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0MSNDODk5NzNfQzExOTU3Mg==
+    :label: METAVIR Fibrosis Score
+    :notation: Metavir Fibrosis Score
+    :status:
+    - :status: :created
+    - :status: :deleted
+    - *1
+  :C123556:
+    :key: C123556
+    :identifier: C123556
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU1Ng==
+    :label: Cancer Cellularity Measurement
+    :notation: Cancer Cellularity
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C112312:
+    :key: C112312
+    :identifier: C112312
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzExMjMxMg==
+    :label: Human Epidermal Growth Factor Receptor 2 Measurement
+    :notation: Human Epidermal Growth Factor Receptor 2
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C123559:
+    :key: C123559
+    :identifier: C123559
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU1OQ==
+    :label: Percentage of in situ Carcinoma
+    :notation: Percentage of In situ Carcinoma
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C123557:
+    :key: C123557
+    :identifier: C123557
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU1Nw==
+    :label: Ki67 Measurement
+    :notation: Ki-67
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C112274:
+    :key: C112274
+    :identifier: C112274
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzExMjI3NA==
+    :label: Estrogen Receptor Measurement
+    :notation: Estrogen Receptor
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C123555:
+    :key: C123555
+    :identifier: C123555
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU1NQ==
+    :label: Breast Cancer Type 1 Susceptibility Protein Measurement
+    :notation: Breast Cancer Type 1 Susceptibility Prot
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C123560:
+    :key: C123560
+    :identifier: C123560
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU2MA==
+    :label: Surgical Margins Status
+    :notation: Surgical Margins Status
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C117846:
+    :key: C117846
+    :identifier: C117846
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzExNzg0Ng==
+    :label: Progesterone Receptor Measurement
+    :notation: Progesterone Receptor
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C123558:
+    :key: C123558
+    :identifier: C123558
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NCNDODk5NzNfQzEyMzU1OA==
+    :label: NK2 Homeobox 1 Measurement
+    :notation: NK2 Homeobox 1
+    :status:
+    - :status: :created
+    - :status: :no_change
+    - *1
+  :C127771:
+    :key: C127771
+    :identifier: C127771
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc3MQ==
+    :label: Tumor Cell to Total Cell Ratio Measurement
+    :notation: Tumor Cells/Total Cells
+    :status:
+    - &2
+      :status: :not_present
+    - :status: :created
+    - *1
+  :C127767:
+    :key: C127767
+    :identifier: C127767
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2Nw==
+    :label: Normal Cell to Total Cell Ratio Measurement
+    :notation: Normal Cells/Total Cells
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C41145:
+    :key: C41145
+    :identifier: C41145
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzQxMTQ1
+    :label: Thickness
+    :notation: Thickness
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127765:
+    :key: C127765
+    :identifier: C127765
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2NQ==
+    :label: Fibrosis Assessment
+    :notation: Fibrosis
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127772:
+    :key: C127772
+    :identifier: C127772
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc3Mg==
+    :label: Vascular Invasion Assessment
+    :notation: Vascular Invasion
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127768:
+    :key: C127768
+    :identifier: C127768
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2OA==
+    :label: Perineural Invasion Assessment
+    :notation: Perineural Invasion
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127763:
+    :key: C127763
+    :identifier: C127763
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2Mw==
+    :label: Cytokeratin 16 Measurement
+    :notation: Cytokeratin 16
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C106539:
+    :key: C106539
+    :identifier: C106539
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEwNjUzOQ==
+    :label: Lipocalin-2 Measurement
+    :notation: Lipocalin-2
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C111124:
+    :key: C111124
+    :identifier: C111124
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzExMTEyNA==
+    :label: Abnormal Cell Count
+    :notation: Abnormal Cells
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127770:
+    :key: C127770
+    :identifier: C127770
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc3MA==
+    :label: Stromal Cell to Total Cell Ratio Measurement
+    :notation: Stromal Cells/Total Cells
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127769:
+    :key: C127769
+    :identifier: C127769
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2OQ==
+    :label: S100 Calcium Binding Protein A7 Measurement
+    :notation: S100 Calcium Binding Protein A7
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127764:
+    :key: C127764
+    :identifier: C127764
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2NA==
+    :label: Dendritic Cell Lysosomal-Associated Membrane Protein Measurement
+    :notation: Dendritic Cell-Lysosomal-Assoc Memb Prot
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C127766:
+    :key: C127766
+    :identifier: C127766
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyNzc2Ng==
+    :label: Lymphatic Invasion Assessment
+    :notation: Lymphatic Invasion
+    :status:
+    - *2
+    - :status: :created
+    - *1
+  :C122102:
+    :key: C122102
+    :identifier: C122102
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTczL1Y0NyNDODk5NzNfQzEyMjEwMg==
+    :label: Beta-defensin 2 Measurement
+    :notation: Beta-defensin 2
+    :status:
+    - *2
+    - :status: :created
+    - *1
