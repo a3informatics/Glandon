@@ -206,11 +206,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     raw_results = {}
     final_results = {}
     versions = []
-    # Get the version set. Work out if we need a dummy first one. Note the identifier
-    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
-
-    raw_results["dummy"] = {version: 0, date: "", children: []} 
- 
+    raw_results = {} 
     # Get the raw results
     query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
 {
@@ -223,28 +219,20 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 }}
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
     triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
-byebug
+
     triples.each do |x|
       uri = x[:e].to_s
       raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
       raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
     end
-    
-    # Item deleted?
-    item_was_deleted_info = deleted_from_ct_version(items.last)
 
     # Get the version array
     raw_results.sort_by {|k,v| v[:version]}
     raw_results.each {|k,v| versions << v[:date]}
-    versions = versions.drop(1)
-
     
-    # Build the skeleton final results with a default value.
-    initial_status = [{ status: :not_present}] * versions.length
-    if item_was_deleted_info[:deleted]
-      versions << item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d") 
-      initial_status << { status: :deleted}
-    end
+    # # Build the skeleton final results with a default value.
+    initial_status = [{ status: :no_change}] * versions.length
+
     raw_results.each do |uri, version|
       version[:children].each do |entry|
         key = entry[:key].to_sym
@@ -256,6 +244,7 @@ byebug
     # Process the changes
     previous_version = nil
     version_index = 0
+  
     raw_results.each do |uri, version|
       if previous_version.nil?
         # nothing needed?
@@ -269,6 +258,7 @@ byebug
         deleted_items = previous_version[:children] - version[:children]
         new_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+          final_results[entry[:key].to_sym][:status][version_index-1] = {status: :not_present}
         end
         common_items.each do |entry|
           prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
@@ -278,11 +268,11 @@ byebug
         deleted_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
         end
-        version_index += 1
       end
+      version_index += 1
       previous_version = version
     end
-    
+
     # And return
     {versions: versions, items: final_results}
   end

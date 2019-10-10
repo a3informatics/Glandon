@@ -1,6 +1,6 @@
 ---
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgwNS9WMzYjQzEwMTgwNQ==
-  :date: '2013-12-20'
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgwNS9WMzAjQzEwMTgwNQ==
+  :date: '2012-06-29'
   :differences:
     :identifier:
       :status: :created
@@ -10,12 +10,12 @@
     :notation:
       :status: :created
       :previous: ''
-      :current: AIMS TESTCD
+      :current: AIMS TEST
       :difference: ''
     :definition:
       :status: :created
       :previous: ''
-      :current: Abnormal Involuntary Movement Scale test code.
+      :current: Abnormal Involuntary Movement Scale test name.
       :difference: ''
     :extensible:
       :status: :created
@@ -25,13 +25,70 @@
     :synonym:
       :status: :created
       :previous: ''
-      :current: Abnormal Involuntary Movement Scale Test Code
+      :current: Abnormal Involuntary Movement Scale Test Name
       :difference: ''
     :preferred_term:
       :status: :created
       :previous: ''
-      :current: CDISC Questionnaire AIMS Test Code Terminology
+      :current: CDISC Questionnaire AIMS Test Name Terminology
       :difference: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgwNS9WMzYjQzEwMTgwNQ==
+  :date: '2013-12-20'
+  :differences:
+    :identifier:
+      :status: :no_change
+      :previous: C101805
+      :current: C101805
+      :difference: ''
+    :notation:
+      :status: :updated
+      :previous: AIMS TEST
+      :current: AIMS TESTCD
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>AIMS TEST</del></li>
+            <li class="ins"><ins>AIMS TEST<strong>CD</strong></ins></li>
+          </ul>
+        </div>
+    :definition:
+      :status: :updated
+      :previous: Abnormal Involuntary Movement Scale test name.
+      :current: Abnormal Involuntary Movement Scale test code.
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>Abnormal Involuntary Movement Scale test <strong>nam</strong>e.</del></li>
+            <li class="ins"><ins>Abnormal Involuntary Movement Scale test <strong>cod</strong>e.</ins></li>
+          </ul>
+        </div>
+    :extensible:
+      :status: :no_change
+      :previous: false
+      :current: false
+      :difference: ''
+    :synonym:
+      :status: :updated
+      :previous: Abnormal Involuntary Movement Scale Test Name
+      :current: Abnormal Involuntary Movement Scale Test Code
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>Abnormal Involuntary Movement Scale Test <strong>Nam</strong>e</del></li>
+            <li class="ins"><ins>Abnormal Involuntary Movement Scale Test <strong>Cod</strong>e</ins></li>
+          </ul>
+        </div>
+    :preferred_term:
+      :status: :updated
+      :previous: CDISC Questionnaire AIMS Test Name Terminology
+      :current: CDISC Questionnaire AIMS Test Code Terminology
+      :difference: |
+        <div class="diff">
+          <ul>
+            <li class="del"><del>CDISC Questionnaire AIMS Test <strong>Nam</strong>e Terminology</del></li>
+            <li class="ins"><ins>CDISC Questionnaire AIMS Test <strong>Cod</strong>e Terminology</ins></li>
+          </ul>
+        </div>
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgwNS9WMzgjQzEwMTgwNQ==
   :date: '2014-06-27'
   :differences:
@@ -198,63 +255,5 @@
           <ul>
             <li class="del"><del>CDISC <strong>Ques</strong>tion<strong>naire</strong> AIMS Test Code Terminology</del></li>
             <li class="ins"><ins>CDISC <strong>Clinical Classifica</strong>tion AIMS Test Code Terminology</ins></li>
-          </ul>
-        </div>
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgwNS9WMzAjQzEwMTgwNQ==
-  :date: '2012-06-29'
-  :differences:
-    :identifier:
-      :status: :no_change
-      :previous: C101805
-      :current: C101805
-      :difference: ''
-    :notation:
-      :status: :updated
-      :previous: AIMS01TC
-      :current: AIMS TEST
-      :difference: |
-        <div class="diff">
-          <ul>
-            <li class="del"><del>AIMS<strong>01TC</strong></del></li>
-            <li class="ins"><ins>AIMS<strong> TEST</strong></ins></li>
-          </ul>
-        </div>
-    :definition:
-      :status: :updated
-      :previous: Abnormal Involuntary Movement Scale test code.
-      :current: Abnormal Involuntary Movement Scale test name.
-      :difference: |
-        <div class="diff">
-          <ul>
-            <li class="del"><del>Abnormal Involuntary Movement Scale test <strong>cod</strong>e.</del></li>
-            <li class="ins"><ins>Abnormal Involuntary Movement Scale test <strong>nam</strong>e.</ins></li>
-          </ul>
-        </div>
-    :extensible:
-      :status: :no_change
-      :previous: false
-      :current: false
-      :difference: ''
-    :synonym:
-      :status: :updated
-      :previous: Abnormal Involuntary Movement Scale Clinical Classification Test
-        Code
-      :current: Abnormal Involuntary Movement Scale Test Name
-      :difference: |
-        <div class="diff">
-          <ul>
-            <li class="del"><del>Abnormal Involuntary Movement Scale <strong>Clinical Classification </strong>Test <strong>Cod</strong>e</del></li>
-            <li class="ins"><ins>Abnormal Involuntary Movement Scale Test <strong>Nam</strong>e</ins></li>
-          </ul>
-        </div>
-    :preferred_term:
-      :status: :updated
-      :previous: CDISC Clinical Classification AIMS Test Code Terminology
-      :current: CDISC Questionnaire AIMS Test Name Terminology
-      :difference: |
-        <div class="diff">
-          <ul>
-            <li class="del"><del>CDISC <strong>Clinical Classifica</strong>tion AIMS Test <strong>Cod</strong>e Terminology</del></li>
-            <li class="ins"><ins>CDISC <strong>Ques</strong>tion<strong>naire</strong> AIMS Test <strong>Nam</strong>e Terminology</ins></li>
           </ul>
         </div>
