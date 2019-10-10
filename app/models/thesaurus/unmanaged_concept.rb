@@ -151,7 +151,13 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     return self
   end
 
-   # To CSV No Header. A CSV record with no header
+  def add_additional_tags(previous, set)
+    return self if previous.nil?
+    missing = self.tagged.map{|x| x.uri} - previous.tagged.map{|x| x.uri} 
+    missing.each {|x| set << {subject: self.uri, object: x}}
+  end
+
+  # To CSV No Header. A CSV record with no header
   def to_csv_data
     data = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
     data.insert(4, self.synonyms_to_s)

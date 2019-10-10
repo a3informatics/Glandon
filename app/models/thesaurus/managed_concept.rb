@@ -75,6 +75,13 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return self
   end
 
+  def add_additional_tags(previous, set)
+    return self if previous.nil?
+    missing = self.tagged.map{|x| x.uri} - previous.tagged.map{|x| x.uri} 
+    missing.each {|x| set << {subject: self.uri, object: x}}
+    add_child_additional_tags(previous, set)
+  end
+
   # Merge. Merge two concepts. Concepts must be the same with common children being the same.
   #
   # @result [Boolean] returns true if the concepts merged.
@@ -385,6 +392,14 @@ private
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
       next if previous_child.empty?
       self.narrower[index] = child.replace_if_no_change(previous_child.first)
+    end
+  end
+
+  def add_child_additional_tags(previous, set)
+    self.narrower.each_with_index do |child, index|
+      previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
+      next if previous_child.empty?
+      child.add_additional_tags(previous_child.first, set)
     end
   end
 

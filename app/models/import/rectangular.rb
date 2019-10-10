@@ -74,6 +74,7 @@ private
   # Process. Process the results structure to convert to objects
   def process(results)
     filtered = []
+    tag_set = []
     klass = configuration[:parent_klass]
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
@@ -83,10 +84,12 @@ private
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous)
-      parent.add(actual, index + 1)
-      filtered << child if actual.uuid == child.uuid
+      parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
+      next if actual.uri != child.uri # No changes if actual = previous, so skip next
+      child.add_additional_tags(previous, tag_set) 
+      filtered << child 
     end
-    return {parent: parent, managed_children: filtered}
+    return {parent: parent, managed_children: filtered, tags: tag_set}
   end
 
   # Check no errors in the objects structure.
