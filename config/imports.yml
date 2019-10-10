@@ -182,13 +182,7 @@ defaults: &defaults
           selection:
             label: ADaM-IG
           sheet:
-            actions:
-              -
-                method: tag_from_sheet_name
-                map:
-                  ADaM: ADaM
-                  CDASH: CDASH
-                  SDTM: SDTM  
+            actions: []
           columns: 
           - 
             label: "Data Structure Name"
@@ -286,8 +280,20 @@ defaults: &defaults
         version_1:
           selection:
             label: SDTM
-            #first: true
-            #date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
+                  Protocol: Protocol
+                  SEND: SEND
+                  QS: QS
+                  QS-FT: QS-FT
+                  COA: COA
+                  QRS: QRS
           columns: 
           - 
             label: "Code"
@@ -326,6 +332,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_tag
+                object: child
                 condition: 
                   method: column_blank?
                   column: 3
@@ -460,6 +472,20 @@ defaults: &defaults
         version_2:
           selection:
             label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
+                  Protocol: Protocol
+                  SEND: SEND
+                  QS: QS
+                  QS-FT: QS-FT
+                  COA: COA
+                  QRS: QRS
           columns: 
           - 
             label: "Code"
@@ -638,6 +664,20 @@ defaults: &defaults
         version_3:
           selection:
             label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
+                  Protocol: Protocol
+                  SEND: SEND
+                  QS: QS
+                  QS-FT: QS-FT
+                  COA: COA
+                  QRS: QRS
           columns: 
           - 
             label: "Code"
@@ -819,6 +859,20 @@ defaults: &defaults
         version_4:
           selection:
             date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
+                  Protocol: Protocol
+                  SEND: SEND
+                  QS: QS
+                  QS-FT: QS-FT
+                  COA: COA
+                  QRS: QRS
           columns: 
           - 
             label: "Code"
@@ -994,6 +1048,20 @@ defaults: &defaults
         version_5:
           selection:
             date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: ADaM
+                  CDASH: CDASH
+                  SDTM: SDTM  
+                  Protocol: Protocol
+                  SEND: SEND
+                  QS: QS
+                  QS-FT: QS-FT
+                  COA: COA
+                  QRS: QRS
           columns: 
           - 
             label: "Code"

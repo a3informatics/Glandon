@@ -23,7 +23,7 @@ class Excel::Engine
     @errors = owner.errors
     @parent_set = {}
     @classifications = {}
-    @tag = ""
+    @tags = []
   end
 
   # ---------
@@ -31,8 +31,8 @@ class Excel::Engine
   # ---------
   if Rails.env.test?
 
-    def tag
-      @tag
+    def tags
+      @tags
     end
 
   end
@@ -162,15 +162,19 @@ class Excel::Engine
   #
   # @param [Hash] params the parameters
   # @option params [map] :map the mapping
-  # @return [String] the tag
+  # @return [Array] the tags, an array of tags
   def tag_from_sheet_name(params)
+    @tags = []
+    tags = []
     check_params(__method__.to_s, params, [:map])
     params[:map].each do |key, word| 
       next if !@workbook.default_sheet.include?(word)
-      @tag = key
-      return @tag
+      tags << key
     end
-    @tag = nil
+    tags.each do |tag|
+      @tags << IsoConceptSystem.path([:CDISC] + [tag])
+    end
+    @tags
   end
     
   # Create Parent
@@ -228,14 +232,14 @@ class Excel::Engine
     params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
   end
 
-  # Set Tag
+  # Set Tags
   #
   # @param [Hash] params the parameters hash
   # @option params [Object] :object the object tocheck for validity
   # @return [Void] no return
-  def set_tag(params)
+  def set_tags(params)
     check_params(__method__.to_s, params, [:object])
-    params[:object].tagged << @tag
+    params[:object].tagged = @tags
   end
 
   # Set Property

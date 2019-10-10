@@ -132,8 +132,30 @@ describe IsoConceptSystem do
       cdisc.to_sparql(sparql, true)
       cdisc.narrower.each {|x| x.to_sparql(sparql, true)}
       file = sparql.to_file
-
       copy_file_from_public_files_rename("test", file.basename, sub_dir, "iso_concept_systems_baseline.ttl")
+    end
+
+  end
+
+  describe "Create Tags" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "Find SDTM" do
+      result = IsoConceptSystem.path(["CDISC", "SDTM"])
+      check_file_actual_expected(result.to_h, sub_dir, "path_expected_1.yaml", equate_method: :iso_concept_system_equal)
+    end
+
+    it "Find ADaM" do
+      result = IsoConceptSystem.path(["CDISC", "ADaM"])
+      check_file_actual_expected(result.to_h, sub_dir, "path_expected_2.yaml", equate_method: :iso_concept_system_equal)
     end
 
   end

@@ -38,6 +38,7 @@ describe Excel::Engine do
 
     configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
+    object_property :tagged, cardinality: :many, model_class: "DefinitionClass"
 
     def to_hash
       {label: self.label}
@@ -277,7 +278,7 @@ describe Excel::Engine do
     end
   end
 
-  it "checks sheet condition" do
+  it "checks sheet condition, I" do
     full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
@@ -289,13 +290,24 @@ describe Excel::Engine do
         actions: 
         [ 
           { method: :tag_from_sheet_name,
-            map: { ADaM: "ADaM", CDASH: "CDASH", SDTM: "SDTM" }
+            map: { ADaM: "ADaM", CDASH: "CDASH", SDTM: "SDTM", XXX: "CDASH" }
           }
         ]
       }
     }
+    tag_a = IsoConceptSystem::Node.new(pref_label: "SDTM TAG", uri: Uri.new(uri: "http://www.example.com/path#a"))
+    tag_b = IsoConceptSystem::Node.new(pref_label: "OTHER TAG", uri: Uri.new(uri: "http://www.example.com/path#b"))
+    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :CDASH]).and_return(tag_a)
+    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :XXX]).and_return(tag_b)
     object.process_sheet(logic)
-    expect(object.tag).to eq(:CDASH)
+    expect(object.tags).to match_array([tag_a, tag_b])
+  end
+
+  it "checks sheet condition, II" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook)
     logic = 
     {
       sheet: 
@@ -309,7 +321,7 @@ describe Excel::Engine do
       }
     }
     object.process_sheet(logic)
-    expect(object.tag).to eq(nil)
+    expect(object.tags).to eq([])
   end
 
   it "tag from sheet name" do
@@ -317,10 +329,23 @@ describe Excel::Engine do
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :cdash]).and_return({tag: "A"})
     result = object.tag_from_sheet_name({map: {cdash: "CDASH", x: "X"}})
-    expect(result).to eq(:cdash)
+    expect(result).to eq([{:tag=>"A"}])
     result = object.tag_from_sheet_name({map: {cdash: "XXX", x: "X"}})
-    expect(result).to eq(nil)
+    expect(result).to eq([])
+  end
+
+  it "set tagged property" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with([:CDISC, :cdash]).and_return({tag: "A"})
+    result = object.tag_from_sheet_name({map: {cdash: "CDASH", x: "X"}})
+    expect(result).to eq([{:tag=>"A"}])
+    result = object.set_tags({object: parent})
+    expect(parent.tagged).to eq([{:tag=>"A"}])
   end
 
   it "creates parent" do
