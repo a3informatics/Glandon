@@ -68,7 +68,11 @@ class CdiscTermsController < ApplicationController
     window_size = to_index - from_index + 1
     results = ct_from.changes_cdu(window_size)
     results.each do |k,v|
+      if k == :updated
+       v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path(x[:last_id])}
+      else
        v.each {|x| x[:changes_path] = changes_thesauri_managed_concept_path(x[:id])}
+      end
     end
     render json: {data: results}
   end

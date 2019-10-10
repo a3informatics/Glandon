@@ -107,6 +107,7 @@ class Thesaurus <  IsoManagedV2
     raw_results.each {|k,v| versions << v[:date]}
     versions = versions.drop(1)
 
+
     # Build the skeleton final results with a default value.
     initial_status = [{ status: :not_present}] * versions.length
     raw_results.each do |uri, version|
@@ -116,9 +117,9 @@ class Thesaurus <  IsoManagedV2
         final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
-
     # Process the changes
     previous_version = nil
+    first_version = nil
     base_version = raw_results.map{|k,v| v[:version]}[1].to_i
     raw_results.each do |uri, version|
       version_index = version[:version].to_i - base_version
@@ -134,23 +135,36 @@ class Thesaurus <  IsoManagedV2
         deleted_items = previous_version[:children] - version[:children]
         new_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
         common_items.each do |entry|
           prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
           curr = version[:children].find{|x| x[:key] == entry[:key]}
           final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
         deleted_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
       end
+      if version_index == 0 
+        first_version = version
+      end
+
+      if base_version + window_size - 1 == base_version + version_index
+        common_items_endpoints = version[:children] & first_version[:children]
+        common_items_endpoints.each do |entry|
+          final_results[entry[:key].to_sym][:last_id] = entry[:uri].to_id
+        end 
+      end
+
       previous_version = version
     end
 
     # Remove blank entries (those with no changes)
     no_change_entry = [{status: :no_change}] * versions.length
     final_results.delete_if {|k,v| v[:status] == no_change_entry}
-    
     # And return
     {versions: versions, items: final_results}
   end
@@ -181,25 +195,7 @@ class Thesaurus <  IsoManagedV2
       end
     end
     cls[:items].each do |key, value|
-      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #   begin
-      #   # byebug
-      #     next if status[:status] == :no_change
-      #     next if status[:status] == :not_present
-      #     if status[:status] == :deleted
-      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #       break
-      #     end
-      #     if status[:status] == :created
-      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #     end 
-      #     if status[:status] == :updated
-      #       if results[status[:]].blank?
-      #         results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]} 
-      #       end
-      #     end
-      #   end
-    
+      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
     end
     results
   end

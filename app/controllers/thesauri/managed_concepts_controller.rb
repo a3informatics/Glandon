@@ -147,10 +147,29 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
+  def changes_summary
+    authorize Thesaurus, :show?
+    @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @tc.synonym_objects
+    @tc.preferred_term_objects
+    @version_count = @tc.changes_count(current_user.max_term_display.to_i)
+    link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
+    @links = {}
+    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
+    @close_path = dashboard_index_path
+  end
+
   def differences
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     render json: {data: tc.differences}
+  end
+
+  def differences_summary
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    last = 
+    render json: {data: tc.differences_summary(last)}
   end
 
   def is_extended
