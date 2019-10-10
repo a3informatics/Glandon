@@ -149,6 +149,7 @@ Rails.application.routes.draw do
         get :is_extension
         get :export_csv
         get :changes_summary
+        get :changes_summary_data
         get :differences_summary
       end
     end

@@ -152,11 +152,17 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    @version_count = @tc.changes_count(current_user.max_term_display.to_i)
-    link_objects = @tc.forward_backward(1, current_user.max_term_display.to_i)
-    @links = {}
-    link_objects.each {|k,v| @links[k] = v.nil? ? "" : changes_thesauri_managed_concept_path(v.to_id)}
+    @version_count = 2
     @close_path = dashboard_index_path
+  end
+
+  def changes_summary_data
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
+    clis = tc.changes_summary(last)
+    clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
+    render json: {data: clis}
   end
 
   def differences

@@ -67,9 +67,10 @@ class CdiscTermsController < ApplicationController
     to_index = versions.find_index {|x| x[:id] == ct_to.id}
     window_size = to_index - from_index + 1
     results = ct_from.changes_cdu(window_size)
+  byebug
     results.each do |k,v|
       if k == :updated
-       v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path(x[:last_id])}
+       v.each {|x| x[:changes_path] = changes_summary_thesauri_managed_concept_path({id: x[:id], last_id: x[:last_id]})}
       else
        v.each {|x| x[:changes_path] = changes_thesauri_managed_concept_path(x[:id])}
       end
