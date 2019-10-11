@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/changes' %>
-<%= javascript_tag "var differences_url_path = '#{differences_summary_thesauri_managed_concept_path(id: @tc, last_id: @last, first_v: @first_v, last_v: @last_v)}';" %>
-<%= javascript_tag "var changes_url_path = '#{changes_summary_data_thesauri_managed_concept_path(id: @tc, last_id: @last, first_v: @first_v, last_v: @last_v)}';" %>
+<%= javascript_tag "var differences_url_path = '#{differences_summary_thesauri_managed_concept_path(id: @tc, last_id: @last, ver_span: @version_span)}';" %>
+<%= javascript_tag "var changes_url_path = '#{changes_summary_data_thesauri_managed_concept_path(id: @tc, last_id: @last, ver_span: @version_span)}';" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
 <%= javascript_tag "var pdfLoadingDur = 30,
                         loadingMessage = 'Generating report...',

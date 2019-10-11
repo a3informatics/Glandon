@@ -151,8 +151,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
-    @first_v = params[:first_v]
-    @last_v = params[:last_v]
+    @version_span = params[:ver_span]
     @tc.synonym_objects
     @tc.preferred_term_objects
     @version_count = 2
@@ -164,7 +163,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
-    versions = [params[:first_v], params[:last_v]]
+    versions = params[:ver_span]
     clis = tc.changes_summary(last, versions)
     clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
     render json: {data: clis}
@@ -180,7 +179,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
-    versions = [params[:first_v], params[:last_v]] 
+    versions = params[:ver_span]
     render json: {data: tc.differences_summary(last, versions)}
   end
 

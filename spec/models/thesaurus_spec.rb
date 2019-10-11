@@ -15,14 +15,14 @@ describe Thesaurus do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = 
+      schema_files =
       [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
         "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
       ]
-      data_files = 
+      data_files =
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"
       ]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
@@ -36,12 +36,12 @@ describe Thesaurus do
       expected = IsoRegistrationAuthority.owner
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(th.owner.uri).to eq(expected.uri)
-    end    
+    end
 
     it "allows an object to be initialised" do
       th =Thesaurus.new
-      result =     
-        { 
+      result =
+        {
           :rdf_type => "http://www.assero.co.uk/Thesaurus#Thesaurus",
           :id => nil,
           :uri => {},
@@ -65,7 +65,7 @@ describe Thesaurus do
       expect(valid).to eq(false)
       expect(result.errors.count).to eq(3)
       expect(result.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, and Has state: Empty object")
-    end 
+    end
 
     it "allows validity of the object to be checked" do
       th = Thesaurus.new
@@ -85,7 +85,7 @@ describe Thesaurus do
       valid = th.valid?
       expect(th.errors.count).to eq(0)
       expect(valid).to eq(true)
-    end 
+    end
 
     it "allows a Thesaurus to be found" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
@@ -98,7 +98,7 @@ describe Thesaurus do
 
     # it "allows the thesaurus to be found from a concept" do
     #   th =Thesaurus.find_from_concept("THC-A00011", "http://www.assero.co.uk/MDRThesaurus/ACME/V1")
-    #   check_file_actual_expected(th.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal, write_method: true)  
+    #   check_file_actual_expected(th.to_h, sub_dir, "find_expected_2.yaml", equate_method: :hash_equal, write_method: true)
     # end
 
     # it "finds by properties, single" do
@@ -163,7 +163,7 @@ describe Thesaurus do
       result = Thesaurus.current({:identifier => "CDISC EXT", :scope => IsoRegistrationAuthority.owner.ra_namespace})
       expect(result.to_s).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
     end
-    
+
     it "allows a creation of a thesaurus" do
       th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
     #Xwrite_yaml_file(th.to_h, sub_dir, "thesaurus_example_4.yaml")
@@ -186,7 +186,7 @@ describe Thesaurus do
       sparql = Sparql::Update.new
       th.to_sparql(sparql, true)
     #write_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt") 
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
     it "allows the impact to be assessed - WILL CURRENTLY FAIL" do
@@ -207,24 +207,9 @@ describe Thesaurus do
 
     before :all  do
       IsoHelpers.clear_cache
-    end
-
-    before :each do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..59)
-    end
-
-    after :each do
-      #
     end
 
     it "calculates changes, window 4, general" do
@@ -236,7 +221,7 @@ describe Thesaurus do
     it "calculates changes, window 10, large" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(10)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml") 
+      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml")
     end
 
     it "calculates changes, window 4, first item" do
@@ -297,15 +282,7 @@ describe Thesaurus do
 
     before :all  do
       IsoHelpers.clear_cache
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..59)
     end
@@ -363,14 +340,14 @@ describe Thesaurus do
     end
 
     before :each do
-      schema_files = 
+      schema_files =
       [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
         "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
       ]
-      data_files = 
+      data_files =
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"      
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"
       ]
       load_files(schema_files, data_files)
       load_versions(1..59)
@@ -397,7 +374,7 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
       ct.add_child(identifier: "S123")
-      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
       item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
       actual = item.to_h
@@ -415,9 +392,9 @@ describe Thesaurus do
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
       ct.add_child(identifier: "S123")
-      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X")) 
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X"))
       actual = item.to_h
     #Xwrite_yaml_file(actual.to_h, sub_dir, "add_child_expected_4.yaml")
       expected = read_yaml_file(sub_dir, "add_child_expected_4.yaml")
@@ -434,7 +411,7 @@ describe Thesaurus do
       item = ct.add_child(identifier: "S123£%^@")
       expect(item.errors.count).to eq(2)
       expect(item.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Identifier contains a part with invalid characters")
-      actual = ct.managed_children_pagination(count: 100, offset: 0) 
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
     end
 
@@ -446,8 +423,8 @@ describe Thesaurus do
       expect(ct.is_top_concept_reference.count).to eq(2)
       uri2 = Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")
       item = ct.add_extension(uri2.to_id)
-      result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E")) 
-      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779")) 
+      result = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/C96779E/V1#C96779E"))
+      source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V32#C96779"))
       expect(result.narrower.count).to eq(source.narrower.count)
       expect(result.extends.uri.to_s).to eq(source.uri.to_s)
       item = Thesaurus.find_full(uri1)
@@ -467,14 +444,14 @@ describe Thesaurus do
     end
 
     before :all do
-      schema_files = 
+      schema_files =
       [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
         "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
       ]
-      data_files = 
+      data_files =
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"    
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"
       ]
       load_files(schema_files, data_files)
       load_versions(1..59)

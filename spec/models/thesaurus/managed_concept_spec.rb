@@ -7,7 +7,7 @@ describe "Thesaurus::ManagedConcept" do
   include SparqlHelpers
   include PublicFileHelpers
   include ThesauriHelpers
-  
+
   def sub_dir
     return "models/thesaurus/managed_concept"
   end
@@ -153,6 +153,7 @@ describe "Thesaurus::ManagedConcept" do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
+      NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
@@ -162,7 +163,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.valid?).to eq(false)
       expect(tc.errors.count).to eq(4)
       expect(tc.errors.full_messages.to_sentence).to eq("Uri can't be blank, Has identifier: Empty object, Has state: Empty object, and Identifier is empty")
-    end 
+    end
 
     it "allows validity of the object to be checked" do
       tc = Thesaurus::ManagedConcept.new
@@ -178,16 +179,16 @@ describe "Thesaurus::ManagedConcept" do
       tc.has_identifier.semantic_version = "0.0.1"
       valid = tc.valid?
       expect(valid).to eq(true)
-    end 
+    end
 
     it "allows a TC to be found" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.identifier).to eq("A00001")    
+      expect(tc.identifier).to eq("A00001")
     end
 
     it "allows a TC to be found - error" do
-      expect{Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001x"))}.to raise_error(Errors::NotFoundError, 
-        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001x in Thesaurus::ManagedConcept.")  
+      expect{Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001x"))}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001x in Thesaurus::ManagedConcept.")
     end
 
     it "allows the existance of a TC to be determined" do
@@ -209,7 +210,7 @@ describe "Thesaurus::ManagedConcept" do
   	end
 
     it "allows a new child TC to be added" do
-      params = 
+      params =
       {
         definition: "The Queen's Terminal, the second terminal at Heathrow",
         identifier: "A00014",
@@ -228,7 +229,7 @@ describe "Thesaurus::ManagedConcept" do
     it "prevents a duplicate TC being added" do
       local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).twice.and_return(local_configuration)
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "A00014",
@@ -247,7 +248,7 @@ describe "Thesaurus::ManagedConcept" do
     it "prevents a TC being added with invalid identifier" do
       local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "?",
@@ -263,7 +264,7 @@ describe "Thesaurus::ManagedConcept" do
     it "prevents a TC being added with invalid data" do
       local_configuration = {scheme_type: :flat, parent: {entered: true}, child: {entered: true}} # Need to force manual entry
       expect(Thesaurus::UnmanagedConcept).to receive(:identification_configuration).and_return(local_configuration)
-      params = 
+      params =
       {
         definition: "Other or mixed race!@£$%^&*(){}",
         identifier: "?",
@@ -278,7 +279,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "allows a TC to be saved" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "A00014",
@@ -295,7 +296,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "allows a TC to be saved, quotes test" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "A00014",
@@ -308,10 +309,10 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_2.yaml")
     end
-    
+
     it "allows a TC to be updated, character test" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "A00014",
@@ -321,12 +322,12 @@ describe "Thesaurus::ManagedConcept" do
       new_object = tc.add_child(params)
       new_object.label = vh_all_chars
       new_object.notation = vh_all_chars + "^"
-      new_object.definition = 
+      new_object.definition =
       new_object.update(definition: vh_all_chars)
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
     end
-    
+
     it "allows to determine if TCs different" do
       tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       tc2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00002/V1#A00002"))
@@ -373,13 +374,13 @@ describe "Thesaurus::ManagedConcept" do
       full_path = sparql.to_file
     #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "managed_concept.ttl")
     end
-    
+
     it "allows a TC to be exported as SPARQL, I" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       sparql = Sparql::Update.new
       tc.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt") 
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
     it "allows a TC to be exported as SPARQL, II - WILL CURRENTLY FAIL (Timestamp Issue)" do
@@ -389,9 +390,9 @@ describe "Thesaurus::ManagedConcept" do
       sparql.default_namespace(@tc_1.uri.namespace)
       @tc_1.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt") 
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt")
     end
-    
+
     it "allows a TC to be created" do
       object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
       tc = Thesaurus::ManagedConcept.find_full(object.uri)
@@ -405,8 +406,8 @@ describe "Thesaurus::ManagedConcept" do
       tc = Thesaurus::ManagedConcept.find(object.uri)
       result = tc.delete
       expect(result).to eq(1)
-      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError, 
-        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")  
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
     end
 
     it "does not allow a TC to be destroyed if it has children" do
@@ -419,7 +420,7 @@ describe "Thesaurus::ManagedConcept" do
 
     it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      params = 
+      params =
       {
         definition: "Other or mixed race",
         identifier: "A00014",
@@ -466,7 +467,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc1.extension?).to eq(false)
       expect(tc2.extension?).to eq(false)
       sparql = %Q{INSERT DATA { #{tc2.uri.to_ref} th:extends #{tc1.uri.to_ref} }}
-      Sparql::Update.new.sparql_update(sparql, "", [:th]) 
+      Sparql::Update.new.sparql_update(sparql, "", [:th])
       expect(tc1.extended?).to eq(true)
       expect(tc2.extended?).to eq(false)
       expect(tc1.extension?).to eq(false)
@@ -573,21 +574,23 @@ describe "Thesaurus::ManagedConcept" do
     it "differences_summary, first item first version" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
-      results = tc.differences_summary(last)
+      versions = ["2012-06-29","2019-06-28"]
+      results = tc.differences_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml")
     end
 
     it "differences_summary, first item other version" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
-      results = tc.differences_summary(last)
+      versions = ["2013-12-20","2019-06-28"]
+      results = tc.differences_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml")
     end
 
     it "changes_summary I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
-      versions = ["30","59"]
+      versions = ["2012-03-23","2019-06-28"]
       results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml")
     end
@@ -595,7 +598,7 @@ describe "Thesaurus::ManagedConcept" do
     it "changes_summary II" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V47#C89973"))
-      versions = ["44","47"]
+      versions = ["2015-09-25","2016-06-24"]
       results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml")
     end
@@ -603,7 +606,7 @@ describe "Thesaurus::ManagedConcept" do
     it "changes_summary III" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V2#C66783"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V27#C66783"))
-      versions = ["2","27"]
+      versions = ["2007-04-20","2011-07-22"]
       results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml")
     end
@@ -628,42 +631,42 @@ describe "Thesaurus::ManagedConcept" do
 
     it "assigns properties, prevent identifier update" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.definition).to eq("A definition")    
+      expect(tc.definition).to eq("A definition")
       tc.update({identifier: "A00001a", definition: "Updated"})
       expect(tc.identifier).to eq("A00001") # Note, no ability to change identifier
-      expect(tc.definition).to eq("Updated")    
+      expect(tc.definition).to eq("Updated")
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.identifier).to eq("A00001")    
-      expect(tc.definition).to eq("Updated")      
+      expect(tc.identifier).to eq("A00001")
+      expect(tc.definition).to eq("Updated")
     end
 
     it "assigns properties, synonyms" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.definition).to eq("A definition")    
+      expect(tc.definition).to eq("A definition")
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.first.label).to eq("LHR")
       expect(tc.synonym.last.label).to eq("Heathrow")
       tc.update({definition: "Updated", synonym: "LHR; Heathrow; Worst Airport Ever"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.definition).to eq("Updated")    
+      expect(tc.definition).to eq("Updated")
       expect(tc.synonym.count).to eq(3)
       expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
       tc.update({synonym: "aaaa; bbbb"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.definition).to eq("Updated")    
+      expect(tc.definition).to eq("Updated")
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.map{|x| x.label}).to match_array(["aaaa", "bbbb"])
     end
 
     it "assigns properties, preferred term and label" do
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.label).to eq("London Heathrow")    
+      expect(tc.label).to eq("London Heathrow")
       expect(tc.synonym.count).to eq(2)
       expect(tc.synonym.first.label).to eq("LHR")
       expect(tc.synonym.last.label).to eq("Heathrow")
       tc.update({synonym: "LHR; Heathrow; Worst Airport Ever", preferred_term: "Woah!"})
       tc = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect(tc.label).to eq("Woah!")    
+      expect(tc.label).to eq("Woah!")
       expect(tc.synonym.count).to eq(3)
       expect(tc.synonym.map{|x| x.label}).to match_array(["LHR", "Heathrow", "Worst Airport Ever"])
       expect(tc.preferred_term.label).to eq("Woah!")
@@ -746,7 +749,7 @@ describe "Thesaurus::ManagedConcept" do
       results = tc.to_csv
       check_file_actual_expected(results, sub_dir, "csv_expected_2.yaml")
     end
-    
+
   end
 
   describe "child pagination" do
