@@ -162,7 +162,6 @@ class Thesaurus <  IsoManagedV2
     no_change_entry = [{status: :no_change}] * versions.length
     final_results.delete_if {|k,v| v[:status] == no_change_entry}
     # And return
-    byebug
     {versions: versions, items: final_results}
   end
 

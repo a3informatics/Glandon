@@ -8,15 +8,15 @@
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#{changes_thesauri_managed_concept_path(@tc)}", id: "close",
-        icon: "icon-long-arrow", btn_text: "Full Changes", dt_toggle: "", disabled: false } %> 
+        icon: "icon-changes", btn_text: "History of all changes", dt_toggle: "", disabled: false } %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
 </div>
 <div class="row">
-  <%= render partial: "shared/thesauri/differences_panel_v2", :locals => {title: "Differences", info: "Row of 'No change' indicates only child items have changed. See the changes window below.", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/differences_panel_v2", :locals => {title: "Differences Summary", info: "You are viewing summarized differences between two terminology versions.", column_count: @version_count, links: @links} %>
 </div>
 <div class="row">
-  <%= render partial: "shared/thesauri/changes_panel_v2", :locals => {title: "Changes", info: "Changes in the items.", column_count: @version_count, links: @links} %>
+  <%= render partial: "shared/thesauri/changes_panel_v2", :locals => {title: "Changes Summary", info: "Summary of changes in the items between two terminology versions.", column_count: @version_count, links: @links} %>
 </div>
