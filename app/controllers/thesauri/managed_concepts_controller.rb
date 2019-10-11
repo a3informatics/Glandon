@@ -150,9 +150,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def changes_summary
     authorize Thesaurus, :show?
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
+    @first_v = params[:first_v]
+    @last_v = params[:last_v]
     @tc.synonym_objects
     @tc.preferred_term_objects
     @version_count = 2
+    @links = {}
     @close_path = dashboard_index_path
   end
 
@@ -160,7 +164,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
-    clis = tc.changes_summary(last)
+    versions = [params[:first_v], params[:last_v]]
+    clis = tc.changes_summary(last, versions)
     clis[:items].each {|k,v| v[:changes_path] = changes_thesauri_unmanaged_concept_path(v[:id])}
     render json: {data: clis}
   end
@@ -174,8 +179,9 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def differences_summary
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    last = 
-    render json: {data: tc.differences_summary(last)}
+    last = Thesaurus::ManagedConcept.find_with_properties(params[:last_id])
+    versions = [params[:first_v], params[:last_v]] 
+    render json: {data: tc.differences_summary(last, versions)}
   end
 
   def is_extended

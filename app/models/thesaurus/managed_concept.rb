@@ -202,7 +202,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   #
   # @param [Integer] window_size the required window size for changes
   # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
-  def changes_summary(last)
+  def changes_summary(last, actual_versions)
     raw_results = {}
     final_results = {}
     versions = []
@@ -274,13 +274,13 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     end
 
     # And return
-    {versions: versions, items: final_results}
+    {versions: actual_versions, items: final_results}
   end
 
   # Differences_summary
   #
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
-  def differences_summary (last)
+  def differences_summary (last, actual_versions)
     results =[]
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     query_string = %Q{

@@ -151,11 +151,11 @@ class Thesaurus <  IsoManagedV2
       if version_index == 0 
         first_version = version
       end
-
       if base_version + window_size - 1 == base_version + version_index
         common_items_endpoints = version[:children] & first_version[:children]
         common_items_endpoints.each do |entry|
-          final_results[entry[:key].to_sym][:last_id] = entry[:uri].to_id
+           final_results[entry[:key].to_sym][:last_id] = entry[:uri].to_id
+           final_results[entry[:key].to_sym][:id] = (first_version[:children].detect { |e| e[:key]==entry[:key] })[:uri].to_id 
         end 
       end
 
@@ -175,7 +175,7 @@ class Thesaurus <  IsoManagedV2
   # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions
   def changes_cdu (window_size)
     cls = changes(window_size)
-    results = {created: [], deleted: [], updated: []}
+    results = {created: [], deleted: [], updated: [], versions:[]}
     cls[:items].each do |key, value|
       value[:status].each do |status|
         next if status[:status] == :no_change
@@ -197,6 +197,7 @@ class Thesaurus <  IsoManagedV2
     cls[:items].each do |key, value|
       results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
     end
+    results[:versions] = cls[:versions]
     results
   end
 
