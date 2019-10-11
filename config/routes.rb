@@ -65,6 +65,9 @@ Rails.application.routes.draw do
       get :impact_next
       get :changes
     end
+    member do
+      get :tags
+    end
   end
   resources :iso_managed do
     collection do

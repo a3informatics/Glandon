@@ -17,6 +17,7 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2009-10-06.xlsx'"^^xsd:string ;
@@ -663,6 +664,7 @@
 <http://www.cdisc.org/C66767/V18#C66767>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66767/V18#C66767_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66767/V18#C66767_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -706,6 +708,7 @@
 <http://www.cdisc.org/C66786/V18#C66786>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Country"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66786/V18#C66786_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66786/V18#C66786_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -988,6 +991,7 @@
 <http://www.cdisc.org/C66786/V18#C66786_C83609>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Saint Barthelemy"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C83609"^^xsd:string ;
 	th:notation "BLM"^^xsd:string ;
 	th:definition "An island in the Caribbean sea, between Saint Martin and Saint Kitts and Nevis."^^xsd:string ;
@@ -1006,6 +1010,7 @@
 <http://www.cdisc.org/C66786/V18#C66786_C44480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Isle of Man"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C44480"^^xsd:string ;
 	th:notation "IMN"^^xsd:string ;
 	th:definition "An island in the Irish Sea, between Great Britain and Ireland."^^xsd:string ;
@@ -1024,6 +1029,7 @@
 <http://www.cdisc.org/C66786/V18#C66786_C83610>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Saint Martin, French"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C83610"^^xsd:string ;
 	th:notation "MAF"^^xsd:string ;
 	th:definition "An island in the Caribbean sea, between Anguilla and Saint Barthelemy."^^xsd:string ;
@@ -1042,6 +1048,7 @@
 <http://www.cdisc.org/C66790/V18#C66790>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ethnic Group"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66790/V18#C66790_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66790/V18#C66790_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1090,6 +1097,7 @@
 <http://www.cdisc.org/C66726/V18#C66726>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66726/V18#C66726_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66726/V18#C66726_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1295,6 +1303,7 @@
 <http://www.cdisc.org/C66726/V18#C66726_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42887"^^xsd:string ;
 	th:notation "AEROSOL"^^xsd:string ;
 	th:definition "A product that is packaged under pressure and contains therapeutically active ingredients that are released upon activation of an appropriate valve system; it is intended for topical application to the skin as well as local application into the nose (nasal aerosols), mouth (lingual aerosols), or lungs (inhalation aerosols). (FDA)"^^xsd:string ;
@@ -1309,6 +1318,7 @@
 <http://www.cdisc.org/C66726/V18#C66726_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42966"^^xsd:string ;
 	th:notation "OINTMENT"^^xsd:string ;
 	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing < 20% water and volatiles (2) and > 50% hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved. (NCI)"^^xsd:string ;
@@ -1323,6 +1333,7 @@
 <http://www.cdisc.org/C66726/V18#C66726_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42993"^^xsd:string ;
 	th:notation "SUPPOSITORY"^^xsd:string ;
 	th:definition "A solid body of various weights and shapes, adapted for introduction into the rectal, vaginal, or urethral orifice of the human body; they usually melt, soften, or dissolve at body temperature. (NCI)"^^xsd:string ;
@@ -1337,6 +1348,7 @@
 <http://www.cdisc.org/C66726/V18#C66726_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42994"^^xsd:string ;
 	th:notation "SUSPENSION"^^xsd:string ;
 	th:definition "A liquid dosage form that contains solid particles dispersed in a liquid vehicle. Note: A liquid is pourable; it flows and conforms to its container at room temperature. It displays Newtonian or pseudoplastic flow behavior.(FDA)"^^xsd:string ;
@@ -1351,6 +1363,7 @@
 <http://www.cdisc.org/C66729/V18#C66729>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66729/V18#C66729_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66729/V18#C66729_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1499,6 +1512,7 @@
 <http://www.cdisc.org/C66729/V18#C66729_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C38288"^^xsd:string ;
 	th:notation "ORAL"^^xsd:string ;
 	th:definition "Administration to or by way of the mouth.(FDA)"^^xsd:string ;
@@ -1513,6 +1527,7 @@
 <http://www.cdisc.org/C66729/V18#C66729_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C38299"^^xsd:string ;
 	th:notation "SUBCUTANEOUS"^^xsd:string ;
 	th:definition "Administration beneath the skin; hypodermic. Synonymous with the term SUBDERMAL.(FDA)"^^xsd:string ;
@@ -1523,6 +1538,7 @@
 <http://www.cdisc.org/C66729/V18#C66729_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C38304"^^xsd:string ;
 	th:notation "TOPICAL"^^xsd:string ;
 	th:definition "Administration to a particular spot on the outer surface of the body. The E2B term TRANSMAMMARY is a subset of the term TOPICAL.(FDA)"^^xsd:string ;
@@ -1537,6 +1553,7 @@
 <http://www.cdisc.org/C66734/V18#C66734>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Domain Abbreviation"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66734/V18#C66734_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66734/V18#C66734_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1616,6 +1633,7 @@
 <http://www.cdisc.org/C66734/V18#C66734_C49566>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bone Measurements Domain"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49566"^^xsd:string ;
 	th:notation "BM"^^xsd:string ;
 	th:definition "Findings resulting from evaluations of bone mineral density."^^xsd:string ;
@@ -1634,6 +1652,7 @@
 <http://www.cdisc.org/C66738/V18#C66738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66738/V18#C66738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V18#C66738_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1689,6 +1708,7 @@
 <http://www.cdisc.org/C67152/V18#C67152>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67152/V18#C67152_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67152/V18#C67152_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1744,6 +1764,7 @@
 <http://www.cdisc.org/C65047/V18#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V18#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V18#C65047_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2198,6 +2219,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C51946>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51946"^^xsd:string ;
 	th:notation "RBC"^^xsd:string ;
 	th:definition "A measurement of the total erythrocytes in a biological specimen."^^xsd:string ;
@@ -2209,6 +2231,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C51947>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reticulocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51947"^^xsd:string ;
 	th:notation "RETI"^^xsd:string ;
 	th:definition "A measurement of the reticulocytes in a biological specimen."^^xsd:string ;
@@ -2219,6 +2242,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C51948>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51948"^^xsd:string ;
 	th:notation "WBC"^^xsd:string ;
 	th:definition "A measurement of the leukocytes in a biological specimen."^^xsd:string ;
@@ -2230,6 +2254,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C51949>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lymphocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51949"^^xsd:string ;
 	th:notation "LYM"^^xsd:string ;
 	th:definition "A measurement of the lymphocytes in a biological specimen."^^xsd:string ;
@@ -2240,6 +2265,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C51951>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Platelet Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51951"^^xsd:string ;
 	th:notation "PLAT"^^xsd:string ;
 	th:definition "A measurement of the platelets in a biological specimen."^^xsd:string ;
@@ -2250,6 +2276,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C63321>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Absolute Neutrophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C63321"^^xsd:string ;
 	th:notation "NEUT"^^xsd:string ;
 	th:definition "A measurement of the neutrophils in a biological specimen."^^xsd:string ;
@@ -2260,6 +2287,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64470>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Total Basophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64470"^^xsd:string ;
 	th:notation "BASO"^^xsd:string ;
 	th:definition "A measurement of the basophils in a biological specimen."^^xsd:string ;
@@ -2270,6 +2298,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Elliptocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64549"^^xsd:string ;
 	th:notation "ELLIPCY"^^xsd:string ;
 	th:definition "A measurement of the elliptically shaped erythrocytes in a biological specimen."^^xsd:string ;
@@ -2281,6 +2310,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64550>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eosinophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64550"^^xsd:string ;
 	th:notation "EOS"^^xsd:string ;
 	th:definition "A measurement of the eosinophils in a biological specimen."^^xsd:string ;
@@ -2291,6 +2321,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dacryocyte Analysis"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64801"^^xsd:string ;
 	th:notation "TEARDCY"^^xsd:string ;
 	th:definition "A measurement of dacryocytes in a biological specimen."^^xsd:string ;
@@ -2302,6 +2333,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64802>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hypochromia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64802"^^xsd:string ;
 	th:notation "HPOCROM"^^xsd:string ;
 	th:definition "An observation which indicates that the hemoglobin concentration in a red blood cell specimen has fallen below a specified level."^^xsd:string ;
@@ -2312,6 +2344,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64818>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atypical Lymphocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64818"^^xsd:string ;
 	th:notation "LYMAT"^^xsd:string ;
 	th:definition "A measurement of the atypical lymphocytes in a biological specimen."^^xsd:string ;
@@ -2322,6 +2355,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64821>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Macrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64821"^^xsd:string ;
 	th:notation "MACROCY"^^xsd:string ;
 	th:definition "A measurement of the macrocytes in a biological specimen."^^xsd:string ;
@@ -2332,6 +2366,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64822>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microcyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64822"^^xsd:string ;
 	th:notation "MICROCY"^^xsd:string ;
 	th:definition "A measurement of the microcytes in a biological specimen."^^xsd:string ;
@@ -2342,6 +2377,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64823"^^xsd:string ;
 	th:notation "MONO"^^xsd:string ;
 	th:definition "A measurement of the monocytes in a biological specimen."^^xsd:string ;
@@ -2352,6 +2388,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C64830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Neutrophil Band Form Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64830"^^xsd:string ;
 	th:notation "NEUTB"^^xsd:string ;
 	th:definition "A measurement of the banded neutrophils in a biological specimen."^^xsd:string ;
@@ -2362,6 +2399,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74616>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pappenheimer Body Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74616"^^xsd:string ;
 	th:notation "PAPPEN"^^xsd:string ;
 	th:definition "A measurement of the cells containing Pappenheimer Bodies (violet or blue staining ferritin granules usually found along the periphery of the red blood cells) in a biological specimen."^^xsd:string ;
@@ -2372,6 +2410,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74621>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Promonocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74621"^^xsd:string ;
 	th:notation "PROMONO"^^xsd:string ;
 	th:definition "A measurement of the promonocytes in a biological specimen."^^xsd:string ;
@@ -2382,6 +2421,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74630>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukemic Blast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74630"^^xsd:string ;
 	th:notation "BLASTLM"^^xsd:string ;
 	th:definition "A measurement of the leukemic blasts (lymphoblasts that remain in an immature state even when outside the bone marrow) in a biological specimen."^^xsd:string ;
@@ -2402,6 +2442,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74631>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monoblast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74631"^^xsd:string ;
 	th:notation "MONOBL"^^xsd:string ;
 	th:definition "A measurement of the monoblast cells in a biological specimen."^^xsd:string ;
@@ -2412,6 +2453,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74632>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myeloblast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74632"^^xsd:string ;
 	th:notation "MYBLA"^^xsd:string ;
 	th:definition "A measurement of the myeloblast cells in a biological specimen."^^xsd:string ;
@@ -2422,6 +2464,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74662>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myelocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74662"^^xsd:string ;
 	th:notation "MYCY"^^xsd:string ;
 	th:definition "A measurement of the myelocytes in a biological specimen."^^xsd:string ;
@@ -2432,6 +2475,7 @@
 <http://www.cdisc.org/C65047/V18#C65047_C74699>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acanthocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74699"^^xsd:string ;
 	th:notation "ACANT"^^xsd:string ;
 	th:definition "A measurement of the acanthocytes in a biological specimen."^^xsd:string ;
@@ -2442,6 +2486,7 @@
 <http://www.cdisc.org/C67154/V18#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V18#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V18#C67154_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2896,6 +2941,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C51946>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51946"^^xsd:string ;
 	th:notation "Erythrocytes"^^xsd:string ;
 	th:definition "A measurement of the total erythrocytes in a biological specimen."^^xsd:string ;
@@ -2907,6 +2953,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C51947>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reticulocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51947"^^xsd:string ;
 	th:notation "Reticulocytes"^^xsd:string ;
 	th:definition "A measurement of the reticulocytes in a biological specimen."^^xsd:string ;
@@ -2917,6 +2964,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C51948>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51948"^^xsd:string ;
 	th:notation "Leukocytes"^^xsd:string ;
 	th:definition "A measurement of the leukocytes in a biological specimen."^^xsd:string ;
@@ -2928,6 +2976,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C51949>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lymphocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51949"^^xsd:string ;
 	th:notation "Lymphocytes"^^xsd:string ;
 	th:definition "A measurement of the lymphocytes in a biological specimen."^^xsd:string ;
@@ -2938,6 +2987,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C51951>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Platelet Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51951"^^xsd:string ;
 	th:notation "Platelet"^^xsd:string ;
 	th:definition "A measurement of the platelets in a biological specimen."^^xsd:string ;
@@ -2948,6 +2998,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C63321>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Absolute Neutrophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C63321"^^xsd:string ;
 	th:notation "Neutrophils"^^xsd:string ;
 	th:definition "A measurement of the neutrophils in a biological specimen."^^xsd:string ;
@@ -2958,6 +3009,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64470>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Total Basophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64470"^^xsd:string ;
 	th:notation "Basophils"^^xsd:string ;
 	th:definition "A measurement of the basophils in a biological specimen."^^xsd:string ;
@@ -2968,6 +3020,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Elliptocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64549"^^xsd:string ;
 	th:notation "Elliptocytes"^^xsd:string ;
 	th:definition "A measurement of the elliptically shaped erythrocytes in a biological specimen."^^xsd:string ;
@@ -2979,6 +3032,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64550>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eosinophil Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64550"^^xsd:string ;
 	th:notation "Eosinophils"^^xsd:string ;
 	th:definition "A measurement of the eosinophils in a biological specimen."^^xsd:string ;
@@ -2989,6 +3043,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dacryocyte Analysis"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64801"^^xsd:string ;
 	th:notation "Dacryocytes"^^xsd:string ;
 	th:definition "A measurement of dacryocytes in a biological specimen."^^xsd:string ;
@@ -3000,6 +3055,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64818>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atypical Lymphocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64818"^^xsd:string ;
 	th:notation "Lymphocytes Atypical"^^xsd:string ;
 	th:definition "A measurement of the atypical lymphocytes in a biological specimen."^^xsd:string ;
@@ -3010,6 +3066,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64821>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Macrocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64821"^^xsd:string ;
 	th:notation "Macrocytes"^^xsd:string ;
 	th:definition "A measurement of the macrocytes in a biological specimen."^^xsd:string ;
@@ -3020,6 +3077,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64822>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microcyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64822"^^xsd:string ;
 	th:notation "Microcytes"^^xsd:string ;
 	th:definition "A measurement of the microcytes in a biological specimen."^^xsd:string ;
@@ -3030,6 +3088,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64823"^^xsd:string ;
 	th:notation "Monocytes"^^xsd:string ;
 	th:definition "A measurement of the monocytes in a biological specimen."^^xsd:string ;
@@ -3040,6 +3099,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C64830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Neutrophil Band Form Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C64830"^^xsd:string ;
 	th:notation "Neutrophils Band Form"^^xsd:string ;
 	th:definition "A measurement of the banded neutrophils in a biological specimen."^^xsd:string ;
@@ -3050,6 +3110,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74606>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "CD19 Expressing B Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74606"^^xsd:string ;
 	th:notation "CD19"^^xsd:string ;
 	th:definition "A measurement of the CD19 B cells in a biological specimen."^^xsd:string ;
@@ -3060,6 +3121,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74607>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "CD3 Expressing T Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74607"^^xsd:string ;
 	th:notation "CD3"^^xsd:string ;
 	th:definition "A measurement of the CD3 T cells in a biological specimen."^^xsd:string ;
@@ -3070,6 +3132,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74608>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "CD4 Expressing T Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74608"^^xsd:string ;
 	th:notation "CD4"^^xsd:string ;
 	th:definition "A measurement of the CD4 T cells in a biological specimen."^^xsd:string ;
@@ -3080,6 +3143,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74609>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "CD8 Expressing T Cell Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74609"^^xsd:string ;
 	th:notation "CD8"^^xsd:string ;
 	th:definition "A measurement of the CD8 T cells in a biological specimen."^^xsd:string ;
@@ -3090,6 +3154,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74616>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pappenheimer Body Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74616"^^xsd:string ;
 	th:notation "Pappenheimer Bodies"^^xsd:string ;
 	th:definition "A measurement of the cells containing Pappenheimer Bodies (violet or blue staining ferritin granules usually found along the periphery of the red blood cells) in a biological specimen."^^xsd:string ;
@@ -3100,6 +3165,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74621>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Promonocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74621"^^xsd:string ;
 	th:notation "Promonocytes"^^xsd:string ;
 	th:definition "A measurement of the promonocytes in a biological specimen."^^xsd:string ;
@@ -3110,6 +3176,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74630>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukemic Blast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74630"^^xsd:string ;
 	th:notation "Leukemic Blasts"^^xsd:string ;
 	th:definition "A measurement of the leukemic blasts (lymphoblasts that remain in an immature state even when outside the bone marrow) in a biological specimen."^^xsd:string ;
@@ -3122,6 +3189,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74631>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monoblast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74631"^^xsd:string ;
 	th:notation "Monoblasts"^^xsd:string ;
 	th:definition "A measurement of the monoblast cells in a biological specimen."^^xsd:string ;
@@ -3132,6 +3200,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74632>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myeloblast Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74632"^^xsd:string ;
 	th:notation "Myeloblasts"^^xsd:string ;
 	th:definition "A measurement of the myeloblast cells in a biological specimen."^^xsd:string ;
@@ -3142,6 +3211,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74662>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myelocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74662"^^xsd:string ;
 	th:notation "Myelocytes"^^xsd:string ;
 	th:definition "A measurement of the myelocytes in a biological specimen."^^xsd:string ;
@@ -3152,6 +3222,7 @@
 <http://www.cdisc.org/C67154/V18#C67154_C74699>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acanthocyte Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74699"^^xsd:string ;
 	th:notation "Acanthocytes"^^xsd:string ;
 	th:definition "A measurement of the acanthocytes in a biological specimen."^^xsd:string ;
@@ -3162,6 +3233,7 @@
 <http://www.cdisc.org/C71113/V18#C71113>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Frequency"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71113/V18#C71113_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71113/V18#C71113_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3248,6 +3320,7 @@
 <http://www.cdisc.org/C71113/V18#C71113_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25473"^^xsd:string ;
 	th:notation "QD"^^xsd:string ;
 	th:definition "Occurring or done each day."^^xsd:string ;
@@ -3266,6 +3339,7 @@
 <http://www.cdisc.org/C71150/V18#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V18#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V18#C71150_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3411,6 +3485,7 @@
 <http://www.cdisc.org/C71150/V18#C71150_C83811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AV Mobitz I"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C83811"^^xsd:string ;
 	th:notation "AV MOBITZ I"^^xsd:string ;
 	th:definition "Intermittent failure of atrial electrical impulse conduction through the atrioventricular (AV) node to the ventricles, characterized by a progressively lengthening PR interval prior to the block of an atrial impulse."^^xsd:string ;
@@ -3429,6 +3504,7 @@
 <http://www.cdisc.org/C71150/V18#C71150_C83812>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AV Mobitz II"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C83812"^^xsd:string ;
 	th:notation "AV MOBITZ II"^^xsd:string ;
 	th:definition "Intermittent failure of atrial electrical impulse conduction through the atrioventricular (AV) node to the ventricles, characterized by a relatively constant PR interval prior to the block of an atrial impulse."^^xsd:string ;
@@ -3447,6 +3523,7 @@
 <http://www.cdisc.org/C71620/V18#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V18#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V18#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3788,6 +3865,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "The unit of mass equal to one millionth of a gram or one thousandth of a milligram.(NCI)"^^xsd:string ;
@@ -3803,6 +3881,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -3818,6 +3897,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48507>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microcurie"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48507"^^xsd:string ;
 	th:notation "uCi"^^xsd:string ;
 	th:definition "A unit of radioactivity equal to one millionth of a Curie or 37 kilobecquerels, and corresponding to a radioactivity of 37 000 atomic disintegrations per second.(NCI)"^^xsd:string ;
@@ -3833,6 +3913,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48509>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micromole"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48509"^^xsd:string ;
 	th:notation "umol"^^xsd:string ;
 	th:definition "A unit of amount of substance equal to one millionth (10E-6) of a mole.(NCI)"^^xsd:string ;
@@ -3848,6 +3929,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48510>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micron"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48510"^^xsd:string ;
 	th:notation "um"^^xsd:string ;
 	th:definition "A unit of length in metric system equal to 10E-6 meter, or micrometer.(NCI)"^^xsd:string ;
@@ -3863,6 +3945,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -3878,6 +3961,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67306>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Liter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67306"^^xsd:string ;
 	th:notation "ug/L"^^xsd:string ;
 	th:definition "A unit of mass concentration defined as the concentration of one microgram of a substance per unit volume of the mixture equal to one liter. The concept also refers to the unit of mass density (volumic mass) defined as the density of substance which mass equal to one microgram occupies the volume one liter.(NCI)"^^xsd:string ;
@@ -3897,6 +3981,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67327>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nanogram per Liter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67327"^^xsd:string ;
 	th:notation "ug/m3"^^xsd:string ;
 	th:definition "A unit of mass concentration defined as the concentration of one nanogram of a substance per one liter of the mixture, or one picogram of a substance in unit volume of the mixture equal to one milliliter, or one microgram of a substance per one cubic meter of the mixture. The concept also refers to the metric unit of mass density (volumic mass) defined as the density of substance which mass equal to one nanogram occupies the volume one liter.(NCI)"^^xsd:string ;
@@ -3912,6 +3997,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67394>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Hour"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67394"^^xsd:string ;
 	th:notation "ug/h"^^xsd:string ;
 	th:definition "A unit of mass flow rate equivalent to the rate at which one millionth of a gram of matter travels to a given object or space over a period of time equal to one hour.(NCI)"^^xsd:string ;
@@ -3927,6 +4013,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67396>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Kilogram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67396"^^xsd:string ;
 	th:notation "ug/kg"^^xsd:string ;
 	th:definition "A unit of a mass fraction expressed as a number of micrograms of substance per kilogram of mixture. The unit is also used as a dose calculation unit.(NCI)"^^xsd:string ;
@@ -3942,6 +4029,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67397>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microkatal per Liter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67397"^^xsd:string ;
 	th:notation "ukat/L"^^xsd:string ;
 	th:definition "Unit of catalytic activity concentration defined as activity equal to one millionth of katal per one liter of the system volume.(NCI)"^^xsd:string ;
@@ -3957,6 +4045,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C67406>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micromole per 24 Hours"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C67406"^^xsd:string ;
 	th:notation "umol/day"^^xsd:string ;
 	th:definition "A unit of amount of substance flow rate equivalent to the rate at which one millionth of a mole of substance travels to a given object or space over a period of time equal to 24 hours.(NCI)"^^xsd:string ;
@@ -3972,6 +4061,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C69175>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microliter per Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C69175"^^xsd:string ;
 	th:notation "uL/mL"^^xsd:string ;
 	th:definition "A unit of volume fraction expressed as a number of microliters of the constituent per the volume of the system represented in milliliters.(NCI)"^^xsd:string ;
@@ -3987,6 +4077,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70523>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Becquerel per Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70523"^^xsd:string ;
 	th:notation "Bq/ug"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one Becquerel of the sample with total mass of one microgram.(NCI)"^^xsd:string ;
@@ -4006,6 +4097,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70526>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gigabecquerel per Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70526"^^xsd:string ;
 	th:notation "GBq/ug"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one gigabecquerel of the sample with total mass of one microgram.(NCI)"^^xsd:string ;
@@ -4022,6 +4114,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gigabecquerel per Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70527"^^xsd:string ;
 	th:notation "GBq/mg"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one gigabecquerel of the sample with total mass of one milligram.(NCI)"^^xsd:string ;
@@ -4039,6 +4132,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Curie per Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70530"^^xsd:string ;
 	th:notation "Ci/ug"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one Curie of the sample with total mass of one microgram.(NCI)"^^xsd:string ;
@@ -4054,6 +4148,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70562>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microkatal"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70562"^^xsd:string ;
 	th:notation "ukat"^^xsd:string ;
 	th:definition "A unit of catalytic activity measurement equal to one millionth of katal (10E-6 katal).(NCI)"^^xsd:string ;
@@ -4069,6 +4164,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70571>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microcurie per Kilogram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70571"^^xsd:string ;
 	th:notation "uCi/kg"^^xsd:string ;
 	th:definition "A unit of specific radioactivity (massic activity) equal to activity of one microcurie of the sample with total mass of one kilogram.(NCI)"^^xsd:string ;
@@ -4084,6 +4180,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C70581>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliequivalent per Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70581"^^xsd:string ;
 	th:notation "mEq/ug"^^xsd:string ;
 	th:definition "A unit of relative amount of substance content equivalent to the content at which one millionth of a gram of mixture contains one thousandth of an equivalent of a component. The unit is also used as a dose calculation unit.(NCI)"^^xsd:string ;
@@ -4099,6 +4196,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71171>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Curie per Microliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71171"^^xsd:string ;
 	th:notation "Ci/uL"^^xsd:string ;
 	th:definition "A unit of volumetric radioactivity concentration defined as a concentration of a radionuclide with an activity equal to one Curie per unit volume equal to one millionth of a liter.(NCI)"^^xsd:string ;
@@ -4114,6 +4212,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71173>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microcurie per Liter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71173"^^xsd:string ;
 	th:notation "uCi/L"^^xsd:string ;
 	th:definition "A unit of volumetric radioactivity concentration defined as a concentration of a radionuclide with an activity equal to one millionth of a Curie per unit volume equal to one liter.(NCI)"^^xsd:string ;
@@ -4129,6 +4228,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71175>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microvolt"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71175"^^xsd:string ;
 	th:notation "uV"^^xsd:string ;
 	th:definition "A unit of an electric potential and electromotive force equal to one millionth of a volt.(NCI)"^^xsd:string ;
@@ -4144,6 +4244,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71205>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Day"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71205"^^xsd:string ;
 	th:notation "ug/day"^^xsd:string ;
 	th:definition "A unit of mass flow rate equivalent to the rate at which one millionth of a gram of matter travels to a given object or space over a period of time equal to twenty four hours. Microgram per day is also a dose administration rate unit equal to the rate at which one millionth of a gram of a product is administered per unit of time equal to twenty four hours.(NCI)"^^xsd:string ;
@@ -4159,6 +4260,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71210>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Kilogram per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71210"^^xsd:string ;
 	th:notation "ug/kg/min"^^xsd:string ;
 	th:definition "A dose calculation unit equal to one millionth of a gram of a preparation per one kilogram of body mass administered per unit of time equal to one minute.(NCI)"^^xsd:string ;
@@ -4176,6 +4278,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C71211>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C71211"^^xsd:string ;
 	th:notation "ug/min"^^xsd:string ;
 	th:definition "A unit of mass flow rate equivalent to the rate at which one millionth of a gram of matter travels to a given object or space over a period of time equal to one minute. Microgram per minute is also a dose administration rate unit equal to the rate at which one millionth of a gram of a product is administered per unit of time equal to one minute.(NCI)"^^xsd:string ;
@@ -4191,6 +4294,7 @@
 <http://www.cdisc.org/C71620/V18#C71620_C73993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pack Year"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C73993"^^xsd:string ;
 	th:notation "Pack Year"^^xsd:string ;
 	th:definition "A quantification of lifetime tobacco exposure defined as (number of cigarettes smoked per day x number of years smoked)/20. One pack-year is smoking 20 cigarettes a day for one year."^^xsd:string ;
@@ -4204,6 +4308,7 @@
 <http://www.cdisc.org/C78735/V18#C78735>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Evaluator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78735/V18#C78735_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78735/V18#C78735_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4255,6 +4360,7 @@
 <http://www.cdisc.org/C78735/V18#C78735_C42708>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Child"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42708"^^xsd:string ;
 	th:notation "CHILD"^^xsd:string ;
 	th:definition "A son or a daughter."^^xsd:string ;
@@ -4264,6 +4370,7 @@
 <http://www.cdisc.org/C78735/V18#C78735_C42709>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Parent"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42709"^^xsd:string ;
 	th:notation "PARENT"^^xsd:string ;
 	th:definition "A mother or a father."^^xsd:string ;

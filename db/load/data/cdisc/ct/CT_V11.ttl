@@ -17,6 +17,7 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2008-09-30.xlsx'"^^xsd:string ;
@@ -575,6 +576,7 @@
 <http://www.cdisc.org/C71620/V11#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V11#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V11#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;

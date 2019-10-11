@@ -139,6 +139,20 @@ describe "IsoConceptV2" do
       check_uri(ct, [])
     end
 
+  end
+
+  describe "Tags" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..26)
+    end
+
     it "add tags" do
       item_1 = IsoConceptV2.new
       item_1.uri = Uri.new(uri: "http://www.assero.co.uk/C1")
@@ -174,6 +188,15 @@ describe "IsoConceptV2" do
       expect(item_2.tagged.count).to eq(3)
       expect(item_1.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
       expect(item_2.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
+    end
+
+    it "Gets tags" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      results = th.tags
+      expect(results.map{|x| x.pref_label}).to eq(["SDTM"])
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = th.tags
+      expect(results.map{|x| x.pref_label}).to eq(["SDTM", "CDASH", "ADaM", "SEND"])
     end
 
   end

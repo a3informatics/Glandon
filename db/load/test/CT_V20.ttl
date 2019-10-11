@@ -17,6 +17,9 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2010-04-08.xlsx', 'CDASH Terminology 2010-04-08.xlsx', 'ADaM Terminology 2010-04-08.xlsx'"^^xsd:string ;
@@ -938,6 +941,7 @@
 <http://www.cdisc.org/C66741/V20#C66741>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66741/V20#C66741_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66741/V20#C66741_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -989,6 +993,7 @@
 <http://www.cdisc.org/C66741/V20#C66741_C87054>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sagittal Abdominal Diameter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C87054"^^xsd:string ;
 	th:notation "SAD"^^xsd:string ;
 	th:definition "A standard measure of visceral obesity, or abdominal fat, which is measured from the patient's back to upper abdomen between the bottom of the rib cage and the top of the pelvic area. This measurement may be taken with the patient standing or in the supine position. (NCI)"^^xsd:string ;
@@ -1007,6 +1012,7 @@
 <http://www.cdisc.org/C66741/V20#C66741_C84372>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Knee to Heel Length Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C84372"^^xsd:string ;
 	th:notation "KNEEHEEL"^^xsd:string ;
 	th:definition "A measurement of the length of the lower leg from the top of the knee to the bottom of the heel. This measurement may be taken with a knemometer or calipers. (NCI)"^^xsd:string ;
@@ -1025,6 +1031,7 @@
 <http://www.cdisc.org/C67153/V20#C67153>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67153/V20#C67153_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67153/V20#C67153_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1076,6 +1083,7 @@
 <http://www.cdisc.org/C67153/V20#C67153_C87054>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sagittal Abdominal Diameter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C87054"^^xsd:string ;
 	th:notation "Sagittal Abdominal Diameter"^^xsd:string ;
 	th:definition "A standard measure of visceral obesity, or abdominal fat, which is measured from the patient's back to upper abdomen between the bottom of the rib cage and the top of the pelvic area. This measurement may be taken with the patient standing or in the supine position. (NCI)"^^xsd:string ;
@@ -1086,6 +1094,7 @@
 <http://www.cdisc.org/C67153/V20#C67153_C84372>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Knee to Heel Length Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C84372"^^xsd:string ;
 	th:notation "Knee to Heel Length"^^xsd:string ;
 	th:definition "A measurement of the length of the lower leg from the top of the knee to the bottom of the heel. This measurement may be taken with a knemometer or calipers. (NCI)"^^xsd:string ;
@@ -1096,6 +1105,7 @@
 <http://www.cdisc.org/C65047/V20#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V20#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V20#C65047_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1713,6 +1723,7 @@
 <http://www.cdisc.org/C65047/V20#C65047_C74781>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cortisol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74781"^^xsd:string ;
 	th:notation "CORTISOL"^^xsd:string ;
 	th:definition "A measurement of the cortisol in a biological specimen."^^xsd:string ;
@@ -1728,6 +1739,7 @@
 <http://www.cdisc.org/C65047/V20#C65047_C88113>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Free Cortisol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C88113"^^xsd:string ;
 	th:notation "CORTFR"^^xsd:string ;
 	th:definition "A measurement of the free, unbound cortisol in a biological specimen."^^xsd:string ;
@@ -1746,6 +1758,7 @@
 <http://www.cdisc.org/C67154/V20#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V20#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V20#C67154_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2363,6 +2376,7 @@
 <http://www.cdisc.org/C67154/V20#C67154_C74781>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cortisol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74781"^^xsd:string ;
 	th:notation "Cortisol"^^xsd:string ;
 	th:definition "A measurement of the cortisol in a biological specimen."^^xsd:string ;
@@ -2374,6 +2388,7 @@
 <http://www.cdisc.org/C67154/V20#C67154_C88113>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Free Cortisol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C88113"^^xsd:string ;
 	th:notation "Cortisol, Free"^^xsd:string ;
 	th:definition "A measurement of the free, unbound cortisol in a biological specimen."^^xsd:string ;
@@ -2384,6 +2399,7 @@
 <http://www.cdisc.org/C71150/V20#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V20#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V20#C71150_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2530,6 +2546,7 @@
 <http://www.cdisc.org/C71150/V20#C71150_C88140>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Paced Rhythm"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C88140"^^xsd:string ;
 	th:notation "PACED RHYTHM"^^xsd:string ;
 	th:definition "An electrocardiographic finding in which the cardiac rhythm is controlled by an electrical impulse from a mechanical cardiac pacemaker."^^xsd:string ;
@@ -2548,6 +2565,7 @@
 <http://www.cdisc.org/C71620/V20#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V20#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V20#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2894,6 +2912,7 @@
 <http://www.cdisc.org/C71620/V20#C71620_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "The unit of volume equal to one thousandth of a liter, one cubic centimeter, 10E-6 cubic meter, or approximately to 0.061 023 7 cubic inch.(NCI)"^^xsd:string ;
@@ -2905,6 +2924,7 @@
 <http://www.cdisc.org/C74456/V20#C74456>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Anatomical Location"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C74456/V20#C74456_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C74456/V20#C74456_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3244,6 +3264,7 @@
 <http://www.cdisc.org/C74456/V20#C74456_C32996>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liver Fissure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C32996"^^xsd:string ;
 	th:notation "LIVER FISSURE"^^xsd:string ;
 	th:definition "A groove on the surface of the liver."^^xsd:string ;
@@ -3254,6 +3275,7 @@
 <http://www.cdisc.org/C85494/V20#C85494>
 	rdf:type th:ManagedConcept ;
 	isoC:label "PK Parameter Units of Measure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C85494/V20#C85494_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85494/V20#C85494_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3498,6 +3520,7 @@
 <http://www.cdisc.org/C85494/V20#C85494_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "The unit of volume equal to one thousandth of a liter, one cubic centimeter, 10E-6 cubic meter, or approximately to 0.061 023 7 cubic inch.(NCI)"^^xsd:string ;
@@ -3509,6 +3532,7 @@
 <http://www.cdisc.org/C85491/V20#C85491>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Microorganism"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C85491/V20#C85491_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C85491/V20#C85491_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4413,6 +4437,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86077>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Abiotrophia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86077"^^xsd:string ;
 	th:notation "ABIOTROPHIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Abiotrophia genus level."^^xsd:string ;
@@ -4422,6 +4447,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86079>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Achromobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86079"^^xsd:string ;
 	th:notation "ACHROMOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Achromobacter genus level."^^xsd:string ;
@@ -4431,6 +4457,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86083>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acidaminococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86083"^^xsd:string ;
 	th:notation "ACIDAMINOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Acidaminococcus genus level."^^xsd:string ;
@@ -4440,6 +4467,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86085>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acidovorax"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86085"^^xsd:string ;
 	th:notation "ACIDOVORAX"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Acidovorax genus level."^^xsd:string ;
@@ -4449,6 +4477,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76200>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acinetobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76200"^^xsd:string ;
 	th:notation "ACINETOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Acinetobacter genus level."^^xsd:string ;
@@ -4458,6 +4487,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86097>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Actinobacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86097"^^xsd:string ;
 	th:notation "ACTINOBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Actinobacillus genus level."^^xsd:string ;
@@ -4467,6 +4497,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86104>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Actinomadura"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86104"^^xsd:string ;
 	th:notation "ACTINOMADURA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Actinomadura genus level."^^xsd:string ;
@@ -4476,6 +4507,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76201>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Actinomyces"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76201"^^xsd:string ;
 	th:notation "ACTINOMYCES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Actinomyces genus level."^^xsd:string ;
@@ -4485,6 +4517,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86120>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerobic Streptococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86120"^^xsd:string ;
 	th:notation "AEROBIC STREPTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria assigned to the genus Streptococcus that requires oxygen to grow or respirate."^^xsd:string ;
@@ -4494,6 +4527,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86121>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86121"^^xsd:string ;
 	th:notation "AEROCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Aerococcus genus level."^^xsd:string ;
@@ -4504,6 +4538,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86124>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aeromonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86124"^^xsd:string ;
 	th:notation "AEROMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Aeromonas genus level."^^xsd:string ;
@@ -4513,6 +4548,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86132>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aggregatibacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86132"^^xsd:string ;
 	th:notation "AGGREGATIBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Aggregatibacter genus level."^^xsd:string ;
@@ -4522,6 +4558,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86011>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Agrobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86011"^^xsd:string ;
 	th:notation "AGROBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Agrobacterium genus level."^^xsd:string ;
@@ -4531,6 +4568,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86012>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alcaligenes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86012"^^xsd:string ;
 	th:notation "ALCALIGENES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Alcaligenes genus level."^^xsd:string ;
@@ -4540,6 +4578,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86146>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Anaerobic Streptococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86146"^^xsd:string ;
 	th:notation "ANAEROBIC STREPTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria assigned to the genus Streptococcus that does not require oxygen to grow or respirate."^^xsd:string ;
@@ -4549,6 +4588,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86872>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Anaerococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86872"^^xsd:string ;
 	th:notation "ANAEROCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Anaerococcus genus level."^^xsd:string ;
@@ -4558,6 +4598,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86147>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arcanobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86147"^^xsd:string ;
 	th:notation "ARCANOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Arcanobacterium genus level."^^xsd:string ;
@@ -4567,6 +4608,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arcobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86152"^^xsd:string ;
 	th:notation "ARCOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Arcobacter genus level."^^xsd:string ;
@@ -4576,6 +4618,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arthrobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86155"^^xsd:string ;
 	th:notation "ARTHROBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Arthrobacter genus level."^^xsd:string ;
@@ -4585,6 +4628,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76202>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76202"^^xsd:string ;
 	th:notation "BACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bacillus genus level."^^xsd:string ;
@@ -4594,6 +4638,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76204>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bacteroides"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76204"^^xsd:string ;
 	th:notation "BACTEROIDES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bacteroides genus level."^^xsd:string ;
@@ -4603,6 +4648,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86184>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bartonella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86184"^^xsd:string ;
 	th:notation "BARTONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bartonella genus level."^^xsd:string ;
@@ -4612,6 +4658,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86188>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bergeyella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86188"^^xsd:string ;
 	th:notation "BERGEYELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bergeyella genus level."^^xsd:string ;
@@ -4621,6 +4668,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86194>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bifidobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86194"^^xsd:string ;
 	th:notation "BIFIDOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bifidobacterium genus level."^^xsd:string ;
@@ -4630,6 +4678,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86200>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bilophila"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86200"^^xsd:string ;
 	th:notation "BILOPHILA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bilophila genus level."^^xsd:string ;
@@ -4639,6 +4688,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86202>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bordetella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86202"^^xsd:string ;
 	th:notation "BORDETELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Bordetella genus level."^^xsd:string ;
@@ -4648,6 +4698,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86206>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Borrelia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86206"^^xsd:string ;
 	th:notation "BORRELIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Borrelia genus level."^^xsd:string ;
@@ -4657,6 +4708,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86207>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Brevibacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86207"^^xsd:string ;
 	th:notation "BREVIBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Brevibacillus genus level."^^xsd:string ;
@@ -4666,6 +4718,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86209>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Brevibacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86209"^^xsd:string ;
 	th:notation "BREVIBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Brevibacterium genus level."^^xsd:string ;
@@ -4675,6 +4728,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86212>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Brevundimonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86212"^^xsd:string ;
 	th:notation "BREVUNDIMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Brevundimonas genus level."^^xsd:string ;
@@ -4684,6 +4738,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86215>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Brucella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86215"^^xsd:string ;
 	th:notation "BRUCELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Brucella genus level."^^xsd:string ;
@@ -4693,6 +4748,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86220>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Budvicia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86220"^^xsd:string ;
 	th:notation "BUDVICIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Budvicia genus level."^^xsd:string ;
@@ -4702,6 +4758,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86222>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Burkholderia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86222"^^xsd:string ;
 	th:notation "BURKHOLDERIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Burkholderia genus level."^^xsd:string ;
@@ -4711,6 +4768,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86228>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Buttiauxella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86228"^^xsd:string ;
 	th:notation "BUTTIAUXELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Buttiauxella genus level."^^xsd:string ;
@@ -4720,6 +4778,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76211>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Campylobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76211"^^xsd:string ;
 	th:notation "CAMPYLOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Campylobacter genus level."^^xsd:string ;
@@ -4729,6 +4788,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76269>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capnocytophaga"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76269"^^xsd:string ;
 	th:notation "CAPNOCYTOPHAGA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Capnocytophaga genus level."^^xsd:string ;
@@ -4738,6 +4798,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86243>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cardiobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86243"^^xsd:string ;
 	th:notation "CARDIOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Cardiobacterium genus level."^^xsd:string ;
@@ -4747,6 +4808,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86245>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cedecea"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86245"^^xsd:string ;
 	th:notation "CEDECEA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Cedecea genus level."^^xsd:string ;
@@ -4756,6 +4818,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86249>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cellulomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86249"^^xsd:string ;
 	th:notation "CELLULOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Cellulomonas genus level."^^xsd:string ;
@@ -4765,6 +4828,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86251>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cellulosimicrobium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86251"^^xsd:string ;
 	th:notation "CELLULOSIMICROBIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Cellulosimicrobium genus level."^^xsd:string ;
@@ -4774,6 +4838,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76271>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chlamydia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76271"^^xsd:string ;
 	th:notation "CHLAMYDIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Chlamydia genus level."^^xsd:string ;
@@ -4783,6 +4848,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chlamydophila"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86254"^^xsd:string ;
 	th:notation "CHLAMYDOPHILA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Chlamydophila genus level."^^xsd:string ;
@@ -4792,6 +4858,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86256>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chromobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86256"^^xsd:string ;
 	th:notation "CHROMOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Chromobacterium genus level."^^xsd:string ;
@@ -4801,6 +4868,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chryseobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86258"^^xsd:string ;
 	th:notation "CHRYSEOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Chryseobacterium genus level."^^xsd:string ;
@@ -4810,6 +4878,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chryseomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86261"^^xsd:string ;
 	th:notation "CHRYSEOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Chryseomonas genus level."^^xsd:string ;
@@ -4819,6 +4888,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76273>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Citrobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76273"^^xsd:string ;
 	th:notation "CITROBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Citrobacter genus level."^^xsd:string ;
@@ -4828,6 +4898,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76275>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Clostridium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76275"^^xsd:string ;
 	th:notation "CLOSTRIDIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Clostridium genus level."^^xsd:string ;
@@ -4837,6 +4908,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86300>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Collinsella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86300"^^xsd:string ;
 	th:notation "COLLINSELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Collinsella genus level."^^xsd:string ;
@@ -4846,6 +4918,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86303>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Comamonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86303"^^xsd:string ;
 	th:notation "COMAMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Comamonas genus level."^^xsd:string ;
@@ -4855,6 +4928,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76308>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Corynebacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76308"^^xsd:string ;
 	th:notation "CORYNEBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Corynebacterium genus level."^^xsd:string ;
@@ -4864,6 +4938,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76309>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Coxiella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76309"^^xsd:string ;
 	th:notation "COXIELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Coxiella genus level."^^xsd:string ;
@@ -4873,6 +4948,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86330>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cupriavidus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86330"^^xsd:string ;
 	th:notation "CUPRIAVIDUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Cupriavidus genus level."^^xsd:string ;
@@ -4882,6 +4958,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86332>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Delftia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86332"^^xsd:string ;
 	th:notation "DELFTIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Delftia genus level."^^xsd:string ;
@@ -4891,6 +4968,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86334>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dermabacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86334"^^xsd:string ;
 	th:notation "DERMABACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Dermabacter genus level."^^xsd:string ;
@@ -4900,6 +4978,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86337>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dermatophilus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86337"^^xsd:string ;
 	th:notation "DERMATOPHILUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Dermatophilus genus level."^^xsd:string ;
@@ -4909,6 +4988,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86339>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Desulfovibrio"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86339"^^xsd:string ;
 	th:notation "DESULFOVIBRIO"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Desulfovibrio genus level."^^xsd:string ;
@@ -4919,6 +4999,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86344>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Edwardsiella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86344"^^xsd:string ;
 	th:notation "EDWARDSIELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Edwardsiella genus level."^^xsd:string ;
@@ -4928,6 +5009,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86348>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eggerthella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86348"^^xsd:string ;
 	th:notation "EGGERTHELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Eggerthella genus level."^^xsd:string ;
@@ -4937,6 +5019,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86350>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eikenella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86350"^^xsd:string ;
 	th:notation "EIKENELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Eikenella genus level."^^xsd:string ;
@@ -4946,6 +5029,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Elizabethkingia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86352"^^xsd:string ;
 	th:notation "ELIZABETHKINGIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Elizabethkingia genus level."^^xsd:string ;
@@ -4955,6 +5039,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86354>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Empedobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86354"^^xsd:string ;
 	th:notation "EMPEDOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Empedobacter genus level."^^xsd:string ;
@@ -4964,6 +5049,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76310>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Enterobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76310"^^xsd:string ;
 	th:notation "ENTEROBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Enterobacter genus level."^^xsd:string ;
@@ -4973,6 +5059,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76311>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Enterococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76311"^^xsd:string ;
 	th:notation "ENTEROCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Enterococcus genus level."^^xsd:string ;
@@ -4983,6 +5070,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86376>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erysipelothrix"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86376"^^xsd:string ;
 	th:notation "ERYSIPELOTHRIX"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Erysipelothrix genus level."^^xsd:string ;
@@ -4993,6 +5081,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C77208>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Escherichia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C77208"^^xsd:string ;
 	th:notation "ESCHERICHIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Escherichia genus level."^^xsd:string ;
@@ -5002,6 +5091,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86383>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eubacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86383"^^xsd:string ;
 	th:notation "EUBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Eubacterium genus level."^^xsd:string ;
@@ -5011,6 +5101,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86390>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ewingella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86390"^^xsd:string ;
 	th:notation "EWINGELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Ewingella genus level."^^xsd:string ;
@@ -5020,6 +5111,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86885>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Exiguobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86885"^^xsd:string ;
 	th:notation "EXIGUOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Exiguobacterium genus level."^^xsd:string ;
@@ -5029,6 +5121,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86392>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Facklamia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86392"^^xsd:string ;
 	th:notation "FACKLAMIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Facklamia genus level."^^xsd:string ;
@@ -5038,6 +5131,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86393>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Faecalibacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86393"^^xsd:string ;
 	th:notation "FAECALIBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Faecalibacterium genus level."^^xsd:string ;
@@ -5047,6 +5141,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Finegoldia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86887"^^xsd:string ;
 	th:notation "FINEGOLDIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Finegoldia genus level."^^xsd:string ;
@@ -5056,6 +5151,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76320>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Flavobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76320"^^xsd:string ;
 	th:notation "FLAVOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Flavobacterium genus level."^^xsd:string ;
@@ -5065,6 +5161,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86396>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Francisella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86396"^^xsd:string ;
 	th:notation "FRANCISELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Francisella genus level."^^xsd:string ;
@@ -5074,6 +5171,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76323>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Fusobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76323"^^xsd:string ;
 	th:notation "FUSOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Fusobacterium genus level."^^xsd:string ;
@@ -5083,6 +5181,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86409>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gardnerella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86409"^^xsd:string ;
 	th:notation "GARDNERELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Gardnerella genus level."^^xsd:string ;
@@ -5092,6 +5191,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86889>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gemella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86889"^^xsd:string ;
 	th:notation "GEMELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Gemella genus level."^^xsd:string ;
@@ -5101,6 +5201,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86411>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Globicatella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86411"^^xsd:string ;
 	th:notation "GLOBICATELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Globicatella genus level."^^xsd:string ;
@@ -5110,6 +5211,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86414>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gordonia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86414"^^xsd:string ;
 	th:notation "GORDONIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Gordonia genus level."^^xsd:string ;
@@ -5119,6 +5221,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86420>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gracilibacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86420"^^xsd:string ;
 	th:notation "GRACILIBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Gracilibacillus genus level."^^xsd:string ;
@@ -5128,6 +5231,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86425>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Granulicatella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86425"^^xsd:string ;
 	th:notation "GRANULICATELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Granulicatella genus level."^^xsd:string ;
@@ -5137,6 +5241,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76324>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Haemophilus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76324"^^xsd:string ;
 	th:notation "HAEMOPHILUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Haemophilus genus level."^^xsd:string ;
@@ -5146,6 +5251,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86434>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hafnia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86434"^^xsd:string ;
 	th:notation "HAFNIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Hafnia genus level."^^xsd:string ;
@@ -5155,6 +5261,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86436>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Halobacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86436"^^xsd:string ;
 	th:notation "HALOBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Halobacillus genus level."^^xsd:string ;
@@ -5164,6 +5271,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86873>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Helcococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86873"^^xsd:string ;
 	th:notation "HELCOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Helcococcus genus level."^^xsd:string ;
@@ -5173,6 +5281,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C14296>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Helicobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C14296"^^xsd:string ;
 	th:notation "HELICOBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Helicobacter genus level."^^xsd:string ;
@@ -5182,6 +5291,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86442>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Holdemania"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86442"^^xsd:string ;
 	th:notation "HOLDEMANIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Holdemania genus level."^^xsd:string ;
@@ -5191,6 +5301,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86444>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inquilinus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86444"^^xsd:string ;
 	th:notation "INQUILINUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Inquilinus genus level."^^xsd:string ;
@@ -5200,6 +5311,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86446>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Jeotgalibacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86446"^^xsd:string ;
 	th:notation "JEOTGALIBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Jeotgalibacillus genus level."^^xsd:string ;
@@ -5209,6 +5321,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86447>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Johnsonella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86447"^^xsd:string ;
 	th:notation "JOHNSONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Johnsonella genus level."^^xsd:string ;
@@ -5218,6 +5331,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86449>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kingella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86449"^^xsd:string ;
 	th:notation "KINGELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Kingella genus level."^^xsd:string ;
@@ -5227,6 +5341,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C28165>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Klebsiella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C28165"^^xsd:string ;
 	th:notation "KLEBSIELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Klebsiella genus level."^^xsd:string ;
@@ -5236,6 +5351,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86461>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kluyvera"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86461"^^xsd:string ;
 	th:notation "KLUYVERA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Kluyvera genus level."^^xsd:string ;
@@ -5245,6 +5361,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86466>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Knoellia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86466"^^xsd:string ;
 	th:notation "KNOELLIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Knoellia genus level."^^xsd:string ;
@@ -5254,6 +5371,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86467>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kocuria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86467"^^xsd:string ;
 	th:notation "KOCURIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Kocuria genus level."^^xsd:string ;
@@ -5263,6 +5381,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86471>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kurthia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86471"^^xsd:string ;
 	th:notation "KURTHIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Kurthia genus level."^^xsd:string ;
@@ -5272,6 +5391,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86472>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Kytococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86472"^^xsd:string ;
 	th:notation "KYTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Kytococcus genus level."^^xsd:string ;
@@ -5281,6 +5401,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactobacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76352"^^xsd:string ;
 	th:notation "LACTOBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Lactobacillus genus level."^^xsd:string ;
@@ -5290,6 +5411,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86483>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86483"^^xsd:string ;
 	th:notation "LACTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Lactococcus genus level."^^xsd:string ;
@@ -5300,6 +5422,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86486>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leclercia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86486"^^xsd:string ;
 	th:notation "LECLERCIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Leclercia genus level."^^xsd:string ;
@@ -5309,6 +5432,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76353>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Legionella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76353"^^xsd:string ;
 	th:notation "LEGIONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Legionella genus level."^^xsd:string ;
@@ -5318,6 +5442,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86490>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leifsonia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86490"^^xsd:string ;
 	th:notation "LEIFSONIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Leifsonia genus level."^^xsd:string ;
@@ -5327,6 +5452,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86492>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leminorella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86492"^^xsd:string ;
 	th:notation "LEMINORELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Leminorella genus level."^^xsd:string ;
@@ -5336,6 +5462,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76355>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leptospira"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76355"^^xsd:string ;
 	th:notation "LEPTOSPIRA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Leptospira genus level."^^xsd:string ;
@@ -5345,6 +5472,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76357>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leuconostoc"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76357"^^xsd:string ;
 	th:notation "LEUCONOSTOC"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Leuconostoc genus level."^^xsd:string ;
@@ -5354,6 +5482,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76359>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Listeria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76359"^^xsd:string ;
 	th:notation "LISTERIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Listeria genus level."^^xsd:string ;
@@ -5363,6 +5492,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86505>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Macrococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86505"^^xsd:string ;
 	th:notation "MACROCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Macrococcus genus level."^^xsd:string ;
@@ -5372,6 +5502,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86507>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mannheimia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86507"^^xsd:string ;
 	th:notation "MANNHEIMIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mannheimia genus level."^^xsd:string ;
@@ -5381,6 +5512,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86895>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Megasphaera"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86895"^^xsd:string ;
 	th:notation "MEGASPHAERA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Megasphaera genus level."^^xsd:string ;
@@ -5390,6 +5522,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76361>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Methylobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76361"^^xsd:string ;
 	th:notation "METHYLOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Methylobacterium genus level."^^xsd:string ;
@@ -5399,6 +5532,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C85511>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microbacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C85511"^^xsd:string ;
 	th:notation "MICROBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Microbacterium genus level."^^xsd:string ;
@@ -5413,6 +5547,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C77086>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micrococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C77086"^^xsd:string ;
 	th:notation "MICROCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Micrococcus genus level."^^xsd:string ;
@@ -5422,6 +5557,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86515>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mitsuokella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86515"^^xsd:string ;
 	th:notation "MITSUOKELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mitsuokella genus level."^^xsd:string ;
@@ -5431,6 +5567,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86517>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mobiluncus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86517"^^xsd:string ;
 	th:notation "MOBILUNCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mobiluncus genus level."^^xsd:string ;
@@ -5440,6 +5577,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86520>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Moellerella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86520"^^xsd:string ;
 	th:notation "MOELLERELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Moellerella genus level."^^xsd:string ;
@@ -5449,6 +5587,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86898>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mogibacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86898"^^xsd:string ;
 	th:notation "MOGIBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mogibacterium genus level."^^xsd:string ;
@@ -5458,6 +5597,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86009>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Moraxella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86009"^^xsd:string ;
 	th:notation "MORAXELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Moraxella genus level."^^xsd:string ;
@@ -5468,6 +5608,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Morganella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86531"^^xsd:string ;
 	th:notation "MORGANELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Morganella genus level."^^xsd:string ;
@@ -5477,6 +5618,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76369>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mycobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76369"^^xsd:string ;
 	th:notation "MYCOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mycobacterium genus level."^^xsd:string ;
@@ -5486,6 +5628,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C73540>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mycoplasma"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C73540"^^xsd:string ;
 	th:notation "MYCOPLASMA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Mycoplasma genus level."^^xsd:string ;
@@ -5495,6 +5638,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86953>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myroides"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86953"^^xsd:string ;
 	th:notation "MYROIDES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Myroides genus level."^^xsd:string ;
@@ -5504,6 +5648,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76371>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Neisseria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76371"^^xsd:string ;
 	th:notation "NEISSERIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Neisseria genus level."^^xsd:string ;
@@ -5513,6 +5658,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76372>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nocardia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76372"^^xsd:string ;
 	th:notation "NOCARDIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Nocardia genus level."^^xsd:string ;
@@ -5522,6 +5668,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86619>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ochrobactrum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86619"^^xsd:string ;
 	th:notation "OCHROBACTRUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Ochrobactrum genus level."^^xsd:string ;
@@ -5531,6 +5678,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86622>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oerskovia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86622"^^xsd:string ;
 	th:notation "OERSKOVIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Oerskovia genus level."^^xsd:string ;
@@ -5540,6 +5688,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86624>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oligella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86624"^^xsd:string ;
 	th:notation "OLIGELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Oligella genus level."^^xsd:string ;
@@ -5549,6 +5698,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86627>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Olsenella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86627"^^xsd:string ;
 	th:notation "OLSENELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Olsenella genus level."^^xsd:string ;
@@ -5558,6 +5708,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86629>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pandoraea"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86629"^^xsd:string ;
 	th:notation "PANDORAEA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Pandoraea genus level."^^xsd:string ;
@@ -5567,6 +5718,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86631>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pantoea"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86631"^^xsd:string ;
 	th:notation "PANTOEA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Pantoea genus level."^^xsd:string ;
@@ -5576,6 +5728,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86633>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Parabacteroides"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86633"^^xsd:string ;
 	th:notation "PARABACTEROIDES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Parabacteroides genus level."^^xsd:string ;
@@ -5585,6 +5738,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86900>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Parvimonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86900"^^xsd:string ;
 	th:notation "PARVIMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Parvimonas genus level."^^xsd:string ;
@@ -5594,6 +5748,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86636>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pasteurella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86636"^^xsd:string ;
 	th:notation "PASTEURELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Pasteurella genus level."^^xsd:string ;
@@ -5603,6 +5758,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86641>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pediococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86641"^^xsd:string ;
 	th:notation "PEDIOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Pediococcus genus level."^^xsd:string ;
@@ -5612,6 +5768,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86642>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Peptococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86642"^^xsd:string ;
 	th:notation "PEPTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Peptococcus genus level."^^xsd:string ;
@@ -5621,6 +5778,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86902>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Peptoniphilus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86902"^^xsd:string ;
 	th:notation "PEPTONIPHILUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Peptoniphilus genus level."^^xsd:string ;
@@ -5630,6 +5788,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86644>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Peptostreptococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86644"^^xsd:string ;
 	th:notation "PEPTOSTREPTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Peptostreptococcus genus level."^^xsd:string ;
@@ -5639,6 +5798,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86646>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Photobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86646"^^xsd:string ;
 	th:notation "PHOTOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Photobacterium genus level."^^xsd:string ;
@@ -5648,6 +5808,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86648>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Photorhabdus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86648"^^xsd:string ;
 	th:notation "PHOTORHABDUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Photorhabdus genus level."^^xsd:string ;
@@ -5657,6 +5818,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86650>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Planococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86650"^^xsd:string ;
 	th:notation "PLANOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Planococcus genus level."^^xsd:string ;
@@ -5666,6 +5828,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86651>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Plesiomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86651"^^xsd:string ;
 	th:notation "PLESIOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Plesiomonas genus level."^^xsd:string ;
@@ -5675,6 +5838,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86653>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Porphyromonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86653"^^xsd:string ;
 	th:notation "PORPHYROMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Porphyromonas genus level."^^xsd:string ;
@@ -5684,6 +5848,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86660>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Prevotella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86660"^^xsd:string ;
 	th:notation "PREVOTELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Prevotella genus level."^^xsd:string ;
@@ -5693,6 +5858,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86013>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Propionibacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86013"^^xsd:string ;
 	th:notation "PROPIONIBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Propionibacterium genus level."^^xsd:string ;
@@ -5702,6 +5868,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76374>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Proteus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76374"^^xsd:string ;
 	th:notation "PROTEUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Proteus genus level."^^xsd:string ;
@@ -5711,6 +5878,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86690>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Providencia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86690"^^xsd:string ;
 	th:notation "PROVIDENCIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Providencia genus level."^^xsd:string ;
@@ -5720,6 +5888,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76375>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pseudomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76375"^^xsd:string ;
 	th:notation "PSEUDOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Pseudomonas genus level."^^xsd:string ;
@@ -5729,6 +5898,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Psychrobacter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86707"^^xsd:string ;
 	th:notation "PSYCHROBACTER"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Psychrobacter genus level."^^xsd:string ;
@@ -5738,6 +5908,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86710>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rahnella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86710"^^xsd:string ;
 	th:notation "RAHNELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Rahnella genus level."^^xsd:string ;
@@ -5747,6 +5918,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86712>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ralstonia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86712"^^xsd:string ;
 	th:notation "RALSTONIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Ralstonia genus level."^^xsd:string ;
@@ -5756,6 +5928,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86714>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Raoultella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86714"^^xsd:string ;
 	th:notation "RAOULTELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Raoultella genus level."^^xsd:string ;
@@ -5765,6 +5938,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rhizobium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86718"^^xsd:string ;
 	th:notation "RHIZOBIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Rhizobium genus level."^^xsd:string ;
@@ -5774,6 +5948,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76378>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rhodococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76378"^^xsd:string ;
 	th:notation "RHODOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Rhodococcus genus level."^^xsd:string ;
@@ -5783,6 +5958,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76379>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rickettsia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76379"^^xsd:string ;
 	th:notation "RICKETTSIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Rickettsia genus level."^^xsd:string ;
@@ -5792,6 +5968,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86726>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Roseomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86726"^^xsd:string ;
 	th:notation "ROSEOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Roseomonas genus level."^^xsd:string ;
@@ -5801,6 +5978,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86727>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rothia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86727"^^xsd:string ;
 	th:notation "ROTHIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Rothia genus level."^^xsd:string ;
@@ -5810,6 +5988,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86729>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ruminococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86729"^^xsd:string ;
 	th:notation "RUMINOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Ruminococcus genus level."^^xsd:string ;
@@ -5819,6 +5998,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76380>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Salmonella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76380"^^xsd:string ;
 	th:notation "SALMONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Salmonella genus level."^^xsd:string ;
@@ -5829,6 +6009,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86732>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Selenomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86732"^^xsd:string ;
 	th:notation "SELENOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Selenomonas genus level."^^xsd:string ;
@@ -5838,6 +6019,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86010>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serratia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86010"^^xsd:string ;
 	th:notation "SERRATIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Serratia genus level."^^xsd:string ;
@@ -5848,6 +6030,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86742>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Shewanella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86742"^^xsd:string ;
 	th:notation "SHEWANELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Shewanella genus level."^^xsd:string ;
@@ -5857,6 +6040,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76381>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Shigella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76381"^^xsd:string ;
 	th:notation "SHIGELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Shigella genus level."^^xsd:string ;
@@ -5866,6 +6050,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86957>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sphingobacterium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86957"^^xsd:string ;
 	th:notation "SPHINGOBACTERIUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Sphingobacterium genus level."^^xsd:string ;
@@ -5875,6 +6060,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86748>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sphingomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86748"^^xsd:string ;
 	th:notation "SPHINGOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Sphingomonas genus level."^^xsd:string ;
@@ -5884,6 +6070,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C62583>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Staphylococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C62583"^^xsd:string ;
 	th:notation "STAPHYLOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Staphylococcus genus level."^^xsd:string ;
@@ -5893,6 +6080,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86776>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Stenotrophomonas"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86776"^^xsd:string ;
 	th:notation "STENOTROPHOMONAS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Stenotrophomonas genus level."^^xsd:string ;
@@ -5903,6 +6091,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Streptobacillus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86777"^^xsd:string ;
 	th:notation "STREPTOBACILLUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Streptobacillus genus level."^^xsd:string ;
@@ -5912,6 +6101,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76383>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Streptococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76383"^^xsd:string ;
 	th:notation "STREPTOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Streptococcus genus level."^^xsd:string ;
@@ -5922,6 +6112,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C14278>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Streptomyces"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C14278"^^xsd:string ;
 	th:notation "STREPTOMYCES"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Streptomyces genus level."^^xsd:string ;
@@ -5931,6 +6122,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86956>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sutterella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86956"^^xsd:string ;
 	th:notation "SUTTERELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Sutterella genus level."^^xsd:string ;
@@ -5940,6 +6132,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86815>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suttonella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86815"^^xsd:string ;
 	th:notation "SUTTONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Suttonella genus level."^^xsd:string ;
@@ -5949,6 +6142,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86818>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tatumella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86818"^^xsd:string ;
 	th:notation "TATUMELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Tatumella genus level."^^xsd:string ;
@@ -5958,6 +6152,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tetragenococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86820"^^xsd:string ;
 	th:notation "TETRAGENOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Tetragenococcus genus level."^^xsd:string ;
@@ -5967,6 +6162,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86907>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tissierella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86907"^^xsd:string ;
 	th:notation "TISSIERELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Tissierella genus level."^^xsd:string ;
@@ -5976,6 +6172,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86822>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Trabulsiella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86822"^^xsd:string ;
 	th:notation "TRABULSIELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Trabulsiella genus level."^^xsd:string ;
@@ -5985,6 +6182,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76385>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Treponema"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76385"^^xsd:string ;
 	th:notation "TREPONEMA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Treponema genus level."^^xsd:string ;
@@ -5994,6 +6192,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tropheryma"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86826"^^xsd:string ;
 	th:notation "TROPHERYMA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Tropheryma genus level."^^xsd:string ;
@@ -6003,6 +6202,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tsukamurella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86828"^^xsd:string ;
 	th:notation "TSUKAMURELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Tsukamurella genus level."^^xsd:string ;
@@ -6012,6 +6212,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Turicella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86830"^^xsd:string ;
 	th:notation "TURICELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Turicella genus level."^^xsd:string ;
@@ -6021,6 +6222,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ureaplasma"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86832"^^xsd:string ;
 	th:notation "UREAPLASMA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Ureaplasma genus level."^^xsd:string ;
@@ -6030,6 +6232,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vagococcus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86834"^^xsd:string ;
 	th:notation "VAGOCOCCUS"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Vagococcus genus level."^^xsd:string ;
@@ -6039,6 +6242,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Varibaculum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86835"^^xsd:string ;
 	th:notation "VARIBACULUM"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Varibaculum genus level."^^xsd:string ;
@@ -6048,6 +6252,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86837>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Veillonella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86837"^^xsd:string ;
 	th:notation "VEILLONELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Veillonella genus level."^^xsd:string ;
@@ -6057,6 +6262,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C76386>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vibrio"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C76386"^^xsd:string ;
 	th:notation "VIBRIO"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Vibrio genus level."^^xsd:string ;
@@ -6066,6 +6272,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86848>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Weeksella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86848"^^xsd:string ;
 	th:notation "WEEKSELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Weeksella genus level."^^xsd:string ;
@@ -6075,6 +6282,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86850>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Wolinella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86850"^^xsd:string ;
 	th:notation "WOLINELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Wolinella genus level."^^xsd:string ;
@@ -6084,6 +6292,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86852>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Yersinia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86852"^^xsd:string ;
 	th:notation "YERSINIA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Yersinia genus level."^^xsd:string ;
@@ -6093,6 +6302,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Yokenella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86864"^^xsd:string ;
 	th:notation "YOKENELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Yokenella genus level."^^xsd:string ;
@@ -6102,6 +6312,7 @@
 <http://www.cdisc.org/C85491/V20#C85491_C86866>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Zimmermannella"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C86866"^^xsd:string ;
 	th:notation "ZIMMERMANNELLA"^^xsd:string ;
 	th:definition "Any bacteria that is not assigned to the species level but can be assigned to the Zimmermannella genus level."^^xsd:string ;

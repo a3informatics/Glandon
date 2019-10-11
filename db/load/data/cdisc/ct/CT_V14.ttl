@@ -17,6 +17,7 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2009-02-17.xlsx'"^^xsd:string ;
@@ -663,6 +664,7 @@
 <http://www.cdisc.org/C66786/V14#C66786>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Country"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66786/V14#C66786_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66786/V14#C66786_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -942,6 +944,7 @@
 <http://www.cdisc.org/C66786/V14#C66786_C17653>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "British Virgin Islands"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C17653"^^xsd:string ;
 	th:notation "VGB"^^xsd:string ;
 	th:definition "Islands between the Caribbean Sea and the North Atlantic Ocean, east of Puerto Rico."^^xsd:string ;
@@ -956,6 +959,7 @@
 <http://www.cdisc.org/C66727/V14#C66727>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Completion/Reason for Non-Completion"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66727/V14#C66727_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66727/V14#C66727_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1008,6 +1012,7 @@
 <http://www.cdisc.org/C66727/V14#C66727_C41331>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adverse Event"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C41331"^^xsd:string ;
 	th:notation "ADVERSE EVENT"^^xsd:string ;
 	th:definition "Any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An adverse event (AE) can therefore be any unintended sign (including an abnormal laboratory finding), symptom, or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product. NOTE: For further information, see the ICH Guideline for Clinical Safety Data Management: Definitions and Standards for Expedited Reporting. [Modified from ICH E2A] Synonyms: side effect, adverse experience. See also serious adverse event, serious adverse experience.  (CDISC glossary)"^^xsd:string ;
@@ -1017,6 +1022,7 @@
 <http://www.cdisc.org/C67153/V14#C67153>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67153/V14#C67153_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67153/V14#C67153_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1070,6 +1076,7 @@
 <http://www.cdisc.org/C65047/V14#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V14#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V14#C65047_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1527,6 +1534,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79437>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "5 Prime Nucleotidase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79437"^^xsd:string ;
 	th:notation "NCTD5P"^^xsd:string ;
 	th:definition "A measurement of the 5'-nucleotidase in a biological specimen."^^xsd:string ;
@@ -1545,6 +1553,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74876>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6-Monoacetylmorphine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74876"^^xsd:string ;
 	th:notation "SIXMAM"^^xsd:string ;
 	th:definition "A measurement of the 6-monoacetylmorphine present in a biological specimen."^^xsd:string ;
@@ -1563,6 +1572,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74838>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acetylcholine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74838"^^xsd:string ;
 	th:notation "ACH"^^xsd:string ;
 	th:definition "A measurement of the acetylcholine hormone in a biological specimen."^^xsd:string ;
@@ -1581,6 +1591,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74839>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adiponectin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74839"^^xsd:string ;
 	th:notation "ADPNCTN"^^xsd:string ;
 	th:definition "A measurement of the adiponectin hormone in a biological specimen."^^xsd:string ;
@@ -1599,6 +1610,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74894>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Albumin to Globulin Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74894"^^xsd:string ;
 	th:notation "ALBGLOB"^^xsd:string ;
 	th:definition "The ratio of albumin to globulin in a blood specimen."^^xsd:string ;
@@ -1617,6 +1629,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74841>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aldosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74841"^^xsd:string ;
 	th:notation "ALDSTRN"^^xsd:string ;
 	th:definition "A measurement of the aldosterone hormone in a biological specimen."^^xsd:string ;
@@ -1635,6 +1648,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79438>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alkaline Phosphatase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79438"^^xsd:string ;
 	th:notation "ALPCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the alkaline phosphatase to creatinine in a biological specimen."^^xsd:string ;
@@ -1653,6 +1667,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79433>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alpha Glutathione-S-Transferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79433"^^xsd:string ;
 	th:notation "GSTAL"^^xsd:string ;
 	th:definition "A measurement of the alpha form of glutathione S-transferase in a biological specimen."^^xsd:string ;
@@ -1671,6 +1686,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74799>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ammonia Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74799"^^xsd:string ;
 	th:notation "AMMONIA"^^xsd:string ;
 	th:definition "A measurement of the ammonia in a biological specimen."^^xsd:string ;
@@ -1689,6 +1705,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74842>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Androstenediol Metabolite Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74842"^^xsd:string ;
 	th:notation "ANDSTNDL"^^xsd:string ;
 	th:definition "A measurement of the androstenediol metabolite in a biological specimen."^^xsd:string ;
@@ -1707,6 +1724,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74843>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Androstenedione Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74843"^^xsd:string ;
 	th:notation "ANDSTNDN"^^xsd:string ;
 	th:definition "A measurement of the androstenedione hormone in a biological specimen."^^xsd:string ;
@@ -1725,6 +1743,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74844>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensin I Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74844"^^xsd:string ;
 	th:notation "ANGTNS1"^^xsd:string ;
 	th:definition "A measurement of the angiotensin I hormone in a biological specimen."^^xsd:string ;
@@ -1743,6 +1762,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74845>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensin II Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74845"^^xsd:string ;
 	th:notation "ANGTNS2"^^xsd:string ;
 	th:definition "A measurement of the angiotensin II hormone in a biological specimen."^^xsd:string ;
@@ -1761,6 +1781,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74846>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensinogen Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74846"^^xsd:string ;
 	th:notation "ANGTNSGN"^^xsd:string ;
 	th:definition "A measurement of the angiotensinogen hormone in a biological specimen."^^xsd:string ;
@@ -1779,6 +1800,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74691>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antidepressant Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74691"^^xsd:string ;
 	th:notation "ANTIDPRS"^^xsd:string ;
 	th:definition "A measurement of any antidepressant class drug present in a biological specimen."^^xsd:string ;
@@ -1797,6 +1819,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74847>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antidiuretic Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74847"^^xsd:string ;
 	th:notation "ADH"^^xsd:string ;
 	th:definition "A measurement of the antidiuretic hormone in a biological specimen."^^xsd:string ;
@@ -1815,6 +1838,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74886>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atrial Natriuretic Peptide Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74886"^^xsd:string ;
 	th:notation "ANP"^^xsd:string ;
 	th:definition "A measurement of the atrial natriuretic peptide in a biological specimen."^^xsd:string ;
@@ -1833,6 +1857,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74692>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Benzodiazepine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74692"^^xsd:string ;
 	th:notation "BNZDZPN"^^xsd:string ;
 	th:definition "A measurement of any benzodiazepine class drug present in a biological specimen."^^xsd:string ;
@@ -1851,6 +1876,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74800>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bile Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74800"^^xsd:string ;
 	th:notation "BILEAC"^^xsd:string ;
 	th:definition "A measurement of the total bile acids in a biological specimen."^^xsd:string ;
@@ -1869,6 +1895,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74634>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell To Erythrocyte Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74634"^^xsd:string ;
 	th:notation "BTECERBC"^^xsd:string ;
 	th:definition "A relative measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -1883,6 +1910,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74848>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcitonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74848"^^xsd:string ;
 	th:notation "CLCTONN"^^xsd:string ;
 	th:definition "A measurement of the calcitonin hormone in a biological specimen."^^xsd:string ;
@@ -1901,6 +1929,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74849>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcitriol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74849"^^xsd:string ;
 	th:notation "CLCTRIOL"^^xsd:string ;
 	th:definition "A measurement of the calcitriol hormone in a biological specimen."^^xsd:string ;
@@ -1919,6 +1948,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79439>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79439"^^xsd:string ;
 	th:notation "CACREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the calcium to creatinine in a biological specimen."^^xsd:string ;
@@ -1937,6 +1967,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79440>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chloride to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79440"^^xsd:string ;
 	th:notation "CLCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the chloride to creatinine in a biological specimen."^^xsd:string ;
@@ -1955,6 +1986,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74850>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cholecystokinin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74850"^^xsd:string ;
 	th:notation "CCK"^^xsd:string ;
 	th:definition "A measurement of the cholecystokinin hormone in a biological specimen."^^xsd:string ;
@@ -1973,6 +2005,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74877>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Codeine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74877"^^xsd:string ;
 	th:notation "CODEINE"^^xsd:string ;
 	th:definition "A measurement of the codeine present in a biological specimen."^^xsd:string ;
@@ -1991,6 +2024,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79434>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Corticosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79434"^^xsd:string ;
 	th:notation "CRTRONE"^^xsd:string ;
 	th:definition "A measurement of corticosterone in a biological specimen."^^xsd:string ;
@@ -2009,6 +2043,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Corticotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74851"^^xsd:string ;
 	th:notation "CRH"^^xsd:string ;
 	th:definition "A measurement of the corticotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -2027,6 +2062,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79466>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase BB to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79466"^^xsd:string ;
 	th:notation "CKBBCK"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the BB-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -2045,6 +2081,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79441>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase MB to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79441"^^xsd:string ;
 	th:notation "CKMBCK"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the MB-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -2063,6 +2100,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79442>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase MM to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79442"^^xsd:string ;
 	th:notation "CKMMCK"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the MM-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -2081,6 +2119,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74852>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dehydroepiandrosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74852"^^xsd:string ;
 	th:notation "DHEA"^^xsd:string ;
 	th:definition "A measurement of the dehydroepiandrosterone hormone in a biological specimen."^^xsd:string ;
@@ -2099,6 +2138,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79443>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Deoxypyridinoline Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79443"^^xsd:string ;
 	th:notation "DPD"^^xsd:string ;
 	th:definition "A measurement of the deoxypyridinoline in a biological specimen."^^xsd:string ;
@@ -2117,6 +2157,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79444>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Deoxypyridinoline to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79444"^^xsd:string ;
 	th:notation "DPDCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the deoxypyridinoline to creatinine in a biological specimen."^^xsd:string ;
@@ -2135,6 +2176,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74878>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dihydrocodeine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74878"^^xsd:string ;
 	th:notation "DIHYDCDN"^^xsd:string ;
 	th:definition "A measurement of the dihydrocodeine present in a biological specimen."^^xsd:string ;
@@ -2153,6 +2195,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74853>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dihydrotestosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74853"^^xsd:string ;
 	th:notation "DHT"^^xsd:string ;
 	th:definition "A measurement of the dihydrotestosterone hormone in a biological specimen."^^xsd:string ;
@@ -2171,6 +2214,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74854>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dopamine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74854"^^xsd:string ;
 	th:notation "DOPAMINE"^^xsd:string ;
 	th:definition "A measurement of the dopamine hormone in a biological specimen."^^xsd:string ;
@@ -2189,6 +2233,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79445>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Epinephrine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79445"^^xsd:string ;
 	th:notation "EPIN"^^xsd:string ;
 	th:definition "A measurement of the epinephrine hormone in a biological specimen."^^xsd:string ;
@@ -2207,6 +2252,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74855>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythropoietin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74855"^^xsd:string ;
 	th:notation "EPO"^^xsd:string ;
 	th:definition "A measurement of the erythropoietin hormone in a biological specimen."^^xsd:string ;
@@ -2225,6 +2271,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74856>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estriol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74856"^^xsd:string ;
 	th:notation "ESTRIOL"^^xsd:string ;
 	th:definition "A measurement of the estriol hormone in a biological specimen."^^xsd:string ;
@@ -2243,6 +2290,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74857>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estrone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74857"^^xsd:string ;
 	th:notation "ESTRONE"^^xsd:string ;
 	th:definition "A measurement of the estrone hormone in a biological specimen."^^xsd:string ;
@@ -2261,6 +2309,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74693>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ethanol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74693"^^xsd:string ;
 	th:notation "ETHANOL"^^xsd:string ;
 	th:definition "A measurement of the ethanol present in a biological specimen."^^xsd:string ;
@@ -2279,6 +2328,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79446>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gamma Glutamyl Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79446"^^xsd:string ;
 	th:notation "GGTCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the gamma glutamyl transferase to creatinine in a biological specimen."^^xsd:string ;
@@ -2297,6 +2347,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74858>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gastrin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74858"^^xsd:string ;
 	th:notation "GASTRIN"^^xsd:string ;
 	th:definition "A measurement of the gastrin hormone in a biological specimen."^^xsd:string ;
@@ -2315,6 +2366,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74859>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glucagon Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74859"^^xsd:string ;
 	th:notation "GLUCAGON"^^xsd:string ;
 	th:definition "A measurement of the glucagon hormone in a biological specimen."^^xsd:string ;
@@ -2333,6 +2385,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79447>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glucose to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79447"^^xsd:string ;
 	th:notation "GLUCCRT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the glucose to creatinine in a biological specimen."^^xsd:string ;
@@ -2351,6 +2404,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79448>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutamate Dehydrogenase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79448"^^xsd:string ;
 	th:notation "GLDH"^^xsd:string ;
 	th:definition "A measurement of the glutamate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -2369,6 +2423,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79435>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutathione-S-Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79435"^^xsd:string ;
 	th:notation "GSTCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the glutathione S-transferase to creatinine in a biological specimen."^^xsd:string ;
@@ -2387,6 +2442,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74860>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gonadotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74860"^^xsd:string ;
 	th:notation "GNRH"^^xsd:string ;
 	th:definition "A measurement of the gonadotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -2405,6 +2461,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74861>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Inhibiting Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74861"^^xsd:string ;
 	th:notation "GRWHIH"^^xsd:string ;
 	th:definition "A measurement of the growth hormone inhibiting hormone in a biological specimen."^^xsd:string ;
@@ -2423,6 +2480,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C75386>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C75386"^^xsd:string ;
 	th:notation "GRWH"^^xsd:string ;
 	th:definition "A measurement of the growth hormone in a biological specimen."^^xsd:string ;
@@ -2441,6 +2499,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74862>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74862"^^xsd:string ;
 	th:notation "GRWHRH"^^xsd:string ;
 	th:definition "A measurement of the growth hormone releasing hormone in a biological specimen."^^xsd:string ;
@@ -2459,6 +2518,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74863>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Homovanillic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74863"^^xsd:string ;
 	th:notation "HVA"^^xsd:string ;
 	th:definition "A measurement of the homovanillic acid metabolite in a biological specimen."^^xsd:string ;
@@ -2477,6 +2537,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74879>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hydrocodone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74879"^^xsd:string ;
 	th:notation "HYDCDN"^^xsd:string ;
 	th:definition "A measurement of the hydrocodone present in a biological specimen."^^xsd:string ;
@@ -2495,6 +2556,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74880>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hydromorphone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74880"^^xsd:string ;
 	th:notation "HYDMRPHN"^^xsd:string ;
 	th:definition "A measurement of the hydromorphone present in a biological specimen."^^xsd:string ;
@@ -2513,6 +2575,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Insulin Like Growth Factor-1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74864"^^xsd:string ;
 	th:notation "IGF1"^^xsd:string ;
 	th:definition "A measurement of the insulin-like growth factor-1 in a biological specimen."^^xsd:string ;
@@ -2531,6 +2594,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74865>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Insulin Like Growth Factor-2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74865"^^xsd:string ;
 	th:notation "IGF2"^^xsd:string ;
 	th:definition "A measurement of the insulin-like growth factor-2 in a biological specimen."^^xsd:string ;
@@ -2549,6 +2613,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74805>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74805"^^xsd:string ;
 	th:notation "INTLK1"^^xsd:string ;
 	th:definition "A measurement of the interleukin 1 in a biological specimen."^^xsd:string ;
@@ -2567,6 +2632,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74806>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 10 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74806"^^xsd:string ;
 	th:notation "INTLK10"^^xsd:string ;
 	th:definition "A measurement of the interleukin 10 in a biological specimen."^^xsd:string ;
@@ -2585,6 +2651,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74807>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 11 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74807"^^xsd:string ;
 	th:notation "INTLK11"^^xsd:string ;
 	th:definition "A measurement of the interleukin 11 in a biological specimen."^^xsd:string ;
@@ -2603,6 +2670,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74808>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 12 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74808"^^xsd:string ;
 	th:notation "INTLK12"^^xsd:string ;
 	th:definition "A measurement of the interleukin 12 in a biological specimen."^^xsd:string ;
@@ -2621,6 +2689,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74809>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 13 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74809"^^xsd:string ;
 	th:notation "INTLK13"^^xsd:string ;
 	th:definition "A measurement of the interleukin 13 in a biological specimen."^^xsd:string ;
@@ -2639,6 +2708,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74810>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 14 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74810"^^xsd:string ;
 	th:notation "INTLK14"^^xsd:string ;
 	th:definition "A measurement of the interleukin 14 in a biological specimen."^^xsd:string ;
@@ -2657,6 +2727,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 15 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74811"^^xsd:string ;
 	th:notation "INTLK15"^^xsd:string ;
 	th:definition "A measurement of the interleukin 15 in a biological specimen."^^xsd:string ;
@@ -2675,6 +2746,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74812>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 16 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74812"^^xsd:string ;
 	th:notation "INTLK16"^^xsd:string ;
 	th:definition "A measurement of the interleukin 16 in a biological specimen."^^xsd:string ;
@@ -2693,6 +2765,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74813>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 17 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74813"^^xsd:string ;
 	th:notation "INTLK17"^^xsd:string ;
 	th:definition "A measurement of the interleukin 17 in a biological specimen."^^xsd:string ;
@@ -2711,6 +2784,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 18 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74814"^^xsd:string ;
 	th:notation "INTLK18"^^xsd:string ;
 	th:definition "A measurement of the interleukin 18 in a biological specimen."^^xsd:string ;
@@ -2729,6 +2803,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74815>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 19 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74815"^^xsd:string ;
 	th:notation "INTLK19"^^xsd:string ;
 	th:definition "A measurement of the interleukin 19 in a biological specimen."^^xsd:string ;
@@ -2747,6 +2822,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74816>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74816"^^xsd:string ;
 	th:notation "INTLK2"^^xsd:string ;
 	th:definition "A measurement of the interleukin 2 in a biological specimen."^^xsd:string ;
@@ -2765,6 +2841,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74817>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 20 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74817"^^xsd:string ;
 	th:notation "INTLK20"^^xsd:string ;
 	th:definition "A measurement of the interleukin 20 in a biological specimen."^^xsd:string ;
@@ -2783,6 +2860,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74818>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 21 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74818"^^xsd:string ;
 	th:notation "INTLK21"^^xsd:string ;
 	th:definition "A measurement of the interleukin 21 in a biological specimen."^^xsd:string ;
@@ -2801,6 +2879,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74819>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 22 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74819"^^xsd:string ;
 	th:notation "INTLK22"^^xsd:string ;
 	th:definition "A measurement of the interleukin 22 in a biological specimen."^^xsd:string ;
@@ -2819,6 +2898,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 23 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74820"^^xsd:string ;
 	th:notation "INTLK23"^^xsd:string ;
 	th:definition "A measurement of the interleukin 23 in a biological specimen."^^xsd:string ;
@@ -2837,6 +2917,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74821>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 24 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74821"^^xsd:string ;
 	th:notation "INTLK24"^^xsd:string ;
 	th:definition "A measurement of the interleukin 24 in a biological specimen."^^xsd:string ;
@@ -2855,6 +2936,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74822>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 25 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74822"^^xsd:string ;
 	th:notation "INTLK25"^^xsd:string ;
 	th:definition "A measurement of the interleukin 25 in a biological specimen."^^xsd:string ;
@@ -2873,6 +2955,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 26 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74823"^^xsd:string ;
 	th:notation "INTLK26"^^xsd:string ;
 	th:definition "A measurement of the interleukin 26 in a biological specimen."^^xsd:string ;
@@ -2891,6 +2974,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74824>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 27 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74824"^^xsd:string ;
 	th:notation "INTLK27"^^xsd:string ;
 	th:definition "A measurement of the interleukin 27 in a biological specimen."^^xsd:string ;
@@ -2909,6 +2993,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74825>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 28 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74825"^^xsd:string ;
 	th:notation "INTLK28"^^xsd:string ;
 	th:definition "A measurement of the interleukin 28 in a biological specimen."^^xsd:string ;
@@ -2927,6 +3012,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 29 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74826"^^xsd:string ;
 	th:notation "INTLK29"^^xsd:string ;
 	th:definition "A measurement of the interleukin 29 in a biological specimen."^^xsd:string ;
@@ -2945,6 +3031,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74827>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74827"^^xsd:string ;
 	th:notation "INTLK3"^^xsd:string ;
 	th:definition "A measurement of the interleukin 3 in a biological specimen."^^xsd:string ;
@@ -2963,6 +3050,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 30 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74828"^^xsd:string ;
 	th:notation "INTLK30"^^xsd:string ;
 	th:definition "A measurement of the interleukin 30 in a biological specimen."^^xsd:string ;
@@ -2981,6 +3069,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74829>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 31 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74829"^^xsd:string ;
 	th:notation "INTLK31"^^xsd:string ;
 	th:definition "A measurement of the interleukin 31 in a biological specimen."^^xsd:string ;
@@ -2999,6 +3088,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 32 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74830"^^xsd:string ;
 	th:notation "INTLK32"^^xsd:string ;
 	th:definition "A measurement of the interleukin 32 in a biological specimen."^^xsd:string ;
@@ -3017,6 +3107,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74831>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 33 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74831"^^xsd:string ;
 	th:notation "INTLK33"^^xsd:string ;
 	th:definition "A measurement of the interleukin 33 in a biological specimen."^^xsd:string ;
@@ -3035,6 +3126,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 4 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74832"^^xsd:string ;
 	th:notation "INTLK4"^^xsd:string ;
 	th:definition "A measurement of the interleukin 4 in a biological specimen."^^xsd:string ;
@@ -3053,6 +3145,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74833>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74833"^^xsd:string ;
 	th:notation "INTLK5"^^xsd:string ;
 	th:definition "A measurement of the interleukin 5 in a biological specimen."^^xsd:string ;
@@ -3071,6 +3164,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 6 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74834"^^xsd:string ;
 	th:notation "INTLK6"^^xsd:string ;
 	th:definition "A measurement of the interleukin 6 in a biological specimen."^^xsd:string ;
@@ -3089,6 +3183,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 7 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74835"^^xsd:string ;
 	th:notation "INTLK7"^^xsd:string ;
 	th:definition "A measurement of the interleukin 7 in a biological specimen."^^xsd:string ;
@@ -3107,6 +3202,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74836>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 8 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74836"^^xsd:string ;
 	th:notation "INTLK8"^^xsd:string ;
 	th:definition "A measurement of the interleukin 8 in a biological specimen."^^xsd:string ;
@@ -3125,6 +3221,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74837>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 9 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74837"^^xsd:string ;
 	th:notation "INTLK9"^^xsd:string ;
 	th:definition "A measurement of the interleukin 9 in a biological specimen."^^xsd:string ;
@@ -3143,6 +3240,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74887"^^xsd:string ;
 	th:notation "LDH1"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 1 in a biological specimen."^^xsd:string ;
@@ -3161,6 +3259,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74888>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74888"^^xsd:string ;
 	th:notation "LDH2"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 2 in a biological specimen."^^xsd:string ;
@@ -3179,6 +3278,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74889>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74889"^^xsd:string ;
 	th:notation "LDH3"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 3 in a biological specimen."^^xsd:string ;
@@ -3197,6 +3297,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74890>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 4 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74890"^^xsd:string ;
 	th:notation "LDH4"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 4 in a biological specimen."^^xsd:string ;
@@ -3215,6 +3316,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74891>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74891"^^xsd:string ;
 	th:notation "LDH5"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 5 in a biological specimen."^^xsd:string ;
@@ -3233,6 +3335,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79449>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79449"^^xsd:string ;
 	th:notation "LDHCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase to creatinine in a biological specimen."^^xsd:string ;
@@ -3251,6 +3354,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79450>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79450"^^xsd:string ;
 	th:notation "LACTICAC"^^xsd:string ;
 	th:definition "A measurement of the lactic acid in a biological specimen."^^xsd:string ;
@@ -3269,6 +3373,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79467>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Large Unstained Cells to Leukocytes Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79467"^^xsd:string ;
 	th:notation "LGLUCLE"^^xsd:string ;
 	th:definition "A relative measure (ratio or percentage) of the large unstained cells to leukocytes in a biological specimen."^^xsd:string ;
@@ -3287,6 +3392,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79451>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 1 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79451"^^xsd:string ;
 	th:notation "LDH1LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 1 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3305,6 +3411,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79452>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 2 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79452"^^xsd:string ;
 	th:notation "LDH2LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 2 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3323,6 +3430,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79453>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 3 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79453"^^xsd:string ;
 	th:notation "LDH3LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 3 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3341,6 +3449,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79454>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 4 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79454"^^xsd:string ;
 	th:notation "LDH4LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 4 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3359,6 +3468,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79455>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 5 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79455"^^xsd:string ;
 	th:notation "LDH5LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 5 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3377,6 +3487,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74866>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leptin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74866"^^xsd:string ;
 	th:notation "LEPTIN"^^xsd:string ;
 	th:definition "A measurement of the leptin hormone in a biological specimen."^^xsd:string ;
@@ -3395,6 +3506,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79456>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Magnesium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79456"^^xsd:string ;
 	th:notation "MGCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the magnesium to creatinine in a biological specimen."^^xsd:string ;
@@ -3413,6 +3525,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74867>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Melatonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74867"^^xsd:string ;
 	th:notation "MLATONIN"^^xsd:string ;
 	th:definition "A measurement of the melatonin hormone in a biological specimen."^^xsd:string ;
@@ -3431,6 +3544,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74881>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Methadone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74881"^^xsd:string ;
 	th:notation "METHDN"^^xsd:string ;
 	th:definition "A measurement of the methadone present in a biological specimen."^^xsd:string ;
@@ -3449,6 +3563,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74882>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Methaqualone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74882"^^xsd:string ;
 	th:notation "METHQLDN"^^xsd:string ;
 	th:definition "A measurement of the methaqualone present in a biological specimen."^^xsd:string ;
@@ -3467,6 +3582,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74883>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Morphine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74883"^^xsd:string ;
 	th:notation "MORPHINE"^^xsd:string ;
 	th:definition "A measurement of the morphine present in a biological specimen."^^xsd:string ;
@@ -3485,6 +3601,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79457>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mu Glutathione-S-Transferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79457"^^xsd:string ;
 	th:notation "GSTMU"^^xsd:string ;
 	th:definition "A measurement of the mu form of glutathione S-transferase in a biological specimen."^^xsd:string ;
@@ -3503,6 +3620,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79458>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mu Glutathione-S-Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79458"^^xsd:string ;
 	th:notation "GSTMUCRT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the mu gamma glutamyl transpeptidase to creatinine in a biological specimen."^^xsd:string ;
@@ -3521,6 +3639,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79436>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myoglobin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79436"^^xsd:string ;
 	th:notation "MGB"^^xsd:string ;
 	th:definition "A measurement of myoglobin in a biological specimen."^^xsd:string ;
@@ -3539,6 +3658,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79459>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "N-Acetyl Glucosamide Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79459"^^xsd:string ;
 	th:notation "NAG"^^xsd:string ;
 	th:definition "A measurement of N-acetyl glucosamide in a biological specimen."^^xsd:string ;
@@ -3557,6 +3677,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79460>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "N-Acetyl Glucosamide to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79460"^^xsd:string ;
 	th:notation "NAGCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the N-acetyl glucosamide to creatinine in a biological specimen."^^xsd:string ;
@@ -3575,6 +3696,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74892>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Neuropeptide Y Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74892"^^xsd:string ;
 	th:notation "NPY"^^xsd:string ;
 	th:definition "A measurement of the neuropeptide Y in a biological specimen."^^xsd:string ;
@@ -3593,6 +3715,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74868>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Noradrenaline Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74868"^^xsd:string ;
 	th:notation "NOREPIN"^^xsd:string ;
 	th:definition "A measurement of the norepinephrine hormone in a biological specimen."^^xsd:string ;
@@ -3611,6 +3734,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Osmolality Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74801"^^xsd:string ;
 	th:notation "OSMLTY"^^xsd:string ;
 	th:definition "A measurement of the osmoles of solute per unit of biological specimen."^^xsd:string ;
@@ -3629,6 +3753,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74884>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oxycodone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74884"^^xsd:string ;
 	th:notation "OXYCDN"^^xsd:string ;
 	th:definition "A measurement of the oxycodone present in a biological specimen."^^xsd:string ;
@@ -3647,6 +3772,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74869>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oxytocin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74869"^^xsd:string ;
 	th:notation "OXYTOCIN"^^xsd:string ;
 	th:definition "A measurement of the oxytocin hormone in a biological specimen."^^xsd:string ;
@@ -3665,6 +3791,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74694>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phencyclidine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74694"^^xsd:string ;
 	th:notation "PCP"^^xsd:string ;
 	th:definition "A measurement of the phencyclidine present in a biological specimen."^^xsd:string ;
@@ -3683,6 +3810,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74695>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phenothiazine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74695"^^xsd:string ;
 	th:notation "PHENTHZ"^^xsd:string ;
 	th:definition "A measurement of the phenothiazine present in a biological specimen."^^xsd:string ;
@@ -3701,6 +3829,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79461>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phosphate to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79461"^^xsd:string ;
 	th:notation "PHOSCRT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the phosphate to creatinine in a biological specimen."^^xsd:string ;
@@ -3719,6 +3848,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79462>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Potassium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79462"^^xsd:string ;
 	th:notation "KCREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the potassium to creatinine in a biological specimen."^^xsd:string ;
@@ -3737,6 +3867,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74870>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Prolactin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74870"^^xsd:string ;
 	th:notation "PROLCTN"^^xsd:string ;
 	th:definition "A measurement of the prolactin hormone in a biological specimen."^^xsd:string ;
@@ -3755,6 +3886,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74885>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Propoxyphene Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74885"^^xsd:string ;
 	th:notation "PROPOX"^^xsd:string ;
 	th:definition "A measurement of the propoxyphene present in a biological specimen."^^xsd:string ;
@@ -3773,6 +3905,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79463>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Protein to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79463"^^xsd:string ;
 	th:notation "PROTCRT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the protein to creatinine in a biological specimen."^^xsd:string ;
@@ -3791,6 +3924,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74696>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pseudoephedrine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74696"^^xsd:string ;
 	th:notation "PSDEPHD"^^xsd:string ;
 	th:definition "A measurement of the pseudoephedrine present in a biological specimen."^^xsd:string ;
@@ -3809,6 +3943,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74629>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reactive Lymphocyte Count Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74629"^^xsd:string ;
 	th:notation "LYMRCT"^^xsd:string ;
 	th:definition "A measurement of the reactive lymphocytes (lymphocytes which have become large due to an antigen reaction) in a biological specimen."^^xsd:string ;
@@ -3827,6 +3962,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74893>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Renin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74893"^^xsd:string ;
 	th:notation "RENIN"^^xsd:string ;
 	th:definition "A measurement of the renin in a biological specimen."^^xsd:string ;
@@ -3845,6 +3981,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74871>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Secretin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74871"^^xsd:string ;
 	th:notation "SECRETIN"^^xsd:string ;
 	th:definition "A measurement of the secretin hormone in a biological specimen."^^xsd:string ;
@@ -3863,6 +4000,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74872>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serotonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74872"^^xsd:string ;
 	th:notation "SRTONIN"^^xsd:string ;
 	th:definition "A measurement of the serotonin hormone in a biological specimen."^^xsd:string ;
@@ -3881,6 +4019,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79464>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sodium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79464"^^xsd:string ;
 	th:notation "NACREAT"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the sodium to creatinine in a biological specimen."^^xsd:string ;
@@ -3899,6 +4038,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C79465>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sorbitol Dehydrogenase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79465"^^xsd:string ;
 	th:notation "SDH"^^xsd:string ;
 	th:definition "A measurement of the sorbitol dehydrogenase in a biological specimen."^^xsd:string ;
@@ -3917,6 +4057,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74873>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thrombopoietin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74873"^^xsd:string ;
 	th:notation "THRMPTN"^^xsd:string ;
 	th:definition "A measurement of the thrombopoietin hormone in a biological specimen."^^xsd:string ;
@@ -3935,6 +4076,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74874>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thyrotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74874"^^xsd:string ;
 	th:notation "TRH"^^xsd:string ;
 	th:definition "A measurement of the thyrotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -3953,6 +4095,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74875>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vanillyl Mandelic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74875"^^xsd:string ;
 	th:notation "VMA"^^xsd:string ;
 	th:definition "A measurement of the vanillyl mandelic acid metabolite in a biological specimen."^^xsd:string ;
@@ -3971,6 +4114,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74895>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin A Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74895"^^xsd:string ;
 	th:notation "VITA"^^xsd:string ;
 	th:definition "A measurement of the Vitamin A in a biological specimen."^^xsd:string ;
@@ -3989,6 +4133,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74896>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74896"^^xsd:string ;
 	th:notation "VITB1"^^xsd:string ;
 	th:definition "A measurement of the thiamine in a biological specimen."^^xsd:string ;
@@ -4007,6 +4152,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74897>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B17 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74897"^^xsd:string ;
 	th:notation "VITB17"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B17 in a serum specimen."^^xsd:string ;
@@ -4025,6 +4171,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74898>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74898"^^xsd:string ;
 	th:notation "VITB2"^^xsd:string ;
 	th:definition "A measurement of the riboflavin in a biological specimen."^^xsd:string ;
@@ -4043,6 +4190,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74899>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74899"^^xsd:string ;
 	th:notation "VITB3"^^xsd:string ;
 	th:definition "A measurement of the niacin in a biological specimen."^^xsd:string ;
@@ -4061,6 +4209,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74900>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74900"^^xsd:string ;
 	th:notation "VITB5"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B5 in a biological specimen."^^xsd:string ;
@@ -4079,6 +4228,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74901>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B6 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74901"^^xsd:string ;
 	th:notation "VITB6"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B6 in a biological specimen."^^xsd:string ;
@@ -4097,6 +4247,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74902>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B7 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74902"^^xsd:string ;
 	th:notation "VITB7"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B7 in a biological specimen."^^xsd:string ;
@@ -4115,6 +4266,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74903>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin C Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74903"^^xsd:string ;
 	th:notation "VITC"^^xsd:string ;
 	th:definition "A measurement of the Vitamin C in a biological specimen."^^xsd:string ;
@@ -4133,6 +4285,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74904>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin D2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74904"^^xsd:string ;
 	th:notation "VITD2"^^xsd:string ;
 	th:definition "A measurement of the Vitamin D2 in a biological specimen."^^xsd:string ;
@@ -4151,6 +4304,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74905>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin D3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74905"^^xsd:string ;
 	th:notation "VITD3"^^xsd:string ;
 	th:definition "A measurement of the Vitamin D3 in a biological specimen."^^xsd:string ;
@@ -4169,6 +4323,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74906>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin E Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74906"^^xsd:string ;
 	th:notation "VITE"^^xsd:string ;
 	th:definition "A measurement of the Vitamin E in a biological specimen."^^xsd:string ;
@@ -4187,6 +4342,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74907>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin K Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74907"^^xsd:string ;
 	th:notation "VITK"^^xsd:string ;
 	th:definition "A measurement of the Vitamin K in a biological specimen."^^xsd:string ;
@@ -4205,6 +4361,7 @@
 <http://www.cdisc.org/C65047/V14#C65047_C74720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Volume Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74720"^^xsd:string ;
 	th:notation "VOLUME"^^xsd:string ;
 	th:definition "A measurement of the volume of a biological specimen."^^xsd:string ;
@@ -4223,6 +4380,7 @@
 <http://www.cdisc.org/C67154/V14#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V14#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V14#C67154_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4680,6 +4838,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79437>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "5 Prime Nucleotidase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79437"^^xsd:string ;
 	th:notation "5 Prime Nucleotidase"^^xsd:string ;
 	th:definition "A measurement of the 5'-nucleotidase in a biological specimen."^^xsd:string ;
@@ -4690,6 +4849,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74876>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6-Monoacetylmorphine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74876"^^xsd:string ;
 	th:notation "6-Monoacetylmorphine"^^xsd:string ;
 	th:definition "A measurement of the 6-monoacetylmorphine present in a biological specimen."^^xsd:string ;
@@ -4700,6 +4860,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74838>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Acetylcholine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74838"^^xsd:string ;
 	th:notation "Acetylcholine"^^xsd:string ;
 	th:definition "A measurement of the acetylcholine hormone in a biological specimen."^^xsd:string ;
@@ -4710,6 +4871,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74839>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adiponectin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74839"^^xsd:string ;
 	th:notation "Adiponectin"^^xsd:string ;
 	th:definition "A measurement of the adiponectin hormone in a biological specimen."^^xsd:string ;
@@ -4720,6 +4882,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74894>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Albumin to Globulin Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74894"^^xsd:string ;
 	th:notation "Albumin/Globulin Ratio"^^xsd:string ;
 	th:definition "The ratio of albumin to globulin in a blood specimen."^^xsd:string ;
@@ -4730,6 +4893,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74841>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aldosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74841"^^xsd:string ;
 	th:notation "Aldosterone"^^xsd:string ;
 	th:definition "A measurement of the aldosterone hormone in a biological specimen."^^xsd:string ;
@@ -4740,6 +4904,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79438>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alkaline Phosphatase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79438"^^xsd:string ;
 	th:notation "Alkaline Phosphatase/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the alkaline phosphatase to creatinine in a biological specimen."^^xsd:string ;
@@ -4750,6 +4915,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79433>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alpha Glutathione-S-Transferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79433"^^xsd:string ;
 	th:notation "Alpha Glutathione-S-Transferase"^^xsd:string ;
 	th:definition "A measurement of the alpha form of glutathione S-transferase in a biological specimen."^^xsd:string ;
@@ -4760,6 +4926,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74799>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ammonia Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74799"^^xsd:string ;
 	th:notation "Ammonia"^^xsd:string ;
 	th:definition "A measurement of the ammonia in a biological specimen."^^xsd:string ;
@@ -4770,6 +4937,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74842>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Androstenediol Metabolite Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74842"^^xsd:string ;
 	th:notation "Androstenediol"^^xsd:string ;
 	th:definition "A measurement of the androstenediol metabolite in a biological specimen."^^xsd:string ;
@@ -4780,6 +4948,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74843>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Androstenedione Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74843"^^xsd:string ;
 	th:notation "Androstenedione"^^xsd:string ;
 	th:definition "A measurement of the androstenedione hormone in a biological specimen."^^xsd:string ;
@@ -4790,6 +4959,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74844>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensin I Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74844"^^xsd:string ;
 	th:notation "Angiotensin I"^^xsd:string ;
 	th:definition "A measurement of the angiotensin I hormone in a biological specimen."^^xsd:string ;
@@ -4800,6 +4970,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74845>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensin II Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74845"^^xsd:string ;
 	th:notation "Angiotensin II"^^xsd:string ;
 	th:definition "A measurement of the angiotensin II hormone in a biological specimen."^^xsd:string ;
@@ -4810,6 +4981,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74846>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Angiotensinogen Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74846"^^xsd:string ;
 	th:notation "Angiotensinogen"^^xsd:string ;
 	th:definition "A measurement of the angiotensinogen hormone in a biological specimen."^^xsd:string ;
@@ -4820,6 +4992,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74691>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antidepressant Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74691"^^xsd:string ;
 	th:notation "Antidepressants"^^xsd:string ;
 	th:definition "A measurement of any antidepressant class drug present in a biological specimen."^^xsd:string ;
@@ -4830,6 +5003,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74847>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Antidiuretic Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74847"^^xsd:string ;
 	th:notation "Antidiuretic Hormone"^^xsd:string ;
 	th:definition "A measurement of the antidiuretic hormone in a biological specimen."^^xsd:string ;
@@ -4840,6 +5014,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74886>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atrial Natriuretic Peptide Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74886"^^xsd:string ;
 	th:notation "Atrial Natriuretic Peptide"^^xsd:string ;
 	th:definition "A measurement of the atrial natriuretic peptide in a biological specimen."^^xsd:string ;
@@ -4850,6 +5025,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74692>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Benzodiazepine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74692"^^xsd:string ;
 	th:notation "Benzodiazepine"^^xsd:string ;
 	th:definition "A measurement of any benzodiazepine class drug present in a biological specimen."^^xsd:string ;
@@ -4860,6 +5036,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74800>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bile Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74800"^^xsd:string ;
 	th:notation "Bile Acid"^^xsd:string ;
 	th:definition "A measurement of the total bile acids in a biological specimen."^^xsd:string ;
@@ -4870,6 +5047,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74634>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bite Cell To Erythrocyte Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74634"^^xsd:string ;
 	th:notation "Bite Cells/Erythrocytes"^^xsd:string ;
 	th:definition "A relative measurement of the bite cells (erythrocytes with the appearance of a bite having been removed, due to oxidative hemolysis) to all erythrocytes in a biological specimen."^^xsd:string ;
@@ -4880,6 +5058,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74848>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcitonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74848"^^xsd:string ;
 	th:notation "Calcitonin"^^xsd:string ;
 	th:definition "A measurement of the calcitonin hormone in a biological specimen."^^xsd:string ;
@@ -4890,6 +5069,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74849>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcitriol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74849"^^xsd:string ;
 	th:notation "Calcitriol"^^xsd:string ;
 	th:definition "A measurement of the calcitriol hormone in a biological specimen."^^xsd:string ;
@@ -4900,6 +5080,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79439>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79439"^^xsd:string ;
 	th:notation "Calcium/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the calcium to creatinine in a biological specimen."^^xsd:string ;
@@ -4910,6 +5091,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79440>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chloride to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79440"^^xsd:string ;
 	th:notation "Chloride/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the chloride to creatinine in a biological specimen."^^xsd:string ;
@@ -4920,6 +5102,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74850>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cholecystokinin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74850"^^xsd:string ;
 	th:notation "Cholecystokinin"^^xsd:string ;
 	th:definition "A measurement of the cholecystokinin hormone in a biological specimen."^^xsd:string ;
@@ -4930,6 +5113,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74877>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Codeine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74877"^^xsd:string ;
 	th:notation "Codeine"^^xsd:string ;
 	th:definition "A measurement of the codeine present in a biological specimen."^^xsd:string ;
@@ -4940,6 +5124,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79434>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Corticosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79434"^^xsd:string ;
 	th:notation "Corticosterone"^^xsd:string ;
 	th:definition "A measurement of corticosterone in a biological specimen."^^xsd:string ;
@@ -4950,6 +5135,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Corticotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74851"^^xsd:string ;
 	th:notation "Corticotropin Releasing Hormone"^^xsd:string ;
 	th:definition "A measurement of the corticotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -4960,6 +5146,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79466>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase BB to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79466"^^xsd:string ;
 	th:notation "Creatine Kinase BB/Total Creatine Kinase"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the BB-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -4970,6 +5157,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79441>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase MB to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79441"^^xsd:string ;
 	th:notation "Creatine Kinase MB/Total Creatine Kinase"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the MB-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -4980,6 +5168,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79442>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Creatine Kinase MM to Total Creatine Kinase Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79442"^^xsd:string ;
 	th:notation "Creatine Kinase MM/Total Creatine Kinase"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the MM-type creatine kinase to total creatine kinase in a biological specimen."^^xsd:string ;
@@ -4990,6 +5179,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74852>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dehydroepiandrosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74852"^^xsd:string ;
 	th:notation "Dehydroepiandrosterone"^^xsd:string ;
 	th:definition "A measurement of the dehydroepiandrosterone hormone in a biological specimen."^^xsd:string ;
@@ -5000,6 +5190,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79443>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Deoxypyridinoline Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79443"^^xsd:string ;
 	th:notation "Deoxypyridinoline"^^xsd:string ;
 	th:definition "A measurement of the deoxypyridinoline in a biological specimen."^^xsd:string ;
@@ -5010,6 +5201,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79444>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Deoxypyridinoline to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79444"^^xsd:string ;
 	th:notation "Deoxypyridinoline/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the deoxypyridinoline to creatinine in a biological specimen."^^xsd:string ;
@@ -5020,6 +5212,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74878>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dihydrocodeine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74878"^^xsd:string ;
 	th:notation "Dihydrocodeine"^^xsd:string ;
 	th:definition "A measurement of the dihydrocodeine present in a biological specimen."^^xsd:string ;
@@ -5030,6 +5223,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74853>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dihydrotestosterone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74853"^^xsd:string ;
 	th:notation "Dihydrotestosterone"^^xsd:string ;
 	th:definition "A measurement of the dihydrotestosterone hormone in a biological specimen."^^xsd:string ;
@@ -5040,6 +5234,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74854>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dopamine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74854"^^xsd:string ;
 	th:notation "Dopamine"^^xsd:string ;
 	th:definition "A measurement of the dopamine hormone in a biological specimen."^^xsd:string ;
@@ -5050,6 +5245,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79445>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Epinephrine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79445"^^xsd:string ;
 	th:notation "Epinephrine"^^xsd:string ;
 	th:definition "A measurement of the epinephrine hormone in a biological specimen."^^xsd:string ;
@@ -5060,6 +5256,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74855>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Erythropoietin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74855"^^xsd:string ;
 	th:notation "Erythropoietin"^^xsd:string ;
 	th:definition "A measurement of the erythropoietin hormone in a biological specimen."^^xsd:string ;
@@ -5070,6 +5267,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74856>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estriol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74856"^^xsd:string ;
 	th:notation "Estriol"^^xsd:string ;
 	th:definition "A measurement of the estriol hormone in a biological specimen."^^xsd:string ;
@@ -5080,6 +5278,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74857>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Estrone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74857"^^xsd:string ;
 	th:notation "Estrone"^^xsd:string ;
 	th:definition "A measurement of the estrone hormone in a biological specimen."^^xsd:string ;
@@ -5090,6 +5289,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74693>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ethanol Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74693"^^xsd:string ;
 	th:notation "Ethanol"^^xsd:string ;
 	th:definition "A measurement of the ethanol present in a biological specimen."^^xsd:string ;
@@ -5100,6 +5300,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79446>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gamma Glutamyl Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79446"^^xsd:string ;
 	th:notation "Gamma Glutamyl Transferase/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the gamma glutamyl transferase to creatinine in a biological specimen."^^xsd:string ;
@@ -5110,6 +5311,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74858>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gastrin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74858"^^xsd:string ;
 	th:notation "Gastrin"^^xsd:string ;
 	th:definition "A measurement of the gastrin hormone in a biological specimen."^^xsd:string ;
@@ -5120,6 +5322,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74859>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glucagon Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74859"^^xsd:string ;
 	th:notation "Glucagon"^^xsd:string ;
 	th:definition "A measurement of the glucagon hormone in a biological specimen."^^xsd:string ;
@@ -5130,6 +5333,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79447>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glucose to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79447"^^xsd:string ;
 	th:notation "Glucose/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the glucose to creatinine in a biological specimen."^^xsd:string ;
@@ -5140,6 +5344,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79448>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutamate Dehydrogenase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79448"^^xsd:string ;
 	th:notation "Glutamate Dehydrogenase"^^xsd:string ;
 	th:definition "A measurement of the glutamate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5150,6 +5355,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79435>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Glutathione-S-Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79435"^^xsd:string ;
 	th:notation "Glutathione-S-Transferase/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the glutathione S-transferase to creatinine in a biological specimen."^^xsd:string ;
@@ -5160,6 +5366,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74860>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gonadotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74860"^^xsd:string ;
 	th:notation "Gonadotropin Releasing Hormone"^^xsd:string ;
 	th:definition "A measurement of the gonadotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -5170,6 +5377,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74861>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Inhibiting Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74861"^^xsd:string ;
 	th:notation "Growth Hormone Inhibiting Hormone"^^xsd:string ;
 	th:definition "A measurement of the growth hormone inhibiting hormone in a biological specimen."^^xsd:string ;
@@ -5180,6 +5388,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C75386>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C75386"^^xsd:string ;
 	th:notation "Growth Hormone"^^xsd:string ;
 	th:definition "A measurement of the growth hormone in a biological specimen."^^xsd:string ;
@@ -5190,6 +5399,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74862>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Growth Hormone Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74862"^^xsd:string ;
 	th:notation "Growth Hormone Releasing Hormone"^^xsd:string ;
 	th:definition "A measurement of the growth hormone releasing hormone in a biological specimen."^^xsd:string ;
@@ -5200,6 +5410,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74863>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Homovanillic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74863"^^xsd:string ;
 	th:notation "Homovanillic Acid"^^xsd:string ;
 	th:definition "A measurement of the homovanillic acid metabolite in a biological specimen."^^xsd:string ;
@@ -5210,6 +5421,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74879>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hydrocodone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74879"^^xsd:string ;
 	th:notation "Hydrocodone"^^xsd:string ;
 	th:definition "A measurement of the hydrocodone present in a biological specimen."^^xsd:string ;
@@ -5220,6 +5432,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74880>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hydromorphone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74880"^^xsd:string ;
 	th:notation "Hydromorphone"^^xsd:string ;
 	th:definition "A measurement of the hydromorphone present in a biological specimen."^^xsd:string ;
@@ -5230,6 +5443,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Insulin Like Growth Factor-1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74864"^^xsd:string ;
 	th:notation "Insulin-like Growth Factor-1"^^xsd:string ;
 	th:definition "A measurement of the insulin-like growth factor-1 in a biological specimen."^^xsd:string ;
@@ -5240,6 +5454,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74865>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Insulin Like Growth Factor-2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74865"^^xsd:string ;
 	th:notation "Insulin-like Growth Factor-2"^^xsd:string ;
 	th:definition "A measurement of the insulin-like growth factor-2 in a biological specimen."^^xsd:string ;
@@ -5250,6 +5465,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74805>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74805"^^xsd:string ;
 	th:notation "Interleukin 1"^^xsd:string ;
 	th:definition "A measurement of the interleukin 1 in a biological specimen."^^xsd:string ;
@@ -5260,6 +5476,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74806>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 10 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74806"^^xsd:string ;
 	th:notation "Interleukin 10"^^xsd:string ;
 	th:definition "A measurement of the interleukin 10 in a biological specimen."^^xsd:string ;
@@ -5270,6 +5487,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74807>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 11 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74807"^^xsd:string ;
 	th:notation "Interleukin 11"^^xsd:string ;
 	th:definition "A measurement of the interleukin 11 in a biological specimen."^^xsd:string ;
@@ -5280,6 +5498,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74808>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 12 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74808"^^xsd:string ;
 	th:notation "Interleukin 12"^^xsd:string ;
 	th:definition "A measurement of the interleukin 12 in a biological specimen."^^xsd:string ;
@@ -5290,6 +5509,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74809>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 13 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74809"^^xsd:string ;
 	th:notation "Interleukin 13"^^xsd:string ;
 	th:definition "A measurement of the interleukin 13 in a biological specimen."^^xsd:string ;
@@ -5300,6 +5520,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74810>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 14 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74810"^^xsd:string ;
 	th:notation "Interleukin 14"^^xsd:string ;
 	th:definition "A measurement of the interleukin 14 in a biological specimen."^^xsd:string ;
@@ -5310,6 +5531,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 15 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74811"^^xsd:string ;
 	th:notation "Interleukin 15"^^xsd:string ;
 	th:definition "A measurement of the interleukin 15 in a biological specimen."^^xsd:string ;
@@ -5320,6 +5542,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74812>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 16 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74812"^^xsd:string ;
 	th:notation "Interleukin 16"^^xsd:string ;
 	th:definition "A measurement of the interleukin 16 in a biological specimen."^^xsd:string ;
@@ -5330,6 +5553,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74813>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 17 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74813"^^xsd:string ;
 	th:notation "Interleukin 17"^^xsd:string ;
 	th:definition "A measurement of the interleukin 17 in a biological specimen."^^xsd:string ;
@@ -5340,6 +5564,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 18 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74814"^^xsd:string ;
 	th:notation "Interleukin 18"^^xsd:string ;
 	th:definition "A measurement of the interleukin 18 in a biological specimen."^^xsd:string ;
@@ -5350,6 +5575,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74815>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 19 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74815"^^xsd:string ;
 	th:notation "Interleukin 19"^^xsd:string ;
 	th:definition "A measurement of the interleukin 19 in a biological specimen."^^xsd:string ;
@@ -5360,6 +5586,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74816>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74816"^^xsd:string ;
 	th:notation "Interleukin 2"^^xsd:string ;
 	th:definition "A measurement of the interleukin 2 in a biological specimen."^^xsd:string ;
@@ -5370,6 +5597,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74817>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 20 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74817"^^xsd:string ;
 	th:notation "Interleukin 20"^^xsd:string ;
 	th:definition "A measurement of the interleukin 20 in a biological specimen."^^xsd:string ;
@@ -5380,6 +5608,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74818>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 21 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74818"^^xsd:string ;
 	th:notation "Interleukin 21"^^xsd:string ;
 	th:definition "A measurement of the interleukin 21 in a biological specimen."^^xsd:string ;
@@ -5390,6 +5619,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74819>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 22 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74819"^^xsd:string ;
 	th:notation "Interleukin 22"^^xsd:string ;
 	th:definition "A measurement of the interleukin 22 in a biological specimen."^^xsd:string ;
@@ -5400,6 +5630,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 23 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74820"^^xsd:string ;
 	th:notation "Interleukin 23"^^xsd:string ;
 	th:definition "A measurement of the interleukin 23 in a biological specimen."^^xsd:string ;
@@ -5410,6 +5641,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74821>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 24 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74821"^^xsd:string ;
 	th:notation "Interleukin 24"^^xsd:string ;
 	th:definition "A measurement of the interleukin 24 in a biological specimen."^^xsd:string ;
@@ -5420,6 +5652,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74822>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 25 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74822"^^xsd:string ;
 	th:notation "Interleukin 25"^^xsd:string ;
 	th:definition "A measurement of the interleukin 25 in a biological specimen."^^xsd:string ;
@@ -5430,6 +5663,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 26 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74823"^^xsd:string ;
 	th:notation "Interleukin 26"^^xsd:string ;
 	th:definition "A measurement of the interleukin 26 in a biological specimen."^^xsd:string ;
@@ -5440,6 +5674,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74824>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 27 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74824"^^xsd:string ;
 	th:notation "Interleukin 27"^^xsd:string ;
 	th:definition "A measurement of the interleukin 27 in a biological specimen."^^xsd:string ;
@@ -5450,6 +5685,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74825>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 28 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74825"^^xsd:string ;
 	th:notation "Interleukin 28"^^xsd:string ;
 	th:definition "A measurement of the interleukin 28 in a biological specimen."^^xsd:string ;
@@ -5460,6 +5696,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 29 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74826"^^xsd:string ;
 	th:notation "Interleukin 29"^^xsd:string ;
 	th:definition "A measurement of the interleukin 29 in a biological specimen."^^xsd:string ;
@@ -5470,6 +5707,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74827>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74827"^^xsd:string ;
 	th:notation "Interleukin 3"^^xsd:string ;
 	th:definition "A measurement of the interleukin 3 in a biological specimen."^^xsd:string ;
@@ -5480,6 +5718,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 30 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74828"^^xsd:string ;
 	th:notation "Interleukin 30"^^xsd:string ;
 	th:definition "A measurement of the interleukin 30 in a biological specimen."^^xsd:string ;
@@ -5490,6 +5729,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74829>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 31 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74829"^^xsd:string ;
 	th:notation "Interleukin 31"^^xsd:string ;
 	th:definition "A measurement of the interleukin 31 in a biological specimen."^^xsd:string ;
@@ -5500,6 +5740,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 32 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74830"^^xsd:string ;
 	th:notation "Interleukin 32"^^xsd:string ;
 	th:definition "A measurement of the interleukin 32 in a biological specimen."^^xsd:string ;
@@ -5510,6 +5751,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74831>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 33 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74831"^^xsd:string ;
 	th:notation "Interleukin 33"^^xsd:string ;
 	th:definition "A measurement of the interleukin 33 in a biological specimen."^^xsd:string ;
@@ -5520,6 +5762,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 4 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74832"^^xsd:string ;
 	th:notation "Interleukin 4"^^xsd:string ;
 	th:definition "A measurement of the interleukin 4 in a biological specimen."^^xsd:string ;
@@ -5530,6 +5773,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74833>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74833"^^xsd:string ;
 	th:notation "Interleukin 5"^^xsd:string ;
 	th:definition "A measurement of the interleukin 5 in a biological specimen."^^xsd:string ;
@@ -5540,6 +5784,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 6 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74834"^^xsd:string ;
 	th:notation "Interleukin 6"^^xsd:string ;
 	th:definition "A measurement of the interleukin 6 in a biological specimen."^^xsd:string ;
@@ -5550,6 +5795,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 7 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74835"^^xsd:string ;
 	th:notation "Interleukin 7"^^xsd:string ;
 	th:definition "A measurement of the interleukin 7 in a biological specimen."^^xsd:string ;
@@ -5560,6 +5806,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74836>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 8 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74836"^^xsd:string ;
 	th:notation "Interleukin 8"^^xsd:string ;
 	th:definition "A measurement of the interleukin 8 in a biological specimen."^^xsd:string ;
@@ -5570,6 +5817,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74837>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interleukin 9 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74837"^^xsd:string ;
 	th:notation "Interleukin 9"^^xsd:string ;
 	th:definition "A measurement of the interleukin 9 in a biological specimen."^^xsd:string ;
@@ -5580,6 +5828,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74887"^^xsd:string ;
 	th:notation "LDH Isoenzyme 1"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 1 in a biological specimen."^^xsd:string ;
@@ -5590,6 +5839,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74888>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74888"^^xsd:string ;
 	th:notation "LDH Isoenzyme 2"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 2 in a biological specimen."^^xsd:string ;
@@ -5600,6 +5850,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74889>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74889"^^xsd:string ;
 	th:notation "LDH Isoenzyme 3"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 3 in a biological specimen."^^xsd:string ;
@@ -5610,6 +5861,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74890>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 4 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74890"^^xsd:string ;
 	th:notation "LDH Isoenzyme 4"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 4 in a biological specimen."^^xsd:string ;
@@ -5620,6 +5872,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74891>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase Isoenzyme 5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74891"^^xsd:string ;
 	th:notation "LDH Isoenzyme 5"^^xsd:string ;
 	th:definition "A measurement of the lactate dehydrogenase isoenzyme 5 in a biological specimen."^^xsd:string ;
@@ -5630,6 +5883,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79449>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactate Dehydrogenase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79449"^^xsd:string ;
 	th:notation "Lactate Dehydrogenase/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase to creatinine in a biological specimen."^^xsd:string ;
@@ -5640,6 +5894,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79450>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lactic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79450"^^xsd:string ;
 	th:notation "Lactic Acid"^^xsd:string ;
 	th:definition "A measurement of the lactic acid in a biological specimen."^^xsd:string ;
@@ -5650,6 +5905,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79467>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Large Unstained Cells to Leukocytes Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79467"^^xsd:string ;
 	th:notation "Large Unstained Cells/Leukocytes"^^xsd:string ;
 	th:definition "A relative measure (ratio or percentage) of the large unstained cells to leukocytes in a biological specimen."^^xsd:string ;
@@ -5660,6 +5916,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79451>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 1 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79451"^^xsd:string ;
 	th:notation "LDH Isoenzyme 1/LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 1 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5670,6 +5927,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79452>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 2 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79452"^^xsd:string ;
 	th:notation "LDH Isoenzyme 2/LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 2 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5680,6 +5938,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79453>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 3 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79453"^^xsd:string ;
 	th:notation "LDH Isoenzyme 3/LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 3 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5690,6 +5949,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79454>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 4 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79454"^^xsd:string ;
 	th:notation "LDH Isoenzyme 4/LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 4 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5700,6 +5960,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79455>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "LDH Isoenzyme 5 to LDH Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79455"^^xsd:string ;
 	th:notation "LDH Isoenzyme 5/LDH"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the lactate dehydrogenase isoenzyme 5 to total lactate dehydrogenase in a biological specimen."^^xsd:string ;
@@ -5710,6 +5971,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74866>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leptin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74866"^^xsd:string ;
 	th:notation "Leptin"^^xsd:string ;
 	th:definition "A measurement of the leptin hormone in a biological specimen."^^xsd:string ;
@@ -5720,6 +5982,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79456>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Magnesium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79456"^^xsd:string ;
 	th:notation "Magnesium/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the magnesium to creatinine in a biological specimen."^^xsd:string ;
@@ -5730,6 +5993,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74867>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Melatonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74867"^^xsd:string ;
 	th:notation "Melatonin"^^xsd:string ;
 	th:definition "A measurement of the melatonin hormone in a biological specimen."^^xsd:string ;
@@ -5740,6 +6004,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74881>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Methadone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74881"^^xsd:string ;
 	th:notation "Methadone"^^xsd:string ;
 	th:definition "A measurement of the methadone present in a biological specimen."^^xsd:string ;
@@ -5750,6 +6015,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74882>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Methaqualone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74882"^^xsd:string ;
 	th:notation "Methaqualone"^^xsd:string ;
 	th:definition "A measurement of the methaqualone present in a biological specimen."^^xsd:string ;
@@ -5760,6 +6026,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74883>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Morphine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74883"^^xsd:string ;
 	th:notation "Morphine"^^xsd:string ;
 	th:definition "A measurement of the morphine present in a biological specimen."^^xsd:string ;
@@ -5770,6 +6037,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79457>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mu Glutathione-S-Transferase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79457"^^xsd:string ;
 	th:notation "Mu Glutathione-S-Transferase"^^xsd:string ;
 	th:definition "A measurement of the mu form of glutathione S-transferase in a biological specimen."^^xsd:string ;
@@ -5780,6 +6048,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79458>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mu Glutathione-S-Transferase to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79458"^^xsd:string ;
 	th:notation "Mu Glutathione-S-Transferase/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the mu gamma glutamyl transpeptidase to creatinine in a biological specimen."^^xsd:string ;
@@ -5790,6 +6059,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79436>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Myoglobin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79436"^^xsd:string ;
 	th:notation "Myoglobin"^^xsd:string ;
 	th:definition "A measurement of myoglobin in a biological specimen."^^xsd:string ;
@@ -5800,6 +6070,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79459>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "N-Acetyl Glucosamide Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79459"^^xsd:string ;
 	th:notation "N-Acetyl Glucosamide"^^xsd:string ;
 	th:definition "A measurement of N-acetyl glucosamide in a biological specimen."^^xsd:string ;
@@ -5810,6 +6081,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79460>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "N-Acetyl Glucosamide to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79460"^^xsd:string ;
 	th:notation "N-Acetyl Glucosamide/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the N-acetyl glucosamide to creatinine in a biological specimen."^^xsd:string ;
@@ -5820,6 +6092,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74892>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Neuropeptide Y Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74892"^^xsd:string ;
 	th:notation "Neuropeptide Y"^^xsd:string ;
 	th:definition "A measurement of the neuropeptide Y in a biological specimen."^^xsd:string ;
@@ -5830,6 +6103,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74868>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Noradrenaline Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74868"^^xsd:string ;
 	th:notation "Norepinephrine"^^xsd:string ;
 	th:definition "A measurement of the norepinephrine hormone in a biological specimen."^^xsd:string ;
@@ -5840,6 +6114,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Osmolality Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74801"^^xsd:string ;
 	th:notation "Osmolality"^^xsd:string ;
 	th:definition "A measurement of the osmoles of solute per unit of biological specimen."^^xsd:string ;
@@ -5850,6 +6125,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74884>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oxycodone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74884"^^xsd:string ;
 	th:notation "Oxycodone"^^xsd:string ;
 	th:definition "A measurement of the oxycodone present in a biological specimen."^^xsd:string ;
@@ -5860,6 +6136,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74869>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oxytocin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74869"^^xsd:string ;
 	th:notation "Oxytocin"^^xsd:string ;
 	th:definition "A measurement of the oxytocin hormone in a biological specimen."^^xsd:string ;
@@ -5870,6 +6147,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74694>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phencyclidine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74694"^^xsd:string ;
 	th:notation "Phencyclidine"^^xsd:string ;
 	th:definition "A measurement of the phencyclidine present in a biological specimen."^^xsd:string ;
@@ -5880,6 +6158,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74695>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phenothiazine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74695"^^xsd:string ;
 	th:notation "Phenothiazine"^^xsd:string ;
 	th:definition "A measurement of the phenothiazine present in a biological specimen."^^xsd:string ;
@@ -5890,6 +6169,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79461>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phosphate to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79461"^^xsd:string ;
 	th:notation "Phosphate/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the phosphate to creatinine in a biological specimen."^^xsd:string ;
@@ -5900,6 +6180,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79462>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Potassium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79462"^^xsd:string ;
 	th:notation "Potassium/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the potassium to creatinine in a biological specimen."^^xsd:string ;
@@ -5910,6 +6191,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74870>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Prolactin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74870"^^xsd:string ;
 	th:notation "Prolactin"^^xsd:string ;
 	th:definition "A measurement of the prolactin hormone in a biological specimen."^^xsd:string ;
@@ -5920,6 +6202,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74885>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Propoxyphene Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74885"^^xsd:string ;
 	th:notation "Propoxyphene"^^xsd:string ;
 	th:definition "A measurement of the propoxyphene present in a biological specimen."^^xsd:string ;
@@ -5930,6 +6213,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79463>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Protein to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79463"^^xsd:string ;
 	th:notation "Protein/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the protein to creatinine in a biological specimen."^^xsd:string ;
@@ -5940,6 +6224,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74696>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pseudoephedrine Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74696"^^xsd:string ;
 	th:notation "Pseudoephedrine"^^xsd:string ;
 	th:definition "A measurement of the pseudoephedrine present in a biological specimen."^^xsd:string ;
@@ -5950,6 +6235,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74629>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Reactive Lymphocyte Count Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74629"^^xsd:string ;
 	th:notation "Reactive Lymphocytes"^^xsd:string ;
 	th:definition "A measurement of the reactive lymphocytes (lymphocytes which have become large due to an antigen reaction) in a biological specimen."^^xsd:string ;
@@ -5960,6 +6246,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74893>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Renin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74893"^^xsd:string ;
 	th:notation "Renin"^^xsd:string ;
 	th:definition "A measurement of the renin in a biological specimen."^^xsd:string ;
@@ -5970,6 +6257,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74871>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Secretin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74871"^^xsd:string ;
 	th:notation "Secretin"^^xsd:string ;
 	th:definition "A measurement of the secretin hormone in a biological specimen."^^xsd:string ;
@@ -5980,6 +6268,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74872>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serotonin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74872"^^xsd:string ;
 	th:notation "Serotonin"^^xsd:string ;
 	th:definition "A measurement of the serotonin hormone in a biological specimen."^^xsd:string ;
@@ -5990,6 +6279,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79464>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sodium to Creatinine Ratio Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79464"^^xsd:string ;
 	th:notation "Sodium/Creatinine"^^xsd:string ;
 	th:definition "A relative measurement (ratio or percentage) of the sodium to creatinine in a biological specimen."^^xsd:string ;
@@ -6000,6 +6290,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C79465>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sorbitol Dehydrogenase Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C79465"^^xsd:string ;
 	th:notation "Sorbitol Dehydrogenase"^^xsd:string ;
 	th:definition "A measurement of the sorbitol dehydrogenase in a biological specimen."^^xsd:string ;
@@ -6010,6 +6301,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74873>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thrombopoietin Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74873"^^xsd:string ;
 	th:notation "Thrombopoietin"^^xsd:string ;
 	th:definition "A measurement of the thrombopoietin hormone in a biological specimen."^^xsd:string ;
@@ -6020,6 +6312,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74874>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thyrotropin Releasing Hormone Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74874"^^xsd:string ;
 	th:notation "Thyrotropin Releasing Hormone"^^xsd:string ;
 	th:definition "A measurement of the thyrotropin releasing hormone in a biological specimen."^^xsd:string ;
@@ -6030,6 +6323,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74875>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vanillyl Mandelic Acid Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74875"^^xsd:string ;
 	th:notation "Vanillyl Mandelic Acid"^^xsd:string ;
 	th:definition "A measurement of the vanillyl mandelic acid metabolite in a biological specimen."^^xsd:string ;
@@ -6040,6 +6334,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74895>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin A Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74895"^^xsd:string ;
 	th:notation "Vitamin A"^^xsd:string ;
 	th:definition "A measurement of the Vitamin A in a biological specimen."^^xsd:string ;
@@ -6050,6 +6345,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74896>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B1 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74896"^^xsd:string ;
 	th:notation "Thiamine"^^xsd:string ;
 	th:definition "A measurement of the thiamine in a biological specimen."^^xsd:string ;
@@ -6060,6 +6356,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74897>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B17 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74897"^^xsd:string ;
 	th:notation "Vitamin B17"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B17 in a serum specimen."^^xsd:string ;
@@ -6070,6 +6367,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74898>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74898"^^xsd:string ;
 	th:notation "Riboflavin"^^xsd:string ;
 	th:definition "A measurement of the riboflavin in a biological specimen."^^xsd:string ;
@@ -6080,6 +6378,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74899>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74899"^^xsd:string ;
 	th:notation "Niacin"^^xsd:string ;
 	th:definition "A measurement of the niacin in a biological specimen."^^xsd:string ;
@@ -6090,6 +6389,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74900>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B5 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74900"^^xsd:string ;
 	th:notation "Vitamin B5"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B5 in a biological specimen."^^xsd:string ;
@@ -6100,6 +6400,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74901>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B6 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74901"^^xsd:string ;
 	th:notation "Vitamin B6"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B6 in a biological specimen."^^xsd:string ;
@@ -6110,6 +6411,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74902>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin B7 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74902"^^xsd:string ;
 	th:notation "Vitamin B7"^^xsd:string ;
 	th:definition "A measurement of the Vitamin B7 in a biological specimen."^^xsd:string ;
@@ -6120,6 +6422,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74903>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin C Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74903"^^xsd:string ;
 	th:notation "Vitamin C"^^xsd:string ;
 	th:definition "A measurement of the Vitamin C in a biological specimen."^^xsd:string ;
@@ -6130,6 +6433,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74904>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin D2 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74904"^^xsd:string ;
 	th:notation "Vitamin D2"^^xsd:string ;
 	th:definition "A measurement of the Vitamin D2 in a biological specimen."^^xsd:string ;
@@ -6140,6 +6444,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74905>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin D3 Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74905"^^xsd:string ;
 	th:notation "Vitamin D3"^^xsd:string ;
 	th:definition "A measurement of the Vitamin D3 in a biological specimen."^^xsd:string ;
@@ -6150,6 +6455,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74906>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin E Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74906"^^xsd:string ;
 	th:notation "Vitamin E"^^xsd:string ;
 	th:definition "A measurement of the Vitamin E in a biological specimen."^^xsd:string ;
@@ -6160,6 +6466,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74907>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vitamin K Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74907"^^xsd:string ;
 	th:notation "Vitamin K"^^xsd:string ;
 	th:definition "A measurement of the Vitamin K in a biological specimen."^^xsd:string ;
@@ -6170,6 +6477,7 @@
 <http://www.cdisc.org/C67154/V14#C67154_C74720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Volume Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C74720"^^xsd:string ;
 	th:notation "Volume"^^xsd:string ;
 	th:definition "A measurement of the volume of a biological specimen."^^xsd:string ;
@@ -6180,6 +6488,7 @@
 <http://www.cdisc.org/C71620/V14#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V14#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V14#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -6521,6 +6830,7 @@
 <http://www.cdisc.org/C71620/V14#C71620_C68858>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standard Cubic Meter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C68858"^^xsd:string ;
 	th:notation "m3"^^xsd:string ;
 	th:definition "A unit used in physical chemistry to express the amount of substance of an ideal gas in one cubic meter at standard conditions: temperature 273.15 K and pressure of one atmosphere (101.325 kilopascals).(NCI)"^^xsd:string ;
@@ -6531,6 +6841,7 @@
 <http://www.cdisc.org/C78731/V14#C78731>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Drug Accountability Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78731/V14#C78731_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78731/V14#C78731_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -6569,6 +6880,7 @@
 <http://www.cdisc.org/C78731/V14#C78731_C78721>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dispensed Amount"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78721"^^xsd:string ;
 	th:notation "Dispensed Amount"^^xsd:string ;
 	th:definition "The quantity of a product that has been dispensed. (NCI)"^^xsd:string ;
@@ -6587,6 +6899,7 @@
 <http://www.cdisc.org/C78731/V14#C78731_C78722>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Returned Amount"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78722"^^xsd:string ;
 	th:notation "Returned Amount"^^xsd:string ;
 	th:definition "The quantity of a product that has been returned. (NCI)"^^xsd:string ;
@@ -6613,6 +6926,7 @@
 <http://www.cdisc.org/C78732/V14#C78732>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Drug Accountability Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78732/V14#C78732_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78732/V14#C78732_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -6651,6 +6965,7 @@
 <http://www.cdisc.org/C78732/V14#C78732_C78721>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dispensed Amount"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78721"^^xsd:string ;
 	th:notation "DISPAMT"^^xsd:string ;
 	th:definition "The quantity of a product that has been dispensed. (NCI)"^^xsd:string ;
@@ -6661,6 +6976,7 @@
 <http://www.cdisc.org/C78732/V14#C78732_C78722>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Returned Amount"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78722"^^xsd:string ;
 	th:notation "RETAMT"^^xsd:string ;
 	th:definition "The quantity of a product that has been returned. (NCI)"^^xsd:string ;
@@ -6679,6 +6995,7 @@
 <http://www.cdisc.org/C78733/V14#C78733>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Specimen Condition"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78733/V14#C78733_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78733/V14#C78733_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -6723,6 +7040,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C70717>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Frozen Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70717"^^xsd:string ;
 	th:notation "FROZEN"^^xsd:string ;
 	th:definition "A specimen that has been subjected to and immobilized by severe cold. (NCI)"^^xsd:string ;
@@ -6741,6 +7059,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C70720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hemolysis in Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70720"^^xsd:string ;
 	th:notation "HEMOLIZED"^^xsd:string ;
 	th:definition "A specimen that has undergone the destruction of red blood cells followed by the release of the hemoglobin. (NCI)"^^xsd:string ;
@@ -6759,6 +7078,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C70715>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lipemic Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70715"^^xsd:string ;
 	th:notation "LIPEMIC"^^xsd:string ;
 	th:definition "A specimen that consists of or contains excessive amounts of fat and fatty substances. (NCI)"^^xsd:string ;
@@ -6777,6 +7097,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C70718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Refrigerated Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70718"^^xsd:string ;
 	th:notation "REFRIGERATED"^^xsd:string ;
 	th:definition "A specimen that has been kept or preserved at a low temperature in a refrigerator. (NCI)"^^xsd:string ;
@@ -6795,6 +7116,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C70719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Specimen at Room Temperature"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70719"^^xsd:string ;
 	th:notation "ROOM TEMPERATURE"^^xsd:string ;
 	th:definition "A specimen that has been subjected to and adjusted to the average ambient temperature of a room, usually considered to be around 20° C (68° F). (NCI)"^^xsd:string ;
@@ -6813,6 +7135,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C78723>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Calcified Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78723"^^xsd:string ;
 	th:notation "CALCIFIED"^^xsd:string ;
 	th:definition "A specimen that has undergone calcification. (NCI)"^^xsd:string ;
@@ -6831,6 +7154,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C78724>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Clotted Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78724"^^xsd:string ;
 	th:notation "CLOTTED"^^xsd:string ;
 	th:definition "A specimen that has become coagulated. (NCI)"^^xsd:string ;
@@ -6849,6 +7173,7 @@
 <http://www.cdisc.org/C78733/V14#C78733_C78725>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Autolized Specimen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78725"^^xsd:string ;
 	th:notation "AUTOLIZED"^^xsd:string ;
 	th:definition "A specimen that has undergone autolysis, or self-digestion by the specimen's own digestive enzymes. (NCI)"^^xsd:string ;
@@ -6875,6 +7200,7 @@
 <http://www.cdisc.org/C78734/V14#C78734>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Specimen Type"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78734/V14#C78734_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78734/V14#C78734_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -6952,6 +7278,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12472>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adipose Tissue"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12472"^^xsd:string ;
 	th:notation "ADIPOSE TISSUE"^^xsd:string ;
 	th:definition "A specialized form of connective tissue consisting primarily of adipocytes (fat cells), surrounded by a meshwork of collagen fibers. (NCI)"^^xsd:string ;
@@ -6961,6 +7288,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13188>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Amniotic Fluid"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13188"^^xsd:string ;
 	th:notation "AMNIOTIC FLUID"^^xsd:string ;
 	th:definition "The fluid within the amniotic cavity which surrounds and protects the developing embryo. (NCI)"^^xsd:string ;
@@ -6974,6 +7302,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13190>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aqueous Humor"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13190"^^xsd:string ;
 	th:notation "AQUEOUS HUMOR"^^xsd:string ;
 	th:definition "The watery fluid which is present in the anterior and posterior chambers of the eye. (NCI)"^^xsd:string ;
@@ -6987,6 +7316,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78729>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arterial Blood"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78729"^^xsd:string ;
 	th:notation "ARTERIAL BLOOD"^^xsd:string ;
 	th:definition "Oxygenated blood which is transported with nutrients to body tissues through the arterial system. The exception is blood within the pulmonary artery which carries deoxygenated blood to the lungs. (NCI)"^^xsd:string ;
@@ -7000,6 +7330,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78739>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Atherosclerotic Plaque"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78739"^^xsd:string ;
 	th:notation "ATHEROSCLEROTIC PLAQUE"^^xsd:string ;
 	th:definition "Fatty tissue which is deposited in the inner lining of the arterial wall. (NCI)"^^xsd:string ;
@@ -7013,6 +7344,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13192>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bile"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13192"^^xsd:string ;
 	th:notation "BILE"^^xsd:string ;
 	th:definition "Fluid composed of waste products, bile acids, salts, cholesterol, and electrolytes. It is secreted by the liver parenchyma and stored in the gallbladder. (NCI)"^^xsd:string ;
@@ -7026,6 +7358,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12434>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Blood"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12434"^^xsd:string ;
 	th:notation "BLOOD"^^xsd:string ;
 	th:definition "A liquid tissue with the primary function of transporting oxygen and carbon dioxide. It supplies the tissues with nutrients, removes waste products, and contains various components of the immune system defending the body against infection."^^xsd:string ;
@@ -7035,6 +7368,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12366>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bone"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12366"^^xsd:string ;
 	th:notation "BONE"^^xsd:string ;
 	th:definition "Calcified connective tissue that forms the skeletal components of the body. (NCI)"^^xsd:string ;
@@ -7044,6 +7378,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12431>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bone Marrow"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12431"^^xsd:string ;
 	th:notation "BONE MARROW"^^xsd:string ;
 	th:definition "The tissue occupying the spaces of bone. It consists of blood vessel sinuses and a network of hematopoietic cells which give rise to the red cells, white cells, and megakaryocytes. (NCI)"^^xsd:string ;
@@ -7057,6 +7392,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13257>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Breast Milk"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13257"^^xsd:string ;
 	th:notation "BREAST MILK"^^xsd:string ;
 	th:definition "Milk produced by females for the purpose of feeding their young. (NCI)"^^xsd:string ;
@@ -7070,6 +7406,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C35708>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Stone"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C35708"^^xsd:string ;
 	th:notation "CALCULUS"^^xsd:string ;
 	th:definition "Accumulated material from the secretions of an organ. It is solid and representative examples include gallbladder stones, kidney stones, and salivary gland stones. (NCI)"^^xsd:string ;
@@ -7083,6 +7420,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12692>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cerebrospinal Fluid"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12692"^^xsd:string ;
 	th:notation "CEREBROSPINAL FLUID"^^xsd:string ;
 	th:definition "The fluid that is contained within the brain ventricles, the subarachnoid space and the central canal of the spinal cord. (NCI)"^^xsd:string ;
@@ -7096,6 +7434,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C32293>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cerumen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C32293"^^xsd:string ;
 	th:notation "CERUMEN"^^xsd:string ;
 	th:definition "A wax secreted by glands in the ear canal."^^xsd:string ;
@@ -7109,6 +7448,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C32348>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Colostrum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C32348"^^xsd:string ;
 	th:notation "COLOSTRUM"^^xsd:string ;
 	th:definition "A thick, protein-rich substance secreted by the breasts during the second half of pregnancy and for a few days after birth before the breast milk comes in."^^xsd:string ;
@@ -7122,6 +7462,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C77666>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vomitus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C77666"^^xsd:string ;
 	th:notation "EMESIS"^^xsd:string ;
 	th:definition "Stomach contents that have returned to the mouth or are ejected beyond the mouth. (NCI)"^^xsd:string ;
@@ -7140,6 +7481,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78741>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Expired Air"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78741"^^xsd:string ;
 	th:notation "EXPIRED AIR"^^xsd:string ;
 	th:definition "The air that moves out of the chest during expiration. It contains a higher percentage of carbon dioxide and a lower percentage of oxygen compared to the inhaled air. (NCI)"^^xsd:string ;
@@ -7153,6 +7495,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13233>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Exudate"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13233"^^xsd:string ;
 	th:notation "EXUDATE"^^xsd:string ;
 	th:definition "Fluid, cells or cellular debris that escapes from the blood vessels and accumulates in nearby tissues. It is the result of inflammation and is rich in proteins."^^xsd:string ;
@@ -7166,6 +7509,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13236>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Body Fluid or Substance"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13236"^^xsd:string ;
 	th:notation "FLUID"^^xsd:string ;
 	th:definition "Liquid substances produced by the body."^^xsd:string ;
@@ -7179,6 +7523,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C32705>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hair"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C32705"^^xsd:string ;
 	th:notation "HAIR"^^xsd:string ;
 	th:definition "The filamentous outgrowth of the epidermis. (NCI)"^^xsd:string ;
@@ -7188,6 +7533,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78742>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lochia"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78742"^^xsd:string ;
 	th:notation "LOCHIA"^^xsd:string ;
 	th:definition "Vaginal discharge occurring during the post-partum period. It consists of a mixture of blood, mucus, and placental remnants. (NCI)"^^xsd:string ;
@@ -7201,6 +7547,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13273>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lung Surfactant"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13273"^^xsd:string ;
 	th:notation "LUNG SURFACTANT"^^xsd:string ;
 	th:definition "Pulmonary surfactant lines the lung epithelium and lowers surface tension to prevent collapse at end-expiration. Deficiency of pulmonary surfactant results in respiratory distress syndrome (RDS) in premature infants. Lung surfactant is synthesized in alveolar type II cells, stored in lamellar bodies and secreted via exocytosis. (NCI)"^^xsd:string ;
@@ -7219,6 +7566,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13252>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Lymph"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13252"^^xsd:string ;
 	th:notation "LYMPH"^^xsd:string ;
 	th:definition "A clear, transparent, sometimes faintly yellow and slightly opalescent fluid that is collected from the tissues throughout the body, flows in the lymphatic vessels (through the lymph nodes), and is eventually added to the venous blood circulation. Lymph consists of a clear liquid portion, varying numbers of white blood cells (chiefly lymphocytes), and a few red blood cells. (NCI)"^^xsd:string ;
@@ -7232,6 +7580,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78743>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Meconium"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78743"^^xsd:string ;
 	th:notation "MECONIUM"^^xsd:string ;
 	th:definition "The newborn's first intestinal discharge. It is a dark-green, thick substance composed of mucus, intestinal secretions, hair, and intestinal mucosa cells. (NCI)"^^xsd:string ;
@@ -7245,6 +7594,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78740>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Menstrual Blood"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78740"^^xsd:string ;
 	th:notation "MENSTRUAL BLOOD"^^xsd:string ;
 	th:definition "The discharged blood from the uterus during the reproductive years. The discharge occurs approximately once a month. (NCI)"^^xsd:string ;
@@ -7258,6 +7608,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mucus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13259"^^xsd:string ;
 	th:notation "MUCUS"^^xsd:string ;
 	th:definition "The thick fluid secreted by the mucus glands in the aerodigestive tract and the vagina. (NCI)"^^xsd:string ;
@@ -7271,6 +7622,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C33156>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nail"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C33156"^^xsd:string ;
 	th:notation "NAIL"^^xsd:string ;
 	th:definition "The cutaneous plate on the dorsal surface of the distal end of a finger or toe. (NCI)"^^xsd:string ;
@@ -7280,6 +7632,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13356>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Plasma"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13356"^^xsd:string ;
 	th:notation "PLASMA"^^xsd:string ;
 	th:definition "Plasma is the fluid (acellular) portion of the circulating blood, as distinguished from the serum that is the fluid portion of the blood obtained by removal of the fibrin clot and blood cells after coagulation."^^xsd:string ;
@@ -7293,6 +7646,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C50718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pus"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C50718"^^xsd:string ;
 	th:notation "PUS"^^xsd:string ;
 	th:definition "A yellowish substance produced during bacterial inflammation. It contains necrotic cells and cells fighting the infection. (NCI)"^^xsd:string ;
@@ -7306,6 +7660,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13275>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Saliva"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13275"^^xsd:string ;
 	th:notation "SALIVA"^^xsd:string ;
 	th:definition "A clear liquid secreted into the mouth by the salivary glands and mucous glands of the mouth; moistens the mouth and starts the digestion of starches. (NCI)"^^xsd:string ;
@@ -7319,6 +7674,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13276>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sebum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13276"^^xsd:string ;
 	th:notation "SEBUM"^^xsd:string ;
 	th:definition "A thick, oily substance produced by the sebaceous glands located in the dermis. (NCI)"^^xsd:string ;
@@ -7332,6 +7688,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13277>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Semen"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13277"^^xsd:string ;
 	th:notation "SEMEN"^^xsd:string ;
 	th:definition "The thick, whitish secretion of the male reproductive organs. It is composed of spermatozoa in their nutrient plasma, secretions from the prostate, seminal vesicles, and various other glands, epithelial cells, and minor constituents."^^xsd:string ;
@@ -7350,6 +7707,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C33529>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Seminal Fluid"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C33529"^^xsd:string ;
 	th:notation "SEMINAL FLUID"^^xsd:string ;
 	th:definition "Part of the ejaculated fluid. It contains secretions from the seminal vesicles, Cowper gland, and prostate gland."^^xsd:string ;
@@ -7363,6 +7721,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13325>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Serum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13325"^^xsd:string ;
 	th:notation "SERUM"^^xsd:string ;
 	th:definition "The clear portion of the blood that remains after the removal of the blood cells and the clotting proteins. (NCI)"^^xsd:string ;
@@ -7376,6 +7735,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C33574>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Smegma"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C33574"^^xsd:string ;
 	th:notation "SMEGMA"^^xsd:string ;
 	th:definition "A white secretion of the sebaceous glands of the foreskin. (NCI)"^^xsd:string ;
@@ -7389,6 +7749,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13278>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sputum"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13278"^^xsd:string ;
 	th:notation "SPUTUM"^^xsd:string ;
 	th:definition "Material containing mucus, cellular debris, microorganisms and sometimes blood or pus. It is ejected through the mouth from the lungs, bronchi, and trachea. (NCI)"^^xsd:string ;
@@ -7402,6 +7763,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Feces"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13234"^^xsd:string ;
 	th:notation "STOOL"^^xsd:string ;
 	th:definition "The material discharged from the bowel during defecation. It consists of undigested food, intestinal mucus, epithelial cells, and bacteria. (NCI)"^^xsd:string ;
@@ -7420,6 +7782,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13280>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sweat"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13280"^^xsd:string ;
 	th:notation "PERSPIRATION"^^xsd:string ;
 	th:definition "The liquid secreted by the sweat glands. (NCI)"^^xsd:string ;
@@ -7438,6 +7801,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C12801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tissue"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C12801"^^xsd:string ;
 	th:notation "TISSUE"^^xsd:string ;
 	th:definition "An anatomical structure consisting of similarly specialized cells and intercellular matrix, aggregated according to genetically determined spatial relationships, performing a specific function. (NCI)"^^xsd:string ;
@@ -7451,6 +7815,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78744>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Transudate"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78744"^^xsd:string ;
 	th:notation "TRANSUDATE"^^xsd:string ;
 	th:definition "The fluid that passes through the wall of the veins and capillaries to the surrounding tissues because of increased intravascular pressure. It has low protein content. (NCI)"^^xsd:string ;
@@ -7464,6 +7829,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C13283>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Urine"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C13283"^^xsd:string ;
 	th:notation "URINE"^^xsd:string ;
 	th:definition "The fluid that is excreted by the kidneys. It is stored in the bladder and discharged through the urethra. (NCI)"^^xsd:string ;
@@ -7477,6 +7843,7 @@
 <http://www.cdisc.org/C78734/V14#C78734_C78730>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Venous Blood"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78730"^^xsd:string ;
 	th:notation "VENOUS BLOOD"^^xsd:string ;
 	th:definition "Deoxygenated blood containing urea and other waste products which is transported through the venous system to the heart and lungs. The exception is blood within the pulmonary vein which is oxygenated and travels from the lungs to the left atrium of the heart. (NCI)"^^xsd:string ;
@@ -7498,6 +7865,7 @@
 <http://www.cdisc.org/C78735/V14#C78735>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Evaluator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78735/V14#C78735_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78735/V14#C78735_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -7548,6 +7916,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C17445>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Caregiver"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C17445"^^xsd:string ;
 	th:notation "CAREGIVER"^^xsd:string ;
 	th:definition "The primary person in charge of the care of a patient, usually a family member or a designated health care professional. (NCI)"^^xsd:string ;
@@ -7561,6 +7930,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C42708>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Child"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C42708"^^xsd:string ;
 	th:notation "CHILD"^^xsd:string ;
 	th:definition "A son or a daughter."^^xsd:string ;
@@ -7582,6 +7952,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C51811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Clinical Coordinator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51811"^^xsd:string ;
 	th:notation "CLINICAL RESEARCH COORDINATOR"^^xsd:string ;
 	th:definition "A person to whom a clinical investigator delegates routine administrative requirements of a protocol. The duties and responsibilities of a clinical research coordinator may vary across different infrastructures. Generally, the coordinator manages the subject's clinical trial participation and provides a vital linkage between the subject, the investigator, and the sponsor. (NCI)"^^xsd:string ;
@@ -7595,6 +7966,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C25465>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Clinical Research Associate"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25465"^^xsd:string ;
 	th:notation "CLINICAL RESEARCH ASSOCIATE"^^xsd:string ;
 	th:definition "A person who is employed by a study sponsor or by a contract research organization (CRO), operates independently from the clinical study site and functions as a monitor, and/or auditor, and/or a project director within a particular trial or institution. (NCI)"^^xsd:string ;
@@ -7613,6 +7985,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C70793>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Clinical Study Sponsor"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70793"^^xsd:string ;
 	th:notation "CLINICAL STUDY SPONSOR"^^xsd:string ;
 	th:definition "An entity that is responsible for the initiation, management, and/or financing of a clinical study."^^xsd:string ;
@@ -7631,6 +8004,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C53287>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Health Care Professional"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C53287"^^xsd:string ;
 	th:notation "HEALTH CARE PROFESSIONAL"^^xsd:string ;
 	th:definition "A person qualified to be engaged in activity directed at preservation of mental and physical health by diseases prevention and treatment as a source of livelihood. (NCI)"^^xsd:string ;
@@ -7644,6 +8018,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C78720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Independent Rater"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78720"^^xsd:string ;
 	th:notation "INDEPENDENT ASSESSOR"^^xsd:string ;
 	th:definition "An individual qualified to perform an evaluation who is masked from a subject's data in order to minimize bias or maximize consistency and quality. (NCI)"^^xsd:string ;
@@ -7657,6 +8032,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C25936>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Investigator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25936"^^xsd:string ;
 	th:notation "INVESTIGATOR"^^xsd:string ;
 	th:definition "A person responsible for the conduct of the clinical trial at a trial site. If a trial is conducted by a team of individuals at the trial site, the investigator is the responsible leader of the team and may be called the principle investigator."^^xsd:string ;
@@ -7670,6 +8046,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C72884>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Friend"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C72884"^^xsd:string ;
 	th:notation "FRIEND"^^xsd:string ;
 	th:definition "A person whom an individual knows, likes, and trusts. (NCI)"^^xsd:string ;
@@ -7683,6 +8060,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C41189>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Study Subject"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C41189"^^xsd:string ;
 	th:notation "STUDY SUBJECT"^^xsd:string ;
 	th:definition "An individual who is observed, analyzed, examined, investigated, experimented upon, or/and treated in the course of a particular study."^^xsd:string ;
@@ -7696,6 +8074,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C62649>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spouse"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C62649"^^xsd:string ;
 	th:notation "SPOUSE"^^xsd:string ;
 	th:definition "A person's partner in marriage. (NCI)"^^xsd:string ;
@@ -7709,6 +8088,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C53262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Domestic Partnership"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C53262"^^xsd:string ;
 	th:notation "DOMESTIC PARTNER"^^xsd:string ;
 	th:definition "A person who is a member of an unmarried couple, including same sex couples living together in longstanding relationships, that are registered or unregistered. (NCI)"^^xsd:string ;
@@ -7718,6 +8098,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C78726>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adjudication Committee"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78726"^^xsd:string ;
 	th:notation "ADJUDICATION COMMITTEE"^^xsd:string ;
 	th:definition "An external committee whose purpose is to evaluate study data and decide whether a study endpoint or other criterion has been met. (NCI)"^^xsd:string ;
@@ -7731,6 +8112,7 @@
 <http://www.cdisc.org/C78735/V14#C78735_C51828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Guardian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51828"^^xsd:string ;
 	th:notation "GUARDIAN"^^xsd:string ;
 	th:definition "An individual who is authorized under applicable State or local law to consent on behalf of a child or incapable person to general medical care including participation in clinical research. (NCI)"^^xsd:string ;
@@ -7752,6 +8134,7 @@
 <http://www.cdisc.org/C78736/V14#C78736>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Reference Range Indicator"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78736/V14#C78736_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78736/V14#C78736_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -7792,6 +8175,7 @@
 <http://www.cdisc.org/C78736/V14#C78736_C78727>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Normal Reference Range"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78727"^^xsd:string ;
 	th:notation "NORMAL"^^xsd:string ;
 	th:definition "Reported values within the typical or expected range. (NCI)"^^xsd:string ;
@@ -7805,6 +8189,7 @@
 <http://www.cdisc.org/C78736/V14#C78736_C78802>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Abnormal Reference Range"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78802"^^xsd:string ;
 	th:notation "ABNORMAL"^^xsd:string ;
 	th:definition "Reported values outside the typical or expected range. (NCI)"^^xsd:string ;
@@ -7818,6 +8203,7 @@
 <http://www.cdisc.org/C78736/V14#C78736_C78800>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Value Above Reference Range"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78800"^^xsd:string ;
 	th:notation "HIGH"^^xsd:string ;
 	th:definition "Reported values above the typical or expected range. (NCI)"^^xsd:string ;
@@ -7831,6 +8217,7 @@
 <http://www.cdisc.org/C78736/V14#C78736_C78801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Value Below Reference Range"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78801"^^xsd:string ;
 	th:notation "LOW"^^xsd:string ;
 	th:definition "Reported values below the typical or expected range. (NCI)"^^xsd:string ;
@@ -7852,6 +8239,7 @@
 <http://www.cdisc.org/C78737/V14#C78737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Relationship Type"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78737/V14#C78737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78737/V14#C78737_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -7890,6 +8278,7 @@
 <http://www.cdisc.org/C78737/V14#C78737_C66832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "One"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C66832"^^xsd:string ;
 	th:notation "ONE"^^xsd:string ;
 	th:definition "A textual representation of the numeral 1."^^xsd:string ;
@@ -7903,6 +8292,7 @@
 <http://www.cdisc.org/C78737/V14#C78737_C78728>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Many"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C78728"^^xsd:string ;
 	th:notation "MANY"^^xsd:string ;
 	th:definition "More than one. (NCI)"^^xsd:string ;
@@ -7924,6 +8314,7 @@
 <http://www.cdisc.org/C78738/V14#C78738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Never/Current/Former Classification"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C78738/V14#C78738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78738/V14#C78738_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -7963,6 +8354,7 @@
 <http://www.cdisc.org/C78738/V14#C78738_C70543>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Never"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C70543"^^xsd:string ;
 	th:notation "NEVER"^^xsd:string ;
 	th:definition "Not ever; at no time in the past."^^xsd:string ;
@@ -7976,6 +8368,7 @@
 <http://www.cdisc.org/C78738/V14#C78738_C25471>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Current"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25471"^^xsd:string ;
 	th:notation "CURRENT"^^xsd:string ;
 	th:definition "Occurring in or belonging to the present time. (NCI)"^^xsd:string ;
@@ -7989,6 +8382,7 @@
 <http://www.cdisc.org/C78738/V14#C78738_C25627>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Previous"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25627"^^xsd:string ;
 	th:notation "FORMER"^^xsd:string ;
 	th:definition "Occurring prior to something else. (NCI)"^^xsd:string ;

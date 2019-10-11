@@ -17,6 +17,9 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2011-04-08.xlsx', 'ADaM Terminology 2011-01-07.xlsx', 'CDASH Terminology 2011-04-08.xlsx'"^^xsd:string ;
@@ -960,6 +963,7 @@
 <http://www.cdisc.org/C67152/V25#C67152>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67152/V25#C67152_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67152/V25#C67152_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1026,6 +1030,7 @@
 <http://www.cdisc.org/C67152/V25#C67152_C20587>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Age Group"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C20587"^^xsd:string ;
 	th:notation "Age Span"^^xsd:string ;
 	th:definition "Subgroups of populations based on age. (NCI)"^^xsd:string ;
@@ -1036,6 +1041,7 @@
 <http://www.cdisc.org/C66741/V25#C66741>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66741/V25#C66741_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66741/V25#C66741_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1087,6 +1093,7 @@
 <http://www.cdisc.org/C66741/V25#C66741_C25298>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Systolic Blood Pressure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C25298"^^xsd:string ;
 	th:notation "SYSBP"^^xsd:string ;
 	th:definition "The blood pressure during the contraction of the left ventricle of the heart."^^xsd:string ;
@@ -1097,6 +1104,7 @@
 <http://www.cdisc.org/C65047/V25#C65047>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C65047/V25#C65047_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C65047/V25#C65047_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1782,6 +1790,7 @@
 <http://www.cdisc.org/C65047/V25#C65047_C51951>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Platelet Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51951"^^xsd:string ;
 	th:notation "PLAT"^^xsd:string ;
 	th:definition "A measurement of the platelets in a biological specimen."^^xsd:string ;
@@ -1796,6 +1805,7 @@
 <http://www.cdisc.org/C65047/V25#C65047_C92246>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Cell Clumps Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C92246"^^xsd:string ;
 	th:notation "WBCCLMP"^^xsd:string ;
 	th:definition "A measurement of white blood cell clumps in a biological specimen."^^xsd:string ;
@@ -1816,6 +1826,7 @@
 <http://www.cdisc.org/C67154/V25#C67154>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Laboratory Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C67154/V25#C67154_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67154/V25#C67154_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2501,6 +2512,7 @@
 <http://www.cdisc.org/C67154/V25#C67154_C51951>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Platelet Count"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C51951"^^xsd:string ;
 	th:notation "Platelets"^^xsd:string ;
 	th:definition "A measurement of the platelets in a biological specimen."^^xsd:string ;
@@ -2511,6 +2523,7 @@
 <http://www.cdisc.org/C67154/V25#C67154_C92246>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Leukocyte Cell Clumps Measurement"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C92246"^^xsd:string ;
 	th:notation "Leukocyte Cell Clumps"^^xsd:string ;
 	th:definition "A measurement of white blood cell clumps in a biological specimen."^^xsd:string ;
@@ -2523,6 +2536,7 @@
 <http://www.cdisc.org/C71150/V25#C71150>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Result"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C71150/V25#C71150_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71150/V25#C71150_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2678,6 +2692,7 @@
 <http://www.cdisc.org/C71150/V25#C71150_C50553>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sinoatrial Node Exit Block"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C50553"^^xsd:string ;
 	th:notation "SINOATRIAL EXIT BLOCK"^^xsd:string ;
 	th:definition "A blockage of electrical conduction within the sinoatrial node resulting in the failure of impulse transmission from the sinoatrial node. (NCI)"^^xsd:string ;
@@ -2688,6 +2703,7 @@
 <http://www.cdisc.org/C78419/V25#C78419>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78419/V25#C78419_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78419/V25#C78419_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2732,6 +2748,7 @@
 <http://www.cdisc.org/C78419/V25#C78419_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Twice Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64496"^^xsd:string ;
 	th:notation "BID"^^xsd:string ;
 	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
@@ -2743,6 +2760,7 @@
 <http://www.cdisc.org/C78422/V25#C78422>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Original Units"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78422/V25#C78422_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78422/V25#C78422_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2782,6 +2800,7 @@
 <http://www.cdisc.org/C78422/V25#C78422_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The second is a unit of time with a duration of 919 263 177 0 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K. According to the convention, 60 seconds constitute one minute; 3,600 seconds constitute one hour. Abbreviation Sec. is acceptable in non-scientific usage only.(NCI)"^^xsd:string ;
@@ -2792,6 +2811,7 @@
 <http://www.cdisc.org/C78745/V25#C78745>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78745/V25#C78745_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78745/V25#C78745_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2840,6 +2860,7 @@
 <http://www.cdisc.org/C78427/V25#C78427>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78427/V25#C78427_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78427/V25#C78427_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2879,6 +2900,7 @@
 <http://www.cdisc.org/C78427/V25#C78427_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The second is a unit of time with a duration of 919 263 177 0 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K. According to the convention, 60 seconds constitute one minute; 3,600 seconds constitute one hour. Abbreviation Sec. is acceptable in non-scientific usage only.(NCI)"^^xsd:string ;
@@ -2889,6 +2911,7 @@
 <http://www.cdisc.org/C78427/V25#C78427_C25529>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hour"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25529"^^xsd:string ;
 	th:notation "HOURS"^^xsd:string ;
 	th:definition "A unit measure of time equal to 3,600 seconds or 60 minutes. It is approximately 1/24 of a median day. (NCI)"^^xsd:string ;
@@ -2900,6 +2923,7 @@
 <http://www.cdisc.org/C78430/V25#C78430>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Planned Exposure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78430/V25#C78430_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78430/V25#C78430_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2943,6 +2967,7 @@
 <http://www.cdisc.org/C78430/V25#C78430_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "The unit of volume equal to one thousandth of a liter, one cubic centimeter, 10E-6 cubic meter, or approximately to 0.061 023 7 cubic inch.(NCI)"^^xsd:string ;
@@ -2954,6 +2979,7 @@
 <http://www.cdisc.org/C78430/V25#C78430_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "The unit of mass equal to one thousandth of a gram or 1000 micrograms. One milligram equals approximately 0.015432 grain or 35.274 x 10E-6 ounce.(NCI)"^^xsd:string ;
@@ -2964,6 +2990,7 @@
 <http://www.cdisc.org/C78431/V25#C78431>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78431/V25#C78431_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78431/V25#C78431_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3003,6 +3030,7 @@
 <http://www.cdisc.org/C78431/V25#C78431_C62166>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standing"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62166"^^xsd:string ;
 	th:notation "STANDING"^^xsd:string ;
 	th:definition "The act of assuming or maintaining an erect upright position. (NCI)"^^xsd:string ;

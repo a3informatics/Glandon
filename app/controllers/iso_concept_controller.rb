@@ -10,6 +10,12 @@ class IsoConceptController < ApplicationController
     render :json => @concept.to_json, :status => 200
   end
   
+  def tags
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    render :json => concept.tags.map{|x| x.pref_label}, :status => 200
+  end
+  
   def graph
     authorize IsoConcept, :show?
     concept = IsoConcept.find(params[:id], params[:namespace])
