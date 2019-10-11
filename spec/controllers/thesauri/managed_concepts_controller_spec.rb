@@ -56,6 +56,43 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "changes summary" do
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:synonym_objects).and_return([])
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:preferred_term_objects).and_return([])
+      get :changes_summary, {id: "aaa", last_id: "bbb", ver_span: "x"}
+      expect(assigns(:links)).to eq({})
+      expect(assigns(:version_span)).to eq("x")
+      expect(assigns(:version_count)).to eq(2)
+      expect(assigns(:close_path)).to eq(dashboard_index_path)
+      expect(response).to render_template("changes_summary")
+    end
+
+    it "changes summary data" do
+      expected = {items: {:"1"=>{:changes_path=>"/thesauri/unmanaged_concepts/1/changes", :id=>"1"}, :"2"=>{:changes_path=>"/thesauri/unmanaged_concepts/2/changes", :id=>"2"}}}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
+      get :changes_summary_data, {id: "aaa", last_id: "bbb", ver_span: "x"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
+    it "differences summary" do
+      expected = {items: {:"1" => {id: "1"}, :"2" => {id: "2"}}}
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:differences_summary).and_return(expected)
+      get :differences_summary, {id: "aaa", last_id: "bbb", ver_span: "x"}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+    end
+
     it "is_extended" do
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
