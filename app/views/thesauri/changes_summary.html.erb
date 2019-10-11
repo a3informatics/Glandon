@@ -1,0 +1,24 @@
+<%= javascript_include_tag 'thesauri/managed_concepts/changes' %>
+<%= javascript_tag "var changes_url_path = '#{changes_summary_data_thesauri_managed_concept_path(@tc)}';" %>
+<%= javascript_tag "var column_count = '#{@version_count}';" %>
+<%= javascript_tag "var pdfLoadingDur = 30,
+                        loadingMessage = 'Generating report...',
+                        errTimeoutMessage = 'Error occurred while generating the report.',
+                        redirectPath = '"+changes_report_thesauri_managed_concept_path(@tc, format: :pdf)+"';" %>
+
+<% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
+<div class="row">
+  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
+    <div class="actions-wrap">
+      <div onclick="showFullPageSpinnerWithRedirect(pdfLoadingDur, loadingMessage, errTimeoutMessage, redirectPath);">
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "report",
+        icon: "icon-file", btn_text: "PDF Report", dt_toggle: "", disabled: false } %>
+      </div>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <%= render partial: "shared/thesauri/changes_panel_v2", :locals => {title: "Changes", info: "Changes in the items.", column_count: @version_count, links: @links} %>
+</div>
