@@ -21,4 +21,23 @@ class IsoConceptV2 < Fuseki::Base
     super({label: label}, {uri: create_uri(base_uri), label: label})
   end
 
+  # Add Tags. Add tags if not already present
+  #    
+  # @param tags [Array] array of IsoConceptSystem items
+  # @return [Void] no return
+  def add_tags(tags)
+    uris = self.tagged.map{|x| x.uri}
+    tags.each do |tag|
+      self.tagged << tag if !uris.include?(tag.uri)
+    end
+  end
+
+  # Add Tag. Add a tag if not already present
+  #    
+  # @param tag [IsoConceptSystem] a single IsoConceptSystem item
+  # @return [Void] no return
+  def add_tag(tag)
+    self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
+  end
+
 end

@@ -85,6 +85,7 @@ private
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous)
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
+      parent.add_tags(actual.tagged)
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
       child.add_additional_tags(previous, tag_set) 
       filtered << child 

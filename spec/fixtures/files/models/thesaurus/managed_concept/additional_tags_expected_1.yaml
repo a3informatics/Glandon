@@ -1,0 +1,17 @@
+---
+- :subject: !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: mc1
+    fragment: ''
+  :object: &1 !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: tag2
+    fragment: ''
+- :subject: !ruby/object:Uri
+    scheme: http
+    authority: www.cdisc.org
+    path: uc1b
+    fragment: ''
+  :object: *1

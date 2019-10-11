@@ -881,6 +881,25 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC"])
     end
 
+    it "add tags" do
+      merge_base
+      result = []
+      @tc_1.uri = Uri.new(uri: "http://www.cdisc.org/mc1")
+      @tc_1b.uri = Uri.new(uri: "http://www.cdisc.org/uc1b")
+      @tc_2.uri = Uri.new(uri: "http://www.cdisc.org/mc2")
+      @tc_2b.uri = Uri.new(uri: "http://www.cdisc.org/uc2b")
+      @tc_1.add_additional_tags(@tc_2, result)
+      expect(@tc_1.tagged.count).to eq(1)
+      expect(@tc_1.tagged).to match_array([@uri_1])
+      expect(@tc_2.tagged.count).to eq(1)
+      expect(@tc_2.tagged).to match_array([@uri_2])
+      expect(@tc_1b.tagged.count).to eq(2)
+      expect(@tc_1b.tagged).to match_array([@uri_1, @uri_3])
+      expect(@tc_2b.tagged.count).to eq(2)
+      expect(@tc_2b.tagged).to match_array([@uri_1, @uri_2])
+      check_file_actual_expected(result, sub_dir, "additional_tags_expected_1.yaml", write_file: true)
+    end
+
   end
 
 end
