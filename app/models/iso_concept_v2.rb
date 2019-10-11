@@ -23,7 +23,7 @@ class IsoConceptV2 < Fuseki::Base
 
   # Add Tags. Add tags if not already present
   #    
-  # @param tags [Array] array of IsoConceptSystem items
+  # @param tags [Array] array of IsoConceptSystem::Node items
   # @return [Void] no return
   def add_tags(tags)
     uris = self.tagged.map{|x| x.uri}
@@ -34,10 +34,27 @@ class IsoConceptV2 < Fuseki::Base
 
   # Add Tag. Add a tag if not already present
   #    
-  # @param tag [IsoConceptSystem] a single IsoConceptSystem item
+  # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
   # @return [Void] no return
   def add_tag(tag)
     self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
+  end
+
+  # Tags. Get the tags for the items
+  #
+  # @return [Array] set of IsoConceptSystem::Node items
+  def tags
+    result = []
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {            
+  #{self.uri.to_ref} isoC:tagged ?s .
+  ?s ?p ?o
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    query_results.by_subject.each do |subject, triples|
+      result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
+    end
+    result
   end
 
 end

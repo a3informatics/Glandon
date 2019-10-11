@@ -66,6 +66,31 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
     expect(count).to eq(expected)
   end
 
+  def check_tags(issue_date)
+    tag_objects = []
+    version_index = @date_to_version_map.index(issue_date)
+    version = version_index + 1
+    expected = @version_to_tags_map[version_index]
+    uri_sting = "http://www.cdisc.org/CT/V#{version}#TH"
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {            
+  #{Uri.new(uri: uri_sting).to_ref} isoC:tagged ?s .
+  ?s ?p ?o
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    subjects = query_results.by_subject
+    subjects.each do |subject, triples|
+      tag_objects << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
+    end
+    tags = tag_objects.map{|x| x.pref_label.to_sym}
+    missing = expected[:th] - tags
+    extra = tags - expected[:th]
+    puts "***** Error checking tags: #{extra} are present but not expected *****" if extra.any?
+    puts "***** Error checking tags: #{missing} are not present but expected *****" if missing.any?
+    expect(extra.empty?).to be(true)
+    expect(missing.empty?).to be(true)
+  end
+
   def set_write_file
     true
   end
@@ -195,6 +220,72 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2018
       { size: 28590+289+50-155 }, { size: 29095+293+50-159 }, { size: -1 }                                              # 2019
     ]
+  
+    @version_to_tags_map =
+    [
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 1
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 10
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 20
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 26
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 30
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 40
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :COA], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :COA], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QRS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QRS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 50
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 60
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}
+    ]
+
   end
 
   describe "2007" do
@@ -211,6 +302,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2007-04-20", :speed => 'slow' do
@@ -229,6 +321,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2007-04-26", :speed => 'slow' do
@@ -243,6 +336,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2007-05-31", :speed => 'slow' do
@@ -259,6 +353,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2007-06-05", :speed => 'slow' do
@@ -275,6 +370,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -297,6 +393,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-01-25", :speed => 'slow' do
@@ -315,6 +412,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-08-26", :speed => 'slow' do
@@ -334,6 +432,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-09-22", :speed => 'slow' do
@@ -353,6 +452,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-09-24", :speed => 'slow' do
@@ -375,6 +475,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-09-30", :speed => 'slow' do
@@ -395,6 +496,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-10-09", :speed => 'slow' do
@@ -415,6 +517,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2008-10-15", :speed => 'slow' do
@@ -435,6 +538,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -459,6 +563,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2009-02-18", :speed => 'slow' do
@@ -479,6 +584,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2009-05-01", :speed => 'slow' do
@@ -499,6 +605,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2009-07-06", :speed => 'slow' do
@@ -519,6 +626,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2009-10-06", :speed => 'slow' do
@@ -539,6 +647,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -564,6 +673,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2010-04-08", :speed => 'slow' do
@@ -585,6 +695,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2010-07-02", :speed => 'slow' do
@@ -606,6 +717,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2010-10-06", :speed => 'slow' do
@@ -627,6 +739,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2010-10-22", :speed => 'slow' do
@@ -648,6 +761,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -673,6 +787,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2011-04-08", :speed => 'slow' do
@@ -694,6 +809,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2011-06-10", :speed => 'slow' do
@@ -718,6 +834,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2011-07-22", :speed => 'slow' do
@@ -739,6 +856,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2011-12-09", :speed => 'slow' do
@@ -761,6 +879,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -773,6 +892,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       expected = [] # No logical changes, release removed spaces from some entries. 
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2012-03-23", :speed => 'slow' do
@@ -795,6 +915,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2012-06-29", :speed => 'slow' do
@@ -818,6 +939,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2012-08-03", :speed => 'slow' do
@@ -840,6 +962,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2012-12-21", :speed => 'slow' do
@@ -862,6 +985,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -888,6 +1012,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2013-06-28", :speed => 'slow' do
@@ -910,6 +1035,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2013-10-04", :speed => 'slow' do
@@ -932,6 +1058,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2013-12-20", :speed => 'slow' do
@@ -954,6 +1081,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -980,6 +1108,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2014-06-27", :speed => 'slow' do
@@ -1002,6 +1131,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2014-09-26", :speed => 'slow' do
@@ -1024,6 +1154,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2014-10-06", :speed => 'slow' do
@@ -1046,7 +1177,8 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
-    end
+      check_tags(release_date)
+   end
 
     it "Create 2014-12-19", :speed => 'slow' do
       release_date = "2014-12-19"
@@ -1068,6 +1200,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -1094,6 +1227,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2015-06-26", :speed => 'slow' do
@@ -1116,6 +1250,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2015-09-25", :speed => 'slow' do
@@ -1138,6 +1273,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2015-12-18", :speed => 'slow' do
@@ -1160,6 +1296,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -1186,6 +1323,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2016-06-24", :speed => 'slow' do
@@ -1208,6 +1346,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2016-09-30", :speed => 'slow' do
@@ -1230,6 +1369,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2016-12-16", :speed => 'slow' do
@@ -1251,6 +1391,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -1276,6 +1417,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2017-06-30", :speed => 'slow' do
@@ -1297,6 +1439,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2017-09-29", :speed => 'slow' do
@@ -1318,6 +1461,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2017-12-22", :speed => 'slow' do
@@ -1339,6 +1483,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -1364,6 +1509,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2018-06-29", :speed => 'slow' do
@@ -1385,6 +1531,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2018-09-28", :speed => 'slow' do
@@ -1406,6 +1553,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
     it "Create 2018-12-21", :speed => 'slow' do
@@ -1427,6 +1575,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
@@ -1452,6 +1601,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected)
       check_count(release_date) # Duplicates (155) in CDASH C128690, C128689 
+      check_tags(release_date)
     end
 
     it "Create 2019-06-28", :speed => 'slow' do
@@ -1473,6 +1623,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date) # Duplicates (159) in CDASH C128690, C128689 
+      check_tags(release_date)
     end
 
     it "Create 2019-09-27", :speed => 'slow' do
@@ -1494,6 +1645,7 @@ SELECT DISTINCT (count(?uri) as ?count) WHERE {
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
+      check_tags(release_date)
     end
 
   end
