@@ -275,6 +275,26 @@ describe "CDISC Term", :type => :feature do
 
     it "edit, delete, document control disabled" #, js:true do
 
+    it "allows the changes summary to be viewed, changes summary", js: true do
+      ui_dashboard_slider("2017-12-22", "2018-03-30")      
+      click_link 'Display'
+      find(:xpath, "//div[@id='updated_div']/a", :text => "DTHDX (C116107)").click
+      expect(page).to have_css("table#differences_table tr", :count=>3)
+      # expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[1]/td[4]/div", :text => "CDISC SDTM Death Diagnosis Test Name Terminology")
+      expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :text => "SDTM Death Diagnosis and Details Test Name")
+      expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :class => "diff")
+    end
+
+    it "allows the changes summary to be viewed, differences summary", js: true do
+      ui_dashboard_slider("2017-12-22", "2018-03-30")      
+      click_link 'Display'
+      find(:xpath, "//div[@id='updated_div']/a", :text => "INTMODEL (C99076)").click
+      expect(page).to have_css("table#changes th", :text=>"2017-12-22")
+      expect(page).to have_css("table#changes th", :text=>"2018-03-30")
+      expect(page).to have_xpath("//*[@id='changes']/tbody/tr[1]/td[5]/span", :class => "icon-plus-circle text-secondary-clr text-xnormal ttip")
+      expect(page).to have_xpath("//*[@id='changes']/tbody/tr[4]/td[5]/span", :class => "icon-edit-circle text-link text-xnormal ttip")
+    end
+
     it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
       clear_downloads
       click_browse_every_version
