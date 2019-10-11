@@ -587,22 +587,25 @@ describe "Thesaurus::ManagedConcept" do
     it "changes_summary I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
-      results = tc.changes_summary(last)
+      versions = ["30","59"]
+      results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml")
     end
 
     it "changes_summary II" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V47#C89973"))
-      results = tc.changes_summary(last)
+      versions = ["44","47"]
+      results = tc.changes_summary(last, versions)
       check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml")
     end
 
     it "changes_summary III" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V2#C66783"))
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V27#C66783"))
-      results = tc.changes_summary(last)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", write_file: true)
+      versions = ["2","27"]
+      results = tc.changes_summary(last, versions)
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml")
     end
 
   end

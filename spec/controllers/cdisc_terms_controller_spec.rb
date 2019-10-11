@@ -132,7 +132,8 @@ describe CdiscTermsController do
                                                                                                 ], 
                                                                                       updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ]
+                                                                                                ],
+                                                                                      versions: ["",""]
                                                                                     })
       request.env['HTTP_ACCEPT'] = "application/json" 
       get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
@@ -154,7 +155,8 @@ describe CdiscTermsController do
       expect(Thesaurus).to receive(:find_minimum).with(uri2.to_id).and_return(y)
       expect_any_instance_of(Thesaurus).to receive(:changes_cdu).with(6).and_return({created: [{identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa"}], 
                                                                                       deleted: [{identifier: "123", label: "Patient", notation: "PTient", id: "bbb"}], 
-                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "ccc"}]
+                                                                                      updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "ccc"}],
+                                                                                      versions: ["",""]
                                                                                     })
       request.env['HTTP_ACCEPT'] = "application/json" 
       get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}
@@ -186,7 +188,8 @@ describe CdiscTermsController do
                                                                                                 ], 
                                                                                       updated: [{identifier: "15635", label: "Country", notation: "COUNTRY", id: "bbb2"},
                                                                                                 {identifier: "12345", label: "Severity", notation: "AESEV", id: "aaa2"}
-                                                                                                ]
+                                                                                                ],
+                                                                                      versions: ["",""]
                                                                                     })
       request.env['HTTP_ACCEPT'] = "application/json" 
       get :changes, {cdisc_term: {other_id: uri2.to_id}, id: uri1.to_id}

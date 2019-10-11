@@ -302,14 +302,16 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 } GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?date
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
+
     x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).first
     first = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
     diffs = x[:s] == items.last ? difference_record_baseline(first) : difference_record_summary_baseline(first)
-    results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+    results << {id: x[:s].to_id, date: actual_versions[0], differences: diffs}
+
     x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).last
     last = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
     diffs = difference_record(last, first)
-    results << {id: x[:s].to_id, date: x[:date].to_time_with_default.strftime("%Y-%m-%d"), differences: diffs}
+    results << {id: x[:s].to_id, date: actual_versions[-1], differences: diffs}
     results
   end
 
