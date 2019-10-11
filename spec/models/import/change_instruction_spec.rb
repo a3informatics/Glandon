@@ -119,7 +119,7 @@ describe Import::ChangeInstruction do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     results = read_yaml_file(sub_dir, filename)
-    check_file_actual_expected(results, sub_dir, "import_expected_2.yaml")
+    check_file_actual_expected(results, sub_dir, "import_expected_2.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -168,7 +168,7 @@ describe Import::ChangeInstruction do
     params = 
     {
       # Note, need to use the right CDISC term versions  
-      files: [full_path], current_id: Uri.new(uri: "http://www.cdisc.org/CT/V52#TH").to_id, job: @job
+      files: [full_path], current_id: Uri.new(uri: "http://www.cdisc.org/CT/V53#TH").to_id, job: @job
     }
     result = @object.import(params)
     filename = "cdisc_change_instructions_#{@object.id}_errors.yml"
