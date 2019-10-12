@@ -15,7 +15,7 @@ class Thesaurus <  IsoManagedV2
 
   # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
   #
-  # @return [Array] Array of URIs 
+  # @return [Array] Array of URIs
   def current_set_where(params)
     where_parts = []
     params.each do |predicate, value|
@@ -23,7 +23,7 @@ class Thesaurus <  IsoManagedV2
     end
     where_clause = where_parts.join(" .\n")
     parts = []
-    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }" 
+    parts << "{ BIND (#{self.uri.to_ref} as ?s) . #{where_clause} }"
     self.class.read_paths.each {|p| parts << "{ #{self.uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . #{where_clause} }" }
     query_string = "SELECT DISTINCT ?s WHERE {{ #{parts.join(" UNION\n")} }}"
     query_results = Sparql::Query.new.query(query_string, uri.namespace, [])
@@ -40,7 +40,7 @@ class Thesaurus <  IsoManagedV2
       {
         #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?s .
         ?s th:identifier "#{base_identifier}" .
-        BIND ("#{base_identifier}" as ?i) 
+        BIND ("#{base_identifier}" as ?i)
       }}
     identifiers.each do |identifier|
       parts << %Q{
@@ -48,8 +48,8 @@ class Thesaurus <  IsoManagedV2
           #{self.uri.to_ref} th:isTopConceptReference/bo:reference ?b .
           ?b th:identifier "#{base_identifier}" .
           ?b th:narrower+ ?s .
-          ?s th:identifier "#{identifier}" . 
-          BIND ("#{identifier}" as ?i) 
+          ?s th:identifier "#{identifier}" .
+          BIND ("#{identifier}" as ?i)
         }}
     end
     query_string = %Q{SELECT ?s ?i WHERE { #{parts.join("UNION")} }}
@@ -60,7 +60,7 @@ class Thesaurus <  IsoManagedV2
     end
     results
   end
-    
+
   # Changes
   #
   # @param [Integer] window_size the required window size for changes
@@ -73,15 +73,15 @@ class Thesaurus <  IsoManagedV2
     first_index = 0
 
     # Get the version set. Work out if we need a dummy first one.
-    items = self.class.history_uris(identifier: self.scoped_identifier, scope: self.scope).reverse 
-    first_index = items.index {|x| x == self.uri}    
-    if first_index == 0 
-      start_index = 0 
+    items = self.class.history_uris(identifier: self.scoped_identifier, scope: self.scope).reverse
+    first_index = items.index {|x| x == self.uri}
+    if first_index == 0
+      start_index = 0
       raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
     else
       start_index = first_index - 1
       raw_results = {}
-    end    
+    end
     version_set = items[start_index..(first_index + window_size - 1)]
 
     # Get the raw results
@@ -116,41 +116,51 @@ class Thesaurus <  IsoManagedV2
         final_results[key] = {key: entry[:key], id: entry[:uri].to_id, identifier: entry[:key], label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
       end
     end
-
     # Process the changes
     previous_version = nil
+    first_version = nil
     base_version = raw_results.map{|k,v| v[:version]}[1].to_i
     raw_results.each do |uri, version|
       version_index = version[:version].to_i - base_version
-      if previous_version.nil?
-        # nothing needed?
-      else
-        # :created = B-A
-        # :updated = A Union B URI != URI
-        # :no_change = A Union B URI == URI
-        # :deleted = A-B
+      if !previous_version.nil?
         new_items = version[:children] - previous_version[:children]
         common_items = version[:children] & previous_version[:children]
         deleted_items = previous_version[:children] - version[:children]
+
         new_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
         common_items.each do |entry|
           prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
           curr = version[:children].find{|x| x[:key] == entry[:key]}
           final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
         deleted_items.each do |entry|
           final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
+          final_results[entry[:key].to_sym][:last_id] = ""
         end
       end
+      # Remember reference to the first version
+      if version_index == 0
+        first_version = version
+      end
+      # When on last version, find common items existing in the first version and store ids
+      if version_index == window_size - 1
+        common_items_endpoints = version[:children] & first_version[:children]
+        common_items_endpoints.each do |entry|
+           final_results[entry[:key].to_sym][:last_id] = entry[:uri].to_id # Store id of the last ref
+           final_results[entry[:key].to_sym][:id] = (first_version[:children].detect { |e| e[:key]==entry[:key] })[:uri].to_id # Get and store id of the first ref
+        end
+      end
+
       previous_version = version
     end
 
     # Remove blank entries (those with no changes)
     no_change_entry = [{status: :no_change}] * versions.length
     final_results.delete_if {|k,v| v[:status] == no_change_entry}
-    
     # And return
     {versions: versions, items: final_results}
   end
@@ -158,10 +168,13 @@ class Thesaurus <  IsoManagedV2
   # Changes_CDU
   #
   # @param [Integer] window_size the required window size for changes
-  # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions
+  # @return [Hash] the changes hash. Consists of the created, deleted and updated changes for the versions,
+  # and an array of the versions selected by the user (first and last)
   def changes_cdu (window_size)
     cls = changes(window_size)
-    results = {created: [], deleted: [], updated: []}
+    no_change_entry = [{status: :updated}] + [{status: :no_change}] * (window_size - 1)
+    cls[:items].delete_if {|k,v| v[:status] == no_change_entry }
+    results = {created: [], deleted: [], updated: [], versions:[]}
     cls[:items].each do |key, value|
       value[:status].each do |status|
         next if status[:status] == :no_change
@@ -181,26 +194,9 @@ class Thesaurus <  IsoManagedV2
       end
     end
     cls[:items].each do |key, value|
-      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #   begin
-      #   # byebug
-      #     next if status[:status] == :no_change
-      #     next if status[:status] == :not_present
-      #     if status[:status] == :deleted
-      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #       break
-      #     end
-      #     if status[:status] == :created
-      #       results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]}
-      #     end 
-      #     if status[:status] == :updated
-      #       if results[status[:]].blank?
-      #         results[status[:status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id]} 
-      #       end
-      #     end
-      #   end
-    
+      results[value[:overall_status]]<< {identifier: key, label: value[:label], notation: value[:notation], id: value[:id], last_id: value[:last_id]}
     end
+    results[:versions] = cls[:versions]
     results
   end
 
@@ -218,14 +214,14 @@ class Thesaurus <  IsoManagedV2
 
     # Get the version set. Work out if we need a dummy first one.
     items = self.class.history(identifier: self.scoped_identifier, scope: self.scope).reverse
-    first_index = items.index {|x| x.uri == self.uri}    
-    if first_index == 0 
-      start_index = 0 
+    first_index = items.index {|x| x.uri == self.uri}
+    if first_index == 0
+      start_index = 0
       raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
     else
       start_index = first_index - 1
       raw_results = {}
-    end    
+    end
     version_set = items.map {|e| e.uri}
     version_set = version_set[start_index..(first_index + window_size - 1)]
 
@@ -235,26 +231,26 @@ class Thesaurus <  IsoManagedV2
 
     # Query
     triples = []
-    version_set.each_with_index do |x, index| 
+    version_set.each_with_index do |x, index|
       next if index == 0
     query_string = %Q{
 SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
-{ 
-  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } MINUS   
-  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } 
-  BIND (STRAFTER(str(?ccl), '#') AS ?cid) .           
+{
+  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } MINUS
+  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl }
+  BIND (STRAFTER(str(?ccl), '#') AS ?cid) .
   FILTER (?pid = ?cid)
-  ?ccl th:notation ?cn . 
+  ?ccl th:notation ?cn .
   FILTER (?pn != ?cn)
-  ?ccl isoC:label ?cl . 
-  ?ccl th:identifier ?ci . 
-  BIND (#{x.to_ref} AS ?e) .          
+  ?ccl isoC:label ?cl .
+  ?ccl th:identifier ?ci .
+  BIND (#{x.to_ref} AS ?e) .
   {
-    SELECT ?pcl ?pid ?pn WHERE 
+    SELECT ?pcl ?pid ?pn WHERE
     {
-      { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } MINUS   
-      { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } 
-      BIND (STRAFTER(str(?pcl), '#') AS ?pid) .           
+      { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } MINUS
+      { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl }
+      BIND (STRAFTER(str(?pcl), '#') AS ?pid) .
       ?pcl th:notation ?pn .
     }
   }
@@ -307,10 +303,10 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     # Get the URIs for each child
     query_string = %Q{SELECT ?e WHERE
 {
-  #{self.uri.to_ref} th:isTopConceptReference ?r . 
+  #{self.uri.to_ref} th:isTopConceptReference ?r .
   ?r bo:reference ?e .
   ?r bo:ordinal ?v
-} ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+} ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
     uris = query_results.by_object_set([:e]).map{|x| x[:e]}
@@ -319,8 +315,8 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) ?s WHERE\n
 {
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE   
-  {        
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+  {
     VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
     {
       ?s th:identifier ?i .
@@ -342,7 +338,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params 
+  # @params [Hash] params
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
   def add_child(params)
@@ -430,7 +426,7 @@ private
     query = UriManagement.buildNs(ns, ["iso25964"]) +
       "SELECT ?a WHERE \n" +
       "{\n" +
-      "  ?a (iso25964:hasConcept|iso25964:hasChild)%2B :" + id + " . \n" +   
+      "  ?a (iso25964:hasConcept|iso25964:hasChild)%2B :" + id + " . \n" +
       "  ?a rdf:type iso25964:Thesaurus . \n" +
       "}"
     response = CRUD.query(query)

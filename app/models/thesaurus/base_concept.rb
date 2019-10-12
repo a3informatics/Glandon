@@ -17,7 +17,7 @@ class Thesaurus
       def exists?(identifier)
         !where_only({identifier: identifier}).nil?
       end
-    
+
       def empty_concept
         {label: C_NOT_SET, identifier: C_NOT_SET, notation: C_NOT_SET, definition: C_NOT_SET, extensible: false, preferred_term: Thesaurus::PreferredTerm.where_only_or_create(C_NOT_SET)}
       end
@@ -30,7 +30,7 @@ class Thesaurus
     def children?
       return narrower.any?
     end
-  
+
     # Add a child concept
     #
     # @params params [Hash] the params hash containing the concept data {:notation. :preferredTerm, :synonym, :definition, :identifier}
@@ -49,7 +49,7 @@ class Thesaurus
 
     # Children Pagination. Get the children in pagination manner
     #
-    # @params [Hash] params the params hash 
+    # @params [Hash] params the params hash
     # @option params [String] :offset the offset to be obtained
     # @option params [String] :count the count to be obtained
     # @return [Array] array of hashes containing the child data
@@ -61,9 +61,9 @@ class Thesaurus
       # Get the URIs for each child
       query_string = %Q{SELECT ?e WHERE
   {
-    #{self.uri.to_ref} th:narrower ?e . 
+    #{self.uri.to_ref} th:narrower ?e .
     ?e th:identifier ?v
-  } ORDER BY (?v) LIMIT #{count} OFFSET #{offset} 
+  } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
@@ -72,8 +72,8 @@ class Thesaurus
       query_string = %Q{
   SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
   {
-    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE   
-    {        
+    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+    {
       VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
       {
         ?s th:identifier ?i .
@@ -110,7 +110,7 @@ class Thesaurus
     def update(params)
       self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
       if params.key?(:preferred_term)
-        self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term]) 
+        self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term])
         params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
       end
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
@@ -154,7 +154,7 @@ class Thesaurus
     def difference_record_baseline(current)
       result = {}
       [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
-        result[x] = {status: :created, previous: "", current: current[x], difference: ""} 
+        result[x] = {status: :created, previous: "", current: current[x], difference: ""}
       end
       result
     end
@@ -162,7 +162,7 @@ class Thesaurus
     def difference_record_deleted
       result = {}
       [:identifier, :notation, :definition, :extensible, :synonym, :preferred_term].each do |x|
-        result[x] = {status: :deleted, previous: "", current: "", difference: ""} 
+        result[x] = {status: :deleted, previous: "", current: "", difference: ""}
       end
       result
     end
@@ -186,11 +186,11 @@ class Thesaurus
       return "" if self.preferred_term.nil?
       self.preferred_term.label
     end
-    
+
     # Synonym Links. Find all items within the context that share the synonyms
     #
     # @param [Hash] params the parameters
-    # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+    # @option params [String] :context_id the identifier of the thesaurus context to work within.
     #   will find all if not present
     # @return [Hash] the results hash
     def linked_by_synonym(params)
@@ -200,7 +200,7 @@ class Thesaurus
     # Preferred Term Links. Find all items within the context that share the preferred term
     #
     # @param [Hash] params the parameters
-    # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+    # @option params [String] :context_id the identifier of the thesaurus context to work within.
     #   will find all if not present
     # @return [Hash] the results hash
     def linked_by_preferred_term(params)
@@ -214,8 +214,8 @@ class Thesaurus
       results = {description: nil, previous: [], current: []}
       query_string = %Q{
   SELECT DISTINCT ?c ?p ?desc ?p_n ?p_id ?c_n ?c_id ?p_d ?t WHERE
-  {          
-    {     
+  {
+    {
       ?ci (cr:previous/bo:reference) #{self.uri.to_ref} .
       ?ci (cr:current/bo:reference) ?c .
       ?ci (cr:current/bo:context) ?th .
@@ -236,7 +236,7 @@ class Thesaurus
       ?p th:identifier ?p_id .
       ?p isoT:lastChangeDate ?p_d .
       ?c th:notation ?c_n .
-      ?c th:identifier ?c_id 
+      ?c th:identifier ?c_id
     } UNION
     {
       ?c rdf:type th:ManagedConcept .
@@ -261,7 +261,7 @@ class Thesaurus
     # Generic Find Links. Find all items within the context that share synonyms or preferred terms
     #
     # @param [Hash] params the parameters
-    # @option params [String] :context_id the identifier of the thesaurus context to work within. 
+    # @option params [String] :context_id the identifier of the thesaurus context to work within.
     #   will find all if not present
     # @param [Symbol] the property name, either :synonym or :preferred_term
     # @return [Hash] the results hash
@@ -271,8 +271,8 @@ class Thesaurus
   FILTER (STR(?th) = "#{Uri.new(id: params[:context_id]).to_s}") .} : ""
       query_string = %Q{
   SELECT DISTINCT ?c ?p ?syn ?p_n ?p_id ?c_n ?c_id ?p_d WHERE
-  {          
-    {     
+  {
+    {
       #{self.uri.to_ref} #{predicate.to_ref} ?s .
       ?s isoC:label ?syn .
       ?c #{predicate.to_ref} ?s .
@@ -296,11 +296,11 @@ class Thesaurus
       }
       ?c th:identifier ?c_id .
       ?c th:notation ?c_n .
-    } 
+    }
   }}
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
       results = {}
-      if property_name == :synonym 
+      if property_name == :synonym
         self.synonym.each {|s| results[s.label] = {description: s.label, references: []}}
       else
         results[self.preferred_term.label] = {description: self.preferred_term.label, references: []}
