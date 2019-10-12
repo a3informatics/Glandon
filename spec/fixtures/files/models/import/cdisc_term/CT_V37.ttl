@@ -17,6 +17,11 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2013-12-20.xlsx', 'QS Terminology 2013-12-20.xlsx', 'CDASH Terminology 2013-12-20.xlsx', 'ADaM Terminology 2011-07-22.xlsx', 'SEND Terminology 2013-12-20.xlsx'"^^xsd:string ;
@@ -24058,6 +24063,7 @@
 	th:narrower <http://www.cdisc.org/C66734/V4#C66734_C49622> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7473ae35c9353bcdb386e6afe9512f88250a07ef> ;
 	th:synonym <http://www.assero.co.uk/SYN#9edc4e710df3b001ab393b395a222810864262d6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V37#C66734_RS>
 	rdf:type isoR:RegistrationState ;
@@ -24107,6 +24113,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d14a78bf3af58531c17db2a8c4293867bdb7429c> ;
 	th:synonym <http://www.assero.co.uk/SYN#0483a681a38d7a6a63c4db7d4bb339920f72e628> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V37#C66734_C106571>
 	rdf:type th:UnmanagedConcept ;
@@ -24118,6 +24125,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9b8f62a8ed680f7a568c960c575a121b156eac05> ;
 	th:synonym <http://www.assero.co.uk/SYN#6716cb2107729ac789bf7d5e6d43e3a629aa8a0c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V37#C66734_C112420>
 	rdf:type th:UnmanagedConcept ;
@@ -24148,6 +24156,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#dae26cc03afeffb79c2d054e29290a155f44980f> ;
 	th:synonym <http://www.assero.co.uk/SYN#a01b3dbc3481758c1770cac8ee50136efbfc2401> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.assero.co.uk/SYN#9edc4e710df3b001ab393b395a222810864262d6>
 	rdf:type th:Synonym ;

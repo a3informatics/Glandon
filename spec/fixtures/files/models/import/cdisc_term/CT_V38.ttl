@@ -17,6 +17,11 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2014-03-28.xlsx', 'QS Terminology 2014-03-28.xlsx', 'CDASH Terminology 2014-03-28.xlsx', 'ADaM Terminology 2011-07-22.xlsx', 'SEND Terminology 2014-03-28.xlsx'"^^xsd:string ;
@@ -16034,6 +16039,7 @@
 	th:narrower <http://www.cdisc.org/C66734/V4#C66734_C49622> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7473ae35c9353bcdb386e6afe9512f88250a07ef> ;
 	th:synonym <http://www.assero.co.uk/SYN#9edc4e710df3b001ab393b395a222810864262d6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V38#C66734_RS>
 	rdf:type isoR:RegistrationState ;
@@ -16064,6 +16070,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#91ca98cb6184a5659bb8a9c94d6905ae1ef6d203> ;
 	th:synonym <http://www.assero.co.uk/SYN#41bd2b54153f3b7adb0db5c5fb90b649976f5c15> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66731/V38#C66731>
 	rdf:type th:ManagedConcept ;

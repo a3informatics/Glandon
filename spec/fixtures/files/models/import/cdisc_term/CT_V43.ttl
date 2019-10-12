@@ -17,6 +17,12 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#a910102e-2074-4aa3-ae6e-bada87daec1f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2015-03-27.xlsx', 'COA Terminology 2015-03-27.xlsx', 'CDASH Terminology 2015-03-27.xlsx', 'ADaM Terminology 2014-09-26.xlsx', 'SEND Terminology 2015-03-27.xlsx'"^^xsd:string ;
@@ -23230,6 +23236,7 @@
 	th:narrower <http://www.cdisc.org/C66734/V4#C66734_C49622> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7473ae35c9353bcdb386e6afe9512f88250a07ef> ;
 	th:synonym <http://www.assero.co.uk/SYN#9edc4e710df3b001ab393b395a222810864262d6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V43#C66734_RS>
 	rdf:type isoR:RegistrationState ;
@@ -23260,6 +23267,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#227ee7f77efe0c28211755d1bdf5b78c7a62682e> ;
 	th:synonym <http://www.assero.co.uk/SYN#c46b00ae3b431a0e6bdc40ed73ad191f21485e30> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.assero.co.uk/PT#227ee7f77efe0c28211755d1bdf5b78c7a62682e>
 	rdf:type th:PreferredTerm ;
@@ -25105,6 +25113,7 @@
 	th:narrower <http://www.cdisc.org/C115304/V39#C115304_C115795> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b102422363c6265f310400ec682db640a368e5cf> ;
 	th:synonym <http://www.assero.co.uk/SYN#ef96b868519530ac332a1d3b08369f17cbcc180c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C115304/V43#C115304_RS>
 	rdf:type isoR:RegistrationState ;
@@ -25276,6 +25285,7 @@
 	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102124> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e6c221adea5e7b5d9f8c5d67e7b6606f10940d7f> ;
 	th:synonym <http://www.assero.co.uk/SYN#a4a7969524ee10e2d15639af89b64dd19c212556> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C100129/V43#C100129_RS>
 	rdf:type isoR:RegistrationState ;
@@ -29640,6 +29650,7 @@
 	th:narrower <http://www.cdisc.org/C101819/V37#C101819_C102086> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d4bcb57b0125fe4000829c779e104e0c9b63b6cf> ;
 	th:synonym <http://www.assero.co.uk/SYN#4339b1f6de3753579de26b26d20c2dae9e503b8a> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C101819/V43#C101819_RS>
 	rdf:type isoR:RegistrationState ;
@@ -29696,6 +29707,7 @@
 	th:narrower <http://www.cdisc.org/C101820/V37#C101820_C102074> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#678c794ad7c2aba97fc7a23ace3717e277b5268c> ;
 	th:synonym <http://www.assero.co.uk/SYN#aeae91ab54f9546ea4993531bb34d37431c5e3b0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C101820/V43#C101820_RS>
 	rdf:type isoR:RegistrationState ;
@@ -29762,6 +29774,7 @@
 	th:narrower <http://www.cdisc.org/C101821/V37#C101821_C102110> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#47106a6b7a040a1e29f5832e68ae4056ef4d8c70> ;
 	th:synonym <http://www.assero.co.uk/SYN#2f640c235ac9c5d1925be7f0879f3b1546a6d9f2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C101821/V43#C101821_RS>
 	rdf:type isoR:RegistrationState ;
@@ -29828,6 +29841,7 @@
 	th:narrower <http://www.cdisc.org/C101822/V37#C101822_C102093> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#92113f1c8ed197c53941e4547d5e1ea0d73c5aa1> ;
 	th:synonym <http://www.assero.co.uk/SYN#55468efa4d322d1ea685be6ca9fc87878b5e5f26> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C101822/V43#C101822_RS>
 	rdf:type isoR:RegistrationState ;

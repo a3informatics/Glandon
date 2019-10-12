@@ -17,6 +17,12 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#a910102e-2074-4aa3-ae6e-bada87daec1f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2014-12-19.xlsx', 'COA Terminology 2014-12-19.xlsx', 'CDASH Terminology 2014-09-26.xlsx', 'ADaM Terminology 2014-09-26.xlsx', 'SEND Terminology 2014-12-19.xlsx'"^^xsd:string ;
@@ -31739,6 +31745,7 @@
 	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102124> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e6c221adea5e7b5d9f8c5d67e7b6606f10940d7f> ;
 	th:synonym <http://www.assero.co.uk/SYN#a4a7969524ee10e2d15639af89b64dd19c212556> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C100129/V42#C100129_RS>
 	rdf:type isoR:RegistrationState ;
@@ -31870,6 +31877,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5d3bb39ba62876e9256c887f3f1ac1e22b85b86b> ;
 	th:synonym <http://www.assero.co.uk/SYN#0555c29280a55a9ec2a4bb70114e396a3ce43e6a> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#5d3bb39ba62876e9256c887f3f1ac1e22b85b86b>
 	rdf:type th:PreferredTerm ;
@@ -33235,6 +33243,7 @@
 	th:narrower <http://www.cdisc.org/C106653/V35#C106653_C107016> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8cb6dc4b8c10c2946fb5ff36007d9cdb59ab48ae> ;
 	th:synonym <http://www.assero.co.uk/SYN#d403f100116dea3fb904ff7fabea7bfe434dd905> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106653/V42#C106653_RS>
 	rdf:type isoR:RegistrationState ;
@@ -33266,6 +33275,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a4764366a5da8e735198639cf58feacc79c14be6> ;
 	th:synonym <http://www.assero.co.uk/SYN#bf43659c4a442d99b2d2280139faf65a1b7545b4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/SYN#bf43659c4a442d99b2d2280139faf65a1b7545b4>
 	rdf:type th:Synonym ;
@@ -33327,6 +33337,7 @@
 	th:narrower <http://www.cdisc.org/C106652/V35#C106652_C106987> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#1fead8848546facab91ac55d4dd63ce46e0186f4> ;
 	th:synonym <http://www.assero.co.uk/SYN#34e9d23ee41c8e18a8b8783a3f6d86b83f565646> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106652/V42#C106652_RS>
 	rdf:type isoR:RegistrationState ;
@@ -33358,6 +33369,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a4764366a5da8e735198639cf58feacc79c14be6> ;
 	th:synonym <http://www.assero.co.uk/SYN#bf43659c4a442d99b2d2280139faf65a1b7545b4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C119066/V42#C119066>
 	rdf:type th:ManagedConcept ;
@@ -34303,6 +34315,7 @@
 	th:narrower <http://www.cdisc.org/C106659/V35#C106659_C107088> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5ea780af8c85ea2cdb001ee674d07d5f7beaa1e0> ;
 	th:synonym <http://www.assero.co.uk/SYN#292eba3567c99da39afc75fbe32becbe4f57c468> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106659/V42#C106659_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34407,6 +34420,7 @@
 	th:narrower <http://www.cdisc.org/C106658/V35#C106658_C107028> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6dd2a04274ee9dbe9feeae39f4d08329d073b8a6> ;
 	th:synonym <http://www.assero.co.uk/SYN#58792c0fca24d82c22f83b7803be3ee7d995c22c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106658/V42#C106658_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34509,6 +34523,7 @@
 	th:narrower <http://www.cdisc.org/C106661/V35#C106661_C106763> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e48155a310d0785089f2f32a3ff935dde19e3d89> ;
 	th:synonym <http://www.assero.co.uk/SYN#e55a78c203b9c351e166992c4e376b18cf416f60> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106661/V42#C106661_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34611,6 +34626,7 @@
 	th:narrower <http://www.cdisc.org/C106660/V35#C106660_C106708> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#403ce9db9c58df5284666c434595b90379cbcc68> ;
 	th:synonym <http://www.assero.co.uk/SYN#cd72883e78798ff3b910e656475496c1cd73b341> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C106660/V42#C106660_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34690,6 +34706,7 @@
 	th:narrower <http://www.cdisc.org/C111336/V36#C111336_C111563> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5baf82d49b73ed978682d4118b272db44d99976c> ;
 	th:synonym <http://www.assero.co.uk/SYN#4ee8003a5b70120721c81e34a29822d82f1acc16> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111336/V42#C111336_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34769,6 +34786,7 @@
 	th:narrower <http://www.cdisc.org/C111335/V36#C111335_C111528> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c2d5503413d5dcf181d3088fb0627cf0fdee5441> ;
 	th:synonym <http://www.assero.co.uk/SYN#ba1f6aea86228b5426aa1d7335fd606a690d340e> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111335/V42#C111335_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34854,6 +34872,7 @@
 	th:narrower <http://www.cdisc.org/C111338/V36#C111338_C111427> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#174cda7f4a1ba948eb5dc9c6de26e6ebc92514be> ;
 	th:synonym <http://www.assero.co.uk/SYN#8075392283346ab992c6a95bbfc2696a9a4f8441> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111338/V42#C111338_RS>
 	rdf:type isoR:RegistrationState ;
@@ -34939,6 +34958,7 @@
 	th:narrower <http://www.cdisc.org/C111337/V36#C111337_C111386> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b31cec11dc6e7c3ac23b25f55f9b1c36b42cab9e> ;
 	th:synonym <http://www.assero.co.uk/SYN#307b4d9c3dfb833285eb8f9bf5e4c74aca5f3cdc> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111337/V42#C111337_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35013,6 +35033,7 @@
 	th:narrower <http://www.cdisc.org/C111340/V36#C111340_C111459> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#f648e9af28da9dc3eceb620ced1f5ba686a7279c> ;
 	th:synonym <http://www.assero.co.uk/SYN#e660be0e32c87cf83445f511f02f9e18ae05d713> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111340/V42#C111340_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35087,6 +35108,7 @@
 	th:narrower <http://www.cdisc.org/C111339/V36#C111339_C111429> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7b6854e8bcca4da55d6ff0c88655b79056c0dd5b> ;
 	th:synonym <http://www.assero.co.uk/SYN#d024956434b8966f869868d3e67281e2aa52b952> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111339/V42#C111339_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35189,6 +35211,7 @@
 	th:narrower <http://www.cdisc.org/C117989/V40#C117989_C118078> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b916138f447fb3e4adb73023ca8dad0155aed07c> ;
 	th:synonym <http://www.assero.co.uk/SYN#68b182c7e98fd0d250f93405edcbba58696d7701> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117989/V42#C117989_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35291,6 +35314,7 @@
 	th:narrower <http://www.cdisc.org/C117988/V40#C117988_C118020> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fd7b34f8fe1376e23ff4af83868bb479d17dbff2> ;
 	th:synonym <http://www.assero.co.uk/SYN#f7d7baaadc95b14e17555295d9c4e964ba4f0524> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117988/V42#C117988_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35388,6 +35412,7 @@
 	th:narrower <http://www.cdisc.org/C113848/V38#C113848_C113943> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fa2bd84ea2a739ce4c6e513a59888fec25336003> ;
 	th:synonym <http://www.assero.co.uk/SYN#479449dd8aae01c19890eb8a4ab0f3411a26eedc> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C113848/V42#C113848_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35485,6 +35510,7 @@
 	th:narrower <http://www.cdisc.org/C113847/V38#C113847_C113890> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0624fbb5ec9320ef7df85d81735169decf14d6a3> ;
 	th:synonym <http://www.assero.co.uk/SYN#c0aafb5ce950ae09ca016e89f22ba5c0c92bfbaa> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C113847/V42#C113847_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35566,6 +35592,7 @@
 	th:narrower <http://www.cdisc.org/C111342/V36#C111342_C111498> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0531000187edc8b0385346b27c6a423433ce727b> ;
 	th:synonym <http://www.assero.co.uk/SYN#474f332d8115792c04f1fe7a51710d1ef366161e> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111342/V42#C111342_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35647,6 +35674,7 @@
 	th:narrower <http://www.cdisc.org/C111341/V36#C111341_C111461> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7d6859bff0a303d10f892337d5f4fa35ff51a260> ;
 	th:synonym <http://www.assero.co.uk/SYN#cd34f44687256854e6c1ff3984424208019a72ab> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C111341/V42#C111341_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35710,6 +35738,7 @@
 	th:narrower <http://www.cdisc.org/C117987/V42#C117987_C118018> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#148f53aaaa8994ec5969ee6cc22d63d12f7d750f> ;
 	th:synonym <http://www.assero.co.uk/SYN#72bfcc3abb3ea45a29167662b2ed1084c3595ede> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117987/V42#C117987_RS>
 	rdf:type isoR:RegistrationState ;
@@ -35741,6 +35770,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8aebbc67f76b33d7088fde4f5c3afd206bc742a9> ;
 	th:synonym <http://www.assero.co.uk/SYN#f8ccde2cb0c8882ac7df44cafbd945df9e6afaf4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#8aebbc67f76b33d7088fde4f5c3afd206bc742a9>
 	rdf:type th:PreferredTerm ;
@@ -35757,6 +35787,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e30e5e5a95fb682c12fee1bcf88d34f3c4a9e39b> ;
 	th:synonym <http://www.assero.co.uk/SYN#a007d9ace9ce93e02c8811b51ba23aa856ffac3b> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#e30e5e5a95fb682c12fee1bcf88d34f3c4a9e39b>
 	rdf:type th:PreferredTerm ;
@@ -35773,6 +35804,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9adcceb4952707039197251a4092fa5b8103dd49> ;
 	th:synonym <http://www.assero.co.uk/SYN#ffc6b265bd15f5cac5300f1c1b4ab8e438323325> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#9adcceb4952707039197251a4092fa5b8103dd49>
 	rdf:type th:PreferredTerm ;
@@ -35789,6 +35821,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#01f8b470787436ab76333bd3b16aa699e12f05bb> ;
 	th:synonym <http://www.assero.co.uk/SYN#28aed62efd2c8e86844600a9a7a19ba7df078b28> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#01f8b470787436ab76333bd3b16aa699e12f05bb>
 	rdf:type th:PreferredTerm ;
@@ -35805,6 +35838,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e07b29baf2f0743d67e91d84ac8befe959e67675> ;
 	th:synonym <http://www.assero.co.uk/SYN#b274e2134207b0d710000bfb3f4d0a1e809a3325> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#e07b29baf2f0743d67e91d84ac8befe959e67675>
 	rdf:type th:PreferredTerm ;
@@ -35821,6 +35855,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6611eafe2c36cd885d82ee1849cccb927bc2c9eb> ;
 	th:synonym <http://www.assero.co.uk/SYN#9c40ba817d279fa264748f882da5e21b47c2d49c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#6611eafe2c36cd885d82ee1849cccb927bc2c9eb>
 	rdf:type th:PreferredTerm ;
@@ -35837,6 +35872,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c6b126e59791a9f6c012c92cfff79fbe912f04ae> ;
 	th:synonym <http://www.assero.co.uk/SYN#844f77fba7847848c997064dfe1b635f8e6b24d4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#c6b126e59791a9f6c012c92cfff79fbe912f04ae>
 	rdf:type th:PreferredTerm ;
@@ -35853,6 +35889,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c51205801c7de44b59747ac33a80da76e40289a3> ;
 	th:synonym <http://www.assero.co.uk/SYN#add64151ecdaf02cfe44a553ad9cf415ff4245bc> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#c51205801c7de44b59747ac33a80da76e40289a3>
 	rdf:type th:PreferredTerm ;
@@ -35869,6 +35906,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8dbf69f45d6b515ffd0e296e9eb8ff784387f4dd> ;
 	th:synonym <http://www.assero.co.uk/SYN#d83a86c7574e9d0d76434ce88ac95dbab70cbcca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#8dbf69f45d6b515ffd0e296e9eb8ff784387f4dd>
 	rdf:type th:PreferredTerm ;
@@ -35885,6 +35923,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#aab5828121915223b151fa36a4ab459dbe02236b> ;
 	th:synonym <http://www.assero.co.uk/SYN#91374ddd995bf1716c0ce1cf1b8e29b51184291c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#aab5828121915223b151fa36a4ab459dbe02236b>
 	rdf:type th:PreferredTerm ;
@@ -35901,6 +35940,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e93c8d10519877a98a6efa54cbbace143387588d> ;
 	th:synonym <http://www.assero.co.uk/SYN#1e684bcedb1c258fdac32f91b85c148dd19b5bde> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#e93c8d10519877a98a6efa54cbbace143387588d>
 	rdf:type th:PreferredTerm ;
@@ -35917,6 +35957,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fc479d9ce87d489048eb658ccb6351cb433d3b3e> ;
 	th:synonym <http://www.assero.co.uk/SYN#4ce35d347ee9cde5b2fcf5d240e6359a35c0162c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#fc479d9ce87d489048eb658ccb6351cb433d3b3e>
 	rdf:type th:PreferredTerm ;
@@ -35933,6 +35974,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e2749a8e3c397ca36e88248871f1faf03e649620> ;
 	th:synonym <http://www.assero.co.uk/SYN#5a13c86a81ed420797bc9c4ca5b32ac9939aee70> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#e2749a8e3c397ca36e88248871f1faf03e649620>
 	rdf:type th:PreferredTerm ;
@@ -35949,6 +35991,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b731331116d7dce45db2c5306ff09c3dc8e2cad0> ;
 	th:synonym <http://www.assero.co.uk/SYN#715a52274844cb97cf243c55d8dd777d3a167c75> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#b731331116d7dce45db2c5306ff09c3dc8e2cad0>
 	rdf:type th:PreferredTerm ;
@@ -35965,6 +36008,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#cad93d8a42be36dbce01cba3cb6006e3e8a5a0b8> ;
 	th:synonym <http://www.assero.co.uk/SYN#239ddce40b4454bab2454c1d1e47a11d9d661c83> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#cad93d8a42be36dbce01cba3cb6006e3e8a5a0b8>
 	rdf:type th:PreferredTerm ;
@@ -35981,6 +36025,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#64b0b82d414682dd153a7589006ac51a46d8742e> ;
 	th:synonym <http://www.assero.co.uk/SYN#2fd3aeeaa5a3d7ff212b2775acf8386f112c6a45> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#64b0b82d414682dd153a7589006ac51a46d8742e>
 	rdf:type th:PreferredTerm ;
@@ -35997,6 +36042,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0572cc486195ef19557e6e59284be5f828f08777> ;
 	th:synonym <http://www.assero.co.uk/SYN#eb25a8b4ccc321a7183f1e6c86339384518de820> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#0572cc486195ef19557e6e59284be5f828f08777>
 	rdf:type th:PreferredTerm ;
@@ -36013,6 +36059,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0f1c38052dea9da7707e36e87e64704277efb0fa> ;
 	th:synonym <http://www.assero.co.uk/SYN#7b17fbe9f57274e6d80e626217b5e5eedae8d031> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#0f1c38052dea9da7707e36e87e64704277efb0fa>
 	rdf:type th:PreferredTerm ;
@@ -36029,6 +36076,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e886698821e336eb71a79236aeacf13c503112d3> ;
 	th:synonym <http://www.assero.co.uk/SYN#8572a4b9a2ccdbb4bcd2d1d92070b7b448be89e3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#e886698821e336eb71a79236aeacf13c503112d3>
 	rdf:type th:PreferredTerm ;
@@ -36045,6 +36093,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5e325dfbfb130fa05fbf211bc8c05ffd24231ec1> ;
 	th:synonym <http://www.assero.co.uk/SYN#4200e890b4af9095e0bfc9ea90ec37fa43449102> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#5e325dfbfb130fa05fbf211bc8c05ffd24231ec1>
 	rdf:type th:PreferredTerm ;
@@ -36061,6 +36110,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#cea214157193f6adcc54fc3da44a0dfa327d3d9c> ;
 	th:synonym <http://www.assero.co.uk/SYN#351da4cbdb088a383154f3b65cd60577f6ccc116> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#cea214157193f6adcc54fc3da44a0dfa327d3d9c>
 	rdf:type th:PreferredTerm ;
@@ -36113,6 +36163,7 @@
 	th:narrower <http://www.cdisc.org/C117986/V42#C117986_C117999> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#a71e839a53bfd6202bf0aedebe568d22f0494d4e> ;
 	th:synonym <http://www.assero.co.uk/SYN#f80e3a155a94c37578ec1933e1e7482437fe2e59> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_RS>
 	rdf:type isoR:RegistrationState ;
@@ -36144,6 +36195,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0572cc486195ef19557e6e59284be5f828f08777> ;
 	th:synonym <http://www.assero.co.uk/SYN#eb25a8b4ccc321a7183f1e6c86339384518de820> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118001>
 	rdf:type th:UnmanagedConcept ;
@@ -36156,6 +36208,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#01f8b470787436ab76333bd3b16aa699e12f05bb> ;
 	th:synonym <http://www.assero.co.uk/SYN#28aed62efd2c8e86844600a9a7a19ba7df078b28> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118017>
 	rdf:type th:UnmanagedConcept ;
@@ -36168,6 +36221,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#5e325dfbfb130fa05fbf211bc8c05ffd24231ec1> ;
 	th:synonym <http://www.assero.co.uk/SYN#4200e890b4af9095e0bfc9ea90ec37fa43449102> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118003>
 	rdf:type th:UnmanagedConcept ;
@@ -36180,6 +36234,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6611eafe2c36cd885d82ee1849cccb927bc2c9eb> ;
 	th:synonym <http://www.assero.co.uk/SYN#9c40ba817d279fa264748f882da5e21b47c2d49c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118015>
 	rdf:type th:UnmanagedConcept ;
@@ -36192,6 +36247,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0f1c38052dea9da7707e36e87e64704277efb0fa> ;
 	th:synonym <http://www.assero.co.uk/SYN#7b17fbe9f57274e6d80e626217b5e5eedae8d031> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118000>
 	rdf:type th:UnmanagedConcept ;
@@ -36204,6 +36260,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#9adcceb4952707039197251a4092fa5b8103dd49> ;
 	th:synonym <http://www.assero.co.uk/SYN#ffc6b265bd15f5cac5300f1c1b4ab8e438323325> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118009>
 	rdf:type th:UnmanagedConcept ;
@@ -36216,6 +36273,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#fc479d9ce87d489048eb658ccb6351cb433d3b3e> ;
 	th:synonym <http://www.assero.co.uk/SYN#4ce35d347ee9cde5b2fcf5d240e6359a35c0162c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118008>
 	rdf:type th:UnmanagedConcept ;
@@ -36228,6 +36286,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e93c8d10519877a98a6efa54cbbace143387588d> ;
 	th:synonym <http://www.assero.co.uk/SYN#1e684bcedb1c258fdac32f91b85c148dd19b5bde> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118005>
 	rdf:type th:UnmanagedConcept ;
@@ -36240,6 +36299,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c51205801c7de44b59747ac33a80da76e40289a3> ;
 	th:synonym <http://www.assero.co.uk/SYN#add64151ecdaf02cfe44a553ad9cf415ff4245bc> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118010>
 	rdf:type th:UnmanagedConcept ;
@@ -36252,6 +36312,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e2749a8e3c397ca36e88248871f1faf03e649620> ;
 	th:synonym <http://www.assero.co.uk/SYN#5a13c86a81ed420797bc9c4ca5b32ac9939aee70> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118007>
 	rdf:type th:UnmanagedConcept ;
@@ -36264,6 +36325,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#aab5828121915223b151fa36a4ab459dbe02236b> ;
 	th:synonym <http://www.assero.co.uk/SYN#91374ddd995bf1716c0ce1cf1b8e29b51184291c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118002>
 	rdf:type th:UnmanagedConcept ;
@@ -36276,6 +36338,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e07b29baf2f0743d67e91d84ac8befe959e67675> ;
 	th:synonym <http://www.assero.co.uk/SYN#b274e2134207b0d710000bfb3f4d0a1e809a3325> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118012>
 	rdf:type th:UnmanagedConcept ;
@@ -36288,6 +36351,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#cad93d8a42be36dbce01cba3cb6006e3e8a5a0b8> ;
 	th:synonym <http://www.assero.co.uk/SYN#239ddce40b4454bab2454c1d1e47a11d9d661c83> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118018>
 	rdf:type th:UnmanagedConcept ;
@@ -36300,6 +36364,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#cea214157193f6adcc54fc3da44a0dfa327d3d9c> ;
 	th:synonym <http://www.assero.co.uk/SYN#351da4cbdb088a383154f3b65cd60577f6ccc116> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118004>
 	rdf:type th:UnmanagedConcept ;
@@ -36312,6 +36377,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c6b126e59791a9f6c012c92cfff79fbe912f04ae> ;
 	th:synonym <http://www.assero.co.uk/SYN#844f77fba7847848c997064dfe1b635f8e6b24d4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118011>
 	rdf:type th:UnmanagedConcept ;
@@ -36324,6 +36390,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#b731331116d7dce45db2c5306ff09c3dc8e2cad0> ;
 	th:synonym <http://www.assero.co.uk/SYN#715a52274844cb97cf243c55d8dd777d3a167c75> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118013>
 	rdf:type th:UnmanagedConcept ;
@@ -36336,6 +36403,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#64b0b82d414682dd153a7589006ac51a46d8742e> ;
 	th:synonym <http://www.assero.co.uk/SYN#2fd3aeeaa5a3d7ff212b2775acf8386f112c6a45> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118006>
 	rdf:type th:UnmanagedConcept ;
@@ -36348,6 +36416,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8dbf69f45d6b515ffd0e296e9eb8ff784387f4dd> ;
 	th:synonym <http://www.assero.co.uk/SYN#d83a86c7574e9d0d76434ce88ac95dbab70cbcca> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C117998>
 	rdf:type th:UnmanagedConcept ;
@@ -36360,6 +36429,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#8aebbc67f76b33d7088fde4f5c3afd206bc742a9> ;
 	th:synonym <http://www.assero.co.uk/SYN#f8ccde2cb0c8882ac7df44cafbd945df9e6afaf4> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C118016>
 	rdf:type th:UnmanagedConcept ;
@@ -36372,6 +36442,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e886698821e336eb71a79236aeacf13c503112d3> ;
 	th:synonym <http://www.assero.co.uk/SYN#8572a4b9a2ccdbb4bcd2d1d92070b7b448be89e3> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.cdisc.org/C117986/V42#C117986_C117999>
 	rdf:type th:UnmanagedConcept ;
@@ -36384,6 +36455,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e30e5e5a95fb682c12fee1bcf88d34f3c4a9e39b> ;
 	th:synonym <http://www.assero.co.uk/SYN#a007d9ace9ce93e02c8811b51ba23aa856ffac3b> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
 .
 <http://www.assero.co.uk/PT#a71e839a53bfd6202bf0aedebe568d22f0494d4e>
 	rdf:type th:PreferredTerm ;

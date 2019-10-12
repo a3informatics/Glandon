@@ -17,6 +17,13 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#a910102e-2074-4aa3-ae6e-bada87daec1f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b556ed9e-a66c-4f1f-bbfc-10dd9e7106cf> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#35966b2d-f106-4a24-b7a8-f121ab1b0372> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2016-09-30.xlsx', 'CDASH Terminology 2016-09-30.xlsx', 'ADaM Terminology 2016-09-30.xlsx', 'SEND Terminology 2016-09-30.xlsx'"^^xsd:string ;
@@ -9489,6 +9496,9 @@
 	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102124> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e6c221adea5e7b5d9f8c5d67e7b6606f10940d7f> ;
 	th:synonym <http://www.assero.co.uk/SYN#a4a7969524ee10e2d15639af89b64dd19c212556> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#14799e67-b822-4ef1-a9b5-58eef0e555b6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b556ed9e-a66c-4f1f-bbfc-10dd9e7106cf> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#a910102e-2074-4aa3-ae6e-bada87daec1f> ;
 .
 <http://www.cdisc.org/C100129/V49#C100129_RS>
 	rdf:type isoR:RegistrationState ;
@@ -32325,6 +32335,7 @@
 	th:narrower <http://www.cdisc.org/C66734/V4#C66734_C49622> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#7473ae35c9353bcdb386e6afe9512f88250a07ef> ;
 	th:synonym <http://www.assero.co.uk/SYN#9edc4e710df3b001ab393b395a222810864262d6> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V49#C66734_RS>
 	rdf:type isoR:RegistrationState ;
@@ -32355,6 +32366,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#c85bf4e505ba667ca95fe4dd8524b016f32304d6> ;
 	th:synonym <http://www.assero.co.uk/SYN#54e1b65ce4de262b97956916235066ea0c9c3f35> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.cdisc.org/C66734/V49#C66734_C107097>
 	rdf:type th:UnmanagedConcept ;
@@ -32366,6 +32378,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d14a78bf3af58531c17db2a8c4293867bdb7429c> ;
 	th:synonym <http://www.assero.co.uk/SYN#a1301719dc458fa8b6f50ac811242f3ced1834d5> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#30a31360-513e-49c5-846d-65e83aa16eb0> ;
 .
 <http://www.assero.co.uk/SYN#a1301719dc458fa8b6f50ac811242f3ced1834d5>
 	rdf:type th:Synonym ;
@@ -36115,6 +36128,7 @@
 	th:narrower <http://www.cdisc.org/C88025/V42#C88025_C3011> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2c903cb42a764cfb72365d0c48050eff4f55f7ea> ;
 	th:synonym <http://www.assero.co.uk/SYN#5b909de550addc9328b503d1b3fd4fa01f81a14c> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_RS>
 	rdf:type isoR:RegistrationState ;
@@ -36148,6 +36162,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#7bdf692d8ff5a8dd41db48bbf9e2b43cb03e20b7> ;
 	th:synonym <http://www.assero.co.uk/SYN#8edcb2d7b228fe56bab6ce4cdf54f8ff6c827ba7> ;
 	th:synonym <http://www.assero.co.uk/SYN#ca50c371a70e06c4d059c4b720bf9feed5b62f5f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.assero.co.uk/PT#ca31a67949d0f0a666543597d7d44632ebfe78ae>
 	rdf:type th:PreferredTerm ;
@@ -36165,6 +36180,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#deab2a7dc311852fdc3f5d0b3cd60e60b4b5e7d8> ;
 	th:synonym <http://www.assero.co.uk/SYN#d62eda37518871f82a6dbb015186568eaa65986a> ;
 	th:synonym <http://www.assero.co.uk/SYN#bd6d552da0b2e3f811926f1be620ea83c7bf2f5b> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.assero.co.uk/PT#deab2a7dc311852fdc3f5d0b3cd60e60b4b5e7d8>
 	rdf:type th:PreferredTerm ;
@@ -36179,6 +36195,7 @@
 	th:definition "A benign neoplasm of the central nervous system with an astrocytic and oligodendrocytic component."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#2de0c7a49bf7c32426fce48ccf0649e204595e1d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C3903>
 	rdf:type th:UnmanagedConcept ;
@@ -36194,6 +36211,7 @@
 	th:synonym <http://www.assero.co.uk/SYN#c32c05d1a96ef96cd10fb17be0c48f593f6ae28b> ;
 	th:synonym <http://www.assero.co.uk/SYN#843ca1e0dd42753951bc019f2ad79e3d51f9a8b3> ;
 	th:synonym <http://www.assero.co.uk/SYN#30f9ae9f47b1aa46d9cd0fedd90be952a68b3ad9> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C114111>
 	rdf:type th:UnmanagedConcept ;
@@ -36204,6 +36222,7 @@
 	th:definition "A malignant neoplasm composed of a mixed lymphocyte population."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#3ccc9deedcbfd67638ef671b49104b860c10cb8f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C8975>
 	rdf:type th:UnmanagedConcept ;
@@ -36216,6 +36235,7 @@
 	th:preferredTerm <http://www.assero.co.uk/PT#c018e778c14f5ab045c4328d4523c2871008694a> ;
 	th:synonym <http://www.assero.co.uk/SYN#c1a9da0406a470b9ef840b6238dc57dac412b5da> ;
 	th:synonym <http://www.assero.co.uk/SYN#8e8dae31282dfd1aa61fdcd87059c6b570aef43e> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C126084>
 	rdf:type th:UnmanagedConcept ;
@@ -36226,6 +36246,7 @@
 	th:definition "A benign neoplasm composed of Sertoli cells arranged in tubules intermixed with pleomorphic Leydig cells."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#0aa61c88ba1584e2acefc14f8e88e35834fd4323> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C8602>
 	rdf:type th:UnmanagedConcept ;
@@ -36236,6 +36257,7 @@
 	th:definition "A benign neoplasm composed of epithelial and/or myoepithelial cells and a mesenchymal component."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#468b57851580dbec1a9a3507b3cefdd72ae37f2f> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_C3729>
 	rdf:type th:UnmanagedConcept ;
@@ -36247,6 +36269,7 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#d209e9d5fcda947e3f514843c1527399e5016fdb> ;
 	th:synonym <http://www.assero.co.uk/SYN#c4381c95d1aabf52d8e5946b91c285844bc3dc72> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 .
 <http://www.cdisc.org/C120531/V49#C120531>
 	rdf:type th:ManagedConcept ;
