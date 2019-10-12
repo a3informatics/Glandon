@@ -10,7 +10,7 @@ class Excel::Engine
 
   extend ActiveModel::Naming
 
-  attr_reader :parent_set, :classifications
+  attr_reader :parent_set, :classifications, :tags
 
   # Initialize. Opens the workbook ready for processing.
   #
@@ -24,17 +24,6 @@ class Excel::Engine
     @parent_set = {}
     @classifications = {}
     @tags = []
-  end
-
-  # ---------
-  # Test Only
-  # ---------
-  if Rails.env.test?
-
-    def tags
-      @tags
-    end
-
   end
 
   # Process. Process a sheet according to the configuration

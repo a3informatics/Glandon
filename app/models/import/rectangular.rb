@@ -20,6 +20,7 @@ class Import::Rectangular < Import
   def import(params)
     @parent_set = {}
     @classifications = {}
+    @tags = []
     read_all_excel(params)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
@@ -50,6 +51,7 @@ private
       merge_errors(reader, self)
       next if !reader.errors.empty?
       merge_parent_set(reader)
+      @tags += reader.engine.tags
     end
   end
     
@@ -85,7 +87,6 @@ private
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous)
       parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
-      parent.add_tags(actual.tagged)
       next if actual.uri != child.uri # No changes if actual = previous, so skip next
       child.add_additional_tags(previous, tag_set) 
       filtered << child 
@@ -131,6 +132,7 @@ private
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
     parent.origin = import_files(params)
+    parent.add_tags(@tags)
     return {parent: parent, managed_children: []}
   end
 

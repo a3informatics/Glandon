@@ -232,57 +232,57 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 10
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},                                   # 10
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},                                   # 14 - 2009
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 20
-      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},                    # 19 - 2010
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},                    # 20
       { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 26
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},                    # 24 - 2011 
+      { th: [:SDTM, :CDASH, :ADaM], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},             # 26
       { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 30
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},             # 29 - 2012
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},        # 30
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},        # 34 - 2013
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},        # 38 - 2014
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 40
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},   # 40
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :"QS-FT"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :COA], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :COA], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :COA], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},       # 43 - 2015
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QRS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},       
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :QRS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :QRS], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},             # 47 - 2016
       { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 50
+      { th: [:SDTM, :CDASH, :ADaM, :SEND], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},             # 50
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 51 - 2017
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 55 - 2018
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}, # 60
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 59 - 2019
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 60
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}
     ]
 
