@@ -116,4 +116,9 @@ describe "User" do
     expect(user.name).to eq("Anonymous")
   end
 
+  it "validates that password reset is forced when a new user is created" do
+    user = User.create :email => C_EMAIL, :password => "Changeme1#"
+    expect(user.need_change_password?).to eq(true)
+  end
+
 end

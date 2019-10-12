@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :timeoutable,
     :password_expirable, :password_archivable , :secure_validatable
 
-  after_create :set_extra
+  after_create :set_extra, :expire_password!
   after_save :user_update
 
   validates :name, length: { minimum: 1 }, on: :update

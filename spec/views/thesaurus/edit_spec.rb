@@ -17,6 +17,7 @@ describe 'thesauri/edit.html.erb', :type => :view do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
     load_files(schema_files, data_files)
     @user = User.create :email => "user@assero.co.uk", :password => "cHangeMe14%", :name => "User Fred"
+    unforce_first_pass_change @user
   end
 
   after :all do
