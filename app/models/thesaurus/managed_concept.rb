@@ -3,7 +3,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#ManagedConcept",
             uri_property: :identifier,
             key_property: :identifier
-            
+
   data_property :identifier
   data_property :notation
   data_property :definition
@@ -13,22 +13,22 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
-  
+
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
   validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
-  # config = 
+  # config =
   # {
-  #   relationships: 
+  #   relationships:
   #   [
-  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref, 
-  #     Thesaurus::Synonym.rdf_type.to_ref, 
+  #     Thesaurus::UnmanagedConcept.rdf_type.to_ref,
+  #     Thesaurus::Synonym.rdf_type.to_ref,
   #     Thesaurus::PreferredTerm.rdf_type.to_ref,
   #     Thesaurus::Subset.rdf_type.to_ref
   #   ]
-  # } 
+  # }
   # self.class.instance_variable_set(:@configuration, config)
 
   include Thesaurus::BaseConcept
@@ -42,7 +42,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     !extended_by.nil?
   end
 
-  # Extended By. Get the URI of the extension item if it exists. 
+  # Extended By. Get the URI of the extension item if it exists.
   #
   # @result [Uri] the Uri or nil if not present.
   def extended_by
@@ -58,7 +58,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     !extension_of.nil?
   end
 
-  # Extension Of. Get the URI of the item being extended, if it exists. 
+  # Extension Of. Get the URI of the item being extended, if it exists.
   #
   # @result [Uri] the Uri or nil if not present.
   def extension_of
@@ -82,22 +82,22 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Integer] the number of changes
   def changes_count(window_size)
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
-    first_index = items.index {|x| x == self.uri}    
-    if first_index.nil? 
+    first_index = items.index {|x| x == self.uri}
+    if first_index.nil?
       first_index = 0
-      start_index = 0 
-    elsif first_index == 0 
-      start_index = 0 
+      start_index = 0
+    elsif first_index == 0
+      start_index = 0
     else
       start_index = first_index - 1
-    end    
+    end
     last_index = first_index + window_size - 1
     last_index = last_index < items.count ? last_index : items.count - 1
     count = last_index - first_index + 1
     count += 1 if deleted_from_ct?(items.last)
     count
   end
-    
+
   # Changes
   #
   # @param [Integer] window_size the required window size for changes
@@ -108,21 +108,20 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     versions = []
     start_index = 0
     first_index = 0
-
     # Get the version set. Work out if we need a dummy first one. Note the identifier
     items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope).reverse
-    first_index = items.index {|x| x == self.uri}    
-    if first_index.nil? 
+    first_index = items.index {|x| x == self.uri}
+    if first_index.nil?
       first_index = 0
-      start_index = 0 
+      start_index = 0
       raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
-    elsif first_index == 0 
-      start_index = 0 
+    elsif first_index == 0
+      start_index = 0
       raw_results["dummy"] = {version: 0, date: "", children: []} if first_index == 0
     else
       start_index = first_index - 1
       raw_results = {}
-    end    
+    end
     length = items.count < window_size ? items.count : window_size
     version_set = items[start_index..(first_index + length - 1)]
 
@@ -150,11 +149,11 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     raw_results.each {|k,v| versions << v[:date]}
     versions = versions.drop(1)
 
-    
+
     # Build the skeleton final results with a default value.
     initial_status = [{ status: :not_present}] * versions.length
     if item_was_deleted_info[:deleted]
-      versions << item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d") 
+      versions << item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d")
       initial_status << { status: :deleted}
     end
     raw_results.each do |uri, version|
@@ -199,6 +198,124 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     {versions: versions, items: final_results}
   end
 
+  # Changes_summary
+  #
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
+  # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
+  # @return [Hash] the changes hash. Consists of a set of versions and the changes for each item and version
+  def changes_summary(last, actual_versions)
+    raw_results = {}
+    final_results = {}
+    versions = []
+    raw_results = {}
+    # Get the raw results
+    query_string = %Q{SELECT ?e ?v ?d ?i ?cl ?l ?n WHERE
+{
+  { #{self.uri.to_ref} th:narrower ?cl . #{self.uri.to_ref} isoT:creationDate ?d . #{self.uri.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{self.uri.to_ref} as ?e)} UNION\n
+  { #{last.uri.to_ref} th:narrower ?cl . #{last.uri.to_ref} isoT:creationDate ?d . #{last.uri.to_ref} isoT:hasIdentifier ?si1 . ?si1 isoI:version ?v . BIND (#{last.uri.to_ref} as ?e)}
+
+  ?cl th:identifier ?i .
+  ?cl isoC:label ?l .
+  ?cl th:notation ?n .
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :th, :bo])
+    triples = query_results.by_object_set([:e, :v, :d, :i, :cl, :l, :n])
+
+    triples.each do |x|
+      uri = x[:e].to_s
+      raw_results[uri] = {version: x[:v].to_i, date: x[:d].to_time_with_default.strftime("%Y-%m-%d"), children: []} if !raw_results.key?(uri)
+      raw_results[uri][:children] << DiffResult[key: x[:i], uri: x[:cl], label: x[:l], notation: x[:n]]
+    end
+
+    # Get the version array
+    raw_results.sort_by {|k,v| v[:version]}
+    raw_results.each {|k,v| versions << v[:date]}
+
+    # # Build the skeleton final results with a default value.
+    initial_status = [{ status: :no_change}] * versions.length
+
+    raw_results.each do |uri, version|
+      version[:children].each do |entry|
+        key = entry[:key].to_sym
+        next if final_results.key?(key)
+        final_results[key] = {key: entry[:key], identifier: entry[:key], id: entry[:uri].to_id, label: entry[:label] , notation: entry[:notation], status: initial_status.dup}
+      end
+    end
+
+    # Process the changes
+    previous_version = nil
+    version_index = 0
+
+    raw_results.each do |uri, version|
+      if !previous_version.nil?
+        new_items = version[:children] - previous_version[:children]
+        common_items = version[:children] & previous_version[:children]
+        deleted_items = previous_version[:children] - version[:children]
+
+        new_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :created}
+          final_results[entry[:key].to_sym][:status][version_index-1] = {status: :not_present}
+        end
+        common_items.each do |entry|
+          prev = previous_version[:children].find{|x| x[:key] == entry[:key]}
+          curr = version[:children].find{|x| x[:key] == entry[:key]}
+          final_results[entry[:key].to_sym][:status][version_index] = curr.no_change?(prev) ? {status: :no_change} : {status: :updated}
+        end
+        deleted_items.each do |entry|
+          final_results[entry[:key].to_sym][:status][version_index] = {status: :deleted}
+        end
+      end
+      version_index += 1
+      previous_version = version
+    end
+
+    # And return
+    {versions: actual_versions, items: final_results}
+  end
+
+  # Differences_summary
+  #
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection 
+  # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
+  # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
+  def differences_summary (last, actual_versions)
+    results =[]
+    items = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    query_string = %Q{
+SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE
+  {
+    VALUES ?s { #{self.uri.to_ref} #{last.uri.to_ref} }
+    {
+      ?s th:identifier ?i .
+      ?s isoT:creationDate ?date .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+    }
+  } ORDER BY ?i ?sy
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?date
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
+
+    # FIRST
+    x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).first
+    first = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+    diffs = difference_record_baseline(first)
+    results << {id: x[:s].to_id, date: actual_versions[0], differences: diffs}
+
+    # SECOND (LAST)
+    x = query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :date]).last
+    last = {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d]}
+    diffs = difference_record(last, first)
+    results << {id: x[:s].to_id, date: actual_versions[-1], differences: diffs}
+
+    results
+  end
+
   # Differences
   #
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
@@ -209,8 +326,8 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
 {
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE   
-  {        
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?date WHERE
+  {
     VALUES ?s { #{items.map{|x| x.to_ref}.join(" ")} }
     {
       ?s th:identifier ?i .
@@ -222,7 +339,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
     }
   } ORDER BY ?i ?sy
-} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?i
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?date ORDER BY ?date
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT])
     previous = nil
@@ -234,12 +351,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       previous = current
     end
     if item_was_deleted_info[:deleted]
-      results << {id: nil, date: item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d"), differences: difference_record_deleted} 
+      results << {id: nil, date: item_was_deleted_info[:ct].creation_date.strftime("%Y-%m-%d"), differences: difference_record_deleted}
     end
     results
   end
 
-  # Add Extensions 
+  # Add Extensions
   #
   # @param uris [Array] set of uris of the items to be added
   # @return [Void] no return
@@ -249,7 +366,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
-  # Delete Extensions 
+  # Delete Extensions
   #
   # @param uris [Array] set of uris of the items to be deleted
   # @return [Void] no return
@@ -263,7 +380,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Array] the set of CSV record, each is an array of stirngs
   def to_csv
-    headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name", 
+    headers = ["Code", "Codelist Code", "Codelist Extensible (Yes/No)", "Codelist Name",
       "CDISC Submission Value", "CDISC Synonym(s)", "CDISC Definition", "NCI Preferred Term"]
     CSVHelpers.format(headers, to_csv_data)
   end
@@ -326,8 +443,8 @@ private
     query_string = %Q{
       SELECT ?s WHERE {
         #{last_item.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .
-        ?s isoT:hasIdentifier ?si . 
-        ?si isoI:version ?v 
+        ?s isoT:hasIdentifier ?si .
+        ?si isoI:version ?v
       } ORDER BY DESC (?v)
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :th, :bo])
@@ -346,7 +463,7 @@ private
   # Find parent query. Used by BaseConcept
   def parent_query
     "SELECT DISTINCT ?i WHERE \n" +
-    "{ \n" +     
+    "{ \n" +
     "  ?s th:narrower #{self.uri.to_ref} .  \n" +
     "  ?s th:identifier ?i . \n" +
     "}"

@@ -148,6 +148,9 @@ Rails.application.routes.draw do
         get :is_extended
         get :is_extension
         get :export_csv
+        get :changes_summary
+        get :changes_summary_data
+        get :differences_summary
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
