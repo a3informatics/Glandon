@@ -92,7 +92,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)
