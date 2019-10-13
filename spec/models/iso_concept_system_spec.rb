@@ -93,15 +93,7 @@ describe IsoConceptSystem do
   describe "Create Tags" do
 
     before :all do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       #clear_iso_concept_object
     end
@@ -137,7 +129,7 @@ describe IsoConceptSystem do
 
   end
 
-  describe "Create Tags" do
+  describe "Path" do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]

@@ -13,8 +13,9 @@ describe "Import::CdiscTerm CT Data" do
 
   before :all do
     IsoHelpers.clear_cache
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
-    load_files(schema_files, data_files)
+    load_files(schema_files, [])
+    load_data_file_into_triple_store("mdr_identification.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     create_maps
   end
 
