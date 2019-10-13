@@ -67,6 +67,10 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
   end
 
+  # Replace If No Change. Replace the current with the previous if no differences.
+  #
+  # @param previous [Thesaurus::UnmanagedConcept] previous item
+  # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
     return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, 
@@ -75,10 +79,15 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return self
   end
 
+  # Add additional tags
+  #
+  # @param previous [Thesaurus::UnmanagedConcept] previous item
+  # @param set [Array] set of tags objects
+  # @return [Void] no return
   def add_additional_tags(previous, set)
     return if previous.nil?
-    missing = previous.tagged - self.tagged
-    missing.each {|x| set << {subject: self.uri, object: x.uri}}
+    missing =  previous.tagged.map{|x| x.uri.to_s}  - self.tagged.map{|x| x.uri.to_s}
+    missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
     add_child_additional_tags(previous, set)
   end
 

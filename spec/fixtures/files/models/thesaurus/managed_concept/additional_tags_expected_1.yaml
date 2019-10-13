@@ -4,14 +4,18 @@
     authority: www.cdisc.org
     path: mc1
     fragment: ''
-  :object: &1 !ruby/object:Uri
+  :object: !ruby/object:Uri
     scheme: http
-    authority: www.cdisc.org
-    path: tag2
-    fragment: ''
+    authority: www.example.com
+    path: path
+    fragment: tag2
 - :subject: !ruby/object:Uri
     scheme: http
     authority: www.cdisc.org
     path: uc1b
     fragment: ''
-  :object: *1
+  :object: !ruby/object:Uri
+    scheme: http
+    authority: www.example.com
+    path: path
+    fragment: tag2

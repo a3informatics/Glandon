@@ -810,6 +810,9 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     def merge_base
+      @tag_1 = IsoConceptSystem::Node.new(pref_label: "TAG1", uri: Uri.new(uri: "http://www.example.com/path#tag1"))
+      @tag_2 = IsoConceptSystem::Node.new(pref_label: "TAG2", uri: Uri.new(uri: "http://www.example.com/path#tag2"))
+      @tag_3 = IsoConceptSystem::Node.new(pref_label: "TAG3", uri: Uri.new(uri: "http://www.example.com/path#tag3"))
       @uri_1 = Uri.new(uri: "http://www.cdisc.org/tag1")
       @uri_2 = Uri.new(uri: "http://www.cdisc.org/tag2")
       @uri_3 = Uri.new(uri: "http://www.cdisc.org/tag2")
@@ -820,7 +823,7 @@ describe "Thesaurus::ManagedConcept" do
           notation: "VSTEST"
         })
       @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
-      @tc_1.tagged << @uri_1
+      @tc_1.tagged << @tag_1
       @tc_1a = Thesaurus::UnmanagedConcept.from_h({
           label: "APGAR Score",
           identifier: "A00002",
@@ -836,8 +839,8 @@ describe "Thesaurus::ManagedConcept" do
         })
       @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
       @tc_1b.synonym << Thesaurus::Synonym.new(label: "Upper Arm")
-      @tc_1b.tagged << @uri_1
-      @tc_1b.tagged << @uri_3
+      @tc_1b.tagged << @tag_1
+      @tc_1b.tagged << @tag_3
       @tc_1.narrower << @tc_1a
       @tc_1.narrower << @tc_1b
       @tc_2 = Thesaurus::ManagedConcept.from_h({
@@ -847,7 +850,7 @@ describe "Thesaurus::ManagedConcept" do
           notation: "VSTEST"
         })
       @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
-      @tc_2.tagged << @uri_2
+      @tc_2.tagged << @tag_2
       @tc_2a = Thesaurus::UnmanagedConcept.from_h({
           label: "APGAR Score",
           identifier: "A00002",
@@ -863,8 +866,8 @@ describe "Thesaurus::ManagedConcept" do
         })
       @tc_2b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
       @tc_2b.synonym << Thesaurus::Synonym.new(label: "Upper Arm")
-      @tc_2b.tagged << @uri_1
-      @tc_2b.tagged << @uri_2
+      @tc_2b.tagged << @tag_1
+      @tc_2b.tagged << @tag_2
       @tc_2.narrower << @tc_2a
       @tc_2.narrower << @tc_2b
     end
@@ -952,7 +955,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC"])
     end
 
-    it "add tags" do
+    it "add additional tags" do
       merge_base
       result = []
       @tc_1.uri = Uri.new(uri: "http://www.cdisc.org/mc1")
@@ -961,14 +964,14 @@ describe "Thesaurus::ManagedConcept" do
       @tc_2b.uri = Uri.new(uri: "http://www.cdisc.org/uc2b")
       @tc_1.add_additional_tags(@tc_2, result)
       expect(@tc_1.tagged.count).to eq(1)
-      expect(@tc_1.tagged).to match_array([@uri_1])
+      expect(@tc_1.tagged.map{|x| x.uri}).to match_array([@tag_1.uri])
       expect(@tc_2.tagged.count).to eq(1)
-      expect(@tc_2.tagged).to match_array([@uri_2])
+      expect(@tc_2.tagged.map{|x| x.uri}).to match_array([@tag_2.uri])
       expect(@tc_1b.tagged.count).to eq(2)
-      expect(@tc_1b.tagged).to match_array([@uri_1, @uri_3])
+      expect(@tc_1b.tagged.map{|x| x.uri}).to match_array([@tag_1.uri, @tag_3.uri])
       expect(@tc_2b.tagged.count).to eq(2)
-      expect(@tc_2b.tagged).to match_array([@uri_1, @uri_2])
-      check_file_actual_expected(result, sub_dir, "additional_tags_expected_1.yaml", write_file: true)
+      expect(@tc_2b.tagged.map{|x| x.uri}).to match_array([@tag_1.uri, @tag_2.uri])
+      check_file_actual_expected(result, sub_dir, "additional_tags_expected_1.yaml")
     end
 
   end
