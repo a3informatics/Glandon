@@ -270,6 +270,16 @@
       </binding>
     </result><result>
       <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#prefLabel</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#DatatypeProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Label</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
         <uri>http://www.assero.co.uk/ISO11179Types#lastChangeDate</uri>
       </binding>
       <binding name="b">
@@ -327,6 +337,16 @@
       </binding>
       <binding name="c">
         <literal>Namespace</literal>
+      </binding>
+    </result><result>
+      <binding name="a">
+        <uri>http://www.assero.co.uk/ISO11179Concepts#narrower</uri>
+      </binding>
+      <binding name="b">
+        <uri>http://www.w3.org/2002/07/owl#ObjectProperty</uri>
+      </binding>
+      <binding name="c">
+        <literal>Narrower relationship.</literal>
       </binding>
     </result><result>
       <binding name="a">

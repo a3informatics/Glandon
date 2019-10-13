@@ -14,11 +14,6 @@ describe "Thesaurus::Synonym" do
   end
 
   before :each do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
     load_files(schema_files, data_files)
   end
@@ -41,7 +36,8 @@ describe "Thesaurus::Synonym" do
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1", 
         :id => Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1").to_id, 
         :label => "BC Property Reference",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym"
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#Synonym",
+        :tagged => []
       }
     item = Thesaurus::Synonym.from_h(result)
     expect(item.to_h).to eq(result)

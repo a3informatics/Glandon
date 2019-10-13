@@ -1,16 +1,16 @@
 ---
-:count: 12
+:count: 17
 :items:
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0Mi9WMzcjQzExMjQ0Ml9DMTEyNjEy
-  :uri: http://www.cdisc.org/C112442/V37#C112442_C112612
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0Mi9WMzgjQzExMjQ0Ml9DMTEyNjEy
+  :uri: http://www.cdisc.org/C112442/V38#C112442_C112612
   :parent_identifier: C112442
   :identifier: C112612
   :notation: KFSS1-Brain Stem Functions
   :definition: Kurtzke Functional Systems Scores - Brain stem functions.
   :preferred_term: KFSS - Brain Stem Functions
   :synonym: KFSS1-Brain Stem Functions
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0My9WMzcjQzExMjQ0M19DMTEyNjEy
-  :uri: http://www.cdisc.org/C112443/V37#C112443_C112612
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0My9WMzgjQzExMjQ0M19DMTEyNjEy
+  :uri: http://www.cdisc.org/C112443/V38#C112443_C112612
   :parent_identifier: C112443
   :identifier: C112612
   :notation: KFSS103
@@ -25,7 +25,7 @@
   :definition: A measurement of the brain (B-type) natriuretic peptide in a biological
     specimen.
   :preferred_term: Brain Natriuretic Peptide Measurement
-  :synonym: B-Type Natriuretic Peptide; Brain Natriuretic Peptide
+  :synonym: Brain Natriuretic Peptide; B-Type Natriuretic Peptide
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YxOSNDNjUwNDdfQzgyMDA0
   :uri: http://www.cdisc.org/C65047/V19#C65047_C82004
   :parent_identifier: C65047
@@ -43,7 +43,7 @@
   :definition: A measurement of the brain (B-type) natriuretic peptide in a biological
     specimen.
   :preferred_term: Brain Natriuretic Peptide Measurement
-  :synonym: B-Type Natriuretic Peptide; Brain Natriuretic Peptide
+  :synonym: Brain Natriuretic Peptide; B-Type Natriuretic Peptide
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YxOSNDNjcxNTRfQzgyMDA0
   :uri: http://www.cdisc.org/C67154/V19#C67154_C82004
   :parent_identifier: C67154
@@ -82,16 +82,16 @@
     thalamus, hypothalamus, and the limbic system. (NCI)
   :preferred_term: Forebrain
   :synonym: ''
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y0MSNDNzQ0NTZfQzEyNTEy
-  :uri: http://www.cdisc.org/C74456/V41#C74456_C12512
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y0MiNDNzQ0NTZfQzEyNTEy
+  :uri: http://www.cdisc.org/C74456/V42#C74456_C12512
   :parent_identifier: C74456
   :identifier: C12512
   :notation: SUPRATENTORIAL BRAIN
   :definition: The part of the brain above the tentorium cerebellum. (NCI)
   :preferred_term: Supratentorial Brain
   :synonym: ''
-- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y0MSNDNzQ0NTZfQzEyNTA5
-  :uri: http://www.cdisc.org/C74456/V41#C74456_C12509
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y0MiNDNzQ0NTZfQzEyNTA5
+  :uri: http://www.cdisc.org/C74456/V42#C74456_C12509
   :parent_identifier: C74456
   :identifier: C12509
   :notation: INFRATENTORIAL BRAIN
@@ -103,6 +103,34 @@
   :parent_identifier: C74456
   :identifier: C12441
   :notation: BRAIN STEM
+  :definition: The part of the brain that connects the cerebral hemispheres with the
+    spinal cord. It consists of the mesencephalon, pons, and medulla oblongata. (NCI)
+  :preferred_term: Brain Stem
+  :synonym: Brain Stem
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc3NTI5L1YyNiNDNzc1MjlfQzEyNDM5
+  :uri: http://www.cdisc.org/C77529/V26#C77529_C12439
+  :parent_identifier: C77529
+  :identifier: C12439
+  :notation: BRAIN
+  :definition: An organ composed of grey and white matter containing billions of neurons
+    that is the center for intelligence and reasoning. It is protected by the bony
+    cranium. (NCI)
+  :preferred_term: Brain
+  :synonym: Brain; Nervous System, Brain
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc3NTI5L1YyNiNDNzc1MjlfQzQwMTg1
+  :uri: http://www.cdisc.org/C77529/V26#C77529_C40185
+  :parent_identifier: C77529
+  :identifier: C40185
+  :notation: BRAIN, FOREBRAIN
+  :definition: The largest part of the brain composed of the cerebral hemispheres,
+    thalamus, hypothalamus, and the limbic system. (NCI)
+  :preferred_term: Forebrain
+  :synonym: ''
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc3NTI5L1YyNiNDNzc1MjlfQzEyNDQx
+  :uri: http://www.cdisc.org/C77529/V26#C77529_C12441
+  :parent_identifier: C77529
+  :identifier: C12441
+  :notation: BRAIN, BRAIN STEM
   :definition: The part of the brain that connects the cerebral hemispheres with the
     spinal cord. It consists of the mesencephalon, pons, and medulla oblongata. (NCI)
   :preferred_term: Brain Stem
