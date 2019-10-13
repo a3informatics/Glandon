@@ -43,7 +43,8 @@ describe "Thesaurus::SubsetMember" do
         :item => nil,
         :member_next => nil,
         :label => "BC Property Reference",
-        :rdf_type => "http://www.assero.co.uk/Thesaurus#SubsetMember"
+        :rdf_type => "http://www.assero.co.uk/Thesaurus#SubsetMember",
+        :tagged => []
       }
     item = Thesaurus::SubsetMember.from_h(result)
     expect(item.to_h).to eq(result)

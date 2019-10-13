@@ -82,7 +82,7 @@ describe Thesaurus do
 
     it "allows a Thesaurus to be found" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "allows a Th to be found - error" do
@@ -148,7 +148,7 @@ describe Thesaurus do
       results = []
       result = Thesaurus.history(:identifier => "CT", :scope => IsoNamespace.find_by_short_name("CDISC"))
       result.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "allows the current item to be retrived" do
