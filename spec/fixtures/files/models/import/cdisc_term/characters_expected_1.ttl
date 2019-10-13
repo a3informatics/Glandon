@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDISC Term"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'characters_1.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;

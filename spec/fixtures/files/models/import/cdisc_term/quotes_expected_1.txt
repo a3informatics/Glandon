@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDISC Term"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'SDTM Terminology Quotes 1.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
@@ -69,6 +70,7 @@
 <http://www.cdisc.org/C141663/V1#C141663>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141663/V1#C141663_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141663/V1#C141663_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -108,6 +110,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unclassified Pleomorphic Sarcoma (Formerly \"Malignant Fibrous Histiocytoma\")"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR101"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -126,6 +129,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR102"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -144,6 +148,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR103"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
@@ -170,6 +175,7 @@
 <http://www.cdisc.org/C141662/V1#C141662>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141662/V1#C141662_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141662/V1#C141662_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -209,6 +215,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR1-Test Grade"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -219,6 +226,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -233,6 +241,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR1-Wear Orthoses"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;

@@ -21,7 +21,7 @@ describe "Import::CdiscTerm" do
   end
 
 	before :each do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
     load_files(schema_files, data_files)
     Import.destroy_all
     delete_all_public_test_files
@@ -152,9 +152,7 @@ describe "Import::CdiscTerm" do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2007-03-06.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2007-03-06.yaml")
-    expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2007-03-06.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -172,9 +170,7 @@ describe "Import::CdiscTerm" do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2007-05-31.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2007-05-31.yaml")
-    expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2007-05-31.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -210,9 +206,7 @@ describe "Import::CdiscTerm" do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2010-04-08.yaml")
-    expected = read_yaml_file(sub_dir, "import_version_2010-04-08.yaml")
-    expect(actual).to eq(expected)
+    check_file_actual_expected(actual, sub_dir, "import_version_2010-04-08.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
@@ -236,14 +230,13 @@ describe "Import::CdiscTerm" do
   end
 
   it "import, Multiple Version 4 Format, errors" do
-    full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2018-12-21.xlsx")
-    full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2018-12-21.xlsx")
-    full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2018-12-21.xlsx")
-    full_path_4 = test_file_path(sub_dir, "SEND Terminology 2018-12-21.xlsx")
-    full_path_5 = test_file_path(sub_dir, "Protocol Terminology 2018-09-28.xlsx")
+    full_path_1 = test_file_path(sub_dir, "SDTM Terminology 2011-06-10.xlsx")
+    full_path_2 = test_file_path(sub_dir, "CDASH Terminology 2011-04-08.xlsx")
+    full_path_3 = test_file_path(sub_dir, "ADaM Terminology 2011-01-07.xlsx")
+    full_path_4 = test_file_path(sub_dir, "SEND Terminology 2011-06-10.xlsx")
     params = 
     {
-      version: "1", date: "2018-12-21", files: [full_path_1, full_path_2, full_path_3, full_path_4, full_path_5], 
+      version: "1", date: "2011-06-10", files: [full_path_1, full_path_2, full_path_3, full_path_4], 
       version_label: "1.0.0", label: "CDISC Term", semantic_version: "1.0.0", job: @job
     }
     result = @object.import(params)
@@ -253,10 +246,7 @@ describe "Import::CdiscTerm" do
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     actual = read_yaml_file(sub_dir, filename)
-  #Xwrite_yaml_file(actual, sub_dir, "import_version_2018-12-21.yaml")
-    #expected = read_yaml_file(sub_dir, "import_version_2018-12-21.yaml")
-    #expect(actual).to eq(expected)
-    check_file_actual_expected(actual, sub_dir, "import_version_2018-12-21.yaml", equate_method: :hash_equal)
+    check_file_actual_expected(actual, sub_dir, "import_version_2011-06-10.yaml", equate_method: :hash_equal)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
