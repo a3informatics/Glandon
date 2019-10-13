@@ -508,99 +508,99 @@ describe "Thesaurus::ManagedConcept" do
     it "finds changes, 4" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 8" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 8" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 3" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.changes(3)
-      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 3" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V45#C89973"))
       results = tc.changes(3)
-      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "differences, II" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V46#C124661"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V47#C124661"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "differences, III" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V55#C100129"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V56#C100129"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "differences, IV" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V30#C100129"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V31#C100129"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "differences, V" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "differences, VI" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V37#C101805"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml", equate_method: :hash_equal)
     end
 
     it "differences_summary, first item first version" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2012-06-29","2019-06-28"]
       results = tc.differences_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "differences_summary, first item other version" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V37#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2013-12-20","2019-06-28"]
       results = tc.differences_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary I" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2012-03-23","2019-06-28"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary II" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V47#C89973"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V45#C89973"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V48#C89973"))
       versions = ["2015-09-25","2016-06-24"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary III" do
@@ -608,7 +608,7 @@ describe "Thesaurus::ManagedConcept" do
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V27#C66783"))
       versions = ["2007-04-20","2011-07-22"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -878,7 +878,7 @@ describe "Thesaurus::ManagedConcept" do
       expect(result).to be(true)
       expect(@tc_1.errors.count).to eq(0)
       expect(@tc_1.tagged.count).to eq(2)
-      expect(@tc_1.tagged).to match_array([@uri_1, @uri_2])
+      expect(@tc_1.tagged).to match_array([@tag_1, @tag_2])
     end
 
     it "not equal, I" do
@@ -915,9 +915,9 @@ describe "Thesaurus::ManagedConcept" do
       expect(@tc_1.narrower.count).to eq(3)
       expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC", "EXTRA"])
       expect(@tc_1.tagged.count).to eq(2)
-      expect(@tc_1.tagged).to match_array([@uri_1, @uri_2])
+      expect(@tc_1.tagged).to match_array([@tag_1, @tag_2])
       expect(@tc_1b.tagged.count).to eq(3)
-      expect(@tc_1b.tagged).to match_array([@uri_1, @uri_2, @uri_3])
+      expect(@tc_1b.tagged).to match_array([@tag_1, @tag_2, @tag_3])
     end
 
     it "extra child in other, error I" do
