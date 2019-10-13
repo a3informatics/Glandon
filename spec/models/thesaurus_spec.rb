@@ -15,15 +15,7 @@ describe Thesaurus do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
     end
@@ -54,7 +46,8 @@ describe Thesaurus do
           :has_state => nil,
           :has_identifier => nil,
           :is_top_concept => [],
-          :is_top_concept_reference => []
+          :is_top_concept_reference => [],
+          :tagged => []
         }
       expect(th.to_h).to hash_equal(result)
     end
@@ -89,7 +82,7 @@ describe Thesaurus do
 
     it "allows a Thesaurus to be found" do
       th = Thesaurus.find_full(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(th.to_h, sub_dir, "find_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a Th to be found - error" do
@@ -155,7 +148,7 @@ describe Thesaurus do
       results = []
       result = Thesaurus.history(:identifier => "CT", :scope => IsoNamespace.find_by_short_name("CDISC"))
       result.each {|x| results << x.to_h}
-      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "history_expected_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows the current item to be retrived" do
@@ -215,67 +208,67 @@ describe Thesaurus do
     it "calculates changes, window 4, general" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 10, large" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(10)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, first item" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, second" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes(4)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 8, second" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V30#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V31#TH"))
       actual = ct.changes(8)
-      check_file_actual_expected(actual, sub_dir, "changes_expected_5.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 3 " do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 3 " do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
       actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 4 " do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V13#TH"))
       actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 4 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V55#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V56#TH"))
       actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_4.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
       actual = ct.changes_cdu(3)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_5.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes_cdu, window 3 " do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
       actual = ct.changes_cdu(4)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_6.yaml")
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_6.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -346,15 +339,7 @@ describe Thesaurus do
     end
 
     before :each do
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..59)
     end
@@ -457,15 +442,7 @@ describe Thesaurus do
     end
 
     before :all do
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..59)
     end
@@ -487,6 +464,5 @@ describe Thesaurus do
     end
 
   end
-
 
 end
