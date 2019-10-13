@@ -106,7 +106,7 @@ describe Form::Item::BcProperty do
     result = item.thesaurus_concepts
     json = []
     result.each {|tc| json << tc.to_json}
-    check_file_actual_expected(json, sub_dir, "thesaurus_concepts_expected.yaml")
+    check_file_actual_expected(json, sub_dir, "thesaurus_concepts_expected.yaml", equate_method: :hash_equal)
   # write_hash_to_yaml_file_2(json, sub_dir, "thesaurus_concepts_expected.yaml")
   #   expected = read_yaml_file_to_hash_2(sub_dir, "thesaurus_concepts_expected.yaml")
   #   expect(json).to eq(expected)

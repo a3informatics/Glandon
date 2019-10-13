@@ -160,7 +160,7 @@ RSpec.describe AdHocReport, type: :model do
     report = AdHocReport.new
     report.results_file = "ad_hoc_report_test_1_results.yaml"
     result = report.to_csv
-    #write_text_file_2(result, sub_dir, "ad_hoc_report_csv_1.txt")
+  #write_text_file_2(result, sub_dir, "ad_hoc_report_csv_1.txt")
     expected = read_text_file_2(sub_dir, "ad_hoc_report_csv_1.txt")
     expect(result).to eq(expected)
   end
@@ -169,7 +169,7 @@ RSpec.describe AdHocReport, type: :model do
     report = AdHocReport.new
     report.results_file = "ad_hoc_report_1_results_xxx.yaml" # File does not exits
     result = report.to_csv
-    #write_text_file_2(result, sub_dir, "ad_hoc_report_csv_2.txt")
+  #write_text_file_2(result, sub_dir, "ad_hoc_report_csv_2.txt")
     expected = read_text_file_2(sub_dir, "ad_hoc_report_csv_2.txt")
     expect(result).to eq(expected)
   end
