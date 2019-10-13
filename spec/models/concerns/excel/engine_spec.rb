@@ -324,7 +324,7 @@ describe Excel::Engine do
     expect(object.tags).to eq([])
   end
 
-  it "tag from sheet name" do
+  it "tag from sheet name, I" do
     full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
@@ -336,13 +336,32 @@ describe Excel::Engine do
     expect(result).to eq([])
   end
 
+  it "tag from sheet name, II" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS"]).and_return({tag: "QS"})
+    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
+    expect(result).to eq([{:tag=>"QS"}])
+  end
+
+  it "tag from sheet name, III" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_3.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS-FT"]).and_return({tag: "QS-FT"})
+    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
+    expect(result).to eq([{:tag=>"QS-FT"}])
+  end
+
   it "set tagged property" do
     full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
-byebug
     result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
     expect(result).to eq([{:tag=>"A"}])
     result = object.set_tags({object: parent})
