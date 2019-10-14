@@ -3,6 +3,7 @@
 :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH
 :rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
 :label: ''
+:tagged: []
 :has_state:
   :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfUlM=
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_RS
@@ -53,6 +54,7 @@
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
   :label: ''
+  :tagged: []
   :enabled: true
   :optional: true
   :ordinal: 2
@@ -63,6 +65,7 @@
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
   :label: ''
+  :tagged: []
   :enabled: true
   :optional: true
   :ordinal: 1
@@ -73,6 +76,7 @@
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR3
   :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
   :label: ''
+  :tagged: []
   :enabled: true
   :optional: false
   :ordinal: 3
@@ -84,6 +88,7 @@
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: ''
+  :tagged: []
   :has_state: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_RS
   :has_identifier: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_SI
   :origin: ''
@@ -104,6 +109,7 @@
   :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: London Heathrow
+  :tagged: []
   :has_state: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_RS
   :has_identifier: http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_SI
   :origin: ''
@@ -128,12 +134,14 @@
   :uri: http://www.acme-pharma.com/C96779E/V1#C96779E
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
   :label: Oncology Tumor Properties Test Code
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
   :has_state: http://www.acme-pharma.com/C96779E/V1#C96779E_RS
   :has_identifier: http://www.acme-pharma.com/C96779E/V1#C96779E_SI
   :origin: ''
   :change_description: ''
   :creation_date: '2012-12-21T00:00:00+00:00'
-  :last_change_date: '2019-09-29T14:03:41+02:00'
+  :last_change_date: '2019-10-14T11:16:18+02:00'
   :explanatory_comment: ''
   :identifier: C96779E
   :notation: TRTESTCD
@@ -158,11 +166,11 @@
   - http://www.cdisc.org/C96779/V26#C96779_C94982
   - http://www.cdisc.org/C96779/V26#C96779_C96631
   - http://www.cdisc.org/C96779/V26#C96779_C96627
-  - http://www.cdisc.org/C96779/V32#C96779_C103441
-  - http://www.cdisc.org/C96779/V32#C96779_C103347
-  - http://www.cdisc.org/C96779/V32#C96779_C96630
-  - http://www.cdisc.org/C96779/V32#C96779_C103421
-  :extends: http://www.cdisc.org/C96779/V32#C96779
+  - http://www.cdisc.org/C96779/V33#C96779_C103421
+  - http://www.cdisc.org/C96779/V33#C96779_C96630
+  - http://www.cdisc.org/C96779/V33#C96779_C103441
+  - http://www.cdisc.org/C96779/V33#C96779_C103347
+  :extends: http://www.cdisc.org/C96779/V33#C96779
   :subsets: 
   :preferred_term: http://www.assero.co.uk/PT#87ebcaea5002eb3d2c4c63262ff7c330d7030625
   :synonym:
