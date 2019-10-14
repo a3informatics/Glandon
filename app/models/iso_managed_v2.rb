@@ -352,7 +352,7 @@ class IsoManagedV2 < IsoConceptV2
     history_previous_next(1)
   end
 
-  # History. Find the history for a given identifier within a scope by page
+  # History Pagination. Find the history for a given identifier within a scope by page
   #
   # @params [Hash] params
   # @params params [String] :identifier the identifier
@@ -361,20 +361,24 @@ class IsoManagedV2 < IsoConceptV2
   # @params params [String] :count the number of items required
   # @return [Array] An array of URIs
   def self.history_pagination(params)
-    triple_count = 23
-    count = params[:count].to_i * triple_count 
-    offset = params[:offset].to_i * triple_count 
     parts = []
     results = []
-    base =  "?e rdf:type #{rdf_type.to_ref} . " +
-            "?e isoT:hasIdentifier ?si . " +
-            "?si isoI:identifier '#{params[:identifier]}' . " +
-            "?si isoI:hasScope #{params[:scope].uri.to_ref} . " +
-            "?si isoI:version ?v . "
-    parts << "  { ?e ?p ?o . FILTER (strstarts(str(?p), \"http://www.assero.co.uk/ISO11179\")) BIND (?e as ?s) }" 
-    parts << "  { ?si ?p ?o . BIND (?si as ?s) }"  
-    parts << "  { ?e isoT:hasState ?s . ?s ?p ?o }" 
-    query_string = "SELECT ?s ?p ?o ?e ?v WHERE { #{base} { #{parts.join(" UNION\n")} }} ORDER BY DESC (?v) LIMIT #{count} OFFSET #{offset}"
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    uris = history_uris(params)
+    reqd_uris = uris[offset .. (offset + count - 1)]
+    query_string = %Q{
+      SELECT ?s ?p ?o ?e ?v WHERE { 
+        VALUES ?e { #{reqd_uris.map{|x| x.to_ref}.join(" ")} } 
+        {
+          ?e isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+          { ?e ?p ?o . FILTER (strstarts(str(?p), "http://www.assero.co.uk/ISO11179")) BIND (?e as ?s) } UNION
+          { ?si ?p ?o . BIND (?si as ?s) } UNION
+          { ?e isoT:hasState ?s . ?s ?p ?o } 
+        }
+      } ORDER BY DESC (?v) 
+    }
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoR, :isoC, :isoT])
     by_subject = query_results.by_subject
     query_results.subject_map.values.uniq{|x| x.to_s}.each do |uri| 

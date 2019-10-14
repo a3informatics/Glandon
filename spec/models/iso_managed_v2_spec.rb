@@ -413,6 +413,11 @@ describe "IsoManagedV2" do
       expect(actual.count).to eq(10)
       actual.each {|x| results << x.to_h}
       check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+      results = []
+      actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 20)
+      expect(actual.count).to eq(10)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "history uris" do
