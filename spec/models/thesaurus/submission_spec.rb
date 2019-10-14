@@ -63,14 +63,14 @@ describe "Thesaurus Submission" do
   it "submission changes" do
     expected = read_yaml_file(sub_dir, "submission_expected.yaml")
     result = true
-    first = 1
-    last = 59
+    first = 55
+    last = 60
     (first..last).each do |version|
       puts "***** V#{version}, #{expected.find{|x| x[:version] == version}[:date]} *****"
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
       actual = ct.submission(1)
       next_result = check_submission(actual, expected.find{|x| x[:version] == version})
-      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equal_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equal_method: :hash_equal, write_file: true)
       result = result && next_result
     end
     expect(result).to be(true)
