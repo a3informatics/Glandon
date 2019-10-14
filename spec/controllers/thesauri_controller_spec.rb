@@ -35,15 +35,7 @@ describe ThesauriController do
     login_curator
 
     before :each do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
@@ -310,14 +302,16 @@ describe ThesauriController do
     end
 
     it "show results" do
+      th = Thesaurus.new
+      th.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      expect(Thesaurus).to receive(:find_minimum).and_return(th)
       expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
-      get :show, id: "aaa", offset: 0, count: 10
+      get :show, {id: "aaa", offset: 0, count: 10}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")  
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=", 
+      expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.id)}", 
         :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE="}], count: 1, offset: 0})
     end
 
@@ -348,8 +342,6 @@ describe ThesauriController do
       params = standard_params
       params[:id] = ct.uri.to_id
       params[:columns]["5"][:search][:value] = "cerebral"
-      params[:search][:value] = "Temporal"
-      results = ct.search(params)
       get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")    

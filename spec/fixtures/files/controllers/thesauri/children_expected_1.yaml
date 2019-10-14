@@ -2,7 +2,7 @@
 - :identifier: C49647
   :notation: TCNTRL
   :preferred_term: CDISC SDTM Control Type Terminology
-  :synonym: Type of Control; Control Type; TCNTRL
+  :synonym: Control Type; TCNTRL; Type of Control
   :extensible: true
   :definition: Comparator against which the study treatment is evaluated (e.g., concurrent
     (placebo, no treatment, dose-response, active), external (historical, published
@@ -23,7 +23,7 @@
 - :identifier: C66726
   :notation: FRM
   :preferred_term: CDISC SDTM Pharmaceutical Dosage FormTerminology
-  :synonym: Dose Form; Pharmaceutical Dosage Form; FRM
+  :synonym: Dose Form; FRM; Pharmaceutical Dosage Form
   :extensible: true
   :definition: The form of the completed pharmaceutical product, e.g. tablet, capsule,
     injection, elixir, suppository. Dosage form can have a significant effect on the
@@ -56,7 +56,7 @@
 - :identifier: C66729
   :notation: ROUTE
   :preferred_term: CDISC SDTM Route of Administration Terminology
-  :synonym: Route of Administration; ROUTE
+  :synonym: ROUTE; Route of Administration
   :extensible: true
   :definition: The course by which a substance was administered in order to reach
     the site of action in the body.
@@ -66,7 +66,7 @@
 - :identifier: C66731
   :notation: SEX
   :preferred_term: CDISC SDTM Sex of Individual Terminology
-  :synonym: Sex; SEX
+  :synonym: SEX; Sex
   :extensible: false
   :definition: The assemblage of physical properties or qualities by which male is
     distinguished from female; the physical difference between male and female; the
@@ -77,7 +77,7 @@
 - :identifier: C66732
   :notation: SEXPOP
   :preferred_term: CDISC SDTM Sex of Study Group Terminology
-  :synonym: Sex of Participants; SEXPOP
+  :synonym: SEXPOP; Sex of Participants
   :extensible: false
   :definition: The specific sex, either male, female, or mixed of the subject group
     being studied. (NCI)
@@ -87,7 +87,7 @@
 - :identifier: C66733
   :notation: SIZE
   :preferred_term: CDISC SDTM Size Terminology
-  :synonym: Size; SIZE
+  :synonym: SIZE; Size
   :extensible: true
   :definition: The physical magnitude of something. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzMzL1YyI0M2NjczMw==
@@ -96,7 +96,7 @@
 - :identifier: C66734
   :notation: DOMAIN
   :preferred_term: CDISC SDTM Submission Domain Abbreviation Terminology
-  :synonym: Domain Abbreviation; DOMAIN
+  :synonym: DOMAIN; Domain Abbreviation
   :extensible: true
   :definition: A unique, 2-character domain code used in the regulatory submission
     process.  The domain abbreviation is used consistently throughout the submission,
@@ -108,7 +108,7 @@
 - :identifier: C66735
   :notation: TBLIND
   :preferred_term: CDISC SDTM Trial Blinding Schema Terminology
-  :synonym: Trial Blinding Schema; TBLIND
+  :synonym: TBLIND; Trial Blinding Schema
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of blinding
     for the trial. (NCI)
@@ -118,7 +118,7 @@
 - :identifier: C66736
   :notation: TINDTP
   :preferred_term: CDISC SDTM Trial Indication Type Terminology
-  :synonym: Trial Indication Type; TINDTP
+  :synonym: TINDTP; Trial Indication Type
   :extensible: true
   :definition: The name of a code list that contains terms to define the type of trial,
     e.g. cure or prevention. (NCI)
@@ -128,7 +128,7 @@
 - :identifier: C66737
   :notation: TPHASE
   :preferred_term: CDISC SDTM Trial Phase Terminology
-  :synonym: Trial Phase; TPHASE
+  :synonym: TPHASE; Trial Phase
   :extensible: true
   :definition: 'Clinical trials are broken into three or four phases: Phase I tests
     a new drug or treatment for safety in a small group; Phase II expands the study
@@ -142,7 +142,7 @@
 - :identifier: C66738
   :notation: TSPARMCD
   :preferred_term: CDISC SDTM Trial Summary Parameter Terminology by Code
-  :synonym: Trial Summary Parameter Test Code; TSPARMCD
+  :synonym: TSPARMCD; Trial Summary Parameter Test Code
   :extensible: true
   :definition: Individual characteristics of a clinical trial, e.g. description of
     trial design, trial blinding schema, and primary objective of trial. (NCI)
@@ -152,7 +152,7 @@
 - :identifier: C66739
   :notation: TTYPE
   :preferred_term: CDISC SDTM Trial Type Terminology
-  :synonym: Trial Type; TTYPE
+  :synonym: TTYPE; Trial Type
   :extensible: true
   :definition: The type of clinical trial performed e.g. efficacy, safety. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM5L1YyI0M2NjczOQ==
@@ -161,7 +161,7 @@
 - :identifier: C66741
   :notation: VSTESTCD
   :preferred_term: CDISC SDTM Vital Sign Terminology by Code
-  :synonym: Vital Signs Test Code; VSTESTCD
+  :synonym: VSTESTCD; Vital Signs Test Code
   :extensible: true
   :definition: The name given to the test that analyzes a particular set of vital
     signs including temperature, respiratory rate, heart beat (pulse), and blood pressure.
@@ -172,7 +172,7 @@
 - :identifier: C66742
   :notation: NY
   :preferred_term: CDISC SDTM Yes No Unknown or Not Applicable Response Terminology
-  :synonym: No Yes Response; NY
+  :synonym: NY; No Yes Response
   :extensible: false
   :definition: A term that is used to indicate a question with permissible values
     of yes/no/unknown/not applicable.
@@ -182,7 +182,7 @@
 - :identifier: C66767
   :notation: ACN
   :preferred_term: CDISC SDTM Action Taken with Study Treatment Terminology
-  :synonym: Action Taken with Study Treatment; ACN
+  :synonym: ACN; Action Taken with Study Treatment
   :extensible: false
   :definition: The reason that changes were made to the therapy under study. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY3L1YyI0M2Njc2Nw==
@@ -191,7 +191,7 @@
 - :identifier: C66768
   :notation: OUT
   :preferred_term: CDISC SDTM Adverse Event Outcome Terminology
-  :synonym: Outcome of Event; OUT
+  :synonym: OUT; Outcome of Event
   :extensible: false
   :definition: A condition or event that is attributed to the adverse event and is
     the result or conclusion of the adverse event. (NCI)
@@ -221,7 +221,7 @@
 - :identifier: C66780
   :notation: AGESPAN
   :preferred_term: CDISC SDTM Age GroupTerminology
-  :synonym: Age Span; AGESPAN
+  :synonym: AGESPAN; Age Span
   :extensible: true
   :definition: Subgroups of populations based on age. (NCI)
   :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI0M2Njc4MA==
@@ -249,7 +249,7 @@
 - :identifier: C66784
   :notation: TOXGR
   :preferred_term: CDISC SDTM CommonTerminology Criteria for Adverse Event Grade Terminology
-  :synonym: TOXGR; Common Terminology Criteria for Adverse Events
+  :synonym: Common Terminology Criteria for Adverse Events; TOXGR
   :extensible: false
   :definition: A standard terminology developed to report adverse events occurring
     in cancer clinical trials.  Common terminology criteria for adverse events (CTCAE)
@@ -262,7 +262,7 @@
 - :identifier: C66786
   :notation: COUNTRY
   :preferred_term: CDISC SDTM Country Terminology
-  :synonym: Country; COUNTRY
+  :synonym: COUNTRY; Country
   :extensible: false
   :definition: A collective generic term that refers here to a wide variety of dependencies,
     areas of special sovereignty, uninhabited islands, and other entities in addition
@@ -285,7 +285,7 @@
 - :identifier: C66788
   :notation: DICTNAM
   :preferred_term: CDISC SDTM Dictionary Name Terminology
-  :synonym: Name of Dictionary; Dictionary Name; DICTNAM
+  :synonym: DICTNAM; Dictionary Name; Name of Dictionary
   :extensible: true
   :definition: A name given to a reference source that lists words and gives their
     meaning. (NCI)
@@ -295,7 +295,7 @@
 - :identifier: C66789
   :notation: ND
   :preferred_term: CDISC SDTM Not DoneTerminology
-  :synonym: Not Done; ND
+  :synonym: ND; Not Done
   :extensible: false
   :definition: Indicates a task, process or examination that has either not been initiated
     or completed. (NCI)
@@ -338,7 +338,7 @@
 - :identifier: C67153
   :notation: VSTEST
   :preferred_term: CDISC SDTM Vital Sign Terminology  by Name
-  :synonym: Vital Signs Test Name; VSTEST
+  :synonym: VSTEST; Vital Signs Test Name
   :extensible: true
   :definition: The name given to the test that analyzes a particular set of vital
     signs including temperature, respiratory rate, heart beat (pulse), and blood pressure.
@@ -349,7 +349,7 @@
 - :identifier: C67154
   :notation: LBTEST
   :preferred_term: CDISC SDTM Laboratory Test Terminology by Name
-  :synonym: Laboratory Test Name; LBTEST
+  :synonym: LBTEST; Laboratory Test Name
   :extensible: true
   :definition: Terminology used for Laboratory Tests of the CDISC Standard Data Tabulation
     Model.
