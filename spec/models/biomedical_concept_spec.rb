@@ -211,7 +211,7 @@ it "allows a BC to be found" do
   #Xwrite_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
     expected = read_yaml_file(sub_dir, "bc_create.yaml")
     expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to eq(expected)
+    expect(item.to_json).to hash_equal(expected)
   end
 
   it "allows the object to be created, create error" do

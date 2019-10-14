@@ -106,15 +106,6 @@ describe Import do
   end
 
   before :each do
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
-    
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
     load_files(schema_files, data_files)
     Import.destroy_all
@@ -205,16 +196,17 @@ describe Import do
     expect(result).to hash_equal(expected, error_file: true)
   end
 
-  it "saves the load file, auto load" do
+  it "saves the load file, auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
     object = Thesaurus.new
-    object.rdf_type = "XXX"
-    object.scopedIdentifier.identifier = "YYY"
-    #object.scopedIdentifier.namespace.id = 111
+    #object.rdf_type = "XXX"
+    object.has_identifier = IsoScopedIdentifierV2.new
+    object.has_identifier.has_scope = IsoNamespace.find_by_short_name("CDISC")
+    object.has_identifier.identifier = "YYY"
     item = simple_import
     item.auto_load = true
     item.save
-    expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
-    expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
+    expect(TypePathManagement).to receive(:history_url_v2).with(object)
+    expect(object).to receive(:to_sparql).and_return([])
     expect(CRUD).to receive(:file)
     item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
@@ -223,13 +215,13 @@ describe Import do
     compare_import_hash(result, expected, output_file: true)
   end
 
-  it "saves the load file, no auto load" do
+  it "saves the load file, no auto load - WILL CURRENTLY FAIL, NEEDS UPDATING" do
     object = Thesaurus.new
     object.rdf_type = "XXX"
     object.scopedIdentifier.identifier = "YYY"
     #object.scopedIdentifier.namespace.id = 111
     item = simple_import
-    expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
+    expect(TypePathManagement).to receive(:history_url).with(object)
     expect(object).to receive(:to_sparql_v2).and_return(SparqlUpdateV2.new)
     item.save_load_file({parent: object, children: []})
     result = Import.find(item.id)
@@ -238,13 +230,13 @@ describe Import do
     compare_import_hash(result, expected, output_file: true)
   end
 
-  it "saves the result" do
+  it "saves the result - WILL CURRENTLY FAIL, NEEDS UPDATING" do
     object = Thesaurus.new
     object.rdf_type = "XXX"
     object.scopedIdentifier.identifier = "YYY"
     #object.scopedIdentifier.namespace.id = 111
     item = simple_import
-    expect(TypePathManagement).to receive(:history_url).with(object.rdf_type, object.identifier, object.scopedIdentifier.namespace.id)
+    expect(TypePathManagement).to receive(:history_url).with(object)
     item.save_result(object)
     result = Import.find(item.id)
   #Xwrite_yaml_file(import_hash(result), sub_dir, "save_result_expected_1.yaml")

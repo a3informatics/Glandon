@@ -6,8 +6,8 @@
 :extension_properties: []
 :origin: ''
 :change_description: ''
-:creation_date: '2019-09-22T10:36:07+02:00'
-:last_changed_date: '2019-09-22T10:36:07+02:00'
+:creation_date: '2019-10-14T14:56:45+02:00'
+:last_changed_date: '2019-10-14T14:56:45+02:00'
 :explanatory_comment: ''
 :registration_state:
   :namespace: http://www.assero.co.uk/MDRItems
@@ -68,6 +68,34 @@
     :iso21090_datatype: CD
     :children:
     - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
+      :id: BC-ACME_NEWBCTWO_I1_DT1_P1
+      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
+      :label: ''
+      :extension_properties: []
+      :ordinal: 1
+      :alias: Test Code (--TESTCD)
+      :coded: false
+      :collect: false
+      :enabled: true
+      :question_text: Question text
+      :prompt_text: Prompt text
+      :simple_datatype: string
+      :format: ''
+      :bridg_path: DefinedObservation.nameCode.CD.code
+      :children:
+      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
+        :id: BC-ACME_NEWBCTWO_I1_DT1_P1_TCR1
+        :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
+        :label: Thesaurus Concept Reference
+        :extension_properties: []
+        :enabled: true
+        :optional: true
+        :ordinal: 1
+        :local_label: ''
+        :subject_ref:
+          :namespace: http://www.cdisc.org/C66741/V29
+          :id: C66741_C98793
+    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
       :id: BC-ACME_NEWBCTWO_I1_DT1_P2
       :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
       :label: ''
@@ -110,36 +138,8 @@
             :ordinal: 1
             :local_label: ''
             :subject_ref:
-              :namespace: http://www.cdisc.org/C67153/V28
+              :namespace: http://www.cdisc.org/C67153/V29
               :id: C67153_C98793
-    - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Property
-      :id: BC-ACME_NEWBCTWO_I1_DT1_P1
-      :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
-      :label: ''
-      :extension_properties: []
-      :ordinal: 1
-      :alias: Test Code (--TESTCD)
-      :coded: false
-      :collect: false
-      :enabled: true
-      :question_text: Question text
-      :prompt_text: Prompt text
-      :simple_datatype: string
-      :format: ''
-      :bridg_path: DefinedObservation.nameCode.CD.code
-      :children:
-      - :type: http://www.assero.co.uk/BusinessOperational#TcReference
-        :id: BC-ACME_NEWBCTWO_I1_DT1_P1_TCR1
-        :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
-        :label: Thesaurus Concept Reference
-        :extension_properties: []
-        :enabled: true
-        :optional: true
-        :ordinal: 1
-        :local_label: ''
-        :subject_ref:
-          :namespace: http://www.cdisc.org/C66741/V28
-          :id: C66741_C98793
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
   :id: BC-ACME_NEWBCTWO_I2
   :namespace: http://www.assero.co.uk/MDRBCs/ACME/V1
@@ -429,7 +429,7 @@
         :ordinal: 1
         :local_label: ''
         :subject_ref:
-          :namespace: http://www.cdisc.org/C66770/V38
+          :namespace: http://www.cdisc.org/C66770/V39
           :id: C66770_C28251
 - :type: http://www.assero.co.uk/CDISCBiomedicalConcept#Item
   :id: BC-ACME_NEWBCTWO_I9
