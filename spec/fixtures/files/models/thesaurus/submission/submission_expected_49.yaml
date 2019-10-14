@@ -3,7 +3,7 @@
 - '2016-09-30'
 :items:
   :C85491_C86150:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OCNDODU0OTFfQzg2MTUw
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OSNDODU0OTFfQzg2MTUw
     :key: C85491_C86150
     :label: Arcanobacterium pyogenes
     :notation: TRUEPERELLA PYOGENES
@@ -13,7 +13,7 @@
       :notation: TRUEPERELLA PYOGENES
       :previous: ARCANOBACTERIUM PYOGENES
   :C85491_C86181:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OCNDODU0OTFfQzg2MTgx
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OSNDODU0OTFfQzg2MTgx
     :key: C85491_C86181
     :label: Bacteroides ureolyticus
     :notation: CAMPYLOBACTER UREOLYTICUS
@@ -23,7 +23,7 @@
       :notation: CAMPYLOBACTER UREOLYTICUS
       :previous: BACTEROIDES UREOLYTICUS
   :C67154_C98869:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0OCNDNjcxNTRfQzk4ODY5
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0OSNDNjcxNTRfQzk4ODY5
     :key: C67154_C98869
     :label: Plasma Cell to Total Cell Ratio Measurement
     :notation: Mature Plasma Cells/Total Cells
@@ -32,8 +32,38 @@
     - :status: :updated
       :notation: Mature Plasma Cells/Total Cells
       :previous: Plasma Cells/Total Cells
+  :C88025_C8602:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzg2MDI=
+    :key: C88025_C8602
+    :label: Pleomorphic Adenoma
+    :notation: TUMOR, MIXED, BENIGN
+    :identifier: C8602
+    :status:
+    - :status: :updated
+      :notation: TUMOR, MIXED, BENIGN
+      :previous: MIXED TUMOR, BENIGN
+  :C88025_C3729:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzM3Mjk=
+    :key: C88025_C3729
+    :label: Malignant Mixed Neoplasm
+    :notation: TUMOR, MIXED, MALIGNANT
+    :identifier: C3729
+    :status:
+    - :status: :updated
+      :notation: TUMOR, MIXED, MALIGNANT
+      :previous: MIXED TUMOR, MALIGNANT
+  :C88025_C4050:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzQwNTA=
+    :key: C88025_C4050
+    :label: Oligoastrocytoma
+    :notation: GLIOMA, MIXED, BENIGN
+    :identifier: C4050
+    :status:
+    - :status: :updated
+      :notation: GLIOMA, MIXED, BENIGN
+      :previous: MIXED GLIOMA, BENIGN
   :C96785_C96700:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk2Nzg1L1Y0OCNDOTY3ODVfQzk2NzAw
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk2Nzg1L1Y0OSNDOTY3ODVfQzk2NzAw
     :key: C96785_C96700
     :label: Non Complete Response/Non Progressive Disease
     :notation: NON-CR/NON-PD
@@ -43,7 +73,7 @@
       :notation: NON-CR/NON-PD
       :previous: Non-CR/Non-PD
   :C65047_C98869:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0OCNDNjUwNDdfQzk4ODY5
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0OSNDNjUwNDdfQzk4ODY5
     :key: C65047_C98869
     :label: Plasma Cell to Total Cell Ratio Measurement
     :notation: PLSMCECE
@@ -52,3 +82,43 @@
     - :status: :updated
       :notation: PLSMCECE
       :previous: PLSCECE
+  :C88025_C8975:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzg5NzU=
+    :key: C88025_C8975
+    :label: Malignant Mixed Mesodermal (Mullerian) Tumor
+    :notation: MULLERIAN TUMOR, MIXED, MALIGNANT
+    :identifier: C8975
+    :status:
+    - :status: :updated
+      :notation: MULLERIAN TUMOR, MIXED, MALIGNANT
+      :previous: MIXED MULLERIAN TUMOR, MALIGNANT
+  :C88025_C126084:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzEyNjA4NA==
+    :key: C88025_C126084
+    :label: Experimental Organism Benign Mixed Sertoli-Leydig Cell Tumor
+    :notation: SERTOLI-LEYDIG CELL TUMOR, MIXED, BENIGN
+    :identifier: C126084
+    :status:
+    - :status: :updated
+      :notation: SERTOLI-LEYDIG CELL TUMOR, MIXED, BENIGN
+      :previous: MIXED SERTOLI-LEYDIG CELL TUMOR, BENIGN
+  :C88025_C3903:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzM5MDM=
+    :key: C88025_C3903
+    :label: Mixed Glioma
+    :notation: GLIOMA, MIXED, MALIGNANT
+    :identifier: C3903
+    :status:
+    - :status: :updated
+      :notation: GLIOMA, MIXED, MALIGNANT
+      :previous: MIXED GLIOMA, MALIGNANT
+  :C88025_C114111:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzExNDExMQ==
+    :key: C88025_C114111
+    :label: Experimental Organism Mixed Lymphoma Neoplasm
+    :notation: LYMPHOMA, MIXED, MALIGNANT
+    :identifier: C114111
+    :status:
+    - :status: :updated
+      :notation: LYMPHOMA, MIXED, MALIGNANT
+      :previous: MIXED LYMPHOMA, MALIGNANT

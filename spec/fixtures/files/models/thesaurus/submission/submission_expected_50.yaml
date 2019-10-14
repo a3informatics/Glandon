@@ -3,7 +3,7 @@
 - '2016-12-16'
 :items:
   :C67152_C49652:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0OSNDNjcxNTJfQzQ5NjUy
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzQ5NjUy
     :key: C67152_C49652
     :label: Clinical Study by Intent
     :notation: Trial Intent Type
@@ -13,7 +13,7 @@
       :notation: Trial Intent Type
       :previous: Trial Indication Type
   :C67152_C112038:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0OSNDNjcxNTJfQzExMjAzOA==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzExMjAzOA==
     :key: C67152_C112038
     :label: Trial Indication
     :notation: Trial Disease/Condition Indication
@@ -22,18 +22,8 @@
     - :status: :updated
       :notation: Trial Disease/Condition Indication
       :previous: Trial Indication
-  :C67154_C106514:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0OSNDNjcxNTRfQzEwNjUxNA==
-    :key: C67154_C106514
-    :label: Cytokeratin 19 Fragment 21-1 Measurement
-    :notation: Cytokeratin 19 Fragment 21-1
-    :identifier: C106514
-    :status:
-    - :status: :updated
-      :notation: Cytokeratin 19 Fragment 21-1
-      :previous: Cytokeratin Fragment 21-1
   :C100129_C106699:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDkjQzEwMDEyOV9DMTA2Njk5
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNTAjQzEwMDEyOV9DMTA2Njk5
     :key: C100129_C106699
     :label: Health Assessment Questionnaire Disability Index With Pain Visual Analog
       Scale Questionnaire
@@ -43,8 +33,18 @@
     - :status: :updated
       :notation: HAQ-DI WITH VAS
       :previous: HAQ-DI
+  :C67154_C106514:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y1MCNDNjcxNTRfQzEwNjUxNA==
+    :key: C67154_C106514
+    :label: Cytokeratin 19 Fragment 21-1 Measurement
+    :notation: Cytokeratin 19 Fragment 21-1
+    :identifier: C106514
+    :status:
+    - :status: :updated
+      :notation: Cytokeratin 19 Fragment 21-1
+      :previous: Cytokeratin Fragment 21-1
   :C101846_C116146:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ni9WNDkjQzEwMTg0Nl9DMTE2MTQ2
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ni9WNTAjQzEwMTg0Nl9DMTE2MTQ2
     :key: C101846_C116146
     :label: Late Lumen Loss Measurement
     :notation: Late Lumen Loss
@@ -54,7 +54,7 @@
       :notation: Late Lumen Loss
       :previous: Late Loss
   :C101847_C116146:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ny9WNDkjQzEwMTg0N19DMTE2MTQ2
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ny9WNTAjQzEwMTg0N19DMTE2MTQ2
     :key: C101847_C116146
     :label: Late Lumen Loss Measurement
     :notation: LLMLOSS
@@ -64,7 +64,7 @@
       :notation: LLMLOSS
       :previous: LATELOSS
   :C71620_C122230:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0OSNDNzE2MjBfQzEyMjIzMA==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y1MCNDNzE2MjBfQzEyMjIzMA==
     :key: C71620_C122230
     :label: Microgram Equivalent per Liter
     :notation: ugEq/L
@@ -74,7 +74,7 @@
       :notation: ugEq/L
       :previous: ugeq/L
   :C128689_C67271:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNjcyNzE=
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNjcyNzE=
     :key: C128689_C67271
     :label: Bahamian
     :notation: BAHAMIAN
@@ -84,7 +84,7 @@
       :notation: BAHAMIAN
       :previous: BANGLADESHI
   :C128689_C43823:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNDM4MjM=
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNDM4MjM=
     :key: C128689_C43823
     :label: Barbadian
     :notation: BARBADIAN
@@ -94,7 +94,7 @@
       :notation: BARBADIAN
       :previous: BHUTANESE
   :C128689_C43671:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNDM2NzE=
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNDM2NzE=
     :key: C128689_C43671
     :label: Bangladeshi
     :notation: BANGLADESHI

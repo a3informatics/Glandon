@@ -18,7 +18,7 @@ describe "Thesaurus Submission" do
     ]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    load_versions((1..59))
+    load_versions((1..61))
     @status_map = {:~ => :not_present, :- => :no_change, :C => :created, :U => :updated, :D => :deleted}
   end
 
@@ -63,14 +63,14 @@ describe "Thesaurus Submission" do
   it "submission changes" do
     expected = read_yaml_file(sub_dir, "submission_expected.yaml")
     result = true
-    first = 59
-    last = 60
+    first = 1
+    last = 61
     (first..last).each do |version|
       puts "***** V#{version}, #{expected.find{|x| x[:version] == version}[:date]} *****"
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
       actual = ct.submission(1)
       next_result = check_submission(actual, expected.find{|x| x[:version] == version})
-      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equal_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equal_method: :hash_equal)
       result = result && next_result
     end
     expect(result).to be(true)

@@ -3,7 +3,7 @@
 - '2015-09-25'
 :items:
   :C67154_C98776:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0NCNDNjcxNTRfQzk4Nzc2
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0NSNDNjcxNTRfQzk4Nzc2
     :key: C67154_C98776
     :label: Reticulocyte Hemoglobin Measurement
     :notation: Ret. Corpuscular Hemoglobin Content
@@ -13,7 +13,7 @@
       :notation: Ret. Corpuscular Hemoglobin Content
       :previous: Reticulocyte Hemoglobin
   :C65047_C98776:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0NCNDNjUwNDdfQzk4Nzc2
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0NSNDNjUwNDdfQzk4Nzc2
     :key: C65047_C98776
     :label: Reticulocyte Hemoglobin Measurement
     :notation: RETICH
@@ -23,7 +23,7 @@
       :notation: RETICH
       :previous: RETIHGB
   :C71152_C100391:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NCNDNzExNTJfQzEwMDM5MQ==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NSNDNzExNTJfQzEwMDM5MQ==
     :key: C71152_C100391
     :label: Corrected QT Interval
     :notation: QTc Correction Method Unspecified
@@ -33,7 +33,7 @@
       :notation: QTc Correction Method Unspecified
       :previous: QT Interval, Corrected
   :C71153_C100391:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUzL1Y0NCNDNzExNTNfQzEwMDM5MQ==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUzL1Y0NSNDNzExNTNfQzEwMDM5MQ==
     :key: C71153_C100391
     :label: Corrected QT Interval
     :notation: QTCUNS
@@ -43,7 +43,7 @@
       :notation: QTCUNS
       :previous: QTC
   :C111342_C111467:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTM0Mi9WNDQjQzExMTM0Ml9DMTExNDY3
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTM0Mi9WNDUjQzExMTM0Ml9DMTExNDY3
     :key: C111342_C111467
     :label: C-SSRS Screening - Description of Active Suicidal Ideation with Some Intent
       to Act, without Specific Plan
@@ -54,7 +54,7 @@
       :notation: CSS0904A
       :previous: CSS0904B
   :C71152_C117765:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NCNDNzExNTJfQzExNzc2NQ==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NSNDNzExNTJfQzExNzc2NQ==
     :key: C71152_C117765
     :label: Aggregate JTCF Interval
     :notation: JTcF Interval, Aggregate
@@ -63,8 +63,18 @@
     - :status: :updated
       :notation: JTcF Interval, Aggregate
       :previous: JTCF Interval, Aggregate
+  :C71152_C117763:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NSNDNzExNTJfQzExNzc2Mw==
+    :key: C71152_C117763
+    :label: Aggregate JTCB Interval
+    :notation: JTcB Interval, Aggregate
+    :identifier: C117763
+    :status:
+    - :status: :updated
+      :notation: JTcB Interval, Aggregate
+      :previous: JTCB Interval, Aggregate
   :C71152_C117764:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NCNDNzExNTJfQzExNzc2NA==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NSNDNzExNTJfQzExNzc2NA==
     :key: C71152_C117764
     :label: Single Beat JTCB Interval
     :notation: JTcB Interval, Single Beat
@@ -74,7 +84,7 @@
       :notation: JTcB Interval, Single Beat
       :previous: JTCB Interval, Single Beat
   :C71152_C117766:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NCNDNzExNTJfQzExNzc2Ng==
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NSNDNzExNTJfQzExNzc2Ng==
     :key: C71152_C117766
     :label: Single Beat JTCF Interval
     :notation: JTcF Interval, Single Beat
@@ -83,13 +93,3 @@
     - :status: :updated
       :notation: JTcF Interval, Single Beat
       :previous: JTCF Interval, Single Beat
-  :C71152_C117763:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0NCNDNzExNTJfQzExNzc2Mw==
-    :key: C71152_C117763
-    :label: Aggregate JTCB Interval
-    :notation: JTcB Interval, Aggregate
-    :identifier: C117763
-    :status:
-    - :status: :updated
-      :notation: JTcB Interval, Aggregate
-      :previous: JTCB Interval, Aggregate
