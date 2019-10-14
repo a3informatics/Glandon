@@ -93,7 +93,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
   end
 
   def set_write_file
-    true
+    false
   end
 
   def check_term_differences(results, expected)
@@ -116,11 +116,12 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
 	def check_cl_result(results, cl, status)
     return if status == :no_change
-  	puts "***** Error checking CL Result: #{cl} for expected result #{status} *****" if results[:items][cl.to_sym][:status][0][:status] != status
+  	puts "***** Error checking CL Result: #{cl} for expected result '#{status}', actual result '#{results[:items][cl.to_sym][:status][0][:status]}' *****" if results[:items][cl.to_sym][:status][0][:status] != status
     expect(results[:items][cl.to_sym][:status][0][:status]).to eq(status)
   rescue => e
     puts "***** Exception Raised *****"
-    puts "Error checking CL Result: #{cl} for expected result #{status} *****" 
+    puts "Error checking CL Result: #{cl} for expected result #{status}. *****" 
+    puts "No key for #{cl} in results." if !results[:items].key?(cl)
   end
 
   def dump_errors_if_present(filename, version, date)
@@ -1634,15 +1635,20 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C66737, status: :no_change},
         {cl: :C66738, status: :updated},
         {cl: :C66785, status: :no_change},
-        {cl: :C66787, status: :deleted},
         {cl: :C66790, status: :no_change},
         {cl: :C67152, status: :updated},
         {cl: :C67153, status: :no_change},
-        {cl: :C71153, status: :updated},
+        {cl: :C67154, status: :updated},
+        {cl: :C71153, status: :no_change},
         {cl: :C71620, status: :updated},
         {cl: :C74456, status: :updated},
         {cl: :C76351, status: :no_change},
-        {cl: :C78735, status: :no_change}
+        {cl: :C78735, status: :no_change},
+        {cl: :C128689, status: :no_change},
+        {cl: :C147069, status: :updated},
+        {cl: :C160930, status: :updated},
+        {cl: :C163026, status: :created},
+        {cl: :C163028, status: :created}
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
