@@ -148,9 +148,10 @@ describe "IsoConceptV2" do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "iso_concept_systems_baseline.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..26)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     it "add tags" do

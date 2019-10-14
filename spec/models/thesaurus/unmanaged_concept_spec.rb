@@ -514,9 +514,10 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all do
       IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_52_53.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
+      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
     end
 
     after :all do
@@ -524,13 +525,13 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "cross reference links I" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C101846/V50#C101846_C130056"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154_C61019"))
       results = tc.linked_change_instructions
       check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml")
     end
 
     it "cross reference links II" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V54#C128687_C139114"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C88025/V44#C88025_C27477"))
       results = tc.linked_change_instructions
       check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
     end
@@ -576,6 +577,7 @@ describe "Thesaurus::UnmanagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "iso_concept_systems_baseline.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :each do
