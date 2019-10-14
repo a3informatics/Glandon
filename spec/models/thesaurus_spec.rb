@@ -6,6 +6,7 @@ describe Thesaurus do
   include SparqlHelpers
   include TimeHelpers
   include PublicFileHelpers
+  include CdiscCtHelpers
 
   def sub_dir
     return "models/thesaurus"
@@ -202,7 +203,13 @@ describe Thesaurus do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_versions(1..60)
+      load_versions(CdiscCtHelpers.version_range)
+    end
+
+    it "calculates changes, window full width" do
+      th = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = th.changes(61)
+      check_file_actual_expected(actual, sub_dir, "changes_expected_6.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, general" do
@@ -269,6 +276,12 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
       actual = ct.changes_cdu(4)
       check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_6.yaml", equate_method: :hash_equal)
+    end
+
+    it "calculates changes_cdu, window 2" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      actual = ct.changes_cdu(2)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_7.yaml", equate_method: :hash_equal)
     end
 
   end
