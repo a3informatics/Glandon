@@ -17,6 +17,11 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#b77e8d97-e5d5-4536-b18a-352c5848d20d> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#be10f8c3-284f-4a88-b244-f5c5e0e45344> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
 	isoT:origin "Created from files: 'SDTM Terminology 2014-10-06.xlsx', 'QS-FT Terminology 2014-09-26.xlsx', 'CDASH Terminology 2014-09-26.xlsx', 'ADaM Terminology 2014-09-26.xlsx', 'SEND Terminology 2014-09-26.xlsx'"^^xsd:string ;
@@ -4953,6 +4958,7 @@
 <http://www.cdisc.org/C117739/V41#C117739>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Hepatic Findings About Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117739/V41#C117739_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117739/V41#C117739_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4990,6 +4996,7 @@
 <http://www.cdisc.org/C117738/V41#C117738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Hepatic Findings About Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117738/V41#C117738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117738/V41#C117738_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5027,6 +5034,7 @@
 <http://www.cdisc.org/C117741/V41#C117741>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Multiple Sclerosis Findings About Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117741/V41#C117741_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117741/V41#C117741_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5066,6 +5074,7 @@
 <http://www.cdisc.org/C117740/V41#C117740>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Multiple Sclerosis Findings About Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117740/V41#C117740_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117740/V41#C117740_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5105,6 +5114,7 @@
 <http://www.cdisc.org/C117743/V41#C117743>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ophthalmic Exam Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C117743/V41#C117743_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C117743/V41#C117743_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5146,6 +5156,7 @@
 <http://www.cdisc.org/C66738/V41#C66738>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66738/V41#C66738_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66738/V41#C66738_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5232,6 +5243,7 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117960>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diagnostic Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117960"^^xsd:string ;
 	th:notation "DXCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a medical diagnosis can be established."^^xsd:string ;
@@ -5246,6 +5258,7 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117961>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Relapse Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117961"^^xsd:string ;
 	th:notation "RLPSCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a disease relapse can be established."^^xsd:string ;
@@ -5260,6 +5273,7 @@
 <http://www.cdisc.org/C66738/V41#C66738_C117962>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severity Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117962"^^xsd:string ;
 	th:notation "SEVCRIT"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning the severity of an event, disease or condition can be established."^^xsd:string ;
@@ -5274,6 +5288,7 @@
 <http://www.cdisc.org/C67152/V41#C67152>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Summary Parameter Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C67152/V41#C67152_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C67152/V41#C67152_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -5360,6 +5375,7 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117960>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Diagnostic Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117960"^^xsd:string ;
 	th:notation "Diagnostic Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a medical diagnosis can be established."^^xsd:string ;
@@ -5370,6 +5386,7 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117961>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Relapse Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117961"^^xsd:string ;
 	th:notation "Relapse Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning a disease relapse can be established."^^xsd:string ;
@@ -5380,6 +5397,7 @@
 <http://www.cdisc.org/C67152/V41#C67152_C117962>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Severity Criteria"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C117962"^^xsd:string ;
 	th:notation "Severity Criteria"^^xsd:string ;
 	th:definition "A standard from which a judgment concerning the severity of an event, disease or condition can be established."^^xsd:string ;
