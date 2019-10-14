@@ -1,94 +1,914 @@
 ---
 :versions:
-- '2015-03-27'
+- '2014-12-19'
 :items:
-  :C78733_C78725:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc4NzMzL1Y0MiNDNzg3MzNfQzc4NzI1
-    :key: C78733_C78725
-    :label: Autolized Specimen
-    :notation: AUTOLYZED
-    :identifier: C78725
+  :C66737_C15602:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1NjAy
+    :key: C66737_C15602
+    :label: Phase III Trial
+    :notation: PHASE III TRIAL
+    :identifier: C15602
     :status:
     - :status: :updated
-      :notation: AUTOLYZED
-      :previous: AUTOLIZED
-  :C85493_C85823:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MiNDODU0OTNfQzg1ODIz
-    :key: C85493_C85823
-    :label: Time of Maximum Observed Excretion Rate
-    :notation: Midpoint of Interval of Maximum ER
-    :identifier: C85823
+      :notation: PHASE III TRIAL
+      :previous: Phase III Trial
+  :C66737_C15694:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1Njk0
+    :key: C66737_C15694
+    :label: Phase II/III Trial
+    :notation: PHASE II/III TRIAL
+    :identifier: C15694
     :status:
     - :status: :updated
-      :notation: Midpoint of Interval of Maximum ER
-      :previous: Time of Max Excretion Rate
-  :C85839_C85580:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1ODM5L1Y0MiNDODU4MzlfQzg1NTgw
-    :key: C85839_C85580
-    :label: Collection Interval Midpoint
-    :notation: ERTLST
-    :identifier: C85580
+      :notation: PHASE II/III TRIAL
+      :previous: Phase II/III Trial
+  :C66737_C15601:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1NjAx
+    :key: C66737_C15601
+    :label: Phase II Trial
+    :notation: PHASE II TRIAL
+    :identifier: C15601
     :status:
     - :status: :updated
-      :notation: ERTLST
-      :previous: MIDPTLST
-  :C85493_C85580:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MiNDODU0OTNfQzg1NTgw
-    :key: C85493_C85580
-    :label: Collection Interval Midpoint
-    :notation: Midpoint of Interval of Last Nonzero ER
-    :identifier: C85580
+      :notation: PHASE II TRIAL
+      :previous: Phase II Trial
+  :C66737_C15603:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1NjAz
+    :key: C66737_C15603
+    :label: Phase IV Trial
+    :notation: PHASE IV TRIAL
+    :identifier: C15603
     :status:
     - :status: :updated
-      :notation: Midpoint of Interval of Last Nonzero ER
-      :previous: Midpoint of Collection Interval
-  :C116110_C116251:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjExMC9WNDIjQzExNjExMF9DMTE2MjUx
-    :key: C116110_C116251
-    :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
-    :notation: IC95S
-    :identifier: C116251
+      :notation: PHASE IV TRIAL
+      :previous: Phase IV Trial
+  :C66737_C15693:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1Njkz
+    :key: C66737_C15693
+    :label: Phase I/II Trial
+    :notation: PHASE I/II TRIAL
+    :identifier: C15693
     :status:
     - :status: :updated
-      :notation: IC95S
-      :previous: IC95T
-  :C116109_C116247:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjEwOS9WNDIjQzExNjEwOV9DMTE2MjQ3
-    :key: C116109_C116247
-    :label: Half Maximal Inhibitory Concentration Subject Result Measurement
-    :notation: IC50 Subject Result
-    :identifier: C116247
+      :notation: PHASE I/II TRIAL
+      :previous: Phase I/II Trial
+  :C66737_C15600:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzE1NjAw
+    :key: C66737_C15600
+    :label: Phase I Trial
+    :notation: PHASE I TRIAL
+    :identifier: C15600
     :status:
     - :status: :updated
-      :notation: IC50 Subject Result
-      :previous: IC50 Treatment Result
-  :C116110_C116247:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjExMC9WNDIjQzExNjExMF9DMTE2MjQ3
-    :key: C116110_C116247
-    :label: Half Maximal Inhibitory Concentration Subject Result Measurement
-    :notation: IC50S
-    :identifier: C116247
+      :notation: PHASE I TRIAL
+      :previous: Phase I Trial
+  :C66737_C47865:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzQ3ODY1
+    :key: C66737_C47865
+    :label: Phase V Trial
+    :notation: PHASE V TRIAL
+    :identifier: C47865
     :status:
     - :status: :updated
-      :notation: IC50S
-      :previous: IC50T
-  :C116109_C116251:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjEwOS9WNDIjQzExNjEwOV9DMTE2MjUx
-    :key: C116109_C116251
-    :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
-    :notation: IC95 Subject Result
-    :identifier: C116251
+      :notation: PHASE V TRIAL
+      :previous: Phase V Trial
+  :C66770_C48500:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MSNDNjY3NzBfQzQ4NTAw
+    :key: C66770_C48500
+    :label: Inch
+    :notation: in
+    :identifier: C48500
     :status:
     - :status: :updated
-      :notation: IC95 Subject Result
-      :previous: IC95 Treatment Result
-  :C67154_C116208:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0MiNDNjcxNTRfQzExNjIwOA==
-    :key: C67154_C116208
-    :label: Platelet Derived Growth Factor Isoform AB Measurement
-    :notation: Platelet Derived Growth Factor IsoformAB
-    :identifier: C116208
+      :notation: in
+      :previous: IN
+  :C71620_C48500:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MSNDNzE2MjBfQzQ4NTAw
+    :key: C71620_C48500
+    :label: Inch
+    :notation: in
+    :identifier: C48500
     :status:
     - :status: :updated
-      :notation: Platelet Derived Growth Factor IsoformAB
-      :previous: Platelet Derived Growth Factor Isoform AB
+      :notation: in
+      :previous: IN
+  :C66737_C49686:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzQ5Njg2
+    :key: C66737_C49686
+    :label: Phase IIa Trial
+    :notation: PHASE IIA TRIAL
+    :identifier: C49686
+    :status:
+    - :status: :updated
+      :notation: PHASE IIA TRIAL
+      :previous: Phase IIa Trial
+  :C66737_C49687:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzQ5Njg3
+    :key: C66737_C49687
+    :label: Phase IIIa Trial
+    :notation: PHASE IIIA TRIAL
+    :identifier: C49687
+    :status:
+    - :status: :updated
+      :notation: PHASE IIIA TRIAL
+      :previous: Phase IIIa Trial
+  :C66737_C49688:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzQ5Njg4
+    :key: C66737_C49688
+    :label: Phase IIb Trial
+    :notation: PHASE IIB TRIAL
+    :identifier: C49688
+    :status:
+    - :status: :updated
+      :notation: PHASE IIB TRIAL
+      :previous: Phase IIb Trial
+  :C66737_C49689:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzM3L1Y0MSNDNjY3MzdfQzQ5Njg5
+    :key: C66737_C49689
+    :label: Phase IIIb Trial
+    :notation: PHASE IIIB TRIAL
+    :identifier: C49689
+    :status:
+    - :status: :updated
+      :notation: PHASE IIIB TRIAL
+      :previous: Phase IIIb Trial
+  :C101859_C50799:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DNTA3OTk=
+    :key: C101859_C50799
+    :label: Ventricular Fibrillation
+    :notation: VENTRICULAR FIBRILLATION
+    :identifier: C50799
+    :status:
+    - :status: :updated
+      :notation: VENTRICULAR FIBRILLATION
+      :previous: Ventricular Fibrillation
+  :C71620_C67405:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MSNDNzE2MjBfQzY3NDA1
+    :key: C71620_C67405
+    :label: Microinternational Unit per Milliliter
+    :notation: mIU/L
+    :identifier: C67405
+    :status:
+    - :status: :updated
+      :notation: mIU/L
+      :previous: uIU/mL
+  :C85493_C85575:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MSNDODU0OTNfQzg1NTc1
+    :key: C85493_C85575
+    :label: Average Concentration
+    :notation: Average Concentration
+    :identifier: C85575
+    :status:
+    - :status: :updated
+      :notation: Average Concentration
+      :previous: Average Conc
+  :C88025_C111198:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0MSNDODgwMjVfQzExMTE5OA==
+    :key: C88025_C111198
+    :label: Experimental Organism Basal Cell Adenoma
+    :notation: BASAL CELL TUMOR, BENIGN
+    :identifier: C111198
+    :status:
+    - :status: :updated
+      :notation: BASAL CELL TUMOR, BENIGN
+      :previous: ADENOMA, BASAL CELL, BENIGN
+  :C101863_C99909:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MDk=
+    :key: C101863_C99909
+    :label: Federal Health Care Facility
+    :notation: FEDERAL HEALTH CARE FACILITY
+    :identifier: C99909
+    :status:
+    - :status: :updated
+      :notation: FEDERAL HEALTH CARE FACILITY
+      :previous: Federal Health Care Facility
+  :C101859_C99949:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5NDk=
+    :key: C101859_C99949
+    :label: End of Expected Battery Life
+    :notation: END OF EXPECTED BATTERY LIFE
+    :identifier: C99949
+    :status:
+    - :status: :updated
+      :notation: END OF EXPECTED BATTERY LIFE
+      :previous: End of Expected Battery Life
+  :C101863_C99944:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5NDQ=
+    :key: C101863_C99944
+    :label: Died in a Medical Facility
+    :notation: EXPIRED IN A MEDICAL FACILITY
+    :identifier: C99944
+    :status:
+    - :status: :updated
+      :notation: EXPIRED IN A MEDICAL FACILITY
+      :previous: Expired in a Medical Facility
+  :C101859_C15712:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTU3MTI=
+    :key: C101859_C15712
+    :label: Secondary Prevention
+    :notation: SECONDARY PREVENTION
+    :identifier: C15712
+    :status:
+    - :status: :updated
+      :notation: SECONDARY PREVENTION
+      :previous: Secondary Prevention
+  :C101863_C99960:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5NjA=
+    :key: C101863_C99960
+    :label: Hospital with Medicare Approved Swing Bed
+    :notation: HOSPITAL-BASED MEDICARE-APPROVED SWING BED
+    :identifier: C99960
+    :status:
+    - :status: :updated
+      :notation: HOSPITAL-BASED MEDICARE-APPROVED SWING BED
+      :previous: Hospital-based Medicare-approved Swing Bed
+  :C101859_C15306:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTUzMDY=
+    :key: C101859_C15306
+    :label: Primary Prevention
+    :notation: PRIMARY PREVENTION
+    :identifier: C15306
+    :status:
+    - :status: :updated
+      :notation: PRIMARY PREVENTION
+      :previous: Primary Prevention
+  :C101859_C100002:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDAy
+    :key: C101859_C100002
+    :label: Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Unstable-Over
+      12 Hours From Symptom Onset
+    :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+      INFARCTION (STEMI) (UNSTABLE, >12 HRS FROM SYMPTOM ONSET)
+    :identifier: C100002
+    :status:
+    - :status: :updated
+      :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+        INFARCTION (STEMI) (UNSTABLE, >12 HRS FROM SYMPTOM ONSET)
+      :previous: Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial
+        Infarction (STEMI) (Unstable, >12 Hrs From Symptom Onset)
+  :C101859_C99919:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5MTk=
+    :key: C101859_C99919
+    :label: Candidate to Receive Cardiac Transplant
+    :notation: CANDIDATE TO RECEIVE CARDIAC TRANSPLANT
+    :identifier: C99919
+    :status:
+    - :status: :updated
+      :notation: CANDIDATE TO RECEIVE CARDIAC TRANSPLANT
+      :previous: Candidate to Receive Cardiac Transplant
+  :C101863_C99914:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MTQ=
+    :key: C101863_C99914
+    :label: Skilled Nursing Facility with Medicare Certification in Anticipation of
+      Covered Skilled Care
+    :notation: SKILLED NURSING FACILITY (SNF) WITH MEDICARE CERTIFICATION IN ANTICIPATION
+      OF COVERED SKILLED CARE
+    :identifier: C99914
+    :status:
+    - :status: :updated
+      :notation: SKILLED NURSING FACILITY (SNF) WITH MEDICARE CERTIFICATION IN ANTICIPATION
+        OF COVERED SKILLED CARE
+      :previous: Skilled Nursing Facility (SNF) with Medicare Certification in Anticipation
+        of Covered Skilled Care
+  :C101859_C100019:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDE5
+    :key: C101859_C100019
+    :label: Syncope with Inducible Ventricular Tachycardia by ECG Finding
+    :notation: SYNCOPE WITH INDUCIBLE VENTRICULAR TACHYCARDIA
+    :identifier: C100019
+    :status:
+    - :status: :updated
+      :notation: SYNCOPE WITH INDUCIBLE VENTRICULAR TACHYCARDIA
+      :previous: Syncope with Inducible Ventricular Tachycardia
+  :C101864_C100027:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDI3
+    :key: C101864_C100027
+    :label: Unable to Obtain Satisfactory Vascular Access
+    :notation: UNABLE TO OBTAIN SATISFACTORY VASCULAR ACCESS
+    :identifier: C100027
+    :status:
+    - :status: :updated
+      :notation: UNABLE TO OBTAIN SATISFACTORY VASCULAR ACCESS
+      :previous: Unable to Obtain Satisfactory Vascular Access
+  :C101859_C100035:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDM1
+    :key: C101859_C100035
+    :label: Faulty Device Connector/Header
+    :notation: FAULTY CONNECTOR/HEADER
+    :identifier: C100035
+    :status:
+    - :status: :updated
+      :notation: FAULTY CONNECTOR/HEADER
+      :previous: Faulty Connector/Header
+  :C101863_C102247:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DMTAyMjQ3
+    :key: C101863_C102247
+    :label: Institution Not Defined
+    :notation: INSTITUTION NOT DEFINED
+    :identifier: C102247
+    :status:
+    - :status: :updated
+      :notation: INSTITUTION NOT DEFINED
+      :previous: Institution Not Defined
+  :C101859_C100014:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDE0
+    :key: C101859_C100014
+    :label: Spontaneous Sustained Ventricular Tachycardia by ECG Finding
+    :notation: SPONTANEOUS SUSTAINED VENTRICULAR TACHYCARDIA
+    :identifier: C100014
+    :status:
+    - :status: :updated
+      :notation: SPONTANEOUS SUSTAINED VENTRICULAR TACHYCARDIA
+      :previous: Spontaneous Sustained Ventricular Tachycardia
+  :C101859_C100030:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDMw
+    :key: C101859_C100030
+    :label: Upgrade to Cardiac Device with Additional Pacing Capabilities
+    :notation: UPGRADE TO A DEVICE WITH ADDITIONAL PACING CAPABILITIES
+    :identifier: C100030
+    :status:
+    - :status: :updated
+      :notation: UPGRADE TO A DEVICE WITH ADDITIONAL PACING CAPABILITIES
+      :previous: Upgrade to a Device with Additional Pacing Capabilities
+  :C101863_C99984:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5ODQ=
+    :key: C101863_C99984
+    :label: Medicare Certified Long Term Care Hospital
+    :notation: MEDICARE-CERTIFIED LONG TERM CARE HOSPITAL (LTCH)
+    :identifier: C99984
+    :status:
+    - :status: :updated
+      :notation: MEDICARE-CERTIFIED LONG TERM CARE HOSPITAL (LTCH)
+      :previous: Medicare-certified Long Term Care Hospital (LTCH)
+  :C101859_C99947:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5NDc=
+    :key: C101859_C99947
+    :label: Donor for Cardiac Transplant
+    :notation: DONOR FOR CARDIAC TRANSPLANT
+    :identifier: C99947
+    :status:
+    - :status: :updated
+      :notation: DONOR FOR CARDIAC TRANSPLANT
+      :previous: Donor for Cardiac Transplant
+  :C101859_C100005:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDA1
+    :key: C101859_C100005
+    :label: Post-Cardiac Transplant Evaluation
+    :notation: POST-CARDIAC TRANSPLANT
+    :identifier: C100005
+    :status:
+    - :status: :updated
+      :notation: POST-CARDIAC TRANSPLANT
+      :previous: Post-Cardiac Transplant
+  :C101859_C34830:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMzQ4MzA=
+    :key: C101859_C34830
+    :label: Cardiomyopathy
+    :notation: CARDIOMYOPATHY
+    :identifier: C34830
+    :status:
+    - :status: :updated
+      :notation: CARDIOMYOPATHY
+      :previous: Cardiomyopathy
+  :C101859_C100000:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDAw
+    :key: C101859_C100000
+    :label: Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable-Over
+      12 Hours From Symptom Onset
+    :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+      INFARCTION (STEMI) (STABLE, >12 HRS FROM SYMPTOM ONSET)
+    :identifier: C100000
+    :status:
+    - :status: :updated
+      :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+        INFARCTION (STEMI) (STABLE, >12 HRS FROM SYMPTOM ONSET)
+      :previous: Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial
+        Infarction (STEMI) (Stable, >12 Hrs From Symptom Onset)
+  :C101863_C99959:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5NTk=
+    :key: C101863_C99959
+    :label: Home Under Care of Organized Home Health Service Organization in Anticipation
+      of Covered Skilled Care
+    :notation: HOME UNDER CARE OF ORGANIZED HOME HEALTH SERVICE ORGANIZATION IN ANTICIPATION
+      OF COVERED SKILLED CARE
+    :identifier: C99959
+    :status:
+    - :status: :updated
+      :notation: HOME UNDER CARE OF ORGANIZED HOME HEALTH SERVICE ORGANIZATION IN
+        ANTICIPATION OF COVERED SKILLED CARE
+      :previous: Home Under Care of Organized Home Health Service Organization in
+        Anticipation of Covered Skilled Care
+  :C101860_C99971:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2MC9WNDEjQzEwMTg2MF9DOTk5NzE=
+    :key: C101860_C99971
+    :label: Left Cardiac Artery Dominance
+    :notation: LEFT DOMINANT
+    :identifier: C99971
+    :status:
+    - :status: :updated
+      :notation: LEFT DOMINANT
+      :previous: LEFT DOMINANCE
+  :C101859_C99938:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5Mzg=
+    :key: C101859_C99938
+    :label: Chronic Total Occlusion Vessel
+    :notation: CHRONIC TOTAL OCCLUSION
+    :identifier: C99938
+    :status:
+    - :status: :updated
+      :notation: CHRONIC TOTAL OCCLUSION
+      :previous: Chronic Total Occlusion
+  :C101863_C99912:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MTI=
+    :key: C101863_C99912
+    :label: Intermediate Care Facility
+    :notation: INTERMEDIATE CARE FACILITY
+    :identifier: C99912
+    :status:
+    - :status: :updated
+      :notation: INTERMEDIATE CARE FACILITY
+      :previous: Intermediate Care Facility
+  :C101859_C100006:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDA2
+    :key: C101859_C100006
+    :label: Pre-Operative Evaluation for Non-Cardiovascular Surgery
+    :notation: PRE-OPERATIVE EVALUATION FOR NON-CARDIOVASCULAR SURGERY
+    :identifier: C100006
+    :status:
+    - :status: :updated
+      :notation: PRE-OPERATIVE EVALUATION FOR NON-CARDIOVASCULAR SURGERY
+      :previous: Pre-Operative Evaluation for Non-Cardiovascular Surgery
+  :C101864_C100025:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDI1
+    :key: C101864_C100025
+    :label: Unable to Obtain Acceptable Pacing Thresholds
+    :notation: COULD NOT OBTAIN ACCEPTABLE PACING THRESHOLDS
+    :identifier: C100025
+    :status:
+    - :status: :updated
+      :notation: COULD NOT OBTAIN ACCEPTABLE PACING THRESHOLDS
+      :previous: Could Not Obtain Acceptable Pacing Thresholds
+  :C101859_C100033:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDMz
+    :key: C101859_C100033
+    :label: Cardiac Arrest/Arrhythmia Etiology Unknown
+    :notation: CARDIAC ARREST/ARRHYTHMIA ETIOLOGY UNKNOWN
+    :identifier: C100033
+    :status:
+    - :status: :updated
+      :notation: CARDIAC ARREST/ARRHYTHMIA ETIOLOGY UNKNOWN
+      :previous: Cardiac Arrest/Arrhythmia Etiology Unknown
+  :C101840_C77272:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MC9WNDEjQzEwMTg0MF9DNzcyNzI=
+    :key: C101840_C77272
+    :label: Killip Class IV
+    :notation: KILLIP CLASS IV
+    :identifier: C77272
+    :status:
+    - :status: :updated
+      :notation: KILLIP CLASS IV
+      :previous: Killip CLASS IV
+  :C101859_C100045:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDQ1
+    :key: C101859_C100045
+    :label: Manufacturer Recall
+    :notation: MANUFACTURER RECALL
+    :identifier: C100045
+    :status:
+    - :status: :updated
+      :notation: MANUFACTURER RECALL
+      :previous: Manufacturer Recall
+  :C101864_C99933:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DOTk5MzM=
+    :key: C101864_C99933
+    :label: Cardiac Lead Position Results in Undesirable Stimulation of Diaphragm
+    :notation: LEAD POSITION RESULTS IN UNDESIRABLE STIMULATION OF THE DIAPHRAGM
+    :identifier: C99933
+    :status:
+    - :status: :updated
+      :notation: LEAD POSITION RESULTS IN UNDESIRABLE STIMULATION OF THE DIAPHRAGM
+      :previous: Lead Position Results in Undesirable Stimulation of the Diaphragm
+  :C101859_C99982:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5ODI=
+    :key: C101859_C99982
+    :label: Medical Condition or Procedure Affects Implantation Site
+    :notation: MEDICAL CONDITION OR PROCEDURE AFFECTS IMPLANTATION SITE
+    :identifier: C99982
+    :status:
+    - :status: :updated
+      :notation: MEDICAL CONDITION OR PROCEDURE AFFECTS IMPLANTATION SITE
+      :previous: Medical Condition Or Procedure Affects Implantation Site
+  :C101859_C99961:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5NjE=
+    :key: C101859_C99961
+    :label: Immediate Percutaneous Coronary Intervention for ST Elevation Myocardial
+      Infarction
+    :notation: IMMEDIATE PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION
+      MYOCARDIAL INFARCTION (STEMI)
+    :identifier: C99961
+    :status:
+    - :status: :updated
+      :notation: IMMEDIATE PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION
+        MYOCARDIAL INFARCTION (STEMI)
+      :previous: Immediate Percutaneous Coronary Intervention (PCI) for St Elevation
+        Myocardial Infarction (STEMI)
+  :C101864_C100026:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDI2
+    :key: C101864_C100026
+    :label: Unable to Obtain Satisfactory Coronary Sinus Access
+    :notation: UNABLE TO OBTAIN SATISFACTORY CORONARY SINUS ACCESS
+    :identifier: C100026
+    :status:
+    - :status: :updated
+      :notation: UNABLE TO OBTAIN SATISFACTORY CORONARY SINUS ACCESS
+      :previous: Unable to Obtain Satisfactory Coronary Sinus Access
+  :C101863_C28554:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DMjg1NTQ=
+    :key: C101863_C28554
+    :label: Death
+    :notation: EXPIRED
+    :identifier: C28554
+    :status:
+    - :status: :updated
+      :notation: EXPIRED
+      :previous: Expired
+  :C101859_C100008:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDA4
+    :key: C101859_C100008
+    :label: Rescue Percutaneous Coronary Intervention for ST Elevation Myocardial
+      Infarction After Failed Full-Dose Thrombolytic Therapy
+    :notation: RESCUE PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+      INFARCTION (STEMI) (AFTER FAILED FULL-DOSE THROMBOLYTICS)
+    :identifier: C100008
+    :status:
+    - :status: :updated
+      :notation: RESCUE PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION
+        MYOCARDIAL INFARCTION (STEMI) (AFTER FAILED FULL-DOSE THROMBOLYTICS)
+      :previous: Rescue Percutaneous Coronary Intervention (PCI) for St Elevation
+        Myocardial Infarction (STEMI) (After Failed Full-Dose Thrombolytics)
+  :C101859_C26726:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMjY3MjY=
+    :key: C101859_C26726
+    :label: Infectious Disorder
+    :notation: INFECTION
+    :identifier: C26726
+    :status:
+    - :status: :updated
+      :notation: INFECTION
+      :previous: Infection
+  :C101863_C99957:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5NTc=
+    :key: C101863_C99957
+    :label: Home Care
+    :notation: HOME, SELF CARE
+    :identifier: C99957
+    :status:
+    - :status: :updated
+      :notation: HOME, SELF CARE
+      :previous: Home, Self Care
+  :C101859_C99999:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5OTk=
+    :key: C101859_C99999
+    :label: Percutaneous Coronary Intervention for High Risk Non-ST Elevation Myocardial
+      Infarction or Unstable Angina
+    :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR HIGH RISK NON-ST ELEVATION
+      MYOCARDIAL INFARCTION OR UNSTABLE ANGINA
+    :identifier: C99999
+    :status:
+    - :status: :updated
+      :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR HIGH RISK NON-ST ELEVATION
+        MYOCARDIAL INFARCTION OR UNSTABLE ANGINA
+      :previous: Percutaneous Coronary Intervention (PCI) for High Risk Non-St Elevation
+        Myocardial Infarction Or Unstable Angina
+  :C101863_C99910:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MTA=
+    :key: C101863_C99910
+    :label: Hospice Care at Medical Facility
+    :notation: HOSPICE - MEDICAL FACILITY
+    :identifier: C99910
+    :status:
+    - :status: :updated
+      :notation: HOSPICE - MEDICAL FACILITY
+      :previous: Hospice - Medical Facility
+  :C101859_C99931:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5MzE=
+    :key: C101859_C99931
+    :label: Cardiac Lead Erosion
+    :notation: LEAD EROSION
+    :identifier: C99931
+    :status:
+    - :status: :updated
+      :notation: LEAD EROSION
+      :previous: Lead Erosion
+  :C101864_C100028:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDI4
+    :key: C101864_C100028
+    :label: Unable to Position Lead Due to Coronary Sinus Dissection
+    :notation: UNABLE TO POSITION LEAD DUE TO CORONARY SINUS DISSECTION
+    :identifier: C100028
+    :status:
+    - :status: :updated
+      :notation: UNABLE TO POSITION LEAD DUE TO CORONARY SINUS DISSECTION
+      :previous: Unable to Position Lead Due to Coronary Sinus Dissection
+  :C101864_C100007:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDA3
+    :key: C101864_C100007
+    :label: Previously Implanted Cardiac Lead
+    :notation: PREVIOUSLY IMPLANTED
+    :identifier: C100007
+    :status:
+    - :status: :updated
+      :notation: PREVIOUSLY IMPLANTED
+      :previous: Previously Implanted
+  :C101859_C100015:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDE1
+    :key: C101859_C100015
+    :label: Staged Percutaneous Coronary Intervention
+    :notation: STAGED PERCUTANEOUS CORONARY INTERVENTION (PCI)
+    :identifier: C100015
+    :status:
+    - :status: :updated
+      :notation: STAGED PERCUTANEOUS CORONARY INTERVENTION (PCI)
+      :previous: Staged Percutaneous Coronary Intervention (PCI)
+  :C101840_C77270:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MC9WNDEjQzEwMTg0MF9DNzcyNzA=
+    :key: C101840_C77270
+    :label: Killip Class II
+    :notation: KILLIP CLASS II
+    :identifier: C77270
+    :status:
+    - :status: :updated
+      :notation: KILLIP CLASS II
+      :previous: Killip CLASS II
+  :C101863_C99969:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5Njk=
+    :key: C101863_C99969
+    :label: Left Against Medical Advice
+    :notation: LEFT AGAINST MEDICAL ADVICE OR DISCONTINUED CARE
+    :identifier: C99969
+    :status:
+    - :status: :updated
+      :notation: LEFT AGAINST MEDICAL ADVICE OR DISCONTINUED CARE
+      :previous: Left Against Medical Advice or Discontinued Care
+  :C101859_C99943:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5NDM=
+    :key: C101859_C99943
+    :label: Device Generator Malfunction
+    :notation: GENERATOR MALFUNCTION
+    :identifier: C99943
+    :status:
+    - :status: :updated
+      :notation: GENERATOR MALFUNCTION
+      :previous: Generator Malfunction
+  :C101859_C99980:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5ODA=
+    :key: C101859_C99980
+    :label: Manufacturer Recognized a Recurring Performance Failure
+    :notation: MANUFACTURER RECOGNIZED A RECURRING PERFORMANCE FAILURE
+    :identifier: C99980
+    :status:
+    - :status: :updated
+      :notation: MANUFACTURER RECOGNIZED A RECURRING PERFORMANCE FAILURE
+      :previous: Manufacturer Recognized a Recurring Performance Failure
+  :C101859_C100001:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDAx
+    :key: C101859_C100001
+    :label: Percutaneous Coronary Intervention for ST Elevation Myocardial Infarction-Stable
+      After Successful Full-Dose Thrombolytic Therapy
+    :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+      INFARCTION (STEMI) (STABLE AFTER SUCCESSFUL FULL-DOSE THROMBOLYTICS)
+    :identifier: C100001
+    :status:
+    - :status: :updated
+      :notation: PERCUTANEOUS CORONARY INTERVENTION (PCI) FOR ST ELEVATION MYOCARDIAL
+        INFARCTION (STEMI) (STABLE AFTER SUCCESSFUL FULL-DOSE THROMBOLYTICS)
+      :previous: Percutaneous Coronary Intervention (PCI) for St Elevation Myocardial
+        Infarction (STEMI) (Stable After Successful Full-Dose Thrombolytics)
+  :C85493_C41185:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MSNDODU0OTNfQzQxMTg1
+    :key: C85493_C41185
+    :label: Concentration
+    :notation: Concentration
+    :identifier: C41185
+    :status:
+    - :status: :updated
+      :notation: Concentration
+      :previous: Conc
+  :C101863_C99913:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MTM=
+    :key: C101863_C99913
+    :label: Nursing Facility Certified Under Medicaid but Not Certified Under Medicare
+    :notation: NURSING FACILITY CERTIFIED UNDER MEDICAID BUT NOT CERTIFIED UNDER MEDICARE
+    :identifier: C99913
+    :status:
+    - :status: :updated
+      :notation: NURSING FACILITY CERTIFIED UNDER MEDICAID BUT NOT CERTIFIED UNDER
+        MEDICARE
+      :previous: Nursing Facility Certified Under Medicaid but Not Certified Under
+        Medicare
+  :C101859_C100018:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DMTAwMDE4
+    :key: C101859_C100018
+    :label: Syncope with High Risk Cardiac Characteristics
+    :notation: SYNCOPE WITH HIGH RISK CHARACTERISTICS
+    :identifier: C100018
+    :status:
+    - :status: :updated
+      :notation: SYNCOPE WITH HIGH RISK CHARACTERISTICS
+      :previous: Syncope with High Risk Characteristics
+  :C101860_C99942:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2MC9WNDEjQzEwMTg2MF9DOTk5NDI=
+    :key: C101860_C99942
+    :label: Coronary Artery Right Dominance
+    :notation: RIGHT DOMINANT
+    :identifier: C99942
+    :status:
+    - :status: :updated
+      :notation: RIGHT DOMINANT
+      :previous: RIGHT DOMINANCE
+  :C101859_C99925:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5MjU=
+    :key: C101859_C99925
+    :label: Cardiac Device Generator is Being Replaced at Time of Lead Revision
+    :notation: GENERATOR IS BEING REPLACED AT THE TIME OF LEAD REVISION
+    :identifier: C99925
+    :status:
+    - :status: :updated
+      :notation: GENERATOR IS BEING REPLACED AT THE TIME OF LEAD REVISION
+      :previous: Generator is Being Replaced at the Time of Lead Revision
+  :C101859_C99983:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DOTk5ODM=
+    :key: C101859_C99983
+    :label: Medical or Surgical Procedure Requiring Relocation of Lead
+    :notation: MEDICAL OR SURGICAL PROCEDURE REQUIRING RELOCATION OF LEAD
+    :identifier: C99983
+    :status:
+    - :status: :updated
+      :notation: MEDICAL OR SURGICAL PROCEDURE REQUIRING RELOCATION OF LEAD
+      :previous: Medical Or Surgical Procedure Requiring Relocation of Lead
+  :C101840_C77269:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MC9WNDEjQzEwMTg0MF9DNzcyNjk=
+    :key: C101840_C77269
+    :label: Killip Class I
+    :notation: KILLIP CLASS I
+    :identifier: C77269
+    :status:
+    - :status: :updated
+      :notation: KILLIP CLASS I
+      :previous: Killip CLASS I
+  :C101863_C102248:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DMTAyMjQ4
+    :key: C101863_C102248
+    :label: Short Term General Hospital
+    :notation: SHORT TERM GENERAL HOSPITAL
+    :identifier: C102248
+    :status:
+    - :status: :updated
+      :notation: SHORT TERM GENERAL HOSPITAL
+      :previous: Short Term General Hospital
+  :C101863_C99958:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5NTg=
+    :key: C101863_C99958
+    :label: Home Hospice
+    :notation: HOME, HOSPICE
+    :identifier: C99958
+    :status:
+    - :status: :updated
+      :notation: HOME, HOSPICE
+      :previous: Home, Hospice
+  :C101859_C64251:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WNDEjQzEwMTg1OV9DNjQyNTE=
+    :key: C101859_C64251
+    :label: Left Ventricular Systolic Dysfunction
+    :notation: LEFT VENTRICULAR SYSTOLIC DYSFUNCTION
+    :identifier: C64251
+    :status:
+    - :status: :updated
+      :notation: LEFT VENTRICULAR SYSTOLIC DYSFUNCTION
+      :previous: Left Ventricular Systolic Dysfunction
+  :C101863_C99911:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DOTk5MTE=
+    :key: C101863_C99911
+    :label: Inpatient Rehabilitation Facility Including Rehabilitation distinct Part
+      Units of a Hospital
+    :notation: INPATIENT REHABILITATION FACILITY (IRF) INCLUDING REHABILITATION DISTINCT
+      PART UNITS OF A HOSPITAL
+    :identifier: C99911
+    :status:
+    - :status: :updated
+      :notation: INPATIENT REHABILITATION FACILITY (IRF) INCLUDING REHABILITATION
+        DISTINCT PART UNITS OF A HOSPITAL
+      :previous: Inpatient Rehabilitation Facility (IRF) Including Rehabilitation
+        Distinct Part Units of a Hospital
+  :C101864_C100029:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NC9WNDEjQzEwMTg2NF9DMTAwMDI5
+    :key: C101864_C100029
+    :label: Unable to Position Lead In tributary Vein of Coronary Sinus
+    :notation: UNABLE TO POSITION LEAD IN TRIBUTARY VEIN OF CORONARY SINUS
+    :identifier: C100029
+    :status:
+    - :status: :updated
+      :notation: UNABLE TO POSITION LEAD IN TRIBUTARY VEIN OF CORONARY SINUS
+      :previous: Unable to Position Lead in Tributary Vein of Coronary Sinus
+  :C101863_C53536:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2My9WNDEjQzEwMTg2M19DNTM1MzY=
+    :key: C101863_C53536
+    :label: Psychiatric Facility
+    :notation: PSYCHIATRIC HOSPITAL OR A PSYCHIATRIC-DISTINCT PART UNIT OF A HOSPITAL
+    :identifier: C53536
+    :status:
+    - :status: :updated
+      :notation: PSYCHIATRIC HOSPITAL OR A PSYCHIATRIC-DISTINCT PART UNIT OF A HOSPITAL
+      :previous: Psychiatric Hospital or a Psychiatric-distinct Part Unit of a Hospital
+  :C101840_C77271:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MC9WNDEjQzEwMTg0MF9DNzcyNzE=
+    :key: C101840_C77271
+    :label: Killip Class III
+    :notation: KILLIP CLASS III
+    :identifier: C77271
+    :status:
+    - :status: :updated
+      :notation: KILLIP CLASS III
+      :previous: Killip CLASS III
+  :C65047_C105438:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0MSNDNjUwNDdfQzEwNTQzOA==
+    :key: C65047_C105438
+    :label: Amyloid Beta Precursor Protein Measurement
+    :notation: APPB
+    :identifier: C105438
+    :status:
+    - :status: :updated
+      :notation: APPB
+      :previous: APP
+  :C106652_C106984:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjY1Mi9WNDEjQzEwNjY1Ml9DMTA2OTg0
+    :key: C106652_C106984
+    :label: ADCS-ADL Severe Dementia - Description of Usual Performance of Physically
+      Getting Dressed
+    :notation: ADL02-Usual Physically Dressing Perform
+    :identifier: C106984
+    :status:
+    - :status: :updated
+      :notation: ADL02-Usual Physically Dressing Perform
+      :previous: ADL02 Usual Physically Dressing Perform
+  :C106480_C99285:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjQ4MC9WNDEjQzEwNjQ4MF9DOTkyODU=
+    :key: C106480_C99285
+    :label: Model Number
+    :notation: Model Number
+    :identifier: C99285
+    :status:
+    - :status: :updated
+      :notation: Model Number
+      :previous: Model
+  :C101841_C100040:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MS9WNDEjQzEwMTg0MV9DMTAwMDQw
+    :key: C101841_C100040
+    :label: Thrombolysis in Myocardial Infarction Flow-0
+    :notation: TIMI GRADE 0
+    :identifier: C100040
+    :status:
+    - :status: :updated
+      :notation: TIMI GRADE 0
+      :previous: GRADE 0
+  :C101841_C100043:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MS9WNDEjQzEwMTg0MV9DMTAwMDQz
+    :key: C101841_C100043
+    :label: Thrombolysis in Myocardial Infarction Flow-3
+    :notation: TIMI GRADE 3
+    :identifier: C100043
+    :status:
+    - :status: :updated
+      :notation: TIMI GRADE 3
+      :previous: GRADE 3
+  :C101841_C100042:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MS9WNDEjQzEwMTg0MV9DMTAwMDQy
+    :key: C101841_C100042
+    :label: Thrombolysis in Myocardial Infarction Flow-2
+    :notation: TIMI GRADE 2
+    :identifier: C100042
+    :status:
+    - :status: :updated
+      :notation: TIMI GRADE 2
+      :previous: GRADE 2
+  :C101841_C100041:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0MS9WNDEjQzEwMTg0MV9DMTAwMDQx
+    :key: C101841_C100041
+    :label: Thrombolysis in Myocardial Infarction Flow-1
+    :notation: TIMI GRADE 1
+    :identifier: C100041
+    :status:
+    - :status: :updated
+      :notation: TIMI GRADE 1
+      :previous: GRADE 1
+  :C100129_C117995:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDEjQzEwMDEyOV9DMTE3OTk1
+    :key: C100129_C117995
+    :label: Craig Handicap Assessment and Reporting Technique-Short Form Interview
+      Version Questionnaire
+    :notation: CHART-SF INTERVIEW VERSION
+    :identifier: C117995
+    :status:
+    - :status: :updated
+      :notation: CHART-SF INTERVIEW VERSION
+      :previous: CHART-SF

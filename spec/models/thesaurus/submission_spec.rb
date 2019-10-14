@@ -63,7 +63,7 @@ describe "Thesaurus Submission" do
   it "submission changes" do
     expected = read_yaml_file(sub_dir, "submission_expected.yaml")
     result = true
-    first = 55
+    first = 59
     last = 60
     (first..last).each do |version|
       puts "***** V#{version}, #{expected.find{|x| x[:version] == version}[:date]} *****"
