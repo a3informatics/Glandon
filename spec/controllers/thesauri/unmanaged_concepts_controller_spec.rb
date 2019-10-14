@@ -315,7 +315,7 @@ describe Thesauri::UnmanagedConceptsController do
         "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", 
         "BusinessOperational.ttl", "cross_reference.ttl"
       ]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_52_53.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_v53.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..53)
     end
@@ -323,9 +323,11 @@ describe Thesauri::UnmanagedConceptsController do
     after :all do
     end
 
-    it "returns the change instructions links, no context" do
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/C128687/V48#C128687_C116248")
-      uri_2 = Uri.new(uri: "http://www.cdisc.org/C128687/V48#C128687_C116252")
+    it "returns the change instructions links" do
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C128687/V49#C128687_C116248")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C128687/V49#C128687_C116252")
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V53#C128687_C139124"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V53#TH"))
       expected = 
       {
         description: "This term replaces term from the Microbiology Susceptibility TEST codelist. Per FDA guidance, for tests concerning 50% inhibition on microbial growth/replication, please use the newly released EC50 terms; for tests concerning 50% inhibition on microbial enzymatic activity, please use the newly released IC50 and IC95 terms.",
@@ -333,25 +335,24 @@ describe Thesauri::UnmanagedConceptsController do
         previous:
         [
           {
-            child: { identifier: "C116252", notation: "IC95 Reference Control Result" },
-            id: uri_2.to_id,
-            parent: { date: "2017-06-30T00:00:00+00:00", identifier: "C128687", notation: "MSTEST" },
-            show_path: "/thesauri/unmanaged_concepts/#{uri_2.to_id}"
-          },
-          {
             child: { identifier: "C116248", notation: "IC50 Reference Control Result" },
             id: uri_1.to_id,
             parent: { date: "2017-06-30T00:00:00+00:00", identifier: "C128687", notation: "MSTEST" },
-            show_path: "/thesauri/unmanaged_concepts/#{uri_1.to_id}"
+            show_path: "/thesauri/unmanaged_concepts/#{uri_1.to_id}?unmanaged_concept%5Bcontext_id%5D=#{th.id}"
+          },
+          {
+            child: { identifier: "C116252", notation: "IC95 Reference Control Result" },
+            id: uri_2.to_id,
+            parent: { date: "2017-06-30T00:00:00+00:00", identifier: "C128687", notation: "MSTEST" },
+            show_path: "/thesauri/unmanaged_concepts/#{uri_2.to_id}?unmanaged_concept%5Bcontext_id%5D=#{th.id}"
           }
         ]
       }
       request.env['HTTP_ACCEPT'] = "application/json"
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V52#C128687_C139124"))
-      get :change_instruction_links, id: tc.id
+      get :change_instruction_links, {id: tc.id, unmanaged_concept: {context_id: th.id}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to hash_equal(expected)
     end
 
   end
