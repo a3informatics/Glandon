@@ -10,10 +10,12 @@ describe Import::ChangeInstruction::Instruction do
     return "models/import/change_instruction/instruction"
   end
 
-	before :each do
+	before :all do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
   end
 
-  after :each do
+  after :all do
   end
 
   it "previous" do

@@ -6,6 +6,7 @@ describe Import::ChangeInstruction do
   include ImportHelpers
   include PublicFileHelpers
   include SparqlHelpers
+  include CdiscCtHelpers
 
 	def sub_dir
     return "models/import/change_instruction"
@@ -34,7 +35,7 @@ describe Import::ChangeInstruction do
 	before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..59)
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
     Import.destroy_all
     delete_all_public_test_files
   end

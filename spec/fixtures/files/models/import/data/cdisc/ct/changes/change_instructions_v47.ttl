@@ -1,0 +1,709 @@
+@prefix : <http://www.assero.co.uk/BusinessOperational#> .
+@prefix cr: <http://www.assero.co.uk/CrossReference#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/BusinessOperational>
+	rdf:type owl:Ontology ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI1>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string ;
+	cr:ordinal "1"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI1_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI1_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI1_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67154/V4#C67154_C61019> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI1_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67154/V47#C67154_C125949> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI2>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string ;
+	cr:ordinal "2"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI2_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI2_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI2_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67154/V28#C67154_C74753> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI2_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C67154/V47#C67154_C125950> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI3>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C61019."^^xsd:string ;
+	cr:ordinal "3"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI3_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI3_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI3_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C65047/V4#C65047_C61019> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI3_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C65047/V47#C65047_C125949> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI4>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Urea Nitrogen can be measured in substances other than Blood, Serum, or Plasma. This concept will replace C74753."^^xsd:string ;
+	cr:ordinal "4"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI4_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI4_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI4_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C65047/V28#C65047_C74753> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI4_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C65047/V47#C65047_C125950> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI5>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "The nomenclature has been updated and now the original mapping is obsolete. This concept will replace C27477."^^xsd:string ;
+	cr:ordinal "5"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI5_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI5_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI5_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V44#C88025_C27477> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI5_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V47#C88025_C121932> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI6>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "This concept will replace C72074 and C3773, which have been removed with the 2016-03-25 publication."^^xsd:string ;
+	cr:ordinal "6"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI6_TUC1> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI6_TUC2> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI6_TUC3> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI6_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C72074> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI6_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3773> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI6_TUC3>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "3"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V47#C88025_C126087> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI7>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "This concept will replace C64118, which has been removed with the 2016-03-25 publication."^^xsd:string ;
+	cr:ordinal "7"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI7_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI7_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI7_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V37#C88025_C64118> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI7_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V47#C88025_C126088> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "The FDA requires non-clinical sponsors to identify Benign or Malignant so these concepts would never have been used. [Updated Comment]"^^xsd:string ;
+	cr:ordinal "8"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC1> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC2> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC3> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC4> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC5> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC6> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC7> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC8> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC9> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC10> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC11> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC12> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC13> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC14> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC15> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC16> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC17> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC18> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC19> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC20> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC21> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC22> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC23> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC24> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC25> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC26> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC27> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC28> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC29> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC30> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC31> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC32> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC33> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC34> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC35> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC36> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC37> ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI8_TUC38> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI8_TMC39> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V44#C88025_C27477> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C2858> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC3>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "3"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C2915> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC4>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "4"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C2932> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC5>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "5"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3017> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC6>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "6"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3055> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC7>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "7"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3059> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC8>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "8"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3070> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC9>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "9"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3087> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC10>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "10"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3146> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC11>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "11"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3188> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC12>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "12"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3230> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC13>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "13"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3234> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC14>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "14"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3262> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC15>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "15"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3286> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC16>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "16"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3288> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC17>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "17"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3308> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC18>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "18"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3326> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC19>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "19"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3340> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC20>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "20"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3403> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC21>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "21"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3411> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC22>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "22"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3486> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC23>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "23"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C35765> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC24>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "24"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V45#C88025_C3738> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC25>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "25"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3764> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC26>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "26"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C3788> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC27>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "27"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C3794> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC28>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "28"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C4313> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC29>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "29"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C48306> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC30>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "30"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C4858> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC31>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "31"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V33#C88025_C60781> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC32>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "32"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C6930> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC33>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "33"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V34#C88025_C6963> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC34>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "34"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C7367> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC35>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "35"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C82973> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC36>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "36"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C8402> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC37>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "37"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V42#C88025_C9295> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TUC38>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "38"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V28#C88025_C98794> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI8_TMC39>
+	rdf:type :TMcReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "39"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C88025/V47#C88025> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI9>
+	rdf:type cr:ChangeInstruction ;
+	isoC:label ""^^xsd:string ;
+	cr:semantic "related terminology"^^xsd:string ;
+	cr:description "Creatinine belongs in test/parm name. Please use pg/mg (C67396) in its place."^^xsd:string ;
+	cr:ordinal "9"^^xsd:positiveInteger ;
+	cr:canBeDeleted "false"^^xsd:boolean ;
+	cr:canBeModified "false"^^xsd:boolean ;
+	cr:previous <http://www.cdisc.org/CT/V47#TH_CI9_TUC1> ;
+	cr:current <http://www.cdisc.org/CT/V47#TH_CI9_TUC2> ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI9_TUC1>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "1"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C85494/V19#C85494_C85780> ;
+	:context <http://www.cdisc.org/CT/V46#TH> ;
+	:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/CT/V47#TH_CI9_TUC2>
+	rdf:type :TucReference ;
+	isoC:label ""^^xsd:string ;
+	:enabled "true"^^xsd:boolean ;
+	:optional "false"^^xsd:boolean ;
+	:ordinal "2"^^xsd:positiveInteger ;
+	:reference <http://www.cdisc.org/C85494/V44#C85494_C67396> ;
+	:context <http://www.cdisc.org/CT/V47#TH> ;
+	:localLabel ""^^xsd:string ;
+.

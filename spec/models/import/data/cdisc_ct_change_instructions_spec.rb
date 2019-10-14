@@ -13,7 +13,7 @@ describe Import::ChangeInstruction do
   end
 
   def set_write_file
-    true
+    false
   end
 
   def simple_setup
@@ -34,14 +34,16 @@ describe Import::ChangeInstruction do
     }
     result = @object.import(params)
     filename = "cdisc_change_instructions_#{@object.id}_errors.yml"
-byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "cdisc_change_instructions_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)
     copy_file_from_public_files("test", filename, sub_dir)
     local_filename = "change_instructions_v#{ct_version}.ttl"
-    copy_file_from_public_files_rename("test", filename, sub_dir, local_filename)
-    check_ttl_fix(filename, local_filename, {last_change_date: true})
+    if create_file
+      puts colourize("***** Warning! Copying result file. *****", "red")
+      copy_file_from_public_files_rename("test", filename, sub_dir, local_filename)
+    end
+    check_ttl(filename, local_filename)
     expect(@job.status).to eq("Complete")
     delete_data_file(sub_dir, filename)
   end
