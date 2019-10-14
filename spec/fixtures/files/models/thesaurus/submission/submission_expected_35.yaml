@@ -1,64 +1,445 @@
 ---
 :versions:
-- '2013-10-04'
+- '2013-06-28'
 :items:
-  :C85492_C38101:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkyL1YzNSNDODU0OTJfQzM4MTAx
-    :key: C85492_C38101
-    :label: Radiography
-    :notation: X-RAY
-    :identifier: C38101
+  :C71150_C71065:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDY1
+    :key: C71150_C71065
+    :label: Acute Anterior Myocardial Infarction by ECG Finding
+    :notation: ACUTE ANTERIOR WALL MYOCARDIAL INFARCTION
+    :identifier: C71065
     :status:
     - :status: :updated
-      :notation: X-RAY
-      :previous: XRAY
-  :C85491_C86513:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1YzNSNDODU0OTFfQzg2NTEz
-    :key: C85491_C86513
-    :label: Micrococcus luteus
-    :notation: KOCURIA RHIZOPHILA
-    :identifier: C86513
+      :notation: ACUTE ANTERIOR WALL MYOCARDIAL INFARCTION
+      :previous: ACUTE ANTERIOR WALL MI
+  :C71150_C71055:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDU1
+    :key: C71150_C71055
+    :label: VentricularTrigeminy
+    :notation: VENTRICULAR TRIGEMINY
+    :identifier: C71055
     :status:
     - :status: :updated
-      :notation: KOCURIA RHIZOPHILA
-      :previous: MICROCOCCUS LUTEUS
-  :C65047_C92265:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YzNSNDNjUwNDdfQzkyMjY1
-    :key: C65047_C92265
-    :label: HIV-1 p24 Antigen Measurement
-    :notation: HIV124AG
-    :identifier: C92265
+      :notation: VENTRICULAR TRIGEMINY
+      :previous: TRIGEMINY
+  :C71150_C71068:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDY4
+    :key: C71150_C71068
+    :label: Acute Posterior Myocardial Infarction by ECG Finding
+    :notation: ACUTE POSTERIOR WALL MYOCARDIAL INFARCTION
+    :identifier: C71068
     :status:
     - :status: :updated
-      :notation: HIV124AG
-      :previous: HIVI24AG
-  :C65047_C92264:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YzNSNDNjUwNDdfQzkyMjY0
-    :key: C65047_C92264
-    :label: HIV-1 Group O Antibody Measurement
-    :notation: HIV1OAB
-    :identifier: C92264
+      :notation: ACUTE POSTERIOR WALL MYOCARDIAL INFARCTION
+      :previous: ACUTE POSTERIOR WALL MI
+  :C71150_C71054:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDU0
+    :key: C71150_C71054
+    :label: Ventricular Bigeminy
+    :notation: VENTRICULAR BIGEMINY
+    :identifier: C71054
     :status:
     - :status: :updated
-      :notation: HIV1OAB
-      :previous: HIVIOAB
-  :C65047_C92263:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YzNSNDNjUwNDdfQzkyMjYz
-    :key: C65047_C92263
-    :label: HIV-1 Group M and O Nucleic Acid Measurement
-    :notation: HIV1MONA
-    :identifier: C92263
+      :notation: VENTRICULAR BIGEMINY
+      :previous: BIGEMINY
+  :C71150_C71067:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDY3
+    :key: C71150_C71067
+    :label: Acute Lateral Myocardial Infarction by ECG Finding
+    :notation: ACUTE LATERAL WALL MYOCARDIAL INFARCTION
+    :identifier: C71067
     :status:
     - :status: :updated
-      :notation: HIV1MONA
-      :previous: HIVIMONA
-  :C88025_C84357:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1YzNSNDODgwMjVfQzg0MzU3
-    :key: C88025_C84357
-    :label: Yolk Sac Adenoma
-    :notation: YOLK SAC TUMOR, BENIGN
-    :identifier: C84357
+      :notation: ACUTE LATERAL WALL MYOCARDIAL INFARCTION
+      :previous: ACUTE LATERAL WALL MI
+  :C71150_C71032:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDMy
+    :key: C71150_C71032
+    :label: T Wave Notched
+    :notation: NOTCHED T WAVES
+    :identifier: C71032
     :status:
     - :status: :updated
-      :notation: YOLK SAC TUMOR, BENIGN
-      :previous: ADENOMA, YOLK SAC, BENIGN
+      :notation: NOTCHED T WAVES
+      :previous: NOTCHED T-WAVES
+  :C85494_C64387:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzY0Mzg3
+    :key: C85494_C64387
+    :label: Millimole per Liter
+    :notation: mmol/L
+    :identifier: C64387
+    :status:
+    - :status: :updated
+      :notation: mmol/L
+      :previous: umol/mL
+  :C71150_C71040:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDQw
+    :key: C71150_C71040
+    :label: P-mitrale
+    :notation: LEFT ATRIAL ABNORMALITY
+    :identifier: C71040
+    :status:
+    - :status: :updated
+      :notation: LEFT ATRIAL ABNORMALITY
+      :previous: LEFT ATRIAL ENLARGEMENT
+  :C71150_C71066:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1YzNSNDNzExNTBfQzcxMDY2
+    :key: C71150_C71066
+    :label: Acute Inferior Myocardial Infarction by ECG Finding
+    :notation: ACUTE INFERIOR WALL MYOCARDIAL INFARCTION
+    :identifier: C71066
+    :status:
+    - :status: :updated
+      :notation: ACUTE INFERIOR WALL MYOCARDIAL INFARCTION
+      :previous: ACUTE INFERIOR WALL MI
+  :C85494_C85728:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NzI4
+    :key: C85494_C85728
+    :label: Minute Times Micromole per Milliliter
+    :notation: min*mmol/L
+    :identifier: C85728
+    :status:
+    - :status: :updated
+      :notation: min*mmol/L
+      :previous: min*umol/mL
+  :C85494_C85612:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjEy
+    :key: C85494_C85612
+    :label: Hour Times Femtomole per Milliliter
+    :notation: h*pmol/L
+    :identifier: C85612
+    :status:
+    - :status: :updated
+      :notation: h*pmol/L
+      :previous: h*fmol/mL
+  :C85494_C85756:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NzU2
+    :key: C85494_C85756
+    :label: Nanomole per Milliliter
+    :notation: umol/L
+    :identifier: C85756
+    :status:
+    - :status: :updated
+      :notation: umol/L
+      :previous: nmol/mL
+  :C85494_C85735:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NzM1
+    :key: C85494_C85735
+    :label: Minute Times Picomole per Milliliter
+    :notation: min*nmol/L
+    :identifier: C85735
+    :status:
+    - :status: :updated
+      :notation: min*nmol/L
+      :previous: min*pmol/mL
+  :C85494_C85629:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjI5
+    :key: C85494_C85629
+    :label: Hour Times Nanogram per Milliliter per Milligram per Meter Squared
+    :notation: h*ng/mL/(mg/m2)
+    :identifier: C85629
+    :status:
+    - :status: :updated
+      :notation: h*ng/mL/(mg/m2)
+      :previous: h*ng/mL/mg/m2
+  :C85494_C85730:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NzMw
+    :key: C85494_C85730
+    :label: Minute Times Millimole per Milliliter
+    :notation: min*mol/L
+    :identifier: C85730
+    :status:
+    - :status: :updated
+      :notation: min*mol/L
+      :previous: min*mmol/mL
+  :C85494_C85640:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjQw
+    :key: C85494_C85640
+    :label: Hour Times Picomole per Milliliter
+    :notation: h*nmol/L
+    :identifier: C85640
+    :status:
+    - :status: :updated
+      :notation: h*nmol/L
+      :previous: h*pmol/mL
+  :C85494_C85592:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NTky
+    :key: C85494_C85592
+    :label: Day Times Nanomole per Milliliter
+    :notation: day*umol/L
+    :identifier: C85592
+    :status:
+    - :status: :updated
+      :notation: day*umol/L
+      :previous: day*nmol/mL
+  :C85494_C85610:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjEw
+    :key: C85494_C85610
+    :label: Hour Squared Times Picomole per Milliliter
+    :notation: h2*nmol/L
+    :identifier: C85610
+    :status:
+    - :status: :updated
+      :notation: h2*nmol/L
+      :previous: h2*pmol/mL
+  :C85494_C85618:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjE4
+    :key: C85494_C85618
+    :label: Hour Times Micromole per Milliliter
+    :notation: h*mmol/L
+    :identifier: C85618
+    :status:
+    - :status: :updated
+      :notation: h*mmol/L
+      :previous: h*umol/mL
+  :C85494_C48555:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzQ4NTU1
+    :key: C85494_C48555
+    :label: Mole per Liter
+    :notation: mol/L
+    :identifier: C48555
+    :status:
+    - :status: :updated
+      :notation: mol/L
+      :previous: mmol/mL
+  :C85494_C85733:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NzMz
+    :key: C85494_C85733
+    :label: Minute Times Nanomole per Milliliter
+    :notation: min*umol/L
+    :identifier: C85733
+    :status:
+    - :status: :updated
+      :notation: min*umol/L
+      :previous: min*nmol/mL
+  :C85494_C85632:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjMy
+    :key: C85494_C85632
+    :label: Hour Times Nanomole per Milliliter
+    :notation: h*umol/L
+    :identifier: C85632
+    :status:
+    - :status: :updated
+      :notation: h*umol/L
+      :previous: h*nmol/mL
+  :C85494_C85622:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjIy
+    :key: C85494_C85622
+    :label: Hour Times Millimole per Milliliter
+    :notation: h*mol/L
+    :identifier: C85622
+    :status:
+    - :status: :updated
+      :notation: h*mol/L
+      :previous: h*mmol/mL
+  :C85494_C85634:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjM0
+    :key: C85494_C85634
+    :label: Hour Times Nanomole per Milliliter per Milligram
+    :notation: h*umol/L/g
+    :identifier: C85634
+    :status:
+    - :status: :updated
+      :notation: h*umol/L/g
+      :previous: h*nmol/mL/mg
+  :C85494_C85641:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjQx
+    :key: C85494_C85641
+    :label: Hour Times Picomole per Milliliter per Milligram
+    :notation: h*nmol/L/g
+    :identifier: C85641
+    :status:
+    - :status: :updated
+      :notation: h*nmol/L/g
+      :previous: h*pmol/mL/mg
+  :C85494_C85589:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NTg5
+    :key: C85494_C85589
+    :label: Day Times Millimole per Milliliter
+    :notation: day*mol/L
+    :identifier: C85589
+    :status:
+    - :status: :updated
+      :notation: day*mol/L
+      :previous: day*mmol/mL
+  :C85494_C85607:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjA3
+    :key: C85494_C85607
+    :label: Hour Squared Times Millimole per Milliliter
+    :notation: h2*mol/L
+    :identifier: C85607
+    :status:
+    - :status: :updated
+      :notation: h2*mol/L
+      :previous: h2*mmol/mL
+  :C85494_C85587:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NTg3
+    :key: C85494_C85587
+    :label: Day Times Micromole per Milliliter
+    :notation: day*mmol/L
+    :identifier: C85587
+    :status:
+    - :status: :updated
+      :notation: day*mmol/L
+      :previous: day*umol/mL
+  :C85494_C85605:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NjA1
+    :key: C85494_C85605
+    :label: Hour Squared Times Micromole per Milliliter
+    :notation: h2*mmol/L
+    :identifier: C85605
+    :status:
+    - :status: :updated
+      :notation: h2*mmol/L
+      :previous: h2*umol/mL
+  :C85494_C85594:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDk0L1YzNSNDODU0OTRfQzg1NTk0
+    :key: C85494_C85594
+    :label: Day Times Picomole per Milliliter
+    :notation: day*nmol/L
+    :identifier: C85594
+    :status:
+    - :status: :updated
+      :notation: day*nmol/L
+      :previous: day*pmol/mL
+  :C89968_C90436:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg5OTY4L1YzNSNDODk5NjhfQzkwNDM2
+    :key: C89968_C90436
+    :label: Planned Interim Sacrifice
+    :notation: INTERIM SACRIFICE
+    :identifier: C90436
+    :status:
+    - :status: :updated
+      :notation: INTERIM SACRIFICE
+      :previous: PLANNED INTERIM SACRIFICE
+  :C100129_C102118:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTAyMTE4
+    :key: C100129_C102118
+    :label: Hamilton Anxiety Rating Scale Questionnaire
+    :notation: HAM-A
+    :identifier: C102118
+    :status:
+    - :status: :updated
+      :notation: HAM-A
+      :previous: HAMA
+  :C103474_C103671:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMzQ3NC9WMzUjQzEwMzQ3NF9DMTAzNjcx
+    :key: C103474_C103671
+    :label: OAB-q - Caused You Anxiety or Worry
+    :notation: OABQ01-Caused You Anxiety or Worry
+    :identifier: C103671
+    :status:
+    - :status: :updated
+      :notation: OABQ01-Caused You Anxiety or Worry
+      :previous: OABQ01-Caused You Anxiety and Worry
+  :C105139_C105317:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzE3
+    :key: C105139_C105317
+    :label: ADCS-ADL - Left Away From Home for Fifteen Minutes or Longer
+    :notation: ADL01-Left Away From Home
+    :identifier: C105317
+    :status:
+    - :status: :updated
+      :notation: ADL01-Left Away From Home
+      :previous: ADL01-Alone Away From Home
+  :C105139_C105325:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzI1
+    :key: C105139_C105325
+    :label: ADCS-ADL - Talk About What Subject Read Less Than One Hour After Reading
+    :notation: ADL01-Talk Within 1 Hour After Reading
+    :identifier: C105325
+    :status:
+    - :status: :updated
+      :notation: ADL01-Talk Within 1 Hour After Reading
+      :previous: ADL01-Talk Shortly After Reading
+  :C105139_C105359:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzU5
+    :key: C105139_C105359
+    :label: ADCS-ADL - Description of Usual Use of Commonly Used Appliances
+    :notation: ADL01-Use Common Used Appliances
+    :identifier: C105359
+    :status:
+    - :status: :updated
+      :notation: ADL01-Use Common Used Appliances
+      :previous: ADL01-Usual Use Commonly Used Appliances
+  :C105139_C105323:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzIz
+    :key: C105139_C105323
+    :label: ADCS-ADL - Talk About Events at Home that Subject Took Part in or Watched
+    :notation: ADL01-Talk About at Home Events
+    :identifier: C105323
+    :status:
+    - :status: :updated
+      :notation: ADL01-Talk About at Home Events
+      :previous: ADL01-Talk About at Home Events Part Of
+  :C105139_C105316:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzE2
+    :key: C105139_C105316
+    :label: ADCS-ADL - Subject Left on Their Own
+    :notation: ADL01-Left On His/Her Own
+    :identifier: C105316
+    :status:
+    - :status: :updated
+      :notation: ADL01-Left On His/Her Own
+      :previous: ADL01-Left Alone
+  :C105139_C105324:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzI0
+    :key: C105139_C105324
+    :label: ADCS-ADL - Read for More Than Five Minutes
+    :notation: ADL01-Read More Than 5 Minutes
+    :identifier: C105324
+    :status:
+    - :status: :updated
+      :notation: ADL01-Read More Than 5 Minutes
+      :previous: ADL01-Read
+  :C105139_C105318:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzE4
+    :key: C105139_C105318
+    :label: ADCS-ADL - Left at Home for One Hour or Longer
+    :notation: ADL01-Left at Home for 1 Hour or Longer
+    :identifier: C105318
+    :status:
+    - :status: :updated
+      :notation: ADL01-Left at Home for 1 Hour or Longer
+      :previous: ADL01-Alone at Home for 1 Hour or Longer
+  :C105140_C105288:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTE0MC9WMzUjQzEwNTE0MF9DMTA1Mjg4
+    :key: C105140_C105288
+    :label: ADCS-ADL - Select First Clothes for the Day
+    :notation: ADL0106
+    :identifier: C105288
+    :status:
+    - :status: :updated
+      :notation: ADL0106
+      :previous: ADL106
+  :C100129_C105166:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTA1MTY2
+    :key: C100129_C105166
+    :label: Alzheimer's Disease Cooperative Study Activities of Daily Living Inventory
+      Questionnaire
+    :notation: ADCS-ADL
+    :identifier: C105166
+    :status:
+    - :status: :updated
+      :notation: ADCS-ADL
+      :previous: ADCS-ADL STANDARD
+  :C105139_C105319:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzE5
+    :key: C105139_C105319
+    :label: ADCS-ADL - Left at Home for Less Than One Hour
+    :notation: ADL01-Left at Home for Less Than 1 Hour
+    :identifier: C105319
+    :status:
+    - :status: :updated
+      :notation: ADL01-Left at Home for Less Than 1 Hour
+      :previous: ADL01-Alone at Home for Less Than 1 Hour
+  :C105139_C105322:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzOS9WMzUjQzEwNTEzOV9DMTA1MzIy
+    :key: C105139_C105322
+    :label: ADCS-ADL - Talk About Events Outside of Home that Subject Took Part In
+    :notation: ADL01-Talk About Outside Events
+    :identifier: C105322
+    :status:
+    - :status: :updated
+      :notation: ADL01-Talk About Outside Events
+      :previous: ADL01-Talk About Outside Events Part Of

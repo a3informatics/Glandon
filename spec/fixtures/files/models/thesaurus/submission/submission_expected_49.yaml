@@ -1,105 +1,124 @@
 ---
 :versions:
-- '2016-12-16'
+- '2016-09-30'
 :items:
-  :C67152_C49652:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0OSNDNjcxNTJfQzQ5NjUy
-    :key: C67152_C49652
-    :label: Clinical Study by Intent
-    :notation: Trial Intent Type
-    :identifier: C49652
+  :C85491_C86150:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OSNDODU0OTFfQzg2MTUw
+    :key: C85491_C86150
+    :label: Arcanobacterium pyogenes
+    :notation: TRUEPERELLA PYOGENES
+    :identifier: C86150
     :status:
     - :status: :updated
-      :notation: Trial Intent Type
-      :previous: Trial Indication Type
-  :C67152_C112038:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y0OSNDNjcxNTJfQzExMjAzOA==
-    :key: C67152_C112038
-    :label: Trial Indication
-    :notation: Trial Disease/Condition Indication
-    :identifier: C112038
+      :notation: TRUEPERELLA PYOGENES
+      :previous: ARCANOBACTERIUM PYOGENES
+  :C85491_C86181:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y0OSNDODU0OTFfQzg2MTgx
+    :key: C85491_C86181
+    :label: Bacteroides ureolyticus
+    :notation: CAMPYLOBACTER UREOLYTICUS
+    :identifier: C86181
     :status:
     - :status: :updated
-      :notation: Trial Disease/Condition Indication
-      :previous: Trial Indication
-  :C67154_C106514:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0OSNDNjcxNTRfQzEwNjUxNA==
-    :key: C67154_C106514
-    :label: Cytokeratin 19 Fragment 21-1 Measurement
-    :notation: Cytokeratin 19 Fragment 21-1
-    :identifier: C106514
+      :notation: CAMPYLOBACTER UREOLYTICUS
+      :previous: BACTEROIDES UREOLYTICUS
+  :C67154_C98869:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0OSNDNjcxNTRfQzk4ODY5
+    :key: C67154_C98869
+    :label: Plasma Cell to Total Cell Ratio Measurement
+    :notation: Mature Plasma Cells/Total Cells
+    :identifier: C98869
     :status:
     - :status: :updated
-      :notation: Cytokeratin 19 Fragment 21-1
-      :previous: Cytokeratin Fragment 21-1
-  :C100129_C106699:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDkjQzEwMDEyOV9DMTA2Njk5
-    :key: C100129_C106699
-    :label: Health Assessment Questionnaire Disability Index With Pain Visual Analog
-      Scale Questionnaire
-    :notation: HAQ-DI WITH VAS
-    :identifier: C106699
+      :notation: Mature Plasma Cells/Total Cells
+      :previous: Plasma Cells/Total Cells
+  :C88025_C8602:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzg2MDI=
+    :key: C88025_C8602
+    :label: Pleomorphic Adenoma
+    :notation: TUMOR, MIXED, BENIGN
+    :identifier: C8602
     :status:
     - :status: :updated
-      :notation: HAQ-DI WITH VAS
-      :previous: HAQ-DI
-  :C101846_C116146:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ni9WNDkjQzEwMTg0Nl9DMTE2MTQ2
-    :key: C101846_C116146
-    :label: Late Lumen Loss Measurement
-    :notation: Late Lumen Loss
-    :identifier: C116146
+      :notation: TUMOR, MIXED, BENIGN
+      :previous: MIXED TUMOR, BENIGN
+  :C88025_C3729:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzM3Mjk=
+    :key: C88025_C3729
+    :label: Malignant Mixed Neoplasm
+    :notation: TUMOR, MIXED, MALIGNANT
+    :identifier: C3729
     :status:
     - :status: :updated
-      :notation: Late Lumen Loss
-      :previous: Late Loss
-  :C101847_C116146:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ny9WNDkjQzEwMTg0N19DMTE2MTQ2
-    :key: C101847_C116146
-    :label: Late Lumen Loss Measurement
-    :notation: LLMLOSS
-    :identifier: C116146
+      :notation: TUMOR, MIXED, MALIGNANT
+      :previous: MIXED TUMOR, MALIGNANT
+  :C88025_C4050:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzQwNTA=
+    :key: C88025_C4050
+    :label: Oligoastrocytoma
+    :notation: GLIOMA, MIXED, BENIGN
+    :identifier: C4050
     :status:
     - :status: :updated
-      :notation: LLMLOSS
-      :previous: LATELOSS
-  :C71620_C122230:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0OSNDNzE2MjBfQzEyMjIzMA==
-    :key: C71620_C122230
-    :label: Microgram Equivalent per Liter
-    :notation: ugEq/L
-    :identifier: C122230
+      :notation: GLIOMA, MIXED, BENIGN
+      :previous: MIXED GLIOMA, BENIGN
+  :C96785_C96700:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk2Nzg1L1Y0OSNDOTY3ODVfQzk2NzAw
+    :key: C96785_C96700
+    :label: Non Complete Response/Non Progressive Disease
+    :notation: NON-CR/NON-PD
+    :identifier: C96700
     :status:
     - :status: :updated
-      :notation: ugEq/L
-      :previous: ugeq/L
-  :C128689_C67271:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNjcyNzE=
-    :key: C128689_C67271
-    :label: Bahamian
-    :notation: BAHAMIAN
-    :identifier: C67271
+      :notation: NON-CR/NON-PD
+      :previous: Non-CR/Non-PD
+  :C65047_C98869:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y0OSNDNjUwNDdfQzk4ODY5
+    :key: C65047_C98869
+    :label: Plasma Cell to Total Cell Ratio Measurement
+    :notation: PLSMCECE
+    :identifier: C98869
     :status:
     - :status: :updated
-      :notation: BAHAMIAN
-      :previous: BANGLADESHI
-  :C128689_C43823:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNDM4MjM=
-    :key: C128689_C43823
-    :label: Barbadian
-    :notation: BARBADIAN
-    :identifier: C43823
+      :notation: PLSMCECE
+      :previous: PLSCECE
+  :C88025_C8975:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzg5NzU=
+    :key: C88025_C8975
+    :label: Malignant Mixed Mesodermal (Mullerian) Tumor
+    :notation: MULLERIAN TUMOR, MIXED, MALIGNANT
+    :identifier: C8975
     :status:
     - :status: :updated
-      :notation: BARBADIAN
-      :previous: BHUTANESE
-  :C128689_C43671:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNDkjQzEyODY4OV9DNDM2NzE=
-    :key: C128689_C43671
-    :label: Bangladeshi
-    :notation: BANGLADESHI
-    :identifier: C43671
+      :notation: MULLERIAN TUMOR, MIXED, MALIGNANT
+      :previous: MIXED MULLERIAN TUMOR, MALIGNANT
+  :C88025_C126084:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzEyNjA4NA==
+    :key: C88025_C126084
+    :label: Experimental Organism Benign Mixed Sertoli-Leydig Cell Tumor
+    :notation: SERTOLI-LEYDIG CELL TUMOR, MIXED, BENIGN
+    :identifier: C126084
     :status:
     - :status: :updated
-      :notation: BANGLADESHI
-      :previous: BARBADIAN
+      :notation: SERTOLI-LEYDIG CELL TUMOR, MIXED, BENIGN
+      :previous: MIXED SERTOLI-LEYDIG CELL TUMOR, BENIGN
+  :C88025_C3903:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzM5MDM=
+    :key: C88025_C3903
+    :label: Mixed Glioma
+    :notation: GLIOMA, MIXED, MALIGNANT
+    :identifier: C3903
+    :status:
+    - :status: :updated
+      :notation: GLIOMA, MIXED, MALIGNANT
+      :previous: MIXED GLIOMA, MALIGNANT
+  :C88025_C114111:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1Y0OSNDODgwMjVfQzExNDExMQ==
+    :key: C88025_C114111
+    :label: Experimental Organism Mixed Lymphoma Neoplasm
+    :notation: LYMPHOMA, MIXED, MALIGNANT
+    :identifier: C114111
+    :status:
+    - :status: :updated
+      :notation: LYMPHOMA, MIXED, MALIGNANT
+      :previous: MIXED LYMPHOMA, MALIGNANT

@@ -1,94 +1,105 @@
 ---
 :versions:
-- '2017-03-31'
+- '2016-12-16'
 :items:
-  :C100153_C101013:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE1My9WNTAjQzEwMDE1M19DMTAxMDEz
-    :key: C100153_C101013
-    :label: FPSR - How Much Do You Hurt
-    :notation: FPSR1-How Much Do You Hurt
-    :identifier: C101013
+  :C67152_C49652:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzQ5NjUy
+    :key: C67152_C49652
+    :label: Clinical Study by Intent
+    :notation: Trial Intent Type
+    :identifier: C49652
     :status:
     - :status: :updated
-      :notation: FPSR1-How Much Do You Hurt
-      :previous: FPSR1-How Much do you Hurt
-  :C105137_C105282:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEzNy9WNTAjQzEwNTEzN19DMTA1Mjgy
-    :key: C105137_C105282
-    :label: GCGI - Global Rating of Pain Medication
-    :notation: GCGI01-Global Rating of Pain Medication
-    :identifier: C105282
+      :notation: Trial Intent Type
+      :previous: Trial Indication Type
+  :C67152_C112038:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzExMjAzOA==
+    :key: C67152_C112038
+    :label: Trial Indication
+    :notation: Trial Disease/Condition Indication
+    :identifier: C112038
     :status:
     - :status: :updated
-      :notation: GCGI01-Global Rating of Pain Medication
-      :previous: GCGI01-Global Rating of Pain Mediation
-  :C105129_C105200:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNTEyOS9WNTAjQzEwNTEyOV9DMTA1MjAw
-    :key: C105129_C105200
-    :label: DAD - Organize Finances to Pay Bills
-    :notation: DAD01-Organize Finances to Pay Bills
-    :identifier: C105200
+      :notation: Trial Disease/Condition Indication
+      :previous: Trial Indication
+  :C100129_C106699:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNTAjQzEwMDEyOV9DMTA2Njk5
+    :key: C100129_C106699
+    :label: Health Assessment Questionnaire Disability Index With Pain Visual Analog
+      Scale Questionnaire
+    :notation: HAQ-DI WITH VAS
+    :identifier: C106699
     :status:
     - :status: :updated
-      :notation: DAD01-Organize Finances to Pay Bills
-      :previous: DAD01-Oragnize Finances to Pay Bills
-  :C106650_C106926:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwNjY1MC9WNTAjQzEwNjY1MF9DMTA2OTI2
-    :key: C106650_C106926
-    :label: ADCS-ADL MCI - Select Correct Items Without Help
-    :notation: ADL03-Select Items Without Help
-    :identifier: C106926
+      :notation: HAQ-DI WITH VAS
+      :previous: HAQ-DI
+  :C67154_C106514:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y1MCNDNjcxNTRfQzEwNjUxNA==
+    :key: C67154_C106514
+    :label: Cytokeratin 19 Fragment 21-1 Measurement
+    :notation: Cytokeratin 19 Fragment 21-1
+    :identifier: C106514
     :status:
     - :status: :updated
-      :notation: ADL03-Select Items Without Help
-      :previous: ADL03-Select items Without Help
-  :C65047_C116210:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1Y1MCNDNjUwNDdfQzExNjIxMA==
-    :key: C65047_C116210
-    :label: Panel Reactive Antibody Test
-    :notation: PRAB
-    :identifier: C116210
+      :notation: Cytokeratin 19 Fragment 21-1
+      :previous: Cytokeratin Fragment 21-1
+  :C101846_C116146:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ni9WNTAjQzEwMTg0Nl9DMTE2MTQ2
+    :key: C101846_C116146
+    :label: Late Lumen Loss Measurement
+    :notation: Late Lumen Loss
+    :identifier: C116146
     :status:
     - :status: :updated
-      :notation: PRAB
-      :previous: PRA
-  :C112450_C112688:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ1MC9WNTAjQzExMjQ1MF9DMTEyNjg4
-    :key: C112450_C112688
-    :label: SGRQ Past 4 Weeks Version - Held a Job
-    :notation: SGRQ02-If You Have Ever Held a Job
-    :identifier: C112688
+      :notation: Late Lumen Loss
+      :previous: Late Loss
+  :C101847_C116146:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ny9WNTAjQzEwMTg0N19DMTE2MTQ2
+    :key: C101847_C116146
+    :label: Late Lumen Loss Measurement
+    :notation: LLMLOSS
+    :identifier: C116146
     :status:
     - :status: :updated
-      :notation: SGRQ02-If You Have Ever Held a Job
-      :previous: SGRQ02-If You Have Ever Held a job
-  :C112448_C112637:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0OC9WNTAjQzExMjQ0OF9DMTEyNjM3
-    :key: C112448_C112637
-    :label: SGRQ Past 3 Months Version - Held a Job
-    :notation: SGRQ01-If You Have Ever Held a Job
-    :identifier: C112637
+      :notation: LLMLOSS
+      :previous: LATELOSS
+  :C71620_C122230:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y1MCNDNzE2MjBfQzEyMjIzMA==
+    :key: C71620_C122230
+    :label: Microgram Equivalent per Liter
+    :notation: ugEq/L
+    :identifier: C122230
     :status:
     - :status: :updated
-      :notation: SGRQ01-If You Have Ever Held a Job
-      :previous: SGRQ01-If You Have Ever Held a job
-  :C120982_C121061:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDk4Mi9WNTAjQzEyMDk4Ml9DMTIxMDYx
-    :key: C120982_C121061
-    :label: BACS - Symbol Coding Raw Score
-    :notation: BACS1-Symbol Coding Raw Score
-    :identifier: C121061
+      :notation: ugEq/L
+      :previous: ugeq/L
+  :C128689_C67271:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNjcyNzE=
+    :key: C128689_C67271
+    :label: Bahamian
+    :notation: BAHAMIAN
+    :identifier: C67271
     :status:
     - :status: :updated
-      :notation: BACS1-Symbol Coding Raw Score
-      :previous: BACS-Symbol Coding Raw Score
-  :C120982_C121060:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDk4Mi9WNTAjQzEyMDk4Ml9DMTIxMDYw
-    :key: C120982_C121060
-    :label: BACS - Verbal Fluency Total
-    :notation: BACS1-Verbal Fluency Total
-    :identifier: C121060
+      :notation: BAHAMIAN
+      :previous: BANGLADESHI
+  :C128689_C43823:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNDM4MjM=
+    :key: C128689_C43823
+    :label: Barbadian
+    :notation: BARBADIAN
+    :identifier: C43823
     :status:
     - :status: :updated
-      :notation: BACS1-Verbal Fluency Total
-      :previous: BACS-Verbal Fluency Total
+      :notation: BARBADIAN
+      :previous: BHUTANESE
+  :C128689_C43671:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyODY4OS9WNTAjQzEyODY4OV9DNDM2NzE=
+    :key: C128689_C43671
+    :label: Bangladeshi
+    :notation: BANGLADESHI
+    :identifier: C43671
+    :status:
+    - :status: :updated
+      :notation: BANGLADESHI
+      :previous: BARBADIAN

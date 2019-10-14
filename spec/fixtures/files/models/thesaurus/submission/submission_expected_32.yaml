@@ -1,2151 +1,258 @@
 ---
 :versions:
-- '2012-12-21'
+- '2012-08-03'
 :items:
-  :C71113_C67069:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY3MDY5
-    :key: C71113_C67069
-    :label: Weekly
-    :notation: EVERY WEEK
-    :identifier: C67069
-    :status:
-    - :status: :updated
-      :notation: EVERY WEEK
-      :previous: QS
-  :C71113_C64529:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY0NTI5
-    :key: C71113_C64529
-    :label: Every Four Weeks
-    :notation: EVERY 4 WEEKS
-    :identifier: C64529
-    :status:
-    - :status: :updated
-      :notation: EVERY 4 WEEKS
-      :previous: Q4S
-  :C71113_C64528:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY0NTI4
-    :key: C71113_C64528
-    :label: Three Times Weekly
-    :notation: 3 TIMES PER WEEK
-    :identifier: C64528
-    :status:
-    - :status: :updated
-      :notation: 3 TIMES PER WEEK
-      :previous: TIS
-  :C71113_C64531:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY0NTMx
-    :key: C71113_C64531
-    :label: Four Times Weekly
-    :notation: 4 TIMES PER WEEK
-    :identifier: C64531
-    :status:
-    - :status: :updated
-      :notation: 4 TIMES PER WEEK
-      :previous: QIS
-  :C71113_C64535:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY0NTM1
-    :key: C71113_C64535
-    :label: Every Three Weeks
-    :notation: EVERY 3 WEEKS
-    :identifier: C64535
-    :status:
-    - :status: :updated
-      :notation: EVERY 3 WEEKS
-      :previous: Q3S
-  :C71113_C64497:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzY0NDk3
-    :key: C71113_C64497
-    :label: Twice Weekly
-    :notation: 2 TIMES PER WEEK
-    :identifier: C64497
-    :status:
-    - :status: :updated
-      :notation: 2 TIMES PER WEEK
-      :previous: BIS
-  :C71113_C71127:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzcxMTI3
-    :key: C71113_C71127
-    :label: Every Two Weeks
-    :notation: EVERY 2 WEEKS
-    :identifier: C71127
-    :status:
-    - :status: :updated
-      :notation: EVERY 2 WEEKS
-      :previous: Q2S
-  :C67154_C84809:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YzMiNDNjcxNTRfQzg0ODA5
-    :key: C67154_C84809
-    :label: Beta Amyloid 42 Measurement
-    :notation: Amyloid Beta 1-42
-    :identifier: C84809
-    :status:
-    - :status: :updated
-      :notation: Amyloid Beta 1-42
-      :previous: Amyloid Beta 42
-  :C85492_C18475:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkyL1YzMiNDODU0OTJfQzE4NDc1
-    :key: C85492_C18475
-    :label: Liquid Chromatography Mass Spectrometry
-    :notation: LC/MS
-    :identifier: C18475
-    :status:
-    - :status: :updated
-      :notation: LC/MS
-      :previous: HPLC/MS
-  :C85493_C85571:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzg1NTcx
-    :key: C85493_C85571
-    :label: Area Under the Urinary Excretion Rate Curve From Dosing to Last Concentration
-    :notation: AURC to Last Nonzero Rate
-    :identifier: C85571
-    :status:
-    - :status: :updated
-      :notation: AURC to Last Nonzero Rate
-      :previous: AURC Dosing to Last Conc
-  :C85492_C17007:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkyL1YzMiNDODU0OTJfQzE3MDA3
-    :key: C85492_C17007
-    :label: Positron Emission Tomography
-    :notation: PET SCAN
-    :identifier: C17007
-    :status:
-    - :status: :updated
-      :notation: PET SCAN
-      :previous: PET/CT SCAN
-  :C67152_C98768:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1YzMiNDNjcxNTJfQzk4NzY4
-    :key: C67152_C98768
-    :label: Pharmacological Class of Investigational Therapy
-    :notation: Pharmacological Class of Invest. Therapy
-    :identifier: C98768
-    :status:
-    - :status: :updated
-      :notation: Pharmacological Class of Invest. Therapy
-      :previous: Pharmacological Class of Investigational Therapy
-  :C71113_C89788:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTEzL1YzMiNDNzExMTNfQzg5Nzg4
-    :key: C71113_C89788
-    :label: Every Six Weeks
-    :notation: EVERY 6 WEEKS
-    :identifier: C89788
-    :status:
-    - :status: :updated
-      :notation: EVERY 6 WEEKS
-      :previous: Q6S
-  :C67152_C98770:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1YzMiNDNjcxNTJfQzk4Nzcw
-    :key: C67152_C98770
-    :label: Planned Country of Investigational Site
-    :notation: Planned Country of Investigational Sites
-    :identifier: C98770
-    :status:
-    - :status: :updated
-      :notation: Planned Country of Investigational Sites
-      :previous: Planned Country of Investigational Site(s)
-  :C100143_C100685:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg1
-    :key: C100143_C100685
-    :label: NPI - Talk to Total Strangers as if He/She Knew Them
-    :notation: NPI1-Talk to Strangers
-    :identifier: C100685
-    :status:
-    - :status: :updated
-      :notation: NPI1-Talk to Strangers
-      :previous: NPI-Question H2
-  :C100143_C100705:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA1
-    :key: C100143_C100705
-    :label: NPI - Fidget Excessively, Seem Unable to Sit Still
-    :notation: NPI1-Fidget Excessively
-    :identifier: C100705
-    :status:
-    - :status: :updated
-      :notation: NPI1-Fidget Excessively
-      :previous: NPI-Question J6
-  :C100143_C100699:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk5
-    :key: C100143_C100699
-    :label: NPI - Pace, Do Things Over and Over, Repeatedly Pick at Things
-    :notation: NPI1-Do Things Repeatedly
-    :identifier: C100699
-    :status:
-    - :status: :updated
-      :notation: NPI1-Do Things Repeatedly
-      :previous: NPI-Question J
-  :C100143_C100678:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc4
-    :key: C100143_C100678
-    :label: NPI - Contribute Less to Household Chores
-    :notation: NPI1-Contribute Less to Chores
-    :identifier: C100678
-    :status:
-    - :status: :updated
-      :notation: NPI1-Contribute Less to Chores
-      :previous: NPI-Question G4
-  :C100144_C100713:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzEz
-    :key: C100144_C100713
-    :label: NPI - Awaken Too Early in Morning
-    :notation: NPI1K06
-    :identifier: C100713
-    :status:
-    - :status: :updated
-      :notation: NPI1K06
-      :previous: NPI1K6
-  :C100144_C100628:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI4
-    :key: C100144_C100628
-    :label: NPI - His/Her House Is Not His/Her Home
-    :notation: NPI1A06
-    :identifier: C100628
-    :status:
-    - :status: :updated
-      :notation: NPI1A06
-      :previous: NPI1A6
-  :C100143_C100657:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU3
-    :key: C100143_C100657
-    :label: NPI - Show Any Other Signs of Depression or Sadness
-    :notation: NPI1-Other Signs of Depression
-    :identifier: C100657
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Depression
-      :previous: NPI-Question D8
-  :C100144_C100686:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg2
-    :key: C100144_C100686
-    :label: NPI - Say Things to People that are Insensitive
-    :notation: NPI1H03
-    :identifier: C100686
-    :status:
-    - :status: :updated
-      :notation: NPI1H03
-      :previous: NPI1H3
-  :C100143_C100721:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzIx
-    :key: C100143_C100721
-    :label: NPI - Change in Eating Behavior
-    :notation: NPI1-Change in Eating Behavior
-    :identifier: C100721
-    :status:
-    - :status: :updated
-      :notation: NPI1-Change in Eating Behavior
-      :previous: NPI-Question L5
-  :C100143_C100636:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM2
-    :key: C100143_C100636
-    :label: NPI - Report Smelling Odors Not Smelled by Others
-    :notation: NPI1-Smell Odors Others Do Not Smell
-    :identifier: C100636
-    :status:
-    - :status: :updated
-      :notation: NPI1-Smell Odors Others Do Not Smell
-      :previous: NPI-Question B4
-  :C100144_C100665:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjY1
-    :key: C100144_C100665
-    :label: NPI - Show Any Other Signs of Anxiety
-    :notation: NPI1E07
-    :identifier: C100665
-    :status:
-    - :status: :updated
-      :notation: NPI1E07
-      :previous: NPI1E7
-  :C100143_C100700:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzAw
-    :key: C100143_C100700
-    :label: NPI - Pace Around the House Without Apparent Purpose
-    :notation: NPI1-Pace
-    :identifier: C100700
-    :status:
-    - :status: :updated
-      :notation: NPI1-Pace
-      :previous: NPI-Question J1
-  :C100143_C100694:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk0
-    :key: C100143_C100694
-    :label: NPI - Sudden Flares of Anger
-    :notation: NPI1-Sudden Anger
-    :identifier: C100694
-    :status:
-    - :status: :updated
-      :notation: NPI1-Sudden Anger
-      :previous: NPI-Question I3
-  :C100143_C100653:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjUz
-    :key: C100143_C100653
-    :label: NPI - Say That He/She is a Bad Person
-    :notation: NPI1-Bad Person
-    :identifier: C100653
-    :status:
-    - :status: :updated
-      :notation: NPI1-Bad Person
-      :previous: NPI-Question D4
-  :C100144_C100644:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQ0
-    :key: C100144_C100644
-    :label: NPI - Any Other Behaviors That Make Him/Her Hard to Handle
-    :notation: NPI1C04
-    :identifier: C100644
-    :status:
-    - :status: :updated
-      :notation: NPI1C04
-      :previous: NPI1C4
-  :C100143_C100673:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjcz
-    :key: C100143_C100673
-    :label: NPI - Show Any Other Signs of Feeling Too Good or Being Too Happy
-    :notation: NPI1-Other Signs of Feeling Too Happy
-    :identifier: C100673
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Feeling Too Happy
-      :previous: NPI-Question F7
-  :C100144_C100623:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjIz
-    :key: C100144_C100623
-    :label: NPI - He/She is in Danger
-    :notation: NPI1A01
-    :identifier: C100623
-    :status:
-    - :status: :updated
-      :notation: NPI1A01
-      :previous: NPI1A1
-  :C100143_C100652:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjUy
-    :key: C100143_C100652
-    :label: NPI - Put Him/Herself Down or Say That He/She Feels Like a Failure
-    :notation: NPI1-Feel Like a Failure
-    :identifier: C100652
-    :status:
-    - :status: :updated
-      :notation: NPI1-Feel Like a Failure
-      :previous: NPI-Question D3
-  :C100144_C100681:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjgx
-    :key: C100144_C100681
-    :label: NPI - Less Enthusiastic About His/Her Usual Interests
-    :notation: NPI1G07
-    :identifier: C100681
-    :status:
-    - :status: :updated
-      :notation: NPI1G07
-      :previous: NPI1G7
-  :C100143_C100631:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjMx
-    :key: C100143_C100631
-    :label: NPI - Any Other Unusual Things That I Haven't Asked About
-    :notation: NPI1-Other Unusual Beliefs
-    :identifier: C100631
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Unusual Beliefs
-      :previous: NPI-Question A9
-  :C100144_C100660:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjYw
-    :key: C100144_C100660
-    :label: NPI - Periods of Feeling Shaky, Unable to Relax, or Feeling Excessively
-      Tense
-    :notation: NPI1E02
-    :identifier: C100660
-    :status:
-    - :status: :updated
-      :notation: NPI1E02
-      :previous: NPI1E2
-  :C100143_C100709:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA5
-    :key: C100143_C100709
-    :label: NPI - Get Up During the Night
-    :notation: NPI1-Get Up during Night
-    :identifier: C100709
-    :status:
-    - :status: :updated
-      :notation: NPI1-Get Up during Night
-      :previous: NPI-Question K2
-  :C100143_C100695:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk1
-    :key: C100143_C100695
-    :label: NPI - Impatient, Having Trouble Coping with Delays
-    :notation: NPI1-Impatient
-    :identifier: C100695
-    :status:
-    - :status: :updated
-      :notation: NPI1-Impatient
-      :previous: NPI-Question I4
-  :C100143_C100680:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjgw
-    :key: C100143_C100680
-    :label: NPI - Lost Interest in Friends and Family Members
-    :notation: NPI1-Lost Interest in Friends
-    :identifier: C100680
-    :status:
-    - :status: :updated
-      :notation: NPI1-Lost Interest in Friends
-      :previous: NPI-Question G6
-  :C100143_C100719:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE5
-    :key: C100143_C100719
-    :label: NPI - Loss of Weight
-    :notation: NPI1-Weight Loss
-    :identifier: C100719
-    :status:
-    - :status: :updated
-      :notation: NPI1-Weight Loss
-      :previous: NPI-Question L3
-  :C100143_C100712:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzEy
-    :key: C100143_C100712
-    :label: NPI - Wake Up at Night, Dress, and Plan to Go Out
-    :notation: NPI1-Wake at Night and Think Morning
-    :identifier: C100712
-    :status:
-    - :status: :updated
-      :notation: NPI1-Wake at Night and Think Morning
-      :previous: NPI-Question K5
-  :C100143_C100716:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE2
-    :key: C100143_C100716
-    :label: NPI - Change in Appetite, Weight, or Eating Habits
-    :notation: NPI1-Change in Appetite or Weight
-    :identifier: C100716
-    :status:
-    - :status: :updated
-      :notation: NPI1-Change in Appetite or Weight
-      :previous: NPI-Question L
-  :C100143_C100710:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzEw
-    :key: C100143_C100710
-    :label: NPI - Wander, Pace or Get Involved in Inappropriate Activities at Night
-    :notation: NPI1-Wander or Pace at Night
-    :identifier: C100710
-    :status:
-    - :status: :updated
-      :notation: NPI1-Wander or Pace at Night
-      :previous: NPI-Question K3
-  :C100143_C100676:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc2
-    :key: C100143_C100676
-    :label: NPI - Less Likely Initiate to Initiate a Conversation
-    :notation: NPI1-Less Likely Initiate Conversation
-    :identifier: C100676
-    :status:
-    - :status: :updated
-      :notation: NPI1-Less Likely Initiate Conversation
-      :previous: NPI-Question G2
-  :C100144_C100709:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzA5
-    :key: C100144_C100709
-    :label: NPI - Get Up During the Night
-    :notation: NPI1K02
-    :identifier: C100709
-    :status:
-    - :status: :updated
-      :notation: NPI1K02
-      :previous: NPI1K2
-  :C100143_C100629:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI5
-    :key: C100143_C100629
-    :label: NPI - Family Members Plan to Abandon Him/Her
-    :notation: NPI1-Family Plans to Abandon
-    :identifier: C100629
-    :status:
-    - :status: :updated
-      :notation: NPI1-Family Plans to Abandon
-      :previous: NPI-Question A7
-  :C100143_C100717:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE3
-    :key: C100143_C100717
-    :label: NPI - Loss of Appetite
-    :notation: NPI1-Loss of Appetite
-    :identifier: C100717
-    :status:
-    - :status: :updated
-      :notation: NPI1-Loss of Appetite
-      :previous: NPI-Question L1
-  :C100143_C100668:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY4
-    :key: C100143_C100668
-    :label: NPI - Fine Humor and Laugh at Things That Others Do Not Find Funny
-    :notation: NPI1-Humor Others Do Not Find Funny
-    :identifier: C100668
-    :status:
-    - :status: :updated
-      :notation: NPI1-Humor Others Do Not Find Funny
-      :previous: NPI-Question F2
-  :C100143_C100669:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY5
-    :key: C100143_C100669
-    :label: NPI - Seem to Have a Childish Sense of Humor
-    :notation: NPI1-Childish Sense of Humor
-    :identifier: C100669
-    :status:
-    - :status: :updated
-      :notation: NPI1-Childish Sense of Humor
-      :previous: NPI-Question F3
-  :C100144_C100704:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzA0
-    :key: C100144_C100704
-    :label: NPI - Engage in Repetitive Activities
-    :notation: NPI1J05
-    :identifier: C100704
-    :status:
-    - :status: :updated
-      :notation: NPI1J05
-      :previous: NPI1J5
-  :C100144_C100698:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjk4
-    :key: C100144_C100698
-    :label: NPI - Show Any Other Signs of Irritability
-    :notation: NPI1I07
-    :identifier: C100698
-    :status:
-    - :status: :updated
-      :notation: NPI1I07
-      :previous: NPI1I7
-  :C100143_C100702:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzAy
-    :key: C100143_C100702
-    :label: NPI - Repeatedly Put On and Take Off Clothing
-    :notation: NPI1-Repeatedly Change Clothing
-    :identifier: C100702
-    :status:
-    - :status: :updated
-      :notation: NPI1-Repeatedly Change Clothing
-      :previous: NPI-Question J3
-  :C100143_C100648:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ4
-    :key: C100143_C100648
-    :label: NPI - Any Other Aggressive or Agitated Behaviors
-    :notation: NPI1-Other Aggressive Behavior
-    :identifier: C100648
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Aggressive Behavior
-      :previous: NPI-Question C8
-  :C100143_C100658:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU4
-    :key: C100143_C100658
-    :label: NPI - Very Nervous, Worried, or Frightened for No Apparent Reason
-    :notation: NPI1-Nervous or Worried
-    :identifier: C100658
-    :status:
-    - :status: :updated
-      :notation: NPI1-Nervous or Worried
-      :previous: NPI-Question E
-  :C100144_C100677:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjc3
-    :key: C100144_C100677
-    :label: NPI - Less Affectionate or Lacking in Emotions
-    :notation: NPI1G03
-    :identifier: C100677
-    :status:
-    - :status: :updated
-      :notation: NPI1G03
-      :previous: NPI1G3
-  :C100143_C100627:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI3
-    :key: C100143_C100627
-    :label: NPI - His/Her Spouse or Others Are Not Who They Claim To Be
-    :notation: NPI1-People Not Who They Claim
-    :identifier: C100627
-    :status:
-    - :status: :updated
-      :notation: NPI1-People Not Who They Claim
-      :previous: NPI-Question A5
-  :C100144_C100656:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjU2
-    :key: C100144_C100656
-    :label: NPI - Express a Wish for Death
-    :notation: NPI1D07
-    :identifier: C100656
-    :status:
-    - :status: :updated
-      :notation: NPI1D07
-      :previous: NPI1D7
-  :C100144_C100720:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzIw
-    :key: C100144_C100720
-    :label: NPI - Gained Weight
-    :notation: NPI1L04
-    :identifier: C100720
-    :status:
-    - :status: :updated
-      :notation: NPI1L04
-      :previous: NPI1L4
-  :C100143_C100644:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ0
-    :key: C100143_C100644
-    :label: NPI - Any Other Behaviors That Make Him/Her Hard to Handle
-    :notation: NPI1-Other Behaviors Hard to Handle
-    :identifier: C100644
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Behaviors Hard to Handle
-      :previous: NPI-Question C4
-  :C100144_C100635:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM1
-    :key: C100144_C100635
-    :label: NPI - Describe Seeing Things Not Seen by Others
-    :notation: NPI1B03
-    :identifier: C100635
-    :status:
-    - :status: :updated
-      :notation: NPI1B03
-      :previous: NPI1B3
-  :C100143_C100664:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY0
-    :key: C100143_C100664
-    :label: NPI - Become Nervous and Upset When Separated From You
-    :notation: NPI1-Nervous when Separated
-    :identifier: C100664
-    :status:
-    - :status: :updated
-      :notation: NPI1-Nervous when Separated
-      :previous: NPI-Question E6
-  :C100144_C100693:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjkz
-    :key: C100144_C100693
-    :label: NPI - Rapidly Change Moods From One to Another
-    :notation: NPI1I02
-    :identifier: C100693
-    :status:
-    - :status: :updated
-      :notation: NPI1I02
-      :previous: NPI1I2
-  :C100143_C100643:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQz
-    :key: C100143_C100643
-    :label: NPI - Uncooperative
-    :notation: NPI1-Uncooperative
-    :identifier: C100643
-    :status:
-    - :status: :updated
-      :notation: NPI1-Uncooperative
-      :previous: NPI-Question C3
-  :C100144_C100672:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjcy
-    :key: C100144_C100672
-    :label: NPI - Talk Big or Claim to Have More Abilities or Wealth Than is True
-    :notation: NPI1F06
-    :identifier: C100672
-    :status:
-    - :status: :updated
-      :notation: NPI1F06
-      :previous: NPI1F6
-  :C100143_C100622:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjIy
-    :key: C100143_C100622
-    :label: NPI - Have Beliefs That You Know are Not True
-    :notation: NPI1-Beliefs Untrue
-    :identifier: C100622
-    :status:
-    - :status: :updated
-      :notation: NPI1-Beliefs Untrue
-      :previous: NPI-Question A
-  :C100144_C100651:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjUx
-    :key: C100144_C100651
-    :label: NPI - Say, or Act as if He/She is Sad or in Low Spirits
-    :notation: NPI1D02
-    :identifier: C100651
-    :status:
-    - :status: :updated
-      :notation: NPI1D02
-      :previous: NPI1D2
-  :C100144_C100630:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjMw
-    :key: C100144_C100630
-    :label: NPI - Television or Magazine Figures Are Actually Present In the Home
-    :notation: NPI1A08
-    :identifier: C100630
-    :status:
-    - :status: :updated
-      :notation: NPI1A08
-      :previous: NPI1A8
-  :C100143_C100707:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA3
-    :key: C100143_C100707
-    :label: NPI - Difficulty Sleeping
-    :notation: NPI1-Difficulty Sleeping
-    :identifier: C100707
-    :status:
-    - :status: :updated
-      :notation: NPI1-Difficulty Sleeping
-      :previous: NPI-Question K
-  :C100143_C100703:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzAz
-    :key: C100143_C100703
-    :label: NPI - Repetitive Activities or 'Habits'
-    :notation: NPI1-Repetitive Activities or Habits
-    :identifier: C100703
-    :status:
-    - :status: :updated
-      :notation: NPI1-Repetitive Activities or Habits
-      :previous: NPI-Question J4
-  :C100143_C100642:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQy
-    :key: C100143_C100642
-    :label: NPI - Stubborn
-    :notation: NPI1-Stubborn
-    :identifier: C100642
-    :status:
-    - :status: :updated
-      :notation: NPI1-Stubborn
-      :previous: NPI-Question C2
-  :C100143_C100659:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU5
-    :key: C100143_C100659
-    :label: NPI - Say That He/She is Worried About Planned Events
-    :notation: NPI1-Worried about Planned Event
-    :identifier: C100659
-    :status:
-    - :status: :updated
-      :notation: NPI1-Worried about Planned Event
-      :previous: NPI-Question E1
-  :C100143_C100708:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA4
-    :key: C100143_C100708
-    :label: NPI - Difficulty Falling Asleep
-    :notation: NPI1-Difficulty Falling Asleep
-    :identifier: C100708
-    :status:
-    - :status: :updated
-      :notation: NPI1-Difficulty Falling Asleep
-      :previous: NPI-Question K1
-  :C100144_C100689:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg5
-    :key: C100144_C100689
-    :label: NPI - Take Liberties or Touch or Hug Others
-    :notation: NPI1H06
-    :identifier: C100689
-    :status:
-    - :status: :updated
-      :notation: NPI1H06
-      :previous: NPI1H6
-  :C100143_C100724:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzI0
-    :key: C100143_C100724
-    :label: NPI - Any Other Changes in Appetite or Eating
-    :notation: NPI1-Other Changes in Eating
-    :identifier: C100724
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Changes in Eating
-      :previous: NPI-Question L8
-  :C100143_C100639:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM5
-    :key: C100143_C100639
-    :label: NPI - Describe Any Other Unusual Sensory Experiences
-    :notation: NPI1-Other Unusual Sensory Experience
-    :identifier: C100639
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Unusual Sensory Experience
-      :previous: NPI-Question B7
-  :C100143_C100679:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc5
-    :key: C100143_C100679
-    :label: NPI - Less Interested in the Activities and Plans of Others
-    :notation: NPI1-Less Interest in Activities
-    :identifier: C100679
-    :status:
-    - :status: :updated
-      :notation: NPI1-Less Interest in Activities
-      :previous: NPI-Question G5
-  :C100144_C100668:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjY4
-    :key: C100144_C100668
-    :label: NPI - Fine Humor and Laugh at Things That Others Do Not Find Funny
-    :notation: NPI1F02
-    :identifier: C100668
-    :status:
-    - :status: :updated
-      :notation: NPI1F02
-      :previous: NPI1F2
-  :C100143_C100697:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk3
-    :key: C100143_C100697
-    :label: NPI - Argumentative and Difficult to Get Along With
-    :notation: NPI1-Argumentative
-    :identifier: C100697
-    :status:
-    - :status: :updated
-      :notation: NPI1-Argumentative
-      :previous: NPI-Question I6
-  :C100144_C100647:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQ3
-    :key: C100144_C100647
-    :label: NPI - Attempt to Hurt or Hit Others
-    :notation: NPI1C07
-    :identifier: C100647
-    :status:
-    - :status: :updated
-      :notation: NPI1C07
-      :previous: NPI1C7
-  :C100143_C100718:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE4
-    :key: C100143_C100718
-    :label: NPI - Increase in Appetite
-    :notation: NPI1-Increase in Appetite
-    :identifier: C100718
-    :status:
-    - :status: :updated
-      :notation: NPI1-Increase in Appetite
-      :previous: NPI-Question L2
-  :C100144_C100711:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzEx
-    :key: C100144_C100711
-    :label: NPI - Awaken You During the Night
-    :notation: NPI1K04
-    :identifier: C100711
-    :status:
-    - :status: :updated
-      :notation: NPI1K04
-      :previous: NPI1K4
-  :C100144_C100626:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI2
-    :key: C100144_C100626
-    :label: NPI - Unwelcome Guests are Living in His/Her House
-    :notation: NPI1A04
-    :identifier: C100626
-    :status:
-    - :status: :updated
-      :notation: NPI1A04
-      :previous: NPI1A4
-  :C100143_C100655:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU1
-    :key: C100143_C100655
-    :label: NPI - Say He/She is a Burden to the Family
-    :notation: NPI1-Burden to Family
-    :identifier: C100655
-    :status:
-    - :status: :updated
-      :notation: NPI1-Burden to Family
-      :previous: NPI-Question D6
-  :C100143_C100675:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc1
-    :key: C100143_C100675
-    :label: NPI - Seem Less Spontaneous and Less Active Than Usual
-    :notation: NPI1-Less Spontaneous or Active
-    :identifier: C100675
-    :status:
-    - :status: :updated
-      :notation: NPI1-Less Spontaneous or Active
-      :previous: NPI-Question G1
-  :C100144_C100684:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg0
-    :key: C100144_C100684
-    :label: NPI - Act Impulsively without Appearing to Consider the Consequences
-    :notation: NPI1H01
-    :identifier: C100684
-    :status:
-    - :status: :updated
-      :notation: NPI1H01
-      :previous: NPI1H1
-  :C100143_C100634:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM0
-    :key: C100143_C100634
-    :label: NPI - Talk to People Who Are Not There
-    :notation: NPI1-Talk to People Not There
-    :identifier: C100634
-    :status:
-    - :status: :updated
-      :notation: NPI1-Talk to People Not There
-      :previous: NPI-Question B2
-  :C100144_C100663:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjYz
-    :key: C100144_C100663
-    :label: NPI - Avoid Certain Places or Situations That Make Him/Her More Nervous
-    :notation: NPI1E05
-    :identifier: C100663
-    :status:
-    - :status: :updated
-      :notation: NPI1E05
-      :previous: NPI1E5
-  :C100143_C100692:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjky
-    :key: C100143_C100692
-    :label: NPI - Bad Temper, Flying 'Off the Handle' Easily Over Little Things
-    :notation: NPI1-Bad Temper
-    :identifier: C100692
-    :status:
-    - :status: :updated
-      :notation: NPI1-Bad Temper
-      :previous: NPI-Question I1
-  :C100143_C100630:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjMw
-    :key: C100143_C100630
-    :label: NPI - Television or Magazine Figures Are Actually Present In the Home
-    :notation: NPI1-TV/Magazine Figures Present
-    :identifier: C100630
-    :status:
-    - :status: :updated
-      :notation: NPI1-TV/Magazine Figures Present
-      :previous: NPI-Question A8
-  :C100143_C100693:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjkz
-    :key: C100143_C100693
-    :label: NPI - Rapidly Change Moods From One to Another
-    :notation: NPI1-Rapidly Change Moods
-    :identifier: C100693
-    :status:
-    - :status: :updated
-      :notation: NPI1-Rapidly Change Moods
-      :previous: NPI-Question I2
-  :C100144_C100642:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQy
-    :key: C100144_C100642
-    :label: NPI - Stubborn
-    :notation: NPI1C02
-    :identifier: C100642
-    :status:
-    - :status: :updated
-      :notation: NPI1C02
-      :previous: NPI1C2
-  :C100143_C100671:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjcx
-    :key: C100143_C100671
-    :label: NPI - Play Childish Pranks
-    :notation: NPI1-Childish Pranks
-    :identifier: C100671
-    :status:
-    - :status: :updated
-      :notation: NPI1-Childish Pranks
-      :previous: NPI-Question F5
-  :C100143_C100628:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI4
-    :key: C100143_C100628
-    :label: NPI - His/Her House Is Not His/Her Home
-    :notation: NPI1-House Not Their Home
-    :identifier: C100628
-    :status:
-    - :status: :updated
-      :notation: NPI1-House Not Their Home
-      :previous: NPI-Question A6
-  :C100143_C100711:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzEx
-    :key: C100143_C100711
-    :label: NPI - Awaken You During the Night
-    :notation: NPI1-Awaken Caregiver during Night
-    :identifier: C100711
-    :status:
-    - :status: :updated
-      :notation: NPI1-Awaken Caregiver during Night
-      :previous: NPI-Question K4
-  :C100143_C100650:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjUw
-    :key: C100143_C100650
-    :label: NPI - Periods of Tearfulness or Sobbing
-    :notation: NPI1-Tearfulness or Sobbing
-    :identifier: C100650
-    :status:
-    - :status: :updated
-      :notation: NPI1-Tearfulness or Sobbing
-      :previous: NPI-Question D1
-  :C100143_C100633:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjMz
-    :key: C100143_C100633
-    :label: NPI - Describe Hearing Voices or Act as if He/She Hears Voices
-    :notation: NPI1-Hearing Voices
-    :identifier: C100633
-    :status:
-    - :status: :updated
-      :notation: NPI1-Hearing Voices
-      :previous: NPI-Question B1
-  :C100143_C100651:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjUx
-    :key: C100143_C100651
-    :label: NPI - Say, or Act as if He/She is Sad or in Low Spirits
-    :notation: NPI1-Say or Act in Low Spirits
-    :identifier: C100651
-    :status:
-    - :status: :updated
-      :notation: NPI1-Say or Act in Low Spirits
-      :previous: NPI-Question D2
-  :C100143_C100672:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjcy
-    :key: C100143_C100672
-    :label: NPI - Talk Big or Claim to Have More Abilities or Wealth Than is True
-    :notation: NPI1-Talk Big
-    :identifier: C100672
-    :status:
-    - :status: :updated
-      :notation: NPI1-Talk Big
-      :previous: NPI-Question F6
-  :C100143_C100696:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk2
-    :key: C100143_C100696
-    :label: NPI - Cranky and Irritable
-    :notation: NPI1-Cranky and Irritable
-    :identifier: C100696
-    :status:
-    - :status: :updated
-      :notation: NPI1-Cranky and Irritable
-      :previous: NPI-Question I5
-  :C100143_C100686:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg2
-    :key: C100143_C100686
-    :label: NPI - Say Things to People that are Insensitive
-    :notation: NPI1-Say Insensitive Things
-    :identifier: C100686
-    :status:
-    - :status: :updated
-      :notation: NPI1-Say Insensitive Things
-      :previous: NPI-Question H3
-  :C100143_C100723:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzIz
-    :key: C100143_C100723
-    :label: NPI - Developed Eating Behaviors Such as Eating Exactly the Same Types
-      of Food
-    :notation: NPI1-Develop Eating Behaviors
-    :identifier: C100723
-    :status:
-    - :status: :updated
-      :notation: NPI1-Develop Eating Behaviors
-      :previous: NPI-Question L7
-  :C100143_C100689:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg5
-    :key: C100143_C100689
-    :label: NPI - Take Liberties or Touch or Hug Others
-    :notation: NPI1-Take Liberties or Touch Others
-    :identifier: C100689
-    :status:
-    - :status: :updated
-      :notation: NPI1-Take Liberties or Touch Others
-      :previous: NPI-Question H6
-  :C100143_C100715:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE1
-    :key: C100143_C100715
-    :label: NPI - Any Other Nighttime Behaviors That Bother You
-    :notation: NPI1-Other Nighttime Behaviors
-    :identifier: C100715
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Nighttime Behaviors
-      :previous: NPI-Question K8
-  :C100143_C100661:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjYx
-    :key: C100143_C100661
-    :label: NPI - Periods of Shortness of Breath, Gasping, or Sighing for No Apparent
-      Reason
-    :notation: NPI1-Short of Breath, Gasp, Sigh
-    :identifier: C100661
-    :status:
-    - :status: :updated
-      :notation: NPI1-Short of Breath, Gasp, Sigh
-      :previous: NPI-Question E3
-  :C100144_C100659:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjU5
-    :key: C100144_C100659
-    :label: NPI - Say That He/She is Worried About Planned Events
-    :notation: NPI1E01
-    :identifier: C100659
-    :status:
-    - :status: :updated
-      :notation: NPI1E01
-      :previous: NPI1E1
-  :C100143_C100688:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg4
-    :key: C100143_C100688
-    :label: NPI - Talk Openly About Very Personal or Private Matters
-    :notation: NPI1-Talk Openly about Private Matters
-    :identifier: C100688
-    :status:
-    - :status: :updated
-      :notation: NPI1-Talk Openly about Private Matters
-      :previous: NPI-Question H5
-  :C100144_C100723:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzIz
-    :key: C100144_C100723
-    :label: NPI - Developed Eating Behaviors Such as Eating Exactly the Same Types
-      of Food
-    :notation: NPI1L07
-    :identifier: C100723
-    :status:
-    - :status: :updated
-      :notation: NPI1L07
-      :previous: NPI1L7
-  :C100144_C100638:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM4
-    :key: C100144_C100638
-    :label: NPI - Describe Tastes That Are Without Any Known Cause
-    :notation: NPI1B06
-    :identifier: C100638
-    :status:
-    - :status: :updated
-      :notation: NPI1B06
-      :previous: NPI1B6
-  :C100143_C100667:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY3
-    :key: C100143_C100667
-    :label: NPI - Appear to Feel Good or to Be Too Happy
-    :notation: NPI1-Feel Good or Too Happy
-    :identifier: C100667
-    :status:
-    - :status: :updated
-      :notation: NPI1-Feel Good or Too Happy
-      :previous: NPI-Question F1
-  :C100144_C100702:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzAy
-    :key: C100144_C100702
-    :label: NPI - Repeatedly Put On and Take Off Clothing
-    :notation: NPI1J03
-    :identifier: C100702
-    :status:
-    - :status: :updated
-      :notation: NPI1J03
-      :previous: NPI1J3
-  :C100144_C100696:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjk2
-    :key: C100144_C100696
-    :label: NPI - Cranky and Irritable
-    :notation: NPI1I05
-    :identifier: C100696
-    :status:
-    - :status: :updated
-      :notation: NPI1I05
-      :previous: NPI1I5
-  :C100143_C100646:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ2
-    :key: C100143_C100646
-    :label: NPI - Slam doors, Kick Furniture, Throw Things
-    :notation: NPI1-Slam, Kick or Throw Things
-    :identifier: C100646
-    :status:
-    - :status: :updated
-      :notation: NPI1-Slam, Kick or Throw Things
-      :previous: NPI-Question C6
-  :C100144_C100675:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjc1
-    :key: C100144_C100675
-    :label: NPI - Seem Less Spontaneous and Less Active Than Usual
-    :notation: NPI1G01
-    :identifier: C100675
-    :status:
-    - :status: :updated
-      :notation: NPI1G01
-      :previous: NPI1G1
-  :C100143_C100722:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzIy
-    :key: C100143_C100722
-    :label: NPI - Change in Kind of Food He/She Likes
-    :notation: NPI1-Change in Kind of Food
-    :identifier: C100722
-    :status:
-    - :status: :updated
-      :notation: NPI1-Change in Kind of Food
-      :previous: NPI-Question L6
-  :C100143_C100625:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI1
-    :key: C100143_C100625
-    :label: NPI - His/Her Spouse is Having an Affair
-    :notation: NPI1-Spouse Having Affair
-    :identifier: C100625
-    :status:
-    - :status: :updated
-      :notation: NPI1-Spouse Having Affair
-      :previous: NPI-Question A3
-  :C100144_C100654:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjU0
-    :key: C100144_C100654
-    :label: NPI - Seem Very Discouraged
-    :notation: NPI1D05
-    :identifier: C100654
-    :status:
-    - :status: :updated
-      :notation: NPI1D05
-      :previous: NPI1D5
-  :C100143_C100662:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjYy
-    :key: C100143_C100662
-    :label: NPI - Complain of Butterflies, Racing or Pounding Heart
-    :notation: NPI1-Butterfies or Racing Heart
-    :identifier: C100662
-    :status:
-    - :status: :updated
-      :notation: NPI1-Butterfies or Racing Heart
-      :previous: NPI-Question E4
-  :C100143_C100683:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjgz
-    :key: C100143_C100683
-    :label: NPI - Seem to Act Impulsively Without Thinking
-    :notation: NPI1-Act Impulsively
-    :identifier: C100683
-    :status:
-    - :status: :updated
-      :notation: NPI1-Act Impulsively
-      :previous: NPI-Question H
-  :C100144_C100633:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjMz
-    :key: C100144_C100633
-    :label: NPI - Describe Hearing Voices or Act as if He/She Hears Voices
-    :notation: NPI1B01
-    :identifier: C100633
-    :status:
-    - :status: :updated
-      :notation: NPI1B01
-      :previous: NPI1B1
-  :C100143_C100641:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQx
-    :key: C100143_C100641
-    :label: NPI - Get Upset with Those Trying to Care for Him/Her
-    :notation: NPI1-Get Upset with Caregiver
-    :identifier: C100641
-    :status:
-    - :status: :updated
-      :notation: NPI1-Get Upset with Caregiver
-      :previous: NPI-Question C1
-  :C100144_C100670:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjcw
-    :key: C100144_C100670
-    :label: NPI - Tell Jokes or Make Remarks That are Not Funny to Others
-    :notation: NPI1F04
-    :identifier: C100670
-    :status:
-    - :status: :updated
-      :notation: NPI1F04
-      :previous: NPI1F4
-  :C100143_C100687:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg3
-    :key: C100143_C100687
-    :label: NPI - Say Crude Things or Make Sexual Remarks
-    :notation: NPI1-Make Crude Remarks
-    :identifier: C100687
-    :status:
-    - :status: :updated
-      :notation: NPI1-Make Crude Remarks
-      :previous: NPI-Question H4
-  :C100143_C100670:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjcw
-    :key: C100143_C100670
-    :label: NPI - Tell Jokes or Make Remarks That are Not Funny to Others
-    :notation: NPI1-Jokes Others Do Not Find Funny
-    :identifier: C100670
-    :status:
-    - :status: :updated
-      :notation: NPI1-Jokes Others Do Not Find Funny
-      :previous: NPI-Question F4
-  :C100143_C100623:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjIz
-    :key: C100143_C100623
-    :label: NPI - He/She is in Danger
-    :notation: NPI1-In Danger
-    :identifier: C100623
-    :status:
-    - :status: :updated
-      :notation: NPI1-In Danger
-      :previous: NPI-Question A1
-  :C100144_C100719:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzE5
-    :key: C100144_C100719
-    :label: NPI - Loss of Weight
-    :notation: NPI1L03
-    :identifier: C100719
-    :status:
-    - :status: :updated
-      :notation: NPI1L03
-      :previous: NPI1L3
-  :C100143_C100681:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjgx
-    :key: C100143_C100681
-    :label: NPI - Less Enthusiastic About His/Her Usual Interests
-    :notation: NPI1-Less Enthusiastic
-    :identifier: C100681
-    :status:
-    - :status: :updated
-      :notation: NPI1-Less Enthusiastic
-      :previous: NPI-Question G7
-  :C100143_C100691:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjkx
-    :key: C100143_C100691
-    :label: NPI - Get Irritated and Easily Disturbed
-    :notation: NPI1-Irritated and Easily Disturbed
-    :identifier: C100691
-    :status:
-    - :status: :updated
-      :notation: NPI1-Irritated and Easily Disturbed
-      :previous: NPI-Question I
-  :C100143_C100706:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA2
-    :key: C100143_C100706
-    :label: NPI - Do Any Other Activities Over and Over
-    :notation: NPI1-Other Repetitive Activities
-    :identifier: C100706
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Repetitive Activities
-      :previous: NPI-Question J7
-  :C100143_C100632:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjMy
-    :key: C100143_C100632
-    :label: NPI - Hallucinations Such as Seeing False Visions or Hearing False Voices
-    :notation: NPI1-False Visions or Voices
-    :identifier: C100632
-    :status:
-    - :status: :updated
-      :notation: NPI1-False Visions or Voices
-      :previous: NPI-Question B
-  :C100144_C100714:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzE0
-    :key: C100144_C100714
-    :label: NPI - Sleep Excessively During the Day
-    :notation: NPI1K07
-    :identifier: C100714
-    :status:
-    - :status: :updated
-      :notation: NPI1K07
-      :previous: NPI1K7
-  :C100143_C100660:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjYw
-    :key: C100143_C100660
-    :label: NPI - Periods of Feeling Shaky, Unable to Relax, or Feeling Excessively
-      Tense
-    :notation: NPI1-Shaky or Unable to Relax
-    :identifier: C100660
-    :status:
-    - :status: :updated
-      :notation: NPI1-Shaky or Unable to Relax
-      :previous: NPI-Question E2
-  :C100144_C100629:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI5
-    :key: C100144_C100629
-    :label: NPI - Family Members Plan to Abandon Him/Her
-    :notation: NPI1A07
-    :identifier: C100629
-    :status:
-    - :status: :updated
-      :notation: NPI1A07
-      :previous: NPI1A7
-  :C100144_C100687:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg3
-    :key: C100144_C100687
-    :label: NPI - Say Crude Things or Make Sexual Remarks
-    :notation: NPI1H04
-    :identifier: C100687
-    :status:
-    - :status: :updated
-      :notation: NPI1H04
-      :previous: NPI1H4
-  :C100143_C100637:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM3
-    :key: C100143_C100637
-    :label: NPI - Describe Feeling Things on His/Her Skin
-    :notation: NPI1-Feel Things on Skin
-    :identifier: C100637
-    :status:
-    - :status: :updated
-      :notation: NPI1-Feel Things on Skin
-      :previous: NPI-Question B5
-  :C100143_C100701:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzAx
-    :key: C100143_C100701
-    :label: NPI - Rummage Around Opening and Unpacking Drawers or Closets
-    :notation: NPI1-Rummage Around and Unpack
-    :identifier: C100701
-    :status:
-    - :status: :updated
-      :notation: NPI1-Rummage Around and Unpack
-      :previous: NPI-Question J2
-  :C100144_C100645:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQ1
-    :key: C100144_C100645
-    :label: NPI - Shout or Curse Angrily
-    :notation: NPI1C05
-    :identifier: C100645
-    :status:
-    - :status: :updated
-      :notation: NPI1C05
-      :previous: NPI1C5
-  :C100143_C100674:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc0
-    :key: C100143_C100674
-    :label: NPI - Lost Interest in the World Around Him/Her
-    :notation: NPI1-Lost Interest in World
-    :identifier: C100674
-    :status:
-    - :status: :updated
-      :notation: NPI1-Lost Interest in World
-      :previous: NPI-Question G
-  :C100144_C100624:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI0
-    :key: C100144_C100624
-    :label: NPI - Others are Stealing From Him/Her
-    :notation: NPI1A02
-    :identifier: C100624
-    :status:
-    - :status: :updated
-      :notation: NPI1A02
-      :previous: NPI1A2
-  :C100144_C100682:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjgy
-    :key: C100144_C100682
-    :label: NPI - Show Any Other Signs That He/She Doesn't Care About Doing New Things
-    :notation: NPI1G08
-    :identifier: C100682
-    :status:
-    - :status: :updated
-      :notation: NPI1G08
-      :previous: NPI1G8
-  :C100144_C100661:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjYx
-    :key: C100144_C100661
-    :label: NPI - Periods of Shortness of Breath, Gasping, or Sighing for No Apparent
-      Reason
-    :notation: NPI1E03
-    :identifier: C100661
-    :status:
-    - :status: :updated
-      :notation: NPI1E03
-      :previous: NPI1E3
-  :C100143_C100690:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjkw
-    :key: C100143_C100690
-    :label: NPI - Show Any Other Signs of Loss of Control of His/Her Impulses
-    :notation: NPI1-Other Signs of Impulses
-    :identifier: C100690
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Impulses
-      :previous: NPI-Question H7
-  :C100143_C100714:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzE0
-    :key: C100143_C100714
-    :label: NPI - Sleep Excessively During the Day
-    :notation: NPI1-Excessive Sleep during Day
-    :identifier: C100714
-    :status:
-    - :status: :updated
-      :notation: NPI1-Excessive Sleep during Day
-      :previous: NPI-Question K7
-  :C100144_C100705:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzA1
-    :key: C100144_C100705
-    :label: NPI - Fidget Excessively, Seem Unable to Sit Still
-    :notation: NPI1J06
-    :identifier: C100705
-    :status:
-    - :status: :updated
-      :notation: NPI1J06
-      :previous: NPI1J6
-  :C100143_C100649:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ5
-    :key: C100143_C100649
-    :label: NPI - Seem Sad or Depressed
-    :notation: NPI1-Sad or Depressed
-    :identifier: C100649
-    :status:
-    - :status: :updated
-      :notation: NPI1-Sad or Depressed
-      :previous: NPI-Question D
-  :C100144_C100678:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjc4
-    :key: C100144_C100678
-    :label: NPI - Contribute Less to Household Chores
-    :notation: NPI1G04
-    :identifier: C100678
-    :status:
-    - :status: :updated
-      :notation: NPI1G04
-      :previous: NPI1G4
-  :C100143_C100713:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzEz
-    :key: C100143_C100713
-    :label: NPI - Awaken Too Early in Morning
-    :notation: NPI1-Awaken Too Early in Morning
-    :identifier: C100713
-    :status:
-    - :status: :updated
-      :notation: NPI1-Awaken Too Early in Morning
-      :previous: NPI-Question K6
-  :C100144_C100657:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjU3
-    :key: C100144_C100657
-    :label: NPI - Show Any Other Signs of Depression or Sadness
-    :notation: NPI1D08
-    :identifier: C100657
-    :status:
-    - :status: :updated
-      :notation: NPI1D08
-      :previous: NPI1D8
-  :C100144_C100721:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzIx
-    :key: C100144_C100721
-    :label: NPI - Change in Eating Behavior
-    :notation: NPI1L05
-    :identifier: C100721
-    :status:
-    - :status: :updated
-      :notation: NPI1L05
-      :previous: NPI1L5
-  :C100143_C100682:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjgy
-    :key: C100143_C100682
-    :label: NPI - Show Any Other Signs That He/She Doesn't Care About Doing New Things
-    :notation: NPI1-Other Signs of Not Caring
-    :identifier: C100682
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Not Caring
-      :previous: NPI-Question G8
-  :C100144_C100636:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM2
-    :key: C100144_C100636
-    :label: NPI - Report Smelling Odors Not Smelled by Others
-    :notation: NPI1B04
-    :identifier: C100636
-    :status:
-    - :status: :updated
-      :notation: NPI1B04
-      :previous: NPI1B4
-  :C100143_C100665:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY1
-    :key: C100143_C100665
-    :label: NPI - Show Any Other Signs of Anxiety
-    :notation: NPI1-Other Signs of Anxiety
-    :identifier: C100665
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Anxiety
-      :previous: NPI-Question E7
-  :C100143_C100640:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQw
-    :key: C100143_C100640
-    :label: NPI - Periods When He/She Refuses to Cooperate
-    :notation: NPI1-Refuse to Cooperate
-    :identifier: C100640
-    :status:
-    - :status: :updated
-      :notation: NPI1-Refuse to Cooperate
-      :previous: NPI-Question C
-  :C100144_C100700:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzAw
-    :key: C100144_C100700
-    :label: NPI - Pace Around the House Without Apparent Purpose
-    :notation: NPI1J01
-    :identifier: C100700
-    :status:
-    - :status: :updated
-      :notation: NPI1J01
-      :previous: NPI1J1
-  :C100144_C100694:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjk0
-    :key: C100144_C100694
-    :label: NPI - Sudden Flares of Anger
-    :notation: NPI1I03
-    :identifier: C100694
-    :status:
-    - :status: :updated
-      :notation: NPI1I03
-      :previous: NPI1I3
-  :C100143_C100684:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjg0
-    :key: C100143_C100684
-    :label: NPI - Act Impulsively without Appearing to Consider the Consequences
-    :notation: NPI1-Act Impulsively without Care
-    :identifier: C100684
-    :status:
-    - :status: :updated
-      :notation: NPI1-Act Impulsively without Care
-      :previous: NPI-Question H1
-  :C100144_C100673:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjcz
-    :key: C100144_C100673
-    :label: NPI - Show Any Other Signs of Feeling Too Good or Being Too Happy
-    :notation: NPI1F07
-    :identifier: C100673
-    :status:
-    - :status: :updated
-      :notation: NPI1F07
-      :previous: NPI1F7
-  :C100144_C100652:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjUy
-    :key: C100144_C100652
-    :label: NPI - Put Him/Herself Down or Say That He/She Feels Like a Failure
-    :notation: NPI1D03
-    :identifier: C100652
-    :status:
-    - :status: :updated
-      :notation: NPI1D03
-      :previous: NPI1D3
-  :C100144_C100631:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjMx
-    :key: C100144_C100631
-    :label: NPI - Any Other Unusual Things That I Haven't Asked About
-    :notation: NPI1A09
-    :identifier: C100631
-    :status:
-    - :status: :updated
-      :notation: NPI1A09
-      :previous: NPI1A9
-  :C100143_C100624:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI0
-    :key: C100143_C100624
-    :label: NPI - Others are Stealing From Him/Her
-    :notation: NPI1-Others Are Stealing
-    :identifier: C100624
-    :status:
-    - :status: :updated
-      :notation: NPI1-Others Are Stealing
-      :previous: NPI-Question A2
-  :C100144_C100717:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzE3
-    :key: C100144_C100717
-    :label: NPI - Loss of Appetite
-    :notation: NPI1L01
-    :identifier: C100717
-    :status:
-    - :status: :updated
-      :notation: NPI1L01
-      :previous: NPI1L1
-  :C100144_C100669:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjY5
-    :key: C100144_C100669
-    :label: NPI - Seem to Have a Childish Sense of Humor
-    :notation: NPI1F03
-    :identifier: C100669
-    :status:
-    - :status: :updated
-      :notation: NPI1F03
-      :previous: NPI1F3
-  :C100143_C100704:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzA0
-    :key: C100143_C100704
-    :label: NPI - Engage in Repetitive Activities
-    :notation: NPI1-Repetitive Activities
-    :identifier: C100704
-    :status:
-    - :status: :updated
-      :notation: NPI1-Repetitive Activities
-      :previous: NPI-Question J5
-  :C100143_C100698:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjk4
-    :key: C100143_C100698
-    :label: NPI - Show Any Other Signs of Irritability
-    :notation: NPI1-Other Signs of Irritability
-    :identifier: C100698
-    :status:
-    - :status: :updated
-      :notation: NPI1-Other Signs of Irritability
-      :previous: NPI-Question I7
-  :C100144_C100648:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQ4
-    :key: C100144_C100648
-    :label: NPI - Any Other Aggressive or Agitated Behaviors
-    :notation: NPI1C08
-    :identifier: C100648
-    :status:
-    - :status: :updated
-      :notation: NPI1C08
-      :previous: NPI1C8
-  :C100143_C100677:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjc3
-    :key: C100143_C100677
-    :label: NPI - Less Affectionate or Lacking in Emotions
-    :notation: NPI1-Less Affectionate
-    :identifier: C100677
-    :status:
-    - :status: :updated
-      :notation: NPI1-Less Affectionate
-      :previous: NPI-Question G3
-  :C100144_C100712:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzEy
-    :key: C100144_C100712
-    :label: NPI - Wake Up at Night, Dress, and Plan to Go Out
-    :notation: NPI1K05
-    :identifier: C100712
-    :status:
-    - :status: :updated
-      :notation: NPI1K05
-      :previous: NPI1K5
-  :C100144_C100627:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI3
-    :key: C100144_C100627
-    :label: NPI - His/Her Spouse or Others Are Not Who They Claim To Be
-    :notation: NPI1A05
-    :identifier: C100627
-    :status:
-    - :status: :updated
-      :notation: NPI1A05
-      :previous: NPI1A5
-  :C100143_C100656:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU2
-    :key: C100143_C100656
-    :label: NPI - Express a Wish for Death
-    :notation: NPI1-Wish for Death
-    :identifier: C100656
-    :status:
-    - :status: :updated
-      :notation: NPI1-Wish for Death
-      :previous: NPI-Question D7
-  :C100144_C100685:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg1
-    :key: C100144_C100685
-    :label: NPI - Talk to Total Strangers as if He/She Knew Them
-    :notation: NPI1H02
-    :identifier: C100685
-    :status:
-    - :status: :updated
-      :notation: NPI1H02
-      :previous: NPI1H2
-  :C100143_C100720:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNzIw
-    :key: C100143_C100720
-    :label: NPI - Gained Weight
-    :notation: NPI1-Weight Gain
-    :identifier: C100720
-    :status:
-    - :status: :updated
-      :notation: NPI1-Weight Gain
-      :previous: NPI-Question L4
-  :C100143_C100635:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM1
-    :key: C100143_C100635
-    :label: NPI - Describe Seeing Things Not Seen by Others
-    :notation: NPI1-See Things Not Seen by Others
-    :identifier: C100635
-    :status:
-    - :status: :updated
-      :notation: NPI1-See Things Not Seen by Others
-      :previous: NPI-Question B3
-  :C100144_C100664:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjY0
-    :key: C100144_C100664
-    :label: NPI - Become Nervous and Upset When Separated From You
-    :notation: NPI1E06
-    :identifier: C100664
-    :status:
-    - :status: :updated
-      :notation: NPI1E06
-      :previous: NPI1E6
-  :C100144_C100643:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQz
-    :key: C100144_C100643
-    :label: NPI - Uncooperative
-    :notation: NPI1C03
-    :identifier: C100643
-    :status:
-    - :status: :updated
-      :notation: NPI1C03
-      :previous: NPI1C3
-  :C100144_C100680:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjgw
-    :key: C100144_C100680
-    :label: NPI - Lost Interest in Friends and Family Members
-    :notation: NPI1G06
-    :identifier: C100680
-    :status:
-    - :status: :updated
-      :notation: NPI1G06
-      :previous: NPI1G6
-  :C100143_C100638:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjM4
-    :key: C100143_C100638
-    :label: NPI - Describe Tastes That Are Without Any Known Cause
-    :notation: NPI1-Taste without Known Cause
-    :identifier: C100638
-    :status:
-    - :status: :updated
-      :notation: NPI1-Taste without Known Cause
-      :previous: NPI-Question B6
-  :C100144_C100708:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzA4
-    :key: C100144_C100708
-    :label: NPI - Difficulty Falling Asleep
-    :notation: NPI1K01
-    :identifier: C100708
-    :status:
-    - :status: :updated
-      :notation: NPI1K01
-      :previous: NPI1K1
-  :C100144_C100724:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzI0
-    :key: C100144_C100724
-    :label: NPI - Any Other Changes in Appetite or Eating
-    :notation: NPI1L08
-    :identifier: C100724
-    :status:
-    - :status: :updated
-      :notation: NPI1L08
-      :previous: NPI1L8
-  :C100144_C100639:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM5
-    :key: C100144_C100639
-    :label: NPI - Describe Any Other Unusual Sensory Experiences
-    :notation: NPI1B07
-    :identifier: C100639
-    :status:
-    - :status: :updated
-      :notation: NPI1B07
-      :previous: NPI1B7
-  :C100144_C100703:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzAz
-    :key: C100144_C100703
-    :label: NPI - Repetitive Activities or 'Habits'
-    :notation: NPI1J04
-    :identifier: C100703
-    :status:
-    - :status: :updated
-      :notation: NPI1J04
-      :previous: NPI1J4
-  :C100144_C100697:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjk3
-    :key: C100144_C100697
-    :label: NPI - Argumentative and Difficult to Get Along With
-    :notation: NPI1I06
-    :identifier: C100697
-    :status:
-    - :status: :updated
-      :notation: NPI1I06
-      :previous: NPI1I6
-  :C100143_C100647:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ3
-    :key: C100143_C100647
-    :label: NPI - Attempt to Hurt or Hit Others
-    :notation: NPI1-Hurt or Hit Others
-    :identifier: C100647
-    :status:
-    - :status: :updated
-      :notation: NPI1-Hurt or Hit Others
-      :previous: NPI-Question C7
-  :C100144_C100676:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjc2
-    :key: C100144_C100676
-    :label: NPI - Less Likely Initiate to Initiate a Conversation
-    :notation: NPI1G02
-    :identifier: C100676
-    :status:
-    - :status: :updated
-      :notation: NPI1G02
-      :previous: NPI1G2
-  :C100143_C100626:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjI2
-    :key: C100143_C100626
-    :label: NPI - Unwelcome Guests are Living in His/Her House
-    :notation: NPI1-Unwelcome Guests in House
-    :identifier: C100626
-    :status:
-    - :status: :updated
-      :notation: NPI1-Unwelcome Guests in House
-      :previous: NPI-Question A4
-  :C100144_C100655:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjU1
-    :key: C100144_C100655
-    :label: NPI - Say He/She is a Burden to the Family
-    :notation: NPI1D06
-    :identifier: C100655
-    :status:
-    - :status: :updated
-      :notation: NPI1D06
-      :previous: NPI1D6
-  :C100144_C100634:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM0
-    :key: C100144_C100634
-    :label: NPI - Talk to People Who Are Not There
-    :notation: NPI1B02
-    :identifier: C100634
-    :status:
-    - :status: :updated
-      :notation: NPI1B02
-      :previous: NPI1B2
-  :C100143_C100663:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjYz
-    :key: C100143_C100663
-    :label: NPI - Avoid Certain Places or Situations That Make Him/Her More Nervous
-    :notation: NPI1-Avoid Places or Situations
-    :identifier: C100663
-    :status:
-    - :status: :updated
-      :notation: NPI1-Avoid Places or Situations
-      :previous: NPI-Question E5
-  :C100144_C100692:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjky
-    :key: C100144_C100692
-    :label: NPI - Bad Temper, Flying 'Off the Handle' Easily Over Little Things
-    :notation: NPI1I01
-    :identifier: C100692
-    :status:
-    - :status: :updated
-      :notation: NPI1I01
-      :previous: NPI1I1
-  :C100144_C100671:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjcx
-    :key: C100144_C100671
-    :label: NPI - Play Childish Pranks
-    :notation: NPI1F05
-    :identifier: C100671
-    :status:
-    - :status: :updated
-      :notation: NPI1F05
-      :previous: NPI1F5
-  :C100144_C100650:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjUw
-    :key: C100144_C100650
-    :label: NPI - Periods of Tearfulness or Sobbing
-    :notation: NPI1D01
-    :identifier: C100650
-    :status:
-    - :status: :updated
-      :notation: NPI1D01
-      :previous: NPI1D1
-  :C100143_C100645:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjQ1
-    :key: C100143_C100645
-    :label: NPI - Shout or Curse Angrily
-    :notation: NPI1-Shout or Curse Angrily
-    :identifier: C100645
-    :status:
-    - :status: :updated
-      :notation: NPI1-Shout or Curse Angrily
-      :previous: NPI-Question C5
-  :C100144_C100715:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzE1
-    :key: C100144_C100715
-    :label: NPI - Any Other Nighttime Behaviors That Bother You
-    :notation: NPI1K08
-    :identifier: C100715
-    :status:
-    - :status: :updated
-      :notation: NPI1K08
-      :previous: NPI1K8
-  :C100144_C100688:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjg4
-    :key: C100144_C100688
-    :label: NPI - Talk Openly About Very Personal or Private Matters
-    :notation: NPI1H05
-    :identifier: C100688
-    :status:
-    - :status: :updated
-      :notation: NPI1H05
-      :previous: NPI1H5
-  :C100144_C100667:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjY3
-    :key: C100144_C100667
-    :label: NPI - Appear to Feel Good or to Be Too Happy
-    :notation: NPI1F01
-    :identifier: C100667
-    :status:
-    - :status: :updated
-      :notation: NPI1F01
-      :previous: NPI1F1
-  :C100144_C100646:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQ2
-    :key: C100144_C100646
-    :label: NPI - Slam doors, Kick Furniture, Throw Things
-    :notation: NPI1C06
-    :identifier: C100646
-    :status:
-    - :status: :updated
-      :notation: NPI1C06
-      :previous: NPI1C6
-  :C100144_C100710:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzEw
-    :key: C100144_C100710
-    :label: NPI - Wander, Pace or Get Involved in Inappropriate Activities at Night
-    :notation: NPI1K03
-    :identifier: C100710
-    :status:
-    - :status: :updated
-      :notation: NPI1K03
-      :previous: NPI1K3
-  :C100144_C100625:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjI1
-    :key: C100144_C100625
-    :label: NPI - His/Her Spouse is Having an Affair
-    :notation: NPI1A03
-    :identifier: C100625
-    :status:
-    - :status: :updated
-      :notation: NPI1A03
-      :previous: NPI1A3
-  :C100143_C100654:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjU0
-    :key: C100143_C100654
-    :label: NPI - Seem Very Discouraged
-    :notation: NPI1-Discouraged
-    :identifier: C100654
-    :status:
-    - :status: :updated
-      :notation: NPI1-Discouraged
-      :previous: NPI-Question D5
-  :C100144_C100662:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjYy
-    :key: C100144_C100662
-    :label: NPI - Complain of Butterflies, Racing or Pounding Heart
-    :notation: NPI1E04
-    :identifier: C100662
-    :status:
-    - :status: :updated
-      :notation: NPI1E04
-      :previous: NPI1E4
-  :C100144_C100641:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjQx
-    :key: C100144_C100641
-    :label: NPI - Get Upset with Those Trying to Care for Him/Her
-    :notation: NPI1C01
-    :identifier: C100641
-    :status:
-    - :status: :updated
-      :notation: NPI1C01
-      :previous: NPI1C1
-  :C100143_C100666:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0My9WMzIjQzEwMDE0M19DMTAwNjY2
-    :key: C100143_C100666
-    :label: NPI - Seem Too Cheerful or Too Happy for No Reason
-    :notation: NPI1-Too Cheerful or Happy
-    :identifier: C100666
-    :status:
-    - :status: :updated
-      :notation: NPI1-Too Cheerful or Happy
-      :previous: NPI-Question F
-  :C100144_C100706:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzA2
-    :key: C100144_C100706
-    :label: NPI - Do Any Other Activities Over and Over
-    :notation: NPI1J07
-    :identifier: C100706
-    :status:
-    - :status: :updated
-      :notation: NPI1J07
-      :previous: NPI1J7
-  :C100144_C100679:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjc5
-    :key: C100144_C100679
-    :label: NPI - Less Interested in the Activities and Plans of Others
-    :notation: NPI1G05
-    :identifier: C100679
-    :status:
-    - :status: :updated
-      :notation: NPI1G05
-      :previous: NPI1G5
-  :C100144_C100722:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzIy
-    :key: C100144_C100722
-    :label: NPI - Change in Kind of Food He/She Likes
-    :notation: NPI1L06
-    :identifier: C100722
-    :status:
-    - :status: :updated
-      :notation: NPI1L06
-      :previous: NPI1L6
-  :C100144_C100637:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjM3
-    :key: C100144_C100637
-    :label: NPI - Describe Feeling Things on His/Her Skin
-    :notation: NPI1B05
-    :identifier: C100637
-    :status:
-    - :status: :updated
-      :notation: NPI1B05
-      :previous: NPI1B5
-  :C100144_C100701:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzAx
-    :key: C100144_C100701
-    :label: NPI - Rummage Around Opening and Unpacking Drawers or Closets
-    :notation: NPI1J02
-    :identifier: C100701
-    :status:
-    - :status: :updated
-      :notation: NPI1J02
-      :previous: NPI1J2
-  :C100144_C100695:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjk1
-    :key: C100144_C100695
-    :label: NPI - Impatient, Having Trouble Coping with Delays
-    :notation: NPI1I04
-    :identifier: C100695
-    :status:
-    - :status: :updated
-      :notation: NPI1I04
-      :previous: NPI1I4
-  :C100144_C100653:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjUz
-    :key: C100144_C100653
-    :label: NPI - Say That He/She is a Bad Person
-    :notation: NPI1D04
-    :identifier: C100653
-    :status:
-    - :status: :updated
-      :notation: NPI1D04
-      :previous: NPI1D4
-  :C100144_C100690:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNjkw
-    :key: C100144_C100690
-    :label: NPI - Show Any Other Signs of Loss of Control of His/Her Impulses
-    :notation: NPI1H07
-    :identifier: C100690
-    :status:
-    - :status: :updated
-      :notation: NPI1H07
-      :previous: NPI1H7
-  :C100144_C100718:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDE0NC9WMzIjQzEwMDE0NF9DMTAwNzE4
-    :key: C100144_C100718
-    :label: NPI - Increase in Appetite
-    :notation: NPI1L02
-    :identifier: C100718
-    :status:
-    - :status: :updated
-      :notation: NPI1L02
-      :previous: NPI1L2
-  :C101838_C66916:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzOC9WMzIjQzEwMTgzOF9DNjY5MTY=
-    :key: C101838_C66916
-    :label: Killip Class
-    :notation: KILLIPCL
-    :identifier: C66916
-    :status:
-    - :status: :updated
-      :notation: KILLIPCL
-      :previous: Killip Class
-  :C101838_C66910:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzOC9WMzIjQzEwMTgzOF9DNjY5MTA=
-    :key: C101838_C66910
-    :label: Canadian Cardiovascular Society Grading Scale
-    :notation: CCSGRDS
-    :identifier: C66910
-    :status:
-    - :status: :updated
-      :notation: CCSGRDS
-      :previous: Canadian CV Society Grading Scale
-  :C101838_C66909:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzOC9WMzIjQzEwMTgzOF9DNjY5MDk=
-    :key: C101838_C66909
-    :label: New York Heart Association Class
-    :notation: NYHACLS
-    :identifier: C66909
-    :status:
-    - :status: :updated
-      :notation: NYHACLS
-      :previous: New York Heart Association Class
-  :C101838_C100032:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzOC9WMzIjQzEwMTgzOF9DMTAwMDMy
-    :key: C101838_C100032
-    :label: American College of Cardiology American Heart Association Lesion Complexity
-      Class
-    :notation: LSNCPCLS
-    :identifier: C100032
-    :status:
-    - :status: :updated
-      :notation: LSNCPCLS
-      :previous: ACC/AHA Lesion Complexity Class
-  :C101838_C100021:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTgzOC9WMzIjQzEwMTgzOF9DMTAwMDIx
-    :key: C101838_C100021
-    :label: Thrombolysis in Myocardial Infarction Flow
-    :notation: TIMIFLOW
-    :identifier: C100021
-    :status:
-    - :status: :updated
-      :notation: TIMIFLOW
-      :previous: TIMI Flow
-  :C74559_C28407:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1YzMiNDNzQ1NTlfQzI4NDA3
-    :key: C74559_C28407
-    :label: National Origin
-    :notation: NATORIG
-    :identifier: C28407
-    :status:
-    - :status: :updated
-      :notation: NATORIG
-      :previous: NATORIGIN
+  :C85493_C92410:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDEw
+    :key: C85493_C92410
+    :label: Volume of Distribution of Fraction Dose Observed Normalized by Body Mass
+      Index
+    :notation: Vz Obs by F Norm by BM
+    :identifier: C92410
+    :status:
+    - :status: :updated
+      :notation: Vz Obs by F Norm by BM
+      :previous: Vol Dist of Fract Dose Obs Norm by BMI
+  :C85493_C92398:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyMzk4
+    :key: C85493_C92398
+    :label: Maximum Observed Excretion Rate Normalized by Weight
+    :notation: Max Excretion Rate Norm by WT
+    :identifier: C92398
+    :status:
+    - :status: :updated
+      :notation: Max Excretion Rate Norm by WT
+      :previous: Max Obs Excretion Rate Norm by WT
+  :C85493_C85799:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzg1Nzk5
+    :key: C85493_C85799
+    :label: Predicted Volume of Distribution of Absorbed Fraction
+    :notation: Vz Pred by F
+    :identifier: C85799
+    :status:
+    - :status: :updated
+      :notation: Vz Pred by F
+      :previous: Vol Dist of Fract Dose Pred
+  :C85493_C92419:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDE5
+    :key: C85493_C92419
+    :label: Total Clearance Predicted by Fraction Dose Normalized by Surface Area
+    :notation: Total CL Pred by F Norm by SA
+    :identifier: C92419
+    :status:
+    - :status: :updated
+      :notation: Total CL Pred by F Norm by SA
+      :previous: Total CL Pred by Fract Dose Norm by SA
+  :C85493_C92401:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDAx
+    :key: C85493_C92401
+    :label: Total Clearance Observed by Fraction Dose Normalized by Surface Area
+    :notation: Total CL Obs by F Norm by SA
+    :identifier: C92401
+    :status:
+    - :status: :updated
+      :notation: Total CL Obs by F Norm by SA
+      :previous: Total CL Obs by Fract Dose Norm by SA
+  :C85493_C92417:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDE3
+    :key: C85493_C92417
+    :label: Total Clearance Predicted by Fraction Dose Normalized by Body Mass Index
+    :notation: Total CL Pred by F Norm by BMI
+    :identifier: C92417
+    :status:
+    - :status: :updated
+      :notation: Total CL Pred by F Norm by BMI
+      :previous: Total CL Pred by Fract Dose Norm by BMI
+  :C85493_C92430:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDMw
+    :key: C85493_C92430
+    :label: Volume of Distribution of Fraction Dose Predicted Normalized by Weight
+    :notation: Vz Pred by F Norm by WT
+    :identifier: C92430
+    :status:
+    - :status: :updated
+      :notation: Vz Pred by F Norm by WT
+      :previous: Vol Dist of Fract Dose Pred Norm by WT
+  :C85493_C85796:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzg1Nzk2
+    :key: C85493_C85796
+    :label: Predicted Total Body Clearance by Fraction of Dose Absorbed
+    :notation: Total CL Pred by F
+    :identifier: C85796
+    :status:
+    - :status: :updated
+      :notation: Total CL Pred by F
+      :previous: Total CL Pred by Fract Dose
+  :C85493_C92397:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyMzk3
+    :key: C85493_C92397
+    :label: Maximum Observed Excretion Rate Normalized by Surface Area
+    :notation: Max Excretion Rate Norm by SA
+    :identifier: C92397
+    :status:
+    - :status: :updated
+      :notation: Max Excretion Rate Norm by SA
+      :previous: Max Obs Excretion Rate Norm by SA
+  :C85493_C92412:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDEy
+    :key: C85493_C92412
+    :label: Volume of Distribution of Fraction Dose Observed Normalized by Weight
+    :notation: Vz Obs by F Norm by WT
+    :identifier: C92412
+    :status:
+    - :status: :updated
+      :notation: Vz Obs by F Norm by WT
+      :previous: Vol Dist of Fract Dose Obs Norm by WT
+  :C85493_C92411:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDEx
+    :key: C85493_C92411
+    :label: Volume of Distribution of Fraction Dose Observed Normalized by Surface
+      Area
+    :notation: Vz Obs by F Norm by SA
+    :identifier: C92411
+    :status:
+    - :status: :updated
+      :notation: Vz Obs by F Norm by SA
+      :previous: Vol Dist of Fract Dose Obs Norm by SA
+  :C85493_C92395:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyMzk1
+    :key: C85493_C92395
+    :label: Maximum Observed Excretion Rate Normalized by Body Mass Index
+    :notation: Max Excretion Rate Norm by BMI
+    :identifier: C92395
+    :status:
+    - :status: :updated
+      :notation: Max Excretion Rate Norm by BMI
+      :previous: Max Obs Excretion Rate Norm by BMI
+  :C85493_C92396:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyMzk2
+    :key: C85493_C92396
+    :label: Maximum Observed Excretion Rate Normalized by Dose
+    :notation: Max Excretion Rate Norm by Dose
+    :identifier: C92396
+    :status:
+    - :status: :updated
+      :notation: Max Excretion Rate Norm by Dose
+      :previous: Max Obs Excretion Rate Norm by Dose
+  :C85493_C92420:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDIw
+    :key: C85493_C92420
+    :label: Total Clearance Predicted by Fraction Dose Normalized by Weight
+    :notation: Total CL Pred by F Norm by WT
+    :identifier: C92420
+    :status:
+    - :status: :updated
+      :notation: Total CL Pred by F Norm by WT
+      :previous: Total CL Pred by Fract Dose Norm by WT
+  :C85493_C92428:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDI4
+    :key: C85493_C92428
+    :label: Volume of Distribution of Fraction Dose Predicted Normalized by Body Mass
+      Index
+    :notation: Vz Pred by F Norm by BMI
+    :identifier: C92428
+    :status:
+    - :status: :updated
+      :notation: Vz Pred by F Norm by BMI
+      :previous: Vol Dist of Fract Dose Pred Norm by BMI
+  :C85493_C85775:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzg1Nzc1
+    :key: C85493_C85775
+    :label: Observed Volume of Distribution of Absorbed Fraction
+    :notation: Vz Obs by F
+    :identifier: C85775
+    :status:
+    - :status: :updated
+      :notation: Vz Obs by F
+      :previous: Vol Dist of Fract Dose Obs
+  :C85493_C92402:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDAy
+    :key: C85493_C92402
+    :label: Total Clearance Observed by Fraction Dose Normalized by Weight
+    :notation: Total CL Obs by F Norm by WT
+    :identifier: C92402
+    :status:
+    - :status: :updated
+      :notation: Total CL Obs by F Norm by WT
+      :previous: Total CL Obs by Fract Dose Norm by WT
+  :C85493_C85699:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzg1Njk5
+    :key: C85493_C85699
+    :label: Maximum Observed Excretion Rate
+    :notation: Max Excretion Rate
+    :identifier: C85699
+    :status:
+    - :status: :updated
+      :notation: Max Excretion Rate
+      :previous: Max Obs Excretion Rate
+  :C85493_C92429:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyNDI5
+    :key: C85493_C92429
+    :label: Volume of Distribution of Fraction Dose Predicted Normalized by Surface
+      Area
+    :notation: Vz Pred by F Norm by SA
+    :identifier: C92429
+    :status:
+    - :status: :updated
+      :notation: Vz Pred by F Norm by SA
+      :previous: Vol Dist of Fract Dose Pred Norm by SA
+  :C85493_C92399:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1YzMiNDODU0OTNfQzkyMzk5
+    :key: C85493_C92399
+    :label: Total Clearance Observed by Fraction Dose Normalized by Body Mass Index
+    :notation: Total CL Obs by F Norm by BMI
+    :identifier: C92399
+    :status:
+    - :status: :updated
+      :notation: Total CL Obs by F Norm by BMI
+      :previous: Total CL Obs by Fract Dose Norm by BMI
+  :C90003_C49664:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDAzL1YzMiNDOTAwMDNfQzQ5NjY0
+    :key: C90003_C49664
+    :label: Bioavailability Study
+    :notation: BIOAVAILABILITY
+    :identifier: C49664
+    :status:
+    - :status: :updated
+      :notation: BIOAVAILABILITY
+      :previous: BIOAVAILBILITY
+  :C100129_C102122:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzIjQzEwMDEyOV9DMTAyMTIy
+    :key: C100129_C102122
+    :label: Short Form 36 Health Survey Standard, US Version 2.0 Questionnaire
+    :notation: SF36 v2.0 STANDARD
+    :identifier: C102122
+    :status:
+    - :status: :updated
+      :notation: SF36 v2.0 STANDARD
+      :previous: SF36 v2.0 Standard
+  :C100129_C102120:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzIjQzEwMDEyOV9DMTAyMTIw
+    :key: C100129_C102120
+    :label: Short Form 36 Health Survey Acute, US Version 1.0 Questionnaire
+    :notation: SF36 v1.0 ACUTE
+    :identifier: C102120
+    :status:
+    - :status: :updated
+      :notation: SF36 v1.0 ACUTE
+      :previous: SF36 v1.0 Acute
+  :C100129_C102123:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzIjQzEwMDEyOV9DMTAyMTIz
+    :key: C100129_C102123
+    :label: Subjective Opiate Withdrawal Scale Questionnaire
+    :notation: SOWS SUBJECTIVE
+    :identifier: C102123
+    :status:
+    - :status: :updated
+      :notation: SOWS SUBJECTIVE
+      :previous: SOWS Subjective
+  :C100129_C102121:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzIjQzEwMDEyOV9DMTAyMTIx
+    :key: C100129_C102121
+    :label: Short Form 36 Health Survey Acute, US Version 2.0 Questionnaire
+    :notation: SF36 v2.0 ACUTE
+    :identifier: C102121
+    :status:
+    - :status: :updated
+      :notation: SF36 v2.0 ACUTE
+      :previous: SF36 v2.0 Acute
