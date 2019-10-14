@@ -315,7 +315,8 @@ describe "CDISC Term", :type => :feature do
       click_link 'Display'
       find(:xpath, "//div[@id='updated_div']/a", :text => "LOC (C74456)").click
       expect(page).to have_content("Changes Summary")
-      expect(page).to have_selector(:css, 'a[href="/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y1MyNDNzQ0NTY=/changes"]')
+      expect(page).to have_xpath("//*[@id='history']")
+
     end
 
     it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
