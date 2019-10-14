@@ -7,6 +7,7 @@ describe "Community Dashboard JS", :type => :feature do
   include UiHelpers
   include UserAccountHelpers
   include WaitForAjaxHelper
+  include CdiscCtHelpers
 
   def wait_for_ajax_v_long
     wait_for_ajax(120)
@@ -21,7 +22,7 @@ describe "Community Dashboard JS", :type => :feature do
       "BusinessOperational.ttl", "BusinessForm.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
-    load_cdisc_term_versions(1..59)
+    load_cdisc_term_versions(CdiscCtHelpers.version_range)
     clear_iso_concept_object
     ua_create
   end
@@ -85,8 +86,8 @@ describe "Community Dashboard JS", :type => :feature do
       click_show_latest_version
       wait_for_ajax
       expect(page).to have_content "Controlled Terminology"
-      expect(page).to have_content "59.0.0"
-      ui_check_table_info("children_table", 1, 10, 797)
+      expect(page).to have_content "61.0.0"
+      ui_check_table_info("children_table", 1, 10, 911)
       click_link 'Home'
       check_on_commumity_dashboard
     end
@@ -100,7 +101,7 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 8)
-      find(:xpath, "//div[@id='created_div']/a[2]").click
+      find(:xpath, "//div[@id='created_div']/a[15]").click
       expect(page).to have_content 'Differences'
       expect(page).to have_content 'C102584'
       expect(page).to have_content 'Reason For Treatment'
@@ -112,7 +113,7 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
-      expect(page).to have_xpath("//div[@id='created_div']/a", count: 312)
+      expect(page).to have_xpath("//div[@id='created_div']/a", count: 313)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 19)
       ui_dashboard_alpha_filter(:created, "Y")
@@ -127,36 +128,36 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and updated CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2014-06-27", "2014-09-26")
       click_link 'Display'
-      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 227)
-      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 11)
-      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 13)
+      expect(page).to have_xpath("//div[@id='updated_div']/a", count: 58)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 3)
       ui_dashboard_alpha_filter(:updated, "Z")
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item Z']", count: 0)
       ui_dashboard_alpha_filter(:updated, "D")
-      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 11)
+      expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 0)
-      find(:xpath, "//div[@id='updated_div']/a[13]").click
+      find(:xpath, "//div[@id='updated_div']/a[34]").click
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C111109'
-      expect(page).to have_content 'Device Events Category'
+      expect(page).to have_content 'C99074'
+      expect(page).to have_content 'CDISC SDTM Directionality Terminology'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
     end
 
     it "allows two CDISC versions to be selected and deleted CL between them to be filtered and displayed", js: true do
-      ui_dashboard_slider("2013-04-12", "2013-06-28")
+      ui_dashboard_slider("2016-06-24", "2016-09-30")
       click_link 'Display'
-      expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 15)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a", count: 11)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item C']", count: 2)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item F']", count: 2)
+      ui_dashboard_alpha_filter(:deleted, "C")
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
-      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 4)
-      ui_dashboard_alpha_filter(:deleted, "E")
-      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item D']", count: 0)
-      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 4)
+      expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item E']", count: 0)
       find(:xpath, "//div[@id='deleted_div']/a[6]").click
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C101817'
-      expect(page).to have_content 'European Quality of Life Five Dimension Five Level Scale Test Name'
+      expect(page).to have_content 'C101854'
+      expect(page).to have_content 'Cardiac Valvular Stenosis Severity'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
