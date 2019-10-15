@@ -295,7 +295,6 @@ describe "CDISC Term", :type => :feature do
       find(:xpath, "//div[@id='updated_div']/a", :text => "DTHDX (C116107)").click
       expect(page).to have_content("Differences Summary")
       expect(page).to have_css("table#differences_table tr", :count=>3)
-      # expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[1]/td[4]/div", :text => "CDISC SDTM Death Diagnosis Test Name Terminology")
       expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :text => "SDTM Death Diagnosis Test Name")
       expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :text => "SDTM Death Diagnosis and Details Test Name")
       expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :class => "diff")
@@ -317,8 +316,27 @@ describe "CDISC Term", :type => :feature do
       click_link 'Display'
       find(:xpath, "//div[@id='updated_div']/a", :text => "LOC (C74456)").click
       expect(page).to have_content("Changes Summary")
+      expect(page).to have_content("Differences Summary")
       expect(page).to have_xpath("//*[@id='history']")
+      find(:xpath, "//*[@id='history']", :text => 'History of all changes').click
+      expect(page).to have_content("Differences")
+      expect(page).to have_content("Changes")
+      click_link 'Return'
+      expect(page).to have_content("Differences Summary")
+      expect(page).to have_content("Changes Summary")
+    end
 
+    it "allows the changes summary to be viewed, and see code list items changes", js: true do
+      ui_dashboard_slider("2017-03-31", "2017-06-30")
+      click_link 'Display'
+      find(:xpath, "//div[@id='updated_div']/a", :text => "BSTESTCD (C124300)").click
+      expect(page).to have_content("Changes Summary")
+      expect(page).to have_content("Differences Summary")
+      find(:xpath, "//*[@id='changes']/tbody/tr[3]/td[6]", :text => 'Changes').click
+      expect(page).to have_content("Differences")
+      click_link 'Return'
+      expect(page).to have_content("Differences Summary")
+      expect(page).to have_content("Changes Summary")
     end
 
     it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
