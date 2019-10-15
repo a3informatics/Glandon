@@ -308,7 +308,7 @@ describe Thesaurus do
       timer_start
       actual = ct.submission(4)
       timer_stop("V10, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 10, large" do
@@ -316,7 +316,7 @@ describe Thesaurus do
       timer_start
       actual = ct.submission(10)
       timer_stop("V2, 10 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, first item" do
@@ -324,7 +324,7 @@ describe Thesaurus do
       timer_start
       actual = ct.submission(4)
       timer_stop("V1, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, second" do
@@ -332,7 +332,7 @@ describe Thesaurus do
       timer_start
       actual = ct.submission(4)
       timer_stop("V2, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 12, large" do
@@ -340,7 +340,7 @@ describe Thesaurus do
       timer_start
       actual = ct.submission(12)
       timer_stop("V31, 12 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_5.yaml")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_5.yaml", equate_method: :hash_equal)
     end
 
   end

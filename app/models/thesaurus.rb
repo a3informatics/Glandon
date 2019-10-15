@@ -239,33 +239,41 @@ class Thesaurus <  IsoManagedV2
     version_set.each_with_index do |x, index|
       next if index == 0
     query_string = %Q{
-SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
+SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE 
 {
-  { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } MINUS
-  { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl }
-  BIND (STRAFTER(str(?ccl), '#') AS ?cid) .
-  FILTER (?pid = ?cid)
-  ?ccl th:notation ?cn .
-  FILTER (?pn != ?cn)
-  ?ccl isoC:label ?cl .
-  ?ccl th:identifier ?ci .
-  BIND (#{x.to_ref} AS ?e) .
+  ?ccl ^th:narrower ?pcl .
+  #{x.to_ref} (th:isTopConceptReference/bo:reference) ?pcl .   
+  ?pcl th:identifier ?pi .   
   {
-    SELECT ?pcl ?pid ?pn WHERE
+    SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     {
-      { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } MINUS
-      { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl }
-      BIND (STRAFTER(str(?pcl), '#') AS ?pid) .
-      ?pcl th:notation ?pn .
+      { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl } MINUS
+      { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?ccl }
+      BIND (STRAFTER(str(?ccl), '#') AS ?cid) .
+      FILTER (?pid = ?cid)
+      ?ccl th:notation ?cn .
+      FILTER (?pn != ?cn)
+      ?ccl isoC:label ?cl .
+      ?ccl th:identifier ?ci .
+      BIND (#{x.to_ref} AS ?e) .
+      {
+        SELECT ?pcl ?pid ?pn WHERE
+        {
+          { #{version_set[index-1].to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl } MINUS
+          { #{x.to_ref} (th:isTopConceptReference/bo:reference/th:narrower) ?pcl }
+          BIND (STRAFTER(str(?pcl), '#') AS ?pid) .
+          ?pcl th:notation ?pn .
+        }
+      }
     }
   }
 }}
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      triples += query_results.by_object_set([:e, :ccl, :cid, :cl, :ci, :cn, :pn])
+      triples += query_results.by_object_set([:e, :ccl, :cid, :cl, :ci, :cn, :pn, :pi])
     end
     triples.each do |entry|
       uri = entry[:e].to_s
-      raw_results[uri][:children] << {key: entry[:cid], uri: entry[:ccl], label: entry[:cl], notation: entry[:cn], previous: entry[:pn], identifier: entry[:ci]}
+      raw_results[uri][:children] << {key: entry[:cid], uri: entry[:ccl], label: entry[:cl], notation: entry[:cn], previous: entry[:pn], identifier: entry[:ci], parent_identifier: entry[:pi]}
     end
 
     # Get the version array
@@ -279,7 +287,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
       version[:children].each do |entry|
         key = entry[:key].to_sym
         next if final_results.key?(key)
-        final_results[key] = {id: entry[:uri].to_id, key: entry[:key], label: entry[:label] , notation: entry[:notation], identifier: entry[:identifier], status: initial_status.dup}
+        final_results[key] = {id: entry[:uri].to_id, key: entry[:key], label: entry[:label] , notation: entry[:notation], identifier: entry[:identifier], parent_identifier: entry[:parent_identifier], status: initial_status.dup}
       end
     end
 
