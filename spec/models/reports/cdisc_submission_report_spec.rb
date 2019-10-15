@@ -40,7 +40,7 @@ describe Reports::CdiscSubmissionReport do
     report = Reports::CdiscSubmissionReport.new
     pdf = report.create(results, @user)
     html = report.html
-  write_text_file_2(html, sub_dir, "report_2.txt")
+  #Xwrite_text_file_2(html, sub_dir, "report_2.txt")
     expected = read_text_file_2(sub_dir, "report_2.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)
@@ -56,7 +56,7 @@ describe Reports::CdiscSubmissionReport do
     report = Reports::CdiscSubmissionReport.new
     pdf = report.create(results, @user)
     html = report.html
-  write_text_file_2(html, sub_dir, "report_3.txt")
+  #Xwrite_text_file_2(html, sub_dir, "report_3.txt")
     expected = read_text_file_2(sub_dir, "report_3.txt")
     run_at_1 = extract_run_at(expected)
     run_at_2 = extract_run_at(html)

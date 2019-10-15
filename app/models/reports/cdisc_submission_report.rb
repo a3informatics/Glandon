@@ -21,13 +21,15 @@ class Reports::CdiscSubmissionReport
     return @report.html
   end
 
+  # ---------
+  # Test Only
+  # ---------
   if Rails.env == "test"
-    # Return the current HTML. Only available for testing.
-    #
-    # @return [String] The HTML
+  
     def html
       return @report.html
     end
+  
   end
 
 private
@@ -37,15 +39,16 @@ private
     page = 1
     index = 1
     html = ""
+    final_output = false
     main_table = main_header_row(results[:versions])
     secondary_table = secondary_header_row
     html += "<h3>Conventions</h3>"
     html += "<p>In the following table each page contains two tables. The first table indicates when a change took "
     html += "place while the second table details the change. The changes are releated by the index thus [n].</p>"
+    html += "<h3>Changes</h3>"
     results[:items].each do |key, entry|
       if index % C_PER_PAGE == 0
         # Output existing
-        html += "<h3>Changes</h3>" if page == 1  
         main_table += close_table
         secondary_table += close_table
         html += main_table + "<br/><br/>"
@@ -62,8 +65,10 @@ private
       main_table += main_data_row(entry)
       secondary_table += secondary_data_row(entry)
       index += 1
+      final_output = true
     end
-    if index % C_PER_PAGE != 0
+    #if index % C_PER_PAGE != 0
+    if @ref > 1
       main_table += close_table
       secondary_table += close_table
       html += main_table 
