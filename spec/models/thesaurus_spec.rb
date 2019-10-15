@@ -307,40 +307,40 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       timer_start
       actual = ct.submission(4)
-      timer_stop("V10, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml")
+      timer_stop("V10, 4 versions [0.9s]")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 10, large" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       timer_start
       actual = ct.submission(10)
-      timer_stop("V2, 10 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml")
+      timer_stop("V2, 10 versions [7.2s]")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, first item" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       timer_start
       actual = ct.submission(4)
-      timer_stop("V1, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml")
+      timer_stop("V1, 4 versions [6.06s]")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 4, second" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       timer_start
       actual = ct.submission(4)
-      timer_stop("V2, 4 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml")
+      timer_stop("V2, 4 versions [6.51s]")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "calculates changes, window 12, large" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V31#TH"))
       timer_start
       actual = ct.submission(12)
-      timer_stop("V31, 12 versions")
-      check_file_actual_expected(actual, sub_dir, "submisson_expected_5.yaml")
+      timer_stop("V31, 12 versions [22.7s]")
+      check_file_actual_expected(actual, sub_dir, "submisson_expected_5.yaml", equate_method: :hash_equal)
     end
 
   end
