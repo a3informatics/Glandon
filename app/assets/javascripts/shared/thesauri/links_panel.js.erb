@@ -88,8 +88,11 @@ function isResultEmpty(result) {
   if ($.isEmptyObject(result))
     return true;
 
-  if (Object.keys(result).length == 1 && result[Object.keys(result)[0]].references.length == 0)
-    return true;
+  var areAllEmpty = true;
+  $.each(result, function(i, e) {
+    if(e.references.length != 0)
+      areAllEmpty = false;
+  });
 
-  return false;
+  return areAllEmpty;
 }
