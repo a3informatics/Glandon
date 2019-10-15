@@ -484,7 +484,7 @@ def editor_table_fill_in(input, text)
       click_navbar_cdisc_terminology
       expect(page).to have_content 'Controlled Terminology'
       wait_for_ajax
-      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      context_menu_element('history', 5, '2015-09-25 Release', :show)
       expect(page).to have_content '45.0.0'
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
       wait_for_ajax
@@ -493,7 +493,6 @@ def editor_table_fill_in(input, text)
       wait_for_ajax
       expect(page).to have_content 'Preferred term: Induction Therapy Epoch'
       expect(page).to have_content 'No Shared Preferred Terms.'
-      pause
       expect(page).to have_content 'No Shared Synonyms.'
     end
 
