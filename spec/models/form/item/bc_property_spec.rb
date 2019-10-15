@@ -256,7 +256,7 @@ describe Form::Item::BcProperty do
     item.is_common = false
     tc_ref = OperationalReferenceV2.new
     tc_ref.ordinal = 1
-    tc_ref.subject_ref = UriV2.new({:id => "C66770_C49668", :namespace => "http://www.cdisc.org/C66770/V33"})
+    tc_ref.subject_ref = UriV2.new({:id => "C66770_C49668", :namespace => "http://www.cdisc.org/C66770/V34"})
     item.children << tc_ref
  		item.to_xml(mdv, form, item_group)
 		xml = odm.to_xml
