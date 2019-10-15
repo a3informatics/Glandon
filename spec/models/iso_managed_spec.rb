@@ -114,18 +114,12 @@ describe IsoManaged do
 
 	it "allows an item to be found" do
 		results = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_form.yaml", eq_method: :hash_equal)
-  # #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_form.yaml")
-  #   expected = read_yaml_file(sub_dir, "iso_managed_form.yaml")
-  #   expect(item.to_json).to hash_equal(expected)   
+    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_form.yaml", equate_method: :hash_equal)
 	end
 
   it "allows an item to be found, II" do
     results = IsoManaged.find("TH", "http://www.cdisc.org/CT/V42", false)
-    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_th.yaml", eq_method: :hash_equal)
-  # #Xwrite_yaml_file(item.to_json, sub_dir, "iso_managed_th.yaml")
-  #   expected = read_yaml_file(sub_dir, "iso_managed_th.yaml")
-  #   expect(item.to_json).to hash_equal(expected)   
+    check_file_actual_expected(results.to_json, sub_dir, "iso_managed_th.yaml", equate_method: :hash_equal)
   end
 
   it "allows the version, semantic_version, version_label and indentifier to be found" do
@@ -300,7 +294,7 @@ describe IsoManaged do
   # #Xwrite_yaml_file(items, sub_dir, "iso_managed_all.yaml")
   # 	expected = read_yaml_file(sub_dir, "iso_managed_all.yaml")
   #   expect(items).to match_array(expected)
-  check_file_actual_expected(items, sub_dir, "iso_managed_all.yaml", eq_method: :hash_equal)
+    check_file_actual_expected(items, sub_dir, "iso_managed_all.yaml", equate_method: :hash_equal)
   end
 
   it "finds history of an item entries" do
@@ -516,7 +510,7 @@ describe IsoManaged do
     item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
     item_json = item.to_clone
     result[:managed_item][:creation_date] = date_check_now(Time.parse(item_json[:managed_item][:creation_date])).iso8601
-    expect(item_json).to eq(result)
+    expect(item_json).to hash_equal(result)
   end
 
   it "allows the item to be deleted" do
