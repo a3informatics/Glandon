@@ -173,7 +173,7 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'Syn3'
       click_button 'Close'
     end
-   
+
    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign more synonyms on a code list item (REQ-MDR-SY-030)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
@@ -458,6 +458,42 @@ def editor_table_fill_in(input, text)
       editor_table_fill_in "DTE_Field_preferredTerm", "\n"
       expect(page).not_to have_content 'CodeListItem1'
       click_button 'Close'
+    end
+
+    it "checks for correct display of shared PTs or Ss, unmanaged concepts", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'Controlled Terminology'
+      wait_for_ajax
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content '45.0.0'
+      ui_child_search("sex")
+      ui_check_table_info("children_table", 1, 2, 2)
+      find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_content 'C66731'
+      expect(page).to have_content 'Preferred term: CDISC SDTM Sex of Individual Terminology'
+      ui_check_table_info("children_table", 1, 4, 4)
+      find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_content 'Preferred term: Unknown'
+      expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a", count: 14)
+      expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a", count: 28)
+    end
+
+    it "checks for correct display of no shared PTs or Ss found, unmanaged concepts", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'Controlled Terminology'
+      wait_for_ajax
+      context_menu_element('history', 5, '2015-09-25 Release', :show)
+      expect(page).to have_content '45.0.0'
+      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_content 'EPOCH'
+      find(:xpath, "//tr[contains(.,'C123453')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_content 'Preferred term: Induction Therapy Epoch'
+      expect(page).to have_content 'No Shared Preferred Terms.'
+      expect(page).to have_content 'No Shared Synonyms.'
     end
 
   end
