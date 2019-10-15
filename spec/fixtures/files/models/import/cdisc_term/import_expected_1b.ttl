@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDASH Test"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'import_input_1b.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -256,6 +257,7 @@
 <http://www.cdisc.org/C78418/V2#C78418>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78418/V2#C78418_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78418/V2#C78418_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -304,6 +306,7 @@
 <http://www.cdisc.org/C78417/V2#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78417/V2#C78417_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78417/V2#C78417_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -348,6 +351,7 @@
 <http://www.cdisc.org/C78417/V2#C78417_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram. Added stuff here."^^xsd:string ;
@@ -358,6 +362,7 @@
 <http://www.cdisc.org/C78419/V2#C78419>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78419/V2#C78419_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78419/V2#C78419_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -401,6 +406,7 @@
 <http://www.cdisc.org/C999999/V2#C999999>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Position of Subject XX"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C999999/V2#C999999_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C999999/V2#C999999_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -440,6 +446,7 @@
 <http://www.cdisc.org/C999999/V2#C999999_C962122>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sitting"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C962122"^^xsd:string ;
 	th:notation "SITTINGXX"^^xsd:string ;
 	th:definition "The state or act of one who sits; the posture of one who occupies a seat. (NCI)"^^xsd:string ;
@@ -450,6 +457,7 @@
 <http://www.cdisc.org/C999999/V2#C999999_C962166>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standing"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C962166"^^xsd:string ;
 	th:notation "STANDINGXX"^^xsd:string ;
 	th:definition "The act of assuming or maintaining an erect upright position. (NCI)"^^xsd:string ;
@@ -460,6 +468,7 @@
 <http://www.cdisc.org/C999999/V2#C999999_C962167>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Supine Position"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C962167"^^xsd:string ;
 	th:notation "SUPINEXX"^^xsd:string ;
 	th:definition "A posterior recumbent body position whereby the person lies on its back and faces upward. (NCI)"^^xsd:string ;

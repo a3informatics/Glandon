@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDISC Term"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'SDTM Terminology Duplicate 1.xlsx', 'SDTM Terminology Duplicate 2.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-12-21T00:00:00+00:00"^^xsd:dateTime ;
@@ -146,6 +147,7 @@
 <http://www.cdisc.org/C141663/V1#C141663>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141663/V1#C141663_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141663/V1#C141663_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -185,6 +187,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR101"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -203,6 +206,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR102"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -221,6 +225,7 @@
 <http://www.cdisc.org/C141663/V1#C141663_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR103"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
@@ -247,6 +252,7 @@
 <http://www.cdisc.org/C141662/V1#C141662>
 	rdf:type th:ManagedConcept ;
 	isoC:label "4 Stair Ascend Functional Test Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C141662/V1#C141662_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C141662/V1#C141662_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -286,6 +292,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141707>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Test Grade"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141707"^^xsd:string ;
 	th:notation "A4STR1-Test Grade"^^xsd:string ;
 	th:definition "4 Stair Ascend - Test grade."^^xsd:string ;
@@ -296,6 +303,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C141706>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Time to Ascend 4 Stairs"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C141706"^^xsd:string ;
 	th:notation "A4STR1-Time to Ascend 4 Stairs"^^xsd:string ;
 	th:definition "4 Stair Ascend - Time taken to ascend 4 stairs."^^xsd:string ;
@@ -306,6 +314,7 @@
 <http://www.cdisc.org/C141662/V1#C141662_C147590>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "4 Stair Ascend - Wear Orthoses"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C147590"^^xsd:string ;
 	th:notation "A4STR1-Wear Orthoses"^^xsd:string ;
 	th:definition "4 Stair Ascend - Did subject wear orthoses?"^^xsd:string ;
@@ -324,6 +333,7 @@
 <http://www.cdisc.org/C115388/V1#C115388>
 	rdf:type th:ManagedConcept ;
 	isoC:label "6 Minute Walk Functional Test Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C115388/V1#C115388_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C115388/V1#C115388_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -366,6 +376,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115800>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 1 Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115800"^^xsd:string ;
 	th:notation "SIXMW101"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 1 minute."^^xsd:string ;
@@ -384,6 +395,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 2 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115801"^^xsd:string ;
 	th:notation "SIXMW102"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 2 minutes."^^xsd:string ;
@@ -402,6 +414,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115802>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 3 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115802"^^xsd:string ;
 	th:notation "SIXMW103"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 3 minutes."^^xsd:string ;
@@ -420,6 +433,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115803>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 4 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115803"^^xsd:string ;
 	th:notation "SIXMW104"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 4 minutes."^^xsd:string ;
@@ -438,6 +452,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115804>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 5 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115804"^^xsd:string ;
 	th:notation "SIXMW105"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 5 minutes."^^xsd:string ;
@@ -456,6 +471,7 @@
 <http://www.cdisc.org/C115388/V1#C115388_C115805>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 6 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115805"^^xsd:string ;
 	th:notation "SIXMW106"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 6 minutes."^^xsd:string ;
@@ -482,6 +498,7 @@
 <http://www.cdisc.org/C115387/V1#C115387>
 	rdf:type th:ManagedConcept ;
 	isoC:label "6 Minute Walk Functional Test Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C115387/V1#C115387_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C115387/V1#C115387_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -524,6 +541,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115800>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 1 Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115800"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 1 Minute"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 1 minute."^^xsd:string ;
@@ -534,6 +552,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115801>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 2 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115801"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 2 Minutes"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 2 minutes."^^xsd:string ;
@@ -544,6 +563,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115802>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 3 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115802"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 3 Minutes"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 3 minutes."^^xsd:string ;
@@ -554,6 +574,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115803>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 4 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115803"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 4 Minutes"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 4 minutes."^^xsd:string ;
@@ -564,6 +585,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115804>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 5 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115804"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 5 Minutes"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 5 minutes."^^xsd:string ;
@@ -574,6 +596,7 @@
 <http://www.cdisc.org/C115387/V1#C115387_C115805>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "6MWT - Distance at 6 Minutes"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C115805"^^xsd:string ;
 	th:notation "SIXMW1-Distance at 6 Minutes"^^xsd:string ;
 	th:definition "6 Minute Walk Test - Distance at 6 minutes."^^xsd:string ;
@@ -592,6 +615,7 @@
 <http://www.cdisc.org/C101805/V1#C101805>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C101805/V1#C101805_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C101805/V1#C101805_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -640,6 +664,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102034>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Muscles of Facial Expression"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102034"^^xsd:string ;
 	th:notation "AIMS0101"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Muscles of facial expression, e.g., movements of forehead, eyebrows, periorbital area, cheeks. Include frowning, blinking, grimacing of upper face."^^xsd:string ;
@@ -658,6 +683,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102035>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Lips and Perioral Area"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102035"^^xsd:string ;
 	th:notation "AIMS0102"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Lips and perioral area, e.g., puckering, pouting, smacking."^^xsd:string ;
@@ -676,6 +702,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102036>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Jaw"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102036"^^xsd:string ;
 	th:notation "AIMS0103"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Jaw, e.g., biting, clenching, chewing, mouth opening, lateral movement."^^xsd:string ;
@@ -694,6 +721,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102037>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Tongue"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102037"^^xsd:string ;
 	th:notation "AIMS0104"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Tongue. Rate only increase in movement both in and out of mouth, not inability to sustain movement."^^xsd:string ;
@@ -712,6 +740,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102038>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Upper Extremities"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102038"^^xsd:string ;
 	th:notation "AIMS0105"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Upper (arms, wrists, hands, fingers). Include movements that are choreic (rapid, objectively purposeless, irregular, spontaneous) or athetoid (slow, irregular, complex, serpentine). Do not include tremor (repetitive, regular, rhythmic movements)."^^xsd:string ;
@@ -730,6 +759,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102039>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Lower Extremities"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102039"^^xsd:string ;
 	th:notation "AIMS0106"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Lower (legs, knees, ankles, toes), e.g., lateral knee movement, foot tapping, heel dropping, foot squirming, inversion and eversion of foot."^^xsd:string ;
@@ -748,6 +778,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102040>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Neck, Shoulders, Hips"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102040"^^xsd:string ;
 	th:notation "AIMS0107"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Trunk Movements, Neck, shoulders, hips, e.g., rocking, twisting, squirming, pelvic gyrations. Include diaphragmatic movements."^^xsd:string ;
@@ -766,6 +797,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102041>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Severity of Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102041"^^xsd:string ;
 	th:notation "AIMS0108"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Severity of abnormal movements, based on the highest single score on the above items."^^xsd:string ;
@@ -784,6 +816,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102042>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Incapacitation Due to Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102042"^^xsd:string ;
 	th:notation "AIMS0109"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Incapacitation due to abnormal movements."^^xsd:string ;
@@ -802,6 +835,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102043>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Patient's Awareness of Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102043"^^xsd:string ;
 	th:notation "AIMS0110"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Patient's awareness of abnormal movements."^^xsd:string ;
@@ -820,6 +854,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102044>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Current Teeth/Dentures Problems"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102044"^^xsd:string ;
 	th:notation "AIMS0111"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Current problems with teeth and/or dentures."^^xsd:string ;
@@ -838,6 +873,7 @@
 <http://www.cdisc.org/C101805/V1#C101805_C102045>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Patient Usually Wears Dentures"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102045"^^xsd:string ;
 	th:notation "AIMS0112"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Does patient usually wear dentures?"^^xsd:string ;
@@ -864,6 +900,7 @@
 <http://www.cdisc.org/C101806/V1#C101806>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Abnormal Involuntary Movement Scale Questionnaire Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C101806/V1#C101806_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C101806/V1#C101806_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -912,6 +949,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102044>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Current Teeth/Dentures Problems"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102044"^^xsd:string ;
 	th:notation "AIMS01-Current Problems Teeth/Dentures"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Current problems with teeth and/or dentures."^^xsd:string ;
@@ -922,6 +960,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102042>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Incapacitation Due to Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102042"^^xsd:string ;
 	th:notation "AIMS01-Incapacitation due Abn Movements"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Incapacitation due to abnormal movements."^^xsd:string ;
@@ -932,6 +971,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102036>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Jaw"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102036"^^xsd:string ;
 	th:notation "AIMS01-Jaw"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Jaw, e.g., biting, clenching, chewing, mouth opening, lateral movement."^^xsd:string ;
@@ -942,6 +982,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102035>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Lips and Perioral Area"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102035"^^xsd:string ;
 	th:notation "AIMS01-Lips and Perioral Area"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Lips and perioral area, e.g., puckering, pouting, smacking."^^xsd:string ;
@@ -952,6 +993,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102039>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Lower Extremities"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102039"^^xsd:string ;
 	th:notation "AIMS01-Lower Extremities"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Lower (legs, knees, ankles, toes), e.g., lateral knee movement, foot tapping, heel dropping, foot squirming, inversion and eversion of foot."^^xsd:string ;
@@ -962,6 +1004,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102034>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Muscles of Facial Expression"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102034"^^xsd:string ;
 	th:notation "AIMS01-Muscles of Facial Expression"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Muscles of facial expression, e.g., movements of forehead, eyebrows, periorbital area, cheeks. Include frowning, blinking, grimacing of upper face."^^xsd:string ;
@@ -972,6 +1015,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102040>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Neck, Shoulders, Hips"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102040"^^xsd:string ;
 	th:notation "AIMS01-Neck, Shoulders, Hips"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Trunk Movements, Neck, shoulders, hips, e.g., rocking, twisting, squirming, pelvic gyrations. Include diaphragmatic movements."^^xsd:string ;
@@ -982,6 +1026,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102043>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Patient's Awareness of Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102043"^^xsd:string ;
 	th:notation "AIMS01-Patient Awareness Abn Movements"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Patient's awareness of abnormal movements."^^xsd:string ;
@@ -992,6 +1037,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102045>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Patient Usually Wears Dentures"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102045"^^xsd:string ;
 	th:notation "AIMS01-Patient Usually Wear Dentures"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Dental Status, Does patient usually wear dentures?"^^xsd:string ;
@@ -1002,6 +1048,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102041>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Severity of Abnormal Movements"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102041"^^xsd:string ;
 	th:notation "AIMS01-Severity of Abnormal Movements"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Global Judgments, Severity of abnormal movements, based on the highest single score on the above items."^^xsd:string ;
@@ -1012,6 +1059,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102037>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Tongue"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102037"^^xsd:string ;
 	th:notation "AIMS01-Tongue"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Facial and Oral Movements, Tongue. Rate only increase in movement both in and out of mouth, not inability to sustain movement."^^xsd:string ;
@@ -1022,6 +1070,7 @@
 <http://www.cdisc.org/C101806/V1#C101806_C102038>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "AIMS - Upper Extremities"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C102038"^^xsd:string ;
 	th:notation "AIMS01-Upper Extremities"^^xsd:string ;
 	th:definition "Abnormal Involuntary Movement Scale - Extremity Movements, Upper (arms, wrists, hands, fingers). Include movements that are choreic (rapid, objectively purposeless, irregular, spontaneous) or athetoid (slow, irregular, complex, serpentine). Do not include tremor (repetitive, regular, rhythmic movements)."^^xsd:string ;
@@ -1040,6 +1089,7 @@
 <http://www.cdisc.org/C66767/V1#C66767>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C66767/V1#C66767_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66767/V1#C66767_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1084,6 +1134,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C49503>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dose Increased"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49503"^^xsd:string ;
 	th:notation "DOSE INCREASED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by addition; either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
@@ -1097,6 +1148,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C49504>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dose Not Changed"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49504"^^xsd:string ;
 	th:notation "DOSE NOT CHANGED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was maintained. (NCI)"^^xsd:string ;
@@ -1110,6 +1162,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C150826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dose Rate Reduced"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C150826"^^xsd:string ;
 	th:notation "DOSE RATE REDUCED"^^xsd:string ;
 	th:definition "An indication that the administration of a medication was modified by reducing the rate at which the dose was given, without reducing the total dose administered."^^xsd:string ;
@@ -1123,6 +1176,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C49505>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dose Reduced"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49505"^^xsd:string ;
 	th:notation "DOSE REDUCED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by subtraction, either by changing the frequency, strength or amount. (NCI)"^^xsd:string ;
@@ -1136,6 +1190,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C49501>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Drug Interrupted"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49501"^^xsd:string ;
 	th:notation "DRUG INTERRUPTED"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified by temporarily terminating a prescribed regimen of medication. (NCI)"^^xsd:string ;
@@ -1149,6 +1204,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C49502>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Drug Withdrawn"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C49502"^^xsd:string ;
 	th:notation "DRUG WITHDRAWN"^^xsd:string ;
 	th:definition "An indication that a medication schedule was modified through termination of a prescribed regimen of medication. (NCI)"^^xsd:string ;
@@ -1162,6 +1218,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C48660>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Applicable"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C48660"^^xsd:string ;
 	th:notation "NOT APPLICABLE"^^xsd:string ;
 	th:definition "Determination of a value is not relevant in the current context. (NCI)"^^xsd:string ;
@@ -1185,6 +1242,7 @@
 <http://www.cdisc.org/C66767/V1#C66767_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -1221,6 +1279,7 @@
 <http://www.cdisc.org/C103459/V1#C103459>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Code"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C103459/V1#C103459_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C103459/V1#C103459_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1258,6 +1317,7 @@
 <http://www.cdisc.org/C103459/V1#C103459_C103531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "ADCS-CGIC - Clinical Impression of Change from Baseline"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C103531"^^xsd:string ;
 	th:notation "ACGC0101"^^xsd:string ;
 	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change - Clinical impression of change from baseline."^^xsd:string ;
@@ -1284,6 +1344,7 @@
 <http://www.cdisc.org/C103458/V1#C103458>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change Questionnaire Test Name"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	isoT:hasState <http://www.cdisc.org/C103458/V1#C103458_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C103458/V1#C103458_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1321,6 +1382,7 @@
 <http://www.cdisc.org/C103458/V1#C103458_C103531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "ADCS-CGIC - Clinical Impression of Change from Baseline"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#c6209c6d-103e-4188-8db4-a436c3040ab2> ;
 	th:identifier "C103531"^^xsd:string ;
 	th:notation "ACGC01-Clinical Impression of Change"^^xsd:string ;
 	th:definition "Alzheimer's Disease Cooperative Study-Clinical Global Impression of Change - Clinical impression of change from baseline."^^xsd:string ;

@@ -66,7 +66,7 @@ class Import::ChangeInstruction::Instruction
   def valid?
     @errors.clear
     add_error("Previous term empty but current term is not.") if @previous_children.count == 0 && @current_children.count > 0 
-    #add_error("Previous term is not empty but current term is.") if @previous_children.count > 0 && @current_children.count == 0 
+    #add_error("Previous term is not empty but current term is empty.") if @previous_children.count > 0 && @current_children.count == 0 
     add_error("Multiple previous and current terms.") if @previous_children.count > 1 && @current_children.count > 1
     add_error("Multiple previous and current code lists.") if @previous_parent.count > 1 && @current_parent.count > 1
     return @errors.empty?

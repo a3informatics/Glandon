@@ -8,6 +8,7 @@ describe "CDISC Term", :type => :feature do
   include UserAccountHelpers
   include WaitForAjaxHelper
   include DownloadHelpers
+  include CdiscCtHelpers
 
   def sub_dir
     return "features/cdisc_term"
@@ -55,9 +56,9 @@ describe "CDISC Term", :type => :feature do
     it "allows for several versions of CDISC Terminology (REQ-MDR-CT-010)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
-      expect(page).to have_content '2016-03-25 Release'
       expect(page).to have_content '2015-12-18 Release'
       expect(page).to have_content '2015-09-25 Release'
+      expect(page).to have_content '2015-06-26 Release'
     end
 
     #CDISC Th show
@@ -67,10 +68,23 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       ui_child_search("967")
       expect(page).to have_content 'C96780'
       expect(page).to have_content 'C96779'
+      click_link 'Return'
+      expect(page).to have_content 'History'
+    end
+
+    #CDISC Th show
+    it "shows version 1 (GLAN-652) (REQ-MDR-CT-031)", js:true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History'
+      wait_for_ajax(10)
+      ui_table_search("history", "2007-03-06")
+      context_menu_element("history", 5, "2007-03-06 Release", :show)
+      expect(page).to have_content '2007-03-06 Release'
+      ui_check_table_info("children_table", 1, 10, 32)
       click_link 'Return'
       expect(page).to have_content 'History'
     end
@@ -82,7 +96,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(7)
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 409)
+      ui_check_table_info("children_table", 1, 10, 446)
       ui_child_search("10013")
       ui_check_table_info("children_table", 1, 10, 10)
       expect(page).to have_content 'EQ-5D-3L TESTCD'
@@ -106,7 +120,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(7)
       context_menu_element("history", 5, "2014-10-06 Release", :show)
       expect(page).to have_content '2014-10-06 Release'
-      ui_check_table_info("children_table", 1, 10, 409)
+      ui_check_table_info("children_table", 1, 10, 446)
       ui_child_search("10013")
       ui_check_table_info("children_table", 1, 10, 10)
       expect(page).to have_content 'EQ-5D-3L TESTCD'
@@ -130,7 +144,7 @@ describe "CDISC Term", :type => :feature do
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :show)
       expect(page).to have_content '2015-12-18 Release'
-      ui_check_table_info("children_table", 1, 10, 503)
+      ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("route")
       ui_check_table_info("children_table", 1, 3, 3)
       expect(page).to have_content 'C66729'
@@ -194,7 +208,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C106656'
       find(:xpath, "//tr[contains(.,'C106656')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
-      ui_check_table_info("differences_table", 1, 4, 4)
+      ui_check_table_info("differences_table", 1, 3, 3)
       expect(page).to have_content 'Changes'
       ui_check_table_info("changes", 1, 3, 3)
       find(:xpath, "//tr[contains(.,'C106704')]/td/a", :text => 'Changes').click
@@ -216,13 +230,13 @@ describe "CDISC Term", :type => :feature do
       click_link 'View Submission value changes'
       wait_for_ajax_v_long
       expect(page).to have_content 'Submission'
-      ui_check_table_info("changes", 1, 10, 63)
+      ui_check_table_info("changes", 1, 10, 68)
       ui_check_table_cell("changes", 1, 1, "C100391")
       ui_check_table_cell("changes", 1, 2, "Corrected QT Interval")
       ui_check_table_cell("changes", 1, 3, "QTc Correction Method Unspecified")
       ui_check_table_cell_no_change_right("changes", 1, 4)
-      ui_check_table_cell_edit("changes", 1, 5)
-      ui_check_table_cell_no_change_right("changes", 1, 6)
+      ui_check_table_cell_no_change_right("changes", 1, 5)
+      ui_check_table_cell_edit("changes", 1, 6)
       ui_check_table_cell_no_change_right("changes", 1, 7)
     end
 
@@ -233,9 +247,9 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'Submission'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       #input.set("C67152_C98768")
-      input.set("C98768")
+      input.set("C100425")
       wait_for_ajax_v_long
-      find(:xpath, "//tr[contains(.,'Pharmacologic Class')]/td/a", :text => 'Changes').click
+      find(:xpath, "//tr[contains(.,'HDL Cholesterol to LDL Cholesterol Ratio Measurement')]/td/a", :text => 'Changes').click
       expect(page).to have_content 'Differences'
     end
 
@@ -253,7 +267,7 @@ describe "CDISC Term", :type => :feature do
                       "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(CdiscCtHelpers.version_range)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -303,7 +317,8 @@ describe "CDISC Term", :type => :feature do
       click_link 'Display'
       find(:xpath, "//div[@id='updated_div']/a", :text => "LOC (C74456)").click
       expect(page).to have_content("Changes Summary")
-      expect(page).to have_selector(:css, 'a[href="/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y1MyNDNzQ0NTY=/changes"]')
+      expect(page).to have_xpath("//*[@id='history']")
+
     end
 
     it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do

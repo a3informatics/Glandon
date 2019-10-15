@@ -191,9 +191,9 @@ private
       next if type == :description
       content.each do |ref|
         if ref[:child][:identifier].empty?
-          ref[:show_path] = thesauri_managed_concept_path(ref[:id])
+          ref[:show_path] = thesauri_managed_concept_path({id: ref[:id], unmanaged_concept: link_params})
         else
-          ref[:show_path] = thesauri_unmanaged_concept_path(ref[:id])
+          ref[:show_path] = thesauri_unmanaged_concept_path({id: ref[:id], unmanaged_concept: link_params})
         end
       end
     end

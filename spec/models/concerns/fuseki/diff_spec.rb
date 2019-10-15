@@ -206,6 +206,17 @@ describe Fuseki::Diff do
     expect(actual).to eq(expected)
   end
 
+  it "diff, simple V, nil" do
+    uri_a = Uri.new(uri: "http://www.assero.co.uk/Fragment#SubjectA")
+    a = TestD1.new
+    a.uri =  uri_a
+    a.owner = "12345"
+    a.organization_identifier = "Hello World"
+    uri_b = Uri.new(uri: "http://www.assero.co.uk/Fragment#SubjectB")
+    b = nil
+    expect(a.diff?(b)).to eq(true)
+  end
+
   it "diff, children I, same" do
     uri = Uri.new(uri: "http://www.assero.co.uk/Fragment#Test")
     uri_s = Uri.new(uri: "http://www.assero.co.uk/Fragment#Subject")

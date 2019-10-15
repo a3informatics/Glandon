@@ -1,164 +1,154 @@
 ---
 :versions:
-- '2015-06-26'
+- '2015-03-27'
 :items:
-  :C66770_C49673:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MyNDNjY3NzBfQzQ5Njcz
-    :key: C66770_C49673
-    :label: Beats per Minute
-    :notation: beats/min
-    :identifier: C49673
+  :C78733_C78725:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc4NzMzL1Y0MyNDNzg3MzNfQzc4NzI1
+    :key: C78733_C78725
+    :label: Autolized Specimen
+    :notation: AUTOLYZED
+    :identifier: C78725
     :status:
     - :status: :updated
-      :notation: beats/min
-      :previous: BEATS/MIN
-  :C71620_C49673:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzQ5Njcz
-    :key: C71620_C49673
-    :label: Beats per Minute
-    :notation: beats/min
-    :identifier: C49673
+      :notation: AUTOLYZED
+      :previous: AUTOLIZED
+  :C85493_C85823:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MyNDODU0OTNfQzg1ODIz
+    :key: C85493_C85823
+    :label: Time of Maximum Observed Excretion Rate
+    :notation: Midpoint of Interval of Maximum ER
+    :identifier: C85823
     :status:
     - :status: :updated
-      :notation: beats/min
-      :previous: BEATS/MIN
-  :C66770_C49674:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzcwL1Y0MyNDNjY3NzBfQzQ5Njc0
-    :key: C66770_C49674
-    :label: Breaths per Minute
-    :notation: breaths/min
-    :identifier: C49674
+      :notation: Midpoint of Interval of Maximum ER
+      :previous: Time of Max Excretion Rate
+  :C85839_C85580:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1ODM5L1Y0MyNDODU4MzlfQzg1NTgw
+    :key: C85839_C85580
+    :label: Collection Interval Midpoint
+    :notation: ERTLST
+    :identifier: C85580
     :status:
     - :status: :updated
-      :notation: breaths/min
-      :previous: BREATHS/MIN
-  :C71620_C49674:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxNjIwL1Y0MyNDNzE2MjBfQzQ5Njc0
-    :key: C71620_C49674
-    :label: Breaths per Minute
-    :notation: breaths/min
-    :identifier: C49674
+      :notation: ERTLST
+      :previous: MIDPTLST
+  :C90007_C90423:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwNDIz
+    :key: C90007_C90423
+    :label: Method of Termination of Life
+    :notation: Method of Termination
+    :identifier: C90423
     :status:
     - :status: :updated
-      :notation: breaths/min
-      :previous: BREATHS/MIN
-  :C103330_C17953:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMzMzMC9WNDMjQzEwMzMzMF9DMTc5NTM=
-    :key: C103330_C17953
-    :label: Education Level
-    :notation: Level of Education Attained
-    :identifier: C17953
+      :notation: Method of Termination
+      :previous: Method Of Termination
+  :C90007_C90422:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwNDIy
+    :key: C90007_C90422
+    :label: Method Of Identification
+    :notation: Method of Identification
+    :identifier: C90422
     :status:
     - :status: :updated
-      :notation: Level of Education Attained
-      :previous: Education Level
-  :C74559_C17953:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NTU5L1Y0MyNDNzQ1NTlfQzE3OTUz
-    :key: C74559_C17953
-    :label: Education Level
-    :notation: EDULEVEL
-    :identifier: C17953
+      :notation: Method of Identification
+      :previous: Method Of Identification
+  :C90007_C49696:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzQ5Njk2
+    :key: C90007_C49696
+    :label: Sex of Study Group
+    :notation: Sex of Participants
+    :identifier: C49696
     :status:
     - :status: :updated
-      :notation: EDULEVEL
-      :previous: EDLEVEL
-  :C71150_C92229:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1Y0MyNDNzExNTBfQzkyMjI5
-    :key: C71150_C92229
-    :label: Borderline QTcF
-    :notation: BORDERLINE QTCF
-    :identifier: C92229
+      :notation: Sex of Participants
+      :previous: Sex Of Participants
+  :C90007_C90459:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwNDU5
+    :key: C90007_C90459
+    :label: Start Date Time Of Dose Interval
+    :notation: Start Date/Time of Dose Interval
+    :identifier: C90459
     :status:
     - :status: :updated
-      :notation: BORDERLINE QTCF
-      :previous: BORDERLINE QTcF
-  :C120522_C92229:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDUyMi9WNDMjQzEyMDUyMl9DOTIyMjk=
-    :key: C120522_C92229
-    :label: Borderline QTcF
-    :notation: BORDERLINE QTCF
-    :identifier: C92229
+      :notation: Start Date/Time of Dose Interval
+      :previous: Start Date/Time Of Dose Interval
+  :C90007_C90372:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwMzcy
+    :key: C90007_C90372
+    :label: Class of Trial Agent
+    :notation: Class of Compound
+    :identifier: C90372
     :status:
     - :status: :updated
-      :notation: BORDERLINE QTCF
-      :previous: BORDERLINE QTcF
-  :C71150_C92228:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUwL1Y0MyNDNzExNTBfQzkyMjI4
-    :key: C71150_C92228
-    :label: Borderline QTcB
-    :notation: BORDERLINE QTCB
-    :identifier: C92228
+      :notation: Class of Compound
+      :previous: Class Of Compound
+  :C90007_C90379:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzkwMDA3L1Y0MyNDOTAwMDdfQzkwMzc5
+    :key: C90007_C90379
+    :label: End Date Time Of Dose Interval
+    :notation: End Date/Time of Dose Interval
+    :identifier: C90379
     :status:
     - :status: :updated
-      :notation: BORDERLINE QTCB
-      :previous: BORDERLINE QTcB
-  :C120522_C92228:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDUyMi9WNDMjQzEyMDUyMl9DOTIyMjg=
-    :key: C120522_C92228
-    :label: Borderline QTcB
-    :notation: BORDERLINE QTCB
-    :identifier: C92228
+      :notation: End Date/Time of Dose Interval
+      :previous: End Date/Time Of Dose Interval
+  :C85493_C85580:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MyNDODU0OTNfQzg1NTgw
+    :key: C85493_C85580
+    :label: Collection Interval Midpoint
+    :notation: Midpoint of Interval of Last Nonzero ER
+    :identifier: C85580
     :status:
     - :status: :updated
-      :notation: BORDERLINE QTCB
-      :previous: BORDERLINE QTcB
-  :C85493_C102356:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkzL1Y0MyNDODU0OTNfQzEwMjM1Ng==
-    :key: C85493_C102356
-    :label: Accumulation Ratio Area Under the Curve
-    :notation: Accumulation Ratio AUCTAU
-    :identifier: C102356
+      :notation: Midpoint of Interval of Last Nonzero ER
+      :previous: Midpoint of Collection Interval
+  :C116110_C116251:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjExMC9WNDMjQzExNjExMF9DMTE2MjUx
+    :key: C116110_C116251
+    :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
+    :notation: IC95S
+    :identifier: C116251
     :status:
     - :status: :updated
-      :notation: Accumulation Ratio AUCTAU
-      :previous: Accumulation Ratio AUC
-  :C100129_C111379:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDMjQzEwMDEyOV9DMTExMzc5
-    :key: C100129_C111379
-    :label: Columbia-Suicide Severity Rating Scale Children's Since Last Visit Questionnaire
-    :notation: C-SSRS CHILDREN'S SINCE LAST VISIT
-    :identifier: C111379
+      :notation: IC95S
+      :previous: IC95T
+  :C116110_C116247:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjExMC9WNDMjQzExNjExMF9DMTE2MjQ3
+    :key: C116110_C116247
+    :label: Half Maximal Inhibitory Concentration Subject Result Measurement
+    :notation: IC50S
+    :identifier: C116247
     :status:
     - :status: :updated
-      :notation: C-SSRS CHILDREN'S SINCE LAST VISIT
-      :previous: C-SSRS CHILDREN'S SINCE LAST VIST
-  :C71152_C117786:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0MyNDNzExNTJfQzExNzc4Ng==
-    :key: C71152_C117786
-    :label: Aggregate QTCF Interval
-    :notation: QTcF Interval, Aggregate
-    :identifier: C117786
+      :notation: IC50S
+      :previous: IC50T
+  :C67154_C116208:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y0MyNDNjcxNTRfQzExNjIwOA==
+    :key: C67154_C116208
+    :label: Platelet Derived Growth Factor Isoform AB Measurement
+    :notation: Platelet Derived Growth Factor IsoformAB
+    :identifier: C116208
     :status:
     - :status: :updated
-      :notation: QTcF Interval, Aggregate
-      :previous: QTCF Interval, Aggregate
-  :C71152_C117787:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0MyNDNzExNTJfQzExNzc4Nw==
-    :key: C71152_C117787
-    :label: Single Beat QTCF Interval
-    :notation: QTcF Interval, Single Beat
-    :identifier: C117787
+      :notation: Platelet Derived Growth Factor IsoformAB
+      :previous: Platelet Derived Growth Factor Isoform AB
+  :C116109_C116247:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjEwOS9WNDMjQzExNjEwOV9DMTE2MjQ3
+    :key: C116109_C116247
+    :label: Half Maximal Inhibitory Concentration Subject Result Measurement
+    :notation: IC50 Subject Result
+    :identifier: C116247
     :status:
     - :status: :updated
-      :notation: QTcF Interval, Single Beat
-      :previous: QTCF Interval, Single Beat
-  :C71152_C117785:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0MyNDNzExNTJfQzExNzc4NQ==
-    :key: C71152_C117785
-    :label: Single Beat QTCB Interval
-    :notation: QTcB Interval, Single Beat
-    :identifier: C117785
+      :notation: IC50 Subject Result
+      :previous: IC50 Treatment Result
+  :C116109_C116251:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjEwOS9WNDMjQzExNjEwOV9DMTE2MjUx
+    :key: C116109_C116251
+    :label: 95 Percent Maximal Inhibitory Concentration Subject Result Measurement
+    :notation: IC95 Subject Result
+    :identifier: C116251
     :status:
     - :status: :updated
-      :notation: QTcB Interval, Single Beat
-      :previous: QTCB Interval, Single Beat
-  :C71152_C117784:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzcxMTUyL1Y0MyNDNzExNTJfQzExNzc4NA==
-    :key: C71152_C117784
-    :label: Aggregate QTCB Interval
-    :notation: QTcB Interval, Aggregate
-    :identifier: C117784
-    :status:
-    - :status: :updated
-      :notation: QTcB Interval, Aggregate
-      :previous: QTCB Interval, Aggregate
+      :notation: IC95 Subject Result
+      :previous: IC95 Treatment Result

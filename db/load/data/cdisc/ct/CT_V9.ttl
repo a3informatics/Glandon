@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "Controlled Terminology"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'SDTM Terminology 2008-09-22.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2008-09-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2008-09-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -144,8 +145,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "1"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66767/V4#C66767> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR2
 	rdf:type bo:TcReference ;
@@ -153,8 +154,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "2"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66768/V4#C66768> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR3
 	rdf:type bo:TcReference ;
@@ -162,8 +163,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "3"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66780/V4#C66780> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR4
 	rdf:type bo:TcReference ;
@@ -171,8 +172,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "4"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66781/V4#C66781> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR5
 	rdf:type bo:TcReference ;
@@ -180,8 +181,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "5"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66797/V4#C66797> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR6
 	rdf:type bo:TcReference ;
@@ -189,8 +190,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "6"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66783/V4#C66783> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR7
 	rdf:type bo:TcReference ;
@@ -198,8 +199,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "7"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66784/V4#C66784> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR8
 	rdf:type bo:TcReference ;
@@ -207,8 +208,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "8"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66785/V4#C66785> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR9
 	rdf:type bo:TcReference ;
@@ -216,8 +217,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "9"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66786/V4#C66786> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR10
 	rdf:type bo:TcReference ;
@@ -225,8 +226,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "10"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66787/V4#C66787> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR11
 	rdf:type bo:TcReference ;
@@ -234,8 +235,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "11"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66788/V4#C66788> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR12
 	rdf:type bo:TcReference ;
@@ -243,8 +244,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "12"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66789/V4#C66789> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR13
 	rdf:type bo:TcReference ;
@@ -252,8 +253,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "13"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66790/V4#C66790> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR14
 	rdf:type bo:TcReference ;
@@ -261,8 +262,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "14"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66726/V8#C66726> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR15
 	rdf:type bo:TcReference ;
@@ -270,8 +271,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "15"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66727/V9#C66727> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR16
 	rdf:type bo:TcReference ;
@@ -279,8 +280,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "16"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66728/V4#C66728> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR17
 	rdf:type bo:TcReference ;
@@ -288,8 +289,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "17"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66729/V4#C66729> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR18
 	rdf:type bo:TcReference ;
@@ -297,8 +298,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "18"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66769/V4#C66769> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR19
 	rdf:type bo:TcReference ;
@@ -306,8 +307,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "19"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66731/V4#C66731> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR20
 	rdf:type bo:TcReference ;
@@ -315,8 +316,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "20"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66732/V4#C66732> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR21
 	rdf:type bo:TcReference ;
@@ -324,8 +325,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "21"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66733/V4#C66733> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR22
 	rdf:type bo:TcReference ;
@@ -333,8 +334,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "22"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66734/V4#C66734> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR23
 	rdf:type bo:TcReference ;
@@ -342,8 +343,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "23"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66735/V4#C66735> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR24
 	rdf:type bo:TcReference ;
@@ -351,8 +352,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "24"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66736/V4#C66736> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR25
 	rdf:type bo:TcReference ;
@@ -360,8 +361,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "25"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66737/V9#C66737> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR26
 	rdf:type bo:TcReference ;
@@ -369,8 +370,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "26"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66738/V5#C66738> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR27
 	rdf:type bo:TcReference ;
@@ -378,8 +379,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "27"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C67152/V4#C67152> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR28
 	rdf:type bo:TcReference ;
@@ -387,8 +388,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "28"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66739/V4#C66739> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR29
 	rdf:type bo:TcReference ;
@@ -396,8 +397,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "29"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66770/V4#C66770> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR30
 	rdf:type bo:TcReference ;
@@ -405,8 +406,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "30"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66741/V4#C66741> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR31
 	rdf:type bo:TcReference ;
@@ -414,8 +415,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "31"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C67153/V4#C67153> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR32
 	rdf:type bo:TcReference ;
@@ -423,8 +424,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "32"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C66742/V4#C66742> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR33
 	rdf:type bo:TcReference ;
@@ -432,8 +433,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "33"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C65047/V8#C65047> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR34
 	rdf:type bo:TcReference ;
@@ -441,8 +442,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "34"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C67154/V8#C67154> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR35
 	rdf:type bo:TcReference ;
@@ -450,8 +451,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "35"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71113/V6#C71113> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR36
 	rdf:type bo:TcReference ;
@@ -459,8 +460,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "36"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71148/V7#C71148> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR37
 	rdf:type bo:TcReference ;
@@ -468,8 +469,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "37"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71150/V6#C71150> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR38
 	rdf:type bo:TcReference ;
@@ -477,8 +478,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "38"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71153/V6#C71153> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR39
 	rdf:type bo:TcReference ;
@@ -486,8 +487,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "39"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71152/V6#C71152> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR40
 	rdf:type bo:TcReference ;
@@ -495,8 +496,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "40"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71151/V6#C71151> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR41
 	rdf:type bo:TcReference ;
@@ -504,8 +505,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "41"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C71620/V9#C71620> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR42
 	rdf:type bo:TcReference ;
@@ -513,8 +514,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "42"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C74456/V8#C74456> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR43
 	rdf:type bo:TcReference ;
@@ -522,8 +523,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "43"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C74558/V8#C74558> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR44
 	rdf:type bo:TcReference ;
@@ -531,8 +532,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "44"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C74560/V8#C74560> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR45
 	rdf:type bo:TcReference ;
@@ -540,8 +541,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "45"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C74561/V8#C74561> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR46
 	rdf:type bo:TcReference ;
@@ -549,8 +550,8 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "46"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C74559/V8#C74559> ;
+	bo:localLabel ""^^xsd:string ;
 .
 :TH_TCR47
 	rdf:type bo:TcReference ;
@@ -558,12 +559,13 @@
 	bo:enabled "true"^^xsd:boolean ;
 	bo:optional "false"^^xsd:boolean ;
 	bo:ordinal "47"^^xsd:positiveInteger ;
-	bo:localLabel ""^^xsd:string ;
 	bo:reference <http://www.cdisc.org/C25188/V9#C25188> ;
+	bo:localLabel ""^^xsd:string ;
 .
 <http://www.cdisc.org/C66727/V9#C66727>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Completion/Reason for Non-Completion"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66727/V9#C66727_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66727/V9#C66727_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -616,6 +618,7 @@
 <http://www.cdisc.org/C66727/V9#C66727_C41331>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Adverse Event"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C41331"^^xsd:string ;
 	th:notation "ADVERSE EVENT"^^xsd:string ;
 	th:definition "Any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An adverse event (AE) can therefore be any unintended sign (including an abnormal laboratory finding), symptom,or disease temporally associated with the use of a medicinal (investigational) product, whether or not related to the medicinal (investigational) product. NOTE: For further information, see the ICH Guideline for Clinical Safety Data Management: Definitions and Standards for Expedited Reporting. [Modified from ICH E2A] Synonyms: side effect, adverse experience. See also serious adverse event, serious adverse experience.  (CDISC glossary)"^^xsd:string ;
@@ -625,6 +628,7 @@
 <http://www.cdisc.org/C66737/V9#C66737>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Trial Phase"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C66737/V9#C66737_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C66737/V9#C66737_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -673,6 +677,7 @@
 <http://www.cdisc.org/C66737/V9#C66737_C15602>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Phase III Trial"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C15602"^^xsd:string ;
 	th:notation "Phase III Trial"^^xsd:string ;
 	th:definition "Phase 3. Studies are expanded controlled and uncontrolled trials. They are performed after preliminary evidence suggesting effectiveness of the drug has been obtained, and are intended to gather the additional information about effectiveness and safety that is needed to confirm efficacy and evaluate the overall benefit-risk relationship of the drug and to provide an adequate basis for physician labeling. NOTE: Phase 3 studies usually include from several hundred to several thousand subjects. [After FDA CDER Handbook, ICH E8]  (CDISC glossary)"^^xsd:string ;
@@ -684,6 +689,7 @@
 <http://www.cdisc.org/C71620/V9#C71620>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C71620/V9#C71620_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C71620/V9#C71620_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1025,6 +1031,7 @@
 <http://www.cdisc.org/C71620/V9#C71620_C68859>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standard Cubic Foot"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C68859"^^xsd:string ;
 	th:notation "ft3"^^xsd:string ;
 	th:definition "A unit used in physical chemistry to express the amount of substance of an ideal gas in one cubic foot at 60 degrees Fahrenheit and pressure of one atmosphere.(NCI)"^^xsd:string ;
@@ -1039,6 +1046,7 @@
 <http://www.cdisc.org/C25188/V9#C25188>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Marital Status"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	isoT:hasState <http://www.cdisc.org/C25188/V9#C25188_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C25188/V9#C25188_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1084,6 +1092,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C76240>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Annulled"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76240"^^xsd:string ;
 	th:notation "ANNULLED"^^xsd:string ;
 	th:definition "Marriage contract has been declared null and to not have existed. (HL7)"^^xsd:string ;
@@ -1097,6 +1106,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C51776>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Divorced"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51776"^^xsd:string ;
 	th:notation "DIVORCED"^^xsd:string ;
 	th:definition "Marrige contract has been declared dissolved and inactive. (HL7)"^^xsd:string ;
@@ -1110,6 +1120,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C76241>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Interlocutory"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76241"^^xsd:string ;
 	th:notation "INTERLOCUTORY"^^xsd:string ;
 	th:definition "Temporary order issued during the course of litigation. (HL7)"^^xsd:string ;
@@ -1123,6 +1134,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C51777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Separated"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51777"^^xsd:string ;
 	th:notation "LEGALLY SEPARATED"^^xsd:string ;
 	th:definition "A person living apart from his/her spouse by legal arrangement. (HL7)"^^xsd:string ;
@@ -1136,6 +1148,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C51773>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Married"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51773"^^xsd:string ;
 	th:notation "MARRIED"^^xsd:string ;
 	th:definition "A current marriage contract is active. (HL7)"^^xsd:string ;
@@ -1149,6 +1162,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C51774>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Never Married"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51774"^^xsd:string ;
 	th:notation "NEVER MARRIED"^^xsd:string ;
 	th:definition "No marriage contract has ever been entered. (HL7)"^^xsd:string ;
@@ -1162,6 +1176,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C51775>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Widowed"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C51775"^^xsd:string ;
 	th:notation "WIDOWED"^^xsd:string ;
 	th:definition "The spouse has died. (HL7)"^^xsd:string ;
@@ -1175,6 +1190,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C76242>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Polygamous"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C76242"^^xsd:string ;
 	th:notation "POLYGAMOUS"^^xsd:string ;
 	th:definition "More than 1 current spouse. (HL7)"^^xsd:string ;
@@ -1188,6 +1204,7 @@
 <http://www.cdisc.org/C25188/V9#C25188_C53262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Domestic Partnership"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
 	th:identifier "C53262"^^xsd:string ;
 	th:notation "DOMESTIC PARTNER"^^xsd:string ;
 	th:definition "Person declares that a domestic partnership relationship exists. (HL7)"^^xsd:string ;

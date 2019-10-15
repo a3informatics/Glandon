@@ -52,7 +52,13 @@ module Fuseki
 
       # Each. Iterate over the proeprites
       def each
-        @metadata.each {|key, value| yield(Fuseki::Resource::Property.new(@parent, key, value))}
+        @metadata.each do |key, value| 
+          begin
+            yield(Fuseki::Resource::Property.new(@parent, key, value))
+          rescue => e
+            byebug
+          end
+        end
       end
 
       # Assign. Assign a set of properties to the object

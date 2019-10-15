@@ -18,15 +18,8 @@ describe "IsoConceptV2" do
     end
 
 	  before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_data_3.ttl"]
       load_files(schema_files, data_files)
-      # clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_test_file_into_triple_store("iso_concept_data_3.ttl")
 	  end
 
 		it "validates a valid object" do
@@ -48,7 +41,8 @@ describe "IsoConceptV2" do
 	      	:rdf_type => "http://www.assero.co.uk/ISO11179Concepts#Concept",
 	      	:uri => uri.to_s, 
 	      	:label => "A Concept",
-          :id => uri.to_id
+          :id => uri.to_id,
+          :tagged => []
 	    	}
       result = IsoConceptV2.find(uri)
 			expect(result.to_h).to eq(expected)   
@@ -109,7 +103,6 @@ describe "IsoConceptV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..5)
@@ -144,6 +137,67 @@ describe "IsoConceptV2" do
       check_uri(ct, [item2.uri])
       ct.delete_link(:is_top_concept, item2.uri)
       check_uri(ct, [])
+    end
+
+  end
+
+  describe "Tags" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..26)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    it "add tags" do
+      item_1 = IsoConceptV2.new
+      item_1.uri = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_2 = IsoConceptV2.new
+      item_2.uri = Uri.new(uri: "http://www.assero.co.uk/C2")
+      cs_1 = IsoConceptSystem.new
+      cs_1.uri = Uri.new(uri: "http://www.assero.co.uk/TAG1")
+      cs_2 = IsoConceptSystem.new
+      cs_2.uri = Uri.new(uri: "http://www.assero.co.uk/TAG2")
+      cs_3 = IsoConceptSystem.new
+      cs_3.uri = Uri.new(uri: "http://www.assero.co.uk/TAG3")
+      expect(item_1.tagged.count).to eq(0)
+      expect(item_2.tagged.count).to eq(0)
+      item_1.add_tag(cs_1)
+      expect(item_1.tagged.count).to eq(1)
+      expect(item_2.tagged.count).to eq(0)
+      item_1.add_tag(cs_2)
+      expect(item_1.tagged.count).to eq(2)
+      expect(item_2.tagged.count).to eq(0)
+      item_1.add_tag(cs_2)
+      expect(item_1.tagged.count).to eq(2)
+      expect(item_2.tagged.count).to eq(0)
+      item_1.add_tags([cs_1, cs_2])
+      item_2.add_tags([cs_1, cs_2])
+      expect(item_1.tagged.count).to eq(2)
+      expect(item_2.tagged.count).to eq(2)
+      item_2.add_tags([cs_1, cs_2])
+      expect(item_1.tagged.count).to eq(2)
+      expect(item_2.tagged.count).to eq(2)
+      item_1.add_tag(cs_3)
+      item_2.add_tags([cs_3])
+      expect(item_1.tagged.count).to eq(3)
+      expect(item_2.tagged.count).to eq(3)
+      expect(item_1.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
+      expect(item_2.tagged.map{|x| x.uri}).to match_array([cs_1.uri, cs_2.uri, cs_3.uri])
+    end
+
+    it "Gets tags" do
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      results = th.tags
+      expect(results.map{|x| x.pref_label}).to eq(["SDTM"])
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = th.tags
+      expect(results.map{|x| x.pref_label}).to eq(["SDTM", "CDASH", "ADaM", "SEND"])
     end
 
   end

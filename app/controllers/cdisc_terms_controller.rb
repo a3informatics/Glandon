@@ -66,7 +66,6 @@ class CdiscTermsController < ApplicationController
     ct_to = Thesaurus.find_minimum(change_params[:other_id])
     to_index = versions.find_index {|x| x[:id] == ct_to.id}
     window_size = to_index - from_index + 1
-
     results = ct_from.changes_cdu(window_size)
     results.each do |k,v|
       next if k == :versions

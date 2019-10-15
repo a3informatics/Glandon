@@ -89,7 +89,8 @@ describe "IsoManagedV2" do
         	:creation_date => "2016-01-01T00:00:00+00:00",
         	:last_change_date => "2016-01-01T00:00:00+00:00",
         	:explanatory_comment => "",
-          :id => nil
+          :id => nil, 
+          tagged: []
       	}
   		item = IsoManagedV2.new
       expect(item.to_h).to eq(result)
@@ -412,6 +413,11 @@ describe "IsoManagedV2" do
       expect(actual.count).to eq(10)
       actual.each {|x| results << x.to_h}
       check_file_actual_expected(results, sub_dir, "history_pagination_expected_1.yaml", equate_method: :hash_equal)
+      results = []
+      actual = CdiscTerm.history_pagination(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope, count: 10, offset: 20)
+      expect(actual.count).to eq(10)
+      actual.each {|x| results << x.to_h}
+      check_file_actual_expected(results, sub_dir, "history_pagination_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "history uris" do
@@ -578,7 +584,7 @@ describe "IsoManagedV2" do
       object = Thesaurus.create({label: "A new item", identifier: "NEW1"})
       expect(object.errors.count).to eq(0)
       actual = object.to_h
-    #Xwrite_yaml_file(results, sub_dir, "create_next_version_1.yaml")
+    #Xwrite_yaml_file(actual, sub_dir, "create_next_version_1.yaml")
       expected = read_yaml_file(sub_dir, "create_next_version_1.yaml")
       expected[:creation_date] = date_check_now(object.creation_date).iso8601
       expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
@@ -591,7 +597,7 @@ describe "IsoManagedV2" do
       object.origin = "A ref"
       result = object.create_next_version
       expect(object.uri).to_not eq(result.uri) # New item
-    #Xwrite_yaml_file(results, sub_dir, "create_next_version_2.yaml")
+    #Xwrite_yaml_file(result.to_h, sub_dir, "create_next_version_2.yaml")
       expected = read_yaml_file(sub_dir, "create_next_version_2.yaml")
       expected[:creation_date] = date_check_now(object.creation_date).iso8601
       expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
@@ -686,7 +692,6 @@ describe "IsoManagedV2" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_5.ttl"]
       load_files(schema_files, data_files)
     end

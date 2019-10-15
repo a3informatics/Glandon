@@ -20,6 +20,7 @@ class Import::Rectangular < Import
   def import(params)
     @parent_set = {}
     @classifications = {}
+    @tags = []
     read_all_excel(params)
     results = add_parent(params)
     add_managed_children(results) if managed?(configuration[:parent_klass].child_klass)
@@ -50,6 +51,7 @@ private
       merge_errors(reader, self)
       next if !reader.errors.empty?
       merge_parent_set(reader)
+      @tags += reader.engine.tags
     end
   end
     
@@ -57,9 +59,12 @@ private
   def merge_parent_set(reader)
     dup_count = 0
     reader.engine.parent_set.each do |k, v| 
-      if @parent_set.key?(k) 
-        self.errors.add(:base, "Duplicate identifier #{k} detected during import of #{reader.full_path} and a difference has been detected.") if @parent_set[k].diff?(v)
-        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, "Duplicate identifier #{k} detected during import of #{reader.full_path}")
+      if @parent_set.key?(k)
+        next if @parent_set[k].merge(v)
+        msg =  "Duplicate identifier #{k} detected during import of #{reader.full_path} and cannot merge as a difference has been detected"
+        self.errors.add(:base, msg)
+        merge_errors(@parent_set[k], self)
+        ConsoleLogger.info(C_CLASS_NAME, __method__.to_s, msg)
         dup_count += 1
       else
         @parent_set[k] = v
@@ -71,6 +76,7 @@ private
   # Process. Process the results structure to convert to objects
   def process(results)
     filtered = []
+    tag_set = []
     klass = configuration[:parent_klass]
     child_klass = klass.child_klass
     return results if !managed?(child_klass)
@@ -80,10 +86,12 @@ private
       previous_info = child_klass.latest({scope: scope, identifier: child.identifier})
       previous = previous_info.nil? ? nil : child_klass.find_full(previous_info.id) 
       actual = child.replace_if_no_change(previous)
-      parent.add(actual, index + 1)
-      filtered << child if actual.uuid == child.uuid
+      parent.add(actual, index + 1) # Parent needs ref to child whatever new or previous
+      next if actual.uri != child.uri # No changes if actual = previous, so skip next
+      child.add_additional_tags(previous, tag_set) 
+      filtered << child 
     end
-    return {parent: parent, managed_children: filtered}
+    return {parent: parent, managed_children: filtered, tags: tag_set}
   end
 
   # Check no errors in the objects structure.
@@ -123,7 +131,14 @@ private
     parent.set_import(identifier: klass.configuration[:identifier], label: params[:label], 
       semantic_version: params[:semantic_version], version_label: params[:version_label], version: params[:version], 
       date: params[:date], ordinal: 1)
+    parent.origin = import_files(params)
+    parent.add_tags(@tags)
     return {parent: parent, managed_children: []}
   end
-  
+
+  # Format files used in import
+  def import_files(params)
+    "Created from files: #{params[:files].map {|x| "'#{File.basename(x)}'"}.join(", ")}"
+  end
+
 end

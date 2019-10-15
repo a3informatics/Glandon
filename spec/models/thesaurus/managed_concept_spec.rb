@@ -490,14 +490,14 @@ describe "Thesaurus::ManagedConcept" do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(1..60)
       delete_all_public_test_files
     end
 
     it "finds changes count" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       expect(tc.changes_count(4)).to eq(4)
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V29#C65047"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V30#C65047"))
       expect(tc.changes_count(40)).to eq(29)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V1#C65047"))
       expect(tc.changes_count(40)).to eq(40)
@@ -508,99 +508,99 @@ describe "Thesaurus::ManagedConcept" do
     it "finds changes, 4" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.changes(4)
-      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 8" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 8" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.changes(8)
-      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 3" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.changes(3)
-      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "finds changes, 3" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V45#C89973"))
       results = tc.changes(3)
-      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "differences, I" do
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C65047/V20#C65047"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "differences, II" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C124661/V47#C124661"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "differences, III" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V56#C100129"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "differences, IV" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C100129/V31#C100129"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml", equate_method: :hash_equal)
     end
 
     it "differences, V" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_5.yaml", equate_method: :hash_equal)
     end
 
     it "differences, VI" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V37#C101805"))
       results = tc.differences
-      check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_expected_6.yaml", equate_method: :hash_equal)
     end
 
     it "differences_summary, first item first version" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2012-06-29","2019-06-28"]
       results = tc.differences_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "differences_summary, first item other version" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V36#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V37#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2013-12-20","2019-06-28"]
       results = tc.differences_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "differences_summary_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary I" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V30#C101805"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V59#C101805"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V31#C101805"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C101805/V60#C101805"))
       versions = ["2012-03-23","2019-06-28"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary II" do
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V44#C89973"))
-      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V47#C89973"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V45#C89973"))
+      last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C89973/V48#C89973"))
       versions = ["2015-09-25","2016-06-24"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "changes_summary III" do
@@ -608,7 +608,7 @@ describe "Thesaurus::ManagedConcept" do
       last = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66783/V27#C66783"))
       versions = ["2007-04-20","2011-07-22"]
       results = tc.changes_summary(last, versions)
-      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml")
+      check_file_actual_expected(results, sub_dir, "changes_summary_expected_3.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -762,7 +762,7 @@ describe "Thesaurus::ManagedConcept" do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..30)
+      load_cdisc_term_versions(1..31)
     end
 
     after :all do
@@ -784,7 +784,7 @@ describe "Thesaurus::ManagedConcept" do
     it "normal, extended" do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
-      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V30#C99079"))
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V31#C99079"))
       item = thesaurus.add_extension(tc.id)
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_3.yaml")
@@ -792,6 +792,186 @@ describe "Thesaurus::ManagedConcept" do
       item.add_extensions([ext.uri])
       results = item.children_pagination(count: 20, offset: 0)
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_4.yaml")
+    end
+
+  end
+
+  describe "merge" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    def merge_base
+      @tag_1 = IsoConceptSystem::Node.new(pref_label: "TAG1", uri: Uri.new(uri: "http://www.example.com/path#tag1"))
+      @tag_2 = IsoConceptSystem::Node.new(pref_label: "TAG2", uri: Uri.new(uri: "http://www.example.com/path#tag2"))
+      @tag_3 = IsoConceptSystem::Node.new(pref_label: "TAG3", uri: Uri.new(uri: "http://www.example.com/path#tag3"))
+      @uri_1 = Uri.new(uri: "http://www.cdisc.org/tag1")
+      @uri_2 = Uri.new(uri: "http://www.cdisc.org/tag2")
+      @uri_3 = Uri.new(uri: "http://www.cdisc.org/tag2")
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Vital Sign Test Codes Extension",
+          identifier: "A00001",
+          definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
+          notation: "VSTEST"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
+      @tc_1.tagged << @tag_1
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "APGAR Score",
+          identifier: "A00002",
+          definition: "An APGAR Score",
+          notation: "APGAR"
+        })
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label: "APGAR Score")
+      @tc_1b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Mid upper arm circumference",
+          identifier: "A00003",
+          definition: "The measurement of the mid upper arm circumference",
+          notation: "MUAC"
+        })
+      @tc_1b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
+      @tc_1b.synonym << Thesaurus::Synonym.new(label: "Upper Arm")
+      @tc_1b.tagged << @tag_1
+      @tc_1b.tagged << @tag_3
+      @tc_1.narrower << @tc_1a
+      @tc_1.narrower << @tc_1b
+      @tc_2 = Thesaurus::ManagedConcept.from_h({
+          label: "Vital Sign Test Codes Extension",
+          identifier: "A00001",
+          definition: "A set of additional Vital Sign Test Codes to extend the CDISC set.",
+          notation: "VSTEST"
+        })
+      @tc_2.preferred_term = Thesaurus::PreferredTerm.new(label: "Vital Sign Test Codes Extension")
+      @tc_2.tagged << @tag_2
+      @tc_2a = Thesaurus::UnmanagedConcept.from_h({
+          label: "APGAR Score",
+          identifier: "A00002",
+          definition: "An APGAR Score",
+          notation: "APGAR"
+        })
+      @tc_2a.preferred_term = Thesaurus::PreferredTerm.new(label: "APGAR Score")
+      @tc_2b = Thesaurus::UnmanagedConcept.from_h({
+          label: "Mid upper arm circumference",
+          identifier: "A00003",
+          definition: "The measurement of the mid upper arm circumference",
+          notation: "MUAC"
+        })
+      @tc_2b.preferred_term = Thesaurus::PreferredTerm.new(label: "Mid upper arm circumference")
+      @tc_2b.synonym << Thesaurus::Synonym.new(label: "Upper Arm")
+      @tc_2b.tagged << @tag_1
+      @tc_2b.tagged << @tag_2
+      @tc_2.narrower << @tc_2a
+      @tc_2.narrower << @tc_2b
+    end
+
+    it "equal" do
+      merge_base
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+      expect(@tc_1.tagged.count).to eq(2)
+      expect(@tc_1.tagged).to match_array([@tag_1, @tag_2])
+    end
+
+    it "not equal, I" do
+      merge_base
+      @tc_1.label = "Argh!!!!"
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(1)
+      expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in the item")
+    end
+
+    it "not equal, II" do
+      merge_base
+      @tc_1b.label = "Argh!!!!"
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(1)
+      #expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in child A00003")
+      check_file_actual_expected(@tc_1.errors.full_messages.to_sentence, sub_dir, "merge_errors_1.yaml")
+    end
+
+    it "extra child in other" do
+      merge_base
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower << @tc_2c
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+      expect(@tc_1.narrower.count).to eq(3)
+      expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC", "EXTRA"])
+      expect(@tc_1.tagged.count).to eq(2)
+      expect(@tc_1.tagged).to match_array([@tag_1, @tag_2])
+      expect(@tc_1b.tagged.count).to eq(3)
+      expect(@tc_1b.tagged).to match_array([@tag_1, @tag_2, @tag_3])
+    end
+
+    it "extra child in other, error I" do
+      merge_base
+      @tc_1a.notation = "Argh!!!!"
+      @tc_1b.definition = "Argh!!!!"
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower << @tc_2c
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(false)
+      expect(@tc_1.errors.count).to eq(2)
+      #expect(@tc_1.errors.full_messages.to_sentence).to eq("When merging A00001 a difference was detected in child A00002 and When merging A00001 a difference was detected in child A00003")
+      check_file_actual_expected(@tc_1.errors.full_messages.to_sentence, sub_dir, "merge_errors_2.yaml")
+    end
+
+    it "less children in other" do
+      merge_base
+      @tc_2c = Thesaurus::UnmanagedConcept.from_h({
+          label: "Extra",
+          identifier: "A00004",
+          definition: "Something extra",
+          notation: "EXTRA"
+        })
+      @tc_2.narrower = []
+      @tc_2.narrower << @tc_2a
+      result = @tc_1.merge(@tc_2)
+      expect(result).to be(true)
+      expect(@tc_1.errors.count).to eq(0)
+      expect(@tc_1.narrower.count).to eq(2)
+      expect(@tc_1.narrower.map{|x| x.notation}).to match_array(["APGAR", "MUAC"])
+    end
+
+    it "add additional tags" do
+      merge_base
+      result = []
+      @tc_1.uri = Uri.new(uri: "http://www.cdisc.org/mc1")
+      @tc_1b.uri = Uri.new(uri: "http://www.cdisc.org/uc1b")
+      @tc_2.uri = Uri.new(uri: "http://www.cdisc.org/mc2")
+      @tc_2b.uri = Uri.new(uri: "http://www.cdisc.org/uc2b")
+      @tc_1.add_additional_tags(@tc_2, result)
+      expect(@tc_1.tagged.count).to eq(1)
+      expect(@tc_1.tagged.map{|x| x.uri}).to match_array([@tag_1.uri])
+      expect(@tc_2.tagged.count).to eq(1)
+      expect(@tc_2.tagged.map{|x| x.uri}).to match_array([@tag_2.uri])
+      expect(@tc_1b.tagged.count).to eq(2)
+      expect(@tc_1b.tagged.map{|x| x.uri}).to match_array([@tag_1.uri, @tag_3.uri])
+      expect(@tc_2b.tagged.count).to eq(2)
+      expect(@tc_2b.tagged.map{|x| x.uri}).to match_array([@tag_1.uri, @tag_2.uri])
+      check_file_actual_expected(result, sub_dir, "additional_tags_expected_1.yaml")
     end
 
   end

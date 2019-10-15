@@ -38,6 +38,7 @@ describe Excel::Engine do
 
     configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept"
     object_property :collection, cardinality: :many, model_class: "DefinitionClass"
+    object_property :tagged, cardinality: :many, model_class: "DefinitionClass"
 
     def to_hash
       {label: self.label}
@@ -275,6 +276,96 @@ describe Excel::Engine do
       expect(result).to eq(false)
       expect(parent.errors.count).to eq(0)
     end
+  end
+
+  it "checks sheet condition, I" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook)
+    logic = 
+    {
+      sheet: 
+      { 
+        actions: 
+        [ 
+          { method: :tag_from_sheet_name,
+            map: { ADaM: ["ADaM"], CDASH: ["CDASH", "XXX"], SDTM: ["SDTM"] }
+          }
+        ]
+      }
+    }
+    tag_a = IsoConceptSystem::Node.new(pref_label: "SDTM TAG", uri: Uri.new(uri: "http://www.example.com/path#a"))
+    tag_b = IsoConceptSystem::Node.new(pref_label: "OTHER TAG", uri: Uri.new(uri: "http://www.example.com/path#b"))
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return(tag_a)
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "XXX"]).and_return(tag_b)
+    object.process_sheet(logic)
+    expect(object.tags).to match_array([tag_a, tag_b])
+  end
+
+  it "checks sheet condition, II" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook)
+    logic = 
+    {
+      sheet: 
+      { 
+        actions: 
+        [ 
+          { method: :tag_from_sheet_name,
+            map: { ADaM: ["ADaM"], CDash: ["CDASH"], SDTM: ["SDTM"] }
+          }
+        ]
+      }
+    }
+    object.process_sheet(logic)
+    expect(object.tags).to eq([])
+  end
+
+  it "tag from sheet name, I" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
+    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    expect(result).to eq([{:tag=>"A"}])
+    result = object.tag_from_sheet_name({map: {cdash: ["XXX"], x: ["X"]}})
+    expect(result).to eq([])
+  end
+
+  it "tag from sheet name, II" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_2.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS"]).and_return({tag: "QS"})
+    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS FT T": ["QS-FT"]}})
+    expect(result).to eq([{:tag=>"QS"}])
+  end
+
+  it "tag from sheet name, III" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_3.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "QS-FT"]).and_return({tag: "QS-FT"})
+    result = object.tag_from_sheet_name({map: {"QS T": ["QS"], "QS-FT T": ["QS-FT"]}})
+    expect(result).to eq([{:tag=>"QS-FT"}])
+  end
+
+  it "set tagged property" do
+    full_path = test_file_path(sub_dir, "process_sheet_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(IsoConceptSystem).to receive(:path).with(["CDISC", "CDASH"]).and_return({tag: "A"})
+    result = object.tag_from_sheet_name({map: {CDASH: ["CDASH"], x: ["X"]}})
+    expect(result).to eq([{:tag=>"A"}])
+    result = object.set_tags({object: parent})
+    expect(parent.tagged).to eq([{:tag=>"A"}])
   end
 
   it "creates parent" do

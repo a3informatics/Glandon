@@ -1,43 +1,27 @@
 ---
-:type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystem
-:id: GSC-C
-:namespace: http://www.assero.co.uk/MDRConcepts
-:label: Tags
-:extension_properties: []
+:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSQ29uY2VwdHMjR1NDLUM=
+:uri: http://www.assero.co.uk/MDRConcepts#GSC-C
+:rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystem
+:pref_label: Tags
 :description: Tags for all
-:children:
-- :type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
-  :id: GSC-C3
-  :namespace: http://www.assero.co.uk/MDRConcepts
-  :label: Node 3
-  :extension_properties: []
+:is_top_concept:
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSQ29uY2VwdHMjR1NDLUMz
+  :uri: http://www.assero.co.uk/MDRConcepts#GSC-C3
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+  :pref_label: Node 3
   :description: Description 3
-  :children:
-  - :type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
-    :id: GSC-C3_2
-    :namespace: http://www.assero.co.uk/MDRConcepts
-    :label: Node 3_2
-    :extension_properties: []
-    :description: Description 3_2
-    :children: []
-  - :type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
-    :id: GSC-C3_1
-    :namespace: http://www.assero.co.uk/MDRConcepts
-    :label: Node 3_1
-    :extension_properties: []
-    :description: Description 3_1
-    :children: []
-- :type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
-  :id: GSC-C1
-  :namespace: http://www.assero.co.uk/MDRConcepts
-  :label: Node 1
-  :extension_properties: []
+  :narrower:
+  - http://www.assero.co.uk/MDRConcepts#GSC-C3_2
+  - http://www.assero.co.uk/MDRConcepts#GSC-C3_1
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSQ29uY2VwdHMjR1NDLUMx
+  :uri: http://www.assero.co.uk/MDRConcepts#GSC-C1
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+  :pref_label: Node 1
   :description: Description 1
-  :children: []
-- :type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
-  :id: GSC-C2
-  :namespace: http://www.assero.co.uk/MDRConcepts
-  :label: Node 2
-  :extension_properties: []
+  :narrower: []
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSQ29uY2VwdHMjR1NDLUMy
+  :uri: http://www.assero.co.uk/MDRConcepts#GSC-C2
+  :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+  :pref_label: Node 2
   :description: Description 2
-  :children: []
+  :narrower: []

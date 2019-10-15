@@ -22,20 +22,8 @@ def editor_table_fill_in(input, text)
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      # clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_schema_file_into_triple_store("ISO25964.ttl")
-      # load_schema_file_into_triple_store("CDISCTerm.ttl")
-      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      # load_test_file_into_triple_store("iso_namespace_real.ttl")
-      # #load_test_file_into_triple_store("thesaurus_concept.ttl")
       load_cdisc_term_versions(1..46)
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -63,14 +51,14 @@ def editor_table_fill_in(input, text)
     #synonymes
     it "allows terminology synonyms to be displayed for code lists (REQ-MDR-SY-010)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-06-26 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '43.0.0'
+      expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       ui_child_search("C6674")
       ui_check_table_info("children_table", 1, 2, 2)
       ui_check_table_cell("children_table", 1, 1, "C66742")
@@ -81,14 +69,14 @@ def editor_table_fill_in(input, text)
 
     it "allows terminology synonyms to be displayed for code list items (REQ-MDR-SY-010)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-06-26 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '43.0.0'
+      expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       ui_child_search("C66742")
       find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
       expect(page).to have_content 'No Yes Response'
@@ -100,14 +88,14 @@ def editor_table_fill_in(input, text)
 
     it "allows to display code lists and code list items with the same synonym (REQ-MDR-SY-020)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-06-26 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '43.0.0'
+      expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       ui_child_search("C66742")
       find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
       expect(page).to have_content 'No Yes Response'
@@ -328,9 +316,9 @@ def editor_table_fill_in(input, text)
     #preferred terms
     it "allows Preferred Term to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-12-18 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '45.0.0'
@@ -344,9 +332,9 @@ def editor_table_fill_in(input, text)
 
     it "allows Preferred Term to be displayed for CDISC code list items (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-12-18 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '45.0.0'
@@ -360,9 +348,9 @@ def editor_table_fill_in(input, text)
 
     it "allows to display code lists and code list items with the same preferred term (REQ-MDR-PT-020)", js:true do
       click_navbar_cdisc_terminology
+      wait_for_ajax(10)
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2016-03-25 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'

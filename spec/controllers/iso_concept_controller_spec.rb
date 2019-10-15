@@ -13,20 +13,10 @@ describe IsoConceptController do
     end
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")    
-      load_test_file_into_triple_store("iso_concept_extension.ttl")
-      load_test_file_into_triple_store("iso_concept_data.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline.ttl")
-      clear_iso_concept_object
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", 
+        "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
     end
 
     #it "show a concept" do
@@ -104,10 +94,18 @@ describe IsoConceptController do
       expect(response.body).to eq("{\"item\":null,\"children\":[]}")
     end
 
-    it "allows cross references to be found" do
-      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+    it "allows cross references to be found"
+
+    it "gets tags" do
+      item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :tags, id: item.id
+      expect(response.code).to eq("200")
+      expect(response.content_type).to eq("application/json")
+      result = JSON.parse(response.body, symbolize_names: true)  
+      expect(result).to eq(["SDTM"])
     end
-    
+
   end
 
   describe "Unauthorized User" do

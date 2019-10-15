@@ -6,7 +6,7 @@
 <%= javascript_tag "var syn_panel_id = '#{synonym_panel_id}';" %>
 <%= javascript_tag "var pt_url = '#{preferred_term_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var pt_panel_id = '#{preferred_term_panel_id}';" %>
-<%= javascript_tag "var ci_url = '#{change_instruction_links_thesauri_unmanaged_concept_path(id: @tc)}';" %>
+<%= javascript_tag "var ci_url = '#{change_instruction_links_thesauri_unmanaged_concept_path({id: @tc, unmanaged_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var ci_panel_id = '#{ci_panel_id}';" %>
 <%= javascript_tag "var syn_panel_title = 'Shared Synonyms';" %>
 <%= javascript_tag "var pt_panel_title = 'Shared Preferred Terms';" %>

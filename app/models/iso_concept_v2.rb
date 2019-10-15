@@ -9,6 +9,7 @@ class IsoConceptV2 < Fuseki::Base
             uri_unique: :label
   
   data_property :label
+  object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node"
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?
   
@@ -20,31 +21,40 @@ class IsoConceptV2 < Fuseki::Base
     super({label: label}, {uri: create_uri(base_uri), label: label})
   end
 
-  # Add Link. Add a object to a collection
-  #
-  # @param [Symbol] name the name of the property holding the collection
-  # @param [Uri] the uri of the object to be unlinked. Does not delete the object
+  # Add Tags. Add tags if not already present
+  #    
+  # @param tags [Array] array of IsoConceptSystem::Node items
   # @return [Void] no return
-  def add_link(name, uri)
-    predicate = self.properties.property(name).predicate
-    update_query = %Q{
-      INSERT
-      {
-        #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} .
-      } WHERE {}
-    }
-    partial_update(update_query, [])
+  def add_tags(tags)
+    uris = self.tagged.map{|x| x.uri}
+    tags.each do |tag|
+      self.tagged << tag if !uris.include?(tag.uri)
+    end
   end
 
-  # Delete Link. Delete an object from the collection. Does not delete the object.
-  #
-  # @param [Symbol] name the name of the property holding the collection
-  # @param [Uri] the uri of the object to be unlinked. Does not delete the object
+  # Add Tag. Add a tag if not already present
+  #    
+  # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
   # @return [Void] no return
-  def delete_link(name, uri)
-    predicate = self.properties.property(name).predicate
-    update_query = %Q{ DELETE WHERE { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . }}
-    partial_update(update_query, [])
+  def add_tag(tag)
+    self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
+  end
+
+  # Tags. Get the tags for the items
+  #
+  # @return [Array] set of IsoConceptSystem::Node items
+  def tags
+    result = []
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {            
+  #{self.uri.to_ref} isoC:tagged ?s .
+  ?s ?p ?o
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    query_results.by_subject.each do |subject, triples|
+      result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
+    end
+    result
   end
 
 end

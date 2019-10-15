@@ -181,6 +181,8 @@ defaults: &defaults
         main:
           selection:
             label: ADaM-IG
+          sheet:
+            actions: []
           columns: 
           - 
             label: "Data Structure Name"
@@ -278,8 +280,33 @@ defaults: &defaults
         version_1:
           selection:
             label: SDTM
-            #first: true
-            #date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: 
+                    - ADaM
+                  CDASH: 
+                    - CDASH
+                  SDTM: 
+                    - SDTM  
+                  Protocol: 
+                    - Protocol
+                  SEND: 
+                    - SEND
+                  "QS T": 
+                    - QS
+                    - SDTM
+                  "QS-FT T": 
+                    - QS-FT
+                    - SDTM
+                  COA: 
+                    - COA
+                    - SDTM
+                  QRS: 
+                    - QRS
+                    - SDTM
           columns: 
           - 
             label: "Code"
@@ -306,6 +333,12 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
+                method: set_tags
+                object: parent
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
                 method: create_child
                 object: child
                 klass: CdiscCli
@@ -318,6 +351,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_tags
+                object: child
                 condition: 
                   method: column_blank?
                   column: 3
@@ -379,7 +418,7 @@ defaults: &defaults
                 method: create_shared
                 object: parent
                 property: preferred_term
-                can_be_empty: true
+                can_be_empty: false
                 map: {}
                 condition: 
                   method: column_not_blank?
@@ -452,6 +491,33 @@ defaults: &defaults
         version_2:
           selection:
             label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: 
+                    - ADaM
+                  CDASH: 
+                    - CDASH
+                  SDTM: 
+                    - SDTM  
+                  Protocol: 
+                    - Protocol
+                  SEND: 
+                    - SEND
+                  "QS T": 
+                    - QS
+                    - SDTM
+                  "QS-FT T": 
+                    - QS-FT
+                    - SDTM
+                  COA: 
+                    - COA
+                    - SDTM
+                  QRS: 
+                    - QRS
+                    - SDTM
           columns: 
           - 
             label: "Code"
@@ -478,6 +544,12 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
+                method: set_tags
+                object: parent
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
                 method: create_child
                 object: child
                 klass: CdiscCli
@@ -490,6 +562,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_tags
+                object: child
                 condition: 
                   method: column_blank?
                   column: 3
@@ -630,6 +708,33 @@ defaults: &defaults
         version_3:
           selection:
             label: SDTM
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: 
+                    - ADaM
+                  CDASH: 
+                    - CDASH
+                  SDTM: 
+                    - SDTM  
+                  Protocol: 
+                    - Protocol
+                  SEND: 
+                    - SEND
+                  "QS T": 
+                    - QS
+                    - SDTM
+                  "QS-FT T": 
+                    - QS-FT
+                    - SDTM
+                  COA: 
+                    - COA
+                    - SDTM
+                  QRS: 
+                    - QRS
+                    - SDTM
           columns: 
           - 
             label: "Code"
@@ -656,6 +761,12 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
+                method: set_tags
+                object: parent
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
                 method: create_child
                 object: child
                 klass: CdiscCli
@@ -668,6 +779,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_tags
+                object: child
                 condition: 
                   method: column_blank?
                   column: 3
@@ -811,6 +928,33 @@ defaults: &defaults
         version_4:
           selection:
             date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: 
+                    - ADaM
+                  CDASH: 
+                    - CDASH
+                  SDTM: 
+                    - SDTM  
+                  Protocol: 
+                    - Protocol
+                  SEND: 
+                    - SEND
+                  "QS T": 
+                    - QS
+                    - SDTM
+                  "QS-FT T": 
+                    - QS-FT
+                    - SDTM
+                  COA: 
+                    - COA
+                    - SDTM
+                  QRS: 
+                    - QRS
+                    - SDTM
           columns: 
           - 
             label: "Code"
@@ -837,6 +981,12 @@ defaults: &defaults
                   method: column_not_blank?
                   column: 3
               -
+                method: set_tags
+                object: parent
+                condition: 
+                  method: column_not_blank?
+                  column: 3
+              -
                 method: create_child
                 object: child
                 klass: CdiscCli
@@ -849,6 +999,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_blank?
+                  column: 3
+              -
+                method: set_tags
+                object: child
                 condition: 
                   method: column_blank?
                   column: 3
@@ -986,6 +1142,33 @@ defaults: &defaults
         version_5:
           selection:
             date: true
+          sheet:
+            actions:
+              -
+                method: tag_from_sheet_name
+                map:
+                  ADaM: 
+                    - ADaM
+                  CDASH: 
+                    - CDASH
+                  SDTM: 
+                    - SDTM  
+                  Protocol: 
+                    - Protocol
+                  SEND: 
+                    - SEND
+                  "QS T": 
+                    - QS
+                    - SDTM
+                  "QS-FT T": 
+                    - QS-FT
+                    - SDTM
+                  COA: 
+                    - COA
+                    - SDTM
+                  QRS: 
+                    - QRS
+                    - SDTM
           columns: 
           - 
             label: "Code"
@@ -1012,6 +1195,12 @@ defaults: &defaults
                   method: column_blank?
                   column: 2
               -
+                method: set_tags
+                object: parent
+                condition: 
+                  method: column_blank?
+                  column: 2
+              -
                 method: create_child
                 object: child
                 klass: CdiscCli
@@ -1024,6 +1213,12 @@ defaults: &defaults
                 object: child
                 property: identifier
                 map: {}
+                condition: 
+                  method: column_not_blank?
+                  column: 2
+              -
+                method: set_tags
+                object: child
                 condition: 
                   method: column_not_blank?
                   column: 2

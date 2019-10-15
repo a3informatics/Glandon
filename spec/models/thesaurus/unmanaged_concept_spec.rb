@@ -19,15 +19,14 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
+      NameValue.destroy_all
       NameValue.create(name: "thesaurus_child_identifier", value: "999")
     end
 
     after :each do
-      nv = NameValue.where(name: "thesaurus_child_identifier")
-      nv.first.destroy
+      NameValue.destroy_all
     end
 
     it "allows validity of the object to be checked - error" do
@@ -380,10 +379,9 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all  do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(1..60)
     end
 
     after :all do
@@ -412,13 +410,13 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "finds changes, 4 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661_C124716"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V46#C124661_C124716"))
       results = tc.changes(4)
       check_file_actual_expected(results, sub_dir, "changes_expected_3.yaml")
     end
 
     it "finds changes, 4 - NEEDS WORK" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129_C147585"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V55#C100129_C147585"))
       results = tc.changes(4)
       check_file_actual_expected(results, sub_dir, "changes_expected_4.yaml")
     end
@@ -430,19 +428,19 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "differences, II" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V45#C124661_C124716"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C124661/V46#C124661_C124716"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_2.yaml")
     end
 
     it "differences, III" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V54#C100129_C147585"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V55#C100129_C147585"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_3.yaml")
     end
 
     it "differences, IV" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V29#C100129_C100763"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C100129/V30#C100129_C100763"))
       results = tc.differences
       check_file_actual_expected(results, sub_dir, "differences_expected_4.yaml")
     end
@@ -456,7 +454,7 @@ describe "Thesaurus::UnmanagedConcept" do
       schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..59)
+      load_cdisc_term_versions(1..60)
     end
 
     after :all do
@@ -478,22 +476,20 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "synonym links, empty with no synonym" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V57#C65047_C156534"))
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V58#C65047_C156534"))
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V58#TH"))
       results = tc.linked_by_synonym({context_id: th.id})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_3.yaml")
     end
 
     it "synonym links, empty with single synonym, no context" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C95120/V26#C95120_C95109"))
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       results = tc.linked_by_synonym({})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_4.yaml")
     end
 
-    it "synonym links, empty with no synonym" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V57#C65047_C156534"))
-      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V57#TH"))
+    it "synonym links, empty with no synonym, no context" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C65047/V58#C65047_C156534"))
       results = tc.linked_by_synonym({})
       check_file_actual_expected(results, sub_dir, "synonym_links_expected_5.yaml")
     end
@@ -518,14 +514,10 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", 
-        "BusinessOperational.ttl", "cross_reference.ttl"
-      ]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "change_instructions_52_53.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..59)
+      load_data_file_into_triple_store("cdisc/ct/changes/change_instructions_v47.ttl")
     end
 
     after :all do
@@ -533,13 +525,13 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "cross reference links I" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C101846/V49#C101846_C130056"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C67154/V4#C67154_C61019"))
       results = tc.linked_change_instructions
       check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_1.yaml")
     end
 
     it "cross reference links II" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C128687/V52#C128687_C139114"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.cdisc.org/C88025/V44#C88025_C27477"))
       results = tc.linked_change_instructions
       check_file_actual_expected(results, sub_dir, "cross_reference_links_expected_2.yaml")
     end
@@ -553,7 +545,6 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
@@ -583,9 +574,10 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl", "iso_concept_systems_baseline.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :each do
@@ -607,6 +599,54 @@ describe "Thesaurus::UnmanagedConcept" do
       tc.preferred_term = nil
       expect(tc.preferred_term_to_s).to eq("")
     end 
+
+    it "Replace if no change" do
+      tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
+      tc_1.synonym_objects
+      tc_1.preferred_term_objects
+      tc_1_same = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
+      tc_1_same.synonym_objects
+      tc_1_same.preferred_term_objects
+      tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C53489"))
+      tc_2.synonym_objects
+      tc_2.preferred_term_objects
+      result = tc_1.replace_if_no_change(tc_1_same)
+      expect(result.uri).to eq(tc_1_same.uri)
+      result = tc_1.replace_if_no_change(tc_2)
+      expect(result.uri).to eq(tc_1.uri)
+    end
+
+    it "Add additional tags" do
+      tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C43820"))
+      tc_1.tagged_objects
+      tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66788/V2#C66788_C53489"))
+      tc_2.tagged_objects
+      tag_a = IsoConceptSystem::Node.new(pref_label: "SDTM TAG", uri: Uri.new(uri: "http://www.example.com/path#a"))
+      set = []
+      expect(tc_1.tagged.count).to eq(1)
+      expect(tc_2.tagged.count).to eq(1)
+      expect(set.count).to eq(0)
+      # Add nil
+      tc_1.add_additional_tags(nil, set)
+      expect(tc_1.tagged.count).to eq(1)
+      expect(tc_2.tagged.count).to eq(1)
+      expect(set.count).to eq(0)
+      # Add tag
+      tc_2.tagged << tag_a
+      tc_1.add_additional_tags(tc_2, set)
+      expect(tc_1.tagged.count).to eq(1)
+      expect(tc_2.tagged.count).to eq(2)
+      expect(set.count).to eq(1)
+      expect(set.first[:subject].to_s).to eq("http://www.cdisc.org/C66788/V2#C66788_C43820")
+      expect(set.first[:object].to_s).to eq("http://www.example.com/path#a")
+      # Add again
+      tc_1.add_additional_tags(tc_2, set)
+      expect(tc_1.tagged.count).to eq(1)
+      expect(tc_2.tagged.count).to eq(2)
+      expect(set.count).to eq(2)
+      expect(set.last[:subject].to_s).to eq("http://www.cdisc.org/C66788/V2#C66788_C43820")
+      expect(set.last[:object].to_s).to eq("http://www.example.com/path#a")
+    end
 
   end
 

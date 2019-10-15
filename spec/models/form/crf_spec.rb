@@ -9,11 +9,6 @@ describe Form::Crf do
   end
 
   before :all do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl", "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl"
-    ]
     data_files = 
     [
       "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", 
@@ -25,39 +20,6 @@ describe Form::Crf do
     ]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))
-    # clear_triple_store
-    # load_schema_file_into_triple_store("ISO11179Types.ttl")
-    # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-    # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-    # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-    # load_schema_file_into_triple_store("ISO25964.ttl")
-    # load_schema_file_into_triple_store("BusinessOperational.ttl")
-    # load_schema_file_into_triple_store("BusinessForm.ttl")
-    # load_schema_file_into_triple_store("CDISCBiomedicalConcept.ttl")
-    # load_test_file_into_triple_store()
-    # load_test_file_into_triple_store("CT_V42.ttl")
-    # load_test_file_into_triple_store("CT_V49.ttl")
-    # load_test_file_into_triple_store("form_crf_test_1.ttl")
-    # load_test_file_into_triple_store("form_example_fields.ttl")
-    # load_test_file_into_triple_store("ACME_ANNO 2_1.ttl")
-    # load_test_file_into_triple_store("ACME_ANNO 3_1.ttl")
-    # load_test_file_into_triple_store("ACME_ANNO 4_1.ttl")
-    # load_test_file_into_triple_store("ACME_ANNO_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C17634_2.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25206_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25206_4.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25208_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25208_2.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25298_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25299_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C25347_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C49677_1.ttl")
-    # load_test_file_into_triple_store("ACME_BC C81255_1.ttl")
-    # load_test_file_into_triple_store("ACME_VS Domain.ttl")
-    # load_test_file_into_triple_store("ACME_LB Domain.ttl")
-    # load_test_file_into_triple_store("ACME_Topic.ttl")
-    # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-    # load_test_file_into_triple_store("iso_namespace_real.ttl")
     clear_iso_concept_object
     clear_iso_namespace_object
     clear_iso_registration_authority_object

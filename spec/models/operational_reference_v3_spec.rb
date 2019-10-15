@@ -46,7 +46,7 @@ describe "OperationalReferenceV3" do
         :rdf_type => "http://www.assero.co.uk/BusinessOperational#Reference"
       }
     item = OperationalReferenceV3.from_h(result)
-    check_file_actual_expected(item.to_h, sub_dir, "from_h_expected.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "from_h_expected.yaml", equate_method: :hash_equal)
   end
 
   it "allows an object to be exported as SPARQL" do
@@ -68,7 +68,7 @@ describe "OperationalReferenceV3" do
     parent = IsoManagedV2.new
     parent.uri = Uri.new(uri: "http://www.assero.co.uk/A#ref")
     item = OperationalReferenceV3.create({label: "The Label", ordinal: 2}, parent)
-    check_file_actual_expected(item.to_h, sub_dir, "created_expected.yaml")
+    check_file_actual_expected(item.to_h, sub_dir, "created_expected.yaml", equate_method: :hash_equal)
   end
 
 end

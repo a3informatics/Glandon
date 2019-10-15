@@ -10,7 +10,7 @@ class Excel::Engine
 
   extend ActiveModel::Naming
 
-  attr_reader :parent_set, :classifications
+  attr_reader :parent_set, :classifications, :tags
 
   # Initialize. Opens the workbook ready for processing.
   #
@@ -23,6 +23,7 @@ class Excel::Engine
     @errors = owner.errors
     @parent_set = {}
     @classifications = {}
+    @tags = []
   end
 
   # Process. Process a sheet according to the configuration
@@ -34,6 +35,7 @@ class Excel::Engine
     parent = nil
     child = nil
     sheet_logic = Rails.configuration.imports[:processing][import][:sheets][sheet]
+    process_sheet(sheet_logic)  
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
       next unless process_row?(sheet_logic, row)
       sheet_logic[:columns].each_with_index do |column, col_index|
@@ -67,6 +69,17 @@ class Excel::Engine
         end
       end
     end
+  end
+
+  # Process Sheet
+  #
+  # @param sheet_logic [Hash] hash containing the sheet logic. May not be present
+  # @return [Boolean] true if the condition is met, false otherwise
+  def process_sheet(sheet_logic)
+    actions = sheet_logic.dig(:sheet, :actions) 
+    return true if actions.nil? # No conditions present
+    return true if actions.empty? # No conditions present
+    actions.each {|action| self.send(action[:method], action.slice(:map, :can_be_empty, :additional))}
   end
 
   # Process Row?
@@ -128,12 +141,32 @@ class Excel::Engine
   # @param [Hash] params the parameters
   # @option params [Integer] row the cell row
   # @option params [Integer] col the cell column
-  # @return [Boolean] true if affirmative (boolean true), false otherwise
+  # @return [String] true if affirmative (boolean true), false otherwise
   def column_affirmative?(params)
     check_params(__method__.to_s, params, [:row, :col])
     return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
   end
 
+  # Tag From Sheet Name
+  #
+  # @param [Hash] params the parameters
+  # @option params [map] :map the mapping
+  # @return [Array] the tags, an array of tags
+  def tag_from_sheet_name(params)
+    @tags = []
+    tags = []
+    check_params(__method__.to_s, params, [:map])
+    params[:map].each do |word, tag_set| 
+      next if !@workbook.default_sheet.include?(word.to_s)
+      tags = tag_set
+      break
+    end
+    tags.each do |tag|
+      @tags << IsoConceptSystem.path(["CDISC"] + [tag])
+    end
+    @tags
+  end
+    
   # Create Parent
   #
   # @param [Integer] row the cell row
@@ -187,6 +220,16 @@ class Excel::Engine
   def check_valid(params)
     check_params(__method__.to_s, params, [:object])
     params[:object].errors.each {|k, e| @errors.add(:base, "Row #{params[:row]}. #{e}")} if !params[:object].valid?
+  end
+
+  # Set Tags
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Object] :object the object tocheck for validity
+  # @return [Void] no return
+  def set_tags(params)
+    check_params(__method__.to_s, params, [:object])
+    params[:object].tagged = @tags
   end
 
   # Set Property

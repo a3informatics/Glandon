@@ -143,15 +143,29 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
 
   # Replace If No Change. Replace the current with the previous if no differences.
   #
+  # @param previous [Thesaurus::UnmanagedConcept] previous item
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
-    return previous if !self.diff?(previous)
+    return previous if !self.diff?(previous, {ignore: [:tagged]})
     replace_children_if_no_change(previous)
     return self
   end
 
-   # To CSV No Header. A CSV record with no header
+  # Add additional tags
+  #
+  # @param previous [Thesaurus::UnmanagedConcept] previous item
+  # @param set [Array] set of tags objects
+  # @return [Void] no return
+  def add_additional_tags(previous, set)
+    return if previous.nil?
+    missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
+    missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
+  end
+
+  # To CSV No Header. A CSV record with no header
+  #
+  # @return [Array] array of items
   def to_csv_data
     data = to_a_by_key(:identifier, :extensible, :label, :notation, :definition)
     data.insert(4, self.synonyms_to_s)

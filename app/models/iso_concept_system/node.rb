@@ -1,63 +1,42 @@
-class IsoConceptSystem::Node < IsoConceptSystemGeneric
+class IsoConceptSystem::Node < Fuseki::Base
 
-  # Constants
-  C_CLASS_NAME = "IsoConceptSystem::Node"
-  C_CID_PREFIX = "CSN"
-  C_RDF_TYPE = "ConceptSystemNode"
-  C_SCHEMA_PREFIX = IsoConceptSystemGeneric::C_SCHEMA_PREFIX
+  configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
+            base_uri: "http://#{ENV["url_authority"]}/CSN",
+            uri_unique: true
+  
+  data_property :pref_label
+  data_property :description
+  object_property :narrower, cardinality: :many, model_class: "IsoConceptSystem::Node"
 
-  # Find system that is the ultimate parent of given an object.
+  validates_with Validator::Field, attribute: :pref_label, method: :valid_label?
+  validates_with Validator::Field, attribute: :description, method: :valid_long_name?
+ 
+  include IsoConceptSystem::Core
+
+  # Destroy this object. Prevents delete if children are present or items are tagged with it.
   #
-  # @param id [string] the id of the item 
-  # @param namespace [string] the namespace of the item
-  # @return [URI] The URI of the concept system
-  def self.find_system(id, namespace)
-    result = nil
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
-      "SELECT DISTINCT ?s ?o WHERE \n" +
-      "{ \n" +
-      "  ?s (isoC:hasMember)* :#{id} . \n" +      
-      "  ?s rdf:type isoC:ConceptSystem . \n" +      
-      "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    nodes = xmlDoc.xpath("//result")
-    if nodes.length == 1
-      uri = UriV2.new({uri: ModelUtility.getValue('s', true, nodes[0])})
-    end
-    return uri
-  end
-
-  # Find parent node of given an object.
-  #
-  # @param id [string] the id of the item 
-  # @param namespace [string] the namespace of the item
-  # @return [URI] The URI of the concept system
-  def self.find_parent(id, namespace)
-    uri = nil
-    query = UriManagement.buildNs(namespace, [UriManagement::C_ISO_C]) +
-      "SELECT DISTINCT ?s ?o WHERE \n" +
-      "{ \n" +
-      "  ?s isoC:hasMember :#{id} . \n" +      
-      "  ?s rdf:type isoC:ConceptSystemNode . \n" +      
-      "}"
-    response = CRUD.query(query)
-    xmlDoc = Nokogiri::XML(response.body)
-    xmlDoc.remove_namespaces!
-    nodes = xmlDoc.xpath("//result")
-    if nodes.length == 1
-      uri = UriV2.new({uri: ModelUtility.getValue('s', true, nodes[0])})
-    end
-    return uri
-  end
-
-  # Destroy this object and links to it. Prevents delete if children.
-  #
-  # @raise [DestroyError] If object not destroyed.
   # @return [Null]
-  def destroy
-    self.children.any? ? self.errors.add(:base, "Cannot destroy tag as it has children tags") : destroy_with_links
+  def delete
+    query_results = Sparql::Query.new.query(check_delete_query, "", [:isoC])
+    items = query_results.by_object_set([:i])
+    items.empty? ? super : self.errors.add(:base, "Cannot destroy tag as it has children tags or is currently in use.")
+  end
+
+  # Child Property. The child property
+  #
+  # @return [Symbol] the :narrower property
+  def children_property
+    :narrower
+  end
+
+private
+
+  # Query for checking if a node can be deleted
+  def check_delete_query
+    predicate = self.properties.property(:narrower).predicate
+    %Q{ SELECT ?i WHERE {
+      { #{self.uri.to_ref} #{predicate.to_ref} ?i } UNION { ?i isoC:tagged #{self.uri.to_ref} }
+    }}
   end
 
 end

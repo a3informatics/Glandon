@@ -4,7 +4,7 @@ class IsoConceptSystems::NodesController < ApplicationController
   
   def add
     authorize IsoConceptSystem::Node, :create?
-    node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
+    node = IsoConceptSystem::Node.find(params[:id])
     new_node = node.add(the_params)
     status = new_node.errors.empty? ? 200 : 400
     render :json => {errors: new_node.errors.full_messages}, :status => status
@@ -12,8 +12,8 @@ class IsoConceptSystems::NodesController < ApplicationController
 
   def destroy
     authorize IsoConceptSystem::Node
-    node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
-    node.destroy
+    node = IsoConceptSystem::Node.find(params[:id])
+    node.delete
     status = node.errors.empty? ? 200 : 500
     render :json => {errors: node.errors.full_messages}, :status => status
   rescue => e
@@ -22,7 +22,7 @@ class IsoConceptSystems::NodesController < ApplicationController
 
   def update
     authorize IsoConceptSystem::Node
-    node = IsoConceptSystem::Node.find(params[:id], params[:namespace])
+    node = IsoConceptSystem::Node.find(params[:id])
     node.update(the_params)
     status = node.errors.empty? ? 200 : 400
     render :json => {errors: node.errors.full_messages}, :status => status

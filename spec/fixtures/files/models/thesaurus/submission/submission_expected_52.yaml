@@ -1,34 +1,154 @@
 ---
 :versions:
-- '2017-09-29'
+- '2017-06-30'
 :items:
-  :C67154_C127632:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1Y1MiNDNjcxNTRfQzEyNzYzMg==
-    :key: C67154_C127632
-    :label: Proliferating Erythroid Cell to Total Cell Ratio Measurement
-    :notation: Proliferating Erythroid/Total Cells
-    :identifier: C127632
+  :C100129_C100763:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNTIjQzEwMDEyOV9DMTAwNzYz
+    :key: C100129_C100763
+    :label: Clinical Global Impression Original Version Questionnaire
+    :notation: CGI GUY
+    :identifier: C100763
     :status:
     - :status: :updated
-      :notation: Proliferating Erythroid/Total Cells
-      :previous: Proliferating Erythroid Cells/Total Cells
-  :C74456_C12774:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc0NDU2L1Y1MiNDNzQ0NTZfQzEyNzc0
-    :key: C74456_C12774
-    :label: Pulmonary Artery
-    :notation: PULMONARY ARTERY BRANCH
-    :identifier: C12774
+      :notation: CGI GUY
+      :previous: CGI
+  :C85491_C113205:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y1MiNDODU0OTFfQzExMzIwNQ==
+    :key: C85491_C113205
+    :label: Coronaviridae
+    :notation: CORONAVIRIDAE
+    :identifier: C113205
     :status:
     - :status: :updated
-      :notation: PULMONARY ARTERY BRANCH
-      :previous: ARTERY, PULMONARY
-  :C120528_C128982:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDUyOC9WNTIjQzEyMDUyOF9DMTI4OTgy
-    :key: C120528_C128982
-    :label: Mycobacterium Tuberculosis Measurement
-    :notation: Mycobacterium tuberculosis
-    :identifier: C128982
+      :notation: CORONAVIRIDAE
+      :previous: CORONAVIRUS
+  :C85491_C112031:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y1MiNDODU0OTFfQzExMjAzMQ==
+    :key: C85491_C112031
+    :label: Filoviridae
+    :notation: FILOVIRIDAE
+    :identifier: C112031
     :status:
     - :status: :updated
-      :notation: Mycobacterium tuberculosis
-      :previous: Mycobacterium Tuberculosis
+      :notation: FILOVIRIDAE
+      :previous: FILOVIRUS
+  :C85491_C14179:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y1MiNDODU0OTFfQzE0MTc5
+    :key: C85491_C14179
+    :label: Adenoviridae
+    :notation: ADENOVIRIDAE
+    :identifier: C14179
+    :status:
+    - :status: :updated
+      :notation: ADENOVIRIDAE
+      :previous: ADENOVIRUS
+  :C85491_C14304:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y1MiNDODU0OTFfQzE0MzA0
+    :key: C85491_C14304
+    :label: Caliciviridae
+    :notation: CALICIVIRIDAE
+    :identifier: C14304
+    :status:
+    - :status: :updated
+      :notation: CALICIVIRIDAE
+      :previous: CALICIVIRUS
+  :C85491_C112231:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg1NDkxL1Y1MiNDODU0OTFfQzExMjIzMQ==
+    :key: C85491_C112231
+    :label: Astroviridae
+    :notation: ASTROVIRIDAE
+    :identifier: C112231
+    :status:
+    - :status: :updated
+      :notation: ASTROVIRIDAE
+      :previous: ASTROVIRUS
+  :C124298_C125992:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDI5OC9WNTIjQzEyNDI5OF9DMTI1OTky
+    :key: C124298_C125992
+    :label: Bruggemann MRD 2010 Oncology Response Criteria
+    :notation: BRUGGEMANN MRD 2010
+    :identifier: C125992
+    :status:
+    - :status: :updated
+      :notation: BRUGGEMANN MRD 2010
+      :previous: BRUGGERMAN MRD 2010
+  :C124298_C126013:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDI5OC9WNTIjQzEyNDI5OF9DMTI2MDEz
+    :key: C124298_C126013
+    :label: Hartman Pancreatic Cancer 2012 Oncology Response Criteria
+    :notation: HARTMAN PANCREATIC CANCER 2012
+    :identifier: C126013
+    :status:
+    - :status: :updated
+      :notation: HARTMAN PANCREATIC CANCER 2012
+      :previous: HARTMANN PANCREATIC CANCER 2012
+  :C127357_C127476:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNzM1Ny9WNTIjQzEyNzM1N19DMTI3NDc2
+    :key: C127357_C127476
+    :label: FACT-P Version 4 - Satisfied With Family Communication
+    :notation: FAC023-Satisfied Communication Illness
+    :identifier: C127476
+    :status:
+    - :status: :updated
+      :notation: FAC023-Satisfied Communication Illness
+      :previous: FAC023-Satisfied Family Comm of Illness
+  :C127353_C127432:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNzM1My9WNTIjQzEyNzM1M19DMTI3NDMy
+    :key: C127353_C127432
+    :label: FACT-G Version 4 - Satisfied With Family Communication
+    :notation: FAC001-Satisfied Communication Illness
+    :identifier: C127432
+    :status:
+    - :status: :updated
+      :notation: FAC001-Satisfied Communication Illness
+      :previous: FAC001-Satisfied Family Comm of Illness
+  :C132308_C25632:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMjMwOC9WNTIjQzEzMjMwOF9DMjU2MzI=
+    :key: C132308_C25632
+    :label: Province
+    :notation: Province
+    :identifier: C25632
+    :status:
+    - :status: :updated
+      :notation: Province
+      :previous: Province 
+  :C132308_C25690:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMjMwOC9WNTIjQzEzMjMwOF9DMjU2OTA=
+    :key: C132308_C25690
+    :label: Street Address
+    :notation: Street Address
+    :identifier: C25690
+    :status:
+    - :status: :updated
+      :notation: Street Address
+      :previous: Street Address
+  :C132309_C94108:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMjMwOS9WNTIjQzEzMjMwOV9DOTQxMDg=
+    :key: C132309_C94108
+    :label: Study Protocol Version Acronym
+    :notation: Study Acronym
+    :identifier: C94108
+    :status:
+    - :status: :updated
+      :notation: Study Acronym
+      :previous: Study Acronym 
+  :C132308_C87189:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMjMwOC9WNTIjQzEzMjMwOF9DODcxODk=
+    :key: C132308_C87189
+    :label: Locality
+    :notation: Geographic Locality
+    :identifier: C87189
+    :status:
+    - :status: :updated
+      :notation: Geographic Locality
+      :previous: Geographic Locality 
+  :C132308_C16632:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEzMjMwOC9WNTIjQzEzMjMwOF9DMTY2MzI=
+    :key: C132308_C16632
+    :label: Geographic Area
+    :notation: Geographic Region
+    :identifier: C16632
+    :status:
+    - :status: :updated
+      :notation: Geographic Region
+      :previous: Geographic Region 

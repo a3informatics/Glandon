@@ -97,6 +97,9 @@ class Import < ActiveRecord::Base
     objects[:managed_children].each do |c| 
       c.to_sparql(sparql, true)
     end
+    objects[:tags].each do |c| 
+      sparql.add({uri: c[:subject]}, {prefix: :isoC, fragment: "tagged"}, {uri: c[:object]})
+    end
     filename = sparql.to_file
     response = CRUD.file(filename) if self.auto_load
     self.update(output_file: ImportFileHelpers.move(filename, "#{configuration[:import_type]}_#{self.id}_load.ttl"), 

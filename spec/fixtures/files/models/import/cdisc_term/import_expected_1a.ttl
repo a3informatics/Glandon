@@ -17,9 +17,10 @@
 :TH
 	rdf:type th:Thesaurus ;
 	isoC:label "CDASH Test"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState :TH_RS ;
 	isoT:hasIdentifier :TH_SI ;
-	isoT:origin ""^^xsd:string ;
+	isoT:origin "Created from files: 'import_input_1a.xlsx'"^^xsd:string ;
 	isoT:changeDescription ""^^xsd:string ;
 	isoT:creationDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
 	isoT:lastChangeDate "2018-11-22T00:00:00+00:00"^^xsd:dateTime ;
@@ -245,6 +246,7 @@
 <http://www.cdisc.org/C78418/V1#C78418>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78418/V1#C78418_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78418/V1#C78418_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -293,6 +295,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42887"^^xsd:string ;
 	th:notation "AEROSOL"^^xsd:string ;
 	th:definition "A product that is packaged under pressure and contains therapeutically active ingredients that are released upon activation of an appropriate valve system; it is intended for topical application to the skin as well as local application into the nose (nasal aerosols), mouth (lingual aerosols), or lungs (inhalation aerosols)."^^xsd:string ;
@@ -311,6 +314,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25158"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A solid pharmaceutical dosage form that contains medicinal agent within either a hard or soft soluble container or shell, usually used for the oral administration of medicine. The shells are made of a suitable form of gelatin or other substance. (NCI)"^^xsd:string ;
@@ -329,6 +333,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cream Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28944"^^xsd:string ;
 	th:notation "CREAM"^^xsd:string ;
 	th:definition "A semisolid emulsion of either the oil-in-water or the water-in-oil type, ordinarily intended for topical use. (NCI)"^^xsd:string ;
@@ -342,6 +347,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gas Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42933"^^xsd:string ;
 	th:notation "GAS"^^xsd:string ;
 	th:definition "Any elastic aeriform fluid in which the molecules are separated from one another and have free paths. (NCI)"^^xsd:string ;
@@ -355,6 +361,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gel Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42934"^^xsd:string ;
 	th:notation "GEL"^^xsd:string ;
 	th:definition "A semisolid (1) dosage form that contains a gelling agent to provide stiffness to a solution or a colloidal dispersion (2). A gel may contain suspended particles. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: A colloidal dispersion is a system in which particles of colloidal dimension (i.e., typically between 1 nm and 1 micrometer) are distributed uniformly throughout a liquid."^^xsd:string ;
@@ -368,6 +375,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42966"^^xsd:string ;
 	th:notation "OINTMENT"^^xsd:string ;
 	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing less than 20 percent water and volatiles (2) and greater than 50 percent hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
@@ -386,6 +394,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42968"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A drug delivery system that often contains an adhesive backing that is usually applied to an external site on the body. Its ingredients either passively diffuse from, or are actively transported from, some portion of the patch. Depending upon the patch, the ingredients are either delivered to the outer surface of the body or into the body. A patch is sometimes synonymous with the terms Extended Release Film and System."^^xsd:string ;
@@ -399,6 +408,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Powder Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42972"^^xsd:string ;
 	th:notation "POWDER"^^xsd:string ;
 	th:definition "An intimate mixture of dry, finely divided drugs and/or chemicals that may be intended for internal or external use. (NCI)"^^xsd:string ;
@@ -412,6 +422,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spray Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42989"^^xsd:string ;
 	th:notation "SPRAY"^^xsd:string ;
 	th:definition "A liquid minutely divided as by a jet of air or steam. (NCI)"^^xsd:string ;
@@ -425,6 +436,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42993"^^xsd:string ;
 	th:notation "SUPPOSITORY"^^xsd:string ;
 	th:definition "A solid body of various weights and shapes, adapted for introduction into the rectal, vaginal, or urethral orifice of the human body; they usually melt, soften, or dissolve at body temperature."^^xsd:string ;
@@ -443,6 +455,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42994"^^xsd:string ;
 	th:notation "SUSPENSION"^^xsd:string ;
 	th:definition "A liquid dosage form that contains solid particles dispersed in a liquid vehicle. Note: A liquid is pourable; it flows and conforms to its container at room temperature. It displays Newtonian or pseudoplastic flow behavior."^^xsd:string ;
@@ -461,6 +474,7 @@
 <http://www.cdisc.org/C78418/V1#C78418_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42998"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A solid dosage form containing medicinal substances with or without suitable diluents. (NCI)"^^xsd:string ;
@@ -487,6 +501,7 @@
 <http://www.cdisc.org/C78417/V1#C78417>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dose Units"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78417/V1#C78417_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78417/V1#C78417_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -531,6 +546,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -550,6 +566,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -568,6 +585,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48579>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "International Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48579"^^xsd:string ;
 	th:notation "IU"^^xsd:string ;
 	th:definition "The unitage assigned by the WHO (World Health Organization) to International Biological Standards - substances, classed as biological according to the criteria provided by WHO Expert Committee on Biological Standardization, to enable the results of biological and immunological assay procedures to be expressed in the same way throughout the world. The definition of an international unit is generally arbitrary and technical, and has to be officially approved by the International Conference for Unification of Formulae.(NCI)"^^xsd:string ;
@@ -591,6 +609,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -609,6 +628,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -632,6 +652,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -650,6 +671,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -669,6 +691,7 @@
 <http://www.cdisc.org/C78417/V1#C78417_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -700,6 +723,7 @@
 <http://www.cdisc.org/C78419/V1#C78419>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Dosing Frequency per Interval"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78419/V1#C78419_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78419/V1#C78419_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -744,6 +768,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Twice Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64496"^^xsd:string ;
 	th:notation "BID"^^xsd:string ;
 	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
@@ -767,6 +792,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "As Necessary"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64499"^^xsd:string ;
 	th:notation "PRN"^^xsd:string ;
 	th:definition "As needed. (NCI)"^^xsd:string ;
@@ -785,6 +811,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25473"^^xsd:string ;
 	th:notation "QD"^^xsd:string ;
 	th:definition "A rate of occurrences within a period of time equal to one day."^^xsd:string ;
@@ -803,6 +830,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Four Times Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64530"^^xsd:string ;
 	th:notation "QID"^^xsd:string ;
 	th:definition "Four times per day. (NCI)"^^xsd:string ;
@@ -821,6 +849,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monthly"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64498"^^xsd:string ;
 	th:notation "QM"^^xsd:string ;
 	th:definition "Every month. (NCI)"^^xsd:string ;
@@ -844,6 +873,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Every Other Day"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64525"^^xsd:string ;
 	th:notation "QOD"^^xsd:string ;
 	th:definition "Every other day. (NCI)"^^xsd:string ;
@@ -862,6 +892,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Three Times Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64527"^^xsd:string ;
 	th:notation "TID"^^xsd:string ;
 	th:definition "Three times per day. (NCI)"^^xsd:string ;
@@ -880,6 +911,7 @@
 <http://www.cdisc.org/C78419/V1#C78419_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -916,6 +948,7 @@
 <http://www.cdisc.org/C78420/V1#C78420>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Concomitant Medication Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78420/V1#C78420_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78420/V1#C78420_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -964,6 +997,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intralesional Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38250"^^xsd:string ;
 	th:notation "INTRALESIONAL"^^xsd:string ;
 	th:definition "Administration within or introduced directly into a localized lesion. (FDA)"^^xsd:string ;
@@ -977,6 +1011,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28161"^^xsd:string ;
 	th:notation "INTRAMUSCULAR"^^xsd:string ;
 	th:definition "Administration within a muscle. (FDA)"^^xsd:string ;
@@ -990,6 +1025,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraocular Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38255"^^xsd:string ;
 	th:notation "INTRAOCULAR"^^xsd:string ;
 	th:definition "Administration within the eye. (FDA)"^^xsd:string ;
@@ -1003,6 +1039,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38258"^^xsd:string ;
 	th:notation "INTRAPERITONEAL"^^xsd:string ;
 	th:definition "Administration within the peritoneal cavity. (FDA)"^^xsd:string ;
@@ -1016,6 +1053,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nasal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38284"^^xsd:string ;
 	th:notation "NASAL"^^xsd:string ;
 	th:definition "Administration to the nose; administered by way of the nose. (FDA)"^^xsd:string ;
@@ -1034,6 +1072,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38288"^^xsd:string ;
 	th:notation "ORAL"^^xsd:string ;
 	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
@@ -1057,6 +1096,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rectal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38295"^^xsd:string ;
 	th:notation "RECTAL"^^xsd:string ;
 	th:definition "Administration to the rectum. (FDA)"^^xsd:string ;
@@ -1070,6 +1110,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inhalation Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38216"^^xsd:string ;
 	th:notation "RESPIRATORY (INHALATION)"^^xsd:string ;
 	th:definition "Administration within the respiratory tract by inhaling orally or nasally for local or systemic effect. (FDA)"^^xsd:string ;
@@ -1083,6 +1124,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38299"^^xsd:string ;
 	th:notation "SUBCUTANEOUS"^^xsd:string ;
 	th:definition "Administration beneath the skin; hypodermic. Synonymous with the term SUBDERMAL. (FDA)"^^xsd:string ;
@@ -1106,6 +1148,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38304"^^xsd:string ;
 	th:notation "TOPICAL"^^xsd:string ;
 	th:definition "Administration to a particular spot on the outer surface of the body. The E2B term TRANSMAMMARY is a subset of the term TOPICAL. (FDA)"^^xsd:string ;
@@ -1124,6 +1167,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Transdermal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38305"^^xsd:string ;
 	th:notation "TRANSDERMAL"^^xsd:string ;
 	th:definition "Administration through the dermal layer of the skin to the systemic circulation by diffusion. (FDA)"^^xsd:string ;
@@ -1137,6 +1181,7 @@
 <http://www.cdisc.org/C78420/V1#C78420_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vaginal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38313"^^xsd:string ;
 	th:notation "VAGINAL"^^xsd:string ;
 	th:definition "Administration into the vagina. (FDA)"^^xsd:string ;
@@ -1158,6 +1203,7 @@
 <http://www.cdisc.org/C78422/V1#C78422>
 	rdf:type th:ManagedConcept ;
 	isoC:label "ECG Original Units"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78422/V1#C78422_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78422/V1#C78422_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1197,6 +1243,7 @@
 <http://www.cdisc.org/C78422/V1#C78422_C49673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Beats per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C49673"^^xsd:string ;
 	th:notation "beats/min"^^xsd:string ;
 	th:definition "The number of heartbeats measured per minute time. (NCI)"^^xsd:string ;
@@ -1215,6 +1262,7 @@
 <http://www.cdisc.org/C78422/V1#C78422_C41140>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Millisecond"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41140"^^xsd:string ;
 	th:notation "msec"^^xsd:string ;
 	th:definition "A unit of time, which is equal to one thousandth of a second.(NCI)"^^xsd:string ;
@@ -1233,6 +1281,7 @@
 <http://www.cdisc.org/C78422/V1#C78422_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The base unit of time in the International System of Units (SI) equal to the duration of 9,192,631,770 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K."^^xsd:string ;
@@ -1259,6 +1308,7 @@
 <http://www.cdisc.org/C128690/V1#C128690>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Ethnicity As Collected"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C128690/V1#C128690_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C128690/V1#C128690_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1310,6 +1360,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ashkenazi Jew"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17950"^^xsd:string ;
 	th:notation "ASHKENAZI JEW"^^xsd:string ;
 	th:definition "A person of Ashkenazi Jewish descent."^^xsd:string ;
@@ -1323,6 +1374,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67118>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Central American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67118"^^xsd:string ;
 	th:notation "CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person of Central American descent."^^xsd:string ;
@@ -1336,6 +1388,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C107608>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cuban"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C107608"^^xsd:string ;
 	th:notation "CUBAN"^^xsd:string ;
 	th:definition "A person of Cuban descent."^^xsd:string ;
@@ -1349,6 +1402,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67115>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cuban or Cuban American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67115"^^xsd:string ;
 	th:notation "CUBAN AMERICAN"^^xsd:string ;
 	th:definition "A person of Cuban and American descent."^^xsd:string ;
@@ -1362,6 +1416,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17459>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hispanic or Latino"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17459"^^xsd:string ;
 	th:notation "HISPANIC OR LATINO"^^xsd:string ;
 	th:definition "A person of Mexican, Puerto Rican, Cuban, Central or South American or other Spanish culture or origin, regardless of race. (NCI)"^^xsd:string ;
@@ -1375,6 +1430,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C126531>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Latin American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C126531"^^xsd:string ;
 	th:notation "LATIN AMERICAN"^^xsd:string ;
 	th:definition "A person of Latin American descent."^^xsd:string ;
@@ -1388,6 +1444,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67113>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mexican"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67113"^^xsd:string ;
 	th:notation "MEXICAN"^^xsd:string ;
 	th:definition "A person of Mexican descent."^^xsd:string ;
@@ -1401,6 +1458,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67114>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mexican American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67114"^^xsd:string ;
 	th:notation "MEXICAN AMERICAN"^^xsd:string ;
 	th:definition "A person of Mexican and American descent."^^xsd:string ;
@@ -1414,6 +1472,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C41222>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Hispanic or Latino"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41222"^^xsd:string ;
 	th:notation "NOT HISPANIC OR LATINO"^^xsd:string ;
 	th:definition "A person not of Cuban, Mexican, Puerto Rican, South or Central American, or other Spanish culture or origin, regardless of race. An arbitrary ethnic classification. (NCI)"^^xsd:string ;
@@ -1427,6 +1486,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Reported"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43234"^^xsd:string ;
 	th:notation "NOT REPORTED"^^xsd:string ;
 	th:definition "Not provided or available."^^xsd:string ;
@@ -1445,6 +1505,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67112>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puerto Rican"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67112"^^xsd:string ;
 	th:notation "PUERTO RICAN"^^xsd:string ;
 	th:definition "A person of Puerto Rican descent."^^xsd:string ;
@@ -1458,6 +1519,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C103283>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sephardic Jew"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C103283"^^xsd:string ;
 	th:notation "SEPHARDIC JEW"^^xsd:string ;
 	th:definition "A person of Sephardic Jewish descent."^^xsd:string ;
@@ -1471,6 +1533,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C126532>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "South American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C126532"^^xsd:string ;
 	th:notation "SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person of South American descent."^^xsd:string ;
@@ -1484,6 +1547,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C67120>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spanish"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67120"^^xsd:string ;
 	th:notation "SPANISH"^^xsd:string ;
 	th:definition "A person from Spain or of Spanish descent."^^xsd:string ;
@@ -1497,6 +1561,7 @@
 <http://www.cdisc.org/C128690/V1#C128690_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -1517,6 +1582,7 @@
 <http://www.cdisc.org/C78426/V1#C78426>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dose Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78426/V1#C78426_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78426/V1#C78426_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1565,6 +1631,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42887>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aerosol Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42887"^^xsd:string ;
 	th:notation "AEROSOL"^^xsd:string ;
 	th:definition "A product that is packaged under pressure and contains therapeutically active ingredients that are released upon activation of an appropriate valve system; it is intended for topical application to the skin as well as local application into the nose (nasal aerosols), mouth (lingual aerosols), or lungs (inhalation aerosols)."^^xsd:string ;
@@ -1575,6 +1642,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C25158>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25158"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A solid pharmaceutical dosage form that contains medicinal agent within either a hard or soft soluble container or shell, usually used for the oral administration of medicine. The shells are made of a suitable form of gelatin or other substance. (NCI)"^^xsd:string ;
@@ -1585,6 +1653,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C28944>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cream Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28944"^^xsd:string ;
 	th:notation "CREAM"^^xsd:string ;
 	th:definition "A semisolid emulsion of either the oil-in-water or the water-in-oil type, ordinarily intended for topical use. (NCI)"^^xsd:string ;
@@ -1594,6 +1663,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42933>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gas Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42933"^^xsd:string ;
 	th:notation "GAS"^^xsd:string ;
 	th:definition "Any elastic aeriform fluid in which the molecules are separated from one another and have free paths. (NCI)"^^xsd:string ;
@@ -1603,6 +1673,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42934>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gel Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42934"^^xsd:string ;
 	th:notation "GEL"^^xsd:string ;
 	th:definition "A semisolid (1) dosage form that contains a gelling agent to provide stiffness to a solution or a colloidal dispersion (2). A gel may contain suspended particles. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: A colloidal dispersion is a system in which particles of colloidal dimension (i.e., typically between 1 nm and 1 micrometer) are distributed uniformly throughout a liquid."^^xsd:string ;
@@ -1612,6 +1683,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42966>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ointment Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42966"^^xsd:string ;
 	th:notation "OINTMENT"^^xsd:string ;
 	th:definition "A suspension or emulsion, semisolid (1) dosage form, usually containing less than 20 percent water and volatiles (2) and greater than 50 percent hydrocarbons, waxes, or polyols as the vehicle. This dosage form is generally for external application to the skin or mucous membranes. Note 1: A semisolid is not pourable; it does not flow or conform to its container at room temperature. It does not flow at low shear stress and generally exhibits plastic flow behavior. Note 2: Percent water and volatiles are measured by a loss on drying test in which the sample is heated at 105 degrees C until constant weight is achieved."^^xsd:string ;
@@ -1622,6 +1694,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42968>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42968"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A drug delivery system that often contains an adhesive backing that is usually applied to an external site on the body. Its ingredients either passively diffuse from, or are actively transported from, some portion of the patch. Depending upon the patch, the ingredients are either delivered to the outer surface of the body or into the body. A patch is sometimes synonymous with the terms Extended Release Film and System."^^xsd:string ;
@@ -1631,6 +1704,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42972>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Powder Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42972"^^xsd:string ;
 	th:notation "POWDER"^^xsd:string ;
 	th:definition "An intimate mixture of dry, finely divided drugs and/or chemicals that may be intended for internal or external use. (NCI)"^^xsd:string ;
@@ -1640,6 +1714,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42989>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Spray Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42989"^^xsd:string ;
 	th:notation "SPRAY"^^xsd:string ;
 	th:definition "A liquid minutely divided as by a jet of air or steam. (NCI)"^^xsd:string ;
@@ -1649,6 +1724,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suppository Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42993"^^xsd:string ;
 	th:notation "SUPPOSITORY"^^xsd:string ;
 	th:definition "A solid body of various weights and shapes, adapted for introduction into the rectal, vaginal, or urethral orifice of the human body; they usually melt, soften, or dissolve at body temperature."^^xsd:string ;
@@ -1659,6 +1735,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Suspension Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42994"^^xsd:string ;
 	th:notation "SUSPENSION"^^xsd:string ;
 	th:definition "A liquid dosage form that contains solid particles dispersed in a liquid vehicle. Note: A liquid is pourable; it flows and conforms to its container at room temperature. It displays Newtonian or pseudoplastic flow behavior."^^xsd:string ;
@@ -1669,6 +1746,7 @@
 <http://www.cdisc.org/C78426/V1#C78426_C42998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosage Form"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42998"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A solid dosage form containing medicinal substances with or without suitable diluents. (NCI)"^^xsd:string ;
@@ -1687,6 +1765,7 @@
 <http://www.cdisc.org/C78745/V1#C78745>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Dosing Frequency per Interval"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78745/V1#C78745_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78745/V1#C78745_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1731,6 +1810,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64496>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Twice Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64496"^^xsd:string ;
 	th:notation "BID"^^xsd:string ;
 	th:definition "Two times per day, at unspecified times. (NCI)"^^xsd:string ;
@@ -1742,6 +1822,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64499>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "As Necessary"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64499"^^xsd:string ;
 	th:notation "PRN"^^xsd:string ;
 	th:definition "As needed. (NCI)"^^xsd:string ;
@@ -1752,6 +1833,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C25473>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25473"^^xsd:string ;
 	th:notation "QD"^^xsd:string ;
 	th:definition "A rate of occurrences within a period of time equal to one day."^^xsd:string ;
@@ -1762,6 +1844,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64530>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Four Times Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64530"^^xsd:string ;
 	th:notation "QID"^^xsd:string ;
 	th:definition "Four times per day. (NCI)"^^xsd:string ;
@@ -1772,6 +1855,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64498>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Monthly"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64498"^^xsd:string ;
 	th:notation "QM"^^xsd:string ;
 	th:definition "Every month. (NCI)"^^xsd:string ;
@@ -1783,6 +1867,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64525>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Every Other Day"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64525"^^xsd:string ;
 	th:notation "QOD"^^xsd:string ;
 	th:definition "Every other day. (NCI)"^^xsd:string ;
@@ -1793,6 +1878,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C64527>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Three Times Daily"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64527"^^xsd:string ;
 	th:notation "TID"^^xsd:string ;
 	th:definition "Three times per day. (NCI)"^^xsd:string ;
@@ -1803,6 +1889,7 @@
 <http://www.cdisc.org/C78745/V1#C78745_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -1823,6 +1910,7 @@
 <http://www.cdisc.org/C78425/V1#C78425>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Exposure Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78425/V1#C78425_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78425/V1#C78425_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -1871,6 +1959,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38250>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intralesional Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38250"^^xsd:string ;
 	th:notation "INTRALESIONAL"^^xsd:string ;
 	th:definition "Administration within or introduced directly into a localized lesion. (FDA)"^^xsd:string ;
@@ -1880,6 +1969,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C28161>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intramuscular Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28161"^^xsd:string ;
 	th:notation "INTRAMUSCULAR"^^xsd:string ;
 	th:definition "Administration within a muscle. (FDA)"^^xsd:string ;
@@ -1889,6 +1979,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38255>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraocular Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38255"^^xsd:string ;
 	th:notation "INTRAOCULAR"^^xsd:string ;
 	th:definition "Administration within the eye. (FDA)"^^xsd:string ;
@@ -1898,6 +1989,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38258>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Intraperitoneal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38258"^^xsd:string ;
 	th:notation "INTRAPERITONEAL"^^xsd:string ;
 	th:definition "Administration within the peritoneal cavity. (FDA)"^^xsd:string ;
@@ -1907,6 +1999,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38284>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nasal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38284"^^xsd:string ;
 	th:notation "NASAL"^^xsd:string ;
 	th:definition "Administration to the nose; administered by way of the nose. (FDA)"^^xsd:string ;
@@ -1917,6 +2010,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38288>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Oral Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38288"^^xsd:string ;
 	th:notation "ORAL"^^xsd:string ;
 	th:definition "Administration to or by way of the mouth. (FDA)"^^xsd:string ;
@@ -1928,6 +2022,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38295>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Rectal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38295"^^xsd:string ;
 	th:notation "RECTAL"^^xsd:string ;
 	th:definition "Administration to the rectum. (FDA)"^^xsd:string ;
@@ -1937,6 +2032,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38216>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inhalation Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38216"^^xsd:string ;
 	th:notation "RESPIRATORY (INHALATION)"^^xsd:string ;
 	th:definition "Administration within the respiratory tract by inhaling orally or nasally for local or systemic effect. (FDA)"^^xsd:string ;
@@ -1946,6 +2042,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38299>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Subcutaneous Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38299"^^xsd:string ;
 	th:notation "SUBCUTANEOUS"^^xsd:string ;
 	th:definition "Administration beneath the skin; hypodermic. Synonymous with the term SUBDERMAL. (FDA)"^^xsd:string ;
@@ -1957,6 +2054,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38304>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Topical Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38304"^^xsd:string ;
 	th:notation "TOPICAL"^^xsd:string ;
 	th:definition "Administration to a particular spot on the outer surface of the body. The E2B term TRANSMAMMARY is a subset of the term TOPICAL. (FDA)"^^xsd:string ;
@@ -1967,6 +2065,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38305>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Transdermal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38305"^^xsd:string ;
 	th:notation "TRANSDERMAL"^^xsd:string ;
 	th:definition "Administration through the dermal layer of the skin to the systemic circulation by diffusion. (FDA)"^^xsd:string ;
@@ -1976,6 +2075,7 @@
 <http://www.cdisc.org/C78425/V1#C78425_C38313>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vaginal Route of Administration"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C38313"^^xsd:string ;
 	th:notation "VAGINAL"^^xsd:string ;
 	th:definition "Administration into the vagina. (FDA)"^^xsd:string ;
@@ -1993,6 +2093,7 @@
 <http://www.cdisc.org/C128689/V1#C128689>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Race As Collected"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C128689/V1#C128689_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C128689/V1#C128689_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -2110,6 +2211,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C154875>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Aboriginal Australian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C154875"^^xsd:string ;
 	th:notation "ABORIGINAL AUSTRALIAN"^^xsd:string ;
 	th:definition "The native people of Australia."^^xsd:string ;
@@ -2123,6 +2225,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C42331>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42331"^^xsd:string ;
 	th:notation "AFRICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of sub-Saharan Africa."^^xsd:string ;
@@ -2136,6 +2239,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128937>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128937"^^xsd:string ;
 	th:notation "AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and the United States."^^xsd:string ;
@@ -2149,6 +2253,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41226>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "African Caribbean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41226"^^xsd:string ;
 	th:notation "AFRICAN CARIBBEAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and the Caribbean."^^xsd:string ;
@@ -2162,6 +2267,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C18237>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Alaska Native"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C18237"^^xsd:string ;
 	th:notation "ALASKA NATIVE"^^xsd:string ;
 	th:definition "The native people of Alaska."^^xsd:string ;
@@ -2175,6 +2281,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43877>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "American Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43877"^^xsd:string ;
 	th:notation "AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of North America."^^xsd:string ;
@@ -2188,6 +2295,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41259>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "American Indian or Alaska Native"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41259"^^xsd:string ;
 	th:notation "AMERICAN INDIAN OR ALASKA NATIVE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment. (FDA)"^^xsd:string ;
@@ -2201,6 +2309,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43876>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Arab"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43876"^^xsd:string ;
 	th:notation "ARAB"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Arabian peninsula and surrounding territories in the Middle East and northern Africa."^^xsd:string ;
@@ -2214,6 +2323,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41260>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41260"^^xsd:string ;
 	th:notation "ASIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam. (FDA)"^^xsd:string ;
@@ -2227,6 +2337,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C16310>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C16310"^^xsd:string ;
 	th:notation "ASIAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Asia and the United States."^^xsd:string ;
@@ -2240,6 +2351,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41262>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Asian Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41262"^^xsd:string ;
 	th:notation "ASIAN INDIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Indian subcontinent."^^xsd:string ;
@@ -2253,6 +2365,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C67271>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bahamian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67271"^^xsd:string ;
 	th:notation "BAHAMIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Bahamas."^^xsd:string ;
@@ -2266,6 +2379,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43671>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bangladeshi"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43671"^^xsd:string ;
 	th:notation "BANGLADESHI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Bangladesh."^^xsd:string ;
@@ -2279,6 +2393,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43823>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Barbadian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43823"^^xsd:string ;
 	th:notation "BARBADIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Barbados."^^xsd:string ;
@@ -2292,6 +2407,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43673>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bhutanese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43673"^^xsd:string ;
 	th:notation "BHUTANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Bhutan."^^xsd:string ;
@@ -2305,6 +2421,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128938>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128938"^^xsd:string ;
 	th:notation "BLACK"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa or the Caribbean."^^xsd:string ;
@@ -2318,6 +2435,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128991>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black Central American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128991"^^xsd:string ;
 	th:notation "BLACK CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and Central America."^^xsd:string ;
@@ -2331,6 +2449,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C16352>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black or African American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C16352"^^xsd:string ;
 	th:notation "BLACK OR AFRICAN AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the black racial groups of Africa. Terms such as \"Haitian\" or \"Negro\" can be used in addition to \"Black or African American.\" (FDA)"^^xsd:string ;
@@ -2344,6 +2463,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128992>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Black South American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128992"^^xsd:string ;
 	th:notation "BLACK SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of sub-Saharan Africa and South America."^^xsd:string ;
@@ -2357,6 +2477,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43830>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Botswanan"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43830"^^xsd:string ;
 	th:notation "BOTSWANAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Botswana."^^xsd:string ;
@@ -2370,6 +2491,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43674>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Burmese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43674"^^xsd:string ;
 	th:notation "BURMESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Myanmar (formerly Burma)."^^xsd:string ;
@@ -2383,6 +2505,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43399>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Cambodian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43399"^^xsd:string ;
 	th:notation "CAMBODIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Cambodia (formerly Kampuchea)."^^xsd:string ;
@@ -2396,6 +2519,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77810>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Caribbean Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77810"^^xsd:string ;
 	th:notation "CARIBBEAN INDIAN"^^xsd:string ;
 	th:definition "The native people of the Caribbean."^^xsd:string ;
@@ -2409,6 +2533,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44950>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Central American Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44950"^^xsd:string ;
 	th:notation "CENTRAL AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of Central America."^^xsd:string ;
@@ -2422,6 +2547,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43391>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Chinese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43391"^^xsd:string ;
 	th:notation "CHINESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of China."^^xsd:string ;
@@ -2435,6 +2561,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43824>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dominica Islander"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43824"^^xsd:string ;
 	th:notation "DOMINICA ISLANDER"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Dominica."^^xsd:string ;
@@ -2448,6 +2575,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C67117>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Dominican"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67117"^^xsd:string ;
 	th:notation "DOMINICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Dominican Republic."^^xsd:string ;
@@ -2461,6 +2589,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77819>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Eastern European"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77819"^^xsd:string ;
 	th:notation "EASTERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Eastern Europe."^^xsd:string ;
@@ -2474,6 +2603,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43831>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Ethiopian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43831"^^xsd:string ;
 	th:notation "ETHIOPIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Ethiopia."^^xsd:string ;
@@ -2487,6 +2617,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43851>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "European"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43851"^^xsd:string ;
 	th:notation "EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Europe."^^xsd:string ;
@@ -2500,6 +2631,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43393>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Filipino"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43393"^^xsd:string ;
 	th:notation "FILIPINO"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Philippines."^^xsd:string ;
@@ -2513,6 +2645,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44265>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Greenland Eskimo"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44265"^^xsd:string ;
 	th:notation "GREENLAND INUIT"^^xsd:string ;
 	th:definition "The native people of Greenland."^^xsd:string ;
@@ -2526,6 +2659,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43825>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Haitian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43825"^^xsd:string ;
 	th:notation "HAITIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Haiti."^^xsd:string ;
@@ -2539,6 +2673,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43398>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hmong"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43398"^^xsd:string ;
 	th:notation "HMONG"^^xsd:string ;
 	th:definition "The native people originating in China around the Yellow River or Hoang Ho."^^xsd:string ;
@@ -2552,6 +2687,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43715>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Indonesian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43715"^^xsd:string ;
 	th:notation "INDONESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Indonesia."^^xsd:string ;
@@ -2565,6 +2701,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44268>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Inupiat Eskimo"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44268"^^xsd:string ;
 	th:notation "INUPIAT INUIT"^^xsd:string ;
 	th:definition "The native people inhabiting the territory spanning the Norton Sound on the Bering Sea to the Canadian border."^^xsd:string ;
@@ -2578,6 +2715,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43718>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Iwo Jiman"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43718"^^xsd:string ;
 	th:notation "IWO JIMAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Iwo Jima."^^xsd:string ;
@@ -2591,6 +2729,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43826>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Jamaican"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43826"^^xsd:string ;
 	th:notation "JAMAICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Jamaica."^^xsd:string ;
@@ -2604,6 +2743,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43392>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Japanese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43392"^^xsd:string ;
 	th:notation "JAPANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Japan."^^xsd:string ;
@@ -2617,6 +2757,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C154874>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Khoisan"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C154874"^^xsd:string ;
 	th:notation "KHOISAN"^^xsd:string ;
 	th:definition "The native people of the Western Cape in southern Africa."^^xsd:string ;
@@ -2630,6 +2771,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43395>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Korean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43395"^^xsd:string ;
 	th:notation "KOREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North and South Korea."^^xsd:string ;
@@ -2643,6 +2785,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43397>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Laotian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43397"^^xsd:string ;
 	th:notation "LAOTIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Laos."^^xsd:string ;
@@ -2656,6 +2799,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43832>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Liberian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43832"^^xsd:string ;
 	th:notation "LIBERIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Liberia."^^xsd:string ;
@@ -2669,6 +2813,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43722>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Malagasy"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43722"^^xsd:string ;
 	th:notation "MALAGASY"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Madagascar."^^xsd:string ;
@@ -2682,6 +2827,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43716>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Malaysian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43716"^^xsd:string ;
 	th:notation "MALAYSIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Malaysia."^^xsd:string ;
@@ -2695,6 +2841,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43719>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Maldivian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43719"^^xsd:string ;
 	th:notation "MALDIVIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Maldives."^^xsd:string ;
@@ -2708,6 +2855,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77811>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mediterranean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77811"^^xsd:string ;
 	th:notation "MEDITERRANEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the countries surrounding the Mediterranean sea."^^xsd:string ;
@@ -2721,6 +2869,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43409>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Melanesian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43409"^^xsd:string ;
 	th:notation "MELANESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Melanesia."^^xsd:string ;
@@ -2734,6 +2883,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43402>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micronesian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43402"^^xsd:string ;
 	th:notation "MICRONESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Micronesia."^^xsd:string ;
@@ -2747,6 +2897,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77820>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Middle Eastern"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77820"^^xsd:string ;
 	th:notation "MIDDLE EASTERN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the Middle East."^^xsd:string ;
@@ -2760,6 +2911,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43864>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Mongolian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43864"^^xsd:string ;
 	th:notation "MONGOLIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Mongolia."^^xsd:string ;
@@ -2773,6 +2925,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43833>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Namibian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43833"^^xsd:string ;
 	th:notation "NAMIBIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Namibia."^^xsd:string ;
@@ -2786,6 +2939,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41219>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Native Hawaiian or Other Pacific Islander"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41219"^^xsd:string ;
 	th:notation "NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER"^^xsd:string ;
 	th:definition "Denotes a person having origins in any of the original peoples of Hawaii, Guam, Samoa, or other Pacific Islands. The term covers particularly people who identify themselves as part-Hawaiian, Native Hawaiian, Guamanian or Chamorro, Carolinian, Samoan, Chuu. (FDA)"^^xsd:string ;
@@ -2799,6 +2953,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43720>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nepalese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43720"^^xsd:string ;
 	th:notation "NEPALESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Nepal."^^xsd:string ;
@@ -2812,6 +2967,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43834>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Nigerian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43834"^^xsd:string ;
 	th:notation "NIGERIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Nigeria."^^xsd:string ;
@@ -2825,6 +2981,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77813>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "North Coast of Africa"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77813"^^xsd:string ;
 	th:notation "NORTH AFRICAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of North Africa."^^xsd:string ;
@@ -2838,6 +2995,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77814>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Northern European"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77814"^^xsd:string ;
 	th:notation "NORTHERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Northern Europe."^^xsd:string ;
@@ -2851,6 +3009,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43234>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Not Reported"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43234"^^xsd:string ;
 	th:notation "NOT REPORTED"^^xsd:string ;
 	th:definition "Not provided or available."^^xsd:string ;
@@ -2861,6 +3020,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43717>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Okinawan"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43717"^^xsd:string ;
 	th:notation "OKINAWAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Okinawa."^^xsd:string ;
@@ -2874,6 +3034,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43427>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Pakistani"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43427"^^xsd:string ;
 	th:notation "PAKISTANI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Pakistan."^^xsd:string ;
@@ -2887,6 +3048,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43405>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Polynesian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43405"^^xsd:string ;
 	th:notation "POLYNESIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Polynesia."^^xsd:string ;
@@ -2900,6 +3062,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43860>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Russian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43860"^^xsd:string ;
 	th:notation "RUSSIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Russia."^^xsd:string ;
@@ -2913,6 +3076,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44269>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Siberian Eskimo"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44269"^^xsd:string ;
 	th:notation "SIBERIAN ESKIMO"^^xsd:string ;
 	th:definition "The native Yupik people inhabiting the coast of the Chukchi Peninsula in the far northeast of the Russian Federation and on St. Lawrence Island in Alaska."^^xsd:string ;
@@ -2926,6 +3090,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43721>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Singaporean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43721"^^xsd:string ;
 	th:notation "SINGAPOREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Singapore."^^xsd:string ;
@@ -2939,6 +3104,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44953>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "South American Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44953"^^xsd:string ;
 	th:notation "SOUTH AMERICAN INDIAN"^^xsd:string ;
 	th:definition "The native people of South America."^^xsd:string ;
@@ -2952,6 +3118,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C156583>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Southern African Coloured"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C156583"^^xsd:string ;
 	th:notation "SOUTHERN AFRICAN COLOURED"^^xsd:string ;
 	th:definition "A person of mixed race, whose ancestry is from one or more of the naturalized racial groups of Southern Africa (typically Western European, South Asian, or Southeastern Asian) and one or more of the indigenous Southern African peoples."^^xsd:string ;
@@ -2965,6 +3132,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43672>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sri Lankan"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43672"^^xsd:string ;
 	th:notation "SRI LANKAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Sri Lanka."^^xsd:string ;
@@ -2978,6 +3146,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43675>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Taiwanese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43675"^^xsd:string ;
 	th:notation "TAIWANESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Taiwan."^^xsd:string ;
@@ -2991,6 +3160,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43400>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Thai"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43400"^^xsd:string ;
 	th:notation "THAI"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Thailand."^^xsd:string ;
@@ -3004,6 +3174,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43827>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tobagoan"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43827"^^xsd:string ;
 	th:notation "TOBAGOAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Tobago."^^xsd:string ;
@@ -3017,6 +3188,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43828>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Trinidadian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43828"^^xsd:string ;
 	th:notation "TRINIDADIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Trinidad."^^xsd:string ;
@@ -3030,6 +3202,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C17998>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Unknown"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C17998"^^xsd:string ;
 	th:notation "UNKNOWN"^^xsd:string ;
 	th:definition "Not known, not observed, not recorded, or refused. (NCI)"^^xsd:string ;
@@ -3042,6 +3215,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43396>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vietnamese"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43396"^^xsd:string ;
 	th:notation "VIETNAMESE"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Viet Nam."^^xsd:string ;
@@ -3055,6 +3229,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43829>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "West Indian"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43829"^^xsd:string ;
 	th:notation "WEST INDIAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of the West Indies."^^xsd:string ;
@@ -3068,6 +3243,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77817>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Western European"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77817"^^xsd:string ;
 	th:notation "WESTERN EUROPEAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Western Europe."^^xsd:string ;
@@ -3081,6 +3257,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C41261>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C41261"^^xsd:string ;
 	th:notation "WHITE"^^xsd:string ;
 	th:definition "Denotes a person with European, Middle Eastern, or North African ancestral origin who identifies, or is identified, as White. (FDA)"^^xsd:string ;
@@ -3094,6 +3271,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C77816>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White Caribbean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C77816"^^xsd:string ;
 	th:notation "WHITE CARIBBEAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and the Caribbean."^^xsd:string ;
@@ -3107,6 +3285,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128993>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White Central American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128993"^^xsd:string ;
 	th:notation "WHITE CENTRAL AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and Central America."^^xsd:string ;
@@ -3120,6 +3299,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C128994>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "White South American"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C128994"^^xsd:string ;
 	th:notation "WHITE SOUTH AMERICAN"^^xsd:string ;
 	th:definition "A person having origins in the original peoples of Europe, the Middle East, or North Africa, and South America."^^xsd:string ;
@@ -3133,6 +3313,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C44270>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Yupik Eskimo"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C44270"^^xsd:string ;
 	th:notation "YUPIK ESKIMO"^^xsd:string ;
 	th:definition "The native people inhabiting western, southwestern, and southcentral Alaska and the Russian Far East."^^xsd:string ;
@@ -3146,6 +3327,7 @@
 <http://www.cdisc.org/C128689/V1#C128689_C43835>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Zairean"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C43835"^^xsd:string ;
 	th:notation "ZAIREAN"^^xsd:string ;
 	th:definition "A person having origins in any of the original peoples of Zaire."^^xsd:string ;
@@ -3167,6 +3349,7 @@
 <http://www.cdisc.org/C83004/V1#C83004>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Substance Use Never/Current/Former Classification"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C83004/V1#C83004_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C83004/V1#C83004_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3206,6 +3389,7 @@
 <http://www.cdisc.org/C83004/V1#C83004_C25471>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Current"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25471"^^xsd:string ;
 	th:notation "CURRENT"^^xsd:string ;
 	th:definition "Occurring in or belonging to the present time. (NCI)"^^xsd:string ;
@@ -3219,6 +3403,7 @@
 <http://www.cdisc.org/C83004/V1#C83004_C25627>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Previous"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25627"^^xsd:string ;
 	th:notation "FORMER"^^xsd:string ;
 	th:definition "Occurring prior to something else. (NCI)"^^xsd:string ;
@@ -3237,6 +3422,7 @@
 <http://www.cdisc.org/C83004/V1#C83004_C70543>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Never"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C70543"^^xsd:string ;
 	th:notation "NEVER"^^xsd:string ;
 	th:definition "Not ever; at no time in the past."^^xsd:string ;
@@ -3258,6 +3444,7 @@
 <http://www.cdisc.org/C78428/V1#C78428>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Total Volume Administration Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78428/V1#C78428_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78428/V1#C78428_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3297,6 +3484,7 @@
 <http://www.cdisc.org/C78428/V1#C78428_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -3307,6 +3495,7 @@
 <http://www.cdisc.org/C78428/V1#C78428_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -3318,6 +3507,7 @@
 <http://www.cdisc.org/C78428/V1#C78428_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -3337,6 +3527,7 @@
 <http://www.cdisc.org/C78427/V1#C78427>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit for the Duration of Treatment Interruption"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78427/V1#C78427_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78427/V1#C78427_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3376,6 +3567,7 @@
 <http://www.cdisc.org/C78427/V1#C78427_C25529>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Hour"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C25529"^^xsd:string ;
 	th:notation "HOURS"^^xsd:string ;
 	th:definition "A unit of measurement of time equal to 60 minutes."^^xsd:string ;
@@ -3404,6 +3596,7 @@
 <http://www.cdisc.org/C78427/V1#C78427_C48154>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48154"^^xsd:string ;
 	th:notation "min"^^xsd:string ;
 	th:definition "A unit of measurement of time equal to 60 seconds."^^xsd:string ;
@@ -3422,6 +3615,7 @@
 <http://www.cdisc.org/C78427/V1#C78427_C42535>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Second"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C42535"^^xsd:string ;
 	th:notation "sec"^^xsd:string ;
 	th:definition "The base unit of time in the International System of Units (SI) equal to the duration of 9,192,631,770 periods of the specified light radiation corresponding to the transition between the two hyperfine levels of the cesium 133 atom in its ground state at 0 K."^^xsd:string ;
@@ -3440,6 +3634,7 @@
 <http://www.cdisc.org/C78421/V1#C78421>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Drug Dispensed or Returned"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78421/V1#C78421_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78421/V1#C78421_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3488,6 +3683,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48474>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bag Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48474"^^xsd:string ;
 	th:notation "BAG"^^xsd:string ;
 	th:definition "A dosing measurement based on the bag unit.(NCI)"^^xsd:string ;
@@ -3506,6 +3702,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48477>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Bottle Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48477"^^xsd:string ;
 	th:notation "BOTTLE"^^xsd:string ;
 	th:definition "A dosing measurement based on the bottle unit.(NCI)"^^xsd:string ;
@@ -3524,6 +3721,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48478>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Box Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48478"^^xsd:string ;
 	th:notation "BOX"^^xsd:string ;
 	th:definition "A dosing measurement based on the box unit.(NCI)"^^xsd:string ;
@@ -3542,6 +3740,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -3553,6 +3752,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48484>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Container Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48484"^^xsd:string ;
 	th:notation "CONTAINER"^^xsd:string ;
 	th:definition "A dosing measurement based on the container unit.(NCI)"^^xsd:string ;
@@ -3571,6 +3771,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48490>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Disk Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48490"^^xsd:string ;
 	th:notation "DISK"^^xsd:string ;
 	th:definition "A dosing measurement based on the disk unit.(NCI)"^^xsd:string ;
@@ -3589,6 +3790,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48520>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Package Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48520"^^xsd:string ;
 	th:notation "PACKAGE"^^xsd:string ;
 	th:definition "A dosing measurement based on the package unit.(NCI)"^^xsd:string ;
@@ -3612,6 +3814,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48521>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Packet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48521"^^xsd:string ;
 	th:notation "PACKET"^^xsd:string ;
 	th:definition "A dosing measurement based on the packet unit.(NCI)"^^xsd:string ;
@@ -3630,6 +3833,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48524>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Patch Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48524"^^xsd:string ;
 	th:notation "PATCH"^^xsd:string ;
 	th:definition "A dosing measurement based on the patch unit.(NCI)"^^xsd:string ;
@@ -3648,6 +3852,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -3659,6 +3864,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48549>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tube Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48549"^^xsd:string ;
 	th:notation "TUBE"^^xsd:string ;
 	th:definition "A dosing measurement based on the tube unit.(NCI)"^^xsd:string ;
@@ -3677,6 +3883,7 @@
 <http://www.cdisc.org/C78421/V1#C78421_C48551>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Vial Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48551"^^xsd:string ;
 	th:notation "VIAL"^^xsd:string ;
 	th:definition "A dosing measurement based on the vial unit.(NCI)"^^xsd:string ;
@@ -3703,6 +3910,7 @@
 <http://www.cdisc.org/C78429/V1#C78429>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Unit of Measure for Flow Rate"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78429/V1#C78429_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78429/V1#C78429_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3744,6 +3952,7 @@
 <http://www.cdisc.org/C78429/V1#C78429_C64777>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C64777"^^xsd:string ;
 	th:notation "mL/min"^^xsd:string ;
 	th:definition "A unit of flow rate equal to one milliliter per minute."^^xsd:string ;
@@ -3757,6 +3966,7 @@
 <http://www.cdisc.org/C78429/V1#C78429_C67420>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Millimole per 24 Hours"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67420"^^xsd:string ;
 	th:notation "mmol/day"^^xsd:string ;
 	th:definition "A unit of substance flow rate equal to one millimole per day."^^xsd:string ;
@@ -3770,6 +3980,7 @@
 <http://www.cdisc.org/C78429/V1#C78429_C71205>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Day"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C71205"^^xsd:string ;
 	th:notation "ug/day"^^xsd:string ;
 	th:definition "A unit of mass flow rate equal to one microgram per day."^^xsd:string ;
@@ -3788,6 +3999,7 @@
 <http://www.cdisc.org/C78429/V1#C78429_C71211>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram per Minute"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C71211"^^xsd:string ;
 	th:notation "ug/min"^^xsd:string ;
 	th:definition "A unit of mass flow rate equal to one microgram per minute."^^xsd:string ;
@@ -3806,6 +4018,7 @@
 <http://www.cdisc.org/C78429/V1#C78429_C67406>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Micromole per 24 Hours"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C67406"^^xsd:string ;
 	th:notation "umol/day"^^xsd:string ;
 	th:definition "A unit of substance flow rate equal to one micromole per day."^^xsd:string ;
@@ -3832,6 +4045,7 @@
 <http://www.cdisc.org/C78423/V1#C78423>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Exposure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78423/V1#C78423_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78423/V1#C78423_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -3875,6 +4089,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -3886,6 +4101,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -3896,6 +4112,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -3906,6 +4123,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -3917,6 +4135,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -3927,6 +4146,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -3938,6 +4158,7 @@
 <http://www.cdisc.org/C78423/V1#C78423_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -3957,6 +4178,7 @@
 <http://www.cdisc.org/C78430/V1#C78430>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Units for Planned Exposure"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78430/V1#C78430_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78430/V1#C78430_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4000,6 +4222,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48480>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Capsule Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48480"^^xsd:string ;
 	th:notation "CAPSULE"^^xsd:string ;
 	th:definition "A dosing measurement based on the capsule unit.(NCI)"^^xsd:string ;
@@ -4011,6 +4234,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48155>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Gram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48155"^^xsd:string ;
 	th:notation "g"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a kilogram, the kilogram being the base unit of mass in the International System of Units (SI)."^^xsd:string ;
@@ -4021,6 +4245,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C28253>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milligram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28253"^^xsd:string ;
 	th:notation "mg"^^xsd:string ;
 	th:definition "A unit of mass equal to one thousandth (1E-3) of a gram."^^xsd:string ;
@@ -4031,6 +4256,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C28254>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Milliliter"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C28254"^^xsd:string ;
 	th:notation "mL"^^xsd:string ;
 	th:definition "A unit of volume equal to one thousandth (1E-3) of a liter."^^xsd:string ;
@@ -4042,6 +4268,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C65060>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Puff Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C65060"^^xsd:string ;
 	th:notation "PUFF"^^xsd:string ;
 	th:definition "A means of delivering a defined dose of a therapeutic aerolized solution into either the upper or lower respiratory tract. Metered-dose inhalers or spray pumps are devices that provide a puff dose for delivery into either the oral or the nasal cavity.(NCI)"^^xsd:string ;
@@ -4052,6 +4279,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48542>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Tablet Dosing Unit"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48542"^^xsd:string ;
 	th:notation "TABLET"^^xsd:string ;
 	th:definition "A dosing measurement based on the tablet unit.(NCI)"^^xsd:string ;
@@ -4063,6 +4291,7 @@
 <http://www.cdisc.org/C78430/V1#C78430_C48152>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Microgram"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C48152"^^xsd:string ;
 	th:notation "ug"^^xsd:string ;
 	th:definition "A unit of mass equal to one millionth (1E-6) of a gram."^^xsd:string ;
@@ -4082,6 +4311,7 @@
 <http://www.cdisc.org/C78431/V1#C78431>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Vital Signs Position of Subject"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	isoT:hasState <http://www.cdisc.org/C78431/V1#C78431_RS> ;
 	isoT:hasIdentifier <http://www.cdisc.org/C78431/V1#C78431_SI> ;
 	isoT:origin ""^^xsd:string ;
@@ -4121,6 +4351,7 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62122>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Sitting"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62122"^^xsd:string ;
 	th:notation "SITTING"^^xsd:string ;
 	th:definition "The state or act of one who sits; the posture of one who occupies a seat. (NCI)"^^xsd:string ;
@@ -4139,6 +4370,7 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62166>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Standing"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62166"^^xsd:string ;
 	th:notation "STANDING"^^xsd:string ;
 	th:definition "The act of assuming or maintaining an erect upright position. (NCI)"^^xsd:string ;
@@ -4157,6 +4389,7 @@
 <http://www.cdisc.org/C78431/V1#C78431_C62167>
 	rdf:type th:UnmanagedConcept ;
 	isoC:label "Supine Position"^^xsd:string ;
+	isoC:tagged <http://www.assero.co.uk/CSN#1d01391f-f054-4b59-a020-6fffe14624c1> ;
 	th:identifier "C62167"^^xsd:string ;
 	th:notation "SUPINE"^^xsd:string ;
 	th:definition "A posterior recumbent body position whereby the person lies on its back and faces upward. (NCI)"^^xsd:string ;
