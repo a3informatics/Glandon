@@ -318,7 +318,12 @@ describe "CDISC Term", :type => :feature do
       find(:xpath, "//div[@id='updated_div']/a", :text => "LOC (C74456)").click
       expect(page).to have_content("Changes Summary")
       expect(page).to have_xpath("//*[@id='history']")
-
+      find(:xpath, "//*[@id='history']", :text => 'History of all changes').click
+      expect(page).to have_content("Differences")
+      expect(page).to have_content("Changes")
+      click_link 'Return'
+      expect(page).to have_content("Differences Summary")
+      expect(page).to have_content("Changes Summary")
     end
 
     it "allows for code list to be exported as CSV (REQ-GENERIC-E-010)", js: true do
