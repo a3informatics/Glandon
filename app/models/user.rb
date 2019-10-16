@@ -25,8 +25,10 @@ class User < ActiveRecord::Base
   def set_extra
   	# Set the reader default role.
     self.add_role :reader
-    return if !self.name.blank?
-    self.name = "Anonymous"
+    # Set default name if not provided
+    if self.name.blank?
+      self.name = "Anonymous"
+    end
     self.save
   end
 
