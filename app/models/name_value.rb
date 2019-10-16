@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.22.0
-class NameValue < ActiveRecord::Base
+class NameValue < ApplicationRecord
 
   # Next. Next value. Assumes integer and increments after returning the current value
   #

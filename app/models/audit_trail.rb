@@ -1,4 +1,4 @@
-class AuditTrail < ActiveRecord::Base
+class AuditTrail < ApplicationRecord
 
 	enum event_type: {empty_action: 0, create_action: 1, update_action: 2, delete_action: 3, user_action: 4}
 

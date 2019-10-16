@@ -1,6 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
-  
-  before_filter :log_logout, :only => :destroy  #add this at the top with the other filters
+
+  before_action :log_logout, :only => :destroy  #add this at the top with the other filters
   # Lines commented out may be useful for other events, e.g. failed login attempt.
   #after_filter :log_failed_login, :only => [:new, :create]
 
@@ -8,9 +8,9 @@ class Users::SessionsController < Devise::SessionsController
     super
     AuditTrail.user_event(current_user, "User logged in.")
   end
- 
+
  private
- 
+
   #def log_failed_login
   #end
 

@@ -1,4 +1,4 @@
-class UserSetting < ActiveRecord::Base
+class UserSetting < ApplicationRecord
 
 	belongs_to :user
 

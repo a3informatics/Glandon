@@ -1,4 +1,4 @@
-class AdHocReport < ActiveRecord::Base
+class AdHocReport < ApplicationRecord
 
 	# Standard Active Record model
 

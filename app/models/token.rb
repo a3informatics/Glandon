@@ -1,5 +1,5 @@
 
-class Token < ActiveRecord::Base
+class Token < ApplicationRecord
 
 	C_CLASS_NAME = "Token"
 

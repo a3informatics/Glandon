@@ -28,7 +28,7 @@
 #   @return [String] the owner of the item being imported
 # @!attribute file_type
 #   @return [Symbol] the file type of the import. Enumerated :excel, :odm: :als
-class Import < ActiveRecord::Base
+class Import < ApplicationRecord
 
   enum file_type: [:excel, :odm, :als]
 

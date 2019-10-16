@@ -1,4 +1,4 @@
-class Background < ActiveRecord::Base
+class Background < ApplicationRecord
 
   has_one :import
   before_destroy :check_for_import
