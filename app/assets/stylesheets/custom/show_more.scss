@@ -1,0 +1,21 @@
+@import "custom/globals.scss";
+
+.show-more-btn{
+  display: inline-block;
+  font-family: $font-light;
+  cursor: pointer;
+}
+
+.show-more-wrap{
+  font-size: $font-small;
+  margin-top: 3px;
+}
+
+.show-more.collapsed .show-more-wrap{
+  display: none;
+}
+
+.show-more .icon-arrow-d{
+  display: inline-block;
+  transition: transform .3s;
+}
