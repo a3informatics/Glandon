@@ -326,7 +326,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
 
     # Get the final result
     query_string = %Q{
-SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=" ") as ?gt) ?s WHERE\n
+SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
 {
   SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
   {

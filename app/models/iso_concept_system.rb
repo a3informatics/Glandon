@@ -55,4 +55,10 @@ class IsoConceptSystem < Fuseki::Base
     :is_top_concept
   end
 
+  # Tags separator. 
+  # @return [String] a character that separates tags
+  def tag_separator 
+    ";"
+  end
+
 end
