@@ -368,7 +368,7 @@ def editor_table_fill_in(input, text)
     end
 
     #tags
-    it "allows Tags to be displayed (REQ-MDR-??????)", js:true do
+    it "allows Tags to be displayed, table (REQ-MDR-??????)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       expect(page).to have_content 'Controlled Terminology'
@@ -381,7 +381,20 @@ def editor_table_fill_in(input, text)
       ui_child_search("C99075")
       ui_check_table_info("children_table", 1, 1, 1)
       ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
+    end
 
+    it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      expect(page).to have_content 'Show more'
+      find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+      expect(page).to have_content 'Tags: SDTM CDASH ADaM SEND'
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
