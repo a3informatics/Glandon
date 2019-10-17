@@ -377,10 +377,11 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 911)
+      ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("C99075")
       ui_check_table_info("children_table", 1, 1, 1)
-      ui_check_table_cell("children_table", 1, 7, "SDTM; SEND")
+      ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
+
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
