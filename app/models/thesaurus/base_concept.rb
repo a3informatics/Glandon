@@ -70,9 +70,9 @@ class Thesaurus
 
       # Get the final result
       query_string = %Q{
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
   {
-    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
     {
       VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
       {
@@ -83,13 +83,14 @@ class Thesaurus
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
+        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t .} 
       }
-    } ORDER BY ?i ?sy
+    } ORDER BY ?i ?sy ?t
   } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :gt]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
     end
