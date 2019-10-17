@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
-<%= javascript_include_tag 'shared/tags' %>
 
 <div class="col-md-12 card">
   <div class="card-content">
@@ -26,9 +25,6 @@
         <div class="definition-label label-w-margin">
           Definition: <span class="font-light"><%= item.definition %> </span>
         </div>
-        <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
-          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tags.map{ |x| x.pref_label }} %>
-        <% end %>
       </div>
       <div class="h-inner-wrap">
         <%= yield %>
@@ -36,5 +32,3 @@
     </div>
   </div>
 </div>
-
-<%= javascript_tag 'colorCodeTags(".show-more-wrap", ".bg-label");' %>
