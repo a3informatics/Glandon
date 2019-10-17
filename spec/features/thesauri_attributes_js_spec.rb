@@ -25,6 +25,7 @@ def editor_table_fill_in(input, text)
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -364,6 +365,22 @@ def editor_table_fill_in(input, text)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
+    end
+
+    #tags
+    it "allows Tags to be displayed (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children_table", 1, 10, 911)
+      ui_child_search("C99075")
+      ui_check_table_info("children_table", 1, 1, 1)
+      ui_check_table_cell("children_table", 1, 7, "SDTM; SEND")
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
