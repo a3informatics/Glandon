@@ -7,11 +7,27 @@ var tagsColorsMap =
   "SEND": "#a9aee0",
   "default": "#b8b8b8"}
 
-function colorCodeTags(parent, tagClass){
+function colorCodeTagsOutline(parent, tagClass){
   $.each($(parent).find(tagClass), function(i, e){
     var tagToColorName = ($(e).html() in tagsColorsMap) ? $(e).html() : "default";
     var color = tagsColorsMap[tagToColorName];
     $(e).css("background", "transparent");
     $(e).css("box-shadow", "inset 0 0 0 2px "+color)
   });
+}
+
+function colorCodeTagsBadge(tags){
+  tags = tags.split('; ');
+  var html = tags.length > 0 ? "" : "None";
+  $.each(tags, function (i, e){
+    var tagToColorName = (e in tagsColorsMap) ? e : "default";
+    var color = tagsColorsMap[tagToColorName];
+
+    html +=
+    "<span class='min-badge-item'>" +
+      "<span class='circular-badge tiny' style='background: "+color+";'></span>" +
+      e +
+    "</span>"
+  });
+  return html;
 }

@@ -50,7 +50,7 @@ ManagedChildrenPanel.prototype.add = function (offset) {
       for (i=0; i<result.data.length; i++) {
         //_this.synonymList(result.data[i]);
         result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
-        result.data[i]["tags"] = _this.tagsConvert(result.data[i]["tags"]);
+        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();
@@ -69,22 +69,6 @@ ManagedChildrenPanel.prototype.add = function (offset) {
 
 ManagedChildrenPanel.prototype.extensibleConvert = function(extensible) {
     return "<span class='i-centered icon-extend"+(extensible ? " text-secondary-clr" : "-disabled text-accent-2")+"'></span>";
-}
-
-ManagedChildrenPanel.prototype.tagsConvert = function(tags) {
-    tags = tags.split('; ');
-    var html = tags.length > 0 ? "" : "None";
-    $.each(tags, function (i, e){
-      var tagToColorName = (e in tagsColorsMap) ? e : "default";
-      var color = tagsColorsMap[tagToColorName];
-
-      html +=
-      "<span class='min-badge-item'>" +
-        "<span class='circular-badge tiny' style='background: "+color+";'></span>" +
-        e +
-      "</span>"
-    });
-    return html;
 }
 
 // ManagedChildrenPanel.prototype.synonymList = function(entry) {

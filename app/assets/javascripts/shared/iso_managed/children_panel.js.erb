@@ -20,7 +20,7 @@ function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
   this.columns = columns;
   this.columns.push({"render" : function (data, type, row, meta) {return _this.linkButton(row.show_path, "Show");}});
   this.columns.push({"render" : function (data, type, row, meta) {
-    if (row.delete_path === ""){ 
+    if (row.delete_path === ""){
       return "&nbsp;"
     } else {
       return '<button value="' + row.id + '" class="btn btn-danger btn-xs delete-child">Delete</button>';}}
@@ -65,14 +65,15 @@ ChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       var show_delete = false
       for (i=0; i<result.data.length; i++) {
-        var row = _this.childrenTable.row.add(result.data[i]);  
+        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
+        var row = _this.childrenTable.row.add(result.data[i]);
         if (result.data[i].delete_path !== "" ) {
-          show_delete = true 
+          show_delete = true
         }
       }
       _this.childrenTable.draw();
       if (result.count >= _this.count) {
-        _this.add(result.offset + _this.count);        
+        _this.add(result.offset + _this.count);
       } else {
         _this.childrenTable.processing(false);
       }
