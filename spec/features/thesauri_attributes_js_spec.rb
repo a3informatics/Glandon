@@ -395,10 +395,17 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'Show more'
       find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
       expect(page).to have_content 'Tags: SDTM CDASH ADaM SEND'
-      find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
+      find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
       # Managed concept - level
-      expect(page).to have_content 'PORTOT'
-      expect(page).to have_content 'C99075'
+      expect(page).to have_content 'DIR'
+      expect(page).to have_content 'C99074'
+      expect(page).to have_content 'Show more'
+      find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      expect(page).to have_content 'Tags: SDTM SEND'
+      find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
+      # Unmanaged concept - level
+      expect(page).to have_content 'TIP'
+      expect(page).to have_content 'C90069'
       expect(page).to have_content 'Show more'
       find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
       expect(page).to have_content 'Tags: SDTM SEND'
