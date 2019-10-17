@@ -18,7 +18,7 @@
             <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
         <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
-          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tags.map{ |x| x.pref_label }} %>
+          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
         <% end %>
       </div>
       <div class="h-inner-wrap">

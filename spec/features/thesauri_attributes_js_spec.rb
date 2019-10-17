@@ -399,7 +399,7 @@ def editor_table_fill_in(input, text)
       find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
       expect(page).to have_content 'PORTOT'
       expect(page).to have_content 'C99075'
-      ui_check_table_cell("children_table", 1, 6, "SDTM\nSEND") 
+      ui_check_table_cell("children_table", 1, 6, "SDTM\nSEND")
     end
 
     it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
@@ -413,7 +413,7 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Show more'
       find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
-      expect(page).to have_content 'Tags: SDTM CDASH ADaM SEND'
+      expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
       find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
       # Managed concept - level
       expect(page).to have_content 'DIR'
