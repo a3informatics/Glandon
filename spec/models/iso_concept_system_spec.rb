@@ -89,8 +89,7 @@ describe IsoConceptSystem do
     end
 
     it "tag separator" do
-      concept = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
-      actual = concept.tag_separator
+      actual = IsoConceptSystem.tag_separator
       expect(actual).to eq(";")
     end
 
