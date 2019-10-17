@@ -57,7 +57,7 @@ class IsoConceptSystem < Fuseki::Base
 
   # Tags separator. 
   # @return [String] a character that separates tags
-  def tag_separator 
+  def self.tag_separator 
     ";"
   end
 
