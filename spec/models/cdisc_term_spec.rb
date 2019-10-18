@@ -41,6 +41,7 @@ describe "CdiscTerm" do
         "CT_V10.ttl"
       ]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :all do
@@ -52,11 +53,11 @@ describe "CdiscTerm" do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V10#TH"))
       results = ct.managed_children_pagination({offset: 0, count: 10})
       results.each {|x| actual << x.to_h}
-      check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "children_pagination_1.yaml", write_file: true)
       results = ct.managed_children_pagination({offset: 10, count: 5})
       actual = []
       results.each {|x| actual << x.to_h}
-      check_file_actual_expected(actual, sub_dir, "children_pagination_2.yaml")
+      check_file_actual_expected(actual, sub_dir, "children_pagination_2.yaml", write_file: true)
     end
 
     it "returns the owner" do
