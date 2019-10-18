@@ -85,4 +85,21 @@ class ApplicationController < ActionController::Base
    new_user_session_path
   end
 
+  
+
+  def params_to_id (params, strong_key = nil)
+    if strong_key.nil?
+      if params.has_key?(:namespace)
+        return Uri.new({namespace: params[:namespace], fragment: params[:id]}).to_id
+      else
+        return params[:id]
+      end
+    else
+      if this_params.has_key?(:namespace)
+        return Uri.new({namespace: this_params[:namespace], fragment: this_params[:id]}).to_id
+      else
+        return params[:id]
+      end
+  end
+
 end
