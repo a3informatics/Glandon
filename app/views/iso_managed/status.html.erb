@@ -28,6 +28,7 @@
 						<div class="status-paragraph font-light"><%= IsoRegistrationState.stateDefinition(state) %></div>
 					</div>
 					<% if @registration_state.can_be_changed? %>
+					<div class="icon-arrow-r status-arrow"></div>
 					<div class="status">
 						<div class="text-normal font-light"> New Status: </div>
 						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationState.stateLabel(nextState) %></div>
