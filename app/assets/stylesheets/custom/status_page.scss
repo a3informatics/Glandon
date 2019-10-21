@@ -1,0 +1,40 @@
+@import "custom/globals.scss";
+
+.status-wrap .boxed-title, .status-wrap .status-paragraph{
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.status-wrap .status{
+  margin-top: 20px;
+  display: block;
+  width: 50%;
+  min-width: 300px;
+}
+
+.status-paragraph{
+  text-align: justify;
+  font-size: $font-small;
+  color: $grey-medium;
+  display: block;
+}
+
+.status-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: -20px;
+}
+
+.status.form-group{
+  max-width: 350px;
+  font-family: $font-light;
+  display: block;
+}
+
+@media (max-width: 1360px){
+  .status-wrap .status{
+    width: 90%;
+  }
+}
