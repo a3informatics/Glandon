@@ -6,8 +6,8 @@
 	<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
 <% end %>
 
-<% state = @registration_state.registrationStatus %>
-<% nextState = IsoRegistrationState.nextState(@registration_state.registrationStatus) %>
+<% state = @registration_state.registration_status %>
+<% nextState = IsoRegistrationStateV2.next_state(@registration_state.registration_status) %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item), :header_title => "Item management" } do %>
@@ -24,15 +24,15 @@
 				<div class="status-wrap">
 					<div class="status" >
 						<div class="text-normal font-light"> Current Status: </div>
-						<div class="boxed-title bg-accent-1 font-bold"><%= IsoRegistrationState.stateLabel(state) %></div>
-						<div class="status-paragraph font-light"><%= IsoRegistrationState.stateDefinition(state) %></div>
+						<div class="boxed-title bg-accent-1 font-bold"><%= IsoRegistrationStateV2.state_label(state) %></div>
+						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(state) %></div>
 					</div>
 					<% if @registration_state.can_be_changed? %>
 					<div class="icon-arrow-r status-arrow"></div>
 					<div class="status">
 						<div class="text-normal font-light"> New Status: </div>
-						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationState.stateLabel(nextState) %></div>
-						<div class="status-paragraph font-light"><%= IsoRegistrationState.stateDefinition(nextState) %></div>
+						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationStateV2.state_label(nextState) %></div>
+						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(nextState) %></div>
 					</div>
 				</div>
 				<br>
@@ -40,16 +40,16 @@
 				<center>
 					<div class="status form-group">
 						<div class="text-small font-light">Administrative Note: </div>
-							<%= f.text_area :administrativeNote, autofocus: true, class: "form-control", rows:4 %>
+							<%= f.text_area :administrative_note, autofocus: true, class: "form-control", rows:4 %>
 					</div>
 					<div class="status form-group">
 						<div class="text-small font-light">Unresolved Issue: </div>
-							<%= f.text_area :unresolvedIssue, class: "form-control", rows:4 %>
+							<%= f.text_area :unresolved_issue, class: "form-control", rows:4 %>
 					</div>
 					<%= f.hidden_field :mi_id, :value => @managed_item.id %>
 					<%= f.hidden_field :mi_namespace, :value => @managed_item.namespace %>
-					<%= f.hidden_field :previousState, :value => state %>
-					<%= f.hidden_field :registrationStatus, :value => nextState %>
+					<%= f.hidden_field :previous_state, :value => state %>
+					<%= f.hidden_field :registration_status, :value => nextState %>
 					<%= f.hidden_field :referer, :value => @referer %>
 					<%= f.submit "Submit Status Change", class: "btn medium", id: 'state_submit' %>
 				</center>
@@ -76,7 +76,7 @@
 				<% end %>
 			<% else %>
 				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
-					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationState.releasedState, "'") , dt_toggle: "", disabled: true } %>
+					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'") , dt_toggle: "", disabled: true } %>
 			<% end %>
 			<br><br>
 
@@ -86,14 +86,14 @@
 					<tr><th>Version</th><th>Version Label</th><th>Internal Version</th></tr>
 				</thead>
 					<td> <%= @managed_item.semantic_version%> </td>
-					<td> <%= @managed_item.versionLabel%> </td>
+					<td> <%= @managed_item.version_label%> </td>
 					<td> <%= @managed_item.version%> </td>
 			</table>
 
 			<%= form_for @scoped_identifier, uri: iso_scoped_identifier_path(@scoped_identifier.id) do |f| %>
 				<span class="form-group" style="display: inline-block;">
 						<div class="text-small font-light">Version Label: </div>
-						<%= f.text_field :versionLabel, autofocus: true, class:"form-control font-light" %>
+						<%= f.text_field :version_label, autofocus: true, class:"form-control font-light" %>
 				</span>
 				<%= f.submit "Update version label", class: "btn medium", id: 'version_submit' %>
 			<% end %>

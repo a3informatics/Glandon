@@ -20,7 +20,6 @@ class IsoManagedController < ApplicationController
     authorize IsoManaged
     @index_label = this_params[:index_label]
     @index_path = this_params[:index_path]
-    # @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
     @managed_item = IsoManagedV2.find_minimum(params_to_id(params, this_params))
     @registration_state = @managed_item.has_state
     @scoped_identifier = @managed_item.has_identifier

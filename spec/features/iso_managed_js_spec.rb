@@ -136,6 +136,12 @@ describe "ISO Managed JS", :type => :feature do
       expect(page).to have_content 'I am the origin'
     end
 
+    it "allows the status to be viewed", js: true do
+      ua_curator_login
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'Controlled Terminology'      
+    end
+
     it "allows the status to be updated", js: true do
       ua_curator_login
       click_navbar_forms
