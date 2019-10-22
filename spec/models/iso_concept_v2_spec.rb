@@ -36,47 +36,47 @@ describe "IsoConceptV2" do
 
 	  it "allows an concept to be found" do
       uri = Uri.new(uri: "http://www.assero.co.uk/Y/V1#F-T_G1")
-			expected =     
-				{ 
+			expected =
+				{
 	      	:rdf_type => "http://www.assero.co.uk/ISO11179Concepts#Concept",
-	      	:uri => uri.to_s, 
+	      	:uri => uri.to_s,
 	      	:label => "A Concept",
           :id => uri.to_id,
           :tagged => []
 	    	}
       result = IsoConceptV2.find(uri)
-			expect(result.to_h).to eq(expected)   
+			expect(result.to_h).to eq(expected)
 		end
 
 		it "allows for the uri to be returned" do
 			uri = Uri.new(uri: "http://www.assero.co.uk/Y/V1#F-T_G1")
       concept = IsoConceptV2.find(uri)
-			expect(concept.uri.to_s).to eq("http://www.assero.co.uk/Y/V1#F-T_G1")   
+			expect(concept.uri.to_s).to eq("http://www.assero.co.uk/Y/V1#F-T_G1")
 		end
 
     it "raises exception if item not found" do
-      expect{IsoConceptV2.find("")}.to raise_error(Errors::ReadError, "Failed to query the database. SPARQL query failed.")   
+      expect{IsoConceptV2.find("")}.to raise_error(Errors::ReadError, "Failed to query the database. SPARQL query failed.")
     end
 
 		it "allows for the type fragment to be returned" do
 			uri = Uri.new(uri: "http://www.assero.co.uk/Y/V1#F-T_G1")
       concept = IsoConceptV2.find(uri)
-			expect(concept.uri.fragment).to eq("F-T_G1")   
+			expect(concept.uri.fragment).to eq("F-T_G1")
 		end
-		
+
     it "find or create" do
       expect(IsoConceptV2.where(label: "X").empty?).to eq(true)
       concept = IsoConceptV2.where_only_or_create("X")
       object = IsoConceptV2.where(label: "X")
-      expect(object.count).to eq(1)   
-      expect(object.first.label).to eq("X")   
+      expect(object.count).to eq(1)
+      expect(object.first.label).to eq("X")
     end
-    
+
   end
 
   describe "Utility Methods" do
 
-    def check_count(ct, n) 
+    def check_count(ct, n)
       query_string = %Q{
         SELECT ?o
         {
@@ -87,7 +87,7 @@ describe "IsoConceptV2" do
       expect(query_results.by_object(:o).count).to eq(n)
     end
 
-    def check_uri(ct, set) 
+    def check_uri(ct, set)
       query_string = %Q{
         SELECT ?o
         {
@@ -124,7 +124,7 @@ describe "IsoConceptV2" do
       item2.uri = Uri.new(uri: "http://www.assero.co.uk/XXX2")
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       update_query = %Q{
-        INSERT  
+        INSERT
         {
           #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> #{item1.uri.to_ref} .
           #{ct.uri.to_ref} <http://www.assero.co.uk/Thesaurus#isTopConcept> #{item2.uri.to_ref} .
@@ -199,6 +199,15 @@ describe "IsoConceptV2" do
       results = th.tags
       expect(results.map{|x| x.pref_label}).to eq(["SDTM", "CDASH", "ADaM", "SEND"])
     end
+
+		it "Gets tag labels" do
+			th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      results = th.tag_labels
+      expect(results).to eq(["SDTM"])
+      th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
+      results = th.tag_labels
+      expect(results).to eq(["ADaM", "CDASH", "SDTM", "SEND"])
+		end
 
   end
 

@@ -128,13 +128,13 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'CDISC Questionnaire HAMD 17 Test Name Terminology'
       find(:xpath, "//tr[contains(.,'C100136')]/td/a", :text => 'Show').click
       expect(page).to have_content 'EQ-5D-3L TESTCD'
-      expect(page).to have_content 'EQ-5D-3L TESTCD'
       ui_check_table_head("children_table", 1, "Identifier")
       ui_check_table_head("children_table", 2, "Submission Value")
       ui_check_table_head("children_table", 3, "Preferred Term")
       ui_check_table_head("children_table", 4, "Synonym(s)")
       ui_check_table_head("children_table", 5, "Definition")
-      expect(page).to have_xpath("//*[@id='children_table']/thead/tr/th", count: 6)
+      ui_check_table_head("children_table", 6, "Tag(s)")
+      expect(page).to have_xpath("//*[@id='children_table']/thead/tr/th", count: 7)
     end
 
     #CDISC CLI show
