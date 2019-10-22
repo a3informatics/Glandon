@@ -73,7 +73,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   # @return [Thesaurus::UnmanagedConcept] the new object if changes, otherwise the previous object
   def replace_if_no_change(previous)
     return self if previous.nil?
-    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description, 
+    return previous if !self.diff?(previous, {ignore: [:has_state, :has_identifier, :origin, :change_description,
       :creation_date, :last_change_date, :explanatory_comment, :tagged]})
     replace_children_if_no_change(previous)
     return self
@@ -108,9 +108,9 @@ class Thesaurus::ManagedConcept < IsoManagedV2
       uri = Uri.new(uri: "http://www.temp.com/") # Temporary nasty
       this_child.uri = uri
       other_child.uri = uri
-      record = this_child.difference_record(this_child.simple_to_h, other_child.simple_to_h)    
+      record = this_child.difference_record(this_child.simple_to_h, other_child.simple_to_h)
       msg = "When merging #{self.identifier} a difference was detected in child #{identifier}\n#{record.map {|k, v| "#{k}: #{v[:previous]} -> #{v[:current]}" if v[:status] != :no_change}.compact.join("\n")}"
-      errors.add(:base, msg) 
+      errors.add(:base, msg)
       ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     end
     missing_ids.each do |identifier|
@@ -320,7 +320,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
 
   # Differences_summary
   #
-  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection 
+  # @param [Thesaurus::ManagedConcept] last Reference to the second terminology from the timeline selection
   # @param [Array] actual_versions the actual versions (dates) chosen by the user on the timeline
   # @return [Hash] the differences hash. Consists of a set of versions and the differences for each item and version
   def differences_summary (last, actual_versions)
@@ -449,8 +449,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
-  
+
   #Subsets
+
+  # Gets the subsets of this Thesaurus::ManagedConcept
+  #
+  # @return [Array] Uri of subsets referring to this instance, nil if none found
   def get_subsets
     query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:subsets ?s }}
     query_results = Sparql::Query.new.query(query_string, "", [:th])
@@ -512,10 +516,10 @@ private
   end
 
   def diff_self?(other)
-    return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date, 
+    return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date,
       :explanatory_comment, :narrower, :extends, :subsets, :tagged]})
     msg = "When merging #{self.identifier} a difference was detected in the item"
-    self.errors.add(:base, msg) 
+    self.errors.add(:base, msg)
     ConsoleLogger.info(self.class.name, __method__.to_s, msg)
     true
   end
