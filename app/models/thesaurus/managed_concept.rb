@@ -449,6 +449,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
+  
+  #Subsets
+  def get_subsets
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:subsets ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s])
+  end
+
 private
 
   # Class for a difference result

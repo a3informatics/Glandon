@@ -1,4 +1,4 @@
-# Thesaurus Preferred term
+# Thesaurus Subset Member
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.2
@@ -9,4 +9,15 @@ class Thesaurus::SubsetMember < IsoConceptV2
   object_property :item, cardinality: :one, model_class: "Thesaurus::UnmanagedConcept"
   object_property :member_next, cardinality: :one, model_class: "Thesaurus::SubsetMember"
   
+end
+
+
+def subseted?
+  !subseted_by.nil?
+end
+
+def subseted_by
+end
+
+def subset_of
 end

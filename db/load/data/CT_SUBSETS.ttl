@@ -1,0 +1,184 @@
+@prefix : <http://www.cdisc.org/CT/SUBSETS#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.cdisc.org/CT/V19>
+  rdf:type owl:Ontology ;
+.
+:TH
+  rdf:type th:Thesaurus ;
+  isoC:label "Controlled Terminology"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+  isoT:hasState :TH_RS ;
+  isoT:hasIdentifier :TH_SI ;
+  isoT:origin "Created from files: 'SDTM Terminology 2010-03-05.xlsx', 'CDASH Terminology 2010-03-05.xlsx', 'ADaM Terminology 2010-03-05.xlsx'"^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:isTopConceptReference :TH_TCR8 ;
+  th:isTopConceptReference :TH_TCR15 ;
+  th:isTopConcept <http://www.cdisc.org/C87162/V19#C87162> ;
+  th:isTopConcept <http://www.cdisc.org/C66726/V19#C66726> ;
+.
+:TH_RS
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+:TH_SI
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "CT"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+:TH_TCR8
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "false"^^xsd:boolean ;
+  bo:ordinal "8"^^xsd:positiveInteger ;
+  bo:reference <http://www.cdisc.org/C87162/V19#C87162> ;
+  bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR15
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "false"^^xsd:boolean ;
+  bo:ordinal "15"^^xsd:positiveInteger ;
+  bo:reference <http://www.cdisc.org/C66726/V19#C66726> ;
+  bo:localLabel ""^^xsd:string ;
+.
+<http://www.cdisc.org/C87162/V19#C87162>
+  rdf:type th:ManagedConcept ;
+  isoC:label "Common Terminology Criteria for Adverse Events V4.0"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoT:hasState <http://www.cdisc.org/C87162/V19#C87162_RS> ;
+  isoT:hasIdentifier <http://www.cdisc.org/C87162/V19#C87162_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "C87162"^^xsd:string ;
+  th:notation "TOXGR"^^xsd:string ;
+  th:definition "The version 4.0 standard terminology developed to report adverse events occurring in cancer clinical trials. Common terminology criteria for adverse events (CTCAE) are used to study adverse event summaries and Investigational New Drug reports to the Food and Drug Administration. The CTCAE contain a grading scale for each adverse event term representing the severity of the event. (NCI)"^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:narrower <http://www.cdisc.org/C87162/V19#C87162_C75533> ;
+  th:preferredTerm <http://www.assero.co.uk/PT#c4d6ca8f9e6316b52b9ce962fbe35c0c5d7e9206> ;
+  th:synonym <http://www.assero.co.uk/SYN#fafe8d77e59bfa229f9f775fe3d0d3b340fb30dd> ;
+  isoC:subsets <http://www.cdisc.org/C66726/V19#C66726> ;
+.
+<http://www.cdisc.org/C87162/V19#C87162_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C87162/V19#C87162_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "C87162"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C87162/V19#C87162_C75533>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Absent Adverse Event"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C75533"^^xsd:string ;
+  th:notation "0"^^xsd:string ;
+  th:definition "Grade 0 is universally defined as absence of Adverse Events or within normal limits or values."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#aa64d3eecd83016640ceefc4133717c7a208d526> ;
+  th:synonym <http://www.assero.co.uk/SYN#86f38e71b30d657dc8123ccf6088570a19fa5a0d> ;
+  th:synonym <http://www.assero.co.uk/SYN#a4e7ab08d93fb6df0fe0675faeabd1175f12e88c> ;
+.
+<http://www.assero.co.uk/PT#aa64d3eecd83016640ceefc4133717c7a208d526>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Absent Adverse Event"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#86f38e71b30d657dc8123ccf6088570a19fa5a0d>
+  rdf:type th:Synonym ;
+  isoC:label "ABSENT"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#a4e7ab08d93fb6df0fe0675faeabd1175f12e88c>
+  rdf:type th:Synonym ;
+  isoC:label "Grade 0: 0"^^xsd:string ;
+.
+<http://www.cdisc.org/C66726/V19#C66726>
+  rdf:type th:ManagedConcept ;
+  isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoT:hasState <http://www.cdisc.org/C66726/V19#C66726_RS> ;
+  isoT:hasIdentifier <http://www.cdisc.org/C66726/V19#C66726_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "C66726"^^xsd:string ;
+  th:notation "FRM"^^xsd:string ;
+  th:definition "The form of the completed pharmaceutical product, e.g. tablet, capsule, injection, elixir, suppository. Dosage form can have a significant effect on the onset, duration and intensity of the pharmacological action of a drug. A pharmaceutical dosage form controls the rate at which the drug is released into the biological fluids. This release rate affects its intrinsic absorption pattern and therefore, the bioavailability of the drug."^^xsd:string ;
+  th:extensible "true"^^xsd:boolean ;
+  th:narrower <http://www.cdisc.org/C66726/V19#C66726_C25158> ;
+  th:preferredTerm <http://www.assero.co.uk/PT#7efc9f920be60aaa484d4cd4e89ef4d1d05f0f04> ;
+  th:synonym <http://www.assero.co.uk/SYN#7332de6e7143f2007dbf2076504d34469c100eb4> ;
+  th:synonym <http://www.assero.co.uk/SYN#b8487733af39fd171119d807c25976f546299895> ;
+.
+<http://www.cdisc.org/C66726/V19#C66726_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
+.
+<http://www.cdisc.org/C66726/V19#C66726_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "C66726"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#CDISC> ;
+.
+<http://www.cdisc.org/C66726/V19#C66726_C25158>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Capsule Dosage Form"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C25158"^^xsd:string ;
+  th:notation "CAPSULE"^^xsd:string ;
+  th:definition "A solid pharmaceutical dosage form that contains medicinal agent within either a hard or soft soluble container or shell, usually used for the oral administration of medicine. The shells are made of a suitable form of gelatin or other substance. (NCI)"^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#abfca5c2555873c105230bde1364fcc73b9ec3a0> ;
+  th:synonym <http://www.assero.co.uk/SYN#ac4be5ac63e1ea62640409f639b010b9fb479c5b> ;
+.
