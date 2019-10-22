@@ -85,37 +85,41 @@ class ApplicationController < ActionController::Base
    new_user_session_path
   end
 
-
+  # Params To id. Extracts the model id depdending on the two formats possible, either id or old style namespace and id (fragment)
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :id the fragment 
+  # @option params [String] :namespace the namespace (may not be present)
+  # @return [String] the resulting id for the model
   def params_to_id(params, strong_key = nil)
-    if strong_key.nil?
-      if params.has_key?(:namespace)
-        return Uri.new({namespace: params[:namespace], fragment: params[:id]}).to_id 
-      else
-        return params[:id]
-      end
-    else
-      if strong_key.has_key?(:namespace)
-        return Uri.new({namespace: strong_key[:namespace], fragment: params[:id]}).to_id
-      else
-        return params[:id]
-      end
-    end
+    return id_from_params(params, params[:id]) if strong_key.nil?
+    id_from_params(strong_key, params[:id])
   end
 
   # def params_to_id(params, strong_key = nil)
   #   if strong_key.nil?
-  #     if params.has_key?(:namespace)
-  #       return Uri.new({namespace: params[:namespace], fragment: params[:fragment]}).to_id
-  #     else
-  #       return params[:id]
-  #     end
+  #     uri_from_params(params, params[:id])
+  #     # if params.has_key?(:namespace)
+  #     #   return Uri.new({namespace: params[:namespace], fragment: params[:id]}).to_id 
+  #     # else
+  #     #   return params[:id]
+  #     # end
   #   else
-  #     if params.has_key?(strong_key)
-  #       return Uri.new({namespace: params[strong_key][:namespace], fragment: params[strong_key][:current_id]}).to_id
-  #     else
-  #       return params[:id]
-  #     end
+  #     uri_from_params(strong_key, params[:id])
+  #     # if strong_key.has_key?(:namespace)
+  #     #   return Uri.new({namespace: strong_key[:namespace], fragment: params[:id]}).to_id
+  #     # else
+  #     #   return params[:id]
+  #     # end
   #   end
   # end
+
+private
+
+  # Builds an id from parameters based on presence of the old stype namespace parameter.
+  def id_from_params(params, id)
+    return Uri.new({namespace: params[:namespace], fragment: id}).to_id if params.has_key?(:namespace)
+    id
+  end
 
 end

@@ -78,7 +78,7 @@ describe IsoManagedController do
       expect(assigns(:scoped_identifier).to_h).to eq(managed_item.has_identifier.to_h)
       expect(assigns(:current_id)).to eq("test")
       expect(assigns(:owner)).to eq(true)
-      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scope.id}")
+      expect(assigns(:close_path)).to eq("/forms/history/?[identifier]=TEST&[scope_id]=#{managed_item.scope.id}")
       expect(response).to render_template("status")
     end
 

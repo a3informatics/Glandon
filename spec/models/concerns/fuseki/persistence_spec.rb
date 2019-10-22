@@ -101,4 +101,12 @@ describe Fuseki::Persistence do
     expect(result.has_state.to_s).to eq("http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1")
   end
 
+  it "returns the true type" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
+    expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
+  end
+
 end

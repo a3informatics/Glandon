@@ -77,7 +77,7 @@ module TypePathManagement
   # @param [Object] object the managed object
   # @return [String] The url
   def self.history_url_v2(object)
-    rdf_type_s = object.rdf_type.to_s
+    rdf_type_s = object.true_type.to_s # Note trye type query just to make sure we get the real type, not inherited class.
     Errors.application_error(self.name, __method__.to_s, "Unknown object type #{rdf_type_s} detected.") if !@@mi_history_path.has_key?(rdf_type_s) 
     path = @@mi_history_path[rdf_type_s][:path]
     strong = @@mi_history_path[rdf_type_s][:strong]
