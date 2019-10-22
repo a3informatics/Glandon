@@ -69,14 +69,16 @@ describe IsoManagedController do
 
     it "return the status of a managed item" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      # uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+      # managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
+      managed_item = IsoManagedV2.find_minimum("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVA==")
       get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
-      expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
-      expect(assigns(:registration_state).to_json).to eq(managed_item.registrationState.to_json)
-      expect(assigns(:scoped_identifier).to_json).to eq(managed_item.scopedIdentifier.to_json)
+      expect(assigns(:managed_item).to_h).to eq(managed_item.to_h)
+      expect(assigns(:registration_state).to_h).to eq(managed_item.has_state.to_h)
+      expect(assigns(:scoped_identifier).to_h).to eq(managed_item.has_identifier.to_h)
       expect(assigns(:current_id)).to eq("test")
       expect(assigns(:owner)).to eq(true)
-      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scope.id}")
       expect(response).to render_template("status")
     end
 

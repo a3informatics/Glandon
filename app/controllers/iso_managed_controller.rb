@@ -20,13 +20,14 @@ class IsoManagedController < ApplicationController
     authorize IsoManaged
     @index_label = this_params[:index_label]
     @index_path = this_params[:index_path]
-    @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
-    @registration_state = @managed_item.registrationState
-    @scoped_identifier = @managed_item.scopedIdentifier
+    # @managed_item = IsoManaged.find(params[:id], this_params[:namespace], false)
+    @managed_item = IsoManagedV2.find_minimum(params_to_id(params, this_params))
+    @registration_state = @managed_item.has_state
+    @scoped_identifier = @managed_item.has_identifier
     @current_id = this_params[:current_id]
     @owner = @managed_item.owned?
     @referer = request.referer
-    @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
+    @close_path = TypePathManagement.history_url_v2(@managed_item)
   end
 
   def changes
