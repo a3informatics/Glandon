@@ -154,6 +154,7 @@ Rails.application.routes.draw do
         get :changes_summary
         get :changes_summary_data
         get :differences_summary
+        get :find_subsets
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do

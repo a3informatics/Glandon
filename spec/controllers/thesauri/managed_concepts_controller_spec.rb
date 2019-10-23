@@ -161,6 +161,13 @@ describe Thesauri::ManagedConceptsController do
       expect(response).to render_template("show")
     end
 
+    it "find subsets" do
+      # th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
+      get :find_subsets, {id: tc_uri.to_id}
+      
+    end
+
     it "show data" do
       @user.write_setting("max_term_display", 2)
       request.env['HTTP_ACCEPT'] = "application/json"

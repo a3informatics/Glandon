@@ -211,6 +211,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: {}, error: []}
   end
 
+  #Subsets
+  def find_subsets
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    subsets = tc.get_subsets
+  byebug
+    render json: {data: Thesaurus::ManagedConcept.unique.select{|x| x[:scope_id] == owner_scoped_id}}
+  end
+
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
