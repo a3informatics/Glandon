@@ -11,13 +11,7 @@ class Thesaurus::SubsetMember < IsoConceptV2
   
 end
 
-
-def subseted?
-  !subseted_by.nil?
-end
-
-def subseted_by
-end
-
-def subset_of
+def initialize(value)
+    @value = value
+    @next  = nil
 end
