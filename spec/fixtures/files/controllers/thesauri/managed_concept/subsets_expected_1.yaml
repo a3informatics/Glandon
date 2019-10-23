@@ -1,0 +1,60 @@
+---
+data:
+- id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg3MTYyL1YxOSNDODcxNjI=
+  uri: http://www.cdisc.org/C87162/V19#C87162
+  rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  label: Common Terminology Criteria for Adverse Events V4.0
+  tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  has_state: http://www.cdisc.org/C87162/V19#C87162_RS
+  has_identifier: http://www.cdisc.org/C87162/V19#C87162_SI
+  origin: ''
+  change_description: ''
+  creation_date: '2010-03-05T00:00:00+00:00'
+  last_change_date: '2010-03-05T00:00:00+00:00'
+  explanatory_comment: ''
+  identifier: C87162
+  notation: TOXGR
+  definition: The version 4.0 standard terminology developed to report adverse events
+    occurring in cancer clinical trials. Common terminology criteria for adverse events
+    (CTCAE) are used to study adverse event summaries and Investigational New Drug
+    reports to the Food and Drug Administration. The CTCAE contain a grading scale
+    for each adverse event term representing the severity of the event. (NCI)
+  extensible: false
+  narrower:
+  - http://www.cdisc.org/C87162/V19#C87162_C75533
+  extends: 
+  subsets: http://www.cdisc.org/C66726/V19#C66726
+  preferred_term: http://www.assero.co.uk/PT#c4d6ca8f9e6316b52b9ce962fbe35c0c5d7e9206
+  synonym:
+  - http://www.assero.co.uk/SYN#fafe8d77e59bfa229f9f775fe3d0d3b340fb30dd
+- id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzIxL1YxOSNDNjY3MjE=
+  uri: http://www.cdisc.org/C66721/V19#C66721
+  rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  label: Pharmaceutical Dosage Form
+  tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  has_state: http://www.cdisc.org/C66721/V19#C66721_RS
+  has_identifier: http://www.cdisc.org/C66721/V19#C66721_SI
+  origin: ''
+  change_description: ''
+  creation_date: '2010-03-05T00:00:00+00:00'
+  last_change_date: '2010-03-05T00:00:00+00:00'
+  explanatory_comment: ''
+  identifier: C66721
+  notation: FRM
+  definition: The form of the completed pharmaceutical product, e.g. tablet, capsule,
+    injection, elixir, suppository. Dosage form can have a significant effect on the
+    onset, duration and intensity of the pharmacological action of a drug. A pharmaceutical
+    dosage form controls the rate at which the drug is released into the biological
+    fluids. This release rate affects its intrinsic absorption pattern and therefore,
+    the bioavailability of the drug.
+  extensible: true
+  narrower:
+  - http://www.cdisc.org/C66721/V19#C66721_C25159
+  extends: 
+  subsets: http://www.cdisc.org/C66726/V19#C66726
+  preferred_term: http://www.assero.co.uk/PT#7efc9f920be60aaa484d4cd4e89ef4d1d05f0f04
+  synonym:
+  - http://www.assero.co.uk/SYN#7332de6e7143f2007dbf2076504d34469c100eb4
+  - http://www.assero.co.uk/SYN#b8487733af39fd171119d807c25976f546299895
