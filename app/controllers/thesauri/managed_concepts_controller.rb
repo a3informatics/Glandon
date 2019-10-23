@@ -218,8 +218,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     subsets = tc.get_subsets
     subset_tcs = []
     if !subsets.nil?
-      subset_tcs = Thesaurus::ManagedConcept.all.select{|cl| subsets.map{|x| x[:s].to_id}.include? cl.uri.to_id}
-      subset_tcs = subset_tcs.map{|x| x.to_h}
+      subsets.map{|x| x[:s].to_id}.each{|s| subset_tcs << Thesaurus::ManagedConcept.find(s).to_h}
     end
     render json: {data: subset_tcs}
   end

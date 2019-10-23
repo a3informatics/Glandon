@@ -220,6 +220,7 @@ describe Thesauri::ManagedConceptsController do
         "ISO11179Concepts.ttl", "thesaurus.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
     end
 
     it "find subsets" do
@@ -227,7 +228,13 @@ describe Thesauri::ManagedConceptsController do
       get :find_subsets, {id: tc_uri.to_id}
       actual = JSON.parse(response.body)
       check_file_actual_expected(actual, sub_dir, "subsets_expected_1.yaml", equate_method: :hash_equal)
-      byebug
+    end
+
+    it "find subsets, no subsets found" do
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226")
+      get :find_subsets, {id: tc_uri.to_id}
+      actual = JSON.parse(response.body)
+      expect(actual["data"]).to eq([])
     end
 
   end
