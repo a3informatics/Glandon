@@ -1,0 +1,76 @@
+/*
+* Modal Panel
+*/
+
+
+/**
+* Modal Panel Constructor
+* @param id [String] The id of the Code List
+*
+* @return [void]
+*/
+function IndexSubsets(id) {
+  this.id = id;
+  this.tsModalTable = null;
+  var counter = 0;
+
+  this.columns = [
+    {"data" : "identifier", "width" : "10%"},
+    {"data" : "label", "width" : "10%"},
+    {className: "text-right", "render" : function (data, type, row, meta) {
+      var id = "con-menu-" + counter;
+      var menu_items =
+      [ { link_path: "row.show_path", disabled: "false", icon: "icon-edit", text: "Edit", },];
+      counter ++;
+      return generateContextMenu(id, menu_items);
+      }
+    }
+  ];
+  this.initTable();
+  var _this = this;
+
+  // $('#subsetsModal').on('shown.bs.modal', function () {
+  //  //helps the columns take their widths in modal
+  //  _this.tsModalTable.columns.adjust();
+  // });
+
+  // Get selected th callback
+  $('#new_subset').click(function() {
+    $('#subsetsModal').modal('hide');
+    // REDIRECT TO NEW SUBSET PAGE
+    // var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
+    // _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
+  });
+
+}
+
+/**
+ * Initialise the table/datatable
+ * @return [void]
+ */
+IndexSubsets.prototype.initTable = function() {
+  var _this = this;
+
+  var loading_html = generateSpinner("medium");
+
+  _this.tsModalTable = $('#ssIndexTable').DataTable( {
+    "processing": true,
+    "ajax": {
+      "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
+    },
+    "rowId": "id",
+    "deferLoading": 0,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No subsets found.",
+      "processing": generateSpinner("medium"),
+    },
+    "pageLength": 3,
+    "columns": _this.columns,
+    "orderCellsTop": true,
+    "drawCallback": function(){
+      // THIS WILL OPEN THE CONTEXT MENU ON THE LEFT SIDE IF THERE IS NOT ENOUGH SPACE ON THE RIGHT
+      $('#ssIndexTable').find(".context-menu").addClass("left");
+    },
+  });
+};

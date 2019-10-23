@@ -979,16 +979,19 @@ describe "Thesaurus::ManagedConcept" do
   describe "subsets" do
 
     before :all do
-      data_files = ["CT_SUBSETS.ttl"]
+      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
+        "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
     end
 
     it "get subsets" do
       cl = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
       subsets = cl.get_subsets
       expect(subsets.count).to eq(2)
-      expect(subsets[0][:s].to_s).to eq("http://www.cdisc.org/C87162/V19#C87162")
-      expect(subsets[1][:s].to_s).to eq("http://www.cdisc.org/C66721/V19#C66721")
+      expect(subsets[0][:s].to_s).to eq("http://www.s-cubed.dk/S000001/V19#S000001")
+      expect(subsets[1][:s].to_s).to eq("http://www.s-cubed.dk/S000002/V19#S000002")
     end
 
     it "get subsets, none found" do
