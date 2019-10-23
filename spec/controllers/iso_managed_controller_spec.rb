@@ -7,7 +7,7 @@ describe IsoManagedController do
   include DownloadHelpers
 
   describe "Curator User" do
-  	
+    
     login_curator
 
     def sub_dir
@@ -15,34 +15,16 @@ describe IsoManagedController do
     end
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_managed_data.ttl")
-      load_test_file_into_triple_store("iso_managed_data_2.ttl")
-      load_test_file_into_triple_store("iso_managed_data_3.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
-      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", 
+        "iso_managed_data_3.ttl", "form_example_vs_baseline.ttl", "form_example_general.ttl", "form_example_dm1_branch.ttl", "BC.ttl", "BCT.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
     end
 
     it "index of items" do 
       get :index
     #Xwrite_yaml_file(assigns(:managed_items), sub_dir, "iso_managed_index.yaml")
-    	expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
+      expected = read_yaml_file(sub_dir, "iso_managed_index.yaml")
       expect(assigns(:managed_items)).to match_array(expected)
       expect(response).to render_template("index")
     end
@@ -69,16 +51,14 @@ describe IsoManagedController do
 
     it "return the status of a managed item" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      # uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
-      # managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
-      managed_item = IsoManagedV2.find_minimum("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSRm9ybXMvQUNNRS9WMSNGLUFDTUVfVEVTVA==")
+      managed_item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
       get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
-      expect(assigns(:managed_item).to_h).to eq(managed_item.to_h)
-      expect(assigns(:registration_state).to_h).to eq(managed_item.has_state.to_h)
-      expect(assigns(:scoped_identifier).to_h).to eq(managed_item.has_identifier.to_h)
+      expect(assigns(:managed_item).to_json).to eq(managed_item.to_json)
+      expect(assigns(:registration_state).to_json).to eq(managed_item.registrationState.to_json)
+      expect(assigns(:scoped_identifier).to_json).to eq(managed_item.scopedIdentifier.to_json)
       expect(assigns(:current_id)).to eq("test")
       expect(assigns(:owner)).to eq(true)
-      expect(assigns(:close_path)).to eq("/forms/history/?[identifier]=TEST&[scope_id]=#{managed_item.scope.id}")
+      expect(assigns(:close_path)).to eq("/forms/history/?identifier=TEST&scope_id=#{managed_item.scopedIdentifier.namespace.id}")
       expect(response).to render_template("status")
     end
 
@@ -192,7 +172,7 @@ describe IsoManagedController do
     end
 
     it "allows impact to be assessed, start" do
-    	item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
+      item = IsoManaged.find("BC-ACME_BC_C25298", "http://www.assero.co.uk/MDRBCs/V1", false)
       request.env['HTTP_ACCEPT'] = "application/json"
       get :impact_start, { id: "BC-ACME_BC_C25298", namespace: "http://www.assero.co.uk/MDRBCs/V1" }
       expect(response.code).to eq("200")
@@ -260,28 +240,10 @@ describe IsoManagedController do
     end
 
     before :all do
-      clear_triple_store
-      load_schema_file_into_triple_store("ISO11179Types.ttl")
-      load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      load_schema_file_into_triple_store("BusinessOperational.ttl")
-      load_schema_file_into_triple_store("BusinessForm.ttl")
-      load_test_file_into_triple_store("iso_namespace_real.ttl")
-      load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      load_test_file_into_triple_store("iso_managed_data.ttl")
-      load_test_file_into_triple_store("iso_managed_data_2.ttl")
-      load_test_file_into_triple_store("iso_managed_data_3.ttl")
-      load_test_file_into_triple_store("form_example_vs_baseline.ttl")
-      load_test_file_into_triple_store("form_example_general.ttl")
-      load_test_file_into_triple_store("form_example_dm1_branch.ttl")
-      load_test_file_into_triple_store("BC.ttl")
-      load_test_file_into_triple_store("BCT.ttl")
-      load_test_file_into_triple_store("CT_V42.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", 
+        "iso_managed_data_3.ttl", "form_example_vs_baseline.ttl", "form_example_general.ttl", "form_example_dm1_branch.ttl", "BC.ttl", "BCT.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..43)
     end
 
     it "export" do

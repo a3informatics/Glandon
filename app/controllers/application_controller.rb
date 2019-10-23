@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Pundit after action, verify authorized (checks if authorization was checked)
-	before_action :before_action_steps
+  before_action :before_action_steps
 
-	# Pundit after action, verify authorized (checks if authorization was checked)
+  # Pundit after action, verify authorized (checks if authorization was checked)
   after_action :verify_authorized, unless: :devise_controller?
 
   # Pundit exception for not authorized
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def not_authorized_method
     flash[:error] = 'You do not have the access rights to that operation.'
-		redirect_to root_path
+    redirect_to root_path
     true
   end
 
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
 
   # Get Token for a Managed Item.
   def get_token(mi)
-  	token = Token.obtain(mi, current_user)
+    token = Token.obtain(mi, current_user)
     if token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer
@@ -83,43 +83,6 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(*)
    new_user_session_path
-  end
-
-  # Params To id. Extracts the model id depdending on the two formats possible, either id or old style namespace and id (fragment)
-  #
-  # @params [Hash] params the parameters
-  # @option params [String] :id the fragment 
-  # @option params [String] :namespace the namespace (may not be present)
-  # @return [String] the resulting id for the model
-  def params_to_id(params, strong_key = nil)
-    return id_from_params(params, params[:id]) if strong_key.nil?
-    id_from_params(strong_key, params[:id])
-  end
-
-  # def params_to_id(params, strong_key = nil)
-  #   if strong_key.nil?
-  #     uri_from_params(params, params[:id])
-  #     # if params.has_key?(:namespace)
-  #     #   return Uri.new({namespace: params[:namespace], fragment: params[:id]}).to_id 
-  #     # else
-  #     #   return params[:id]
-  #     # end
-  #   else
-  #     uri_from_params(strong_key, params[:id])
-  #     # if strong_key.has_key?(:namespace)
-  #     #   return Uri.new({namespace: strong_key[:namespace], fragment: params[:id]}).to_id
-  #     # else
-  #     #   return params[:id]
-  #     # end
-  #   end
-  # end
-
-private
-
-  # Builds an id from parameters based on presence of the old stype namespace parameter.
-  def id_from_params(params, id)
-    return Uri.new({namespace: params[:namespace], fragment: id}).to_id if params.has_key?(:namespace)
-    id
   end
 
 end

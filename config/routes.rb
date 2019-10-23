@@ -90,6 +90,11 @@ Rails.application.routes.draw do
       get :export
     end
   end
+  resources :iso_managed_v2 do
+    member do
+      get :status
+    end
+  end
   resources :dashboard, only: [:index] do
     collection do
       get :view
