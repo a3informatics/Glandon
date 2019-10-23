@@ -60,4 +60,9 @@ describe "Thesaurus::Subset" do
     check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
   end
 
+  it "add item" do
+    list = Thesaurus::Subset.new
+    list.add("aaa")
+  end
+
 end

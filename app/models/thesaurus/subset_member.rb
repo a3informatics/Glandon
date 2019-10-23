@@ -11,7 +11,7 @@ class Thesaurus::SubsetMember < IsoConceptV2
   
 end
 
-def initialize(value)
-    @value = value
-    @next  = nil
-end
+# def initialize(value)
+#     @value = value
+#     @next  = nil
+# end
