@@ -474,7 +474,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body)["source_mc"]).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==")
-      #expect(response).to redirect_to("?EDIT page")
+    #expect(response).to redirect_to("?EDIT page")
     end
 
   end
