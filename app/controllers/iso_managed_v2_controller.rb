@@ -33,6 +33,7 @@ class IsoManagedV2Controller < ApplicationController
   end
 
   def update_status
+    authorize IsoManaged, :update?
     referer = request.referer
     @managed_item = IsoManagedV2.find_minimum(params[:id])
     @managed_item.update_status(the_params)
@@ -40,13 +41,11 @@ class IsoManagedV2Controller < ApplicationController
     redirect_to referer
   end
     
-  end
-
 private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id)
+    params.require(:iso_managed).permit(:current_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue)
   end
 
 end

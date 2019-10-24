@@ -11,7 +11,7 @@ describe IsoManagedV2Controller do
     login_curator
 
     def sub_dir
-      return "controllers"
+      return "controllers/iso_managed_v2"
     end
 
     before :all do
@@ -48,6 +48,28 @@ describe IsoManagedV2Controller do
       expect(mi_2.current?).to eq(true)
     end
 
+    it 'updates the status' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard", 
+        administrative_note: "X1", unresolved_issue: "X2" }}
+      actual = IsoManagedV2.find_minimum(uri_1)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      expect(response).to redirect_to("/registration_states")
+    end
+
+    it 'prevents updates with invalid data (the state)' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      post :update_status, { id: mi.id, iso_managed: { registration_status: "X", previous_state: "Standard", 
+        administrative_note: "X1", unresolved_issue: "X2" }}
+      actual = IsoManagedV2.find_minimum(uri_1)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      expect(response).to redirect_to("/registration_states")
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -59,6 +81,11 @@ describe IsoManagedV2Controller do
 
     it "make current" do
       post :make_current, { id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "update_status" do
+      post :update_status, { id: "F-ACME_TEST"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
