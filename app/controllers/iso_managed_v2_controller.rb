@@ -32,6 +32,16 @@ class IsoManagedV2Controller < ApplicationController
     redirect_to request.referer
   end
 
+  def update_status
+    referer = request.referer
+    @managed_item = IsoManagedV2.find_minimum(params[:id])
+    @managed_item.update_status(the_params)
+    flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
+    redirect_to referer
+  end
+    
+  end
+
 private
 
   def the_params

@@ -567,6 +567,19 @@ class IsoManagedV2 < IsoConceptV2
     partial_update(update_query(params), [:isoT])
   end
 
+  # Update Status. Update the status. If we are moving to a released state then
+  #   update the semantic version
+  #
+  # @params [Hash] params the parameters
+  # @option params [] :
+  # @return [Null] errors are in the error object, if any 
+  def update_status(params)  
+    self.has_state.update(params)
+    return if merge_errors(self.has_state, "Registration Status")
+    self.has_identifier.update(semantic_version: :major) if self.has_state.released_state?
+    merge_errors(self.has_identifier, "Scoped Identifier")
+  end
+
   # Set URIs. Sets the URIs for the managed item and all children
   #
   # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
