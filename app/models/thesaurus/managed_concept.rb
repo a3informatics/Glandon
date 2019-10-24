@@ -13,6 +13,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   object_property :subsets, cardinality: :one, model_class: "Thesaurus::ManagedConcept", delete_exclude: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
+  object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
 
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
