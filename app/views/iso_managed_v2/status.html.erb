@@ -7,10 +7,11 @@
 <% end %>
 
 <% state = @managed_item.has_state.registration_status %>
-<% nextState = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
+<% next_state = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
 
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item), :header_title => "Item management" } do %>
+  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item), 
+    :header_title => "Item management" } do %>
     <div class="actions-wrap">
 			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
 				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
@@ -20,7 +21,7 @@
 <div class="row">
 	<div class="col-md-8 card wide">
 		<div class="card-header">	Manage Status </div>
-		<div class="card-content">
+		  <div class="card-content">
 				<div class="status-wrap">
 					<div class="status" >
 						<div class="text-normal font-light"> Current Status: </div>
@@ -28,41 +29,40 @@
 						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(state) %></div>
 					</div>
 					<% if @managed_item.has_state.can_be_changed? %>
-					<div class="icon-arrow-r status-arrow"></div>
-					<div class="status">
-						<div class="text-normal font-light"> New Status: </div>
-						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationStateV2.state_label(nextState) %></div>
-						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(nextState) %></div>
-					</div>
-				</div>
-				<br>
-				<%= form_for @managed_item.has_state, uri:  iso_registration_state_path(@managed_item.has_state.id) do |f| %>
-				<center>
-					<div class="status form-group">
-						<div class="text-small font-light">Administrative Note: </div>
-							<%= f.text_area :administrative_note, autofocus: true, class: "form-control", rows:4 %>
-					</div>
-					<div class="status form-group">
-						<div class="text-small font-light">Unresolved Issue: </div>
-							<%= f.text_area :unresolved_issue, class: "form-control", rows:4 %>
-					</div>
-					<%= f.hidden_field :mi_id, :value => @managed_item.id %>
-					<%= f.hidden_field :mi_namespace, :value => @managed_item.namespace %>
-					<%= f.hidden_field :previous_state, :value => state %>
-					<%= f.hidden_field :registration_status, :value => nextState %>
-					<%= f.hidden_field :referer, :value => @referer %>
-					<%= f.submit "Submit Status Change", class: "btn medium", id: 'state_submit' %>
-				</center>
-				<% end %>
-				<br>
-				<% else %>
-					</div>
-					<br>
-					<div class="font-light text-centered"><i> The status of this item cannot be changed. </i></div>
-				<% end %>
-		</div>
-	</div>
-	<div class="col-md-4 card narrow">
+            <div class="icon-arrow-r status-arrow"></div>
+    					<div class="status">
+    						<div class="text-normal font-light"> New Status: </div>
+    						<div class="boxed-title bg-sec-light font-bold"><%= IsoRegistrationStateV2.state_label(next_state) %></div>
+    						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(next_state) %></div>
+    					</div>
+  				  </div>
+				    <br>
+    			  <form action="<%= update_status_iso_managed_v2_path(@managed_item) %>" method="post">
+              <center>
+      					<div class="status form-group">
+      						<div class="text-small font-light">Administrative Note: </div>
+      						<%= text_area @managed_item.has_state, :administrative_note, autofocus: true, class: "form-control", rows:4 %>
+      					</div>
+      					<div class="status form-group">
+      						<div class="text-small font-light">Unresolved Issue: </div>
+      						<%= text_area @managed_item.has_state, :unresolved_issue, class: "form-control", rows:4 %>
+      					</div>
+      					<%= hidden_field @managed_item.has_state, :previous_state, :value => state %>
+      					<%= hidden_field @managed_item.has_state, :registration_status, :value => next_state %>
+      					<%= hidden_field :managed_item, :referer, :value => @referer %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      					<%= submit_tag "Submit Status Change", class: "btn medium", id: 'state_submit' %>
+    				  </center>
+    			  </form>
+    				<br>
+				  <% else %>
+            </div>
+            <br>
+            <div class="font-light text-centered"><i> The status of this item cannot be changed. </i></div>
+				  <% end %>
+		    </div>
+	    </div>
+      <div class="col-md-4 card narrow">
 		<div class="card-header">	Version Control	</div>
 		<div class="card-content">
 			<span class="text-normal font-light"> Make item current: </span>
@@ -71,8 +71,8 @@
 					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
 						icon: "icon-new", btn_text: "Item is already current", dt_toggle: "", disabled: true } %>
 				<% else %>
-					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: current_iso_registration_states_path(:new_id => @managed_item.has_state.id, :old_id => @current_id), id: "make_current",
-						icon: "icon-new", btn_text: "Update to current", dt_toggle: "", disabled: false } %>
+					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: current_iso_registration_states_path({id: @managed_item.id, iso_registration_state: {current_id: @current_id}}), id: "make_current", icon: "icon-new", btn_text: "Update to current", 
+            dt_toggle: "", disabled: false } %>
 				<% end %>
 			<% else %>
 				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
@@ -83,20 +83,28 @@
 			<div class="text-normal font-light"> Version information: </div>
 			<table class="table table-striped table-bordered table-condensed font-light text-small">
 				<thead>
-					<tr><th>Version</th><th>Version Label</th><th>Internal Version</th></tr>
+					<tr>
+            <th>Version</th>
+            <th>Version Label</th>
+          </tr>
 				</thead>
-					<td> <%= @managed_item.semantic_version%> </td>
-					<td> <%= @managed_item.version_label%> </td>
-					<td> <%= @managed_item.version%> </td>
+        <tbody>
+          <tr>
+            <td> <%= @managed_item.semantic_version%> </td>
+            <td> <%= @managed_item.version_label%> </td>
+          </tr>
+        </tbody>
 			</table>
 
-			<%= form_for @scoped_identifier, uri: iso_scoped_identifier_path(@scoped_identifier.id) do |f| %>
+			<form action="<%= iso_scoped_identifiers_v2_path(@managed_item.has_identifier.id) %>" method="post">
 				<span class="form-group" style="display: inline-block;">
-						<div class="text-small font-light">Version Label: </div>
-						<%= f.text_field :version_label, autofocus: true, class:"form-control font-light" %>
+					<div class="text-small font-light">Version Label: </div>
+          <input name="iso_scoped_identifier[version_label]" id="iso_scoped_identifier[version_label]" type="text" autofocus class="form-control font-light">
 				</span>
-				<%= f.submit "Update version label", class: "btn medium", id: 'version_submit' %>
-			<% end %>
+        <%= hidden_field_tag "_method", "put" %> 
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+				<%= submit_tag "Update version label", class: "btn medium", id: 'version_submit' %>
+			</form>
 		</div>
 	</div>
 </div>
