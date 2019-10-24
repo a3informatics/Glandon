@@ -133,8 +133,10 @@ class IsoScopedIdentifierV2 < Fuseki::Base
   # @option params [String] :semantic_version the semantic version
   # @raise [Exceptions::UpdateError] if an error occurs during the update
   # @return null
-  def update_version(params)  
-    partial_update(update_query(params), [:isoT])
+  def update_version(params)
+    self.version_label = params[:version_label] if params.key?(:version_label)  
+    self.semantic_version = params[:semantic_version] if params.key?(:semantic_version)  
+    partial_update(update_query(params), [:isoI]) if valid?(:update)
   end
 
 private
@@ -142,14 +144,14 @@ private
   # The update query
   def update_query(params)
     %Q{
-      DELETE \n" +
+      DELETE
       {
        #{self.uri.to_ref} isoI:versionLabel ?a .
        #{self.uri.to_ref} isoI:semanticVersion ?b .
       }
       INSERT
       {
-       #{self.uri.to_ref} isoI:versionLabel \"#{self.versionLabel}\"^^xsd:string .
+       #{self.uri.to_ref} isoI:versionLabel \"#{self.version_label}\"^^xsd:string .
        #{self.uri.to_ref} isoI:semanticVersion \"#{self.semantic_version}\"^^xsd:string .
       }
       WHERE
