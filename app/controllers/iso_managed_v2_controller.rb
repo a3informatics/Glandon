@@ -1,6 +1,6 @@
 class IsoManagedV2Controller < ApplicationController
 
-  before_action :authenticate_and_authorized
+  before_action :authenticate_user!
 
   C_CLASS_NAME = self.class.to_s
 
@@ -12,22 +12,31 @@ class IsoManagedV2Controller < ApplicationController
   # end
 
   def status
+    authorize IsoManaged, :status?
     @managed_item = IsoManagedV2.find_minimum(params[:id])
-    @current_id = this_params[:current_id]
+    @current_id = the_params[:current_id]
     @referer = request.referer
     @close_path = TypePathManagement.history_url_v2(@managed_item)
   end
 
-private
-
-  def this_params
-    # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:identifier, :scope_id, :change_description, :explanatory_comment, :origin, :referer, :current_id)
+  def make_current
+    authorize IsoManaged, :update?
+    managed_item = IsoManagedV2.find_minimum(params[:id])
+    begin
+      current_item = IsoManagedV2.find_minimum(the_params[:current_id])
+      current_item.has_state.make_not_current
+    rescue Errors::NotFoundError => e
+      # No current        
+    end
+    managed_item.has_state.make_current
+    redirect_to request.referer
   end
 
-  def authenticate_and_authorized
-    authenticate_user!
-    authorize IsoManaged # Note using old class, not V2, saves creating new defs
+private
+
+  def the_params
+    # Strong parameter using iso_managed not V2 version.
+    params.require(:iso_managed).permit(:current_id)
   end
 
 end

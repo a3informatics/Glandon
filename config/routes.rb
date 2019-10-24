@@ -99,6 +99,7 @@ Rails.application.routes.draw do
   resources :iso_managed_v2, only: [] do
     member do
       get :status
+      post :make_current
     end
   end
   resources :dashboard, only: [:index] do

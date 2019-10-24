@@ -32,12 +32,33 @@ describe IsoManagedV2Controller do
       expect(response).to render_template("status")
     end
 
+    it "make current" do
+      @request.env['HTTP_REFERER'] = "http://test.host/xxx"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      post :make_current, {id: uri_1.to_id, iso_managed: { current_id: "test" }}
+      mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
+      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)      
+      expect(mi_1.current?).to eq(true)
+      expect(mi_2.current?).to eq(false)
+      post :make_current, {id: uri_2.to_id, iso_managed: { current_id: uri_1.to_id }}
+      mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
+      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)      
+      expect(mi_1.current?).to eq(false)
+      expect(mi_2.current?).to eq(true)
+    end
+
   end
 
   describe "Unauthorized User" do
     
     it "status" do
-      get :status, { id: "F-ACME_TEST", iso_managed: { namespace: "http://www.assero.co.uk/MDRForms/ACME/V1", current_id: "test" }}
+      get :status, { id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "make current" do
+      post :make_current, { id: "F-ACME_TEST", iso_managed: { current_id: "test" }}
       expect(response).to redirect_to("/users/sign_in")
     end
 
