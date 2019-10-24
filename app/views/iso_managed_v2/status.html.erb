@@ -41,15 +41,15 @@
               <center>
       					<div class="status form-group">
       						<div class="text-small font-light">Administrative Note: </div>
-      						<%= text_area @managed_item.has_state, :administrative_note, autofocus: true, class: "form-control", rows:4 %>
+                  <textarea autofocus="autofocus" class="form-control" rows="4" name="[iso_managed]administrative_note" id="[iso_managed]administrative_note"><%= @managed_item.has_state.administrative_note %></textarea>
       					</div>
       					<div class="status form-group">
       						<div class="text-small font-light">Unresolved Issue: </div>
-      						<%= text_area @managed_item.has_state, :unresolved_issue, class: "form-control", rows:4 %>
+                  <textarea class="form-control" rows="4" name="[iso_managed]unresolved_issue" id="[iso_managed]unresolved_issue"><%= @managed_item.has_state.unresolved_issue %></textarea>
       					</div>
-      					<%= hidden_field @managed_item.has_state, :previous_state, :value => state %>
-      					<%= hidden_field @managed_item.has_state, :registration_status, :value => next_state %>
-      					<%= hidden_field :managed_item, :referer, :value => @referer %>
+      					<input value="<%= state %>" type="hidden" name="[iso_managed]previous_state" id="[iso_managed]previous_state" />
+                <input value="<%= next_state %>" type="hidden" name="[iso_managed]registration_status" id="[iso_managed]registration_status" />
+                <input value="<%= @referer %>" type="hidden" name="[iso_managed]referer" id="[iso_managed]referer" />
                 <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       					<%= submit_tag "Submit Status Change", class: "btn medium", id: 'state_submit' %>
     				  </center>
