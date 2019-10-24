@@ -57,11 +57,6 @@ Rails.application.routes.draw do
       get :current
     end
   end
-  resources :iso_registration_states_v2, only: [:update] do
-    collection do
-      get :current
-    end
-  end
   resources :iso_concept, only: [:show] do
     collection do
       get :graph
@@ -99,7 +94,7 @@ Rails.application.routes.draw do
   resources :iso_managed_v2, only: [] do
     member do
       get :status
-      post :make_current
+      get :make_current
       post :update_status
     end
   end

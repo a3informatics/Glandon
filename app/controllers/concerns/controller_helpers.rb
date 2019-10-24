@@ -40,7 +40,7 @@ private
       result[:tags_path] = ""
     end      
     if object.registered? && edit
-      current_id = object.current? ? current_item.registrationState.id : ""
+      current_id = object.current? ? object.has_state.id : ""
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current_id})
     else
       result[:status_path] = ""
