@@ -76,18 +76,18 @@ IndexSubsets.prototype.initTable = function() {
 };
 
 IndexSubsets.prototype.tsCallback = function(data){
-  alert("Here!");
-  // $.ajax({
-  //       url: "/thesauri/managed_concept/add_subset",
-  //       type: "POST",
-  //       data: JSON.stringify({thesauri: data}),
-  //       dataType: 'json',
-  //       contentType: 'application/json',
-  //       error: function (xhr, status, error) {
-  //         displayError("An error has occurred.");
-  //       },
-  //       success: function(result) {
-  //
-  //       }
-  //   });
+  console.log(data);
+  $.ajax({
+        url: "/thesauri/"+data["scoped_id"]+"/add_subset",
+        type: "POST",
+        data: JSON.stringify({thesauri: data}),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          console.log(result);
+        }
+    });
 }

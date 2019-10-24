@@ -269,6 +269,15 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def add_subset
+    authorize Thesaurus, :edit?
+    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    thesaurus = Thesaurus.find_minimum(results.first)
+    thesaurus = edit_item(thesaurus)
+    new_mc = thesaurus.add_subset(the_params[:concept_id])
+    render json: {new_mc: new_mc.id, source_mc: new_mc.subsets_links.to_id}
+  end
+
 private
 
 	def impact_report_start(thesaurus)
