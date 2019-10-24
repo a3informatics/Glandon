@@ -66,6 +66,38 @@ describe "Thesaurus::Subset" do
     expect(result).to be_nil
   end
 
+  it "allows add a new item to the list" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
+    subset = Thesaurus::Subset.find(uri_1)
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    result = subset.add(uri_2.to_id)
+    expect(subset.last.to_h).to eq(result.to_h)
+    uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    result = subset.add(uri_3.to_id)
+    expect(subset.last.to_h).to eq(result.to_h)
+  end
+
+  it "allows add a new item to the list" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(uri_1)
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    result = subset.add(uri_2.to_id)
+    expect(subset.last.to_h).to eq(result.to_h)
+    uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    result = subset.add(uri_3.to_id)
+    expect(subset.last.to_h).to eq(result.to_h)  
+  end
+
+  it "allow remove an item from the list" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    sm_uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    sm_uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    result = subset.remove(sm_uri_2.to_id)
+    # subset_member = Thesaurus::SubsetMember.find(uri_2)
+    expect(subset.members.to_h).to eq(sm_uri_3.to_h)
+  end
+
   it "validates a valid object" do
     result = Thesaurus::Subset.new
     result.uri = Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1")
@@ -101,11 +133,6 @@ describe "Thesaurus::Subset" do
     item.to_sparql(sparql)
   #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_create_sparql_expected.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
-  end
-
-  it "add item" do
-    list = Thesaurus::Subset.new
-    list.add("aaa")
   end
 
 end

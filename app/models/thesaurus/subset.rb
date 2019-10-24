@@ -10,7 +10,7 @@ class Thesaurus::Subset < IsoConceptV2
 
   object_property :members, cardinality: :one, model_class: "Thesaurus::SubsetMember"
 
-  # Last. Find last item in the kist
+  # Last. Find last item in the list
   def last
     objects = []
     query_string = %Q{
@@ -29,8 +29,7 @@ class Thesaurus::Subset < IsoConceptV2
     Errors.application_error(self.class.name, __method__.to_s, "Multiple last subset members found.")
   end
 
-  def add(params)
-    concept_id = params[:concept_id]
+  def add(concept_id)
     transaction_begin
     sm = Thesaurus::SubsetMember.create({item: Uri.new(id: concept_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
     last_sm = self.last
@@ -38,6 +37,29 @@ class Thesaurus::Subset < IsoConceptV2
     transaction_execute
     sm
   end
+
+  def remove(subset_member_id)
+    transaction_begin
+    sm = Thesaurus::SubsetMember.find(subset_member_id)
+    prev_sm = sm.previous_member
+    next_sm = sm.next_member
+    if prev_sm.nil?
+     self.delete_link(:members, sm.uri)
+     self.add_link(:members, next_sm.uri)
+    else 
+      prev_sm.delete_link(:member_next, sm.uri)
+      prev_sm.add_link(:member_next, next_sm.uri)
+    end
+     sm.delete
+    # prev_sm.nil? ? self.delete_link(:members, sm.uri) self.add_link(:members, next_sm.uri) : prev_sm.delete_link(:member_next, sm.uri) prev_sm.add_link(:member_next, next_sm.uri)
+    transaction_execute
+  end
+
+  # def move_after(concept_id, concept_id_after = nil)
+  #   self.append_first(concept_id) if concept_id_after.nil?
+  #   sm = Thesaurus::SubsetMember.delete({item: Uri.new(id: concept_id), uri: })
+  #   append_after(id_cli, id_cli_after)
+  # end
 #   def initialize
 #       @head = nil
 #       super
