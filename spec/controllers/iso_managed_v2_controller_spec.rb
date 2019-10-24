@@ -14,11 +14,10 @@ describe IsoManagedV2Controller do
       return "controllers/iso_managed_v2"
     end
 
-    before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", 
-        "iso_managed_data_3.ttl", "form_example_vs_baseline.ttl", "form_example_general.ttl", "form_example_dm1_branch.ttl", "BC.ttl", "BCT.ttl"]
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..10)
+      load_cdisc_term_versions(1..2)
     end
 
     it "status" do
@@ -55,7 +54,7 @@ describe IsoManagedV2Controller do
       post :update_status, { id: mi.id, iso_managed: { registration_status: "Retired", previous_state: "Standard", 
         administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(uri_1)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
       expect(response).to redirect_to("/registration_states")
     end
 
@@ -66,7 +65,7 @@ describe IsoManagedV2Controller do
       post :update_status, { id: mi.id, iso_managed: { registration_status: "X", previous_state: "Standard", 
         administrative_note: "X1", unresolved_issue: "X2" }}
       actual = IsoManagedV2.find_minimum(uri_1)
-      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
       expect(response).to redirect_to("/registration_states")
     end
 
