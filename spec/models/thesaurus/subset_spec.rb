@@ -4,6 +4,7 @@ describe "Thesaurus::Subset" do
 
 	include DataHelpers
   include SparqlHelpers
+  include PublicFileHelpers
     
 	def sub_dir
     return "models/thesaurus/subset"
@@ -14,15 +15,57 @@ describe "Thesaurus::Subset" do
   end
 
   before :each do
-    schema_files = 
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-      "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-    ]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_scoped_identifier.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..2)
+    load_local_file_into_triple_store(sub_dir, "subsets_input_1.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_input_2.ttl")
   end
  
+  after :all do
+    delete_all_public_test_files
+  end
+
+  # it "creates some test data" do
+  #   base_uri = Uri.new(uri: "http://www.example.com/a#b")
+  #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
+  #   subset = Thesaurus::Subset.new
+  #   subset.uri = subset.create_uri(base_uri)
+  #   sm_1 = Thesaurus::SubsetMember.new
+  #   sm_1.item = tc
+  #   sm_1.uri = sm_1.create_uri(base_uri)
+  #   sm_2 = Thesaurus::SubsetMember.new
+  #   sm_2.item = tc
+  #   sm_2.uri = sm_2.create_uri(base_uri)
+  #   sm_3 = Thesaurus::SubsetMember.new
+  #   sm_3.item = tc
+  #   sm_3.uri = sm_3.create_uri(base_uri)
+  #   sm_1.member_next = sm_2
+  #   sm_2.member_next = sm_3
+  #   subset.members = sm_1
+
+  #   sparql = Sparql::Update.new
+  #   sparql.default_namespace(subset.uri.namespace)
+  #   subset.to_sparql(sparql)
+  #   sm_1.to_sparql(sparql)
+  #   sm_2.to_sparql(sparql)
+  #   sm_3.to_sparql(sparql)
+  #   file = sparql.to_file
+  #   copy_file_from_public_files_rename("test", file.basename, sub_dir, "subsets_input_1.ttl")
+  #end
+
+  it "allows the last member to be found" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
+    expected = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5314")
+    subset = Thesaurus::Subset.find(uri_1)
+    result = subset.last
+    expect(result.uri).to eq(expected)
+    subset = Thesaurus::Subset.find(uri_2)
+    result = subset.last
+    expect(result).to be_nil
+  end
+
   it "validates a valid object" do
     result = Thesaurus::Subset.new
     result.uri = Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1")
