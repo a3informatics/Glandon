@@ -37,6 +37,7 @@ function IndexSubsets(id) {
   // Get selected th callback
   $('#new_subset').click(function() {
     $('#subsetsModal').modal('hide');
+    $('#tableModal').modal('show');
     // REDIRECT TO NEW SUBSET PAGE
     // var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
     // _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
@@ -69,8 +70,24 @@ IndexSubsets.prototype.initTable = function() {
     "columns": _this.columns,
     "orderCellsTop": true,
     "drawCallback": function(){
-      // THIS WILL OPEN THE CONTEXT MENU ON THE LEFT SIDE IF THERE IS NOT ENOUGH SPACE ON THE RIGHT
       $('#ssIndexTable').find(".context-menu").addClass("left");
     },
   });
 };
+
+IndexSubsets.prototype.tsCallback = function(data){
+  alert("Here!");
+  // $.ajax({
+  //       url: "/thesauri/managed_concept/add_subset",
+  //       type: "POST",
+  //       data: JSON.stringify({thesauri: data}),
+  //       dataType: 'json',
+  //       contentType: 'application/json',
+  //       error: function (xhr, status, error) {
+  //         displayError("An error has occurred.");
+  //       },
+  //       success: function(result) {
+  //
+  //       }
+  //   });
+}
