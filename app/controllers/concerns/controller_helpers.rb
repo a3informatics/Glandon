@@ -41,8 +41,7 @@ private
     end      
     if object.registered? && edit
       current_id = object.current? ? current_item.registrationState.id : ""
-      result[:status_path] = status_iso_managed_index_path(:id => object.uri.fragment, :iso_managed => 
-        {:index_label => "", :index_path => "", :current_id => current_id, :namespace => object.uri.namespace})
+      result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current_id})
     else
       result[:status_path] = ""
     end

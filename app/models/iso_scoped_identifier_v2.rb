@@ -126,7 +126,39 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     super
   end 
 
+  # Update Version
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :version_label the version label
+  # @option params [String] :semantic_version the semantic version
+  # @raise [Exceptions::UpdateError] if an error occurs during the update
+  # @return null
+  def update_version(params)  
+    partial_update(update_query(params), [:isoT])
+  end
+
 private
+
+  # The update query
+  def update_query(params)
+    %Q{
+      DELETE \n" +
+      {
+       #{self.uri.to_ref} isoI:versionLabel ?a .
+       #{self.uri.to_ref} isoI:semanticVersion ?b .
+      }
+      INSERT
+      {
+       #{self.uri.to_ref} isoI:versionLabel \"#{self.versionLabel}\"^^xsd:string .
+       #{self.uri.to_ref} isoI:semanticVersion \"#{self.semantic_version}\"^^xsd:string .
+      }
+      WHERE
+      {
+       #{self.uri.to_ref} isoI:versionLabel ?a .
+       #{self.uri.to_ref} isoI:semanticVersion ?b .
+      }
+    }
+  end
 
   def self.exists_query(identifier, scope)
     "SELECT ?s WHERE \n" +

@@ -6,8 +6,8 @@
 	<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
 <% end %>
 
-<% state = @registration_state.registration_status %>
-<% nextState = IsoRegistrationStateV2.next_state(@registration_state.registration_status) %>
+<% state = @managed_item.has_state.registration_status %>
+<% nextState = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item), :header_title => "Item management" } do %>
@@ -27,7 +27,7 @@
 						<div class="boxed-title bg-accent-1 font-bold"><%= IsoRegistrationStateV2.state_label(state) %></div>
 						<div class="status-paragraph font-light"><%= IsoRegistrationStateV2.state_definition(state) %></div>
 					</div>
-					<% if @registration_state.can_be_changed? %>
+					<% if @managed_item.has_state.can_be_changed? %>
 					<div class="icon-arrow-r status-arrow"></div>
 					<div class="status">
 						<div class="text-normal font-light"> New Status: </div>
@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<br>
-				<%= form_for @registration_state, uri:  iso_registration_state_path(@registration_state.id) do |f| %>
+				<%= form_for @managed_item.has_state, uri:  iso_registration_state_path(@managed_item.has_state.id) do |f| %>
 				<center>
 					<div class="status form-group">
 						<div class="text-small font-light">Administrative Note: </div>
@@ -66,12 +66,12 @@
 		<div class="card-header">	Version Control	</div>
 		<div class="card-content">
 			<span class="text-normal font-light"> Make item current: </span>
-			<% if @registration_state.released_state? %>
+			<% if @managed_item.has_state.released_state? %>
 				<% if @managed_item.current? %>
 					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
 						icon: "icon-new", btn_text: "Item is already current", dt_toggle: "", disabled: true } %>
 				<% else %>
-					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: current_iso_registration_states_path(:new_id => @registration_state.id, :old_id => @current_id), id: "make_current",
+					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: current_iso_registration_states_path(:new_id => @managed_item.has_state.id, :old_id => @current_id), id: "make_current",
 						icon: "icon-new", btn_text: "Update to current", dt_toggle: "", disabled: false } %>
 				<% end %>
 			<% else %>

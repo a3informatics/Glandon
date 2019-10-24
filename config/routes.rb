@@ -51,6 +51,11 @@ Rails.application.routes.draw do
   resources :iso_namespaces, only: [:index, :new, :create, :destroy]
   resources :iso_registration_authorities, only: [:index, :new, :create, :destroy]
   resources :iso_scoped_identifiers, only: [:update]
+  resources :iso_registration_states_v2, only: [:update] do
+    collection do
+      get :current
+    end
+  end
   resources :iso_registration_states, only: [:update] do
     collection do
       get :current
@@ -90,7 +95,7 @@ Rails.application.routes.draw do
       get :export
     end
   end
-  resources :iso_managed_v2 do
+  resources :iso_managed_v2, only: [] do
     member do
       get :status
     end
