@@ -105,13 +105,16 @@ describe "Thesaurus::Subset" do
   it "allow remove an item from the list, first subset member" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(subset_uri_1)
-    uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
-    uri_3 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
-    sm_2 = Thesaurus::SubsetMember.find(uri_2)
-    sm_3 = Thesaurus::SubsetMember.find(uri_3)
-  byebug
-    result = subset.remove(sm_2.uri.to_id)
-    expect(subset.members).to eq(sm_3.uri)
+    expect(subset.list.count).to eq(3)
+    remove_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    result = subset.remove(remove_uri.to_id)
+    expected_first_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    expected_last_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5314")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.list.count).to eq(2)
+    expect(subset.members).to eq(expected_first_uri)
+    expect(subset.last.uri).to eq(expected_last_uri)
+    expect{Thesaurus::SubsetMember.find(remove_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3 in Thesaurus::SubsetMember.")
   end
 
   it "validates a valid object" do
