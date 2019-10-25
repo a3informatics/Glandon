@@ -168,6 +168,13 @@ Rails.application.routes.draw do
         get :change_instruction_links
       end
     end
+    resources :subsets, only: [] do
+      member do
+        post :add
+        delete :remove
+        put :move_after
+      end
+    end
   end
 
   resources :thesauri, only: [:index, :show, :create, :edit, :destroy] do

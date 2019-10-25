@@ -29,6 +29,7 @@ class Thesaurus::Subset < IsoConceptV2
     Errors.application_error(self.class.name, __method__.to_s, "Multiple last subset members found.")
   end
 
+  #Add comments
   def add(concept_id)
     transaction_begin
     sm = Thesaurus::SubsetMember.create({item: Uri.new(id: concept_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
