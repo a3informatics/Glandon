@@ -14,20 +14,20 @@ module ControllerHelpers
     return []
   end
 
-  def add_history_paths(klass, controller, set)
+  def add_history_paths(klass, controller, set, current)
     results = []
     policy = policy(klass)
     edit = policy.edit?
     delete = policy.destroy?
     set.each do |object|
-      results << object.to_h.reverse_merge!(add_history_path(controller, object, edit, delete))
+      results << object.to_h.reverse_merge!(add_history_path(controller, object, edit, delete, current))
     end
     results
   end
 
 private
 
-  def add_history_path(controller, object, edit, delete)
+  def add_history_path(controller, object, edit, delete, current)
     result = {}
     result[:show_path] = path_for(controller, :show, object)
     #result[:view_path] = path_for(controller, :view, object) <<< Removed
@@ -41,7 +41,7 @@ private
     end      
     if object.registered? && edit
       current_id = object.current? ? object.has_state.id : ""
-      result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current_id})
+      result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.id})
     else
       result[:status_path] = ""
     end

@@ -663,7 +663,10 @@ class IsoManagedV2 < IsoConceptV2
 
   # Current. Find the current item for the scope.
   #
-  # @return [object] the current item if founc, nil otherwise
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [object] the current item if found, nil otherwise
   def self.current(params)
     date_time = Time.now.iso8601
     query_string = %Q{
