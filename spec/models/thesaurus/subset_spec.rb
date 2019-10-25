@@ -20,6 +20,7 @@ describe "Thesaurus::Subset" do
     load_cdisc_term_versions(1..2)
     load_local_file_into_triple_store(sub_dir, "subsets_input_1.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_2.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_input_3.ttl")
   end
  
   after :all do
@@ -88,7 +89,7 @@ describe "Thesaurus::Subset" do
     expect(subset.last.to_h).to eq(result.to_h)  
   end
 
-  it "allow remove an item from the list" do
+  it "allows remove an item from the list" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(subset_uri_1)
     uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
@@ -97,12 +98,11 @@ describe "Thesaurus::Subset" do
     sm_2 = Thesaurus::SubsetMember.find(uri_2)
     sm_3 = Thesaurus::SubsetMember.find(uri_3)
     sm_4 = Thesaurus::SubsetMember.find(uri_4)
-  byebug
     result = subset.remove(sm_2.uri.to_id)
     expect(sm_4.next_member.to_h).to eq(sm_3.to_h)
   end
 
-  it "allow remove an item from the list, first subset member" do
+  it "allows remove an item from the list, first subset member" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(subset_uri_1)
     expect(subset.list.count).to eq(3)
@@ -115,6 +115,52 @@ describe "Thesaurus::Subset" do
     expect(subset.members).to eq(expected_first_uri)
     expect(subset.last.uri).to eq(expected_last_uri)
     expect{Thesaurus::SubsetMember.find(remove_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3 in Thesaurus::SubsetMember.")
+  end
+
+  it "allows move an item after another one, move to the first position" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    result = subset.move_after(this_uri.to_id, nil)
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    expected_next_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5314")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(this_uri)
+    expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
+    expect(Thesaurus::SubsetMember.find(expected_next_uri).next_member.uri).to eq(expected_next_next_uri)
+    expect(subset.last.uri).to eq(expected_next_next_uri)
+  end
+
+  it "allows move an item after another one, moving the last element" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5314")
+    to_after_member_id = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
+    result = subset.move_after(this_uri.to_id, to_after_member_id)
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1a19")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(to_after_member_id)
+    expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
+    expect(Thesaurus::SubsetMember.find(to_after_member_id).next_member.uri).to eq(this_uri)
+    expect(Thesaurus::SubsetMember.find(expected_next_uri).member_next).to eq(nil)
+    expect(subset.last.uri).to eq(expected_next_uri)
+  end
+
+  it "allows move an item after another one, moving middle element" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")
+    to_after_member_id = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7baaa")
+    result = subset.move_after(this_uri.to_id, to_after_member_id)
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bccc")
+    expected_next_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bddd")
+    expected_last_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5fff")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(to_after_member_id)
+    expect(Thesaurus::SubsetMember.find(to_after_member_id).next_member.uri).to eq(this_uri)
+    expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
+    expect(Thesaurus::SubsetMember.find(expected_next_uri).next_member.uri).to eq(expected_next_next_uri)
+    expect(subset.last.uri).to eq(expected_last_uri)
   end
 
   it "validates a valid object" do
