@@ -355,6 +355,7 @@ describe Thesaurus do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..60)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :each do

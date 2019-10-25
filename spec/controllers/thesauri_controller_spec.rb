@@ -37,6 +37,7 @@ describe ThesauriController do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
       @lock_user = ua_add_user(email: "lock@example.com")

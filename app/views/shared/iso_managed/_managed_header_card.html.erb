@@ -1,26 +1,25 @@
 <%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+<%= javascript_include_tag 'shared/tags' %>
 
 <div class="col-md-12 card">
   <div class="card-content">
     <div class="h-outside-wrap">
-      <div class="h-inner-wrap mid" style="padding-left: 0;">
-        <div class="h-inner-wrap text-small header-title"><%= header_title %></div>
-        <div class="h-inner-wrap rb">
-          <div class="h-inner-wrap">
-            <span class="circular-badge big bg-accent-1 text-white">
-              <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
-            </span>
-          </div>
-          <div class="h-inner-wrap mid">
-            <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier %></div>
-            <div class="text-large"> <%= item.label %> </div>
-            <div class="font-light">
-                <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus, :icon => "icon-info-circle", :description => "Status"} %>
-                <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
-                <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
-            </div>
-          </div>
+      <div class="h-inner-wrap">
+        <span class="circular-badge big bg-accent-1 text-white">
+          <%= if badge.include? "icon" then ("<span class='"+ badge +"'></span>").html_safe else badge end %>
+        </span>
+      </div>
+      <div class="h-inner-wrap mid">
+        <div class="text-small font-light"> Owner: <%= item.owner_short_name %> &nbsp; | &nbsp; Identifier: <%= item.scoped_identifier %></div>
+        <div class="text-large"> <%= item.label %> </div>
+        <div class="font-light">
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.registration_status, :icon => "icon-info-circle", :description => "Status"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.semantic_version, :icon => "icon-version-circle", :description => "Version"} %>
+            <%= render partial: "shared/iso_managed/managed_header_card_icotext", :locals => {:title => item.version_label, :icon => "icon-tag-circle", :description => "Version label"} %>
         </div>
+        <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
+          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+        <% end %>
       </div>
       <div class="h-inner-wrap">
         <%= yield %>
@@ -28,3 +27,4 @@
     </div>
   </div>
 </div>
+<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".bg-label");' %>

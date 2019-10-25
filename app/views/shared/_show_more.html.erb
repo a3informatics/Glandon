@@ -1,0 +1,11 @@
+<%= stylesheet_link_tag 'custom/show_more' %>
+<%= javascript_include_tag 'shared/show_more_js' %>
+
+<div class="show-more collapsed">
+  <div class="show-more-wrap">
+    <%= yield %>
+  </div>
+  <div class="show-more-btn">
+    <span class="icon-arrow-d"></span> <span class="text-<%= size %>">Show more</span>
+  </div>
+</div>

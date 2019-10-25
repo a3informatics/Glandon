@@ -251,6 +251,21 @@
   font-size: 10pt;
 }
 
+.circular-badge.tiny{
+  width: 8px;
+  height: 8px;
+}
+
+.min-badge-item{
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.min-badge-item .circular-badge{
+  margin-right: 4px;
+}
+
 // DIVIDERS
 .divider{
   width: 100%;
