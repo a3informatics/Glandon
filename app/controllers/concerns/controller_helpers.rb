@@ -14,6 +14,13 @@ module ControllerHelpers
     return []
   end
 
+  # Get History Paths
+  #
+  # @param [Class] klass the klass
+  # @params [Symbol] controller controller name
+  # @params [Array] set the history array (minimum items)
+  # @params [Object] current, the current item's uri
+  # @result [Array] array of hashes containing the paths
   def add_history_paths(klass, controller, set, current)
     results = []
     policy = policy(klass)
@@ -27,6 +34,7 @@ module ControllerHelpers
 
 private
 
+  # Build a set of paths for a single object
   def add_history_path(controller, object, edit, delete, current)
     result = {}
     result[:show_path] = path_for(controller, :show, object)
@@ -40,8 +48,7 @@ private
       result[:tags_path] = ""
     end      
     if object.registered? && edit
-      current_id = object.current? ? object.has_state.id : ""
-      result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.id})
+      result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})
     else
       result[:status_path] = ""
     end
@@ -53,6 +60,7 @@ private
     return result
   end
 
+  # Get the path for a controller action pair
   def path_for(controller, action, id)
     Rails.application.routes.url_for controller: controller, action: action, only_path: true, id: id
   end

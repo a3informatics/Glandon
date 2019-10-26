@@ -529,5 +529,35 @@ describe ThesauriController do
     end
 
   end
-  
+
+  describe "Controller Helpers" do
+
+    # Tested here as difficult to setup test environment for the helpers with policies and paths
+    
+    login_curator
+
+    before :all do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..5)
+    end
+
+    it "adds history paths, status path" do
+      # No current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_paths_expected_1.yaml", equate_method: :hash_equal)
+      # With current
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
+      ct.has_state.make_current
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_paths_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end
