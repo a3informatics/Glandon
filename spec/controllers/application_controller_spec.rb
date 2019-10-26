@@ -14,6 +14,8 @@ describe ApplicationController, type: :controller do
     
     describe "after_sign_out_path_for(*)"
 
+  end
+  
 end
 
 
