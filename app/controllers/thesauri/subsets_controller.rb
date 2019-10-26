@@ -6,6 +6,7 @@ class Thesauri::SubsetsController < ApplicationController
 
   def add
     authorize Thesaurus, :edit?
+  byebug
     subset = Thesaurus::Subset.find(params[:id])
     sm = subset.add(the_params[:member_id])
     render json: {id: sm.uri.to_id}, status: 200
@@ -21,7 +22,7 @@ class Thesauri::SubsetsController < ApplicationController
   def move_after
     authorize Thesaurus, :edit?
     subset = Thesaurus::Subset.find_minimum(params[:id])
-    sm = subset.move_after(the_params[:concept_id], the_params[:after_id])
+    sm = subset.move_after(the_params[:member_id], the_params[:after_id])
     render json: { }, status: 200
   end
 
