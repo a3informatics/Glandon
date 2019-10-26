@@ -38,8 +38,7 @@ describe ThesauriController do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
-      load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
-      load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
+      load_cdisc_term_versions(1..2)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
     end
@@ -47,11 +46,6 @@ describe ThesauriController do
     after :each do
       ua_remove_user("lock@example.com")
     end
-
-    # it "new thesaurus" do
-    #   get :new
-    #   expect(response).to render_template("new")
-    # end
 
     it "index" do
       expected = [{x: "a1", y: true, z: "something"}, {x: "a2", y: true, z: "something else"}]
@@ -138,62 +132,47 @@ describe ThesauriController do
     end
 
     it "edits thesaurus, no next version" do
-      ct = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      get :edit, id: ct.to_id
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      get :edit, id: ct.id
       result = assigns(:thesaurus)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.cdisc.org/CT/V1#TH") # Note no new version, no copy.
-      expect(result.identifier).to eq("CT")
+      expect(token.item_uri).to eq("http://www.acme-pharma.com/TEST/V1#TH") # Note no new version, no copy.
+      expect(result.scoped_identifier).to eq("TEST")
       expect(response).to render_template("edit")
     end
 
     it "edits thesaurus, create next version" do
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      get :edit, params
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct.update_status(registration_status: "Standard")
+      get :edit, id: ct.id
       result = assigns(:thesaurus)
       token = assigns(:token)
       expect(token.user_id).to eq(@user.id)
-      expect(token.item_uri).to eq("http://www.assero.co.uk/MDRThesaurus/ACME/V2#TH-ACME_CDISCEXT") # Note we get a new version, 
-      																																															# the edit causes the copy.
-      expect(result.identifier).to eq("CDISC EXT")
+      expect(token.item_uri).to eq("http://www.acme-pharma.com/TEST/V2#TH") # Note we get a new version, the edit causes the copy.
+      expect(result.scoped_identifier).to eq("TEST")
       expect(response).to render_template("edit")
     end
 
     it "edits thesaurus, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
-      th = Thesaurus.find("TH-ACME_CDISCEXT", "http://www.assero.co.uk/MDRThesaurus/ACME/V2") # Use the new version from previous test.
-      token = Token.obtain(th, @lock_user)
-      params = 
-      {
-        :id => "TH-ACME_CDISCEXT", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V2" ,
-      }
-      get :edit, params
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      token = Token.obtain(ct, @lock_user)
+      get :edit, id: ct.id
       expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by another user./)
       expect(response).to redirect_to("/thesauri")
     end
     
     it "edits thesaurus, copy, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
-      # Lock the new thesaurus
-      new_th = Form.new
-      new_th.id = "TH-ACME_CDISCEXT" # Note the change of fragment, uses the identifier and thus changes
-      new_th.namespace = "http://www.assero.co.uk/MDRThesaurus/ACME/V2" # Note the V2, the expected new version.
-      new_th.registrationState.registrationAuthority = IsoRegistrationAuthority.owner
-      new_token = Token.obtain(new_th, @lock_user)
-      # Attempt to edit
-      params = 
-      {
-        :id => "TH-SPONSOR_CT-1", 
-        :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1" ,
-      }
-      get :edit, params
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      ct.update_status(registration_status: "Standard")
+      new_ct = ct.create_next_version
+      token = Token.obtain(new_ct, @lock_user)
+      get :edit, id: ct.id
       expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/The item is locked for editing by another user./)
       expect(response).to redirect_to("/thesauri")
     end
 
@@ -208,7 +187,7 @@ describe ThesauriController do
     end
 
     it 'adds a child thesaurus concept' do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       new_ct = Thesaurus::ManagedConcept.new
       new_ct.identifier = "A12345"
       new_ct.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#fake")
@@ -315,13 +294,6 @@ describe ThesauriController do
       expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.id)}", 
         :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE="}], count: 1, offset: 0})
     end
-
-    # it "view a thesaurus" do
-    #   params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1", :children => [] }
-    #   get :view, params
-    #   expect(response.content_type).to eq("text/html")
-    #   expect(response.code).to eq("200")    
-    # end
 
     it "initiates a search of a single terminology" do
       params = standard_params
