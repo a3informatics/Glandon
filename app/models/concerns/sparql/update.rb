@@ -117,6 +117,18 @@ module Sparql
       execute_update(:update, "#{build_clauses(default_namespace, prefixes)}\n#{sparql}")
     end
 
+    # ---------
+    # Test Only
+    # ---------
+    
+    if Rails.env.test?
+
+      def to_triples
+        triples_to_s
+      end
+
+    end
+
   private
 
     # Duplicate triple
