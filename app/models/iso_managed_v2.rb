@@ -594,7 +594,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Void] no return
   def set_initial(identifier)
     ra = IsoRegistrationAuthority.owner
-    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra.ra_namespace)
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: SemanticVersion.first.to_s, has_scope: ra.ra_namespace)
     self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: "Incomplete", previous_state: "Incomplete")
     self.last_change_date = Time.now
     set_uris(ra)
