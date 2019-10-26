@@ -104,4 +104,12 @@ describe Fuseki::Resource::Properties do
     expect(results).to match_array([true, true, true, true, true])
   end
 
+  it "persisted" do
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
+    expect(item.properties.property(:organization_identifier).to_be_saved?).to eq(true)
+    item.properties.saved
+    expect(item.properties.property(:organization_identifier).to_be_saved?).to eq(false)
+  end
+
 end

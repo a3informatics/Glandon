@@ -40,7 +40,7 @@ module Fuseki
       @uri = attributes.key?(:uri) ? attributes[:uri] : nil
       @properties.each do |property| 
         value = attributes.key?(property.name) ? attributes[property.name] : property.default_value
-        property.set_default(value)
+        property.set_default(value) # Will cause to_be_saved to be set true (i.e. new record)
       end
     end
 

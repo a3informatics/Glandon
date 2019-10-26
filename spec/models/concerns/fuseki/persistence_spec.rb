@@ -109,4 +109,52 @@ describe Fuseki::Persistence do
     expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
   end
 
+  it "generates selective update sparql" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    sparql = Sparql::Update.new
+    actual = item.to_selective_sparql(sparql)
+    expect(sparql.to_triples).to eq("<http://www.assero.co.uk/NS#AAA> isoI:name \"Updated Name Property\"^^xsd:string . \n")
+    expect(actual).to match_array([Uri.new(uri: "http://www.assero.co.uk/ISO11179Identification#name")])
+  end
+
+  it "performs selective update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    item.selective_update
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_1.yaml", equate_method: :hash_equal)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "Modified Short Name"
+    item.selective_update
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_2.yaml", equate_method: :hash_equal)
+  end
+
+  it "performs update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    result = item.update
+    expect(result.errors.count).to eq(0)
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    item.name = "Updated Name Property, a further update±±±±±"
+    result = item.update
+    expect(result.errors.count).to eq(1)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "ShortName"
+    result = item.update
+    expect(result.errors.count).to eq(0)
+  end
+
+  it "id and uuid" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    expect(item.id).to eq(uri.to_id)
+    expect(item.uuid).to eq(uri.to_id)
+  end
+
 end

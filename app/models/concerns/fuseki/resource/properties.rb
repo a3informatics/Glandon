@@ -55,13 +55,16 @@ module Fuseki
 
       # Each. Iterate over the proprites
       def each
-        @set.each do |key, value| 
-          begin
-            yield(value)
-          rescue => e
-            byebug
-          end
+        @set.each do |key, property| 
+          yield(property)
         end
+      end
+
+      # Saved. Set all propeties to saved
+      #
+      # @return [Void] no return
+      def saved
+        @set.each {|key, property| property.saved}
       end
 
       # Assign. Assign a set of properties to the object

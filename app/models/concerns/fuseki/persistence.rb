@@ -107,8 +107,7 @@ module Fuseki
           #next if property.nil?
           #property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
         end
-        object.instance_variable_set(:@new_record, false)
-        object.instance_variable_set(:@destroyed, false)
+        object.set_persisted
         object
       end
 
@@ -123,8 +122,7 @@ module Fuseki
             property.replace_with_object(property.klass.from_results_recurse(value, triples))
           end
         end
-        object.instance_variable_set(:@new_record, false)
-        object.instance_variable_set(:@destroyed, false)
+        object.set_persisted
         object
       end
 
@@ -175,14 +173,24 @@ module Fuseki
     def set_persisted
       self.instance_variable_set(:@new_record, false)
       self.instance_variable_set(:@destroyed, false)
+      self.properties.saved
     end
 
+    # Id. Gets the id for an object
+    #
+    # @return [Stirng] the id string
     def id
       self.uri.nil? ? nil : self.uri.to_id
     end
 
+    # UUID. Alias for id
+    #
+    # @return [Stirng] the id string
     alias uuid id
 
+    # True Type. Gets the true predicate type for a subject URI.
+    #
+    # @return [Uri] the type predicate
     def true_type
       results = []
       query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
@@ -225,10 +233,15 @@ module Fuseki
       end
       objects
     end
-      
+
+    # Update. Update the object with the specified properties if valud
+    #
+    # @param [Hash] params a hash of properties to be updated
+    # @return [Object] returns the object. Not saved if errors with are returned.      
     def update(params={})
       @properties.assign(params) if !params.empty?
-      create_or_update(:update) if valid?(:update)
+      selective_update if valid?(:update)
+      self
     end
 
     def save
@@ -337,6 +350,20 @@ module Fuseki
       self
     end
 
+    # To Selective Update. Perform a selective update
+    #
+    # @return [Object] returns the object
+    def selective_update
+      clear_cache
+      sparql = Sparql::Update.new(@transaction)
+      sparql.default_namespace(@uri.namespace)
+      predicates = to_selective_sparql(sparql)
+      sparql.selective_update(predicates, @uri)
+      @new_record = false
+      self.properties.saved
+      self
+    end
+
     def to_sparql(sparql, recurse=false)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|
@@ -344,6 +371,21 @@ module Fuseki
         property_to_triple(sparql, property, @uri)
         object_to_triple(sparql, property) if recurse
       end
+    end      
+
+    # To Selective Sparql. The SPARQL for a selective update
+    #
+    # @param [Sparql::Update] sparql the update class
+    # @return [Array] the set of predicate URIs
+    def to_selective_sparql(sparql)
+      results = []
+      self.properties.each do |property|
+        next if !property.to_be_saved?
+        next if object_empty?(property)
+        property.to_triples(sparql, @uri)
+        results << property.predicate
+      end
+      results
     end      
 
     def generate_uri(parent)
