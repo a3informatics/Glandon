@@ -21,7 +21,7 @@ module Sparql
 
     # Set default namespace
     #
-    # @param namespace [string] The namespace
+    # @param [String] namespace the namespace
     # @return [Null] Nothing returned
     def default_namespace(namespace)
       @default_namespace = namespace
@@ -29,9 +29,9 @@ module Sparql
 
     # Add a Triple
     #
-    # @param subject [Hash] The subject
-    # @param predicate [Hash] The predictae
-    # @param object [Hash] The object
+    # @param [Hash] subject the subject
+    # @param [Hash] predicate the predictae
+    # @param [Hash] object the object
     #
     # where each can be
     # 
@@ -49,11 +49,21 @@ module Sparql
 
     # Update. Generate an update query
     #
-    # @param uri [Uri] The subject uri
+    # @param [Uri] uri the subject uri
     # @raise [Errors::UpdateError] if update fails
     # @return [Void] no return
     def update(uri)
       execute_update(:update, to_update_sparql(uri))
+    end
+
+    # Selective Update. Generate an update query for the predicates detailed.
+    #
+    # @param [Array] predicates a list of predicates being updated
+    # @param [Uri] uri the subject uri
+    # @raise [Errors::UpdateError] if update fails
+    # @return [Void] no return
+    def selective_update(predicates, uri)
+      execute_update(:update, to_selective_update_sparql(predicates, uri))
     end
 
     # Create. Generate a create query
@@ -83,11 +93,24 @@ module Sparql
 
     # To Update Sparql. Build the sparql for an update
     #
-    # @param uri [Uri] the uri for the subject being modified
+    # @param [Uri] uri the uri for the subject being modified
     # @return [String] the sparql update as a string
     def to_update_sparql(uri)
       "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{uri.to_ref} ?p ?o . \n}\n" + 
         "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{uri.to_ref} ?p ?o . \n}"  
+    end
+
+    # To Update Sparql. Build the sparql for an update
+    #
+    # @param [Array] predicates set of predicates being updated
+    # @param [Uri] uri the uri for the subject being modified
+    # @return [String] the sparql update as a string
+    def to_selective_update_sparql(predicates, uri)
+      parts = []
+      predicates.each_with_index {|x, index| parts << "#{uri.to_ref} #{x.to_ref} ?o#{index+1} . " }
+      delete_where = parts.join("\n")
+      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_where}\n}\n" + 
+        "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{delete_where}\n}"  
     end
 
     # To Create Sparql. Build the sparql for a create
@@ -99,7 +122,7 @@ module Sparql
 
     # To Delete Sparql. Build the sparql for a delete
     #
-    # @param uri [Uri] the uri for the subject being deleted
+    # @param [Uri] uri the uri for the subject being deleted
     # @return [String] the sparql update or create as a string
     def to_delete_sparql(uri)
       "DELETE { #{uri.to_ref} ?p ?o . } WHERE { #{uri.to_ref} ?p ?o . }"
