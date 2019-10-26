@@ -16,7 +16,7 @@ class IsoManagedV2Controller < ApplicationController
     @managed_item = IsoManagedV2.find_minimum(params[:id])
     @current_id = the_params[:current_id]
     @referer = request.referer
-    @close_path = TypePathManagement.history_url_v2(@managed_item)
+    @close_path = TypePathManagement.history_url_v2(@managed_item, true)
   end
 
   def make_current
