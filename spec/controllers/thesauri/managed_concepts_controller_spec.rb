@@ -3,30 +3,21 @@ require 'rails_helper'
 describe Thesauri::ManagedConceptsController do
 
   include DataHelpers
+  include UserAccountHelpers
   
   def sub_dir
     return "controllers/thesauri/managed_concept"
   end
 
-  describe "Authorized User" do
+  describe "Authorized User - Read" do
   	
     login_curator
 
     before :each do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
       load_data_file_into_triple_store("cdisc/ct/CT_V2.ttl")
-#      Token.delete_all
-#      @lock_user = User.create :email => "lock@example.com", :password => "changeme" 
     end
 
     after :each do
@@ -199,6 +190,35 @@ describe Thesauri::ManagedConceptsController do
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CDISC_CL_C12345.pdf\"")
     end
 
+  end
+  
+  describe "Authorized User - Edit" do
+    
+    login_curator
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :each do
+      ua_remove_user("lock@example.com")
+    end
+
+    it "update" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      token = Token.obtain(ct, @user)
+      put :update, {id: mc.id, edit: {notation: "AAAAA", parent_id: ct.id }}
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200") 
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
@@ -210,5 +230,5 @@ describe Thesauri::ManagedConceptsController do
     # end
 
   end
-  
+
 end

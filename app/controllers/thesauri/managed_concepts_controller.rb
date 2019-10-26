@@ -20,11 +20,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def update
     authorize Thesaurus
-    tc = Thesaurus::ManagedConcept.find(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     th = Thesaurus.find_minimum(edit_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?
-      tc = tc.update(edit_params)
+      tc.update(edit_params)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
         render :json => {:data => [tc.simple_to_h]}, :status => 200
