@@ -183,6 +183,14 @@ module Fuseki
 
     alias uuid id
 
+    def true_type
+      results = []
+      query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      Errors.application_error(self.class.name, __method__.to_s, "Unable to find true type for #{self.uri}.") if query_results.empty?
+      query_results.by_object(:t).first
+    end
+
     def transaction_begin
       @transaction = Sparql::Transaction.new
     end

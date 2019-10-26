@@ -5,8 +5,8 @@ class IsoManagedController < ApplicationController
   C_CLASS_NAME = self.class.to_s
 
   def index
-  	authorize IsoManaged
-  	@managed_items = IsoManaged.all
+    authorize IsoManaged
+    @managed_items = IsoManaged.all
   end
 
   def update

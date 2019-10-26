@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Pundit after action, verify authorized (checks if authorization was checked)
-	before_action :before_action_steps
+  before_action :before_action_steps
 
-	# Pundit after action, verify authorized (checks if authorization was checked)
+  # Pundit after action, verify authorized (checks if authorization was checked)
   after_action :verify_authorized, unless: :devise_controller?
 
   # Pundit exception for not authorized
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def not_authorized_method
     flash[:error] = 'You do not have the access rights to that operation.'
-		redirect_to root_path
+    redirect_to root_path
     true
   end
 
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
 
   # Get Token for a Managed Item.
   def get_token(mi)
-  	token = Token.obtain(mi, current_user)
+    token = Token.obtain(mi, current_user)
     if token.nil?
       flash[:error] = "The item is locked for editing by another user."
       redirect_to request.referer

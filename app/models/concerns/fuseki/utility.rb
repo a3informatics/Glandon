@@ -75,7 +75,25 @@ module Fuseki
       instance_values.symbolize_keys.slice(*keys).collect{|k,v| v}
     end
 
+    # Merge Errors
+    #
+    # @param [Object] from the object from which the errors are to be merged
+    # @param [String] label a label to prefix the error
+    # @return [Boolean] true if errors merged, false otherwise
+    def merge_errors(from, label="")
+      return false if from.errors.empty?
+      from.errors.full_messages.each {|msg| self.errors[:base] << "#{set_label(from, label)}: #{msg}"}
+      true
+    end
+
   private
+
+    # Set label
+    def set_label(object, label)
+      return label if !label.empty?
+      return object.label if object.respond_to?(:label)
+      return object.class.name
+    end
 
     # Set a simple typed value
     def from_typed(value)
