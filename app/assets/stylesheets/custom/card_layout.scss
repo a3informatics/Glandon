@@ -103,6 +103,10 @@
   height: 40px !important;
 }
 
+.table-cardstyle tr.selected{
+  color: $secondary-color-medium !important;
+}
+
 // SCALING
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,

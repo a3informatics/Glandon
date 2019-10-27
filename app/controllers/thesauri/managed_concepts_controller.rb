@@ -223,6 +223,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: subset_tcs}
   end
 
+  def edit_subset
+    authorize Thesaurus, :edit?
+    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
+    @sub_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @context_id = params[:context_id]
+  end
+
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []

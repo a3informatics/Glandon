@@ -470,11 +470,12 @@ describe ThesauriController do
 
     it "add subset" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :add_subset, {id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==", thesauri: {concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==", identifier:"AIRPORTS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ=="}}
+      post :add_subset, {id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==",
+        thesauri: {concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==", identifier:"AIRPORTS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ=="}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body)["source_mc"]).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==")
-    #expect(response).to redirect_to("?EDIT page")
+      redirect_path = JSON.parse(response.body)["redirect_path"]
+      expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
   end

@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'thesauri/managed_concepts/edit_subset',
+    'shared/thesauri/managed_concepts/subset_source_children_panel', 'shared/thesauri/managed_concepts/subset_edit_children_panel' %>
+<%= stylesheet_link_tag 'custom/edit_subset' %>
+<%= javascript_tag "var src_tbl_url = '#{show_data_thesauri_managed_concept_path({id: @source_mc, managed_concept: {context_id: @context_id}})}';" %>
+
+<div class="row">
+  <div class="col-md-12 card">
+    <div class="card-header">
+      Edit Subset
+    </div>
+    <div class="card-content">
+      <div class="editor-wrap">
+        <%= render partial: "shared/iso_managed/edit_subset_panel", :locals => {panel_title: "Source Code List (".concat(@source_mc.has_identifier.identifier,")"),
+          table_id: "source_children_table", is_editing_panel: false, info: "Click on an item to add/remove <br> it from the subset.".html_safe} %>
+        <%= render partial: "shared/iso_managed/edit_subset_panel", :locals => {panel_title: "Ordered Subset (".concat(@sub_mc.has_identifier.identifier,")"),
+          table_id: "subset_children_table", is_editing_panel: true, info: "You can change the order <br> of items by dragging them.".html_safe} %>
+      </div>
+    </div>
+  </div>
+</div>

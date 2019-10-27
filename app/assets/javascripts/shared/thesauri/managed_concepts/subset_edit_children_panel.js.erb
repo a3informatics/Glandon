@@ -1,0 +1,133 @@
+/*
+* Subset Edit Children Panel
+*
+* Requires:
+* subset_children_table [Table] the table of children of the subset in the subset edit page
+*/
+
+/**
+ * Subset Edit Children Panel Constructor
+ *
+ * @return [void]
+ */
+function SubsetEditChildrenPanel(url, count) {
+  var _this = this;
+  this.url = url;
+  this.count = count;
+  this.columns = [{"data" : "index"},{"data" : "item"}];
+  _this.loadComplete = false;
+  this.childrenTable = $('#subset_children_table').DataTable( {
+    "columns": _this.columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "scrollY": 510,
+    "scrollCollapse": true,
+    "paging": true,
+    // "columnDefs": [{
+    //   "targets": [0],
+    //   "visible": false
+    // }],
+    "rowReorder": {
+      "dataSrc": "index",
+      "selector": 'tr',
+    },
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No child items.",
+      "processing": generateSpinner("medium")
+    },
+  });
+  this.add(0);
+
+  this.childrenTable.on('row-reordered', function(e, details, changes){ _this.onRowReorderEnd(details, changes); });
+}
+
+/**
+ * Add item to table
+ *
+ * @param [String] uri the uri of the item being added
+ * @param [Integer] key a unique reference
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.add = function (offset) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      var count = 1;
+      for (i=0; i<result.data.length; i++) {
+        rowHTML =  _this.itemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": count, "item": rowHTML});
+        count ++;
+      }
+      _this.childrenTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count)
+      } else {
+        _this.childrenTable.processing(false);
+        _this.tableLoaded();
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
+}
+
+SubsetEditChildrenPanel.prototype.addRow = function (data){
+  var _this = this;
+  data["index"] = _this.childrenTable.rows().count() + 1;
+  _this.childrenTable.row.add(data).draw().data();
+}
+
+SubsetEditChildrenPanel.prototype.removeRow = function (row_data){
+  var _this = this;
+  _this.childrenTable.row(function ( idx, data, node ) {
+        return data["item"] == row_data["item"] ? true : false;
+  }).remove().draw();
+  // Update indexes
+  var count = 1;
+  _this.childrenTable.rows().every(function(){
+    this.data()["index"] = count++;
+    this.invalidate();
+  });
+}
+
+SubsetEditChildrenPanel.prototype.onRowReorderEnd = function(details, changes) {
+  var _this = this;
+  var newIndex = changes.triggerRow.data()["index"];
+  var targetItem = changes.triggerRow.data()["item"];
+  var movedAfter = _this.childrenTable.row(function ( idx, data, node ) {
+        return data["index"] == newIndex-1 ? true : false;
+  });
+  movedAfter = movedAfter[0].length == 0 ? null : movedAfter.data()["item"];
+  console.log("ITEM: " + targetItem);
+  console.log("MOVED AFTER: " + movedAfter);
+}
+
+SubsetEditChildrenPanel.prototype.tableLoaded = function (){
+  var _this = this;
+  var otherTable = $("#source_children_table").DataTable();
+  if(_this.childrenTable.rows().any() && otherTable.rows().any()){
+    _this.childrenTable.rows().every(function () {
+      var thisRow = this;
+      otherTable.row(function ( idx, data, node ) {
+        return data["item"] == thisRow.data()["item"] ? true : false;
+      }).select();
+    });
+
+    _this.loadComplete = true;
+  }
+}
+
+SubsetEditChildrenPanel.prototype.itemHTML = function(data) {
+  var html = '<div class="font-regular text-small">'+data["preferred_term"]+'</div>';
+  html += '<div class="font-light text-small">'+data["notation"]+' ('+data["identifier"]+')</div>';
+  return html;
+}

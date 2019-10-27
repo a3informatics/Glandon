@@ -1,0 +1,99 @@
+/*
+* Subset Source Children Panel
+*
+* Requires:
+* source_children_table [Table] the table of children of the source code-list in the subset edit page
+*/
+
+/**
+ * Subset Source Children Panel Constructor
+ *
+ * @return [void]
+ */
+function SubsetSourceChildrenPanel(url, count, subsetEditPanel) {
+  var _this = this;
+  this.url = url;
+  this.count = count;
+  this.columns = [{"data" : "index"},{"data" : "item"}];
+  this.subsetEditPanelRef = subsetEditPanel;
+  this.childrenTable = $('#source_children_table').DataTable( {
+    "order": [[ 1, "asc" ]],
+    "columns": _this.columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "scrollY": 510,
+    "scrollCollapse": true,
+    "paging": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No child items.",
+      "processing": generateSpinner("medium")
+    },
+    "columnDefs": [{
+      "targets": [0],
+      "visible": false
+    }],
+    "select": 'multi',
+  });
+  this.add(0);
+
+  this.childrenTable.on('select', function(e, dt, type, indexes){ _this.addItem(indexes); });
+  this.childrenTable.on('deselect', function(e, dt, type, indexes){ _this.removeItem(indexes); });
+}
+
+/**
+ * Add item to table
+ *
+ * @param [String] uri the uri of the item being added
+ * @param [Integer] key a unique reference
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.add = function (offset) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      var count = 1;
+      for (i=0; i<result.data.length; i++) {
+        rowHTML = _this.subsetEditPanelRef.itemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": count, "item": rowHTML});
+        count++;
+      }
+      _this.childrenTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count)
+      } else {
+        _this.childrenTable.processing(false);
+        _this.subsetEditPanelRef.tableLoaded();
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
+}
+
+SubsetSourceChildrenPanel.prototype.addItem = function (indexes){
+  var _this = this;
+  if(!_this.subsetEditPanelRef.loadComplete) return;
+  $.each(indexes, function(i,e){
+    var curRow = _this.childrenTable.row(e).data();
+    // Ajax call to add item, get info from data and pass on. On response, call the add row below. Dont forget to add loading.
+    _this.subsetEditPanelRef.addRow(curRow);
+  });
+}
+
+SubsetSourceChildrenPanel.prototype.removeItem = function (indexes){
+  var _this = this;
+  $.each(indexes, function(i,e){
+    var curRow = _this.childrenTable.row(e).data();
+    // Ajax call to remove item, get info from data and pass on. On response, call the remove row below. Dont forget to add loading.
+    _this.subsetEditPanelRef.removeRow(curRow);
+  });
+}

@@ -1,0 +1,22 @@
+<div class="editor-child table-cardstyle all-columns shadow-small">
+  <div class="card-header editor-child-header">
+    <%= panel_title %>
+    <span class="icon-info-circle ttip text-small text-light" style="margin-left: 4px;">
+      <span class="ttip-text shadow-small text-dark"><%= if info.empty? then "" else info end %></span>
+    </span>
+  </div>
+  <table id="<%= table_id %>" class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th class="no-sort"></th>
+        <th class="<%= "no-sort" if is_editing_panel %>">Code List Item</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <% if !is_editing_panel %>
+    <center><%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "select-all-btn",
+      icon: "icon-list-ul", btn_text: "Select / deselect all", dt_toggle: "", disabled: false} %></center>
+  <% end %>
+</div>
