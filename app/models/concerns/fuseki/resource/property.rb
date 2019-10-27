@@ -198,7 +198,7 @@ module Fuseki
         objects = [objects] if !array?
         datatype = @metadata[:base_type]
         objects.each do |object|
-          statement = object? ? {uri: object_uri(object)} : {literal: "#{to_literal(datatype, object)}", primitive_type: datatype}
+          statement = object? ? {uri: uri_for_object(object)} : {literal: "#{to_literal(datatype, object)}", primitive_type: datatype}
           sparql.add({:uri => subject}, {:uri => predicate}, statement)
         end
       end
@@ -263,6 +263,13 @@ module Fuseki
       # Build the object literal as a string
       def to_literal(type, value)
         return type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) ? value.iso8601 : value
+      end
+
+      def uri_for_object(object)
+        return object if object.is_a? Uri
+        result = object.uri if object.respond_to?(:uri)
+        return result if !result.nil?
+        Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
       end
 
     end

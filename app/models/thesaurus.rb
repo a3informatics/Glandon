@@ -352,10 +352,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params
+  # @params [Hash] params the parameters, can be empty for auto-generated identifier
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
-  def add_child(params)
+  def add_child(params={})
     child = Thesaurus::ManagedConcept.empty_concept
     child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)

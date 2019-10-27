@@ -381,7 +381,7 @@ module Fuseki
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|
         next if object_empty?(property)
-        property_to_triple(sparql, property, @uri)
+        property.to_triples(sparql, @uri)
         object_to_triple(sparql, property) if recurse
       end
     end      
@@ -476,17 +476,6 @@ module Fuseki
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
-    # Create the triple for the property
-    def property_to_triple(sparql, property, subject) #, predicate, objects)
-      objects = property.get
-      objects = [objects] if !objects.is_a? Array
-      objects.each do |object|
-        datatype = self.class.schema_metadata.datatype(property.predicate)
-        statement = property.object? ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
-        sparql.add({:uri => subject}, {:uri => property.predicate}, statement)
-      end
-    end
-
     def object_to_triple(sparql, property)
       return if !property.object?
       objects = property.get
@@ -507,13 +496,6 @@ module Fuseki
       end
     end
 
-    def object_uri(object)
-      return object if object.is_a? Uri
-      result = object.uri if object.respond_to?(:uri)
-      return result if !result.nil?
-      Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
-    end
-
     def object_empty?(property)
       return false if !property.object? 
       value = property.get
@@ -522,10 +504,6 @@ module Fuseki
       return false
     end
 
-    # Build the object literal as a string
-    def object_literal(type, value)
-      return type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) ? value.iso8601 : value
-    end
   end
 
 end
