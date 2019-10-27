@@ -50,6 +50,10 @@ describe Fuseki::Diff do
       self.class::C_URI
     end
 
+    def properties
+      @properties
+    end
+
   end 
 
   class TestToH

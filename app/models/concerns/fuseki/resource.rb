@@ -284,7 +284,6 @@ module Fuseki
       define_method("#{name}=") do |value|
         #instance_variable_set("@#{name}", value)
         @properties.property(name.to_sym).set_raw(value)
-        @new_record = true
       end
 
       define_method("#{name}") do 

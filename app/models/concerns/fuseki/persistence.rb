@@ -102,11 +102,7 @@ module Fuseki
       def from_results(uri, triples)
         object = new
         object.instance_variable_set("@uri", uri)
-        triples.each do |triple|
-          property = object.properties.property_from_triple(triple)
-          #next if property.nil?
-          #property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
-        end
+        triples.each {|triple| property = object.properties.property_from_triple(triple)}
         object.set_persisted
         object
       end
@@ -158,18 +154,30 @@ module Fuseki
     # Instance Methods
     # ----------------
 
+    # Persisted? Is the record persisted (in the DB)
+    #
+    # @return [Boolean] true if persisted, otherwise false
     def persisted?
       !(@new_record || @destroyed)
     end
       
+    # New Record? Is the record a new record.
+    #
+    # @return [Boolean] true if new, otherwise false
     def new_record?
       @new_record
     end
 
+    # Destroyed? Has the record been destroyed
+    #
+    # @return [Boolean] true if destroyed, otherwise false
     def destroyed?
       @destroyed
     end
 
+    # Set Persisted. Sets the flags to indicate the record is in the database
+    #
+    # @return [Void] no return
     def set_persisted
       self.instance_variable_set(:@new_record, false)
       self.instance_variable_set(:@destroyed, false)
@@ -237,15 +245,20 @@ module Fuseki
     # Update. Update the object with the specified properties if valud
     #
     # @param [Hash] params a hash of properties to be updated
-    # @return [Object] returns the object. Not saved if errors with are returned.      
+    # @return [Object] returns the object. Not saved if errors are returned.      
     def update(params={})
       @properties.assign(params) if !params.empty?
       selective_update if valid?(:update)
       self
     end
 
+    # Save. Will save the object
+    #
+    # @return [Object] returns the object. Not saved if errors are returned.      
     def save
-      create_or_update(:update) if valid?(:update)
+      return self if !valid?(persisted? ? :update : :create)
+      persisted? ? selective_update : create_or_update(:create)
+      self
     end
 
     def delete
@@ -409,6 +422,19 @@ module Fuseki
       end
       object
     end   
+
+    # -----------------
+    # Test Only Methods
+    # -----------------
+
+    if Rails.env.test?
+
+      # Check if cache has a key.
+      def inspect_persistence
+        return {new: @new_record, destroyed: @destroyed}
+      end
+
+    end
 
   private
 

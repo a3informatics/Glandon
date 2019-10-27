@@ -115,7 +115,7 @@ class Thesaurus
         params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
       end
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
-      save
+      super
     end
 
     # Parent
