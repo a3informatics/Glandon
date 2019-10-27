@@ -491,7 +491,7 @@ describe ThesauriController do
     end
 
     it "prevents access to a reader, add child" do
-      get :add_child
+      get :add_child, id: 1
       expect(response).to redirect_to("/")
     end
 
@@ -526,7 +526,9 @@ describe ThesauriController do
       ct.has_state.make_current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      actual = results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path], 
+        tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_2.yaml", equate_method: :hash_equal)
     end
 
