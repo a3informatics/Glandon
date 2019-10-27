@@ -5,17 +5,12 @@
 <%= javascript_tag "var parent_id = '#{@thesaurus.id}';" %>
 <% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Edit:") %>
 <div class="row">
-  <div class="col-md-8">
-    <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Edit:", :item => @thesaurus} %>
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-        <h3 class="card-header">Navigation</h3>
-      <div class="card-content">
-        <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
-      </div>
+  <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
+    <div class="actions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
-  </div>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-md-12">
