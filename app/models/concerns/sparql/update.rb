@@ -108,9 +108,10 @@ module Sparql
     def to_selective_update_sparql(predicates, uri)
       parts = []
       predicates.each_with_index {|x, index| parts << "#{uri.to_ref} #{x.to_ref} ?o#{index+1} . " }
-      delete_where = parts.join("\n")
-      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_where}\n}\n" + 
-        "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{delete_where}\n}"  
+      where_triples = parts.map {|x| "OPTIONAL { #{x}}" }.join("\n")
+      delete_triples = parts.join("\n")
+      "#{build_clauses(@default_namespace, prefix_set)}DELETE \n{\n#{delete_triples}\n}\n" + 
+        "INSERT \n{\n#{triples_to_s}}\nWHERE \n{\n#{where_triples}\n}"  
     end
 
     # To Create Sparql. Build the sparql for a create

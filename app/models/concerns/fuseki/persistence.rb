@@ -394,7 +394,6 @@ module Fuseki
       results = []
       self.properties.each do |property|
         next if !property.to_be_saved?
-        next if object_empty?(property)
         property.to_triples(sparql, @uri)
         results << property.predicate
       end

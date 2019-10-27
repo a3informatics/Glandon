@@ -293,8 +293,8 @@ describe Sparql::Update do
       "}\n" +
       "WHERE \n" +
       "{\n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp1> ?o1 . \n" +
-      "<http://www.example.com/test#sss> <http://www.example.com/test#ppp2> ?o2 . \n" +
+      "OPTIONAL { <http://www.example.com/test#sss> <http://www.example.com/test#ppp1> ?o1 . }\n" +
+      "OPTIONAL { <http://www.example.com/test#sss> <http://www.example.com/test#ppp2> ?o2 . }\n" +
       "}"
     sparql = Sparql::Update.new()
     sparql.default_namespace("http://www.example.com/default")

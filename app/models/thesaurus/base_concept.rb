@@ -24,6 +24,14 @@ class Thesaurus
 
     end
 
+    # Synonyms and Preferred Terms. Reads the synonyms and preferred terms
+    #
+    # @return [Void] no return
+    def synonyms_and_preferred_terms
+      self.synonym_objects
+      self.preferred_term_objects
+    end
+
     # Children?
     #
     # @return [Boolean] True if there are children, false otherwise
@@ -110,7 +118,7 @@ class Thesaurus
     # @return [Object] the updated object
     def update(params)
       self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
-      if params.key?(:preferred_term)
+      if params.key?(:preferred_term) && !params[:preferred_term].empty? # Preferred Term must not be cleared
         self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term])
         params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
       end

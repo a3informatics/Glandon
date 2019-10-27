@@ -21,6 +21,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def update
     authorize Thesaurus
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc.synonyms_and_preferred_terms
     th = Thesaurus.find_minimum(edit_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?

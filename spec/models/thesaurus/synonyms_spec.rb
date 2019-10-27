@@ -59,4 +59,10 @@ describe "Thesaurus::Synonyms" do
     expect(results.map{|x| x.uri}).to match_array([s1.uri, s3.uri])
   end
 
+  it "creates a synonym set, empty" do
+    object = TSTest.new
+    results = object.where_only_or_create_synonyms("")
+    expect(results.map{|x| x.uri}).to match_array([])
+  end
+
 end
