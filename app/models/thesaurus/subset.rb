@@ -29,16 +29,22 @@ class Thesaurus::Subset < IsoConceptV2
     Errors.application_error(self.class.name, __method__.to_s, "Multiple last subset members found.")
   end
 
-  #Add comments
-  def add(concept_id)
+  # Add. Add a new subset member to the Subset
+  #
+  # @param uc_id [String] the identifier of the unmanaged concept to be linked to the new subset member
+  # @return [Object] the created Subset Member
+  def add(uc_id)
     transaction_begin
-    sm = Thesaurus::SubsetMember.create({item: Uri.new(id: concept_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+    sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
     last_sm = self.last
     last_sm.nil? ? self.add_link(:members, sm.uri) : last_sm.add_link(:member_next, sm.uri)
     transaction_execute
     sm
   end
 
+  # Remove. Remove a subset member of the Subset
+  #
+  # @param subset_member_id [String] the identifier of the subset member to be removed
   def remove(subset_member_id)
     transaction_begin
     sm = Thesaurus::SubsetMember.find(subset_member_id)
@@ -76,19 +82,20 @@ class Thesaurus::Subset < IsoConceptV2
   
   end
 
+  # Move After. Move an subset member after another subset member given
+  #
+  # @param this_member_id [String] the identifier of the subset member to be moved after
+  # @param to_after_member_id [String] the identifier of the subset member to which the subset member moves after
   def move_after(this_member_id, to_after_member_id = nil)
     transaction_begin
     sm = Thesaurus::SubsetMember.find(this_member_id)
     prev_sm = sm.previous_member
     if to_after_member_id.nil? #Moving to the first position
-      # prev_sm.next_member = sm.next_member
       prev_sm.delete_link(:member_next, sm.uri)
       prev_sm.add_link(:member_next, sm.next_member.uri)
       old_first = self.members
-      # self.members = sm
       self.delete_link(:members, prev_sm.uri)
       self.add_link(:members, sm.uri)
-      # sm.next_member = old_first
       sm.delete_link(:member_next, sm.next_member.uri)
       sm.add_link(:member_next, old_first)
     else
@@ -100,13 +107,10 @@ class Thesaurus::Subset < IsoConceptV2
         to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
         to_after_sm.add_link(:member_next, sm.uri)
       else
-        # prev_sm = sm.next_member
         prev_sm.delete_link(:member_next, sm.uri)
         prev_sm.add_link(:member_next, sm.next_member.uri)
-        # sm.next_member = after_sm.next_member
         sm.delete_link(:member_next, sm.next_member.uri)
         sm.add_link(:member_next, to_after_sm.next_member.uri)
-        # after_sm.next_member = sm
         to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
         to_after_sm.add_link(:member_next, sm.uri)
       end
