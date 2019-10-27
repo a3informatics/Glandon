@@ -4,17 +4,15 @@
 <%= javascript_tag "var update_path = '/thesauri/unmanaged_concepts/:id';" %>
 <%= javascript_tag "var parent_id = '#{@thesaurus.id}';" %>
 <div class="row">
-  <div class="col-md-8">
-    <%= render partial: "shared/iso_managed/managed_header_panel", :locals => {:title => "Edit:", :item => @thesaurus_concept} %>
-  </div>
-  <div class="col-md-4">
-    <div class="card">
-        <h3 class="card-header">Navigation</h3>
-      <div class="card-content">
-        <%= render partial: "shared/buttons/close_v2", :locals => {link_path: @close_path, id: "close", small: false} %>
-      </div>
+  <!-- RENDER CARD CONTENTS -->
+  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @thesaurus_concept, :badge => "CL"} do %>
+    <!-- BUTTONS WRAP -->
+    <div class="actions-wrap">
+      <!-- RETURN BUTTON -->
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
-  </div>
+  <% end %>
 </div>
 <div class="row">
   <div class="col-md-12">
