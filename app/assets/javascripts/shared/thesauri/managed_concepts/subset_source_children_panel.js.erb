@@ -10,11 +10,12 @@
  *
  * @return [void]
  */
-function SubsetSourceChildrenPanel(url, count, subsetEditPanel) {
+function SubsetSourceChildrenPanel(url, count, subsetEditPanel, loadCallback) {
   var _this = this;
   this.url = url;
   this.count = count;
   this.columns = [{"data" : "index"},{"data" : "html"}];
+  _this.loadCallback = loadCallback;
   this.subsetEditPanelRef = subsetEditPanel;
   this.childrenTable = $('#source_children_table').DataTable( {
     "order": [[ 1, "asc" ]],
@@ -73,7 +74,7 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
         _this.add(result.offset + _this.count)
       } else {
         _this.childrenTable.processing(false);
-        _this.subsetEditPanelRef.callbackTableLoaded();
+        _this.loadCallback(_this);
       }
     },
     error: function(xhr,status,error){
@@ -92,7 +93,7 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
  */
 SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
   var _this = this;
-  if(!_this.subsetEditPanelRef.loadComplete) return;
+  if(!_this.subsetEditPanelRef.prepComplete) return;
   $.each(indexes, function(i, e){
     var item = _this.childrenTable.row(e).data();
     switch (action) {

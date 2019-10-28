@@ -72,3 +72,8 @@
     width: calc(100% - 30px);
   }
 }
+
+.editor-wrap div.dataTables_wrapper div.dataTables_processing{
+  width: calc(100% - 30px) !important;
+  left: 15px !important;
+}
