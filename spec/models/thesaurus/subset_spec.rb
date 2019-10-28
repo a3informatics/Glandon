@@ -171,6 +171,50 @@ describe "Thesaurus::Subset" do
     expect(subset.last.uri).to eq(expected_next_uri)
   end
 
+  it "allows move an item after another one, moving the last element to the first position" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5fff")
+    result = subset.move_after(this_uri.to_id)
+    expected_last_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7baaa")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(this_uri)
+    expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
+    expect(Thesaurus::SubsetMember.find(expected_last_uri).member_next).to eq(nil)
+    expect(subset.last.uri).to eq(expected_last_uri)
+  end
+
+  it "allows move an item after another one, moving the first element to the middle" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7baaa")
+    to_after_member_id = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bddd")
+    result = subset.move_after(this_uri.to_id, to_after_member_id)
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")
+    expected_first_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bccc")
+    expected_next_first_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bddd") 
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(expected_first_uri)
+    expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
+    expect(Thesaurus::SubsetMember.find(expected_first_uri).member_next).to eq(expected_next_first_uri)
+  end
+
+  it "allows move an item after another one, moving the first element to the last position" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    this_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7baaa")
+    to_after_member_id = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5fff")
+    result = subset.move_after(this_uri.to_id, to_after_member_id)
+    expected_next_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")
+    expected_first_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bccc")
+    expected_next_first_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7bddd") 
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.members).to eq(expected_first_uri)
+    expect(subset.last.uri).to eq(this_uri)
+    expect(Thesaurus::SubsetMember.find(expected_first_uri).member_next).to eq(expected_next_first_uri)
+  end
+
   it "allows move an item after another one, moving middle element" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
     subset = Thesaurus::Subset.find(subset_uri_1)

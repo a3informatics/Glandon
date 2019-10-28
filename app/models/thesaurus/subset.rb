@@ -129,11 +129,15 @@ class Thesaurus::Subset < IsoConceptV2
     prev_sm = sm.previous_member
     if to_after_member_id.nil? #Moving to the first position
       prev_sm.delete_link(:member_next, sm.uri)
-      prev_sm.add_link(:member_next, sm.next_member.uri)
+      if !sm.next_member.nil?
+        prev_sm.add_link(:member_next, sm.next_member.uri)
+      end
       old_first = self.members
-      self.delete_link(:members, prev_sm.uri)
+      self.delete_link(:members, old_first)
       self.add_link(:members, sm.uri)
-      sm.delete_link(:member_next, sm.next_member.uri)
+      if !sm.next_member.nil?
+        sm.delete_link(:member_next, sm.next_member.uri)
+      end
       sm.add_link(:member_next, old_first)
     else
       last = self.last
@@ -144,12 +148,26 @@ class Thesaurus::Subset < IsoConceptV2
         to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
         to_after_sm.add_link(:member_next, sm.uri)
       else
-        prev_sm.delete_link(:member_next, sm.uri)
-        prev_sm.add_link(:member_next, sm.next_member.uri)
-        sm.delete_link(:member_next, sm.next_member.uri)
-        sm.add_link(:member_next, to_after_sm.next_member.uri)
-        to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
-        to_after_sm.add_link(:member_next, sm.uri)
+        if prev_sm.nil? #Moving the first element
+          self.delete_link(:members, sm.uri)
+          self.add_link(:members, sm.next_member.uri)
+          sm.delete_link(:member_next, sm.next_member.uri)
+          if !to_after_sm.next_member.nil?
+            sm.add_link(:member_next, to_after_sm.next_member.uri)
+          end
+          if !sm.next_member.nil?
+            sm.add_link(:member_next, to_after_sm.next_member.uri)
+            to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
+          end
+          to_after_sm.add_link(:member_next, sm.uri)
+        else
+          prev_sm.delete_link(:member_next, sm.uri)
+          prev_sm.add_link(:member_next, sm.next_member.uri)
+          sm.delete_link(:member_next, sm.next_member.uri)
+          sm.add_link(:member_next, to_after_sm.next_member.uri)
+          to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
+          to_after_sm.add_link(:member_next, sm.uri)
+        end
       end
     end
     transaction_execute
