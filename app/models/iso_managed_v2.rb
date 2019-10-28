@@ -688,6 +688,29 @@ class IsoManagedV2 < IsoConceptV2
     query_results.by_object(:s).first
   end
 
+  # Find By Tag. Find all managed items based on a tag.
+  # 
+  # @param id [String] the id of the tag
+  # @return [Array] Array of hash
+  def self.find_by_tag(id)
+    results = []
+    uri = Uri.new(id: id)
+    query_string = %Q{
+SELECT ?s ?l ?v ?i ?vl WHERE { 
+  #{uri.to_ref} ^isoC:tagged ?s .
+  ?s isoC:label ?l .
+  ?s isoT:hasIdentifier/isoI:version ?v . 
+  ?s isoT:hasIdentifier/isoI:semanticVersion ?sv . 
+  ?s isoT:hasIdentifier/isoI:identifier ?i . 
+  ?s isoT:hasIdentifier/isoI:versionLabel ?vl 
+} ORDER BY DESC(?v) OFFSET 0 LIMIT 1000}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT])
+    query_results.by_object_set([:s, :i, :v, :sv, :l, :vl]).each do |x| 
+      results << {uri: x[:s].to_s, id: x[:s].to_id, identifier: x[:i], version: x[:v], semantic_version: x[:sv], label: x[:l], version_label: x[:vl]}
+    end
+    results
+  end
+
 private
 
   # History previous / next

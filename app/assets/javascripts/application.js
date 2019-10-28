@@ -330,6 +330,25 @@ function getPathStrong(rdfType, id, namespace) {
 }
 
 /*
+* Improved Path function for Strong parameters
+*/
+function getPathStrongV2(rdfType, id, namespace) {
+  if (rdfType == C_FORM) {
+    return "/forms/" + id; 
+  } else if (rdfType == C_BC) {
+    return "/biomedical_concepts/" + id;
+  } else if (rdfType == C_BCT) {
+    return "/biomedical_concept_templates/" + id;
+  } else if (rdfType == C_USERDOMAIN) {
+    return "/sdtm_user_domains/" + id;
+  } else if (rdfType == C_TH) {
+    return "/thesauri/" + id;
+  } else {
+    return ""
+  }
+}
+
+/*
 * Link to
 */
 function linkTo(path, namespace, id) {

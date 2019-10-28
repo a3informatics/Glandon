@@ -97,6 +97,9 @@ Rails.application.routes.draw do
       get :make_current
       post :update_status
     end
+    collection do
+      get :find_by_tag
+    end
   end
   resources :dashboard, only: [:index] do
     collection do
