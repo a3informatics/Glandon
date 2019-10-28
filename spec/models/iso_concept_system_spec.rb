@@ -13,17 +13,8 @@ describe IsoConceptSystem do
   describe "No root" do
 
     before :each do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
-      #clear_iso_concept_object
     end
 
     it "creates the root node if not present" do
@@ -50,17 +41,8 @@ describe IsoConceptSystem do
   describe "Existing data" do
 
   	before :all do
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"  
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
       load_files(schema_files, data_files)
-      #clear_iso_concept_object
     end
 
     it "allows the object to be created from params" do
@@ -115,6 +97,24 @@ describe IsoConceptSystem do
     it "Find ADaM" do
       result = IsoConceptSystem.path(["CDISC", "ADaM"])
       check_file_actual_expected(result.to_h, sub_dir, "path_expected_2.yaml", equate_method: :iso_concept_system_equal)
+    end
+
+  end
+
+  describe "Find All" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "Find All" do
+      result = IsoConceptSystem.root.find_all
+      check_file_actual_expected(result.to_h, sub_dir, "find_all_expected_1.yaml", equate_method: :iso_concept_system_equal)
     end
 
   end
