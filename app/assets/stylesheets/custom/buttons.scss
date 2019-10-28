@@ -201,7 +201,7 @@
 }
 
 .ico-btn-sec.disabled .circular-badge{
-  background: $grey-light !important;
+  background: $grey-light;
 }
 
 .ico-btn-sec .circular-badge.green{
@@ -229,6 +229,18 @@
 .ico-btn-sec:hover{
   text-decoration: none;
   color: $grey-medium;
+}
+
+.card.warning #timeout .circular-badge{
+  background: $accent-color-1;
+}
+
+.card.danger #timeout .circular-badge{
+  background: $accent-color-2;
+}
+
+.card.danger #timeout .ico-btn-sec-text{
+  color: $accent-color-2;
 }
 
 // FIXES: #ignore, do not change
