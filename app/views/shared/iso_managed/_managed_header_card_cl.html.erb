@@ -21,10 +21,10 @@
         <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
         <div class="label-w-margin">
           Synonym(s):
-          <% @tc.synonym.each do |s| %>
+          <% item.synonym.each do |s| %>
             <div class="synonym-label font-light"><%= s.label %></div>
           <% end %>
-          <%= "<span class='font-light'>None</span>".html_safe if @tc.synonym.empty? %>
+          <%= "<span class='font-light'>None</span>".html_safe if item.synonym.empty? %>
         </div>
         <div class="definition-label label-w-margin">
           Definition: <span class="font-light"><%= item.definition %> </span></div>

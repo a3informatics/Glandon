@@ -230,7 +230,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit_subset
     authorize Thesaurus, :edit?
     @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
-    @sub_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @subset_mc = Thesaurus::ManagedConcept.find_full(params[:id])
     @context_id = params[:context_id]
   end
 
