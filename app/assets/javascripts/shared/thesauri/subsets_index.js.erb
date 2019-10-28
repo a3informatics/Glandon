@@ -50,6 +50,7 @@ IndexSubsets.prototype.initTable = function() {
     "processing": true,
     "ajax": {
       "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
+      "data": {"context_id": context_id},
     },
     "rowId": "id",
     "deferLoading": 0,

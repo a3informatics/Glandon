@@ -38,8 +38,12 @@ function SubsetSourceChildrenPanel(url, count, subsetEditPanel) {
   });
   this.add(0);
 
-  this.childrenTable.on('select', function(e, dt, type, indexes){ _this.addItem(indexes); });
-  this.childrenTable.on('deselect', function(e, dt, type, indexes){ _this.removeItem(indexes); });
+  this.childrenTable.on('select', function(e, dt, type, indexes){ _this.updateItem(indexes, "add"); });
+  this.childrenTable.on('deselect', function(e, dt, type, indexes){ _this.updateItem(indexes, "remove"); });
+
+  $("#select-all-btn").click(function(){
+    _this.toggleSelectAll(_this.childrenTable);
+  });
 }
 
 /**
@@ -58,18 +62,18 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
     type: 'GET',
     dataType: 'json',
     success: function(result) {
-      var count = 1;
+      var ordinal = 1;
       for (i=0; i<result.data.length; i++) {
-        rowHTML = _this.subsetEditPanelRef.itemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": count, "item": rowHTML});
-        count++;
+        rowHTML = _this.subsetEditPanelRef.childItemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": ordinal, "item": rowHTML});
+        ordinal++;
       }
       _this.childrenTable.draw();
       if (result.count >= _this.count) {
         _this.add(result.offset + _this.count)
       } else {
         _this.childrenTable.processing(false);
-        _this.subsetEditPanelRef.tableLoaded();
+        _this.subsetEditPanelRef.callbackTableLoaded();
       }
     },
     error: function(xhr,status,error){
@@ -79,21 +83,37 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
   });
 }
 
-SubsetSourceChildrenPanel.prototype.addItem = function (indexes){
+/**
+ * User updates item (add/remove a child from the subset)
+ *
+ * @param [Array] Indexes of the selected children in the Source Code List Table
+ * @param [String] Action of item handler (can be "add" or "remove")
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
   var _this = this;
   if(!_this.subsetEditPanelRef.loadComplete) return;
-  $.each(indexes, function(i,e){
-    var curRow = _this.childrenTable.row(e).data();
-    // Ajax call to add item, get info from data and pass on. On response, call the add row below. Dont forget to add loading.
-    _this.subsetEditPanelRef.addRow(curRow);
+  $.each(indexes, function(i, e){
+    var item = _this.childrenTable.row(e).data();
+    switch (action) {
+      case "add": _this.subsetEditPanelRef.addChild(item);
+        break;
+      case "remove": _this.subsetEditPanelRef.removeChild(item);
+        break;
+    }
   });
 }
 
-SubsetSourceChildrenPanel.prototype.removeItem = function (indexes){
-  var _this = this;
-  $.each(indexes, function(i,e){
-    var curRow = _this.childrenTable.row(e).data();
-    // Ajax call to remove item, get info from data and pass on. On response, call the remove row below. Dont forget to add loading.
-    _this.subsetEditPanelRef.removeRow(curRow);
+/**
+ * Toggles select/deselect all items in the table
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.toggleSelectAll = function(table){
+  if(table.rows('.selected').any())
+    table.rows().deselect();
+  else
+    table.rows().each(function(){
+      this.select();
   });
 }
