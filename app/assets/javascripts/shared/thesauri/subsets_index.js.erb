@@ -15,12 +15,13 @@ function IndexSubsets(id) {
   var counter = 0;
 
   this.columns = [
-    {"data" : "identifier", "width" : "10%"},
-    {"data" : "label", "width" : "10%"},
+    {"data" : "th_label"},
+    {"data" : "identifier"},
+    {"data" : "label"},
     {className: "text-right", "render" : function (data, type, row, meta) {
       var id = "con-menu-" + counter;
       var menu_items =
-      [ { link_path: "row.show_path", disabled: "false", icon: "icon-edit", text: "Edit", },];
+      [ { link_path: row["edit_path"], disabled: "false", icon: "icon-edit", text: "Edit", },];
       counter ++;
       return generateContextMenu(id, menu_items);
       }
@@ -29,20 +30,11 @@ function IndexSubsets(id) {
   this.initTable();
   var _this = this;
 
-  // $('#subsetsModal').on('shown.bs.modal', function () {
-  //  //helps the columns take their widths in modal
-  //  _this.tsModalTable.columns.adjust();
-  // });
-
   // Get selected th callback
   $('#new_subset').click(function() {
     $('#subsetsModal').modal('hide');
     $('#tableModal').modal('show');
-    // REDIRECT TO NEW SUBSET PAGE
-    // var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
-    // _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
   });
-
 }
 
 /**

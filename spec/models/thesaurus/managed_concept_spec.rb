@@ -987,7 +987,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "get subsets" do
-      cl = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
       subsets = cl.get_subsets
       expect(subsets.count).to eq(2)
       expect(subsets[0][:s].to_s).to eq("http://www.s-cubed.dk/S000001/V19#S000001")
@@ -995,7 +995,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "get subsets, none found" do
-      cl2 = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C87162/V19#C87162"))
+      cl2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C87162/V19#C87162"))
       expect(cl2.get_subsets).to eq(nil)
     end
 

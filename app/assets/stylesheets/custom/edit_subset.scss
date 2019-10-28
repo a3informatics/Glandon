@@ -66,3 +66,9 @@
 .editor-wrap table tbody tr.slctd{
   background: $primary-color-bright !important;
 }
+
+@media (max-width: 1090px){
+  .editor-child{
+    width: calc(100% - 30px);
+  }
+}
