@@ -2,12 +2,4 @@ $(document).ready( function() {
   var subsetEditPanel = new SubsetEditChildrenPanel(src_tbl_url, 1000);
   var sourceChildrenPanel = new SubsetSourceChildrenPanel(src_tbl_url, 1000, subsetEditPanel);
 
-  $("#select-all-btn").click(function(){
-    if(sourceChildrenPanel.childrenTable.rows('.selected').any())
-      sourceChildrenPanel.childrenTable.rows().deselect();
-    else
-      sourceChildrenPanel.childrenTable.rows().each(function(){
-        this.select();
-      });
-  });
 });

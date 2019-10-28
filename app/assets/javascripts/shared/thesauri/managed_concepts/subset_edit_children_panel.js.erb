@@ -24,10 +24,6 @@ function SubsetEditChildrenPanel(url, count) {
     "scrollY": 510,
     "scrollCollapse": true,
     "paging": true,
-    // "columnDefs": [{
-    //   "targets": [0],
-    //   "visible": false
-    // }],
     "rowReorder": {
       "dataSrc": "index",
       "selector": 'tr',
@@ -39,8 +35,8 @@ function SubsetEditChildrenPanel(url, count) {
     },
   });
   this.add(0);
-
-  this.childrenTable.on('row-reordered', function(e, details, changes){ _this.onRowReorderEnd(details, changes); });
+  this.childrenTable.columns.adjust();
+  this.childrenTable.on('row-reordered', function(e, details, changes){ _this.reorderChild(changes); });
 }
 
 /**
@@ -59,18 +55,18 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
     type: 'GET',
     dataType: 'json',
     success: function(result) {
-      var count = 1;
+      var ordinal = 1;
       for (i=0; i<result.data.length; i++) {
-        rowHTML =  _this.itemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": count, "item": rowHTML});
-        count ++;
+        rowHTML =  _this.childItemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": ordinal, "item": rowHTML});
+        ordinal ++;
       }
       _this.childrenTable.draw();
       if (result.count >= _this.count) {
         _this.add(result.offset + _this.count)
       } else {
         _this.childrenTable.processing(false);
-        _this.tableLoaded();
+        _this.callbackTableLoaded();
       }
     },
     error: function(xhr,status,error){
@@ -80,53 +76,96 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
   });
 }
 
-SubsetEditChildrenPanel.prototype.addRow = function (data){
+/**
+ * Handler for adding a child to the subset
+ *
+ * @param [JSON Object] item data of format {"index", "item"}
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.addChild = function (item) {
   var _this = this;
-  data["index"] = _this.childrenTable.rows().count() + 1;
-  _this.childrenTable.row.add(data).draw().data();
+  item["index"] = _this.childrenTable.rows().count() + 1;
+  _this.childrenTable.row.add(item).draw();
 }
 
-SubsetEditChildrenPanel.prototype.removeRow = function (row_data){
+/**
+ * Handler for removing a child from the subset
+ *
+ * @param [JSON Object] item data of format {"index", "item"}
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.removeChild = function (item){
   var _this = this;
-  _this.childrenTable.row(function ( idx, data, node ) {
-        return data["item"] == row_data["item"] ? true : false;
-  }).remove().draw();
-  // Update indexes
-  var count = 1;
-  _this.childrenTable.rows().every(function(){
-    this.data()["index"] = count++;
-    this.invalidate();
-  });
+  _this.findRow(_this.childrenTable, "item", item["item"]).remove().draw();
+  _this.updateOrdinals();
 }
 
-SubsetEditChildrenPanel.prototype.onRowReorderEnd = function(details, changes) {
+/**
+ * Handler for changing the order of the subset children
+ *
+ * @param [Array] changeEvent from DataTable callback
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   var _this = this;
-  var newIndex = changes.triggerRow.data()["index"];
-  var targetItem = changes.triggerRow.data()["item"];
-  var movedAfter = _this.childrenTable.row(function ( idx, data, node ) {
-        return data["index"] == newIndex-1 ? true : false;
-  });
-  movedAfter = movedAfter[0].length == 0 ? null : movedAfter.data()["item"];
-  console.log("ITEM: " + targetItem);
-  console.log("MOVED AFTER: " + movedAfter);
+  var targetChild = changeEvent.triggerRow.data()["item"];
+  var newOrdinal = changeEvent.triggerRow.data()["index"];
+  var previousChild = _this.findRow(_this.childrenTable, "index", newOrdinal-1);
+  previousChild = previousChild[0].length == 0 ? null : previousChild.data()["item"];
+  console.log("ITEM: " + targetChild);
+  console.log("MOVED AFTER: " + previousChild);
 }
 
-SubsetEditChildrenPanel.prototype.tableLoaded = function (){
+/**
+ * Callback for when both tables are loaded. The items that are existing in the subset table should be selected in the source codelist table on initial load.
+ *
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.callbackTableLoaded = function (){
   var _this = this;
   var otherTable = $("#source_children_table").DataTable();
   if(_this.childrenTable.rows().any() && otherTable.rows().any()){
     _this.childrenTable.rows().every(function () {
-      var thisRow = this;
-      otherTable.row(function ( idx, data, node ) {
-        return data["item"] == thisRow.data()["item"] ? true : false;
-      }).select();
+       _this.findRow(otherTable, "item", this.data()["item"]).select();
     });
-
     _this.loadComplete = true;
   }
 }
 
-SubsetEditChildrenPanel.prototype.itemHTML = function(data) {
+/**
+ * Finds a row in a DataTable
+ *
+ * @param [DataTable] Table in which to search
+ * @param [String] DataType by which to search ("index", or "item")
+ * @param [Anything] Value which to compare
+ * @return [String] Row from a DataTable
+ */
+SubsetEditChildrenPanel.prototype.findRow = function(table, dataType, value){
+  var row = table.row(function (idx, data, node){ return data[dataType] == value ? true : false; });
+  return row;
+}
+
+/**
+ * Updates ordinals to follow the order of the rows in the table
+ *
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.updateOrdinals = function(){
+  var _this = this;
+  var ordinal = 1;
+  _this.childrenTable.rows().every(function(){
+    this.data()["index"] = ordinal ++;
+    this.invalidate();
+  });
+}
+
+/**
+ * Generates HTML for a child item in the table
+ *
+ * @param [JSON Object] Child item JSON
+ * @return [String] Formatted HTML
+ */
+SubsetEditChildrenPanel.prototype.childItemHTML = function(data) {
   var html = '<div class="font-regular text-small">'+data["preferred_term"]+'</div>';
   html += '<div class="font-light text-small">'+data["notation"]+' ('+data["identifier"]+')</div>';
   return html;
