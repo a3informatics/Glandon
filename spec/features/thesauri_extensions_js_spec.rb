@@ -55,7 +55,7 @@ def editor_table_fill_in(input, text)
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
@@ -69,7 +69,7 @@ def editor_table_fill_in(input, text)
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
@@ -84,7 +84,7 @@ def editor_table_fill_in(input, text)
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99077")
       ui_check_table_cell_extensible('children_table', 1, 5, false)
@@ -99,7 +99,7 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'History'
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       wait_for_ajax_v_long
@@ -144,7 +144,7 @@ def editor_table_fill_in(input, text)
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 460)
+      ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
