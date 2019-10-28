@@ -13,7 +13,6 @@
 function SubsetEditChildrenPanel(url, count) {
   var _this = this;
   this.url = url;
-  this.update_url = "/subset/"+subset_id;
   this.count = count;
   this.columns = [{"data" : "index"},{"data" : "html"}];
   _this.loadComplete = false;
@@ -83,29 +82,28 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
  * @param [JSON Object] item data of format {"index", "item"}
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.addChild = function (item) {
+SubsetEditChildrenPanel.prototype.addChild = function (data) {
   var _this = this;
-  //_this.update("add", )
-  item["index"] = _this.childrenTable.rows().count() + 1;
-  _this.childrenTable.row.add(item).draw();
+  var updateData = {"subset": {"member_id": data["item"]["id"]}};
+  var actionParams = _this.generateActionParams("add");
+  _this.update(actionParams, updateData, data, _this.addChildCallback);
 }
 
 /**
  * Callback after adding a child to the subset
  *
- * @param [JSON Object] item data of format {"index", "item"}
+ * @param [JSON Object] item data of format {"index", "item", "html"}
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.addChildCallback = function (item) {
-  var _this = this;
-  item["index"] = _this.childrenTable.rows().count() + 1;
-  _this.childrenTable.row.add(item).draw();
+SubsetEditChildrenPanel.prototype.addChildCallback = function (data, context) {
+  data["index"] = context.childrenTable.rows().count() + 1;
+  context.childrenTable.row.add(data).draw();
 }
 
 /**
  * Handler for removing a child from the subset
  *
- * @param [JSON Object] item data of format {"index", "item"}
+ * @param [JSON Object] item data of format {"index", "item", "html"}
  * @return [void]
  */
 SubsetEditChildrenPanel.prototype.removeChild = function (item){
@@ -130,17 +128,17 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   console.log("MOVED AFTER: " + previousChild);
 }
 
-SubsetEditChildrenPanel.prototype.update = function (action, updateData, item, callback) {
+SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, item, callback) {
   var _this = this;
   _this.childrenTable.processing(true);
   $.ajax({
-    url: _this.update_url+"/"+action,
+    url: actionParams["path"],
     data: updateData,
-    type: 'POST',
+    type: actionParams["type"],
     dataType: 'json',
     success: function(result) {
-      console.log(result);
-      callback(item);
+      item["item"]["sm_id"] = result["sm_id"];
+      callback(item, _this);
       _this.childrenTable.processing(false);
     },
     error: function(xhr,status,error){
@@ -170,7 +168,7 @@ SubsetEditChildrenPanel.prototype.callbackTableLoaded = function (){
  * Finds a row in a DataTable
  *
  * @param [DataTable] Table in which to search
- * @param [String] DataType by which to search ("index", or "item")
+ * @param [String] DataType by which to search ("index", or "html")
  * @param [Anything] Value which to compare
  * @return [String] Row from a DataTable
  */
@@ -204,6 +202,33 @@ SubsetEditChildrenPanel.prototype.updateOrdinals = function(){
     this.data()["index"] = ordinal ++;
     this.invalidate();
   });
+}
+
+
+/**
+ * Generates an actionParams object with fields "path" and "type" for an ajax request
+ *
+ * @param [String] name of the action (can be "add", "remove", "move_after")
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.generateActionParams = function(actionName){
+  var _this = this;
+  var actionParams = {"path": "", "type": ""};
+  switch (actionName) {
+    case "add":
+      actionParams["path"] = subset_url + "/add";
+      actionParams["type"] = "POST";
+      break;
+    case "remove":
+      actionParams["path"] = subset_url + "/remove";
+      actionParams["type"] = "DELETE";
+      break;
+    case "move_after":
+      actionParams["path"] = subset_url + "/move_after";
+      actionParams["type"] = "PUT";
+      break;
+  }
+  return actionParams;
 }
 
 /**
