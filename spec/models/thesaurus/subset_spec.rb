@@ -131,6 +131,17 @@ describe "Thesaurus::Subset" do
     expect{Thesaurus::SubsetMember.find(remove_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b123 in Thesaurus::SubsetMember.")
   end
 
+  it "allows remove an item from the list, last subset member" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.list.count).to eq(5)
+    remove_uri = Uri.new(uri: "http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5fff")
+    result = subset.remove(remove_uri.to_id)
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    expect(subset.list.count).to eq(4)
+    expect{Thesaurus::SubsetMember.find(remove_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TSM#c2c707b1-c7a2-4ee5-a9ae-bd63a57c5fff in Thesaurus::SubsetMember.")
+  end
+
   it "allows move an item after another one, move to the first position" do
     subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(subset_uri_1)
