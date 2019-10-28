@@ -14,7 +14,7 @@ function SubsetSourceChildrenPanel(url, count, subsetEditPanel) {
   var _this = this;
   this.url = url;
   this.count = count;
-  this.columns = [{"data" : "index"},{"data" : "item"}];
+  this.columns = [{"data" : "index"},{"data" : "html"}];
   this.subsetEditPanelRef = subsetEditPanel;
   this.childrenTable = $('#source_children_table').DataTable( {
     "order": [[ 1, "asc" ]],
@@ -64,8 +64,8 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       var ordinal = 1;
       for (i=0; i<result.data.length; i++) {
-        rowHTML = _this.subsetEditPanelRef.childItemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": ordinal, "item": rowHTML});
+        var rowHTML = _this.subsetEditPanelRef.childItemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": ordinal, "item": result.data[i], "html": rowHTML});
         ordinal++;
       }
       _this.childrenTable.draw();
