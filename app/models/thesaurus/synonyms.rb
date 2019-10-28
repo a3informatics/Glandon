@@ -12,11 +12,11 @@ class Thesaurus
 
     module ClassMethods
 
-    # Synonym_separator. 
-    # @return [String] a character that separates synonyms
-    def synonym_separator 
-      ";"
-    end
+      # Synonym_separator. 
+      # @return [String] a character that separates synonyms
+      def synonym_separator 
+        ";"
+      end
 
     end
 

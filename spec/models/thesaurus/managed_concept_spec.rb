@@ -781,6 +781,23 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml")
     end
 
+    it "children set" do
+      set = [
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51949"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51951"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61019"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V17#C65047_C61032"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61041"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61042"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C62656"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C63321"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64431"), 
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432")
+      ]
+      results = Thesaurus::ManagedConcept.children_set(set)
+      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml")
+    end
+
     it "normal, extended" do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)

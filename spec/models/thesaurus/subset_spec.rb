@@ -21,12 +21,14 @@ describe "Thesaurus::Subset" do
     load_local_file_into_triple_store(sub_dir, "subsets_input_1.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_2.ttl")
     load_local_file_into_triple_store(sub_dir, "subsets_input_3.ttl")
+    load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
   end
  
   after :all do
     delete_all_public_test_files
   end
 
+  # DO NOT DELETE THIS BLOCK. USEFUL TEST DATA CREATION
   # it "creates some test data" do
   #   base_uri = Uri.new(uri: "http://www.example.com/a#b")
   #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
@@ -161,6 +163,17 @@ describe "Thesaurus::Subset" do
     expect(Thesaurus::SubsetMember.find(this_uri).next_member.uri).to eq(expected_next_uri)
     expect(Thesaurus::SubsetMember.find(expected_next_uri).next_member.uri).to eq(expected_next_next_uri)
     expect(subset.last.uri).to eq(expected_last_uri)
+  end
+
+  it "return the list of items, paginated" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cbaaaaa1")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    actual = subset.list_pagination(offset: "0", count: "10")
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_1.yaml")
+    actual = subset.list_pagination(offset: "0", count: "1")
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_2.yaml")
+    actual = subset.list_pagination(offset: "1", count: "2")
+    check_file_actual_expected(actual, sub_dir, "list_pagination_expected_3.yaml")
   end
 
   it "validates a valid object" do
