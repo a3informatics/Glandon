@@ -231,6 +231,14 @@
   color: $grey-medium;
 }
 
+#timeout .circular-badge{
+  background: $secondary-color-light;
+}
+
+#timeout.disabled .circular-badge{
+  background: $grey-light;
+}
+
 .card.warning #timeout .circular-badge{
   background: $accent-color-1;
 }
