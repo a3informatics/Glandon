@@ -7,6 +7,8 @@
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
     <div class="actions-wrap">
+    <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "timeout",
+      icon: "icon-lock", btn_text: "Text", dt_toggle: "", disabled: true } %>
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
