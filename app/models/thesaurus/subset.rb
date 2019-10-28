@@ -55,7 +55,6 @@ class Thesaurus::Subset < IsoConceptV2
         self.add_link(:members, sm.next_member.uri)
       end
     else 
-    byebug
       prev_sm.delete_link(:member_next, sm.uri)
       if !sm.next_member.nil?
         prev_sm.add_link(:member_next, sm.next_member.uri)
