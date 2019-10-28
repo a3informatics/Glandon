@@ -174,6 +174,7 @@ Rails.application.routes.draw do
         post :add
         delete :remove
         put :move_after
+        get :list_children
       end
     end
   end

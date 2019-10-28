@@ -25,6 +25,13 @@ class Thesauri::SubsetsController < ApplicationController
     render json: { }, status: 200
   end
 
+  def list_children
+    authorize Thesaurus, :show?
+    subset = Thesaurus::Subset.find(params[:id])
+    lp = subset.list_pagination(params)
+    render json: {data: lp}, status: 200
+  end
+
   private
     def the_params
       params.require(:subset).permit(:member_id, :after_id)

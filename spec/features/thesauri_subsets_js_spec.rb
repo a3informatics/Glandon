@@ -14,10 +14,10 @@ describe "Thesauri", :type => :feature do
       data_files = ["CT_SUBSETS.ttl", "thesaurus_new_airports.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      # clear_iso_concept_object
+      # clear_iso_namespace_object
+      # clear_iso_registration_authority_object
+      # clear_iso_registration_state_object
       ua_create
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
@@ -34,7 +34,7 @@ describe "Thesauri", :type => :feature do
     end
 
     after :all do
-      NameValue.destroy_all
+      # NameValue.destroy_all
       ua_destroy
     end
 
@@ -47,7 +47,6 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content '2010-03-05 Release'
       wait_for_ajax
       ui_child_search("C66726")
-      
       ui_check_table_info('children_table', 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C66726')]/td/a", :text => 'Show').click
       wait_for_ajax(120)

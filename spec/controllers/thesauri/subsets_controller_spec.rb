@@ -21,7 +21,7 @@ describe Thesauri::SubsetsController do
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
       load_local_file_into_triple_store(sub_dir, "subsets_input_3.ttl")
-
+      load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
     end
 
     it "add" do
@@ -57,6 +57,38 @@ describe Thesauri::SubsetsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(subset.members.to_id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2EyMzBlZWNiLTE1ODAtNGNjOS1hMWFmLTVlMThhNmViMWVlZQ==")
+    end
+
+    it "list_children" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cbaaaaa1")
+      subset = Thesaurus::Subset.find(subset_uri_1)
+      expected = [{ identifier: "C25529",
+                    notation: "HOURS",  
+                    preferred_term: "Hour", 
+                    synonym: "HOURS", 
+                    extensible: false,
+                    definition: "A unit measure of time equal to 3,600 seconds or 60 minutes. It is approximately 1/24 of a median day. (NCI)",
+                    delete: false, 
+                    uri: "http://www.cdisc.org/C66781/V2#C66781_C25529",
+                    id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjU1Mjk=",
+                    ordinal: 2,
+                    member_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2EyMzBlZWNiLTE1ODAtNGNjOS1hMWFmLTVlMThhNmFhYWFhMw=="},
+                  { identifier: "C29846",
+                    notation: "MONTHS",
+                    preferred_term: "Month",
+                    synonym: "MONTHS",
+                    extensible: false,
+                    definition: "One of the 12 divisions of a year as determined by a calendar.  It corresponds to the unit of time of approximately to one cycle of the moon's phases, about 30 days or 4 weeks. (NCI)",
+                    delete: false,
+                    uri: "http://www.cdisc.org/C66781/V2#C66781_C29846",
+                    id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjk4NDY=",
+                    ordinal: 3,
+                    member_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2MyYzcwN2IxLWM3YTItNGVlNS1hOWFlLWJkNjNhNWFhYWFhNA=="}]
+      get :list_children, {id: subset.uri.to_id, offset: "1" , count: "2" }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
   end
