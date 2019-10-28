@@ -13,8 +13,9 @@
 function SubsetEditChildrenPanel(url, count) {
   var _this = this;
   this.url = url;
+  this.update_url = "/subset/"+subset_id;
   this.count = count;
-  this.columns = [{"data" : "index"},{"data" : "item"}];
+  this.columns = [{"data" : "index"},{"data" : "html"}];
   _this.loadComplete = false;
   this.childrenTable = $('#subset_children_table').DataTable( {
     "columns": _this.columns,
@@ -57,8 +58,8 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
     success: function(result) {
       var ordinal = 1;
       for (i=0; i<result.data.length; i++) {
-        rowHTML =  _this.childItemHTML(result.data[i]);
-        var row = _this.childrenTable.row.add({"index": ordinal, "item": rowHTML});
+        var rowHTML =  _this.childItemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": ordinal, "item": result.data[i], "html": rowHTML});
         ordinal ++;
       }
       _this.childrenTable.draw();
@@ -84,6 +85,19 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
  */
 SubsetEditChildrenPanel.prototype.addChild = function (item) {
   var _this = this;
+  //_this.update("add", )
+  item["index"] = _this.childrenTable.rows().count() + 1;
+  _this.childrenTable.row.add(item).draw();
+}
+
+/**
+ * Callback after adding a child to the subset
+ *
+ * @param [JSON Object] item data of format {"index", "item"}
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.addChildCallback = function (item) {
+  var _this = this;
   item["index"] = _this.childrenTable.rows().count() + 1;
   _this.childrenTable.row.add(item).draw();
 }
@@ -96,7 +110,7 @@ SubsetEditChildrenPanel.prototype.addChild = function (item) {
  */
 SubsetEditChildrenPanel.prototype.removeChild = function (item){
   var _this = this;
-  _this.findRow(_this.childrenTable, "item", item["item"]).remove().draw();
+  _this.findRowByItemParam(_this.childrenTable, "id", item["item"]["id"]).remove().draw();
   _this.updateOrdinals();
 }
 
@@ -110,10 +124,30 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   var _this = this;
   var targetChild = changeEvent.triggerRow.data()["item"];
   var newOrdinal = changeEvent.triggerRow.data()["index"];
-  var previousChild = _this.findRow(_this.childrenTable, "index", newOrdinal-1);
+  var previousChild = _this.findRowByParam(_this.childrenTable, "index", newOrdinal-1);
   previousChild = previousChild[0].length == 0 ? null : previousChild.data()["item"];
   console.log("ITEM: " + targetChild);
   console.log("MOVED AFTER: " + previousChild);
+}
+
+SubsetEditChildrenPanel.prototype.update = function (action, updateData, item, callback) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.update_url+"/"+action,
+    data: updateData,
+    type: 'POST',
+    dataType: 'json',
+    success: function(result) {
+      console.log(result);
+      callback(item);
+      _this.childrenTable.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
 }
 
 /**
@@ -126,7 +160,7 @@ SubsetEditChildrenPanel.prototype.callbackTableLoaded = function (){
   var otherTable = $("#source_children_table").DataTable();
   if(_this.childrenTable.rows().any() && otherTable.rows().any()){
     _this.childrenTable.rows().every(function () {
-       _this.findRow(otherTable, "item", this.data()["item"]).select();
+      _this.findRowByItemParam(otherTable, "id", this.data()["item"]["id"]).select();
     });
     _this.loadComplete = true;
   }
@@ -140,8 +174,21 @@ SubsetEditChildrenPanel.prototype.callbackTableLoaded = function (){
  * @param [Anything] Value which to compare
  * @return [String] Row from a DataTable
  */
-SubsetEditChildrenPanel.prototype.findRow = function(table, dataType, value){
+SubsetEditChildrenPanel.prototype.findRowByParam = function(table, dataType, value){
   var row = table.row(function (idx, data, node){ return data[dataType] == value ? true : false; });
+  return row;
+}
+
+/**
+ * Finds a row in a DataTable inside of its item object
+ *
+ * @param [DataTable] Table in which to search
+ * @param [String] DataType by which to search (a field from the "item" object)
+ * @param [Anything] Value which to compare
+ * @return [String] Row from a DataTable
+ */
+SubsetEditChildrenPanel.prototype.findRowByItemParam = function(table, dataType, value){
+  var row = table.row(function (idx, data, node){ return data["item"][dataType] == value ? true : false; });
   return row;
 }
 
