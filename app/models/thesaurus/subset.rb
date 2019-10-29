@@ -94,29 +94,31 @@ class Thesaurus::Subset < IsoConceptV2
   # @return [Array] array of hashes containing the child data
   def list_pagination(params)
     objects = []
-    query_string = %Q{
-      SELECT ?m ?s ?ordinal
-      {
-        ?m th:item ?s
+    if !self.members.nil?
+      query_string = %Q{
+        SELECT ?m ?s ?ordinal
         {
-          SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
-            #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
-            ?mid th:memberNext* ?m .
-            ?m th:item ?e
-          } 
-          GROUP BY ?m ?e
-        }
-      } ORDER BY ?ordinal OFFSET #{params[:offset]} LIMIT #{params[:count]}
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    result_set = query_results.by_object_set([:m, :s, :ordinal])
-    objects = Thesaurus::UnmanagedConcept.children_set(result_set.map{|x| x[:s]})
-    uri_map = result_set.map {|x| [x[:s].to_s, x] }.to_h
-    objects.each do |object| 
-      object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
-      object[:member_id] = uri_map[object[:uri]][:m].to_id
+          ?m th:item ?s
+          {
+            SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
+              #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
+              ?mid th:memberNext* ?m .
+              ?m th:item ?e
+            } 
+            GROUP BY ?m ?e
+          }
+        } ORDER BY ?ordinal OFFSET #{params[:offset]} LIMIT #{params[:count]}
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th])
+      result_set = query_results.by_object_set([:m, :s, :ordinal])
+      objects = Thesaurus::UnmanagedConcept.children_set(result_set.map{|x| x[:s]})
+      uri_map = result_set.map {|x| [x[:s].to_s, x] }.to_h
+      objects.each do |object| 
+        object[:ordinal] = uri_map[object[:uri]][:ordinal].to_i
+        object[:member_id] = uri_map[object[:uri]][:m].to_id
+      end
     end
-    objects
+      objects
   end
 
   # Move After. Move an subset member after another subset member given
