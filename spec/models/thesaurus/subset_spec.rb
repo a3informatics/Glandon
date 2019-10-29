@@ -243,6 +243,19 @@ describe "Thesaurus::Subset" do
     check_file_actual_expected(actual, sub_dir, "list_pagination_expected_3.yaml")
   end
 
+  it "find_mc"  do
+    count = Thesaurus::ManagedConcept.all.count
+    expected_mc = Thesaurus::ManagedConcept.create(uri: "assd")
+    count_2 = Thesaurus::ManagedConcept.all.count
+  byebug
+    subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(expected_mc.uri))
+    expected_mc.is_ordered = subset
+    expected_mc.save
+    mc = subset.find_mc
+    expect(mc).to eq(expected_mc)
+  end
+
+
   it "validates a valid object" do
     result = Thesaurus::Subset.new
     result.uri = Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1")

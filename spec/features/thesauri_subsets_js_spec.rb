@@ -11,13 +11,9 @@ describe "Thesauri", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-      data_files = ["CT_SUBSETS.ttl", "thesaurus_new_airports.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["thesaurus_new_airports_changed.ttl", "thesaurus_concept_new_1.ttl" , "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
-      # clear_iso_concept_object
-      # clear_iso_namespace_object
-      # clear_iso_registration_authority_object
-      # clear_iso_registration_state_object
       ua_create
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
@@ -34,7 +30,6 @@ describe "Thesauri", :type => :feature do
     end
 
     after :all do
-      # NameValue.destroy_all
       ua_destroy
     end
 
@@ -60,6 +55,7 @@ describe "Thesauri", :type => :feature do
 
     # PROBLEM WITH TERMINOLOGY LOAD DIFFERENT ONE
     it "adds a new subset (REQ-MDR-?????)", js:true do
+ 
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :show)
@@ -72,6 +68,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       expect(page).to have_content("Select Terminology")
+       pause
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       wait_for_ajax(120)
       click_button 'Select'

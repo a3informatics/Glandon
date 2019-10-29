@@ -29,6 +29,24 @@ class Thesaurus::Subset < IsoConceptV2
     Errors.application_error(self.class.name, __method__.to_s, "Multiple last subset members found.")
   end
 
+  #Find Managed Concept. Find the managed concept 
+  def find_mc
+      objects = []
+      query_string = %Q{
+        SELECT DISTINCT ?s ?p ?o WHERE {
+          #{self.uri.to_ref} (^th:isOrdered) ?s .
+          ?s ?p ?o
+        }
+      }
+      query_results = Sparql::Query.new.query(query_string, "", [:th])
+      # return nil if query_results.empty?
+      query_results.by_subject.each do |subject, triples|
+        objects << Thesaurus::SubsetMember.from_results(Uri.new(uri: subject), triples)
+      end
+      return objects.first if objects.count == 1
+      Errors.application_error(self.class.name, __method__.to_s, "Multiple MC found.")
+  end
+
   # Add. Add a new subset member to the Subset
   #
   # @param uc_id [String] the identifier of the unmanaged concept to be linked to the new subset member
