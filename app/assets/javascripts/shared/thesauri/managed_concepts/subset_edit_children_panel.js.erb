@@ -162,7 +162,6 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
  * @return [void]
  */
 SubsetEditChildrenPanel.prototype.reorderChildCallback = function (data, response, context) {
-  // Do nothing
 }
 
 SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, item, callback) {
@@ -180,8 +179,37 @@ SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, i
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
       _this.childrenTable.processing(false);
+      _this.prepComplete = false;
+      _this.requestFailCallback(actionParams, item, _this);
     }
   });
+}
+
+/**
+ * Callback when ajax request fails. Updates UI to previous state.
+ *
+ * @param [JSON Object] Parameters of the failed request
+ * @param [JSON Object] child data of format {"index", "item", "html"}
+ * @param [Context] Correct context reference
+ * @return [void]
+ */
+SubsetEditChildrenPanel.prototype.requestFailCallback = function (actionParams, item, context) {
+  var otherTable = $("#source_children_table").DataTable();
+
+  switch (actionParams["type"]) {
+    case "POST":
+      context.findRowByItemParam(otherTable, "id", item["item"]["id"]).deselect();
+      context.prepComplete = true;
+      break;
+    case "DELETE":
+      context.findRowByItemParam(otherTable, "id", item["item"]["id"]).select();
+      context.prepComplete = true;
+      break;
+    case "PUT":
+      context.childrenTable.clear().draw();
+      context.add(0);
+      break;
+  }
 }
 
 /**
