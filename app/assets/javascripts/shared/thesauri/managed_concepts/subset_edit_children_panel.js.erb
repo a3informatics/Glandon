@@ -146,7 +146,7 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   var previousChild = _this.findRowByParam(_this.childrenTable, "index", newOrdinal-1);
   previousChild = previousChild[0].length == 0 ? null : previousChild.data()["item"];
 
-  var actionParams = _this.generateActionParams("move_after", false);
+  var actionParams = _this.generateActionParams("move_after", 1);
   var updateData = {"subset": {"member_id": targetChild["member_id"]}};
   if(previousChild != null)
     updateData["subset"]["after_id"] = previousChild["member_id"];

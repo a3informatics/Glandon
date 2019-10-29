@@ -12,6 +12,9 @@
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :badge => "CL"} do %>
     <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#modify-properties-modal", id: "modify-properties",
+        icon: "icon-edit", btn_text: "Modify properties", dt_toggle: "modal", disabled: false } %>
+      <%= render partial: "shared/iso_managed/modify_properties", :locals => {subset_mc: @subset_mc} %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>

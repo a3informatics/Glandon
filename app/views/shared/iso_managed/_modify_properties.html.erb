@@ -1,0 +1,48 @@
+<% if Rails.env == "test" || Rails.env == "development" %>
+  <%= javascript_include_tag 'rspec_helper' %>
+<% end %>
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="modify-properties-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="tableModalLabel">Properties of <%= subset_mc.identifier %></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <%= form_for(subset_mc, as: :edit, url: thesauri_managed_concept_path(), html: { method: :PATCH }) do |f| %>
+              <%= f.hidden_field :parent_id, :value => "???" %>
+            <div class="form-wrap">
+              <div class="form-group">
+                <%= f.label :notation, "Submission value: "%><br/>
+                <%= f.text_field :notation, autocomplete: "off", autofocus: true %>
+              </div>
+              <div class="form-group">
+                <%= f.label :label, "Label: "%><br/>
+                <%= f.text_field :label, autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :preferred_term, "Preferred term: "%><br/>
+                <%= f.text_field :preferred_term, :value => Thesaurus::PreferredTerm.new.label, autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :synonym, "Synonym(s): "%><br/>
+                <%= f.text_field :synonym, autocomplete: "off" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :definition, "Definition: "%><br/>
+                <%= f.text_area :definition, autocomplete: "off" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn medium" data-dismiss="modal" aria-label="Close">Close</button>
+        <%= f.submit "Submit", id: "submit_button", class: "btn green medium submit-btn" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
