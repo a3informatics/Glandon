@@ -81,10 +81,10 @@ SubsetEditChildrenPanel.prototype.add = function (offset) {
  * @param [JSON Object] item data of format {"index", "item"}
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.addChild = function (data) {
+SubsetEditChildrenPanel.prototype.addChild = function (data, bulkSize) {
   var _this = this;
   var updateData = {"subset": {"member_id": data["item"]["id"]}};
-  var actionParams = _this.generateActionParams("add");
+  var actionParams = _this.generateActionParams("add", bulkSize);
 
   _this.update(actionParams, updateData, data, _this.addChildCallback);
 }
@@ -109,10 +109,10 @@ SubsetEditChildrenPanel.prototype.addChildCallback = function (data, response, c
  * @param [JSON Object] item data of format {"index", "item", "html"}
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.removeChild = function (data){
+SubsetEditChildrenPanel.prototype.removeChild = function (data, bulkSize){
   var _this = this;
   var thisItem = _this.findRowByItemParam(_this.childrenTable, "id", data["item"]["id"]).data();
-  var actionParams = _this.generateActionParams("remove");
+  var actionParams = _this.generateActionParams("remove", bulkSize);
   var updateData = {"subset": {"member_id": thisItem["item"]["member_id"]}};
 
   _this.update(actionParams, updateData, data, _this.removeChildCallback);
@@ -145,7 +145,7 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   var previousChild = _this.findRowByParam(_this.childrenTable, "index", newOrdinal-1);
   previousChild = previousChild[0].length == 0 ? null : previousChild.data()["item"];
 
-  var actionParams = _this.generateActionParams("move_after");
+  var actionParams = _this.generateActionParams("move_after", false);
   var updateData = {"subset": {"member_id": targetChild["member_id"]}};
   if(previousChild != null)
     updateData["subset"]["after_id"] = previousChild["member_id"];
@@ -166,7 +166,8 @@ SubsetEditChildrenPanel.prototype.reorderChildCallback = function (data, respons
 
 SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, item, callback) {
   var _this = this;
-  _this.childrenTable.processing(true);
+  if(actionParams["bulkSize"]==1)
+    _this.childrenTable.processing(true);
   $.ajax({
     url: actionParams["path"],
     data: updateData,
@@ -174,11 +175,13 @@ SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, i
     dataType: 'json',
     success: function(result) {
       callback(item, result, _this);
-      _this.childrenTable.processing(false);
+      if(actionParams["bulkSize"]==1)
+        _this.childrenTable.processing(false);
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      _this.childrenTable.processing(false);
+      if(actionParams["bulkSize"]==1)
+        _this.childrenTable.processing(false);
       _this.prepComplete = false;
       _this.requestFailCallback(actionParams, item, _this);
     }
@@ -274,9 +277,9 @@ SubsetEditChildrenPanel.prototype.updateOrdinals = function(){
  * @param [String] name of the action (can be "add", "remove", "move_after")
  * @return [void]
  */
-SubsetEditChildrenPanel.prototype.generateActionParams = function(actionName){
+SubsetEditChildrenPanel.prototype.generateActionParams = function(actionName, bulkSize){
   var _this = this;
-  var actionParams = {"path": "", "type": ""};
+  var actionParams = {"path": "", "type": "", "bulkSize": bulkSize};
   switch (actionName) {
     case "add":
       actionParams["path"] = subset_url + "/add";
