@@ -245,14 +245,14 @@ describe "Thesaurus::Subset" do
 
   it "find_mc"  do
     count = Thesaurus::ManagedConcept.all.count
-    expected_mc = Thesaurus::ManagedConcept.create(uri: "assd")
-    count_2 = Thesaurus::ManagedConcept.all.count
-  byebug
+    expected_mc = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+    count2 = Thesaurus::ManagedConcept.all.count
     subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(expected_mc.uri))
     expected_mc.is_ordered = subset
     expected_mc.save
     mc = subset.find_mc
-    expect(mc).to eq(expected_mc)
+      byebug
+    expect(mc.uri).to eq(expected_mc.uri)
   end
 
 
