@@ -94,12 +94,17 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
 SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
   var _this = this;
   if(!_this.subsetEditPanelRef.prepComplete) return;
+
+  var bulkSize = indexes.length;
+  if(bulkSize > 1)
+    _this.subsetEditPanelRef.childrenTable.processing(true);
+
   $.each(indexes, function(i, e){
     var item = _this.childrenTable.row(e).data();
     switch (action) {
-      case "add": _this.subsetEditPanelRef.addChild(item);
+      case "add": _this.subsetEditPanelRef.addChild(item, bulkSize--);
         break;
-      case "remove": _this.subsetEditPanelRef.removeChild(item);
+      case "remove": _this.subsetEditPanelRef.removeChild(item, bulkSize--);
         break;
     }
   });
@@ -111,6 +116,7 @@ SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
  * @return [void]
  */
 SubsetSourceChildrenPanel.prototype.toggleSelectAll = function(table){
+  var _this = this;
   if(table.rows({ selected: true }).any())
     table.rows({ selected: true }).deselect();
   else
