@@ -251,7 +251,6 @@ describe "Thesaurus::Subset" do
     expected_mc.is_ordered = subset
     expected_mc.save
     mc = subset.find_mc
-      byebug
     expect(mc.uri).to eq(expected_mc.uri)
   end
 
