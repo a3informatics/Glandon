@@ -111,10 +111,8 @@ SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
  * @return [void]
  */
 SubsetSourceChildrenPanel.prototype.toggleSelectAll = function(table){
-  if(table.rows('.selected').any())
-    table.rows().deselect();
+  if(table.rows({ selected: true }).any())
+    table.rows({ selected: true }).deselect();
   else
-    table.rows().each(function(){
-      this.select();
-  });
+    table.rows({ selected: false }).select();
 }
