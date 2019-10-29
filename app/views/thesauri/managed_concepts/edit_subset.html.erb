@@ -5,7 +5,7 @@
 
 <%= javascript_tag "var source_children_url = '#{show_data_thesauri_managed_concept_path({id: @source_mc, managed_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var subset_children_url = '#{list_children_thesauri_subset_path(@subset)}';" %>
-<%= javascript_tag "var subset_url = '#{@subset_base_url}';" %>
+<%= javascript_tag "var subset_url = '#{add_thesauri_subset_path(@subset).chomp "/add"}';" %>
 
 
 

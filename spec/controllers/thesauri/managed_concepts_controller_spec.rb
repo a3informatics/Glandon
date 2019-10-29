@@ -239,6 +239,7 @@ describe Thesauri::ManagedConceptsController do
 
     it "edit subset" do
       empty_managed_concept = Thesaurus::ManagedConcept.new
+      empty_managed_concept.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(empty_managed_concept.uri))
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(empty_managed_concept)
       expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(empty_managed_concept)
       subset_uri =  Uri.new(uri: "subset_uri")

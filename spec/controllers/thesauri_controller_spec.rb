@@ -118,7 +118,7 @@ describe ThesauriController do
     it 'creates thesaurus' do
       audit_count = AuditTrail.count
       count = Thesaurus.all.count
-      expect(count).to eq(2)
+      expect(count).to eq(3)
       post :create, thesauri: { :identifier => "NEW TH", :label => "New Thesaurus" }
       expect(assigns(:thesaurus).errors.count).to eq(0)
       expect(Thesaurus.all.count).to eq(count + 1)
@@ -129,10 +129,10 @@ describe ThesauriController do
 
     it 'creates thesaurus, fails bad identifier' do
       count = Thesaurus.all.count
-      expect(count).to eq(2)
+      expect(count).to eq(3)
       post :create, thesauri: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
       count = Thesaurus.all.count
-      expect(count).to eq(2)
+      expect(count).to eq(3)
       expect(assigns(:thesaurus).errors.count).to eq(1)
       expect(Thesaurus.all.count).to eq(count)
       expect(flash[:error]).to be_present
