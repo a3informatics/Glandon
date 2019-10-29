@@ -54,8 +54,14 @@ class Thesaurus::Subset < IsoConceptV2
   def add(uc_id)
     transaction_begin
     sm = Thesaurus::SubsetMember.create({item: Uri.new(id: uc_id), uri: Thesaurus::SubsetMember.create_uri(self.uri)})
+    mc = self.find_mc
     last_sm = self.last
-    last_sm.nil? ? self.add_link(:members, sm.uri) : last_sm.add_link(:member_next, sm.uri)
+    if last_sm.nil? #Add the first member
+     self.add_link(:members, sm.uri)
+    else #Add the new member to the last position 
+     last_sm.add_link(:member_next, sm.uri)
+    end
+    mc.add_link(:narrower, sm.item) 
     transaction_execute
     sm
   end
@@ -66,6 +72,7 @@ class Thesaurus::Subset < IsoConceptV2
   def remove(subset_member_id)
     transaction_begin
     sm = Thesaurus::SubsetMember.find(subset_member_id)
+    mc = self.find_mc
     prev_sm = sm.previous_member
     if prev_sm.nil?
       self.delete_link(:members, sm.uri)
@@ -78,6 +85,7 @@ class Thesaurus::Subset < IsoConceptV2
         prev_sm.add_link(:member_next, sm.next_member.uri)
       end
     end
+    mc.delete_link(:narrower, sm.item)
     sm.delete
     transaction_execute
   end
