@@ -220,5 +220,21 @@ module ApplicationHelper
 		@controller_map[controller_name.to_sym]
 	end
 
+  def get_iso_managed_icon(item)
+    case item.rdf_type.to_s.downcase
+    when /thesaur/
+      "icon-terminology"
+    when /form/
+      "icon-forms"
+    when /biomed/
+      "icon-biocon"
+    when /adam/
+      "icon-adam"
+    when /sdtm/
+      "icon-sdtm"
+    else
+      item.label[0].upcase
+    end
+  end
 
 end

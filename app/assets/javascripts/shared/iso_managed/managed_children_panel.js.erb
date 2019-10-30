@@ -50,6 +50,7 @@ ManagedChildrenPanel.prototype.add = function (offset) {
       for (i=0; i<result.data.length; i++) {
         //_this.synonymList(result.data[i]);
         result.data[i]["extensible"]= _this.extensibleConvert(result.data[i]["extensible"]);
+        result.data[i]["tags"] = colorCodeTagsBadge(result.data[i]["tags"]);
         var row = _this.childrenTable.row.add(result.data[i]);
       }
       _this.childrenTable.draw();

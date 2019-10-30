@@ -17,8 +17,10 @@ module Fuseki
       # @param metadata [Hash] the metadata structure.
       # @return [Void] no return
       def initialize(ref, metadata)
+        @set = {}
         @parent = ref
         @metadata = metadata
+        @metadata.each {|key, value| @set[key] = Fuseki::Resource::Property.new(@parent, key, value)}
       end
 
       # Ignore. The property has no metadata, so ignore it
@@ -32,9 +34,10 @@ module Fuseki
       # Property. Get the class for an individual property
       #
       # @param name [String] the name of the property
-      # @return [Fuseki::Resource::Property] the resulting property
+      # @return [Fuseki::Resource::Property] the resulting property, nil if not present
       def property(name)
-        Fuseki::Resource::Property.new(@parent, name, @metadata[name])
+        return nil if ignore?(name)
+        @set[name]
       end
 
       # Property From Triple. Set the property valuye from a triple
@@ -45,20 +48,23 @@ module Fuseki
         return nil if triple[:predicate].to_s == "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" # Ignore rdf:type, set by the class and fixed.
         name = "#{triple[:predicate].fragment.underscore}".to_sym
         return nil if ignore?(name) # We don't know about this predicate ... can happen if we are assigning to a super class
-        object = Fuseki::Resource::Property.new(@parent, name, @metadata[name])
+        object = @set[name]
         object.set_value(triple[:object])
         object
       end
 
-      # Each. Iterate over the proeprites
+      # Each. Iterate over the proprites
       def each
-        @metadata.each do |key, value| 
-          begin
-            yield(Fuseki::Resource::Property.new(@parent, key, value))
-          rescue => e
-            byebug
-          end
+        @set.each do |key, property| 
+          yield(property)
         end
+      end
+
+      # Saved. Set all propeties to saved
+      #
+      # @return [Void] no return
+      def saved
+        @set.each {|key, property| property.saved}
       end
 
       # Assign. Assign a set of properties to the object
@@ -69,7 +75,7 @@ module Fuseki
         params.each do |key, value|
           name = key.to_sym
           next if ignore?(name)
-          self.property(name).set(value)
+          @set[name].set(value)
         end
       end
 

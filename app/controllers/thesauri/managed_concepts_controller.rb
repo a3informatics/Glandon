@@ -7,6 +7,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    @thesaurus_concept.synonyms_and_preferred_terms
     @thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
     @token = get_token(@thesaurus_concept)
     if @token.nil?
@@ -20,7 +21,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def update
     authorize Thesaurus
-    tc = Thesaurus::ManagedConcept.find(params[:id])
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc.synonyms_and_preferred_terms
     th = Thesaurus.find_minimum(edit_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?

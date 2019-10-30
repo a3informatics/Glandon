@@ -3,11 +3,8 @@
 
 <% third_level_managed_item_breadcrumb(@ct, "Terminology", thesauri_index_path, @close_path, "Show:") %>
 <div class="row">
-  <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @ct, :badge => "icon-terminology"} do %>
-    <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-    <!-- RETURN BUTTON -->
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>

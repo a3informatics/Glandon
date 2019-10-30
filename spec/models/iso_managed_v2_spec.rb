@@ -786,4 +786,61 @@ describe "IsoManagedV2" do
 
   end
 
+  describe "Status" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "allows the item status to be updated, not standard" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      item = IsoManagedV2.find_minimum(uri)
+      params = {}
+      params[:registration_status] = "Qualified"
+      params[:previous_state] = "Recorded"
+      params[:administrative_note] = "New note"
+      params[:unresolved_issue] = "Unresolved issues"
+      item.update_status(params)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      actual = IsoManagedV2.find_minimum(uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows the item status to be updated, error" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      item = IsoManagedV2.find_minimum(uri)
+      params = {}
+      params[:registration_status] = "SomethingNew"
+      params[:previous_state] = "SomethingOld"
+      params[:administrative_note] = "New note"
+      params[:unresolved_issue] = "Unresolved issues"
+      item.update_status(params)
+      expect(item.errors.full_messages.to_sentence).to eq("Registration Status: Registration status is invalid and Registration Status: Previous state is invalid")
+      expect(item.errors.count).to eq(2)
+      actual = IsoManagedV2.find_minimum(uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "allows the item status to be updated, standard" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      item = IsoManagedV2.find_minimum(uri)
+      params = {}
+      params[:registrationStatus] = "Standard"
+      params[:previousState] = "Qualified"
+      params[:administrativeNote] = "New note"
+      params[:unresolvedIssue] = "Unresolved issues"
+      item.update_status(params)
+      actual = IsoManagedV2.find_minimum(uri)
+      check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

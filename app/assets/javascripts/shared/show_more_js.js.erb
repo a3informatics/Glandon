@@ -1,0 +1,7 @@
+$(document).ready(function(){
+  $(".show-more-btn").on("click", function(){
+    $(this).parent().toggleClass("collapsed");
+    $(this).find(".icon-arrow-d").toggleClass("arrow-rotate");
+    toggleText($(this).find("span[class^='text-']"), "Show more", "Show less");
+  });
+});

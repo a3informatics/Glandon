@@ -80,4 +80,36 @@ describe Fuseki::Resource::Properties do
     expect(result.get.to_s).to eq("http://www.assero.co.uk/A#A")
   end
 
+  it "same property" do
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
+    properties = Fuseki::Resource::Properties.new(item, metadata)
+    result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"), object: ""})
+    expect(result).to eq(nil)
+    result = properties.property_from_triple({subject: "", predicate: Uri.new(uri: "http://www.assero.co.uk/ISO11179Registration#internationalCodeDesignator"), object: "EEEEE"})
+    expect(result.name).to eq(:international_code_designator)
+    expect(result.get).to eq("EEEEE")
+    item.properties.assign(international_code_designator: "NEW E")
+    item.properties.assign(owner: true)
+    expect(item.properties.property(:international_code_designator).get).to eq("NEW E")
+    results = []
+    item.properties.each {|x| results << "#{x.get}"}  
+    expect(results).to match_array(["", "", "<Not Set>", "NEW E", "true"])
+    item.properties.property(:organization_identifier).set_raw("ORG")
+    results = []
+    item.properties.each {|x| results << "#{x.get}"}  
+    expect(results).to match_array(["", "", "ORG", "NEW E", "true"])
+    results = []
+    item.properties.each {|x| results << x.to_be_saved?}  
+    expect(results).to match_array([true, true, true, true, true])
+  end
+
+  it "persisted" do
+    metadata = TestFRP10.resources
+    item = TestFRP10.new
+    expect(item.properties.property(:organization_identifier).to_be_saved?).to eq(true)
+    item.properties.saved
+    expect(item.properties.property(:organization_identifier).to_be_saved?).to eq(false)
+  end
+
 end

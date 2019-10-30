@@ -1,4 +1,4 @@
-# ISO Concept (V2) 
+# ISO Concept (V2)
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
@@ -7,22 +7,22 @@ class IsoConceptV2 < Fuseki::Base
   configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#Concept",
             base_uri: "http://#{ENV["url_authority"]}/IC",
             uri_unique: :label
-  
+
   data_property :label
   object_property :tagged, cardinality: :many, model_class: "IsoConceptSystem::Node"
 
   validates_with Validator::Field, attribute: :label, method: :valid_label?
-  
+
   # Where Only Or Create
-  #    
+  #
   # @param label [String] the label required or to be created
-  # @return [Thesaurus::Synonym] the found or new synonym object      
+  # @return [Thesaurus::Synonym] the found or new synonym object
   def self.where_only_or_create(label)
     super({label: label}, {uri: create_uri(base_uri), label: label})
   end
 
   # Add Tags. Add tags if not already present
-  #    
+  #
   # @param tags [Array] array of IsoConceptSystem::Node items
   # @return [Void] no return
   def add_tags(tags)
@@ -33,7 +33,7 @@ class IsoConceptV2 < Fuseki::Base
   end
 
   # Add Tag. Add a tag if not already present
-  #    
+  #
   # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
   # @return [Void] no return
   def add_tag(tag)
@@ -46,7 +46,7 @@ class IsoConceptV2 < Fuseki::Base
   def tags
     result = []
     query_string = %Q{
-SELECT DISTINCT ?s ?p ?o WHERE {            
+SELECT DISTINCT ?s ?p ?o WHERE {
   #{self.uri.to_ref} isoC:tagged ?s .
   ?s ?p ?o
 }}
@@ -55,6 +55,35 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
     end
     result
+  end
+
+  # Tag labels. Get the ordered tag labels for the items
+  #
+  # @return [Array] set of ordered String items
+  def tag_labels
+    tags = self.tags
+    tags.map{ |x| x.pref_label }.sort
+  end
+
+  # Other Parents. Determine if this object is connected with other parents objects other than 
+  #   the one specified. The other parents must be of the same type.
+  #
+  # @param [Object] parent the known parent item
+  # @return [Array] the other uris
+  def other_parents(parent, predicates)
+    path = "(#{predicates.map{|x| x.to_ref}.join("/")})"
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE
+      {
+        #{parent.uri.to_ref} #{path} #{self.uri.to_ref} .
+        #{parent.uri.to_ref} rdf:type ?t .
+        ?s rdf:type ?t .
+        FILTER (STR(?s) != STR(#{parent.uri.to_ref})) .
+        ?s #{path} #{self.uri.to_ref} .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [])
+    query_results.by_object(:s)
   end
 
 end

@@ -399,5 +399,36 @@ describe "IsoScopedIdentifierV2" do
     expect(si.uri.to_s).to eq("http://www.assero.co.uk/ID/1#SI")
   end
 
+  it "updates the version label and/or semantic version" do
+    org = IsoNamespace.find_by_short_name("BBB")
+    uri = Uri.new(uri: "http://www.assero.co.uk/SI/BBB/NEW-1")
+    object = IsoScopedIdentifierV2.create(identifier: "NEW 1", version: 1, version_label: "0.1", semantic_version: "1.2.3", has_scope: org)
+    
+    object.update_version(semantic_version: "1.2.3", version_label: "step 1")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.3")
+    expect(object.version_label).to eq("step 1")
+    
+    object.update_version(semantic_version: "1.2.4")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 1")    
+    
+    object.update_version(version_label: "step 2")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
+    
+    object.update_version(version_label: "step 3±")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
+
+    object.update_version(semantic_version: "±")
+    object = IsoScopedIdentifierV2.find(uri)
+    expect(object.semantic_version).to eq("1.2.4")
+    expect(object.version_label).to eq("step 2")
+  end
+
 end
   

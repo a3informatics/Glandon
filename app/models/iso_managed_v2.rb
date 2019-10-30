@@ -567,6 +567,19 @@ class IsoManagedV2 < IsoConceptV2
     partial_update(update_query(params), [:isoT])
   end
 
+  # Update Status. Update the status. If we are moving to a released state then
+  #   update the semantic version
+  #
+  # @params [Hash] params the parameters
+  # @option params [] :
+  # @return [Null] errors are in the error object, if any 
+  def update_status(params)  
+    self.has_state.update(params)
+    return if merge_errors(self.has_state, "Registration Status")
+    self.has_identifier.update(semantic_version: :major) if self.has_state.released_state?
+    merge_errors(self.has_identifier, "Scoped Identifier")
+  end
+
   # Set URIs. Sets the URIs for the managed item and all children
   #
   # @param [IsoRegistrationAuthority] ra the registration authority under which the item is being registered
@@ -581,7 +594,7 @@ class IsoManagedV2 < IsoConceptV2
   # @return [Void] no return
   def set_initial(identifier)
     ra = IsoRegistrationAuthority.owner
-    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: "0.0.1", has_scope: ra.ra_namespace)
+    self.has_identifier = IsoScopedIdentifierV2.from_h(identifier: identifier, version: 1, semantic_version: SemanticVersion.first.to_s, has_scope: ra.ra_namespace)
     self.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: "Incomplete", previous_state: "Incomplete")
     self.last_change_date = Time.now
     set_uris(ra)
@@ -650,7 +663,10 @@ class IsoManagedV2 < IsoConceptV2
 
   # Current. Find the current item for the scope.
   #
-  # @return [object] the current item if founc, nil otherwise
+  # @params [Hash] params
+  # @params params [String] :identifier the identifier
+  # @params params [IsoNamespace] :scope the scope namespace
+  # @return [object] the current item if found, nil otherwise
   def self.current(params)
     date_time = Time.now.iso8601
     query_string = %Q{

@@ -26,6 +26,7 @@ class Thesaurus
     # @param params [String] the set of synonyms as a ";" separated list
     # @return [Array] array of URIs of the existing or new synonyms
     def where_only_or_create_synonyms(synonyms)
+      return [] if synonyms.blank?
       synonym_parts = synonyms.split(self.class.synonym_separator).map(&:strip) # Split and strip any white space
       results = []
       objects = []

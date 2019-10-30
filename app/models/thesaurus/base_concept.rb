@@ -55,6 +55,14 @@ class Thesaurus
 
     end
 
+    # Synonyms and Preferred Terms. Reads the synonyms and preferred terms
+    #
+    # @return [Void] no return
+    def synonyms_and_preferred_terms
+      self.synonym_objects
+      self.preferred_term_objects
+    end
+
     # Children?
     #
     # @return [Boolean] True if there are children, false otherwise
@@ -101,9 +109,9 @@ class Thesaurus
 
       # Get the final result
       query_string = %Q{
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) ?s WHERE\n
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
   {
-    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+    SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
     {
       VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
       {
@@ -114,13 +122,14 @@ class Thesaurus
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
+        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t .} 
       }
-    } ORDER BY ?i ?sy
+    } ORDER BY ?i ?sy ?t
   } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
   }
       query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del]).each do |x|
-        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
+      query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del, :gt]).each do |x|
+        results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
     end
@@ -137,15 +146,15 @@ class Thesaurus
     # Update. Specific update to control synonyms, PT and prevent identifier being updatedf.
     #
     # @param params [Hash] the new properties
-    # @return [Void] no return
+    # @return [Object] the updated object
     def update(params)
       self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
-      if params.key?(:preferred_term)
+      if params.key?(:preferred_term) && !params[:preferred_term].empty? # Preferred Term must not be cleared
         self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term])
         params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
       end
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
-      save
+      self.save
     end
 
     # Parent

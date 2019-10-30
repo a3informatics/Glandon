@@ -124,4 +124,9 @@ describe SemanticVersion do
     expect(b>a).to eq(false)
   end
 
+  it "return first" do
+    a = SemanticVersion.first
+    expect(a.to_s).to eq("0.1.0")
+  end
+
 end

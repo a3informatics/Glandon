@@ -88,6 +88,12 @@ describe IsoConceptSystem do
       expect{IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRConcepts#GSC-C2 in IsoConceptSystem.")
     end
 
+    it "tag separator" do
+      actual = IsoConceptSystem.tag_separator
+      expect(actual).to eq(";")
+    end
+
+
   end
 
   describe "Path" do

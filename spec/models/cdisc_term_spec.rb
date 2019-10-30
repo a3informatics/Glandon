@@ -41,6 +41,7 @@ describe "CdiscTerm" do
         "CT_V10.ttl"
       ]
       load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :all do

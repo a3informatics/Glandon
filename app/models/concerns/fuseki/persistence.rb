@@ -102,13 +102,8 @@ module Fuseki
       def from_results(uri, triples)
         object = new
         object.instance_variable_set("@uri", uri)
-        triples.each do |triple|
-          property = object.properties.property_from_triple(triple)
-          #next if property.nil?
-          #property.object? ? property.set_uri(triple[:object]) : property.set_value(triple[:object])
-        end
-        object.instance_variable_set(:@new_record, false)
-        object.instance_variable_set(:@destroyed, false)
+        triples.each {|triple| property = object.properties.property_from_triple(triple)}
+        object.set_persisted
         object
       end
 
@@ -123,8 +118,7 @@ module Fuseki
             property.replace_with_object(property.klass.from_results_recurse(value, triples))
           end
         end
-        object.instance_variable_set(:@new_record, false)
-        object.instance_variable_set(:@destroyed, false)
+        object.set_persisted
         object
       end
 
@@ -160,28 +154,58 @@ module Fuseki
     # Instance Methods
     # ----------------
 
+    # Persisted? Is the record persisted (in the DB)
+    #
+    # @return [Boolean] true if persisted, otherwise false
     def persisted?
       !(@new_record || @destroyed)
     end
       
+    # New Record? Is the record a new record.
+    #
+    # @return [Boolean] true if new, otherwise false
     def new_record?
       @new_record
     end
 
+    # Destroyed? Has the record been destroyed
+    #
+    # @return [Boolean] true if destroyed, otherwise false
     def destroyed?
       @destroyed
     end
 
+    # Set Persisted. Sets the flags to indicate the record is in the database
+    #
+    # @return [Void] no return
     def set_persisted
       self.instance_variable_set(:@new_record, false)
       self.instance_variable_set(:@destroyed, false)
+      self.properties.saved
     end
 
+    # Id. Gets the id for an object
+    #
+    # @return [Stirng] the id string
     def id
       self.uri.nil? ? nil : self.uri.to_id
     end
 
+    # UUID. Alias for id
+    #
+    # @return [Stirng] the id string
     alias uuid id
+
+    # True Type. Gets the true predicate type for a subject URI.
+    #
+    # @return [Uri] the type predicate
+    def true_type
+      results = []
+      query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
+      query_results = Sparql::Query.new.query(query_string, "", [])
+      Errors.application_error(self.class.name, __method__.to_s, "Unable to find true type for #{self.uri}.") if query_results.empty?
+      query_results.by_object(:t).first
+    end
 
     def transaction_begin
       @transaction = Sparql::Transaction.new
@@ -217,14 +241,24 @@ module Fuseki
       end
       objects
     end
-      
+
+    # Update. Update the object with the specified properties if valud
+    #
+    # @param [Hash] params a hash of properties to be updated
+    # @return [Object] returns the object. Not saved if errors are returned.      
     def update(params={})
       @properties.assign(params) if !params.empty?
-      create_or_update(:update) if valid?(:update)
+      selective_update if valid?(:update)
+      self
     end
 
+    # Save. Will save the object
+    #
+    # @return [Object] returns the object. Not saved if errors are returned.      
     def save
-      create_or_update(:update) if valid?(:update)
+      return self if !valid?(persisted? ? :update : :create)
+      persisted? ? selective_update : create_or_update(:create)
+      self
     end
 
     def delete
@@ -329,13 +363,41 @@ module Fuseki
       self
     end
 
+    # To Selective Update. Perform a selective update
+    #
+    # @return [Object] returns the object
+    def selective_update
+      clear_cache
+      sparql = Sparql::Update.new(@transaction)
+      sparql.default_namespace(@uri.namespace)
+      predicates = to_selective_sparql(sparql)
+      sparql.selective_update(predicates, @uri)
+      @new_record = false
+      self.properties.saved
+      self
+    end
+
     def to_sparql(sparql, recurse=false)
       sparql.add({uri: @uri}, {prefix: :rdf, fragment: "type"}, {uri: self.class.rdf_type})
       self.properties.each do |property|
         next if object_empty?(property)
-        property_to_triple(sparql, property, @uri)
+        property.to_triples(sparql, @uri)
         object_to_triple(sparql, property) if recurse
       end
+    end      
+
+    # To Selective Sparql. The SPARQL for a selective update
+    #
+    # @param [Sparql::Update] sparql the update class
+    # @return [Array] the set of predicate URIs
+    def to_selective_sparql(sparql)
+      results = []
+      self.properties.each do |property|
+        next if !property.to_be_saved?
+        property.to_triples(sparql, @uri)
+        results << property.predicate
+      end
+      results
     end      
 
     def generate_uri(parent)
@@ -359,6 +421,19 @@ module Fuseki
       end
       object
     end   
+
+    # -----------------
+    # Test Only Methods
+    # -----------------
+
+    if Rails.env.test?
+
+      # Check if cache has a key.
+      def inspect_persistence
+        return {new: @new_record, destroyed: @destroyed}
+      end
+
+    end
 
   private
 
@@ -400,17 +475,6 @@ module Fuseki
       Fuseki::Base.class_variable_get(:@@subjects).delete(self.uri.to_s)
     end
 
-    # Create the triple for the property
-    def property_to_triple(sparql, property, subject) #, predicate, objects)
-      objects = property.get
-      objects = [objects] if !objects.is_a? Array
-      objects.each do |object|
-        datatype = self.class.schema_metadata.datatype(property.predicate)
-        statement = property.object? ? {uri: object_uri(object)} : {literal: "#{object_literal(datatype, object)}", primitive_type: datatype}
-        sparql.add({:uri => subject}, {:uri => property.predicate}, statement)
-      end
-    end
-
     def object_to_triple(sparql, property)
       return if !property.object?
       objects = property.get
@@ -431,13 +495,6 @@ module Fuseki
       end
     end
 
-    def object_uri(object)
-      return object if object.is_a? Uri
-      result = object.uri if object.respond_to?(:uri)
-      return result if !result.nil?
-      Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
-    end
-
     def object_empty?(property)
       return false if !property.object? 
       value = property.get
@@ -446,10 +503,6 @@ module Fuseki
       return false
     end
 
-    # Build the object literal as a string
-    def object_literal(type, value)
-      return type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) ? value.iso8601 : value
-    end
   end
 
 end
