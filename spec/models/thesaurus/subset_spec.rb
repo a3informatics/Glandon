@@ -10,6 +10,12 @@ describe "Thesaurus::Subset" do
     return "models/thesaurus/subset"
   end
 
+  def set_mc (subset)
+    mc = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+    mc.is_ordered = subset
+    mc.save
+  end
+
   before :all do
     IsoHelpers.clear_cache
   end
@@ -73,6 +79,7 @@ describe "Thesaurus::Subset" do
   it "allows add a new item to the list" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#f5d17523-104f-412c-a652-b98ae6666666")
     subset = Thesaurus::Subset.find(uri_1)
+    set_mc (subset)
     uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
     result = subset.add(uri_2.to_id)
     expect(subset.last.to_h).to eq(result.to_h)
@@ -84,6 +91,7 @@ describe "Thesaurus::Subset" do
   it "allows add a new item to the list" do
     uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
     subset = Thesaurus::Subset.find(uri_1)
+    set_mc (subset)
     uri_2 = Uri.new(uri: "http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b2f3")
     result = subset.add(uri_2.to_id)
     expect(subset.last.to_h).to eq(result.to_h)
