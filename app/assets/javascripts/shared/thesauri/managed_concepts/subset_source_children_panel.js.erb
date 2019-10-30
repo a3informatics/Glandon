@@ -10,12 +10,13 @@
  *
  * @return [void]
  */
-function SubsetSourceChildrenPanel(url, count, subsetEditPanel, loadCallback) {
+function SubsetSourceChildrenPanel(url, count, subsetEditPanel, loadCallback, lockCallback) {
   var _this = this;
   this.url = url;
   this.count = count;
   this.columns = [{"data" : "index"},{"data" : "html"}];
-  _this.loadCallback = loadCallback;
+  this.loadCallback = loadCallback;
+  this.extendLock = lockCallback;
   this.subsetEditPanelRef = subsetEditPanel;
   this.childrenTable = $('#source_children_table').DataTable( {
     "order": [[ 1, "asc" ]],
@@ -93,6 +94,7 @@ SubsetSourceChildrenPanel.prototype.add = function (offset) {
  */
 SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
   var _this = this;
+  _this.extendLock();
   if(!_this.subsetEditPanelRef.prepComplete) return;
 
   var bulkSize = indexes.length;

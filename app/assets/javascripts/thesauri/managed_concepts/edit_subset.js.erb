@@ -1,11 +1,16 @@
 $(document).ready( function() {
-  var subsetEditPanel = new SubsetEditChildrenPanel(subset_children_url, 1000, loadCallback);
-  var sourceChildrenPanel = new SubsetSourceChildrenPanel(source_children_url, 1000, subsetEditPanel, loadCallback);
+  var subsetEditPanel = new SubsetEditChildrenPanel(subset_children_url, 1000, loadCallback, lockCallback);
+  var sourceChildrenPanel = new SubsetSourceChildrenPanel(source_children_url, 1000, subsetEditPanel, loadCallback, lockCallback);
+  var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
 
   function loadCallback(obj){
     obj.isLoaded = true;
     if(subsetEditPanel.isLoaded && sourceChildrenPanel.isLoaded){
       subsetEditPanel.markExistingItems();
     }
+  }
+
+  function lockCallback() {
+    timer.extendLock();
   }
 });
