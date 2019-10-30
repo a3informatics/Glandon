@@ -8,7 +8,8 @@ $(document).ready(function() {
   }
 
   function lockCallback() {
-    timer.extendLock();
+    if(!timer.expired)
+      timer.extendLock();
   }
 
 })
