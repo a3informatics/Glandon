@@ -101,4 +101,141 @@ describe Fuseki::Persistence do
     expect(result.has_state.to_s).to eq("http://www.assero.co.uk/MDRItems#RS-ACME_TEST-1")
   end
 
+  it "returns the true type" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
+    expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
+  end
+
+  it "generates selective update sparql" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    sparql = Sparql::Update.new
+    actual = item.to_selective_sparql(sparql)
+    expect(sparql.to_triples).to eq("<http://www.assero.co.uk/NS#AAA> isoI:name \"Updated Name Property\"^^xsd:string . \n")
+    expect(actual).to match_array([Uri.new(uri: "http://www.assero.co.uk/ISO11179Identification#name")])
+  end
+
+  it "performs selective update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    item.selective_update
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_1.yaml", equate_method: :hash_equal)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "Modified Short Name"
+    item.selective_update
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_2.yaml", equate_method: :hash_equal)
+  end
+
+  it "performs update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    result = item.update
+    expect(result.errors.count).to eq(0)
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+  # puts "ERROR START"
+  #   item.name = "Updated Name Property, a further update±±±±±"
+  #   result = item.update
+  # puts "ERROR END"
+  #   expect(result.errors.count).to eq(1)
+  #   item.name = "Updated Name Property, a further update"
+  #   item.short_name = "ShortName"
+  #   result = item.update
+  #   expect(result.errors.count).to eq(0)
+  end
+
+  it "performs update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+  puts "ERROR START"
+    item.name = "Updated Name Property, a further update±±±±±"
+    result = item.update
+  puts "ERROR END"
+    expect(result.errors.count).to eq(1)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "ShortName"
+    result = item.update
+    expect(result.errors.count).to eq(0)
+  puts "ERROR START"
+    item.name = "Updated Name Property, a further update±±±±±"
+    result = item.update
+  puts "ERROR END"
+    expect(result.errors.count).to eq(1)
+  end
+
+  it "performs save" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    item.name = "Updated Name Property"
+    result = item.save
+    expect(result.errors.count).to eq(0)
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "save_expected_1.yaml", equate_method: :hash_equal)
+    item.name = "Updated Name Property, a further update±±±±±"
+    result = item.save
+    expect(result.errors.count).to eq(1)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "ShortName"
+    result = item.save
+    expect(result.errors.count).to eq(0)
+    item = IsoNamespace.new
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#SaveTest")
+    item.uri = uri
+    item.name = "Save Test"
+    item.short_name = "SaveTest"
+    item.authority = "www.a3.com"
+    item.save
+    result = IsoNamespace.find(uri)
+    check_file_actual_expected(result.to_h, sub_dir, "save_expected_2.yaml", equate_method: :hash_equal)
+    item = IsoNamespace.new
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#SaveTest2")
+    item.uri = uri
+    item.name = "Save Test"
+    item.short_name = "SaveTest±±±±±±±"
+    item.authority = "www.a3.com"
+    result = item.save
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("Short name contains invalid characters")
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.new(uri: uri, name: "A name", short_name: "SaveTest", authority: "www.a3.com") # Try to create same short_name, should fail.
+    result = item.save
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
+  end
+
+  it "id and uuid" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
+    expect(item.id).to eq(uri.to_id)
+    expect(item.uuid).to eq(uri.to_id)
+  end
+
+  it "persisted" do
+    item = IsoNamespace.new
+    expect(item.inspect_persistence).to eq({new: true, destroyed: false})
+    expect(item.persisted?).to eq(false)
+    expect(item.new_record?).to eq(true)
+    expect(item.destroyed?).to eq(false)
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.new(uri: uri, name: "A name", short_name: "SaveTest", authority: "www.a3.com") # Try to create same short_name, should fail.
+    item = item.save
+    expect(item.inspect_persistence).to eq({new: false, destroyed: false})
+    expect(item.persisted?).to eq(true)
+    expect(item.new_record?).to eq(false)
+    expect(item.destroyed?).to eq(false)
+    item.delete
+    expect(item.inspect_persistence).to eq({new: false, destroyed: true})
+    expect(item.persisted?).to eq(false)
+    expect(item.new_record?).to eq(false)
+    expect(item.destroyed?).to eq(true)
+  end
+
 end

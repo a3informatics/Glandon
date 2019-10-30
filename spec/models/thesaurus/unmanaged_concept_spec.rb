@@ -73,7 +73,170 @@ describe "Thesaurus::UnmanagedConcept" do
     	expect(results.count).to eq(1)
   	end
 
-    it "allows a new child TC to be added, some data" do
+
+    
+    it "allows to determine if TCs different" do
+      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
+      results = tc1.diff?(tc2)
+      expect(results).to eq(true)
+    end
+
+    it "allows to determine if TCs same" do
+      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      results = tc1.diff?(tc2)
+      expect(results).to eq(false)
+    end
+
+    it "allows to determine if TCs different - notation" do
+      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      tc1.notation = "Tx5"
+      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      results = tc1.diff?(tc2)
+      expect(results).to eq(true)
+    end
+
+    it "allows the object to be exported as Hash" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      check_file_actual_expected(tc.to_h, sub_dir, "to_h_expected.yaml")
+    end
+
+    it "allows a TC to be created from Hash" do
+      input = read_yaml_file(sub_dir, "from_hash_input.yaml")
+      tc = Thesaurus::UnmanagedConcept.from_h(input)
+      check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
+    end
+
+    it "allows a TC to be exported as SPARQL I, WILL CURRENT FAIL (Timestamp issue)" do
+      ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      sparql = Sparql::Update.new
+      th = Thesaurus.new
+      #th.uri = Uri.new(uri: "http://www.assero.co.uk/TH#OWNER-TH")
+      tc_1 = Thesaurus::UnmanagedConcept.from_h({
+          uri: "http://www.assero.co.uk/TC#OWNER-A00022", 
+          label: "Axe",
+          identifier: "A00022",
+          defintion: "A definiton",
+          notation: "AXE",
+          preferred_term: Uri.new(uri: "http://www.assero.co.uk/PT#1")
+        })
+      tc_2 = Thesaurus::UnmanagedConcept.new
+      tc_2.uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
+      tc_2.identifier = "A000011"
+      tc_2.definition = "The definition."
+      tc_2.extensible = false
+      tc_2.notation = "NOTATION1"
+      tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 1")
+      tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 2")
+      tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Preferred Term 1")
+      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
+      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
+      th.set_initial("NEW_TH")
+      sparql.default_namespace(th.uri.namespace)
+      th.to_sparql(sparql, true)
+      tc_1.to_sparql(sparql, true)
+      tc_2.to_sparql(sparql, true)
+      #full_path = sparql.to_file << May fix timestamp issue
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")  
+    end
+    
+    it "allows a TC to be exported as SPARQL II" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      sparql = Sparql::Update.new
+      tc.to_sparql(sparql, true)
+    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.ttl")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.ttl") 
+    end
+    
+    it "allows a TC to be destroyed" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      expect(Thesaurus::UnmanagedConcept.exists?("A000011")).to eq(true)
+      result = tc.delete
+      expect(result).to eq(1)
+      expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError, 
+        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")  
+    end
+
+    it "does not allow a TC to be destroyed if it has children" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      params = 
+      {
+        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
+        definition: "Other or mixed race",
+        identifier: "A00004",
+        label: "New",
+        notation: "NEWNEW"
+      }
+      new_object = tc.add_child(params)
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      result = tc.delete
+      expect(result).to eq(0)
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
+    end
+
+    it "returns the parent concept" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      params = 
+      {
+        definition: "Other or mixed race",
+        identifier: "A00004",
+        label: "New",
+        notation: "NEWNEW"
+      }
+      new_object = tc.add_child(params)
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
+      expect(tc.parent).to eq("A000011")
+    end
+
+    it "returns the parent concept, none" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+      params = 
+      {
+        definition: "Other or mixed race",
+        identifier: "A00004",
+        label: "New",
+        notation: "NEWNEW"
+      }
+      tc = Thesaurus::UnmanagedConcept.create(params, tc)
+      expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
+    end
+
+    it "replaces with previous if no difference" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+      tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_previous.uri)
+      expect(tc_previous.narrower.count).to eq(0)
+    end
+
+    it "keeps current if difference" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+      tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
+      tc_previous.update(notation: "SSSSSS")
+      expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
+      expect(tc_current.narrower.count).to eq(0)
+    end
+
+  end
+
+  describe "write tests" do
+  
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_child_identifier", value: "999")
+    end
+
+    after :each do
+      NameValue.destroy_all
+    end
+
+        it "allows a new child TC to be added, some data" do
       params = 
       {
         definition: "Other or mixed race",
@@ -226,110 +389,8 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
       check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_3.yaml")
     end
-    
-    it "allows to determine if TCs different" do
-      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
-      results = tc1.diff?(tc2)
-      expect(results).to eq(true)
-    end
 
-    it "allows to determine if TCs same" do
-      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      results = tc1.diff?(tc2)
-      expect(results).to eq(false)
-    end
-
-    it "allows to determine if TCs different - notation" do
-      tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      tc1.notation = "Tx5"
-      tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      results = tc1.diff?(tc2)
-      expect(results).to eq(true)
-    end
-
-    it "allows the object to be exported as Hash" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      check_file_actual_expected(tc.to_h, sub_dir, "to_h_expected.yaml")
-    end
-
-    it "allows a TC to be created from Hash" do
-      input = read_yaml_file(sub_dir, "from_hash_input.yaml")
-      tc = Thesaurus::UnmanagedConcept.from_h(input)
-      check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
-    end
-
-    it "allows a TC to be exported as SPARQL I, WILL CURRENT FILE (Timestamp issue)" do
-      ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
-      sparql = Sparql::Update.new
-      th = Thesaurus.new
-      #th.uri = Uri.new(uri: "http://www.assero.co.uk/TH#OWNER-TH")
-      tc_1 = Thesaurus::UnmanagedConcept.from_h({
-          uri: "http://www.assero.co.uk/TC#OWNER-A00022", 
-          label: "Axe",
-          identifier: "A00022",
-          defintion: "A definiton",
-          notation: "AXE",
-          preferred_term: Uri.new(uri: "http://www.assero.co.uk/PT#1")
-        })
-      tc_2 = Thesaurus::UnmanagedConcept.new
-      tc_2.uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011")
-      tc_2.identifier = "A000011"
-      tc_2.definition = "The definition."
-      tc_2.extensible = false
-      tc_2.notation = "NOTATION1"
-      tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 1")
-      tc_2.synonym << Thesaurus::Synonym.where_only_or_create("synonym 2")
-      tc_2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("Preferred Term 1")
-      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
-      th.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      th.set_initial("NEW_TH")
-      sparql.default_namespace(th.uri.namespace)
-      th.to_sparql(sparql, true)
-      tc_1.to_sparql(sparql, true)
-      tc_2.to_sparql(sparql, true)
-      #full_path = sparql.to_file << May fix timestamp issue
-    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")  
-    end
-    
-    it "allows a TC to be exported as SPARQL II" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      sparql = Sparql::Update.new
-      tc.to_sparql(sparql, true)
-    #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.ttl")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.ttl") 
-    end
-    
-    it "allows a TC to be destroyed" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      expect(Thesaurus::UnmanagedConcept.exists?("A000011")).to eq(true)
-      result = tc.delete
-      expect(result).to eq(1)
-      expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError, 
-        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")  
-    end
-
-    it "does not allow a TC to be destroyed if it has children" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      params = 
-      {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
-        definition: "Other or mixed race",
-        identifier: "A00004",
-        label: "New",
-        notation: "NEWNEW"
-      }
-      new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      result = tc.delete
-      expect(result).to eq(0)
-      expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
-    end
-
-    it "returns the parent concept" do
+    it "multiple updates, preferred term and synonyms" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       params = 
       {
@@ -339,38 +400,61 @@ describe "Thesaurus::UnmanagedConcept" do
         notation: "NEWNEW"
       }
       new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
-      expect(tc.parent).to eq("A000011")
+      tc_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.update(synonym: "Male")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_4.yaml")
+      tc.update(synonym: "Male; Female")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_5.yaml")
+      tc.update(preferred_term: "PT 1")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_6.yaml")
+      tc.update(preferred_term: "PT 2", synonym: "")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_7.yaml")
+      tc.update(preferred_term: "", synonym: "Male")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_8.yaml")
+      tc.update(synonym: "")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_9.yaml")
     end
 
-    it "returns the parent concept, none" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
+    it "multiple updates, preferred term and synonyms, synonym delete" do
+      parent = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       params = 
       {
         definition: "Other or mixed race",
         identifier: "A00004",
         label: "New",
-        notation: "NEWNEW"
+        notation: "NEWNEW",
       }
-      tc = Thesaurus::UnmanagedConcept.create(params, tc)
-      expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
-    end
-
-    it "replaces with previous if no difference" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
-      tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_previous.uri)
-      expect(tc_previous.narrower.count).to eq(0)
-    end
-
-    it "keeps current if difference" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
-      tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      tc_previous.update(notation: "SSSSSS")
-      expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
-      expect(tc_current.narrower.count).to eq(0)
+      tc = parent.add_child(params)
+      tc_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C")
+      tc.update(synonym: "Male; Female")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_10.yaml")
+      tc.update(synonym: "")
+      tc = Thesaurus::UnmanagedConcept.find(tc_uri)
+      tc.synonym_objects
+      tc.preferred_term_objects
+      check_thesaurus_concept_actual_expected(tc.to_h, sub_dir, "update_expected_11.yaml")
     end
 
   end

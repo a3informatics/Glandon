@@ -326,9 +326,9 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
 
     # Get the final result
     query_string = %Q{
-SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) ?s WHERE\n
+SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
 {
-  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t WHERE
   {
     VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
     {
@@ -338,23 +338,24 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ?s th:extensible ?e .
       ?s th:preferredTerm/isoC:label ?pt .
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
+      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
     }
-  } ORDER BY ?i ?sy
+  } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
 }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
-    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s]).each do |x|
-      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], id: x[:s].to_id}
+    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s]).each do |x|
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], id: x[:s].to_id, tags: x[:gt]}
     end
     results
   end
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params
+  # @params [Hash] params the parameters, can be empty for auto-generated identifier
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
-  def add_child(params)
+  def add_child(params={})
     child = Thesaurus::ManagedConcept.empty_concept
     child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)

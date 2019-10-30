@@ -763,6 +763,7 @@ describe "Thesaurus::ManagedConcept" do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..31)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :all do

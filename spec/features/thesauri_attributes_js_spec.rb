@@ -25,6 +25,7 @@ def editor_table_fill_in(input, text)
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
@@ -32,6 +33,7 @@ def editor_table_fill_in(input, text)
       ua_create
       nv_destroy
       nv_create(parent: "10", child: "999")
+      Token.destroy_all
     end
 
     before :each do
@@ -114,17 +116,23 @@ def editor_table_fill_in(input, text)
       fill_in 'thesauri_identifier', with: "NEW TERM"
       fill_in 'thesauri_label', with: 'New Terminology'
       click_button 'Create'
+    wait_for_ajax
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM')]/td/a", :text => 'History').click
+    wait_for_ajax(10)
       expect(page).to have_content 'History: NEW TERM'
       context_menu_element('history', 4, 'New Terminology', :edit)
-      expect(page).to have_content 'Edit: New Terminology NEW TERM (V0.0.1, 1, Incomplete)'
+    wait_for_ajax
+      expect(page).to have_content 'New Terminology'
+      expect(page).to have_content 'NEW TERM'
+      expect(page).to have_content '0.1.0'
+      expect(page).to have_content 'Incomplete'
       click_button 'New'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn1\n"
       expect(page).to have_content 'Syn1'
-      click_button 'Close'
+      click_link 'Return'
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
@@ -134,32 +142,45 @@ def editor_table_fill_in(input, text)
       fill_in 'thesauri_identifier', with: "NEW TERM V2"
       fill_in 'thesauri_label', with: 'New Terminology V2'
       click_button 'Create'
+    wait_for_ajax(10)
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V2')]/td/a", :text => 'History').click
+    wait_for_ajax(10)
       expect(page).to have_content 'History: NEW TERM V2'
       context_menu_element('history', 4, 'New Terminology V2', :edit)
-      expect(page).to have_content 'Edit: New Terminology V2 NEW TERM V2 (V0.0.1, 1, Incomplete)'
+    wait_for_ajax
+      expect(page).to have_content 'New Terminology V2'
+      expect(page).to have_content 'NEW TERM V2'
+      expect(page).to have_content '0.1.0'
+      expect(page).to have_content 'Incomplete'
       click_button 'New'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList2\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn1; Syn2\n"
       expect(page).to have_content 'Syn1; Syn2'
-      click_button 'Close'
+      click_link 'Return'
     end
 
    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign a synonyms on a code list item (REQ-MDR-SY-030)", js: true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
+    wait_for_ajax(10)
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V3"
       fill_in 'thesauri_label', with: 'New Terminology V3'
       click_button 'Create'
+    wait_for_ajax(10)
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V3')]/td/a", :text => 'History').click
+    wait_for_ajax(10)
       expect(page).to have_content 'History: NEW TERM V3'
       context_menu_element('history', 4, 'New Terminology V3', :edit)
-      expect(page).to have_content 'Edit: New Terminology V3 NEW TERM V3 (V0.0.1, 1, Incomplete)'
+    wait_for_ajax
+      expect(page).to have_content 'New Terminology V3'
+      expect(page).to have_content 'NEW TERM V3'
+      expect(page).to have_content '0.1.0'
+      expect(page).to have_content 'Incomplete'
       click_button 'New'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList3\t"
@@ -171,7 +192,7 @@ def editor_table_fill_in(input, text)
       editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn3\n"
       expect(page).to have_content 'Syn3'
-      click_button 'Close'
+      click_button 'Return'
     end
 
    # NOT WORKING (EDIT TERMINOLOGY)
@@ -364,6 +385,69 @@ def editor_table_fill_in(input, text)
       find(:xpath, "//tr[contains(.,'C85754')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Shared Preferred Terms'
       expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a/div/div", :text => 'UNIT (C71620)')
+    end
+
+    #tags
+    it "allows Tags to be displayed, table, thesaurus level (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children_table", 1, 10, 561)
+      ui_child_search("C99075")
+      ui_check_table_info("children_table", 1, 1, 1)
+      ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
+    end
+
+    it "allows Tags to be displayed, table, managed concept level (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Standard'
+      ui_check_table_info("children_table", 1, 10, 561)
+      ui_child_search("C99075")
+      ui_check_table_cell("children_table", 1, 7, "SDTM\nSEND")
+      ui_check_table_info("children_table", 1, 1, 1)
+      find(:xpath, "//tr[contains(.,'C99075')]/td/a", :text => 'Show').click
+      expect(page).to have_content 'PORTOT'
+      expect(page).to have_content 'C99075'
+      ui_check_table_cell("children_table", 1, 6, "SDTM\nSEND")
+    end
+
+    it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(10)
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
+      context_menu_element('history', 5, '2015-12-18 Release', :show)
+      # Thesaurus - level
+      expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content '46.0.0'
+      expect(page).to have_content 'Show more'
+      find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+      expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
+      find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
+      # Managed concept - level
+      expect(page).to have_content 'DIR'
+      expect(page).to have_content 'C99074'
+      expect(page).to have_content 'Show more'
+      find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      expect(page).to have_content 'Tags: SDTM SEND'
+      find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
+      # Unmanaged concept - level
+      expect(page).to have_content 'TIP'
+      expect(page).to have_content 'C90069'
+      expect(page).to have_content 'Show more'
+      find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      expect(page).to have_content 'Tags: SDTM SEND'
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)

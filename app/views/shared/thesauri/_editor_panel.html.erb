@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'shared/thesauri/editor_panel', 'token_timer' %>
+<%= javascript_include_tag 'shared/thesauri/editor_panel' %>
 <style>
   div.DTE_Inline.DTE_Processing:after {
       background: url('<%= asset_path('ajax-loader-small.gif') %>') no-repeat top left;
@@ -23,6 +23,5 @@
       <tbody>
       </tbody>
     </table>
-    <button id="token_timer_1" type="button" class="btn btn-success">00:00</button>
   </div>
 </div>

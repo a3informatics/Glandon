@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'custom/wide_header_card', media: 'all' %>
+<%= javascript_include_tag 'shared/tags' %>
 
 <div class="col-md-12 card">
   <div class="card-content">
@@ -11,14 +12,14 @@
         <div class="text-large"> <%= item.notation %> </div>
         <div class="label-w-margin">Preferred term: <span class="font-light"> <%= item.preferred_term.label %> </span></div>
         <div class="label-w-margin">
-          Synonym(s):
-          <% @tc.synonym.each do |s| %>
-            <div class="synonym-label font-light"><%= s.label %></div>
-          <% end %>
-          <%= "<span class='font-light'>None</span>".html_safe if @tc.synonym.empty? %>
+          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Synonym(s)", :items => item.synonym.map{|x| x.label} } %>
         </div>
         <div class="definition-label label-w-margin">
-          Definition: <span class="font-light"><%= item.definition %> </span></div>
+          Definition: <span class="font-light"><%= item.definition %> </span>
+        </div>
+        <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
+          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+        <% end %>
       </div>
       <div class="h-inner-wrap">
         <%= yield %>
@@ -26,3 +27,4 @@
     </div>
   </div>
 </div>
+<%= javascript_tag 'colorCodeTagsOutline(".show-more-wrap", ".bg-label");' %>

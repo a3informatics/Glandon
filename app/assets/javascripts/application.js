@@ -391,6 +391,17 @@ jQuery.fn.dataTable.Api.register( 'processing()', function ( show ) {
   });
 });
 
+/*
+* Toggles a string in an element with another without disturbing any other html
+* @param el [Object] jquery object - target
+* @param oTxt [String] original text
+* @param rTxt [String] replacement text
+*/
+function toggleText(el, oTxt, rTxt){
+  el.html(~el.html().indexOf(oTxt) ? el.html().replace(oTxt, rTxt) :  el.html().replace(rTxt, oTxt));
+}
+
+
 function isIE() {
   ua = navigator.userAgent;
   /* MSIE used to detect old browsers and Trident used to newer ones*/

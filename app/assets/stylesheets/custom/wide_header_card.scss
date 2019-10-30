@@ -38,7 +38,7 @@
   font-size: 13pt;
 }
 
-.synonym-label{
+.bg-label{
   padding: 4px 12px;
   border-radius: 20px;
   background: $grey-bright;
@@ -56,16 +56,6 @@
   margin: 0 10px;
   font-family: $font-light;
   color: $grey-medium;
-}
-
-.circular-badge.big.is-ext{
-  border: 3px solid $secondary-color-light;
-  line-height: 65px;
-}
-
-.circular-badge.big.not-ext{
-  border: 3px solid $accent-color-2-light;
-  line-height: 65px;
 }
 
 .label-w-margin{
@@ -93,6 +83,11 @@
   color: white;
   background: $primary-color-bright;
   font-family: $font-light;
+}
+
+.rb{
+  padding: 0;
+  flex-direction: row;
 }
 
 // Mobile view fix
