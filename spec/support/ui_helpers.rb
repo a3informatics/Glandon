@@ -511,15 +511,14 @@ module UiHelpers
   end
 
 
-  def ui_create_terminology
+  def ui_create_terminology(id, label)
       click_navbar_terminology
-      fill_in 'thesauri_identifier', with: 'SELECT TEST'
-      fill_in 'thesauri_label', with: 'Test Terminology'
+      sleep 5
+      fill_in "thesauri_identifier", with: id
+      fill_in "thesauri_label", with: label
       click_button 'Create'
+      expect(page).to have_content 'Terminology was successfully created.'
   end
-
-
-
 
   # Return
   def ui_hit_return(id)

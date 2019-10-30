@@ -67,14 +67,18 @@ def editor_table_fill_in(input, text)
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       wait_for_ajax(7)
-      context_menu_element("history", 5, "2015-06-26 Release", :show)
-      expect(page).to have_content '2015-06-26 Release'
+      context_menu_element("history", 5, "2015-03-27 Release", :show)
+      expect(page).to have_content '2015-03-27 Release'
       ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
-      ui_child_search("C99079")
+      ui_child_search("C96783")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
-      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      find(:xpath, "//tr[contains(.,'C96783')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      pause
+      expect(page).to have_xpath("//*[@id='extend'][@class='ico-btn-sec ']")      
       click_link 'Extend'
+      expect(page).to have_content 'Index: Terminology'
       click_button 'Close'
     end
 
@@ -82,79 +86,85 @@ def editor_table_fill_in(input, text)
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       wait_for_ajax(7)
-      context_menu_element("history", 5, "2015-06-26 Release", :show)
-      expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 504)
+      context_menu_element("history", 5, "2014-12-19 Release", :show)
+      expect(page).to have_content '2014-12-19 Release'
+      ui_check_table_info("children_table", 1, 10, 477)
       expect(page).to have_content 'Extensible'
-      ui_child_search("C99077")
+      ui_child_search("C78737")
       ui_check_table_cell_extensible('children_table', 1, 5, false)
-      # click_link 'Show'
-      find(:xpath, "//tr[contains(.,'C99077')]/td/a", :text => 'Show').click
+      find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_content("CDISC SDTM Relationship Type Terminology")      
       expect(page).to have_xpath("//*[@id='extend'][@class='ico-btn-sec disabled']")      
     end
 
-    it "Select Terminology (REQ-MDR-EXT-010)", js:true do
-      ui_create_terminology
+    it "Select Terminology Container (REQ-MDR-EXT-010)", js:true do
+      ui_create_terminology("Test1", "Test term")
       click_navbar_cdisc_terminology
+      wait_for_ajax(7)
       expect(page).to have_content 'History'
-      context_menu_element("history", 5, "2015-06-26 Release", :show)
-      expect(page).to have_content '2015-06-26 Release'
-      ui_check_table_info("children_table", 1, 10, 504)
-      expect(page).to have_content 'Extensible'
-      ui_child_search("C99079")
-      wait_for_ajax_v_long
+      context_menu_element("history", 5, "2014-10-06 Release", :show)
+      wait_for_ajax
+      expect(page).to have_content '2014-10-06 Release'
+      ui_check_table_info("children_table", 1, 10, 446)
+      ui_child_search("C66770")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
-      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
-      wait_for_ajax_v_long
+      find(:xpath, "//tr[contains(.,'C66770')]/td/a", :text => 'Show').click
+      wait_for_ajax
       click_link 'Extend'
-      wait_for_ajax_v_long
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button 'Select'
-      wait_for_ajax_v_long
+      wait_for_ajax
       expect(page).to have_content 'Extension'
     end
 
     it "Select Extension (REQ-MDR-EXT-010)", js:true do
-      ui_create_terminology
+      ui_create_terminology("Test2", "Test term")
       click_navbar_cdisc_terminology
+      wait_for_ajax
       expect(page).to have_content 'History'
-      context_menu_element("history", 5, "2015-09-25 Release", :show)
-      expect(page).to have_content '2015-09-25 Release'
-      ui_check_table_info("children_table", 1, 10, 463)
-      ui_child_search("C99079")
-      wait_for_ajax_v_long
-      find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
-      wait_for_ajax_v_long
+      context_menu_element("history", 5, "2014-09-26 Release", :show)
+      wait_for_ajax
+      expect(page).to have_content '2014-09-26 Release'
+      ui_check_table_info("children_table", 1, 10, 446)
+      ui_child_search("C116110")
+      find(:xpath, "//tr[contains(.,'C116110')]/td/a", :text => 'Show').click
+      wait_for_ajax
       click_link 'Extend'
-      wait_for_ajax_v_long 
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button 'Select'
-      wait_for_ajax_v_long
+      wait_for_ajax
       expect(page).to have_content 'Extension'
       click_link 'Extension'
-      wait_for_ajax_v_long
-      expect(page).to have_content 'C99079E'
+      wait_for_ajax
+      expect(page).to have_content 'C116110E'
       expect(page).to have_content 'Extending'
     end
 
     it "Select Extending (REQ-MDR-EXT-010)", js:true do
-      ui_create_terminology
+      ui_create_terminology("Test3", "Test term")
       click_navbar_cdisc_terminology
-      expect(page).to have_content 'History'
       wait_for_ajax(7)
+      expect(page).to have_content 'History'
       context_menu_element("history", 5, "2015-06-26 Release", :show)
+      wait_for_ajax
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 504)
       expect(page).to have_content 'Extensible'
       ui_child_search("C99079")
       ui_check_table_cell_extensible('children_table', 1, 5, true)
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
+      wait_for_ajax
       click_link 'Extend'
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button 'Select'
       click_link 'Extension'
+      wait_for_ajax
       expect(page).to have_content 'C99079E'
       click_link 'Extending'
+      wait_for_ajax
       expect(page).to have_content 'C99079'
       expect(page).to have_content 'Extension'
     end
