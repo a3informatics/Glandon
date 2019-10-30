@@ -168,6 +168,29 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'C99079'
       expect(page).to have_content 'Extension'
     end
+    
+    it "Add Code List Item to Extension (REQ-MDR-EXT-010) Failing", js:true do
+      ui_create_terminology("Test2", "Test term")
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2014-09-26 Release", :show)
+      # ui_check_table_info("children_table", 1, 10, 446)
+      ui_child_search("C116110")
+      wait_for_ajax
+      find(:xpath, "//tr[contains(.,'C116110')]/td/a", :text => 'Show').click
+      click_link 'Extend'
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      click_link 'Extension'
+      expect(page).to have_content 'C116110E'
+      click_link 'Add'
+      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
+      input.set("C")
+      input.native.send_keys(:return)
+      wait_for_ajax
+      find(:xpath, "//*[@id='aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNjExMC9WMzkjQzExNjExMF9DMTE2MjQ5']").click
+      click_button 'Add Terms'
+    end
 
     it "allow the user to delete an extension to a code list", js:true do
       
