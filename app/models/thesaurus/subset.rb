@@ -39,7 +39,7 @@ class Thesaurus::Subset < IsoConceptV2
         }
       }
       query_results = Sparql::Query.new.query(query_string, "", [:th])
-      # return nil if query_results.empty?
+      return nil if query_results.empty?
       query_results.by_subject.each do |subject, triples|
         objects << Thesaurus::ManagedConcept.from_results(Uri.new(uri: subject), triples)
       end
