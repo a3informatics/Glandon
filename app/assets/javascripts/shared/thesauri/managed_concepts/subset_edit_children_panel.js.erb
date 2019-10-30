@@ -10,13 +10,14 @@
  *
  * @return [void]
  */
-function SubsetEditChildrenPanel(url, count, loadCallback) {
+function SubsetEditChildrenPanel(url, count, loadCallback, lockCallback) {
   var _this = this;
   this.url = url;
   this.count = count;
   this.columns = [{"data" : "index"},{"data" : "html"}];
   this.prepComplete = false;
   this.loadCallback = loadCallback;
+  this.extendLock = lockCallback;
   this.childrenTable = $('#subset_children_table').DataTable( {
     "columns": _this.columns,
     "pageLength": pageLength, // Gloabl setting
@@ -140,6 +141,8 @@ SubsetEditChildrenPanel.prototype.removeChildCallback = function (data, response
  */
 SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   var _this = this;
+  _this.extendLock();
+
   var oldOrdinal = _this.findRowByItemParam(_this.childrenTable, "id", changeEvent.triggerRow.data()["item"]["id"]).data()["index"];
   var targetChild = changeEvent.triggerRow.data()["item"];
   var newOrdinal = changeEvent.triggerRow.data()["index"];
