@@ -14,11 +14,10 @@ describe "Thesauri", :type => :feature do
       data_files = ["CT_SUBSETS.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
-      ua_create
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_parent_identifier", value: "123")
       NameValue.create(name: "thesaurus_child_identifier", value: "456")
-      
+      ua_create
     end
 
     before :each do
@@ -53,13 +52,8 @@ describe "Thesauri", :type => :feature do
       click_button "Close"
     end
 
-    # PROBLEM WITH TERMINOLOGY LOAD DIFFERENT ONE
     it "adds a new subset (REQ-MDR-?????)", js:true do
-      click_navbar_terminology
-      sleep 1
-      fill_in 'thesauri_identifier', with: 'SELECT TEST'
-      fill_in 'thesauri_label', with: 'Test Terminology'
-      click_button 'Create'
+      ui_create_terminology
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :show)
@@ -68,19 +62,12 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax
       expect(page).to have_content("PKUNIT")
       click_link "Subsets"
-      wait_for_ajax
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
-      wait_for_ajax
       expect(page).to have_content("Select Terminology")
-      wait_for_ajax
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button "Select"
       wait_for_ajax
-      within("#tableModal") do
-        click_button "Select"
-      sleep 0.3
-        wait_for_ajax
-      end
       expect(page).to have_content("Edit Subset")
     end
 
