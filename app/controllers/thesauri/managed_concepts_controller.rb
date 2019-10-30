@@ -233,6 +233,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @subset_mc = Thesaurus::ManagedConcept.find_full(params[:id])
     @context_id = params[:context_id]
     @subset = Thesaurus::Subset.find(@subset_mc.is_ordered.id)
+    @token = get_token(@subset_mc)
   end
 
 # def cross_reference_start
