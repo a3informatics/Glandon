@@ -71,14 +71,13 @@ describe "Thesauri", :type => :feature do
     end
 
     it "adds a new subset (REQ-MDR-?????)", js:true do
-      ui_create_terminology
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :show)
       expect(page).to have_content '2010-03-05 Release'
-      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      find(:xpath, "//tr[contains(.,'C85495')]/td/a", :text => 'Show').click
       wait_for_ajax
-      expect(page).to have_content("PKUNIT")
+      expect(page).to have_content("MSRESCAT")
       click_link "Subsets"
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
@@ -100,7 +99,7 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       expect(page).to have_link("Subsets")
-      click_link "Subsets"    
+      click_link "Subsets"
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax
@@ -114,6 +113,8 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
     end
+
+
 
 
   end

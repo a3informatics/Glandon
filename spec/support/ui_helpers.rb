@@ -513,7 +513,6 @@ module UiHelpers
 
   def ui_create_terminology
       click_navbar_terminology
-			sleep 1
       fill_in 'thesauri_identifier', with: 'SELECT TEST'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Create'
