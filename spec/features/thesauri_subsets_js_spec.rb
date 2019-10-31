@@ -12,17 +12,6 @@ describe "Thesauri", :type => :feature do
     return "features/thesaurus/subset"
   end
 
-  # # Prepares a link between the subset, a managed concept, and a test terminology
-  # def init_subset(subset)
-  #   ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
-  #   mc = ct.add_child({})
-  #   mc = Thesaurus::ManagedConcept.find_minimum(mc.id)
-  #   mc.add_link(:is_ordered, subset.uri)
-  #   mc.save
-  #   @token = Token.obtain(mc, @user)
-  #   subset
-  # end
-
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
@@ -38,7 +27,6 @@ describe "Thesauri", :type => :feature do
     end
 
     before :each do
-      # Token.delete_all
       ua_curator_login
     end
 
@@ -111,6 +99,7 @@ describe "Thesauri", :type => :feature do
       ui_check_table_cell("subset_children_table", 2, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      wait_for_ajax
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
     end
 
