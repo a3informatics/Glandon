@@ -73,6 +73,7 @@
   th:notation "PKUNIT"^^xsd:string ;
   th:definition "Units of measure needed for pharmacokinetic parameters."^^xsd:string ;
   th:extensible "false"^^xsd:boolean ;
+  th:isOrdered <http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cbaaaaa1> ;
   th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85583> ;
   th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85584> ;
   th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85585> ;
