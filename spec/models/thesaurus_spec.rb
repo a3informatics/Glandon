@@ -564,9 +564,9 @@ describe Thesaurus do
 
     it "add a new subset" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
+      subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
       expect(thesaurus.is_top_concept_links.count).to eq(2)
-      new_mc = thesaurus.add_subset(mc_id)
+      new_mc = thesaurus.add_subset(subsetted_mc_id)
       expect(thesaurus.is_top_concept_links.count).to eq(3)
       actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
       expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66781/V2#C66781")

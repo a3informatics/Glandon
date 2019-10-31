@@ -262,13 +262,11 @@ describe Thesauri::ManagedConceptsController do
       empty_managed_concept.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(empty_managed_concept.uri))
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(empty_managed_concept)
       expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(empty_managed_concept)
-      subset_uri =  Uri.new(uri: "subset_uri")
-      source_uri =  Uri.new(uri: "src_uri")
-      context_id = "context id"
-      get :edit_subset, {id: subset_uri.to_id, context_id: context_id, source_mc: source_uri.to_id}
-      expect(assigns(:context_id)).to eq(context_id)
-      expect(assigns(:source_mc)).to eq(empty_managed_concept)
+      expect(Token).to receive(:obtain).and_return(Token.new)
+      get :edit_subset, {id: "1111111", context_id: "22222222", source_mc: "33333333"}
       expect(assigns(:subset_mc)).to eq(empty_managed_concept)
+      expect(assigns(:source_mc)).to eq(empty_managed_concept)
+      expect(assigns(:subset).id).to eq(empty_managed_concept.is_ordered.id)
       expect(response).to render_template("edit_subset")
     end
 

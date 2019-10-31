@@ -53,6 +53,7 @@ Timer.prototype.statusTimeout = function (period) {
 Timer.prototype.getStatus = function () {
   var _this = this;
   $.ajax({
+    context: _this,
     url: "/tokens/" + _this.id + "/status",
     type: "GET",
     dataType: 'json',

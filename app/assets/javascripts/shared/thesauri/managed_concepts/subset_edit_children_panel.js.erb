@@ -2,12 +2,17 @@
 * Subset Edit Children Panel
 *
 * Requires:
-* subset_children_table [Table] the table of children of the subset in the subset edit page
+* source_children_table [Table] the table of children of the source code-list in the subset edit page
+* subset_edit_children_table [Table] the table of children of the subset code-list in the subset edit page
 */
 
 /**
  * Subset Edit Children Panel Constructor
  *
+ * @param [String] url of the data source
+ * @param [Integer] count - amount of items fetched in one call
+ * @param [Function] loadCallback - callback for when the table loads all the data from the ajax
+ * @param [Function] lockCallback - callback to extend the edit lock timer
  * @return [void]
  */
 function SubsetEditChildrenPanel(url, count, loadCallback, lockCallback) {
