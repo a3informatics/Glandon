@@ -1,0 +1,321 @@
+@prefix : <http://www.s-cubed.dk/CT/SUBSETPK#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/CT/SUBSETPK>
+  rdf:type owl:Ontology ;
+.
+:TH123
+  rdf:type th:Thesaurus ;
+  isoC:label "Subset PK"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+  isoT:hasState :TH_RS123 ;
+  isoT:hasIdentifier :TH_SI123 ;
+  isoT:origin "Created from files: 'SDTM Terminology 2010-03-05.xlsx', 'CDASH Terminology 2010-03-05.xlsx', 'ADaM Terminology 2010-03-05.xlsx'"^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:isTopConceptReference :TH_TCR123 ;
+  th:isTopConcept <http://www.s-cubed.dk/S123/V19#S123> ;
+.
+:TH_RS123
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI123
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "SUBSETPK"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:TH_TCR123
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "false"^^xsd:boolean ;
+  bo:ordinal "1"^^xsd:positiveInteger ;
+  bo:reference <http://www.s-cubed.dk/S123/V19#S123> ;
+  bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123>
+  rdf:type th:ManagedConcept ;
+  isoC:label "PK Parameter Units of Measure"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoT:hasState <http://www.s-cubed.dk/S123/V19#S123_RS> ;
+  isoT:hasIdentifier <http://www.s-cubed.dk/S123/V19#S123_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "S123"^^xsd:string ;
+  th:notation "PKUNIT"^^xsd:string ;
+  th:definition "Units of measure needed for pharmacokinetic parameters."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85583> ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85584> ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85585> ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85588> ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85589> ;
+  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85590> ;
+  th:preferredTerm <http://www.assero.co.uk/PT#123> ;
+  th:subsets <http://www.cdisc.org/C85494/V19#C85494> ;
+.
+<http://www.assero.co.uk/PT#123>
+	rdf:type th:PreferredTerm ;
+	isoC:label "PK unit"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "C85494"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85583>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Femtogram per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85583"^^xsd:string ;
+  th:notation "day*fg/mL"^^xsd:string ;
+  th:definition "Days times femtograms per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#64fb4d572e5a844b1b16d8bad45ba862f955713c> ;
+  th:synonym <http://www.assero.co.uk/SYN#ec494c1672e30bc0e288c6a8bb77eaa05346741c> ;
+  th:synonym <http://www.assero.co.uk/SYN#9230a79ef88e00bc59f447cef9179079066bd0ef> ;
+  th:synonym <http://www.assero.co.uk/SYN#b987b2d8946917a4e7baf9a15e13da6c2938dadf> ;
+  th:synonym <http://www.assero.co.uk/SYN#97b4579d38eb59ff3bb124fa1231a46564a27707> ;
+.
+<http://www.assero.co.uk/PT#64fb4d572e5a844b1b16d8bad45ba862f955713c>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Femtogram per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#ec494c1672e30bc0e288c6a8bb77eaa05346741c>
+  rdf:type th:Synonym ;
+  isoC:label "pg*day/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#9230a79ef88e00bc59f447cef9179079066bd0ef>
+  rdf:type th:Synonym ;
+  isoC:label "day*pg/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b987b2d8946917a4e7baf9a15e13da6c2938dadf>
+  rdf:type th:Synonym ;
+  isoC:label "fg*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#97b4579d38eb59ff3bb124fa1231a46564a27707>
+  rdf:type th:Synonym ;
+  isoC:label "d*fg/mL"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85584>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Gram per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85584"^^xsd:string ;
+  th:notation "day*g/mL"^^xsd:string ;
+  th:definition "Days times grams per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#c533bd2fd54838a0811441f06f53838fa44af83a> ;
+  th:synonym <http://www.assero.co.uk/SYN#8ec808b8e27eff8d4627c6439662e85f92beffe5> ;
+  th:synonym <http://www.assero.co.uk/SYN#20d85f6d96a7487826c44649c4b23480b3173e87> ;
+  th:synonym <http://www.assero.co.uk/SYN#f2c362ebfc9c3b39492daff7c2c60bc4291bd8d2> ;
+  th:synonym <http://www.assero.co.uk/SYN#e63452dba35b0e624d3a7e31b24a496d7b2b87c2> ;
+.
+<http://www.assero.co.uk/PT#c533bd2fd54838a0811441f06f53838fa44af83a>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Gram per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#8ec808b8e27eff8d4627c6439662e85f92beffe5>
+  rdf:type th:Synonym ;
+  isoC:label "g*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#20d85f6d96a7487826c44649c4b23480b3173e87>
+  rdf:type th:Synonym ;
+  isoC:label "day*kg/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f2c362ebfc9c3b39492daff7c2c60bc4291bd8d2>
+  rdf:type th:Synonym ;
+  isoC:label "kg*day/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#e63452dba35b0e624d3a7e31b24a496d7b2b87c2>
+  rdf:type th:Synonym ;
+  isoC:label "d*g/mL"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85585>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Kilogram per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85585"^^xsd:string ;
+  th:notation "day*kg/mL"^^xsd:string ;
+  th:definition "Days times kilograms per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#d094d5259e7dc7fdba83a4d573e9daeacbddf793> ;
+  th:synonym <http://www.assero.co.uk/SYN#f0e18f518fc605bf2ab17d603592ec900d5b78f1> ;
+  th:synonym <http://www.assero.co.uk/SYN#b190c970b9b79bc7df7bf6b2ca9754d0af4fbb1b> ;
+  th:synonym <http://www.assero.co.uk/SYN#63b31aa89525ba953aefed1441cec240a8565b80> ;
+  th:synonym <http://www.assero.co.uk/SYN#78a12f9e6dbdb57d36487678ffc32555fefa4652> ;
+.
+<http://www.assero.co.uk/PT#d094d5259e7dc7fdba83a4d573e9daeacbddf793>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Kilogram per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f0e18f518fc605bf2ab17d603592ec900d5b78f1>
+  rdf:type th:Synonym ;
+  isoC:label "kg*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b190c970b9b79bc7df7bf6b2ca9754d0af4fbb1b>
+  rdf:type th:Synonym ;
+  isoC:label "g*day/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#63b31aa89525ba953aefed1441cec240a8565b80>
+  rdf:type th:Synonym ;
+  isoC:label "day*g/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#78a12f9e6dbdb57d36487678ffc32555fefa4652>
+  rdf:type th:Synonym ;
+  isoC:label "d*kg/mL"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85588>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Milligram per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85588"^^xsd:string ;
+  th:notation "day*mg/mL"^^xsd:string ;
+  th:definition "Days times milligrams per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#80c4a09cba44bb23fcb0718d3ae1557980ca9c49> ;
+  th:synonym <http://www.assero.co.uk/SYN#f7d3aac9b6360992aafbdb3492d8f641d5987768> ;
+  th:synonym <http://www.assero.co.uk/SYN#75d72babe269e857ade98fc47b56562d32842b6b> ;
+  th:synonym <http://www.assero.co.uk/SYN#08fed0ba506810ad4e20e9be56408feee82623f0> ;
+  th:synonym <http://www.assero.co.uk/SYN#a7530ee06c920df45846fb0adf439ac72f25a31c> ;
+  th:synonym <http://www.assero.co.uk/SYN#b4e66f41b02ba39a1c17486421265968d39191fa> ;
+  th:synonym <http://www.assero.co.uk/SYN#46565694b90520a20669d9813a431b0819edcbeb> ;
+.
+<http://www.assero.co.uk/PT#80c4a09cba44bb23fcb0718d3ae1557980ca9c49>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Milligram per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#f7d3aac9b6360992aafbdb3492d8f641d5987768>
+  rdf:type th:Synonym ;
+  isoC:label "mg*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#75d72babe269e857ade98fc47b56562d32842b6b>
+  rdf:type th:Synonym ;
+  isoC:label "day*g/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#08fed0ba506810ad4e20e9be56408feee82623f0>
+  rdf:type th:Synonym ;
+  isoC:label "g*day/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#a7530ee06c920df45846fb0adf439ac72f25a31c>
+  rdf:type th:Synonym ;
+  isoC:label "day*ug/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#b4e66f41b02ba39a1c17486421265968d39191fa>
+  rdf:type th:Synonym ;
+  isoC:label "ug*day/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#46565694b90520a20669d9813a431b0819edcbeb>
+  rdf:type th:Synonym ;
+  isoC:label "d*mg/mL"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85589>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Millimole per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85589"^^xsd:string ;
+  th:notation "day*mmol/mL"^^xsd:string ;
+  th:definition "Days times millimoles per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#3adfe76bc572fa25eea9913ab7780e43efbdb478> ;
+  th:synonym <http://www.assero.co.uk/SYN#5ec71ea4d3b49fa5945be0f10f8c7dd579567604> ;
+  th:synonym <http://www.assero.co.uk/SYN#93538a2a3c08296f08a18e4d906afc1d1acc3b62> ;
+  th:synonym <http://www.assero.co.uk/SYN#ea6afa4261014154280972babe85333261c27232> ;
+  th:synonym <http://www.assero.co.uk/SYN#4e841041ce871b87d946ac91aaaaaefc54ee263c> ;
+  th:synonym <http://www.assero.co.uk/SYN#299956709835c08eb622fe708d8ce8218581a9e6> ;
+  th:synonym <http://www.assero.co.uk/SYN#8970b7a57874c60c599e8920ff97ec136363ef99> ;
+.
+<http://www.assero.co.uk/PT#3adfe76bc572fa25eea9913ab7780e43efbdb478>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Millimole per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#5ec71ea4d3b49fa5945be0f10f8c7dd579567604>
+  rdf:type th:Synonym ;
+  isoC:label "mmol*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#93538a2a3c08296f08a18e4d906afc1d1acc3b62>
+  rdf:type th:Synonym ;
+  isoC:label "day*mol/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#ea6afa4261014154280972babe85333261c27232>
+  rdf:type th:Synonym ;
+  isoC:label "mol*day/L"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#4e841041ce871b87d946ac91aaaaaefc54ee263c>
+  rdf:type th:Synonym ;
+  isoC:label "day*umol/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#299956709835c08eb622fe708d8ce8218581a9e6>
+  rdf:type th:Synonym ;
+  isoC:label "umol*day/uL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#8970b7a57874c60c599e8920ff97ec136363ef99>
+  rdf:type th:Synonym ;
+  isoC:label "d*mmol/mL"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S123/V19#S123_C85590>
+  rdf:type th:UnmanagedConcept ;
+  isoC:label "Day Times Mole per Milliliter"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  th:identifier "C85590"^^xsd:string ;
+  th:notation "day*mol/mL"^^xsd:string ;
+  th:definition "Days times moles per milliliter."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#5e6bd38c91106e100119a0384201c0bead9c66a8> ;
+  th:synonym <http://www.assero.co.uk/SYN#e76f45921b8e0e15a42d4aaab72ade21df6a1945> ;
+  th:synonym <http://www.assero.co.uk/SYN#2a8e05d570519250c54a8f8fbf5573ada4d5dbca> ;
+.
+<http://www.assero.co.uk/PT#5e6bd38c91106e100119a0384201c0bead9c66a8>
+  rdf:type th:PreferredTerm ;
+  isoC:label "Day Times Mole per Milliliter"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#e76f45921b8e0e15a42d4aaab72ade21df6a1945>
+  rdf:type th:Synonym ;
+  isoC:label "mol*day/mL"^^xsd:string ;
+.
+<http://www.assero.co.uk/SYN#2a8e05d570519250c54a8f8fbf5573ada4d5dbca>
+  rdf:type th:Synonym ;
+  isoC:label "d*mol/mL"^^xsd:string ;
+.

@@ -11,7 +11,7 @@ describe "Thesauri", :type => :feature do
   describe "The Content Admin User can", :type => :feature do
 
     before :all do
-      data_files = ["CT_SUBSETS.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["CT_SUBSETS.ttl", "CT_SUBSETS_new.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
       NameValue.destroy_all
@@ -69,6 +69,34 @@ describe "Thesauri", :type => :feature do
       click_button "Select"
       wait_for_ajax
       expect(page).to have_content("Edit Subset")
+    end
+
+    it "allows to edit a subset", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax(120)
+      expect(page).to have_content '2010-03-05 Release'
+      wait_for_ajax
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax(120)
+      # expect(page).to have_content("CDISC SDTM Pharmaceutical Dosage Form Terminology")
+      expect(page).to have_link("Subsets")
+      click_link "Subsets"
+
+      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+
+      # find(:xpath, "//*[@id='con-menu-0']").click
+
+      
+
+      wait_for_ajax
+      pause
+      # ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
+      # ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
+      # click_button "Close"
+      
     end
 
 
