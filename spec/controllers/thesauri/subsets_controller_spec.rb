@@ -14,9 +14,10 @@ describe Thesauri::SubsetsController do
   def init_subset(subset)
     ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
     mc = ct.add_child({})
-    mc = Thesaurus::ManagedConcept.find(mc.id)
+    mc = Thesaurus::ManagedConcept.find_minimum(mc.id)
     mc.add_link(:is_ordered, subset.uri)
     mc.save
+    @token = Token.obtain(mc, @user)
     subset
   end
 
@@ -35,7 +36,6 @@ describe Thesauri::SubsetsController do
     before :each do
       load_local_file_into_triple_store(sub_dir, "subsets_input_3.ttl")
       load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
-      expect(Token).to receive(:find_token).and_return(Token.new)
     end
 
     after :each do
@@ -63,7 +63,6 @@ describe Thesauri::SubsetsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFMjNTQxNzZjNTktYjgwMC00M2Y1LTk5YzMtZDEyOWNiNTYzYzc5")
       subset = Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79"))
       expect(subset.members.to_id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNIzY3ODcxZGUzLTVlMTMtNDJkYS05ODE0LWU5ZmMzY2U3YmNjYw==")
-
     end
 
     it "move after" do
@@ -75,6 +74,17 @@ describe Thesauri::SubsetsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(subset.members.to_id).to eq("aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2EyMzBlZWNiLTE1ODAtNGNjOS1hMWFmLTVlMThhNmViMWVlZQ==")
+    end
+
+    it "rejects without token" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      subset = init_subset(Thesaurus::Subset.find(Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563c79")))
+      member_uri = Uri.new(uri:"http://www.assero.co.uk/TSM#a230eecb-1580-4cc9-a1af-5e18a6eb1eee")
+      @token.release
+      put :move_after, {id: subset.uri.to_id, subset:{member_id: member_uri.to_id}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body)["errors"]).to eq(["The edit lock has timed out."])
     end
 
   end
