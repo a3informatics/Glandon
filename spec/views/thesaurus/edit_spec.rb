@@ -52,7 +52,8 @@ describe 'thesauri/edit.html.erb', :type => :view do
 
   #puts response.body
 
-    expect(rendered).to have_content("CDISC Extensions CDISC EXT (V, 1, Standard)")
+    expect(rendered).to have_content("CDISC Extensions")
+    expect(rendered).to have_content("Identifier: CDISC EXT")
     expect(rendered).to have_content("An identifier will be automatically generated")
 
   end
@@ -77,7 +78,8 @@ describe 'thesauri/edit.html.erb', :type => :view do
 
   #puts response.body
 
-    expect(rendered).to have_content("CDISC Extensions CDISC EXT (V, 1, Standard)")
+    expect(rendered).to have_content("CDISC Extensions")
+    expect(rendered).to have_content("Identifier: CDISC EXT")
     expect(rendered).to have_content("Identifier:")
     expect_button_to_be_visible("tnp_identifier")
     #expect_button_to_not_be_visible(id)
@@ -104,8 +106,9 @@ describe 'thesauri/edit.html.erb', :type => :view do
 
   #puts response.body
 
-    expect(rendered).to have_content("CDISC Extensions CDISC EXT (V, 1, Standard)")
-    expect(rendered).to have_content("Identifier:")
+    expect(rendered).to have_content("CDISC Extensions")
+    expect(rendered).to have_content("Identifier: CDISC EXT")
+    expect(rendered).to have_content("New Code List")
     expect_button_to_be_visible("tnp_identifier")
 
   end
@@ -130,8 +133,8 @@ describe 'thesauri/edit.html.erb', :type => :view do
 
   #puts response.body
 
-    expect(rendered).to have_content("CDISC Extensions CDISC EXT (V, 1, Standard)")
-    expect(rendered).to have_content("Identifier:")
+    expect(rendered).to have_content("CDISC Extensions")
+    expect(rendered).to have_content("Identifier: CDISC EXT")
     expect(rendered).to have_content("XXX")
     expect_button_to_be_visible("tnp_identifier")
 
@@ -157,8 +160,8 @@ describe 'thesauri/edit.html.erb', :type => :view do
 
   #puts response.body
 
-    expect(rendered).to have_content("CDISC Extensions CDISC EXT (V, 1, Standard)")
-    expect(rendered).to have_content("Identifier:")
+    expect(rendered).to have_content("CDISC Extensions")
+    expect(rendered).to have_content("Identifier: CDISC EXT")
     expect_button_to_be_visible("tnp_identifier")
 
   end
