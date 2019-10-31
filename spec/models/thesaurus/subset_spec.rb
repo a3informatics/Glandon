@@ -21,6 +21,9 @@ describe "Thesaurus::Subset" do
   end
 
   before :all do
+		NameValue.destroy_all
+		NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+		NameValue.create(name: "thesaurus_child_identifier", value: "456")
     IsoHelpers.clear_cache
   end
 

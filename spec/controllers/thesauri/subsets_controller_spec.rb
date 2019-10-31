@@ -27,6 +27,9 @@ describe Thesauri::SubsetsController do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..20)
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+    NameValue.create(name: "thesaurus_child_identifier", value: "456")
   end
 
   describe "Authorized User - manipulate subset" do
