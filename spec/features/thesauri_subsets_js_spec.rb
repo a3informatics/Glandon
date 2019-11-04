@@ -27,6 +27,7 @@ describe "Thesauri", :type => :feature do
     end
 
     before :each do
+      Token.restore_timeout
       ua_curator_login
     end
 
@@ -76,6 +77,49 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content("Edit Subset")
     end
 
+    it "edit timeout warnings and extend", js:true do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax
+      expect(page).to have_content '2010-03-05 Release'
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_link("Subsets")
+      click_link "Subsets"
+      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      wait_for_ajax
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#imh_header")[:class].include?("warning")
+      page.find("#timeout").click
+      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      page.find("#imh_header")[:class].include?("danger")
+      sleep 28
+      page.find("#timeout")[:class].include?("disabled")
+      page.find("#imh_header")[:class].include?("danger")
+    end
+
+    it "prevents add, remove and move item in subset, when token expires", js:true do
+      Token.set_timeout(10)
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax
+      expect(page).to have_content '2010-03-05 Release'
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_link("Subsets")
+      click_link "Subsets"
+      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      sleep 11
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      expect(page).to have_content("The edit lock has timed out.")
+    end
+
     it "allows to edit a subset, add, remove and move_after item", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax(7)
@@ -96,14 +140,13 @@ describe "Thesauri", :type => :feature do
       source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[2]")
       target = page.find(:xpath, "//*[@id='source_children_table']/tbody/tr[3]")
       source.drag_to(target)
+      wait_for_ajax
       ui_check_table_cell("subset_children_table", 2, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
     end
-
-
 
 
   end
