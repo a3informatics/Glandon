@@ -101,6 +101,14 @@ class IsoManagedV2 < IsoConceptV2
     return self.owner.uri == ra_owner.uri
   end
 
+  # Is Owned By CDISC?
+  #
+  # @return [Boolean] True if owned, false otherwise
+  def is_owned_by_cdisc?
+    cdisc_ns = IsoRegistrationAuthority.cdisc_scope
+    return self.owner.ra_namespace.uri == cdisc_ns.uri
+  end
+
   # Return the registration status
   #
   # @return [string] The status
