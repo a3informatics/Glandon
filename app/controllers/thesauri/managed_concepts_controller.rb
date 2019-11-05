@@ -19,32 +19,32 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
-  # def update
-  #   authorize Thesaurus
-  #   tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-  #   tc.synonyms_and_preferred_terms
-  #   th = Thesaurus.find_minimum(edit_params[:parent_id])
-  #   token = Token.find_token(th, current_user)
-  #   if !token.nil?
-  #     tc = tc.update(edit_params)
-  #     if tc.errors.empty?
-  #       AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
-  #       render :json => {:data => [tc.simple_to_h]}, :status => 200
-  #     else
-  #       errors = []
-  #       tc.errors.each do |name, msg|
-  #         errors << {name: name, status: msg}
-  #       end
-  #       render :json => {:fieldErrors => errors}, :status => 200
-  #     end
-  #   else
-  #     flash[:error] = "The edit lock has timed out."
-  #     render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
-  #   end
-  # end
-
   def update
     authorize Thesaurus
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc.synonyms_and_preferred_terms
+    th = Thesaurus.find_minimum(edit_params[:parent_id])
+    token = Token.find_token(th, current_user)
+    if !token.nil?
+      tc = tc.update(edit_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
+        render :json => {:data => [tc.simple_to_h]}, :status => 200
+      else
+        errors = []
+        tc.errors.each do |name, msg|
+          errors << {name: name, status: msg}
+        end
+        render :json => {:fieldErrors => errors}, :status => 200
+      end
+    else
+      flash[:error] = "The edit lock has timed out."
+      render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
+    end
+  end
+
+  def update_properties
+    authorize Thesaurus, :edit?
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
     token = Token.find_token(tc, current_user)
@@ -53,7 +53,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Managed Concept updated.") if token.refresh == 1
         redirect_to request.referrer
-        #render :json => {:data => [tc.simple_to_h]}, :status => 200
       else
         redirect_to request.referrer
         errors = []
@@ -62,9 +61,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
         end
       end
     else
-      redirect_to request.referrer
+      redirect_to thesauri_managed_concept_path(id: tc.subsets_links.to_id, managed_concept: {context_id: params[:context_id]})
       flash[:error] = "The edit lock has timed out."
-      #render :json => {:errors => ["The edit lock has timed out."] }, :status => 422
     end
   end
 

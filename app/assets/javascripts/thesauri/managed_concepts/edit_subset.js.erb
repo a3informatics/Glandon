@@ -2,6 +2,7 @@ $(document).ready( function() {
   var subsetEditPanel = new SubsetEditChildrenPanel(subset_children_url, 1000, loadCallback, lockCallback);
   var sourceChildrenPanel = new SubsetSourceChildrenPanel(source_children_url, 1000, subsetEditPanel, loadCallback, lockCallback);
   var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
+  var unload = new Unload(false);
 
   function loadCallback(obj){
     obj.isLoaded = true;
@@ -18,4 +19,9 @@ $(document).ready( function() {
   $("#edit-properties").on('click', function(){
     lockCallback();
   });
+
+  $("#submit_button").on('click', function(){
+    unload.keepToken = true;
+  });
+
 });

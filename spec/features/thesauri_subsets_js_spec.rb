@@ -60,6 +60,7 @@ describe "Thesauri", :type => :feature do
     end
 
     it "adds a new subset (REQ-MDR-?????)", js:true do
+      audit_count = AuditTrail.count
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :show)
@@ -75,6 +76,7 @@ describe "Thesauri", :type => :feature do
       click_button "Select"
       wait_for_ajax
       expect(page).to have_content("Edit Subset")
+      expect(AuditTrail.count).to eq(audit_count+1)
     end
 
     it "edit timeout warnings and extend", js:true do
@@ -146,6 +148,50 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
+    end
+
+    it "clears token when leaving page", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax(120)
+      expect(page).to have_content '2010-03-05 Release'
+      wait_for_ajax
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax(120)
+      expect(page).to have_link("Subsets")
+      click_link "Subsets"
+      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      expect(page).to have_content 'Edit Subset'
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
+      token = tokens[0]
+      click_link 'Return'
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
+      expect(tokens).to match_array([])
+    end
+
+    it "edits properties of a subset MC in edit subset", js:true do
+      audit_count = AuditTrail.count
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2009-10-06 Release", :show)
+      wait_for_ajax
+      find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      click_link "Subsets"
+      expect(page).to have_content("No subsets found.")
+      click_button "+ New subset"
+      expect(page).to have_content("Select Terminology")
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button "Select"
+      wait_for_ajax
+      expect(page).to have_content("Preferred term: Not Set")
+      click_link "Edit properties"
+      fill_in "edit_preferred_term", with: "Term 1"
+      click_button "Submit"
+      expect(page).to have_content("Preferred term: Term 1")
+      expect(AuditTrail.count).to eq(audit_count+2)
     end
 
 

@@ -276,6 +276,7 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_mc = thesaurus.add_subset(the_params[:concept_id])
+    AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
     path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: params[:ctxt_id])
     render json: { redirect_path: path, }, :status => 200
   end

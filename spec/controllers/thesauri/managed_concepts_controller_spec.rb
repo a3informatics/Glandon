@@ -219,6 +219,16 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "update properties" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: mc.id, edit: {synonym: "syn1; syn2"}}
+      expect(response).to redirect_to("path")
+      expect(AuditTrail.count).to eq(audit_count+1)
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")

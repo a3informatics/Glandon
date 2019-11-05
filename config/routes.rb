@@ -164,6 +164,7 @@ Rails.application.routes.draw do
         get :differences_summary
         get :find_subsets
         get :edit_subset
+        patch :update_properties
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
