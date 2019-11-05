@@ -96,8 +96,11 @@ class ThesauriController < ApplicationController
     results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
-      delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})}
+    children.each {|c|
+      item = Thesaurus::ManagedConcept.find_minimum(c[:id])
+      results << c.reverse_merge!({edit_path: item.subset? ? edit_subset_thesauri_managed_concept_path(item, source_mc: item.subsets_links.to_id, parent_id: ct.id) : edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
+      delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})
+    }
     render :json => { data: results }, :status => 200
   end
 

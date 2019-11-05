@@ -13,6 +13,9 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
       redirect_to edit_lock_lost_link(@thesaurus)
+    elsif @thesaurus_concept.subset?
+      flash[:error] = "You cannot directly edit the children of a subset."
+      redirect_to edit_lock_lost_link(@thesaurus)
     else
       @close_path = edit_lock_lost_link(@thesaurus)
       @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
@@ -255,10 +258,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit_subset
     authorize Thesaurus, :edit?
     @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
-    @subset_mc = Thesaurus::ManagedConcept.find_full(params[:id])
-    @context_id = params[:context_id]
-    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered.id)
+    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @subset_mc.synonyms_and_preferred_terms
+    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links.to_id)
     @token = get_token(@subset_mc)
+    @close_path = (params[:context_id] == nil ? edit_thesauri_path(params[:parent_id]): thesauri_managed_concept_path(@source_mc, managed_concept: {context_id: params[:context_id]}))
   end
 
 # def cross_reference_start
