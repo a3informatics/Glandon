@@ -68,6 +68,31 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
   end
 
+
+  #Subsets
+
+  # Subset? Is this item subsetting another managed concept
+  #
+  # @result [Boolean] return true if this instance is a subset of another
+  def subset?
+    !self.subset_of.nil?
+  end
+
+  def subset_of
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} th:subsets ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
+  end
+
+  # Finds the subsets of this Thesaurus::ManagedConcept
+  #
+  # @return [Array] Uri of subsets referring to this instance, nil if none found
+  def subsetted_by
+    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:subsets ?s }}
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    return query_results.empty? ? nil : query_results.by_object_set([:s])
+  end
+
   # Replace If No Change. Replace the current with the previous if no differences.
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item
@@ -448,18 +473,6 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       results << data
     end
     return results
-  end
-
-
-  #Subsets
-
-  # Gets the subsets of this Thesaurus::ManagedConcept
-  #
-  # @return [Array] Uri of subsets referring to this instance, nil if none found
-  def get_subsets
-    query_string = %Q{SELECT ?s WHERE { #{self.uri.to_ref} ^th:subsets ?s }}
-    query_results = Sparql::Query.new.query(query_string, "", [:th])
-    return query_results.empty? ? nil : query_results.by_object_set([:s])
   end
 
 private

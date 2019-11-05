@@ -240,7 +240,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def find_subsets
     authorize Thesaurus, :show?
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    subsets = tc.get_subsets
+    subsets = tc.subsetted_by
     subset_tcs = []
     if !subsets.nil?
       subsets.map{|x| x[:s].to_id}.each{|s|
