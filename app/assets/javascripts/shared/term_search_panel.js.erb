@@ -10,13 +10,14 @@
 *
 * @return [void]
 */
-function TermSearch(context_id, callback) {
+function TermSearch(context_id, reference_ct_id, callback) {
   this.selected = {};
   this.callback = callback; // Note that this can also be set in call to search
   this.ref = "";            // Set in call to search
   this.tsCurrentRef;
   this.tsCurrentRow;
   this.context_id = context_id;
+  this.reference_ct_id = reference_ct_id;
   this.tsSearchTable = null;
   this.tsCurrentRef = null;
   this.tsCurrentRow = null;
@@ -185,11 +186,11 @@ TermSearch.prototype.initTable = function() {
 
   var loading_html = generateSpinner("medium");
 
-  this.tsSearchTable = $('#searchTable').DataTable( {
+  _this.tsSearchTable = $('#searchTable').DataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-      "url": "/thesauri/"+this.context_id+"/search",
+      "url": "/thesauri/"+_this.reference_ct_id+"/search",
       "data": function( d ) {
       },
     "dataSrc": "data"
@@ -207,7 +208,7 @@ TermSearch.prototype.initTable = function() {
             }
     },
     "pageLength": 5,
-    "columns": this.columns,
+    "columns": _this.columns,
     "orderCellsTop": true,
     "select": {
         style: 'multi'
