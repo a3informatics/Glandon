@@ -52,11 +52,13 @@ class Thesaurus
     # @params [Hash] params the params hash
     # @option params [String] :offset the offset to be obtained
     # @option params [String] :count the count to be obtained
+    # @option params [Array] :tags the tag to be displayed
     # @return [Array] array of hashes containing the child data
     def children_pagination(params)
       results =[]
       count = params[:count].to_i
       offset = params[:offset].to_i
+      tags = params.key?(:tags) ? params[:tags] : []
 
       # Get the URIs for each child
       query_string = %Q{SELECT ?e WHERE
@@ -69,6 +71,7 @@ class Thesaurus
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
 
       # Get the final result
+      tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
   SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
   {
@@ -83,7 +86,7 @@ class Thesaurus
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
-        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t .} 
+        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
       }
     } ORDER BY ?i ?sy ?t
   } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
@@ -93,6 +96,16 @@ class Thesaurus
         results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
+    end
+
+    # Filtered Tag Labels. Get the tags labels filtered by the tags in the quoted CT if the CT is owned by CDISC
+    #
+    # @params [Thesaurus] ct the CT. Can be nil resulting in no filtering.
+    # @return [Array] the resulting array of tags
+    def filtered_tag_labels(ct)
+      return self.tag_labels if ct.nil?
+      return self.tag_labels & ct.tag_labels if ct.is_owned_by_cdisc?
+      self.tag_labels
     end
 
     # Delete. Don't allow if children present.
