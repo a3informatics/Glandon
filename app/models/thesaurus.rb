@@ -308,6 +308,13 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
     {versions: versions, items: final_results}
   end
 
+  # Managed Children Pagination. Get the children in pagination manner
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @option params [Array] :tags the tag to be displayed
+  # @return [Array] array of hashes containing the child data
   def managed_children_pagination(params)
     results =[]
     count = params[:count].to_i
