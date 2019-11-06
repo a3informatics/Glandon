@@ -33,7 +33,7 @@
           icon: "icon-extend", btn_text: "Extending", dt_toggle: "", disabled: false} %>
       <% end %>
 
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>

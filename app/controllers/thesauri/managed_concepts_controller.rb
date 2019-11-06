@@ -131,6 +131,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+    @close_path = thesauri_path(@context_id)
   end
 
   def show_data
