@@ -1,17 +1,17 @@
 <div class="tree-toolbar">
-  <div class="btn-group" role="group" aria-label="First group">
-    <button id="d3_minus" type="button" class="btn btn-primary">
-      <i class="icon-minus-circle"></i>
-    </button>
-    <button id="d3_plus" type="button" class="btn  btn-primary">
-      <i class="icon-plus-circle"></i>
-    </button>
+  <div class="form-wrap font-light" id="d3Search" >
+    <input id="d3Search_input" class="search-tree" type="search" placeholder="Search for a tag" name="search-tree">
+    <button class="btn medium" id="clearSearch" type="button"><span class="icon-times text-tiny"></span> Clear</button>
   </div>
-  <div class="input-group" id="d3Search" >
-    <input id="d3Search_input" class="form-control search-tree" type="search" placeholder="search for tag" name="search-tree">
-    <span class="input-group-btn">
-      <button class="btn btn-default" id="clearSearch" type="button">Clear <span class="icon-times text-small"></span></button>
-    </span>
+  <div class="btn-group" role="group" aria-label="First group">
+    <button id="d3_minus" type="button" class="btn medium nomargin ttip">
+      <span class="icon-minus-circle"></span>
+      <span class="ttip-text shadow-small text-medium">Zoom out</span>
+    </button>
+    <button id="d3_plus" type="button" class="btn medium nomargin ttip">
+      <span class="icon-plus-circle"></span>
+      <span class="ttip-text shadow-small text-medium">Zoom in</span>
+    </button>
   </div>
 </div>
 <div class="d3-tree" id="d3">

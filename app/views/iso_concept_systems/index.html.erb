@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag    'd3_tree_rect', 'tags' %>
+<%= stylesheet_link_tag    'd3_tree_rect', 'custom/tags' %>
 <%= javascript_include_tag 'd3_tree_rect', 'd3_editor_new', 'iso_concept_systems/index', 'shared/iso_concept_systems/concept_system_view_panel', 'iso_managed_list', 'managed_tags_panel' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
@@ -6,50 +6,46 @@
 <% top_level_breadcrumb("Tags") %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <div class="row">
-    <div class="col-md-7">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Tag Viewer</h3>
-        </div>
-        <div class="panel-body">
+    <div class="col-md-6 card wide">
+        <div class="card-header">Tag Viewer</div>
+        <div class="card-content" style="overflow: visible;">
           <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
         </div>
       </div>
-    </div>
-    <div class="col-md-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">Manage Tags</h3>
-        </div>  
-        <div class="panel-body">
-        	<div class="add-child-tag">
-        		<h5>Add Tag to selected Tag</h5>
-        		<input class="form-control tag-input" id="add_label" type="text" placeholder="label" name="">
-        		<input class="form-control tag-input" id="add_description" type="text" placeholder="description" name="">
+    <div class="col-md-6">
+      <div class="col-md-12 card narrow" id="manage_tags_card">
+      <div class="card-header">Manage Tags</div>
+        <div class="card-content font-light">
+          <div class="handle-selected-tag">
+        		<h5>Selected Tag</h5>
+            <div class="form-wrap">
+          		<input class="tag-input" id="edit_label" type="text" name="">
+          		<input class="tag-input" id="edit_description" type="text" name="">
+            </div>
         		<div class="handle-tag-buttons">
-        			<button class="btn btn-success" id="add_tag" type="">Add tag</button>
+        			<button class="btn medium update-tag" id="update_tag" type="">Update tag</button>
+        			<button class="btn medium red" id="delete_tag" type="">Delete tag</button>
         		</div>
         	</div>
-        	<hr>
-        	<div class="handle-selected-tag">
-        		<h5>Selected Tag</h5>
-        		<input class="form-control tag-input" id="edit_label" type="text" name="">
-        		<input class="form-control tag-input" id="edit_description" type="text" name="">
-        		<div class="handle-tag-buttons">
-        			<button class="btn btn-primary update-tag" id="update_tag" type="">Update</button>
-        			<button class="btn btn-danger delete-tag" id="delete_tag" type="">Delete</button>
-        		</div>
+          <hr>
+        	<div class="add-child-tag">
+        		<h5>Add a tag to the selected tag</h5>
+            <div class="form-wrap">
+          		<input class="tag-input" id="add_label" type="text" placeholder="New tag label" name="">
+          		<input class="tag-input" id="add_description" type="text" placeholder="Tag description" name="">
+              <div class="handle-tag-buttons">
+          		    <button class="btn medium green" id="add_tag" type="">+ Add tag</button>
+              </div>
+            </div>
         	</div>
         </div>
       </div>
-      <div id="iso_managed_panel" class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Item List</h3>
-        </div>
-        <div class="panel-body">
+      <div id="iso_managed_panel" class="col-md-12 card narrow">
+            <div class="card-header">Item List</div>
+        <div class="card-content">
           <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
             <thead>
-                <tr> 
+                <tr>
                     <th>Identifier</th>
                     <th>Label</th>
                     <th>Version</th>

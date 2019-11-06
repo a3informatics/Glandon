@@ -1,0 +1,68 @@
+@import "custom/globals.scss";
+
+.btn-group{
+  display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.tree-toolbar{
+  width: 100%;
+  justify-content: space-between;
+}
+
+#manage_tags_card input{
+  width: 80%;
+  display: block;
+}
+
+#iso_managed_panel .col-sm-7, #iso_managed_panel .col-sm-6{
+  width: 100%;
+}
+
+#iso_managed_table_paginate, #iso_managed_table_length{
+  text-align: center;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.tagItem {
+  margin-right: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+#tag_panel, .attribute-panel{
+  position: relative;
+}
+
+.search-result-bg {
+  fill: #5cb85c!important;
+}
+
+.search-result-text {
+  fill: white!important;
+}
+
+.selected-description {
+  font-size: 11px;
+}
+
+.selected-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tag-display{
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-add {
+  height: 40px;
+  align-self: center;
+}
