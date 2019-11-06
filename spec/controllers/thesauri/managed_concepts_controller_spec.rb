@@ -114,7 +114,7 @@ describe Thesauri::ManagedConceptsController do
     end
     
     it "show, no extension" do
-      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
       get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)

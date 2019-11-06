@@ -92,10 +92,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
+    @context_id = the_params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    @context_id = the_params[:context_id]
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?
@@ -107,8 +108,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     context_id = the_params[:context_id]
+    ct = Thesaurus.find_minimum(context_id)
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
     children = tc.children_pagination(params)
     children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
     results = children.map{|x| x.reverse_merge!({delete_path: x[:delete] ? thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}

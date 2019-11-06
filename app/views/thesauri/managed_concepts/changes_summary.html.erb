@@ -5,7 +5,7 @@
 
 <% second_level_breadcrumb("CDISC Terminology", history_cdisc_terms_path, "Changes") %>
 <div class="row">
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
+  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => nil, :badge => "CL"} do %>
     <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#{changes_thesauri_managed_concept_path(@tc)}", id: "history",
         icon: "icon-changes", btn_text: "History of all changes", dt_toggle: "", disabled: false } %>
