@@ -175,7 +175,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Extension'
     end
     
-    it "Add Code List Item to Extension (REQ-MDR-EXT-010) Failing", js:true do
+    it "Add Code List Item to Extension (REQ-MDR-EXT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2014-09-26 Release", :show)
@@ -204,7 +204,7 @@ describe "Thesauri", :type => :feature do
       ui_check_table_info("children_table", 1, 7, 7)
     end
 
-    it "Add two Code List Items to Extension (REQ-MDR-EXT-010) Failing", js:true do
+    it "Add two Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2014-09-26 Release", :show)
@@ -233,7 +233,40 @@ describe "Thesauri", :type => :feature do
       ui_check_table_info("children_table", 1, 10, 11)
     end
 
-    it "allow the user to delete an extension to a code list", js:true do
+    it "Add 4 Code List Items to Extension (REQ-MDR-EXT-010)", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2014-09-26 Release", :show)
+      ui_child_search("C116110")
+      wait_for_ajax(120)
+      find(:xpath, "//tr[contains(.,'C116110')]/td/a", :text => 'Show').click
+      wait_for_ajax(120)
+      click_link 'Extend'
+      wait_for_ajax(120)
+      find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
+      click_button 'Select'
+      wait_for_ajax
+      click_link 'Extension'
+      wait_for_ajax
+      expect(page).to have_content 'C116110E'
+      ui_check_table_info("children_table", 1, 9, 9)
+      click_link 'Add'
+      wait_for_ajax(120)
+      input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
+      input.set("C1")
+      input.native.send_keys(:return)
+      wait_for_ajax(120)
+      find(:xpath, "//*[@id='aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzcjQzEwMDEyOV9DMTEyNTE4']").click #Update this line
+      find(:xpath, "//*[@id='aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTA2ODg4']").click #Update this line
+      find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
+      wait_for_ajax(120)
+      find(:xpath, "//*[@id='aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WMzUjQzEwMDEyOV9DMTA2Njkz']").click #Update this line
+      click_button 'Add terms'
+    pause
+      ui_check_table_info("children_table", 1, 10, 12)
+    end
+
+    it "allows the user to delete an extension to a code list", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2014-09-26 Release", :show)

@@ -195,7 +195,7 @@ TermSearch.prototype.initTable = function() {
       },
     "dataSrc": "data"
     },
-    "rowId": "id",
+    "rowId": "identifier",
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
@@ -203,7 +203,7 @@ TermSearch.prototype.initTable = function() {
       "processing": loading_html
     },
     "rowCallback": function( row, data ) {
-            if (_this.selected.hasOwnProperty(data.id)) {
+            if (_this.selected.hasOwnProperty(data.identifier)) {
                 $(row).addClass('selected');
             }
     },
