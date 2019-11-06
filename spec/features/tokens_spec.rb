@@ -114,7 +114,7 @@ describe "Tokens", :type => :feature do
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_cdisc_terminology
-        wait_for_ajax
+        wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
         context_menu_element("history", 5, "2010-03-05 Release", :show)
         wait_for_ajax
@@ -131,7 +131,7 @@ describe "Tokens", :type => :feature do
       in_browser(:two) do
         ua_generic_login 'token_user_2@example.com'
         click_navbar_cdisc_terminology
-        wait_for_ajax
+        wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
         context_menu_element("history", 5, "2010-03-05 Release", :show)
         wait_for_ajax
