@@ -30,6 +30,8 @@ describe Thesauri::UnmanagedConceptsController do
 
     it "show" do
       @user.write_setting("max_term_display", 2)
+      ct = Thesaurus.new
+      expect(Thesaurus).to receive(:find_minimum).and_return(ct)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
@@ -47,6 +49,10 @@ describe Thesauri::UnmanagedConceptsController do
         {id: "1", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb"},
         {id: "2", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
       ]       
+      ct = Thesaurus.new
+      expect(Thesaurus).to receive(:find_minimum).and_return(ct)
+      expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)
+      expect(ct).to receive(:tag_labels).and_return([])
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children_pagination).and_return([{id: "1"}, {id: "2"}])
       get :show_data, {id: "aaa", offset: 10, count: 10, unmanaged_concept: {context_id: "bbb"}}
