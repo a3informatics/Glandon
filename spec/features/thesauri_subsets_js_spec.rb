@@ -83,7 +83,7 @@ describe "Thesauri", :type => :feature do
     it "edit timeout warnings and extend", js:true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_cdisc_terminology
-      wait_for_ajax
+      wait_for_ajax(10)
       context_menu_element("history", 5, "2010-03-05 Release", :show)
       wait_for_ajax
       expect(page).to have_content '2010-03-05 Release'

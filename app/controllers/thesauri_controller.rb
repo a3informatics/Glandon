@@ -60,7 +60,7 @@ class ThesauriController < ApplicationController
     @ct = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html do
-        @close_path = request.referer
+        @close_path = history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope}})
       end
       format.json do
         results = []

@@ -289,7 +289,8 @@ describe ThesauriController do
     end
 
     it "show" do
-      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      th = Thesaurus.create({ :identifier => "NEW TH 2", :label => "New Thesaurus 3" })
+      expect(Thesaurus).to receive(:find_minimum).and_return(th)
       get :show, id: "aaa"
       expect(response).to render_template("show")
     end
