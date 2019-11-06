@@ -268,15 +268,15 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "edit subset" do
-      empty_managed_concept = Thesaurus::ManagedConcept.new
-      empty_managed_concept.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(empty_managed_concept.uri))
-      expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(empty_managed_concept)
-      expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(empty_managed_concept)
-      expect(Token).to receive(:obtain).and_return(Token.new)
-      get :edit_subset, {id: "1111111", context_id: "22222222", source_mc: "33333333"}
-      expect(assigns(:subset_mc)).to eq(empty_managed_concept)
-      expect(assigns(:source_mc)).to eq(empty_managed_concept)
-      expect(assigns(:subset).id).to eq(empty_managed_concept.is_ordered.id)
+      src_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226"))
+      sub_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
+      sub_mc.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(sub_mc.uri))
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:is_ordered_links).and_return(sub_mc.is_ordered.uri)
+      expect(Thesaurus::Subset).to receive(:find).and_return(sub_mc.is_ordered)
+      get :edit_subset, {id: sub_mc.id, context_id: "12345", source_mc: src_mc.id}
+      expect(assigns(:subset_mc).id).to eq(sub_mc.id)
+      expect(assigns(:source_mc).id).to eq(src_mc.id)
+      expect(assigns(:subset)).to eq(sub_mc.is_ordered)
       expect(response).to render_template("edit_subset")
     end
 

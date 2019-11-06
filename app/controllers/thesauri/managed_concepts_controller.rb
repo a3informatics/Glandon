@@ -260,9 +260,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
     @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @subset_mc.synonyms_and_preferred_terms
-    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links.to_id)
+    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
     @token = get_token(@subset_mc)
-    @close_path = (params[:context_id] == nil ? edit_thesauri_path(params[:parent_id]): thesauri_managed_concept_path(@source_mc, managed_concept: {context_id: params[:context_id]}))
   end
 
 # def cross_reference_start

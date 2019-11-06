@@ -57,6 +57,7 @@ describe "Thesauri", :type => :feature do
       ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
       ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
       click_button "Close"
+      wait_for_ajax
     end
 
     it "adds a new subset (REQ-MDR-?????)", js:true do
