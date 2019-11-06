@@ -112,7 +112,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :edit)
       wait_for_ajax
-      find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Edit').click
+      find(:xpath, "//tr[contains(.,'PKUNIT')]/td/button", :text => 'Edit').click
       expect(page).to have_content("Edit Subset")
       expect(page).to have_content("Preferred term: PK unit")
     end

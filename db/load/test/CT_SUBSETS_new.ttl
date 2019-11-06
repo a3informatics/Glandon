@@ -89,13 +89,12 @@
 .
 <http://www.s-cubed.dk/S123/V1#S123_RS>
   rdf:type isoR:RegistrationState ;
-  isoR:registrationStatus "Standard"^^xsd:string ;
   isoR:administrativeNote ""^^xsd:string ;
   isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:unresolvedIssue ""^^xsd:string ;
   isoR:administrativeStatus ""^^xsd:string ;
-  isoR:previousState "Standard"^^xsd:string ;
+  isoR:previousState ""^^xsd:string ;
   isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 <http://www.s-cubed.dk/S123/V1#S123_SI>
