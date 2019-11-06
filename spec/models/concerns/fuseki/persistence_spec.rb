@@ -105,8 +105,22 @@ describe Fuseki::Persistence do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect(item.my_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect(Fuseki::Base.the_type(uri).to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAAxxx")
+    expect{Fuseki::Base.the_type(uri)}.to raise_error(Errors::ApplicationLogicError, "Unable to find the RDF type for http://www.assero.co.uk/NS#AAAxxx.")
     expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
     expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
+  end
+
+
+  it "same type" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    expect(Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)).to eq(true)
+    expect(Fuseki::Base.same_type([uri_1, uri_2], IsoNamespace.rdf_type)).to eq(false)
+    expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
+    expect{Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)}.to raise_error(Errors::ApplicationLogicError, "Unable to find the RDF type for the set of URIs.")
   end
 
 end
