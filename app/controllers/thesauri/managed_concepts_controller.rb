@@ -198,10 +198,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-    tc.add_extensions(uris)
-    render json: {data: {}, error: []}
+    errors = []
+    if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
+      tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+      uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
+      tc.add_extensions(uris)
+    else
+      errors = ["Not all of the items were code list items."]
+    end      
+    render json: {data: {}, error: errors}
   end
 
   def destroy_extensions
