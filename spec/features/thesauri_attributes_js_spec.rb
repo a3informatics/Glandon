@@ -574,7 +574,10 @@ def editor_table_fill_in(input, text)
     ui_table_search("children_table", "C100170")
     find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
     wait_for_ajax
+    expect(page).to have_content "C100170"
+sleep 0.5
     ui_show_more_tags_cli
+sleep 0.5
     expect(page).to have_content "Tags: #{cl_tags}"
   end
 
