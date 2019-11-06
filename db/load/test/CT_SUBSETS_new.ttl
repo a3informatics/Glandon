@@ -32,13 +32,13 @@
 .
 :TH_RS123
   rdf:type isoR:RegistrationState ;
-  isoR:registrationStatus "Incomplete"^^xsd:string ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
   isoR:administrativeNote ""^^xsd:string ;
   isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:unresolvedIssue ""^^xsd:string ;
   isoR:administrativeStatus ""^^xsd:string ;
-  isoR:previousState ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
   isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 :TH_SI123
