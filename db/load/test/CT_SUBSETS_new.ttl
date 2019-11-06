@@ -28,25 +28,25 @@
   isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
   isoT:explanatoryComment ""^^xsd:string ;
   th:isTopConceptReference :TH_TCR123 ;
-  th:isTopConcept <http://www.s-cubed.dk/S123/V19#S123> ;
+  th:isTopConcept <http://www.s-cubed.dk/S123/V1#S123> ;
 .
 :TH_RS123
   rdf:type isoR:RegistrationState ;
-  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:registrationStatus "Incomplete"^^xsd:string ;
   isoR:administrativeNote ""^^xsd:string ;
   isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
   isoR:unresolvedIssue ""^^xsd:string ;
   isoR:administrativeStatus ""^^xsd:string ;
-  isoR:previousState "Standard"^^xsd:string ;
+  isoR:previousState ""^^xsd:string ;
   isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
 :TH_SI123
   rdf:type isoI:ScopedIdentifier ;
   isoI:identifier "SUBSETPK"^^xsd:string ;
   isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-  isoI:version "19"^^xsd:positiveInteger ;
-  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:version "1"^^xsd:positiveInteger ;
+  isoI:semanticVersion "1.0.0"^^xsd:string ;
   isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
 :TH_TCR123
@@ -55,15 +55,15 @@
   bo:enabled "true"^^xsd:boolean ;
   bo:optional "false"^^xsd:boolean ;
   bo:ordinal "1"^^xsd:positiveInteger ;
-  bo:reference <http://www.s-cubed.dk/S123/V19#S123> ;
+  bo:reference <http://www.s-cubed.dk/S123/V1#S123> ;
   bo:localLabel ""^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123>
+<http://www.s-cubed.dk/S123/V1#S123>
   rdf:type th:ManagedConcept ;
   isoC:label "PK Parameter Units of Measure"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
-  isoT:hasState <http://www.s-cubed.dk/S123/V19#S123_RS> ;
-  isoT:hasIdentifier <http://www.s-cubed.dk/S123/V19#S123_SI> ;
+  isoT:hasState <http://www.s-cubed.dk/S123/V1#S123_RS> ;
+  isoT:hasIdentifier <http://www.s-cubed.dk/S123/V1#S123_SI> ;
   isoT:origin ""^^xsd:string ;
   isoT:changeDescription ""^^xsd:string ;
   isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
@@ -74,12 +74,12 @@
   th:definition "Units of measure needed for pharmacokinetic parameters."^^xsd:string ;
   th:extensible "false"^^xsd:boolean ;
   th:isOrdered <http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cbaaaaa1> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85583> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85584> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85585> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85588> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85589> ;
-  th:narrower <http://www.s-cubed.dk/S123/V19#S123_C85590> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85583> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85584> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85585> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85588> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85589> ;
+  th:narrower <http://www.s-cubed.dk/S123/V1#S123_C85590> ;
   th:preferredTerm <http://www.assero.co.uk/PT#123> ;
   th:subsets <http://www.cdisc.org/C85494/V19#C85494> ;
 .
@@ -87,7 +87,7 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "PK unit"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_RS>
+<http://www.s-cubed.dk/S123/V1#S123_RS>
   rdf:type isoR:RegistrationState ;
   isoR:registrationStatus "Standard"^^xsd:string ;
   isoR:administrativeNote ""^^xsd:string ;
@@ -98,15 +98,15 @@
   isoR:previousState "Standard"^^xsd:string ;
   isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_SI>
+<http://www.s-cubed.dk/S123/V1#S123_SI>
   rdf:type isoI:ScopedIdentifier ;
   isoI:identifier "C85494"^^xsd:string ;
   isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
-  isoI:version "19"^^xsd:positiveInteger ;
-  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:version "1"^^xsd:positiveInteger ;
+  isoI:semanticVersion "1.0.0"^^xsd:string ;
   isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85583>
+<http://www.s-cubed.dk/S123/V1#S123_C85583>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Femtogram per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
@@ -140,7 +140,7 @@
   rdf:type th:Synonym ;
   isoC:label "d*fg/mL"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85584>
+<http://www.s-cubed.dk/S123/V1#S123_C85584>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Gram per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
@@ -174,7 +174,7 @@
   rdf:type th:Synonym ;
   isoC:label "d*g/mL"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85585>
+<http://www.s-cubed.dk/S123/V1#S123_C85585>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Kilogram per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
@@ -208,7 +208,7 @@
   rdf:type th:Synonym ;
   isoC:label "d*kg/mL"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85588>
+<http://www.s-cubed.dk/S123/V1#S123_C85588>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Milligram per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
@@ -252,7 +252,7 @@
   rdf:type th:Synonym ;
   isoC:label "d*mg/mL"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85589>
+<http://www.s-cubed.dk/S123/V1#S123_C85589>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Millimole per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
@@ -296,7 +296,7 @@
   rdf:type th:Synonym ;
   isoC:label "d*mmol/mL"^^xsd:string ;
 .
-<http://www.s-cubed.dk/S123/V19#S123_C85590>
+<http://www.s-cubed.dk/S123/V1#S123_C85590>
   rdf:type th:UnmanagedConcept ;
   isoC:label "Day Times Mole per Milliliter"^^xsd:string ;
   isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;

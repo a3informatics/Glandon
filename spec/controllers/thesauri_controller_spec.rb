@@ -35,7 +35,7 @@ describe ThesauriController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_new.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_cdisc_term_versions(1..2)
@@ -187,6 +187,16 @@ describe ThesauriController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "children, subsets" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/SUBSETPK#TH123"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :children, {id: ct.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "children_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'adds a child thesaurus concept' do

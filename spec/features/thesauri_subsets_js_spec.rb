@@ -28,7 +28,7 @@ describe "Thesauri", :type => :feature do
 
     before :each do
       Token.restore_timeout
-      ua_curator_login
+      ua_content_admin_login
     end
 
     after :each do
@@ -105,22 +105,16 @@ describe "Thesauri", :type => :feature do
       page.find("#imh_header")[:class].include?("danger")
     end
 
-    it "prevents add, remove and move item in subset, when token expires", js:true do
-      Token.set_timeout(10)
-      click_navbar_cdisc_terminology
+    it "allows to access the edit subset page (from CT edit)", js:true do
+      click_navbar_terminology
       wait_for_ajax
-      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      find(:xpath, "//tr[contains(.,'SUBSETPK')]/td/a", :text => 'History').click
       wait_for_ajax
-      expect(page).to have_content '2010-03-05 Release'
-      ui_child_search("C85494")
-      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      context_menu_element("history", 5, "2010-03-05 Release", :edit)
       wait_for_ajax
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
-      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
-      sleep 11
-      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
-      expect(page).to have_content("The edit lock has timed out.")
+      find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Edit').click
+      expect(page).to have_content("Edit Subset")
+      expect(page).to have_content("Preferred term: PK unit")
     end
 
     it "allows to edit a subset, add, remove and move_after item", js:true do
@@ -149,6 +143,24 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       wait_for_ajax
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
+    end
+
+    it "prevents add, remove and move item in subset, when token expires", js:true do
+      Token.set_timeout(10)
+      click_navbar_cdisc_terminology
+      wait_for_ajax
+      context_menu_element("history", 5, "2010-03-05 Release", :show)
+      wait_for_ajax
+      expect(page).to have_content '2010-03-05 Release'
+      ui_child_search("C85494")
+      find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
+      wait_for_ajax
+      expect(page).to have_link("Subsets")
+      click_link "Subsets"
+      context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      sleep 11
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      expect(page).to have_content("The edit lock has timed out.")
     end
 
     it "clears token when leaving page", js:true do
