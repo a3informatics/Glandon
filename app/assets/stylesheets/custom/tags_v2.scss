@@ -19,8 +19,8 @@
 .upper textarea{
   margin-top: 0;
   padding-top: 0;
-  width: 300px;
-  max-width: 300px;
+  width: 200px;
+  max-width: 200px;
 }
 
 #manage_tags_card .form-wrap input::placeholder, #manage_tags_card .form-wrap textarea::placeholder{
@@ -107,4 +107,11 @@
 .tag-add {
   height: 40px;
   align-self: center;
+}
+
+@media (max-width:1330px){
+  .col-md-7, .col-md-5 {
+    max-width: unset !important;
+    width: calc(100% - 40px) !important
+  }
 }

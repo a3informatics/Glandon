@@ -5,7 +5,7 @@
 */
 
 var d3HeightOverride = false;
-var d3HeightOverrideValue = $(window).height() - 200;
+var d3HeightOverrideValue = $(window).height() - 180;
 var rectW = 120;
 var rectH = 30;
 
@@ -29,7 +29,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     height = d3Div.clientHeight;
   }
   var tree = d3.layout.tree().nodeSize([70, 40])
-    .size([height, width - 160]);
+    .size([height-30, width - 160]);
   var diagonal = d3.svg.diagonal()
      .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
   // var diagonal = function link(d) {
@@ -71,7 +71,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .data(nodes)
     .enter().append("g")
     .attr("class", "node")
-    .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+    .attr("transform", function(d) { return "translate(" + (d.y) + "," + (d.x) + ")"; })
     .on("click", clickCallBack)
     .on("dblclick", dblClickCallBack);
   node.append("rect")

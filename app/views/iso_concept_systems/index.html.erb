@@ -7,14 +7,14 @@
 <% top_level_breadcrumb("Tags") %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <div class="row">
-    <div class="col-md-6 card wide">
+    <div class="col-md-7 card wide">
         <div class="card-header">Tag Viewer</div>
-        <div class="card-content" style="overflow: visible;">
+        <div class="card-content" >
           <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
         </div>
       </div>
-    <div class="col-md-6">
-      <div class="col-md-12 card narrow" id="manage_tags_card">
+    <div class="col-md-5" style="padding: 0;">
+      <div class="col-md-12 card wide" id="manage_tags_card">
       <div class="card-header">Manage Tags</div>
         <div class="card-content font-light">
           <div class="handle-selected-tag">
@@ -32,7 +32,7 @@
         	</div>
           <hr>
         	<div class="add-child-tag">
-        		<span class="icon-plus text-link" style="margin-right:6px;"></span> Add a tag to the selected tag
+        		<span class="icon-plus text-link" style="margin-right:6px;"></span> Add a new child to the selected tag
             <div class="form-wrap">
               <table class="table-fit">
                 <tr><td><span class="text-small text-medium">Label:</span></td><td><input type="text" class="bg-label text-normal" id="add_label" placeholder="Label"/></td></tr>
@@ -45,7 +45,7 @@
         	</div>
         </div>
       </div>
-      <div id="iso_managed_panel" class="col-md-12 card narrow">
+      <div id="iso_managed_panel" class="col-md-12 card wide">
             <div class="card-header">Item List</div>
         <div class="card-content table-cardstyle">
           <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
