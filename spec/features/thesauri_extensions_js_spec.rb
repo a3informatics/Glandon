@@ -223,8 +223,8 @@ describe "Thesauri", :type => :feature do
       input.set("C1")
       input.native.send_keys(:return)
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click #Update this line
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click #Update this line
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
       click_button 'Add terms'
       ui_check_table_info("children_table", 1, 10, 11)
     end
@@ -252,11 +252,11 @@ describe "Thesauri", :type => :feature do
       input.set("C1")
       input.native.send_keys(:return)
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click #Update this line
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click #Update this line
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
       find(:xpath, "//*[@id='searchTable_paginate']/ul/li[3]/a").click
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]").click #Update this line
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]").click
       click_button 'Add terms'
       ui_check_table_info("children_table", 1, 10, 10)
     end
@@ -290,7 +290,7 @@ describe "Thesauri", :type => :feature do
       ui_check_table_info("children_table", 1, 10, 11)
     end
 
-    it "allows the user to delete an extension to a code list", js:true do
+    it "allows the user to delete a code list item from extension", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax
       context_menu_element("history", 5, "2014-09-26 Release", :show)
