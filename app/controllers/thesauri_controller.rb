@@ -103,18 +103,17 @@ class ThesauriController < ApplicationController
 
   def add_child
     authorize Thesaurus, :create?
-    thesaurus = Thesaurus.find_minimum(params[:id])
-    token = Token.find_token(thesaurus, current_user)
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
     if !token.nil?
-      x = the_params
-      thesaurus_concept = thesaurus.add_child(x)
-      if thesaurus_concept.errors.empty?
-        AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        result = thesaurus_concept.simple_to_h
-        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path(thesaurus_concept), delete_path: thesauri_managed_concept_path(thesaurus_concept)})
+      tc = ct.add_child(the_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, ct, "Terminology updated.") if token.refresh == 1
+        result = tc.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
         render :json => {data: result}, :status => 200
       else
-        render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422

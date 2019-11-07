@@ -23,13 +23,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
-    th = Thesaurus.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(th, current_user)
+    ct = Thesaurus.find_minimum(edit_params[:parent_id])
+    token = Token.find_token(ct, current_user)
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
-        render :json => {:data => [tc.simple_to_h]}, :status => 200
+        result = tc.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
+        render :json => {:data => [result]}, :status => 200
       else
         errors = []
         tc.errors.each do |name, msg|
@@ -79,7 +81,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     th = Thesaurus.find_minimum(the_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?
-      tc.destroy
+      tc.delete
       audit_and_respond(th, tc, token)
     else
       render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
@@ -246,16 +248,16 @@ private
     return history_thesauri_index_path({thesauri: {identifier: thesaurus.scoped_identifier, scope_id: thesaurus.scope.id}})
   end
 
-  # def audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   if thesaurus_concept.errors.empty?
-  #     AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-  #     results = []
-  #     results << thesaurus_concept.to_json
-  #     render :json => {:data => results}, :status => 200
-  #   else
-  #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-  #   end
-  # end
+  def audit_and_respond(thesaurus, thesaurus_concept, token)
+    if thesaurus_concept.errors.empty?
+      AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+      results = []
+      results << thesaurus_concept.to_json
+      render :json => {:data => results}, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+    end
+  end
 
   # def get_thesaurus(thesaurus_concept)
   #   info = IsoManaged.find_managed(thesaurus_concept.id, thesaurus_concept.namespace)

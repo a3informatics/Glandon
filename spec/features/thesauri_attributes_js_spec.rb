@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe "Thesauri", :type => :feature do
 
+  # NOTE: Needs to be run as one single run due to dynamic identifiers
+
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
@@ -9,7 +11,11 @@ describe "Thesauri", :type => :feature do
   include WaitForAjaxHelper
   include NameValueHelpers
 
-def editor_table_fill_in(input, text)
+  def wait_for_ajax_long
+    wait_for_ajax(10)
+  end
+
+  def editor_table_fill_in(input, text)
     expect(page).to have_css("##{input}", wait: 15)
     fill_in "#{input}", with: "#{text}"
     wait_for_ajax(5)
@@ -24,7 +30,7 @@ def editor_table_fill_in(input, text)
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..46)
+      load_cdisc_term_versions(1..47)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -41,8 +47,7 @@ def editor_table_fill_in(input, text)
     end
 
     after :each do
-      # wait_for_ajax
-      #ua_logoff
+      ua_logoff
     end
 
     after :all do
@@ -53,7 +58,7 @@ def editor_table_fill_in(input, text)
     #synonymes
     it "allows terminology synonyms to be displayed for code lists (REQ-MDR-SY-010)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
@@ -71,7 +76,7 @@ def editor_table_fill_in(input, text)
 
     it "allows terminology synonyms to be displayed for code list items (REQ-MDR-SY-010)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
@@ -90,7 +95,7 @@ def editor_table_fill_in(input, text)
 
     it "allows to display code lists and code list items with the same synonym (REQ-MDR-SY-020)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
@@ -109,7 +114,6 @@ def editor_table_fill_in(input, text)
       expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a/div/div", :text => 'XDOSFRQ (C78745)')
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign a synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
@@ -119,7 +123,7 @@ def editor_table_fill_in(input, text)
     wait_for_ajax
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM')]/td/a", :text => 'History').click
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM'
       context_menu_element('history', 4, 'New Terminology', :edit)
     wait_for_ajax
@@ -128,6 +132,7 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content '0.1.0'
       expect(page).to have_content 'Incomplete'
       click_button 'New'
+    wait_for_ajax
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn1\n"
@@ -135,25 +140,25 @@ def editor_table_fill_in(input, text)
       click_link 'Return'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign more synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V2"
       fill_in 'thesauri_label', with: 'New Terminology V2'
       click_button 'Create'
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V2')]/td/a", :text => 'History').click
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V2'
       context_menu_element('history', 4, 'New Terminology V2', :edit)
-    wait_for_ajax
+    wait_for_ajax_long
       expect(page).to have_content 'New Terminology V2'
       expect(page).to have_content 'NEW TERM V2'
       expect(page).to have_content '0.1.0'
       expect(page).to have_content 'Incomplete'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList2\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn1; Syn2\n"
@@ -161,81 +166,96 @@ def editor_table_fill_in(input, text)
       click_link 'Return'
     end
 
-   # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign a synonyms on a code list item (REQ-MDR-SY-030)", js: true do
-      # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V3"
       fill_in 'thesauri_label', with: 'New Terminology V3'
       click_button 'Create'
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V3')]/td/a", :text => 'History').click
-    wait_for_ajax(10)
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V3'
       context_menu_element('history', 4, 'New Terminology V3', :edit)
-    wait_for_ajax
+    wait_for_ajax_long
       expect(page).to have_content 'New Terminology V3'
       expect(page).to have_content 'NEW TERM V3'
       expect(page).to have_content '0.1.0'
       expect(page).to have_content 'Incomplete'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList3\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList3 NP000010P (V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      find(:xpath, "//tr[contains(.,'NP000012P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'CodeList3'
+      expect(page).to have_content 'NP000012P'
       click_button 'New'
-      expect(page).to have_content 'NC00000010C'
+    wait_for_ajax_long
+      expect(page).to have_content 'NC00000999C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn3\n"
       expect(page).to have_content 'Syn3'
-      click_button 'Return'
+      click_link 'Return'
     end
 
-   # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to assign more synonyms on a code list item (REQ-MDR-SY-030)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V4"
       fill_in 'thesauri_label', with: 'New Terminology V4'
       click_button 'Create'
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V4')]/td/a", :text => 'History').click
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V4'
       context_menu_element('history', 4, 'New Terminology V4', :edit)
-      expect(page).to have_content 'Edit: New Terminology V4 NEW TERM V4 (V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V4'
+      expect(page).to have_content 'NEW TERM V4'
+      expect(page).to have_content '0.1.0'
+      expect(page).to have_content 'Incomplete'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList4\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList4 NP000010P (V0.0.1, 1, Incomplete)'
+      find(:xpath, "//tr[contains(.,'NP000013P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'CodeList4'
+      expect(page).to have_content 'NP000013P'
       click_button 'New'
-      expect(page).to have_content 'NC00000010C'
+    wait_for_ajax_long
+      expect(page).to have_content 'NC00001000C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
-      editor_table_fill_in "DTE_Field_synonym", "Syn4\n"
-      expect(page).to have_content 'Syn4'
-      click_button 'Close'
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_synonym", "Syn4a; Syn4b\n"
+      expect(page).to have_content 'Syn4a; Syn4b'
+      click_link 'Return'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to update a synonyms on a code list (REQ-MDR-SY-030)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V5"
       fill_in 'thesauri_label', with: 'New Terminology V5'
       click_button 'Create'
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V5')]/td/a", :text => 'History').click
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V5'
       context_menu_element('history', 4, 'New Terminology V5', :edit)
-      expect(page).to have_content 'Edit: New Terminology V5 NEW TERM V5(V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V5'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList5\t"
       editor_table_fill_in "DTE_Field_synonym", "CLSyn5\n"
@@ -246,31 +266,37 @@ def editor_table_fill_in(input, text)
       editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "CLSyn5; NewCLSyn5\n"
       expect(page).to have_content 'CLSyn5; NewCLSyn5'
-      click_button 'Close'
+      click_link 'Return'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to update a synonyms on a code list item (REQ-MDR-SY-030)", js:true do
        # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V6"
       fill_in 'thesauri_label', with: 'New Terminology V6'
       click_button 'Create'
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V6')]/td/a", :text => 'History').click
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V6'
       context_menu_element('history', 4, 'New Terminology V6', :edit)
-      expect(page).to have_content 'Edit: New Terminology V6 NEW TERM V6 (V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V6'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList6\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList6 NP000010P (V0.0.1, 1, Incomplete)'
+      find(:xpath, "//tr[contains(.,'NP000015P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'CodeList6'
+      expect(page).to have_content 'NP000015P'
       click_button 'New'
-      expect(page).to have_content 'NC00000010C'
+    wait_for_ajax_long
+      expect(page).to have_content 'NC00001001C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn6\n"
       expect(page).to have_content 'Syn6'
       editor_table_click(1,4)
@@ -279,21 +305,24 @@ def editor_table_fill_in(input, text)
       editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "CLSyn6; NewCLSyn6\n"
       expect(page).to have_content 'CLSyn6; NewCLSyn6'
-      click_button 'Close'
+      click_link 'Return'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to delete a synonyms on a code list (REQ-MDR-SY-030)", js:true do
       click_navbar_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V7"
       fill_in 'thesauri_label', with: 'New Terminology V7'
       click_button 'Create'
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V7')]/td/a", :text => 'History').click
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V7'
       context_menu_element('history', 4, 'New Terminology V7', :edit)
-      expect(page).to have_content 'Edit: New Terminology V7 NEW TERM V7(V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V7'
       click_button 'New'
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList7\t"
@@ -304,47 +333,160 @@ def editor_table_fill_in(input, text)
       expect(page).not_to have_content 'CLSyn7'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows to delete a synonyms on a code list item (REQ-MDR-SY-030)", js:true do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V8"
       fill_in 'thesauri_label', with: 'New Terminology V8'
       click_button 'Create'
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V8')]/td/a", :text => 'History').click
+    wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM V8'
       context_menu_element('history', 4, 'New Terminology V8', :edit)
-      expect(page).to have_content 'Edit: New Terminology V8 NEW TERM V8 (V0.0.1, 1, Incomplete)'
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V8'
       click_button 'New'
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList8\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList8 NP000010P (V0.0.1, 1, Incomplete)'
+      find(:xpath, "//tr[contains(.,'NP000017P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'CodeList8'
+      expect(page).to have_content 'NP000017P'
       click_button 'New'
-      expect(page).to have_content 'NC00000010C'
+    wait_for_ajax_long
+      expect(page).to have_content 'NC00001002C'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn8\n"
       expect(page).to have_content 'Syn8'
       editor_table_click(1,4)
       editor_table_fill_in "DTE_Field_synonym", "\n"
       expect(page).not_to have_content 'CLSyn8'
-      click_button 'Close'
+      click_link 'Return'
     end
 
-    #preferred terms
+    it "allows to assign a preferred term on a code list (REQ-MDR-PT-030)", js: true do
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      fill_in 'thesauri_identifier', with: "NEW TERM V9"
+      fill_in 'thesauri_label', with: 'New Terminology V9'
+      click_button 'Create'
+      expect(page).to have_content 'Terminology was successfully created.'
+      find(:xpath, "//tr[contains(.,'NEW TERM V9')]/td/a", :text => 'History').click
+      expect(page).to have_content 'History: NEW TERM V9'
+      context_menu_element('history', 4, 'New Terminology V9', :edit)
+    wait_for_ajax_long
+      click_button 'New'
+    wait_for_ajax_long
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeList9\t"
+      editor_table_fill_in "DTE_Field_synonym", "Syn1; Syn2\n"
+      expect(page).to have_content 'CodeList9'
+      click_link 'Return'
+    end
+
+    it "allows to assign a preferred term on a code list item (REQ-MDR-SY-030)", js: true do
+      click_navbar_terminology
+    wait_for_ajax_long
+      expect(page).to have_content 'Index: Terminology'
+      fill_in 'thesauri_identifier', with: "NEW TERM V10"
+      fill_in 'thesauri_label', with: 'New Terminology V10'
+      click_button 'Create'
+    wait_for_ajax_long
+      expect(page).to have_content 'Terminology was successfully created.'
+      find(:xpath, "//tr[contains(.,'NEW TERM V10')]/td/a", :text => 'History').click
+    wait_for_ajax_long
+      expect(page).to have_content 'History: NEW TERM V10'
+      context_menu_element('history', 4, 'New Terminology V10', :edit)
+    wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V10'
+      click_button 'New'
+    wait_for_ajax_long
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeList10\t"
+      find(:xpath, "//tr[contains(.,'NP000019P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'CodeList10'
+      expect(page).to have_content 'NP000019P'
+      click_button 'New'
+    wait_for_ajax_long
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      editor_table_fill_in "DTE_Field_synonym", "Syn10\n"
+      expect(page).to have_content 'CodeListItem1'
+    end
+     
+    it "allows to delete a preferred term on a code list (REQ-MDR-PT-030)", js:true do
+      click_navbar_terminology
+    wait_for_ajax_long
+      expect(page).to have_content 'Index: Terminology'
+      fill_in 'thesauri_identifier', with: "NEW TERM V11"
+      fill_in 'thesauri_label', with: 'New Terminology V11'
+      click_button 'Create'
+    wait_for_ajax_long
+      expect(page).to have_content 'Terminology was successfully created.'
+      ui_table_search("main", "V11")
+      find(:xpath, "//tr[contains(.,'NEW TERM V11')]/td/a", :text => 'History').click
+    wait_for_ajax_long
+      expect(page).to have_content 'History: NEW TERM V11'
+      context_menu_element('history', 4, 'New Terminology V11', :edit)
+    wait_for_ajax_long
+      click_button 'New'
+    wait_for_ajax_long
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeList11\n"
+      expect(page).to have_content 'CodeList11'
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "\n"
+      expect(page).not_to have_content 'CodeList11'
+      click_link "Return"
+    end
+
+    it "allows to delete a preferred term on a code list item (REQ-MDR-PT-030)", js:true do
+      click_navbar_terminology
+    wait_for_ajax_long
+      expect(page).to have_content 'Index: Terminology'
+      fill_in 'thesauri_identifier', with: "NEW TERM V12"
+      fill_in 'thesauri_label', with: 'New Terminology V12'
+      click_button 'Create'
+    wait_for_ajax_long
+      expect(page).to have_content 'Terminology was successfully created.'
+      ui_table_search("main", "V12")
+      find(:xpath, "//tr[contains(.,'NEW TERM V12')]/td/a", :text => 'History').click
+    wait_for_ajax_long
+      expect(page).to have_content 'History: NEW TERM V12'
+      context_menu_element('history', 4, 'New Terminology V12', :edit)
+    wait_for_ajax_long
+      click_button 'New'
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\t"
+      find(:xpath, "//tr[contains(.,'NP000021P')]/td/button", :text => 'Edit').click
+      expect(page).to have_content 'NP000021P'
+      click_button 'New'
+      expect(page).to have_content 'NC00001004C'
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
+      expect(page).to have_content 'CodeListItem1'
+      editor_table_click(1,3)
+      editor_table_fill_in "DTE_Field_preferred_term", "\n"
+      expect(page).not_to have_content 'CodeListItem1'
+      click_link "Return"
+    end
+
+    # Preferred Terms
     it "allows Preferred Term to be displayed for CDISC code lists (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '45.0.0'
+      expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 503)
+      ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("C7115")
       ui_check_table_info("children_table", 1, 4, 4)
       ui_check_table_cell("children_table", 1, 4, "ECG Test Code")
@@ -353,14 +495,14 @@ def editor_table_fill_in(input, text)
 
     it "allows Preferred Term to be displayed for CDISC code list items (REQ-MDR-PT-010)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '45.0.0'
+      expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 503)
+      ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("C7115")
       ui_check_table_info("children_table", 1, 4, 4)
       ui_check_table_cell("children_table", 1, 4, "ECG Test Code")
@@ -369,14 +511,14 @@ def editor_table_fill_in(input, text)
 
     it "allows to display code lists and code list items with the same preferred term (REQ-MDR-PT-020)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2016-03-25 Release', :show)
       expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content '46.0.0'
+      expect(page).to have_content '47.0.0'
       expect(page).to have_content 'Standard'
-      ui_check_table_info("children_table", 1, 10, 514)
+      ui_check_table_info("children_table", 1, 10, 572)
       ui_child_search("unit")
       find(:xpath, "//tr[contains(.,'PKUNIT')]/td/a", :text => 'Show').click
       expect(page).to have_content 'Definition: Units of measure for pharmacokinetic data and parameters.'
@@ -390,7 +532,7 @@ def editor_table_fill_in(input, text)
     #tags
     it "allows Tags to be displayed, table, thesaurus level (REQ-MDR-??????)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
@@ -405,7 +547,7 @@ def editor_table_fill_in(input, text)
 
     it "allows Tags to be displayed, table, managed concept level (REQ-MDR-??????)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
@@ -424,7 +566,7 @@ def editor_table_fill_in(input, text)
 
     it "allows Tags to be displayed, header (REQ-MDR-??????)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(10)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
@@ -450,106 +592,11 @@ def editor_table_fill_in(input, text)
       expect(page).to have_content 'Tags: SDTM SEND'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows to assign a preferred term on a code list (REQ-MDR-PT-030)", js: true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V9"
-      fill_in 'thesauri_label', with: 'New Terminology V9'
-      click_button 'Create'
-      expect(page).to have_content 'Terminology was successfully created.'
-      find(:xpath, "//tr[contains(.,'NEW TERM V6')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: NEW TERM V9'
-      context_menu_element('history', 4, 'New Terminology V9', :edit)
-      expect(page).to have_content 'Edit: New Terminology V9 NEW TERM V9 (V0.0.1, 1, Incomplete)'
-      click_button 'New'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeList9\t"
-      editor_table_fill_in "DTE_Field_synonym", "Syn1; Syn2\n"
-      expect(page).to have_content 'CodeList9'
-      click_button 'Close'
-    end
-
-   # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows to assign a preferred term on a code list item (REQ-MDR-SY-030)", js: true do
-      # RESET NAMEVALUE TO 10 and 999 FIRST!
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V10"
-      fill_in 'thesauri_label', with: 'New Terminology V10'
-      click_button 'Create'
-      expect(page).to have_content 'Terminology was successfully created.'
-      find(:xpath, "//tr[contains(.,'NEW TERM V10')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: NEW TERM V10'
-      context_menu_element('history', 4, 'New Terminology V10', :edit)
-      expect(page).to have_content 'Edit: New Terminology V10 NEW TERM V10 (V0.0.1, 1, Incomplete)'
-      click_button 'New'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeList10\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList10 NP000010P (V0.0.1, 1, Incomplete)'
-      editor_table_click(1,3)
-      pause
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
-      editor_table_fill_in "DTE_Field_synonym", "Syn10\n"
-      expect(page).to have_content 'CodeListItem1'
-      click_button 'Close'
-    end
-
-     it "allows to delete a preferred term on a code list (REQ-MDR-PT-030)", js:true do
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V11"
-      fill_in 'thesauri_label', with: 'New Terminology V11'
-      click_button 'Create'
-      expect(page).to have_content 'Terminology was successfully created.'
-      find(:xpath, "//tr[contains(.,'NEW TERM V11')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: NEW TERM V11'
-      context_menu_element('history', 4, 'New Terminology V11', :edit)
-      expect(page).to have_content 'Edit: New Terminology V11 NEW TERM V11(V0.0.1, 1, Incomplete)'
-      click_button 'New'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeList11\n"
-      expect(page).to have_content 'CodeList11'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "\n"
-      expect(page).not_to have_content 'CodeList11'
-    end
-
-    it "allows to delete a preferred term on a code list item (REQ-MDR-PT-030)", js:true do
-        # RESET NAMEVALUE TO 10 and 999 FIRST!
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V12"
-      fill_in 'thesauri_label', with: 'New Terminology V12'
-      click_button 'Create'
-      expect(page).to have_content 'Terminology was successfully created.'
-      find(:xpath, "//tr[contains(.,'NEW TERM V12')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: NEW TERM V12'
-      context_menu_element('history', 4, 'New Terminology V12', :edit)
-      expect(page).to have_content 'Edit: New Terminology V12 NEW TERM V12 (V0.0.1, 1, Incomplete)'
-      click_button 'New'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "CodeList12\t"
-      find(:xpath, "//tr[contains(.,'NP000010P')]/td/a", :text => 'Edit').click
-      expect(page).to have_content 'Edit: CodeList12 NP000010P (V0.0.1, 1, Incomplete)'
-      click_button 'New'
-      expect(page).to have_content 'NC00000010C'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "CodeListItem1\t"
-      expect(page).to have_content 'CodeListItem1'
-      editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferredTerm", "\n"
-      expect(page).not_to have_content 'CodeListItem1'
-      click_button 'Close'
-    end
-
     it "checks for correct display of shared PTs or Ss, unmanaged concepts", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-12-18 Release', :show)
-      expect(page).to have_content '45.0.0'
+      expect(page).to have_content '46.0.0'
       ui_child_search("sex")
       ui_check_table_info("children_table", 1, 2, 2)
       find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
@@ -564,10 +611,10 @@ def editor_table_fill_in(input, text)
       expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a", count: 28)
     end
 
-    it "checks for correct display of no shared PTs or Ss found, unmanaged concepts", js:true do
+    it "checks for correct display of no shared PTs or Synonyms found, unmanaged concepts", js:true do
       click_navbar_cdisc_terminology
+    wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
-      wait_for_ajax
       context_menu_element('history', 5, '2015-09-25 Release', :show)
       expect(page).to have_content '45.0.0'
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
