@@ -64,7 +64,8 @@ class ThesauriController < ApplicationController
       end
       format.json do
         results = []
-        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+        tags = @ct.is_owned_by_cdisc? ? @ct.tag_labels : []
+        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count], tags: tags})
         children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: @ct.id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end

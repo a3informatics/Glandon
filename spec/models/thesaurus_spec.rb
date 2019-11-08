@@ -345,7 +345,7 @@ describe Thesaurus do
 
   end
 
-  describe "Child Operations Read" do
+  describe "Child Operations - Read" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
@@ -382,21 +382,28 @@ describe Thesaurus do
       timer_stop("100 searches")
     end
 
+    it "get children, tag filter" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      actual = ct.managed_children_pagination(offset: 0, count: 10, tags: ["SDTM"])
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
+    end
+
   end
 
-  describe "Child Operations Write" do
+  describe "Child Operations - Write" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
     end
 
-    before :each do
+    before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
+      load_versions(1..60)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
-    after :each do
+    after :all do
       #
     end
 

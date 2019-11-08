@@ -158,7 +158,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_link("Subsets")
       click_link "Subsets"
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
-      sleep 11
+      sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
       expect(page).to have_content("The edit lock has timed out.")
     end
