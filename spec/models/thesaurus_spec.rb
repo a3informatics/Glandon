@@ -548,4 +548,32 @@ describe Thesaurus do
 
   end
 
+  describe "Subsets" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    before :each do
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    it "add a new subset" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
+      expect(thesaurus.is_top_concept_links.count).to eq(2)
+      new_mc = thesaurus.add_subset(subsetted_mc_id)
+      expect(thesaurus.is_top_concept_links.count).to eq(3)
+      actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
+      expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66781/V2#C66781")
+      expect(actual.is_ordered_objects).not_to be(nil)
+      expect(actual.is_ordered_objects.members).to be(nil)
+    end
+
+  end
+
 end

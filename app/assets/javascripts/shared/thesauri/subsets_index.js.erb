@@ -1,0 +1,85 @@
+/*
+* Modal Panel
+*/
+
+
+/**
+* Modal Panel Constructor
+* @param id [String] The id of the Code List
+*
+* @return [void]
+*/
+function IndexSubsets(id) {
+  this.id = id;
+  this.tsModalTable = null;
+  var counter = 0;
+
+  this.columns = [
+    {"data" : "th_label"},
+    {"data" : "identifier"},
+    {"data" : "label"},
+    {className: "text-right", "render" : function (data, type, row, meta) {
+      var id = "con-menu-" + counter;
+      var menu_items =
+      [ { link_path: row["edit_path"], disabled: "false", icon: "icon-edit", text: "Edit", },];
+      counter ++;
+      return generateContextMenu(id, menu_items);
+      }
+    }
+  ];
+  this.initTable();
+  var _this = this;
+
+  // Get selected th callback
+  $('#new_subset').click(function() {
+    $('#subsetsModal').modal('hide');
+    $('#tableModal').modal('show');
+  });
+}
+
+/**
+ * Initialise the table/datatable
+ * @return [void]
+ */
+IndexSubsets.prototype.initTable = function() {
+  var _this = this;
+
+  var loading_html = generateSpinner("medium");
+
+  _this.tsModalTable = $('#ssIndexTable').DataTable( {
+    "processing": true,
+    "ajax": {
+      "url": "/thesauri/managed_concepts/"+_this.id+"/find_subsets",
+      "data": {"context_id": context_id},
+    },
+    "rowId": "id",
+    "deferLoading": 0,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No subsets found.",
+      "processing": generateSpinner("medium"),
+    },
+    "pageLength": 3,
+    "columns": _this.columns,
+    "orderCellsTop": true,
+    "drawCallback": function(){
+      $('#ssIndexTable').find(".context-menu").addClass("left");
+    },
+  });
+};
+
+IndexSubsets.prototype.tsCallback = function(data){
+  $.ajax({
+        url: "/thesauri/"+data["scope_id"]+"/add_subset",
+        type: "POST",
+        data: JSON.stringify({thesauri: data, ctxt_id: context_id}),
+        dataType: 'json',
+        contentType: 'application/json',
+        error: function (xhr, status, error) {
+          displayError("An error has occurred.");
+        },
+        success: function(result) {
+          window.location = result["redirect_path"];
+        }
+    });
+}

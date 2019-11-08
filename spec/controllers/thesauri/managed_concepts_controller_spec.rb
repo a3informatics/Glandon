@@ -4,13 +4,13 @@ describe Thesauri::ManagedConceptsController do
 
   include DataHelpers
   include UserAccountHelpers
-  
+
   def sub_dir
     return "controllers/thesauri/managed_concept"
   end
 
   describe "Authorized User - Read" do
-  	
+
     login_curator
 
     before :each do
@@ -43,7 +43,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
       get :changes_data, id: "aaa"
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
@@ -68,7 +68,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes_summary).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
       get :changes_summary_data, {id: "aaa", last_id: "bbb", ver_span: "x"}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
@@ -80,7 +80,7 @@ describe Thesauri::ManagedConceptsController do
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:differences_summary).and_return(expected)
       get :differences_summary, {id: "aaa", last_id: "bbb", ver_span: "x"}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
@@ -103,7 +103,7 @@ describe Thesauri::ManagedConceptsController do
       actual = JSON.parse(response.body).deep_symbolize_keys
       expect(actual).to eq({data: false})
     end
-    
+
     it "show, no extension" do
       th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
@@ -158,14 +158,14 @@ describe Thesauri::ManagedConceptsController do
       expected = [
         {id: "1", delete: false, delete_path: "", show_path: "/thesauri/unmanaged_concepts/1?unmanaged_concept%5Bcontext_id%5D=bbb"},
         {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
-      ]       
+      ]
       tc = Thesaurus::ManagedConcept.new
       tc.uri = Uri.new(uri: "http://www.cdisc.org/CT/VX#XXX")
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(tc)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false}, {id: "2", delete: true}])
       get :show_data, {id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
@@ -178,22 +178,22 @@ describe Thesauri::ManagedConceptsController do
       get :export_csv, id: "aaa"
     end
 
-    it "pdf report" do      
+    it "pdf report" do
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:scoped_identifier).and_return("C12345")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:changes).and_return({items: {:"1" => {id: "1"}, :"2" => {id: "2"}}})
       expect(Reports::CdiscChangesReport).to receive(:new).and_return(Reports::CdiscChangesReport.new)
       expect_any_instance_of(Reports::CdiscChangesReport).to receive(:create).and_return("abcd")
       request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :changes_report, id: "aaa"  
+      get :changes_report, id: "aaa"
       expect(response.content_type).to eq("application/pdf")
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CDISC_CL_C12345.pdf\"")
     end
 
   end
-  
+
   describe "Authorized User - Edit" do
-    
+
     login_curator
 
     before :each do
@@ -214,9 +214,19 @@ describe Thesauri::ManagedConceptsController do
       put :update, {id: mc.id, edit: {notation: "AAAAA", parent_id: ct.id }}
       mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "update properties" do
+      request.env["HTTP_REFERER"] = "path"
+      audit_count = AuditTrail.count
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      token = Token.obtain(mc, @user)
+      put :update_properties, {id: mc.id, edit: {synonym: "syn1; syn2"}}
+      expect(response).to redirect_to("path")
+      expect(AuditTrail.count).to eq(audit_count+1)
     end
 
     # it "edit" do
@@ -231,4 +241,44 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "subsets" do
+
+    login_curator
+
+    before :all do
+      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
+        "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "find subsets" do
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66726/V19#C66726")
+      get :find_subsets, {id: tc_uri.to_id}
+      actual = JSON.parse(response.body)
+      check_file_actual_expected(actual, sub_dir, "subsets_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "find subsets, no subsets found" do
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226")
+      get :find_subsets, {id: tc_uri.to_id}
+      actual = JSON.parse(response.body)
+      expect(actual["data"]).to eq([])
+    end
+
+    it "edit subset" do
+      src_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226"))
+      sub_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
+      sub_mc.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(sub_mc.uri))
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:is_ordered_links).and_return(sub_mc.is_ordered.uri)
+      expect(Thesaurus::Subset).to receive(:find).and_return(sub_mc.is_ordered)
+      get :edit_subset, {id: sub_mc.id, context_id: "12345", source_mc: src_mc.id}
+      expect(assigns(:subset_mc).id).to eq(sub_mc.id)
+      expect(assigns(:source_mc).id).to eq(src_mc.id)
+      expect(assigns(:subset)).to eq(sub_mc.is_ordered)
+      expect(response).to render_template("edit_subset")
+    end
+
+  end
 end

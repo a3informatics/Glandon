@@ -4,24 +4,24 @@ describe ThesauriController do
 
   include DataHelpers
   include UserAccountHelpers
-  
+
   def standard_params
-    params = 
+    params =
     {
-      :draw => "1", 
+      :draw => "1",
       :columns =>
       {
-        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
         "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-      }, 
-      :order => { "0" => { :column => "0", :dir => "asc" }}, 
-      :start => "0", 
-      :length => "15", 
-      :search => { :value => "", :regex => "false" }, 
+      },
+      :order => { "0" => { :column => "0", :dir => "asc" }},
+      :start => "0",
+      :length => "15",
+      :search => { :value => "", :regex => "false" },
     }
     return params
   end
@@ -31,16 +31,19 @@ describe ThesauriController do
   end
 
   describe "Authorized User" do
-  	
+
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_new.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_cdisc_term_versions(1..2)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
     end
 
     after :each do
@@ -61,11 +64,11 @@ describe ThesauriController do
       scope_id = uri.to_id
       namespace = IsoNamespace.new
       namespace.uri = uri
-      list = 
+      list =
       [
-        {scope_id: scope_id, x: "a1", y: true, z: "something"}, 
+        {scope_id: scope_id, x: "a1", y: true, z: "something"},
         {scope_id: scope_id, x: "a2", y: true, z: "something else"},
-        {scope_id: "#{scope_id}BBB", x: "a1", y: true, z: "pah"}, 
+        {scope_id: "#{scope_id}BBB", x: "a1", y: true, z: "pah"},
         {scope_id: "#{scope_id}CCC", x: "a1", y: true, z: "not intersted"},
         {scope_id: scope_id, x: "a3", y: true, z: "something else and more"}
       ]
@@ -93,7 +96,7 @@ describe ThesauriController do
       CT1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       CT2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([CT1, CT2])        
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([CT1, CT2])
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -110,10 +113,10 @@ describe ThesauriController do
     it 'creates thesaurus' do
       audit_count = AuditTrail.count
       count = Thesaurus.all.count
-      expect(count).to eq(2) 
+      expect(count).to eq(4)
       post :create, thesauri: { :identifier => "NEW TH", :label => "New Thesaurus" }
       expect(assigns(:thesaurus).errors.count).to eq(0)
-      expect(Thesaurus.all.count).to eq(count + 1) 
+      expect(Thesaurus.all.count).to eq(count + 1)
       expect(flash[:success]).to be_present
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(response).to redirect_to("/thesauri")
@@ -121,12 +124,12 @@ describe ThesauriController do
 
     it 'creates thesaurus, fails bad identifier' do
       count = Thesaurus.all.count
-      expect(count).to eq(2) 
+      expect(count).to eq(4)
       post :create, thesauri: { :identifier => "NEW_TH!@£$%^&*", :label => "New Thesaurus" }
       count = Thesaurus.all.count
-      expect(count).to eq(2) 
+      expect(count).to eq(4)
       expect(assigns(:thesaurus).errors.count).to eq(1)
-      expect(Thesaurus.all.count).to eq(count) 
+      expect(Thesaurus.all.count).to eq(count)
       expect(flash[:error]).to be_present
       expect(response).to redirect_to("/thesauri")
     end
@@ -163,7 +166,7 @@ describe ThesauriController do
       expect(flash[:error]).to match(/The item is locked for editing by another user./)
       expect(response).to redirect_to("/thesauri")
     end
-    
+
     it "edits thesaurus, copy, already locked" do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
@@ -183,7 +186,17 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)      
+      check_file_actual_expected(actual, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "children, subsets" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/SUBSETPK#TH123"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :children, {id: ct.id}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "children_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it 'adds a child thesaurus concept' do
@@ -194,7 +207,7 @@ describe ThesauriController do
       new_ct.set_persisted # Needed for id method to work for paths
       token = Token.obtain(ct, @user)
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)        
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)
       expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)
       expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus), "Terminology updated.")
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
@@ -213,8 +226,8 @@ describe ThesauriController do
       token = Token.obtain(ct, @user)
       token.refresh
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)        
-      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)        
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(new_ct)
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -227,11 +240,11 @@ describe ThesauriController do
       token = Token.obtain(ct, @user)
       token.refresh
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token) 
-      mc = Thesaurus::ManagedConcept.new       
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(token)
+      mc = Thesaurus::ManagedConcept.new
       mc.errors.add(:base, "Error message 1")
       mc.errors.add(:base, "Error message 2")
-      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(mc)        
+      expect_any_instance_of(Thesaurus).to receive(:add_child).with({identifier: "A12345"}).and_return(mc)
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
@@ -242,7 +255,7 @@ describe ThesauriController do
     it 'fails to add a child thesaurus concept, locked by another user' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(nil) 
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus), @user).and_return(nil)
       post :add_child, {id: ct.id, thesauri: {identifier: "A12345"}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
@@ -262,7 +275,7 @@ describe ThesauriController do
       expect(response).to redirect_to("/thesauri")
       expect(flash[:error]).to be_present
     end
-    
+
     it 'deletes thesaurus' do
       @request.env['HTTP_REFERER'] = 'http://test.host/thesauri'
       th = Thesaurus.create({ :identifier => "NEW TH 2", :label => "New Thesaurus 2" })
@@ -276,7 +289,8 @@ describe ThesauriController do
     end
 
     it "show" do
-      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
+      th = Thesaurus.create({ :identifier => "NEW TH 2", :label => "New Thesaurus 3" })
+      expect(Thesaurus).to receive(:find_minimum).and_return(th)
       get :show, id: "aaa"
       expect(response).to render_template("show")
     end
@@ -289,9 +303,9 @@ describe ThesauriController do
       expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
       get :show, {id: "aaa", offset: 0, count: 10}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.id)}", 
+      expect(x).to hash_equal({data: [{show_path: "/thesauri/managed_concepts/aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE=?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.id)}",
         :id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjE="}], count: 1, offset: 0})
     end
 
@@ -302,7 +316,7 @@ describe ThesauriController do
       get :search, params
       expect(response).to render_template("search")
     end
-      
+
     it "initiates a search of the current terminologies" do
       params = standard_params
       get :search_current, params
@@ -317,7 +331,7 @@ describe ThesauriController do
       params[:columns]["5"][:search][:value] = "cerebral"
       get :search, params
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")    
+      expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
       check_file_actual_expected(actual, sub_dir, "search_expected_1.yaml", equate_method: :hash_equal)
     end
@@ -330,7 +344,7 @@ describe ThesauriController do
       results = ct.search(params)
       get :search, params
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")    
+      expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
       check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
     end
@@ -342,7 +356,7 @@ describe ThesauriController do
 
     it "initiates the impact operation" do
       params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-    	th = Thesaurus.find(params[:id], params[:namespace])  	
+    	th = Thesaurus.find(params[:id], params[:namespace])
       get :impact, params
       expect(assigns(:thesaurus).to_json).to eq(th.to_json)
       expect(assigns(:start_path)).to eq(impact_start_thesauri_index_path)
@@ -352,11 +366,11 @@ describe ThesauriController do
     it "starts the impact operation" do
       #params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
       params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43" }
-    	th = Thesaurus.find(params[:id], params[:namespace])  	
+    	th = Thesaurus.find(params[:id], params[:namespace])
     	request.env['HTTP_ACCEPT'] = "application/json"
       get :impact_start, params
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")   
+      expect(response.code).to eq("200")
     #write_text_file_2(response.body, sub_dir, "thesauri_controller_impact_start.txt")
       expected = read_text_file_2(sub_dir, "thesauri_controller_impact_start.txt")
       expect(response.body).to eq(expected)
@@ -364,7 +378,7 @@ describe ThesauriController do
 
 	  it "produces a pdf report" do
       params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-    	th = Thesaurus.find(params[:id], params[:namespace])  	
+    	th = Thesaurus.find(params[:id], params[:namespace])
       request.env['HTTP_ACCEPT'] = "application/pdf"
       get :impact_report, params
       expect(response.content_type).to eq("application/pdf")
@@ -388,7 +402,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :changes_data, id: "aaa"
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
@@ -417,7 +431,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :submission_data, id: "aaa"
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
     end
 
@@ -434,25 +448,35 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :extension, {thesauri: {}}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+    end
+
+    it "add subset" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :add_subset, {id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==",
+        thesauri: {concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ==", identifier:"AIRPORTS", scope_id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ=="}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      redirect_path = JSON.parse(response.body)["redirect_path"]
+      expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
   end
 
   describe "Community Reader" do
-    
+
     login_community_reader
 
     before :each do
-      schema_files = 
+      schema_files =
       [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
+        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
         "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
       ]
-      data_files = 
+      data_files =
       [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",     
+        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
       ]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
@@ -482,7 +506,7 @@ describe ThesauriController do
   end
 
   describe "Unauthorized User" do
-    
+
     login_reader
 
     it "prevents access to a reader, edit" do
@@ -505,7 +529,7 @@ describe ThesauriController do
   describe "Controller Helpers" do
 
     # Tested here as difficult to setup test environment for the helpers with policies and paths
-    
+
     login_curator
 
     before :all do
@@ -527,7 +551,7 @@ describe ThesauriController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       results = JSON.parse(response.body).deep_symbolize_keys[:data]
-      actual = results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path], 
+      actual = results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
         tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_2.yaml", equate_method: :hash_equal)
     end

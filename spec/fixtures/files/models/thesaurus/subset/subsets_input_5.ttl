@@ -1,0 +1,22 @@
+@prefix : <http://www.assero.co.uk/TS#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/TS>
+	rdf:type owl:Ontology ;
+.
+:54176c59-b800-43f5-99c3-d129cb563123
+	rdf:type th:Subset ;
+	isoC:label ""^^xsd:string ;
+	th:members <http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b123> ;
+.
+<http://www.assero.co.uk/TSM#67871de3-5e13-42da-9814-e9fc3ce7b123>
+	rdf:type th:SubsetMember ;
+	isoC:label ""^^xsd:string ;
+	th:item <http://www.cdisc.org/C66781/V2#C66781_C25301> ;
+.

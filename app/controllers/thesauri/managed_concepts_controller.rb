@@ -13,6 +13,9 @@ class Thesauri::ManagedConceptsController < ApplicationController
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
       redirect_to edit_lock_lost_link(@thesaurus)
+    elsif @thesaurus_concept.subset?
+      flash[:error] = "You cannot directly edit the children of a subset."
+      redirect_to edit_lock_lost_link(@thesaurus)
     else
       @close_path = edit_lock_lost_link(@thesaurus)
       @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
@@ -42,6 +45,29 @@ class Thesauri::ManagedConceptsController < ApplicationController
     else
       flash[:error] = "The edit lock has timed out."
       render :json => {:data => {}, :link => edit_lock_lost_link(th)}, :status => 422
+    end
+  end
+
+  def update_properties
+    authorize Thesaurus, :edit?
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    tc.synonyms_and_preferred_terms
+    token = Token.find_token(tc, current_user)
+    if !token.nil?
+      tc = tc.update(edit_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, tc, "Managed Concept updated.") if token.refresh == 1
+        redirect_to request.referrer
+      else
+        redirect_to request.referrer
+        errors = []
+        tc.errors.each do |name, msg|
+          flash[:error] = msg
+        end
+      end
+    else
+      redirect_to thesauri_managed_concept_path(id: tc.subsets_links.to_id, managed_concept: {context_id: params[:context_id]})
+      flash[:error] = "The edit lock has timed out."
     end
   end
 
@@ -107,6 +133,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+    @close_path = thesauri_path(@context_id)
   end
 
   def show_data
@@ -213,6 +240,31 @@ class Thesauri::ManagedConceptsController < ApplicationController
     uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
     tc.delete_extensions(uris)
     render json: {data: {}, error: []}
+  end
+
+  #Subsets
+  def find_subsets
+    authorize Thesaurus, :show?
+    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    subsets = tc.subsetted_by
+    subset_tcs = []
+    if !subsets.nil?
+      subsets.map{|x| x[:s].to_id}.each{|s|
+        mc = Thesaurus::ManagedConcept.find_with_properties(s)
+        t = Thesaurus.unique.select{|x| x[:scope_id] == mc.scope.id}
+        edit_path = edit_subset_thesauri_managed_concept_path(mc, source_mc: tc.id, context_id: params[:context_id])
+        subset_tcs << {:th_label => t[0][:label], :identifier => mc.identifier, :label => mc.label, :edit_path => edit_path}}
+    end
+    render json: {data: subset_tcs}
+  end
+
+  def edit_subset
+    authorize Thesaurus, :edit?
+    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
+    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @subset_mc.synonyms_and_preferred_terms
+    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
+    @token = get_token(@subset_mc)
   end
 
 # def cross_reference_start

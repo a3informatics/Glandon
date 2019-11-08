@@ -80,6 +80,11 @@
   pointer-events: none;
 }
 
+.table-cardstyle.all-columns th:last-child{
+  color: $grey-medium;
+  pointer-events: all;
+}
+
 .table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr{
   border: 0px !important;
   background: transparent !important;
@@ -96,6 +101,10 @@
 
 .table-cardstyle td{
   height: 40px !important;
+}
+
+.table-cardstyle tr.selected{
+  color: $secondary-color-medium !important;
 }
 
 // SCALING

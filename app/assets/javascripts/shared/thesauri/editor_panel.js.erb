@@ -56,10 +56,10 @@ function EditorPanel(childrenPath, updatePath, parentId, editLockCallback) {
       { data: "synonym" },
       { data: "definition" },
       { data: null, "render": function(data,type,full,meta) {
-        return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
+        return '<button type="button" class="btn medium">Edit</button>';
       }},
       { data: null, "render": function(data,type,full,meta) {
-        return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
+        return '<button type="button" class="btn medium red">Delete</button>';
       }}
     ],
     rowId: "id",

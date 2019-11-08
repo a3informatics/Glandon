@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'dashboard#index'
-  
+
   #devise_for :users
   devise_for :users, controllers: {sessions: "users/sessions"}#, :path_names => { :sign_in => "login", :sign_out => "logout" }
   resources :users, except: :create do
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
   post 'create_user' => 'users#create', as: :create_user
   resources :user_settings
-  
+
   match 'api(/:id)' => 'api#options', via: [:options]
   resources :api do
     collection do
@@ -139,7 +139,7 @@ Rails.application.routes.draw do
       get :export_csv
     end
   end
-  
+
   # Thesauri
   namespace :thesauri do
     resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
@@ -162,6 +162,9 @@ Rails.application.routes.draw do
         get :changes_summary
         get :changes_summary_data
         get :differences_summary
+        get :find_subsets
+        get :edit_subset
+        patch :update_properties
       end
     end
     resources :unmanaged_concepts, only: [:show, :edit, :update, :destroy] do
@@ -173,6 +176,14 @@ Rails.application.routes.draw do
         get :synonym_links
         get :preferred_term_links
         get :change_instruction_links
+      end
+    end
+    resources :subsets, only: [] do
+      member do
+        post :add
+        delete :remove
+        put :move_after
+        get :list_children
       end
     end
   end
@@ -195,6 +206,7 @@ Rails.application.routes.draw do
       get :submission_report
       get :search
       get :export_csv
+      post :add_subset
     end
   end
 
@@ -208,7 +220,7 @@ Rails.application.routes.draw do
   #     get :cross_reference_details
   #   end
   # end
-  
+
   resources :uploads
 
   # Imports
@@ -233,8 +245,8 @@ Rails.application.routes.draw do
       get :list
       delete :destroy_multiple
     end
-  end 
-  
+  end
+
   # Exports
   resources :exports, :only => [:index] do
     collection do

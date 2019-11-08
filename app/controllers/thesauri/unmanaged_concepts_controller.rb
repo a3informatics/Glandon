@@ -57,7 +57,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
       end
     else
       flash[:error] = "The edit lock has timed out."
-      render :json => {:data => {}, :link => edit_lock_lost_link(tc)}, :status => 422
+      render :json => {:data => {}, :link => edit_lock_lost_link(parent)}, :status => 422
     end
   end
 

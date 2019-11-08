@@ -5,8 +5,8 @@
 /**
  * Panel classes
 */
-var C_TT_SUCCESS = ""; 
-var C_TT_WARNING = "warning"; 
+var C_TT_SUCCESS = "";
+var C_TT_WARNING = "warning";
 var C_TT_DANGER = "danger";
 
 /**
@@ -14,13 +14,14 @@ var C_TT_DANGER = "danger";
  *
  * @param id [String] The token id obtained from database
  * @param cardId [String] The id assigned to the card
- * @param timeout [String] The warning timeout 
- * @return [Null] 
+ * @param timeout [String] The warning timeout
+ * @return [Null]
  */
 function Timer(id, cardId, timeout) {
   this.id = id;
   this.cardId = cardId;
   this.currentClass = C_TT_SUCCESS;
+  this.expired = false;
   this.warningTimeout = timeout;
   this.statusTimeout(10000); //Must be called to start the countdown
 
@@ -45,13 +46,14 @@ Timer.prototype.statusTimeout = function (period) {
 }
 
 /**
- * AJAX call to get current timer status. 
+ * AJAX call to get current timer status.
  *
  * @return [NUll]
  */
 Timer.prototype.getStatus = function () {
   var _this = this;
   $.ajax({
+    context: _this,
     url: "/tokens/" + _this.id + "/status",
     type: "GET",
     dataType: 'json',
@@ -70,7 +72,7 @@ Timer.prototype.getStatus = function () {
         } else {
           if (_this.currentClass.indexOf(C_TT_WARNING) >= 0) {
             _this.updateClass(C_TT_DANGER);
-          } 
+          }
           _this.display(result.remaining);
           _this.statusTimeout(1000);
         }
@@ -83,10 +85,10 @@ Timer.prototype.getStatus = function () {
 }
 
 /**
- * AJAX call to extend the time. Restarts timer. 
+ * AJAX call to extend the time. Restarts timer.
  *
  * @return [Null]
- */ 
+ */
 Timer.prototype.extendLock = function () {
   var _this = this;
   $.ajax({
@@ -105,14 +107,14 @@ Timer.prototype.extendLock = function () {
 /**
  * Updates panel class
  *
- * @param newClass [String] New panel class 
+ * @param newClass [String] New panel class
  * @return [Null]
  */
 Timer.prototype.updateClass = function (newClass) {
   $("#" + this.cardId).removeClass(this.currentClass).addClass(newClass);
   this.currentClass = newClass;
 }
- 
+
 /**
  * Displays timer.
  *
@@ -126,10 +128,11 @@ Timer.prototype.display = function (seconds) {
 /**
  * Disables timer button. Prevents to extend timer when time is out
  *
- * @return [Null] 
+ * @return [Null]
  */
 Timer.prototype.disable = function () {
   $('#' + this.cardId).find("#timeout").addClass("disabled");
+  this.expired = true;
 }
 
 /**
