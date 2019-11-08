@@ -261,6 +261,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit_subset
     authorize Thesaurus, :edit?
+    @context_id = params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
     @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
     @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @subset_mc.synonyms_and_preferred_terms
