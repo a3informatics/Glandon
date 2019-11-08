@@ -9,7 +9,7 @@ describe "Tags", :type => :feature do
   include WaitForAjaxHelper
   include UserAccountHelpers
 
-  before :all do
+  before :each do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
     load_files(schema_files, data_files)
@@ -17,11 +17,11 @@ describe "Tags", :type => :feature do
     clear_iso_namespace_object
     clear_iso_registration_authority_object
     clear_iso_registration_state_object
-    ua_create
+    ua_content_admin_login
   end
 
-  before :each do
-    ua_content_admin_login
+  before :all do
+    ua_create
   end
 
   after :each do
@@ -40,13 +40,13 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       ui_check_input("edit_label", 'Tags')
       fill_in 'add_label', with: 'Tag1'
-      click_button 'Add tag'
+      click_on 'Create tag'
       ui_check_flash_message_present
       expect(page).to have_content 'Description contains invalid characters or is empty'
       fill_in 'add_description', with: 'Test description no label'
-      click_button 'Add tag'
+      click_on 'Create tag'
       ui_check_flash_message_present
-      expect(page).to have_content'Label is empty'
+      expect(page).to have_content 'Pref label is empty'
     end
 
     it "create tags (REQ-MDR-TAG-040)", js: true do
@@ -55,7 +55,7 @@ describe "Tags", :type => :feature do
       ui_check_input("edit_label", 'Tags')
       fill_in 'add_label', with: 'Tag1'
       fill_in 'add_description', with: 'Tag 1 level 1'
-      click_button 'Add tag'
+      click_on 'Create tag'
       expect(page).to have_content 'Tag1'
     end
 
@@ -66,7 +66,7 @@ describe "Tags", :type => :feature do
       ui_click_node_name ("Tag1")
       fill_in 'add_label', with: 'Tag1_1'
       fill_in 'add_description', with: 'Tag 1 level 2'
-      click_button 'Add tag'
+      click_on 'Create tag'
       wait_for_ajax(120)
       expect(page).to have_content 'Tag1_1'
     end
@@ -78,7 +78,7 @@ describe "Tags", :type => :feature do
       ui_click_node_name ("Tag2")
       fill_in 'add_label', with: 'Tag1_1'
       fill_in 'add_description', with: 'similar child tag'
-      click_button 'Add tag'
+      click_on 'Create tag'
       wait_for_ajax
       key1 = ui_get_key_by_path('["Tags", "Tag2", "Tag1_1"]')
       ui_click_node_key(key1)
@@ -94,7 +94,7 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Tag1'
       fill_in 'add_label', with: 'Tag1'
       fill_in 'add_description', with: 'Tag is identical with already existing tag!'
-      click_button 'Add tag'
+      click_on 'Create tag'
       #not implemented expect(page).to have_content 'You cannot create identical tags at the same level..........'
     end
 
@@ -123,7 +123,7 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("Tag1")
       ui_check_input("edit_label", 'Tag1')
-      click_button 'Delete'
+      click_on 'Delete tag'
       expect(page).to have_content 'Cannot destroy tag as it has children tags'
     end
 
@@ -133,19 +133,19 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("TAG4-1-1")
       ui_check_input('edit_label','TAG4-1-1')
-      click_button 'Delete'
+      click_on 'Delete tag'
       wait_for_ajax
       expect(page).not_to have_content 'TAG4-1-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4-1")
       ui_check_input('edit_label','TAG4-1')
-      click_button 'Delete'
+      click_on 'Delete tag'
       wait_for_ajax
       expect(page).not_to have_content 'TAG4-1'
       expect(page).to have_content 'TAG4'
       ui_click_node_name ("TAG4")
       ui_check_input('edit_label','TAG4')
-      click_button 'Delete'
+      click_on 'Delete tag'
       wait_for_ajax
       expect(page).not_to have_content 'TAG4'
     end
@@ -170,11 +170,12 @@ describe "Tags", :type => :feature do
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ("TAG1")
+      wait_for_ajax
       ui_check_input("edit_label", 'TAG1')
       ui_check_input("edit_description", 'Tag number 1')
       fill_in 'edit_label', with: 'UPDTAG1'
       fill_in 'edit_description', with: 'Tag 1 updated'
-      click_button 'Update'
+      click_on 'Update tag'
       wait_for_ajax
       ui_click_node_name ("UPDTAG1")
       ui_check_input("edit_label", 'UPDTAG1')
@@ -333,6 +334,18 @@ describe "Tags", :type => :feature do
       ui_check_table_cell("iso_managed_table", 1, 1, "TAGBC")
     end
 
+    it "shortens tag label in Tag viewer if it is too many characters", js:true do
+      click_navbar_tags
+      expect(page).to have_content 'Manage Tags'
+      fill_in 'add_label', with: 'Tag label Tag label Tag label Tag label Tag label'
+      fill_in 'add_description', with: 'Description'
+      click_on 'Create tag'
+      wait_for_ajax
+      expect(page).to have_content('Tag label...')
+      ui_click_node_name ('Tag label...')
+      ui_check_input("edit_label", 'Tag label Tag label Tag label Tag label Tag label')
+    end
+
     it "view both managed items tagged to the parent tag and managed items tagged to child tags within the same entity when searching for the parent tag (REQ-MDR_TAG-80)"
 
 
@@ -340,7 +353,7 @@ describe "Tags", :type => :feature do
       load_test_file_into_triple_store("tag_test_data.ttl")
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
-      fill_in 'search for tag', with: 'TAG1-3'
+      fill_in 'Search for a tag', with: 'TAG1-3'
       ui_hit_return("d3Search_input")
       wait_for_ajax
       result = ui_get_search_results
@@ -359,6 +372,23 @@ describe "Tags", :type => :feature do
       ui_hit_return("d3Search_input")
       result = ui_get_search_results
       expect(result.count).to eq(0)
+    end
+
+    it "zoom in/out perserves search", js:true do
+      load_test_file_into_triple_store("tag_test_data.ttl")
+      click_navbar_tags
+      expect(page).to have_content 'Manage Tags'
+      fill_in 'Search for a tag', with: 'TAG1-3'
+      ui_hit_return("d3Search_input")
+      wait_for_ajax
+      result = ui_get_search_results
+      expect(result.count).to eq(1)
+      expect(result[0]).to eq("TAG1-3")
+      click_on 'd3_minus'
+      click_on 'd3_plus'
+      result = ui_get_search_results
+      expect(result.count).to eq(1)
+      expect(result[0]).to eq("TAG1-3")
     end
 
   end

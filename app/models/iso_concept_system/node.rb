@@ -3,14 +3,14 @@ class IsoConceptSystem::Node < Fuseki::Base
   configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
             base_uri: "http://#{ENV["url_authority"]}/CSN",
             uri_unique: true
-  
+
   data_property :pref_label
   data_property :description
   object_property :narrower, cardinality: :many, model_class: "IsoConceptSystem::Node"
 
-  validates_with Validator::Field, attribute: :pref_label, method: :valid_label?
+  validates_with Validator::Field, attribute: :pref_label, method: :valid_non_empty_label?
   validates_with Validator::Field, attribute: :description, method: :valid_long_name?
- 
+
   include IsoConceptSystem::Core
 
   # Destroy this object. Prevents delete if children are present or items are tagged with it.

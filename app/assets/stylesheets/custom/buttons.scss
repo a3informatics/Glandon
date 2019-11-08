@@ -16,7 +16,7 @@
   color: $grey-white !important;
 }
 
-.btn:focus, .btn:active{
+.btn:active{
   color: $grey-white;
   background: $primary-color-dark;
 }
@@ -52,11 +52,11 @@
   background: $accent-color-2-light;
 }
 
-.btn.red:active, .btn.red:focus{
+.btn.red:active{
   background: $accent-color-2-dark !important;
 }
 
-.green.green{
+.btn.green{
   background: $secondary-color-medium;
 }
 
@@ -64,12 +64,16 @@
   background: $secondary-color-light;
 }
 
-.btn.green:active, .btn.green:focus{
+.btn.green:active{
   background: $secondary-color-dark !important;
 }
 
+.btn:focus{
+  color: white;
+}
+
 .btn.disabled{
-  background: $grey-medium;
+  opacity: .5;
   pointer-events: none;
 }
 
@@ -241,7 +245,7 @@
   color: $primary-color-medium !important;
 }
 
-button:focus{
+button:focus, input[type="submit"] {
   outline: none !important;
 }
 
