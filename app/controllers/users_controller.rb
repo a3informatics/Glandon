@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def lock
-    authorize User
+    authorize User, :edit?
     user = User.find(params[:id])
     user.lock
     flash[:success] = "User was successfully deactivated."
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   end
 
   def unlock
-    authorize User
+    authorize User, :edit?
     user = User.find(params[:id])
     user.unlock
     flash[:success] = "User was successfully activated."

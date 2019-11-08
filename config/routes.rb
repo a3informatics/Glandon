@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users, except: :create do
     member do
       put :update_name
+      put :lock
+      put :unlock
     end
   end
   post 'create_user' => 'users#create', as: :create_user
