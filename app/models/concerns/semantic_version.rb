@@ -35,6 +35,13 @@ class SemanticVersion
     return object
   end
 
+  # First
+  #
+  # @return (SemanticVersion) the first version
+  def self.first
+    self.new(major: 0, minor: 1)
+  end
+
   # Increment Major
   #
   # @return [Null] no return

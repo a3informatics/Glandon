@@ -282,12 +282,13 @@ module Fuseki
     def add_to_resources(name, opts)
 
       define_method("#{name}=") do |value|
-        instance_variable_set("@#{name}", value)
-        @new_record = true
+        #instance_variable_set("@#{name}", value)
+        @properties.property(name.to_sym).set_raw(value)
       end
 
       define_method("#{name}") do 
-        instance_variable_get("@#{name}")
+        @properties.property(name.to_sym).get
+        #instance_variable_get("@#{name}")
       end
       
       @resources ||= {}

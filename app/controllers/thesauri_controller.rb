@@ -60,7 +60,7 @@ class ThesauriController < ApplicationController
     @ct = Thesaurus.find_minimum(params[:id])
     respond_to do |format|
       format.html do
-        @close_path = request.referer
+        @close_path = history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope}})
       end
       format.json do
         results = []
@@ -97,8 +97,11 @@ class ThesauriController < ApplicationController
     results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
-    children.each {|c| results << c.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
-      delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})}
+    children.each {|c|
+      item = Thesaurus::ManagedConcept.find_minimum(c[:id])
+      results << c.reverse_merge!({edit_path: item.subset? ? edit_subset_thesauri_managed_concept_path(item, source_mc: item.subsets_links.to_id, parent_id: ct.id) : edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
+      delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})
+    }
     render :json => { data: results }, :status => 200
   end
 
@@ -269,6 +272,17 @@ class ThesauriController < ApplicationController
         render @render_args
       end
     end
+  end
+
+  def add_subset
+    authorize Thesaurus, :edit?
+    results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+    thesaurus = Thesaurus.find_minimum(results.first)
+    thesaurus = edit_item(thesaurus)
+    new_mc = thesaurus.add_subset(the_params[:concept_id])
+    AuditTrail.create_item_event(current_user, new_mc, "Subset created.")
+    path = edit_subset_thesauri_managed_concept_path(new_mc, source_mc: new_mc.subsets_links.to_id, context_id: params[:ctxt_id])
+    render json: { redirect_path: path, }, :status => 200
   end
 
 private

@@ -1,0 +1,132 @@
+/*
+* Subset Source Children Panel
+*
+* Requires:
+* source_children_table [Table] the table of children of the source code-list in the subset edit page
+* subset_edit_children_table [Table] the table of children of the subset code-list in the subset edit page
+*/
+
+/**
+ * Subset Source Children Panel Constructor
+ *
+ * @param [String] url of the data source
+ * @param [Integer] count - amount of items fetched in one call
+ * @param [Object Instance] subsetEditPanel - reference to the instance of the SubsetEditPanel object
+ * @param [Function] loadCallback - callback for when the table loads all the data from the ajax
+ * @param [Function] lockCallback - callback to extend the edit lock timer
+ * @return [void]
+ */
+function SubsetSourceChildrenPanel(url, count, subsetEditPanel, loadCallback, lockCallback) {
+  var _this = this;
+  this.url = url;
+  this.count = count;
+  this.columns = [{"data" : "index"},{"data" : "html"}];
+  this.loadCallback = loadCallback;
+  this.extendLock = lockCallback;
+  this.subsetEditPanelRef = subsetEditPanel;
+  this.childrenTable = $('#source_children_table').DataTable( {
+    "order": [[ 1, "asc" ]],
+    "columns": _this.columns,
+    "pageLength": pageLength, // Gloabl setting
+    "lengthMenu": pageSettings, // Gloabl setting
+    "processing": true,
+    "scrollY": 510,
+    "scrollCollapse": true,
+    "paging": true,
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No child items.",
+      "processing": generateSpinner("medium")
+    },
+    "columnDefs": [{
+      "targets": [0],
+      "visible": false
+    }],
+    "select": 'multi',
+  });
+  this.add(0);
+
+  this.childrenTable.on('select', function(e, dt, type, indexes){ _this.updateItem(indexes, "add"); });
+  this.childrenTable.on('deselect', function(e, dt, type, indexes){ _this.updateItem(indexes, "remove"); });
+
+  $("#select-all-btn").click(function(){
+    _this.toggleSelectAll(_this.childrenTable);
+  });
+}
+
+/**
+ * Add item to table
+ *
+ * @param [String] uri the uri of the item being added
+ * @param [Integer] key a unique reference
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.add = function (offset) {
+  var _this = this;
+  _this.childrenTable.processing(true);
+  $.ajax({
+    url: _this.url,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      var ordinal = 1;
+      for (i=0; i<result.data.length; i++) {
+        var rowHTML = _this.subsetEditPanelRef.childItemHTML(result.data[i]);
+        var row = _this.childrenTable.row.add({"index": ordinal, "item": result.data[i], "html": rowHTML});
+        ordinal++;
+      }
+      _this.childrenTable.draw();
+      if (result.count >= _this.count) {
+        _this.add(result.offset + _this.count)
+      } else {
+        _this.childrenTable.processing(false);
+        _this.loadCallback(_this);
+      }
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.childrenTable.processing(false);
+    }
+  });
+}
+
+/**
+ * User updates item (add/remove a child from the subset)
+ *
+ * @param [Array] Indexes of the selected children in the Source Code List Table
+ * @param [String] Action of item handler (can be "add" or "remove")
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
+  var _this = this;
+  _this.extendLock();
+  if(!_this.subsetEditPanelRef.prepComplete) return;
+
+  var bulkSize = indexes.length;
+  if(bulkSize > 1)
+    _this.subsetEditPanelRef.childrenTable.processing(true);
+
+  $.each(indexes, function(i, e){
+    var item = _this.childrenTable.row(e).data();
+    switch (action) {
+      case "add": _this.subsetEditPanelRef.addChild(item, bulkSize--);
+        break;
+      case "remove": _this.subsetEditPanelRef.removeChild(item, bulkSize--);
+        break;
+    }
+  });
+}
+
+/**
+ * Toggles select/deselect all items in the table
+ *
+ * @return [void]
+ */
+SubsetSourceChildrenPanel.prototype.toggleSelectAll = function(table){
+  var _this = this;
+  if(table.rows({ selected: true }).any())
+    table.rows({ selected: true }).deselect();
+  else
+    table.rows({ selected: false }).select();
+}

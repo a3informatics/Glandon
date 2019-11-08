@@ -65,4 +65,25 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     tags.map{ |x| x.pref_label }.sort
   end
 
+  # Other Parents. Determine if this object is connected with other parents objects other than 
+  #   the one specified. The other parents must be of the same type.
+  #
+  # @param [Object] parent the known parent item
+  # @return [Array] the other uris
+  def other_parents(parent, predicates)
+    path = "(#{predicates.map{|x| x.to_ref}.join("/")})"
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE
+      {
+        #{parent.uri.to_ref} #{path} #{self.uri.to_ref} .
+        #{parent.uri.to_ref} rdf:type ?t .
+        ?s rdf:type ?t .
+        FILTER (STR(?s) != STR(#{parent.uri.to_ref})) .
+        ?s #{path} #{self.uri.to_ref} .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [])
+    query_results.by_object(:s)
+  end
+
 end

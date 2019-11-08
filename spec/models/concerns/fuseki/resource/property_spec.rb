@@ -109,4 +109,24 @@ describe Fuseki::Resource::Property do
     expect(Fuseki::Resource::Property.schema_predicate_name("this_is_a")).to eq("thisIsA")
   end
 
+  it "saved and to be saved" do
+    ref = IsoNamespace.new
+
+    sparql = Sparql::Update.new
+    item = ref.properties.property(:name)
+    item.set_simple("value")
+    expect(item.get).to eq("value")
+    expect(item.to_be_saved?).to eq(true)
+    item.to_triples(sparql, Uri.new(uri: "http://www.example.com/c#parent"))
+    expect(sparql.to_triples).to eq("<http://www.example.com/c#parent> isoI:name \"value\"^^xsd:string . \n")
+    item.saved
+    expect(item.to_be_saved?).to eq(false)
+    
+    sparql = Sparql::Update.new
+    ref.name = "updated name"
+    expect(ref.properties.property(:name).to_be_saved?).to eq(true)
+    ref.properties.property(:name).to_triples(sparql, Uri.new(uri: "http://www.example.com/c#parent"))
+    expect(sparql.to_triples).to eq("<http://www.example.com/c#parent> isoI:name \"updated name\"^^xsd:string . \n")
+  end
+
 end

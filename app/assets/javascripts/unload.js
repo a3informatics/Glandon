@@ -1,22 +1,40 @@
-var keepToken = false;
-window.onbeforeunload = pageUnload;
+/*
+* Page Unload - releases token when uses leaves a page
+*/
 
-function pageUnload() {
-	pageUnloadAction();
+
+/**
+* Unload constructor
+* @param id [Boolean] Keep token boolean
+*
+* @return [void]
+*/
+function Unload(keepToken) {
+	this.keepToken = keepToken;
+	var _this = this;
+	window.onbeforeunload = function(){
+		_this.handleUnload(_this.keepToken);
+	}
+}
+
+/**
+ * Handles the unload event
+ * @param id [Boolean] Keep token boolean
+ *
+ * @return [void]
+ */
+Unload.prototype.handleUnload = function(keepToken) {
+	var _this = this;
+	var tokenId = $('#edit_lock_token').val();
+	if(typeof(pageUnloadAction) !== 'undefined')
+		pageUnloadAction();
 	if (!keepToken) {
-		var token_id
-		// Allows for upto eight tokens
-		for (var i=1; i<=8; i++) {
-			token_id = $('#token_' + i).val();
-			if (token_id !== "" && token_id !== undefined) {
-				$.ajax({
-			    url: '/tokens/' + token_id +  '/release',
-			    type: 'POST',
-			    dataType: 'json',
-			  });
-			} else {
-				break;
-			}
+		if (tokenId !== "" && tokenId !== undefined) {
+			$.ajax({
+				url: '/tokens/' + tokenId +  '/release',
+				type: 'POST',
+				dataType: 'json',
+			});
 		}
-  }
+	}
 }

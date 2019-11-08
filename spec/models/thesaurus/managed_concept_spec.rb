@@ -782,6 +782,23 @@ describe "Thesaurus::ManagedConcept" do
       check_file_actual_expected(results, sub_dir, "child_pagination_expected_2.yaml")
     end
 
+    it "children set" do
+      set = [
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51949"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C51951"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61019"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V17#C65047_C61032"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61041"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C61042"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C62656"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V18#C65047_C63321"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64431"),
+        Uri.new(uri: "http://www.cdisc.org/C65047/V4#C65047_C64432")
+      ]
+      results = Thesaurus::ManagedConcept.children_set(set)
+      check_file_actual_expected(results, sub_dir, "child_set_expected_1.yaml")
+    end
+
     it "normal, extended" do
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
@@ -1008,6 +1025,41 @@ describe "Thesaurus::ManagedConcept" do
       expect(ct).to receive(:is_owned_by_cdisc?).and_return(false)
       results = tc.filtered_tag_labels(ct)
       expect(results).to match_array(["QS", "SDTM"])
+    end
+
+  end
+
+  describe "subsets" do
+
+    before :all do
+      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
+        "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "determines if an item is subsetted" do
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      subsets = cl.subsetted_by
+      expect(subsets.count).to eq(2)
+      expect(subsets[0][:s].to_s).to eq("http://www.s-cubed.dk/S000001/V19#S000001")
+      expect(subsets[1][:s].to_s).to eq("http://www.s-cubed.dk/S000002/V19#S000002")
+    end
+
+    it "determines if an item is subsetted, none found" do
+      cl2 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C87162/V19#C87162"))
+      expect(cl2.subsetted_by).to eq(nil)
+    end
+
+    it "determines if an item is a subset and finds" do
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/S000001/V19#S000001"))
+      expect(cl.subset?).to eq(true)
+      expect(cl.subset_of).to_not eq(nil)
+      expect(cl.subset_of.to_s).to eq("http://www.cdisc.org/C66726/V19#C66726")
+      cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66726/V19#C66726"))
+      expect(cl.subset?).to eq(false)
+      expect(cl.subset_of).to eq(nil)
     end
 
   end

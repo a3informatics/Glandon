@@ -23,30 +23,30 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     render json: {data: tc.differences}
   end
 
-  # Will be required for Hierarchical terminologies
-  # def edit
-  #   authorize ThesaurusConcept
-  #   @thesaurus_concept = ThesaurusConcept.find(params[:id], params[:namespace], false)
-  #   thesaurus = get_thesaurus(@thesaurus_concept)
-  #   @token = Token.find_token(thesaurus, current_user)
-  #   @close_path = edit_lock_lost_link(thesaurus)
-  #   @referer_path = get_parent_link(@thesaurus_concept)
-  #   @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-  #   if @token.nil?
-  #     flash[:error] = "The edit lock has timed out."
-  #     redirect_to edit_lock_lost_link(thesaurus)
-  #   end
-  # end
+  def edit
+    authorize Thesaurus
+    @thesaurus_concept = Thesaurus::UnmanagedConcept.find_minimum(params[:id])
+    parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
+    @token = get_token(parent)
+    if @token.nil?
+      flash[:error] = "The edit lock has timed out."
+      redirect_to edit_lock_lost_link(parent)
+    else
+      @close_path = edit_lock_lost_link(parent)
+      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    end
+  end
 
   def update
     authorize Thesaurus
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
+    tc.synonyms_and_preferred_terms
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
-    #token = Token.find_token(parent, current_user)
-    #if !token.nil?
+    token = Token.find_token(parent, current_user)
+    if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
-        #AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
+        AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
         render :json => {:data => [tc.simple_to_h]}, :status => 200
       else
         errors = []
@@ -55,10 +55,10 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
         end
         render :json => {:fieldErrors => errors}, :status => 200
       end
-    #else
-    #  flash[:error] = "The edit lock has timed out."
-    #  render :json => {:data => {}, :link => edit_lock_lost_link(tc)}, :status => 422
-    #end
+    else
+      flash[:error] = "The edit lock has timed out."
+      render :json => {:data => {}, :link => edit_lock_lost_link(parent)}, :status => 422
+    end
   end
 
   # Will be required for Hierarchical terminologies

@@ -91,3 +91,23 @@ ThesauriSelect.prototype.initTable = function() {
     },
   });
 };
+
+/**
+ * Sets a callback
+ * @param [function] callback
+ * @return [void]
+ */
+ThesauriSelect.prototype.setCallback = function(callback){
+  var _this = this;
+  _this.callback = callback;
+}
+
+/**
+ * Resets the UI of the Thesaurus select modal
+ * @return [void]
+ */
+ThesauriSelect.prototype.resetUi = function(){
+  var _this = this;
+  _this.tsModalTable.rows( { selected: true } ).deselect();
+  // $("#tableModal").find("tr").removeClass("selected");
+}

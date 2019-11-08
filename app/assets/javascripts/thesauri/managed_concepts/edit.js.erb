@@ -1,9 +1,15 @@
 $(document).ready(function() {
-  ep = new EditorPanel("1", children_path, update_path, parent_id);
+  ep = new EditorPanel(children_path, update_path, parent_id, lockCallback);
   np = new NewPanel(add_child_path, 'managed_concept', callback);
+  timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
 
   function callback(data) {
     ep.add(data);
+  }
+
+  function lockCallback() {
+    if(!timer.expired)
+      timer.extendLock();
   }
 
 })

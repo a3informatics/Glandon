@@ -18,6 +18,7 @@ module Fuseki
         @metadata = metadata
         @instance_variable_name = "@#{@name}".to_sym # @<name> as a symbol
         @array = array?
+        @to_be_saved = false
       end
 
       # Name
@@ -71,6 +72,20 @@ module Fuseki
         @metadata[:cardinality] != :one
       end
 
+      # To Be Saved?
+      # 
+      # @return [Boolean] true if the property has been updated
+      def to_be_saved?
+        @to_be_saved
+      end
+
+      # Saved
+      # 
+      # @return [Boolean] true if the property has been updated
+      def saved
+        @to_be_saved = false
+      end
+
       # Default Value
       # 
       # @return [Object] the property's default value
@@ -107,7 +122,7 @@ module Fuseki
       # @param [Object] value the property value, might be an array
       # @return [Void] no return
       def set_default(value)
-        object? ? set_single(value) : set_simple(value)
+        object? ? set_the_property(value) : set_simple(value)
       end
 
       # Set URI. Sets the named property with the specified URI. Converts from stroing if necessary to URI object
@@ -124,7 +139,7 @@ module Fuseki
       # @param [String] value the property value
       # @return [Void] no return
       def set_simple(value)
-        set_single(to_typed(@metadata[:base_type], value))
+        set_the_property(to_typed(@metadata[:base_type], value))
       rescue => e
         puts "simple: Error #{name}=#{value}"
       end
@@ -147,7 +162,7 @@ module Fuseki
       # @param [Object] value the property value
       # @return [Void] no return
       def set(value)
-        array? ? @parent.instance_variable_get(@instance_variable_name).push(value) : @parent.instance_variable_set(@instance_variable_name, value)
+        array? ? push_the_property(value) : set_the_property(value)
       end
 
       # Set Raw. Sets the property to exactly as the value passed. Use with care.
@@ -155,14 +170,14 @@ module Fuseki
       # @param [Object] value the property value
       # @return [Void] no return
       def set_raw(value)
-        @parent.instance_variable_set(@instance_variable_name, value)
+        set_the_property(value)
       end
 
       # Get
       #
       # @return [Object] the value
       def get
-        @parent.instance_variable_get(@instance_variable_name)
+        get_the_property
       end
 
       # Schema Predicate Name
@@ -171,6 +186,21 @@ module Fuseki
       # @return [String] schema version of the name 
       def self.schema_predicate_name(name) 
         "#{name}".camelcase(:lower) # Camelcase with lower first char
+      end
+
+      # To Triples. Output the property as a set of triples
+      #
+      # @params [Sparql::Update] sparql the update object object
+      # @params [Uri] subject the subject uri for the property
+      # @return [Void] no return
+      def to_triples(sparql, subject)
+        objects = get
+        objects = [objects] if !array?
+        datatype = @metadata[:base_type]
+        objects.each do |object|
+          statement = object? ? {uri: uri_for_object(object)} : {literal: "#{to_literal(datatype, object)}", primitive_type: datatype}
+          sparql.add({:uri => subject}, {:uri => predicate}, statement)
+        end
       end
 
       # ---------
@@ -192,8 +222,19 @@ module Fuseki
     private
 
       # Set an object, either single or array
-      def set_single(value)
+      def set_the_property(value)
         @parent.instance_variable_set(@instance_variable_name, value)
+        @to_be_saved = true
+      end
+
+      # Push a value to an array object
+      def push_the_property(value)
+        @parent.instance_variable_get(@instance_variable_name).push(value)
+        @to_be_saved = true
+      end
+
+      def get_the_property
+        @parent.instance_variable_get(@instance_variable_name)
       end
 
       # Set a simple typed value
@@ -217,6 +258,18 @@ module Fuseki
         return result
       rescue => e
         byebug
+      end
+
+      # Build the object literal as a string
+      def to_literal(type, value)
+        return type == BaseDatatype.to_xsd(BaseDatatype::C_DATETIME) ? value.iso8601 : value
+      end
+
+      def uri_for_object(object)
+        return object if object.is_a? Uri
+        result = object.uri if object.respond_to?(:uri)
+        return result if !result.nil?
+        Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
       end
 
     end

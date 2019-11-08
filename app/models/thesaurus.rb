@@ -239,11 +239,11 @@ class Thesaurus <  IsoManagedV2
     version_set.each_with_index do |x, index|
       next if index == 0
     query_string = %Q{
-SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE 
+SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
 {
   ?ccl ^th:narrower ?pcl .
-  #{x.to_ref} (th:isTopConceptReference/bo:reference) ?pcl .   
-  ?pcl th:identifier ?pi .   
+  #{x.to_ref} (th:isTopConceptReference/bo:reference) ?pcl .
+  ?pcl th:identifier ?pi .
   {
     SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     {
@@ -361,10 +361,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params
+  # @params [Hash] params the parameters, can be empty for auto-generated identifier
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
-  def add_child(params)
+  def add_child(params={})
     child = Thesaurus::ManagedConcept.empty_concept
     child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)
@@ -401,6 +401,21 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     transaction_execute
     object
   end
+
+# Add subset. Creates a new MC, Subset, and links them together.
+#
+# @param mc_id [String] the identifier of the code list to be subsetted
+# @return [Object] the created ManagedConcept
+def add_subset(mc_id)
+  source_mc = Thesaurus::ManagedConcept.find_minimum(mc_id)
+  new_mc = self.add_child({})
+  transaction_begin
+  subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
+  new_mc.add_link(:is_ordered, subset.uri)
+  new_mc.add_link(:subsets, source_mc.uri)
+  transaction_execute
+  new_mc
+end
 
 private
 
