@@ -21,6 +21,23 @@ class User < ActiveRecord::Base
 
   validates :name, length: { minimum: 1 }, on: :update
 
+  #This method is called by Devise to check for "active" state of the User
+  def active_for_authentication?
+    super and self.is_active?
+  end
+
+  def inactive_message
+    is_active? ? super : :locked
+  end
+
+  def lock
+    update_attributes(is_active: false) unless !is_active
+  end
+
+  def unlock
+    update_attributes(is_active: true) unless is_active
+  end
+
   # Set any extra items we need when a user is created
   def set_extra
   	# Set the reader default role.
