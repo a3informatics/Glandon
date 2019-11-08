@@ -440,7 +440,7 @@ describe "Thesauri", :type => :feature do
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList11\n"
       expect(page).to have_content 'CodeList11'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "\n"
+      editor_table_fill_in "DTE_Field_preferred_term", ""
       expect(page).not_to have_content 'CodeList11'
       click_link "Return"
     end
@@ -471,7 +471,7 @@ describe "Thesauri", :type => :feature do
       editor_table_fill_in "DTE_Field_preferred_term", "CodeListItem1\t"
       expect(page).to have_content 'CodeListItem1'
       editor_table_click(1,3)
-      editor_table_fill_in "DTE_Field_preferred_term", "\n"
+      editor_table_fill_in "DTE_Field_preferred_term", ""
       expect(page).not_to have_content 'CodeListItem1'
       click_link "Return"
     end
@@ -594,11 +594,15 @@ describe "Thesauri", :type => :feature do
 
     it "checks for correct display of shared PTs or Ss, unmanaged concepts", js:true do
       click_navbar_cdisc_terminology
+wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
+      expect(page).to have_content 'History'
       context_menu_element('history', 5, '2015-12-18 Release', :show)
+wait_for_ajax_long
+      expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       ui_child_search("sex")
-      ui_check_table_info("children_table", 1, 2, 2)
+      ui_check_table_info("children_table", 1, 3, 3)
       find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
       wait_for_ajax
       expect(page).to have_content 'C66731'
