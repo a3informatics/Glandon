@@ -125,4 +125,19 @@ describe "User" do
     expect(user2.need_change_password?).to eq(true)
   end
 
+  it "allows lock user" do
+    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    expect(user.is_active?).to eq(true)
+    user.lock
+    expect(user.is_active?).to eq(false)
+  end
+
+  it "allows unlock user" do
+    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    user.lock
+    expect(user.is_active?).to eq(false)
+    user.unlock
+    expect(user.is_active?).to eq(true)
+  end
+
 end
