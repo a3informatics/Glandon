@@ -42,6 +42,14 @@ describe Fuseki::Persistence do
 
   end
 
+  class TestFPe3 < Fuseki::Base
+
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
+
+    object_property :has_identifier, cardinality: :many, model_class: "TestFPe3"
+
+  end
+
   it "find, simple case" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     result = TestFPe1.find(uri)
@@ -109,4 +117,22 @@ describe Fuseki::Persistence do
     expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
   end
 
+  it "deletes object with reference links" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/FP3#1")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/FP3#2")
+    item_1 = TestFPe3.create(uri: uri_1)
+    item_2 = TestFPe3.create(uri: uri_2)
+    item_1_c = TestFPe3.find(uri_1)
+    item_2_c = TestFPe3.find(uri_2)    
+    expect(item_1_c.has_identifier.count).to eq(0)
+    expect(item_2_c.has_identifier.count).to eq(0)
+    item_1.add_link(:has_identifier, item_2.uri)
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(1)
+    item_2.delete_with_links    
+    expect{TestFPe3.find(uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/FP3#2 in TestFPe3.")
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(0)
+  end
+    
 end

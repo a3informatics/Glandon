@@ -37,10 +37,14 @@ describe IsoConceptSystem::Node do
   end
 
   it "allows an object to be destroyed, no children" do
+    cs = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C"))
+    expect(cs.is_top_concept_objects.count).to eq(3)
     node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     result = node.delete
     expect(result).to eq(1)
     expect{IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRConcepts#GSC-C2 in IsoConceptSystem::Node.")
+    cs = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C"))
+    expect(cs.is_top_concept_objects.count).to eq(2)
   end
 
   it "prevents an object being destroyed, children" do
