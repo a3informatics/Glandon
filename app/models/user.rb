@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
     update_attributes(is_active: true) unless is_active
   end
 
+  def is_active
+    return true if self.is_active?
+    return false
+  end
+
   # Set any extra items we need when a user is created
   def set_extra
   	# Set the reader default role.
