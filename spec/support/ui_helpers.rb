@@ -252,6 +252,14 @@ module UiHelpers
     wait_for_ajax(15)
   end
 
+  def ui_show_more_tags_cl
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+  end
+
+  def ui_show_more_tags_cli
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]", :text => 'Show more').click
+  end
+
   # Breadcrumb
   # ==========
   def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)

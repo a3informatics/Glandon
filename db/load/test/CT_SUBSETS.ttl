@@ -1,0 +1,153 @@
+@prefix : <http://www.s-cubed.dk/CT/SUBSETS#> .
+@prefix th: <http://www.assero.co.uk/Thesaurus#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoT: <http://www.assero.co.uk/ISO11179Types#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix isoI: <http://www.assero.co.uk/ISO11179Identification#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.s-cubed.dk/CT/SUBSETS>
+  rdf:type owl:Ontology ;
+.
+:TH
+  rdf:type th:Thesaurus ;
+  isoC:label "Subsets CT"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#af95873c-6eee-44a2-9b85-f8360a6fea78> ;
+  isoC:tagged <http://www.assero.co.uk/CSN#41c72ed6-1387-4b51-99a3-11c950ce405a> ;
+  isoT:hasState :TH_RS ;
+  isoT:hasIdentifier :TH_SI ;
+  isoT:origin "Created from files: 'SDTM Terminology 2010-03-05.xlsx', 'CDASH Terminology 2010-03-05.xlsx', 'ADaM Terminology 2010-03-05.xlsx'"^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:isTopConceptReference :TH_TCR8 ;
+  th:isTopConceptReference :TH_TCR16 ;
+  th:isTopConcept <http://www.s-cubed.dk/S000001/V19#S000001> ;
+  th:isTopConcept <http://www.s-cubed.dk/S000002/V19#S000002> ;
+.
+:TH_RS
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+:TH_SI
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "SUBSETS"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+:TH_TCR8
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "false"^^xsd:boolean ;
+  bo:ordinal "8"^^xsd:positiveInteger ;
+  bo:reference <http://www.s-cubed.dk/S000001/V19#S000001> ;
+  bo:localLabel ""^^xsd:string ;
+.
+:TH_TCR16
+  rdf:type bo:TcReference ;
+  isoC:label ""^^xsd:string ;
+  bo:enabled "true"^^xsd:boolean ;
+  bo:optional "false"^^xsd:boolean ;
+  bo:ordinal "16"^^xsd:positiveInteger ;
+  bo:reference <http://www.s-cubed.dk/S000002/V19#S000002> ;
+  bo:localLabel ""^^xsd:string ;
+.
+<http://www.s-cubed.dk/S000001/V19#S000001>
+  rdf:type th:ManagedConcept ;
+  isoC:label "Common Terminology Criteria for Adverse Events V4.0"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoT:hasState <http://www.s-cubed.dk/S000001/V19#S000001_RS> ;
+  isoT:hasIdentifier <http://www.s-cubed.dk/S000001/V19#S000001_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "S000001"^^xsd:string ;
+  th:notation "TOXGR"^^xsd:string ;
+  th:definition "The version 4.0 standard terminology developed to report adverse events occurring in cancer clinical trials."^^xsd:string ;
+  th:extensible "false"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#12345> ;
+  th:subsets <http://www.cdisc.org/C66726/V19#C66726> ;
+.
+<http://www.assero.co.uk/PT#12345>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Common Terminology Criteria for Adverse Events V4.0"^^xsd:string ;
+.
+<http://www.s-cubed.dk/S000001/V19#S000001_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/S000001/V19#S000001_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "C87162"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.s-cubed.dk/S000002/V19#S000002>
+  rdf:type th:ManagedConcept ;
+  isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
+  isoC:tagged <http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9> ;
+  isoT:hasState <http://www.s-cubed.dk/S000002/V19#S000002_RS> ;
+  isoT:hasIdentifier <http://www.s-cubed.dk/S000002/V19#S000002_SI> ;
+  isoT:origin ""^^xsd:string ;
+  isoT:changeDescription ""^^xsd:string ;
+  isoT:creationDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:lastChangeDate "2010-03-05T00:00:00+00:00"^^xsd:dateTime ;
+  isoT:explanatoryComment ""^^xsd:string ;
+  th:identifier "S000002"^^xsd:string ;
+  th:notation "FRM"^^xsd:string ;
+  th:definition "The form of the completed pharmaceutical product."^^xsd:string ;
+  th:extensible "true"^^xsd:boolean ;
+  th:preferredTerm <http://www.assero.co.uk/PT#5678> ;
+  th:subsets <http://www.cdisc.org/C66726/V19#C66726> ;
+.
+<http://www.s-cubed.dk/S000002/V19#S000002_RS>
+  rdf:type isoR:RegistrationState ;
+  isoR:registrationStatus "Standard"^^xsd:string ;
+  isoR:administrativeNote ""^^xsd:string ;
+  isoR:effectiveDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:untilDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime ;
+  isoR:unresolvedIssue ""^^xsd:string ;
+  isoR:administrativeStatus ""^^xsd:string ;
+  isoR:previousState "Standard"^^xsd:string ;
+  isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> ;
+.
+<http://www.s-cubed.dk/S000002/V19#S000002_SI>
+  rdf:type isoI:ScopedIdentifier ;
+  isoI:identifier "S000002"^^xsd:string ;
+  isoI:versionLabel "2010-03-05 Release"^^xsd:string ;
+  isoI:version "19"^^xsd:positiveInteger ;
+  isoI:semanticVersion "19.0.0"^^xsd:string ;
+  isoI:hasScope <http://www.assero.co.uk/NS#ACME> ;
+.
+<http://www.assero.co.uk/PT#5678>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Pharmaceutical Dosage Form"^^xsd:string ;
+.

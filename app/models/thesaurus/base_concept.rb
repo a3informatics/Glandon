@@ -22,6 +22,45 @@ class Thesaurus
         {label: C_NOT_SET, identifier: C_NOT_SET, notation: C_NOT_SET, definition: C_NOT_SET, extensible: false, preferred_term: Thesaurus::PreferredTerm.where_only_or_create(C_NOT_SET)}
       end
 
+      # Children Set. Get the children in pagination manner
+      #
+      # @params [Array] uris an array of uris
+      # @return [Array] array of hashes containing the child data
+      def children_set(uris)
+        results =[]
+        # Get the final result
+        query_string = %Q{
+          SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) ?s WHERE
+          {
+            SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy WHERE
+            {
+              VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+              {
+                ?s th:identifier ?i .
+                ?s th:notation ?n .
+                ?s th:definition ?d .
+                ?s th:extensible ?e .
+                OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
+                OPTIONAL {?s th:synonym/isoC:label ?sy .}
+              }
+            } ORDER BY ?i ?sy
+          } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
+          }
+        query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC])
+        query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :s, :del]).each do |x|
+          results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, definition: x[:d], delete: false, uri: x[:s].to_s, id: x[:s].to_id}
+        end
+        results
+      end
+
+    end
+
+    # Synonyms and Preferred Terms. Reads the synonyms and preferred terms
+    #
+    # @return [Void] no return
+    def synonyms_and_preferred_terms
+      self.synonym_objects
+      self.preferred_term_objects
     end
 
     # Children?
@@ -52,11 +91,13 @@ class Thesaurus
     # @params [Hash] params the params hash
     # @option params [String] :offset the offset to be obtained
     # @option params [String] :count the count to be obtained
+    # @option params [Array] :tags the tag to be displayed
     # @return [Array] array of hashes containing the child data
     def children_pagination(params)
       results =[]
       count = params[:count].to_i
       offset = params[:offset].to_i
+      tags = params.key?(:tags) ? params[:tags] : []
 
       # Get the URIs for each child
       query_string = %Q{SELECT ?e WHERE
@@ -69,6 +110,7 @@ class Thesaurus
       uris = query_results.by_object_set([:e]).map{|x| x[:e]}
 
       # Get the final result
+      tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
       query_string = %Q{
   SELECT DISTINCT ?i ?n ?d ?pt ?e ?del (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.class.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
   {
@@ -83,7 +125,7 @@ class Thesaurus
         BIND(EXISTS {#{self.uri.to_ref} th:extends ?src} && NOT EXISTS {#{self.uri.to_ref} th:extends/th:narrower ?s} as ?del)
         OPTIONAL {?s th:preferredTerm/isoC:label ?pt .}
         OPTIONAL {?s th:synonym/isoC:label ?sy .}
-        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t .} 
+        OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}} 
       }
     } ORDER BY ?i ?sy ?t
   } GROUP BY ?i ?n ?d ?pt ?e ?s ?del ORDER BY ?i
@@ -93,6 +135,16 @@ class Thesaurus
         results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], tags: x[:gt], extensible: x[:e].to_bool, definition: x[:d], delete: x[:del].to_bool, uri: x[:s].to_s, id: x[:s].to_id}
       end
       results
+    end
+
+    # Filtered Tag Labels. Get the tags labels filtered by the tags in the quoted CT if the CT is owned by CDISC
+    #
+    # @params [Thesaurus] ct the CT. Can be nil resulting in no filtering.
+    # @return [Array] the resulting array of tags
+    def filtered_tag_labels(ct)
+      return self.tag_labels if ct.nil?
+      return self.tag_labels & ct.tag_labels if ct.is_owned_by_cdisc?
+      self.tag_labels
     end
 
     # Delete. Don't allow if children present.
@@ -107,15 +159,15 @@ class Thesaurus
     # Update. Specific update to control synonyms, PT and prevent identifier being updatedf.
     #
     # @param params [Hash] the new properties
-    # @return [Void] no return
+    # @return [Object] the updated object
     def update(params)
       self.synonym = where_only_or_create_synonyms(params[:synonym]) if params.key?(:synonym)
-      if params.key?(:preferred_term)
+      if params.key?(:preferred_term) && !params[:preferred_term].empty? # Preferred Term must not be cleared
         self.preferred_term = Thesaurus::PreferredTerm.where_only_or_create(params[:preferred_term])
         params[:label] = self.preferred_term.label # Always force the label to be the same as the PT.
       end
       self.properties.assign(params.slice!(:synonym, :preferred_term, :identifier)) # Note, cannot change the identifier once set!!!
-      save
+      self.save
     end
 
     # Parent

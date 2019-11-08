@@ -1,0 +1,104 @@
+@import "custom/globals.scss";
+
+.editor-wrap, .editor-wrap .row{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.editor-wrap{
+  flex-direction: row;
+  width: 100%;
+  font-family: $font-light;
+}
+
+.editor-child{
+  width: calc(50% - 30px);
+  min-width: 300px;
+  margin: 15px;
+  padding-bottom: 10px;
+  border: 1px solid $grey-bright;
+  border-radius: 10px;
+}
+
+.card-header.editor-child-header{
+  margin-bottom: 10px;
+  background: $grey-bright;
+  color: $grey-medium;
+}
+
+.editor-wrap table td, .editor-wrap table th{
+  border-bottom: none !important;
+  padding-left: 15px !important;
+}
+
+.editor-wrap table th{
+  font-size: $font-tiny !important ;
+}
+
+.editor-wrap table tbody tr:hover{
+  color: $secondary-color-medium;
+  background: $row-highlight-background !important;
+  cursor: pointer;
+}
+
+.editor-wrap .col-sm-6, .editor-wrap .col-sm-5, .editor-wrap .col-sm-7,{
+  width: unset !important;
+}
+
+.editor-wrap .dataTables_wrapper .row:last-of-type, .editor-wrap .dataTables_wrapper .row:first-of-type{
+  font-size: $font-small;
+  padding: 5px 10px;
+}
+
+.card-content{
+  overflow: visible;
+}
+
+.no-sort{
+  pointer-events: none !important;
+}
+
+.no-sort::after{
+  content: "" !important;
+}
+
+.editor-wrap table tbody tr.slctd{
+  background: $primary-color-bright !important;
+}
+
+@media (max-width: 1090px){
+  .editor-child{
+    width: calc(100% - 30px);
+  }
+}
+
+.editor-wrap div.dataTables_wrapper div.dataTables_processing{
+  width: calc(100% - 30px) !important;
+  left: 15px !important;
+}
+
+// Modal
+#edit-properties-modal .form-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#edit-properties-modal .form-row .form-group{
+  margin: 10px 15px;
+}
+
+#edit-properties-modal .form-row input, #edit-properties-modal .form-row textarea{
+  border: 1px solid $grey-bright;
+  border-radius: 5px;
+}
+
+#edit-properties-modal .form-wrap{
+  font-family: $font-light;
+}
+
+#edit-properties-modal .form-wrap label{
+  color: $primary-color-light;
+}

@@ -18,7 +18,7 @@
   <%= javascript_tag "var url_path = '';" %>
 <% end %>
 <div class="row">
-  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :badge => "CI"} do %>
+  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
     <!-- RETURN BUTTON -->

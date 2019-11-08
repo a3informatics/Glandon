@@ -345,20 +345,20 @@ describe Thesaurus do
 
   end
 
-  describe "Child Operations" do
+  describe "Child Operations - Read" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
     end
 
-    before :each do
+    before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_versions(1..60)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
-    after :each do
+    after :all do
       #
     end
 
@@ -380,6 +380,31 @@ describe Thesaurus do
       timer_start
       (1..100).each {|x| actual = ct.managed_children_pagination(offset: 0, count: 10)}
       timer_stop("100 searches")
+    end
+
+    it "get children, tag filter" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      actual = ct.managed_children_pagination(offset: 0, count: 10, tags: ["SDTM"])
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
+    end
+
+  end
+
+  describe "Child Operations - Write" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_versions(1..60)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    after :all do
+      #
     end
 
     it "add child, manual entry" do
@@ -417,6 +442,38 @@ describe Thesaurus do
       expect(actual).to hash_equal(expected)
     end
 
+    it "add child and update" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      count = actual.count
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
+      ct.add_child(identifier: "S123")
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(count+1)
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X"))
+      item.update(definition: "updated def")
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(count+1)
+    end
+
+    it "add child and add PT" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      count = actual.count
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
+      ct.add_child
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(count+1)
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X"))
+      item.update(preferred_term: "updated pt")
+      actual = ct.managed_children_pagination(count: 100, offset: 0)
+      expect(actual.count).to eq(count+1)
+      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S12345X/V1#S12345X"))
+      expect(item.to_h[:preferred_term][:label]).to eq("updated pt")
+    end
+
     it "allows a child TC to be added - error, invalid identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
@@ -425,6 +482,25 @@ describe Thesaurus do
       expect(item.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Identifier contains a part with invalid characters")
       actual = ct.managed_children_pagination(count: 100, offset: 0)
       check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Extensions" do
+
+    def load_versions(range)
+      range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_versions(1..60)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    after :all do
+      #
     end
 
     it "add extension" do
@@ -444,7 +520,7 @@ describe Thesaurus do
       expect(item.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
       expect(item.is_top_concept_reference.count).to eq(3)
       actual = item.to_h
-      check_file_actual_expected(actual.to_h, sub_dir, "add_extension_expected_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual.to_h, sub_dir, "add_extension_expected_1.yaml", equate_method: :match_array)
     end
 
   end
@@ -475,6 +551,34 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.find_by_identifiers(["C106655"])
       check_file_actual_expected(actual, sub_dir, "find_by_identifier_2.yaml")
+    end
+
+  end
+
+  describe "Subsets" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    before :each do
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    it "add a new subset" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
+      expect(thesaurus.is_top_concept_links.count).to eq(2)
+      new_mc = thesaurus.add_subset(subsetted_mc_id)
+      expect(thesaurus.is_top_concept_links.count).to eq(3)
+      actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
+      expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66781/V2#C66781")
+      expect(actual.is_ordered_objects).not_to be(nil)
+      expect(actual.is_ordered_objects.members).to be(nil)
     end
 
   end

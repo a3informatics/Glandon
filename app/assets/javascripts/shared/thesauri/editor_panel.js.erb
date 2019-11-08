@@ -1,6 +1,6 @@
-function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
+function EditorPanel(childrenPath, updatePath, parentId, editLockCallback) {
   this.count = 30; // Table read size
-  this.tokenId = tokenId;
+  this.editLockCallback = editLockCallback;
   this.childrenPath = childrenPath;
   this.updatePath = pathInsertId(updatePath, "");
   this.parentId = parentId;
@@ -56,10 +56,10 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
       { data: "synonym" },
       { data: "definition" },
       { data: null, "render": function(data,type,full,meta) {
-        return '<button type="button" class="btn btn-primary btn-xs">Edit</button>';
+        return '<button type="button" class="btn medium">Edit</button>';
       }},
       { data: null, "render": function(data,type,full,meta) {
-        return '<button type="button" class="btn btn-danger btn-xs">Delete</button>';
+        return '<button type="button" class="btn medium red">Delete</button>';
       }}
     ],
     rowId: "id",
@@ -79,7 +79,7 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
     var data = _this.editorTable.cell(this).data();
 
     if (col == 5) {
-      ttExtendLock("1"); // Extend the token
+      _this.editLockCallback(); // Extend the token
       keepToken = true; // Keep the token. Important
       window.location.href = data.edit_path;
     } else if (col == 6) {
@@ -113,11 +113,10 @@ function EditorPanel(tokenId, childrenPath, updatePath, parentId) {
 
   // Postsubmit event. Extend the timeout
   this.editor.on('postSubmit', function ( e, json, data, type ) {
-    ttExtendLock("1");
+    _this.editLockCallback();
     _this.editorTable.processing(false);
   });
 
-  ttAddToken(this.tokenId);
   this.fill(0);
 
 }
@@ -179,7 +178,7 @@ EditorPanel.prototype.delete = function(url) {
       displaySuccess("The concept has been deleted.");
       _this.editorTable.clear();
       _this.fill(0);
-      ttExtendLock(_this.tokenId);
+      _this.editLockCallback();
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);

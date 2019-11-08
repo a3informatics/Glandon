@@ -239,11 +239,11 @@ class Thesaurus <  IsoManagedV2
     version_set.each_with_index do |x, index|
       next if index == 0
     query_string = %Q{
-SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE 
+SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
 {
   ?ccl ^th:narrower ?pcl .
-  #{x.to_ref} (th:isTopConceptReference/bo:reference) ?pcl .   
-  ?pcl th:identifier ?pi .   
+  #{x.to_ref} (th:isTopConceptReference/bo:reference) ?pcl .
+  ?pcl th:identifier ?pi .
   {
     SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn WHERE
     {
@@ -308,10 +308,18 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
     {versions: versions, items: final_results}
   end
 
+  # Managed Children Pagination. Get the children in pagination manner
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @option params [Array] :tags the tag to be displayed
+  # @return [Array] array of hashes containing the child data
   def managed_children_pagination(params)
     results =[]
     count = params[:count].to_i
     offset = params[:offset].to_i
+    tags = params.key?(:tags) ? params[:tags] : []
 
     # Get the URIs for each child
     query_string = %Q{SELECT ?e WHERE
@@ -325,6 +333,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
     uris = query_results.by_object_set([:e]).map{|x| x[:e]}
 
     # Get the final result
+    tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
 {
@@ -338,7 +347,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ?s th:extensible ?e .
       ?s th:preferredTerm/isoC:label ?pt .
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
-      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
+      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
     }
   } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i
@@ -352,10 +361,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
 
   # Add Child. Adds a child item that is itself managed
   #
-  # @params [Hash] params
+  # @params [Hash] params the parameters, can be empty for auto-generated identifier
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
-  def add_child(params)
+  def add_child(params={})
     child = Thesaurus::ManagedConcept.empty_concept
     child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)
@@ -392,6 +401,21 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     transaction_execute
     object
   end
+
+# Add subset. Creates a new MC, Subset, and links them together.
+#
+# @param mc_id [String] the identifier of the code list to be subsetted
+# @return [Object] the created ManagedConcept
+def add_subset(mc_id)
+  source_mc = Thesaurus::ManagedConcept.find_minimum(mc_id)
+  new_mc = self.add_child({})
+  transaction_begin
+  subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
+  new_mc.add_link(:is_ordered, subset.uri)
+  new_mc.add_link(:subsets, source_mc.uri)
+  transaction_execute
+  new_mc
+end
 
 private
 

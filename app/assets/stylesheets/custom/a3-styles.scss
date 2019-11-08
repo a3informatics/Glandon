@@ -274,16 +274,25 @@
   margin: 5px auto;
 }
 
-.form-wrap input{
-  min-width: 170px;
+.form-wrap input, .form-wrap textarea{
   font-size: $font-small;
   font-family: $font-light;
   color: $grey-medium;
-  border: 0px;
   outline: none;
-  background: transparent;
   margin: 6px 0;
   padding: 6px;
+  background: transparent;
+}
+
+.form-wrap input{
+  min-width: 170px;
+  border: 0px;
+  border-bottom: 2px solid $primary-color-bright;
+}
+
+.form-wrap textarea{
+  min-width: 250px;
+  border: 1px solid $grey-bright;
   border-bottom: 2px solid $primary-color-bright;
 }
 
@@ -297,7 +306,7 @@
   padding-left: 5px;
 }
 
-// 
+//
 .boxed-title{
   padding: 6px 20px;
   display: block;

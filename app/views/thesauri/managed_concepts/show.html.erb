@@ -1,6 +1,10 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
+<%= stylesheet_link_tag 'custom/context_menu' %>
+<%= javascript_include_tag 'shared/context_menu' %>
+<%= javascript_include_tag 'shared/thesauri/subsets_index' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var tc_id = '#{@tc.id}';" %>
+<%= javascript_tag "var context_id = '#{@context_id}';" %>
 <%= javascript_tag "var is_extended = #{@is_extended};" %>
 <%= javascript_tag "var is_extending = #{@is_extending};" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
@@ -10,17 +14,18 @@
 
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :badge => "CL"} do %>
+  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#subsetsModal", id: "btn-subsets",
+        icon: "icon-subset", btn_text: "Subsets", dt_toggle: "modal", disabled: false} %>
+      <%= render partial: "shared/thesauri/subsets_index" %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
         icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
-      <!-- BUTTON EXPORT CSV -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc),
         id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
 
       <% if policy(Thesaurus).edit? %>
-        <!-- EXTEND BUTTONS -->
         <% class_list = @can_be_extended ? e_disabled = false : e_disabled = true %>
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#tableModal", id: "extend",
           icon: e_disabled ? "icon-extend-disabled ":"icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>
@@ -31,8 +36,7 @@
           icon: "icon-extend", btn_text: "Extending", dt_toggle: "", disabled: false} %>
       <% end %>
 
-      <!-- RETURN BUTTON -->
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
