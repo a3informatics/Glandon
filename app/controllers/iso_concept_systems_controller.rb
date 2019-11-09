@@ -11,8 +11,9 @@ class IsoConceptSystemsController < ApplicationController
 
   def show
     authorize IsoConceptSystem
-    concept_system = IsoConceptSystem.find_children(params[:id])
-    render :json => {data: concept_system.to_h}, :status => 200
+    concept_system = IsoConceptSystem.root
+    result = concept_system.find_all
+    render :json => {data: result.to_h}, :status => 200
   end    
 
   def add

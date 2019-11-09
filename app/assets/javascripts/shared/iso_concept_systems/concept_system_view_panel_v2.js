@@ -1,4 +1,4 @@
-function ConceptSystemViewPanel(id, step, callback) { 
+function ConceptSystemViewPanel(id, step, callback) {
   this.id = id;
   this.heightStep = step;
   this.callback = callback;
@@ -8,11 +8,15 @@ function ConceptSystemViewPanel(id, step, callback) {
   var _this = this;
 
   $('#d3_minus').click(function () {
+    var perserveSearch = _this.isSearchState();
     _this.d3Editor.reSizeDisplay(_this.heightStep * -1);
+    if (perserveSearch) d3Search($("#d3Search_input").val());
   });
 
   $('#d3_plus').click(function () {
+    var perserveSearch = _this.isSearchState();
     _this.d3Editor.reSizeDisplay(_this.heightStep);
+    if (perserveSearch) d3Search($("#d3Search_input").val());
   });
 
   $('#d3Search input')
@@ -69,7 +73,9 @@ ConceptSystemViewPanel.prototype.empty = function(node) {
 
 ConceptSystemViewPanel.prototype.reDisplay = function() {
   var _this = this;
+  var perserveSearch = _this.isSearchState();
   _this.d3Editor.reDisplay();
+  if (perserveSearch) d3Search($("#d3Search_input").val());
 }
 
 ConceptSystemViewPanel.prototype.validate = function(node) {
@@ -81,3 +87,6 @@ ConceptSystemViewPanel.prototype.displayNode = function(node) {
   _this.callback(node.data);
 }
 
+ConceptSystemViewPanel.prototype.isSearchState = function(){
+  return ($("#d3Search_input").val() !== "" && $("#d3").find(".search-result-bg").length > 0);
+}

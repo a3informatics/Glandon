@@ -21,33 +21,34 @@ module IsoConceptSystem::Core
   # @raise [UpdateError] If object not updated.
   # @return [Boolean] The new object created if no exception raised
   def update(params)
-    params[:pref_label] = params.delete(:label) # rename lable to pref_label, legacy reasons.
-    self.properties.assign(params) if !params.empty?
-    return if !valid?
-    partial_update(update_query(params), [:isoC])
+    params[:pref_label] = params.delete(:label) # rename label to pref_label, legacy reasons.
+    #self.properties.assign(params) if !params.empty?
+    #return if !valid?
+    #partial_update(update_query(params), [:isoC])
+    super
   end
 
 private
 
   # Update query string
-  def update_query(params)
-    %Q{
-      DELETE
-      {
-      #{self.uri.to_ref} isoC:prefLabel ?a .
-      #{self.uri.to_ref} isoC:description ?b .
-      }
-      INSERT
-      {
-      #{self.uri.to_ref} isoC:prefLabel "#{self.pref_label}"^^xsd:string .
-      #{self.uri.to_ref} isoC:description "#{self.description}"^^xsd:string .
-      }
-      WHERE
-      {
-      #{self.uri.to_ref} isoC:prefLabel ?a .
-      #{self.uri.to_ref} isoC:description ?b .
-      }
-    }
-  end
+  # def update_query(params)
+  #   %Q{
+  #     DELETE
+  #     {
+  #     #{self.uri.to_ref} isoC:prefLabel ?a .
+  #     #{self.uri.to_ref} isoC:description ?b .
+  #     }
+  #     INSERT
+  #     {
+  #     #{self.uri.to_ref} isoC:prefLabel "#{self.pref_label}"^^xsd:string .
+  #     #{self.uri.to_ref} isoC:description "#{self.description}"^^xsd:string .
+  #     }
+  #     WHERE
+  #     {
+  #     #{self.uri.to_ref} isoC:prefLabel ?a .
+  #     #{self.uri.to_ref} isoC:description ?b .
+  #     }
+  #   }
+  # end
 
 end

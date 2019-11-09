@@ -28,18 +28,19 @@ IsoManagedListOldPanel.prototype.load = function () {
     "pageLength": 5,
     "lengthMenu": [[5, 10, 15, 20, 25], [5, 10, 15, 20, 25]],
     "language": {
-        "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
+        "processing": generateSpinner("medium"),
+        "emptyTable": "No items with the selected tag were found."
       },
     "columns": [
-      {"data" : "identifier", "width" : "30%"},
-      {"data" : "label", "width" : "50%"},
-      {"data" : "version", "width" : "10%"},
-      {"data" : "version_label", "width" : "10%"},
+      {"data" : "identifier"},
+      {"data" : "label"},
+      {"data" : "version"},
+      {"data" : "version_label"},
       // Following replaces the old way of putting in a button. Use link styled as a button.
       {"render" : function (data, type, row, meta) {
-        return '<a href="' + getPathStrongV2(row.type, row.id) + '" class="btn btn-primary btn-xs">Show</a>';
+        return '<a href="' + getPathStrongV2(row.type, row.id) + '" class="btn btn-xs">Show</a>';
       }}
     ]
   });
-  _this.isoManagedTableReload = true;    
+  _this.isoManagedTableReload = true;
 }
