@@ -105,7 +105,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "show, no extension" do
-      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66767/V2#C66767")
       get :show, {id: tc_uri.to_id, managed_concept: {context_id: th_uri.to_id}}
       expect(assigns(:context_id)).to eq(th_uri.to_id)
@@ -121,7 +121,7 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "show, extended" do
-      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
       ext_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#XXXXX")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(true)
@@ -130,14 +130,14 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:context_id)).to eq(th_uri.to_id)
       expect(assigns(:can_be_extended)).to eq(false)
       expect(assigns(:is_extended)).to eq(true)
-      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjQ1Q%3D")
+      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{ext_uri.to_id}%3D")
       expect(assigns(:is_extending)).to eq(false)
       expect(assigns(:is_extending_path)).to eq("")
       expect(response).to render_template("show")
     end
 
     it "show, extending" do
-      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#CT")
+      th_uri =  Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       tc_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#C66780")
       ext_uri =  Uri.new(uri: "http://www.cdisc.org/C66780/V2#XXXXX")
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:extended?).and_return(false) # Note, wrong way but useful for test
@@ -160,8 +160,12 @@ describe Thesauri::ManagedConceptsController do
         {id: "2", delete: true, delete_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bparent_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVlgjWFhY", show_path: "/thesauri/unmanaged_concepts/2?unmanaged_concept%5Bcontext_id%5D=bbb"}
       ]
       tc = Thesaurus::ManagedConcept.new
+      ct = Thesaurus.new
       tc.uri = Uri.new(uri: "http://www.cdisc.org/CT/VX#XXX")
       expect(Thesaurus::ManagedConcept).to receive(:find_with_properties).and_return(tc)
+      expect(Thesaurus).to receive(:find_minimum).and_return(ct)
+      expect(ct).to receive(:is_owned_by_cdisc?).and_return(true)
+      expect(ct).to receive(:tag_labels).and_return([])
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:children_pagination).and_return([{id: "1", delete: false}, {id: "2", delete: true}])
       get :show_data, {id: "aaa", offset: 10, count: 10, managed_concept: {context_id: "bbb"}}
       expect(response.content_type).to eq("application/json")

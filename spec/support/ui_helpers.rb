@@ -252,6 +252,14 @@ module UiHelpers
     wait_for_ajax(15)
   end
 
+  def ui_show_more_tags_cl
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+  end
+
+  def ui_show_more_tags_cli
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]", :text => 'Show more').click
+  end
+
   # Breadcrumb
   # ==========
   def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
@@ -511,15 +519,14 @@ module UiHelpers
   end
 
 
-  def ui_create_terminology
+  def ui_create_terminology(id, label)
       click_navbar_terminology
-      fill_in 'thesauri_identifier', with: 'SELECT TEST'
-      fill_in 'thesauri_label', with: 'Test Terminology'
+      sleep 5
+      fill_in "thesauri_identifier", with: id
+      fill_in "thesauri_label", with: label
       click_button 'Create'
+      expect(page).to have_content 'Terminology was successfully created.'
   end
-
-
-
 
   # Return
   def ui_hit_return(id)

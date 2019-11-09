@@ -64,7 +64,8 @@ class ThesauriController < ApplicationController
       end
       format.json do
         results = []
-        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+        tags = @ct.is_owned_by_cdisc? ? @ct.tag_labels : []
+        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count], tags: tags})
         children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: @ct.id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
@@ -232,7 +233,7 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_object = thesaurus.add_extension(the_params[:concept_id])
-    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
+    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id, reference_ct_id: the_params[:reference_ct_id]}})}, :status => 200
   end
 
   def search_current
@@ -331,7 +332,7 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
     #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
 

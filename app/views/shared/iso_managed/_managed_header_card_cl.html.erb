@@ -27,7 +27,7 @@
           Definition: <span class="font-light"><%= item.definition %> </span>
         </div>
         <%= render layout: "shared/show_more", :locals => {:size => "tiny"} do %>
-          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.tag_labels} %>
+          <%= render partial: "shared/bg_labels_inline", :locals => {:name => "Tags", :items => item.filtered_tag_labels(context)} %>
         <% end %>
       </div>
       <div class="h-inner-wrap">

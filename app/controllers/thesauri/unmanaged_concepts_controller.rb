@@ -106,17 +106,20 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
+    @context_id = the_params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    @context_id = the_params[:context_id]
     @has_children = @tc.children?
   end
 
   def show_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::UnmanagedConcept.find(params[:id])
     context_id = the_params[:context_id]
+    ct = Thesaurus.find_minimum(context_id)
+    tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
     children = tc.children_pagination(params)
     results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
     render json: {data: results, offset: params[:offset], count: results.count}, status: 200

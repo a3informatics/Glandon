@@ -1,6 +1,6 @@
 $(document).ready( function() {
   var shp = new ShowHeaderPanel(is_extended, is_extending);
-  var modalTS = new ThesauriSelect(tc_id, shp.callback);
+  var modalTS = new ThesauriSelect(tc_id, context_id, shp.callback);
   var modalSubsets = new IndexSubsets(tc_id);
   var columns = [
     {"data" : "identifier"},
@@ -11,7 +11,7 @@ $(document).ready( function() {
     {"data" : "tags"}
   ];
   var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled);
-  var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
+  var searchModal = new TermSearch(context_id, reference_ct_id, cp.addNew.bind(cp));
 
   $("#extend").click(function(){
     modalTS.setCallback(shp.callback);

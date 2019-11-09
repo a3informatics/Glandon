@@ -134,6 +134,34 @@ module Fuseki
         results
       end
 
+      # The Type. Get the type for a URI
+      # 
+      # @params [Uri] uri the uri
+      # @raise [Errors::ApplicationLogicError] raised if no type found.
+      # @return [Uri] the RDF type
+      def the_type(uri)
+        results = []
+        query_string = "SELECT ?t WHERE { #{uri.to_ref} rdf:type ?t }"
+        query_results = Sparql::Query.new.query(query_string, "", [])
+        Errors.application_error(self.class.name, __method__.to_s, "Unable to find the RDF type for #{uri}.") if query_results.empty?
+        query_results.by_object(:t).first
+      end
+
+      # Same Type. A set of URIs are of the same type
+      # 
+      # @params [Array] uris the set of uris
+      # @params [Uri] rdf_type the RDF type to be checked against
+      # @raise [Errors::ApplicationLogicError] raised if no types found
+      # @return [Boolean] true if all of the specified type
+      def same_type(uris, rdf_type)
+        results = []
+        query_string = "SELECT ?t WHERE { VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} } . ?s rdf:type ?t }"
+        query_results = Sparql::Query.new.query(query_string, "", [])
+        Errors.application_error(self.class.name, __method__.to_s, "Unable to find the RDF type for the set of URIs.") if query_results.empty?
+        results = query_results.by_object(:t)
+        results.map{|x| x.to_s}.uniq.count == 1 && results.first == rdf_type
+      end
+
       # -----------------
       # Test Only Methods
       # -----------------
@@ -196,9 +224,10 @@ module Fuseki
     # @return [Stirng] the id string
     alias uuid id
 
-    # True Type. Gets the true predicate type for a subject URI.
-    #
-    # @return [Uri] the type predicate
+    # My Type. Get the type for the insance
+    # 
+    # @raise [Errors::ApplicationLogicError] raised if no type found.
+    # @return [Uri] the RDF type
     def true_type
       results = []
       query_string = "SELECT ?t WHERE { #{self.uri.to_ref} rdf:type ?t }"
@@ -206,6 +235,9 @@ module Fuseki
       Errors.application_error(self.class.name, __method__.to_s, "Unable to find true type for #{self.uri}.") if query_results.empty?
       query_results.by_object(:t).first
     end
+
+    # Deprecate true_type
+    alias :my_type :true_type
 
     def transaction_begin
       @transaction = Sparql::Transaction.new

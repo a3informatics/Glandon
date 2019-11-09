@@ -633,4 +633,58 @@ wait_for_ajax_long
 
   end
 
+  def check_tags(date, version, ct_tags, cl_tags)
+    click_navbar_cdisc_terminology
+    wait_for_ajax(10)
+    ui_table_search("history", "#{date} Release")
+    context_menu_element('history', 5, "#{date} Release", :show)
+    wait_for_ajax
+    expect(page).to have_content "#{version}"
+    ui_show_more_tags_cl
+    expect(page).to have_content "Tags: #{ct_tags}"
+    ui_table_search("children_table", "C100170")
+    find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
+    wait_for_ajax
+    expect(page).to have_content "C100170"
+sleep 0.5
+    ui_show_more_tags_cli
+sleep 0.5
+    expect(page).to have_content "Tags: #{cl_tags}"
+  end
+
+  describe "Filtered Tags", :type => :feature do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..61)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      ua_create
+      nv_destroy
+      nv_create(parent: "10", child: "999")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      # wait_for_ajax
+      #ua_logoff
+    end
+
+    after :all do
+      nv_destroy
+      ua_destroy
+    end
+
+    it "Check on filtered tags", js:true do
+      check_tags("2012-03-23", "30.0.0", "ADaM CDASH QS SDTM SEND", "QS SDTM")
+      check_tags("2014-06-27", "39.0.0", "ADaM CDASH QS-FT SDTM SEND", "QS-FT SDTM")
+      check_tags("2014-12-19", "42.0.0", "ADaM CDASH COA SDTM SEND", "SDTM")
+      check_tags("2015-06-26", "44.0.0", "ADaM CDASH QRS SDTM SEND", "SDTM")
+      check_tags("2015-12-18", "46.0.0", "ADaM CDASH SDTM SEND", "SDTM")
+    end
+
+  end
 end
