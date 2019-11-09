@@ -63,6 +63,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :show)
+wait_for_ajax
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       expect(page).to have_content '1.0.0'
@@ -78,6 +79,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :show)
+wait_for_ajax
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       expect(page).to have_content '1.0.0'
@@ -102,8 +104,9 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :search)
+wait_for_ajax
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
-      #save_and_open_page
+    #save_and_open_page
       click_link 'Return'
       expect(page).to have_content 'History: CDISC EXT'
     end
@@ -144,6 +147,7 @@ describe "Thesaurus", :type => :feature do
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :search)
+wait_for_ajax
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
