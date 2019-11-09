@@ -54,6 +54,7 @@ describe "Thesaurus", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
     end
 
@@ -61,9 +62,10 @@ describe "Thesaurus", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :show)
-wait_for_ajax
+wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       expect(page).to have_content '1.0.0'
@@ -77,9 +79,10 @@ wait_for_ajax
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :show)
-wait_for_ajax
+wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       expect(page).to have_content '1.0.0'
@@ -88,11 +91,13 @@ wait_for_ajax
       expect(page).to have_content 'A00010'
       expect(page).to have_content 'A00020'
       find(:xpath, "//tr[contains(.,'VSTEST')]/td/a", :text => 'Show').click
+wait_for_ajax(10)
       expect(page).to have_content 'Vital Sign Test Codes Extension'
       expect(page).to have_content 'A00001'
       expect(page).to have_content 'A00003'
       expect(page).to have_content 'A00002'
       find(:xpath, "//tr[contains(.,'MUAC')]/td/a", :text => 'Show').click
+wait_for_ajax(10)
       expect(page).to have_content 'Mid upper arm circumference'
       expect(page).to have_content 'A00003'
       #save_and_open_page
@@ -102,9 +107,10 @@ wait_for_ajax
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :search)
-wait_for_ajax
+wait_for_ajax(10)
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
     #save_and_open_page
       click_link 'Return'
@@ -115,8 +121,10 @@ wait_for_ajax
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :search)
+wait_for_ajax(10)
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
@@ -129,6 +137,7 @@ wait_for_ajax
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :search)
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
@@ -145,9 +154,10 @@ wait_for_ajax
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :search)
-wait_for_ajax
+wait_for_ajax(10)
       expect(page).to have_content 'Search: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
       #expect(page).to have_button('Notepad+')
       wait_for_ajax(5) # Big load
