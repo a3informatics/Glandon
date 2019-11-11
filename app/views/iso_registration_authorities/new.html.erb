@@ -15,7 +15,7 @@
             <label for="name">Scope Namespace:</label>
             <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces), {:class => 'form-control'}) %>
           </div>
-          <%= f.submit "Submit", class: "btn btn-default " %>
+          <%= f.submit "Submit", class: "btn  " %>
           <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %> 
         <% end %>
       </div>
