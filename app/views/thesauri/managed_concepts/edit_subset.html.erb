@@ -5,7 +5,6 @@
 <%= javascript_tag "var source_children_url = '#{children_thesauri_managed_concept_path({id: @source_mc})}';" %>
 <%= javascript_tag "var subset_children_url = '#{list_children_thesauri_subset_path(@subset)}';" %>
 <%= javascript_tag "var subset_url = '#{add_thesauri_subset_path(@subset).chomp "/add"}';" %>
-<% @close_path = (params[:context_id] == nil ? edit_thesauri_path(params[:parent_id]): thesauri_managed_concept_path(@source_mc, managed_concept: {context_id: params[:context_id]})) %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
@@ -17,7 +16,7 @@
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#edit-properties-modal", id: "edit-properties",
         icon: "icon-edit", btn_text: "Edit properties", dt_toggle: "modal", disabled: false } %>
       <%= render partial: "shared/iso_managed/edit_item_properties", :locals => {mc: @subset_mc} %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript: history.back()", id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
     </div>
   <% end %>
