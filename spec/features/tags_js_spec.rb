@@ -415,20 +415,32 @@ describe "Tags", :type => :feature do
   describe "The Content Admin User can (CDISC tags) ", :type => :feature do
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "mdr_iso_concept_systems.ttl"]
-      load_cdisc_term_versions(1..2)
-      load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
       clear_iso_registration_authority_object
       clear_iso_registration_state_object
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       ua_content_admin_login
     end
 
-    it "verifies Item List table children on tag click", js:true do
+    it "verifies item list table children on tag click", js:true do
       click_navbar_tags
-      pause
+      expect(page).to have_content 'Manage Tags'
+      ui_click_node_name ('SDTM')
+      wait_for_ajax
+      ui_check_table_cell("iso_managed_table", 2, 3, "1")
+      ui_check_table_cell("iso_managed_table", 5, 1, "C25681")
+      click_link '15'
+      click_link '14'
+      ui_check_table_cell("iso_managed_table", 4, 3, "3")
+      ui_check_table_cell("iso_managed_table", 4, 4, "2007-04-26 Release")
+      ui_click_node_name ('Protocol')
+      wait_for_ajax
+      expect(page).to have_content('No items with the selected tag were found.')
     end
 
   end
