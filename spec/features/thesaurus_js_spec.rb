@@ -94,8 +94,14 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
       #currently not working
       context_menu_element('history', 4, 'CDISC Extensions', :document_control)
-      expect(page).to have_content 'Status: CDISC Extensions CDISC EXT (V1.0.0, 1, Standard)'
-      click_link 'Close'
+wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content 'Standard'
+      expect(page).to have_content 'Superseded'
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      expect(page).to have_content '1.0.0'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC EXT'
     end
 
@@ -120,17 +126,22 @@ describe "Thesaurus", :type => :feature do
 
     it "allows terminology to be edited, manual-identifier"
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)'
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions' 
+      expect(page).to have_content 'CDISC EXT'
+#      expect(page).to have_content '1.1.0'
+#      expect(page).to have_content 'Incomplete'
       ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100, "All" => -1})
       # fill_in 'Identifier', with: 'A00030'
       click_button 'New'
+wait_for_ajax
       expect(page).to have_content 'NP000010P' # Note up version
       editor_table_click_row_content 'NP000010P', 2
       # editor_table_fill_in("DTE_Field_label", "Label text\t")
@@ -142,39 +153,43 @@ describe "Thesaurus", :type => :feature do
       editor_table_click_row_content 'NP000010P', 5
       editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky!\n"
       find(:xpath, "//tr[contains(.,'NP000010P')]/td/button", :text => 'Edit').click
-      expect(page).to have_content 'Edit: The PT 10P NP000010P'
+wait_for_ajax
+      expect(page).to have_content 'NP000010P'
+      expect(page).to have_content 'The PT 10P'
       #fill_in 'Identifier', with: 'A00031'
       click_button 'New'
-      expect(page).to have_content 'NC00000010C'
+wait_for_ajax
+      expect(page).to have_content 'NC00000999C'
       editor_table_click(1,2)
       #editor_table_fill_in "DTE_Field_label", "Label text 31\t"
-      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 10C\t"
-      editor_table_fill_in "DTE_Field_preferredTerm", "The PT 10C\n"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 999C\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "The PT 999C\n"
       editor_table_click(1,4)
-      editor_table_fill_in "DTE_Field_synonym", "Same as 10C\n"
+      editor_table_fill_in "DTE_Field_synonym", "Same as 999C\n"
       editor_table_click(1,5)
-      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 10C!\n"
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 999C!\n"
       #fill_in 'Identifier', with: 'A00032'
       click_button 'New'
-      expect(page).to have_content 'NC00000020C'
+wait_for_ajax
+      expect(page).to have_content 'NC00001000C'
       editor_table_click(2,2)
       #editor_table_fill_in "DTE_Field_label", "Label text 32\t"
-      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 20C\t"
-      editor_table_fill_in "DTE_Field_preferredTerm", "The PT 20C\n"
+      editor_table_fill_in "DTE_Field_notation", "SUBMISSION 1000C\t"
+      editor_table_fill_in "DTE_Field_preferred_term", "The PT 1000C\n"
       editor_table_click(2,4)
-      editor_table_fill_in "DTE_Field_synonym", "Same as 20C\n"
+      editor_table_fill_in "DTE_Field_synonym", "Same as 1000C\n"
       editor_table_click(2,5)
-      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 20C!\n"
-    #pause
-      find(:xpath, "//tr[contains(.,'Same as 20C')]/td/button", :text => 'Delete').click
+      editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 1000C!\n"
+      find(:xpath, "//tr[contains(.,'Same as 1000C')]/td/button", :text => 'Delete').click
       ui_click_ok("Are you sure?")
-      expect(page).to have_content 'NC00000010C'
-      expect(page).not_to have_content 'NC00000020C'
-      click_button 'Close'
+wait_for_ajax
+      expect(page).to have_content 'NC00000999C'
+      expect(page).not_to have_content 'NC00001000C'
+      click_button 'Return'
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows terminology to be edited, identifier check - failing: set config (REQ-MDR-ST-015)", js: true do
+    it "allows terminology to be edited, manual identifier check - WILL CURRENTLY FAIL (need to set config) (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
@@ -203,7 +218,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows terminology to be edited, identifier validation - failing: set config (REQ-MDR-ST-015)", js: true do
+    it "allows terminology to be edited, manual identifier validation - WILL CURRENTLY FAIL (need to set config) (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
@@ -227,25 +242,30 @@ describe "Thesaurus", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
-      click_link 'Close'
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC EXT'
     end
 
-    # NOT WORKING (EDIT TERMINOLOGY)
     it "allows the edit session to be closed, child page (REQ-MDR-ST-NONE)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
-      wait_for_ajax
-      find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
-      expect(page).to have_content 'Edit: A00040 Label text'
-      click_link 'Close'
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      click_button 'New'
+wait_for_ajax
+      expect(page).to have_content 'NP000010P' # Note up version
+      click_link 'Return'
       expect(page).to have_content 'History: CDISC EXT'
     end
 
@@ -308,13 +328,16 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "edit timeout warnings and expiration (REQ-MDR-EL-020)", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       token = tokens[0]
       Capybara.ignore_hidden_elements = false
@@ -333,7 +356,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "edit timeout warnings and extend (REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
@@ -365,7 +388,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "edit timeout warnings and child pages (REQ-MDR-EL-NONE)", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
@@ -400,34 +423,43 @@ describe "Thesaurus", :type => :feature do
     end
 
     it "edit clears token on close (REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      # CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       token = tokens[0]
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
-      page.find("#token_timer_1")[:class].include?("btn-warning")
-      click_button 'Close'
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#timeout")[:class].include?("btn-warning")
+      ui_click_back_button
+      wait_for_ajax
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
     end
 
     it "edit clears token on back button (REQ-MDR-EL-030)", js: true do
-      Token.set_timeout(@user.edit_lock_warning.to_i + 10)
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      # CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       token = tokens[0]
-      sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
-      page.find("#token_timer_1")[:class].include?("btn-warning")
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#timeout")[:class].include?("btn-warning")
       ui_click_back_button
       wait_for_ajax
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
@@ -438,11 +470,14 @@ describe "Thesaurus", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+wait_for_ajax
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :edit)
-      expect(page).to have_content 'Edit: CDISC Extensions CDISC EXT (V1.1.0, 2, Incomplete)' # Note the up version because V1 is at 'Standard'
-      #click_button 'Close' # This requires Javascript so wont work in this test.
-      #expect(page).to have_content 'History: CDISC EXT'
+wait_for_ajax
+      expect(page).to have_content 'CDISC Extensions'
+      expect(page).to have_content 'CDISC EXT'
+      #(V1.1.0, 2, Incomplete)' # Note the up version because V1 is at 'Standard'
+      click_link 'Return'
     end
 
 
