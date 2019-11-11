@@ -28,8 +28,9 @@ function colorCodeElement(selector, css, value){
 
 function colorCodeTagsBadge(tags){
   tags = tags.split('; ');
-  var html = tags.length > 0 ? "" : "None";
+  var html = (tags.length > 0 && tags[0].length > 0) ? "" : "None";
   $.each(tags, function (i, e){
+    if (e.length == 0) return;
     var color = getColorByTag(e);
     html +=
     "<span class='min-badge-item'>" +
