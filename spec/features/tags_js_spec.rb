@@ -91,14 +91,18 @@ describe "Tags", :type => :feature do
     end
 
     it "still create tags with identical labels (REQ-MDR-TAG-040)", js: true do
-      create_tag_first_level("Tag1", "Tag 1 level 1")
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
-      expect(page).to have_content 'Tag1'
-      fill_in 'add_label', with: 'Tag1'
-      fill_in 'add_description', with: 'Tag is identical with already existing tag!'
+      fill_in 'add_label', with: 'Tag XX'
+      fill_in 'add_description', with: 'Description'
       click_on 'Create tag'
-      #not implemented expect(page).to have_content 'You cannot create identical tags at the same level..........'
+      wait_for_ajax
+      expect(page).to have_content('Tag XX')
+      fill_in 'add_label', with: 'Tag XX'
+      fill_in 'add_description', with: 'Description'
+      click_on 'Create tag'
+      wait_for_ajax
+      expect(page).to have_content('This tag label already exists at this level.')
     end
 
     it "view all managed items instances for each tag when managing tags (REQ-MDR-TAG-030), currently not working", js: true do
@@ -393,21 +397,6 @@ describe "Tags", :type => :feature do
       result = ui_get_search_results
       expect(result.count).to eq(1)
       expect(result[0]).to eq("TAG1-3")
-    end
-
-    it "prevents child objects being added with identical labels", js:true do
-      click_navbar_tags
-      expect(page).to have_content 'Manage Tags'
-      fill_in 'add_label', with: 'Tag XX'
-      fill_in 'add_description', with: 'Description'
-      click_on 'Create tag'
-      wait_for_ajax
-      expect(page).to have_content('Tag XX')
-      fill_in 'add_label', with: 'Tag XX'
-      fill_in 'add_description', with: 'Description'
-      click_on 'Create tag'
-      wait_for_ajax
-      expect(page).to have_content('This tag label already exists at this level.')
     end
 
   end
