@@ -34,7 +34,7 @@
 				<% end %>
 			</tbody>
 		</table>
-		<%= link_to "All", audit_trail_index_path, :class => "btn btn-primary" %>
+		<%= link_to "All", audit_trail_index_path, :class => "btn " %>
 		<%= link_to "Export CSV", export_csv_audit_trail_index_path, :class => "btn btn-info" %>
 	</div>
 	<div class="col-md-3">
@@ -60,7 +60,7 @@
 					    <%= f.label :event, "Event:" %><br />
 					    <%= f.select(:event, options_for_select(@events.map{ |key, u| [AuditTrail.event_to_s(u), u]}, @defaults[:event]), {}, {:class => 'form-control'}) %>
 					</div>
-					<%= f.submit "Submit", class: "btn btn-default btn-primary" %>  				
+					<%= f.submit "Submit", class: "btn btn-default " %>  				
 				<% end %>
 			</div>
 		</div>

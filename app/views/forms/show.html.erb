@@ -25,7 +25,7 @@
 	    <td><%= @form.semantic_version %></td>
 	    <td><%= @form.versionLabel %></td>
 	    <% if @form.is_a_branch? %>
-	    	<td><%= link_to "Branched From", form_path(:id => @form.branched_from_ref.subject_ref.id, :namespace => @form.branched_from_ref.subject_ref.namespace), :class => "btn btn-primary btn-xs" %></td>
+	    	<td><%= link_to "Branched From", form_path(:id => @form.branched_from_ref.subject_ref.id, :namespace => @form.branched_from_ref.subject_ref.namespace), :class => "btn  btn-xs" %></td>
 	    <% else %>
 	    	<td>&nbsp;</td>
 	    <% end %>
@@ -75,13 +75,13 @@
 		<tbody>
 		</tbody>
 	</table>
-	<%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+	<%= link_to "Close", @close_path, :class => "btn " %>
   <% if @form.edit? and @form.latest? %>
-    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :class => "btn " %>
   <% end %>
-  <%= link_to "Clone", clone_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+  <%= link_to "Clone", clone_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn " %>
 	<% if @form.can_be_branched? %>
-	  <%= link_to "Branch", branch_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-primary" %>
+	  <%= link_to "Branch", branch_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn " %>
   <% end %>
 	<%= link_to "Export JSON", export_json_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-info" %>
 	<%= link_to "Export Turtle", export_ttl_forms_path(:id => @form.id, :namespace => @form.namespace), :class => "btn btn-info" %>

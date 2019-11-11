@@ -23,7 +23,7 @@
 							<td><%= Time.at(@timeout - (Time.now - token.locked_at).to_i.abs).utc.strftime "%M:%S" %></td>
 							<td><%= token.item_uri %></td>
 							<td><%= token.item_info %></td>
-							<td><%= link_to "User", user_path(token.user_id), :class => "btn btn-primary btn-xs" %></td>
+							<td><%= link_to "User", user_path(token.user_id), :class => "btn  btn-xs" %></td>
 							<td><%= token.refresh_count %></td>
 							<td><%= link_to "Release", release_token_path(token.id), method: :post, data: { confirm: "Are you sure?" }, :class => "btn btn-danger btn-xs" %></td>
 						</tr>

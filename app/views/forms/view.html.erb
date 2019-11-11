@@ -9,12 +9,12 @@
 </script>
 <div class="col-md-7">
   <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "View:", :item => @form} %>
-  <%= link_to "Close", @close_path, :id => "form_view_close", :class => "btn btn-primary" %>
+  <%= link_to "Close", @close_path, :id => "form_view_close", :class => "btn " %>
   <% if @form.edit? and @form.latest? %>
-    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_edit" , :class => "btn btn-primary" %>
+    <%= link_to "Edit", edit_form_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_edit" , :class => "btn " %>
   <% end %>
-  <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_crf", :class => "btn btn-primary" %>
-  <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_acrf", :class => "btn btn-primary" %>
+  <%= link_to "CRF", crf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_crf", :class => "btn " %>
+  <%= link_to "aCRF", acrf_forms_path(:id => @form.id, :namespace => @form.namespace), :id => "form_view_acrf", :class => "btn " %>
   <div class="d3-tree" id="d3">
     <!-- D3 Area -->
   </div>

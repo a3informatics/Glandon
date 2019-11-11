@@ -23,11 +23,11 @@
 					</div>
 					<%= f.hidden_field :namespace, :value => @managed_item.namespace %>  
 					<%= f.hidden_field :referer, :value => @referer %>  
-		      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+		      <%= f.submit "Submit", class: "btn btn-default " %>
 				<% end %>
       </div>
     </div>
-		<%= link_to "Close", @close_path, :class => "btn btn-primary" %>  
+		<%= link_to "Close", @close_path, :class => "btn " %>  
 	</div>
 	<div class="col-md-5" >
     <div id="markdown_panel" class="panel panel-default">
@@ -36,7 +36,7 @@
       </div>
       <div class="panel-body">
 	      <div id="generic_markdown"></div>
-	      <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+	      <button type="button" id="markdown_preview" class="btn ">Preview</button>    
       </div>
     </div>
 	</div>
