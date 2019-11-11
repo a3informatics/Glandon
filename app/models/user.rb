@@ -88,4 +88,62 @@ class User < ActiveRecord::Base
     #if params[:role_ids]
   end
 
+  ######################
+  # Overall Login Status
+  ######################
+
+  # Counts users logged by date
+  #
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value.
+  def users_by_date
+    return result = User.group("DATE(current_sign_in_at)").count
+  end
+
+  # Counts users logged by day
+  #
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"Wednesday"=>1, "Friday"=>1, "Monday"=>1}
+  def self.users_by_day
+  byebug
+    result = self.group("date_trunc('day', current_sign_in_at)").count
+    result = result.map{ |k, v| [k.strftime("%A"), v] }.to_h
+    return result
+  end
+
+  # Counts users logins by week
+  #
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"45"=>1, "35"=>1, "44"=>1, "37"=>1}
+  def users_by_week
+    result = User.group("date_trunc('week', current_sign_in_at)").count
+    result = result.map{ |k, v| [k.strftime("%W"), v] }.to_h
+    return result
+  end
+
+    # Counts users logins by month
+  #
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"November"=>2, "September"=>2}
+  def users_by_month
+    result = User.group("date_trunc('month', current_sign_in_at)").count
+    result = result.map{ |k, v| [k.strftime("%B"), v] }.to_h
+    return result
+  end
+
+  # Counts users logins by year
+  #
+  # @return [hash] Hash with the year as the key and the number of users logged that year as the value. Example: {"2019"=>4}
+  def users_by_year
+    result = User.group("date_trunc('year', current_sign_in_at)").count
+    result = result.map{ |k, v| [k.strftime("%Y"), v] }.to_h
+    return result
+  end
+
+  # Counts users logins by domain
+  #
+  # @return [hash] Hash with the domain as the key and the number of users logged with that domain as the value. Example: {"ci.ruby-lang.org"=>4}
+  def users_by_domain
+    result = User.group("last_sign_in_ip").count
+    result = result.map{ |k, v| [result[k] = (Resolv.getname k), v] }.to_h
+    result["total"] = User.all.count
+    return result
+  end
+
 end
