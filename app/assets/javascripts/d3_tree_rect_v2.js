@@ -20,7 +20,7 @@ var rectH = 30;
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select(d3Div).select('svg').remove();
-  var width = d3Div.clientWidth - 50;
+  var width = d3Div.clientWidth + 30;
   var height;
   if (d3HeightOverride) {
     height = d3HeightOverrideValue;
@@ -42,7 +42,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
     .attr("width", width)
     .attr("height", height)
     .append("g")
-    .attr("transform", "translate(35,0)");
+    .attr("transform", "translate(15,0)");
   svg.append("svg:defs").selectAll("marker")
       .data(["end"])      // Different link/path types can be defined here
     .enter().append("svg:marker")    // This section adds in the arrows

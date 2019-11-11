@@ -9,16 +9,6 @@ describe "Tags", :type => :feature do
   include WaitForAjaxHelper
   include UserAccountHelpers
 
-  before :each do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
-    load_files(schema_files, data_files)
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
-    ua_content_admin_login
-  end
 
   before :all do
     ua_create
@@ -32,10 +22,21 @@ describe "Tags", :type => :feature do
     ua_destroy
   end
 
-    describe "The Content Admin User can", :type => :feature do
+  describe "The Content Admin User can", :type => :feature do
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl"]
+      load_files(schema_files, data_files)
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      ua_content_admin_login
+    end
 
     ###  Manage Tags (MDR-TAG-20, MDR-TAG-30, MDR-TAG-40, MDR-TAG-45, MDR-TAG-60, MDR-TAG-110)
-    it "only creat tags when both label and description is provided (REQ-MDR-TAG-040)", js: true do
+    it "only create tags when both label and description is provided (REQ-MDR-TAG-040)", js: true do
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
       ui_check_input("edit_label", 'Tags')
@@ -73,7 +74,9 @@ describe "Tags", :type => :feature do
 
     it "create child tags with identical labels in different entities of the hierarchy (REQ-MDR-TAG-040)", js: true do
       create_tag_first_level("Tag1", "Tag 1 level 1")
+      wait_for_ajax
       create_tag_first_level("Tag2", "Tag 2 level 1")
+      wait_for_ajax
       create_tag_child("Tag1", "Tag1_1", "Tag 1.1 level 2")
       ui_click_node_name ("Tag2")
       fill_in 'add_label', with: 'Tag1_1'
@@ -337,13 +340,14 @@ describe "Tags", :type => :feature do
     it "shortens tag label in Tag viewer if it is too many characters", js:true do
       click_navbar_tags
       expect(page).to have_content 'Manage Tags'
-      fill_in 'add_label', with: 'Tag label Tag label Tag label Tag label Tag label'
+      fill_in 'add_label', with: 'Very long tag label'
       fill_in 'add_description', with: 'Description'
       click_on 'Create tag'
       wait_for_ajax
-      expect(page).to have_content('Tag label...')
-      ui_click_node_name ('Tag label...')
-      ui_check_input("edit_label", 'Tag label Tag label Tag label Tag label Tag label')
+      expect(page).to have_content('Very long ta...')
+      ui_click_node_name ('Very long tag label')
+      wait_for_ajax
+      ui_check_input("edit_label", 'Very long tag label')
     end
 
     it "view both managed items tagged to the parent tag and managed items tagged to child tags within the same entity when searching for the parent tag (REQ-MDR_TAG-80)"
@@ -389,6 +393,42 @@ describe "Tags", :type => :feature do
       result = ui_get_search_results
       expect(result.count).to eq(1)
       expect(result[0]).to eq("TAG1-3")
+    end
+
+    it "prevents child objects being added with identical labels", js:true do
+      click_navbar_tags
+      expect(page).to have_content 'Manage Tags'
+      fill_in 'add_label', with: 'Tag XX'
+      fill_in 'add_description', with: 'Description'
+      click_on 'Create tag'
+      wait_for_ajax
+      expect(page).to have_content('Tag XX')
+      fill_in 'add_label', with: 'Tag XX'
+      fill_in 'add_description', with: 'Description'
+      click_on 'Create tag'
+      wait_for_ajax
+      expect(page).to have_content('This tag label already exists at this level.')
+    end
+
+  end
+
+  describe "The Content Admin User can (CDISC tags) ", :type => :feature do
+
+    before :each do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "mdr_iso_concept_systems.ttl"]
+      load_cdisc_term_versions(1..2)
+      load_files(schema_files, data_files)
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      ua_content_admin_login
+    end
+
+    it "verifies Item List table children on tag click", js:true do
+      click_navbar_tags
+      pause
     end
 
   end

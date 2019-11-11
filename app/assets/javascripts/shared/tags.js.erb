@@ -16,7 +16,7 @@ function getColorByTag(tagName){
 
 function colorCodeTagsOutline(parent, tagClass){
   $.each($(parent).find(tagClass), function(i, e){
-    var color = (getColorByTag($(e).val()));
+    var color = (getColorByTag($(e).context.localName == "input" ? $(e).val() : $(e).text()));
     $(e).css("background", "transparent");
     $(e).css("box-shadow", "inset 0 0 0 2px "+color);
   });

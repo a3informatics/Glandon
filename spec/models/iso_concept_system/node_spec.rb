@@ -44,6 +44,15 @@ describe IsoConceptSystem::Node do
     expect(actual.errors.full_messages.to_sentence).to eq("Pref label is empty and Description contains invalid characters or is empty")
 	end
 
+	it "prevents child objects being added with identical labels" do
+		cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+    child = cs.add({ :label => "Node XY", :description => "Node XY1"})
+		expect(child.errors.count).to eq(0)
+		child = cs.add({ :label => "Node XY", :description => "Node XY2"})
+		expect(child.errors.count).to eq(1)
+		expect(child.errors.full_messages.to_sentence).to eq("This tag label already exists at this level.")
+	end
+
   it "allows an object to be destroyed, no children" do
     cs = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C"))
     expect(cs.is_top_concept_objects.count).to eq(3)

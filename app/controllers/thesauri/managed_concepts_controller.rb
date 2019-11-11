@@ -136,6 +136,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    @close_path = thesauri_path(@ct)
   end
 
   def show_data
@@ -239,7 +240,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       tc.add_extensions(uris)
     else
       errors = ["Not all of the items were code list items."]
-    end      
+    end
     render json: {data: {}, error: errors}
   end
 
