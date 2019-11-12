@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Show Terminology: '+@ct.has_identifier.identifier+' ('+@ct.semantic_version+')")' %>
 <%= javascript_include_tag 'thesauri/show' %>
 <%= javascript_tag "var url_path = '#{thesauri_path(@ct)}';" %>
 
