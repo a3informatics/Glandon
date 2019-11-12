@@ -157,12 +157,28 @@ describe "User" do
     expect(User.users_by_year).to eq({"2019"=>2, "2018"=>1})
   end
 
+  it "users_by_year_by_week" do
+    User.destroy_all
+    User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
+    User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
+    expect(User.users_by_year_by_week).to eq({"2018"=>{"50"=>1}, "2019"=>{"40"=>1, "45"=>1}})
+  end
+
+  it "users_by_year_by_month" do
+    User.destroy_all
+    User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
+    User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
+    expect(User.users_by_year_by_month).to eq({"2018"=>{"12"=>1}, "2019"=>{"10"=>1, "11"=>1}})
+  end
+
   it "counts user by domain" do
     User.destroy_all
     User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_ip: "212.121.182.100"
-    User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
-    User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
-    expect(User.users_by_domain).to eq({"ci.ruby-lang.org"=>4})
+    # User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
+    # User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
+    expect(User.users_by_domain).to eq({"total"=>1, "vip-ssg3.francenet.fr"=>1})
   end
 
 end

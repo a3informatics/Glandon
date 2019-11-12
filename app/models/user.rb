@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
 
   # Counts users logged by date
   #
-  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value.
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {Mon, 08 Oct 2018=>1, Tue, 12 Nov 2019=>1, Wed, 18 Sep 2019=>1, Mon, 02 Sep 2019=>1}
   def self.users_by_date
     return result = self.group("DATE(current_sign_in_at)").count
   end
@@ -103,6 +103,15 @@ class User < ActiveRecord::Base
   #
   # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"Wednesday"=>1, "Friday"=>1, "Monday"=>1}
   def self.users_by_day
+    result = self.group("date_trunc('day', current_sign_in_at)").count
+    result = result.map{ |k, v| [k.strftime("%A"), v] }.to_h
+    return result
+  end
+
+  # Counts users logged by day
+  # {monday: nn, tuesday: nn, … sunday: nn} nn can be 0 for the days still to come this week, week can start on Monday  
+  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"Wednesday"=>1, "Friday"=>1, "Monday"=>1}
+  def self.users_by_current_week
     result = self.group("date_trunc('day', current_sign_in_at)").count
     result = result.map{ |k, v| [k.strftime("%A"), v] }.to_h
     return result
@@ -117,16 +126,59 @@ class User < ActiveRecord::Base
     return result
   end
 
-  # Counts users logins by week by month
+  # Counts users logins by week and by day 
   #
-  # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"45"=>1, "35"=>1, "44"=>1, "37"=>1}
-  def self.users_by_month_by_year
-    result = self.group("date_trunc('week', current_sign_in_at)").count
-    result = result.map{ |k, v| [k.strftime("%W"), v] }.to_h
+  # @return [hash] Hash with an array of year and  month number as the key and the number of users logged that year/week as the value. Example: {["37", "Wednesday"]=>1, ["35", "Monday"]=>1, ["45", "Tuesday"]=>1, ["41", "Monday"]=>1}
+  def self.users_by_week_by_day
+    result = User.group("date_trunc('week', current_sign_in_at)").group("date_trunc('day',current_sign_in_at)").count
+    result = result.map{ |k, v| [ [k[0].strftime("%W"), k[1].strftime("%A")] , v] }.to_h
     return result
   end
 
-    # Counts users logins by month
+  # Counts users logins by year, by week, by day 
+  #
+  # @return [hash] Hash with an array of year and  month number as the key and the number of users logged that year/week as the value. Example: {["2018", "41", "Monday"]=>1, ["2019", "37", "Wednesday"]=>1, ["2019", "35", "Monday"]=>1, ["2019", "45", "Tuesday"]=>1}
+  def self.users_by_year_by_week_by_day
+    result = User.group("date_trunc('year', current_sign_in_at)").group("date_trunc('week',current_sign_in_at)").group("date_trunc('day', current_sign_in_at)").count
+    result = result.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%W"), k[2].strftime("%A") ] , v] }.to_h
+    return result
+  end
+
+  # Counts users logins by year and by week
+  #
+  # @return [hash] Hash with an array of year and  week number as the key and the number of users logged that year/week as the value. Example: {"2018"=>{"50"=>1}, "2019"=>{"40"=>1, "45"=>1}}
+  def self.users_by_year_by_week
+    result = User.group("date_trunc('year', current_sign_in_at)").group("date_trunc('week',current_sign_in_at)").count
+    result = result.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%W")] , v] }.to_h
+    hash = {}
+    result.each do |arr, value|
+      if hash[arr[0]].nil?
+          hash[arr[0]] = { arr[1]=> value} 
+      else 
+          hash[arr[0]][arr[1]] = value
+      end
+    end
+    return hash
+  end
+
+  # Counts users logins by year and by month 
+  #
+  # @return [hash] Hash with an array of year and  month number as the key and the number of users logged that year/week as the value. Example: {["2019", "11"]=>1, ["2019", "09"]=>2, ["2018", "10"]=>1}
+  def self.users_by_year_by_month
+    result = User.group("date_trunc('year', current_sign_in_at)").group("date_trunc('month',current_sign_in_at)").count
+    result = result.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%m")] , v] }.to_h
+    hash = {}
+    result.each do |arr, value|
+      if hash[arr[0]].nil?
+          hash[arr[0]] = { arr[1]=> value} 
+      else 
+          hash[arr[0]][arr[1]] = value
+      end
+    end
+    return hash
+  end
+
+  # Counts users logins by month
   #
   # @return [hash] Hash with the dates as the key and the number of users logged that day as the value. Example: {"November"=>2, "September"=>2}
   def self.users_by_month
@@ -150,7 +202,9 @@ class User < ActiveRecord::Base
   def self.users_by_domain
   byebug
     result = self.group("current_sign_in_ip").count
-    result = result.map{ |k, v| [result[k] = (Resolv.getname k), v] }.to_h
+    # result = result.map{ |k, v| [result[k] = (Resolv.getnames k.to_s), v] }.to_h
+    result = result.map{ |k, v| [result[k] = (Socket.gethostbyaddr(k.to_s)), v] }.to_h
+
     result["total"] = self.all.count
     return result
   end
