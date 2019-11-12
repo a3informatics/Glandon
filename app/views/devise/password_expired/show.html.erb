@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Password expired")' %>
 <%= form_for(resource, as: resource_name, url: [resource_name, :password_expired], html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 

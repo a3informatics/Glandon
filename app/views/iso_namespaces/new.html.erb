@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("New Namespace")' %>
 <% second_level_breadcrumb("Namespaces", iso_namespaces_path, "New") %>
 <div class="row">
   <div class="col-md-4">
@@ -20,7 +21,7 @@
             <%= f.text_field :authority, autofocus: true , class: "form-control"%>
           </div>
           <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
-          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %> 
+          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %>
         <% end %>
       </div>
     </div>

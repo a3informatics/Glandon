@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Import Status")' %>
 <%= javascript_include_tag 'background_index'%>
 <%= javascript_include_tag 'standard_datatable' %>
 <% second_level_breadcrumb("Imports", imports_path, "Import") %>
@@ -46,7 +47,7 @@
                       <%= link_to "Go to history", @import.success_path, :class => "btn btn-primary btn-block" %>
                     <% else %>
                       <div class="alert alert-warning">Auto load was not set so the item was not imported.</div>
-                    <% end %>  
+                    <% end %>
                   <% else %>
                     <div class="alert alert-danger">Errors were detected during the processing of the import file. See the error table to the right.</div>
                   <% end %>
@@ -79,7 +80,7 @@
                     </tbody>
                   </table>
                   <div>
-                    <p class="text-center"><img src="<%= asset_path('processing_medium_2.gif') %>"></p> 
+                    <p class="text-center"><img src="<%= asset_path('processing_medium_2.gif') %>"></p>
                   </div>
                 </div>
               </div>

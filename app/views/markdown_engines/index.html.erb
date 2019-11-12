@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Markdown")' %>
 <%= javascript_include_tag 'markdown_editor', 'ajax_requests', 'field_validation' %>
 <% top_level_breadcrumb ("Markdown") %>
 <h3>Markdown</h3>
@@ -8,7 +9,7 @@
                 <label for="raw_markdown">Raw Markdown:</label>
                 <textarea class="form-control collapse in" id="raw_markdown" name="Raw Markdown" rows="30" style="font-family:monospace;"></textarea>
             </div>
-            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>    
+            <button type="button" id="markdown_preview" class="btn btn-primary">Preview</button>
             <button type="Submit" id="markdown_validate" class="btn btn-primary">Validate</button>
         </form>
 	</div>

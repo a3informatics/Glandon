@@ -28,6 +28,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require app-js-erb-extension
+//= require title
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
