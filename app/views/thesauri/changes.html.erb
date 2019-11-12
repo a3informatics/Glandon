@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Changes across versions: '+@ct.has_identifier.identifier+'")' %>
 <%= javascript_include_tag 'thesauri/changes' %>
 <%= javascript_tag "var url_path = '#{changes_data_thesauri_path(@ct)}';" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>

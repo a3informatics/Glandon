@@ -28,6 +28,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require app-js-erb-extension
+//= require title
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
@@ -335,7 +336,7 @@ function getPathStrong(rdfType, id, namespace) {
 */
 function getPathStrongV2(rdfType, id, namespace) {
   if (rdfType == C_FORM) {
-    return "/forms/" + id; 
+    return "/forms/" + id;
   } else if (rdfType == C_BC) {
     return "/biomedical_concepts/" + id;
   } else if (rdfType == C_BCT) {

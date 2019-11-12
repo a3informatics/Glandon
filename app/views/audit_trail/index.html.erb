@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Audit Trail")' %>
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Audit Trail") %>
 <div id="datatables_order">
@@ -60,7 +61,7 @@
 					    <%= f.label :event, "Event:" %><br />
 					    <%= f.select(:event, options_for_select(@events.map{ |key, u| [AuditTrail.event_to_s(u), u]}, @defaults[:event]), {}, {:class => 'form-control'}) %>
 					</div>
-					<%= f.submit "Submit", class: "btn  " %>  				
+					<%= f.submit "Submit", class: "btn  " %>
 				<% end %>
 			</div>
 		</div>

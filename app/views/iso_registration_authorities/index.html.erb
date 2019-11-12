@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Registration Authorities")' %>
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Registration Authorities") %>
 <div class="row">
@@ -40,7 +41,7 @@
       		</tbody>
       	</table>
       	<%= link_to "New", new_iso_registration_authority_path, :class => "btn btn-success" %>
-        <%= render partial: "shared/close_button", locals: { path: root_path } %> 
+        <%= render partial: "shared/close_button", locals: { path: root_path } %>
       </div>
     </div>
   </div>
