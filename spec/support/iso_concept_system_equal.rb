@@ -35,6 +35,7 @@ RSpec::Matchers.define :iso_concept_system_equal do |expected|
   end
 
   def match?(actual, expected)
+    return arrays_match?(actual, expected) if expected.is_a?(Array) && actual.is_a?(Array)
     return hashes_match?(actual, expected) if expected.is_a?(Hash) && actual.is_a?(Hash)
     return true if expected == actual
     note_error(actual, expected)
@@ -51,6 +52,17 @@ RSpec::Matchers.define :iso_concept_system_equal do |expected|
     true
   end
   
+  def arrays_match?(actual, expected)
+    exp = expected.clone
+    actual.each do |a|
+      index = exp.find_index { |e| match? a, e }
+      return note_error(actual, expected) if index.nil?
+      exp.delete_at(index)
+    end
+    return note_error(actual, expected) if !exp.empty?
+    true
+  end
+
   def note_error(actual, expected)
     @actual = actual
     @expected = expected
