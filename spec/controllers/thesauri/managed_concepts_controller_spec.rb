@@ -130,7 +130,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:context_id)).to eq(th_uri.to_id)
       expect(assigns(:can_be_extended)).to eq(false)
       expect(assigns(:is_extended)).to eq(true)
-      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{ext_uri.to_id}%3D")
+      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}&managed_concept%5Breference_ct_id%5D=")
       expect(assigns(:is_extending)).to eq(false)
       expect(assigns(:is_extending_path)).to eq("")
       expect(response).to render_template("show")
@@ -148,7 +148,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:is_extended)).to eq(false)
       expect(assigns(:is_extended_path)).to eq("")
       expect(assigns(:is_extending)).to eq(true)
-      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjQ1Q%3D")
+      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}&managed_concept%5Breference_ct_id%5D=")
       expect(response).to render_template("show")
     end
 
@@ -272,12 +272,13 @@ describe Thesauri::ManagedConceptsController do
     end
 
     it "edit subset" do
+      ct = Uri.new(uri: "http://www.cdisc.org/CT/V19#TH")
       src_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226"))
       sub_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
       sub_mc.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(sub_mc.uri))
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:is_ordered_links).and_return(sub_mc.is_ordered.uri)
       expect(Thesaurus::Subset).to receive(:find).and_return(sub_mc.is_ordered)
-      get :edit_subset, {id: sub_mc.id, context_id: "12345", source_mc: src_mc.id}
+      get :edit_subset, {id: sub_mc.id, context_id: ct.to_id, source_mc: src_mc.id}
       expect(assigns(:subset_mc).id).to eq(sub_mc.id)
       expect(assigns(:source_mc).id).to eq(src_mc.id)
       expect(assigns(:subset)).to eq(sub_mc.is_ordered)

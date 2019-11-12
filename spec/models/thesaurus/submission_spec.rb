@@ -36,26 +36,27 @@ describe "Thesaurus Submission" do
 
   def check_submission(actual, expected)
     result = true
-      correct = actual[:items].count == expected[:count] || expected[:count] == -1 
-      puts colourize("Mismatch of count, date: #{expected[:date]}, expected '#{expected[:items].count}' item(s) but got '#{actual[:items].count}'", "red") if !correct
-      expected[:items].each do |expect|
-        if actual[:items].key?(expect[:key])
-          item = actual[:items][expect[:key]]
-          index = actual[:versions].index(expected[:date])
-          if !index.nil?
-            status = item[:status][index]
-            correct = expect[:notation] == status[:notation] && expect[:previous] == status[:previous]
-            puts colourize("Mismatch for #{expect[:key]}, date: #{expected[:date]} found '#{status[:previous]}' -> '#{status[:notation]}', expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red") if !correct
-            puts colourize("Match for #{expect[:key]}, date: #{expected[:date]} found '#{status[:previous]}' -> '#{status[:notation]}', expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "green") if correct
-            result = result && correct
-          else
-            puts colourize("Date not found for #{expect[:key]}, date: #{expected[:date]} nothing found, expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red") if !correct
-            result = result && correct
-          end
-        else
-          puts colourize("No result found for expected #{expect[:key]}, date: #{expected[:date]}. Expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red") if !correct
+    correct = actual[:items].count == expected[:count] || expected[:count] == -1 
+    result = result && correct
+    puts colourize("Mismatch of count, date: #{expected[:date]}, expected '#{expected[:items].count}' item(s) but got '#{actual[:items].count}'", "red") if !correct
+    expected[:items].each do |expect|
+      if actual[:items].key?(expect[:key])
+        item = actual[:items][expect[:key]]
+        index = actual[:versions].index(expected[:date])
+        if !index.nil?
+          status = item[:status][index]
+          correct = expect[:notation] == status[:notation] && expect[:previous] == status[:previous]
+          puts colourize("Mismatch for #{expect[:key]}, date: #{expected[:date]} found '#{status[:previous]}' -> '#{status[:notation]}', expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red") if !correct
+          puts colourize("Match for #{expect[:key]}, date: #{expected[:date]} found '#{status[:previous]}' -> '#{status[:notation]}', expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "green") if correct
           result = result && correct
+        else
+          puts colourize("Date not found for #{expect[:key]}, date: #{expected[:date]} nothing found, expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red")
+          result = result && false
         end
+      else
+        puts colourize("No result found for expected #{expect[:key]}, date: #{expected[:date]}. Expected '#{expect[:previous]}' -> '#{expect[:notation]}'", "red")
+        result = result && false
+      end
     end
     result
   end
@@ -70,7 +71,7 @@ describe "Thesaurus Submission" do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))
       actual = ct.submission(1)
       next_result = check_submission(actual, expected.find{|x| x[:version] == version})
-      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equal_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "submission_expected_#{version}.yaml", equate_method: :hash_equal)
       result = result && next_result
     end
     expect(result).to be(true)

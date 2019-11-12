@@ -5,7 +5,7 @@
 <%= javascript_tag "var parent_id = '#{@thesaurus.id}';" %>
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
-  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @thesaurus_concept, :badge => "CL"} do %>
+  <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @thesaurus_concept, :context => @thesaurus, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
       <!-- TIMER BUTTON -->

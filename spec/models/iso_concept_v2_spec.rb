@@ -208,7 +208,7 @@ describe "IsoConceptV2" do
       expect(results.map{|x| x.pref_label}).to eq(["SDTM"])
       th = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V26#TH"))
       results = th.tags
-      expect(results.map{|x| x.pref_label}).to eq(["SDTM", "CDASH", "ADaM", "SEND"])
+      expect(results.map{|x| x.pref_label}).to match_array(["SDTM", "CDASH", "ADaM", "SEND"])
     end
 
 		it "Gets tag labels" do

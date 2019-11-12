@@ -1,6 +1,5 @@
-function ConceptSystemViewPanel(id, namespace, step, callback) { 
+function ConceptSystemViewPanel(id, step, callback) { 
   this.id = id;
-  this.namespace = namespace;
   this.heightStep = step;
   this.callback = callback;
   this.d3Editor = new D3Editor("d3", this.empty.bind(this), this.displayNode.bind(this), this.empty.bind(this), this.validate.bind(this));
@@ -36,12 +35,12 @@ function ConceptSystemViewPanel(id, namespace, step, callback) {
 ConceptSystemViewPanel.prototype.displayTree = function() {
   var _this = this;
   $.ajax({
-    url: '/iso_concept_systems/' + _this.id + '?namespace=' + _this.namespace,
+    url: '/iso_concept_systems/' + _this.id,
     type: 'GET',
     success: function(result) {
-      _this.rootNode = _this.d3Editor.root(result.data.label, result.data.type, result.data)
-      for (var i=0; i < result.data.children.length; i++) {
-        _this.initNode(result.data.children[i], _this.rootNode);
+      _this.rootNode = _this.d3Editor.root(result.data.pref_label, result.data.type, result.data)
+      for (var i=0; i < result.data.is_top_concept.length; i++) {
+        _this.initNode(result.data.is_top_concept[i], _this.rootNode);
       }
       _this.d3Editor.displayTree(_this.rootNode.key);
       _this.displayNode(_this.rootNode);
@@ -55,11 +54,11 @@ ConceptSystemViewPanel.prototype.displayTree = function() {
 ConceptSystemViewPanel.prototype.initNode = function(sourceNode, d3ParentNode) {
   var newNode;
   var child;
-  newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.label, sourceNode.type, true, sourceNode, true);
+  newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.pref_label, sourceNode.type, true, sourceNode, true);
 this.d3Editor.displayTree(this.rootNode.key);
-  if (sourceNode.hasOwnProperty('children')) {
-    for (var i=0; i<sourceNode.children.length; i++) {
-      child = sourceNode.children[i];
+  if (sourceNode.hasOwnProperty('narrower')) {
+    for (var i=0; i<sourceNode.narrower.length; i++) {
+      child = sourceNode.narrower[i];
       this.initNode(child, newNode);
     }
   }

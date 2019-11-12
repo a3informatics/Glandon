@@ -2,26 +2,6 @@
 :versions:
 - '2016-12-16'
 :items:
-  :C67152_C49652:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzQ5NjUy
-    :key: C67152_C49652
-    :label: Clinical Study by Intent
-    :notation: Trial Intent Type
-    :identifier: C49652
-    :status:
-    - :status: :updated
-      :notation: Trial Intent Type
-      :previous: Trial Indication Type
-  :C67152_C112038:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzExMjAzOA==
-    :key: C67152_C112038
-    :label: Trial Indication
-    :notation: Trial Disease/Condition Indication
-    :identifier: C112038
-    :status:
-    - :status: :updated
-      :notation: Trial Disease/Condition Indication
-      :previous: Trial Indication
   :C100129_C106699:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNTAjQzEwMDEyOV9DMTA2Njk5
     :key: C100129_C106699
@@ -29,6 +9,7 @@
       Scale Questionnaire
     :notation: HAQ-DI WITH VAS
     :identifier: C106699
+    :parent_identifier: C100129
     :status:
     - :status: :updated
       :notation: HAQ-DI WITH VAS
@@ -39,16 +20,40 @@
     :label: Cytokeratin 19 Fragment 21-1 Measurement
     :notation: Cytokeratin 19 Fragment 21-1
     :identifier: C106514
+    :parent_identifier: C67154
     :status:
     - :status: :updated
       :notation: Cytokeratin 19 Fragment 21-1
       :previous: Cytokeratin Fragment 21-1
+  :C67152_C49652:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzQ5NjUy
+    :key: C67152_C49652
+    :label: Clinical Study by Intent
+    :notation: Trial Intent Type
+    :identifier: C49652
+    :parent_identifier: C67152
+    :status:
+    - :status: :updated
+      :notation: Trial Intent Type
+      :previous: Trial Indication Type
+  :C67152_C112038:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTUyL1Y1MCNDNjcxNTJfQzExMjAzOA==
+    :key: C67152_C112038
+    :label: Trial Indication
+    :notation: Trial Disease/Condition Indication
+    :identifier: C112038
+    :parent_identifier: C67152
+    :status:
+    - :status: :updated
+      :notation: Trial Disease/Condition Indication
+      :previous: Trial Indication
   :C101846_C116146:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg0Ni9WNTAjQzEwMTg0Nl9DMTE2MTQ2
     :key: C101846_C116146
     :label: Late Lumen Loss Measurement
     :notation: Late Lumen Loss
     :identifier: C116146
+    :parent_identifier: C101846
     :status:
     - :status: :updated
       :notation: Late Lumen Loss
@@ -59,6 +64,7 @@
     :label: Late Lumen Loss Measurement
     :notation: LLMLOSS
     :identifier: C116146
+    :parent_identifier: C101847
     :status:
     - :status: :updated
       :notation: LLMLOSS
@@ -69,6 +75,7 @@
     :label: Microgram Equivalent per Liter
     :notation: ugEq/L
     :identifier: C122230
+    :parent_identifier: C71620
     :status:
     - :status: :updated
       :notation: ugEq/L
@@ -79,6 +86,7 @@
     :label: Bahamian
     :notation: BAHAMIAN
     :identifier: C67271
+    :parent_identifier: C128689
     :status:
     - :status: :updated
       :notation: BAHAMIAN
@@ -89,6 +97,7 @@
     :label: Barbadian
     :notation: BARBADIAN
     :identifier: C43823
+    :parent_identifier: C128689
     :status:
     - :status: :updated
       :notation: BARBADIAN
@@ -99,6 +108,7 @@
     :label: Bangladeshi
     :notation: BANGLADESHI
     :identifier: C43671
+    :parent_identifier: C128689
     :status:
     - :status: :updated
       :notation: BANGLADESHI

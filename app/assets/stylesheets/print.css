@@ -54,4 +54,14 @@
   .show-more-btn, .actions-wrap{
     display: none;
   }
+
+  #d3 .link{
+    fill: none !important;
+    stroke: lightgrey !important;
+    stroke-width: 1px !important;
+  }
+
+  .tree-toolbar{
+    display: none;
+  }
 }

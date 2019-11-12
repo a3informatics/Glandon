@@ -368,6 +368,24 @@ module Fuseki
       update_query = %Q{ DELETE WHERE { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . }}
       partial_update(update_query, [])
     end
+  
+    # Delete With Links. Delete the object and any links to the object
+    #
+    # @return [Void] no return
+    def delete_with_links
+      update_query = %Q{ 
+        DELETE {
+          #{self.uri.to_ref} ?p1 ?o .
+          ?s ?p2 #{self.uri.to_ref} .
+        }
+        WHERE
+        {
+          #{self.uri.to_ref} ?p1 ?o .
+          ?s ?p2 #{self.uri.to_ref} .
+        }
+      }
+      partial_update(update_query, [])
+    end
 
     def not_used?
       query_string = "SELECT ?s WHERE {" +

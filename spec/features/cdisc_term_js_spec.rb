@@ -95,6 +95,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2014-10-06 Release", :show)
+      wait_for_ajax(10)
       expect(page).to have_content '2014-10-06 Release'
       ui_check_table_info("children_table", 1, 10, 446)
       ui_child_search("10013")
@@ -103,6 +104,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'C100135'
       expect(page).to have_content 'CDISC Questionnaire HAMD 17 Test Name Terminology'
       find(:xpath, "//tr[contains(.,'C100136')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
       expect(page).to have_content 'EQ-5D-3L TESTCD'
       ui_check_table_info("children_table", 1, 6, 6)
       expect(page).to have_content 'C100393'
@@ -143,6 +145,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
       wait_for_ajax(7)
       context_menu_element("history", 5, "2015-12-18 Release", :show)
+      wait_for_ajax(10)
       expect(page).to have_content '2015-12-18 Release'
       ui_check_table_info("children_table", 1, 10, 561)
       ui_child_search("route")
@@ -188,6 +191,7 @@ describe "CDISC Term", :type => :feature do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       click_link 'View Changes'
+      wait_for_ajax(10)
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
@@ -202,16 +206,19 @@ describe "CDISC Term", :type => :feature do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
       click_link 'View Changes'
+      wait_for_ajax(10)
       expect(page).to have_content 'Changes'
       input = find(:xpath, '//*[@id="changes_filter"]/label/input')
       input.set("TDI")
       expect(page).to have_content 'C106656'
       find(:xpath, "//tr[contains(.,'C106656')]/td/a", :text => 'Changes').click
+      wait_for_ajax(10)
       expect(page).to have_content 'Differences'
       ui_check_table_info("differences_table", 1, 3, 3)
       expect(page).to have_content 'Changes'
       ui_check_table_info("changes", 1, 3, 3)
       find(:xpath, "//tr[contains(.,'C106704')]/td/a", :text => 'Changes').click
+      wait_for_ajax(10)
       expect(page).to have_content 'Differences'
       ui_check_table_info("differences_table", 1, 1, 1)
       click_link 'Return'
@@ -293,6 +300,7 @@ describe "CDISC Term", :type => :feature do
       ui_dashboard_slider("2017-12-22", "2018-03-30")
       click_link 'Display'
       find(:xpath, "//div[@id='updated_div']/a", :text => "DTHDX (C116107)").click
+      wait_for_ajax(10)
       expect(page).to have_content("Differences Summary")
       expect(page).to have_css("table#differences_table tr", :count=>3)
       expect(page).to have_xpath("//*[@id='differences_table']/tbody/tr[2]/td[5]/div", :text => "SDTM Death Diagnosis Test Name")
@@ -304,6 +312,7 @@ describe "CDISC Term", :type => :feature do
       ui_dashboard_slider("2017-12-22", "2018-03-30")
       click_link 'Display'
       find(:xpath, "//div[@id='updated_div']/a", :text => "INTMODEL (C99076)").click
+      wait_for_ajax(10)
       expect(page).to have_content("Changes Summary")
       expect(page).to have_css("table#changes th", :text=>"2017-12-22")
       expect(page).to have_css("table#changes th", :text=>"2018-03-30")

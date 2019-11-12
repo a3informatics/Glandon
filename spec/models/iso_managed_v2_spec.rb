@@ -843,4 +843,27 @@ describe "IsoManagedV2" do
 
   end
 
+  describe "Tag Methods" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      IsoHelpers.clear_cache
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_cdisc_term_versions(1..10)
+    end
+
+    it "items for tag" do
+      tag = IsoConceptSystem.path(["CDISC", "SDTM"])
+      result = IsoManagedV2.find_by_tag(tag.id)
+      check_file_actual_expected(result, sub_dir, "find_by_tag_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
 end

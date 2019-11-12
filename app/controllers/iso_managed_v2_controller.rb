@@ -35,6 +35,11 @@ class IsoManagedV2Controller < ApplicationController
     flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
     redirect_to referer
   end
+
+  def find_by_tag
+    authorize IsoManaged, :show?
+    render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200
+  end
     
 private
 
@@ -49,7 +54,7 @@ private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue)
+    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue)
   end
 
 end

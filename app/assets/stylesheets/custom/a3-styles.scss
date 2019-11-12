@@ -275,9 +275,12 @@
 }
 
 .form-wrap input, .form-wrap textarea{
+  min-width: 170px;
   font-size: $font-small;
   font-family: $font-light;
   color: $grey-medium;
+  border: none;
+  box-shadow: none;
   outline: none;
   margin: 6px 0;
   padding: 6px;
