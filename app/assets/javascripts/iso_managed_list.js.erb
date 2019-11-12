@@ -37,9 +37,9 @@ IsoManagedListOldPanel.prototype.load = function () {
       {"data" : "version_label", "width" : "10%"},
       // Following replaces the old way of putting in a button. Use link styled as a button.
       {"render" : function (data, type, row, meta) {
-        return '<a href="' + getPathStrongV2(row.type, row.id) + '" class="btn btn-primary btn-xs">Show</a>';
+        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn  btn-xs">Show</a>';
       }}
     ]
   });
-  _this.isoManagedTableReload = true;    
+  _this.isoManagedTableReload = true;
 }

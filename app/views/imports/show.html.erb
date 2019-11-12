@@ -43,7 +43,7 @@
                   <% if @import.success %>
                     <div class="alert alert-success">No errors were detected with the import.</div>
                     <% if @import.auto_load %>
-                      <%= link_to "Go to history", @import.success_path, :class => "btn btn-primary btn-block" %>
+                      <%= link_to "Go to history", @import.success_path, :class => "btn  btn-block" %>
                     <% else %>
                       <div class="alert alert-warning">Auto load was not set so the item was not imported.</div>
                     <% end %>  
@@ -84,7 +84,7 @@
                 </div>
               </div>
             <% end %>
-            <%= link_to "Close", imports_path, :class => "btn btn-primary" %>
+            <%= link_to "Close", imports_path, :class => "btn " %>
           </div>
           <div class="col-md-8">
             <% if @job.complete %>

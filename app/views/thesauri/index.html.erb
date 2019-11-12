@@ -22,7 +22,7 @@
                   <td><%= item[:owner] %></td>
                   <td><%= item[:identifier] %></td>
                   <td><%= item[:label] %></td>
-                  <td><%= link_to "History", history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]}), :class => "btn btn-primary btn-xs" %></td>
+                  <td><%= link_to "History", history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]}), :class => "btn  btn-xs" %></td>
                 </tr>
             <% end %>
           </tbody>
@@ -46,7 +46,7 @@
               <%= label_tag :label, "Label:" %><br />
               <%= text_field_tag "thesauri[label]", "" , class: "form-control" %>
             </div>
-            <%= f.submit "Create", class: "btn btn-default btn-primary" %>
+            <%= f.submit "Create", class: "btn  " %>
           <% end %>
 				</div>
 			</div>
@@ -57,7 +57,7 @@
       </div>
       <div class="panel-body">
       	<p>Search across all current versions of terminology.</p>
-				<%= link_to "Search Current", search_current_thesauri_index_path, :class => "btn btn-primary" %>
+				<%= link_to "Search Current", search_current_thesauri_index_path, :class => "btn " %>
 			</div>
 		</div>
 	</div>

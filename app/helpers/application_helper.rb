@@ -89,7 +89,7 @@ module ApplicationHelper
   # @param [Text] the text for the button. Defaults to "Close"
   # @return [Null]
   def back_close_button(text="Close")
-  	return raw("<a class=\"btn btn-primary\" href=\"javascript:history.back()\">#{text}</a>")
+  	return raw("<a class=\"btn \" href=\"javascript:history.back()\">#{text}</a>")
   end
 
   # Top Level Breadcrumb

@@ -8,7 +8,7 @@
   <% if policy(mi_class).edit? %>
     <td><%= link_to "Edit", edit_iso_managed_path(:id => item.id, :iso_managed => 
       {:namespace => item.namespace, :index_label => index_label, :index_path => index_path }), 
-      :class => "btn btn-primary btn-xs" %></td>
+      :class => "btn  btn-xs" %></td>
   <% else %>
     <td></td>
   <% end %>
