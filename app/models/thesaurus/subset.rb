@@ -192,9 +192,13 @@ class Thesaurus::Subset < IsoConceptV2
           prev_sm.delete_link(:member_next, sm.uri)
           prev_sm.add_link(:member_next, sm.next_member.uri)
           sm.delete_link(:member_next, sm.next_member.uri)
-          sm.add_link(:member_next, to_after_sm.next_member.uri)
-          to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
-          to_after_sm.add_link(:member_next, sm.uri)
+          if to_after_sm.next_member.nil?
+            to_after_sm.add_link(:member_next, sm.uri) 
+          else
+            sm.add_link(:member_next, to_after_sm.next_member.uri)
+            to_after_sm.delete_link(:member_next, to_after_sm.next_member.uri)
+            to_after_sm.add_link(:member_next, sm.uri)
+          end 
         end
       end
     end
