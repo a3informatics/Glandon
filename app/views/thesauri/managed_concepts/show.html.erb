@@ -17,15 +17,15 @@
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#subsetsModal", id: "btn-subsets",
-        icon: "icon-subset", btn_text: "Subsets", dt_toggle: "modal", disabled: false} %>
-      <%= render partial: "shared/thesauri/subsets_index" %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
         icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc),
         id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
 
       <% if policy(Thesaurus).edit? %>
+        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#subsetsModal", id: "btn-subsets",
+          icon: "icon-subset", btn_text: "Subsets", dt_toggle: "modal", disabled: false} %>
+        <%= render partial: "shared/thesauri/subsets_index" %>
         <% class_list = @can_be_extended ? e_disabled = false : e_disabled = true %>
         <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#tableModal", id: "extend",
           icon: e_disabled ? "icon-extend-disabled ":"icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>

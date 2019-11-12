@@ -12,19 +12,23 @@ describe "Thesauri", :type => :feature do
     return "features/thesaurus/subset"
   end
 
-  describe "The Content Admin User can", :type => :feature do
+  before :all do
+    data_files = ["CT_SUBSETS.ttl", "CT_SUBSETS_new.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..20)
+    load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+    NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    ua_create
+    Token.delete_all
+  end
 
-    before :all do
-      data_files = ["CT_SUBSETS.ttl", "CT_SUBSETS_new.ttl", "iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..20)
-      load_local_file_into_triple_store(sub_dir, "subsets_input_4.ttl")
-      NameValue.destroy_all
-      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
-      NameValue.create(name: "thesaurus_child_identifier", value: "456")
-      ua_create
-      Token.delete_all
-    end
+  after :all do
+    ua_destroy
+  end
+
+  describe "The Content Admin User can", :type => :feature do
 
     before :each do
       Token.restore_timeout
@@ -33,10 +37,6 @@ describe "Thesauri", :type => :feature do
 
     after :each do
       ua_logoff
-    end
-
-    after :all do
-      ua_destroy
     end
 
      #Index subsets
@@ -207,6 +207,32 @@ describe "Thesauri", :type => :feature do
       expect(AuditTrail.count).to eq(audit_count+2)
     end
 
+
+  end
+
+  describe "The Community Reader", :type => :feature do
+
+    before :each do
+      Token.restore_timeout
+      ua_community_reader_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "hides Subsets button from MC show page", js:true do
+      click_browse_every_version
+      wait_for_ajax(10)
+      expect(page).to have_content 'Item History'
+      context_menu_element("history", 5, "2009-10-06 Release", :show)
+      wait_for_ajax(10)
+      expect(page).to have_content '2009-10-06 Release'
+      find(:xpath, "//tr[contains(.,'C78738')]/td/a", :text => 'Show').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'C78738'
+      expect(page).to_not have_link 'Subsets'
+    end
 
   end
 
