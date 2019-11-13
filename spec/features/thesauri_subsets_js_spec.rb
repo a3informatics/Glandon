@@ -134,8 +134,12 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Femtogram per Milliliter\nday*fg/mL (C85583)")
       ui_check_table_cell("subset_children_table", 3, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
+      source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[1]")
+      target = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[2]")
+      source.drag_to(target)
+      wait_for_ajax
       source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[2]")
-      target = page.find(:xpath, "//*[@id='source_children_table']/tbody/tr[3]")
+      target = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[4]")
       source.drag_to(target)
       wait_for_ajax
       ui_check_table_cell("subset_children_table", 2, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
