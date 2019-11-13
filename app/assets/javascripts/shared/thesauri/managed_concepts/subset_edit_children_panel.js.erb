@@ -159,6 +159,7 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   if(previousChild != null)
     updateData["subset"]["after_id"] = previousChild["member_id"];
 
+  toggleTableActive("#source_children_table");
   _this.update(actionParams, updateData, targetChild, _this.reorderChildCallback);
 }
 
@@ -184,8 +185,10 @@ SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, i
     dataType: 'json',
     success: function(result) {
       callback(item, result, _this);
-      if(actionParams["bulkSize"]==1)
+      if(actionParams["bulkSize"]==1){
         _this.childrenTable.processing(false);
+        toggleTableActive("#source_children_table");
+      }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);

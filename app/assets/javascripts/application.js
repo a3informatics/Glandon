@@ -433,3 +433,7 @@ function isIE() {
 function isSafari(){
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
+
+function toggleTableActive(tableId) {
+  $(tableId).DataTable().rows().nodes().to$().toggleClass("tr-disabled");
+}
