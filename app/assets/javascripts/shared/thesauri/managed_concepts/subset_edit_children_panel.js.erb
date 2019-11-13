@@ -159,7 +159,7 @@ SubsetEditChildrenPanel.prototype.reorderChild = function(changeEvent) {
   if(previousChild != null)
     updateData["subset"]["after_id"] = previousChild["member_id"];
 
-  toggleTableActive("#source_children_table");
+  toggleTableActive("#source_children_table", false);
   _this.update(actionParams, updateData, targetChild, _this.reorderChildCallback);
 }
 
@@ -187,7 +187,7 @@ SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, i
       callback(item, result, _this);
       if(actionParams["bulkSize"]==1){
         _this.childrenTable.processing(false);
-        toggleTableActive("#source_children_table");
+        toggleTableActive("#source_children_table", true);
       }
     },
     error: function(xhr,status,error){
@@ -210,6 +210,7 @@ SubsetEditChildrenPanel.prototype.update = function (actionParams, updateData, i
  */
 SubsetEditChildrenPanel.prototype.requestFailCallback = function (actionParams, item, context) {
   var otherTable = $("#source_children_table").DataTable();
+  toggleTableActive("#source_children_table", true);
 
   switch (actionParams["type"]) {
     case "POST":
