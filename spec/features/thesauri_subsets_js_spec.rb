@@ -130,8 +130,9 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_link("Subsets")
       click_link "Subsets"
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+      wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
-      wait_for_ajax
+      wait_for_ajax(120)
       ui_check_table_cell("subset_children_table", 4, 2, "Day Times Femtogram per Milliliter\nday*fg/mL (C85583)")
       ui_check_table_cell("subset_children_table", 3, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
       source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[1]")
