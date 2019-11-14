@@ -127,8 +127,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    @context_id = the_params[:context_id]
-    @reference_ct_id = the_params[:reference_ct_id]
+    # @context_id = the_params[:context_id]
+    if !@tc.extended_by.nil?
+      results = Thesaurus.history_uris(identifier: @ct.has_identifier.identifier, scope: IsoNamespace.find(@ct.scope.id))
+      thesaurus = Thesaurus.find_minimum(results.first)
+      @reference_ct_id = thesaurus.uri.to_id
+    end
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?
