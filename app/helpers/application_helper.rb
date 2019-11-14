@@ -237,4 +237,26 @@ module ApplicationHelper
     end
   end
 
+  def user_dashboard_panels
+    user_role_panel_list = {}
+
+    APP_CONFIG['dashboard_panels'].each do |key, value|
+      case key
+      when "terminologies"
+        user_role_panel_list[key] = value if policy(Thesaurus).index?
+      when "bct"
+        user_role_panel_list[key] = value if policy(BiomedicalConceptTemplate).index?
+      when "bcs"
+        user_role_panel_list[key] = value if policy(BiomedicalConcept).index?
+      when "forms"
+        user_role_panel_list[key] = value if policy(Form).index?
+      when "domains"
+        user_role_panel_list[key] = value if policy(SdtmUserDomain).index?
+      when "stats"
+        user_role_panel_list[key] = value
+      end
+    end
+    user_role_panel_list
+  end
+
 end

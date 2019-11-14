@@ -4,7 +4,7 @@ class UserSettingsController < ApplicationController
   before_action :set_settings, only: [:index, :show, :edit, :update]
 
   C_CLASS_NAME = "UsersController"
-  
+
   def index
     authorize UserSetting
     @settings_metadata = @user.settings_metadata

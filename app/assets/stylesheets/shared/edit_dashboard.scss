@@ -1,0 +1,36 @@
+@import "custom/globals.scss";
+
+#dashboardModal .list-wrap{
+  max-width: 300px;
+  margin: 10px 0;
+}
+
+#dashboardModal label{
+  margin: 0;
+}
+
+#dashboardModal .checkbox-opt{
+  padding: 8px 10px;
+  font-family: $font-light;
+  border-top: 1px solid $grey-bright;
+  display: flex;
+  align-items: center;
+  transition: transform .5s;
+}
+
+#dashboardModal .checkbox-opt:last-of-type{
+  border-bottom: 1px solid $grey-bright;
+}
+
+#dashboardModal .checkbox-opt:hover{
+  color: $primary-color-medium;
+  transform: translateX(5px);
+}
+
+#dashboardModal .checkbox-opt input[type=checkbox]{
+  margin-right: 8px;
+}
+
+#dashboardModal .checkbox-opt :checked + span{
+  color: $primary-color-medium;
+}

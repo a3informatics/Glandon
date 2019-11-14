@@ -77,6 +77,19 @@ defaults: &defaults
       default_value: 4
       label: Terminology Versions Displayed
       description: Number of terminologies to be displayed in change tables.
+    dashboard_layout:
+      type: ordered
+      default_value: Terminologies, Biomedical Concept Templates, Biomedical Concepts, Forms, Domains, Statistics
+      label: Layout of the Dashboard
+      description: Customize this setting in the Dashboard page.
+  dashboard_panels:
+    terminologies: "Terminologies"
+    bct: "Biomedical Concept Templates"
+    bcs: "Biomedical Concepts"
+    forms: "Forms"
+    domains: "Domains"
+    stats: "Statistics"
+
 
 development:
   <<: *defaults
