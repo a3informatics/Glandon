@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Dashboard");' %>
-<%= javascript_include_tag 'dashboard_index'%>
-<%= stylesheet_link_tag 'custom/dashboard' %>
+<%= javascript_include_tag 'jquery-ui.min', 'shared/edit_dashboard', 'dashboard_index'%>
+<%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
 
 <% welcome_msg = current_user.sign_in_count == 1 ? "Welcome to A3 MDR, " : "Hello, " %>

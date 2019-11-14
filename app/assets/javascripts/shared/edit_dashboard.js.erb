@@ -1,0 +1,32 @@
+/*
+* Dashboard Editor
+*
+*/
+
+/**
+ * Dashboard Editor Constructor
+ *
+ * @return [void]
+ */
+function DashboardEditor(editorId) {
+  var _this = this;
+
+  this.editorId = editorId;
+  $(this.editorId).sortable({
+    placeholder: "de-item-highlight",
+    containment: "parent",
+    items: "div:not(.de-header)"
+  });
+  $(this.editorId).disableSelection();
+}
+
+
+/**
+ * Aaa
+ *
+ * @param
+ * @return [void]
+ */
+DashboardEditor.prototype.add = function (offset) {
+
+}

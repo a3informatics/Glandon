@@ -1,7 +1,7 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<%= stylesheet_link_tag 'shared/edit_dashboard' %>
+
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="dashboardModal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -22,8 +22,14 @@
           </div>
           <div class="col-sm-6">
             <span class="font-light text-normal"> Organize your Dashboard: </span>
-            <div class="dashboard-editor">
 
+            <div class="de-wrap">
+              <div id="dashboard-editor">
+                <div class="de-header">Header</div>
+                <% usr_dashboard_setting.each do |value| %>
+                   <%= ("<div class='de-item'>"+value+"</div>").html_safe if user_dashboard_panels.has_value? value %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
