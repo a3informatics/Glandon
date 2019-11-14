@@ -28,6 +28,7 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require app-js-erb-extension
+//= require jquery-dateformat.min
 //= require title
 
 // Managed Item Types
@@ -432,4 +433,9 @@ function isIE() {
 
 function isSafari(){
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
+function dateString(){
+  var date = new Date().getTime();
+  return $.format.date(date, "ddd, MMMM D, yyyy")
 }

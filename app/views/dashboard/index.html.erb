@@ -1,7 +1,20 @@
 <%= javascript_tag 'setPageTitle("Dashboard");' %>
 <%= javascript_include_tag 'dashboard_index'%>
+<%= stylesheet_link_tag 'custom/dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
-<section id="container">
+
+<% welcome_msg = current_user.sign_in_count == 1 ? "Welcome to A3 MDR, " : "Hello, " %>
+
+<div class="row">
+	<%= render layout: "shared/simple_header_card_general", :locals => {badge: current_user.name[0], header_title: "Dashboard",
+		main_text: welcome_msg+current_user.name.split(' ').first+".",
+		sub_texts: "Today is <span id='datetime'></span>. <br> <span id='notif-info'>You have 0 new notifications.</span>".html_safe} do %>
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "edit_dashboard",
+				icon: "icon-edit", btn_text: "Customize", dt_toggle: "", disabled: false } %>
+	<% end %>
+</div>
+
+<section id="container" class="table-cardstyle">
 	<div class="row">
   	<div class="col-md-6 card wide">
       <h4 class="card-header">Terminology</h4>
