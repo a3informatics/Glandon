@@ -6,7 +6,6 @@ class IsoNamespacesController < ApplicationController
 
   def index
     @namespaces = IsoNamespace.all
-    @new_namespace = IsoNamespace.new
   end
 
   def new

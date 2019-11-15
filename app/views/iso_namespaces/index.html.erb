@@ -2,7 +2,7 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Namespaces") %>
 <div class="row">
-  <div class="col-md-8 card">
+  <div class="col-md-8 card wide">
     <div class="card-header">
       Namespaces
     </div>
@@ -33,13 +33,13 @@
       </table>
     </div>
   </div>
-  <div class="col-md-4 card">
+  <div class="col-md-4 card narrow">
     <div class="card-header">
         New Scope Namespace
     </div>
     <div class="card-content">
       <span class="font-light"> To create a new namespace use this form: </span>
-      <%= form_for @new_namespace, url: {action: "create"} do |f| %>
+      <%= form_for IsoNamespace.new, url: {action: "create"} do |f| %>
         <div class="form-wrap wide">
           <div class="form-group">
             <%= f.text_field :name, placeholder: "Name", autofocus: true %>

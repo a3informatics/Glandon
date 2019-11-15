@@ -16,10 +16,8 @@ describe 'iso_namespaces/index.html.erb', :type => :view do
   it 'displays the form' do
 
     namespaces = IsoNamespace.all
-    namespace = IsoNamespace.new
 
     assign(:namespaces, namespaces)
-    assign(:new_namespace, namespace)
 
     IsoHelpers.mark_as_used(namespaces.first.uri)
 

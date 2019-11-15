@@ -274,7 +274,7 @@
   margin: 5px auto;
 }
 
-.form-wrap input, .form-wrap textarea{
+.form-wrap input, .form-wrap textarea, .form-wrap select{
   min-width: 170px;
   font-size: $font-small;
   font-family: $font-light;
@@ -295,6 +295,10 @@
 
 .form-wrap.wide input{
   min-width: 250px;
+}
+
+.form-wrap select{
+  border: 2px solid $primary-color-bright;
 }
 
 .form-wrap textarea{

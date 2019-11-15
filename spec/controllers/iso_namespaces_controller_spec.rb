@@ -17,15 +17,12 @@ describe IsoNamespacesController do
     end
 
     it "index namespaces" do
-      new_namespace = IsoNamespace.new
       namespaces = IsoNamespace.all
-      expect(IsoNamespace).to receive(:new).and_return(new_namespace)
       expect(IsoNamespace).to receive(:all).and_return(namespaces)
       get :index
       expected = namespaces.map{|x| x.to_h}
       actual = assigns(:namespaces).map{|x| x.to_h}
       expect(actual).to eq(expected)
-      expect(assigns(:new_namespace).to_h).to eq(new_namespace.to_h)
       expect(response).to render_template("index")
     end
 
