@@ -269,6 +269,10 @@ button:focus, input[type="submit"] {
   outline: none !important;
 }
 
+a:focus{
+  color: $primary-color-light;
+}
+
 .btn:active{
   background: $primary-color-medium !important;
 }
