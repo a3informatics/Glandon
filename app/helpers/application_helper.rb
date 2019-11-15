@@ -182,6 +182,7 @@ module ApplicationHelper
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
   # @return [Null]
   def breadcrumb(items)
+  byebug
   	result = "<ol class=\"breadcrumb\">"
   	index = 1
   	items.each do |item|
@@ -235,6 +236,24 @@ module ApplicationHelper
     else
       item.label[0].upcase
     end
+  end
+
+  def mapping (id)
+    id_to_type_map = {
+      dashboard: {link: "#", text: "Dashboard"},
+      iso_namespaces: {link: "/iso_namespaces", text: "Namespaces"}, iso_registration_authorities: {link: "/iso_registration_authorities", text: "Registration Authorities"}, 
+      iso_managed: {link: "/iso_managed", text: "Managed Items"}, tokens: {link: "/tokens", text: "Edit Locks"}, audit_trail: {link: "/audit_trail", text: "Audit trail"},
+      uploads: {link: "/uploads", text: "Upload"}, imports: {link: "/imports/list", text: "Import"}, exports: {link: "/exports", text: "Export"}, 
+      backgrounds: {link: "/backgrounds", text: "Background Jobs"},
+      ad_hoc_reports: {link: "/ad_hoc_reports", text: "Ad Hoc Reports"}, 
+      iso_concept_systems: {link: "/iso_concept_systems", text: "Tags"}, markdown_engines: {link: "/markdown_engines", text: "Markdown"},
+      thesauri: {link: "/thesauri", text: "Terminology"}, cdisc_terms: {link: "/cdisc_terms/history", text: "CDISC Terminology"},
+      biomedical_concept_templates: {link: "/biomedical_concept_templates", text: "Biomedical Concept Templates"}, biomedical_concepts: {link: "/biomedical_concepts", text: "Biomedical Concepts"},
+      forms: {link: "/forms", text: "Forms"},
+      sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model"}, sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs"}, sdtm_user_domains: {link: "/sdtm_user_domains", text: "Domains"},
+      adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs"}
+      }
+    type = id_to_type_map[id.to_sym]
   end
 
 end
