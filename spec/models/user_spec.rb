@@ -195,10 +195,14 @@ describe "User" do
 
   it "counts user by domain" do
     User.destroy_all
-    User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_ip: "212.121.182.100"
-    # User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
-    # User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_ip: "155.91.16.2"
-    expect(User.users_by_domain).to eq({"total"=>1, "vip-ssg3.francenet.fr"=>1})
+    User.create :email => "sam@example.com", :password => "Changeme1#"
+    User.create :email => "dave@sanofi.com", :password => "Changeme1#"
+    User.create :email => "kirsten@sanofi.com", :password => "Changeme1#"
+    User.create :email => "clarisa@merck.com", :password => "Changeme1#"
+    User.create :email => "adam@example.com", :password => "Changeme1#"
+    User.create :email => "kevin@sanofi.com", :password => "Changeme1#"
+    User.create :email => "aj@s-cubed.com", :password => "Changeme1#"
+    expect(User.users_by_domain).to eq({"total"=>7, "example.com"=>2, "sanofi.com"=>3, "merck.com"=>1, "s-cubed.com"=>1})
   end
 
 end

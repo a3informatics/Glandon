@@ -184,9 +184,17 @@ class User < ActiveRecord::Base
   #
   # @return [hash] Hash with the domain as the key and the number of users logged with that domain as the value. Example: {"ci.ruby-lang.org"=>4}
   def self.users_by_domain
-    result = self.group("current_sign_in_ip").count
-    result = result.map{ |k, v| [result[k] = (Resolv.getname k.to_s), v] }.to_h
-    # result = result.map{ |k, v| [result[k] = (Socket.gethostbyaddr(k.to_s)), v] }.to_h
+    raw = self.all.select('id, email').as_json
+    raw = raw.map{ |k, v| k['email'] }
+    raw = raw.map{ |user| user.sub /^.*@/, '' }
+    result = {}
+    raw.each do |value|
+      if result[value].nil?
+          result[value] = 1
+      else 
+          result[value] = result[value] + 1
+      end
+    end
     result["total"] = self.all.count
     return result
   end
