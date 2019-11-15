@@ -183,9 +183,10 @@ class User < ActiveRecord::Base
   # Counts users logins by domain
   #
   # @return [hash] Hash with the domain as the key and the number of users created with that domain as the value. Example: {"total"=>7, "example.com"=>2, "sanofi.com"=>3, "merck.com"=>1, "s-cubed.com"=>1}
+  def self.users_by_domain 
     raw = self.all.select('id, email').as_json
     raw = raw.map{ |k, v| k['email'] }
-    raw = raw.map{ |user| user.sub /^.*@/, '' }
+    raw = raw.map{ |email| email.sub /^.*@/, '' }
     result = {}
     raw.each do |value|
       if result[value].nil?
