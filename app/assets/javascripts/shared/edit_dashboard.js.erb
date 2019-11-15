@@ -8,25 +8,57 @@
  *
  * @return [void]
  */
-function DashboardEditor(editorId) {
+function DashboardEditor(editorId, listId) {
   var _this = this;
 
   this.editorId = editorId;
+  this.listId = listId;
+
   $(this.editorId).sortable({
     placeholder: "de-item-highlight",
     containment: "parent",
     items: "div:not(.de-header)"
   });
   $(this.editorId).disableSelection();
+
+  $(this.listId).find("input").change(function(){
+    var name = $(this).parent().text();
+    if(this.checked)
+      _this.addItemToEditor(name);
+    else
+      _this.removeItemFromEditor(name);
+  });
 }
 
 
 /**
- * Aaa
+ * Adds item div to the layout editor
  *
- * @param
+ * @param [String] name of the item
  * @return [void]
  */
-DashboardEditor.prototype.add = function (offset) {
+DashboardEditor.prototype.addItemToEditor = function (itemName) {
+  var _this = this;
+  $(_this.editorId).append(_this.generateItemHTML(itemName));
+}
 
+/**
+ * Deletes an item div from the layout editor
+ *
+ * @param [String] name of the item
+ * @return [void]
+ */
+DashboardEditor.prototype.removeItemFromEditor = function (itemName) {
+  var _this = this;
+  $(_this.editorId).find(".de-item:contains('"+itemName+"')").remove();
+}
+
+/**
+ * Generates string HTML code of a draggable editor item
+ *
+ * @param [String] name of the item
+ * @return [String] HTML code of an item
+ */
+DashboardEditor.prototype.generateItemHTML = function (itemName) {
+  return "<div class='de-item ui-sortable-handle'>"+itemName+"</div>";
 }

@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-sm-6">
             <span class="font-light text-normal"> Select items on your Dashboard: </span>
-            <div class="list-wrap">
+            <div class="list-wrap" id="dashboard-list">
               <% usr_dashboard_setting = (current_user.read_setting :dashboard_layout).value.split(', ') %>
               <% user_dashboard_panels.each do |key, value| %>
                 <div class="checkbox-opt"> <label><input type="checkbox" name="<%=key%>" <%= "checked" if usr_dashboard_setting.include? value %>><span><%= value %></span></label></div>
