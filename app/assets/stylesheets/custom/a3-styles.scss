@@ -293,6 +293,10 @@
   border-bottom: 2px solid $primary-color-bright;
 }
 
+.form-wrap.wide input{
+  min-width: 250px;
+}
+
 .form-wrap textarea{
   min-width: 250px;
   border: 1px solid $grey-bright;
@@ -303,6 +307,10 @@
   min-width: 0px;
   border-bottom: 0px;
   position: relative;
+}
+
+.form-wrap input::placeholder, .form-wrap textarea::placeholder{
+  color: $grey-light;
 }
 
 .form-wrap .checkbox label {
