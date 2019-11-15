@@ -238,7 +238,7 @@ module ApplicationHelper
     end
   end
 
-  def mapping (id)
+  def map_type (id)
     id_to_type_map = {
       dashboard: {link: "#", text: "Dashboard"},
       iso_namespaces: {link: "/iso_namespaces", text: "Namespaces"}, iso_registration_authorities: {link: "/iso_registration_authorities", text: "Registration Authorities"}, 

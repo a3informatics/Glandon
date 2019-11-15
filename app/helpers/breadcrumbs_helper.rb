@@ -48,7 +48,6 @@ module BreadcrumbsHelper
 
   # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
   #
-
   # @param items [Array] array of hash items holding the text and link for each level of the breadcrumb
   # @return [Null]
   def breadcrumb(items)
