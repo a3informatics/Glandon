@@ -89,9 +89,11 @@ $secondary-color-bright: #def3a9;
 
 /* Accent colors (orange & red) */
 $accent-color-1: #f5d684;
+$accent-color-1-dark: #e0bf67;
 $accent-color-2: #e48080;
 $accent-color-2-light: #f2a6a6;
 $accent-color-2-dark: #c95c5c;
+$accent-color-3: #f9c19b;
 
 .bg-accent-1{
   background: $accent-color-1;
@@ -99,6 +101,10 @@ $accent-color-2-dark: #c95c5c;
 
 .bg-accent-2{
   background: $accent-color-2;
+}
+
+.bg-accent-3{
+  background: $accent-color-3;
 }
 
 /* Text & grey colors */
@@ -148,8 +154,16 @@ $grey-white: #ffffff;
   color: $accent-color-1;
 }
 
+.text-accent-1-dark{
+  color: $accent-color-1-dark;
+}
+
 .text-accent-2{
   color: $accent-color-2;
+}
+
+.text-accent-3{
+  color: $accent-color-3;
 }
 
 .text-link{

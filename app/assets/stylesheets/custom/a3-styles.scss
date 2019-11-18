@@ -358,6 +358,14 @@
   box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
 }
 
+// TABLES
+
+.table-width-wrapper{
+  width: 100%;
+  padding: 0 10%;
+  justify-content: center;
+}
+
 // SCROLLBARS
 body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
   .list-wrap::-webkit-scrollbar, #main_area::-webkit-scrollbar{
@@ -389,6 +397,10 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
     #main_area::-webkit-scrollbar, body::-webkit-scrollbar-thumb,
       body::-webkit-scrollbar-track, body::-webkit-scrollbar {
     display: none;
+  }
+
+  .table-width-wrapper{
+    padding: 0;
   }
 }
 

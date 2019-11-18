@@ -237,4 +237,12 @@ module ApplicationHelper
     end
   end
 
+  def thesaurus_accent_color (owner_name)
+    if owner_name == "CDISC"
+      return "bg-accent-1"
+    else
+      return "bg-prim-light"
+    end
+  end
+
 end
