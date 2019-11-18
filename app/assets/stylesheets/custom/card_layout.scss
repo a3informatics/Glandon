@@ -75,7 +75,7 @@
   vertical-align: middle;
 }
 
-.table-cardstyle th:last-child{
+.table-cardstyle th:last-child, .table-cardstyle th.ignore{
   color: transparent;
   pointer-events: none;
 }
