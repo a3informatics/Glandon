@@ -12,8 +12,10 @@
 <%= javascript_tag "var reference_ct_id = '#{@reference_ct_id}';" %>
 <%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
 <%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
+<% fourth_level_breadcrumb(id_to_type('thesauri'), @ct, history_thesauri_index_path(thesauri: {:identifier => @ct.has_identifier.identifier, :scope_id => @ct.scope}), "Show", @close_path, "Show:") %>
 
-<div class="row">
+<div class="row">c
+
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->

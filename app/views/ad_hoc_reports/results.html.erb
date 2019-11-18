@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Ad-Hoc Report Results")' %>
 <%= stylesheet_link_tag    'spinner' %>
 <%= javascript_include_tag 'ad_hoc_report_results', 'spinner' %>
-<% second_level_breadcrumb("Ad-hoc reports", ad_hoc_reports_path, "Results") %>
+<% second_level_breadcrumb(id_to_type('ad_hoc_reports'), "Results") %>
 <h3>Ad-Hoc Report Results: <%= @report.label %></h3>
 <div class="row">
 	<div class="col-md-12">

@@ -1,5 +1,5 @@
 <%= javascript_include_tag 'iso_managed_select_panel', 'biomedical_concept_template_new', 'field_validation' %>
-<% second_level_breadcrumb("Biomedical Concept", biomedical_concepts_path, "New") %>
+<% second_level_breadcrumb(id_to_type('biomedical_concepts'), "New") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

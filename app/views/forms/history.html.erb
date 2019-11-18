@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% index_label = "Forms" %>
 <% index_path = forms_path %>
-<% second_level_breadcrumb(index_label, index_path, @identifier) %>
+<% second_level_breadcrumb(id_to_type('forms'), @identifier) %>
 <h3>History: <%= @identifier %></h3>
 <div class="row">
 	<div class="col-md-12">

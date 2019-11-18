@@ -4,7 +4,7 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<% second_level_breadcrumb("Biomedical Concept", biomedical_concepts_path, "Edit Multiple") %>
+<% second_level_breadcrumb(id_to_type('biomedical_concepts'), "Edit Multiple") %>
 <div class="row">
   <div class="col-md-12">
     <h3>Edit Multiple Biomedical Concepts</h3>

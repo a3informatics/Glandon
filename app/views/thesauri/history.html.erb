@@ -7,7 +7,7 @@
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
 <% index_label = "Terminology" %>
 <% index_path = thesauri_index_path %>
-<% second_level_breadcrumb(index_label, index_path, @identifier) %>
+<% second_level_breadcrumb(id_to_type('thesauri'), @identifier) %>
 <div class="row">
 	<div class="col-md-12 card">
 		<%= render partial: "shared/history_panel", locals: {title: "History: #{@identifier}"} %>

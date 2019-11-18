@@ -1,5 +1,5 @@
 <%= javascript_tag 'setPageTitle("Preferences: '+current_user.email+'")' %>
-<% top_level_breadcrumb ("User Settings") %>
+<% first_level_breadcrumb (id_to_type('user_settings')) %>
 <style>
 	#user_settings .btn{
 		min-width: 50px;
