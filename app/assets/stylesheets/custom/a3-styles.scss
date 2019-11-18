@@ -366,6 +366,13 @@
   justify-content: center;
 }
 
+// IMGS
+
+img.modal-img{
+  width: 150px;
+  margin: 10px 0px;
+}
+
 // SCROLLBARS
 body::-webkit-scrollbar, #sidebar::-webkit-scrollbar,
   .list-wrap::-webkit-scrollbar, #main_area::-webkit-scrollbar{
