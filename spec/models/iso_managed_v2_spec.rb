@@ -714,7 +714,7 @@ describe "IsoManagedV2" do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..5)
+      load_cdisc_term_versions(1..10)
     end
 
     it "next ordinal" do
@@ -758,6 +758,22 @@ describe "IsoManagedV2" do
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
       item.has_state.make_current
       expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
+    end
+
+    it "finds best parent" do
+      uri_v10 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
+      tc = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789"))
+      item = tc.best_parent
+      expect(item).to eq(uri_v10)
+    end
+
+    it "latest and current" do
+      results = CdiscTerm.current_and_latest_set
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
+      item.has_state.make_current
+      results = CdiscTerm.current_and_latest_set
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
