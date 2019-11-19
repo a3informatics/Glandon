@@ -22,7 +22,7 @@ describe "Breadcrumb", :type => :feature do
   end
 
   before :each do
-    ua_curator_login
+    ua_content_admin_login
   end
 
   after :each do
@@ -86,12 +86,12 @@ describe "Breadcrumb", :type => :feature do
 
     it "has Audit Trail breadcrumbs", js:true  do
       click_navbar_at
-      ui_check_breadcrumb("Audit Trail", "", "", "")
+      ui_check_breadcrumb("Audit trail", "", "", "")
     end
 
     it "has Ad Hoc Reports breadcrumbs", js:true  do
       click_navbar_ahr
-      ui_check_breadcrumb("Ad-hoc Reports", "", "", "")
+      ui_check_breadcrumb("Ad Hoc Reports", "", "", "")
       next_link('New', 'New Ad-Hoc Report:', "Ad-hoc Reports", "New", "")
       next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
     end
@@ -113,8 +113,6 @@ describe "Breadcrumb", :type => :feature do
     it "has Terminology breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      # next_link('New', 'New Terminology:', "Terminology", "New", "")
-      # next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
       next_link('Search Current', 'Search: All Current Terminology', "Terminology", "Search Current", "")
       next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
       next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
@@ -122,13 +120,11 @@ describe "Breadcrumb", :type => :feature do
       context_menu_element('history', 5, '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      # next_link_table("CDISC Terminology 2015-12-18", "Show", "Show:", "Terminology", "CDISC Terminology", "Show: V43.0.0")
       next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :search)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      # next_link_table("CDISC Terminology 2015-12-18", "Search", "Search:", "Terminology", "CDISC Terminology", "V43.0.0")
       next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
     end
 
@@ -137,60 +133,60 @@ describe "Breadcrumb", :type => :feature do
     it "has Biomedical Concept Templates breadcrumbs", js:true  do
       click_navbar_bct
       ui_check_breadcrumb("Biomedical Concept Templates", "", "", "")
-      # next_link('main_nav_bct', 'Index: Biomedical Concept Templates', )
       next_link_table("Obs CD", "History", "History: Obs CD", "Biomedical Concept Templates", "CDISC, Obs CD", "")
       next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "Biomedical Concept Templates", "CDISC, Obs CD", "V1.0.0")
       next_link_crumb(2, 'History', "Biomedical Concept Templates", "CDISC, Obs CD", "")
     end
 
     it "has Biomedical Concepts breadcrumbs", js:true  do
-      next_link('main_nav_bc', 'Index: Biomedical Concepts', "Biomedical Concepts", "", "")
-      next_link('New', 'New: Biomedical Concept', "Biomedical Concept", "New", "")
+      click_navbar_bc
+      ui_check_breadcrumb("Biomedical Concepts", "", "", "")
+      next_link('New', 'New: Biomedical Concept', "Biomedical Concepts", "New", "")
       next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
-      next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "BC C49677", "")
-      next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Show: V1.0.0")
-      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
-      next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Status: V1.0.0")
-      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
-      next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "BC C49677", "Comments: V1.0.0")
-      next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
+      next_link_table("BC C49677", "History", "History: BC C49677", "Biomedical Concepts", "ACME, BC C49677", "")
+  byebug
+      next_link_table("1.0.0", "Show", "Show: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+      next_link_table("1.0.0", "Status", "Status: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Status: V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
+      next_link_table("2016-Jan-01, 00:00", "Edit", "Comments: Heart Rate (BC C49677)", "Biomedical Concepts", "ACME, BC C49677", "Comments: V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
     end
 
     it "has Forms breadcrumbs", js:true  do
-      next_link('Forms', 'Index: Forms', "Forms", "", "")
+      click_navbar_forms
+      ui_check_breadcrumb("Forms", "", "", "")
       next_link('New', 'New Form:', "Forms", "New", "")
       next_link_crumb(1, 'Forms', "Forms", "", "")
       next_link('New Placeholder', 'New Placeholder Form:', "Forms", "New Placeholder", "")
       next_link_crumb(1, 'Forms', "Forms", "", "")
-      next_link_table("CRF TEST 1", "History", "History: CRF TEST 1", "Forms", "CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "CRF TEST 1", "Show: V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "CRF TEST 1", "Show: V0.0.0")
-      next_link('Clone', 'Cloning:', "Forms", "CRF TEST 1", "Show: V0.0.0", "Clone")
-      next_link_crumb(3, 'Show:', "Forms", "CRF TEST 1", "Show: V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "View", "View: CRF Test Form", "Forms", "CRF TEST 1", "View: V0.0.0")
+      next_link_table("CRF TEST 1", "History", "History: CRF TEST 1", "Forms", "ACME, CRF TEST 1", "")
+      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+      next_link('Clone', 'Cloning:', "Forms", "ACME, CRF TEST 1", "V0.0.0", "Clone")
+      next_link_crumb(3, 'Show:', "Forms", "ACME, CRF TEST 1", "V0.0.0")
+      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+      next_link_table("CRF TEST 1", "View", "View: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
       #next_link('form_view_crf', 'CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "CRF")
       #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
       #next_link('form_view_acrf', 'Annotated CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "aCRF")
       #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "CRF TEST 1", "Status: V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
+      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+      # next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+      # next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
     end
 
     it "has CDISC SDTM Model breadcrumbs", js:true  do
-      next_link('CDISC SDTM Model', 'History: CDISC SDTM Model', "CDISC SDTM Models", "", "")
-    #save_and_open_page
-      #next_link_table("SDTM Model 2012-07-16", "Show", "Show: SDTM Model 2012-07-16", "CDISC SDTM Model", "V0.0.0", "")
+      click_navbar_sdtm_model
+      ui_check_breadcrumb("CDISC SDTM Models", "", "", "")
     end
 
     it "has CDISC SDTM IGs breadcrumbs", js:true  do
-      next_link('CDISC SDTM IGs', 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
-    #save_and_open_page
-      next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V3.2.0", "")
+      click_navbar_ig_domain
+      ui_check_breadcrumb("CDISC SDTM IGs", "", "", "")
+      next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "CDISC, SDTM IG", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
-    #save_and_open_page
       next_link('import_button', 'Import CDISC SDTM Implementation Guide Version', "CDISC SDTM IGs", "Import", "")
       next_link_crumb(1, 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
     end
