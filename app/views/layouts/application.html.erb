@@ -103,8 +103,8 @@
               <span class="icon-bar"></span>
             </button>
             <% if !current_user.is_only_community? %>
-              <button type="button" class="navbar-toggle sidebar-toggle" onclick="sidebarVerticalScreenHandler(this)">
-                <span class="icon-arrow_d_nopadding text-white"></span>
+              <button type="button" class="navbar-toggle arrow-rotate" id="sidebar-v-toggle" onclick="toggleSidebar()">
+                <span class="icon-arrow-u-nopad text-white"></span>
               </button>
             <% end %>
             <!-- LOGO AND TITLE -->
@@ -209,7 +209,7 @@
         <% if !current_user.is_only_community? %>
           <div id="sidebar" class="col-sm-2 shadow-medium text-dark collapsed-vertical">
             <div class="nav nav_pills nav-stacked">
-              <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="sidebarHandler(this);"></span>
+              <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="toggleSidebar()"></span>
               <% if link_group_on_role([Dashboard]) %>
               <div class="category-container collapsed">
               <%= render partial: "shared/menu_category", :locals => {:klass => Dashboard, link_id: "main_nav_d",
