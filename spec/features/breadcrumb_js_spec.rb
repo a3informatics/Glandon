@@ -6,6 +6,7 @@ describe "Breadcrumb", :type => :feature do
   include DataHelpers
   include UiHelpers
   include UserAccountHelpers
+  include WaitForAjaxHelper
 
   before :all do
     schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl",
@@ -21,7 +22,7 @@ describe "Breadcrumb", :type => :feature do
   end
 
   before :each do
-    ua_sys_admin_login
+    ua_curator_login
   end
 
   after :each do
@@ -48,81 +49,101 @@ describe "Breadcrumb", :type => :feature do
 
   describe "check all breadcrumbs", :type => :feature do
 
-    it "has dashboard breadcrumbs" do
-      next_link('Dashboard', "Registration Status Counts", "Dashboard", "", "")
+    it "has dashboard breadcrumbs" , js:true do
+      visit 'dashboard'
+      expect(page).to have_content "Registration Status Counts"
+      ui_check_breadcrumb("Dashboard", "", "", "")
     end
 
-    it "has Registration Authorities breadcrumbs" do
-      next_link('Registration Authorities', 'Registration Authorities', "Registration Authorities", "", "")
+    it "has Registration Authorities breadcrumbs", js:true  do
+      click_navbar_regauthorities
+      ui_check_breadcrumb("Registration Authorities", "", "", "")
       next_link('New', 'New Registration Authority', "Registration Authorities", "New", "")
       next_link_crumb(1, 'Registration Authorities', "Registration Authorities", "", "")
     end
 
-    it "has Namespaces breadcrumbs" do
-      next_link('Namespaces', 'Namespaces', "Namespaces", "", "")
+    it "has Namespaces breadcrumbs", js:true  do
+      click_navbar_namespaces
+      ui_check_breadcrumb("Namespaces", "", "", "")
       next_link('New', 'New Scope Namespace', "Namespaces", "New", "")
       next_link_crumb(1, 'Namespaces', "Namespaces", "", "")
     end
 
-    it "has Edit Locks breadcrumbs" do
-      next_link('Edit Locks', 'Index: Edit Locks', "Edit Locks", "", "")
+    it "has Edit Locks breadcrumbs" , js:true do
+      click_navbar_el
+      ui_check_breadcrumb("Edit Locks", "", "", "")
     end
 
-    it "has Upload breadcrumbs" do
-      next_link('Upload', 'File Upload', "Upload", "", "")
+    it "has Upload breadcrumbs", js:true  do
+      click_navbar_upload
+      ui_check_breadcrumb("Upload", "", "", "")
     end
 
-    it "has Background Jobs breadcrumbs" do
-      next_link('Background', 'Index: Background Jobs', "Background", "", "")
+    it "has Background Jobs breadcrumbs", js:true  do
+      click_navbar_background_jobs
+      ui_check_breadcrumb("Background", "", "", "")
     end
 
-    it "has Audit Trail breadcrumbs" do
-      next_link('main_nav_at', 'Index: Audit Trail', "Audit Trail", "", "") # Two links, use ids to get both
+    it "has Audit Trail breadcrumbs", js:true  do
+      click_navbar_at
+      ui_check_breadcrumb("Audit Trail", "", "", "")
     end
 
-    it "has Ad Hoc Reports breadcrumbs" do
-      next_link('Ad Hoc Reports', 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
+    it "has Ad Hoc Reports breadcrumbs", js:true  do
+      click_navbar_ahr
+      ui_check_breadcrumb("Ad-hoc Reports", "", "", "")
       next_link('New', 'New Ad-Hoc Report:', "Ad-hoc Reports", "New", "")
       next_link_crumb(1, 'Index: Ad-Hoc Reports', "Ad-hoc Reports", "", "")
     end
 
-    it "has Tags breadcrumbs" do
-      next_link('Tags', 'Tag Viewer', "", "", "")
+    it "has Tags breadcrumbs", js:true  do
+      click_navbar_tags
+      ui_check_breadcrumb("", "", "", "")
     end
 
     #it "has Notepad breadcrumbs" do
     #  next_link('Notepad', 'Index: Notepad', "Notepad", "", "")
     #end
 
-    it "has Markdown breadcrumbs" do
-      next_link('Markdown', 'Markdown', "Markdown", "", "")
+    it "has Markdown breadcrumbs", js:true  do
+      click_navbar_ma
+      ui_check_breadcrumb("Markdown", "", "", "")
     end
 
-    it "has Terminology breadcrumbs" do
-      next_link('Terminology', 'Index: Terminology', "Terminology", "", "")
-      next_link('New', 'New Terminology:', "Terminology", "New", "")
-      next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
+    it "has Terminology breadcrumbs", js:true  do
+      click_navbar_terminology
+      ui_check_breadcrumb("Terminology", "", "", "")
+      # next_link('New', 'New Terminology:', "Terminology", "New", "")
+      # next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
       next_link('Search Current', 'Search: All Current Terminology', "Terminology", "Search Current", "")
       next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
-      next_link_table("CDISC Terminology 2015-12-18", "History", "History:", "Terminology", "CDISC Terminology", "")
-      next_link_table("CDISC Terminology 2015-12-18", "Show", "Show:", "Terminology", "CDISC Terminology", "Show: V43.0.0")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC Terminology", "")
-      next_link_table("CDISC Terminology 2015-12-18", "View", "View:", "Terminology", "CDISC Terminology", "View: V43.0.0")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC Terminology", "")
-      next_link_table("CDISC Terminology 2015-12-18", "Search", "Search:", "Terminology", "CDISC Terminology", "Search: V43.0.0")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC Terminology", "")
+      next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
+      wait_for_ajax(120)
+      context_menu_element('history', 5, '2015-03-27 Release', :show)
+      wait_for_ajax(120)
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
+      # next_link_table("CDISC Terminology 2015-12-18", "Show", "Show:", "Terminology", "CDISC Terminology", "Show: V43.0.0")
+      next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
+      wait_for_ajax(120)
+      context_menu_element('history', 5, '2015-03-27 Release', :search)
+      wait_for_ajax(120)
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
+      # next_link_table("CDISC Terminology 2015-12-18", "Search", "Search:", "Terminology", "CDISC Terminology", "V43.0.0")
+      next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
     end
 
     it "has CDISC Terminology breadcrumbs"
 
-    it "has Biomedical Concept Templates breadcrumbs" do
-      next_link('main_nav_bct', 'Index: Biomedical Concept Templates', "Biomedical Concept Templates", "", "")
-      next_link_table("Obs CD", "History", "History: Obs CD", "BC Templates", "Obs CD", "")
-      next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "BC Templates", "Obs CD", "Show: V1.0.0")
-      next_link_crumb(2, 'History', "BC Templates", "Obs CD", "")
+    it "has Biomedical Concept Templates breadcrumbs", js:true  do
+      click_navbar_bct
+      ui_check_breadcrumb("Biomedical Concept Templates", "", "", "")
+      # next_link('main_nav_bct', 'Index: Biomedical Concept Templates', )
+      next_link_table("Obs CD", "History", "History: Obs CD", "Biomedical Concept Templates", "CDISC, Obs CD", "")
+      next_link_table("Obs CD", "Show", "Show: Simple Observation CD Biomedical Research Concept Template", "Biomedical Concept Templates", "CDISC, Obs CD", "V1.0.0")
+      next_link_crumb(2, 'History', "Biomedical Concept Templates", "CDISC, Obs CD", "")
     end
 
-    it "has Biomedical Concepts breadcrumbs" do
+    it "has Biomedical Concepts breadcrumbs", js:true  do
       next_link('main_nav_bc', 'Index: Biomedical Concepts', "Biomedical Concepts", "", "")
       next_link('New', 'New: Biomedical Concept', "Biomedical Concept", "New", "")
       next_link_crumb(1, 'Biomedical Concepts', "Biomedical Concepts", "", "")
@@ -135,7 +156,7 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(2, 'History', "Biomedical Concepts", "BC C49677", "")
     end
 
-    it "has Forms breadcrumbs" do
+    it "has Forms breadcrumbs", js:true  do
       next_link('Forms', 'Index: Forms', "Forms", "", "")
       next_link('New', 'New Form:', "Forms", "New", "")
       next_link_crumb(1, 'Forms', "Forms", "", "")
@@ -158,13 +179,13 @@ describe "Breadcrumb", :type => :feature do
       next_link_crumb(2, 'History:', "Forms", "CRF TEST 1", "")
     end
 
-    it "has CDISC SDTM Model breadcrumbs" do
+    it "has CDISC SDTM Model breadcrumbs", js:true  do
       next_link('CDISC SDTM Model', 'History: CDISC SDTM Model', "CDISC SDTM Models", "", "")
     #save_and_open_page
       #next_link_table("SDTM Model 2012-07-16", "Show", "Show: SDTM Model 2012-07-16", "CDISC SDTM Model", "V0.0.0", "")
     end
 
-    it "has CDISC SDTM IGs breadcrumbs" do
+    it "has CDISC SDTM IGs breadcrumbs", js:true  do
       next_link('CDISC SDTM IGs', 'History: CDISC SDTM Implementation Guide', "CDISC SDTM IGs", "", "")
     #save_and_open_page
       next_link_table("SDTM Implementation Guide 2013-11-26", "Show", "Show:", "CDISC SDTM IGs", "V3.2.0", "")
@@ -176,15 +197,15 @@ describe "Breadcrumb", :type => :feature do
 
     it "has Domains breadcrumbs"
 
-    it "has users breadcrumbs" do
+    it "has users breadcrumbs", js:true  do
       next_link('settings_button', 'User Settings', "User Settings", "", "")
     end
 
-    it "has users breadcrumbs" do
+    it "has users breadcrumbs", js:true  do
       next_link('users_button', 'Users', "Users", "", "")
-      next_link('New', 'New: User', "Users", "New", "")
+      next_link('New', 'New user account', "Users", "New", "")
       next_link_crumb(1, 'Users', "Users", "", "")
-      next_link_table("content_admin@example.com", "Edit", "Roles For: ", "Users", "", "")
+      next_link_table("content_admin@example.com", "Edit", "Set user roles for", "Users", "", "")
     end
 
   end
