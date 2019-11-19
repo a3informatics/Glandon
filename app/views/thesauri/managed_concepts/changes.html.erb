@@ -7,8 +7,7 @@
                         loadingMessage = 'Generating report...',
                         errTimeoutMessage = 'Error occurred while generating the report.',
                         redirectPath = '"+changes_report_thesauri_managed_concept_path(@tc, format: :pdf)+"';" %>
-
-<% third_level_breadcrumb(id_to_type('cdisc_terms'),"Changes",changes_thesauri_path(@ct), "Changes") %>
+<% third_level_breadcrumb(id_to_type('thesauri'), @tc, history_thesauri_index_path({thesauri: {identifier: @ct, scope_id: @ct}})) %>
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => nil, :badge => "CL"} do %>
     <div class="actions-wrap">

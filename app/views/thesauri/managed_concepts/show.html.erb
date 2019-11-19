@@ -13,7 +13,6 @@
 <%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
 <%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
 <% third_level_breadcrumb(id_to_type('thesauri'), @tc, history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope.id}})) %>
-
 <div class="row">
 
   <!-- RENDER CARD CONTENTS -->
