@@ -14,7 +14,6 @@
 <%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
 <% third_level_breadcrumb(id_to_type('thesauri'), @tc, history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope.id}})) %>
 <div class="row">
-
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->

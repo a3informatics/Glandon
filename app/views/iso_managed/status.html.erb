@@ -10,7 +10,7 @@
 <% if @index_label == "" %>
   <% second_level_breadcrumb(@managed_item.identifier, @close_path, "Status:") %>
 <% else %>
-  <% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
+  <% third_level_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
 <% end %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Status:", :item => @managed_item} %>
 <div class="row">
