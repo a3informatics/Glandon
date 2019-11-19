@@ -11,23 +11,58 @@ module BreadcrumbsHelper
   # Second Level Breadcrumb
   #
   # @param type [String] the parent-level breadcrumb link tex
-  # @param text [String] the second-level breadcrumb link text
+  # @param title [String] the second-level breadcrumb link text
   # @return [Null]
-  def second_level_breadcrumb(type, text)
-  	breadcrumb ([ type, {link: "#", text: "#{text}"}])
+  def second_level_breadcrumb(type, scope_id, identifier, text = "")
+    scope_short_name = IsoNamespace.find(scope_id).short_name
+    breadcrumb ([ type, 
+                {link: "#", text: "#{text}#{scope_short_name}, #{identifier}"}])
   end
+
+  # Third Level Breadcrumb
+  #
+  # @param managed_item [Object] the managed item
+  # @param parent_text [String] the parent-level breadcrumb link text
+  # @param parent_link [String] the parent-level link
+  # @param second_level_text [String] the second-level breadcrumb link text
+  # @param second_level_link [String] the second-level link
+  # @param third_level_action [String] the third-level prefix for the link text
+  # @return [Null]
+  # def third_level_breadcrumb(type, second_level_text, second_level_link, third_level_text)
+  #   breadcrumb ([type,
+  #               {link: second_level_link, text: "#{second_level_text}"},
+  #               {link: "#", text: "#{third_level_text}"}])
+  # end
 
   # Third Level Managed-Item Breadcrumb
   #
+  # @param type [Object] the 
   # @param managed_item [Object] the managed item
   # @param second_level_link [String] the second-level link
   # @param third_level_action [String] the third-level prefix for the link text
   # @return [Null]
-  def third_level_breadcrumb(type, managed_item, second_level_link, third_level_action)
-    identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
+  def third_level_breadcrumb(type, item, second_level_link)
+    identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
+    breadcrumb ([ type,
+                  {link: second_level_link, text: "#{item.has_identifier.has_scope.short_name}, #{identifier}"},
+                  {link: "#", text: "V#{item.semantic_version}"}])
+  end
+
+  # Fourth Level Breadcrumb
+  #
+  # @param managed_item [Object] the managed item
+  # @param type [String] type
+  # @param second_level_text [String] the second-level breadcrumb link text
+  # @param second_level_link [String] the second-level link
+  # @param third_level_action [String] the third-level prefix for the link text
+  # @param third_level_link [String] the third-level link
+  # @param fourth_level_text [String] the third-level link
+  # @return [Null]
+  def fourth_level_breadcrumb(type, managed_item, second_level_link, third_level_text, third_level_link, title)
     breadcrumb ([type,
-      {link: second_level_link, text: "#{identifier}"},
-      {link: "#", text: "#{third_level_action} V#{managed_item.semantic_version}"}])
+      {link: second_level_link, text: "#{managed_item.has_identifier.has_scope.short_name}, #{managed_item.scoped_identifier}"},
+      {link: third_level_link, text: "#{third_level_text.notation} (#{third_level_text.identifier})"},
+      {link: "#", text: "#{title}"}])
   end
 
   # Fourth Level Managed-Item Breadcrumb
@@ -37,13 +72,15 @@ module BreadcrumbsHelper
   # @param third_level_link [String] the third-level link
   # @param fourth_level_text [String] the third-level link
   # @return [Null]
-  def fourth_level_breadcrumb(type, managed_item, second_level_link, third_level_action, third_level_link, fourth_level_action)
-    breadcrumb ([type,
-                {link: second_level_link, text: "#{managed_item.has_identifier.identifier}"},
-                {link: third_level_link, text: "#{third_level_action} V#{managed_item.semantic_version}"},
-                {link: "#", text: "#{fourth_level_action} #{@tc.notation} #{@tc.identifier}"}
-      ])
-  end
+  # def fourth_level_managed_item_breadcrumb(type, managed_item, second_level_link, third_level_link, title)
+  #   identifier = managed_item.respond_to?(:scoped_identifier) ? managed_item.scoped_identifier : managed_item.identifier
+  #   breadcrumb ([type,
+  #               {link: second_level_link, text: "#{managed_item.has_identifier.has_scope.short_name}, #{identifier}"},
+  #               {link: third_level_link, text: "V#{managed_item.semantic_version}"},
+  #               # {link: third_level_link, text: "#{managed_item.notation} #{managed_item.identifier}"},
+  #               {link: "#", text: "#{title}"}
+  #     ])
+  # end
 
   # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
   #
