@@ -13,7 +13,7 @@
 	}
 </style>
 
-<% first_level_breadcrumb (id_to_type('cdisc_terms')) %>
+<% second_level_breadcrumb(id_to_type('thesauri'), @scope_id, @identifier) %>
 
 <div class="row">
   <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Item History"} do %>

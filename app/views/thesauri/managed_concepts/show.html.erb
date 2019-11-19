@@ -12,9 +12,9 @@
 <%= javascript_tag "var reference_ct_id = '#{@reference_ct_id}';" %>
 <%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
 <%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
-<% fourth_level_breadcrumb(id_to_type('thesauri'), @ct, history_thesauri_index_path(thesauri: {:identifier => @ct.has_identifier.identifier, :scope_id => @ct.scope}), "Show", @close_path, "Show:") %>
+<% third_level_managed_item_breadcrumb(id_to_type('thesauri'), @tc, history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope.id}})) %>
 
-<div class="row">c
+<div class="row">
 
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>

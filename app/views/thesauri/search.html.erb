@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Search Terminology: '+@thesaurus.has_identifier.identifier+' ('+@thesaurus.semantic_version+')")' %>
 <%= javascript_include_tag 'thesauri/search' %>
 <%= javascript_tag "var url_path = '#{search_thesauri_path(@thesaurus)}';" %>
-<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Search:") %>
+<% third_level_breadcrumb(id_to_type('thesauri'), @thesaurus, @close_path, "Search:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

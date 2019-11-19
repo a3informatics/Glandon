@@ -12,8 +12,7 @@
 <%= javascript_tag "var syn_panel_title = 'Shared Synonyms';" %>
 <%= javascript_tag "var pt_panel_title = 'Shared Preferred Terms';" %>
 <%= javascript_tag "var ci_panel_title = 'Change Instruction';" %>
-<% fourth_level_breadcrumb(id_to_type('thesauri'), @ct, history_thesauri_index_path(thesauri: {:identifier => @ct.has_identifier.identifier, :scope_id => @ct.scope}), "Show", thesauri_path(@ct), "Show:") %>
-
+<% fourth_level_breadcrumb(id_to_type('thesauri'), @parent, thesauri_managed_concept_path({id: @parent, managed_concept: {context_id: @ct.id}}), @tc, "","Show") %>
 <% if @has_children %>
   <%= javascript_tag "var url_path = '#{show_data_thesauri_unmanaged_concept_path(@tc)}';" %>
 <% else %>
