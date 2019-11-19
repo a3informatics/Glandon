@@ -6,7 +6,9 @@
                         loadingMessage = 'Generating report...',
                         errTimeoutMessage = 'Error occurred while generating the report.',
                         redirectPath = '"+changes_report_thesauri_path(@ct, format: :pdf)+"';" %>
-<% second_level_breadcrumb(id_to_type('cdisc_terms'), "Changes") %>
+
+<% second_level_breadcrumb(id_to_type('cdisc_terms'), @ct.scope.id, @ct.has_identifier.identifier, "Changes: ") %>
+
 <div class="row">
   <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Changes across versions"} do %>
     <div class="actions-wrap">
