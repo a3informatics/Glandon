@@ -8,15 +8,15 @@
 
 // SHADOWS
 .shadow-small{
-  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
+  -moz-box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
+  box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
 }
 
 .shadow-medium{
-  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
-  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
-  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
+  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
 }
 
 // TOOLTIP
@@ -244,6 +244,13 @@
   font-size: 22pt;
 }
 
+.circular-badge.med{
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 17pt;
+}
+
 .circular-badge.small{
   width: 30px;
   height:30px;
@@ -366,6 +373,10 @@
   justify-content: center;
 }
 
+.table-width-wrapper.narrow{
+  padding: 0 15%;
+}
+
 // IMGS
 
 img.modal-img{
@@ -407,7 +418,7 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
   }
 
   .table-width-wrapper{
-    padding: 0;
+    padding: 0 !important;
   }
 }
 

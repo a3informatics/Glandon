@@ -62,19 +62,20 @@ module TagHelper
   def create_tag_term(identifier, label)
       # click_navbar_dashboard
       click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
+      expect(page).to have_content 'All Terminologies'
+      click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "#{identifier}"
       fill_in 'thesauri_label', with: "#{label}"
-      click_button 'Create'
+      click_button 'Submit'
       expect(page).to have_content 'Terminology was successfully created.'
     end
 
   def add_tags_term(identifier, tag)
     # click_navbar_dashboard
     click_navbar_terminology
-    expect(page).to have_content 'Index: Terminology'
-    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'History').click
-    expect(page).to have_content 'History:'
+    expect(page).to have_content 'All Terminologies'
+    find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a").click
+    expect(page).to have_content 'Version history'
     find(:xpath, "//tr[contains(.,'#{identifier}')]/td/a", :text => 'Update Tags').click
     expect(page).to have_content 'Edit Tags:'
     ui_click_node_name("#{tag}") #{tag}"

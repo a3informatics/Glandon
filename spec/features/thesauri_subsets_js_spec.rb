@@ -108,7 +108,7 @@ describe "Thesauri", :type => :feature do
     it "allows to access the edit subset page (from CT edit)", js:true do
       click_navbar_terminology
       wait_for_ajax
-      find(:xpath, "//tr[contains(.,'SUBSETPK')]/td/a", :text => 'History').click
+      find(:xpath, "//tr[contains(.,'SUBSETPK')]/td/a").click
       wait_for_ajax
       context_menu_element("history", 5, "2010-03-05 Release", :edit)
       wait_for_ajax

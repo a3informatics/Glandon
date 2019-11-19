@@ -5,23 +5,24 @@
 	<div class="col-md-12 card wide">
       <div class="card-header">All Terminologies</div>
     <div class="card-content table-invisible">
-			<div class="actions-wrap">
-				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: search_current_thesauri_index_path, id: "search_current",
-					icon: "icon-search", btn_text: "Search across all current versions", dt_toggle: "", disabled: false } %>
-				<% if policy(Thesaurus).new? %>
-					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#newTerminologyModal", id: "new_terminology",
-						icon: "icon-plus", btn_text: "New Terminology", dt_toggle: "modal", disabled: false } %>
-					<%= render partial: "shared/thesauri/new_terminology" %>
-				<% end %>
-			</div>
-			<br/>
-			<div class="font-light">
-				Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Terminologies.
-				Use the Search bar to find the Terminology you are looking for. <br/>
-				To see an item's respective History page, click on it.
+			<div class="half-blocks-wrap">
+				<div class="font-light half-block">
+					Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Terminologies.
+					Use the Search bar to find the Terminology you are looking for.
+					To see Terminology's respective History page, click on it.
+				</div>
+				<div class="actions-wrap half-block">
+					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: search_current_thesauri_index_path, id: "search_current",
+						icon: "icon-search", btn_text: "Search across all current versions", dt_toggle: "", disabled: false } %>
+					<% if policy(Thesaurus).new? %>
+						<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#newTerminologyModal", id: "new_terminology",
+							icon: "icon-plus", btn_text: "New Terminology", dt_toggle: "modal", disabled: false } %>
+						<%= render partial: "shared/thesauri/new_terminology" %>
+					<% end %>
+				</div>
 			</div>
 			<hr>
-			<div class="table-width-wrapper">
+			<div class="table-width-wrapper narrow">
 	      <table id="main" class="table table-striped table-bordered table-condensed">
 	        <thead>
 	          <tr>
@@ -32,10 +33,10 @@
 	          <% @thesauri.each do |item| %>
 	            <tr><td>
 								<a class="card-item shadow-small" href="<%= history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]}) %>">
-									<div class="circular-badge big <%= thesaurus_accent_color item[:owner] %>"><span class="icon-terminology text-white"></span></div>
+									<div class="circular-badge med <%= thesaurus_accent_color item[:owner] %>"><span class="icon-terminology text-white"></span></div>
 									<div class="card-item-info">
 										<div class="font-regular text-normal"> <%= item[:label] %> </div>
-										<div class="font-light text-small"> Owner: <%= item[:owner] %> | Identifier: <%= item[:identifier] %></div>
+										<div class="font-light text-small"> Owner: <%= item[:owner] %> &nbsp; | &nbsp; Identifier: <%= item[:identifier] %></div>
 									</div>
 								</a>
 	            </td></tr>
