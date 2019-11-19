@@ -45,8 +45,9 @@ module BreadcrumbsHelper
   # @return [Null]
   def fourth_level_breadcrumb(type, item, second_level_link, third_level_link, title)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
+    scope = item.respond_to?(:scoped_identifier) ? item.has_identifier.has_scope.short_name : item.scope.short_name
     breadcrumb ([type,
-                {link: second_level_link, text: "#{item.has_identifier.has_scope.short_name}, #{identifier}"},
+                {link: second_level_link, text: "#{scope}, #{identifier}"},
                 {link: third_level_link, text: "V#{item.semantic_version}"},
                 {link: "#", text: "#{title}"}])
   end
