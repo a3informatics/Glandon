@@ -1,7 +1,14 @@
 $(document).ready(function () {
 
-  var dEditor = new DashboardEditor("#dashboardModal", "#dashboard-editor", "#dashboard-list", settings_url);
+  // Initializes the dashboard editor
+  var dEditor = new DashboardEditor("#dashboard-editor", "#dashboard-list", settings_url);
 
+  // Dismisses the login alert
+  setTimeout(function(){
+    dismissAlerts();
+  }, 5000);
+
+  // Sets the datetime in the header
   $("#datetime").html(dateString());
 
   panel ("main1", "forms", "");

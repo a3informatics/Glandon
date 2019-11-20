@@ -16,7 +16,14 @@ class UserSettingsController < ApplicationController
     name = user_params[:name]
     value = user_params[:value]
     @user.write_setting(name, value)
-    redirect_to user_settings_path
+    respond_to do |format|
+      format.html do
+        redirect_to user_settings_path 
+      end
+      format.json do
+        render json: {}, status: 200
+      end
+    end
   end
 
 private

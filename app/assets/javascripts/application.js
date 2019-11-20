@@ -167,13 +167,18 @@ function alertInfo(text) {
 }
 
 function displayAlerts(html) {
-    var alertsId = document.getElementById("alerts")
-  	alertsId.innerHTML = html;
+    var alerts = document.getElementById("alerts");
+  	alerts.innerHTML = html;
     window.setTimeout(function()
       {
-        alertsId.innerHTML = "";
+          dismissAlerts();
       },
       5000);
+}
+
+function dismissAlerts(){
+  var alerts = document.getElementById("alerts");
+  alerts.innerHTML = "";
 }
 
 function notImplementedYet() {

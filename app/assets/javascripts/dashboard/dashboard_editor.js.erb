@@ -8,14 +8,14 @@
  *
  * @return [void]
  */
-function DashboardEditor(modalId, editorId, listId, url) {
+function DashboardEditor(editorId, listId, url) {
   var _this = this;
 
   this.editorId = editorId;
   this.listId = listId;
   this.url = url;
-  this.modalId = modalId;
 
+  // Init Sortable
   $(this.editorId).sortable({
     placeholder: "de-item-highlight",
     containment: "parent",
@@ -23,6 +23,7 @@ function DashboardEditor(modalId, editorId, listId, url) {
   });
   $(this.editorId).disableSelection();
 
+  // Handle marking / unmarking checkboxes
   $(this.listId).find("input").change(function(){
     var name = $(this).parent().text();
     var sym = $(this).attr("name");
@@ -32,15 +33,26 @@ function DashboardEditor(modalId, editorId, listId, url) {
       _this.removeItemFromEditor(sym);
   });
 
+  this.initializeState();
+
+  // Handle save button click
   $("#de-save-changes").on("click", function(){
     _this.writeSettings(_this.readEditorState());
   });
 
+}
+
+/**
+ * When the Editor is first initialized, it prepares the UI by manually marking the checkboxes to match the actual user settings
+ *
+ * @return [void]
+ */
+DashboardEditor.prototype.initializeState = function () {
+  var _this = this;
   $.each(user_dashboard_layout_settings.split(', '), function(){
     $(_this.listId).find("input[name='"+this+"']").prop("checked", true).change();
   });
 }
-
 
 /**
  * Adds item div to the layout editor
@@ -91,24 +103,30 @@ DashboardEditor.prototype.readEditorState = function(){
 }
 
 /**
- * Reads the current order of the Dashboard Editor
+ * Writes the settings to the server, handles response
  *
- * @return [Array] Array of string, ordered
+ * @param [String] comma separated layout settings
+ * @return [void]
  */
 DashboardEditor.prototype.writeSettings = function(settings){
   var _this = this;
   $("#de-save-changes").addClass("disabled");
+  $("#de-save-changes").text("Saving...");
+  var settings_data = {"user_settings": {"name": "dashboard_layout", "value": settings}};
 
   $.ajax({
     method: "PUT",
-    url: _this.url + encodeURIComponent(settings),
-    succes: function(result) {
+    url: _this.url,
+    data: settings_data,
+    dataType: 'json',
+    success: function(result) {
       location.reload();
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
       $("#de-save-changes").removeClass("disabled");
-      $(_this.modalId).modal('hide');
+      $("#de-save-changes").text("Save");
+      $("#dashboardModal").modal('hide');
     }
   })
 }

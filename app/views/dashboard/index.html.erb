@@ -3,7 +3,7 @@
 <%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
 <%= javascript_tag "var user_dashboard_layout_settings = '#{(current_user.read_setting :dashboard_layout).value}'" %>
-<%= javascript_tag "var settings_url = '#{user_setting_path(current_user, :user_settings => {:name => "dashboard_layout", :value => ""})}'" %>
+<%= javascript_tag "var settings_url = '#{user_setting_path(current_user)}'" %>
 
 <% welcome_msg = current_user.sign_in_count == 1 ? "Welcome to A3 MDR, " : "Hello, " %>
 
