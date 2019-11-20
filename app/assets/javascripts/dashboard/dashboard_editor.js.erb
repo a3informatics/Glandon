@@ -19,6 +19,7 @@ function DashboardEditor(editorId, listId, url) {
   $(this.editorId).sortable({
     placeholder: "de-item-highlight",
     containment: "parent",
+    tolerance: "pointer",
     items: "div:not(.de-header)"
   });
   $(this.editorId).disableSelection();
