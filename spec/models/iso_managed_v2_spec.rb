@@ -710,7 +710,7 @@ describe "IsoManagedV2" do
       IsoHelpers.clear_cache
     end
 
-    before :all do
+    before :each do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
