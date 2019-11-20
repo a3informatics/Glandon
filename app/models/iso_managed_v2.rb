@@ -706,6 +706,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Array] Each hash contains {uri}
   def self.current_and_latest_set
+    results = Hash.new {|h,k| h[k] = []}
     date_time = Time.now.iso8601
     query_string = %Q{
       SELECT DISTINCT ?s ?key ?v WHERE
@@ -745,10 +746,11 @@ class IsoManagedV2 < IsoConceptV2
             BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
           }
         }
-      }
-    }
+      } ORDER BY ?key DESC(?v)  
+    } 
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
-    results = query_results.by_object_set([:s, :key, :v])
+    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
+    results
   end
 
   # Current. Find the current item for the scope.
