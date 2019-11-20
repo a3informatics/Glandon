@@ -11,13 +11,11 @@ $(document).ready(function () {
   // Sets the datetime in the header
   $("#datetime").html(dateString());
 
-  panel ("main1", "forms", "");
-  panel ("main2", "thesauri", "thesauri");
-  panel ("main3", "biomedical_concepts", "biomedical_concept");
-  panel ("main4", "biomedical_concept_templates", "biomedical_concept_template");
-  panel ("main5", "sdtm_user_domains", "");
-
-  var loading_html = generateSpinner("medium");
+  // Initializes each panel data
+  $.each(user_dashboard_layout_settings.split(', '), function(i, e){
+    if(user_policy_panels[e].url != "")
+      panel("main"+i, user_policy_panels[e].url, user_policy_panels[e].safe_param);
+  });
 
   function panel(control, url, safe_parameter) {
     $("#" + control).DataTable({
@@ -28,7 +26,7 @@ $(document).ready(function () {
       },
       "language": {
         "infoFiltered": "",
-        "processing": loading_html
+        "processing": generateSpinner("medium")
       },
       "bProcessing": true,
       "pageLength": 5,

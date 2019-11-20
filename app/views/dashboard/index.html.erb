@@ -2,7 +2,10 @@
 <%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor'%>
 <%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
-<%= javascript_tag "var user_dashboard_layout_settings = '#{(current_user.read_setting :dashboard_layout).value}'" %>
+
+<% usr_layout_settings = (current_user.read_setting :dashboard_layout).value %>
+<%= javascript_tag "var user_dashboard_layout_settings = '#{usr_layout_settings}'" %>
+<%= javascript_tag "var user_policy_panels = #{user_policy_dashboard_panels.to_json}" %>
 <%= javascript_tag "var settings_url = '#{user_setting_path(current_user)}'" %>
 
 <% welcome_msg = current_user.sign_in_count == 1 ? "Welcome to A3 MDR, " : "Hello, " %>
@@ -18,95 +21,22 @@
 </div>
 
 <section id="container" class="table-cardstyle">
-	<div class="row">
-  	<div class="col-md-6 card wide">
-      <h4 class="card-header">Terminology</h4>
-			<div class="card-content">
-	      <table id="main2" class="table table-striped table-bordered table-condensed">
-	        <thead>
-	          <tr>
-	              <th>Owner</th>
-	              <th>Label</th>
-	              <th></th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-	      </table>
-			</div>
-    </div>
-    <div class="col-md-6 card wide">
-      <h4 class="card-header">Biomedical Concept Templates</h4>
-			<div class="card-content">
-      	<table id="main4" class="table table-striped table-bordered table-condensed">
-          	<thead>
-          	<tr>
-	              <th>Owner</th>
-	              <th>Label</th>
-	              <th></th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-	      </table>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-	    <div class="col-md-6 card wide">
-	      <h4 class="card-header">Biomedical Concepts</h4>
+	<% usr_layout_settings.split(', ').each_with_index do |panel, i| %>
+		<% next if !user_policy_dashboard_panels.key?(panel) %>
+		<%= "<div class=\"row\">".html_safe if (i % 2 == 0)  %>
+  		<div class="col-md-6 card dashboard wide">
+      	<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
 				<div class="card-content">
-	        <table id="main3" class="table table-striped table-bordered table-condensed">
-	          <thead>
-	            <tr>
+		      <table id="main<%= i %>" class="table table-striped table-bordered table-condensed">
+		        <thead><tr>
 	              <th>Owner</th>
 	              <th>Label</th>
 	              <th></th>
-	            </tr>
-	          </thead>
-	          <tbody>
-	          </tbody>
-	        </table>
+            </tr></thead>
+		        <tbody></tbody>
+		      </table>
 				</div>
-	    </div>
-		<div class="col-md-6 card wide">
-      <h4 class="card-header">Forms</h4>
-			<div class="card-content">
-	      <table id="main1" class="table table-striped table-bordered table-condensed">
-	          <thead>
-	          <tr>
-	              <th>Owner</th>
-	              <th>Label</th>
-	              <th></th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-	      </table>
-			</div>
-    </div>
-	</div>
-	<div class="row">
-    <div class="col-md-6 card wide">
-      <h4 class="card-header">Domains</h4>
-			<div class="card-content">
-	      <table id="main5" class="table table-striped table-bordered table-condensed">
-	          <thead>
-	          <tr>
-	              <th>Owner</th>
-	              <th>Label</th>
-	              <th></th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        </tbody>
-	      </table>
-			</div>
-		</div>
-    <div class="col-md-6 card wide">
-      <h4 class="card-header">Registration Status Counts</h4>
-			<div class="card-content">
-			</div>
-    </div>
- </div>
+    	</div>
+		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_layout_settings.split(', ').length - 1)  %>
+	<% end %>
 </section>

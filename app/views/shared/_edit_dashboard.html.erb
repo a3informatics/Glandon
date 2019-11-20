@@ -14,18 +14,16 @@
           <div class="col-sm-6">
             <span class="font-light text-normal"> Select items on your Dashboard: </span>
             <div class="list-wrap" id="dashboard-list">
-              <% user_policy_dashboard_panels.each do |key, value| %>
-                <div class="checkbox-opt"> <label><input type="checkbox" name="<%=key%>"><span><%= value %></span></label></div>
+              <% user_policy_dashboard_panels.each do |sym, panel| %>
+                <div class="checkbox-opt"> <label><input type="checkbox" name="<%=sym%>"><span><%= panel[:name] %></span></label></div>
               <% end %>
             </div>
           </div>
           <div class="col-sm-6">
             <span class="font-light text-normal"> Organize your Dashboard: </span>
-
             <div class="de-wrap">
               <div id="dashboard-editor">
                 <div class="de-header">Header</div>
-
               </div>
             </div>
           </div>
