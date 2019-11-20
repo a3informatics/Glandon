@@ -15,6 +15,7 @@ describe "Sidebar Locks", :type => :feature do
     end
 
     before :each do
+      allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("development"))
       ua_content_admin_login
     end
 
