@@ -33,6 +33,7 @@ describe Thesauri::UnmanagedConceptsController do
       ct = Thesaurus.new
       expect(Thesaurus).to receive(:find_minimum).and_return(ct)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:synonym_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:preferred_term_objects).and_return([])
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:children?).and_return(false)
