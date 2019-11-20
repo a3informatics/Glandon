@@ -13,7 +13,7 @@ $(document).ready(function () {
 
   // Initializes each panel data
   $.each(user_dashboard_layout_settings.split(', '), function(i, e){
-    if(user_policy_panels[e].url != "")
+    if(e != "" && user_policy_panels[e].url != "")
       panel("main"+i, user_policy_panels[e].url, user_policy_panels[e].safe_param);
   });
 

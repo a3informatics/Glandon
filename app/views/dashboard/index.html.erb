@@ -25,7 +25,11 @@
 		<% next if !user_policy_dashboard_panels.key?(panel) %>
 		<%= "<div class=\"row\">".html_safe if (i % 2 == 0)  %>
   		<div class="col-md-6 card dashboard wide">
-      	<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
+      	<% if user_policy_dashboard_panels[panel][:url] == "" %>
+					<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
+				<% else %>
+					<a href="<%=user_policy_dashboard_panels[panel][:url]%>" class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></a>
+				<% end %>
 				<div class="card-content">
 		      <table id="main<%= i %>" class="table table-striped table-bordered table-condensed">
 		        <thead><tr>

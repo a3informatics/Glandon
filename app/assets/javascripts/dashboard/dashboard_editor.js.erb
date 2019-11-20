@@ -35,6 +35,13 @@ function DashboardEditor(editorId, listId, url) {
 
   this.initializeState();
 
+  $(this.listId).find("input").one("change", function(){
+    _this.toggleSave(false, "");
+  });
+  $(this.editorId).find(".de-item").one("mousedown", function(){
+    _this.toggleSave(false, "");
+  });
+
   // Handle save button click
   $("#de-save-changes").on("click", function(){
     _this.writeSettings(_this.readEditorState());
@@ -110,8 +117,7 @@ DashboardEditor.prototype.readEditorState = function(){
  */
 DashboardEditor.prototype.writeSettings = function(settings){
   var _this = this;
-  $("#de-save-changes").addClass("disabled");
-  $("#de-save-changes").text("Saving...");
+  _this.toggleSave(true, "Saving...");
   var settings_data = {"user_settings": {"name": "dashboard_layout", "value": settings}};
 
   $.ajax({
@@ -124,9 +130,23 @@ DashboardEditor.prototype.writeSettings = function(settings){
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
-      $("#de-save-changes").removeClass("disabled");
-      $("#de-save-changes").text("Save");
+      _this.toggleSave(false, "Save");
       $("#dashboardModal").modal('hide');
     }
-  })
+  });
+}
+
+/**
+ * Toggles the state of the save button
+ *
+ * @return [void]
+ */
+DashboardEditor.prototype.toggleSave = function(disable, text){
+  var _this = this;
+  var saveBtn = $("#de-save-changes");
+  if(disable)
+    saveBtn.addClass("disabled");
+  else
+    saveBtn.removeClass("disabled");
+  saveBtn.text(text == "" ? saveBtn.text() : text);
 }

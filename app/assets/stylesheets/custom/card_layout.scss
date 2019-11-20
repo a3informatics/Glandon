@@ -22,7 +22,7 @@
   min-width: 300px;
 }
 
-.card-header{
+.card-header, a.card-header{
   background: $primary-color-light;
   color: $grey-white;
   font-size: $font-normal;
@@ -31,6 +31,7 @@
   border-radius: $card-border-radius $card-border-radius 0px 0px;
   padding: 18px 24px;
   width: 100%;
+  display: block;
 }
 
 .card-subheader{
