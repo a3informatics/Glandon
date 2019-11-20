@@ -342,12 +342,32 @@ describe ThesauriController do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
       params[:id] = ct.uri.to_id
-      results = ct.search(params)
       get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys
       check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "obtains the current search results" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      params[:columns]["5"][:search][:value] = "cerebral"
+      get :search_current, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
+    it "obtains the current search results, empty search" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      get :search_current, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_current_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "export as TTL" #do
