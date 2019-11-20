@@ -439,3 +439,12 @@ function dateString(){
   var date = new Date().getTime();
   return $.format.date(date, "ddd, MMMM D, yyyy")
 }
+
+function getStringInitials(str) {
+  var initials = "";
+  var words = str.split(' ');
+  $.each(words, function(){
+    initials += this.substring(0,1).toUpperCase();
+  });
+  return initials;
+};

@@ -1,0 +1,114 @@
+/*
+* Dashboard Editor
+*
+*/
+
+/**
+ * Dashboard Editor Constructor
+ *
+ * @return [void]
+ */
+function DashboardEditor(modalId, editorId, listId, url) {
+  var _this = this;
+
+  this.editorId = editorId;
+  this.listId = listId;
+  this.url = url;
+  this.modalId = modalId;
+
+  $(this.editorId).sortable({
+    placeholder: "de-item-highlight",
+    containment: "parent",
+    items: "div:not(.de-header)"
+  });
+  $(this.editorId).disableSelection();
+
+  $(this.listId).find("input").change(function(){
+    var name = $(this).parent().text();
+    var sym = $(this).attr("name");
+    if(this.checked)
+      _this.addItemToEditor(name, sym);
+    else
+      _this.removeItemFromEditor(sym);
+  });
+
+  $("#de-save-changes").on("click", function(){
+    _this.writeSettings(_this.readEditorState());
+  });
+
+  $.each(user_dashboard_layout_settings.split(', '), function(){
+    $(_this.listId).find("input[name='"+this+"']").prop("checked", true).change();
+  });
+}
+
+
+/**
+ * Adds item div to the layout editor
+ *
+ * @param [String] name of the item
+ * @return [void]
+ */
+DashboardEditor.prototype.addItemToEditor = function (itemName, symbol) {
+  var _this = this;
+  $(_this.editorId).append(_this.generateItemHTML(itemName, symbol));
+}
+
+/**
+ * Deletes an item div from the layout editor
+ *
+ * @param [String] name of the item
+ * @return [void]
+ */
+DashboardEditor.prototype.removeItemFromEditor = function (symbol) {
+  var _this = this;
+  $(_this.editorId).find(".de-item[data-sym='"+symbol+"']").remove();
+}
+
+/**
+ * Generates string HTML code of a draggable editor item
+ *
+ * @param [String] name of the item
+ * @return [String] HTML code of an item
+ */
+DashboardEditor.prototype.generateItemHTML = function (itemName, symbol) {
+  itemName = (itemName.length > 16 ? getStringInitials(itemName) : itemName);
+  return "<div class='de-item ui-sortable-handle' data-sym='"+symbol+"'>"+itemName+"</div>";
+}
+
+/**
+ * Reads the current order of the Dashboard Editor
+ *
+ * @return [Array] Array of string, ordered
+ */
+DashboardEditor.prototype.readEditorState = function(){
+  var _this = this;
+  var items = $(_this.editorId).find(".de-item");
+  var result = [];
+  $.each(items, function(){
+    result.push($(this).attr("data-sym"));
+  });
+  return result.join(', ');
+}
+
+/**
+ * Reads the current order of the Dashboard Editor
+ *
+ * @return [Array] Array of string, ordered
+ */
+DashboardEditor.prototype.writeSettings = function(settings){
+  var _this = this;
+  $("#de-save-changes").addClass("disabled");
+
+  $.ajax({
+    method: "PUT",
+    url: _this.url + encodeURIComponent(settings),
+    succes: function(result) {
+      location.reload();
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      $("#de-save-changes").removeClass("disabled");
+      $(_this.modalId).modal('hide');
+    }
+  })
+}

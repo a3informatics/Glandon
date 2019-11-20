@@ -237,7 +237,7 @@ module ApplicationHelper
     end
   end
 
-  def user_dashboard_panels
+  def user_policy_dashboard_panels
     user_role_panel_list = {}
 
     APP_CONFIG['dashboard_panels'].each do |key, value|

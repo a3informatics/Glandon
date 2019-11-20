@@ -15,6 +15,13 @@ defaults: &defaults
    - CD.code
    - PQR.code
    - PQR_INT.code
+  dashboard_panels:
+    terminologies: "Terminologies"
+    bct: "Biomedical Concept Templates"
+    bcs: "Biomedical Concepts"
+    forms: "Forms"
+    domains: "Domains"
+    stats: "Statistics"
   # User Settings
   user_settings:
     paper_size: # Paper size settings
@@ -79,16 +86,9 @@ defaults: &defaults
       description: Number of terminologies to be displayed in change tables.
     dashboard_layout:
       type: ordered
-      default_value: Terminologies, Biomedical Concept Templates, Biomedical Concepts, Forms, Domains, Statistics
+      default_value: terminologies, bct, bcs, forms, domains, stats
       label: Layout of the Dashboard
       description: Customize this setting in the Dashboard page.
-  dashboard_panels:
-    terminologies: "Terminologies"
-    bct: "Biomedical Concept Templates"
-    bcs: "Biomedical Concepts"
-    forms: "Forms"
-    domains: "Domains"
-    stats: "Statistics"
 
 
 development:
