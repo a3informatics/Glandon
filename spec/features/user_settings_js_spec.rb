@@ -104,6 +104,16 @@ describe "User Settings", :type => :feature do
       check_options(title, description, options)
     end
 
+    it "displays Layout of the dashboard setting", js: true do
+      title = "Layout of the Dashboard"
+      description = "Customize this setting in the Dashboard page."
+      options = []
+      ua_reader_login
+      click_link 'settings_button'
+      expect(page).to have_content 'Email: reader@example.com'
+      check_options(title, description, options)
+    end
+
     it "settings are user specific", js: true do
       title = "Table Rows"
       description = "The number of rows to be used within table displays."
