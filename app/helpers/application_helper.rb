@@ -238,7 +238,7 @@ module ApplicationHelper
   end
 
   def thesaurus_accent_color (owner_name)
-    if owner_name == "CDISC"
+    if owner_name.upcase.include? "CDISC"
       return "bg-accent-1"
     else
       return "bg-prim-light"

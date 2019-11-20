@@ -180,7 +180,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V3')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V3'
+      expect(page).to have_content 'Version History of \'NEW TERM V3\''
       context_menu_element('history', 4, 'New Terminology V3', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V3'
@@ -218,7 +218,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V4')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V4'
+      expect(page).to have_content 'Version History of \'NEW TERM V4\''
       context_menu_element('history', 4, 'New Terminology V4', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V4'
@@ -255,7 +255,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V5')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V5'
+      expect(page).to have_content 'Version History of \'NEW TERM V5\''
       context_menu_element('history', 4, 'New Terminology V5', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V5'
@@ -287,7 +287,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V6')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V6'
+      expect(page).to have_content 'Version History of \'NEW TERM V6\''
       context_menu_element('history', 4, 'New Terminology V6', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V6'
@@ -326,7 +326,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V7')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V7'
+      expect(page).to have_content 'Version History of \'NEW TERM V7\''
       context_menu_element('history', 4, 'New Terminology V7', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V7'
@@ -353,7 +353,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V8')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V8'
+      expect(page).to have_content 'Version History of \'NEW TERM V8\''
       context_menu_element('history', 4, 'New Terminology V8', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V8'
@@ -386,7 +386,7 @@ describe "Thesauri", :type => :feature do
       click_button 'Submit'
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V9')]/td/a").click
-      expect(page).to have_content 'History: NEW TERM V9'
+      expect(page).to have_content 'Version History of \'NEW TERM V9\''
       context_menu_element('history', 4, 'New Terminology V9', :edit)
       wait_for_ajax_long
       click_button 'New'
@@ -410,7 +410,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V10')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V10'
+      expect(page).to have_content 'Version History of \'NEW TERM V10\''
       context_menu_element('history', 4, 'New Terminology V10', :edit)
       wait_for_ajax_long
       expect(page).to have_content 'New Terminology V10'
@@ -442,7 +442,7 @@ describe "Thesauri", :type => :feature do
       ui_table_search("main", "V11")
       find(:xpath, "//tr[contains(.,'NEW TERM V11')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V11'
+      expect(page).to have_content 'Version History of \'NEW TERM V11\''
       context_menu_element('history', 4, 'New Terminology V11', :edit)
       wait_for_ajax_long
       click_button 'New'
@@ -469,7 +469,7 @@ describe "Thesauri", :type => :feature do
       ui_table_search("main", "V12")
       find(:xpath, "//tr[contains(.,'NEW TERM V12')]/td/a").click
       wait_for_ajax_long
-      expect(page).to have_content 'History: NEW TERM V12'
+      expect(page).to have_content 'Version History of \'NEW TERM V12\''
       context_menu_element('history', 4, 'New Terminology V12', :edit)
       wait_for_ajax_long
       click_button 'New'
