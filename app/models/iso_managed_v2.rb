@@ -500,39 +500,6 @@ class IsoManagedV2 < IsoConceptV2
     results    
   end
 
-  # Best Parent. Find the 
-  #
-  # @return [Array] An array of objects.
-  def best_parent    
-    date_time = Time.now.iso8601
-    query_string = %Q{
-      SELECT ?s ?t ?v WHERE 
-      { 
-        #{self.uri.to_ref} ^bo:reference ?or .
-        ?s ?p ?or .
-        {
-          ?s isoT:hasState ?st .
-          ?st isoR:effectiveDate ?ed .
-          ?st isoR:untilDate ?ud .
-          FILTER ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime ) .
-          FILTER ( xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime )
-          BIND ("C" as ?t)
-          BIND ("0" as ?v)
-        } UNION {
-          ?s isoT:hasIdentifier ?si .
-          ?si isoI:version ?v .
-          BIND ("C" as ?t)
-        }
-      } ORDER BY DESC (?v) 
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR, :bo])
-    results = query_results.by_object_set([:s, :t])
-    raise Errors::NotFoundError.new("Failed to find best parent for #{self.uri}.") if results.empty?
-    item = results.find{|x| x[:t] == "C"}
-    return item[:s] if !item.nil?
-    return results.first[:s]
-  end
-
   # Create Next Version. Creates the next version of the managed object if necessary
   #
   # @return [Object] the resulting object. Fail is there are errors.
@@ -751,6 +718,43 @@ class IsoManagedV2 < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
     query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
     results
+  end
+
+  # Current And Latest Parent. Find the latest or the current parent
+  #
+  # @return [Array] An array of objects.
+  def current_and_latest_parent    
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT ?s ?v WHERE 
+      { 
+        #{self.uri.to_ref} ^bo:reference ?or .
+        ?s ?p ?or .
+        {
+          ?s isoT:hasState ?st .
+          ?st isoR:effectiveDate ?ed .
+          ?st isoR:untilDate ?ud .
+          FILTER ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime ) .
+          FILTER ( xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime )
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+        } UNION {
+          ?s isoT:hasIdentifier ?si .
+          {  
+            SELECT (max(?lv) AS ?v) WHERE 
+            {
+              ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
+              ?s isoT:hasIdentifier/isoI:version ?lv .
+            }
+          }
+          ?si isoI:version ?v .
+        }
+      } ORDER BY DESC (?v) 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR, :bo])
+    results = query_results.by_object_set([:s, :v])
+    raise Errors::NotFoundError.new("Failed to find best parent for #{self.uri}.") if results.empty?
+    results.map{|x| {uri: x[:s], version: x[:v].to_i}}
   end
 
   # Current. Find the current item for the scope.

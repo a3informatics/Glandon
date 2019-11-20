@@ -760,20 +760,25 @@ describe "IsoManagedV2" do
       expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
     end
 
-    it "finds best parent" do
+    it "finds lastest and current parent" do
+      uri_v7 = Uri.new(uri: "http://www.cdisc.org/CT/V7#TH")
       uri_v10 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
       tc = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789"))
-      item = tc.best_parent
-      expect(item).to eq(uri_v10)
+      results = tc.current_and_latest_parent 
+      check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      item = CdiscTerm.find_minimum(uri_v7)
+      item.has_state.make_current
+      results = tc.current_and_latest_parent 
+      check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
-    it "latest and current" do
+    it "sets latest and current set" do
       results = CdiscTerm.current_and_latest_set
-      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_1.yaml", equate_method: :hash_equal)
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
       item.has_state.make_current
       results = CdiscTerm.current_and_latest_set
-      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
