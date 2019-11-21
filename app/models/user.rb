@@ -175,9 +175,9 @@ class User < ActiveRecord::Base
   #
   # @return [hash] Hash with the year as the key and the number of users logged that year as the value. Example: {"2019"=>4}
   def self.users_by_year
-    result = self.group("date_trunc('year', current_sign_in_at)").count
-    result = result.map{ |k, v| [k.strftime("%Y"), v] }.to_h
-    return result
+      result = self.group("date_trunc('year', current_sign_in_at)").count
+      result = result.map{ |k, v| [k.strftime("%Y"), v] }.to_h
+      return result
   end
 
   # Counts users logins by domain
@@ -197,6 +197,13 @@ class User < ActiveRecord::Base
     end
     result["total"] = self.all.count
     return result
+  end
+
+  
+  private
+
+  def self.never_logged_in
+    self.all.where.not(current_sign_in_at: nil)
   end
 
 end
