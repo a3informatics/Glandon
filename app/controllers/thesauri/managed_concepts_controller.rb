@@ -128,18 +128,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
     @tc.synonym_objects
     @tc.preferred_term_objects
     # @context_id = the_params[:context_id]
-    if !@tc.extended_by.nil?
-      results = Thesaurus.history_uris(identifier: @ct.has_identifier.identifier, scope: IsoNamespace.find(@ct.scope.id))
-      thesaurus = Thesaurus.find_minimum(results.first)
-      @reference_ct_id = thesaurus.uri.to_id
-    end
+    # if !@tc.extended_by.nil?
+    #   results = Thesaurus.history_uris(identifier: @ct.has_identifier.identifier, scope: IsoNamespace.find(@ct.scope.id))
+    #   thesaurus = Thesaurus.find_minimum(results.first)
+    #   @reference_ct_id = thesaurus.uri.to_id
+    # end
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?
-    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    #@is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
-    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    #@is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
     @close_path = thesauri_path(@ct)
   end
 
@@ -347,7 +349,8 @@ private
   # end
 
   def the_params
-    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
+    #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
+    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
   end
 
   def edit_params
