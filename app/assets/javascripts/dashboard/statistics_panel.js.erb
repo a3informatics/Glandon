@@ -14,6 +14,9 @@ function StatisticsPanel(id, url) {
   this.url = url;
   this.id = id;
 
+  $("#"+this.id).find(".stats-block").each(function(){
+    _this.getData(this.id);
+  });
 
 }
 
@@ -22,7 +25,41 @@ function StatisticsPanel(id, url) {
  *
  * @return [void]
  */
-StatisticsPanel.prototype.initializeState = function () {
+StatisticsPanel.prototype.getData = function (id) {
   var _this = this;
 
+  $.ajax({
+    method: "GET",
+    url: "users/stats_"+id,
+    dataType: 'json',
+    success: function(result) {
+      _this.populateList(id, result);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+    }
+  });
+}
+
+StatisticsPanel.prototype.populateList = function (id, jsonData) {
+  var _this = this;
+
+  $.each(jsonData.data, function(key,val){
+    if($.type(val)=="object"){
+      $("#"+id).find(".list-wrap").append(_this.generateItemHTML(key, 1));
+      $.each(val, function(key2, val2){
+        $("#"+id).find(".list-wrap").append(_this.generateItemHTML("<span class='font-regular'>"+key2 + "</span>: " + val2, 2));
+      });
+    }
+    else{
+      $("#"+id).find(".list-wrap").append(_this.generateItemHTML("<span class='font-regular'>"+ key + "</span>: " + val, 0));
+    }
+  });
+
+}
+
+StatisticsPanel.prototype.generateItemHTML = function (item, level) {
+  var html = "<div class='list-item lvl-"+level+"'> " + item + "</div>";
+
+  return html;
 }
