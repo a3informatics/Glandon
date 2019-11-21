@@ -318,6 +318,26 @@ module UiHelpers
 
   # Navigation
   # ==========
+	def id_to_section_map
+		{
+			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
+			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
+			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
+			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
+			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
+			main_nav_f: "main_nav_forms",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
+			main_nav_aig: "main_nav_adam"
+		}
+	end
+
+	def ui_check_item_locked(id)
+		section = id_to_section_map[id.to_sym]
+		ui_expand_section(section) if !ui_section_expanded?(section)
+		item = page.find('#'+id)
+		expect(item[:class]).to include('locked')
+		expect(item[:href]).to eq('')
+	end
 
   def ui_section_expanded?(section)
     x = page.execute_script("$('##{section}').hasClass('collapsed')")
@@ -333,16 +353,6 @@ module UiHelpers
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {
-			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
-			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
-			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
-			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
-			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
-			main_nav_f: "main_nav_forms",
-			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam"
-			}
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"

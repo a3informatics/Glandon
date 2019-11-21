@@ -30,6 +30,9 @@
   justify-content: center;
 }
 
+.icon-ok:before {
+  content: "\e943";
+}
 .icon-lock:before {
   content: "\e942";
 }
@@ -135,7 +138,7 @@
 .icon-submission-changes:before {
   content: "\e922";
 }
-.icon-arrow_d_nopadding:before {
+.icon-arrow-u-nopad:before {
   content: "\e91e";
 }
 .icon-breadcrumb:before {
