@@ -67,6 +67,11 @@
   background: $primary-color-bright !important;
 }
 
+.editor-wrap table tr.tr-disabled{
+  pointer-events: none !important;
+  opacity: .5 !important;
+}
+
 @media (max-width: 1090px){
   .editor-child{
     width: calc(100% - 30px);

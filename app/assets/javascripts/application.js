@@ -400,3 +400,10 @@ function isIE() {
 function isSafari(){
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
+
+function toggleTableActive(tableId, enable) {
+  if(enable)
+    $(tableId).DataTable().rows().nodes().to$().removeClass("tr-disabled");
+  else
+    $(tableId).DataTable().rows().nodes().to$().addClass("tr-disabled");
+}
