@@ -5,7 +5,6 @@
 <%= javascript_tag "var strict_params = 'thesauri';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
-<% second_level_breadcrumb(id_to_type('thesauri'), @scope_id, @identifier) %>
 <div class="row">
 	<div class="col-md-12 card">
 		<%= render partial: "shared/history_panel", locals: {title: "History: #{@identifier}"} %>

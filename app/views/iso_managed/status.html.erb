@@ -7,11 +7,6 @@
     line-height: 50px;
   }
 </style>
-<% if @index_label == "" %>
-  <% second_level_breadcrumb(@managed_item.identifier, @close_path, "Status:") %>
-<% else %>
-  <% third_level_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
-<% end %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Status:", :item => @managed_item} %>
 <div class="row">
   <% state = @registration_state.registrationStatus %>

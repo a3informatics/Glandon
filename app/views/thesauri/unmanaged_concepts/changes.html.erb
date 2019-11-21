@@ -4,7 +4,6 @@
 <%= javascript_tag "var changes_url_path = '#{changes_data_thesauri_unmanaged_concept_path(@tc)}';" %>
 <%= javascript_tag "var children = #{@tc.children?};" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
-<% fourth_level_breadcrumb(id_to_type('thesauri'), @tc, history_thesauri_index_path({thesauri: {identifier: @tc, scope_id: @tc}}),thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @tc}}),"Changes") %>
 <div class="row">
   <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => nil, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
