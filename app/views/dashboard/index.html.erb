@@ -4,6 +4,7 @@
 <% top_level_breadcrumb ("Dashboard") %>
 
 <% usr_layout_settings = (current_user.read_setting :dashboard_layout).value %>
+<% usr_l_settings_ar = usr_layout_settings.split(', ') %>
 <%= javascript_tag "var user_dashboard_layout_settings = '#{usr_layout_settings}'" %>
 <%= javascript_tag "var user_policy_panels = #{user_policy_dashboard_panels.to_json}" %>
 <%= javascript_tag "var settings_url = '#{user_setting_path(current_user)}'" %>
@@ -21,10 +22,10 @@
 </div>
 
 <section id="container" class="table-cardstyle">
-	<% usr_layout_settings.split(', ').each_with_index do |panel, i| %>
+	<% usr_l_settings_ar.each_with_index do |panel, i| %>
 		<% next if !user_policy_dashboard_panels.key?(panel) %>
 		<%= "<div class=\"row\">".html_safe if (i % 2 == 0)  %>
-  		<div class="col-md-6 card dashboard wide">
+  		<div class="col-md-<%= usr_l_settings_ar.count == 1 ? "12" : "6" %> card dashboard wide">
       	<% if user_policy_dashboard_panels[panel][:url] == "" %>
 					<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
 				<% else %>
@@ -41,6 +42,6 @@
 		      </table>
 				</div>
     	</div>
-		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_layout_settings.split(', ').length - 1)  %>
+		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_l_settings_ar.length - 1)  %>
 	<% end %>
 </section>

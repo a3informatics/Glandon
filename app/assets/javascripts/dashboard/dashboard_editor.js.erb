@@ -32,6 +32,8 @@ function DashboardEditor(editorId, listId, url) {
       _this.addItemToEditor(name, sym);
     else
       _this.removeItemFromEditor(sym);
+
+    $(_this.editorId).find(".de-item").length == 1 ? $(".de-item").addClass("wide-de-item") : $(".de-item").removeClass("wide-de-item");
   });
 
   this.initializeState();
