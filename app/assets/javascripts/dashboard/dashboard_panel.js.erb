@@ -1,0 +1,54 @@
+/*
+* Generic Dashboard Panel
+*
+*/
+
+/**
+ * Dashboard Panel Constructor
+ *
+ * @return [void]
+ */
+function DashboardPanel(id, url, safe_parameter) {
+  var _this = this;
+
+
+  this.url = url;
+  this.id = "#"+id;
+  this.safe_param = safe_parameter;
+
+  this.init();
+}
+
+/**
+ * Initializes panel and loads data
+ *
+ * @return [void]
+ */
+ DashboardPanel.prototype.init = function(){
+   var _this = this;
+   $(_this.id).DataTable({
+     "pagingType": "full",
+     "ajax": {
+       "url": _this.url,
+       "dataSrc": "data"
+     },
+     "language": {
+       "infoFiltered": "",
+       "processing": generateSpinner("medium")
+     },
+     "bProcessing": true,
+     "pageLength": 5,
+     "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
+     "columns": [
+       {"data" : "owner"},
+       {"data" : "label", "width" : "80%"},
+       {"data" : "identifier", "render": function(data,type,full,meta) {
+         var query_string = 'identifier='+ data +'&scope_id=' + full.scope_id;
+         if(_this.safe_param !== "") {
+           query_string = _this.safe_param + '[identifier]=' + data + '&' + _this.safe_param + '[scope_id]=' + full.scope_id;
+         }
+         return '<a href="' + _this.url + '/history?' + query_string  + '"><button type="button" class="btn  btn-xs">History</button></a>';
+       }}
+     ]
+   });
+ }

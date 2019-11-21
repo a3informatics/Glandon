@@ -244,16 +244,16 @@ module ApplicationHelper
       case key
       when "terminologies"
         user_role_panel_list[key] = {name: value, url: "thesauri", safe_param: "thesauri"} if policy(Thesaurus).index?
-      when "bct"
-        user_role_panel_list[key] = {name: value, url: "biomedical_concept_templates", safe_param: "biomedical_concept_template"} if policy(BiomedicalConceptTemplate).index?
-      when "bcs"
-        user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConcept).index?
-      when "forms"
-        user_role_panel_list[key] = {name: value, url: "forms", safe_param: ""} if policy(Form).index?
-      when "domains"
-        user_role_panel_list[key] = {name: value, url: "sdtm_user_domains", safe_param: ""} if policy(SdtmUserDomain).index?
       when "stats"
         user_role_panel_list[key] = {name: value, url: "", safe_param: ""} if current_user.has_role?(:sys_admin)
+      # when "bct"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concept_templates", safe_param: "biomedical_concept_template"} if policy(BiomedicalConceptTemplate).index?
+      # when "bcs"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConcept).index?
+      # when "forms"
+      #   user_role_panel_list[key] = {name: value, url: "forms", safe_param: ""} if policy(Form).index?
+      # when "domains"
+      #   user_role_panel_list[key] = {name: value, url: "sdtm_user_domains", safe_param: ""} if policy(SdtmUserDomain).index?
       end
     end
     user_role_panel_list

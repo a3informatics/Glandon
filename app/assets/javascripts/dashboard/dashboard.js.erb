@@ -14,34 +14,9 @@ $(document).ready(function () {
   // Initializes each panel data
   $.each(user_dashboard_layout_settings.split(', '), function(i, e){
     if(e != "" && user_policy_panels[e].url != "")
-      panel("main"+i, user_policy_panels[e].url, user_policy_panels[e].safe_param);
+      new DashboardPanel("main"+i, user_policy_panels[e].url, user_policy_panels[e].safe_param);
+    if(e == "stats")
+      new StatisticsPanel("main"+i, user_policy_panels[e].url)
   });
 
-  function panel(control, url, safe_parameter) {
-    $("#" + control).DataTable({
-      "pagingType": "full",
-      "ajax": {
-        "url": url,
-        "dataSrc": "data"
-      },
-      "language": {
-        "infoFiltered": "",
-        "processing": generateSpinner("medium")
-      },
-      "bProcessing": true,
-      "pageLength": 5,
-      "lengthMenu": [[5, 10, 25, 50], [5, 10, 25, 50]],
-      "columns": [
-        {"data" : "owner"},
-        {"data" : "label", "width" : "80%"},
-        {"data" : "identifier", "render": function(data,type,full,meta) {
-          var query_string = 'identifier='+ data +'&scope_id=' + full.scope_id;
-          if(safe_parameter !== "") {
-            query_string = safe_parameter + '[identifier]=' + data + '&' + safe_parameter + '[scope_id]=' + full.scope_id;
-          }
-          return '<a href="' + url + '/history?' + query_string  + '"><button type="button" class="btn  btn-xs">History</button></a>';
-        }}
-      ]
-    });
-  }
 });

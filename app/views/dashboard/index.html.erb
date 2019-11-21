@@ -1,11 +1,11 @@
 <%= javascript_tag 'setPageTitle("Dashboard");' %>
-<%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor'%>
+<%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor',  'dashboard/dashboard_panel'%>
 <%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
 
 <% usr_layout_settings = (current_user.read_setting :dashboard_layout).value %>
-<% usr_l_settings_ar = usr_layout_settings.split(', ') %>
-<%= javascript_tag "var user_dashboard_layout_settings = '#{usr_layout_settings}'" %>
+<% usr_layout_settings = usr_layout_settings.split(', ').select{|x| user_policy_dashboard_panels.key?(x)} %>
+<%= javascript_tag "var user_dashboard_layout_settings = '#{usr_layout_settings.join(', ')}'" %>
 <%= javascript_tag "var user_policy_panels = #{user_policy_dashboard_panels.to_json}" %>
 <%= javascript_tag "var settings_url = '#{user_setting_path(current_user)}'" %>
 
@@ -22,26 +22,22 @@
 </div>
 
 <section id="container" class="table-cardstyle">
-	<% usr_l_settings_ar.each_with_index do |panel, i| %>
-		<% next if !user_policy_dashboard_panels.key?(panel) %>
+	<% usr_layout_settings.each_with_index do |panel, i| %>
 		<%= "<div class=\"row\">".html_safe if (i % 2 == 0)  %>
-  		<div class="col-md-<%= usr_l_settings_ar.count == 1 ? "12" : "6" %> card dashboard wide">
+
+  		<div class="col-md-<%= usr_layout_settings.count == 1 ? "12" : "6" %> card dashboard wide">
+
       	<% if user_policy_dashboard_panels[panel][:url] == "" %>
 					<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
 				<% else %>
 					<a href="<%=user_policy_dashboard_panels[panel][:url]%>" class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></a>
 				<% end %>
+
 				<div class="card-content">
-		      <table id="main<%= i %>" class="table table-striped table-bordered table-condensed">
-		        <thead><tr>
-	              <th>Owner</th>
-	              <th>Label</th>
-	              <th></th>
-            </tr></thead>
-		        <tbody></tbody>
-		      </table>
+			      <%= render partial: (panel == "stats" ? "shared/dashboard/statistics_panel" : "shared/dashboard/dashboard_panel"), :locals => {id: "main#{i}"} %>
 				</div>
     	</div>
-		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_l_settings_ar.length - 1)  %>
+
+		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_layout_settings.length - 1)  %>
 	<% end %>
 </section>

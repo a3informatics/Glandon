@@ -86,7 +86,7 @@ defaults: &defaults
       description: Number of terminologies to be displayed in change tables.
     dashboard_layout:
       type: ordered
-      default_value: terminologies, bct, bcs, forms, domains, stats
+      default_value: terminologies
       label: Layout of the Dashboard
       description: Customize this setting in the Dashboard page.
 

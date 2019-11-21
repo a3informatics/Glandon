@@ -1,0 +1,51 @@
+@import "custom/vars";
+
+.tabs-sel{
+  width: 100%;
+  display: flex;
+  direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.tab-option{
+  display: inline-block;
+  background: $grey-bright;
+  color: $grey-medium;
+  font-family: $font-light;
+  min-width: 70px;
+  padding: 6px 10px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform .3s, border-width .2s;
+}
+
+.tab-option:first-of-type{
+  border-top-left-radius: 10px;
+}
+
+.tab-option:last-of-type{
+  border-top-right-radius: 10px;
+}
+
+.tab-option:hover{
+  transform: translateY(-5px);
+}
+
+.tab-option.active{
+  background: white;
+  border: 1px solid $grey-bright;
+  border-bottom: 3px solid $primary-color-light;
+  color: $primary-color-light;
+}
+
+.tab-wrap{
+  width: 100%;
+  display: block;
+  padding: 10px;
+}
+
+.tab-wrap.closed{
+  display: none;
+}
