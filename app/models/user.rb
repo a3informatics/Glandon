@@ -147,10 +147,10 @@ class User < ActiveRecord::Base
 
   # Counts users logins by year and by month 
   #
-  # @return [hash] Hash with an array of year and  month number as the key and the number of users logged that year/week as the value. Example: {["2019", "11"]=>1, ["2019", "09"]=>2, ["2018", "10"]=>1}
+  # @return [hash] Hash with an array of year and  month number as the key and the number of users logged that year/week as the value. Example: {"2017"=>{"12"=>1}, "2018"=>{"10"=>1, "11"=>1, "12"=>1}, "2019"=>{"10"=>1, "11"=>1}}
   def self.users_by_year_by_month
     raw_results = self.group("date_trunc('year', current_sign_in_at)").group("date_trunc('month',current_sign_in_at)").count
-    raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%m")] , v] }.to_h
+    raw_results = raw_results.map{ |k, v| [ [k[0].strftime("%Y"), k[1].strftime("%B")] , v] }.to_h
     result = {}
     raw_results.each do |arr, value|
       if result[arr[0]].nil?
