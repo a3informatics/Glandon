@@ -118,7 +118,7 @@ describe "Breadcrumb", :type => :feature do
       next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :show)
-      wait_for_ajax(120)
+      wait_for_ajax
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
       next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
@@ -177,29 +177,29 @@ describe "Breadcrumb", :type => :feature do
     #   next_link_crumb(2, 'History', "Biomedical Concepts", "ACME, BC C49677", "")
     # end
 
-    it "has Forms breadcrumbs", js:true  do
-      click_navbar_forms
-      ui_check_breadcrumb("Forms", "", "", "")
-      next_link('New', 'New Form:', "Forms", "New", "")
-      next_link_crumb(1, 'Forms', "Forms", "", "")
-      next_link('New Placeholder', 'New Placeholder Form:', "Forms", "New Placeholder", "")
-      next_link_crumb(1, 'Forms', "Forms", "", "")
-      next_link_table("CRF TEST 1", "History", "History: CRF TEST 1", "Forms", "ACME, CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
-      next_link('Clone', 'Cloning:', "Forms", "ACME, CRF TEST 1", "V0.0.0", "Clone")
-      next_link_crumb(3, 'Show:', "Forms", "ACME, CRF TEST 1", "V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
-      next_link_table("CRF TEST 1", "View", "View: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
-      #next_link('form_view_crf', 'CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "CRF")
-      #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
-      #next_link('form_view_acrf', 'Annotated CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "aCRF")
-      #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
-      next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
-      # next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
-      # next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
-    end
+    # it "has Forms breadcrumbs", js:true  do
+    #   click_navbar_forms
+    #   ui_check_breadcrumb("Forms", "", "", "")
+    #   next_link('New', 'New Form:', "Forms", "New", "")
+    #   next_link_crumb(1, 'Forms', "Forms", "", "")
+    #   next_link('New Placeholder', 'New Placeholder Form:', "Forms", "New Placeholder", "")
+    #   next_link_crumb(1, 'Forms', "Forms", "", "")
+    #   next_link_table("CRF TEST 1", "History", "History: CRF TEST 1", "Forms", "ACME, CRF TEST 1", "")
+    #   next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+    #   next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+    #   next_link_table("CRF TEST 1", "Show", "Show: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+    #   next_link('Clone', 'Cloning:', "Forms", "ACME, CRF TEST 1", "V0.0.0", "Clone")
+    #   next_link_crumb(3, 'Show:', "Forms", "ACME, CRF TEST 1", "V0.0.0")
+    #   next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+    #   next_link_table("CRF TEST 1", "View", "View: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+    #   #next_link('form_view_crf', 'CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "CRF")
+    #   #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
+    #   #next_link('form_view_acrf', 'Annotated CRF: CRF Test Form', "Forms", "CRF TEST 1", "View: V0.0.0", "aCRF")
+    #   #next_link_crumb(3, 'View:', "Forms", "CRF TEST 1", "View: V0.0.0")
+    #   next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+    #   # next_link_table("CRF TEST 1", "Status", "Status: CRF Test Form", "Forms", "ACME, CRF TEST 1", "V0.0.0")
+    #   # next_link_crumb(2, 'History:', "Forms", "ACME, CRF TEST 1", "")
+    # end
 
     # it "has CDISC SDTM Model breadcrumbs", js:true  do
     #   click_navbar_sdtm_model

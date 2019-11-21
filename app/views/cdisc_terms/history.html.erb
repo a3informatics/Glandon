@@ -6,7 +6,7 @@
 <%= javascript_tag "var strict_params = 'cdisc_term';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
-
+<% second_level_breadcrumb(id_to_type('thesauri'), @scope_id, @identifier) %>
 <style>
 	.card{
 		min-width: initial !important;
