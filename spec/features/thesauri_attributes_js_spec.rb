@@ -120,19 +120,19 @@ describe "Thesauri", :type => :feature do
       fill_in 'thesauri_identifier', with: "NEW TERM"
       fill_in 'thesauri_label', with: 'New Terminology'
       click_button 'Create'
-    wait_for_ajax
+    wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM')]/td/a", :text => 'History').click
     wait_for_ajax_long
       expect(page).to have_content 'History: NEW TERM'
       context_menu_element('history', 4, 'New Terminology', :edit)
-    wait_for_ajax
+    wait_for_ajax_long
       expect(page).to have_content 'New Terminology'
       expect(page).to have_content 'NEW TERM'
       expect(page).to have_content '0.1.0'
       expect(page).to have_content 'Incomplete'
       click_button 'New'
-    wait_for_ajax
+    wait_for_ajax_long
       editor_table_click(1,3)
       editor_table_fill_in "DTE_Field_preferred_term", "CodeList1\t"
       editor_table_fill_in "DTE_Field_synonym", "Syn1\n"
