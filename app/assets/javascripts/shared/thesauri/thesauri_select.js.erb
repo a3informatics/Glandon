@@ -2,17 +2,18 @@
 * Modal Panel
 */
 
-
 /**
 * Modal Panel Constructor
 * @param id [String] The id of the Code List
+* @param callback [Function] The callback function
 *
 * @return [void]
 */
-function ThesauriSelect(id, reference_ct_id, callback) {
+//function ThesauriSelect(id, reference_ct_id, callback) {
+function ThesauriSelect(id, callback) {
   this.callback = callback;
   this.id = id;
-  this.reference_ct_id = reference_ct_id;
+  //this.reference_ct_id = reference_ct_id;
   this.tsModalTable = null;
   this.columns = [
     {"data" : "owner", "width" : "10%"},
@@ -58,7 +59,8 @@ function ThesauriSelect(id, reference_ct_id, callback) {
   $('#select_th').click(function() {
     $('#tableModal').modal('hide');
     var rowdata = _this.tsModalTable.rows( { selected: true } ).data();
-    _this.callback({"reference_ct_id": _this.reference_ct_id ,"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
+    //_this.callback({"reference_ct_id": _this.reference_ct_id ,"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
+    _this.callback({"scope_id": rowdata[0].scope_id, "identifier": rowdata[0].identifier, "concept_id": _this.id});
   });
 
 }
