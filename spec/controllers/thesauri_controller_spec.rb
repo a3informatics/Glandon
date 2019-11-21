@@ -466,17 +466,17 @@ describe ThesauriController do
     end
 
     it "extension" do
+      th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extension, {thesauri: { reference_ct_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjVEg=", 
-                                    scope_id: IsoRegistrationAuthority.cdisc_scope.id, 
-                                    identifier: CdiscTerm::C_IDENTIFIER, 
+      post :extension, {thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
+                                    identifier: th.scoped_identifier, 
                                     concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA==" 
                                   }
                         }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200") 
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQ1QvVjMjVEg%3D&managed_concept%5Breference_ct_id%5D=aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjIjVEg%3D"})
+      expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
     end
 
     it "add subset" do
