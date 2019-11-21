@@ -192,11 +192,12 @@ describe "Thesauri", :type => :feature do
       click_link 'Add'
       wait_for_ajax(120)
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C1")
+      input.set("C100129")
       input.native.send_keys(:return)
       wait_for_ajax(120)
-      find(:xpath, "//*[@id='searchTable']/tbody/tr[2]").click
+      find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
       click_button 'Add terms'
+      wait_for_ajax(10)
       ui_check_table_info("children_table", 1, 7, 7)
     end
 
@@ -220,7 +221,7 @@ describe "Thesauri", :type => :feature do
       click_link 'Add'
       wait_for_ajax(120)
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C1")
+      input.set("C100129")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
@@ -249,7 +250,7 @@ describe "Thesauri", :type => :feature do
       click_link 'Add'
       wait_for_ajax(120)
       input = find(:xpath, '//*[@id="searchTable_csearch_cl"]')
-      input.set("C1")
+      input.set("C100129")
       input.native.send_keys(:return)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='searchTable']/tbody/tr[3]").click
