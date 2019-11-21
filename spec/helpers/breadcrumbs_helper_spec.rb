@@ -1,8 +1,16 @@
 require 'rails_helper'
 
 describe BreadcrumbsHelper do
+  
+  include DataHelpers
+
 
   describe "breadcrumb" do
+    
+    before :each do
+      data_files = ["iso_namespace_fake.ttl"]
+      load_files(schema_files, data_files)
+    end
     
     it "single item" do
     	param = [{link: "/test", text: "Click"}]
@@ -28,10 +36,10 @@ describe BreadcrumbsHelper do
       item = IsoManagedV2.new
       item.has_identifier = IsoScopedIdentifierV2.new
       item.has_identifier.identifier = "XXX"
-      item.has_identifier.has_scope = IsoNamespace.new(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD Long", short_name: "DDD", authority: "www.ddd.com")
-    	helper.second_level_breadcrumb({link: "/test", text: "First"}, item.has_identifier.has_scope.id, item.has_identifier.identifier ) 
+      item.has_identifier.has_scope = IsoNamespace.all.first.id
+    	helper.second_level_breadcrumb({link: "/test", text: "First"}, item.has_identifier.has_scope, item.has_identifier.identifier ) 
       expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test\">First</a></li><li " + 
-      	"id=\"breadcrumb_2\" class=\"active\">DDD, XXX</li></ol>"
+      	"id=\"breadcrumb_2\" class=\"active\">BBB, XXX</li></ol>"
       expect(session[:breadcrumbs]).to eq(expected)
     end
 
