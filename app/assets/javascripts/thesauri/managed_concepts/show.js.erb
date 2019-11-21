@@ -11,14 +11,17 @@ $(document).ready( function() {
     {"data" : "tags"}
   ];
   var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled);
-  var searchModal = new TermSearch(context_id, reference_ct_id, cp.addNew.bind(cp));
+  //var searchModal = new TermSearch(context_id, reference_ct_id, cp.addNew.bind(cp));
+  var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
 
   $("#extend").click(function(){
     modalTS.setCallback(shp.callback);
     modalTS.resetUi();
   });
+
   $("#new_subset").click(function(){
     modalTS.setCallback(modalSubsets.tsCallback);
     modalTS.resetUi();
   });
+  
 });

@@ -10,14 +10,15 @@
 *
 * @return [void]
 */
-function TermSearch(context_id, reference_ct_id, callback) {
+//function TermSearch(context_id, reference_ct_id, callback) {
+function TermSearch(context_id, callback) {
   this.selected = [];
   this.callback = callback; // Note that this can also be set in call to search
   this.ref = "";            // Set in call to search
   this.tsCurrentRef;
   this.tsCurrentRow;
   this.context_id = context_id;
-  this.reference_ct_id = reference_ct_id;
+  //this.reference_ct_id = reference_ct_id;
   this.tsSearchTable = null;
   this.tsCurrentRef = null;
   this.tsCurrentRow = null;
@@ -33,6 +34,7 @@ function TermSearch(context_id, reference_ct_id, callback) {
 
   var _this = this;
 
+  // Show modal event
   $('#searchModal').on('shown.bs.modal', function () {
    //helps the columns take their widths in modal
    _this.tsSearchTable.columns.adjust();
@@ -46,7 +48,7 @@ function TermSearch(context_id, reference_ct_id, callback) {
   });
 
 
-  // Enable add term button
+  // Select item within table event
   _this.tsSearchTable.on( 'select', function ( e, dt, type, indexes ) {
     if ( type === 'row' ) {
       var data = _this.tsSearchTable.row(indexes[0]).data()['id'];
@@ -60,7 +62,7 @@ function TermSearch(context_id, reference_ct_id, callback) {
     console.log(_this.selected);
   });
 
-  // Disable add term button
+  // Deselect item within table event
   _this.tsSearchTable.on( 'deselect', function ( e, dt, type, indexes ) {
     if ( type === 'row' ) {
       var data = _this.tsSearchTable.row(indexes[0]).data()['id'];
@@ -92,7 +94,6 @@ function TermSearch(context_id, reference_ct_id, callback) {
   })
 
   $('#searchModal').on('hidden.bs.modal', function () {
-
   });
 
   //Clear search
@@ -121,7 +122,7 @@ function TermSearch(context_id, reference_ct_id, callback) {
     }
   });
 
-  // Add search functionality to search inputs
+  // Add search functionality to search inputs. 
   _this.tsSearchTable.columns().every(function (index) {
     var that = this;
       $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
@@ -171,17 +172,6 @@ function TermSearch(context_id, reference_ct_id, callback) {
     }
   });
 
-  // $('#searchTable tbody').on('click', 'tr', function () {
-  //       var id = this.id;
-  //       if (_this.selected.hasOwnProperty(id)) {
-  //         delete _this.selected[id];
-  //       } else {
-  //         _this.selected[id] = id;
-  //       };
-  //       $(_this).toggleClass('selected');
-
-  // });
-
 }
 
 // Initialise the table/datatable. Note the deferLoading setting.
@@ -194,12 +184,9 @@ TermSearch.prototype.initTable = function() {
     "processing": true,
     "serverSide": true,
     "ajax": {
-      "url": "/thesauri/"+_this.reference_ct_id+"/search"
-      // "data": function( d ) {
-      // },
-    // "dataSrc": "data"
+      //"url": "/thesauri/"+_this.reference_ct_id+"/search"
+      "url": "/thesauri/search_current"
     },
-    // "rowId": "id",
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
