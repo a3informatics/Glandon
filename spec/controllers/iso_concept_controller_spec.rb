@@ -14,9 +14,10 @@ describe IsoConceptController do
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", 
-        "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl", "iso_concept_systems_baseline.ttl"]
+        "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     #it "show a concept" do
@@ -56,43 +57,43 @@ describe IsoConceptController do
       expect(hash).to hash_equal(results)
     end
 
-    it "allows impact to be assessed" do
-      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      get :impact, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
-      expect(assigns(:start_path)).to eq(impact_start_iso_concept_index_path)
-      expect(assigns(:item).to_json).to eq(item.to_json)
-    end
+    it "allows impact to be assessed" # do
+    #   item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+    #   get :impact, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+    #   expect(assigns(:start_path)).to eq(impact_start_iso_concept_index_path)
+    #   expect(assigns(:item).to_json).to eq(item.to_json)
+    # end
 
-    it "allows impact to be assessed, start" do
-    	item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :impact_start, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
-      expect(response.code).to eq("200")
-      expect(response.content_type).to eq("application/json")
-      hash = JSON.parse(response.body, symbolize_names: true)
-      expect(hash.length).to eql(1)
-      expect(hash[0]).to eql(item.uri.to_s)
-    end
+    it "allows impact to be assessed, start" # do
+    # 	item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :impact_start, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+    #   expect(response.code).to eq("200")
+    #   expect(response.content_type).to eq("application/json")
+    #   hash = JSON.parse(response.body, symbolize_names: true)
+    #   expect(hash.length).to eql(1)
+    #   expect(hash[0]).to eql(item.uri.to_s)
+    # end
 
-    it "allows impact to be assessed, next" do
-      item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :impact_next, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
-      expect(response.code).to eq("200")
-      expect(response.content_type).to eq("application/json")
-      hash = JSON.parse(response.body, symbolize_names: true)
-    #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_2.yaml")
-      results = read_yaml_file(sub_dir, "iso_concept_controller_example_2.yaml")
-      expect(hash).to hash_equal(results)
-    end
+    it "allows impact to be assessed, next" # do
+    #   item = IsoConcept.find("CLI-C71148_C62166", "http://www.assero.co.uk/MDRThesaurus/CDISC/V42", false)
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :impact_next, {id: "CLI-C71148_C62166", namespace: "http://www.assero.co.uk/MDRThesaurus/CDISC/V42"}
+    #   expect(response.code).to eq("200")
+    #   expect(response.content_type).to eq("application/json")
+    #   hash = JSON.parse(response.body, symbolize_names: true)
+    # #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_2.yaml")
+    #   results = read_yaml_file(sub_dir, "iso_concept_controller_example_2.yaml")
+    #   expect(hash).to hash_equal(results)
+    # end
 
-    it "allows impact to be assessed, exception" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :impact_next, {id: "", namespace: ""}
-      expect(response.code).to eq("200")
-      expect(response.content_type).to eq("application/json")
-      expect(response.body).to eq("{\"item\":null,\"children\":[]}")
-    end
+    it "allows impact to be assessed, exception" # do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :impact_next, {id: "", namespace: ""}
+    #   expect(response.code).to eq("200")
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.body).to eq("{\"item\":null,\"children\":[]}")
+    # end
 
     it "allows cross references to be found"
 
