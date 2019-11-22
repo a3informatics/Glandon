@@ -70,8 +70,8 @@ module ApplicationHelper
   # @param [Symbol] alignment the desired alignment, either :left, :right or :center
   # @return [String] returns the HTML for the setting
   def true_false_cell(data, alignment)
-    span_class = "glyphicon " # Note space at end
-    span_class += data ? "glyphicon-ok text-success" : "glyphicon-remove text-danger"
+    span_class = "icon-" # Note space at end
+    span_class += data ? "ok text-secondary-clr" : "times text-accent-2"
     return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
   end
 
@@ -257,6 +257,13 @@ module ApplicationHelper
       end
     end
     user_role_panel_list
-  end
 
+  def thesaurus_accent_color (owner_name)
+    if owner_name.upcase.include? "CDISC"
+      return "bg-accent-1"
+    else
+      return "bg-prim-light"
+    end
+  end
+  
 end

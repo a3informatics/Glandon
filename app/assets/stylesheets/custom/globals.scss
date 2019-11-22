@@ -83,6 +83,10 @@ body{
   background: $accent-color-2;
 }
 
+.bg-accent-3{
+  background: $accent-color-3;
+}
+
 /* Text & grey colors */
 .bg-grey-dark{
   background: $grey-dark;
@@ -124,8 +128,16 @@ body{
   color: $accent-color-1;
 }
 
+.text-accent-1-dark{
+  color: $accent-color-1-dark;
+}
+
 .text-accent-2{
   color: $accent-color-2;
+}
+
+.text-accent-3{
+  color: $accent-color-3;
 }
 
 .text-link{

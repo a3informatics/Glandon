@@ -44,8 +44,8 @@ describe "Tokens", :type => :feature do
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_terminology
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: CDISC EXT'
+        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
+        expect(page).to have_content 'Version History of \'CDISC EXT\''
         wait_for_ajax
         context_menu_element('history', 4, 'CDISC Extensions', :edit)
         expect(page).to have_content 'Edit:'
@@ -54,8 +54,8 @@ describe "Tokens", :type => :feature do
       in_browser(:two) do
         ua_generic_login 'token_user_2@example.com'
         click_navbar_terminology
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: CDISC EXT'
+        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
+        expect(page).to have_content 'Version History of \'CDISC EXT\''
         wait_for_ajax
         context_menu_element('history', 4, 'CDISC Extensions', :edit)
         expect(page).to have_content 'The item is locked for editing by another user.'

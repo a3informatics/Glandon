@@ -16,9 +16,11 @@ describe 'iso_registration_authorities/index.html.erb', :type => :view do
 
     ras = IsoRegistrationAuthority.all
     ras.each {|ra| ra.ra_namespace_objects}
+    namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}
 
     assign(:registrationAuthorities, ras)
     assign(:owner, IsoRegistrationAuthority.owner)
+    assign(:namespaces, namespaces)
 
     render
 
@@ -36,8 +38,11 @@ describe 'iso_registration_authorities/index.html.erb', :type => :view do
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(4)", text: 'AAA')
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(2) td:nth-of-type(6)", text: 'Delete')
 
-    expect(rendered).to have_link 'New'
-    expect(rendered).to have_link 'Close'
+    expect(rendered).to have_content("New Registration Authority")
+    expect(rendered).to have_content("DUNS Number:")
+    expect(rendered).to have_content("Scope Namespace:")
+    expect(rendered).to have_select 'iso_registration_authority[namespace_id]', options: ["AAA Long", "BBB Pharma"]
+    expect(rendered).to have_button '+ New Registration Authority'
 
   end
 

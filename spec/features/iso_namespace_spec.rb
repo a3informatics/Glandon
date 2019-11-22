@@ -31,19 +31,18 @@ describe "ISO Namespace", :type => :feature do
     it "allows all namespaces to be viewed (REQ-MDR-NS-010)" do
       click_navbar_namespaces
       expect(page).to have_content 'Namespaces'
+      expect(page).to have_content 'New Scope Namespace'
       expect(page).to have_content 'BBB Pharma'
       expect(page).to have_content 'AAA Long'
     end
 
     it "allows a new namespace to be added (REQ-MDR-NS-010)" do
       click_navbar_namespaces
-      click_link 'New'
       expect(page).to have_content 'New Scope Namespace'
       fill_in 'iso_namespace_short_name', with: 'NEWORG'
       fill_in 'iso_namespace_name', with: 'New Organisation'
       fill_in 'iso_namespace_authority', with: 'www.example.com'
-      click_button 'Submit'
-      expect(page).to have_content 'Namespaces'
+      click_on '+ New namespace'
       expect(page).to have_content 'New Organisation'
     end
 

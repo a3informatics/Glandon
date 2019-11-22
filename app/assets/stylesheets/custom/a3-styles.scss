@@ -8,15 +8,15 @@
 
 // SHADOWS
 .shadow-small{
-  -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
-  box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
+  -moz-box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
+  box-shadow: 3px 3px 10px -3px rgba(0,0,0,0.2);
 }
 
 .shadow-medium{
-  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
-  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
-  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
+  box-shadow: 6px 0px 15px 0px rgba(0,0,0,0.2);
 }
 
 // TOOLTIP
@@ -244,6 +244,13 @@
   font-size: 22pt;
 }
 
+.circular-badge.med{
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  font-size: 17pt;
+}
+
 .circular-badge.small{
   width: 30px;
   height:30px;
@@ -274,7 +281,7 @@
   margin: 5px auto;
 }
 
-.form-wrap input, .form-wrap textarea{
+.form-wrap input, .form-wrap textarea, .form-wrap select{
   min-width: 170px;
   font-size: $font-small;
   font-family: $font-light;
@@ -293,6 +300,14 @@
   border-bottom: 2px solid $primary-color-bright;
 }
 
+.form-wrap.wide input{
+  min-width: 250px;
+}
+
+.form-wrap select{
+  border: 2px solid $primary-color-bright;
+}
+
 .form-wrap textarea{
   min-width: 250px;
   border: 1px solid $grey-bright;
@@ -305,8 +320,29 @@
   position: relative;
 }
 
+.form-wrap input::placeholder, .form-wrap textarea::placeholder{
+  color: $grey-light;
+}
+
 .form-wrap .checkbox label {
   padding-left: 5px;
+}
+
+.form-wrap.hor{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form-wrap.hor .form-group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-wrap.hor label, .form-wrap.hor select, .form-wrap.hor input {
+  margin-left: 15px;
 }
 
 //
@@ -327,6 +363,25 @@
   -webkit-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   -moz-box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
   box-shadow: 3px 3px 6px -3px rgba(0,0,0,0.15);
+}
+
+// TABLES
+
+.table-width-wrapper{
+  width: 100%;
+  padding: 0 10%;
+  justify-content: center;
+}
+
+.table-width-wrapper.narrow{
+  padding: 0 15%;
+}
+
+// IMGS
+
+img.modal-img{
+  width: 150px;
+  margin: 10px 0px;
 }
 
 // SCROLLBARS
@@ -360,6 +415,10 @@ body::-webkit-scrollbar-thumb, #sidebar::-webkit-scrollbar-thumb,
     #main_area::-webkit-scrollbar, body::-webkit-scrollbar-thumb,
       body::-webkit-scrollbar-track, body::-webkit-scrollbar {
     display: none;
+  }
+
+  .table-width-wrapper{
+    padding: 0 !important;
   }
 }
 
