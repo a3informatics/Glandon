@@ -125,28 +125,20 @@ describe "User" do
     expect(user2.need_change_password?).to eq(true)
   end
 
-  # it "counts user by week" do
-  #   User.destroy_all
-  #   User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
-  #   User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
-  #   User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
-  #   expect(User.users_by_week).to eq({"40"=>1, "45"=>1, "50"=>1})
-  # end
-
-  # it "counts user by month" do
-  #   User.destroy_all
-  #   User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
-  #   User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
-  #   User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
-  #   expect(User.users_by_month).to eq({"December"=>1, "November"=>1, "October"=>1})
-  # end
-
   it "counts user by year" do
     User.destroy_all
     User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
     User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
-    User.create :email => "fred3@example.com", :password => "Changeme1#"
+    User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
     expect(User.users_by_year).to eq({"2019"=>2, "2018"=>1})
+  end
+
+  it "counts user by year, current_sign_in nil" do
+    User.destroy_all
+    User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    User.create :email => "fred2@example.com", :password => "Changeme1#"
+    User.create :email => "fred3@example.com", :password => "Changeme1#"
+    expect(User.users_by_year).to eq({"2019"=>1})
   end
 
   it "counts users by year by week" do
@@ -169,6 +161,17 @@ describe "User" do
     User.create :email => "fred5@example.com", :password => "Changeme1#", current_sign_in_at: "2018-10-11 09:34:19.287445"
     User.create :email => "fred6@example.com", :password => "Changeme1#", current_sign_in_at: "2017-12-11 10:34:19.287445"
     expect(User.users_by_year_by_month).to eq({"2017"=>{"December"=>1}, "2018"=>{"October"=>1, "November"=>1, "December"=>1}, "2019"=>{"October"=>1, "November"=>1}})
+  end
+
+  it "counts users by year by month, current_sign_in nil" do
+    User.destroy_all
+    User.create :email => "fred@example.com", :password => "Changeme1#"
+    User.create :email => "fred2@example.com", :password => "Changeme1#"
+    User.create :email => "fred3@example.com", :password => "Changeme1#"
+    User.create :email => "fred4@example.com", :password => "Changeme1#"
+    User.create :email => "fred5@example.com", :password => "Changeme1#"
+    User.create :email => "fred6@example.com", :password => "Changeme1#"
+    expect(User.users_by_year_by_month).to eq({})
   end
 
   # it "counts users by current week" do
@@ -195,6 +198,30 @@ describe "User" do
     User.create :email => "kevin@sanofi.com", :password => "Changeme1#"
     User.create :email => "aj@s-cubed.com", :password => "Changeme1#"
     expect(User.users_by_domain).to eq({"total"=>7, "example.com"=>2, "sanofi.com"=>3, "merck.com"=>1, "s-cubed.com"=>1})
+  end
+
+  it "counts user never logged in" do
+    User.destroy_all
+    User.create :email => "sam@example.com", :password => "Changeme1#"
+    User.create :email => "dave@sanofi.com", :password => "Changeme1#"
+    User.create :email => "kirsten@sanofi.com", :password => "Changeme1#"
+    User.create :email => "clarisa@merck.com", :password => "Changeme1#"
+    User.create :email => "adam@example.com", :password => "Changeme1#"
+    User.create :email => "kevin@sanofi.com", :password => "Changeme1#"
+    User.create :email => "aj@s-cubed.com", :password => "Changeme1#"
+    expect(User.users_never_logged_in).to eq({"total"=>7})
+  end
+
+  it "counts user never logged in" do
+    User.destroy_all
+    User.create :email => "sam@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    User.create :email => "dave@sanofi.com", :password => "Changeme1#"
+    User.create :email => "kirsten@sanofi.com", :password => "Changeme1#"
+    User.create :email => "clarisa@merck.com", :password => "Changeme1#"
+    User.create :email => "adam@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    User.create :email => "kevin@sanofi.com", :password => "Changeme1#"
+    User.create :email => "aj@s-cubed.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    expect(User.users_never_logged_in).to eq({"total"=>4})
   end
 
 end
