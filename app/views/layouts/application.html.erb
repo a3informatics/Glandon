@@ -89,7 +89,7 @@
 			}
     </style>
   </head>
-  <body class="bg-grey-bright">
+  <body class="bg-grey-bright page-scroll-styled">
     <div class="container-fluid">
       <!-- NAVBAR BEGIN -->
       <nav class="navbar navbar-inverse navbar-fixed-top bg-prim-dark">
@@ -207,7 +207,7 @@
       <!-- SIDEBAR BEGIN -->
       <div class="row full">
         <% if !current_user.is_only_community? %>
-          <div id="sidebar" class="col-sm-2 shadow-medium text-dark collapsed-vertical">
+          <div id="sidebar" class="col-sm-2 shadow-medium text-dark collapsed-vertical page-scroll-styled">
             <div class="nav nav_pills nav-stacked">
               <span id="sidebar-arrow" class="icon-arrow-l text-light arrow" onclick="sidebarHandler(this);"></span>
               <% if link_group_on_role([Dashboard]) %>
@@ -319,7 +319,7 @@
         <% end %>
         <!-- SIDEBAR END -->
         <% if current_user.is_only_community? then width_class = "col-sm-12" else width_class = "col-sm-10" end%>
-        <div id="main_area" class="<%= width_class %> ma-sb-exp">
+        <div id="main_area" class="<%= width_class %> ma-sb-exp page-scroll-styled">
           <div>
             <%= session[:breadcrumbs].html_safe %>
           </div>
