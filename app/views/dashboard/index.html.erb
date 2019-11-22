@@ -33,9 +33,7 @@
 					<a href="<%=user_policy_dashboard_panels[panel][:url]%>" class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></a>
 				<% end %>
 
-				<div class="card-content">
-			      <%= render partial: (panel == "stats" ? "shared/dashboard/statistics_panel" : "shared/dashboard/dashboard_panel"), :locals => {id: "main#{i}"} %>
-				</div>
+			  <%= render partial: (panel == "stats" ? "shared/dashboard/statistics_panel" : "shared/dashboard/dashboard_panel"), :locals => {id: "main#{i}"} %>
     	</div>
 
 		<%= "</div>".html_safe if (i % 2 != 0 || i == usr_layout_settings.length - 1)  %>

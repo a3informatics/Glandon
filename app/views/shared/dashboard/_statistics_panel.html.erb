@@ -1,35 +1,37 @@
 <%= javascript_include_tag 'dashboard/statistics_panel', 'shared/tabs_layout' %>
 <%= stylesheet_link_tag 'custom/statistics_panel', 'custom/tabs_layout' %>
-<div class="tabs-layout" id="<%= id %>">
-  <div class="tabs-sel">
-    <div class="tab-option active" id="tab_by_time">Users by time</div>
-    <div class="tab-option" id="tab_by_domain">Users by domain</div>
-  </div>
-  <div class="tab-wrap" data-tab="tab_by_time">
-    <div class="stats-wrap">
-      <div class="stats-block" id="by_year">
-        <div class="stats-title">Users by year</div>
-        <div class="list-wrap"></div>
-      </div>
-      <div class="stats-block" id="by_year_by_month">
-        <div class="stats-title">Users by year, by month</div>
-        <div class="list-wrap"></div>
-      </div>
-      <div class="stats-block" id="by_year_by_week">
-        <div class="stats-title">Users by year, by week</div>
-        <div class="list-wrap"></div>
-      </div>
-      <div class="stats-block" id="by_current_week">
-        <div class="stats-title">Users by day</div>
-        <div class="list-wrap"></div>
+<div class="card-content card-with-tabs">
+  <div class="tabs-layout" id="<%= id %>">
+    <div class="tabs-sel">
+      <div class="tab-option active" id="tab_by_time">Users by time</div>
+      <div class="tab-option" id="tab_by_domain">Users by domain</div>
+    </div>
+    <div class="tab-wrap" data-tab="tab_by_time">
+      <div class="stats-wrap">
+        <div class="stats-block" id="by_year">
+          <div class="stats-title">Users by year</div>
+          <div class="list-wrap"></div>
+        </div>
+        <div class="stats-block" id="by_year_by_month">
+          <div class="stats-title">Users by year, by month</div>
+          <div class="list-wrap"></div>
+        </div>
+        <div class="stats-block" id="by_year_by_week">
+          <div class="stats-title">Users by year, by week</div>
+          <div class="list-wrap"></div>
+        </div>
+        <div class="stats-block" id="by_current_week">
+          <div class="stats-title">Users by day, this week</div>
+          <div class="list-wrap"></div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="tab-wrap closed" data-tab="tab_by_domain">
-    <div class="stats-wrap">
-      <div class="stats-block large" id="by_domain">
-        <div class="stats-title">Users by domain</div>
-        <div class="list-wrap"></div>
+    <div class="tab-wrap closed" data-tab="tab_by_domain">
+      <div class="stats-wrap">
+        <div class="stats-block large" id="by_domain">
+          <div class="stats-title">Users by domain</div>
+          <div class="list-wrap"></div>
+        </div>
       </div>
     </div>
   </div>

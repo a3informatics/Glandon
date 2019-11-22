@@ -47,6 +47,8 @@
 }
 
 .stats-wrap .stats-title{
-  font-size: $font-small;
+  font-size: $font-normal;
+  border-bottom: 1px solid $primary-color-bright;
   color: $primary-color-light;
+  margin-bottom: 4px;
 }
