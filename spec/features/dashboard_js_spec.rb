@@ -79,18 +79,40 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Graph:'
     end
 
-    it "allows the dashboard to be viewed (REQ-MDR-UD-NONE)", js: true do
-      expect(page).to have_content 'CDISC'
-      expect(page).to have_content 'Controlled Terminology'
-      expect(page).to have_content 'Temperature (BC C25206)'
-      expect(page).to have_content 'Weight (BC C25208)'
-      expect(page).to have_content 'Vital Signs Baseline'
+    it "allows the dashboard to be viewed, header (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
     end
 
-    it "allows the history to be accessed (REQ-MDR-UD-NONE)", js: true do
-      find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
-      expect(page).to have_content 'History: BC A00002'
+    it "allows the dashboard to be viewed, customize, select items (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
     end
+
+    it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
+    end
+
+    it "allows the dashboard to be viewed, panels (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
+    end
+
+    it "allows the dashboard to be viewed, terminologies panel (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
+    end
+
+    it "allows the dashboard to be viewed, statistics panel (REQ-MDR-UD-NONE)", js: true do
+      click_navbar_dashboard
+      
+    end
+
+    # it "allows the history to be accessed (REQ-MDR-UD-NONE)", js: true do
+    #   find(:xpath, "//tr[contains(.,'APGAR Score (BC A00002)')]/td/a", :text => /\AHistory\z/).click
+    #   expect(page).to have_content 'History: BC A00002'
+    # end
 
     it "displays the organization name (REQ-MDR-UD-NONE)", js: true do
       expect(page).to have_content "#{APP_CONFIG['application_name']} (v#{Version::VERSION})"
