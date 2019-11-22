@@ -5,7 +5,7 @@ module UserSettingsHelpers
     {
       :dashboard_layout =>
       {
-        :default_value=>"terminologies, bct, bcs, forms, domains, stats",
+        :default_value=>"terminologies, stats",
         :description=>"Customize this setting in the Dashboard page.",
         :label=>"Layout of the Dashboard",
         :type=>"ordered"
