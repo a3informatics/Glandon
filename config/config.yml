@@ -86,7 +86,7 @@ defaults: &defaults
       description: Number of terminologies to be displayed in change tables.
     dashboard_layout:
       type: ordered
-      default_value: terminologies
+      default_value: terminologies, stats
       label: Layout of the Dashboard
       description: Customize this setting in the Dashboard page.
 
