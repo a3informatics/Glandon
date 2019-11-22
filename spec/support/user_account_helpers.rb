@@ -39,11 +39,11 @@ module UserAccountHelpers
     @user_cr.add_role :community_reader
     @user_cr.remove_role :reader # Get reader on the create
 		unforce_first_pass_change @user_cr
-    @user_cr = User.create :email => C_SYS_CONTENT_ADMIN, :password => C_PASSWORD
-    @user_cr.add_role :sys_admin
-    @user_cr.add_role :content_admin
-    @user_cr.remove_role :reader # Get reader on the create
-    unforce_first_pass_change @user_cr
+    @user_sca = User.create :email => C_SYS_CONTENT_ADMIN, :password => C_PASSWORD
+    @user_sca.add_role :sys_admin
+    @user_sca.add_role :content_admin
+    @user_sca.remove_role :reader # Get reader on the create
+    unforce_first_pass_change @user_sca
   end
 
   def ua_destroy

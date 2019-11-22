@@ -30,9 +30,9 @@ describe "Dashboard JS", :type => :feature do
     ua_destroy
   end
 
-  before :each do
-    ua_reader_login
-  end
+  # before :each do
+  #   ua_reader_login
+  # end
 
   after :each do
     ua_logoff
@@ -41,6 +41,7 @@ describe "Dashboard JS", :type => :feature do
   describe "Reader User", :type => :feature do
 
     it "allows the triples to be viewed (REQ-MDR-UD-NONE)", js: true do
+      ua_reader_login
       click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       ui_main_search("C16358")
@@ -67,6 +68,7 @@ describe "Dashboard JS", :type => :feature do
     end
 
     it "allows the graph to be viewed (REQ-MDR-UD-NONE)", js: true do
+      ua_reader_login
       click_navbar_bc
       expect(page).to have_content 'Index: Biomedical Concepts'
       find(:xpath, "//tr[contains(.,'BC C16358')]/td/a", :text => 'History').click
@@ -82,7 +84,7 @@ describe "Dashboard JS", :type => :feature do
     end
 
     it "allows the dashboard to be viewed, header (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
+      ua_reader_login
       expect(page).to have_content 'Dashboard'
       expect(page).to have_content 'Terminologies'
       expect(page).to have_content 'Today is'
@@ -90,40 +92,75 @@ describe "Dashboard JS", :type => :feature do
     end
 
     it "allows the dashboard to be viewed, customize, select items (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
+      ua_sys_and_content_admin_login
       expect(page).to have_content 'Dashboard'
       expect(page).to have_content 'Customize'
       click_link 'Customize'
-      find(:xpath, "//*[@id='dashboard-list']/div[1]/label/input").click #Uncheck Terminologies item
+      uncheck 'Terminologies'
       click_button 'Save'
       wait_for_ajax(120)
       expect(page).not_to have_content 'Terminologies'
+      expect(page).to have_content 'Statistics'
     end
 
-    it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
-      //*[@id="dashboard-editor"]/div[1] #Header
-      //*[@id="dashboard-editor"]/div[2] #Terminologies
-      //*[@id="dashboard-editor"]/div[3] #Statistics
-      source = page.find('#foo')
-      target = page.find('#bar')
-      source.drag_to(target)
-      
+    it "allows the dashboard to be viewed, customize, uncheck and check items (REQ-MDR-UD-NONE)", js: true do
+      ua_sys_and_content_admin_login
+      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Customize'
+      click_link 'Customize'
+      wait_for_ajax(120)
+      uncheck 'Terminologies'
+      uncheck 'Statistics'
+      click_button 'Save'
+      wait_for_ajax(120)
+      expect(page).not_to have_content 'Terminologies'
+      expect(page).not_to have_content 'Statistics'
+      click_link 'Customize'
+      wait_for_ajax(120)
+      check 'Terminologies'
+      check 'Statistics'
+      click_button 'Save'
     end
 
-    it "allows the dashboard to be viewed, panels (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
-      
-    end
+    # it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do
+    #   ua_sys_and_content_admin_login
+    #   expect(page).to have_content 'Dashboard'
+    #   expect(page).to have_content 'Customize'
+    #   click_link 'Customize'
+    #   # //*[@id="dashboard-editor"]/div[1] #Header
+    #   # //*[@id="dashboard-editor"]/div[2] #Terminologies
+    #   # //*[@id="dashboard-editor"]/div[3] #Statistics
+    #   from = page.find(:xpath, "//*[@id='dashboard-editor']/div[2]")
+    #   target = page.find(:xpath, "//*[@id='dashboard-editor']/div[3]")
+    #   from.drag_to(target)
+    # end
 
     it "allows the dashboard to be viewed, terminologies panel (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
-      
+      ua_sys_and_content_admin_login
+      wait_for_ajax(120)
+      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Customize'
+      expect(page).to have_content 'Terminologies'
+      expect(page).to have_content 'CDISC'
+      click_link 'Terminologies'
+      wait_for_ajax(120)
+      expect(page).to have_content 'All Terminologies'
     end
 
     it "allows the dashboard to be viewed, statistics panel (REQ-MDR-UD-NONE)", js: true do
-      click_navbar_dashboard
-      
+      ua_sys_and_content_admin_login
+      wait_for_ajax(120)
+      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Customize'
+      expect(page).to have_content 'Statistics'
+      find(:xpath, "//*[@id='tab_by_domain']").click
+      wait_for_ajax(120)
+      expect(page).to have_content 'example.com: 8'
+      find(:xpath, "//*[@id='tab_by_time']").click
+      expect(page).to have_content 'Users by year, by month'
+      expect(page).to have_content 'Users by day, this week'
+      expect(page).to have_content 'Users by year, by week'
+      expect(page).to have_content 'Users by year'
     end
 
     # it "allows the history to be accessed (REQ-MDR-UD-NONE)", js: true do
@@ -132,6 +169,7 @@ describe "Dashboard JS", :type => :feature do
     # end
 
     it "displays the organization name (REQ-MDR-UD-NONE)", js: true do
+      ua_reader_login
       expect(page).to have_content "#{APP_CONFIG['application_name']} (v#{Version::VERSION})"
     end
 
