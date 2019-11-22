@@ -144,7 +144,7 @@ describe AlsExcel do
     item = object.form("DM")
     expect(object.errors.count).to eq(0)
     result = item.to_json
-  write_yaml_file(result, sub_dir, "form_expected_6.yaml")
+  #Xwrite_yaml_file(result, sub_dir, "form_expected_6.yaml")
     expected = read_yaml_file(sub_dir, "form_expected_6.yaml")
     expected[:last_changed_date] = result[:last_changed_date] # Dates will need fixing
     expected[:creation_date] = result[:creation_date]

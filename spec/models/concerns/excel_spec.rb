@@ -140,7 +140,7 @@ describe Excel do
     expect(object.errors.full_messages.to_sentence).to eq("Exception raised 'StandardError' checking worksheet for import 'import' using sheet 'sheet'.")
   end
 
-  it "process engine" do
+  it "process engine - WILL CURRENTLY FAIL" do
     full_path = test_file_path(sub_dir, "process_input_2.xlsx")
     object = Excel.new(full_path)
     object.process_sheet(:cdisc_adam_ig, :main)
