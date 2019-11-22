@@ -257,6 +257,7 @@ module ApplicationHelper
       end
     end
     user_role_panel_list
+  end
 
   def thesaurus_accent_color (owner_name)
     if owner_name.upcase.include? "CDISC"
@@ -265,5 +266,5 @@ module ApplicationHelper
       return "bg-prim-light"
     end
   end
-  
+
 end
