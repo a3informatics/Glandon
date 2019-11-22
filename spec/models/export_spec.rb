@@ -36,7 +36,7 @@ describe Export do
     clear_iso_registration_state_object
   end
 
-  it "generates the thesaurus list" do
+  it "generates the thesaurus list - WILL CURRENTLY FAIL" do
     results = Export.new.terminologies
   #write_yaml_file(results, sub_dir, "thesaurus_export_1.yaml")
     expected = read_yaml_file(sub_dir, "thesaurus_export_1.yaml")

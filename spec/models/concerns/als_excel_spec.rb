@@ -41,7 +41,7 @@ describe AlsExcel do
 		expect(object.errors.count).to eq(0)
 	end
 
-  it "gets form, DM example - FINDING MULTIPLE AGEU ENTRIES" do
+  it "gets form, DM example - WILL CURRENTLY FAIL - Finding multiple AGEU entries" do
     full_path = test_file_path(sub_dir, "als_1.xlsx")
     object = AlsExcel.new(full_path)
     item = object.form("DM_ALL")

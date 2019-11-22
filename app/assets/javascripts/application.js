@@ -27,6 +27,7 @@
 //= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require sidebar_handler
 //= require app-js-erb-extension
 //= require jquery-dateformat.min
 //= require title
@@ -364,40 +365,6 @@ function linkTo(path, namespace, id) {
 }
 
 /*
-* Expands / collapses the sidebar
-* Handles main_area's responsiveness
-*/
-function sidebarHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $('#sidebar').toggleClass('sidebar-collapsed');
-
-  // Animate main_area width
-  $('#main_area').toggleClass('col-sm-10');
-  $('#main_area').toggleClass('col-sm-11');
-  $('#sidebar').toggleClass('col-sm-2');
-  $('#sidebar').toggleClass('col-sm-1');
-
-  $('#main_area').toggleClass('ma-sb-col');
-  $('#main_area').toggleClass('ma-sb-exp');
-}
-
-/*
-* Expands / collapses a menu category
-*/
-function sidebarCategoryHandler(item){
-  if ($('#sidebar').hasClass('sidebar-collapsed'))
-    $('#sidebar').removeClass('sidebar-collapsed');
-
-  $(item).find('.arrow').toggleClass('arrow-rotate');
-  $(item).parent().toggleClass('collapsed');
-}
-
-function sidebarVerticalScreenHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $("#sidebar").toggleClass('collapsed-vertical');
-}
-
-/*
 * Generic Print function
 */
 $(document).ready(function() {
@@ -453,3 +420,10 @@ function getStringInitials(str) {
   });
   return initials;
 };
+
+function toggleTableActive(tableId, enable) {
+  if(enable)
+    $(tableId).DataTable().rows().nodes().to$().removeClass("tr-disabled");
+  else
+    $(tableId).DataTable().rows().nodes().to$().addClass("tr-disabled");
+}

@@ -95,16 +95,19 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and changes between versions displayed (REQ-MDR-UD-090)", js: true do
       ui_dashboard_slider("2012-08-03", "2013-04-12")
       click_link 'Display'
+      wait_for_ajax(10)
       find(:xpath, "//div[@id='created_div']/a", :text => "CCINVCTYP (C102575)")
       find(:xpath, "//div[@id='updated_div']/a", :text => "AGEU (C66781)")
       find(:xpath, "//div[@id='deleted_div']/a", :text => "AGESPAN (C66780)")
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 8)
-      find(:xpath, "//div[@id='created_div']/a[15]").click
+      #find(:xpath, "//div[@id='created_div']/a[15]").click
+      find(:xpath, "//div[@id='created_div']/a", :text => "EVDRETRT (C102579)").click
+      wait_for_ajax(10)
+      expect(page).to have_content 'C102579'
+      expect(page).to have_content 'CDISC SDTM Supporting Evidence for Re-Treatment Terminology'
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C102584'
-      expect(page).to have_content 'Reason For Treatment'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
@@ -113,6 +116,7 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and creted CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2011-12-09", "2014-09-26")
       click_link 'Display'
+      wait_for_ajax(10)
       expect(page).to have_xpath("//div[@id='created_div']/a", count: 313)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item Y']", count: 2)
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 19)
@@ -128,6 +132,7 @@ describe "Community Dashboard JS", :type => :feature do
     it "allows two CDISC versions to be selected and updated CL between them to be filtered and displayed", js: true do
       ui_dashboard_slider("2014-06-27", "2014-09-26")
       click_link 'Display'
+      wait_for_ajax(10)
       expect(page).to have_xpath("//div[@id='updated_div']/a", count: 58)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 3)
@@ -137,6 +142,7 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item E']", count: 0)
       find(:xpath, "//div[@id='updated_div']/a[34]").click
+      wait_for_ajax(10)
       expect(page).to have_content 'Differences'
       expect(page).to have_content 'C99074'
       expect(page).to have_content 'CDISC SDTM Directionality Terminology'

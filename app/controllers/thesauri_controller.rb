@@ -29,7 +29,6 @@ class ThesauriController < ApplicationController
     render json: {data: Thesaurus.unique.select{|x| x[:scope_id] == owner_scoped_id}}
   end
 
-
   def history
     authorize Thesaurus
     respond_to do |format|
@@ -163,6 +162,22 @@ class ThesauriController < ApplicationController
     end
   end
 
+  def search_current
+    authorize Thesaurus, :show?
+    respond_to do |format|
+      format.html
+        @close_path = thesauri_index_path
+      format.json do
+        if Thesaurus.empty_search?(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+        else
+          results = Thesaurus.search_current(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+        end
+      end
+    end
+  end
+
   def changes
     authorize Thesaurus, :show?
     @version_count = current_user.max_term_display.to_i
@@ -234,12 +249,8 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_object = thesaurus.add_extension(the_params[:concept_id])
-    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id, reference_ct_id: the_params[:reference_ct_id]}})}, :status => 200
-  end
-
-  def search_current
-    authorize Thesaurus, :show?
-    @close_path = thesauri_index_path
+    #render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id, reference_ct_id: the_params[:reference_ct_id]}})}, :status => 200
+    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
   end
 
    def export_ttl
@@ -333,8 +344,8 @@ private
 	end
 
   def the_params
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
+    #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
   end
 
 end
