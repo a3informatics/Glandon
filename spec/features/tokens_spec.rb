@@ -65,49 +65,49 @@ describe "Tokens", :type => :feature do
 
     it "locks a biomedical concept"
 
-    it "locks a form (REQ-MDR-EL-010)", js:true do
+    it "locks a form (REQ-MDR-EL-010)"#, js:true do
 
-      in_browser(:one) do
-        ua_generic_login 'token_user_1@example.com'
-        click_navbar_forms
-        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: CRF TEST 1'
-        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
-        expect(page).to have_content 'Edit:'
-      end
+    #   in_browser(:one) do
+    #     ua_generic_login 'token_user_1@example.com'
+    #     click_navbar_forms
+    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
+    #     expect(page).to have_content 'History: CRF TEST 1'
+    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
+    #     expect(page).to have_content 'Edit:'
+    #   end
 
-      in_browser(:two) do
-        ua_generic_login 'token_user_2@example.com'
-        click_navbar_forms
-        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: CRF TEST 1'
-        find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
-        expect(page).to have_content 'The item is locked for editing by another user.'
-      end
+    #   in_browser(:two) do
+    #     ua_generic_login 'token_user_2@example.com'
+    #     click_navbar_forms
+    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'History').click
+    #     expect(page).to have_content 'History: CRF TEST 1'
+    #     find(:xpath, "//tr[contains(.,'CRF TEST 1')]/td/a", :text => 'Edit').click
+    #     expect(page).to have_content 'The item is locked for editing by another user.'
+    #   end
 
-    end
+    # end
 
-    it "locks a domain (REQ-MDR-EL-010)", js:true do
+    it "locks a domain (REQ-MDR-EL-010)"#, js:true do
 
-      in_browser(:one) do
-        ua_generic_login 'token_user_1@example.com'
-        click_navbar_sponsor_domain
-        find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: DS Domain'
-        find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
-        expect(page).to have_content 'Edit:'
-      end
+    #   in_browser(:one) do
+    #     ua_generic_login 'token_user_1@example.com'
+    #     click_navbar_sponsor_domain
+    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
+    #     expect(page).to have_content 'History: DS Domain'
+    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
+    #     expect(page).to have_content 'Edit:'
+    #   end
 
-      in_browser(:two) do
-        ua_generic_login 'token_user_2@example.com'
-        click_navbar_sponsor_domain
-        find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
-        expect(page).to have_content 'History: DS Domain'
-        find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
-        expect(page).to have_content 'The item is locked for editing by another user.'
-      end
+    #   in_browser(:two) do
+    #     ua_generic_login 'token_user_2@example.com'
+    #     click_navbar_sponsor_domain
+    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'History').click
+    #     expect(page).to have_content 'History: DS Domain'
+    #     find(:xpath, "//tr[contains(.,'DS Domain')]/td/a", :text => 'Edit').click
+    #     expect(page).to have_content 'The item is locked for editing by another user.'
+    #   end
 
-    end
+    # end
 
     it "locks a subset", js:true do
 
