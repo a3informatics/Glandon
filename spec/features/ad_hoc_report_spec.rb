@@ -50,7 +50,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 2")
     end
 
-    it "should allow the results to be viewed (REQ-MDR-AR-050)", js:true do
+    it "should allow the results to be viewed (REQ-MDR-AR-050) - WILL CURRENTLY FAIL - Setup issue" , js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 3')]/td/a", :text => 'Results').click
@@ -112,7 +112,7 @@ describe "Ad Hoc Reports", :type => :feature do
       expect(page).to have_content("Ad-Hoc Report Results: Report No. 2")
     end
 
-    it "should allow the results to be viewed (REQ-MDR-AR-050)", js:true do
+    it "should allow the results to be viewed (REQ-MDR-AR-050) - WILL CURRENTLY FAIL - Setup issue", js:true do
       click_navbar_ahr
       expect(page).to have_content 'Index: Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Report No. 3')]/td/a", :text => 'Results').click
