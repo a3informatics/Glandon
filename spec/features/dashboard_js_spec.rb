@@ -154,7 +154,8 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Customize'
       expect(page).to have_content 'Statistics'
       find(:xpath, "//*[@id='tab_by_domain']").click
-      expect(page).to have_content 'example.com: 9'
+      wait_for_ajax(120)
+      expect(page).to have_content 'example.com: 8'
       find(:xpath, "//*[@id='tab_by_time']").click
       expect(page).to have_content 'Users by year, by month'
       expect(page).to have_content 'Users by day, this week'
