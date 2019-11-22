@@ -1,5 +1,6 @@
 <%= javascript_tag 'setPageTitle("Dashboard");' %>
 <%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor',  'dashboard/dashboard_panel'%>
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
 <% top_level_breadcrumb ("Dashboard") %>
 
@@ -21,18 +22,16 @@
 	<% end %>
 </div>
 
-<section id="container" class="table-cardstyle">
+<section id="container">
 	<% usr_layout_settings.each_with_index do |panel, i| %>
 		<%= "<div class=\"row\">".html_safe if (i % 2 == 0)  %>
 
   		<div class="col-md-<%= usr_layout_settings.count == 1 ? "12" : "6" %> card dashboard wide">
-
       	<% if user_policy_dashboard_panels[panel][:url] == "" %>
 					<div class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></div>
 				<% else %>
 					<a href="<%=user_policy_dashboard_panels[panel][:url]%>" class="card-header"><%= user_policy_dashboard_panels[panel][:name] %></a>
 				<% end %>
-
 			  <%= render partial: (panel == "stats" ? "shared/dashboard/statistics_panel" : "shared/dashboard/dashboard_panel"), :locals => {id: "main#{i}"} %>
     	</div>
 

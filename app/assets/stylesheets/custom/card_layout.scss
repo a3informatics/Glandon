@@ -74,7 +74,7 @@
 .card-item{
   display: flex;
   max-width: 1000px;
-  height: 80px;
+  height: 76px;
   margin: auto;
   padding: 10px 25px;
   align-items: center;
@@ -162,6 +162,14 @@ a.card-item:hover, a.card-item:focus{
 .table-invisible .dataTables_info, .table-invisible .dataTables_paginate,
   .table-invisible .dataTables_length, .table-invisible .dataTables_filter{
   font-family: $font-light;
+}
+
+.small-search .dataTables_filter label{
+  font-size: $font-small;
+}
+
+.small-search .dataTables_filter input[type="search"]{
+  height: 25px;
 }
 
 // SCALING
