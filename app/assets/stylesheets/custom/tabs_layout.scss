@@ -19,22 +19,19 @@
   color: $grey-medium;
   font-family: $font-light;
   min-width: 70px;
-  padding: 4px 10px;
-  padding-top: 6px;
+  padding: 6px 14px;
+  padding-top: 8px;
   text-align: center;
   position: relative;
   cursor: pointer;
-  transition: transform .3s, border-width .2s;
 }
 
-.tab-option:first-of-type{
+.tab-option div{
+  transition: transform .3s;
 }
 
-.tab-option:last-of-type{
-}
-
-.tab-option:hover{
-  transform: translateY(-4px);
+.tab-option:hover div{
+  transform: translateY(-3px);
 }
 
 .tab-option.active{
@@ -42,14 +39,13 @@
   border: 1px solid $grey-bright;
   border-bottom: 3px solid $secondary-color-light;
   color: $primary-color-light;
-  padding-top: 4px;
+  padding-top: 6px;
 }
 
 .tab-wrap{
   width: 100%;
   display: block;
   padding: 10px;
-  margin-top: 6px;
 }
 
 .tab-wrap.closed{
