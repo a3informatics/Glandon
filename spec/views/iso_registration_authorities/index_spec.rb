@@ -13,7 +13,11 @@ describe 'iso_registration_authorities/index.html.erb', :type => :view do
   end
 
   it 'displays the form' do
+    def view.policy(name)
+      # Do nothing
+    end
 
+    allow(view).to receive(:policy).and_return double(new?: true)
     ras = IsoRegistrationAuthority.all
     ras.each {|ra| ra.ra_namespace_objects}
     namespaces = IsoNamespace.all.map{|u| [u.name, u.id]}

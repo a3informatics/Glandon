@@ -15,6 +15,11 @@ describe 'iso_namespaces/index.html.erb', :type => :view do
 
   it 'displays the form' do
 
+    def view.policy(name)
+      # Do nothing
+    end
+
+    allow(view).to receive(:policy).and_return double(new?: true)
     namespaces = IsoNamespace.all
 
     assign(:namespaces, namespaces)

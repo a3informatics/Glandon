@@ -43,24 +43,26 @@
     	</table>
     </div>
   </div>
-  <div class="col-md-4 card narrow">
-    <div class="card-header">
-        New Registration Authority
+  <% if policy(IsoRegistrationAuthority).new? %>
+    <div class="col-md-4 card narrow">
+      <div class="card-header">
+          New Registration Authority
+      </div>
+      <div class="card-content">
+        <%= form_for IsoRegistrationAuthority.new do |f| %>
+          <div class="form-wrap wide">
+              <label for="organization_identifier" class="font-light">DUNS Number:</label><br/>
+              <%= f.text_field :organization_identifier, placeholder: "Not Set", value: "", autofocus: true %>
+              <br/><br/>
+              <label for="name" class="font-light">Scope Namespace:</label><br/>
+              <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces), {:class => 'form-control'}) %>
+          </div>
+          <br/>
+          <div style="float:right">
+          <%= f.submit "+ New Registration Authority", class: "btn medium green" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div class="card-content">
-      <%= form_for IsoRegistrationAuthority.new do |f| %>
-        <div class="form-wrap wide">
-            <label for="organization_identifier" class="font-light">DUNS Number:</label><br/>
-            <%= f.text_field :organization_identifier, placeholder: "Not Set", value: "", autofocus: true %>
-            <br/><br/>
-            <label for="name" class="font-light">Scope Namespace:</label><br/>
-            <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces), {:class => 'form-control'}) %>
-        </div>
-        <br/>
-        <div style="float:right">
-        <%= f.submit "+ New Registration Authority", class: "btn medium green" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <% end %>
 </div>
