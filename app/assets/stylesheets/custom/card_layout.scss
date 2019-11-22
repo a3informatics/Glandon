@@ -172,6 +172,10 @@ a.card-item:hover, a.card-item:focus{
   height: 25px;
 }
 
+.table-invisible .dataTables_scrollBody{
+  padding: 0 6px;
+}
+
 // SCALING
 .col-md-1.card, .col-md-2.card, .col-md-3.card, .col-md-4.card,
 .col-md-5.card, .col-md-6.card,.col-md-7.card, .col-md-8.card,
