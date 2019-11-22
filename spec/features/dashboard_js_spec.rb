@@ -6,6 +6,8 @@ describe "Dashboard JS", :type => :feature do
   include PauseHelpers
   include UiHelpers
   include UserAccountHelpers
+  include WaitForAjaxHelper
+
 
   def triples_search(search_text)
     input = find(:xpath, '//*[@id="triplesTable_filter"]/label/input')
@@ -81,16 +83,31 @@ describe "Dashboard JS", :type => :feature do
 
     it "allows the dashboard to be viewed, header (REQ-MDR-UD-NONE)", js: true do
       click_navbar_dashboard
-      
+      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Terminologies'
+      expect(page).to have_content 'Today is'
+      expect(page).to have_content 'You have'
     end
 
     it "allows the dashboard to be viewed, customize, select items (REQ-MDR-UD-NONE)", js: true do
       click_navbar_dashboard
-      
+      expect(page).to have_content 'Dashboard'
+      expect(page).to have_content 'Customize'
+      click_link 'Customize'
+      find(:xpath, "//*[@id='dashboard-list']/div[1]/label/input").click #Uncheck Terminologies item
+      click_button 'Save'
+      wait_for_ajax(120)
+      expect(page).not_to have_content 'Terminologies'
     end
 
     it "allows the dashboard to be viewed, customize, drag & drop items (REQ-MDR-UD-NONE)", js: true do
       click_navbar_dashboard
+      //*[@id="dashboard-editor"]/div[1] #Header
+      //*[@id="dashboard-editor"]/div[2] #Terminologies
+      //*[@id="dashboard-editor"]/div[3] #Statistics
+      source = page.find('#foo')
+      target = page.find('#bar')
+      source.drag_to(target)
       
     end
 
