@@ -205,14 +205,14 @@ it "allows a BC to be found" do
     expect(item.to_json).to hash_equal(expected)
   end
 
-  it "creates an object based on the standard operation JSON" do
-    json = read_yaml_file(sub_dir, "bc_operation.yaml")
-    item = BiomedicalConcept.create(json)
-  #Xwrite_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
-    expected = read_yaml_file(sub_dir, "bc_create.yaml")
-    expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
-    expect(item.to_json).to hash_equal(expected)
-  end
+  it "creates an object based on the standard operation JSON" #do
+  #   json = read_yaml_file(sub_dir, "bc_operation.yaml")
+  #   item = BiomedicalConcept.create(json)
+  # #Xwrite_yaml_file(item.to_json, sub_dir, "bc_create.yaml")
+  #   expected = read_yaml_file(sub_dir, "bc_create.yaml")
+  #   expected[:last_changed_date] = date_check_now(item.lastChangeDate).iso8601
+  #   expect(item.to_json).to hash_equal(expected)
+  # end
 
   it "allows the object to be created, create error" do
     json = read_yaml_file(sub_dir, "bc_operation.yaml")
@@ -284,14 +284,14 @@ it "allows a BC to be found" do
     expect(result).to hash_equal(expected)
   end
 
-  it "get unique references" do
-    item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
-    items = item.get_properties(true)
-    result = BiomedicalConcept.get_unique_references(items)
-  #Xwrite_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
-    expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
-    expect(result).to hash_equal(expected)
-  end
+  it "get unique references" # do
+  #   item = BiomedicalConcept.find("BC-ACME_BC_C25206", "http://www.assero.co.uk/MDRBCs/V1")
+  #   items = item.get_properties(true)
+  #   result = BiomedicalConcept.get_unique_references(items)
+  # #Xwrite_yaml_file(result, sub_dir, "bc_unique_refs.yaml")
+  #   expected = read_yaml_file(sub_dir, "bc_unique_refs.yaml")
+  #   expect(result).to hash_equal(expected)
+  # end
 
   it "returns domains linked, single" do
     load_test_file_into_triple_store("sdtm_user_domain_vs.ttl")
