@@ -518,7 +518,7 @@ describe "IsoManagedV2" do
       expect(index.first[:identifier]).to eq("ITEM")
     end
 
-    it "unique speed" do
+    it "unique speed - WILL CURRENTLY FAIL - fails when run as set." do
       (1..500).each do |index|
         item = CdiscTerm.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
@@ -530,8 +530,9 @@ describe "IsoManagedV2" do
       end 
       timer_start
       index = CdiscTerm.unique
-      expect(index.count).to eq(500)
       timer_stop("Unique")
+    puts colourize("***** ISO Managed count: #{index.count} *****", "red")
+      expect(index.count).to eq(500)
     end
 
   end

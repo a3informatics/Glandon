@@ -154,7 +154,7 @@ describe Fuseki::Persistence do
     check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_2.yaml", equate_method: :hash_equal)
   end
 
-  it "performs update" do
+  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
@@ -173,7 +173,7 @@ describe Fuseki::Persistence do
   #   expect(result.errors.count).to eq(0)
   end
 
-  it "performs update" do
+  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
   puts "ERROR START"
@@ -192,7 +192,7 @@ describe Fuseki::Persistence do
     expect(result.errors.count).to eq(1)
   end
 
-  it "performs save" do
+  it "performs save - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
