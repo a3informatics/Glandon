@@ -126,7 +126,7 @@ wait_for_ajax(10)
 
     it "allows terminology to be edited, manual-identifier"
 
-    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)", js: true do
+    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)- WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
