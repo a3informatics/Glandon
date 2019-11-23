@@ -125,7 +125,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows terminology to be edited, manual-identifier"
 
-    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)", js: true do
+    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)- WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
