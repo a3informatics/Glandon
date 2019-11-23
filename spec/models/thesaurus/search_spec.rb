@@ -52,10 +52,10 @@ describe "Thesaurus::Search" do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     after :all do
@@ -97,7 +97,7 @@ describe "Thesaurus::Search" do
       params = standard_params
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, code list identifier" do
@@ -105,7 +105,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_PI][:search][:value] = "C66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, item identifier" do
@@ -113,7 +113,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_ID][:search][:value] = "C66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, submission value" do
@@ -121,7 +121,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_NOT][:search][:value] = "TEMP"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, preferred term"  do
@@ -129,7 +129,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_PT][:search][:value] = "brain"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_5.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_5.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, synonym" do
@@ -137,7 +137,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_SYN][:search][:value] = "Category"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_6.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_6.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, definition" do
@@ -145,7 +145,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_DEF][:search][:value] = "cerebral"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_7.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_7.yaml", equate_method: :hash_equal, write_file: true)
     end 
 
     it "allows a terminology to be searched, overall" do
@@ -153,7 +153,7 @@ describe "Thesaurus::Search" do
       params[:search][:value] = "nitrogen"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_8.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_8.yaml", equate_method: :hash_equal, write_file: true)
     end 
 
     it "allows a terminology to be searched, combination column and overall" do
@@ -162,7 +162,7 @@ describe "Thesaurus::Search" do
       params[:search][:value] = "Temporal"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal, write_file: true)
     end  
 
     it "allows a terminology to be searched, combination columns" do
@@ -171,7 +171,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_PT][:search][:value] = "Test"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_10.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_10.yaml", equate_method: :hash_equal, write_file: true)
     end  
 
     it "allows a terminology to be searched, overall, column order 2" do
@@ -181,7 +181,7 @@ describe "Thesaurus::Search" do
       params[:order][C_TS_PI][:dir] = "desc"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_11.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_11.yaml", equate_method: :hash_equal, write_file: true)
     end 
 
     it "allows a terminology to be searched, overall, case sensitivity" do
@@ -191,8 +191,8 @@ describe "Thesaurus::Search" do
       results1 = ct.search(params)
       params[:search][:value] = "NITROGEN"
       results2 = ct.search(params)
-      check_file_actual_expected(results1, sub_dir, "search_15.yaml", equate_method: :hash_equal)
-      check_file_actual_expected(results2, sub_dir, "search_15.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results1, sub_dir, "search_15.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results2, sub_dir, "search_15.yaml", equate_method: :hash_equal, write_file: true)
     end 
 
     it "allows a terminology to be searched, item identifier, case sensitivity" do
@@ -200,7 +200,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_ID][:search][:value] = "c66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, submission value, case sensitivity" do
@@ -208,7 +208,7 @@ describe "Thesaurus::Search" do
       params[:columns][C_TS_NOT][:search][:value] = "temp"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, combination column and overall, case sensitivity" do
@@ -217,7 +217,7 @@ describe "Thesaurus::Search" do
       params[:search][:value] = "TEMPoral"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_9.yaml", equate_method: :hash_equal, write_file: true)
     end  
 
   end
@@ -226,7 +226,6 @@ describe "Thesaurus::Search" do
 
     before :each do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..50)
@@ -240,7 +239,7 @@ describe "Thesaurus::Search" do
       @ct.has_state.make_current
       params = standard_params
       results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_1.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows the current terminologies to be searched, several terminologies returning results" do
@@ -248,14 +247,14 @@ describe "Thesaurus::Search" do
       params = standard_params
       params[:columns][C_TS_PI][:search][:value] = "C66770"
       results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows the current terminologies to be searched, several terminologies returning results" do
       params = standard_params
       params[:columns][C_TS_PI][:search][:value] = "C66770"
       results = Thesaurus.search_current(params)
-      check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal, write_file: true)
     end
 
   end
