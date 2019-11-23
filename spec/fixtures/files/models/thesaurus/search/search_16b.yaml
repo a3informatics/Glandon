@@ -1,0 +1,174 @@
+---
+:count: 6055
+:items:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DMTAyNjA1
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C102605
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C102605
+  :notation: CV
+  :definition: A domain for physiological findings related to the cardiovascular system,
+    including the heart, blood vessels and lymphatic vessels.
+  :preferred_term: Cardiovascular System Findings Domain
+  :synonym: Cardiovascular System Findings
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DMTAyNjc3
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C102677
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C102677
+  :notation: NV
+  :definition: A domain for physiological findings related to the nervous system,
+    including the brain, spinal cord, the cranial and spinal nerves, autonomic ganglia
+    and plexuses.
+  :preferred_term: Nervous System Findings Domain
+  :synonym: Nervous System Findings
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DOTUwOTg=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C95098
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C95098
+  :notation: RE
+  :definition: A domain for physiological findings related to the respiratory system,
+    including the organs that are involved in breathing such as the nose, throat,
+    larynx, trachea, bronchi and lungs.
+  :preferred_term: Respiratory Domain
+  :synonym: Respiratory System Findings
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk1NzY=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49576
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49576
+  :notation: DS
+  :definition: A subject domain utilized for the submission of information encompassing
+    and representing data, vocabulary or records related to disposition. (NCI)
+  :preferred_term: Disposition Domain
+  :synonym: Disposition
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzcjQzExMTExMw==
+  :uri: http://www.cdisc.org/C111113/V37#C111113
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C111113
+  :notation: SDOMAIN
+  :definition: A unique, 2-character domain code used in the regulatory submission
+    process of pre-clinical studies. The domain abbreviation is used consistently
+    throughout the submission, i.e. in the dataset name, as the value of the domain
+    variable within the dataset, and as a prefix for most variable names in the dataset.
+  :preferred_term: CDISC SEND Domain Abbreviation Terminology
+  :synonym: SEND Domain Abbreviation
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DOTUwODM=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C95083
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C95083
+  :notation: BG
+  :definition: Body weight gain is the actual difference between two body weight measurements
+    for any given interval for a subject. This is most commonly shown as the difference
+    between two consecutive body weight measurements.
+  :preferred_term: Body Weight Gain Domain
+  :synonym: Body Weight Gain
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk2MDY=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49606
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49606
+  :notation: PC
+  :definition: Concentrations of drugs/metabolites in fluids or tissues as a function
+    of time.
+  :preferred_term: Pharmacokinetic Concentration Domain
+  :synonym: Pharmacokinetic Concentration
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk2MDU=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49605
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49605
+  :notation: OM
+  :definition: Findings from organ measurement evaluations.
+  :preferred_term: Organ Measurement Domain
+  :synonym: Organ Measurements
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk2MjY=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49626
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49626
+  :notation: EG
+  :definition: Findings related to the collection of ECG data, including position
+    of the subject, method of evaluation, all cycle measurements and all findings
+    from the ECG including an overall interpretation if collected or derived.
+  :preferred_term: Electrocardiogram Domain
+  :synonym: Electrocardiogram
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk1OTI=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49592
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49592
+  :notation: LB
+  :definition: Laboratory test findings including, but is not limited to hematology,
+    clinical chemistry and urinalysis data. This domain does not include microbiology
+    or pharmacokinetic data, which are stored in separate domains.
+  :preferred_term: Laboratory Data Domain
+  :synonym: Laboratory Data
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk2MjI=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49622
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49622
+  :notation: VS
+  :definition: Measurements including but not limited to blood pressure, temperature,
+    respiration, body surface area, BMI, height and weight.
+  :preferred_term: Vital Signs Domain
+  :synonym: Vital Signs
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DMTAyNjk0
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C102694
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C102694
+  :notation: PA
+  :definition: Nonclinical pairing records for the fertility component of a study.
+  :preferred_term: Pairing Events Domain
+  :synonym: Pairing Events
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk2MDc=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49607
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49607
+  :notation: PP
+  :definition: Pharmacokinetic parameters derived from pharmacokinetic concentration-time
+    (PC) data.
+  :preferred_term: Pharmacokinetic Parameters Domain
+  :synonym: Pharmacokinetic Parameters
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DMTAyNjc4
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C102678
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C102678
+  :notation: PY
+  :definition: Pregnancy results of female nonclinical subjects.
+  :preferred_term: Nonclinical Pregnancy Results Domain
+  :synonym: Nonclinical Pregnancy Results
+  :tags: SEND
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTExMy9WMzYjQzExMTExM19DNDk1Njk=
+  :uri: http://www.cdisc.org/C111113/V36#C111113_C49569
+  :parent_identifier: C111113
+  :parent_label: SEND Domain Abbreviation
+  :identifier: C49569
+  :notation: CO
+  :definition: 'The Comments dataset accommodates two sources of comments: 1) those
+    collected alongside other data on topical case report form (CRF) pages such as
+    Adverse Events and 2) those collected on a separate page specifically dedicated
+    to comments.'
+  :preferred_term: Comment Domain
+  :synonym: Comments
+  :tags: SEND

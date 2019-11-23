@@ -108,12 +108,20 @@ describe "Thesaurus::Search" do
       check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal, write_file: true)
     end
 
+    it "allows a terminology to be searched, item label" do
+      params = standard_params
+      params[:columns][C_TS_PL][:search][:value] = "Units for Vital Signs Results"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_3b.yaml", equate_method: :hash_equal, write_file: true)
+    end
+
     it "allows a terminology to be searched, item identifier" do
       params = standard_params
       params[:columns][C_TS_ID][:search][:value] = "C66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
-      check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(results, sub_dir, "search_3a.yaml", equate_method: :hash_equal, write_file: true)
     end
 
     it "allows a terminology to be searched, submission value" do
@@ -146,6 +154,30 @@ describe "Thesaurus::Search" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_7.yaml", equate_method: :hash_equal, write_file: true)
+    end 
+
+    it "allows a terminology to be searched, tags" do
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "SDTM"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16a.yaml", equate_method: :hash_equal, write_file: true)
+    end 
+
+    it "allows a terminology to be searched, tags" do
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "SEND"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16b.yaml", equate_method: :hash_equal, write_file: true)
+    end 
+
+    it "allows a terminology to be searched, tags" do
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "SEND SDTM"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16c.yaml", equate_method: :hash_equal, write_file: true)
     end 
 
     it "allows a terminology to be searched, overall" do
