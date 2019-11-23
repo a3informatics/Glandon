@@ -32,24 +32,8 @@ describe "Thesaurus", :type => :feature do
   describe "Curator User", :type => :feature do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "CT_V43.ttl", "CT_ACME_TEST.ttl"]
       load_files(schema_files, data_files)
-      # clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_schema_file_into_triple_store("ISO25964.ttl")
-      # load_test_file_into_triple_store("iso_registration_authority_real.ttl")
-      # load_test_file_into_triple_store("iso_namespace_real.ttl")
-      # load_test_file_into_triple_store("thesaurus_concept.ttl")
-      # load_test_file_into_triple_store("CT_V43.ttl")
-      # load_test_file_into_triple_store("CT_ACME_TEST.ttl")
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
       ua_create
       Token.set_timeout(30)
       nv_destroy
@@ -62,7 +46,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     after :each do
-      wait_for_ajax
+      wait_for_ajax(10)
       ua_logoff
     end
 
@@ -125,22 +109,22 @@ describe "Thesaurus", :type => :feature do
 
     it "allows terminology to be edited, manual-identifier"
 
-    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)- WILL CURRENTLY FAIL", js: true do
+    it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
-      expect(page).to have_content 'CDISC Extensions'
+      wait_for_ajax(10)
+      expect(page).to have_content 'CDISC Extensions' 
       expect(page).to have_content 'CDISC EXT'
 #      expect(page).to have_content '1.1.0'
 #      expect(page).to have_content 'Incomplete'
       ui_check_page_options("editor_table", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100, "All" => -1})
       # fill_in 'Identifier', with: 'A00030'
       click_button 'New'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NP000010P' # Note up version
       editor_table_click_row_content 'NP000010P', 2
       # editor_table_fill_in("DTE_Field_label", "Label text\t")
@@ -152,12 +136,12 @@ describe "Thesaurus", :type => :feature do
       editor_table_click_row_content 'NP000010P', 5
       editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky!\n"
       find(:xpath, "//tr[contains(.,'NP000010P')]/td/button", :text => 'Edit').click
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NP000010P'
       expect(page).to have_content 'The PT 10P'
       #fill_in 'Identifier', with: 'A00031'
       click_button 'New'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NC00000999C'
       editor_table_click(1,2)
       #editor_table_fill_in "DTE_Field_label", "Label text 31\t"
@@ -169,7 +153,7 @@ describe "Thesaurus", :type => :feature do
       editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 999C!\n"
       #fill_in 'Identifier', with: 'A00032'
       click_button 'New'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NC00001000C'
       editor_table_click(2,2)
       #editor_table_fill_in "DTE_Field_label", "Label text 32\t"
@@ -181,7 +165,7 @@ describe "Thesaurus", :type => :feature do
       editor_table_fill_in "DTE_Field_definition", "We never fill this in, too tricky 1000C!\n"
       find(:xpath, "//tr[contains(.,'Same as 1000C')]/td/button", :text => 'Delete').click
       ui_click_ok("Are you sure?")
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NC00000999C'
       expect(page).not_to have_content 'NC00001000C'
       click_button 'Return'
@@ -202,7 +186,7 @@ describe "Thesaurus", :type => :feature do
       editor_table_click(5,2)
       editor_table_fill_in "DTE_Field_label", "A00040 Label text\t"
       editor_table_fill_in "DTE_Field_notation", "A00040SUBMISSION\t"
-      wait_for_ajax
+      wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'A00040SUBMISSION')]/td/button", :text => 'Edit').click
       expect(page).to have_content 'Edit: A00040 Label text'
       expect(find('#tcIdentifierPrefix')).to have_content('A00040.')
@@ -212,12 +196,12 @@ describe "Thesaurus", :type => :feature do
       editor_table_click(1,2)
       editor_table_fill_in "DTE_Field_label", "Label text for A00040.A00001\t"
       editor_table_fill_in "DTE_Field_notation", "A00040A00001SUBMISSION\t"
-      wait_for_ajax
+      wait_for_ajax(10)
       click_button 'Close'
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows terminology to be edited, manual identifier validation - WILL CURRENTLY FAIL (need to set config) (REQ-MDR-ST-015)", js: true do
+    it "allows terminology to be edited, manual identifier validation (REQ-MDR-ST-015) - WILL CURRENTLY FAIL (need to set config)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
@@ -237,39 +221,39 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "allows the edit session to be closed, parent page (REQ-MDR-ST-NONE)", js: true do
+    it "allows the edit session to be closed, parent page (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
 
-    it "allows the edit session to be closed, child page (REQ-MDR-ST-NONE)", js: true do
+    it "allows the edit session to be closed, child page (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       click_button 'New'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'NP000010P' # Note up version
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
 
     # NOT WORKING (EDIT TERMINOLOGY)
-    it "allows the parent page to be returned to (REQ-MDR-ST-NONE)", js: true do
+    it "allows the parent page to be returned to (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
@@ -308,7 +292,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content "Nice Label"
     end
 
-    it "allows a code list to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
+    it "allows a code list to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
       click_link 'New Terminology'
@@ -330,15 +314,15 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'All Terminologies'
     end
 
-    it "edit timeout warnings and expiration (REQ-MDR-EL-020)", js: true do
+    it "edit timeout warnings and expiration (REQ-MDR-EL-020) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
@@ -358,7 +342,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit timeout warnings and extend (REQ-MDR-EL-030)", js: true do
+    it "edit timeout warnings and extend (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
@@ -375,7 +359,7 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button 'Save'
-      wait_for_ajax
+      wait_for_ajax(10)
       Capybara.ignore_hidden_elements = false
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
@@ -390,7 +374,7 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit timeout warnings and child pages (REQ-MDR-EL-NONE)", js: true do
+    it "edit timeout warnings and child pages (REQ-MDR-EL-NONE) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
       expect(page).to have_content 'All Terminologies'
@@ -407,7 +391,7 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       find(:xpath, "//tr[contains(.,'RACE OTHER')]/td/button", :text => 'Edit').click
-      wait_for_ajax
+      wait_for_ajax(10)
       Capybara.ignore_hidden_elements = false
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
@@ -415,7 +399,7 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user.edit_lock_warning.to_i + 2
       page.find("#token_timer_1")[:class].include?("btn-warning")
       click_button "referer_button"
-      wait_for_ajax
+      wait_for_ajax(10)
       Capybara.ignore_hidden_elements = false
       ui_button_disabled('token_timer_1')
       page.find("#token_timer_1")[:class].include?("btn-success")
@@ -425,15 +409,15 @@ describe "Thesaurus", :type => :feature do
       click_button 'Close'
     end
 
-    it "edit clears token on close (REQ-MDR-EL-030)", js: true do
+    it "edit clears token on close (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       # CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
@@ -442,20 +426,19 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#timeout")[:class].include?("btn-warning")
       ui_click_back_button
-      wait_for_ajax
+      wait_for_ajax(10)
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
     end
 
-    it "edit clears token on back button (REQ-MDR-EL-030)", js: true do
+    it "edit clears token on back button (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       # CDISC EXT (V1.1.0, 2, Incomplete)' # Note up version
@@ -464,19 +447,19 @@ describe "Thesaurus", :type => :feature do
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#timeout")[:class].include?("btn-warning")
       ui_click_back_button
-      wait_for_ajax
+      wait_for_ajax(10)
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
       expect(tokens).to match_array([])
     end
 
-    it "history allows the edit page to be viewed (REQ-MDR-ST-015)", js: true do # Put this after other tests, creates V2
+    it "history allows the edit page to be viewed (REQ-MDR-ST-015) - WILL CURRENTLY FAIL", js: true do # Put this after other tests, creates V2
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
-      find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
-      wait_for_ajax
-      expect(page).to have_content 'Version History of \'CDISC EXT\''
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'History').click
+      wait_for_ajax(10)
+      expect(page).to have_content 'History: CDISC EXT'
       context_menu_element('history', 4, 'CDISC Extensions', :edit)
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       #(V1.1.0, 2, Incomplete)' # Note the up version because V1 is at 'Standard'
@@ -499,18 +482,18 @@ describe "Thesaurus", :type => :feature do
     #   ui_check_anon_table_row(4, ["Version:", "1"])
     #   key1 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup"]')
     #   ui_click_node_key(key1)
-    #   wait_for_ajax
+    #   wait_for_ajax(10)
     #   ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
     #   ui_check_td_with_id("conceptId", "A00010")
     #   ui_double_click_node_key(key1)
-    #   wait_for_ajax
+    #   wait_for_ajax(10)
     #   key2 = ui_get_key_by_path('["CDISC Extensions", "Placeholder for Ethnic Subgroup", "Ethnic Subgroup 1"]')
     #   ui_click_node_key(key2)
     #   ui_check_td_with_id("conceptLabel", "Ethnic Subgroup 1")
     #   ui_check_td_with_id("conceptId", "A00011")
     #   ui_check_td_with_id("conceptNotation", "ETHNIC SUBGROUP [1]")
     #   ui_click_node_key(key1)
-    #   wait_for_ajax
+    #   wait_for_ajax(10)
     #   ui_check_td_with_id("conceptLabel", "Placeholder for Ethnic Subgroup")
     #   ui_check_td_with_id("conceptId", "A00010")
     # end
@@ -530,12 +513,12 @@ describe "Thesaurus", :type => :feature do
     #   ui_check_anon_table_row(4, ["Version:", "43"])
     #   key1 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex"]')
     #   ui_click_node_key(key1)
-    #   wait_for_ajax
+    #   wait_for_ajax(10)
     #   ui_check_td_with_id("conceptLabel", "Sex")
     #   ui_check_td_with_id("conceptId", "C66731")
     #   ui_check_td_with_id("conceptNotation", "SEX")
     #   ui_double_click_node_key(key1)
-    #   wait_for_ajax
+    #   wait_for_ajax(10)
     #   key2 = ui_get_key_by_path('["CDISC Terminology 2015-12-18", "Sex", "Male"]')
     #   ui_click_node_key(key2)
     #   ui_check_td_with_id("conceptLabel", "Male")
