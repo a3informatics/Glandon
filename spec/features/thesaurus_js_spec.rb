@@ -78,7 +78,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'History: CDISC EXT'
       #currently not working
       context_menu_element('history', 4, 'CDISC Extensions', :document_control)
-wait_for_ajax(10)
+      wait_for_ajax(10)
       expect(page).to have_content 'Manage Status'
       expect(page).to have_content 'Standard'
       expect(page).to have_content 'Superseded'
@@ -316,10 +316,10 @@ wait_for_ajax(10)
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'History').click
-wait_for_ajax(10)
+      wait_for_ajax(10)
       expect(page).to have_content 'History: CDISC EXT'
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
-wait_for_ajax(10)
+      wait_for_ajax(10)
       expect(page).to have_content 'CDISC Extensions'
       expect(page).to have_content 'CDISC EXT'
       tokens = Token.where(item_uri: "MDRThesaurus/ACME/V2#TH-ACME_TEST")
