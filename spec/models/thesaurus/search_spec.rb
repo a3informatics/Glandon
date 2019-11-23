@@ -4,6 +4,15 @@ describe "Thesaurus::Search" do
 
   include DataHelpers
 
+  C_TS_PI = "0"
+  C_TS_PL = "1"
+  C_TS_ID = "2"
+  C_TS_NOT = "3"
+  C_TS_PT = "4"
+  C_TS_SYN = "5"
+  C_TS_DEF = "6"
+  C_TS_TAG = "7"
+
   def sub_dir
     return "models/thesaurus/search"
   end
@@ -14,14 +23,16 @@ describe "Thesaurus::Search" do
       :draw => "1", 
       :columns =>
       {
-        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+        C_TS_PI => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_PL => {:data  => "parentLabel", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_ID => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_NOT => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_PT => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_SYN => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        C_TS_DEF => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}},
+        C_TS_TAG => {:data  => "tags", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
       }, 
-      :order => { "0" => { :column => "0", :dir => "asc" }}, 
+      :order => { C_TS_PI => { :column => C_TS_PI, :dir => "asc" }}, 
       :start => "0", 
       :length => "15", 
       :search => { :value => "", :regex => "false" }, 
@@ -54,22 +65,28 @@ describe "Thesaurus::Search" do
       params = standard_params
       expect(Thesaurus.empty_search?(params)).to eq(true)
       params = standard_params
-      params[:columns]["0"][:search][:value] = "C66770"
+      params[:columns][C_TS_PI][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
-      params[:columns]["1"][:search][:value] = "C66770"
+      params[:columns][C_TS_PL][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
-      params[:columns]["2"][:search][:value] = "C66770"
+      params[:columns][C_TS_ID][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
-      params[:columns]["3"][:search][:value] = "C66770"
+      params[:columns][C_TS_NOT][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
-      params[:columns]["4"][:search][:value] = "C66770"
+      params[:columns][C_TS_PT][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
-      params[:columns]["5"][:search][:value] = "C66770"
+      params[:columns][C_TS_SYN][:search][:value] = "C66770"
+      expect(Thesaurus.empty_search?(params)).to eq(false)
+      params = standard_params
+      params[:columns][C_TS_DEF][:search][:value] = "C66770"
+      expect(Thesaurus.empty_search?(params)).to eq(false)
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "C66770"
       expect(Thesaurus.empty_search?(params)).to eq(false)
       params = standard_params
       params[:search][:value] = "nitrogen"
@@ -85,7 +102,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, code list identifier" do
       params = standard_params
-      params[:columns]["0"][:search][:value] = "C66770"
+      params[:columns][C_TS_PI][:search][:value] = "C66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
@@ -93,7 +110,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, item identifier" do
       params = standard_params
-      params[:columns]["1"][:search][:value] = "C66770"
+      params[:columns][C_TS_ID][:search][:value] = "C66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
@@ -101,7 +118,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, submission value" do
       params = standard_params
-      params[:columns]["2"][:search][:value] = "TEMP"
+      params[:columns][C_TS_NOT][:search][:value] = "TEMP"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
@@ -109,7 +126,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, preferred term"  do
       params = standard_params
-      params[:columns]["3"][:search][:value] = "brain"
+      params[:columns][C_TS_PT][:search][:value] = "brain"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_5.yaml", equate_method: :hash_equal)
@@ -117,7 +134,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, synonym" do
       params = standard_params
-      params[:columns]["4"][:search][:value] = "Category"
+      params[:columns][C_TS_SYN][:search][:value] = "Category"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_6.yaml", equate_method: :hash_equal)
@@ -125,7 +142,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, definition" do
       params = standard_params
-      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:columns][C_TS_DEF][:search][:value] = "cerebral"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_7.yaml", equate_method: :hash_equal)
@@ -141,7 +158,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, combination column and overall" do
       params = standard_params
-      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:columns][C_TS_DEF][:search][:value] = "cerebral"
       params[:search][:value] = "Temporal"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
@@ -150,8 +167,8 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, combination columns" do
       params = standard_params
-      params[:columns]["2"][:search][:value] = "VST"
-      params[:columns]["3"][:search][:value] = "Test"
+      params[:columns][C_TS_NOT][:search][:value] = "VST"
+      params[:columns][C_TS_PT][:search][:value] = "Test"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_10.yaml", equate_method: :hash_equal)
@@ -160,8 +177,8 @@ describe "Thesaurus::Search" do
     it "allows a terminology to be searched, overall, column order 2" do
       params = standard_params
       params[:search][:value] = "nitrogen"
-      params[:order]["0"][:column] = "2"
-      params[:order]["0"][:dir] = "desc"
+      params[:order][C_TS_PI][:column] = "2"
+      params[:order][C_TS_PI][:dir] = "desc"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_11.yaml", equate_method: :hash_equal)
@@ -180,7 +197,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, item identifier, case sensitivity" do
       params = standard_params
-      params[:columns]["1"][:search][:value] = "c66770"
+      params[:columns][C_TS_ID][:search][:value] = "c66770"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_3.yaml", equate_method: :hash_equal)
@@ -188,7 +205,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, submission value, case sensitivity" do
       params = standard_params
-      params[:columns]["2"][:search][:value] = "temp"
+      params[:columns][C_TS_NOT][:search][:value] = "temp"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_4.yaml", equate_method: :hash_equal)
@@ -196,7 +213,7 @@ describe "Thesaurus::Search" do
 
     it "allows a terminology to be searched, combination column and overall, case sensitivity" do
       params = standard_params
-      params[:columns]["5"][:search][:value] = "cERebral"
+      params[:columns][C_TS_DEF][:search][:value] = "cERebral"
       params[:search][:value] = "TEMPoral"
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
@@ -229,14 +246,14 @@ describe "Thesaurus::Search" do
     it "allows the current terminologies to be searched, several terminologies returning results" do
       @ct.has_state.make_current
       params = standard_params
-      params[:columns]["0"][:search][:value] = "C66770"
+      params[:columns][C_TS_PI][:search][:value] = "C66770"
       results = Thesaurus.search_current(params)
       check_file_actual_expected(results, sub_dir, "search_2.yaml", equate_method: :hash_equal)
     end
 
     it "allows the current terminologies to be searched, several terminologies returning results" do
       params = standard_params
-      params[:columns]["0"][:search][:value] = "C66770"
+      params[:columns][C_TS_PI][:search][:value] = "C66770"
       results = Thesaurus.search_current(params)
       check_file_actual_expected(results, sub_dir, "search_12.yaml", equate_method: :hash_equal)
     end
