@@ -24,11 +24,13 @@ function TermSearch(context_id, callback) {
   this.tsCurrentRow = null;
   this.columns = [
     {"data" : "parent_identifier", "width" : "10%"},
+    {"data" : "parent_label", "width" : "10%"},
     {"data" : "identifier", "width" : "10%"},
     {"data" : "notation", "width" : "10%"},
-    {"data" : "preferred_term", "width" : "25%" },
-    {"data" : "synonym", "width" : "15%" },
-    {"data" : "definition", "width" : "40%"}
+    {"data" : "preferred_term", "width" : "10%" },
+    {"data" : "synonym", "width" : "10%" },
+    {"data" : "definition", "width" : "30%"},
+    {"data" : "tags", "width" : "10%"}
   ];
   this.initTable();
 
