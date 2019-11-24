@@ -109,7 +109,7 @@ describe "Tokens", :type => :feature do
 
     # end
 
-    it "locks a subset", js:true do
+    it "locks a subset - WILL CURRENTLY FAIL", js:true do
 
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
