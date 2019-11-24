@@ -1,0 +1,72 @@
+---
+:count: 6
+:items:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1Y1NSNDOTkwNzY=
+  :uri: http://www.cdisc.org/C99076/V55#C99076
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C99076
+  :notation: INTMODEL
+  :definition: A terminology codelist relevant to the trial design developed to compare
+    treatment groups.
+  :preferred_term: CDISC SDTM Intervention Model Terminology
+  :synonym: Intervention Model Response
+  :tags: SDTM; Protocol
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1Y1NSNDOTkwNzZfQzgyNjQw
+  :uri: http://www.cdisc.org/C99076/V55#C99076_C82640
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C82640
+  :notation: SINGLE GROUP
+  :definition: All trial participants are assigned to a single treatment group for
+    the duration of the study.
+  :preferred_term: Single Group Study
+  :synonym: ''
+  :tags: SDTM; Protocol
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1Y1NSNDOTkwNzZfQzE0MjU2OA==
+  :uri: http://www.cdisc.org/C99076/V55#C99076_C142568
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C142568
+  :notation: SEQUENTIAL
+  :definition: Groups of participants are assigned to receive interventions based
+    on prior milestones being reached in the study. (clinicaltrials.gov)
+  :preferred_term: Group Sequential Design
+  :synonym: ''
+  :tags: SDTM; Protocol
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1Y1NSNDOTkwNzZfQzgyNjM5
+  :uri: http://www.cdisc.org/C99076/V55#C99076_C82639
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C82639
+  :notation: PARALLEL
+  :definition: Participants are assigned to one of two or more treatment groups in
+    parallel for the duration of the study.
+  :preferred_term: Parallel Study
+  :synonym: ''
+  :tags: SDTM; Protocol
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1YyOCNDOTkwNzZfQzgyNjM3
+  :uri: http://www.cdisc.org/C99076/V28#C99076_C82637
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C82637
+  :notation: CROSS-OVER
+  :definition: Participants receive one of two or more alternative intervention(s)
+    during the initial epoch of the study and receive other intervention(s) during
+    the subsequent epoch(s) of the study.
+  :preferred_term: Crossover Study
+  :synonym: ''
+  :tags: SDTM
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc2L1Y1NSNDOTkwNzZfQzgyNjM4
+  :uri: http://www.cdisc.org/C99076/V55#C99076_C82638
+  :parent_identifier: C99076
+  :parent_label: Intervention Model Response
+  :identifier: C82638
+  :notation: FACTORIAL
+  :definition: Two or more interventions, each alone or in combination, are evaluated
+    in parallel against a control group. This study design allows for the comparison
+    of active drug to placebo, presence of drug-drug interactions, and comparison
+    of active drugs against each other.
+  :preferred_term: Factorial Study
+  :synonym: ''
+  :tags: SDTM; Protocol

@@ -54,7 +54,7 @@ describe "Thesaurus::Search" do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..50)
+      load_cdisc_term_versions(1..61)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
@@ -178,6 +178,20 @@ describe "Thesaurus::Search" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
       results = ct.search(params)
       check_file_actual_expected(results, sub_dir, "search_16c.yaml", equate_method: :hash_equal)
+    end 
+
+    it "allows a terminology to be searched, tags" do
+      params = standard_params
+      params[:columns][C_TS_PI][:search][:value] = "C99076"
+      params[:columns][C_TS_TAG][:search][:value] = "Protocol; SDTM"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16d.yaml", equate_method: :hash_equal)
+      params = standard_params
+      params[:columns][C_TS_PI][:search][:value] = "C99076"
+      params[:columns][C_TS_TAG][:search][:value] = "SDTM; Protocol"
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16d.yaml", equate_method: :hash_equal)
     end 
 
     it "allows a terminology to be searched, overall" do

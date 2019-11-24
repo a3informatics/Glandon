@@ -120,7 +120,11 @@ class Thesaurus
         # Filter by columns
         columns.each do |column|
           next if column[1][:search][:value].blank?
-          query += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
+          if column[0] == "7"
+            query += "  FILTER(#{get_order_variable(column[0])} IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
+          else
+            query += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
+          end
         end
         
         # Overall search
@@ -144,7 +148,12 @@ class Thesaurus
         order = @@order_map["asc"]
         order = @@order_map[dir] if @@order_map.has_key?(dir)
       end
-    
+
+      # Get tags ready for search
+      def get_tags_filter(text)
+        text.trim('"').split(IsoConceptSystem.tag_separator).map{|x| "'#{x.trim(' ')}'"}.join(", ")
+      end
+
     end
 
     # Search. 
