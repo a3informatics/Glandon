@@ -1,5 +1,4 @@
 <% close_path = cdisc_term_path(:id => @cdisc_term.id, :namespace => @cdisc_term.namespace) %>
-<% third_level_breadcrumb("CDISC History", history_cdisc_terms_path, @cdisc_term.label, close_path, "Import Change Instructions") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Import Change Instructions:", :item => @cdisc_term} %>
 <div class="col-md-6">
   <%= form_for @cdisc_term, method: :post, url: create_cross_reference_cdisc_term_path(@cdisc_term) do |f| %>

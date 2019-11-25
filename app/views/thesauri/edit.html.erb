@@ -4,7 +4,7 @@
 <%= javascript_tag "var children_path = '#{children_thesauri_path(@thesaurus)}';" %>
 <%= javascript_tag "var update_path = '/thesauri/managed_concepts/:id';" %>
 <%= javascript_tag "var parent_id = '#{@thesaurus.id}';" %>
-<% third_level_managed_item_breadcrumb(@thesaurus, "Terminology", thesauri_index_path, @close_path, "Edit:") %>
+<% third_level_breadcrumb(:thesauri, @thesaurus, @close_path) %>
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
     <div class="actions-wrap">

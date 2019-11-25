@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% index_label = "Biomedical Concepts" %>
 <% index_path = biomedical_concepts_path %>
-<% second_level_breadcrumb(index_label, index_path, @identifier) %>
+<% second_level_breadcrumb(:biomedical_concepts, @bc[0].scope.id, @identifier) %>
 <h3>History: <%= @identifier %></h3>
 <div class="row">
 	<div class="col-md-12">

@@ -1,5 +1,4 @@
-<% fourth_level_managed_item_breadcrumb(@form, "Forms", forms_path, history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id), "Show:", 
-  form_path(id: @form.id, namespace: @form.namespace), "Clone") %>
+<% fourth_level_breadcrumb(:forms, @form, history_forms_path(identifier: @form.identifier, scope_id: @form.scope.id), form_path(id: @form.id, namespace: @form.namespace), "Clone") %>
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Cloning:", :item => @form} %>
 <div class="col-md-3">
 	<%= form_for Form.new, :url => clone_create_forms_path do |f| %>
