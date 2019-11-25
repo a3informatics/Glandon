@@ -83,42 +83,42 @@ describe UsersController do
       expect(response).to redirect_to("/users")
     end
 
-    it "stats_by_domain" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_domain
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      expect(actual).to eq({:"example.com"=>1, :total=>1})
-    end
+    # it "stats_by_domain" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :stats_by_domain
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    #   actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+    #   expect(actual).to eq({:"example.com"=>1, :total=>1})
+    # end
     
-    it "stats_by_current_week" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_current_week
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
+    # it "stats_by_current_week" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :stats_by_current_week
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    # end
     
-    it "stats_by_year" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
+    # it "stats_by_year" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :stats_by_year
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    # end
 
-    it "stats_by_year_by_month" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year_by_month
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
+    # it "stats_by_year_by_month" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :stats_by_year_by_month
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    # end
     
-    it "stats_by_year_by_week" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year_by_week
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
+    # it "stats_by_year_by_week" do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :stats_by_year_by_week
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200")
+    # end
 
     it "updates user name" do
       user1 = User.create :email => "fred@example.com", :password => "Changeme1#", name: "x"

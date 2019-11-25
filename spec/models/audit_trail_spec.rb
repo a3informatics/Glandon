@@ -113,6 +113,14 @@ describe AuditTrail do
     expect(items.count).to eq(1)
   end
 
+  it "counts user by year" do
+    # User.destroy_all
+    # User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
+    # User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
+    # User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
+    expect(AuditTrail.users_by_year).to eq({"2019"=>2, "2018"=>1})
+  end
+
 	it "allows filtering of events" do
 		item = IsoManaged.find("F-ACME_TEST", "http://www.assero.co.uk/MDRForms/ACME/V1")
 		user = User.new
