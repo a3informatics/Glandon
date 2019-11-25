@@ -93,6 +93,7 @@ class UsersController < ApplicationController
     user.unlock
     flash[:success] = "User was successfully activated."
     redirect_to users_path
+  end
 
   #User statistics
   def stats_by_domain

@@ -138,6 +138,7 @@ describe "User" do
     expect(user.is_active?).to eq(false)
     user.unlock
     expect(user.is_active?).to eq(true)
+  end
 
   it "counts user by year" do
     User.destroy_all
