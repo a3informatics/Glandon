@@ -2,39 +2,61 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% first_level_breadcrumb (id_to_type('iso_namespaces')) %>
 <div class="row">
-  <div class="col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Namespaces</h3>
-      </div>
-      <div class="panel-body">
-        <table id="main" class="table table-striped table-bordered table-condensed">
-          <thead>
-            <tr>
-                <th>Name</th>
-                <th>Short Name</th>
-                <th></th>
+  <div class="col-md-8 card wide">
+    <div class="card-header">
+      Namespaces
+    </div>
+    <div class="card-content table-cardstyle">
+      <table id="main" class="table table-striped table-bordered table-condensed">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Short Name</th>
+              <th class="fit"></th>
+            </tr>
+        </thead>
+        <tbody>
+          <% @namespaces.each do |namespace| %>
+              <tr>
+                <td><%= namespace.name %></td>
+                <td><%= namespace.short_name %></td>
+                <td>
+                  <% if namespace.not_used? %>
+                    <%= link_to "Delete", iso_namespace_path(namespace), :class => "btn medium red", method: :delete, data: { confirm: "Are you sure?" } %>
+                  <% else %>
+                    &nbsp;
+                  <% end %>
+                </td>
               </tr>
-          </thead>
-          <tbody>
-            <% @namespaces.each do |namespace| %>
-                <tr>
-                  <td><%= namespace.name %></td>
-                  <td><%= namespace.short_name %></td>
-                  <td>
-                    <% if namespace.not_used? %>
-                      <%= link_to "Delete", iso_namespace_path(namespace), :class => "btn btn-danger btn-xs", method: :delete, data: { confirm: "Are you sure?" } %>
-                    <% else %>
-                      &nbsp;
-                    <% end %>
-                  </td>
-                </tr>
-            <% end %>
-          </tbody>
-        </table>
-        <%= link_to "New", new_iso_namespace_path, :class => "btn btn-success" %>
-        <%= render partial: "shared/close_button", locals: { path: root_path } %>
-      </div>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+  <% if policy(IsoNamespace).new? %>
+    <div class="col-md-4 card narrow">
+      <div class="card-header">
+          New Scope Namespace
+      </div>
+      <div class="card-content">
+        <span class="font-light"> To create a new namespace use this form: </span>
+        <%= form_for IsoNamespace.new, url: {action: "create"} do |f| %>
+          <div class="form-wrap wide">
+            <div class="form-group">
+              <%= f.text_field :name, placeholder: "Name", autofocus: true %>
+            </div>
+             <div class="form-group">
+              <%= f.text_field :short_name, placeholder: "Short name"%>
+            </div>
+            <div class="form-group">
+              <%= f.text_field :authority, placeholder: "Authority" %>
+            </div>
+          </div>
+          <div style="float:right">
+            <%= f.submit "+ New namespace", class: "btn medium green" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

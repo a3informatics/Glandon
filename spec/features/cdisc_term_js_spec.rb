@@ -171,11 +171,18 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
     end
 
-    it "history allows the status page to be viewed (REQ-MDR-CT-NONE). Currently failing, Add bug?", js:true do
+    it "history allows the status page to be viewed (REQ-MDR-CT-NONE).", js:true do
        click_navbar_cdisc_terminology
+       wait_for_ajax(10)
        expect(page).to have_content 'History'
-       find(:xpath, "//tr[contains(.,'2015-09-25 Release')]/td/a", :text => 'Status').click
-       expect(page).to have_content 'Status: CDISC Terminology 2015-09-25 CDISC Terminology (V42.0.0, 42, Standard)'
+       #find(:xpath, "//tr[contains(.,'2015-09-25 Release')]/td/a", :text => 'Status').click
+       context_menu_element("history", 5, "2015-09-25 Release", :document_control)
+       expect(page).to have_content 'Manage Status'
+       expect(page).to have_content 'Owner: CDISC'
+       expect(page).to have_content 'Identifier: CT'
+       expect(page).to have_content '2015-09-25 Release'
+       expect(page).to have_content '45.0.0'
+       expect(page).to have_content 'Standard'
        click_link 'Return'
        expect(page).to have_content 'History'
      end

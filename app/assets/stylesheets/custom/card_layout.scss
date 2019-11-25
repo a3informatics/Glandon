@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 // CARDS
 
@@ -22,7 +22,7 @@
   min-width: 300px;
 }
 
-.card-header{
+.card-header, a.card-header{
   background: $primary-color-light;
   color: $grey-white;
   font-size: $font-normal;
@@ -31,6 +31,7 @@
   border-radius: $card-border-radius $card-border-radius 0px 0px;
   padding: 18px 24px;
   width: 100%;
+  display: block;
 }
 
 .card-subheader{
@@ -68,6 +69,43 @@
   padding: 25px 15px;
 }
 
+// CARD-STYLE ITEMS
+
+.card-item{
+  display: flex;
+  max-width: 1000px;
+  height: 76px;
+  margin: auto;
+  padding: 10px 25px;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid $grey-bright;
+}
+
+.card-item:hover .card-item-info, .card-item:hover .circular-badge{
+ transform: translateX(10px);
+}
+
+.card-item .card-item-info{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.card-item .card-item-info, .card-item .circular-badge{
+  transition: transform .5s;
+}
+
+a.card-item{
+  color: inherit;
+}
+
+a.card-item:hover, a.card-item:focus{
+  text-decoration: none;
+}
+
 
 // CARD-STYLE TABLE
 
@@ -75,7 +113,7 @@
   vertical-align: middle;
 }
 
-.table-cardstyle th:last-child{
+.table-cardstyle th:last-child, th.ignore{
   color: transparent;
   pointer-events: none;
 }
@@ -85,7 +123,8 @@
   pointer-events: all;
 }
 
-.table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr{
+.table-cardstyle .table, .table-cardstyle td, .table-cardstyle th, .table-cardstyle tr,
+.table-invisible .table, .table-invisible td, .table-invisible th, .table-invisible tr{
   border: 0px !important;
   background: transparent !important;
 }
@@ -99,12 +138,42 @@
   border-bottom: 1px solid $grey-light !important;
 }
 
-.table-cardstyle td{
+.table-cardstyle td, .table-invisible td{
   height: 40px !important;
 }
 
 .table-cardstyle tr.selected{
   color: $secondary-color-medium !important;
+}
+
+.table-cardstyle .dataTables_info, .table-cardstyle .dataTables_paginate,
+  .table-cardstyle .dataTables_length, .table-cardstyle .dataTables_filter{
+  font-family: $font-light;
+}
+
+.table-invisible .dataTables_info, .table-invisible .dataTables_paginate{
+  padding-top: 20px !important;
+}
+
+.table-invisible .dataTables_info{
+  display: none;
+}
+
+.table-invisible .dataTables_info, .table-invisible .dataTables_paginate,
+  .table-invisible .dataTables_length, .table-invisible .dataTables_filter{
+  font-family: $font-light;
+}
+
+.small-search .dataTables_filter label{
+  font-size: $font-small;
+}
+
+.small-search .dataTables_filter input[type="search"]{
+  height: 25px;
+}
+
+.table-invisible .dataTables_scrollBody{
+  padding: 0 6px;
 }
 
 // SCALING
@@ -169,5 +238,9 @@
     min-width: initial !important;
     max-width: calc(100% - 20px) !important;
     margin: 10px !important;
+  }
+
+  .card-item{
+    padding: 10px 10px;
   }
 }

@@ -25,7 +25,10 @@
 	<% s_texts =
 	[{:title => "Email", :value => @user.email},
 	 {:title => "Current Roles", :value => @user.role_list_stripped},
-	 {:title => "Login Count", :value => @user.sign_in_count}]%>
+	 {:title => "Login Count", :value => @user.sign_in_count},
+   {:title => "Last login", :value => @user.last_sign_in_at.strftime("%F")},
+   {:title => "Days ago", :value => time_ago_in_words(@user.last_sign_in_at)}]%>
+
 
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-users", header_title: "Set user roles for:",
 		main_text: @user.name, sub_texts: s_texts} do %>

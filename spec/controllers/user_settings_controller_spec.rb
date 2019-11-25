@@ -23,6 +23,13 @@ describe UserSettingsController do
       expect(response).to redirect_to("/user_settings")
     end
 
+    it "updates user, json" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      put :update, {id: @user.id, :user_settings => {:name => "dashboard_layout", :value => "terminologies, stats"}}
+      expect(@user.read_setting(:dashboard_layout).value).to eq("terminologies, stats")
+      expect(response.status).to eq(200)
+    end
+
   end
 
   describe "user settings as sys admin" do

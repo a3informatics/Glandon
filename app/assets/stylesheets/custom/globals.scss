@@ -1,8 +1,6 @@
-/* FONTS */
-$font-primary: 'Roboto';
-$font-light: 'Roboto-Thin';
-$font-bold: 'Roboto-Bold';
+@import "custom/vars.scss";
 
+/* FONTS */
 @font-face {
   font-family: $font-light;
   src:font-url('Roboto-Light.ttf');
@@ -43,12 +41,6 @@ body{
 /* COLORS */
 
 /* Primary color (blue) */
-$primary-color-dark: #2b4753;
-$primary-color-medium: #407085;
-$primary-color-light: #6d91a1;
-$primary-color-bright: #9dc0cf;
-$primary-color-brightest: #cadee8;
-
 .bg-prim-dark{
   background: $primary-color-dark;
 }
@@ -66,11 +58,6 @@ $primary-color-brightest: #cadee8;
 }
 
 /* Secondary color (green) */
-$secondary-color-dark: #6e8a30;
-$secondary-color-medium: #96b947;
-$secondary-color-light: #c0dd78;
-$secondary-color-bright: #def3a9;
-
 .bg-sec-dark{
   background: $secondary-color-dark;
 }
@@ -88,11 +75,6 @@ $secondary-color-bright: #def3a9;
 }
 
 /* Accent colors (orange & red) */
-$accent-color-1: #f5d684;
-$accent-color-2: #e48080;
-$accent-color-2-light: #f2a6a6;
-$accent-color-2-dark: #c95c5c;
-
 .bg-accent-1{
   background: $accent-color-1;
 }
@@ -101,13 +83,11 @@ $accent-color-2-dark: #c95c5c;
   background: $accent-color-2;
 }
 
-/* Text & grey colors */
-$grey-dark: #414141;
-$grey-medium: #6f6f6f;
-$grey-light: #c4c4c4;
-$grey-bright: #f4f4f4;
-$grey-white: #ffffff;
+.bg-accent-3{
+  background: $accent-color-3;
+}
 
+/* Text & grey colors */
 .bg-grey-dark{
   background: $grey-dark;
 }
@@ -148,8 +128,16 @@ $grey-white: #ffffff;
   color: $accent-color-1;
 }
 
+.text-accent-1-dark{
+  color: $accent-color-1-dark;
+}
+
 .text-accent-2{
   color: $accent-color-2;
+}
+
+.text-accent-3{
+  color: $accent-color-3;
 }
 
 .text-link{
@@ -165,15 +153,6 @@ $grey-white: #ffffff;
 }
 
 /* SIZES */
-
-$font-tiny: 8pt;
-$font-small: 10pt;
-$font-normal: 12pt;
-$font-xnormal: 14pt;
-$font-large: 16pt;
-$font-xlarge: 20pt;
-$font-xxlarge: 30pt;
-
 .text-tiny{
   font-size: $font-tiny;
 }
@@ -207,9 +186,6 @@ $font-xxlarge: 30pt;
   text-align: justify;
 }
 
-$card-border-radius: 10px;
-$button-border-radius: 20px;
-$row-highlight-background: #f8f8f8;
 
 .clickable{
   cursor: pointer;

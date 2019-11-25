@@ -11,6 +11,9 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
+            <center>
+              <img src="<%= asset_path 'icons/edit_properties' %>" class="modal-img"/>
+            </center>
             <%= form_for(mc, as: :edit, url: update_properties_thesauri_managed_concept_path(), html: { method: :PATCH }) do |f| %>
               <%= f.hidden_field :context_id, :value => @context_id %>
             <div class="form-wrap">

@@ -5,14 +5,23 @@
 <%= javascript_tag "var strict_params = 'thesauri';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
-<% second_level_breadcrumb(id_to_type('thesauri'), @scope_id, @identifier) %>
+<% second_level_breadcrumb(:thesauri, @scope_id, @identifier) %>
+<% @close_path = thesauri_index_path %>
 <div class="row">
-	<div class="col-md-12 card">
-		<%= render partial: "shared/history_panel", locals: {title: "History: #{@identifier}"} %>
+	<%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @thesaurus, header_title: "Item History"} do %>
+    <div class="actions-wrap">
+			<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+				icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+    </div>
+  <% end %>
+</div>
+<div class="row centered">
+	<div class="col-md-10 card table-cardstyle">
+		<%= render partial: "shared/history_panel", locals: {title: "Version History of '#{@identifier}'"} %>
 	</div>
 </div>
-<div class="row">
-	<div class="col-md-12 card">
+<div class="row centered">
+	<div class="col-md-10 card table-cardstyle">
 		<%= render partial: "shared/iso_managed/comments_panel" %>
 	</div>
 </div>

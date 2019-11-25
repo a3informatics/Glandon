@@ -1,24 +1,25 @@
 <%= javascript_tag 'setPageTitle("Markdown")' %>
 <%= javascript_include_tag 'markdown_editor', 'ajax_requests', 'field_validation' %>
-<% first_level_breadcrumb (id_to_type('markdown_engines')) %>
+<% first_level_breadcrumb(:markdown_engines) %>
 <h3>Markdown</h3>
 <div class="row">
-	<div class="col-md-6" >
+	<div class="col-md-12 card wide">
+		<div class="card-header">Markdown builder</div>
+		<div class="card-content">
+			<div class="col-md-6">
         <form id="main_form">
             <div class="form-group">
-                <label for="raw_markdown">Raw Markdown:</label>
-                <textarea class="form-control collapse in" id="raw_markdown" name="Raw Markdown" rows="30" style="font-family:monospace;"></textarea>
+                <label for="raw_markdown" class="font-light">Raw Markdown:</label>
+                <textarea class="form-control collapse in" id="raw_markdown" name="Raw Markdown" rows="30" style="font-family:monospace; max-width: 100%;"></textarea>
             </div>
-            <button type="button" id="markdown_preview" class="btn ">Preview</button>
-            <button type="Submit" id="markdown_validate" class="btn ">Validate</button>
+            <button type="button" id="markdown_preview" class="btn medium">Preview</button>
+            <button type="Submit" id="markdown_validate" class="btn medium green">Validate</button>
         </form>
-	</div>
-	<div class="col-md-6" >
-        <label for="generic_markdown">Processed Markdown:</label>
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div id="generic_markdown"></div>
-            </div>
-        </div>
-    </div>
+			</div>
+			<div class="col-md-6">
+		        <label for="generic_markdown" class="font-light">Processed Markdown:</label>
+            <div id="generic_markdown"></div>
+		    </div>
+			</div>
+		</div>
 </div>

@@ -1,5 +1,30 @@
 module ApplicationHelper
 
+  @@id_to_type_map = {
+    dashboard: {link: "#", text: "Dashboard"},
+    iso_namespaces: {link: "/iso_namespaces", text: "Namespaces"}, 
+    iso_registration_authorities: {link: "/iso_registration_authorities", text: "Registration Authorities"}, 
+    iso_managed: {link: "/iso_managed", text: "Managed Items"}, tokens: {link: "/tokens", text: "Edit Locks"}, 
+    audit_trail: {link: "/audit_trail", text: "Audit trail"},
+    uploads: {link: "/uploads", text: "Upload"}, imports: {link: "/imports/list", text: "Import"}, e
+    xports: {link: "/exports", text: "Export"}, 
+    backgrounds: {link: "/backgrounds", text: "Background Jobs"},
+    ad_hoc_reports: {link: "/ad_hoc_reports", text: "Ad Hoc Reports"}, 
+    iso_concept_systems: {link: "/iso_concept_systems", text: "Tags"}, 
+    markdown_engines: {link: "/markdown_engines", text: "Markdown"},
+    thesauri: {link: "/thesauri", text: "Terminology"}, 
+    cdisc_terms: {link: "/cdisc_terms/history", text: "CDISC Terminology"},
+    biomedical_concept_templates: {link: "/biomedical_concept_templates", text: "Biomedical Concept Templates"}, 
+    biomedical_concepts: {link: "/biomedical_concepts", text: "Biomedical Concepts"},
+    forms: {link: "/forms", text: "Forms"},
+    sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model"}, 
+    sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs"}, 
+    sdtm_user_domains: {link: "/sdtm_user_domains", text: "Domains"},
+    adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs"}, 
+    user_settings: {link: "/user_settings", text: "User Settings"}, 
+    users: {link: "/users", text: "Users"}
+  }
+
   def instance_title(title, item)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     status = item.respond_to?(:registration_status) ? item.registration_status : item.registrationStatus
@@ -70,8 +95,8 @@ module ApplicationHelper
   # @param [Symbol] alignment the desired alignment, either :left, :right or :center
   # @return [String] returns the HTML for the setting
   def true_false_cell(data, alignment)
-    span_class = "glyphicon " # Note space at end
-    span_class += data ? "glyphicon-ok text-success" : "glyphicon-remove text-danger"
+    span_class = "icon-" # Note space at end
+    span_class += data ? "ok text-secondary-clr" : "times text-accent-2"
     return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
   end
 
@@ -238,22 +263,38 @@ module ApplicationHelper
     end
   end
 
-  def id_to_type (id)
-    id_to_type_map = {
-      dashboard: {link: "#", text: "Dashboard"},
-      iso_namespaces: {link: "/iso_namespaces", text: "Namespaces"}, iso_registration_authorities: {link: "/iso_registration_authorities", text: "Registration Authorities"}, 
-      iso_managed: {link: "/iso_managed", text: "Managed Items"}, tokens: {link: "/tokens", text: "Edit Locks"}, audit_trail: {link: "/audit_trail", text: "Audit trail"},
-      uploads: {link: "/uploads", text: "Upload"}, imports: {link: "/imports/list", text: "Import"}, exports: {link: "/exports", text: "Export"}, 
-      backgrounds: {link: "/backgrounds", text: "Background Jobs"},
-      ad_hoc_reports: {link: "/ad_hoc_reports", text: "Ad Hoc Reports"}, 
-      iso_concept_systems: {link: "/iso_concept_systems", text: "Tags"}, markdown_engines: {link: "/markdown_engines", text: "Markdown"},
-      thesauri: {link: "/thesauri", text: "Terminology"}, cdisc_terms: {link: "/cdisc_terms/history", text: "CDISC Terminology"},
-      biomedical_concept_templates: {link: "/biomedical_concept_templates", text: "Biomedical Concept Templates"}, biomedical_concepts: {link: "/biomedical_concepts", text: "Biomedical Concepts"},
-      forms: {link: "/forms", text: "Forms"},
-      sdtm_models: {link: "/sdtm_models/history", text: "CDISC SDTM Model"}, sdtm_igs: {link: "/sdtm_igs/history", text: "CDISC SDTM IGs"}, sdtm_user_domains: {link: "/sdtm_user_domains", text: "Domains"},
-      adam_igs: {link: "/adam_igs/history", text: "CDISC ADaM IGs"}, user_settings: {link: "/user_settings", text: "User Settings"}, users: {link: "/users", text: "Users"}
-      }
-    type = id_to_type_map[id.to_sym]
+  def id_to_type(id)
+    type = @@id_to_type_map[id]
+  end
+
+  def user_policy_dashboard_panels
+    user_role_panel_list = {}
+
+    APP_CONFIG['dashboard_panels'].each do |key, value|
+      case key
+      when "terminologies"
+        user_role_panel_list[key] = {name: value, url: "thesauri", safe_param: "thesauri"} if policy(Thesaurus).index?
+      when "stats"
+        user_role_panel_list[key] = {name: value, url: "", safe_param: ""} if current_user.has_role?(:sys_admin)
+      # when "bct"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concept_templates", safe_param: "biomedical_concept_template"} if policy(BiomedicalConceptTemplate).index?
+      # when "bcs"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConcept).index?
+      # when "forms"
+      #   user_role_panel_list[key] = {name: value, url: "forms", safe_param: ""} if policy(Form).index?
+      # when "domains"
+      #   user_role_panel_list[key] = {name: value, url: "sdtm_user_domains", safe_param: ""} if policy(SdtmUserDomain).index?
+      end
+    end
+    user_role_panel_list
+  end
+
+  def thesaurus_accent_color (owner_name)
+    if owner_name.upcase.include? "CDISC"
+      return "bg-accent-1"
+    else
+      return "bg-prim-light"
+    end
   end
 
 end

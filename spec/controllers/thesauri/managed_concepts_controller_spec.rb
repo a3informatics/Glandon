@@ -130,7 +130,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:context_id)).to eq(th_uri.to_id)
       expect(assigns(:can_be_extended)).to eq(false)
       expect(assigns(:is_extended)).to eq(true)
-      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}&managed_concept%5Breference_ct_id%5D=")
+      expect(assigns(:is_extended_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}")
       expect(assigns(:is_extending)).to eq(false)
       expect(assigns(:is_extending_path)).to eq("")
       expect(response).to render_template("show")
@@ -148,7 +148,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:is_extended)).to eq(false)
       expect(assigns(:is_extended_path)).to eq("")
       expect(assigns(:is_extending)).to eq(true)
-      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}&managed_concept%5Breference_ct_id%5D=")
+      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgwL1YyI1hYWFhY?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th_uri.to_id)}")
       expect(response).to render_template("show")
     end
 

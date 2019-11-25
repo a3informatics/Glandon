@@ -73,7 +73,7 @@ describe Import::Crf do
     expect(result).to eq(expected)
   end
 
-  it "gets form, AE example, ODM" do
+  it "gets form, AE example, ODM - WILL CURRENTLY FAIL" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "F_AE", files: [full_path], file_type: "1", job: @job})
@@ -88,7 +88,7 @@ describe Import::Crf do
     delete_data_file(sub_dir, filename)
   end
 
-  it "gets form, BASELINE example" do
+  it "gets form, BASELINE example - WILL CURRENTLY FAIL" do
     simple_setup
     full_path = test_file_path(sub_dir, "odm_1.xml")
     @object.import({identifier: "F_BASELINE", files: [full_path], file_type: "1", job: @job})

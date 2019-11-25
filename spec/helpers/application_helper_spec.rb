@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ApplicationHelper do
-  
+
   describe "utilities" do
 
   	class Test
@@ -18,14 +18,23 @@ describe ApplicationHelper do
   		return object
   	end
 
-  	it "build an instance title for a managed item" do
+  	before :all do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "build an instance title for a managed item" do
   		item = Form.new
   		item.scopedIdentifier.version = 10
   		item.scopedIdentifier.semantic_version = "2.3.1"
   		item.registrationState.registrationStatus = "Standard"
   		item.label = "Blah"
   		item.scopedIdentifier.identifier = "IDENT"
-	  	expect(instance_title("Title", item)).to eq("Title Blah <small>IDENT (V2.3.1, 10, Standard)</small>")
+	  	expect(instance_title("Title", item)).to eq("Title Blah <span class='text-tiny'>IDENT (V2.3.1, 10, Standard)</span>")
 	  end
 
     it "bootstrap alert class" do
@@ -75,14 +84,14 @@ describe ApplicationHelper do
 		end
 
     it "true false glyphicon" do
-			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>")
-			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
+			expect(true_false_glyphicon(true)).to eq("<td class=\"text-center\"><span class=\"icon-ok text-secondary-clr\"/></td>")
+			expect(true_false_glyphicon(false)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
 		end
 
     it "true false cell" do
-      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"glyphicon glyphicon-ok text-success\"/></td>")
-      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
-      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"glyphicon glyphicon-remove text-danger\"/></td>")
+      expect(true_false_cell(true, :left)).to eq("<td class=\"text-left\"><span class=\"icon-ok text-secondary-clr\"/></td>")
+      expect(true_false_cell(false, :right)).to eq("<td class=\"text-right\"><span class=\"icon-times text-accent-2\"/></td>")
+      expect(true_false_cell(false, :center)).to eq("<td class=\"text-center\"><span class=\"icon-times text-accent-2\"/></td>")
     end
 
 		it "column ordering" do
@@ -90,7 +99,74 @@ describe ApplicationHelper do
 		  expect(column_order(2, :desc)).to eq("[[2, 'desc']]")
 		  expect(column_order(3, :something)).to eq("[[3, 'asc']]")
 		end
-	
+
 	end
+
+  describe "breadcrumb" do
+
+    it "singe item" do
+    	param = [{link: "/test", text: "Click"}]
+    	helper.breadcrumb(param)
+      expect(session[:breadcrumbs]).to eq("<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\" class=\"active\">Click</li></ol>")
+    end
+
+  	it "multiple items" do
+    	param = [{link: "/test/1", text: "Click 1"}, {link: "/test/2", text: "Click 2"}]
+    	helper.breadcrumb(param)
+      expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/1\">Click 1</a></li><li id=\"breadcrumb_2\" " +
+      	"class=\"active\">Click 2</li></ol>"
+      expect(session[:breadcrumbs]).to eq(expected)
+    end
+
+  	it "top level" do
+    	helper.top_level_breadcrumb("Top")
+      expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\" class=\"active\">Top</li></ol>"
+      expect(session[:breadcrumbs]).to eq(expected)
+    end
+
+  	it "second level" do
+    	helper.second_level_breadcrumb("Top", "/test/top", "2nd Level")
+      expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/top\">Top</a></li><li " +
+      	"id=\"breadcrumb_2\" class=\"active\">2nd Level</li></ol>"
+      expect(session[:breadcrumbs]).to eq(expected)
+    end
+
+  	it "third level" do
+    	helper.third_level_breadcrumb("Top", "/test/top", "2nd Level", "/test/level2", "3rd Level")
+      expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/top\">Top</a></li><li id=\"breadcrumb_2\">" +
+      	"<a href=\"/test/level2\">2nd Level</a></li><li id=\"breadcrumb_3\" class=\"active\">3rd Level</li></ol>"
+      expect(session[:breadcrumbs]).to eq(expected)
+    end
+
+  	it "fourth level" do
+    	helper.fourth_level_breadcrumb("Top", "/test/top", "2nd Level", "/test/level2", "3rd Level", "/test/level3", "4th Level")
+      expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/top\">Top</a></li><li id=\"breadcrumb_2\">" +
+      	"<a href=\"/test/level2\">2nd Level</a></li><li id=\"breadcrumb_3\"><a href=\"/test/level3\">3rd Level</a></li><li id=\"breadcrumb_4\" " +
+      	"class=\"active\">4th Level</li></ol>"
+      expect(session[:breadcrumbs]).to eq(expected)
+    end
+
+  	it "third level, managed item" #do
+  		# mi = IsoManaged.new
+  		# mi.scopedIdentifier.identifier = "BREADCRUMB"
+  		# mi.scopedIdentifier.semantic_version = "1.2.3"
+    # 	helper.third_level_managed_item_breadcrumb(mi, "Top", "/test/top", "/test/level2", "Action 3")
+    #   expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/top\">Top</a></li><li id=\"breadcrumb_2\"><a " +
+    #   	"href=\"/test/level2\">BREADCRUMB</a></li><li id=\"breadcrumb_3\" class=\"active\">Action 3 V1.2.3</li></ol>"
+    #   expect(session[:breadcrumbs]).to eq(expected)
+    # end
+
+  	it "fourth level, managed item" #do
+  		# mi = IsoManaged.new
+  		# mi.scopedIdentifier.identifier = "BREADCRUMB"
+  		# mi.scopedIdentifier.semantic_version = "1.2.3"
+    # 	helper.fourth_level_managed_item_breadcrumb(mi, "Top", "/test/top", "/test/level2", "Action 3", "/test/level3", "Action 4")
+    #   expected = "<ol class=\"breadcrumb\"><li id=\"breadcrumb_1\"><a href=\"/test/top\">Top</a></li><li id=\"breadcrumb_2\"><a " +
+    #   	"href=\"/test/level2\">BREADCRUMB</a></li><li id=\"breadcrumb_3\"><a href=\"/test/level3\">Action 3 V1.2.3</a></li><li " +
+    #   	"id=\"breadcrumb_4\" class=\"active\">Action 4</li></ol>"
+    #   expect(session[:breadcrumbs]).to eq(expected)
+    # end
+
+  end
 
 end

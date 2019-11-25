@@ -102,11 +102,12 @@ describe "Community Dashboard JS", :type => :feature do
       expect(page).to have_xpath("//div[@id='created_div']/a[@class='item A']", count: 4)
       expect(page).to have_xpath("//div[@id='updated_div']/a[@class='item D']", count: 3)
       expect(page).to have_xpath("//div[@id='deleted_div']/a[@class='item S']", count: 8)
-      find(:xpath, "//div[@id='created_div']/a[15]").click
+      #find(:xpath, "//div[@id='created_div']/a[15]").click
+      find(:xpath, "//div[@id='created_div']/a", :text => "EVDRETRT (C102579)").click
       wait_for_ajax(10)
+      expect(page).to have_content 'C102579'
+      expect(page).to have_content 'CDISC SDTM Supporting Evidence for Re-Treatment Terminology'
       expect(page).to have_content 'Differences'
-      expect(page).to have_content 'C102584'
-      expect(page).to have_content 'Reason For Treatment'
       expect(page).to have_content 'Changes'
       click_link 'Home'
       check_on_commumity_dashboard
