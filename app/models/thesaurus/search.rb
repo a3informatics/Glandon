@@ -121,7 +121,7 @@ class Thesaurus
         columns.each do |column|
           next if column[1][:search][:value].blank?
           if column[0] == "7"
-            query += "  FILTER(#{get_order_variable(column[0])} IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
+            query += "  FILTER(UCASE(#{get_order_variable(column[0])}) IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
           else
             query += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
           end
@@ -151,7 +151,7 @@ class Thesaurus
 
       # Get tags ready for search
       def get_tags_filter(text)
-        text.trim('"').split(IsoConceptSystem.tag_separator).map{|x| "'#{x.trim(' ')}'"}.join(", ")
+        text.trim('"').split(IsoConceptSystem.tag_separator).map{|x| "'#{x.trim(' ').upcase}'"}.join(", ")
       end
 
     end
