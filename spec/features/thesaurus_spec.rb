@@ -47,12 +47,12 @@ describe "Thesaurus", :type => :feature do
 
     it "allows the index page to be viewed (REQ-MDR-ST-015, REQ-MDR-MIT-015)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
     end
 
     it "allows the history page to be viewed (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -60,7 +60,7 @@ describe "Thesaurus", :type => :feature do
 
     it "history allows the show page to be viewed (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -77,7 +77,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows the lower level show pages to be viewed (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -105,7 +105,7 @@ describe "Thesaurus", :type => :feature do
 
     it "history allows the search page to be viewed (REQ-MDR-ST-060)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -119,7 +119,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a search to be performed (REQ-MDR-ST-060)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -135,7 +135,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a search (overall) within version to be performed (REQ-MDR-ST-060)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -152,7 +152,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a search (detailed) within version to be performed (REQ-MDR-ST-060)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -188,19 +188,19 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a search to be performed on all current versions (REQ-MDR-ST-030)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'Search across all current versions'
       expect(page).to have_content 'Search: All Current Terminology'
       wait_for_ajax(5) # Big load
       ui_check_table_info("searchTable", 0, 0, 0)
       click_link 'Return'
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
     end
 
     #View option removed
     # it "history allows the view page to be viewed (REQ-MDR-ST-015)", js: true do
     #   click_navbar_terminology
-    #   expect(page).to have_content 'All Terminologies'
+    #   expect(page).to have_content 'Index: Terminology'
     #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
     #   expect(page).to have_content 'Version History of \'CDISC EXT\''
     #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'View').click

@@ -144,7 +144,7 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'CDISC'
       click_link 'Terminologies'
       wait_for_ajax(120)
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
     end
 
     it "allows the dashboard to be viewed, statistics panel (REQ-MDR-UD-NONE)", js: true do
