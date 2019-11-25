@@ -96,12 +96,12 @@ describe "Tags", :type => :feature do
       fill_in 'add_label', with: 'Tag XX'
       fill_in 'add_description', with: 'Description'
       click_on 'Create tag'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content('Tag XX')
       fill_in 'add_label', with: 'Tag XX'
       fill_in 'add_description', with: 'Description'
       click_on 'Create tag'
-      wait_for_ajax
+      wait_for_ajax(10)
       expect(page).to have_content('This tag label already exists at this level.')
     end
 

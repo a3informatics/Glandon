@@ -2,47 +2,67 @@
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Registration Authorities") %>
 <div class="row">
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Registration Authorities</h3>
-      </div>
-      <div class="panel-body">
-      	<h4>Owner:</h4>Repository owner is <%= @owner.ra_namespace.short_name %></p>
-      	<h4>Details:</h4>
-      	<table id="main" class="table table-striped table-bordered table-condensed">
-      		<thead>
-      			<tr>
-      			    <th>Number</th>
-      			    <th>Scheme</th>
-      			    <th>Name</th>
-      			    <th>Short Name</th>
-      			    <th>Owner</th>
-      			    <th></th>
-      		  	</tr>
-      		</thead>
-      	  	<tbody>
-      			<% @registrationAuthorities.each do |ra| %>
-      		  		<tr>
-      				    <td><%= ra.organization_identifier %></td>
-      				    <td><%= ra.international_code_designator %></td>
-      				    <td><%= ra.ra_namespace.name %></td>
-      				    <td><%= ra.ra_namespace.short_name %></td>
-      				    <%= true_false_glyphicon(ra.owner) %>
-                  <td>
-                    <% if ra.not_used? %>
-                      <%= render partial: "shared/buttons/delete", locals: {link_path: iso_registration_authority_path(ra), small: true, id: "delete_button_#{ra.id}", label: "Delete"} %>
-                    <% else %>
-                      &nbsp;
-                    <% end %>
-                  </td>
-      				</tr>
-      			<% end %>
-      		</tbody>
-      	</table>
-      	<%= link_to "New", new_iso_registration_authority_path, :class => "btn btn-success" %>
-        <%= render partial: "shared/close_button", locals: { path: root_path } %>
-      </div>
+  <div class="col-md-8 card wide">
+    <div class="card-header">
+        Registration Authorities
+    </div>
+    <div class="card-content table-cardstyle">
+    	<h4><span class="icon-users text-prim-light"></span> Owner:</h4>
+      <span class="font-light">This repository is owned by <%= @owner.ra_namespace.short_name %>.</span>
+      <br/><br/>
+    	<h4><span class="icon-search text-prim-light"></span> Details:</h4>
+    	<table id="main" class="table table-striped table-bordered table-condensed">
+    		<thead>
+    			<tr>
+    			    <th>Number</th>
+    			    <th>Scheme</th>
+    			    <th>Name</th>
+    			    <th>Short Name</th>
+    			    <th>Owner</th>
+    			    <th class="fit"></th>
+    		  	</tr>
+    		</thead>
+    	  	<tbody>
+    			<% @registrationAuthorities.each do |ra| %>
+    		  		<tr>
+    				    <td><%= ra.organization_identifier %></td>
+    				    <td><%= ra.international_code_designator %></td>
+    				    <td><%= ra.ra_namespace.name %></td>
+    				    <td><%= ra.ra_namespace.short_name %></td>
+    				    <%= true_false_glyphicon(ra.owner) %>
+                <td>
+                  <% if ra.not_used? %>
+                  	<%= link_to "Delete", iso_registration_authority_path(ra), method: :delete, data: {confirm: "Are you sure?"}, id: "delete_button_#{ra.id}", :class => "btn medium red" %>
+                  <% else %>
+                    &nbsp;
+                  <% end %>
+                </td>
+    				</tr>
+    			<% end %>
+    		</tbody>
+    	</table>
     </div>
   </div>
+  <% if policy(IsoRegistrationAuthority).new? %>
+    <div class="col-md-4 card narrow">
+      <div class="card-header">
+          New Registration Authority
+      </div>
+      <div class="card-content">
+        <%= form_for IsoRegistrationAuthority.new do |f| %>
+          <div class="form-wrap wide">
+              <label for="organization_identifier" class="font-light">DUNS Number:</label><br/>
+              <%= f.text_field :organization_identifier, placeholder: "Not Set", value: "", autofocus: true %>
+              <br/><br/>
+              <label for="name" class="font-light">Scope Namespace:</label><br/>
+              <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces), {:class => 'form-control'}) %>
+          </div>
+          <br/>
+          <div style="float:right">
+          <%= f.submit "+ New Registration Authority", class: "btn medium green" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

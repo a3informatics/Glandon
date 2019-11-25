@@ -11,10 +11,14 @@ describe 'thesauri/history.html.erb', :type => :view do
   end
 
   before :all do
-    clear_triple_store
+    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
+      "BusinessOperational.ttl", "thesaurus.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_data_file_into_triple_store("cdisc/ct/CT_V1.ttl")
   end
 
-  it 'displays the form, import and files' do
+  it 'displays the history panel and comments panel' do
 
     def view.policy(name)
       # Do nothing
@@ -22,12 +26,13 @@ describe 'thesauri/history.html.erb', :type => :view do
 
     assign(:identifier, "aaa")
     assign(:scope_id, "123")
+    assign(:thesaurus, ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")))
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("History: aaa")
+    expect(rendered).to have_content("Version History of 'aaa'")
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Version')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Owner')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(3)", text: 'Identifier')

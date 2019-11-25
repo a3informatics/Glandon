@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 // BUTTONS
 .btn{
@@ -216,6 +216,14 @@
   background: $secondary-color-light;
 }
 
+.ico-btn-sec .circular-badge.blue{
+  background: $primary-color-light;
+}
+
+.ico-btn-sec:hover .circular-badge.blue{
+  background: $primary-color-bright;
+}
+
 .ico-btn-sec .ico-btn-sec-text{
   font-family: $font-light;
   margin-left: 6px;
@@ -259,6 +267,7 @@
 .paginate_button.active a{
   background: $primary-color-medium !important;
   color: $grey-white !important;
+  border-color: $primary-color-medium !important;
 }
 
 .paginate_button a{
@@ -269,10 +278,20 @@ button:focus, input[type="submit"] {
   outline: none !important;
 }
 
+a:focus{
+  color: $primary-color-light;
+}
+
 .btn:active{
   background: $primary-color-medium !important;
 }
 
 .paginate_button a:focus{
   outline: none !important;
+}
+
+@media (max-width: 768px){
+  .actions-wrap{
+    justify-content: center;
+  }
 }

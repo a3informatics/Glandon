@@ -123,8 +123,8 @@ describe "ISO Managed JS", :type => :feature do
     it "allows the comments to be updated, cdisc term", js: true do
       ua_curator_login
       click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a", :text => 'History').click
+      expect(page).to have_content 'All Terminologies'
+      find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a").click
       find(:xpath, "//table[@id='comments_table']/tbody/tr[contains(.,'2015-03-27')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Comments:'
       fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
@@ -139,7 +139,7 @@ describe "ISO Managed JS", :type => :feature do
     it "allows the status to be viewed", js: true do
       ua_curator_login
       click_navbar_cdisc_terminology
-      expect(page).to have_content 'Controlled Terminology'      
+      expect(page).to have_content 'Controlled Terminology'
     end
 
     it "allows the status to be updated", js: true do

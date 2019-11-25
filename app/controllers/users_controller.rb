@@ -79,6 +79,48 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def lock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.lock
+    flash[:success] = "User was successfully deactivated."
+    redirect_to users_path
+  end
+
+  def unlock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.unlock
+    flash[:success] = "User was successfully activated."
+    redirect_to users_path
+  end
+
+  #User statistics
+  def stats_by_domain
+    authorize User, :index?
+    render json: {data: User.users_by_domain}
+  end
+
+  def stats_by_year
+    authorize User, :index?
+    render json: {data: User.users_by_year}
+  end
+
+  def stats_by_current_week
+    authorize User, :index?
+    render json: {data: User.users_by_current_week}
+  end
+
+  def stats_by_year_by_month
+    authorize User, :index?
+    render json: {data: User.users_by_year_by_month}
+  end
+
+  def stats_by_year_by_week
+    authorize User, :index?
+    render json: {data: User.users_by_year_by_week}
+  end
+
 private
 
   def set_user

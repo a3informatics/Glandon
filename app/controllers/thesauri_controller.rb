@@ -40,6 +40,7 @@ class ThesauriController < ApplicationController
           redirect_to thesauri_index_path
         else
           @thesauri_id = results.first.to_id
+          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
         end

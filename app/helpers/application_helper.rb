@@ -70,8 +70,8 @@ module ApplicationHelper
   # @param [Symbol] alignment the desired alignment, either :left, :right or :center
   # @return [String] returns the HTML for the setting
   def true_false_cell(data, alignment)
-    span_class = "glyphicon " # Note space at end
-    span_class += data ? "glyphicon-ok text-success" : "glyphicon-remove text-danger"
+    span_class = "icon-" # Note space at end
+    span_class += data ? "ok text-secondary-clr" : "times text-accent-2"
     return raw("<td class=\"text-#{alignment}\"><span class=\"#{span_class}\"/></td>")
   end
 
@@ -234,6 +234,36 @@ module ApplicationHelper
       "icon-sdtm"
     else
       item.label[0].upcase
+    end
+  end
+
+  def user_policy_dashboard_panels
+    user_role_panel_list = {}
+
+    APP_CONFIG['dashboard_panels'].each do |key, value|
+      case key
+      when "terminologies"
+        user_role_panel_list[key] = {name: value, url: "thesauri", safe_param: "thesauri"} if policy(Thesaurus).index?
+      when "stats"
+        user_role_panel_list[key] = {name: value, url: "", safe_param: ""} if current_user.has_role?(:sys_admin)
+      # when "bct"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concept_templates", safe_param: "biomedical_concept_template"} if policy(BiomedicalConceptTemplate).index?
+      # when "bcs"
+      #   user_role_panel_list[key] = {name: value, url: "biomedical_concepts", safe_param: "biomedical_concept"} if policy(BiomedicalConcept).index?
+      # when "forms"
+      #   user_role_panel_list[key] = {name: value, url: "forms", safe_param: ""} if policy(Form).index?
+      # when "domains"
+      #   user_role_panel_list[key] = {name: value, url: "sdtm_user_domains", safe_param: ""} if policy(SdtmUserDomain).index?
+      end
+    end
+    user_role_panel_list
+  end
+
+  def thesaurus_accent_color (owner_name)
+    if owner_name.upcase.include? "CDISC"
+      return "bg-accent-1"
+    else
+      return "bg-prim-light"
     end
   end
 

@@ -29,6 +29,7 @@
 //= require jquery.validate.additional-methods
 //= require sidebar_handler
 //= require app-js-erb-extension
+//= require jquery-dateformat.min
 //= require title
 
 // Managed Item Types
@@ -167,13 +168,18 @@ function alertInfo(text) {
 }
 
 function displayAlerts(html) {
-    var alertsId = document.getElementById("alerts")
-  	alertsId.innerHTML = html;
+    var alerts = document.getElementById("alerts");
+  	alerts.innerHTML = html;
     window.setTimeout(function()
       {
-        alertsId.innerHTML = "";
+          dismissAlerts();
       },
       5000);
+}
+
+function dismissAlerts(){
+  var alerts = document.getElementById("alerts");
+  alerts.innerHTML = "";
 }
 
 function notImplementedYet() {
@@ -400,6 +406,20 @@ function isIE() {
 function isSafari(){
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 }
+
+function dateString(){
+  var date = new Date().getTime();
+  return $.format.date(date, "ddd, MMMM D, yyyy")
+}
+
+function getStringInitials(str) {
+  var initials = "";
+  var words = str.split(' ');
+  $.each(words, function(){
+    initials += this.substring(0,1).toUpperCase();
+  });
+  return initials;
+};
 
 function toggleTableActive(tableId, enable) {
   if(enable)

@@ -39,27 +39,27 @@ describe "Ad Hoc Reports", :type => :feature do
 
     it "allows a report to be created (REQ-MDR-AR-010, REQ-MDR-AR-060)", js: true do
       click_navbar_ahr
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
-      click_link 'New'
-      expect(page).to have_content 'New Ad-Hoc Report:'
+      expect(page).to have_content 'Ad-Hoc Reports'
+      click_link '+ Add New'
+      expect(page).to have_content 'New Ad-Hoc Report'
       select Rails.root.join("public", "upload", "ad_hoc_report_test_1_sparql.yaml"), :from => "ad_hoc_report_files_"
-      click_button 'Create'
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      click_button 'Create report'
+      expect(page).to have_content 'Ad-Hoc Reports'
       expect(page).to have_content 'Report was successfully created.'
     end
 
     it "allows a report to be run (REQ-MDR-AR-020, REQ-MDR-AR-030)", js: true do
       click_navbar_ahr
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      expect(page).to have_content 'Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Run').click
-      expect(page).to have_content 'Results'
+      expect(page).to have_content 'Ad-Hoc Report Results'
     end
 
     it "allows a report to be exported as CSV (REQ-MDR-AR-040)", js: true do
       click_navbar_ahr
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      expect(page).to have_content 'Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Run').click
-      expect(page).to have_content 'Results'
+      expect(page).to have_content 'Ad-Hoc Report Results'
       click_link "Export CSV"
       file = download_content
       #write_text_file_2(file, sub_dir, "ad_hoc_csv_export.csv")
@@ -69,13 +69,14 @@ describe "Ad Hoc Reports", :type => :feature do
 
     it "allows a report to be deleted (REQ-MDR-AR-070)", js: true do
       click_navbar_ahr
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      expect(page).to have_content 'Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Delete').click
       ui_click_cancel("Are you sure?")
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      expect(page).to have_content 'Ad-Hoc Reports'
       find(:xpath, "//tr[contains(.,'Ad Hoc Report 1')]/td/a", :text => 'Delete').click
       ui_click_ok("Are you sure?")
-      expect(page).to have_content 'Index: Ad-Hoc Reports'
+      expect(page).to have_content 'Ad-Hoc Reports'
+      expect(page).to_not have_content 'Ad Hoc Report 1'
     end
 
   end

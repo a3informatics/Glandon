@@ -87,6 +87,7 @@ describe ThesauriController do
     it "shows the history, initial view" do
       params = {}
       expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
       expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzE=")
       expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
@@ -471,12 +472,12 @@ describe ThesauriController do
       th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
       request.env['HTTP_ACCEPT'] = "application/json"
       post :extension, {thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
-                                    identifier: th.scoped_identifier, 
-                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA==" 
+                                    identifier: th.scoped_identifier,
+                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
                                   }
                         }
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
+      expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
       expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
     end
