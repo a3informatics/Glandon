@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Audit Trail")' %>
 <%= javascript_include_tag 'standard_datatable' %>
-<% first_level_breadcrumb (id_to_type('audit_trail')) %>
+<% first_level_breadcrumb (:audit_trail) %>
 <div id="datatables_order">
   <!-- Datatables column order option-->
   <%= javascript_tag "var dtMainOrderUpdate = #{column_order(0, :desc)};" %>

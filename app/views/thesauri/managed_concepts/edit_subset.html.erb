@@ -6,7 +6,7 @@
 <%= javascript_tag "var source_children_url = '#{children_thesauri_managed_concept_path({id: @source_mc})}';" %>
 <%= javascript_tag "var subset_children_url = '#{list_children_thesauri_subset_path(@subset)}';" %>
 <%= javascript_tag "var subset_url = '#{add_thesauri_subset_path(@subset).chomp "/add"}';" %>
-<% third_level_breadcrumb(id_to_type('thesauri'), @subset_mc, history_thesauri_index_path({thesauri: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope.id}})) %>
+<% third_level_breadcrumb(:thesauri, @subset_mc, history_thesauri_index_path({thesauri: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope.id}})) %>
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @subset_mc, :context => @ct, :badge => "CL"} do %>
     <div class="actions-wrap">

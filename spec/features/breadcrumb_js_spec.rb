@@ -62,8 +62,6 @@ describe "Breadcrumb", :type => :feature do
     it "has Namespaces breadcrumbs", js:true  do
       click_navbar_namespaces
       ui_check_breadcrumb("Namespaces", "", "", "")
-      next_link('New', 'New Scope Namespace', "Namespaces", "New", "")
-      next_link_crumb(1, 'Namespaces', "Namespaces", "", "")
     end
 
     it "has Edit Locks breadcrumbs" , js:true do
@@ -110,37 +108,46 @@ describe "Breadcrumb", :type => :feature do
     it "has Terminology breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      next_link('Search Current', 'Search: All Current Terminology', "Terminology", "Search Current", "")
-      next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
-      next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
+      next_link('Search across all current versions', 'Search: All Current Terminology', "Terminology", "Search Current", "")
+      next_link_crumb(1, 'All Terminologies', "Terminology", "", "")
+      find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
+      expect(page).to have_content "Version History of 'CT'"
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
+      # next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :show)
       wait_for_ajax
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
+      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :search)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
+      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
     end
 
     it "has Code list breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
+      find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
+      expect(page).to have_content "Version History of 'CT'"
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
+      # next_link_table("Controlled Terminology", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :show)
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
       next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
-      next_link_crumb(2, 'History:', "Terminology", "CDISC, CT", "")
+      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
     end
 
     it "has Code list Item breadcrumbs", js:true  do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
-      next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
+      find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
+      expect(page).to have_content "Version History of 'CT'"
+      ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
+      # next_link_table("CDISC", "History", "History:", "Terminology", "CDISC, CT", "")
       wait_for_ajax(120)
       context_menu_element('history', 5, '2015-03-27 Release', :show)
       wait_for_ajax(120)

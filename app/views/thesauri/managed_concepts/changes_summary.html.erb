@@ -3,7 +3,7 @@
 <%= javascript_tag "var differences_url_path = '#{differences_summary_thesauri_managed_concept_path(id: @tc, last_id: @last, ver_span: @version_span)}';" %>
 <%= javascript_tag "var changes_url_path = '#{changes_summary_data_thesauri_managed_concept_path(id: @tc, last_id: @last, ver_span: @version_span)}';" %>
 <%= javascript_tag "var column_count = '#{@version_count}';" %>
-<% second_level_breadcrumb(id_to_type('cdisc_terms'), @tc.scope.id , @tc.has_identifier.identifier, "Changes Summary: ") %>
+<% second_level_breadcrumb(:cdisc_terms, @tc.scope.id , @tc.has_identifier.identifier, "Changes Summary: ") %>
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => nil, :badge => "CL"} do %>
     <div class="actions-wrap">

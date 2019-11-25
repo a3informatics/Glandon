@@ -6,7 +6,7 @@
                         loadingMessage = 'Generating report...',
                         errTimeoutMessage = 'Error occurred while generating the report.',
                         redirectPath = '"+submission_report_thesauri_path(@ct, format: :pdf)+"';" %>
-<% second_level_breadcrumb(id_to_type('thesauri'), @ct.scope.id, @ct.has_identifier.identifier, "Submission value changes: ") %>
+<% second_level_breadcrumb(:thesauri, @ct.scope.id, @ct.has_identifier.identifier, "Submission value changes: ") %>
 <div class="row">
   <%= render layout: "shared/thesauri/simple_header_card", :locals => {badge: "icon-terminology", item: @ct, header_title: "Submission value changes"} do %>
     <div class="actions-wrap">
