@@ -89,7 +89,7 @@ describe UsersController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      expect(actual).to eq({:"example.com"=>2, :total=>2})
+      expect(actual).to eq({:"example.com"=>1, :total=>1})
     end
     
     it "stats_by_current_week" do
