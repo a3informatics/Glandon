@@ -109,7 +109,7 @@ describe "Tokens", :type => :feature do
 
     # end
 
-    it "locks a subset", js:true do
+    it "locks a subset - WILL CURRENTLY FAIL", js:true do
 
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
@@ -117,14 +117,15 @@ describe "Tokens", :type => :feature do
         wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
         context_menu_element("history", 5, "2010-03-05 Release", :show)
-        wait_for_ajax
+        wait_for_ajax(10)
         expect(page).to have_content '2010-03-05 Release'
         ui_child_search("C85494")
         find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
-        wait_for_ajax
+        wait_for_ajax(10)
         expect(page).to have_link("Subsets")
         click_link "Subsets"
         context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+        wait_for_ajax(10)
         expect(page).to have_content("Edit Subset")
       end
 
@@ -134,14 +135,15 @@ describe "Tokens", :type => :feature do
         wait_for_ajax(10)
         ui_table_search("history", "2010-03-05")
         context_menu_element("history", 5, "2010-03-05 Release", :show)
-        wait_for_ajax
+        wait_for_ajax(10)
         expect(page).to have_content '2010-03-05 Release'
         ui_child_search("C85494")
         find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
-        wait_for_ajax
+        wait_for_ajax(10)
         expect(page).to have_link("Subsets")
         click_link "Subsets"
         context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
+        wait_for_ajax(10)
         expect(page).to have_content 'The item is locked for editing by another user.'
       end
 
