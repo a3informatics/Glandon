@@ -50,7 +50,7 @@
       		  		<td><%= item.datatype.label %></td>
       		  		<td>
       			  		<% if item.ct? %>
-      			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+      			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn  btn-xs" %><br/>
       			  		<% end %>
       		  		</td>
       		  		<td><%= item.ct_notes %></td>
@@ -60,7 +60,7 @@
       			<% end %>
       		</tbody>
       	</table>
-        <%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :adam_ig_dataset_id => @adam_ig_dataset.id, :adam_ig_dataset_namespace => @adam_ig_dataset.namespace }), :class => "btn btn-primary" %>
+        <%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :adam_ig_dataset_id => @adam_ig_dataset.id, :adam_ig_dataset_namespace => @adam_ig_dataset.namespace }), :class => "btn " %>
       	<%= link_to "Export JSON", export_json_adam_ig_dataset_path(:id => @adam_ig_dataset.id, :adam_ig_dataset => { :namespace => @adam_ig_dataset.namespace }), :class => "btn btn-info" %>
       	<%= link_to "Export Turtle", export_ttl_adam_ig_dataset_path(:id => @adam_ig_dataset.id, :adam_ig_dataset => { :namespace => @adam_ig_dataset.namespace }), :class => "btn btn-info" %>
       	<br/><br/>

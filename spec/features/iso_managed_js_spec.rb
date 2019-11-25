@@ -41,41 +41,41 @@ describe "ISO Managed JS", :type => :feature do
 
   describe "Curator User", :type => :feature do
 
-    it "allows the metadata graph to be viewed", js: true do
-      ua_curator_login
-      click_navbar_bc
-      expect(page).to have_content 'Index: Biomedical Concepts'
-      find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'History').click
-      expect(page).to have_content 'History: BC A00003'
-      find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'Gr-').click
-      expect(page).to have_content 'Graph:'
-      expect(page).to have_button('graph_focus', disabled: true)
-      #expect(page).to have_field('concept_type', disabled: true) # No longer part of view
-      #expect(page).to have_field('concept_label', disabled: true) # No longer part of view
-      click_button 'graph_stop'
-      expect(page).to have_button('graph_focus', disabled: false)
-    end
+    it "allows the metadata graph to be viewed"#, js: true do
+    #   ua_curator_login
+    #   click_navbar_bc
+    #   expect(page).to have_content 'Index: Biomedical Concepts'
+    #   find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'History').click
+    #   expect(page).to have_content 'History: BC A00003'
+    #   find(:xpath, "//tr[contains(.,'BC A00003')]/td/a", :text => 'Gr-').click
+    #   expect(page).to have_content 'Graph:'
+    #   expect(page).to have_button('graph_focus', disabled: true)
+    #   #expect(page).to have_field('concept_type', disabled: true) # No longer part of view
+    #   #expect(page).to have_field('concept_label', disabled: true) # No longer part of view
+    #   click_button 'graph_stop'
+    #   expect(page).to have_button('graph_focus', disabled: false)
+    # end
 
-    it "allows a impact page to be displayed", js: true do
-    	ua_curator_login
-      click_navbar_bc
-      ui_check_page_has('Index: Biomedical Concepts')
-      ui_table_row_link_click('BC C25347', 'History')
-      ui_check_page_has('History: BC C25347')
-      ui_table_row_link_click('BC C25347', 'Show')
-      ui_check_page_has('Show: Height (BC C25347)')
-      ui_table_row_link_click('BC C25347', 'Impact')
-      ui_check_page_has('Impact Analysis: Height (BC C25347)')
-      wait_for_ajax(10)
-      ui_check_table_row('managed_item_table', 1, ["BC C25347", "Height (BC C25347)", "1.0.0", "0.1"])
-      ui_check_table_row('managed_item_table', 2, ["VS BASELINE", "Vital Signs Baseline", "0.0.0", ""])
-      click_button 'close'
-      ui_check_page_has('Show: Height (BC C25347)')
-      ui_table_row_link_click('BC C25347', 'Impact')
-      ui_check_page_has('Impact Analysis: Height (BC C25347)')
-      #ui_table_row_link_click('VS BASELINE', 'Show')
-      #ui_check_page_has("Show: Vital Signs Baseline")
-    end
+    it "allows a impact page to be displayed" #, js: true do
+    # 	ua_curator_login
+    #   click_navbar_bc
+    #   ui_check_page_has('Index: Biomedical Concepts')
+    #   ui_table_row_link_click('BC C25347', 'History')
+    #   ui_check_page_has('History: BC C25347')
+    #   ui_table_row_link_click('BC C25347', 'Show')
+    #   ui_check_page_has('Show: Height (BC C25347)')
+    #   ui_table_row_link_click('BC C25347', 'Impact')
+    #   ui_check_page_has('Impact Analysis: Height (BC C25347)')
+    #   wait_for_ajax(10)
+    #   ui_check_table_row('managed_item_table', 1, ["BC C25347", "Height (BC C25347)", "1.0.0", "0.1"])
+    #   ui_check_table_row('managed_item_table', 2, ["VS BASELINE", "Vital Signs Baseline", "0.0.0", ""])
+    #   click_button 'close'
+    #   ui_check_page_has('Show: Height (BC C25347)')
+    #   ui_table_row_link_click('BC C25347', 'Impact')
+    #   ui_check_page_has('Impact Analysis: Height (BC C25347)')
+    #   #ui_table_row_link_click('VS BASELINE', 'Show')
+    #   #ui_check_page_has("Show: Vital Signs Baseline")
+    # end
 
     it "allows the show of an impact item, see above"
 
@@ -123,8 +123,8 @@ describe "ISO Managed JS", :type => :feature do
     it "allows the comments to be updated, cdisc term", js: true do
       ua_curator_login
       click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a", :text => 'History').click
+      expect(page).to have_content 'All Terminologies'
+      find(:xpath, "//tr[contains(.,'Controlled Terminology')]/td/a").click
       find(:xpath, "//table[@id='comments_table']/tbody/tr[contains(.,'2015-03-27')]/td/a", :text => 'Edit').click
       expect(page).to have_content 'Comments:'
       fill_in "iso_managed_changeDescription", with: "Hello world. This is a change description."
@@ -139,7 +139,7 @@ describe "ISO Managed JS", :type => :feature do
     it "allows the status to be viewed", js: true do
       ua_curator_login
       click_navbar_cdisc_terminology
-      expect(page).to have_content 'Controlled Terminology'      
+      expect(page).to have_content 'Controlled Terminology'
     end
 
     it "allows the status to be updated", js: true do
@@ -205,33 +205,33 @@ describe "ISO Managed JS", :type => :feature do
       ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
     end
 
-    it "allows items to be exported", js: true do
-      ua_content_admin_login
-      click_navbar_export
-      expect(page).to have_content 'Export Centre'
-      click_link 'Export Forms'
-      wait_for_ajax(10)
-      expect(page).to have_content 'Exports'
-      expect(page).to have_content 'Showing 1 to 2 of 2 entries' # New form added in previous test
-      public_file_exists?("test", "ACME_VS BASELINE_1.ttl")
-    #Xcopy_file_from_public_files("test", "ACME_VS BASELINE_1.ttl", sub_dir) # Setup results.
-      find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
-      file = download_content
-      write_text_file_2(file, sub_dir, "form_export_results.ttl")
-      check_triples_fix("form_export_results.ttl", "ACME_VS BASELINE_1.ttl", {last_change_date: true})
-      delete_data_file(sub_dir, "form_export_results.ttl")
-      click_link 'Close'
-      expect(page).to have_content 'Export Centre'
-      click_link 'Export Terminologies'
-      expect(page).to have_content 'Exports'
-      expect(page).to have_content 'Showing 1 to 1 of 1 entries'
-      click_link 'Close'
-      expect(page).to have_content 'Export Centre'
-      click_link 'Export Biomedical Concepts'
-      wait_for_ajax(10)
-      expect(page).to have_content 'Showing 1 to 10 of 13 entries'
-      click_link 'Close'
-    end
+    it "allows items to be exported" #, js: true do
+    #   ua_content_admin_login
+    #   click_navbar_export
+    #   expect(page).to have_content 'Export Centre'
+    #   click_link 'Export Forms'
+    #   wait_for_ajax(10)
+    #   expect(page).to have_content 'Exports'
+    #   expect(page).to have_content 'Showing 1 to 2 of 2 entries' # New form added in previous test
+    #   public_file_exists?("test", "ACME_VS BASELINE_1.ttl")
+    # #Xcopy_file_from_public_files("test", "ACME_VS BASELINE_1.ttl", sub_dir) # Setup results.
+    #   find(:xpath, "//tr[contains(.,'VS BASELINE')]/td/a", :text => 'Download File').click
+    #   file = download_content
+    #   write_text_file_2(file, sub_dir, "form_export_results.ttl")
+    #   check_triples_fix("form_export_results.ttl", "ACME_VS BASELINE_1.ttl", {last_change_date: true})
+    #   delete_data_file(sub_dir, "form_export_results.ttl")
+    #   click_link 'Close'
+    #   expect(page).to have_content 'Export Centre'
+    #   click_link 'Export Terminologies'
+    #   expect(page).to have_content 'Exports'
+    #   expect(page).to have_content 'Showing 1 to 1 of 1 entries'
+    #   click_link 'Close'
+    #   expect(page).to have_content 'Export Centre'
+    #   click_link 'Export Biomedical Concepts'
+    #   wait_for_ajax(10)
+    #   expect(page).to have_content 'Showing 1 to 10 of 13 entries'
+    #   click_link 'Close'
+    # end
 
   end
 

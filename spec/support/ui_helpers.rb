@@ -252,6 +252,14 @@ module UiHelpers
     wait_for_ajax(15)
   end
 
+  def ui_show_more_tags_cl
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+  end
+
+  def ui_show_more_tags_cli
+    find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]", :text => 'Show more').click
+  end
+
   # Breadcrumb
   # ==========
   def ui_check_breadcrumb(crumb_1, crumb_2, crumb_3, crumb_4)
@@ -310,6 +318,26 @@ module UiHelpers
 
   # Navigation
   # ==========
+	def id_to_section_map
+		{
+			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
+			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
+			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
+			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
+			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
+			main_nav_f: "main_nav_forms",
+			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
+			main_nav_aig: "main_nav_adam"
+		}
+	end
+
+	def ui_check_item_locked(id)
+		section = id_to_section_map[id.to_sym]
+		ui_expand_section(section) if !ui_section_expanded?(section)
+		item = page.find('#'+id)
+		expect(item[:class]).to include('locked')
+		expect(item[:href]).to eq('')
+	end
 
   def ui_section_expanded?(section)
     x = page.execute_script("$('##{section}').hasClass('collapsed')")
@@ -325,16 +353,6 @@ module UiHelpers
   end
 
   def ui_navbar_click (id)
-    id_to_section_map = {
-			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
-			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
-			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
-			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
-			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
-			main_nav_f: "main_nav_forms",
-			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
-			main_nav_aig: "main_nav_adam"
-			}
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
@@ -511,15 +529,14 @@ module UiHelpers
   end
 
 
-  def ui_create_terminology
+  def ui_create_terminology(id, label)
       click_navbar_terminology
-      fill_in 'thesauri_identifier', with: 'SELECT TEST'
-      fill_in 'thesauri_label', with: 'Test Terminology'
+      sleep 5
+      fill_in "thesauri_identifier", with: id
+      fill_in "thesauri_label", with: label
       click_button 'Create'
+      expect(page).to have_content 'Terminology was successfully created.'
   end
-
-
-
 
   # Return
   def ui_hit_return(id)

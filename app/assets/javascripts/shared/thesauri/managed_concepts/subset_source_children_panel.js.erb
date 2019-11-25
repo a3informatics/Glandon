@@ -102,6 +102,7 @@ SubsetSourceChildrenPanel.prototype.updateItem = function(indexes, action){
   var _this = this;
   _this.extendLock();
   if(!_this.subsetEditPanelRef.prepComplete) return;
+  toggleTableActive("#source_children_table", false);
 
   var bulkSize = indexes.length;
   if(bulkSize > 1)

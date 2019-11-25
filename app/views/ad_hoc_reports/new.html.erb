@@ -1,13 +1,20 @@
+<%= javascript_tag 'setPageTitle("New Ad-Hoc Report")' %>
 <% second_level_breadcrumb("Ad-hoc Reports", ad_hoc_reports_path, "New") %>
-<h3>New Ad-Hoc Report:</h3>
-<div class="row">
-	<div class="col-md-6">
-		<%= form_for @item do |f| %>
-	  	<div class="form-group">
-	      <%= label_tag :files, "File:" %><br/>
-	      <%= select_tag("ad_hoc_report[files][]", options_for_select(@files), class: "form-control", :multiple => false) %>
-	    </div>
-			<%= f.submit "Create", class: "btn btn-default btn-primary" %>
-		<% end %>
+<div class="row centered">
+	<div class="col-md-6 card wide">
+		<div class="card-header">New Ad-Hoc Report</div>
+		<div class="card-content">
+			<div class="actions-wrap" role="group" aria-label="First group">
+				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: ad_hoc_reports_path, id: "close",
+					icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+			</div>
+			<%= form_for @item do |f| %>
+		  	<div class="form-group form-wrap">
+		      <%= label_tag :files, "File:", class: "font-light" %><br/>
+		      <%= select_tag("ad_hoc_report[files][]", options_for_select(@files), class: "form-control", :multiple => false) %>
+		    </div>
+				<%= f.submit "Create report", class: "btn medium green" %>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -47,13 +47,13 @@
 			    <td><%= cli.preferredTerm %></td>
 			    <td><%= cli.synonym %></td>
 			    <td><%= cli.definition %></td>
-			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id, :namespace => cli.namespace), :class => "btn btn-primary btn-xs" %></td>
+			    <td><%= link_to "Show", cdisc_cli_path(:id => cli.id, :namespace => cli.namespace), :class => "btn  btn-xs" %></td>
 			    <td><%= link_to "Impact", impact_iso_concept_index_path(:id => cli.id,  :namespace => cli.namespace), :class => "btn btn-info btn-xs" %></td>
 			  </tr>
 			<% end %>
 		</tbody>
 	</table>
 	<%= link_to "Export CSV", export_csv_cdisc_cl_path(:id => @cdiscCl.to_id), :class => "btn btn-info" %>
-  <%= link_to "Changes", changes_cdisc_cls_path(:id => @cdiscCl.id, cdisc_cl: {namespace: @cdiscCl.namespace}), :class => "btn btn-primary" %>
+  <%= link_to "Changes", changes_cdisc_cls_path(:id => @cdiscCl.id, cdisc_cl: {namespace: @cdiscCl.namespace}), :class => "btn " %>
 	<%= back_close_button %>
 </div>

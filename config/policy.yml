@@ -341,14 +341,6 @@ defaults: &defaults
       reader: true
       curator: true
       content_admin: true
-    admin:
-      sys_admin: true
-      community_reader: false
-      term_reader: false
-      term_curator: false
-      reader: false
-      curator: false
-      content_admin: false
   IsoManagedPolicy:
     index:
       sys_admin: false

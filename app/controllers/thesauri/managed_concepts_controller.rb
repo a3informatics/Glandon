@@ -26,13 +26,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
     authorize Thesaurus
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
-    th = Thesaurus.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(th, current_user)
+    ct = Thesaurus.find_minimum(edit_params[:parent_id])
+    token = Token.find_token(ct, current_user)
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, tc, "Terminology updated.") if token.refresh == 1
-        render :json => {:data => [tc.simple_to_h]}, :status => 200
+        result = tc.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
+        render :json => {:data => [result]}, :status => 200
       else
         errors = []
         tc.errors.each do |name, msg|
@@ -105,7 +107,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     th = Thesaurus.find_minimum(the_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?
-      tc.destroy
+      tc.delete
       audit_and_respond(th, tc, token)
     else
       render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
@@ -120,24 +122,35 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
+    @context_id = the_params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    @context_id = the_params[:context_id]
+    # @context_id = the_params[:context_id]
+    # if !@tc.extended_by.nil?
+    #   results = Thesaurus.history_uris(identifier: @ct.has_identifier.identifier, scope: IsoNamespace.find(@ct.scope.id))
+    #   thesaurus = Thesaurus.find_minimum(results.first)
+    #   @reference_ct_id = thesaurus.uri.to_id
+    # end
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?
+    #@is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
     @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
+    #@is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-    @close_path = thesauri_path(@context_id)
+    @close_path = thesauri_path(@ct)
   end
 
   def show_data
     authorize Thesaurus, :show?
-    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     context_id = the_params[:context_id]
+    ct = Thesaurus.find_minimum(context_id)
+    tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
     children = tc.children_pagination(params)
     children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
     results = children.map{|x| x.reverse_merge!({delete_path: x[:delete] ? thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}
@@ -226,10 +239,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def add_extensions
     authorize Thesaurus, :edit?
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    errors = []
     uris = the_params[:extension_ids].map {|x| Uri.new(id: x)}
-    tc.add_extensions(uris)
-    render json: {data: {}, error: []}
+    if Thesaurus::ManagedConcept.same_type(uris, Thesaurus::UnmanagedConcept.rdf_type)
+      tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
+      tc.add_extensions(uris)
+    else
+      errors = ["Not all of the items were code list items."]
+    end
+    render json: {data: {}, error: errors}
   end
 
   def destroy_extensions
@@ -258,6 +276,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit_subset
     authorize Thesaurus, :edit?
+    @context_id = params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
     @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
     @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @subset_mc.synonyms_and_preferred_terms
@@ -298,16 +318,16 @@ private
     return history_thesauri_index_path({thesauri: {identifier: thesaurus.scoped_identifier, scope_id: thesaurus.scope.id}})
   end
 
-  # def audit_and_respond(thesaurus, thesaurus_concept, token)
-  #   if thesaurus_concept.errors.empty?
-  #     AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-  #     results = []
-  #     results << thesaurus_concept.to_json
-  #     render :json => {:data => results}, :status => 200
-  #   else
-  #     render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
-  #   end
-  # end
+  def audit_and_respond(thesaurus, thesaurus_concept, token)
+    if thesaurus_concept.errors.empty?
+      AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
+      results = []
+      results << thesaurus_concept.to_json
+      render :json => {:data => results}, :status => 200
+    else
+      render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+    end
+  end
 
   # def get_thesaurus(thesaurus_concept)
   #   info = IsoManaged.find_managed(thesaurus_concept.id, thesaurus_concept.namespace)
@@ -329,6 +349,7 @@ private
   # end
 
   def the_params
+    #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
     params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
   end
 

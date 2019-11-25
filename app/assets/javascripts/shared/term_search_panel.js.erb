@@ -10,13 +10,15 @@
 *
 * @return [void]
 */
+//function TermSearch(context_id, reference_ct_id, callback) {
 function TermSearch(context_id, callback) {
-  this.selected = {};
+  this.selected = [];
   this.callback = callback; // Note that this can also be set in call to search
   this.ref = "";            // Set in call to search
   this.tsCurrentRef;
   this.tsCurrentRow;
   this.context_id = context_id;
+  //this.reference_ct_id = reference_ct_id;
   this.tsSearchTable = null;
   this.tsCurrentRef = null;
   this.tsCurrentRow = null;
@@ -32,10 +34,11 @@ function TermSearch(context_id, callback) {
 
   var _this = this;
 
+  // Show modal event
   $('#searchModal').on('shown.bs.modal', function () {
    //helps the columns take their widths in modal
    _this.tsSearchTable.columns.adjust();
-    var count = _this.tsSearchTable.rows( { selected: true } ).count();
+    var count = _this.selected.length;
     if (count > 0) {
       $('#add_terms').removeClass('disabled').removeAttr("disabled","disabled");
     }
@@ -45,21 +48,29 @@ function TermSearch(context_id, callback) {
   });
 
 
-  // Enable add term button
+  // Select item within table event
   _this.tsSearchTable.on( 'select', function ( e, dt, type, indexes ) {
     if ( type === 'row' ) {
-      var count = _this.tsSearchTable.rows( { selected: true } ).count();
-      if (count > 0) {
+      var data = _this.tsSearchTable.row(indexes[0]).data()['id'];
+      var index = $.inArray(data, _this.selected);
+      if ( index == -1 ) 
+        _this.selected.push( data );
+      if (_this.selected.length > 0) {
         $('#add_terms').removeClass('disabled').removeAttr("disabled","disabled");
       }
     }
+    console.log(_this.selected);
   });
 
-  // Disable add term button
+  // Deselect item within table event
   _this.tsSearchTable.on( 'deselect', function ( e, dt, type, indexes ) {
     if ( type === 'row' ) {
-      var count = _this.tsSearchTable.rows( { selected: true } ).count();
-      if (count === 0) {
+      var data = _this.tsSearchTable.row(indexes[0]).data()['id'];
+      var index = $.inArray(data, _this.selected);
+      if ( index != -1 ) 
+        _this.selected.splice( index, 1 );
+
+      if (_this.selected.length == 0) {
         $('#add_terms').addClass('disabled').attr("disabled","disabled");
       }
     }
@@ -67,16 +78,12 @@ function TermSearch(context_id, callback) {
 
   // Get selected rows callback
   $('#add_terms').click(function() {
-    $('#searchModal').modal('hide');
-      count=Object.keys(_this.selected).length;
+      count = _this.selected.length;
       if (count > 0) {
-        var rowdata = _this.tsSearchTable.rows( { selected: true } ).data();
-        var ids = [];
-        $.each(rowdata, function(i, id) {
-          ids.push(rowdata[i].id);
-        });
-        _this.callback(ids);
+        _this.callback(_this.selected);
        }
+    $('#searchModal').modal('hide');
+    _this.selected = [];
   });
 
   // Open modal
@@ -86,9 +93,8 @@ function TermSearch(context_id, callback) {
     $('#searchModal').modal('show');
   })
 
-$('#searchModal').on('hidden.bs.modal', function () {
-
-});
+  $('#searchModal').on('hidden.bs.modal', function () {
+  });
 
   //Clear search
   $('#clear_search').click(function(){
@@ -116,7 +122,7 @@ $('#searchModal').on('hidden.bs.modal', function () {
     }
   });
 
-  // Add search functionality to search inputs
+  // Add search functionality to search inputs. 
   _this.tsSearchTable.columns().every(function (index) {
     var that = this;
       $('#searchTable thead tr:eq(1) th:eq(' + index + ') input').on( 'keyup', function (e) {
@@ -166,17 +172,6 @@ $('#searchModal').on('hidden.bs.modal', function () {
     }
   });
 
-  $('#searchTable tbody').on('click', 'tr', function () {
-        var id = this.id;
-        if (_this.selected.hasOwnProperty(id)) {
-          delete _this.selected[id];
-        } else {
-          _this.selected[id] = id;
-        };
-        $(_this).toggleClass('selected');
-
-  });
-
 }
 
 // Initialise the table/datatable. Note the deferLoading setting.
@@ -185,16 +180,13 @@ TermSearch.prototype.initTable = function() {
 
   var loading_html = generateSpinner("medium");
 
-  this.tsSearchTable = $('#searchTable').DataTable( {
+  _this.tsSearchTable = $('#searchTable').DataTable( {
     "processing": true,
     "serverSide": true,
     "ajax": {
-      "url": "/thesauri/"+this.context_id+"/search",
-      "data": function( d ) {
-      },
-    "dataSrc": "data"
+      //"url": "/thesauri/"+_this.reference_ct_id+"/search"
+      "url": "/thesauri/search_current"
     },
-    "rowId": "id",
     "deferLoading": 0,
     "language": {
       "infoFiltered": "",
@@ -202,12 +194,12 @@ TermSearch.prototype.initTable = function() {
       "processing": loading_html
     },
     "rowCallback": function( row, data ) {
-            if (_this.selected.hasOwnProperty(data.id)) {
-                $(row).addClass('selected');
-            }
+      if ( $.inArray(data["id"], _this.selected) !== -1 ) {
+        _this.tsSearchTable.row(row).select();
+      }
     },
     "pageLength": 5,
-    "columns": this.columns,
+    "columns": _this.columns,
     "orderCellsTop": true,
     "select": {
         style: 'multi'

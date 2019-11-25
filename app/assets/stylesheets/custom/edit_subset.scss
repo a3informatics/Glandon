@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 .editor-wrap, .editor-wrap .row{
   display: flex;
@@ -65,6 +65,11 @@
 
 .editor-wrap table tbody tr.slctd{
   background: $primary-color-bright !important;
+}
+
+.editor-wrap table tr.tr-disabled{
+  pointer-events: none !important;
+  opacity: .5 !important;
 }
 
 @media (max-width: 1090px){

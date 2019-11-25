@@ -3,6 +3,6 @@
 <%= render partial: "shared/stdInstanceTitle", :locals => {:title => "Annotated CRF:", :item => @form} %>
 <div class="col-md-8">
     <%= @html.html_safe %>
-    <%= link_to "Report", acrf_forms_path(:id => @form.id, :namespace => @form.namespace, :format => 'pdf'), :class => "btn btn-primary", :target => "_blank" %>
-    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+    <%= link_to "Report", acrf_forms_path(:id => @form.id, :namespace => @form.namespace, :format => 'pdf'), :class => "btn ", :target => "_blank" %>
+    <%= link_to "Close", @close_path, :class => "btn " %>
 </div>

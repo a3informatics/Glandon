@@ -109,7 +109,7 @@ describe IsoNamespace do
       expect(result.valid?).to be(true)
     end
 
-    it "does not create a namespace with an invalid short name" do
+    it "does not create a namespace with an invalid short name - WILL CURRENTLY FAIL - Strange error, echoing error message, passing in isolation." do
       result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD", short_name: "DDD%$£@", authority: "www.ddd.com")
 puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sentence} *****", "red")
       #expect(result.valid?).to be(false)
@@ -117,7 +117,7 @@ puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sen
       expect(result.errors.full_messages.to_sentence).to eq("Short name contains invalid characters") 
     end
 
-    it "does not create a namespace with an invalid name" do
+    it "does not create a namespace with an invalid name - WILL CURRENTLY FAIL - Strange error, echoing error messagev" do
       result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD%$£@", short_name: "DDD", authority: "www.ddd.com")
 puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sentence} *****", "red")
       #expect(result.valid?).to be(false)
@@ -125,7 +125,7 @@ puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sen
       expect(result.errors.full_messages.to_sentence).to eq("Name contains invalid characters") 
     end
 
-    it "does not create a namespace that already exists" do
+    it "does not create a namespace that already exists - WILL CURRENTLY FAIL - Strange error, echoing error message, passing in isolation." do
       result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "CCC111", short_name: "AAA", authority: "www.ccc111.com")
 puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sentence} *****", "red")
       expect(result.errors.count).to eq(1)

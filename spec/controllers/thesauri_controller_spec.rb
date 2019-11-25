@@ -85,6 +85,7 @@ describe ThesauriController do
     it "shows the history, initial view" do
       params = {}
       expect(Thesaurus).to receive(:history_uris).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace)}).and_return([Uri.new(uri: "http://www.example.com/a#1")])
+      expect(Thesaurus).to receive(:find_minimum).and_return(Thesaurus.new)
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
       expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5leGFtcGxlLmNvbS9hIzE=")
       expect(assigns(:identifier)).to eq(CdiscTerm::C_IDENTIFIER)
@@ -300,7 +301,8 @@ describe ThesauriController do
       th.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Thesaurus).to receive(:find_minimum).and_return(th)
-      expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0"}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
+      expect_any_instance_of(Thesaurus).to receive(:managed_children_pagination).with({:count=>"10", :offset=>"0", :tags=>["SDTM"]}).and_return([{id: Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1").to_id}])
+      expect_any_instance_of(Thesaurus).to receive(:is_owned_by_cdisc?).and_return(true)
       get :show, {id: "aaa", offset: 0, count: 10}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -341,7 +343,6 @@ describe ThesauriController do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
       params[:id] = ct.uri.to_id
-      results = ct.search(params)
       get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -349,42 +350,63 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "search_expected_2.yaml", equate_method: :hash_equal)
     end
 
-    it "export as TTL" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-      get :export_ttl, params
-    end
-
-    it "initiates the impact operation" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-    	th = Thesaurus.find(params[:id], params[:namespace])
-      get :impact, params
-      expect(assigns(:thesaurus).to_json).to eq(th.to_json)
-      expect(assigns(:start_path)).to eq(impact_start_thesauri_index_path)
-      expect(response).to render_template("impact")
-    end
-
-    it "starts the impact operation" do
-      #params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-      params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43" }
-    	th = Thesaurus.find(params[:id], params[:namespace])
-    	request.env['HTTP_ACCEPT'] = "application/json"
-      get :impact_start, params
+    it "obtains the current search results" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      params[:columns]["5"][:search][:value] = "cerebral"
+      get :search_current, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-    #write_text_file_2(response.body, sub_dir, "thesauri_controller_impact_start.txt")
-      expected = read_text_file_2(sub_dir, "thesauri_controller_impact_start.txt")
-      expect(response.body).to eq(expected)
-	  end
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_current_expected_1.yaml", equate_method: :hash_equal)
+    end
 
-	  it "produces a pdf report" do
-      params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
-    	th = Thesaurus.find(params[:id], params[:namespace])
-      request.env['HTTP_ACCEPT'] = "application/pdf"
-      get :impact_report, params
-      expect(response.content_type).to eq("application/pdf")
-      expect(response.header["Content-Disposition"]).to eq("inline; filename=\"impact_analysis.pdf\"")
-      expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
-	  end
+    it "obtains the current search results, empty search" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      params = standard_params
+      get :search_current, params
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys
+      check_file_actual_expected(actual, sub_dir, "search_current_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "export as TTL" #do
+    #  params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+    #  get :export_ttl, params
+    #end
+
+    it "initiates the impact operation" #do
+    #   params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+    # 	th = Thesaurus.find(params[:id], params[:namespace])
+    #   get :impact, params
+    #   expect(assigns(:thesaurus).to_json).to eq(th.to_json)
+    #   expect(assigns(:start_path)).to eq(impact_start_thesauri_index_path)
+    #   expect(response).to render_template("impact")
+    # end
+
+    it "starts the impact operation" #do
+      #params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+   #    params = { :id => "TH-CDISC_CDISCTerminology", :namespace => "http://www.assero.co.uk/MDRThesaurus/CDISC/V43" }
+   #  	th = Thesaurus.find(params[:id], params[:namespace])
+   #  	request.env['HTTP_ACCEPT'] = "application/json"
+   #    get :impact_start, params
+   #    expect(response.content_type).to eq("application/json")
+   #    expect(response.code).to eq("200")
+   #  #write_text_file_2(response.body, sub_dir, "thesauri_controller_impact_start.txt")
+   #    expected = read_text_file_2(sub_dir, "thesauri_controller_impact_start.txt")
+   #    expect(response.body).to eq(expected)
+	  # end
+
+	  it "produces a pdf report" #do
+   #    params = { :id => "TH-SPONSOR_CT-1", :namespace => "http://www.assero.co.uk/MDRThesaurus/ACME/V1"}
+   #  	th = Thesaurus.find(params[:id], params[:namespace])
+   #    request.env['HTTP_ACCEPT'] = "application/pdf"
+   #    get :impact_report, params
+   #    expect(response.content_type).to eq("application/pdf")
+   #    expect(response.header["Content-Disposition"]).to eq("inline; filename=\"impact_analysis.pdf\"")
+   #    expect(assigns(:render_args)).to eq({page_size: @user.paper_size, lowquality: true, basic_auth: nil})
+	  # end
 
     it "changes" do
       @user.write_setting("max_term_display", 2)
@@ -445,11 +467,17 @@ describe ThesauriController do
     end
 
     it "extension" do
+      th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
       request.env['HTTP_ACCEPT'] = "application/json"
-      post :extension, {thesauri: {}}
+      post :extension, {thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
+                                    identifier: th.scoped_identifier,
+                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
+                                  }
+                        }
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq({items: {}, versions: ["2019-01-01"]})
+      x = JSON.parse(response.body).deep_symbolize_keys
+      expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
     end
 
     it "add subset" do

@@ -7,6 +7,15 @@ Rails.application.routes.draw do
   resources :users, except: :create do
     member do
       put :update_name
+      put :lock
+      put :unlock
+    end
+    collection do
+      get :stats_by_domain
+      get :stats_by_year
+      get :stats_by_current_week
+      get :stats_by_year_by_month
+      get :stats_by_year_by_week
     end
   end
   post 'create_user' => 'users#create', as: :create_user
@@ -96,6 +105,9 @@ Rails.application.routes.draw do
       get :status
       get :make_current
       post :update_status
+    end
+    collection do
+      get :find_by_tag
     end
   end
   resources :dashboard, only: [:index] do

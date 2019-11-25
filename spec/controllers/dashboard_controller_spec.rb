@@ -46,22 +46,15 @@ describe DashboardController do
       expect(hash).to be_eql(results)
     end
 
-    it "prevents access admin action" do
-      put :admin
-      expect(response).to redirect_to("/")
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
-    end
-
 	end
 
   describe "System Admin User" do
 
     login_sys_admin
 
-    it "prevents access, index, redirects to admin" do
+    it "allows access, index to admin" do
       get :index
-      expect(response).to redirect_to("/dashboard/admin")
+      expect(response).to render_template("index")
     end
 
     it "prevents access, view" do
@@ -76,11 +69,6 @@ describe DashboardController do
       expect(response).to redirect_to("/")
       expect(flash[:error]).to be_present
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
-    end
-
-    it "allows access admin action" do
-      put :admin
-      expect(response).to render_template("admin")
     end
 
   end
@@ -110,13 +98,6 @@ describe DashboardController do
     #write_yaml_file(hash, sub_dir, "dashboard_controller_example_1.yaml")
       results = read_yaml_file(sub_dir, "dashboard_controller_example_1.yaml")
       expect(hash).to be_eql(results)
-    end
-
-    it "prevents access admin action" do
-      put :admin
-      expect(response).to redirect_to("/")
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
   end
@@ -151,13 +132,6 @@ describe DashboardController do
       expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
     end
 
-    it "prevents access admin action" do
-      put :admin
-      expect(response).to redirect_to("/")
-      expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You do not have the access rights to that operation.*/)
-    end
-
   end
 
   describe "Not logged in" do
@@ -174,11 +148,6 @@ describe DashboardController do
 
     it "prevents access database action" do
       get :database, {id: "BC-ACME_BC_C25347_DefinedObservation_nameCode_CD_originalText_ED_value_TR_1", namespace: "http://www.assero.co.uk/MDRBCs/V1"}
-      expect(response).to redirect_to("/users/sign_in")
-    end
-
-    it "prevents access admin action" do
-      put :admin
       expect(response).to redirect_to("/users/sign_in")
     end
 

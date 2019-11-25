@@ -27,7 +27,10 @@
 //= require editor.bootstrap.min
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require sidebar_handler
 //= require app-js-erb-extension
+//= require jquery-dateformat.min
+//= require title
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
@@ -165,13 +168,18 @@ function alertInfo(text) {
 }
 
 function displayAlerts(html) {
-    var alertsId = document.getElementById("alerts")
-  	alertsId.innerHTML = html;
+    var alerts = document.getElementById("alerts");
+  	alerts.innerHTML = html;
     window.setTimeout(function()
       {
-        alertsId.innerHTML = "";
+          dismissAlerts();
       },
       5000);
+}
+
+function dismissAlerts(){
+  var alerts = document.getElementById("alerts");
+  alerts.innerHTML = "";
 }
 
 function notImplementedYet() {
@@ -331,44 +339,29 @@ function getPathStrong(rdfType, id, namespace) {
 }
 
 /*
+* Improved Path function for Strong parameters
+*/
+function getPathStrongV2(rdfType, id, namespace) {
+  if (rdfType == C_FORM) {
+    return "/forms/" + id;
+  } else if (rdfType == C_BC) {
+    return "/biomedical_concepts/" + id;
+  } else if (rdfType == C_BCT) {
+    return "/biomedical_concept_templates/" + id;
+  } else if (rdfType == C_USERDOMAIN) {
+    return "/sdtm_user_domains/" + id;
+  } else if (rdfType == C_TH) {
+    return "/thesauri/" + id;
+  } else {
+    return ""
+  }
+}
+
+/*
 * Link to
 */
 function linkTo(path, namespace, id) {
   window.location.href = path + "?id=" + id + "&namespace=" + namespace
-}
-
-/*
-* Expands / collapses the sidebar
-* Handles main_area's responsiveness
-*/
-function sidebarHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $('#sidebar').toggleClass('sidebar-collapsed');
-
-  // Animate main_area width
-  $('#main_area').toggleClass('col-sm-10');
-  $('#main_area').toggleClass('col-sm-11');
-  $('#sidebar').toggleClass('col-sm-2');
-  $('#sidebar').toggleClass('col-sm-1');
-
-  $('#main_area').toggleClass('ma-sb-col');
-  $('#main_area').toggleClass('ma-sb-exp');
-}
-
-/*
-* Expands / collapses a menu category
-*/
-function sidebarCategoryHandler(item){
-  if ($('#sidebar').hasClass('sidebar-collapsed'))
-    $('#sidebar').removeClass('sidebar-collapsed');
-
-  $(item).find('.arrow').toggleClass('arrow-rotate');
-  $(item).parent().toggleClass('collapsed');
-}
-
-function sidebarVerticalScreenHandler(arrow){
-  $(arrow).toggleClass('arrow-rotate');
-  $("#sidebar").toggleClass('collapsed-vertical');
 }
 
 /*
@@ -412,4 +405,25 @@ function isIE() {
 
 function isSafari(){
   return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+}
+
+function dateString(){
+  var date = new Date().getTime();
+  return $.format.date(date, "ddd, MMMM D, yyyy")
+}
+
+function getStringInitials(str) {
+  var initials = "";
+  var words = str.split(' ');
+  $.each(words, function(){
+    initials += this.substring(0,1).toUpperCase();
+  });
+  return initials;
+};
+
+function toggleTableActive(tableId, enable) {
+  if(enable)
+    $(tableId).DataTable().rows().nodes().to$().removeClass("tr-disabled");
+  else
+    $(tableId).DataTable().rows().nodes().to$().addClass("tr-disabled");
 }

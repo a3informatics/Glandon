@@ -26,7 +26,7 @@
           <% if @managed_item.current? %>
             <p>The item is the current item.</p>
           <% else %>
-            <%= link_to "Current", current_iso_registration_states_path(:new_id => @registration_state.id, :old_id => @current_id), :class => "btn btn-primary" %>
+            <%= link_to "Current", current_iso_registration_states_path(:new_id => @registration_state.id, :old_id => @current_id), :class => "btn " %>
           <% end %>
         <% else %>
           <p>Item status is not "<%= IsoRegistrationState.releasedState %>".</p>
@@ -56,11 +56,11 @@
               <%= f.label :versionLabel, "Version Label:" %><br />
               <%= f.text_field :versionLabel, autofocus: true, class: "form-control" %>
           </div>
-          <%= f.submit "Submit", class: "btn btn-default btn-primary", id: 'version_submit' %>  
+          <%= f.submit "Submit", class: "btn  ", id: 'version_submit' %>  
         <% end %>
       </div>
     </div>
-    <%= link_to "Close", @close_path, :class => "btn btn-primary" %>  
+    <%= link_to "Close", @close_path, :class => "btn " %>  
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -94,7 +94,7 @@
             <%= f.hidden_field :previousState, :value => state %>  
             <%= f.hidden_field :registrationStatus, :value => nextState %>  
             <%= f.hidden_field :referer, :value => @referer %>  
-            <%= f.submit "Submit", class: "btn btn-default btn-primary", id: 'state_submit' %>  
+            <%= f.submit "Submit", class: "btn  ", id: 'state_submit' %>  
           <% end %>
         <% end %>
       </div>

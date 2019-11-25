@@ -33,16 +33,16 @@ describe "ISO Registration Authority", :type => :feature do
       expect(page).to have_content 'Registration Authorities'
       expect(page).to have_content '123456789'
       expect(page).to have_content '111111111'
+      expect(page).to have_content 'New Registration Authority'
+      expect(page).to have_button '+ New Registration Authority'
     end
 
     it "allows a new namespace to be added (REQ-MDR-RA-010)" do
       click_navbar_regauthorities
       expect(page).to have_content 'Registration Authorities'
-      click_link 'New'
-      expect(page).to have_content 'Registration Authority'
-      fill_in 'DUNS Number', with: '111122223'
+      fill_in 'iso_registration_authority_organization_identifier', with: '111122223'
       select 'AAA Long', from: "iso_registration_authority_namespace_id"
-      click_button 'Submit'
+      click_button '+ New Registration Authority'
       expect(page).to have_content 'Registration Authorities'
       expect(page).to have_content '111122223'
     end

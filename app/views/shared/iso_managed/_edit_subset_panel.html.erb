@@ -15,7 +15,7 @@
     <tbody>
     </tbody>
   </table>
-  <% if !is_editing_panel %>
+  <% if false # !is_editing_panel - DISABLED BTN %> 
     <center><%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "select-all-btn",
       icon: "icon-list-ul", btn_text: "Select / deselect all", dt_toggle: "", disabled: false} %></center>
   <% end %>

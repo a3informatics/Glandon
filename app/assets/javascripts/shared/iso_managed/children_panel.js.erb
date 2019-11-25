@@ -119,7 +119,11 @@ ChildrenPanel.prototype.addNew = function(ids) {
           displayError("An error has occurred.");
         },
         success: function(result) {
-          _this.refresh();
+          $.each(result.error, function(i, e){
+            displayError(this);
+          });
+          if (result.error.length == 0)
+            _this.refresh();
         }
       });
 }
@@ -159,6 +163,6 @@ ChildrenPanel.prototype.linkButton = function (path, text) {
   if (path === "") {
     return "&nbsp;"
   } else {
-    return '<a href="' + path + '" class="btn btn-primary btn-xs">' + text + '</a>';
+    return '<a href="' + path + '" class="btn  btn-xs">' + text + '</a>';
   }
 }

@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 .h-outside-wrap{
   width: 100%;
@@ -68,10 +68,6 @@
     align-items: center;
     text-align: center;
     padding-left: 0;
-  }
-
-  .actions-wrap{
-    justify-content: center;
   }
 }
 

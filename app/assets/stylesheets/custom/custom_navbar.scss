@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 // Styling of the navbar element
 .navbar{
@@ -54,7 +54,7 @@ a .text-light:hover{
 
 // Restyles the navbar menu into mobile-friendly version with text captions visible
 
-.navbar-toggle, .sidebar-toggle {
+.navbar-toggle, #sidebar-v-toggle {
   background: transparent !important;
   border: 0px;
 }
@@ -63,7 +63,7 @@ a .text-light:hover{
   border: 0px;
 }
 
-.sidebar-toggle{
+#sidebar-v-toggle{
   line-height: 2px;
   transition: transform .3s;
 }

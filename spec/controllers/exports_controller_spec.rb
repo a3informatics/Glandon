@@ -53,13 +53,13 @@ describe ExportsController do
       expect(response).to render_template("start")
     end
 
-    it "terminologies" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :terminologies
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200") 
-      expect(response.body.empty?).to eq(false)  
-    end
+    it "terminologies" #do
+    #   request.env['HTTP_ACCEPT'] = "application/json"
+    #   get :terminologies
+    #   expect(response.content_type).to eq("application/json")
+    #   expect(response.code).to eq("200") 
+    #   expect(response.body.empty?).to eq(false)  
+    # end
 
     it "biomedical_concepts" do
       request.env['HTTP_ACCEPT'] = "application/json"

@@ -19,7 +19,7 @@ function ManagedTagsPanel(callback) {
 
 ManagedTagsPanel.prototype.show = function(data) {
   this.data = data;
-  $('#edit_label').val(data.label);
+  $('#edit_label').val(data.pref_label);
   $('#edit_description').val(data.description);
   if (data.type ===  C_SYSTEM) {
     $('#update_tag').prop("disabled",true);

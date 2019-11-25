@@ -29,7 +29,6 @@ class ThesauriController < ApplicationController
     render json: {data: Thesaurus.unique.select{|x| x[:scope_id] == owner_scoped_id}}
   end
 
-
   def history
     authorize Thesaurus
     respond_to do |format|
@@ -41,6 +40,7 @@ class ThesauriController < ApplicationController
           redirect_to thesauri_index_path
         else
           @thesauri_id = results.first.to_id
+          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
           @identifier = the_params[:identifier]
           @scope_id = the_params[:scope_id]
         end
@@ -64,7 +64,8 @@ class ThesauriController < ApplicationController
       end
       format.json do
         results = []
-        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count]})
+        tags = @ct.is_owned_by_cdisc? ? @ct.tag_labels : []
+        children = @ct.managed_children_pagination({offset: params[:offset], count: params[:count], tags: tags})
         children.each {|c| results << c.reverse_merge!({show_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {context_id: @ct.id}})})}
         render json: {data: results, offset: params[:offset].to_i, count: results.count}, status: 200
       end
@@ -98,7 +99,7 @@ class ThesauriController < ApplicationController
     children = ct.managed_children_pagination({offset: "0", count: "10000"})
     children.each {|c|
       item = Thesaurus::ManagedConcept.find_minimum(c[:id])
-      results << c.reverse_merge!({edit_path: item.subset? ? edit_subset_thesauri_managed_concept_path(item, source_mc: item.subsets_links.to_id, parent_id: ct.id) : edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
+      results << c.reverse_merge!({edit_path: item.subset? ? edit_subset_thesauri_managed_concept_path(item, source_mc: item.subsets_links.to_id, context_id: ct.id) : edit_thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}}),
       delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})
     }
     render :json => { data: results }, :status => 200
@@ -106,18 +107,17 @@ class ThesauriController < ApplicationController
 
   def add_child
     authorize Thesaurus, :create?
-    thesaurus = Thesaurus.find_minimum(params[:id])
-    token = Token.find_token(thesaurus, current_user)
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
     if !token.nil?
-      x = the_params
-      thesaurus_concept = thesaurus.add_child(x)
-      if thesaurus_concept.errors.empty?
-        AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        result = thesaurus_concept.simple_to_h
-        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path(thesaurus_concept), delete_path: thesauri_managed_concept_path(thesaurus_concept)})
+      tc = ct.add_child(the_params)
+      if tc.errors.empty?
+        AuditTrail.update_item_event(current_user, ct, "Terminology updated.") if token.refresh == 1
+        result = tc.simple_to_h
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
         render :json => {data: result}, :status => 200
       else
-        render :json => {:errors => thesaurus_concept.errors.full_messages}, :status => 422
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
       end
     else
       render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
@@ -156,6 +156,22 @@ class ThesauriController < ApplicationController
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
         else
           results = @thesaurus.search(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
+        end
+      end
+    end
+  end
+
+  def search_current
+    authorize Thesaurus, :show?
+    respond_to do |format|
+      format.html
+        @close_path = thesauri_index_path
+      format.json do
+        if Thesaurus.empty_search?(params)
+          render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => "0", :data => [] }
+        else
+          results = Thesaurus.search_current(params)
           render json: { :draw => params[:draw], :recordsTotal => params[:length], :recordsFiltered => results[:count].to_s, :data => results[:items] }
         end
       end
@@ -233,12 +249,8 @@ class ThesauriController < ApplicationController
     thesaurus = Thesaurus.find_minimum(results.first)
     thesaurus = edit_item(thesaurus)
     new_object = thesaurus.add_extension(the_params[:concept_id])
+    #render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id, reference_ct_id: the_params[:reference_ct_id]}})}, :status => 200
     render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
-  end
-
-  def search_current
-    authorize Thesaurus, :show?
-    @close_path = thesauri_index_path
   end
 
    def export_ttl
@@ -332,8 +344,8 @@ private
 	end
 
   def the_params
+    #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
     params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
-    #(:id, :namespace, :label, :identifier, :scope_id, :notation, :synonym, :definition, :preferredTerm, :type)
   end
 
 end

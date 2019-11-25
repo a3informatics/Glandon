@@ -23,10 +23,10 @@ function CdiscCrossRefPanel(id, namespace, direction) {
       		var item = row.cross_references[i];
       		if (item.parentIdentifier === "") {
   	    		text += '<a href="/cdisc_clis/' + item.id + '?namespace=' + item.namespace + 
-  	    			'" class="btn btn-primary btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
+  	    			'" class="btn  btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
       		} else {
   	    		text += '<a href="/cdisc_cls/' + item.id + '?namespace=' + item.namespace + 
-  	    			'" class="btn btn-primary btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
+  	    			'" class="btn  btn-xs">' + item.identifier + ', ' + item.notation + '</a><br/><br/>';
       		}
       	}
       	return text;

@@ -11,7 +11,7 @@
     </div>
     <div class="tags-container" id="tags_container"></div>
     <% if policy(item.class).edit? and item.edit? and item.latest? %>
-      <%= link_to "Update Tags", edit_tags_iso_managed_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-primary", :id => "path_update_tags" %>
+      <%= link_to "Update Tags", edit_tags_iso_managed_index_path(:id => item.id, :namespace => item.namespace), :class => "btn ", :id => "path_update_tags" %>
     <% else %>
     <% end %>
   </div> 

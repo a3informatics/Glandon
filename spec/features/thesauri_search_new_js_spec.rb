@@ -32,14 +32,14 @@ describe "Thesauri Search", :type => :feature do
       tr = page.find('#user_settings tbody tr', text: 'Table Rows')
       click_link '25'
       click_navbar_terminology
-      click_link 'Search Current'
+      click_link 'Search across all current versions'
       wait_for_ajax(15)
       #expect(page).to have_content("Showing 25 entries")
       ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})
       click_link 'settings_button'
       click_link 'All'
       click_navbar_terminology
-      click_link 'Search Current'
+      click_link 'Search across all current versions'
       wait_for_ajax(15)
       #expect(page).to have_content("Showing 100 entries")
       ui_check_page_options("searchTable", { "5" => 5, "10" => 10, "15" => 15, "25" => 25, "50" => 50, "100" => 100})

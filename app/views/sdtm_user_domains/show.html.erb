@@ -63,7 +63,7 @@
 			  		<td><%= item.datatype_label %></td>
 			  		<td>
 			  			<% if !item.ct.empty? %>
-			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn  btn-xs" %><br/>
 			  			<% else %>
 			  				&nbsp;
 			  			<% end %>
@@ -107,7 +107,7 @@
 			  		<td><%= item.datatype_label %></td>
 			  		<td>
 			  			<% if !item.ct.empty? %>
-			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  				<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn  btn-xs" %><br/>
 			  			<% else %>
 			  				&nbsp;
 			  			<% end %>
@@ -147,9 +147,9 @@
 		</tbody>
 	</table>
 	<%= link_to "Report", full_report_sdtm_user_domain_path(:format => :pdf, :id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
-		:class => "btn btn-primary", :target => "_blank" %>
+		:class => "btn ", :target => "_blank" %>
 	<%= link_to "BC+", add_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
-		:class => "btn btn-primary" %>
+		:class => "btn " %>
 	<%= link_to "BC-", remove_sdtm_user_domains_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 
 		:class => "btn btn-danger" %>
 	<%= link_to "Export JSON", export_json_sdtm_user_domain_path(:id => @sdtm_user_domain.id, :sdtm_user_domain => { :namespace => @sdtm_user_domain.namespace}), 

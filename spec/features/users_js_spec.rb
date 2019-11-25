@@ -8,6 +8,7 @@ describe "Users", :type => :feature do
   before :all do
     ua_create
     ua_add_user email: 'delete@example.com', password: 'Changeme1#', role: :curator
+    ua_add_user email: 'lock@example.com', password: 'Changeme1#', role: :curator
   end
 
   after :all do
@@ -26,6 +27,24 @@ describe "Users", :type => :feature do
       page.accept_alert
       expect(page).to have_content 'User delete@example.com was successfully deleted.'
       expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "allows a user to be locked (REQ-??????)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'lock@example.com')]/td/a", :text => 'Lock').click
+      # page.accept_alert
+      expect(page).to have_content 'User was successfully deactivated.'
+    end
+
+    it "allows a user to be unlocked (REQ-??????)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//tr[contains(.,'lock@example.com')]/td/a", :text => 'Unlock').click
+      # page.accept_alert
+      expect(page).to have_content 'User was successfully activated.'
     end
 
   end
