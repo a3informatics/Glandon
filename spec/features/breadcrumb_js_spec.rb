@@ -51,15 +51,12 @@ describe "Breadcrumb", :type => :feature do
 
     it "has dashboard breadcrumbs" , js:true do
       visit 'dashboard'
-      expect(page).to have_content "Registration Status Counts"
       ui_check_breadcrumb("Dashboard", "", "", "")
     end
 
     it "has Registration Authorities breadcrumbs", js:true  do
       click_navbar_regauthorities
       ui_check_breadcrumb("Registration Authorities", "", "", "")
-      next_link('New', 'New Registration Authority', "Registration Authorities", "New", "")
-      next_link_crumb(1, 'Registration Authorities', "Registration Authorities", "", "")
     end
 
     it "has Namespaces breadcrumbs", js:true  do
