@@ -47,7 +47,7 @@
 		  		<td><%= variable.datatype_label %></td>
 		  		<td>
 			  		<% if item.ct? %>
-			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn btn-primary btn-xs" %><br/>
+			  			<%= link_to item.ct, find_submission_cdisc_terms_path(:notation => item.ct), :class => "btn  btn-xs" %><br/>
 			  		<% end %>
 			  		<%= item.format %>
 		  		</td>
@@ -59,7 +59,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :sdtm_ig_domain_id => @sdtm_ig_domain.id, :sdtm_ig_domain_namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-primary" %>
+	<%= link_to "Clone", clone_ig_sdtm_user_domains_path(:sdtm_user_domain => { :sdtm_ig_domain_id => @sdtm_ig_domain.id, :sdtm_ig_domain_namespace => @sdtm_ig_domain.namespace }), :class => "btn " %>
 	<%= link_to "Export JSON", export_json_sdtm_ig_domain_path(:id => @sdtm_ig_domain.id, :sdtm_ig_domain => { :namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-info" %>
 	<%= link_to "Export Turtle", export_ttl_sdtm_ig_domain_path(:id => @sdtm_ig_domain.id, :sdtm_ig_domain => { :namespace => @sdtm_ig_domain.namespace }), :class => "btn btn-info" %>
 	<br/><br/>

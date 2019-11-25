@@ -48,6 +48,25 @@ class IsoConceptSystem < Fuseki::Base
     end
   end
 
+  # Find All. 
+  def find_all
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {
+  { 
+    {
+      #{self.uri.to_ref} ?p ?o .
+      BIND (#{self.uri.to_ref} as ?s)
+    } UNION
+    {
+      #{self.uri.to_ref} isoC:isTopConcept/isoC:narrower* ?s .
+      ?s ?p ?o
+    }
+  }
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC])
+    self.class.from_results_recurse(self.uri, query_results.by_subject)
+  end
+
   # Child Property. The child property
   #
   # @return [Symbol] the :is_top_concept property

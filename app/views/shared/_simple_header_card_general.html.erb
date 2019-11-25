@@ -14,9 +14,13 @@
           <div class="h-inner-wrap mid">
             <div class="text-large"> <%= main_text %> </div>
             <div class="text-small font-light">
-              <% sub_texts.each_with_index do |item, index| %>
-                <span class="font-regular"> <%= item[:title] %>: </span><%= item[:value] %>
-                <%= "&nbsp;|&nbsp;".html_safe if (index != sub_texts.length - 1) %>
+              <% if sub_texts.is_a? Array %>
+                <% sub_texts.each_with_index do |item, index| %>
+                  <span class="font-regular"> <%= item[:title] %>: </span><%= item[:value] %>
+                  <%= "&nbsp;|&nbsp;".html_safe if (index != sub_texts.length - 1) %>
+                <% end %>
+              <% else %>
+                <span> <%= sub_texts %> </span>
               <% end %>
             </div>
           </div>

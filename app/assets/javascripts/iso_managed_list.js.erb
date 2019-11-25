@@ -2,17 +2,16 @@ function IsoManagedListOldPanel() {
   this.isoManagedTableReload = null;
   this.isoManagedTable = null;
   this.tagId = null;
-  this.tagNamespace = null;
 }
 
-IsoManagedListOldPanel.prototype.refresh = function (id, namespace) {
+IsoManagedListOldPanel.prototype.refresh = function (id) {
   var _this = this;
   _this.tagId = id;
-  _this.tagNamespace = namespace
   if (!_this.isoManagedTableReload) {
     _this.load();
   } else {
-    _this.isoManagedTable.ajax.reload();
+    //_this.isoManagedTable.ajax.reload();
+    _this.isoManagedTable.ajax.url("/iso_managed_v2/find_by_tag?[iso_managed]tag_id=" + _this.tagId).load();
   }
 }
 
@@ -20,11 +19,7 @@ IsoManagedListOldPanel.prototype.load = function () {
   var _this = this;
   _this.isoManagedTable = $('#iso_managed_table').DataTable( {
     "ajax": {
-      "url": "/iso_managed/find_by_tag",
-      "data": function( d ) {
-        d.id = _this.tagId,
-        d.namespace = _this.tagNamespace
-      },
+      "url": "/iso_managed_v2/find_by_tag?[iso_managed]tag_id=" + _this.tagId,
       "dataSrc": "data"
     },
     "bProcessing": true,
@@ -36,15 +31,15 @@ IsoManagedListOldPanel.prototype.load = function () {
         "processing": "<div class=\"spinner-container\"><img class=\"spinner\" src='<%= asset_path('processing_medium_1.gif') %>'></div>"
       },
     "columns": [
-      {"data" : "scoped_identifier.identifier", "width" : "30%"},
+      {"data" : "identifier", "width" : "30%"},
       {"data" : "label", "width" : "50%"},
-      {"data" : "scoped_identifier.version", "width" : "10%"},
-      {"data" : "scoped_identifier.version_label", "width" : "10%"},
+      {"data" : "version", "width" : "10%"},
+      {"data" : "version_label", "width" : "10%"},
       // Following replaces the old way of putting in a button. Use link styled as a button.
       {"render" : function (data, type, row, meta) {
-        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn btn-primary btn-xs">Show</a>';
+        return '<a href="' + getPathStrong(row.type, row.id, row.namespace) + '" class="btn  btn-xs">Show</a>';
       }}
     ]
   });
-  _this.isoManagedTableReload = true;    
+  _this.isoManagedTableReload = true;
 }

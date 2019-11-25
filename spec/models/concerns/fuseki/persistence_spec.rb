@@ -42,6 +42,14 @@ describe Fuseki::Persistence do
 
   end
 
+  class TestFPe3 < Fuseki::Base
+
+    configure rdf_type: "http://www.assero.co.uk/ISO11179Types#AdministeredItem"
+
+    object_property :has_identifier, cardinality: :many, model_class: "TestFPe3"
+
+  end
+
   it "find, simple case" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     result = TestFPe1.find(uri)
@@ -105,8 +113,21 @@ describe Fuseki::Persistence do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     expect(item.true_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect(item.my_type.to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    expect(Fuseki::Base.the_type(uri).to_s).to eq("http://www.assero.co.uk/ISO11179Identification#Namespace")
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAAxxx")
+    expect{Fuseki::Base.the_type(uri)}.to raise_error(Errors::ApplicationLogicError, "Unable to find the RDF type for http://www.assero.co.uk/NS#AAAxxx.")
     expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
     expect{item.true_type}.to raise_error(Errors::ApplicationLogicError, "Unable to find true type for http://www.assero.co.uk/NS#AAA.")
+  end
+
+  it "same type" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
+    expect(Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)).to eq(true)
+    expect(Fuseki::Base.same_type([uri_1, uri_2], IsoNamespace.rdf_type)).to eq(false)
+    expect_any_instance_of(Sparql::Query).to receive(:query).and_return([])
+    expect{Fuseki::Base.same_type([uri_1, uri_1], IsoNamespace.rdf_type)}.to raise_error(Errors::ApplicationLogicError, "Unable to find the RDF type for the set of URIs.")
   end
 
   it "generates selective update sparql" do
@@ -133,7 +154,7 @@ describe Fuseki::Persistence do
     check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_2.yaml", equate_method: :hash_equal)
   end
 
-  it "performs update" do
+  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
@@ -152,7 +173,7 @@ describe Fuseki::Persistence do
   #   expect(result.errors.count).to eq(0)
   end
 
-  it "performs update" do
+  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
   puts "ERROR START"
@@ -171,7 +192,7 @@ describe Fuseki::Persistence do
     expect(result.errors.count).to eq(1)
   end
 
-  it "performs save" do
+  it "performs save - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
@@ -238,4 +259,22 @@ describe Fuseki::Persistence do
     expect(item.destroyed?).to eq(true)
   end
 
+  it "deletes object with reference links" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/FP3#1")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/FP3#2")
+    item_1 = TestFPe3.create(uri: uri_1)
+    item_2 = TestFPe3.create(uri: uri_2)
+    item_1_c = TestFPe3.find(uri_1)
+    item_2_c = TestFPe3.find(uri_2)    
+    expect(item_1_c.has_identifier.count).to eq(0)
+    expect(item_2_c.has_identifier.count).to eq(0)
+    item_1.add_link(:has_identifier, item_2.uri)
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(1)
+    item_2.delete_with_links    
+    expect{TestFPe3.find(uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/FP3#2 in TestFPe3.")
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(0)
+  end
+    
 end

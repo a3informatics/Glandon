@@ -53,43 +53,49 @@ describe "Audit Trail", :type => :feature do
 
     it "allows viewing (REQ-MDR-GENERIC-A-015)", js:true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
+      expect(page).to have_button 'Filter results'
+      expect(page).to have_link 'Export CSV'
     end
 
     it "check ordering with latest in first row", js: true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
       ui_check_table_row("main", 4, [Timestamp.new(@now1).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I1", "1", "Create"])
       ui_check_table_row("main", 5, [Timestamp.new(@now2).to_datetime, "audit_trail_user_1@example.com", "CDISC", "I2", "1", "Create"])
     end
 
     it "allows searching - event", js:true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
       select 'User', from: "audit_trail_event"
-      click_button 'Submit'
+      click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(10) # Note, these counts are records expected + 1 for the header row. Also include logins in the tests (3)
     end
 
     it "allows searching - user", js:true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
       select 'audit_trail_user_2@example.com', from: "audit_trail_user"
-      click_button 'Submit'
+      click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(3)
     end
 
     it "allows searching - owner", js:true do
       click_navbar_at
       select 'ACME', from: "audit_trail_owner"
-      click_button 'Submit'
+      click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(10)
     end
 
     it "allows searching - identifier", js:true do
       click_navbar_at
       fill_in 'Identifier', with: 'T1'
-      click_button 'Submit'
+      click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(4)
     end
 
@@ -97,7 +103,7 @@ describe "Audit Trail", :type => :feature do
       click_navbar_at
       select 'CDISC', from: "audit_trail_owner"
       fill_in 'Identifier', with: 'I2'
-      click_button 'Submit'
+      click_button 'Filter results'
       expect(page.all('table#main tr').count).to eq(2)
     end
 
@@ -115,7 +121,10 @@ describe "Audit Trail", :type => :feature do
 
     it "allows viewing", js:true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
+      expect(page).to have_button 'Filter results'
+      expect(page).to have_link 'Export CSV'
     end
 
   end
@@ -132,7 +141,10 @@ describe "Audit Trail", :type => :feature do
 
     it "allows viewing", js:true do
       click_navbar_at
-      expect(page).to have_content 'Index: Audit Trail'
+      expect(page).to have_content 'Audit Trail'
+      expect(page).to have_content 'Filter Audit Trail Data'
+      expect(page).to have_button 'Filter results'
+      expect(page).to have_link 'Export CSV'
     end
 
   end

@@ -5,24 +5,33 @@ var tagsColorsMap =
   "ADaM" : "#b6d58f",
   "Protocol" : "#93c9b5",
   "SEND": "#a9aee0",
-  "default": "#b8b8b8"}
+  "CDISC": "#9dc0cf",
+  "default": "#6d91a1"}
+
+function getColorByTag(tagName){
+  if (tagName in tagsColorsMap)
+    return tagsColorsMap[tagName];
+  else return tagsColorsMap["default"];
+}
 
 function colorCodeTagsOutline(parent, tagClass){
   $.each($(parent).find(tagClass), function(i, e){
-    var tagToColorName = ($(e).html() in tagsColorsMap) ? $(e).html() : "default";
-    var color = tagsColorsMap[tagToColorName];
+    var color = (getColorByTag($(e).context.localName == "input" ? $(e).val() : $(e).text()));
     $(e).css("background", "transparent");
-    $(e).css("box-shadow", "inset 0 0 0 2px "+color)
+    $(e).css("box-shadow", "inset 0 0 0 2px "+color);
   });
+}
+
+function colorCodeElement(selector, css, value){
+  $(selector).css(css, value);
 }
 
 function colorCodeTagsBadge(tags){
   tags = tags.split('; ');
-  var html = tags.length > 0 ? "" : "None";
+  var html = (tags.length > 0 && tags[0].length > 0) ? "" : "None";
   $.each(tags, function (i, e){
-    var tagToColorName = (e in tagsColorsMap) ? e : "default";
-    var color = tagsColorsMap[tagToColorName];
-
+    if (e.length == 0) return;
+    var color = getColorByTag(e);
     html +=
     "<span class='min-badge-item'>" +
       "<span class='circular-badge tiny' style='background: "+color+";'></span>" +

@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Background jobs")' %>
 <%= javascript_include_tag 'background_index'%>
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Background") %>
@@ -25,16 +26,16 @@
 	    		<%= true_false_glyphicon(job.complete) %>
 	    		<td><%= Timestamp.new(job.completed).to_datetime %></td>
           <td>
-            <%= render partial: "shared/buttons/delete", locals: {link_path: background_path(job), small: true, 
+            <%= render partial: "shared/buttons/delete", locals: {link_path: background_path(job), small: true,
               id: "delete_button_#{job.id}", label: "Delete"} %>
           </td>
 	    	</tr>
 			<% end %>
 	  </tbody>
 	</table>
-  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}), 
+  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "completed"}}),
     small: false, id: "clear_button", label: "Delete Completed"} %>
-  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}), 
+  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_backgrounds_path({backgrounds: {items: "all"}}),
     small: false, id: "clear_button", label: "Delete All"} %>
-  
+
 </div>

@@ -63,11 +63,11 @@
                 <td>&nbsp;</td>
               <% end %>            
             <% end %>
-             <td><%= link_to "Changes", changes_iso_concept_index_path(iso_concept: {concepts: x[:children], versions: @results[:versions], child_property: @results[:child_property], identifier: @results[:identifier]}), :class => "btn btn-primary btn-xs" %></td>
+             <td><%= link_to "Changes", changes_iso_concept_index_path(iso_concept: {concepts: x[:children], versions: @results[:versions], child_property: @results[:child_property], identifier: @results[:identifier]}), :class => "btn  btn-xs" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% end %>
-  <%= link_to "Close", @close_path, :class => "btn btn-primary" %>
+  <%= link_to "Close", @close_path, :class => "btn " %>
 </div>

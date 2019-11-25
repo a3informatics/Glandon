@@ -1,8 +1,10 @@
+<%= javascript_tag 'setPageTitle("Export")' %>
+
 <% top_level_breadcrumb ("Export") %>
 <%= javascript_tag "var url = \"#{@list_path}\";" %>
 <div class="row">
   <div class="col-md-8">
     <%= render partial: "shared/export/start_panel" %>
-    <%= render partial: "shared/buttons/close", locals: { small: false, link_path: exports_path } %>  
+    <%= render partial: "shared/buttons/close", locals: { small: false, link_path: exports_path } %>
   </div>
 </div>

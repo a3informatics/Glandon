@@ -101,6 +101,14 @@ class IsoManagedV2 < IsoConceptV2
     return self.owner.uri == ra_owner.uri
   end
 
+  # Is Owned By CDISC?
+  #
+  # @return [Boolean] True if owned, false otherwise
+  def is_owned_by_cdisc?
+    cdisc_ns = IsoRegistrationAuthority.cdisc_scope
+    return self.owner.ra_namespace.uri == cdisc_ns.uri
+  end
+
   # Return the registration status
   #
   # @return [string] The status
@@ -661,6 +669,94 @@ class IsoManagedV2 < IsoConceptV2
     query_results.by_object(:a)
   end
 
+  # Current And Latest Set. Find the current and latest versions for all identifiers for a given type.
+  #
+  # @return [Array] Each hash contains {uri}
+  def self.current_and_latest_set
+    results = Hash.new {|h,k| h[k] = []}
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT DISTINCT ?s ?key ?v WHERE
+      {
+        {
+          SELECT DISTINCT ?s ?key ?v WHERE
+          { 
+            ?s rdf:type #{rdf_type.to_ref} .
+            ?s isoT:hasIdentifier ?si .
+            ?s isoT:hasState ?st .
+            ?st isoR:effectiveDate ?ed .
+            ?st isoR:untilDate ?ud .
+            FILTER ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime ) .
+            FILTER ( xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime ) .
+            ?si isoI:version ?v .
+            ?si isoI:identifier ?i .
+            ?si isoI:hasScope ?ns .
+            ?ns isoI:shortName ?sn .
+            BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
+          }
+        } UNION {
+          SELECT DISTINCT ?s ?key ?v WHERE
+          { 
+            ?s rdf:type #{rdf_type.to_ref} .
+            ?s isoT:hasIdentifier ?si .
+            {  
+              SELECT (max(?lv) AS ?v) WHERE 
+              {
+                ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
+                ?s isoT:hasIdentifier/isoI:version ?lv .
+              }
+            }
+            ?si isoI:version ?v .
+            ?si isoI:identifier ?i .
+            ?si isoI:hasScope ?ns .
+            ?ns isoI:shortName ?sn .
+            BIND(CONCAT(STR(?sn),".",STR(?i)) AS ?key)
+          }
+        }
+      } ORDER BY ?key DESC(?v)  
+    } 
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoC, :isoR])
+    query_results.by_object_set([:s, :key, :v]).map{|x| results[x[:key]]<<{uri: x[:s], version: x[:v].to_i}}
+    results
+  end
+
+  # Current And Latest Parent. Find the latest or the current parent
+  #
+  # @return [Array] An array of objects.
+  def current_and_latest_parent    
+    date_time = Time.now.iso8601
+    query_string = %Q{
+      SELECT ?s ?v WHERE 
+      { 
+        #{self.uri.to_ref} ^bo:reference ?or .
+        ?s ?p ?or .
+        {
+          ?s isoT:hasState ?st .
+          ?st isoR:effectiveDate ?ed .
+          ?st isoR:untilDate ?ud .
+          FILTER ( xsd:dateTime(?ed) <= \"#{date_time}\"^^xsd:dateTime ) .
+          FILTER ( xsd:dateTime(?ud) >= \"#{date_time}\"^^xsd:dateTime )
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
+        } UNION {
+          ?s isoT:hasIdentifier ?si .
+          {  
+            SELECT (max(?lv) AS ?v) WHERE 
+            {
+              ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
+              ?s isoT:hasIdentifier/isoI:version ?lv .
+            }
+          }
+          ?si isoI:version ?v .
+        }
+      } ORDER BY DESC (?v) 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR, :bo])
+    results = query_results.by_object_set([:s, :v])
+    raise Errors::NotFoundError.new("Failed to find best parent for #{self.uri}.") if results.empty?
+    results.map{|x| {uri: x[:s], version: x[:v].to_i}}
+  end
+
   # Current. Find the current item for the scope.
   #
   # @params [Hash] params
@@ -686,6 +782,29 @@ class IsoManagedV2 < IsoConceptV2
     query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR, :isoI])
     return nil if query_results.empty?
     query_results.by_object(:s).first
+  end
+
+  # Find By Tag. Find all managed items based on a tag.
+  # 
+  # @param id [String] the id of the tag
+  # @return [Array] Array of hash
+  def self.find_by_tag(id)
+    results = []
+    uri = Uri.new(id: id)
+    query_string = %Q{
+SELECT ?s ?l ?v ?i ?vl WHERE { 
+  #{uri.to_ref} ^isoC:tagged ?s .
+  ?s isoC:label ?l .
+  ?s isoT:hasIdentifier/isoI:version ?v . 
+  ?s isoT:hasIdentifier/isoI:semanticVersion ?sv . 
+  ?s isoT:hasIdentifier/isoI:identifier ?i . 
+  ?s isoT:hasIdentifier/isoI:versionLabel ?vl 
+} ORDER BY DESC(?v) OFFSET 0 LIMIT 1000}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :isoI, :isoT])
+    query_results.by_object_set([:s, :i, :v, :sv, :l, :vl]).each do |x| 
+      results << {uri: x[:s].to_s, id: x[:s].to_id, identifier: x[:i], version: x[:v], semantic_version: x[:sv], label: x[:l], version_label: x[:vl]}
+    end
+    results
   end
 
 private

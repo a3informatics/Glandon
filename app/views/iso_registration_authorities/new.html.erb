@@ -1,4 +1,6 @@
+<%= javascript_tag 'setPageTitle("New Registration Authority")' %>
 <% second_level_breadcrumb("Registration Authorities", iso_registration_authorities_path, "New") %>
+<!-- DEPRECTATED !!! -->
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -15,8 +17,8 @@
             <label for="name">Scope Namespace:</label>
             <%= select_tag("iso_registration_authority[namespace_id]", options_for_select(@namespaces), {:class => 'form-control'}) %>
           </div>
-          <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
-          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %> 
+          <%= f.submit "Submit", class: "btn  " %>
+          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %>
         <% end %>
       </div>
     </div>

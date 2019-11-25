@@ -38,7 +38,7 @@ $(document).ready(function() {
         {"data" : "subject", "width" : "40%"},
         {"data" : "predicate", "width" : "20%"},
         {"data" : "object", "width" : "40%" },
-        {"defaultContent": '<button type="button" class="btn btn-primary btn-xs">Show</button>'}
+        {"defaultContent": '<button type="button" class="btn  btn-xs">Show</button>'}
       ]
     });
     triplesReload = true;

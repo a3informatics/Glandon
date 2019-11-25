@@ -345,7 +345,7 @@ describe Thesaurus do
 
   end
 
-  describe "Child Operations Read" do
+  describe "Child Operations - Read" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
@@ -382,9 +382,15 @@ describe Thesaurus do
       timer_stop("100 searches")
     end
 
+    it "get children, tag filter" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
+      actual = ct.managed_children_pagination(offset: 0, count: 10, tags: ["SDTM"])
+      check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
+    end
+
   end
 
-  describe "Child Operations Write" do
+  describe "Child Operations - Write" do
 
     def load_versions(range)
       range.each {|n| load_data_file_into_triple_store("cdisc/ct/CT_V#{n}.ttl")}
@@ -393,6 +399,7 @@ describe Thesaurus do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
+      #load_versions(1..60)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
@@ -488,7 +495,7 @@ describe Thesaurus do
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
-      load_versions(1..60)
+      load_versions(1..33)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
@@ -508,12 +515,13 @@ describe Thesaurus do
       source = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.cdisc.org/C96779/V33#C96779"))
       expect(result.narrower.count).to eq(source.narrower.count)
       expect(result.extends.uri.to_s).to eq(source.uri.to_s)
+      check_file_actual_expected(result.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(source.narrower.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_2.yaml", equate_method: :hash_equal)
       item = Thesaurus.find_full(uri1)
       item.is_top_concept_objects
       expect(item.is_top_concept_reference.last.reference.to_s).to eq(result.uri.to_s)
       expect(item.is_top_concept_reference.count).to eq(3)
-      actual = item.to_h
-      check_file_actual_expected(actual.to_h, sub_dir, "add_extension_expected_1.yaml", equate_method: :match_array)
+      check_file_actual_expected(item.is_top_concept.map{|x| x.uri.to_s}, sub_dir, "add_extension_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

@@ -2,12 +2,24 @@
 :versions:
 - '2014-06-27'
 :items:
+  :C65047_C98869:
+    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YzOSNDNjUwNDdfQzk4ODY5
+    :key: C65047_C98869
+    :label: Plasma Cell to Total Cell Ratio Measurement
+    :notation: PLSCECE
+    :identifier: C98869
+    :parent_identifier: C65047
+    :status:
+    - :status: :updated
+      :notation: PLSCECE
+      :previous: PLSMCECE
   :C101859_C17998:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg1OS9WMzkjQzEwMTg1OV9DMTc5OTg=
     :key: C101859_C17998
     :label: Unknown
     :notation: UNKNOWN
     :identifier: C17998
+    :parent_identifier: C101859
     :status:
     - :status: :updated
       :notation: UNKNOWN
@@ -18,6 +30,7 @@
     :label: Milligram per Liter per Milligram
     :notation: ug/mL/mg
     :identifier: C85710
+    :parent_identifier: C85494
     :status:
     - :status: :updated
       :notation: ug/mL/mg
@@ -28,26 +41,18 @@
     :label: Mixed Acinar-Neuroendocrine Carcinoma of the Pancreas
     :notation: ACINAR-ISLET CELL TUMOR, MALIGNANT
     :identifier: C6878
+    :parent_identifier: C88025
     :status:
     - :status: :updated
       :notation: ACINAR-ISLET CELL TUMOR, MALIGNANT
       :previous: CARCINOMA, MIXED, ACINAR-ISLET CELL, MALIGNANT
-  :C65047_C98869:
-    :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY1MDQ3L1YzOSNDNjUwNDdfQzk4ODY5
-    :key: C65047_C98869
-    :label: Plasma Cell to Total Cell Ratio Measurement
-    :notation: PLSCECE
-    :identifier: C98869
-    :status:
-    - :status: :updated
-      :notation: PLSCECE
-      :previous: PLSMCECE
   :C88025_C98800:
     :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzg4MDI1L1YzOSNDODgwMjVfQzk4ODAw
     :key: C88025_C98800
     :label: Zymbal's Gland Adenoma
     :notation: ADENOMA, ZYMBAL'S GLAND, BENIGN
     :identifier: C98800
+    :parent_identifier: C88025
     :status:
     - :status: :updated
       :notation: ADENOMA, ZYMBAL'S GLAND, BENIGN
@@ -58,6 +63,7 @@
     :label: Thrombolysis in Myocardial Infarction Flow-0
     :notation: GRADE 0
     :identifier: C100040
+    :parent_identifier: C101841
     :status:
     - :status: :updated
       :notation: GRADE 0
@@ -68,6 +74,7 @@
     :label: Thrombolysis in Myocardial Infarction Flow-3
     :notation: GRADE 3
     :identifier: C100043
+    :parent_identifier: C101841
     :status:
     - :status: :updated
       :notation: GRADE 3
@@ -78,6 +85,7 @@
     :label: Thrombolysis in Myocardial Infarction Flow-1
     :notation: GRADE 1
     :identifier: C100041
+    :parent_identifier: C101841
     :status:
     - :status: :updated
       :notation: GRADE 1
@@ -88,6 +96,7 @@
     :label: Thrombolysis in Myocardial Infarction Flow-2
     :notation: GRADE 2
     :identifier: C100042
+    :parent_identifier: C101841
     :status:
     - :status: :updated
       :notation: GRADE 2
@@ -98,6 +107,7 @@
     :label: Intraventricular and Intraatrial Conduction ECG Assessment
     :notation: Intraventricular-Intraatrial Conduction
     :identifier: C111238
+    :parent_identifier: C71152
     :status:
     - :status: :updated
       :notation: Intraventricular-Intraatrial Conduction
@@ -108,6 +118,7 @@
     :label: Transposon
     :notation: TRANSPOSON
     :identifier: C95942
+    :parent_identifier: C111114
     :status:
     - :status: :updated
       :notation: TRANSPOSON
@@ -118,6 +129,7 @@
     :label: Non-Study Device Issue
     :notation: NON-STUDY EQUIPMENT ISSUE
     :identifier: C112361
+    :parent_identifier: C111109
     :status:
     - :status: :updated
       :notation: NON-STUDY EQUIPMENT ISSUE
@@ -128,6 +140,7 @@
     :label: Medical Device Operational Issue
     :notation: DEVICE OPERATIONAL ISSUE
     :identifier: C62954
+    :parent_identifier: C111109
     :status:
     - :status: :updated
       :notation: DEVICE OPERATIONAL ISSUE

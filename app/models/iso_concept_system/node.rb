@@ -3,23 +3,24 @@ class IsoConceptSystem::Node < Fuseki::Base
   configure rdf_type: "http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode",
             base_uri: "http://#{ENV["url_authority"]}/CSN",
             uri_unique: true
-  
+
   data_property :pref_label
   data_property :description
   object_property :narrower, cardinality: :many, model_class: "IsoConceptSystem::Node"
 
-  validates_with Validator::Field, attribute: :pref_label, method: :valid_label?
+  validates_with Validator::Field, attribute: :pref_label, method: :valid_non_empty_label?
   validates_with Validator::Field, attribute: :description, method: :valid_long_name?
- 
+
   include IsoConceptSystem::Core
 
   # Destroy this object. Prevents delete if children are present or items are tagged with it.
   #
-  # @return [Null]
+  # @return [Integer] the count of objects deleted. Will be 1
   def delete
     query_results = Sparql::Query.new.query(check_delete_query, "", [:isoC])
     items = query_results.by_object_set([:i])
-    items.empty? ? super : self.errors.add(:base, "Cannot destroy tag as it has children tags or is currently in use.")
+    items.empty? ? delete_with_links : self.errors.add(:base, "Cannot destroy tag as it has children tags or is currently in use.")
+    1
   end
 
   # Child Property. The child property

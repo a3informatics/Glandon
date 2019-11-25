@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Import")' %>
 <% top_level_breadcrumb ("Import") %>
 <div class="row">
   <div class="col-md-12">
@@ -7,21 +8,21 @@
       </div>
       <div class="panel-body">
         <% @items.each_with_index do |item, index| %>
-          <% if index % 4 == 0 %> 
+          <% if index % 4 == 0 %>
             <div class="row">
           <% end %>
           <div class="col-md-3">
-            <%= render partial: "shared/import/list_panel", locals: {item: item} %>  
+            <%= render partial: "shared/import/list_panel", locals: {item: item} %>
           </div>
-          <% if index % 4 == 3 %> 
+          <% if index % 4 == 3 %>
             </div>
-          <% elsif index == (@items.count - 1) %> 
+          <% elsif index == (@items.count - 1) %>
             </div>
           <% end %>
         <% end %>
-        <div class="row"> 
-          <div class="col-md-3"> 
-            <%= render partial: "shared/buttons/index", locals: {link_path: imports_path, small: false, 
+        <div class="row">
+          <div class="col-md-3">
+            <%= render partial: "shared/buttons/index", locals: {link_path: imports_path, small: false,
               id: "imports_button", label: "Current Imports"} %>
           </div>
         </div>

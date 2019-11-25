@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 // BUTTONS
 .btn{
@@ -16,7 +16,7 @@
   color: $grey-white !important;
 }
 
-.btn:focus, .btn:active{
+.btn:active{
   color: $grey-white;
   background: $primary-color-dark;
 }
@@ -52,7 +52,7 @@
   background: $accent-color-2-light;
 }
 
-.btn.red:active, .btn.red:focus{
+.btn.red:active{
   background: $accent-color-2-dark !important;
 }
 
@@ -64,12 +64,16 @@
   background: $secondary-color-light;
 }
 
-.btn.green:active, .btn.green:focus{
+.btn.green:active{
   background: $secondary-color-dark !important;
 }
 
+.btn:focus{
+  color: white;
+}
+
 .btn.disabled{
-  background: $grey-medium;
+  opacity: .5;
   pointer-events: none;
 }
 
@@ -212,6 +216,14 @@
   background: $secondary-color-light;
 }
 
+.ico-btn-sec .circular-badge.blue{
+  background: $primary-color-light;
+}
+
+.ico-btn-sec:hover .circular-badge.blue{
+  background: $primary-color-bright;
+}
+
 .ico-btn-sec .ico-btn-sec-text{
   font-family: $font-light;
   margin-left: 6px;
@@ -255,14 +267,19 @@
 .paginate_button.active a{
   background: $primary-color-medium !important;
   color: $grey-white !important;
+  border-color: $primary-color-medium !important;
 }
 
 .paginate_button a{
   color: $primary-color-medium !important;
 }
 
-button:focus{
+button:focus, input[type="submit"] {
   outline: none !important;
+}
+
+a:focus{
+  color: $primary-color-light;
 }
 
 .btn:active{
@@ -271,4 +288,10 @@ button:focus{
 
 .paginate_button a:focus{
   outline: none !important;
+}
+
+@media (max-width: 768px){
+  .actions-wrap{
+    justify-content: center;
+  }
 }

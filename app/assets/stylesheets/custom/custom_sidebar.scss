@@ -1,4 +1,4 @@
-@import "custom/globals.scss";
+@import "custom/vars.scss";
 
 #sidebar {
   background-color: #ffffff;
@@ -136,4 +136,21 @@
 
   }
 
+}
+
+// LOCKED ITEMS
+#sidebar .locked {
+  pointer-events: none;
+  opacity: .5;
+  position: relative;
+}
+
+#sidebar .locked::after{
+  position: absolute;
+  content: "\e942";
+  font-family: 'icomoon' !important;
+  right: 20px;
+  opacity: .5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -1,0 +1,10 @@
+@import "custom/vars.scss";
+
+#notif-info{
+  text-decoration: underline;
+}
+
+.card.dashboard .card-content{
+  height: 380px;
+  overflow-y: auto;
+}

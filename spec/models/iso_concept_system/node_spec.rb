@@ -10,13 +10,13 @@ describe IsoConceptSystem::Node do
   end
 
   before :each do
-    schema_files = 
+    schema_files =
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"
     ]
-    data_files = 
+    data_files =
     [
-      "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"      
+      "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"
     ]
     load_files(schema_files, data_files)
   end
@@ -36,11 +36,32 @@ describe IsoConceptSystem::Node do
     expect(actual.errors.full_messages.to_sentence).to eq("Description contains invalid characters or is empty")
   end
 
+	it "prevents a child object being added with empty fields" do
+		cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+    child = cs.add({ :label => "Node 3_3", :description => "Node 3_3"})
+    actual = child.add({ :label => "", :description => ""})
+    expect(actual.errors.count).to eq(2)
+    expect(actual.errors.full_messages.to_sentence).to eq("Pref label is empty and Description contains invalid characters or is empty")
+	end
+
+	it "prevents child objects being added with identical labels" do
+		cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C3"))
+    child = cs.add({ :label => "Node XY", :description => "Node XY1"})
+		expect(child.errors.count).to eq(0)
+		child = cs.add({ :label => "Node XY", :description => "Node XY2"})
+		expect(child.errors.count).to eq(1)
+		expect(child.errors.full_messages.to_sentence).to eq("This tag label already exists at this level.")
+	end
+
   it "allows an object to be destroyed, no children" do
+    cs = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C"))
+    expect(cs.is_top_concept_objects.count).to eq(3)
     node = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     result = node.delete
     expect(result).to eq(1)
     expect{IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRConcepts#GSC-C2 in IsoConceptSystem::Node.")
+    cs = IsoConceptSystem.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C"))
+    expect(cs.is_top_concept_objects.count).to eq(2)
   end
 
   it "prevents an object being destroyed, children" do
@@ -75,11 +96,11 @@ describe IsoConceptSystem::Node do
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     expect(cs.pref_label).to eq("Node 2")
     expect(cs.description).to eq("Description 2")
-    cs.update(label: "Node AAA")    
+    cs.update(label: "Node AAA")
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     expect(cs.pref_label).to eq("Node AAA")
     expect(cs.description).to eq("Description 2")
-    cs.update(label: "BBB", description: "ddd fff")    
+    cs.update(label: "BBB", description: "ddd fff")
     cs = IsoConceptSystem::Node.find(Uri.new(uri: "http://www.assero.co.uk/MDRConcepts#GSC-C2"))
     expect(cs.pref_label).to eq("BBB")
     expect(cs.description).to eq("ddd fff")

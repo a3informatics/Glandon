@@ -10,7 +10,7 @@
       <%= label_tag :files, "Select Change Instruction Spreadsheet File:" %><br/>
       <%= select_tag("cdisc_term[files][]", options_for_select(@files), class: "form-control", multiple: true, size: 20 ) %>
     </div>
-    <%= f.submit "Import", class: "btn btn-default btn-primary" %>
-    <%= link_to "Close", close_path, :class => "btn btn-primary" %>
+    <%= f.submit "Import", class: "btn  " %>
+    <%= link_to "Close", close_path, :class => "btn " %>
   <% end %>
 </div>

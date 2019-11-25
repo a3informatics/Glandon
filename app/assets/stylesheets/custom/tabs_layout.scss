@@ -1,0 +1,53 @@
+@import "custom/vars";
+
+.card-with-tabs{
+  padding-top: 6px;
+}
+
+.tabs-sel{
+  width: 100%;
+  display: flex;
+  direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  border-bottom: 1px solid $grey-bright;
+}
+
+.tab-option{
+  display: inline-block;
+  background: $grey-bright;
+  color: $grey-medium;
+  font-family: $font-light;
+  min-width: 70px;
+  padding: 6px 14px;
+  padding-top: 8px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.tab-option div{
+  transition: transform .3s;
+}
+
+.tab-option:hover div{
+  transform: translateY(-3px);
+}
+
+.tab-option.active{
+  background: white;
+  border: 1px solid $grey-bright;
+  border-bottom: 3px solid $secondary-color-light;
+  color: $primary-color-light;
+  padding-top: 6px;
+}
+
+.tab-wrap{
+  width: 100%;
+  display: block;
+  padding: 10px;
+}
+
+.tab-wrap.closed{
+  display: none;
+}

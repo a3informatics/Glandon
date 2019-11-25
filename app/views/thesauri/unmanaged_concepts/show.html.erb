@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Show: '+@tc.notation+' ('+@tc.identifier+')")' %>
 <% synonym_panel_id = "linkspanel" %>
 <% preferred_term_panel_id = "preferred_term" %>
 <% ci_panel_id = "cipanel" %>
@@ -18,7 +19,7 @@
   <%= javascript_tag "var url_path = '';" %>
 <% end %>
 <div class="row">
-  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :badge => "CI"} do %>
+  <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
     <!-- RETURN BUTTON -->

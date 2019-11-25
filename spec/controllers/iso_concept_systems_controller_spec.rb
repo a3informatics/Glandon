@@ -14,20 +14,7 @@ describe IsoConceptSystemsController do
 
     before :all do
       clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
       clear_iso_concept_object
       clear_iso_namespace_object
@@ -53,22 +40,7 @@ describe IsoConceptSystemsController do
 
     before :all do
       clear_triple_store
-      # load_schema_file_into_triple_store("ISO11179Types.ttl")
-      # load_schema_file_into_triple_store("ISO11179Basic.ttl")
-      # load_schema_file_into_triple_store("ISO11179Identification.ttl")
-      # load_schema_file_into_triple_store("ISO11179Registration.ttl")
-      # load_schema_file_into_triple_store("ISO11179Data.ttl")
-      # load_schema_file_into_triple_store("ISO11179Concepts.ttl")
-      # load_test_file_into_triple_store("iso_namespace_fake.ttl")
-      schema_files = 
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", 
-        "ISO11179Concepts.ttl"
-      ]
-      data_files = 
-      [
-        "iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"    
-      ]
+      data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_concept_system_generic_data.ttl"]
       load_files(schema_files, data_files)
     end
 

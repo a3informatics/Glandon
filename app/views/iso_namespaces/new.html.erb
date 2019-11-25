@@ -1,4 +1,6 @@
+<%= javascript_tag 'setPageTitle("New Namespace")' %>
 <% second_level_breadcrumb("Namespaces", iso_namespaces_path, "New") %>
+<!-- DEPRECTATED !!! -->
 <div class="row">
   <div class="col-md-4">
     <div class="panel panel-default">
@@ -19,8 +21,8 @@
             <%= f.label :authority, "Authority:"%><br />
             <%= f.text_field :authority, autofocus: true , class: "form-control"%>
           </div>
-          <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
-          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %> 
+          <%= f.submit "Submit", class: "btn  " %>
+          <%= render partial: "shared/close_button", locals: { path: iso_namespaces_path } %>
         <% end %>
       </div>
     </div>

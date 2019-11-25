@@ -518,7 +518,7 @@ describe "IsoManagedV2" do
       expect(index.first[:identifier]).to eq("ITEM")
     end
 
-    it "unique speed" do
+    it "unique speed - WILL CURRENTLY FAIL - fails when run as set." do
       (1..500).each do |index|
         item = CdiscTerm.new
         item.uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V#{index}")
@@ -530,8 +530,9 @@ describe "IsoManagedV2" do
       end 
       timer_start
       index = CdiscTerm.unique
-      expect(index.count).to eq(500)
       timer_stop("Unique")
+    puts colourize("***** ISO Managed count: #{index.count} *****", "red")
+      expect(index.count).to eq(500)
     end
 
   end
@@ -710,11 +711,11 @@ describe "IsoManagedV2" do
       IsoHelpers.clear_cache
     end
 
-    before :all do
+    before :each do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..5)
+      load_cdisc_term_versions(1..10)
     end
 
     it "next ordinal" do
@@ -758,6 +759,27 @@ describe "IsoManagedV2" do
       item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
       item.has_state.make_current
       expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
+    end
+
+    it "finds lastest and current parent" do
+      uri_v7 = Uri.new(uri: "http://www.cdisc.org/CT/V7#TH")
+      uri_v10 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
+      tc = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/C66789/V4#C66789"))
+      results = tc.current_and_latest_parent 
+      check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_1.yaml", equate_method: :hash_equal)
+      item = CdiscTerm.find_minimum(uri_v7)
+      item.has_state.make_current
+      results = tc.current_and_latest_parent 
+      check_file_actual_expected(results, sub_dir, "current_and_latest_parent_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it "sets latest and current set" do
+      results = CdiscTerm.current_and_latest_set
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_1.yaml", equate_method: :hash_equal)
+      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
+      item.has_state.make_current
+      results = CdiscTerm.current_and_latest_set
+      check_file_actual_expected(results, sub_dir, "current_and_latest_set_expected_2.yaml", equate_method: :hash_equal)
     end
 
   end
@@ -839,6 +861,29 @@ describe "IsoManagedV2" do
       item.update_status(params)
       actual = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Tag Methods" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :all do
+      IsoHelpers.clear_cache
+      data_files = []
+      load_files(schema_files, data_files)
+      load_data_file_into_triple_store("mdr_identification.ttl")
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+      load_cdisc_term_versions(1..10)
+    end
+
+    it "items for tag" do
+      tag = IsoConceptSystem.path(["CDISC", "SDTM"])
+      result = IsoManagedV2.find_by_tag(tag.id)
+      check_file_actual_expected(result, sub_dir, "find_by_tag_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

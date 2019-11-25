@@ -308,10 +308,18 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
     {versions: versions, items: final_results}
   end
 
+  # Managed Children Pagination. Get the children in pagination manner
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @option params [Array] :tags the tag to be displayed
+  # @return [Array] array of hashes containing the child data
   def managed_children_pagination(params)
     results =[]
     count = params[:count].to_i
     offset = params[:offset].to_i
+    tags = params.key?(:tags) ? params[:tags] : []
 
     # Get the URIs for each child
     query_string = %Q{SELECT ?e WHERE
@@ -325,6 +333,7 @@ SELECT ?e ?ccl ?cid ?cl ?ci ?cn ?pn ?pi WHERE
     uris = query_results.by_object_set([:e]).map{|x| x[:e]}
 
     # Get the final result
+    tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
     query_string = %Q{
 SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
 {
@@ -338,7 +347,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
       ?s th:extensible ?e .
       ?s th:preferredTerm/isoC:label ?pt .
       OPTIONAL {?s th:synonym/isoC:label ?sy .}
-      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
+      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
     }
   } ORDER BY ?i ?sy ?t
 } GROUP BY ?i ?n ?d ?pt ?e ?s ORDER BY ?i

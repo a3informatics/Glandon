@@ -1,3 +1,4 @@
+<%= javascript_tag 'setPageTitle("Imports")' %>
 <%= javascript_include_tag 'background_index'%>
 <%= javascript_include_tag 'standard_datatable' %>
 <% top_level_breadcrumb ("Imports") %>
@@ -28,16 +29,16 @@
           <%= true_false_glyphicon(item.success) %>
 	    		<%= true_false_glyphicon(item.auto_load) %>
           <td>
-            <%= link_to "Show", import_path(item), :class => "btn btn-xs btn-primary" %>
+            <%= link_to "Show", import_path(item), :class => "btn btn-xs " %>
           </td>
           <td>
-            <%= render partial: "shared/buttons/delete", locals: {link_path: import_path(item), small: true, 
+            <%= render partial: "shared/buttons/delete", locals: {link_path: import_path(item), small: true,
               id: "delete_button_#{item.id}", label: "Delete"} %>
           </td>
 	    	</tr>
 			<% end %>
 	  </tbody>
 	</table>
-  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_imports_path({imports: {items: "all"}}), small: false, 
+  <%= render partial: "shared/buttons/delete", locals: {link_path: destroy_multiple_imports_path({imports: {items: "all"}}), small: false,
     id: "clear_button", label: "Delete All"} %>
 </div>
