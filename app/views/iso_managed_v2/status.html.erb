@@ -1,12 +1,5 @@
 <%= javascript_tag 'setPageTitle("Document control: '+@managed_item.label+'")' %>
 <%= stylesheet_link_tag "custom/status_page" %>
-
-<% if @index_label == "" %>
-	<% second_level_breadcrumb(@managed_item.identifier, @close_path, "Status:") %>
-<% else %>
-	<% third_level_managed_item_breadcrumb(@managed_item, @index_label, @index_path, @close_path, "Status:") %>
-<% end %>
-
 <% state = @managed_item.has_state.registration_status %>
 <% next_state = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
 

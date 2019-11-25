@@ -28,15 +28,10 @@ describe "CDISC Term Search", :type => :feature do
   
     before :all do
       ua_create
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
-                      "thesaurus.ttl", "BusinessOperational.ttl", "CDISCBiomedicalConcept.ttl", "BusinessForm.ttl" ]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
-      clear_iso_concept_object
-      clear_iso_namespace_object
-      clear_iso_registration_authority_object
-      clear_iso_registration_state_object
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       clear_cdisc_term_object
     end
 
@@ -263,6 +258,28 @@ describe "CDISC Term Search", :type => :feature do
       ui_check_table_info("searchTable", 1, 1, 1)
       click_button 'clearbutton'
       expect(page).to have_content 'Showing 1 to 1 of 1 entries'
+      expect(find('#searchTable_filter input')).to have_content('')
+      expect(find('#searchTable_csearch_submission_value')).to have_content('')
+    end
+
+    it "case senitive search with tags (REQ-MDR-CT-???)", js: true do
+      click_navbar_cdisc_terminology
+      expect(page).to have_content 'History'
+      wait_for_ajax(7)
+      context_menu_element("history", 5, "2015-12-18 Release", :search)
+      expect(page).to have_content 'Search: Controlled Terminology CT (V46.0.0, 46, Standard)'
+      wait_for_ajax_long # Big load
+      ui_check_table_info("searchTable", 0, 0, 0)
+      ui_term_column_search(:code_list_name, 'vital signs')
+      ui_check_table_info("searchTable", 1, 10, 79)
+      ui_term_column_search(:tags, 'SDTM')
+      ui_check_table_info("searchTable", 1, 10, 75)
+      ui_term_column_search(:tags, 'sdtm')
+      ui_check_table_info("searchTable", 1, 10, 75)
+      ui_term_column_search(:tags, 'sdtm; cdash')
+      ui_check_table_info("searchTable", 1, 10, 79)
+      ui_term_column_search(:tags, 'CDASH')
+      ui_check_table_info("searchTable", 1, 4, 4)
       expect(find('#searchTable_filter input')).to have_content('')
       expect(find('#searchTable_csearch_submission_value')).to have_content('')
     end

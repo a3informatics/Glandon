@@ -244,7 +244,9 @@ module UiHelpers
     {
       notation: "searchTable_csearch_submission_value",
       code_list: "searchTable_csearch_cl",
-      definition: "searchTable_csearch_definition"
+      code_list_name: "searchTable_csearch_cl_name",
+      definition: "searchTable_csearch_definition",
+      tags: "searchTable_csearch_tags"
     }
     input = column_input_map[column]
     fill_in input, with: text

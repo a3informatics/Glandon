@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag    'd3_tree', 'spinner' %>
 <%= javascript_include_tag 'd3_tree', 'sdtm_user_domain_editor', 'ajax_requests', 'd3_editor', 'unload', 'field_validation', 'token_timer', 'spinner' %>
-<% third_level_managed_item_breadcrumb(@sdtm_user_domain, "SDTM Domains", sdtm_user_domains_path, @close_path, "Edit:") %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

@@ -164,6 +164,14 @@ describe "Thesaurus::Search" do
       check_file_actual_expected(results, sub_dir, "search_16a.yaml", equate_method: :hash_equal)
     end 
 
+    it "allows a terminology to be searched, tag, lower case" do
+      params = standard_params
+      params[:columns][C_TS_TAG][:search][:value] = "sdtm"
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V46#TH"))
+      results = ct.search(params)
+      check_file_actual_expected(results, sub_dir, "search_16a.yaml", equate_method: :hash_equal)
+    end 
+
     it "allows a terminology to be searched, tag" do
       params = standard_params
       params[:columns][C_TS_TAG][:search][:value] = "SEND"

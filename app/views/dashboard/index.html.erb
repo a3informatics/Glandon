@@ -1,8 +1,9 @@
 <%= javascript_tag 'setPageTitle("Dashboard");' %>
+<%= javascript_include_tag 'dashboard_index'%>
+<% first_level_breadcrumb(:dashboard) %>
 <%= javascript_include_tag 'jquery-ui.min', 'jquery.ui.touch-punch.min.js', 'dashboard/dashboard', 'dashboard/dashboard_editor',  'dashboard/dashboard_panel'%>
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
 <%= stylesheet_link_tag 'custom/dashboard', 'shared/edit_dashboard' %>
-<% top_level_breadcrumb ("Dashboard") %>
 
 <% usr_layout_settings = (current_user.read_setting :dashboard_layout).value %>
 <% usr_layout_settings = usr_layout_settings.split(', ').select{|x| user_policy_dashboard_panels.key?(x)} %>

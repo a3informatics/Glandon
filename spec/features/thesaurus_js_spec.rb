@@ -60,20 +60,20 @@ describe "Thesaurus", :type => :feature do
 
     it "allows terminology to be created (REQ-MDR-ST-015)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: 'TEST test'
       fill_in 'thesauri_label', with: 'Test Terminology'
       click_button 'Submit'
       expect(page).to have_content 'Terminology was successfully created.'
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
       expect(page).to have_content 'Version History of \'TEST test\''
     end
 
     it "history allows the status page to be viewed (REQ-MDR-ST-050)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element('history', 4, 'CDISC Extensions', :document_control)
@@ -92,7 +92,7 @@ describe "Thesaurus", :type => :feature do
     # it "allows for terminology to be exported as CSV", js: true do
     #   clear_downloads
     #   click_navbar_terminology
-    #   expect(page).to have_content 'All Terminologies'
+    #   expect(page).to have_content 'Index: Terminology'
     #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
     #   expect(page).to have_content 'Version History of \'CDISC EXT\''
     #   context_menu_element('history', 4, 'CDISC Extensions', :show)
@@ -111,7 +111,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -174,7 +174,7 @@ describe "Thesaurus", :type => :feature do
     # NOT WORKING (EDIT TERMINOLOGY)
     it "allows terminology to be edited, manual identifier check (REQ-MDR-ST-015) - WILL CURRENTLY FAIL - need to set config", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
@@ -203,7 +203,7 @@ describe "Thesaurus", :type => :feature do
     # NOT WORKING (EDIT TERMINOLOGY)
     it "allows terminology to be edited, manual identifier validation (REQ-MDR-ST-015) - WILL CURRENTLY FAIL (need to set config)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a", :text => 'Edit').click
@@ -223,7 +223,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows the edit session to be closed, parent page (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -237,7 +237,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows the edit session to be closed, child page (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -255,7 +255,7 @@ describe "Thesaurus", :type => :feature do
     # NOT WORKING (EDIT TERMINOLOGY)
     it "allows the parent page to be returned to (REQ-MDR-ST-NONE) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
@@ -294,7 +294,7 @@ describe "Thesaurus", :type => :feature do
 
     it "allows a code list to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040) - WILL CURRENTLY FAIL", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri[identifier]', with: 'TT'
       fill_in 'thesauri[label]', with: 'TestTerminology'
@@ -311,13 +311,13 @@ describe "Thesaurus", :type => :feature do
       ui_click_ok("Are you sure?")
       pause
 
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
     end
 
     it "edit timeout warnings and expiration (REQ-MDR-EL-020) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -345,7 +345,7 @@ describe "Thesaurus", :type => :feature do
     it "edit timeout warnings and extend (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
@@ -377,7 +377,7 @@ describe "Thesaurus", :type => :feature do
     it "edit timeout warnings and child pages (REQ-MDR-EL-NONE) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       expect(page).to have_content 'Version History of \'CDISC EXT\''
       context_menu_element("history", 4, 'CDISC Extensions', :edit)
@@ -412,7 +412,7 @@ describe "Thesaurus", :type => :feature do
     it "edit clears token on close (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -434,7 +434,7 @@ describe "Thesaurus", :type => :feature do
     it "edit clears token on back button (REQ-MDR-EL-030) - WILL CURRENTLY FAIL", js: true do
       Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -455,7 +455,7 @@ describe "Thesaurus", :type => :feature do
 
     it "history allows the edit page to be viewed (REQ-MDR-ST-015) - WILL CURRENTLY FAIL", js: true do # Put this after other tests, creates V2
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
       wait_for_ajax(10)
       expect(page).to have_content 'Version History of \'CDISC EXT\''
@@ -470,7 +470,7 @@ describe "Thesaurus", :type => :feature do
     #View option disabled
     # it "allows a thesaurus to be viewed, sponsor", js: true do
     #   click_navbar_terminology
-    #   expect(page).to have_content 'All Terminologies'
+    #   expect(page).to have_content 'Index: Terminology'
     #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a").click
     #   expect(page).to have_content 'Version History of \'CDISC EXT\''
     #   find(:xpath, "//tr[contains(.,'CDISC Extensions')]/td/a", :text => 'View').click
@@ -501,7 +501,7 @@ describe "Thesaurus", :type => :feature do
     #View option disabled
     # it "allows a thesaurus to be viewed, CDISC", js: true do
     #   click_navbar_terminology
-    #   expect(page).to have_content 'All Terminologies'
+    #   expect(page).to have_content 'Index: Terminology'
     #   find(:xpath, "//tr[contains(.,'CDISC Terminology')]/td/a").click
     #   expect(page).to have_content 'History: CDISC Terminology'
     #   find(:xpath, "//tr[contains(.,'CDISC Terminology 2015-12-18')]/td/a", :text => 'View').click

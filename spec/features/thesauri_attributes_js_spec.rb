@@ -116,7 +116,7 @@ describe "Thesauri", :type => :feature do
 
     it "allows to assign a synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM"
       fill_in 'thesauri_label', with: 'New Terminology'
@@ -143,7 +143,7 @@ describe "Thesauri", :type => :feature do
 
     it "allows to assign more synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V2"
       fill_in 'thesauri_label', with: 'New Terminology V2'
@@ -171,7 +171,7 @@ describe "Thesauri", :type => :feature do
     it "allows to assign a synonyms on a code list item (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V3"
       fill_in 'thesauri_label', with: 'New Terminology V3'
@@ -209,7 +209,7 @@ describe "Thesauri", :type => :feature do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V4"
       fill_in 'thesauri_label', with: 'New Terminology V4'
@@ -246,7 +246,7 @@ describe "Thesauri", :type => :feature do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V5"
       fill_in 'thesauri_label', with: 'New Terminology V5'
@@ -278,7 +278,7 @@ describe "Thesauri", :type => :feature do
        # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V6"
       fill_in 'thesauri_label', with: 'New Terminology V6'
@@ -317,7 +317,7 @@ describe "Thesauri", :type => :feature do
     it "allows to delete a synonyms on a code list (REQ-MDR-SY-030)", js:true do
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V7"
       fill_in 'thesauri_label', with: 'New Terminology V7'
@@ -344,7 +344,7 @@ describe "Thesauri", :type => :feature do
       # RESET NAMEVALUE TO 10 and 999 FIRST!
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V8"
       fill_in 'thesauri_label', with: 'New Terminology V8'
@@ -379,7 +379,7 @@ describe "Thesauri", :type => :feature do
 
     it "allows to assign a preferred term on a code list (REQ-MDR-PT-030)", js: true do
       click_navbar_terminology
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V9"
       fill_in 'thesauri_label', with: 'New Terminology V9'
@@ -401,7 +401,7 @@ describe "Thesauri", :type => :feature do
     it "allows to assign a preferred term on a code list item (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V10"
       fill_in 'thesauri_label', with: 'New Terminology V10'
@@ -432,7 +432,7 @@ describe "Thesauri", :type => :feature do
     it "allows to delete a preferred term on a code list (REQ-MDR-PT-030)", js:true do
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V11"
       fill_in 'thesauri_label', with: 'New Terminology V11'
@@ -459,7 +459,7 @@ describe "Thesauri", :type => :feature do
     it "allows to delete a preferred term on a code list item (REQ-MDR-PT-030)", js:true do
       click_navbar_terminology
       wait_for_ajax_long
-      expect(page).to have_content 'All Terminologies'
+      expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
       fill_in 'thesauri_identifier', with: "NEW TERM V12"
       fill_in 'thesauri_label', with: 'New Terminology V12'
