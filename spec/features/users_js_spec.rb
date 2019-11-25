@@ -47,6 +47,14 @@ describe "Users", :type => :feature do
       expect(page).to have_content 'User was successfully activated.'
     end
 
+    it "allows to show user login information (REQ-??????)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      find(:xpath, "//*[@id='main']/tbody/tr[1]/td[3]/a", :text => 'Edit').click
+      expect(page).to have_content 'Login Count: 0  |  Last login: Not logged in yet!  |  Days ago: Not logged in yet!'
+    end
+
   end
 
 end
