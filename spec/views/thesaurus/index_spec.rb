@@ -21,7 +21,7 @@ describe 'thesauri/index.html.erb', :type => :view do
 
     render
 
-    expect(rendered).to have_content("All Terminologies")
+    expect(rendered).to have_content("Index: Terminology")
     expect(rendered).to have_content("New Terminology")
     expect(rendered).to have_content("Search across all current versions")
     #ui_check_breadcrumb("Background", "", "", "")
@@ -51,7 +51,7 @@ describe 'thesauri/index.html.erb', :type => :view do
     assign(:thesauri, thesauri)
 
     render
-    expect(rendered).to have_content("All Terminologies")
+    expect(rendered).to have_content("Index: Terminology")
     expect(rendered).to have_content("Search across all current versions")
     #ui_check_breadcrumb("Background", "", "", "")
     expect(rendered).to have_selector("table#main tbody tr:nth-of-type(1) td:nth-of-type(1)", text: /Number 1?/i)
