@@ -5,7 +5,7 @@ module BreadcrumbsHelper
   # @param type [Hash] hash holding the text and link for the first level
   # @return [Null]
   def first_level_breadcrumb(type)
-  	breadcrumb ([type])
+  	breadcrumb ([id_to_type(type)])
   end
 
   # Second Level Breadcrumb
@@ -17,7 +17,7 @@ module BreadcrumbsHelper
   # @return [Null]
   def second_level_breadcrumb(type, scope_id, identifier, text = "")
     scope_short_name = IsoNamespace.find(scope_id).short_name
-    breadcrumb ([ type, {link: "#", text: "#{text}#{scope_short_name}, #{identifier}"}])
+    breadcrumb ([id_to_type(type), {link: "#", text: "#{text}#{scope_short_name}, #{identifier}"}])
   end
 
   # Third Level Managed-Item Breadcrumb
@@ -29,7 +29,7 @@ module BreadcrumbsHelper
   def third_level_breadcrumb(type, item, second_level_link)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     scope = item.respond_to?(:scoped_identifier) ? item.has_identifier.has_scope.short_name : item.scope.short_name
-    breadcrumb ([ type, {link: second_level_link, text: "#{scope}, #{identifier}"}, {link: "#", text: "V#{item.semantic_version}"}])
+    breadcrumb ([id_to_type(type), {link: second_level_link, text: "#{scope}, #{identifier}"}, {link: "#", text: "V#{item.semantic_version}"}])
   end
 
   # Fourth Level Breadcrumb
@@ -43,7 +43,7 @@ module BreadcrumbsHelper
   def fourth_level_breadcrumb(type, item, second_level_link, third_level_link, title)
     identifier = item.respond_to?(:scoped_identifier) ? item.scoped_identifier : item.identifier
     scope = item.respond_to?(:scoped_identifier) ? item.has_identifier.has_scope.short_name : item.scope.short_name
-    breadcrumb ([type, {link: second_level_link, text: "#{scope}, #{identifier}"}, {link: third_level_link, text: "V#{item.semantic_version}"}, {link: "#", text: "#{title}"}])
+    breadcrumb ([id_to_type(type), {link: second_level_link, text: "#{scope}, #{identifier}"}, {link: third_level_link, text: "V#{item.semantic_version}"}, {link: "#", text: "#{title}"}])
   end
 
   # Breadcrumb. Formats the HTML for the breadcrumb. Places into a session variable.
