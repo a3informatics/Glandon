@@ -16,12 +16,12 @@
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
+        id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
 
       <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
-        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
-          id: "btn-version-history", text: "Changes", dt_toggle: "", disabled: false}  %>
         <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc), icon: "icon-file",
            id: "export-csv", text: "Export CSV", dt_toggle: "", disabled: false } %>
         <% if policy(Thesaurus).edit? %>
@@ -43,7 +43,7 @@
   <% end %>
 </div>
 <div class="row">
-  <div class="col-md-12 card">
+  <div class="col-md-12 card wide">
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>
