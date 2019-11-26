@@ -31,6 +31,7 @@
 //= require app-js-erb-extension
 //= require jquery-dateformat.min
 //= require title
+//= require shared/confirmation_dialog
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";

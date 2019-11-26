@@ -1,0 +1,125 @@
+/*
+* Confirmation Dialog
+*
+*/
+
+/**
+ * Confirmation Dialog Constructor
+ *
+ * @param [Function] confirmCallback: called when user clicks positive button
+ * @param [Object] options: options for the confirm dialog. Format:
+ *  title [String] (optional): Title of the dialog
+ *  subtitle [String] (optional): Subtitle of the dialog
+ *  positiveButton [String] (optional): Text on the positive button
+ *  negativeButton [String] (optional): Text on the negative button
+ *  dangerous [Boolean] (optional): If true, will add a red border around the dialog
+ *  withLoading [Boolean] (optional): If true, will append loading animation in the dialog
+
+ * @return [void]
+ */
+function ConfirmationDialog(confirmCallback, options) {
+  var _this = this;
+  this.options = options == null ? this.defaultOptions({}) : this.defaultOptions(options);
+  this.callback = confirmCallback;
+}
+
+/**
+ * Appends HTML to page body, sets button callbacks and shows the ConfirmationDialog
+ *
+ * @return [void]
+ */
+ConfirmationDialog.prototype.show = function() {
+  $("body").prepend(this.generateDialogHTML());
+  this.setButtonCallbacks();
+
+  setTimeout(function(){
+    $("#cd-wrap").addClass("cd-show");
+  }, 1);
+}
+
+
+/**
+ * Hides the ConfirmationDialog, removes the HTML from the page body
+ *
+ * @return [void]
+ */
+ConfirmationDialog.prototype.dismiss = function() {
+  $("#cd-wrap").removeClass("cd-show");
+
+  setTimeout(function(){
+    $("#cd-wrap").remove();
+  }, 1000);
+}
+
+/**
+ * Sets the click events for the postive and negative buttons
+ *
+ * @return [void]
+ */
+ConfirmationDialog.prototype.setButtonCallbacks = function() {
+  var _this = this;
+  $("#cd-positive-button").on('click', function(){
+    if(_this.callback != null)
+      _this.callback(_this);
+    _this.dismiss();
+  });
+
+  $("#cd-negative-button").on('click', function(){
+    _this.dismiss();
+  });
+}
+
+/**
+ * Toggles loading animation display, only usable if withLoading option is set to true
+ *
+ * @param [Boolean] enable: if true, will display, if false, will hide the loading
+ * @return [void]
+ */
+ConfirmationDialog.prototype.toggleProcessing = function(enable) {
+  if(!this.options.withLoading)
+    return;
+  if(enable)
+    $("#cd-loading").removeClass("hidden");
+  else
+    $("#cd-loading").addClass("hidden");
+}
+
+/**
+ * Sets the default options combined with optional user options
+ *
+ * @param [Object] User options (can be empty object {})
+ * @return [Object] Default values combined with user options that were set
+ */
+ConfirmationDialog.prototype.defaultOptions = function(userOptions) {
+  var options = {
+    title: userOptions.title == null ? "Are you sure you want to proceed?" : userOptions.title,
+    subtitle: userOptions.subtitle == null ? "You cannot undo this operation." : userOptions.subtitle,
+    positiveButton: userOptions.positiveButton == null ? "Yes" : userOptions.positiveButton,
+    negativeButton: userOptions.negativeButton == null ? "No" : userOptions.negativeButton,
+    dangerous: userOptions.dangerous == null ? false : userOptions.dangerous,
+    withLoading: userOptions.withLoading == null ? false : userOptions.withLoading
+  }
+  return options;
+}
+
+/**
+ * Generates the HTML of the confirmation dialog with instance options
+ *
+ * @return [String] HTML to be appended to <body>
+ */
+ConfirmationDialog.prototype.generateDialogHTML = function() {
+  var html = '';
+  html += '<div id="cd-wrap">';
+  html +=   '<div id="cd-body" class="shadow-medium ' + (this.options.dangerous ? 'danger' : '') + '">';
+  html +=     '<div id="cd-title" class="text-xnormal">' + this.options.title + '</div>';
+  html +=     '<div id="cd-subtitle" class="text-small font-light">' + this.options.subtitle + '</div>';
+  html +=     this.options.withLoading ? ('<div id="cd-loading" class="hidden">'+generateSpinner("small")+'</div>') : '';
+  html +=     '<div id="cd-footer">';
+  html +=       '<button id="cd-negative-button" class="btn medium">' + this.options.negativeButton + '</button>';
+  html +=       '<button id="cd-positive-button" class="btn medium">' + this.options.positiveButton + '</button>';
+  html +=     '</div>';
+  html +=   '</div>';
+  html += '</div>';
+
+  return html;
+}
