@@ -19,13 +19,11 @@
 }
 
 .icon-context-menu:focus .context-menu {
-  transform: scale(1.0) !important;
-  opacity: 1;
+  display: block;
 }
 
 .context-menu:hover{
-  transform: scale(1.0) !important;
-  opacity: 1;
+  display: block;
 }
 
 .context-menu{
@@ -33,15 +31,11 @@
   background: $grey-white;
   z-index: 20;
   border: 1px solid $grey-bright;
-  display: block;
-  transition: transform .1s, opacity .3s;
-  transform: scale(0) !important;
-  transform-origin: top left;
-  opacity: 0;
+  display: none;
 }
 
 .context-menu.left{
-  transform: translateX(-150px);
+  transform: translateX(-100%);
 }
 
 .context-menu .option{

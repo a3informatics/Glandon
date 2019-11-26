@@ -3,10 +3,12 @@
 // ID: String id for the menu itself
 // items: an array of objects with data, containing the fields: link_path, disabled (string 'true' or 'false'), icon (string icon class), text
 // Returns HTML code as a string.
-function generateContextMenu(id, items, color){
+function generateContextMenu(id, items, color, side){
   var html = '';
+  side = side != null ? side : "";
+  color = color != null ? color : "";
   html += '<span id="' + id + '" class="icon-context-menu text-normal" tabindex="1">';
-  html +=   '<div class="context-menu ' + (color != null ? color : "") + ' shadow-small collapsed">';
+  html +=   '<div class="context-menu ' + color + ' ' + side + ' shadow-small collapsed">';
   $.each(items, function(i, e){
     html += generateContextItem(e.link_path, e.disabled, e.icon, e.text);
   });
@@ -16,9 +18,9 @@ function generateContextMenu(id, items, color){
   return html;
 }
 
-function generateContextItem(link_path, disabled, icon, text){
+function generateContextItem(link_path, disabled, icon, text, dt_toggle){
   var item_html = '';
-  item_html += '<a href="' + link_path + '" class="option ' + (disabled === 'true' ? 'disabled' : '')  + '">';
+  item_html += '<a href="' + link_path + '" class="option ' + (disabled === 'true' ? 'disabled' : '')  + '" ' + (dt_toggle != null ? 'data-toggle="'+dt_toggle+'"' : '') + '>';
   item_html +=  '<span class="' + icon + ' text-small"></span>';
   item_html +=  '<span class="text-small">' + text + '</span>';
   item_html += '</a>';
