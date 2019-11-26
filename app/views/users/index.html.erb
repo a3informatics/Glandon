@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Manage Users")' %>
 <%= javascript_include_tag 'standard_datatable' %>
-<% first_level_breadcrumb (id_to_type('users')) %>
+<% first_level_breadcrumb (:users) %>
 <div class="card col-md-12">
 	<div class="card-header">All user accounts</div>
 	<div class="card-content">
@@ -28,7 +28,7 @@
 				    	</td>
               <td style="text-align: center;">
                 <% if @current_user.id != user.id %>
-                  <%= link_to "Unlock", unlock_user_path(user), method: :put, :class => "btn medium " + ( user.is_active? ? "disabled": "" ) %> 
+                  <%= link_to "Unlock", unlock_user_path(user), method: :put, :class => "btn medium " + ( user.is_active? ? "disabled": "" ) %>
                 <% end %>
               </td>
               <td style="text-align: center;">
