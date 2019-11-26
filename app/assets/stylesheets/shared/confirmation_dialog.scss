@@ -4,7 +4,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,.5);
-  display: flex;
+  display: block;
   justify-content: center;
   position: fixed;
   z-index: 1111;
@@ -25,14 +25,14 @@
 }
 
 #cd-body{
-  min-width: 400px;
+  width: 500px;
   border-radius: 10px;
-  position: absolute;
   background: $grey-white;
   padding: 20px;
-  margin-top: 100px;
   display: block;
   transition: all .3s;
+  margin: 0 auto;
+  margin-top: 100px;
 }
 
 #cd-loading.hidden{
@@ -56,4 +56,10 @@
 
 #cd-body #cd-footer .btn{
   min-width: 50px;
+}
+
+@media (max-width: 768px){
+  #cd-body{
+    width: 350px;
+  }
 }
