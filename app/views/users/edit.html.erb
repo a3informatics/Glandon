@@ -1,6 +1,7 @@
 <%= javascript_tag 'setPageTitle("Edit User: '+@user.email+'");' %>
 <%= javascript_include_tag 'standard_datatable' %>
-<% second_level_breadcrumb("Users", users_path, "Edit") %>
+<% breadcrumb ([id_to_type('users'), {link: "#", text: "Edit"}]) %>
+
 
 <style>
 
@@ -21,10 +22,15 @@
 </style>
 
 <div class="row">
-	<% s_texts =
-	[{:title => "Email", :value => @user.email},
-	 {:title => "Current Roles", :value => @user.role_list_stripped},
-	 {:title => "Login Count", :value => @user.sign_in_count}]%>
+	<% 
+  last_si = @user.last_sign_in_at
+  s_texts =
+	  [{:title => "Email", :value => @user.email},
+	   {:title => "Current Roles", :value => @user.role_list_stripped},
+	   {:title => "Login Count", :value => @user.sign_in_count},
+     {:title => "Last login", :value => last_si.nil? ? "Not logged in yet!" : last_si.strftime("%F") },
+     {:title => "Days ago", :value => last_si.nil? ? "Not logged in yet!" : time_ago_in_words(last_si.strftime("%F"))}]%>
+
 
 	<%= render layout: "shared/simple_header_card_general", :locals => {badge: "icon-users", header_title: "Set user roles for:",
 		main_text: @user.name, sub_texts: s_texts} do %>

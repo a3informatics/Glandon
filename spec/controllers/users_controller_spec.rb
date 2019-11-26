@@ -130,6 +130,25 @@ describe UsersController do
       expect(response).to redirect_to("/user_settings")
     end
 
+    it "locks user" do
+      user = User.create :email => "fred@example.com", :password => "Changeme1#"
+      expect(user.is_active?).to eq(true)
+      put :lock, {id: user.id}
+      expect(flash[:success]).to be_present
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.is_active).to eq(false)
+      expect(response).to redirect_to("/users")
+    end
+
+    it "unlocks user" do
+      user = User.create :email => "fred@example.com", :password => "Changeme1#"
+      put :unlock, {id: user.id}
+      expect(flash[:success]).to be_present
+      user = User.find_by(:email => "fred@example.com")
+      expect(user.is_active).to eq(true)
+      expect(response).to redirect_to("/users")
+    end
+
     it "prevents removing last sys admin user role" do
       current_user = User.find_by(:email => "base@example.com")
       put :update, {id: current_user.id, :user => {role_ids: ["#{Role.to_id(:curator)}"]}}

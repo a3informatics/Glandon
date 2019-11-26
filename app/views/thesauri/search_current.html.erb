@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Search All Current Terminology")' %>
-<%= javascript_include_tag 'thesauri/search_current' %>
+<%= javascript_include_tag 'shared/tags', 'thesauri/search_current' %>
 <%= javascript_tag "var url_path = '#{search_current_thesauri_index_path}';" %>
-<% second_level_breadcrumb("Terminology", thesauri_index_path, "Search Current") %>
+<% breadcrumb ([id_to_type(:thesauri), {link: "#", text: "Search Current"}]) %>
 <% if Rails.env == "test" || Rails.env == "development" %>
 	<%= javascript_include_tag 'rspec_helper' %>
 <% end %>

@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Manage Users")' %>
 <%= javascript_include_tag 'standard_datatable' %>
-<% top_level_breadcrumb ("Users") %>
+<% first_level_breadcrumb (id_to_type('users')) %>
 <div class="card col-md-12">
 	<div class="card-header">All user accounts</div>
 	<div class="card-content">
@@ -11,6 +11,8 @@
 		    	<th>Roles</th>
 		    	<th></th>
 		    	<th></th>
+          <th></th>
+          <th></th>
 		  	</tr>
 			</thead>
 			<tbody>
@@ -21,9 +23,19 @@
 				    	<td style="text-align: center;"><%= link_to "Edit", edit_user_path(user), :class => "btn medium" %></td>
 				    	<td style="text-align: center;">
 				    		<% if @current_user.id != user.id %>
-				    			<%= link_to "Delete", user_path(user), :class => "btn medium red", method: :delete, data: { confirm: "Are you sure?" } %>
+                  <%= link_to "Lock", lock_user_path(user), method: :put, :class => "btn medium " + (user.is_active? ? "": "disabled" ) %>
 				    		<% end %>
 				    	</td>
+              <td style="text-align: center;">
+                <% if @current_user.id != user.id %>
+                  <%= link_to "Unlock", unlock_user_path(user), method: :put, :class => "btn medium " + ( user.is_active? ? "disabled": "" ) %> 
+                <% end %>
+              </td>
+              <td style="text-align: center;">
+                <% if @current_user.id != user.id %>
+                  <%= link_to "Delete", user_path(user), :class => "btn medium red", method: :delete, data: { confirm: "Are you sure?" } %>
+                <% end %>
+              </td>
 				  	</tr>
 				<% end %>
 			</tbody>

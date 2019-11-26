@@ -4,31 +4,38 @@
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMDEyOS9WNDYjQzEwMDEyOQ==
   :uri: http://www.cdisc.org/C100129/V46#C100129
   :parent_identifier: C100129
+  :parent_label: Category of Questionnaire
   :identifier: C100129
   :notation: QSCAT
   :definition: A grouping of observations within the Questionnaire domain.
   :preferred_term: CDISC Questionnaire Category Terminology
   :synonym: Category of Questionnaire
+  :tags: SDTM; QS; COA; QS-FT; QRS
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEwMTg2NS9WMzcjQzEwMTg2NQ==
   :uri: http://www.cdisc.org/C101865/V37#C101865
   :parent_identifier: C101865
+  :parent_label: Acute Coronary Syndrome Presentation Category
   :identifier: C101865
   :notation: ACSPCAT
   :definition: A classification of the presentation of acute coronary syndrome.
   :preferred_term: CDISC SDTM Acute Coronary Syndrome Presentation Category Terminology
   :synonym: Acute Coronary Syndrome Presentation Category
+  :tags: SDTM
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMTEwOS9WNDYjQzExMTEwOQ==
   :uri: http://www.cdisc.org/C111109/V46#C111109
   :parent_identifier: C111109
+  :parent_label: Category of Device Events
   :identifier: C111109
   :notation: DECAT
   :definition: A terminology codelist based on the category of related records for
     the device event.
   :preferred_term: CDISC SDTM Device Events Category Terminology
   :synonym: Category of Device Events
+  :tags: SDTM
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0Ni9WMzcjQzExMjQ0Nl9DMTEyNjI2
   :uri: http://www.cdisc.org/C112446/V37#C112446_C112626
   :parent_identifier: C112446
+  :parent_label: Patient Determined Disease Steps Questionnaire Test Name
   :identifier: C112626
   :notation: PDDS01-Category Describing Situation
   :definition: Patient Determined Disease Steps - This scale focuses mainly on how
@@ -36,9 +43,11 @@
     but please mark the one category that describes your situation the closest.
   :preferred_term: PDDS - Category Describing Situation
   :synonym: PDDS01-Category Describing Situation
+  :tags: SDTM; QS
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExMjQ0Ny9WMzcjQzExMjQ0N19DMTEyNjI2
   :uri: http://www.cdisc.org/C112447/V37#C112447_C112626
   :parent_identifier: C112447
+  :parent_label: Patient Determined Disease Steps Questionnaire Test Code
   :identifier: C112626
   :notation: PDDS0101
   :definition: Patient Determined Disease Steps - This scale focuses mainly on how
@@ -46,43 +55,55 @@
     but please mark the one category that describes your situation the closest.
   :preferred_term: PDDS - Category Describing Situation
   :synonym: PDDS01-Category Describing Situation
+  :tags: SDTM; QS
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExNTMwNC9WNDYjQzExNTMwNA==
   :uri: http://www.cdisc.org/C115304/V46#C115304
   :parent_identifier: C115304
+  :parent_label: Category of Functional Test
   :identifier: C115304
   :notation: FTCAT
   :definition: A grouping of observations within the Functional Test domain.
   :preferred_term: CDISC Functional Test Category Terminology
   :synonym: Category of Functional Test
+  :tags: SDTM; COA; QS-FT; QRS
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzExODk3MS9WNDYjQzExODk3MQ==
   :uri: http://www.cdisc.org/C118971/V46#C118971
   :parent_identifier: C118971
+  :parent_label: Category of Clinical Classification
   :identifier: C118971
   :notation: CCCAT
   :definition: A grouping of observations within the Clinical Classification domain.
   :preferred_term: CDISC Clinical Classification Category Terminology
   :synonym: Category of Clinical Classification
+  :tags: SDTM; COA; QRS
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDk4Mi9WNDMjQzEyMDk4Ml9DMTIxMDU3
   :uri: http://www.cdisc.org/C120982/V43#C120982_C121057
   :parent_identifier: C120982
+  :parent_label: Brief Assessment of Cognition in Schizophrenia Functional Test Test
+    Name
   :identifier: C121057
   :notation: BACS1-Category Instances
   :definition: Brief Assessment of Cognition in Schizophrenia Questionnaire - Verbal
     Fluency-Category instances.
   :preferred_term: BACS - Category Instances
   :synonym: BACS1-Category Instances
+  :tags: SDTM; COA
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyMDk4My9WNDMjQzEyMDk4M19DMTIxMDU3
   :uri: http://www.cdisc.org/C120983/V43#C120983_C121057
   :parent_identifier: C120983
+  :parent_label: Brief Assessment of Cognition in Schizophrenia Functional Test Test
+    Code
   :identifier: C121057
   :notation: BACS104A
   :definition: Brief Assessment of Cognition in Schizophrenia Questionnaire - Verbal
     Fluency-Category instances.
   :preferred_term: BACS - Category Instances
   :synonym: BACS1-Category Instances
+  :tags: SDTM; COA
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDI5OC9WNDYjQzEyNDI5OA==
   :uri: http://www.cdisc.org/C124298/V46#C124298
   :parent_identifier: C124298
+  :parent_label: Category of Oncology Response Assessment
   :identifier: C124298
   :notation: ONCRSCAT
   :definition: The named criteria used for the grouping of assessments of response
@@ -90,36 +111,45 @@
     and Clinical Classification domain.
   :preferred_term: CDISC SDTM Category of Oncology Response Assessment Terminology
   :synonym: Category of Oncology Response Assessment
+  :tags: SDTM
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDMxMy9WNDYjQzEyNDMxMw==
   :uri: http://www.cdisc.org/C124313/V46#C124313
   :parent_identifier: C124313
+  :parent_label: Fetal Pathology Findings Result Category
   :identifier: C124313
   :notation: FXRESCAT
   :definition: Terminology relevant to the classifications of the results for fetal
     pathology findings.
   :preferred_term: CDISC SEND Fetal Pathology Findings Result Category Terminology
   :synonym: Fetal Pathology Findings Result Category
+  :tags: SEND
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDMxNi9WNDYjQzEyNDMxNg==
   :uri: http://www.cdisc.org/C124316/V46#C124316
   :parent_identifier: C124316
+  :parent_label: Implantation Findings Result Category
   :identifier: C124316
   :notation: ICRESCAT
   :definition: Terminology relevant to the classifications of the results for implantation
     classification findings.
   :preferred_term: CDISC SEND Implantation Findings Result Category Terminology
   :synonym: Implantation Findings Result Category
+  :tags: SEND
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDMyMi9WNDYjQzEyNDMyMg==
   :uri: http://www.cdisc.org/C124322/V46#C124322
   :parent_identifier: C124322
+  :parent_label: Pregnancy Findings Result Category
   :identifier: C124322
   :notation: PYRESCAT
   :definition: Terminology relevant to the classifications of the results for pregnancy
     findings.
   :preferred_term: CDISC SEND Pregnancy Findings Result Category Terminology
   :synonym: Pregnancy Findings Result Category
+  :tags: SEND
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDY3Ny9WNDYjQzEyNDY3N19DMTI0Nzc5
   :uri: http://www.cdisc.org/C124677/V46#C124677_C124779
   :parent_identifier: C124677
+  :parent_label: CDC Classification System for HIV-Infected Adults and Adolescents
+    Clinical Classification Test Name
   :identifier: C124779
   :notation: CHIVC1-CDC HIV Infection Category
   :definition: CDC Classification System for HIV-Infected Adults and Adolescents -
@@ -127,9 +157,12 @@
   :preferred_term: CDC Classification System for HIV-Infected Adults and Adolescents
     - CDC HIV Infection Category
   :synonym: CHIVC1-CDC HIV Infection Category
+  :tags: SDTM
 - :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzEyNDY3OC9WNDYjQzEyNDY3OF9DMTI0Nzc5
   :uri: http://www.cdisc.org/C124678/V46#C124678_C124779
   :parent_identifier: C124678
+  :parent_label: CDC Classification System for HIV-Infected Adults and Adolescents
+    Clinical Classification Test Code
   :identifier: C124779
   :notation: CHIVC101
   :definition: CDC Classification System for HIV-Infected Adults and Adolescents -
@@ -137,3 +170,4 @@
   :preferred_term: CDC Classification System for HIV-Infected Adults and Adolescents
     - CDC HIV Infection Category
   :synonym: CHIVC1-CDC HIV Infection Category
+  :tags: SDTM

@@ -79,6 +79,22 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def lock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.lock
+    flash[:success] = "User was successfully deactivated."
+    redirect_to users_path
+  end
+
+  def unlock
+    authorize User, :edit?
+    user = User.find(params[:id])
+    user.unlock
+    flash[:success] = "User was successfully activated."
+    redirect_to users_path
+  end
+
 private
 
   def set_user

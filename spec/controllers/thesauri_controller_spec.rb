@@ -6,22 +6,24 @@ describe ThesauriController do
   include UserAccountHelpers
 
   def standard_params
-    params =
+    params = 
     {
-      :draw => "1",
+      :draw => "1", 
       :columns =>
       {
-        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
-        "1" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
-        "2" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
-        "3" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
-        "4" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
-        "5" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-      },
-      :order => { "0" => { :column => "0", :dir => "asc" }},
-      :start => "0",
-      :length => "15",
-      :search => { :value => "", :regex => "false" },
+        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "1" => {:data  => "parentLabel", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "2" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "3" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "4" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "5" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "6" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}},
+        "7" => {:data  => "tags", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
+      }, 
+      :order => { "0" => { :column => "0", :dir => "asc" }}, 
+      :start => "0", 
+      :length => "15", 
+      :search => { :value => "", :regex => "false" }, 
     }
     return params
   end
@@ -330,7 +332,7 @@ describe ThesauriController do
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       params = standard_params
       params[:id] = ct.uri.to_id
-      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:columns]["6"][:search][:value] = "cerebral"
       get :search, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -353,7 +355,7 @@ describe ThesauriController do
     it "obtains the current search results" do
       request.env['HTTP_ACCEPT'] = "application/json"
       params = standard_params
-      params[:columns]["5"][:search][:value] = "cerebral"
+      params[:columns]["6"][:search][:value] = "cerebral"
       get :search_current, params
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")

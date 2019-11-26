@@ -109,6 +109,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     @context_id = the_params[:context_id]
     @ct = Thesaurus.find_minimum(@context_id)
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
+    @parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
     @tc.synonym_objects
     @tc.preferred_term_objects
     @has_children = @tc.children?
