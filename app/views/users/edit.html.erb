@@ -1,6 +1,6 @@
 <%= javascript_tag 'setPageTitle("Edit User: '+@user.email+'");' %>
 <%= javascript_include_tag 'standard_datatable' %>
-<% breadcrumb ([id_to_type('users'), {link: "#", text: "Edit"}]) %>
+<% breadcrumb ([id_to_type(:users), {link: "#", text: "Edit"}]) %>
 
 
 <style>

@@ -109,7 +109,7 @@ describe "Breadcrumb", :type => :feature do
       click_navbar_terminology
       ui_check_breadcrumb("Terminology", "", "", "")
       next_link('Search across all current versions', 'Search: All Current Terminology', "Terminology", "Search Current", "")
-      next_link_crumb(1, 'All Terminologies', "Terminology", "", "")
+      next_link_crumb(1, 'Index: Terminology', "Terminology", "", "")
       find(:xpath, "//*[@id='main']/tbody/tr[1]/td/a").click
       expect(page).to have_content "Version History of 'CT'"
       ui_check_breadcrumb("Terminology", "CDISC, CT", "", "")
