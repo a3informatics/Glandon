@@ -86,12 +86,12 @@
   flex-direction: row;
 }
 
-.h-outside-wrap .icon-context-menu::before{
-  // content: "\e937";
-}
-
 .h-outside-wrap .icon-context-menu{
   margin-top: 3px;
+}
+
+.h-outside-wrap .icon-context-menu::before{
+  content: "\e937";
 }
 
 // Mobile view fix

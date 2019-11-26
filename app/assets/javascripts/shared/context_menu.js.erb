@@ -18,9 +18,10 @@ function generateContextMenu(id, items, color, side){
   return html;
 }
 
-function generateContextItem(link_path, disabled, icon, text, dt_toggle){
+function generateContextItem(link_path, disabled, icon, text, dt_toggle, id){
   var item_html = '';
-  item_html += '<a href="' + link_path + '" class="option ' + (disabled === 'true' ? 'disabled' : '')  + '" ' + (dt_toggle != null ? 'data-toggle="'+dt_toggle+'"' : '') + '>';
+  id = (id != null ? "id='"+id+"'" : "");
+  item_html += '<a href="' + link_path + '" '+id+' class="option ' + (disabled === 'true' ? 'disabled' : '')  + '" ' + (dt_toggle != null ? 'data-toggle="'+dt_toggle+'"' : '') + '>';
   item_html +=  '<span class="' + icon + ' text-small"></span>';
   item_html +=  '<span class="text-small">' + text + '</span>';
   item_html += '</a>';
