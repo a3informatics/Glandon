@@ -23,7 +23,7 @@ function IndexSubsets(id) {
       var menu_items =
       [ { link_path: row["edit_path"], disabled: "false", icon: "icon-edit", text: "Edit", },];
       counter ++;
-      return generateContextMenu(id, menu_items);
+      return generateContextMenu(id, menu_items, null, "left");
       }
     }
   ];
@@ -62,9 +62,6 @@ IndexSubsets.prototype.initTable = function() {
     "pageLength": 3,
     "columns": _this.columns,
     "orderCellsTop": true,
-    "drawCallback": function(){
-      $('#ssIndexTable').find(".context-menu").addClass("left");
-    },
   });
 };
 

@@ -2,7 +2,6 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
-<%= javascript_include_tag 'shared/thesauri/subsets_index' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var tc_id = '#{@tc.id}';" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
