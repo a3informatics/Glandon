@@ -83,6 +83,14 @@ class User < ActiveRecord::Base
     return false
   end
 
+  # User logged in
+  #
+  # @return [Boolean] returns true if user have logged in 
+  def logged_in?
+    return true if self.current_sign_in_at != nil
+    return false
+  end
+
   # User roles as an array of strings
   #
   # @return [array] Array of roles (strings)

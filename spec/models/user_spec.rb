@@ -140,4 +140,11 @@ describe "User" do
     expect(user.is_active?).to eq(true)
   end
 
+  it "logged in?" do
+    user = User.create :email => "tst_user1@example.com", :password => "Changeme1#"
+    expect(user.logged_in?).to eq(false)
+    user = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+    expect(user.logged_in?).to eq(true)
+  end
+
 end
