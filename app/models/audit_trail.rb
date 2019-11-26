@@ -110,10 +110,12 @@ class AuditTrail < ActiveRecord::Base
   def self.users_by_current_week
     week = (Date.today.at_beginning_of_week..Date.today.at_end_of_week).map
     hash_week = (week).each_with_object({}) { |date, hash| hash[date] = 0 }
-    days = self.group("DATE(date_time)").count
-    hash_week.each do |weekday, c|
-      days.each do |date, count|
-          hash_week[weekday] = count if weekday == date
+    days = self.have_logged_in.group("DATE(date_time)").count
+    hash_week.each do |weekday, value|
+      days.each do |date, total|
+          if weekday == date
+            hash_week[weekday] = total
+          end
       end
     end
     hash_week = hash_week.map{ |k, v| [k.strftime("%A"), v] }.to_h
@@ -181,7 +183,7 @@ class AuditTrail < ActiveRecord::Base
     raw.each do |value|
       result[value].nil? ? result[value] = 1 : result[value] + 1
     end
-    result["total"] = raw.count
+    result["total"] = result.count
     return result
   end
 
