@@ -9,6 +9,10 @@ describe "Users", :type => :feature do
     ua_create
     ua_add_user email: 'delete@example.com', password: 'Changeme1#', role: :curator
     ua_add_user email: 'lock@example.com', password: 'Changeme1#', role: :curator
+    # ua_add_user email: 'tst_user2@example.com', password: 'Changeme1#', current_sign_in_at: '2019-11-21 07:45:59.141587'
+    User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+
+
   end
 
   after :all do
@@ -27,6 +31,18 @@ describe "Users", :type => :feature do
       page.accept_alert
       expect(page).to have_content 'User delete@example.com was successfully deleted.'
       expect(AuditTrail.count).to eq(audit_count + 1)
+    end
+
+    it "prevents deletion of user if user has logged in (REQ-?????)", js: true do
+      ua_sys_admin_login
+      click_link 'users_button'
+      expect(page).to have_content 'All user accounts'
+      audit_count = AuditTrail.count
+      find(:xpath, "//*[@id='main_paginate']/ul/li[3]/a").click
+      find(:xpath, "//tr[contains(.,'tst_user2@example.com')]/td/a", :text => 'Delete').click
+      page.accept_alert
+      expect(page).to have_content 'You cannot delete tst_user2@example.com. User has logged in!'
+      expect(AuditTrail.count).to eq(audit_count)
     end
 
     it "allows a user to be locked (REQ-??????)", js: true do
