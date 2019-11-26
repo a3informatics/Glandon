@@ -24,15 +24,17 @@ describe 'thesauri/history.html.erb', :type => :view do
       # Do nothing
     end
 
-    assign(:identifier, "aaa")
-    assign(:scope_id, "123")
-    assign(:thesaurus, ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")))
+    ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+
+    assign(:thesaurus, ct)
+    assign(:identifier, ct.has_identifier.identifier)
+    assign(:scope_id, ct.scope.id)
 
     render
 
   	#puts response.body
 
-    expect(rendered).to have_content("Version History of 'aaa'")
+    expect(rendered).to have_content("Version History of 'CT'")
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Version')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Owner')
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(3)", text: 'Identifier')
