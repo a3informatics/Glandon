@@ -114,11 +114,101 @@ describe AuditTrail do
   end
 
   it "counts user by year" do
-    # User.destroy_all
-    # User.create :email => "fred@example.com", :password => "Changeme1#", current_sign_in_at: "2019-11-11 08:34:19.287445"
-    # User.create :email => "fred2@example.com", :password => "Changeme1#", current_sign_in_at: "2019-10-11 09:34:19.287445"
-    # User.create :email => "fred3@example.com", :password => "Changeme1#", current_sign_in_at: "2018-12-11 10:34:19.287445"
-    expect(AuditTrail.users_by_year).to eq({"2019"=>2, "2018"=>1})
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2010-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    expect(AuditTrail.users_by_year).to eq({"2010"=>1, "2012"=>2, "2019"=>2})
+  end
+
+  it "counts user by year, have logged in nil" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2010-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    expect(AuditTrail.users_by_year).to eq({})
+  end
+
+  it "counts users by current week" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2019-11-25"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-29"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-26"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-26"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-25"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    expect(AuditTrail.users_by_current_week).to eq({"Friday"=>0, "Monday"=>2, "Saturday"=>0, "Sunday"=>0, "Thursday"=>1, "Tuesday"=>0, "Wednesday"=>0})
+  end
+
+  it "counts users by year by week" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2010-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    expect(AuditTrail.users_by_year_by_week).to eq({"2010"=>{"43"=>1}, "2012"=>{"39"=>2}, "2019"=>{"04"=>1, "43"=>1}})
+  end
+
+  it "counts users by year by month" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2010-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    expect(AuditTrail.users_by_year_by_month).to eq({"2010"=>{"October"=>1}, "2012"=>{"September"=>2}, "2019"=>{"January"=>1, "October"=>1}})
+  end
+
+  it "counts user by year by month, have logged in nil" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.create(date_time: Time.parse("2010-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2012-09-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2019-01-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    AuditTrail.create(date_time: Time.parse("2019-10-31"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged out.")
+    expect(AuditTrail.users_by_year_by_month).to eq({})
+  end
+
+  it "counts user by domain" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName2@sanofi.com"
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName3@s-cubed.com"
+    AuditTrail.user_event(user, "User logged in.")
+    user = User.new
+    user.email = "UserName3@merck.com"
+    AuditTrail.user_event(user, "User logged out.")
+    expect(AuditTrail.users_by_domain).to eq({"example.com"=>1, "s-cubed.com"=>1, "sanofi.com"=>1, "total"=>3})
+  end
+
+  it "counts user by domain, have logged in nil" do
+    user = User.new
+    user.email = "UserName1@example.com"
+    AuditTrail.user_event(user, "User logged out.")
+    user = User.new
+    user.email = "UserName2@sanofi.com"
+    AuditTrail.user_event(user, "User logged out.")
+    user = User.new
+    user.email = "UserName3@s-cubed.com"
+    AuditTrail.user_event(user, "User logged out.")
+    user = User.new
+    user.email = "UserName3@merck.com"
+    AuditTrail.user_event(user, "User logged out.")
+    expect(AuditTrail.users_by_domain).to eq({"total"=>0})
   end
 
 	it "allows filtering of events" do

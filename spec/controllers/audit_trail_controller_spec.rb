@@ -100,6 +100,41 @@ describe AuditTrailController do
       get :export_csv
     end
 
+    it "stats_by_domain" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_domain
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+    
+    it "stats_by_current_week" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_current_week
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+    
+    it "stats_by_year" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_year
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
+    it "stats_by_year_by_month" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_year_by_month
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+    
+    it "stats_by_year_by_week" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :stats_by_year_by_week
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
   end
 
   describe "Reader User" do

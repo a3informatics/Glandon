@@ -113,9 +113,7 @@ class AuditTrail < ActiveRecord::Base
     days = self.group("DATE(date_time)").count
     hash_week.each do |weekday, c|
       days.each do |date, count|
-        if weekday == date
-          hash_week[weekday] = count
-        end
+          hash_week[weekday] = count if weekday == date
       end
     end
     hash_week = hash_week.map{ |k, v| [k.strftime("%A"), v] }.to_h
@@ -177,17 +175,11 @@ class AuditTrail < ActiveRecord::Base
   #
   # @return [hash] Hash with the domain as the key and the number of users created with that domain as the value. Example: {"total"=>7, "example.com"=>2, "sanofi.com"=>3, "merck.com"=>1, "s-cubed.com"=>1}
   def self.users_by_domain
-    raw = self.have_logged_in 
-    raw = raw.all.select('id', 'user').as_json
-    raw = raw.map{ |k, v| k['user'] }
-    raw = raw.map{ |user| user.sub /^.*@/, '' }
+    raw = self.have_logged_in.all.select('id', 'user').as_json
+    raw = raw.map{ |k, v| k['user'] }.map{ |user| user.sub /^.*@/, '' }
     result = {}
     raw.each do |value|
-      if result[value].nil?
-          result[value] = 1
-      else 
-          result[value] = result[value] + 1
-      end
+      result[value].nil? ? result[value] = 1 : result[value] + 1
     end
     result["total"] = raw.count
     return result
