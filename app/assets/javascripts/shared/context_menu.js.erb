@@ -3,14 +3,10 @@
 // ID: String id for the menu itself
 // items: an array of objects with data, containing the fields: link_path, disabled (string 'true' or 'false'), icon (string icon class), text
 // Returns HTML code as a string.
-function generateContextMenu(id, items){
-  // $("#history").parent().removeClass("col-sm-12");
-  // $(".dataTables_wrapper").find(".row").css("margin-left", "0px");
-  // $(".dataTables_wrapper").find(".row").css("margin-right", "0px");
-
+function generateContextMenu(id, items, color){
   var html = '';
   html += '<span id="' + id + '" class="icon-context-menu text-normal" tabindex="1">';
-  html +=   '<div class="context-menu shadow-small collapsed">';
+  html +=   '<div class="context-menu ' + (color != null ? color : "") + ' shadow-small collapsed">';
   $.each(items, function(i, e){
     html += generateContextItem(e.link_path, e.disabled, e.icon, e.text);
   });

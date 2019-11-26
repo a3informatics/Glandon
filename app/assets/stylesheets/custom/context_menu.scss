@@ -19,18 +19,25 @@
 }
 
 .icon-context-menu:focus .context-menu {
-  display: block;
+  transform: scale(1.0) !important;
+  opacity: 1;
 }
 
 .context-menu:hover{
-  display: block;
+  transform: scale(1.0) !important;
+  opacity: 1;
 }
 
 .context-menu{
   position: absolute;
   background: $grey-white;
   z-index: 20;
-  display: none;
+  border: 1px solid $grey-bright;
+  display: block;
+  transition: transform .1s, opacity .3s;
+  transform: scale(0) !important;
+  transform-origin: top left;
+  opacity: 0;
 }
 
 .context-menu.left{
@@ -61,6 +68,9 @@
   text-decoration: none;
 }
 
+.context-menu.blue .option:hover{
+  background: $primary-color-medium;
+}
 // FIXES
 
 table .row{
