@@ -52,8 +52,7 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//tr[contains(.,'C66726')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       expect(page).to have_content("CDISC SDTM Pharmaceutical Dosage Form Terminology")
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
       ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
       click_button "Close"
@@ -68,7 +67,7 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//tr[contains(.,'C85495')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       expect(page).to have_content("MSRESCAT")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       expect(page).to have_content("Select Terminology")
@@ -89,8 +88,7 @@ describe "Thesauri", :type => :feature do
       ui_child_search("C85494")
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(10)
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
@@ -126,8 +124,7 @@ describe "Thesauri", :type => :feature do
       ui_child_search("C85494")
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       wait_for_ajax(120)
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -160,8 +157,7 @@ describe "Thesauri", :type => :feature do
       ui_child_search("C85494")
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       sleep 13
       find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
@@ -178,8 +174,7 @@ describe "Thesauri", :type => :feature do
       ui_child_search("C85494")
       find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
-      expect(page).to have_link("Subsets")
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       expect(page).to have_content 'Edit Subset'
       tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
@@ -197,7 +192,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax(10)
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
-      click_link "Subsets"
+      context_menu_element_header(:subsets)
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
       expect(page).to have_content("Select Terminology")
@@ -236,7 +231,9 @@ describe "Thesauri", :type => :feature do
       find(:xpath, "//tr[contains(.,'C78738')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       expect(page).to have_content 'C78738'
+      Capybara.ignore_hidden_elements = false
       expect(page).to_not have_link 'Subsets'
+      Capybara.ignore_hidden_elements = true
     end
 
   end

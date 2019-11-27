@@ -493,21 +493,36 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
-  #Context Menu
-  def context_menu_element (table_id, column_nr, text, action )
-    action_to_option_map =
-    {
+	def context_menu_actions_map
+	 {
       show: "Show",
       search: "Search",
       edit: "Edit",
       delete: "Delete",
-      document_control: "Document control"
+      document_control: "Document control",
+			export_csv: "Export CSV",
+			subsets: "Subsets",
+			extend: "Extend",
+			extension: "Extension",
+			extending: "Extending",
+			change_notes: "Change notes",
     }
-    option = action_to_option_map[action]
+	end
+
+  #Context Menu
+  def context_menu_element (table_id, column_nr, text, action )
+    option = context_menu_actions_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
     page.execute_script(js_code)
   end
+
+	def context_menu_element_header (action)
+		option = context_menu_actions_map[action]
+		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
+    js_code += "if (el != null) { el.click(); } else { console.log('No match found'); } "
+		page.execute_script(js_code)
+	end
 
   def ui_dashboard_slider (start_date, end_date)
     slider = "var tl_slider = $('.timeline-container').data(); "
