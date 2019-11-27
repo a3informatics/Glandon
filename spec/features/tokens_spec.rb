@@ -48,7 +48,7 @@ describe "Tokens", :type => :feature do
         expect(page).to have_content 'Version History of \'CDISC EXT\''
         wait_for_ajax
         context_menu_element('history', 4, 'CDISC Extensions', :edit)
-        expect(page).to have_content 'Edit:'
+        expect(page).to have_content 'New Code List'
       end
 
       in_browser(:two) do
