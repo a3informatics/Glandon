@@ -2,8 +2,10 @@ module SparqlHelpers
 
   @@predicate_map = 
     {
-      last_change_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>", prefixed: "isoT#lastChangeDate"},
-      creation_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#creationDate>", prefixed: "isoT#creationDate"}
+      last_change_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#lastChangeDate>", prefixed: "isoT:lastChangeDate"},
+      creation_date: {expanded: "<http://www.assero.co.uk/ISO11179Types#creationDate>", prefixed: "isoT:creationDate"},
+      effective_date: {expanded: "<http://www.assero.co.uk/ISO11179Registration#effectiveDate>", prefixed: "isoR:effectiveDate"},
+      until_date: {expanded: "<http://www.assero.co.uk/ISO11179Registration#untilDate>", prefixed: "isoR:untilDate"}
     }
 
   def check_sparql(results_filename, expected_filename)
@@ -12,12 +14,13 @@ module SparqlHelpers
     expect(actual).to sparql_results_equal(expected)
   end
 
-  def check_sparql_no_file(sparql, expected_filename)
+  def check_sparql_no_file(sparql, expected_filename, options={})
     actual_filename = "CHECK_SPARQL_#{DateTime.now.strftime('%Q')}.ttl"
     write_text_file_2(sparql, sub_dir, actual_filename)
     actual = read_sparql_file(actual_filename)
     expected = read_sparql_file(expected_filename)
     delete_data_file(sub_dir, actual_filename)
+    fixes(actual, expected, options) if !options.empty?
     expect(actual).to sparql_results_equal(expected)
   end
 
@@ -58,6 +61,8 @@ module SparqlHelpers
   def fixes(actual, expected, options)
     fix_predicate(actual, expected, :last_change_date) if options[:last_change_date]  
     fix_predicate(actual, expected, :creation_date) if options[:creation_date]  
+    fix_predicate(actual, expected, :effective_date) if options[:effective_date]  
+    fix_predicate(actual, expected, :until_date) if options[:until_date]  
   end
 
   def read_sparql_file(filename)
@@ -139,9 +144,9 @@ private
   #end
 
   def set_predicate(triples, predicate_type, new_date)
-    triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
-    triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if triples.empty?
-    triples.each {|x| x[:object] = new_date}
+    found_triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:expanded]}
+    found_triples = triples.select{|x| x[:predicate] == @@predicate_map[predicate_type][:prefixed]} if found_triples.empty?
+    found_triples.each {|x| x[:object] = new_date}
   end
 
   def expand(results)

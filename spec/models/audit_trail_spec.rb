@@ -138,11 +138,11 @@ describe AuditTrail do
   it "counts users by current week" do
     user = User.new
     user.email = "UserName1@example.com"
-    AuditTrail.create(date_time: Time.parse("2019-11-26"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-26"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-26"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-27"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-27"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-27T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse("2019-11-27T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
     expect(AuditTrail.users_by_current_week).to eq({"Friday"=>0, "Monday"=>0, "Saturday"=>0, "Sunday"=>0, "Thursday"=>0, "Tuesday"=>3, "Wednesday"=>2})
   end
 
