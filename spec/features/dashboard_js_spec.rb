@@ -96,7 +96,9 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Dashboard'
       expect(page).to have_content 'Customize'
       click_link 'Customize'
+      wait_for_ajax(120)
       uncheck 'Terminologies'
+      wait_for_ajax(120)
       click_button 'Save'
       wait_for_ajax(120)
       expect(page).not_to have_content 'Terminologies'
@@ -155,7 +157,7 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Statistics'
       find(:xpath, "//*[@id='tab_by_domain']").click
       wait_for_ajax(120)
-      expect(page).to have_content 'example.com: 8'
+      expect(page).to have_content 'example.com: 1'
       find(:xpath, "//*[@id='tab_by_time']").click
       expect(page).to have_content 'Users by year, by month'
       expect(page).to have_content 'Users by day, this week'
