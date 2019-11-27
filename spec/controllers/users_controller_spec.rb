@@ -60,10 +60,11 @@ describe UsersController do
     it 'deletes user, user has logged in' do
       user1 = ua_add_user email: "fred@example.com"
       user2 = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+      user = User.find_by(:email => "tst_user2@example.com")
       count = User.all.count
-      delete :destroy, :id => user2.id
+      delete :destroy, :id => user.id
       expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/You cannot delete your own user!/)
+      expect(flash[:error]).to match(/You cannot delete tst_user2@example.com. User has logged in!/)
       expect(User.all.count).to eq(count)
     end
 
