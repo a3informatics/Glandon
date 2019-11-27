@@ -433,7 +433,7 @@ describe IsoManaged do
     sparql = SparqlUpdateV2.new
     result_uri = item.to_sparql_v2(sparql, "bf")
   #Xwrite_text_file_2(sparql.to_s, sub_dir, "to_sparql_expected.txt")
-    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt")
+    check_sparql_no_file(sparql.to_s, "to_sparql_expected.txt", {effective_date: true, until_date: true})
     expect(result_uri.to_s).to eq("http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
   end
 
