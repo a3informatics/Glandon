@@ -3,7 +3,7 @@ module DataHelpers
   def schema_files
     [
       "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", 
-      "BusinessOperational.ttl", "thesaurus.ttl", "cross_reference.ttl",
+      "BusinessOperational.ttl", "thesaurus.ttl", "annotations.ttl",
       "BusinessForm.ttl", "CDISCBiomedicalConcept.ttl", "BusinessDomain.ttl"
     ]
   end

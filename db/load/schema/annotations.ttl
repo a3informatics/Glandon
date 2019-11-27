@@ -67,7 +67,7 @@
   rdfs:range xsd:dateTime ;
   skos:definition "The date and time of when the change note was last created or modified."^^xsd:string ;
 .
-:previousReference
+:previous
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Previous Reference"^^xsd:string ;
@@ -75,7 +75,7 @@
   rdfs:range isoC:Concept ;
   skos:definition "A previous reference."^^xsd:string ;
 .
-:currentReference
+:current
   rdf:type owl:ObjectProperty ;
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Current Reference"^^xsd:string ;

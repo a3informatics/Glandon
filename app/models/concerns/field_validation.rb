@@ -332,6 +332,18 @@ module FieldValidation
     return false
   end
 
+  # Is A Date Time 
+  #
+  # @param symbol [String] The item being checked
+  # @param value [String] The value being checked
+  # @param object [Object] The object to which the value/item belongs
+  # @return [Boolean] true if value valid, false otherwise
+  def self.is_a_date_time?(symbol, value, object)
+    return true if !value.nil? && value.is_a?(Time)
+    object.errors.add(symbol, "contains an invalid date time")
+    return false
+  end
+
   # Valid Markdown
   #
   # @param symbol [String] The item being checked

@@ -16,6 +16,18 @@ class IsoConceptController < ApplicationController
     render :json => concept.tags.map{|x| x.pref_label}, :status => 200
   end
   
+  def change_notes
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    render :json => concept.change_notes.map{|x| x.to_h}, :status => 200
+  end
+  
+  def add_change_note
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    render :json => concept.change_notes.map{|x| x.to_h}, :status => 200
+  end
+  
   def graph
     authorize IsoConcept, :show?
     concept = IsoConcept.find(params[:id], params[:namespace])

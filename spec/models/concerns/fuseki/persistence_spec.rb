@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'Uri' # Needed to perform the YAML read since it contains classes.
+#require 'Uri' # Needed to perform the YAML read since it contains classes.
 
 describe Fuseki::Persistence do
   

@@ -1,0 +1,16 @@
+PREFIX ba: <http://www.assero.co.uk/Annotations#>
+PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+INSERT DATA 
+{ 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> rdf:type ba:ChangeNote . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> isoC:label "Change Note"^^xsd:string . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:reference "R"^^xsd: . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:description "D"^^xsd:string . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:userReference "UR"^^xsd:string . 
+<http://www.assero.co.uk/CN#1234-5678-9012-3456> ba:timestamp "2000-01-01T12:00:00+01:00"^^xsd:dateTime . 
+}
