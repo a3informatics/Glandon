@@ -28,7 +28,7 @@ ChangeNotesView.prototype.init = function(){
   _this.table = $("#change-notes-table").DataTable({
    "pagingType": "full",
    "ajax": {
-     "url": _this.url,
+     "url": _this.urlConcept,
      "dataSrc": "data"
    },
    "language": {
