@@ -55,6 +55,7 @@ class IsoConceptV2 < Fuseki::Base
     cn.current << op_ref
     cn.save
     transaction_execute
+    cn
   end
 
   # Tags. Get the tags for the items

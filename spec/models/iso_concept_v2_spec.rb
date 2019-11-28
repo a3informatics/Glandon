@@ -252,10 +252,14 @@ describe "IsoConceptV2" do
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/C1")
       uri_2 = Uri.new(uri: "http://www.assero.co.uk/CID")
       item_1 = IsoConceptV2.create(uri: uri_1, label: "1")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
       item_1.add_change_note(user_reference: "xxx1", reference: "ref 1", description: "description 1", context_id: uri_2.to_id)
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3400")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:10:00 2000"))
       item_1.add_change_note(user_reference: "xxx2", reference: "ref 2", description: "description 2", context_id: uri_2.to_id)
       results = item_1.change_notes
-      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "change_notes_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results.map{|x| x.to_h}, sub_dir, "change_notes_expected_1.yaml")
     end
 
   end

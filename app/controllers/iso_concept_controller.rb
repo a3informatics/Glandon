@@ -25,7 +25,8 @@ class IsoConceptController < ApplicationController
   def add_change_note
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
-    render :json => {data: concept.change_notes.map{|x| x.to_h}}, :status => 200
+    change_note = concept.add_change_note(cn_params)
+    render :json => {data: change_note.to_h}, :status => 200
   end
 
   def graph
@@ -93,6 +94,10 @@ private
 
   def this_params
     params.require(:iso_concept).permit(:namespace, :child_property, :rdf_type, :identifier, :concepts => [], :versions => [])
+  end
+
+  def cn_params
+    params.require(:iso_concept).permit(:reference, :description).merge!(user_reference: current_user.email)
   end
 
 end
