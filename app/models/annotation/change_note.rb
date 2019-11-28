@@ -37,7 +37,7 @@ class Annotation::ChangeNote < Annotation
   # @option params [String] :description the change note description
   # @option params [String] :reference any references
   # @return [Annotation::ChangeNote] the change note, may contain errors.
-  def self.update(params)
+  def update(params)
     params[:timestamp] = Time.now
     super(params)
   end

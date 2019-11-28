@@ -4,6 +4,7 @@ describe Annotation::ChangeNote do
 
 	include DataHelpers
   include SparqlHelpers
+  include ChangeNoteHelpers
     
 	def sub_dir
     return "models/annotation/change_note"
@@ -56,18 +57,14 @@ describe Annotation::ChangeNote do
 
   it "allows an object to be exported as SPARQL" do
     sparql = Sparql::Update.new
-    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
-    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
-    item = Annotation::ChangeNote.create(user_reference: "UR", description: "D", reference: "R")
+    item = create_change_note("UR", "D", "R", "1234-5678-9012-3456")
     item.to_sparql(sparql)
   #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_create_sparql_expected.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
   end
 
   it "creates a change note" do
-    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
-    allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
-    item = Annotation::ChangeNote.create(user_reference: "UR", description: "D", reference: "R")
+    item = create_change_note("UR", "D", "R", "1234-5678-9012-3456")
     check_file_actual_expected(item.to_h, sub_dir, "create_expected_1.yaml")
   end    
 

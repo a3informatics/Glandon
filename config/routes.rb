@@ -82,7 +82,7 @@ Rails.application.routes.draw do
     end
   end
   namespace :annotations do
-    resources :change_note, only: [:update, :delete]
+    resources :change_notes, only: [:update, :destroy]
   end
   resources :iso_managed do
     collection do
