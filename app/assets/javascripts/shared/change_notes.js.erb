@@ -11,7 +11,7 @@
 function ChangeNotesView(urlConcept, urlNotes, itemHTML) {
 
   this.modal = "#change-notes-modal";
-  this.url = urlConcept;
+  this.urlConcept = urlConcept;
   this.urlNotes = urlNotes;
   this.rawNoteHTML = itemHTML;
   this.editMode = {active: false, node: null, cache: null};
@@ -55,7 +55,7 @@ ChangeNotesView.prototype.init = function(){
 }
 
 /**
- * Makes an AJAX call to update / delete a note
+ * Makes an AJAX call to add / update / delete a note
  *
  * @return [void]
  */
@@ -64,7 +64,7 @@ ChangeNotesView.prototype.updateNote = function(note, action){
 
   _this.table.processing(true);
 
-  var url = _this.urlNotes.replace("note_id", note.data().id);
+  var url = (action == "POST" ? _this.urlConcept : _this.urlNotes.replace("note_id", note.data().id));
   var newReference = $(note.node()).find(".note-reference").text();
   var newDescription = $(note.node()).find(".note-text").text();
 
@@ -75,6 +75,7 @@ ChangeNotesView.prototype.updateNote = function(note, action){
     dataType: 'json',
     success: function(result) {
       _this.table.processing(false);
+      // Finish handling response
       action == "DELETE" ? note.remove().draw() : "" ;
       _this.table.rows().invalidate().draw();
       _this.initListeners();
@@ -84,18 +85,6 @@ ChangeNotesView.prototype.updateNote = function(note, action){
       handleAjaxError(xhr, status, error, $("#change-notes-modal-error"));
     }
   });
-}
-
-/**
- * Makes an AJAX call to create a new note
- *
- * @return [void]
- */
-ChangeNotesView.prototype.addNewNote = function(note){
-  var _this = this;
-
-  _this.table.processing(true);
-  console.log("Add: "+  note);
 }
 
 /**
