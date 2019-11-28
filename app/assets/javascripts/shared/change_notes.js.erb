@@ -70,12 +70,14 @@ ChangeNotesView.prototype.updateNote = function(note, action){
 
   $.ajax({
     url: url,
-    data: {"reference": newReference, "description": newDescription},
+    data: {"change_note":{"reference": newReference, "description": newDescription}},
     type: action,
     dataType: 'json',
     success: function(result) {
       _this.table.processing(false);
-      note.data(result).draw();
+      action == "DELETE" ? note.remove().draw() : "" ;
+      _this.table.rows().invalidate().draw();
+      _this.initListeners();
     },
     error: function(xhr,status,error){
       _this.table.processing(false);
@@ -117,9 +119,9 @@ ChangeNotesView.prototype.initListeners = function(){
 ChangeNotesView.prototype.deleteNoteListener = function(targets){
   var _this = this;
 
-  targets.on("click", function(){
+  targets.off("click").on("click", function(){
     var note = _this.table.row($(this).closest("tr"));
-    new ConfirmationDialog(function(){ return _this.updateNote(note, "PATCH"); },{dangerous: true}).show();
+    new ConfirmationDialog(function(){ return _this.updateNote(note, "DELETE"); },{dangerous: true}).show();
   });
 }
 
@@ -131,7 +133,7 @@ ChangeNotesView.prototype.deleteNoteListener = function(targets){
 ChangeNotesView.prototype.editNoteListener = function(targets){
   var _this = this;
 
-  targets.on("click", function(){
+  targets.off("click").on("click", function(){
     var note = _this.table.row($(this).closest("tr"));
 
     if(!_this.editMode.active)
@@ -149,7 +151,7 @@ ChangeNotesView.prototype.editNoteListener = function(targets){
 ChangeNotesView.prototype.addNewNoteListener = function(target){
   var _this = this;
 
-  target.on("click", function(){
+  target.off("click").on("click", function(){
     _this.table.row.add({new: true}).draw();
     var newNote = _this.table.row($("#cn-new").closest("tr"));
 
