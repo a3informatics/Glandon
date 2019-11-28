@@ -1,0 +1,256 @@
+/*
+* Change Notes View
+*
+*/
+
+/**
+ * Change Notes View Constructor
+ *
+ * @return [void]
+ */
+function ChangeNotesView(urlConcept, urlNotes, itemHTML) {
+
+  this.modal = "#change-notes-modal";
+  this.urlConcept = urlConcept;
+  this.urlNotes = urlNotes;
+  this.rawNoteHTML = itemHTML;
+  this.editMode = {active: false, node: null, cache: null};
+  this.init();
+}
+
+/**
+ * Initializes table and loads Change Note data
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.init = function(){
+  var _this = this;
+  _this.table = $("#change-notes-table").DataTable({
+   "pagingType": "full",
+   "ajax": {
+     "url": _this.urlConcept,
+     "dataSrc": "data"
+   },
+   "language": {
+     "infoFiltered": "",
+     "processing": generateSpinner("medium"),
+     "emptyTable": "No change notes found"
+   },
+   "bProcessing": true,
+   "paging": false,
+   "scrollY": 500,
+   "scrollCollapse": true,
+   "columns": [
+     {"data" : "", "render": function(data,type,full,meta) {
+       if(full.new == true)
+         return _this.newNoteHTML("new", "New Change note", "", "Enter reference", "Enter description");
+       else{
+         var date = $.format.date(new Date(full.timestamp), "dd/MM/yyyy, HH:mm");
+         return _this.newNoteHTML(meta.row, full.user_reference, date, full.reference, full.description);
+        }
+     }}
+   ],
+   "initComplete": function(){_this.initListeners()}
+  });
+}
+
+/**
+ * Makes an AJAX call to add / update / delete a note
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.updateNote = function(note, action){
+  var _this = this;
+
+  _this.table.processing(true);
+
+  var url = (action == "POST" ? _this.urlConcept : _this.urlNotes.replace("note_id", note.data().id));
+  var newReference = $(note.node()).find(".note-reference").text();
+  var newDescription = $(note.node()).find(".note-text").text();
+
+  $.ajax({
+    url: url,
+    data: {"change_note":{"reference": newReference, "description": newDescription}},
+    type: action,
+    dataType: 'json',
+    success: function(result) {
+      _this.table.processing(false);
+      // Finish handling response
+      action == "DELETE" ? note.remove().draw() : "" ;
+      _this.table.rows().invalidate().draw();
+      _this.initListeners();
+    },
+    error: function(xhr,status,error){
+      _this.table.processing(false);
+      handleAjaxError(xhr, status, error, $("#change-notes-modal-error"));
+    }
+  });
+}
+
+/**
+ * Initializes listeners for note interaction events
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.initListeners = function(){
+  var _this = this;
+  _this.deleteNoteListener($(_this.modal).find(".note-delete-button"));
+  _this.editNoteListener($(_this.modal).find(".content-editable"));
+  _this.addNewNoteListener($("#add-cn-button"));
+}
+
+
+/**
+ * Handles click on note's delete button
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.deleteNoteListener = function(targets){
+  var _this = this;
+
+  targets.off("click").on("click", function(){
+    var note = _this.table.row($(this).closest("tr"));
+    new ConfirmationDialog(function(){ return _this.updateNote(note, "DELETE"); },{dangerous: true}).show();
+  });
+}
+
+/**
+ * Handles click on note's delete button
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.editNoteListener = function(targets){
+  var _this = this;
+
+  targets.off("click").on("click", function(){
+    var note = _this.table.row($(this).closest("tr"));
+
+    if(!_this.editMode.active)
+      _this.enterEditMode(note);
+    else if(_this.editMode.node.data().id != note.data().id)
+      _this.leaveEditMode(true);
+  });
+}
+
+/**
+ * Handles click on Add new button
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.addNewNoteListener = function(target){
+  var _this = this;
+
+  target.off("click").on("click", function(){
+    _this.table.row.add({new: true}).draw();
+    var newNote = _this.table.row($("#cn-new").closest("tr"));
+
+    _this.enterEditMode(newNote);
+    $("#cancel-cn-new-button").off("click").on("click", function() {
+      new ConfirmationDialog(function(){  _this.leaveEditMode(); newNote.remove().draw(); },
+                            {subtitle: "Your unsaved changes will be lost."}).show();
+     });
+    $("#save-cn-new-button").off("click").on("click", function() {
+      _this.addNewNote(newNote);
+    });
+  });
+}
+
+/**
+ * Enters the edit mode for a note
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.enterEditMode = function(note){
+  var _this = this;
+
+  _this.editMode.node = note;
+  _this.editMode.active = true;
+  _this.editMode.cache = {ref: note.data().reference, text: note.data().description};
+
+  _this.initEditModeControls(note);
+  _this.deactivateNotesExcept(note);
+  $(note.node()).find(".note-delete-button").css("visibility", "hidden");
+  $("#add-cn-button").addClass("disabled");
+}
+
+/**
+ * Initializes the controls for editing a note and their handlers
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.initEditModeControls = function(note){
+  var _this = this;
+
+  var id = $(note.node()).find(".note").attr("id").split('-')[1];
+  var saveBtnId = "save-cn-"+id+"-button", cancelBtnId = "cancel-cn-"+id+"-button";
+  $(note.node()).find(".note-footer")
+                .append(_this.newButtonHTML(saveBtnId, "note-save-button", "ok", "Save"))
+                .append(_this.newButtonHTML(cancelBtnId, "note-edit-cancel-button", "times", "Discard"));
+
+  $("#"+saveBtnId).on("click", function(){ _this.updateNote(note, "PATCH"); });
+  $("#"+cancelBtnId).on("click", function(){
+    new ConfirmationDialog(function(){ _this.resetNoteData(note, _this.editMode.cache); _this.leaveEditMode()},
+                          {subtitle: "Your unsaved changes will be lost."}).show();
+  });
+}
+
+/**
+ * Leaves edit mode
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.leaveEditMode = function(withWarning){
+  var _this = this;
+  var note$ = $(this.editMode.node.node()).find(".note");
+  $(_this.modal).find(".note").removeClass("active inactive");
+
+  note$.children(".note-footer").children().remove();
+  note$.find(".note-delete-button").css("visibility", "visible");
+
+  $("#add-cn-button").removeClass("disabled");
+
+  _this.editMode = {active: false, node: null, cache: null};
+}
+
+/**
+ * Resets note to chached values
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.resetNoteData = function(note, cache){
+  var _this = this;
+  if(_this.editMode.active){
+    $(note.node()).find(".note-reference").text(cache.ref);
+    $(note.node()).find(".note-text").text(cache.text);
+  }
+}
+
+/**
+ * Deactivates all notes except argument note
+ *
+ * @return [void]
+ */
+ChangeNotesView.prototype.deactivateNotesExcept = function(note){
+  $(this.modal).find(".note").addClass("inactive");
+  $(note.node()).find(".note").removeClass("inactive")
+                              .addClass("active");
+}
+
+
+ChangeNotesView.prototype.newNoteHTML = function(num, email, date, ref, text){
+  return this.rawNoteHTML
+    .replace(/%%num%%/g, num)
+    .replace("%%email%%", email)
+    .replace("%%date%%", date)
+    .replace("%%ref%%", ref)
+    .replace("%%text%%", text);
+}
+
+ChangeNotesView.prototype.newButtonHTML = function(id, cls, icon, ttip){
+  var html =
+    '<div class="circular-badge small bg-grey-bright '+cls+' ttip" id="'+id+'">'+
+      '<span class="ttip-text ttip-left ttip-top shadow-small text-small">'+ttip+'</span>' +
+      '<span class="icon-'+icon+' text-link"></span>' +
+    '</div>';
+  return html;
+}

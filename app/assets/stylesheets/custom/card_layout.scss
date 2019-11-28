@@ -82,7 +82,7 @@ div.info{
   border: 1px solid $grey-bright;
 }
 
-.card-item:hover .card-item-info, .card-item:hover .circular-badge{
+.card-item.hover-indent:hover .card-item-info, .card-item.hover-indent:hover .circular-badge{
  transform: translateX(10px);
 }
 
@@ -94,7 +94,7 @@ div.info{
   margin-left: 10px;
 }
 
-.card-item .card-item-info, .card-item .circular-badge{
+.card-item.hover-indent .card-item-info, .card-item.hover-indent .circular-badge{
   transition: transform .5s;
 }
 

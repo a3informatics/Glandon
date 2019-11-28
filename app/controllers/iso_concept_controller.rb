@@ -1,33 +1,33 @@
 class IsoConceptController < ApplicationController
-  
+
   before_action :authenticate_user!
-  
+
   C_CLASS_NAME = "IsoConceptController"
-  
-  def show 
+
+  def show
     authorize IsoConcept
     @concept = IsoConcept.find(params[:id], params[:namespace], false)
     render :json => @concept.to_json, :status => 200
   end
-  
+
   def tags
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
     render :json => concept.tags.map{|x| x.pref_label}, :status => 200
   end
-  
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
-    render :json => concept.change_notes.map{|x| x.to_h}, :status => 200
+    render :json => {data: concept.change_notes.map{|x| x.to_h}}, :status => 200
   end
-  
+
   def add_change_note
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
-    render :json => concept.change_notes.map{|x| x.to_h}, :status => 200
+    render :json => {data: concept.change_notes.map{|x| x.to_h}}, :status => 200
   end
-  
+
   def graph
     authorize IsoConcept, :show?
     concept = IsoConcept.find(params[:id], params[:namespace])
@@ -78,9 +78,9 @@ class IsoConceptController < ApplicationController
   def changes
     authorize IsoConcept
     items = []
-    this_params[:concepts].each do |id| 
+    this_params[:concepts].each do |id|
       uri = UriV3.new(id: id)
-      concept = IsoConcept.find(uri.fragment, uri.namespace, false) 
+      concept = IsoConcept.find(uri.fragment, uri.namespace, false)
       items << TypePathManagement.type_to_class(concept.rdf_type).find(uri.fragment, uri.namespace)
     end
     @results = IsoConcept.changes(items, this_params[:child_property], {include: [:label], ignore: [:extensible]})
