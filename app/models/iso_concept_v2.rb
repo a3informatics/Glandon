@@ -46,12 +46,11 @@ class IsoConceptV2 < Fuseki::Base
   # @option params [String] :user_reference the reference to the user, the user's email
   # @option params [String] :description the change note description
   # @option params [String] :reference any references
-  # @option params [String] :context_id the context id
   # @return [Annotation::ChangeNote] the change note, may contain errors.
   def add_change_note(params)
     transaction_begin
     cn = Annotation::ChangeNote.create(params)
-    op_ref = OperationalReferenceV3.create({reference: self.uri, context: Uri.new(id: params[:context_id])}, cn)
+    op_ref = OperationalReferenceV3.create({reference: self.uri}, cn)
     cn.current << op_ref
     cn.save
     transaction_execute

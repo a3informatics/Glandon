@@ -3,13 +3,14 @@ require 'rails_helper'
 describe IsoConceptController do
 
   include DataHelpers
+  include ControllerHelpers
   
   describe "Authrorized User" do
   	
     login_reader
 
     def sub_dir
-      return "controllers"
+      return "controllers/iso_concept"
     end
 
     before :all do
@@ -49,11 +50,9 @@ describe IsoConceptController do
 
     it "returns the graph links for a concept" do
       get :graph_links, {id: "F-ACME_VSBASELINE1_G1_G2", namespace: "http://www.assero.co.uk/MDRForms/ACME/V1"}
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      hash = JSON.parse(response.body, symbolize_names: true)
+      hash = check_good_json_response(response)
     #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_1.yaml")
-      results = read_yaml_file(sub_dir, "iso_concept_controller_example_1.yaml")
+      results = read_yaml_file(sub_dir, "graph_links_example_1.yaml")
       expect(hash).to hash_equal(results)
     end
 
@@ -83,7 +82,7 @@ describe IsoConceptController do
     #   expect(response.content_type).to eq("application/json")
     #   hash = JSON.parse(response.body, symbolize_names: true)
     # #write_yaml_file(hash, sub_dir, "iso_concept_controller_example_2.yaml")
-    #   results = read_yaml_file(sub_dir, "iso_concept_controller_example_2.yaml")
+    #   results = read_yaml_file(sub_dir, "graph_links_example_2.yaml")
     #   expect(hash).to hash_equal(results)
     # end
 
@@ -101,10 +100,29 @@ describe IsoConceptController do
       item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
       get :tags, id: item.id
-      expect(response.code).to eq("200")
-      expect(response.content_type).to eq("application/json")
-      result = JSON.parse(response.body, symbolize_names: true)  
-      expect(result).to eq(["SDTM"])
+      actual = check_good_json_response(response)
+      expect(actual).to eq(["SDTM"])
+    end
+
+    it "add change note" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
+      item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :add_change_note, {id: item.id, iso_concept: {description: "sssss", reference: "ref"}}
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "add_change_note_expected_1.yaml")
+    end
+
+    it "get change notes" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
+      item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      item.add_change_note(description: "desc", reference: "ref", user_reference: "a@b.com")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :change_notes, id: item.id
+      actual = check_good_json_response(response)
+      check_file_actual_expected(actual, sub_dir, "change_notes_expected_1.yaml")
     end
 
   end
