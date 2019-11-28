@@ -794,7 +794,7 @@ describe "IsoManagedV2" do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..3)
+      load_cdisc_term_versions(1..1)
     end
 
     it "delete" do
@@ -804,6 +804,34 @@ describe "IsoManagedV2" do
       expect(ct.delete).to eq(1)
       results = Thesaurus.all
       expect(results.count).to eq(3)
+    end
+
+    it "delete extension" do
+      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_extension(tc.id)
+      # expect(Thesaurus::ManagedConcept.all.count).to eq(32)
+      # object2 = Thesaurus::ManagedConcept.create({identifier: "C50399E", notation: ""})
+      # tc1 = Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      extension = Thesaurus::ManagedConcept.find(item.uri)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(33)
+      sparql = %Q{INSERT DATA { #{extension.uri.to_ref} th:extends #{tc.uri.to_ref} }}
+      Sparql::Update.new.sparql_update(sparql, "", [:th])
+      expect(extension.extension?).to eq(true)
+      expect(tc.extended_by).to eq(extension.uri)
+      expect(extension.extension_of).to eq(tc.uri)
+    byebug
+      result = extension.delete
+      expect(result).to eq(1)
+      expect(tc.extended?).to eq(false)
+      expect(extension.extended?).to eq(false)
+      expect(tc.extension?).to eq(false)
+      expect(extension.extension?).to eq(false) 
+      expect(Thesaurus::ManagedConcept.all.count).to eq(32)
+      expect{Thesaurus::ManagedConcept.find(object2.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/C50399E/V1#C50399E in Thesaurus::ManagedConcept.")
+      expect(Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399")).uri).to eq(tc1.uri)
     end
 
   end
