@@ -5,10 +5,22 @@
   :rdf_type: http://www.assero.co.uk/Annotations#ChangeNote
   :label: Change Note
   :tagged: []
-  :reference: ref
-  :description: desc
+  :reference: ref1
+  :description: desc1
   :current:
   - http://www.assero.co.uk/CN#1234-5678-9012-3300_R1
   :by_authority: http://www.assero.co.uk/RA#DUNS123456789
   :user_reference: a@b.com
   :timestamp: '2000-01-01T12:00:00+01:00'
+- :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ04jMTIzNC01Njc4LTkwMTItMzMxMA==
+  :uri: http://www.assero.co.uk/CN#1234-5678-9012-3310
+  :rdf_type: http://www.assero.co.uk/Annotations#ChangeNote
+  :label: Change Note
+  :tagged: []
+  :reference: ref2
+  :description: desc2
+  :current:
+  - http://www.assero.co.uk/CN#1234-5678-9012-3310_R1
+  :by_authority: http://www.assero.co.uk/RA#DUNS123456789
+  :user_reference: a@b.com
+  :timestamp: '2000-01-01T13:00:00+01:00'
