@@ -24,6 +24,7 @@ function Timer(id, cardId, timeout) {
   this.expired = false;
   this.warningTimeout = timeout;
   this.statusTimeout(10000); //Must be called to start the countdown
+  this.timer = null;
 
   var _this = this;
 
@@ -40,7 +41,7 @@ function Timer(id, cardId, timeout) {
  */
 Timer.prototype.statusTimeout = function (period) {
   var _this = this;
-  var x = setTimeout( function () {
+  _this.timer = setTimeout( function () {
     _this.getStatus();
   }, period);
 }
@@ -102,6 +103,17 @@ Timer.prototype.extendLock = function () {
       _this.updateClass(C_TT_SUCCESS);
     }
   });
+}
+
+/**
+ * Unload. Actions to be taken on unloading the page.
+ *
+ * @return [Null]
+ */
+Timer.prototype.unload = function () {
+  if (this.timer !== null) {
+    window.clearTimeout(this.timer);
+  }
 }
 
 /**
