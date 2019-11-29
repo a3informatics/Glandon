@@ -1,13 +1,13 @@
 <% num = local_assigns.fetch :num, "%%num%%" %>
 <div class="card-item small note shadow-small" id="cn-<%= num %>">
   <div class="note-header">
-    <span class="icon-note text-link text-large"></span>
-    <span class="font-light text-small"><i>
+    <div class="icon-note text-link text-large"></div>
+    <div class="font-light text-small"><i>
       <span id='cn-<%= num %>-date'><%= local_assigns.fetch :date, "%%date%%" %></span>
       &emsp;
       <span id="cn-<%= num %>-email"><%= local_assigns.fetch :email, "%%email%%" %></span>
-    </i></span>
-    <span class="icon-times note-delete-button ttip" id="del-cn-<%= num %>-button"><span class="ttip-text ttip-left shadow-small text-medium">Delete</span></span>
+    </i></div>
+    <div class="icon-times note-delete-button ttip" id="del-cn-<%= num %>-button"><span class="ttip-text ttip-left shadow-small text-medium">Delete</span></div>
   </div>
   <div class="note-body">
     <div class="text-small text-medium note-body-item">

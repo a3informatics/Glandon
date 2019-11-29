@@ -26,7 +26,8 @@ class IsoConceptController < ApplicationController
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
     change_note = concept.add_change_note(cn_params)
-    render :json => {data: change_note.to_h}, :status => 200
+    status = change_note.errors.empty? ? 200 : 400
+    render :json => {data: change_note.to_h, errors: change_note.errors.full_messages}, :status => status
   end
 
   def graph
