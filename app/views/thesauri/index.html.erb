@@ -32,7 +32,7 @@
 	        <tbody>
 	          <% @thesauri.each do |item| %>
 	            <tr><td>
-								<%= render partial: 'shared/iso_managed/managed_item_card_list', :locals => {item: item} %>
+								<%= render partial: 'shared/iso_managed/managed_item_card_list', :locals => {item: item, path: history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]})} %>
 	            </td></tr>
 	          <% end %>
 	        </tbody>

@@ -270,6 +270,8 @@
            					link_path: thesauri_index_path, link_text: "Terminology", current_link: controller_name.to_s} %>
            				<%= render partial: "shared/link_on_user_role", :locals => {:klass => CdiscTerm, link_id: "main_nav_ct",
            					link_path: history_cdisc_terms_path, link_text: "CDISC Terminology", current_link: controller_name.to_s} %>
+                  <%= render partial: "shared/link_on_user_role", :locals => {:klass => Thesaurus, link_id: "main_nav_cl",
+                    link_path: thesauri_managed_concepts_path, link_text: "Code Lists", current_link: controller_name.to_s} %>
                 </ul>
               </div>
               <% end %>

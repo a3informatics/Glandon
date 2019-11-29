@@ -4,6 +4,33 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   C_CLASS_NAME = "ThesaurusConceptsController"
 
+  def index
+    authorize Thesaurus
+    @tcs = Thesaurus::ManagedConcept.unique
+  end
+
+  def history
+    authorize Thesaurus
+    respond_to do |format|
+      format.html do
+        # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
+        results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+          @thesauri_id = results.first.to_id
+          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @identifier = the_params[:identifier]
+          @scope_id = the_params[:scope_id]
+      end
+      format.json do
+        results = []
+        history_results = Thesaurus::ManagedConcept.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
+byebug
+        current = Thesaurus::ManagedConcept.current(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
+        results = add_history_paths(Thesaurus::ManagedConcept, "Thesauri::ManagedConcepts", history_results, current)
+        render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
+      end
+    end
+  end
+
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
@@ -350,7 +377,7 @@ private
 
   def the_params
     #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
-    params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :extension_ids => [])
+    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :extension_ids => [])
   end
 
   def edit_params

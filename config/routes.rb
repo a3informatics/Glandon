@@ -159,7 +159,10 @@ Rails.application.routes.draw do
 
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
+    resources :managed_concepts, only: [:index, :show, :edit, :update, :destroy] do
+      collection do
+        get :history
+      end
       member do
         get :children
         post :add_child

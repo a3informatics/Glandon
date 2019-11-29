@@ -1,5 +1,5 @@
 <%# WARNING: This has identical HTML code as a JS in assets/javascripts/dashboard/dashboard_panel. If you change one, change the other one too! %>
-<a class="card-item shadow-small" href="<%= history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]}) %>">
+<a class="card-item shadow-small" href="<%= path %>">
   <div class="circular-badge med <%= thesaurus_accent_color item[:owner] %>"><span class="icon-terminology text-white"></span></div>
   <div class="card-item-info">
     <div class="font-regular text-normal"> <%= item[:label] %> </div>
