@@ -265,8 +265,8 @@ ChangeNotesView.prototype.renderColumn = function(full, meta, context){
   if(full.new == true)
     return context.newNoteHTML("new", "New Change note", "", "Enter reference", "Enter description");
   else {
-    full.timestamp = full.timestamp.replace("T", " ").replace(/-/g,'/').substring(0, full.timestamp.indexOf('+'));
-    var date = $.format.date((new Date(full.timestamp)).getTime(), "dd/MM/yyyy, HH:mm");
+    var formattedTimestamp = full.timestamp.replace("T", " ").replace(/-/g,'/').substring(0, full.timestamp.indexOf('+'));
+    var date = $.format.date((new Date(formattedTimestamp)).getTime(), "dd/MM/yyyy, HH:mm");
     return context.newNoteHTML(meta.row, full.user_reference, date, full.reference, full.description);
   }
 }
