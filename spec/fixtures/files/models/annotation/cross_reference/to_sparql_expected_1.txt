@@ -1,4 +1,4 @@
-PREFIX cr: <http://www.assero.co.uk/CrossReference#>
+PREFIX ba: <http://www.assero.co.uk/Annotations#>
 PREFIX isoC: <http://www.assero.co.uk/ISO11179Concepts#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -6,11 +6,10 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 INSERT DATA 
 { 
-<http://example.com/A#base_XR1> rdf:type cr:CrossReference . 
-<http://example.com/A#base_XR1> isoC:label "Label"^^xsd:string . 
-<http://example.com/A#base_XR1> cr:semantic "A Relationship"^^xsd:string . 
-<http://example.com/A#base_XR1> cr:description "This is the comment"^^xsd:string . 
-<http://example.com/A#base_XR1> cr:ordinal "1"^^xsd:positiveInteger . 
-<http://example.com/A#base_XR1> cr:canBeDeleted "false"^^xsd:boolean . 
-<http://example.com/A#base_XR1> cr:canBeModified "false"^^xsd:boolean . 
+<http://example.com/A#base_CI1> rdf:type ba:ChangeInstruction . 
+<http://example.com/A#base_CI1> isoC:label "Label"^^xsd:string . 
+<http://example.com/A#base_CI1> ba:reference ""^^xsd: . 
+<http://example.com/A#base_CI1> ba:description "This is the comment"^^xsd:string . 
+<http://example.com/A#base_CI1> ba:ordinal "1"^^xsd: . 
+<http://example.com/A#base_CI1> ba:semantic "A Relationship"^^xsd:string . 
 }
