@@ -41,7 +41,7 @@ describe Annotation::ChangeNote do
         :uri => "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1", 
         :id => Uri.new(uri: "http://www.assero.co.uk/X/V1#F-ACME_OR_G1_I1").to_id, 
         :label => "Label",
-        :timestamp => "2019-01-01",
+        :timestamp => "2019-01-01T12:00:00+01:00",
         :reference => "R",
         :user_reference => "UR",
         :description => "D",
@@ -51,7 +51,7 @@ describe Annotation::ChangeNote do
         :by_authority => nil
       }
     item = Annotation::ChangeNote.from_h(result)
-    result[:timestamp] = "2019-01-01T00:00:00+00:00"
+    #result[:timestamp] = "2019-01-01T00:00:00+00:00"
     expect(item.to_h).to eq(result)
   end
 
@@ -69,10 +69,10 @@ describe Annotation::ChangeNote do
   end    
 
   it "updates a change note" do
-    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
+    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
     allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
     item = Annotation::ChangeNote.create(user_reference: "UR", description: "D", reference: "R")
-    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00 2000"))
+    allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
     item.update(user_reference: "UR1", description: "D1", reference: "R, R1")
     item = Annotation::ChangeNote.find(item.id)
     check_file_actual_expected(item.to_h, sub_dir, "update_expected_1.yaml")
