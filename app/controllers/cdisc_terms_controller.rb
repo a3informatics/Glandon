@@ -1,3 +1,5 @@
+require 'controller_helpers.rb'
+
 # CDISC Terminology Controller
 #
 # @author Dave Iberson-Hurst
