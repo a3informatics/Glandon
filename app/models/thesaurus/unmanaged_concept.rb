@@ -7,7 +7,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   data_property :identifier
   data_property :notation
   data_property :definition
-  data_property :extensible
+  data_property :extensible, default: false
   object_property :narrower, cardinality: :many, model_class: "Thesaurus::UnmanagedConcept", children: true
   object_property :preferred_term, cardinality: :one, model_class: "Thesaurus::PreferredTerm"
   object_property :synonym, cardinality: :many, model_class: "Thesaurus::Synonym"
