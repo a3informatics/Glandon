@@ -26,6 +26,8 @@ describe 'cdisc_terms/history.html.erb', :type => :view do
     item = Thesaurus.find_minimum(Uri.new(uri:"http://www.cdisc.org/CT/V2#TH"))
     assign(:ct, item)
     assign(:cdisc_term_id, item.id)
+    assign(:scope_id, item.scope.id)
+    assign(:identifier, item.has_identifier.identifier)
 
     render
 

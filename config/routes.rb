@@ -10,13 +10,13 @@ Rails.application.routes.draw do
       put :lock
       put :unlock
     end
-    collection do
-      get :stats_by_domain
-      get :stats_by_year
-      get :stats_by_current_week
-      get :stats_by_year_by_month
-      get :stats_by_year_by_week
-    end
+    # collection do
+    #   get :stats_by_domain
+    #   get :stats_by_year
+    #   get :stats_by_current_week
+    #   get :stats_by_year_by_month
+    #   get :stats_by_year_by_week
+    # end
   end
   post 'create_user' => 'users#create', as: :create_user
   resources :user_settings
@@ -138,6 +138,11 @@ Rails.application.routes.draw do
     collection do
       post :search
       get :export_csv
+      get :stats_by_domain
+      get :stats_by_year
+      get :stats_by_current_week
+      get :stats_by_year_by_month
+      get :stats_by_year_by_week
     end
   end
   resources :tokens, only: [:index] do

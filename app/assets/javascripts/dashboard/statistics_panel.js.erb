@@ -30,7 +30,7 @@ StatisticsPanel.prototype.getData = function (id) {
 
   $.ajax({
     method: "GET",
-    url: "users/stats_"+id,
+    url: "audit_trail/stats_"+id,
     dataType: 'json',
     success: function(result) {
       _this.populateList(id, result);

@@ -30,6 +30,31 @@ class AuditTrailController < ApplicationController
     send_data AuditTrail.to_csv, filename: "audit_trail.csv", :type => 'text/csv; charset=utf-8; header=present', disposition: "attachment"
   end
 
+  def stats_by_year
+    authorize AuditTrail, :index?
+    render json: {data: AuditTrail.users_by_year}
+  end
+
+   def stats_by_domain
+    authorize AuditTrail, :index?
+    render json: {data: AuditTrail.users_by_domain}
+  end
+
+  def stats_by_current_week
+    authorize AuditTrail, :index?
+    render json: {data: AuditTrail.users_by_current_week}
+  end
+
+  def stats_by_year_by_month
+    authorize AuditTrail, :index?
+    render json: {data: AuditTrail.users_by_year_by_month}
+  end
+
+  def stats_by_year_by_week
+    authorize AuditTrail, :index?
+    render json: {data: AuditTrail.users_by_year_by_week}
+  end
+
 private
 
   def the_params

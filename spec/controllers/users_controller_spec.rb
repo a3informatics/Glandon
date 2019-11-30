@@ -57,6 +57,17 @@ describe UsersController do
       expect(User.all.count).to eq(count - 1)
     end
 
+    it 'deletes user, user has logged in' do
+      user1 = ua_add_user email: "fred@example.com"
+      user2 = User.create :email => "tst_user2@example.com", :password => "Changeme1#", :current_sign_in_at => "2019-11-21 07:45:59.141587"
+      user = User.find_by(:email => "tst_user2@example.com")
+      count = User.all.count
+      delete :destroy, :id => user.id
+      expect(flash[:error]).to be_present
+      expect(flash[:error]).to match(/You cannot delete tst_user2@example.com. User has logged in!/)
+      expect(User.all.count).to eq(count)
+    end
+
     it "edits user" do
       user1 = ua_add_user email: "fred@example.com"
       user2 = ua_add_user email: "sid@example.com"
@@ -81,43 +92,6 @@ describe UsersController do
       expect(user.has_role? :curator).to eq(true)
       expect(user.has_role? :content_admin).to eq(true)
       expect(response).to redirect_to("/users")
-    end
-
-    it "stats_by_domain" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_domain
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      expect(actual).to eq({:"example.com"=>1, :total=>1})
-    end
-    
-    it "stats_by_current_week" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_current_week
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
-    
-    it "stats_by_year" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
-
-    it "stats_by_year_by_month" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year_by_month
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
-    end
-    
-    it "stats_by_year_by_week" do
-      request.env['HTTP_ACCEPT'] = "application/json"
-      get :stats_by_year_by_week
-      expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")
     end
 
     it "updates user name" do
