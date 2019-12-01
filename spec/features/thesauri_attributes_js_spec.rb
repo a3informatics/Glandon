@@ -55,13 +55,13 @@ describe "Thesauri", :type => :feature do
       ua_destroy
     end
 
-    #synonymes
     it "allows terminology synonyms to be displayed for code lists (REQ-MDR-SY-010)", js:true do
       click_navbar_cdisc_terminology
       wait_for_ajax_long
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
@@ -80,12 +80,14 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
       ui_check_table_info("children_table", 1, 10, 504)
       ui_child_search("C66742")
       find(:xpath, "//tr[contains(.,'No Yes Response')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
       expect(page).to have_content 'No Yes Response'
       expect(page).to have_content 'C66742'
       ui_check_table_info("children_table", 1, 4, 4)
@@ -99,6 +101,7 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'History'
       expect(page).to have_content 'Controlled Terminology'
       context_menu_element('history', 5, '2015-06-26 Release', :show)
+      wait_for_ajax_long
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '44.0.0'
       expect(page).to have_content 'Standard'
@@ -127,7 +130,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Version History of \'NEW TERM\''
       context_menu_element('history', 4, 'New Terminology', :edit)
-      wait_for_ajax
+      wait_for_ajax_long
       expect(page).to have_content 'New Terminology'
       expect(page).to have_content 'NEW TERM'
       expect(page).to have_content '0.1.0'
