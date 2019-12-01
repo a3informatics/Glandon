@@ -1,9 +1,10 @@
-require 'controller_helpers.rb'
-
 # CDISC Terminology Controller
 #
 # @author Dave Iberson-Hurst
 # @since 0.0.0
+
+require 'controller_helpers.rb'
+
 class CdiscTermsController < ApplicationController
 
   include ControllerHelpers

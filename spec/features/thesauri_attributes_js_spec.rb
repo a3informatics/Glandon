@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesauri", :type => :feature do
+describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
 
   # NOTE: Needs to be run as one single run due to dynamic identifiers
 
@@ -23,6 +23,15 @@ describe "Thesauri", :type => :feature do
 
   def editor_table_click(row, col)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
+  end
+
+  def new_term_modal(identifier, label)
+    # Leave this sleep here. Seems there is an issue with the modal and fade 
+    # that causes inconsistent entry of text using fill_in.
+    sleep 2 
+    fill_in 'thesauri_identifier', with: identifier
+    fill_in 'thesauri_label', with: label
+    click_button 'Submit'
   end
 
   describe "The Content Admin User can", :type => :feature do
@@ -121,9 +130,7 @@ describe "Thesauri", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM"
-      fill_in 'thesauri_label', with: 'New Terminology'
-      click_button 'Submit'
+      new_term_modal("NEW TERM", "New Terminology")
       wait_for_ajax
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM')]/td/a").click
@@ -148,9 +155,7 @@ describe "Thesauri", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V2"
-      fill_in 'thesauri_label', with: 'New Terminology V2'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V2", "New Terminology V2")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V2')]/td/a").click
@@ -176,9 +181,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V3"
-      fill_in 'thesauri_label', with: 'New Terminology V3'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V3", "New Terminology V3")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V3')]/td/a").click
@@ -214,9 +217,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V4"
-      fill_in 'thesauri_label', with: 'New Terminology V4'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V4", "New Terminology V4")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V4')]/td/a").click
@@ -251,9 +252,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V5"
-      fill_in 'thesauri_label', with: 'New Terminology V5'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V5", "New Terminology V5")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V5')]/td/a").click
@@ -283,9 +282,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V6"
-      fill_in 'thesauri_label', with: 'New Terminology V6'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V6", "New Terminology V6")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V6')]/td/a").click
@@ -322,9 +319,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V7"
-      fill_in 'thesauri_label', with: 'New Terminology V7'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V7", "New Terminology V7")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V7')]/td/a").click
@@ -349,9 +344,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V8"
-      fill_in 'thesauri_label', with: 'New Terminology V8'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V8", "New Terminology V8")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V8')]/td/a").click
@@ -384,14 +377,13 @@ describe "Thesauri", :type => :feature do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V9"
-      fill_in 'thesauri_label', with: 'New Terminology V9'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V9", "New Terminology V9")
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V9')]/td/a").click
       expect(page).to have_content 'Version History of \'NEW TERM V9\''
       context_menu_element('history', 4, 'New Terminology V9', :edit)
       wait_for_ajax_long
+      expect(page).to have_content 'New Terminology V9'
       click_button 'New'
       wait_for_ajax_long
       editor_table_click(1,3)
@@ -406,9 +398,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V10"
-      fill_in 'thesauri_label', with: 'New Terminology V10'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V10", "New Terminology V10")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V10')]/td/a").click
@@ -437,9 +427,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V11"
-      fill_in 'thesauri_label', with: 'New Terminology V11'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V11", "New Terminology V11")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       ui_table_search("main", "V11")
@@ -464,9 +452,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: "NEW TERM V12"
-      fill_in 'thesauri_label', with: 'New Terminology V12'
-      click_button 'Submit'
+      new_term_modal("NEW TERM V12", "New Terminology V12")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
       ui_table_search("main", "V12")
@@ -589,21 +575,27 @@ describe "Thesauri", :type => :feature do
       expect(page).to have_content 'Controlled Terminology'
       expect(page).to have_content '46.0.0'
       expect(page).to have_content 'Show more'
-      find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+      ui_show_more_tags_th
       expect(page).to have_content 'Tags: ADaM CDASH SDTM SEND'
       find(:xpath, "//tr[contains(.,'C99074')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
       # Managed concept - level
       expect(page).to have_content 'DIR'
       expect(page).to have_content 'C99074'
       expect(page).to have_content 'Show more'
-      find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      #find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      ui_show_more_tags_cl
       expect(page).to have_content 'Tags: SDTM SEND'
       find(:xpath, "//tr[contains(.,'C90069')]/td/a", :text => 'Show').click
+      wait_for_ajax_long
       # Unmanaged concept - level
       expect(page).to have_content 'TIP'
       expect(page).to have_content 'C90069'
       expect(page).to have_content 'Show more'
-      find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      #find(:xpath, '//*[@id="main_area"]/div[4]/div/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
+      ui_show_more_tags_cli
+      wait_for_ajax_long
       expect(page).to have_content 'Tags: SDTM SEND'
     end
 
@@ -619,12 +611,12 @@ describe "Thesauri", :type => :feature do
       ui_child_search("sex")
       ui_check_table_info("children_table", 1, 3, 3)
       find(:xpath, "//tr[contains(.,'C66731')]/td/a", :text => 'Show').click
-      wait_for_ajax
+      wait_for_ajax_long
       expect(page).to have_content 'C66731'
       expect(page).to have_content 'Preferred term: CDISC SDTM Sex of Individual Terminology'
       ui_check_table_info("children_table", 1, 4, 4)
       find(:xpath, "//tr[contains(.,'C17998')]/td/a", :text => 'Show').click
-      wait_for_ajax
+      wait_for_ajax_long
       expect(page).to have_content 'Preferred term: Unknown'
       expect(page).to have_xpath("//div[@id='preferred_term']/div/div/div/a", count: 14)
       expect(page).to have_xpath("//div[@id='linkspanel']/div/div/div/a", count: 28)
@@ -637,10 +629,10 @@ describe "Thesauri", :type => :feature do
       context_menu_element('history', 5, '2015-09-25 Release', :show)
       expect(page).to have_content '45.0.0'
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
-      wait_for_ajax
+      wait_for_ajax_long
       expect(page).to have_content 'EPOCH'
       find(:xpath, "//tr[contains(.,'C123453')]/td/a", :text => 'Show').click
-      wait_for_ajax
+      wait_for_ajax_long
       expect(page).to have_content 'Preferred term: Induction Therapy Epoch'
       expect(page).to have_content 'No Shared Preferred Terms.'
       expect(page).to have_content 'No Shared Synonyms.'
@@ -653,16 +645,16 @@ describe "Thesauri", :type => :feature do
     wait_for_ajax(10)
     ui_table_search("history", "#{date} Release")
     context_menu_element('history', 5, "#{date} Release", :show)
-    wait_for_ajax
+    wait_for_ajax_long
     expect(page).to have_content "#{version}"
-    ui_show_more_tags_cl
+    ui_show_more_tags_th
     expect(page).to have_content "Tags: #{ct_tags}"
     ui_table_search("children_table", "C100170")
     find(:xpath, "//tr[contains(.,'C100170')]/td/a", :text => 'Show').click
-    wait_for_ajax
+    wait_for_ajax_long
     expect(page).to have_content "C100170"
   sleep 0.5
-    ui_show_more_tags_cli
+    ui_show_more_tags_cl
   sleep 0.5
     expect(page).to have_content "Tags: #{cl_tags}"
   end

@@ -254,8 +254,13 @@ module UiHelpers
     wait_for_ajax(15)
   end
 
-  def ui_show_more_tags_cl
+  def ui_show_more_tags_th
     find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+  end
+
+  def ui_show_more_tags_cl
+    #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+    find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
   end
 
   def ui_show_more_tags_cli
