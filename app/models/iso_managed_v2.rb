@@ -728,9 +728,9 @@ class IsoManagedV2 < IsoConceptV2
     query_string = %Q{
       SELECT ?s ?v WHERE 
       { 
-        #{self.uri.to_ref} ^bo:reference ?or .
-        ?s ?p ?or .
         {
+          #{self.uri.to_ref} ^bo:reference ?or .
+          ?s ?p ?or .
           ?s isoT:hasState ?st .
           ?st isoR:effectiveDate ?ed .
           ?st isoR:untilDate ?ud .
@@ -739,15 +739,18 @@ class IsoManagedV2 < IsoConceptV2
           ?s isoT:hasIdentifier ?si .
           ?si isoI:version ?v .
         } UNION {
+          #{self.uri.to_ref} ^bo:reference ?or .
+          ?s ?p ?or .
           ?s isoT:hasIdentifier ?si .
+          ?si isoI:version ?v .
           {  
             SELECT (max(?lv) AS ?v) WHERE 
             {
-              ?s rdf:type <http://www.assero.co.uk/Thesaurus#Thesaurus> .
-              ?s isoT:hasIdentifier/isoI:version ?lv .
-            }
+              #{self.uri.to_ref} ^bo:reference ?or .
+              ?x ?p ?or .
+              ?x isoT:hasIdentifier/isoI:version ?lv .
+            } GROUP BY ?s
           }
-          ?si isoI:version ?v .
         }
       } ORDER BY DESC (?v) 
     }

@@ -1,5 +1,7 @@
 class Thesauri::ManagedConceptsController < ApplicationController
 
+  include ControllerHelpers
+
   before_action :authenticate_user!
 
   C_CLASS_NAME = "ThesaurusConceptsController"
@@ -23,9 +25,8 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.json do
         results = []
         history_results = Thesaurus::ManagedConcept.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
-byebug
         current = Thesaurus::ManagedConcept.current(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(Thesaurus::ManagedConcept, "Thesauri::ManagedConcepts", history_results, current)
+        results = add_history_paths(Thesaurus::ManagedConcept, history_results, current)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
@@ -339,6 +340,21 @@ byebug
   # end
 
 private
+
+  def path_for(action, object)
+    case action
+      when :show
+        return thesauri_managed_concept_path({id: object.id, managed_concept: {context_id: object.current_and_latest_parent.last[:uri].to_id}})
+      when :search
+        return ""
+      when :edit
+        return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: object.current_and_latest_parent.last[:uri].to_id}})
+      when :destroy
+        return thesauri_managed_concept_path(object)
+      else
+        return ""
+    end
+  end
 
   # Set the history path
   def edit_lock_lost_link(thesaurus)

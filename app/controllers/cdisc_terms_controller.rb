@@ -53,7 +53,7 @@ class CdiscTermsController < ApplicationController
         results = []
         history_results = Thesaurus.history_pagination(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope, count: the_params[:count], offset: the_params[:offset])
         current = Thesaurus.current(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
-        results = add_history_paths(CdiscTerm, :thesauri, history_results, current)
+        results = add_history_paths(CdiscTerm, history_results, current)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
@@ -81,6 +81,21 @@ class CdiscTermsController < ApplicationController
   end
 
 private
+
+  def path_for(action, object)
+    case action
+      when :show
+        return thesauri_path(object)
+      when :search
+        return search_thesauri_path(object)
+      when :edit
+        return ""
+      when :destroy
+        return ""
+      else
+        return ""
+    end
+  end
 
   def the_params
     params.require(:cdisc_term).permit(:offset, :count)

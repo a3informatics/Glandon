@@ -494,12 +494,8 @@ describe "IsoManagedV2" do
         item.to_sparql(sparql, true)
         sparql.upload
       end 
-      index = CdiscTerm.unique
-      expect(index.count).to eq(10)
-      expect(index.first[:label]).to eq("Item 1")
-      expect(index.first[:identifier]).to eq("ITEM1")
-      expect(index.last[:label]).to eq("Item 10")
-      expect(index.last[:identifier]).to eq("ITEM10")
+      index = CdiscTerm.unique.map{|x| {label: x[:label], identifier: x[:identifier]}}
+      check_file_actual_expected(index, sub_dir, "unique_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "unique, items one" do

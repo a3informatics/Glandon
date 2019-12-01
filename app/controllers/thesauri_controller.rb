@@ -49,7 +49,7 @@ class ThesauriController < ApplicationController
         results = []
         history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = Thesaurus.current(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        results = add_history_paths(Thesaurus, :thesauri, history_results, current)
+        results = add_history_paths(Thesaurus, history_results, current)
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end
@@ -298,7 +298,22 @@ class ThesauriController < ApplicationController
 
 private
 
-	def impact_report_start(thesaurus)
+	 def path_for(action, object)
+    case action
+      when :show
+        return thesauri_path(object)
+      when :search
+        return search_thesauri_path(object)
+      when :edit
+        return edit_thesauri_path(object)
+      when :destroy
+        return thesauri_path(object)
+      else
+        return ""
+    end
+  end
+
+  def impact_report_start(thesaurus)
 		initial_results = []
 		results = {}
 		thesaurus.impact.each do |x|
