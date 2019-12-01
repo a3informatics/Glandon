@@ -529,6 +529,14 @@ module UiHelpers
 		page.execute_script(js_code)
 	end
 
+  def context_menu_element_header_present?(action, state="enabled")
+    class_list = state == "enabled" ? "option " : "option disabled" # Note the space, horrid but ....
+    option = context_menu_actions_map[action]
+    js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
+    js_code += "if (el != null && el.className == '#{class_list}' ) { return true; } else { return false; } "
+    page.execute_script(js_code)
+  end
+
   def ui_dashboard_slider (start_date, end_date)
     slider = "var tl_slider = $('.timeline-container').data(); "
     slider += "tl_slider.moveToDate(tl_slider.l_slider, '#{start_date}'); "

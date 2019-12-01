@@ -127,7 +127,7 @@ describe IsoConceptController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :change_notes, id: item.id
       actual = check_good_json_response(response)
-      check_file_actual_expected(actual, sub_dir, "change_notes_expected_1.yaml")
+      check_file_actual_expected(actual, sub_dir, "change_notes_expected_1.yaml", equate_method: :hash_equal)
     end
 
   end

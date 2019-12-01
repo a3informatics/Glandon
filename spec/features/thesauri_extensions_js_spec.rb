@@ -91,7 +91,8 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
       wait_for_ajax(10)
       expect(page).to have_content("CDISC SDTM Relationship Type Terminology")
-      expect(page).to have_xpath("//*[@id='extend'][@class='ico-btn-sec disabled']")
+      #expect(page).to have_xpath("//*[@id='extend'][@class='ico-btn-sec disabled']")
+      expect(context_menu_element_header_present?(:extend, "disabled")).to eq(true)
     end
 
     it "Select Terminology Container (REQ-MDR-EXT-010)", js:true do
@@ -113,7 +114,8 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax(10)
       click_button 'Select'
       wait_for_ajax(10)
-      expect(page).to have_content 'Extension'
+      expect(context_menu_element_header_present?(:extension)).to eq(true)
+      #expect(page).to have_content 'Extension'
     end
 
     it "Select Extension (REQ-MDR-EXT-010)", js:true do
@@ -134,11 +136,12 @@ describe "Thesauri Extensions", :type => :feature do
       wait_for_ajax(10)
       click_button 'Select'
       wait_for_ajax(10)
-      expect(page).to have_content 'Extension'
+      #expect(page).to have_content 'Extension'
       context_menu_element_header(:extension)
       wait_for_ajax(10)
       expect(page).to have_content 'C96783E'
-      expect(page).to have_content 'Extending'
+      expect(context_menu_element_header_present?(:extending)).to eq(true)
+      #expect(page).to have_content 'Extending'
     end
 
     it "Select Extending (REQ-MDR-EXT-010)", js:true do
@@ -167,7 +170,8 @@ describe "Thesauri Extensions", :type => :feature do
       context_menu_element_header(:extending)
       wait_for_ajax(120)
       expect(page).to have_content 'C99079'
-      expect(page).to have_content 'Extension'
+      expect(context_menu_element_header_present?(:extension)).to eq(true)
+      #expect(page).to have_content 'Extension'
     end
 
     it "Add Code List Item to Extension (REQ-MDR-EXT-010)", js:true do
