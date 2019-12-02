@@ -23,19 +23,20 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     render json: {data: tc.differences}
   end
 
-  def edit
-    authorize Thesaurus
-    @thesaurus_concept = Thesaurus::UnmanagedConcept.find_minimum(params[:id])
-    parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
-    @token = get_token(parent)
-    if @token.nil?
-      flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(parent)
-    else
-      @close_path = edit_lock_lost_link(parent)
-      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
-    end
-  end
+  # Will be required for Hierarchical terminologies
+  # def edit
+  #   authorize Thesaurus
+  #   @thesaurus_concept = Thesaurus::UnmanagedConcept.find_minimum(params[:id])
+  #   parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
+  #   @token = get_token(parent)
+  #   if @token.nil?
+  #     flash[:error] = "The edit lock has timed out."
+  #     redirect_to edit_lock_lost_link(parent)
+  #   else
+  #     @close_path = edit_lock_lost_link(parent)
+  #     @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+  #   end
+  # end
 
   def update
     authorize Thesaurus
