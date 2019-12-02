@@ -520,23 +520,12 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
-
-    if self.extension?
-      # super
-      clear_cache
-      Sparql::Update.new.delete(self.uri)
-      @destroyed = true
-      return 1
-    elsif self.subset?
-    else
       parts = []
       parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }" 
       self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
       query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
       results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
       1
-    end
-
   end
 
   # Forward Backward. Provides URIs for mving through the history

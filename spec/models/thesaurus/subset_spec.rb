@@ -279,6 +279,47 @@ describe "Thesaurus::Subset" do
     expect(mc.uri).to eq(expected_mc.uri)
   end
 
+  # it "delete_subset"  do
+  #   cl_subset = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+  #   subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(cl_subset.uri))
+  #   cl_subset.is_ordered = subset
+  #   cl_subset = Thesaurus::ManagedConcept.find(cl_subset.uri)
+  #   cl_subset.is_ordered = subset
+  #   cl_subset.save
+  # byebug
+  #   result = cl_subset.delete_subset
+  #   expect{Thesaurus::Subset.find(subset.uri)}.to raise_error(Errors::NotFoundError,
+  #       "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+  # end
+
+    #   it "delete subset" do
+    #   uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    #   subset = Thesaurus::Subset.find(uri_1)
+    #   result = subset.delete
+    #   expect{Thesaurus::Subset.find(uri_1)}.to raise_error(Errors::NotFoundError,
+    #     "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+    # end
+
+
+  # it "allows delete all the subset members" do
+  #   subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+  #   subset = init_subset(Thesaurus::Subset.find(subset_uri_1))
+  #   expect(subset.list.count).to eq(3)
+  #   result = subset.delete_subset_members
+  #   subset = Thesaurus::Subset.find(subset_uri_1)  
+  #   expect(subset.list.count).to eq(0)
+  # end
+
+  # it "allows delete the subset list" do
+  #   subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+  #   subset = init_subset(Thesaurus::Subset.find(subset_uri_1))
+  #   expect(subset.list.count).to eq(3)
+  #   result = subset.delete_subset_members
+  #   subset = Thesaurus::Subset.find(subset_uri_1)  
+  #   expect(subset.list.count).to eq(0)
+  #   result = subset.delete_subset_list
+  #   expect{Thesaurus::Subset.find(subset.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+  # end
 
   it "validates a valid object" do
     result = Thesaurus::Subset.new

@@ -447,6 +447,36 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
+  def delete
+    if self.extension?
+        base_delete
+    elsif self.subset?
+      transaction = transaction_begin
+        self.delete_subset
+        base_delete
+      transaction_execute
+    else
+      super
+    end
+  end
+
+  def delete_subset
+      query_string = %Q{
+        DELETE {?s ?p ?o} WHERE 
+        {
+            {#{self.uri.to_ref} (th:members/th:memberNext*) ?s.
+            ?s ?p ?o }   
+        UNION
+          { 
+            #{self.uri.to_ref} ?p ?o.
+            BIND (#{self.uri.to_ref} as ?s)
+          }
+        }
+      }
+      results = Sparql::Update.new.sparql_update(query_string, "", [:th])
+      1
+  end
+
   # To CSV. The code list as a set of CSV record with a header.
   #
   # @return [Array] the set of CSV record, each is an array of stirngs
