@@ -150,6 +150,22 @@ class Thesaurus::Subset < IsoConceptV2
     #   results = Sparql::Update.new.sparql_update(query_string, "", [:th])
     #   1
     # end
+      def delete_subset
+      query_string = %Q{
+        DELETE {?s ?p ?o} WHERE 
+        {
+            {#{self.uri.to_ref} (th:members/th:memberNext*) ?s.
+            ?s ?p ?o }   
+        UNION
+          { 
+            #{self.uri.to_ref} ?p ?o.
+            BIND (#{self.uri.to_ref} as ?s)
+          }
+        }
+      }
+      results = Sparql::Update.new.sparql_update(query_string, "", [:th])
+      1
+  end
 
   # List Pagination. Get the list in pagination manner
   #
