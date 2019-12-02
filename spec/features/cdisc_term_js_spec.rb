@@ -364,7 +364,7 @@ describe "CDISC Term", :type => :feature do
       find(:xpath, "//tr[contains(.,'C99079')]/td/a", :text => 'Show').click
       wait_for_ajax(5)
       expect(page).to have_content 'EPOCH'
-      click_link 'Export CSV'
+      context_menu_element_header(:export_csv)
       file = download_content
     #Xwrite_text_file_2(file, sub_dir, "export_csv_expected.csv")
       expected = read_text_file_2(sub_dir, "export_csv_expected.csv")
