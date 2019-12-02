@@ -74,16 +74,28 @@ describe "Thesaurus::Identifiers" do
       expect(Thesaurus::UnmanagedConcept.generated_identifier?).to eq(true)
     end
 
-    it "identifier scheme, flat" do
+    it "identifier scheme, flat I" do
       local_configuration = {scheme_type: :flat, parent: {generated: {pattern: "NX[identifier]AA", width: "6"}}}
       expect(Thesaurus::ManagedConcept).to receive(:identification_configuration).and_return(local_configuration)
       expect(Thesaurus::ManagedConcept.identifier_scheme).to eq(:flat)
     end
 
-    it "identifier scheme, hierarchical" do
+    it "identifier scheme, flat II" do
+      local_configuration = {scheme_type: "flat", parent: {generated: {pattern: "NX[identifier]AA", width: "6"}}}
+      expect(Thesaurus::ManagedConcept).to receive(:identification_configuration).and_return(local_configuration)
+      expect(Thesaurus::ManagedConcept.identifier_scheme_flat?).to eq(true)
+    end
+
+    it "identifier scheme, hierarchical I" do
       local_configuration = {scheme_type: :hierarchical, parent: {generated: {pattern: "NX[identifier]AA", width: "6"}}}
       expect(Thesaurus::ManagedConcept).to receive(:identification_configuration).and_return(local_configuration)
       expect(Thesaurus::ManagedConcept.identifier_scheme).to eq(:hierarchical)
+    end
+
+    it "identifier scheme, hierarchical II" do
+      local_configuration = {scheme_type: "hierarchical", parent: {generated: {pattern: "NX[identifier]AA", width: "6"}}}
+      expect(Thesaurus::ManagedConcept).to receive(:identification_configuration).and_return(local_configuration)
+      expect(Thesaurus::ManagedConcept.identifier_scheme_flat?).to eq(false)
     end
 
   end

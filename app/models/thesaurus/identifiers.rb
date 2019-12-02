@@ -31,14 +31,14 @@ class Thesaurus
       #
       # @return [Symbol] the identifier scheme type, either :flat or :hierarchical
       def identifier_scheme
-        identification_configuration[:scheme_type]
+        identification_configuration[:scheme_type].to_sym
       end
 
       # Identifier Scheme Flat?
       #
       # @return [Boolean] true if the identifier scheme is :flat
       def identifier_scheme_flat?
-        identification_configuration[:scheme_type] == :flat
+        identifier_scheme == :flat
       end
 
     private

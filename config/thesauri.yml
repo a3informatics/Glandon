@@ -1,6 +1,6 @@
 defaults: &defaults
   identifiers:
-    scheme_type: flat
+    scheme_type: flat # either :flat or :hierarchical. Can be symbol or string
     parent: 
       generated: 
         pattern: "NP[identifier]P" 
