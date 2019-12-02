@@ -18,8 +18,10 @@ describe "Change Notes", :type => :feature do
 
   def fill_in_change_note(id, ref, text)
     page.find("#{id}-ref").click
+    sleep 0.2
     page.find("#{id}-ref").set(ref)
     page.find("#{id}-text").click
+    sleep 0.2
     page.find("#{id}-text").set(text)
   end
 
@@ -208,7 +210,7 @@ describe "Change Notes", :type => :feature do
       ua_logoff
     end
 
-    it "prevents access to change notes", js:true do
+    it "prevents access to change notes, code list level", js:true do
       click_browse_every_version
       wait_for_ajax(20)
       context_menu_element("history", 5, "2007-04-20 Release", :show)
@@ -219,6 +221,76 @@ describe "Change Notes", :type => :feature do
       expect(page).to have_link("Export CSV")
       expect(page).to_not have_link("Change notes")
       Capybara.ignore_hidden_elements = true
+    end
+
+    it "prevents access to change notes, code list item level", js:true do
+      click_browse_every_version
+      wait_for_ajax(20)
+      context_menu_element("history", 5, "2007-04-20 Release", :show)
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C66784')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C48275')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      Capybara.ignore_hidden_elements = false
+      expect(page).to have_link("Return")
+      expect(page).to_not have_link("Change notes")
+      Capybara.ignore_hidden_elements = true
+    end
+
+  end
+
+  describe "Curator user (code list item level)", :type => :feature do
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    it "allows viewing change notes modal", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(20)
+      context_menu_element("history", 5, "2007-04-20 Release", :show)
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C66784')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C48275')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      context_menu_element_header(:change_notes)
+      expect(page).to have_content("Change notes for C48275")
+      expect(page).to have_content("No change notes found")
+      click_button "Close"
+    end
+
+    it "allows to create, edit and delete a change note", js:true do
+      click_navbar_cdisc_terminology
+      wait_for_ajax(20)
+      context_menu_element("history", 5, "2007-04-20 Release", :show)
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C66784')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      find(:xpath, "//tr[contains(.,'C48275')]/td/a", :text => 'Show').click
+      wait_for_ajax(20)
+      context_menu_element_header(:change_notes)
+      expect(page).to have_content("Change notes for C48275")
+      # Add CN
+      add_change_note("Some reference name", "String of text for the newly created change note.")
+      check_change_note("#cn-0", "Some reference name", "String of text for the newly created change note.", "curator@example.com")
+      # Edit CN
+      fill_in_change_note("#cn-0", "Edited reference", "Edited change note text")
+      page.find("#save-cn-0-button").click
+      wait_for_ajax(20)
+      check_change_note("#cn-0", "Edited reference", "Edited change note text", "curator@example.com")
+      # Delete CN
+      page.find("#del-cn-0-button").click
+      expect(page).to have_content("You cannot undo this operation.")
+      click_button "Yes"
+      wait_for_ajax(20)
+      expect(page).to have_css(".note", count: 0)
+      click_button "Close"
     end
 
   end
