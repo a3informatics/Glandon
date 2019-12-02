@@ -173,6 +173,16 @@ describe Thesauri::ManagedConceptsController do
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
     end
 
+    it "returns children" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      tc_uri =  Uri.new(uri: "http://www.cdisc.org/C28421/V1#C28421")
+      get :children, id: tc_uri.to_id
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(results, sub_dir, "children_expected_1.yaml")
+    end
+
     it "export csv" do
       expect(Thesaurus::ManagedConcept).to receive(:find_full).and_return(Thesaurus::ManagedConcept.new)
       expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:scoped_identifier).and_return("C12345")
@@ -233,6 +243,80 @@ describe Thesauri::ManagedConceptsController do
       expect(AuditTrail.count).to eq(audit_count+1)
     end
 
+    it 'adds a child thesaurus concept' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      new_um = Thesaurus::ManagedConcept.new
+      new_um.identifier = "A12345"
+      new_um.definition = "A def"
+      new_um.notation = "XXX"
+      new_um.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1/A12345#fake")
+      new_um.set_persisted # Needed for id method to work for paths
+      token = Token.obtain(mc, @user)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
+      expect(AuditTrail).to receive(:update_item_event).with(@user, instance_of(Thesaurus::ManagedConcept), "Code list updated.")
+      post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds a child thesaurus concept, no audit' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      new_um = Thesaurus::ManagedConcept.new
+      new_um.identifier = "A12345"
+      new_um.definition = "A def"
+      new_um.notation = "XXX"
+      new_um.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1/A12345#fake")
+      new_um.set_persisted # Needed for id method to work for paths
+      token = Token.obtain(mc, @user)
+      token.refresh
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
+      post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_2.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds a child thesaurus concept, error' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      new_um = Thesaurus::ManagedConcept.new
+      new_um.identifier = "A12345"
+      new_um.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1/A12345#fake")
+      new_um.set_persisted # Needed for id method to work for paths
+      new_um.errors.add(:base, "Something went wrong")
+      token = Token.obtain(mc, @user)
+      token.refresh
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(token)
+      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:add_child).with({"identifier"=>"A12345"}).and_return(new_um)
+      post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_3.yaml", equate_method: :hash_equal)
+    end
+
+    it 'adds a child thesaurus concept, error' do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(nil)
+      post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
+    end
+
     # it "edit" do
     #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
     #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
@@ -286,4 +370,26 @@ describe Thesauri::ManagedConceptsController do
     end
 
   end
+
+  describe "Unauthorized User" do
+
+    login_reader
+
+    it "prevents access to a reader, edit" do
+      get :edit, id: 10
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, add child" do
+      get :add_child, id: 10
+      expect(response).to redirect_to("/")
+    end
+
+    it "prevents access to a reader, destroy" do
+      delete :destroy, id: 10 # id required to be there for routing, can be anything
+      expect(response).to redirect_to("/")
+    end
+
+  end
+
 end
