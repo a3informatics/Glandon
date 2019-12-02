@@ -15,6 +15,7 @@ module TagHelper
   def create_tag_first_level(label, description)
       click_navbar_tags
       expect(page).to have_content 'Tag Viewer'
+      sleep 0.3
       ui_check_input("edit_label", 'Tags')
       fill_in 'add_label', with: "#{label}"
       fill_in 'add_description', with: "#{description}"

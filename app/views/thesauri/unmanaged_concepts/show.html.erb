@@ -19,10 +19,6 @@
   <%= javascript_tag "var url_path = '';" %>
 <% end %>
 
-<% if policy(Thesaurus).edit? %>
-  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
-<% end %>
-
 <div class="row">
   <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
@@ -40,6 +36,10 @@
     </div>
   <% end %>
 </div>
+
+<% if policy(Thesaurus).edit? %>
+  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
+<% end %>
 
 <% if @has_children %>
   <div class="row">
