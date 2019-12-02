@@ -1,7 +1,7 @@
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<%= stylesheet_link_tag 'shared/change_notes' %>
+<%= stylesheet_link_tag 'shared/change_notes', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'shared/change_notes' %>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="tableModalLabel" aria-hidden="true" id="change-notes-modal">
