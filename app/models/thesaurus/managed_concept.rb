@@ -449,7 +449,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
 
   def delete
     if self.extension?
-        base_delete
+        self.delete_minimum
     elsif self.subset?
       transaction = transaction_begin
         self.delete_subset

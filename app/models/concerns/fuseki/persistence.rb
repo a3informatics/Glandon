@@ -301,7 +301,7 @@ module Fuseki
     end
 
     alias :base_delete :delete
-    
+
     # Generic Links. Gets the links for the named property. Gets as URIs
     #
     # @param name [Symbol] the property name

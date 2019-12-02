@@ -806,6 +806,15 @@ describe "IsoManagedV2" do
       expect(results.count).to eq(3)
     end
 
+    it "delete minimum" do
+      results = Thesaurus.all
+      expect(results.count).to eq(4)
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+      expect(ct.delete_minimum).to eq(1)
+      results = Thesaurus.all
+      expect(results.count).to eq(3)
+    end
+
   end
 
   describe "Status" do

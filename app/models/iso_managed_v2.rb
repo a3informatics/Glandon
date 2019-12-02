@@ -528,6 +528,19 @@ class IsoManagedV2 < IsoConceptV2
       1
   end
 
+  # Delete minimum. Delete the managed item (Scope identifier, Registration State)
+  #
+  # @return [integer] the number of objects deleted (always 1 if no exception)
+  def delete_minimum
+    parts = []
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    parts << "{ #{uri.to_ref} (<http://www.assero.co.uk/ISO11179Types#hasState>)+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} (<http://www.assero.co.uk/ISO11179Types#hasIdentifier>)+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }"
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    1
+  end
+
   # Forward Backward. Provides URIs for mving through the history
   #
   # @params [Integer] step the step to be taken, probably best set to 1
