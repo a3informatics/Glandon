@@ -3,7 +3,7 @@
 <%= javascript_tag "var add_child_path = '#{add_child_thesauri_managed_concept_path(@thesaurus_concept)}';" %>
 <%= javascript_tag "var children_path = '#{children_thesauri_managed_concept_path(@thesaurus_concept)}';" %>
 <%= javascript_tag "var update_path = '/thesauri/unmanaged_concepts/:id';" %>
-<%= javascript_tag "var parent_id = '#{@thesaurus.id}';" %>
+<%= javascript_tag "var parent_id = '#{@thesaurus_concept.id}';" %>
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @thesaurus_concept, :context => @thesaurus, :badge => "CL"} do %>

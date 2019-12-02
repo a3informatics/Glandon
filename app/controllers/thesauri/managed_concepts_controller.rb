@@ -55,7 +55,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(ct, current_user)
+    token = Token.find_token(ct, current_user) 
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?

@@ -41,14 +41,17 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def update
     authorize Thesaurus
     tc = Thesaurus::UnmanagedConcept.find_children(params[:id])
-    tc.synonyms_and_preferred_terms
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
     token = Token.find_token(parent, current_user)
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
-        render :json => {:data => [tc.simple_to_h]}, :status => 200
+        result = tc.simple_to_h
+        edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
+        delete_path = thesauri_unmanaged_concept_path({id: tc.id, unmanaged_concept: {parent_id: parent.id}})
+        result.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
+        render :json => {:data => [result]}, :status => 200
       else
         errors = []
         tc.errors.each do |name, msg|
