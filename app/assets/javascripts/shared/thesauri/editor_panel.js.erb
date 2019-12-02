@@ -56,7 +56,11 @@ function EditorPanel(childrenPath, updatePath, parentId, editLockCallback) {
       { data: "synonym" },
       { data: "definition" },
       { data: null, "render": function(data,type,full,meta) {
-        return '<button type="button" class="btn medium">Edit</button>';
+        var disabled = ""
+        if (data.edit_path === "") {
+          disabled += " disabled";
+        }
+        return '<button type="button" class="btn medium"' + disabled + '>Edit</button>';
       }},
       { data: null, "render": function(data,type,full,meta) {
         return '<button type="button" class="btn medium red">Delete</button>';
@@ -79,9 +83,11 @@ function EditorPanel(childrenPath, updatePath, parentId, editLockCallback) {
     var data = _this.editorTable.cell(this).data();
 
     if (col == 5) {
-      _this.editLockCallback(); // Extend the token
-      keepToken = true; // Keep the token. Important
-      window.location.href = data.edit_path;
+      if (data.edit_path !== "") {
+        _this.editLockCallback(); // Extend the token
+        //keepToken = true; // Keep the token. Important @todo need to consider what to do here for propogating the token
+        window.location.href = data.edit_path;
+      }
     } else if (col == 6) {
       if(confirm("Are you sure?")) {
         _this.delete(data.delete_path);
