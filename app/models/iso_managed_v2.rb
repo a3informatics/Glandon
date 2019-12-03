@@ -52,7 +52,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Boolean] Returns true of latest
   def latest?
-    return self.version == IsoScopedIdentifierV2.latest_version(self.scoped_identifier, self.has_state.by_authority)
+    return self.version == IsoScopedIdentifierV2.latest_version(self.scoped_identifier, self.has_identifier.has_scope)
   end
 
   # Later Version
@@ -185,7 +185,6 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [SemanticVersion] the next semantic version
   def next_semantic_version
-byebug
     self.has_identifier.next_semantic_version
   end
 
@@ -514,6 +513,7 @@ byebug
     object.last_change_date = Time.now
     object.set_uris(ra)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
+byebug if object.errors.any?
     object
   end
 

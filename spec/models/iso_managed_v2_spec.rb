@@ -108,14 +108,16 @@ describe "IsoManagedV2" do
     it "allows the latest, later, earlier and same version to be assessed" do
       uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
       item = IsoManagedV2.find_minimum(uri)
-    #byebug
-      expect(item.latest?).to eq(true)   
+      expect(item.latest?).to eq(false)   
       expect(item.later_version?(0)).to eq(true)   
       expect(item.later_version?(1)).to eq(false)   
       expect(item.earlier_version?(1)).to eq(false)   
       expect(item.earlier_version?(2)).to eq(true)   
       expect(item.same_version?(1)).to eq(true)   
       expect(item.same_version?(2)).to eq(false)   
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      item = IsoManagedV2.find_minimum(uri)
+      expect(item.latest?).to eq(true)   
     end
 
     it "allows owner and owned? to be determined" do
@@ -188,6 +190,15 @@ describe "IsoManagedV2" do
       expect(result.version).to eq(3)
       result = IsoManagedV2.latest({:identifier => "TESTx", :scope => IsoRegistrationAuthority.owner.ra_namespace}) # Invalid identifier
       expect(result).to be_nil
+    end
+
+    it "check is latest" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V3#F-ACME_TEST")
+      item = IsoManagedV2.find_minimum(uri)
+      expect(item.latest?).to eq(true)
+      uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V2#F-ACME_TEST")
+      item = IsoManagedV2.find_minimum(uri)
+      expect(item.latest?).to eq(false)
     end
 
     it "returns forwards and backwards, I" do
