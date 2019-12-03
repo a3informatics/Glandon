@@ -5,8 +5,6 @@
 class IsoRegistrationStateV2 < Fuseki::Base
 
   # Constants
-  C_CLASS_NAME = self.name
-  C_DEFAULT_DATETIME = "2016-01-01T00:00:00+00:00"
   C_UNTIL_DATETIME = "2100-01-01T00:00:00+00:00"
   C_NOT_SET = "Not_Set"
 
@@ -16,8 +14,8 @@ class IsoRegistrationStateV2 < Fuseki::Base
 
   data_property :registration_status, default: C_NOT_SET
   data_property :administrative_note
-  data_property :effective_date, default: C_DEFAULT_DATETIME
-  data_property :until_date, default: C_DEFAULT_DATETIME
+  data_property :effective_date, default: String::C_DEFAULT_DATETIME.to_time_with_default
+  data_property :until_date, default: String::C_DEFAULT_DATETIME.to_time_with_default
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state, default: C_NOT_SET
@@ -62,7 +60,6 @@ class IsoRegistrationStateV2 < Fuseki::Base
   def self.next_state(state)
     info = Rails.configuration.iso_registration_state[state.to_sym]
     nextState = info[:next_state]
-    #ConsoleLogger::log(C_CLASS_NAME,"nextState","Old=" + state.to_s + ", New=" + nextState)
     return nextState
   end
 

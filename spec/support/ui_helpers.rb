@@ -254,8 +254,13 @@ module UiHelpers
     wait_for_ajax(15)
   end
 
-  def ui_show_more_tags_cl
+  def ui_show_more_tags_th
     find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+  end
+
+  def ui_show_more_tags_cl
+    #find(:xpath, "//*[@id='main_area']/div[4]/div/div/div/div[2]/div[4]/div[2]/span[2]", :text => 'Show more').click
+    find(:xpath, '//*[@id="imh_header"]/div/div/div[2]/div[5]/div[2]/span[2]', :text => 'Show more').click
   end
 
   def ui_show_more_tags_cli
@@ -493,19 +498,42 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
-  #Context Menu
-  def context_menu_element (table_id, column_nr, text, action )
-    action_to_option_map =
-    {
+	def context_menu_actions_map
+	 {
       show: "Show",
       search: "Search",
       edit: "Edit",
       delete: "Delete",
-      document_control: "Document control"
+      document_control: "Document control",
+			export_csv: "Export CSV",
+			subsets: "Subsets",
+			extend: "Extend",
+			extension: "Extension",
+			extending: "Extending",
+			change_notes: "Change notes",
     }
-    option = action_to_option_map[action]
+	end
+
+  #Context Menu
+  def context_menu_element (table_id, column_nr, text, action )
+    option = context_menu_actions_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
+    page.execute_script(js_code)
+  end
+
+	def context_menu_element_header (action)
+		option = context_menu_actions_map[action]
+		js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
+    js_code += "if (el != null) { el.click(); } else { console.log('No match found'); } "
+		page.execute_script(js_code)
+	end
+
+  def context_menu_element_header_present?(action, state="enabled")
+    class_list = state == "enabled" ? "option " : "option disabled" # Note the space, horrid but ....
+    option = context_menu_actions_map[action]
+    js_code = "var el = $('#header-con-menu').find('a:contains(\"#{option}\")')[0]; "
+    js_code += "if (el != null && el.className == '#{class_list}' ) { return true; } else { return false; } "
     page.execute_script(js_code)
   end
 

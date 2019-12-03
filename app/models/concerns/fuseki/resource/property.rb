@@ -122,7 +122,7 @@ module Fuseki
       # @param [Object] value the property value, might be an array
       # @return [Void] no return
       def set_default(value)
-        object? ? set_the_property(value) : set_simple(value)
+        object? ? set_the_property(value) : set(value)
       end
 
       # Set URI. Sets the named property with the specified URI. Converts from stroing if necessary to URI object

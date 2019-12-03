@@ -5,11 +5,6 @@ PREFIX isoT: <http://www.assero.co.uk/ISO11179Types#>
 PREFIX isoR: <http://www.assero.co.uk/ISO11179Registration#>
 PREFIX isoI: <http://www.assero.co.uk/ISO11179Identification#>
 PREFIX bo: <http://www.assero.co.uk/BusinessOperational#>
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
@@ -23,7 +18,7 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:origin ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:changeDescription ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2019-09-22T15:29:17+02:00"^^xsd:dateTime . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2019-11-30T15:26:40+01:00"^^xsd:dateTime . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> . 
@@ -40,7 +35,7 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:identifier "NEW_TH"^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:versionLabel ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:version "1"^^xsd:positiveInteger . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:semanticVersion "0.0.1"^^xsd:string . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:semanticVersion "0.1.0"^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:hasScope <http://www.assero.co.uk/NS#ACME> . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> rdf:type bo:TcReference . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> isoC:label ""^^xsd:string . 
@@ -69,7 +64,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:notation "NOTATION1"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:definition "The definition."^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:extensible "false"^^xsd:boolean . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#962c0e95-cef2-4e40-a0c9-5f7cab51b247> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#e0136f50-193e-4a2d-a807-e98b3c45d3f9> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#ebb9dfef-a534-4b25-8ccc-6206a3cbae00> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#1051e295-5f9d-44e7-a0b0-85d84474b9e0> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#c57887a2-ba3b-4cb1-97a1-5d772b22c1b8> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#80d7ed9b-d010-4065-8b1a-67ded10dd356> . 
 }

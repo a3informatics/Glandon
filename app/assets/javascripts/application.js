@@ -31,6 +31,7 @@
 //= require app-js-erb-extension
 //= require jquery-dateformat.min
 //= require title
+//= require shared/confirmation_dialog
 
 // Managed Item Types
 var C_FORM = "http://www.assero.co.uk/BusinessForm#Form";
@@ -177,6 +178,11 @@ function displayAlerts(html) {
       5000);
 }
 
+function displayAlertsInElement(html, el) {
+  	el.html(html);
+    window.setTimeout(function(){ el.html(""); }, 5000);
+}
+
 function dismissAlerts(){
   var alerts = document.getElementById("alerts");
   alerts.innerHTML = "";
@@ -202,7 +208,7 @@ function displaySuccess(text) {
   displayAlerts(html);
 }
 
-function handleAjaxError (xhr, status, error) {
+function handleAjaxError (xhr, status, error, target) {
     var json;
     var errors;
     var html;
@@ -225,7 +231,10 @@ function handleAjaxError (xhr, status, error) {
     for (var i=0; i<errors.length; i++) {
         html = html + alertError(errors[i]);
     }
-    displayAlerts(html);
+    if(target == null)
+      displayAlerts(html);
+    else
+      displayAlertsInElement(html, target);
 }
 
 /**

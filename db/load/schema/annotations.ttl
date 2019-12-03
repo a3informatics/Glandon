@@ -1,0 +1,92 @@
+@prefix : <http://www.assero.co.uk/Annotations#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix isoR: <http://www.assero.co.uk/ISO11179Registration#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/Annotations>
+  rdf:type owl:Ontology ;
+.
+:Annotation
+  rdf:type owl:Class ;
+  rdfs:label "Annotation"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "Generic annotation type."^^xsd:string ;
+.
+:CrossReference
+  rdf:type owl:Class ;
+  rdfs:label "Cross Reference"^^xsd:string ;
+  rdfs:subClassOf isoC:Concept ;
+  skos:definition "Generic cross reference type."^^xsd:string ;
+.
+:ChangeInstruction
+  rdf:type owl:Class ;
+  rdfs:label "Change Instruction"^^xsd:string ;
+  rdfs:subClassOf :CrossReference ;
+  skos:definition "Change instruction type."^^xsd:string ;
+.
+:ChangeNote
+  rdf:type owl:Class ;
+  rdfs:label "Change Note"^^xsd:string ;
+  rdfs:subClassOf :Annotation ;
+  skos:definition "Change note type."^^xsd:string ;
+.
+:semantic
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Cross Reference Semantic"^^xsd:string ;
+  rdfs:domain :CrossReference ;
+  rdfs:range xsd:string ;
+  skos:definition "The semantic of the cross reference."^^xsd:string ;
+.
+:description
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Description"^^xsd:string ;
+  rdfs:domain :Annotation ;
+  rdfs:range xsd:string ;
+  skos:definition "The description, the actual annotation."^^xsd:string ;
+.
+:userReference
+  rdf:type owl:DatatypeProperty ;
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "User Reference"^^xsd:string ;
+  rdfs:domain :ChangeNote ;
+  rdfs:range xsd:string ;
+  skos:definition "The reference to the user who last entered or modified the change note."^^xsd:string ;
+.
+:timestamp
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "User Reference"^^xsd:string ;
+  rdfs:domain :ChangeNote ;
+  rdfs:range xsd:dateTime ;
+  skos:definition "The date and time of when the change note was last created or modified."^^xsd:string ;
+.
+:previous
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Previous Reference"^^xsd:string ;
+  rdfs:domain :CrossReference ;
+  rdfs:range isoC:Concept ;
+  skos:definition "A previous reference."^^xsd:string ;
+.
+:current
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Current Reference"^^xsd:string ;
+  rdfs:domain :Annotation ;
+  rdfs:range isoC:Concept ;
+  skos:definition "A current reference."^^xsd:string ;
+.
+:byAuthority
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Current Reference"^^xsd:string ;
+  rdfs:domain :Annotation ;
+  rdfs:range isoR:RegistrationAuthority ;
+  skos:definition "Reference to the authority that created the annotation."^^xsd:string ;

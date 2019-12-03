@@ -21,6 +21,11 @@
   height:  100%;
 }
 
+.spinner-el.tiny{
+  transform: scale(.15);
+  margin: -70px;
+}
+
 .spinner-el.small{
   transform: scale(.3);
   margin: -50px;

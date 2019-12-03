@@ -122,8 +122,7 @@ describe "Tokens", :type => :feature do
         ui_child_search("C85494")
         find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
         wait_for_ajax(10)
-        expect(page).to have_link("Subsets")
-        click_link "Subsets"
+        context_menu_element_header(:subsets)
         context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
         wait_for_ajax(10)
         expect(page).to have_content("Edit Subset")
@@ -140,8 +139,7 @@ describe "Tokens", :type => :feature do
         ui_child_search("C85494")
         find(:xpath, "//tr[contains(.,'C85494')]/td/a", :text => 'Show').click
         wait_for_ajax(10)
-        expect(page).to have_link("Subsets")
-        click_link "Subsets"
+        context_menu_element_header(:subsets)
         context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
         wait_for_ajax(10)
         expect(page).to have_content 'The item is locked for editing by another user.'

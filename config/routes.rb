@@ -77,7 +77,12 @@ Rails.application.routes.draw do
     end
     member do
       get :tags
+      get :change_notes
+      post :change_note, action: :add_change_note
     end
+  end
+  namespace :annotations do
+    resources :change_notes, only: [:update, :destroy]
   end
   resources :iso_managed do
     collection do

@@ -30,11 +30,12 @@
   position: absolute;
   background: $grey-white;
   z-index: 20;
+  border: 1px solid $grey-bright;
   display: none;
 }
 
 .context-menu.left{
-  transform: translateX(-150px);
+  transform: translateX(-100%);
 }
 
 .context-menu .option{
@@ -61,6 +62,9 @@
   text-decoration: none;
 }
 
+.context-menu.blue .option:hover{
+  background: $primary-color-medium;
+}
 // FIXES
 
 table .row{

@@ -1,0 +1,108 @@
+@import "custom/vars.scss";
+
+#change-notes-modal{
+  min-width: 350px;
+}
+
+#change-notes-modal-error, #add-cn-button{
+  margin: 4px 0px;
+}
+
+.card-item.note{
+  min-width: 300px;
+  max-width: 560px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: auto;
+  padding: 15px;
+  cursor: default;
+  color: $grey-medium;
+}
+
+.card-item.note.active{
+  box-shadow: inset 0px 0px 0px 3px $primary-color-light;
+}
+
+.card-item.note.inactive{
+  opacity: .5;
+  pointer-events: none;
+}
+
+.note-header{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note-footer{
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.note-body{
+  margin-top: 10px;
+  width: 100%;
+}
+
+.note-body hr{
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.note-body .note-body-item{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.note-delete-button{
+  font-size: $font-small;
+  color: $grey-light;
+  cursor: pointer;
+}
+
+.note-delete-button:hover{
+  color: $accent-color-2;
+}
+
+.note-save-button, .note-edit-cancel-button{
+  display: inline-block;
+  transition: transform .3s;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.note-edit-cancel-button span:last-of-type{
+  color: $grey-light;
+}
+
+.note-save-button:hover, .note-edit-cancel-button:hover{
+  transform: translateY(-4px);
+}
+
+.content-editable{
+  display: inline-block;
+  word-break: break-all;
+  margin-right: 5px;
+}
+
+.content-editable:hover{
+  position: relative;
+}
+
+.card-item.note.active .content-editable:hover::after{
+  display: none;
+}
+
+.content-editable:hover::after{
+  position: absolute;
+  font-family: 'icomoon' !important;
+  content: "\e931";
+  color: $content-editable-color-dark;
+  right: -17px;
+  top: 4px;
+}
