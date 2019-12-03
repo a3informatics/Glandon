@@ -1,5 +1,6 @@
 <%# WARNING: This has identical HTML code as a JS in assets/javascripts/dashboard/dashboard_panel. If you change one, change the other one too! %>
-<a class="card-item hover-indent shadow-small" href="<%= history_thesauri_index_path(thesauri: {:identifier => item[:identifier], :scope_id => item[:scope_id]}) %>  <div class="circular-badge med <%= thesaurus_accent_color item[:owner] %>"><span class="icon-terminology text-white"></span></div>
+<a class="card-item hover-indent shadow-small" href="<%= path %>">  
+  <div class="circular-badge med <%= thesaurus_accent_color item[:owner] %>"><span class="icon-terminology text-white"></span></div>
   <div class="card-item-info">
     <div class="font-regular text-normal"> <%= item[:label] %> </div>
     <div class="font-light text-small"> Owner: <%= item[:owner] %> &nbsp; | &nbsp; Identifier: <%= item[:identifier] %></div>
