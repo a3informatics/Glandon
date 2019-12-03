@@ -1,0 +1,406 @@
+---
+:id: 
+:uri: {}
+:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
+:label: Controlled Terminology
+:tagged:
+- http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+:has_state:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfUlM=
+  :uri: http://www.cdisc.org/CT/V1#TH_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQ1QvVjEjVEhfU0k=
+  :uri: http://www.cdisc.org/CT/V1#TH_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: CT
+  :version_label: 2007-03-06 Release
+  :version: 1
+  :semantic_version: 1.0.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:origin: 'Created from files: ''SDTM Terminology 2007-03-06.xlsx'''
+:change_description: ''
+:creation_date: '2007-03-06T00:00:00+00:00'
+:last_change_date: '2007-03-06T00:00:00+00:00'
+:explanatory_comment: ''
+:is_top_concept_reference:
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 7
+  :reference: http://www.cdisc.org/C49704/V1#C49704
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 19
+  :reference: http://www.cdisc.org/C49705/V1#C49705
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 2
+  :reference: http://www.cdisc.org/C49489/V1#C49489
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 14
+  :reference: http://www.cdisc.org/C16960/V1#C16960
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 27
+  :reference: http://www.cdisc.org/C49691/V1#C49691
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 22
+  :reference: http://www.cdisc.org/C25681/V1#C25681
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 30
+  :reference: http://www.cdisc.org/C49672/V1#C49672
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 6
+  :reference: http://www.cdisc.org/C64388/V1#C64388
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 18
+  :reference: http://www.cdisc.org/C38114/V1#C38114
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 1
+  :reference: http://www.cdisc.org/C49499/V1#C49499
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 13
+  :reference: http://www.cdisc.org/C16564/V1#C16564
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 26
+  :reference: http://www.cdisc.org/C48281/V1#C48281
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 21
+  :reference: http://www.cdisc.org/C49696/V1#C49696
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 5
+  :reference: http://www.cdisc.org/C49480/V1#C49480
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 17
+  :reference: http://www.cdisc.org/C49638/V1#C49638
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 12
+  :reference: http://www.cdisc.org/C49484/V1#C49484
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 25
+  :reference: http://www.cdisc.org/C49652/V1#C49652
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 20
+  :reference: http://www.cdisc.org/C28421/V1#C28421
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 23
+  :reference: http://www.cdisc.org/C49558/V1#C49558
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 11
+  :reference: http://www.cdisc.org/C50399/V1#C50399
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 9
+  :reference: http://www.cdisc.org/C25464/V1#C25464
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 3
+  :reference: http://www.cdisc.org/C20587/V1#C20587
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 16
+  :reference: http://www.cdisc.org/C49627/V1#C49627
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 15
+  :reference: http://www.cdisc.org/C42636/V1#C42636
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 24
+  :reference: http://www.cdisc.org/C49658/V1#C49658
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 31
+  :reference: http://www.cdisc.org/C49486/V1#C49486
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 32
+  :reference: http://www.cdisc.org/C65047/V1#C65047
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 8
+  :reference: http://www.cdisc.org/C49647/V1#C49647
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 4
+  :reference: http://www.cdisc.org/C50400/V1#C50400
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 29
+  :reference: http://www.cdisc.org/C49675/V1#C49675
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 10
+  :reference: http://www.cdisc.org/C49650/V1#C49650
+  :context: 
+  :local_label: ''
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
+  :label: ''
+  :tagged: []
+  :enabled: true
+  :optional: false
+  :ordinal: 28
+  :reference: http://www.cdisc.org/C49660/V1#C49660
+  :context: 
+  :local_label: ''
+:is_top_concept: []

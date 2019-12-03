@@ -402,20 +402,30 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     object
   end
 
-# Add subset. Creates a new MC, Subset, and links them together.
-#
-# @param mc_id [String] the identifier of the code list to be subsetted
-# @return [Object] the created ManagedConcept
-def add_subset(mc_id)
-  source_mc = Thesaurus::ManagedConcept.find_minimum(mc_id)
-  new_mc = self.add_child({})
-  transaction_begin
-  subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
-  new_mc.add_link(:is_ordered, subset.uri)
-  new_mc.add_link(:subsets, source_mc.uri)
-  transaction_execute
-  new_mc
-end
+  # Add subset. Creates a new MC, Subset, and links them together.
+  #
+  # @param mc_id [String] the identifier of the code list to be subsetted
+  # @return [Object] the created ManagedConcept
+  def add_subset(mc_id)
+    source_mc = Thesaurus::ManagedConcept.find_minimum(mc_id)
+    new_mc = self.add_child({})
+    transaction_begin
+    subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(self.uri))
+    new_mc.add_link(:is_ordered, subset.uri)
+    new_mc.add_link(:subsets, source_mc.uri)
+    transaction_execute
+    new_mc
+  end
+
+
+  def clone
+    object = super
+    object.is_top_concept_reference = []
+    self.is_top_concept_reference.each do |ref|
+      object.is_top_concept_reference << ref.clone
+    end
+    object
+  end
 
 private
 
