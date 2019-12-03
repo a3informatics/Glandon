@@ -96,9 +96,9 @@ describe "Dashboard JS", :type => :feature do
       expect(page).to have_content 'Dashboard'
       expect(page).to have_content 'Customize'
       click_link 'Customize'
-      wait_for_ajax(120)
+      sleep 0.5
       uncheck 'Terminologies'
-      wait_for_ajax(120)
+      sleep 0.5
       click_button 'Save'
       wait_for_ajax(120)
       expect(page).not_to have_content 'Terminologies'
