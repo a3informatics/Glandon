@@ -94,6 +94,7 @@ describe "Thesauri", :type => :feature do
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#imh_header")[:class].include?("warning")
       page.find("#timeout").click
+      wait_for_ajax(120)
       expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
       sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
       page.find("#imh_header")[:class].include?("danger")
