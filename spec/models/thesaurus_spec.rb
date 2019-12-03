@@ -584,10 +584,10 @@ describe Thesaurus do
 
   end
 
-  describe "Clone" do
+  describe "Clone and New Version" do
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
     end
@@ -605,6 +605,12 @@ describe Thesaurus do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = thesaurus.clone
       check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
+    end
+
+    it "create next thesaurus" do
+      thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      actual = thesaurus.create_next_version
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml", write_file: true)
     end
 
   end

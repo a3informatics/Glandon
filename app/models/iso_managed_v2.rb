@@ -185,6 +185,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [SemanticVersion] the next semantic version
   def next_semantic_version
+byebug
     self.has_identifier.next_semantic_version
   end
 
