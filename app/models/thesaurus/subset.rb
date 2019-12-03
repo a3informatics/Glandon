@@ -112,6 +112,10 @@ class Thesaurus::Subset < IsoConceptV2
   
   end
 
+
+  # Delete. Delete the subset
+  #
+  # @return [integer] the number of objects deleted (always 1 if no exception)
     def delete_subset
       query_string = %Q{
         DELETE {?s ?p ?o} WHERE 

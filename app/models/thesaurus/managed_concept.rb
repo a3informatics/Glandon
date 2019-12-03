@@ -447,7 +447,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
-  # Delete. Delete the managed item
+  # Delete. Delete the managed concept
   #
   # @return [Void] no return
   def delete
