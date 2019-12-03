@@ -269,18 +269,18 @@ class Thesaurus
   SELECT DISTINCT ?c ?p ?desc ?p_n ?p_id ?c_n ?c_id ?p_d ?t WHERE
   {
     {
-      ?ci (cr:previous/bo:reference) #{self.uri.to_ref} .
-      ?ci (cr:current/bo:reference) ?c .
-      ?ci (cr:current/bo:context) ?th .
+      ?ci (ba:previous/bo:reference) #{self.uri.to_ref} .
+      ?ci (ba:current/bo:reference) ?c .
+      ?ci (ba:current/bo:context) ?th .
       BIND ("current" as ?t)
     } UNION
     {
-      ?ci (cr:current/bo:reference) #{self.uri.to_ref} .
-      ?ci (cr:previous/bo:reference) ?c .
-      ?ci (cr:previous/bo:context) ?th .
+      ?ci (ba:current/bo:reference) #{self.uri.to_ref} .
+      ?ci (ba:previous/bo:reference) ?c .
+      ?ci (ba:previous/bo:context) ?th .
       BIND ("previous" as ?t)
     }
-    ?ci cr:description ?desc .
+    ?ci ba:description ?desc .
     {
       ?th th:isTopConceptReference/bo:reference ?p .
       ?p rdf:type th:ManagedConcept .
@@ -301,7 +301,7 @@ class Thesaurus
       BIND ("" as ?c_id)
     }
   }}
-      query_results = Sparql::Query.new.query(query_string, "", [:cr, :th, :bo, :isoC, :isoT])
+      query_results = Sparql::Query.new.query(query_string, "", [:ba, :th, :bo, :isoC, :isoT])
       query_results.by_object_set([:c, :p, :desc, :p_id, :c_id, :p_n, :c_n, :t]).each do |x|
         results[:description] = x[:desc] if results[:description].nil?
         results[x[:t].to_sym] << {parent: {identifier: x[:p_id], notation: x[:p_n], date: x[:p_d]}, child: {identifier: x[:c_id], notation: x[:c_n]}, id: x[:c].to_id}

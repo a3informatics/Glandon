@@ -1,15 +1,16 @@
 # Change Instruction. A change instruction
 #
 # @author Dave Iberson-Hurst
-# @since 2.22.1
-class CrossReference::ChangeInstruction < CrossReference
+# @since 2.23.0
+class Annotation::ChangeInstruction < Annotation
   
-  configure rdf_type: "http://www.assero.co.uk/CrossReference#ChangeInstruction",
+  configure rdf_type: "http://www.assero.co.uk/Annotations#ChangeInstruction",
             uri_suffix: "CI",
             uri_property: :ordinal
 
+  data_property :ordinal, default: 1
+  data_property :semantic 
   object_property :previous, cardinality: :many, model_class: "OperationalReferenceV3"
-  object_property :current, cardinality: :many, model_class: "OperationalReferenceV3"
 
   def add_previous(ct, reference)
     add_reference(self.previous, ct, reference)

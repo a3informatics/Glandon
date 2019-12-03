@@ -15,11 +15,11 @@
 }
 
 .card.wide{
-  min-width: 450px;
+  min-width: 450px !important;
 }
 
 .card.narrow{
-  min-width: 300px;
+  min-width: 300px !important;
 }
 
 .card-header, a.card-header{
@@ -52,15 +52,15 @@
   width: 100% !important;
 }
 
-.card.warning {
+div.warning {
   border: 5px solid $accent-color-1;
 }
 
-.card.danger{
+div.danger{
   border: 5px solid $accent-color-2;
 }
 
-.card.info{
+div.info{
   border: 5px solid $primary-color-bright;
 }
 
@@ -82,7 +82,7 @@
   border: 1px solid $grey-bright;
 }
 
-.card-item:hover .card-item-info, .card-item:hover .circular-badge{
+.card-item.hover-indent:hover .card-item-info, .card-item.hover-indent:hover .circular-badge{
  transform: translateX(10px);
 }
 
@@ -94,7 +94,7 @@
   margin-left: 10px;
 }
 
-.card-item .card-item-info, .card-item .circular-badge{
+.card-item.hover-indent .card-item-info, .card-item.hover-indent .circular-badge{
   transition: transform .5s;
 }
 

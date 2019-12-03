@@ -1,9 +1,12 @@
-<!-- A reusable html generator for context menus. Also defined in a partial: assets/javascripts/shared/context_menu.js.erb. If you change one, you have to change the other too ! -->
+<%# A reusable html generator for context menus. Also defined in a partial: assets/javascripts/shared/context_menu.js.erb. If you change one, you have to change the other too ! %>
 
-<!-- menu_id: String id for the menu itself -->
-<!-- the options will be rendered in the yield field -->
+<%# menu_id: String id for the menu itself %>
+<%# the options will be rendered in the yield field %>
+<%= stylesheet_link_tag 'custom/context_menu' %>
+<%= javascript_include_tag 'shared/context_menu' %>
+
 <span id="<%= menu_id %>"class="icon-context-menu text-medium text-normal" tabindex="1">
-  <div class="context-menu shadow-small collapsed">
+  <div class="context-menu <%= local_assigns.fetch :color, "" %> <%= local_assigns.fetch :side, "" %> shadow-small collapsed">
     <%= yield %>
   </div>
 </span>

@@ -177,6 +177,7 @@ describe "Thesaurus::ManagedConcept" do
       tc.has_identifier.uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V3#SI_A00001")
       tc.has_identifier.identifier = "AAA"
       tc.has_identifier.semantic_version = "0.0.1"
+      tc.has_identifier.version = 1
       valid = tc.valid?
       expect(valid).to eq(true)
     end
@@ -383,14 +384,14 @@ describe "Thesaurus::ManagedConcept" do
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.txt")
     end
 
-    it "allows a TC to be exported as SPARQL, II - WILL CURRENTLY FAIL (Timestamp Issue)" do
+    it "allows a TC to be exported as SPARQL, II" do
       sparql = Sparql::Update.new
       simple_thesaurus_1
       @tc_1.set_initial(@tc_1.identifier)
       sparql.default_namespace(@tc_1.uri.namespace)
       @tc_1.to_sparql(sparql, true)
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_2.txt")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt")
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.txt", last_change_date: true)
     end
 
     it "allows a TC to be created" do

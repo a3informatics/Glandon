@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-describe "CrossReference" do
+describe Annotation::ChangeInstruction do
 	
   include DataHelpers
   include SparqlHelpers
 
   def sub_dir
-    return "models/cross_reference"
+    return "models/annotation/cross_reference"
   end
 
   before :all  do
@@ -19,30 +19,28 @@ describe "CrossReference" do
   end
 
   it "will initialize an object" do
-  	result = CrossReference.new
+  	result = Annotation::ChangeInstruction.new
   	expect(result.description).to eq("")
-  	expect(result.rdf_type.to_s).to eq("http://www.assero.co.uk/CrossReference#CrossReference")  	
-  	expect(result.can_be_deleted).to eq(false)
-    expect(result.can_be_modified).to eq(false)
+  	expect(result.rdf_type.to_s).to eq("http://www.assero.co.uk/Annotations#ChangeInstruction")  	
   end
 
 	it "will serialize as a hash" do
-  	result = CrossReference.new
-  	result.uri = Uri.new(uri: "http://www.assero.co.uk/CrossReference#XXX")
+  	result = Annotation::ChangeInstruction.new
+  	result.uri = Uri.new(uri: "http://www.assero.co.uk/Annotations#XXX")
   	result.description = "Comment Text"
   	result.label = "whatevs"
   	check_file_actual_expected(result.to_h, sub_dir, "to_h_expected.yaml", equate_method: :hash_equal)
   end
 
   it "will create an object from a hash" do
-  	input = { id: "CR1", namespace: "http://www.example.com/XR", type: "http://www.assero.co.uk/BusinessCrossReference#CrossReference", label: "Cross Reference",
+  	input = { id: "CR1", namespace: "http://www.example.com/XR", type: "http://www.assero.co.uk/Annotations#ChangeInstruction", label: "Cross Reference",
   		description: "The comments", ordinal: 1}
-  	result = CrossReference.from_h(input)
+  	result = Annotation::ChangeInstruction.from_h(input)
     check_file_actual_expected(result.to_h, sub_dir, "from_h_expected.yaml", equate_method: :hash_equal)
   end
 
   it "will output as sparql" do
-  	result = CrossReference.new
+  	result = Annotation::ChangeInstruction.new
 		result.description = "This is the comment"
     result.label = "Label"
     result.semantic = "A Relationship"

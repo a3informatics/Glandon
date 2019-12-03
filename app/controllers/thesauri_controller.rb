@@ -1,3 +1,10 @@
+# Thesauri Controller
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.0
+
+require 'controller_helpers.rb'
+
 class ThesauriController < ApplicationController
 
   include ControllerHelpers

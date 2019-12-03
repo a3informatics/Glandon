@@ -2,7 +2,6 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
-<%= javascript_include_tag 'shared/thesauri/subsets_index' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
 <%= javascript_tag "var tc_id = '#{@tc.id}';" %>
 <%= javascript_tag "var context_id = '#{@context_id}';" %>
@@ -12,37 +11,44 @@
 <%= javascript_tag "var policy_edit = #{policy(Thesaurus).edit?};" %>
 <%= javascript_tag "var edit_enabled = #{@tc.owned?};" %>
 <% third_level_breadcrumb(:thesauri, @tc, history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope.id}})) %>
+
+<% if policy(Thesaurus).edit? %>
+  <%= render partial: "shared/thesauri/thesauri_select" %>
+  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc.id)} %>
+<% end %>
+<%= render partial: "shared/thesauri/subsets_index" %>
+
 <div class="row">
   <!-- RENDER CARD CONTENTS -->
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), id: "btn-version-history",
-        icon: "icon-history", btn_text: "Changes", dt_toggle: "", disabled: false} %>
-      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc),
-        id: "export-csv", icon: "icon-file", btn_text: "Export CSV", dt_toggle: "", disabled: false } %>
-
-      <% if policy(Thesaurus).edit? %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#subsetsModal", id: "btn-subsets",
-          icon: "icon-subset", btn_text: "Subsets", dt_toggle: "modal", disabled: false} %>
-        <%= render partial: "shared/thesauri/subsets_index" %>
-        <% class_list = @can_be_extended ? e_disabled = false : e_disabled = true %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#tableModal", id: "extend",
-          icon: e_disabled ? "icon-extend-disabled ":"icon-extend", btn_text: "Extend", dt_toggle: "modal", disabled: e_disabled} %>
-        <%= render partial: "shared/thesauri/thesauri_select" %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @is_extended_path, id: "extension",
-          icon: "icon-extend", btn_text: "Extension", dt_toggle: "", disabled: false} %>
-        <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @is_extending_path, id: "extending",
-          icon: "icon-extend", btn_text: "Extending", dt_toggle: "", disabled: false} %>
-      <% end %>
-
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
+        id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: export_csv_thesauri_managed_concept_path(@tc), icon: "icon-file",
+           id: "export-csv", text: "Export CSV", dt_toggle: "", disabled: false } %>
+        <% if policy(Thesaurus).edit? %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#subsetsModal", icon: "icon-subset",
+            id: "btn-subsets", text: "Subsets", dt_toggle: "modal", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#tableModal", icon: !@can_be_extended ? "icon-extend-disabled ":"icon-extend",
+            id: "extend", text: "Extend", dt_toggle: "modal", disabled:  !@can_be_extended} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extended_path, icon: "icon-extend",
+            id: "extension", text: "Extension", dt_toggle: "", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: @is_extending_path, icon: "icon-extend",
+            id: "extending", text: "Extending", dt_toggle: "", disabled: false} %>
+          <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+            icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 </div>
 <div class="row">
-  <div class="col-md-12 card">
+  <div class="col-md-12 card wide">
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>

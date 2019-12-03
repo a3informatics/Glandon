@@ -18,6 +18,7 @@
 <% else %>
   <%= javascript_tag "var url_path = '';" %>
 <% end %>
+
 <div class="row">
   <%= render layout: "shared/thesauri/unmanaged_header_card", :locals => {:item => @tc, :context => @ct, :badge => "CI"} do %>
     <!-- BUTTONS WRAP -->
@@ -25,9 +26,20 @@
     <!-- RETURN BUTTON -->
     <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "javascript:history.back()", id: "close",
       icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+
+    <% if policy(Thesaurus).edit? %>
+      <%= render layout: "shared/context_menu/con_menu", :locals => {menu_id: "header-con-menu", color: "blue", side: "left"} do %>
+        <%= render partial: "shared/context_menu/con_menu_item", :locals => {link_path: "#change-notes-modal", id: "change-notes-button",
+          icon: "icon-note", text: "Change notes", dt_toggle: "modal", disabled: false } %>
+      <% end %>
+    <% end %>
     </div>
   <% end %>
 </div>
+
+<% if policy(Thesaurus).edit? %>
+  <%= render partial: "shared/change_notes/change_notes_modal", :locals => {item_name: @tc.identifier, item_id: @tc.id, item_notes_url: change_notes_iso_concept_path(@tc)} %>
+<% end %>
 
 <% if @has_children %>
   <div class="row">

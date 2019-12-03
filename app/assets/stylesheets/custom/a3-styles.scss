@@ -37,6 +37,7 @@
   position: absolute;
   z-index: 12;
   white-space: nowrap;
+  line-height: normal;
 }
 
 .ttip:hover .ttip-text {
@@ -354,6 +355,24 @@
   font-size: $font-large;
 }
 
+// Content editable
+
+.content-editable{
+  padding: 4px 8px;
+  transition: background-color .3s;
+}
+
+.content-editable:hover{
+  cursor: text;
+  background-color: $content-editable-color;
+}
+
+.content-editable:focus{
+  outline: 1px solid $primary-color-bright;
+  background-color: white;
+}
+
+
 // BLOCK LAYOUT
 
 .half-blocks-wrap{
@@ -396,6 +415,10 @@
 
 .table-width-wrapper.narrow{
   padding: 0 15%;
+}
+
+.table-width-wrapper.xnarrow{
+  padding: 0 25%;
 }
 
 // IMGS

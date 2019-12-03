@@ -52,7 +52,7 @@ function DashboardPanel(id, url, safe_parameter) {
 
 // WARNING: This has identical HTML code as a partial in shared/iso_managed/_managed_item_card_list. If you change one, change the other one too!
 DashboardPanel.prototype.generateManagedItemListHTML = function(url, color, item){
-   var html = "<a class='card-item shadow-small' href='" + url + "''>"
+   var html = "<a class='card-item hover-indent shadow-small' href='" + url + "''>"
    html += "<div class='circular-badge med " + color + "'><span class='icon-terminology text-white'></span></div>";
    html += "<div class='card-item-info'>";
    html += "<div class='font-regular text-normal'>" + item.label + "</div>";

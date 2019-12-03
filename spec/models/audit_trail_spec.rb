@@ -8,6 +8,15 @@ describe AuditTrail do
     return "models"
   end
 
+	def get_this_week_date(weekday)
+		weekday_nr = DateTime.parse(weekday).wday
+		weekday_nr = weekday_nr == 0 ? 7 : weekday_nr
+		today = Date.today
+		today = today.wday == 0 ? today-7 : today
+
+		(today + (weekday_nr - today.wday)).rfc3339
+	end
+
   before :all do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_managed_data.ttl", "iso_managed_data_2.ttl", "iso_managed_data_3.ttl"]
     load_files(schema_files, data_files)
@@ -34,7 +43,7 @@ describe AuditTrail do
     item.event = 4
     expect(item.event_to_s).to eq("User")
   end
-  
+
   it "returns human readbale label for an event code" do
     expect(AuditTrail.event_to_s(-5)).to eq("") # Remember: -1 to -4 work from end of array
     expect(AuditTrail.event_to_s(0)).to eq("")
@@ -44,7 +53,7 @@ describe AuditTrail do
     expect(AuditTrail.event_to_s(4)).to eq("User")
     expect(AuditTrail.event_to_s(5)).to eq("")
   end
-  
+
   it "allows a user event to be added" do
     user = User.new
     user.email = "UserName1@example.com"
@@ -138,12 +147,12 @@ describe AuditTrail do
   it "counts users by current week" do
     user = User.new
     user.email = "UserName1@example.com"
-    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-26T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-27T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    AuditTrail.create(date_time: Time.parse("2019-11-27T00:00:00+00:00"), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
-    expect(AuditTrail.users_by_current_week).to eq({"Friday"=>0, "Monday"=>0, "Saturday"=>0, "Sunday"=>0, "Thursday"=>0, "Tuesday"=>3, "Wednesday"=>2})
+    AuditTrail.create(date_time: Time.parse(get_this_week_date("Tuesday")), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse(get_this_week_date("Tuesday")), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse(get_this_week_date("Tuesday")), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse(get_this_week_date("Wednesday")), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+    AuditTrail.create(date_time: Time.parse(get_this_week_date("Wednesday")), user: user.email, owner: "", identifier: "", version: "", event: 4, description: "User logged in.")
+		expect(AuditTrail.users_by_current_week).to eq({"Friday"=>0, "Monday"=>0, "Saturday"=>0, "Sunday"=>0, "Thursday"=>0, "Tuesday"=>3, "Wednesday"=>2})
   end
 
   it "counts users by year by week" do

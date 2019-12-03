@@ -108,7 +108,7 @@ describe "Thesaurus::UnmanagedConcept" do
       check_file_actual_expected(tc.to_h, sub_dir, "from_hash_expected.yaml")
     end
 
-    it "allows a TC to be exported as SPARQL I, WILL CURRENT FAIL (Timestamp issue)" do
+    it "allows a TC to be exported as SPARQL I, WILL CURRENTLY FAIL (Synonym links)" do
       ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
       sparql = Sparql::Update.new
       th = Thesaurus.new
@@ -139,7 +139,7 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_2.to_sparql(sparql, true)
       #full_path = sparql.to_file << May fix timestamp issue
     #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_sparql_expected_1.ttl")
-      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl")  
+      check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_1.ttl", last_change_date: true)  
     end
     
     it "allows a TC to be exported as SPARQL II" do

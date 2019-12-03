@@ -40,6 +40,23 @@ class IsoConceptV2 < Fuseki::Base
     self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
   end
 
+  # Add Change Note
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [String] :user_reference the reference to the user, the user's email
+  # @option params [String] :description the change note description
+  # @option params [String] :reference any references
+  # @return [Annotation::ChangeNote] the change note, may contain errors.
+  def add_change_note(params)
+    transaction_begin
+    cn = Annotation::ChangeNote.create(params)
+    op_ref = OperationalReferenceV3.create({reference: self.uri}, cn)
+    cn.current << op_ref
+    cn.save
+    transaction_execute
+    cn
+  end
+
   # Tags. Get the tags for the items
   #
   # @return [Array] set of IsoConceptSystem::Node items
@@ -53,6 +70,24 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     query_results = Sparql::Query.new.query(query_string, "", [:isoC])
     query_results.by_subject.each do |subject, triples|
       result << IsoConceptSystem::Node.from_results(Uri.new(uri: subject), triples)
+    end
+    result
+  end
+
+  # Change Notes
+  #
+  # @return [Array] set of Annotation::ChangeNote items
+  def change_notes
+    result = []
+    query_string = %Q{
+SELECT DISTINCT ?s ?p ?o WHERE {
+  #{self.uri.to_ref} ^bo:reference ?or .
+  ?or ^ba:current ?s .
+  ?s ?p ?o
+}}
+    query_results = Sparql::Query.new.query(query_string, "", [:isoC, :bo, :ba])
+    query_results.by_subject.each do |subject, triples|
+      result << Annotation::ChangeNote.from_results(Uri.new(uri: subject), triples)
     end
     result
   end

@@ -597,6 +597,26 @@ describe FieldValidation do
     expect(object.errors.full_messages.to_sentence).to eq("Test is empty, at least one file is required")
   end
 
+  it "checks for a date time" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, Time.now, object)).to eq(true)
+    expect(object.errors.count).to eq(0)
+  end
+
+  it "checks for a date time, wrong type" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, 123, object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid date time")
+  end
+
+  it "checks for a date time, nil" do
+    object = IsoConcept.new
+    expect(FieldValidation.is_a_date_time?(:test, nil, object)).to eq(false)
+    expect(object.errors.count).to eq(1)
+    expect(object.errors.full_messages.to_sentence).to eq("Test contains an invalid date time")
+  end
+
   it "checks a valid date time" do
     object = IsoConcept.new
     expect(FieldValidation.valid_date_time?(:test, "1960-11-01T12:01:01-05:00", object)).to eq(true)
