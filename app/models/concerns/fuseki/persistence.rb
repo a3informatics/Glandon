@@ -293,6 +293,9 @@ module Fuseki
       self
     end
 
+    # Delete.
+    #
+    # @return [integer] the number of objects deleted (always 1 if no exception)
     def delete
       clear_cache
       Sparql::Update.new.delete(self.uri)

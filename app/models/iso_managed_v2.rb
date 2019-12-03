@@ -534,10 +534,10 @@ class IsoManagedV2 < IsoConceptV2
   def delete_minimum
     parts = []
     parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
-    parts << "{ #{uri.to_ref} (<http://www.assero.co.uk/ISO11179Types#hasState>)+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o}" 
-    parts << "{ #{uri.to_ref} (<http://www.assero.co.uk/ISO11179Types#hasIdentifier>)+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }"
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT])
     1
   end
 
