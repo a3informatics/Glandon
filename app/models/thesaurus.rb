@@ -417,8 +417,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     new_mc
   end
 
-
+  # Clone. Clone the thesaurus taking care over the reference objects
+  #
+  # @return [Thesaurus] a clone of the object
   def clone
+    self.is_top_concept = []
+    self.is_top_concept_links
+    self.is_top_concept_reference = []
+    self.is_top_concept_reference_objects
     object = super
     object.is_top_concept_reference = []
     self.is_top_concept_reference.each do |ref|

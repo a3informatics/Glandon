@@ -597,18 +597,14 @@ describe Thesaurus do
 
     it "clone thesaurus I" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      thesaurus.is_top_concept_reference_objects
-      thesaurus.is_top_concept_objects
       actual = thesaurus.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
     end
 
     it "clone thesaurus II" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      thesaurus.is_top_concept_reference_objects
-      thesaurus.is_top_concept_objects
       actual = thesaurus.clone
-      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml", write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_2.yaml")
     end
 
   end
