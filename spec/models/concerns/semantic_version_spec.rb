@@ -102,6 +102,14 @@ describe SemanticVersion do
     expect(result.patch).to eq(0)
   end
 
+  it "allows the patch to be incremented" do
+    result = SemanticVersion.from_s("1.1.1")
+    result.increment_patch
+    expect(result.major).to eq(1)
+    expect(result.minor).to eq(1)
+    expect(result.patch).to eq(2)
+  end
+
   it "outputs as a string" do
     result = SemanticVersion.from_s("1.2.3")
     expect(result.to_s).to eq("1.2.3")

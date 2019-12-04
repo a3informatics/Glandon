@@ -58,6 +58,13 @@ class SemanticVersion
     @minor += 1
     @patch = 0
   end
+
+  # Increment Patch
+  #
+  # @return [Null] no return
+  def increment_patch
+    @patch += 1
+  end
   
   # >
   #
