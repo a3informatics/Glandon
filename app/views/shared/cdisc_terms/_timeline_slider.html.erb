@@ -1,0 +1,31 @@
+<center>
+  <span class="text-medium text-small font-light"><%= title_text %></span><br><br>
+
+  <div class="timeline-outer-container">
+    <div class="timeline-container">
+      <div class="timeline-start-end"><%= start_year %></div>
+      <div class="timeline"></div>
+
+      <% versions_normalized.each_with_index do |x, index| %>
+        <div class="timeline-point bg-prim-bright shadow-small <%= if index == 0 || index == versions_normalized.length-1 then 'point-highlight' end %> ttip"
+             style="left: <%= x %>%;">
+          <span class="ttip-text text-small text-light shadow-small" data-index="<%= versions[index][:id] %>"><%= versions[index][:date] %></span>
+        </div>
+      <% end %>
+      <div class="timeline-start-end"><%= end_year %></div>
+    </div>
+
+    <div class="timeline-container timeline-controls">
+      <div id="timeline-start-btn" class="timeline-date-btn" style="left: -51px;">
+        <%= slider_pretexts[0] %> <span class="date-txt" id="start-date-txt"><%= versions[0][:date] %></span>
+      </div>
+      <% if slider_pretexts[1] != "" %>
+        <div id="timeline-end-btn" class="timeline-date-btn" style="right: -51px;">
+          <%= slider_pretexts[1] %> <span class="date-txt" id="end-date-txt"><%= versions[-1][:date] %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= button.html_safe %>
+</center>
