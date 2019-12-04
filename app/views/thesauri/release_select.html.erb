@@ -20,41 +20,41 @@
       Find & Select Code Lists
     </div>
     <div class="card-content card-with-tabs">
-      <div class="tabs-layout" id="release_select_tabs">
+      <div class="tabs-layout" id="release-select-tabs">
 
         <div class="tabs-sel">
-          <div class="tab-option active" id="tab_selection_overview"><div>Selection Overview</div></div>
-          <div class="tab-option" id="tab_cdisc_cls"><div>CDISC CLs</div></div>
-          <div class="tab-option" id="tab_sponsor_cls"><div>Sponsor CLs</div></div>
-          <div class="tab-option" id="tab_sponsor_subsets"><div>Sponsor Subsets</div></div>
-          <div class="tab-option" id="tab_sponsor_extensions"><div>Sponsor Extensions</div></div>
+          <div class="tab-option active" id="tab-selection-overview"><div>Selection Overview</div></div>
+          <div class="tab-option" id="tab-cdisc-cls"><div>CDISC CLs</div></div>
+          <div class="tab-option" id="tab-sponsor-cls"><div>Sponsor CLs</div></div>
+          <div class="tab-option" id="tab-sponsor-subsets"><div>Sponsor Subsets</div></div>
+          <div class="tab-option" id="tab-sponsor-extensions"><div>Sponsor Extensions</div></div>
         </div>
 
-        <div class="tab-wrap" data-tab="tab_selection_overview">
+        <div class="tab-wrap" data-tab="tab-selection-overview">
           <%= render layout: "shared/thesauri/release_select_overview_tab" do %>
             <div class="font-light">This is the overview of the selection of code lists you have made so far. <br/>
             Click the <span class="icon-times text-accent-2 text-small"></span> icon to remove an item from your thesaurus.</div>
           <% end %>
         </div>
-        <div class="tab-wrap closed" data-tab="tab_cdisc_cls">
-          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table_cdisc_cls"} do %>
+        <div class="tab-wrap closed" data-tab="tab-cdisc-cls">
+          <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-cdisc-cls"} do %>
             <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
               title_text: "Select CDISC Terminology version by dragging the slider:",
               start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
-              button: (render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button", icon: "icon-ok-circle", btn_text: "Select CDISC version", btn_class: "highlight"}).html_safe }%>
+              button: (render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "select-cdisc-ver-button", icon: "icon-ok-circle", btn_text: "Select CDISC version", btn_class: "highlight"}).html_safe }%>
           <% end %>
         </div>
 
-        <div class="tab-wrap closed" data-tab="tab_sponsor_cls">
-          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "tab_sponsor_cls"} %>
+        <div class="tab-wrap closed" data-tab="tab-sponsor-cls">
+          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-cls"} %>
         </div>
 
-        <div class="tab-wrap closed" data-tab="tab_sponsor_subsets">
-          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "tab_sponsor_subsets"} %>
+        <div class="tab-wrap closed" data-tab="tab-sponsor-subsets">
+          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-subsets"} %>
         </div>
 
-        <div class="tab-wrap closed" data-tab="tab_sponsor_extensions">
-          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "tab_sponsor_extensions"} %>
+        <div class="tab-wrap closed" data-tab="tab-sponsor-extensions">
+          <%= render partial: "shared/thesauri/release_select_general_tab", :locals => {id: "table-sponsor-extensions"} %>
         </div>
 
       </div>
