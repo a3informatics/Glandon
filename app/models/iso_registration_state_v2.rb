@@ -132,6 +132,14 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return info[:edit_up_version]
   end
 
+  # Returns true if the release can be updated
+  #
+  # @return [String] The next state
+  def update_release?
+    info = Rails.configuration.iso_registration_state[self.registration_status.to_sym]
+    return info[:update_release]
+  end
+
   # Returns true if the item can be the current item
   #
   # @return [String] The next state
