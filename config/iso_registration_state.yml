@@ -4,6 +4,7 @@ defaults: &defaults
     :definition: State has not beeen set
     :delete_enabled: false
     :edit_enabled: true
+    :update_release: true
     :edit_up_version: true
     :state_on_edit: Incomplete
     :can_be_current: false
@@ -14,6 +15,7 @@ defaults: &defaults
       aware of the existence of an Administered Item in their local domain.
     :delete_enabled: true
     :edit_enabled: true
+    :update_release: false
     :edit_up_version: false
     :state_on_edit: Incomplete
     :can_be_current: false
@@ -24,6 +26,7 @@ defaults: &defaults
       registration levels.
     :delete_enabled: false
     :edit_enabled: true
+    :update_release: false
     :edit_up_version: false
     :state_on_edit: Candidate
     :can_be_current: false
@@ -34,6 +37,7 @@ defaults: &defaults
       attributes have been completed.'
     :delete_enabled: false
     :edit_enabled: true
+    :update_release: true
     :edit_up_version: true
     :state_on_edit: Recorded
     :can_be_current: false
@@ -45,6 +49,7 @@ defaults: &defaults
       quality requirements.'
     :delete_enabled: false
     :edit_enabled: true
+    :update_release: true
     :edit_up_version: true
     :state_on_edit: Qualified
     :can_be_current: false
@@ -56,6 +61,7 @@ defaults: &defaults
       uses this metadata register.'
     :delete_enabled: false
     :edit_enabled: true
+    :update_release: true
     :edit_up_version: true
     :state_on_edit: Incomplete
     :can_be_current: true
@@ -67,6 +73,7 @@ defaults: &defaults
       and b) should no longer be used.'
     :delete_enabled: false
     :edit_enabled: false
+    :update_release: false
     :edit_up_version: false
     :state_on_edit: Retired
     :can_be_current: false
@@ -78,6 +85,7 @@ defaults: &defaults
       and b) a successor Administered Item is now preferred for use.'
     :delete_enabled: false
     :edit_enabled: false
+    :update_release: false
     :edit_up_version: false
     :state_on_edit: Superseded
     :can_be_current: false
