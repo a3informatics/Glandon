@@ -229,6 +229,7 @@ Rails.application.routes.draw do
       get :search
       get :export_csv
       post :add_subset
+      get :release_select
     end
   end
 

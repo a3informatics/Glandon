@@ -99,6 +99,15 @@ class ThesauriController < ApplicationController
     @parent_identifier = ""
   end
 
+  def release_select
+    authorize Thesaurus, :edit?
+    @thesaurus = Thesaurus.find_minimum(params[:id])
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @versions = CdiscTerm.version_dates
+    @versions_normalized = normalize_versions(@versions)
+    @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
+  end
+
   def children
     authorize Thesaurus, :edit?
     results = []
