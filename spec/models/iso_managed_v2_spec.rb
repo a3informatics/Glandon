@@ -874,6 +874,122 @@ describe "IsoManagedV2" do
 
   end
 
+    describe "Release" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      load_files(schema_files, data_files)
+      # load_cdisc_term_versions(1..5)
+    end
+
+    it "allows the item release to be incremented, one version, no changes" do
+      load_cdisc_term_versions(1..1)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("1.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("1.0.0")
+    end
+
+    it "allows the item release to be incremented, two versions, increment major" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("2.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("3.0.0")
+    end
+
+    it "allows the item release to be incremented, two versions, increment minor" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("2.0.0")
+      item.release(:minor)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("2.1.0")
+    end
+
+    it "allows the item release to be incremented, two versions, increment patch" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("2.0.0")
+      item.release(:patch)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("2.0.1")
+    end
+
+    it "allows the item release to be incremented, two versions, increment empty, error" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("2.0.0")
+      item.release(:asd)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("2.0.0")
+    end
+
+    it "allows the item release to be incremented, five versions, increment major" do
+      load_cdisc_term_versions(1..5)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V3#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("3.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("4.0.0")
+    end
+
+    it "allows the item release to be incremented, five versions, increment major" do
+      load_cdisc_term_versions(1..5)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("5.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("6.0.0")
+    end
+
+    it "allows the item release to be incremented, five versions, increment minor" do
+      load_cdisc_term_versions(1..5)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V3#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("3.0.0")
+      item.release(:minor)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("3.1.0")
+    end
+
+    it "allows the item release to be incremented, five versions, increment patch" do
+      load_cdisc_term_versions(1..5)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V3#TH")
+      item = Thesaurus.find_minimum(uri)
+      expect(item.semantic_version).to eq("3.0.0")
+      item.release(:patch)
+      expect(item.errors.full_messages.to_sentence).to eq("")
+      expect(item.errors.count).to eq(0)
+      expect(item.semantic_version).to eq("3.0.1")
+    end
+
+
+
+  end
+
   describe "Tag Methods" do
 
     before :all  do

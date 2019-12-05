@@ -203,6 +203,31 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
+  # Release
+  # @param [Symbol] release, :major, :minor, :patch
+  # @return 
+  def release (release) 
+    return if !self.has_state.update_release?
+    results = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    return if results.length == 1
+    item = self.class.find_minimum(results[1])
+    #self.has_identifier.semantic_version = item.semantic_version
+      sm = SemanticVersion.from_s(self.semantic_version.to_s)
+      case release
+      when :major
+        sm.increment_major
+        self.has_identifier.semantic_version = sm.to_s
+      when :minor
+        sm.increment_minor  
+        self.has_identifier.semantic_version = sm.to_s
+      when :patch
+        sm.increment_patch
+        self.has_identifier.semantic_version = sm.to_s
+      else
+        "Error:  "
+      end
+  end
+
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
   # @param [Uri|id] the identifier, either a URI or the id
