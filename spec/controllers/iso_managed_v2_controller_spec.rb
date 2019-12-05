@@ -69,6 +69,15 @@ describe IsoManagedV2Controller do
       expect(response).to redirect_to("/registration_states")
     end
 
+    it 'updates the semantic version' do
+      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      put :update_semantic_version, { id: mi.id, iso_managed: { registration_status: "Qualified", previous_state: "Recorded", 
+        administrative_note: "X1", unresolved_issue: "X2", sv_type: :major }}
+      expect(response).to redirect_to("/registration_states")
+    end
+
   end
 
   describe "Unauthorized User" do
