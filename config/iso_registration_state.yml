@@ -61,7 +61,7 @@ defaults: &defaults
       uses this metadata register.'
     :delete_enabled: false
     :edit_enabled: true
-    :update_release: true
+    :update_release: false
     :edit_up_version: true
     :state_on_edit: Incomplete
     :can_be_current: true
