@@ -210,7 +210,7 @@ class IsoManagedV2 < IsoConceptV2
     return if !self.has_state.update_release?
     results = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     return if results.length == 1
-    item = self.class.find_minimum(results[1])
+    item = self.class.find_minimum(results.first)
     sv = SemanticVersion.from_s(item.semantic_version.to_s)
       case release
       when :major
