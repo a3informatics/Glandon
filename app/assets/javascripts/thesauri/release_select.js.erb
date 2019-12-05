@@ -3,11 +3,7 @@ var tl_slider;
 var tabSwitchCallback = function(tab){
   switch($(tab).attr("id")){
     case "tab-cdisc-cls":
-      if(tl_slider == null){
-        tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
-        var newest_date = tl_slider.tl_points.eq(-1).children().first().html();
-        tl_slider.moveToDate(tl_slider.l_slider, newest_date);
-      }
+
       break;
     default:
       break;
@@ -15,6 +11,15 @@ var tabSwitchCallback = function(tab){
 }
 
 $(document).ready(function(){
+
+  $(".card-with-tabs").find(".show-more-btn").on("change", function(){
+    if(tl_slider == null){
+      tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+      var newest_date = tl_slider.tl_points.eq(-1).children().first().html();
+      tl_slider.moveToDate(tl_slider.l_slider, newest_date);
+    }
+  });
+
   var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList")
 
   $("#select-cdisc-ver-button").on("click", function(){

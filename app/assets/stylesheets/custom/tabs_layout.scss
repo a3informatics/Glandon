@@ -20,19 +20,15 @@
   font-family: $font-light;
   min-width: 70px;
   padding: 6px 14px;
-  padding-top: 6px;
   text-align: center;
   position: relative;
   border: 1px solid $grey-bright;
   cursor: pointer;
 }
 
-.tab-option div{
-  transition: transform .3s;
-}
-
-.tab-option:hover div{
-  transform: translateY(-3px);
+.tab-option:hover {
+  background: $grey-white;
+  color: $primary-color-light;
 }
 
 .tab-option.active{

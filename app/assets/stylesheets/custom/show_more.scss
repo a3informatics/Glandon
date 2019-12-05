@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.show-more-btn:hover{
+  color: $primary-color-light;
+}
+
 .show-more-wrap{
   font-size: $font-small;
   margin-top: 3px;
@@ -18,4 +22,9 @@
 .show-more .icon-arrow-d{
   display: inline-block;
   transition: transform .3s;
+}
+
+.show-more.centered .show-more-btn{
+  width: 100%;
+  text-align: center;
 }
