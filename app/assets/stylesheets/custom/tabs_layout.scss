@@ -44,10 +44,16 @@
 
 .tab-wrap{
   width: 100%;
-  display: block;
+  transition: opacity .2s, transform .2s;
+  visibility: visible;
   padding: 10px;
+  transform: translateY(0px);
 }
 
 .tab-wrap.closed{
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  position: absolute;
+  left: 50px;
 }

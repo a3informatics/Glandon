@@ -1,0 +1,137 @@
+/*
+* Select Table
+*
+* Requires:
+* children_select [Table] the item table
+* children_overview [Table] the target table
+*/
+
+/**
+ * Managed Children Select Table
+ *
+ * @return [void]
+ */
+function ManagedChildrenSelect(dataUrl, tableId, count, target, type) {
+  this.dataUrl = dataUrl;
+  this.tableId = tableId;
+  this.count = count;
+  this.target = target;
+  this.type = type;
+  this.loading = false;
+
+  this.init();
+}
+
+/**
+ * Initializes the DataTable, adds on select/deselect events
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.init = function(){
+  var _this = this;
+
+  _this.table = $(_this.tableId).DataTable( {
+    "order": [[ 0, "desc" ]],
+    "columns": _this.columns(),
+    "pageLength": pageLength,
+    "lengthMenu": pageSettings,
+    "processing": true,
+    "paging": true,
+    "select": "multi",
+    "language": {
+      "infoFiltered": "",
+      "emptyTable": "No items were found.",
+      "processing": generateSpinner("medium")
+    }
+  });
+
+  _this.table.on('select', function(e, dt, type, indexes){ console.log("add") });
+  _this.table.on('deselect', function(e, dt, type, indexes){ console.log("remove") });
+}
+
+/**
+ * Loads data into table based on offset
+ * @param [Integer] offset of data index
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.loadData = function (offset) {
+  var _this = this;
+  _this.processing(true);
+
+  $.ajax({
+    url: _this.dataUrl,
+    data: {"count": _this.count, "offset": offset},
+    type: 'GET',
+    dataType: 'json',
+    success: function(result) {
+      for (i=0; i<result.data.length; i++) {
+        _this.table.row.add(result.data[i]);
+      }
+      _this.table.columns.adjust()
+      _this.table.draw();
+
+      if (result.count >= _this.count)
+        _this.loadData(result.offset + _this.count)
+      else
+        _this.processing(false);
+    },
+    error: function(xhr,status,error){
+      handleAjaxError(xhr, status, error);
+      _this.processing(false);
+    }
+  });
+}
+
+/**
+ * Refreshes the table and data
+ * @param [String] newDataUrl (optional) only if source url changes
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.refresh = function(newDataUrl){
+  this.dataUrl = newDataUrl != null ? newDataUrl : this.dataUrl;
+  this.table.rows().remove().draw();
+  this.loadData(0);
+}
+
+/**
+ * Toggles the processing state of the table and the object instance
+ * @param [Boolean] true if should enable processing, false if should disable processing
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.processing = function(enable){
+  this.loading = enable;
+  this.table.processing(enable);
+  toggleTableActive("#children-select-table", !enable);
+}
+
+/**
+ * Generates column layout for different types of items
+ * "thCodeList":  Code lists
+ * add more if needed
+ *
+ * @return [Array] of column-data relations for the DataTable
+ */
+ManagedChildrenSelect.prototype.columns = function() {
+  var columns;
+
+  switch (this.type) {
+    case "thCodeList":
+      columns = [
+        {"data" : "identifier", "width": "7%"},
+        {"data" : "notation", "width": "10%"},
+        {"data" : "preferred_term", "width": "20%"},
+        {"data" : "synonym", "width": "15%"},
+        {"data" : "definition", "width": "38%"},
+        {"data" : "tags", "width": "10%"},
+        // {"data" : "indicators"}
+      ];
+      break;
+    default:
+      break;
+  }
+
+  return columns;
+}

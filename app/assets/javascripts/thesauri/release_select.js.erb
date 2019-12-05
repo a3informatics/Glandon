@@ -15,6 +15,12 @@ var tabSwitchCallback = function(tab){
 }
 
 $(document).ready(function(){
+  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList")
 
+  $("#select-cdisc-ver-button").on("click", function(){
+    var th_id = $(".timeline-point.point-highlight").find("span").attr("data-index");
+    cdiscCLUrl = cdiscCLUrl.substring(0, cdiscCLUrl.lastIndexOf('/') + 1) + th_id;
+    cdiscCls.refresh(cdiscCLUrl);
+  });
 
 });

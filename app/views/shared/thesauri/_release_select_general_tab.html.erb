@@ -3,7 +3,7 @@
   <%= yield %>
   <br/>
 
-  <table style="width: 100%;" id="<%= id %>" class="table table-striped table-bordered table-condensed">
+  <table style="width: 100%;" id="<%= id %>" class="table table-condensed table-row-clickable">
     <thead>
       <tr>
         <th>Identifier</th>
@@ -12,19 +12,10 @@
         <th>Synonym(s)</th>
         <th>Definition</th>
         <th>Tags</th>
-        <th class="ignore fit"></th>
+        <!-- <th class="ignore fit"></th> -->
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>C123456</td>
-        <td>SVAL</td>
-        <td>Some name</td>
-        <td>Synonym 1; Synonym 2</td>
-        <td>The definition of the code list goes here.</td>
-        <td>SDTM</td>
-        <td><span class="icon-extend text-link text-normal ttip"><span class="ttip-text ttip-left text-small text-medium shadow-small">CL is extended</span></span></td>
-      </tr>
     </tbody>
   </table>
 </div>
