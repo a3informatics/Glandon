@@ -204,7 +204,7 @@ class IsoManagedV2 < IsoConceptV2
   end
 
   # Release
-  # @param [Symbol] release, :major, :minor, :patch
+  # @param [Symbol] release (:major, :minor, :patch)
   # @return 
   def release (release)
     return if !self.has_state.update_release?
@@ -223,7 +223,7 @@ class IsoManagedV2 < IsoConceptV2
         sv.increment_patch
         self.has_identifier.semantic_version = sv.to_s
       else
-        "Error:  "
+        "Error: the release param is not valid  "
       end
   end
 
