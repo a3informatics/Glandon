@@ -1,4 +1,6 @@
 <%= javascript_tag 'setPageTitle("Document control: '+@managed_item.label+'")' %>
+<%= javascript_tag "var url_release = '#{update_semantic_version_iso_managed_v2_path(@managed_item)}' " %>
+<%= javascript_include_tag 'iso_managed/status' %>
 <%= stylesheet_link_tag "custom/status_page" %>
 <% state = @managed_item.has_state.registration_status %>
 <% next_state = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
@@ -72,8 +74,7 @@
 				<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
 					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'") , dt_toggle: "", disabled: true } %>
 			<% end %>
-			<br><br>
-
+      <hr>
 			<div class="text-normal font-light"> Version information: </div>
 			<table class="table table-striped table-bordered table-condensed font-light text-small">
 				<thead>
@@ -99,6 +100,14 @@
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 				<%= submit_tag "Update version label", class: "btn medium", id: 'version_submit' %>
 			</form>
+
+      <div class="form-wrap">
+              <select id="select_release">
+                <option value="major">Major: <%= @next_versions[:major] %> </option>
+                <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
+                <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
+              </select>
+      </div>
 		</div>
 	</div>
 </div>
