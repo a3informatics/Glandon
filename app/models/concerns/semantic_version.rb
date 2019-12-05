@@ -65,7 +65,21 @@ class SemanticVersion
   def increment_patch
     @patch += 1
   end
-  
+
+  # Next Versions
+  #
+  # @return [String] The next versions hash
+  def next_versions
+    major_sv = self.clone
+    minor_sv = self.clone
+    patch_sv = self.clone
+    major_sv.increment_major
+    minor_sv.increment_minor
+    patch_sv.increment_patch
+    # result = {major: "#{@major+= 1}.#{@minor}.#{@patch}", minor: "#{@major}.#{@minor+= 1}.#{@patch}", patch: "#{@major}.#{@minor}.#{@patch+= 1}"}
+    result = {major: major_sv.to_s, minor: minor_sv.to_s, patch: patch_sv.to_s}
+  end
+
   # >
   #
   # @return [Boolean] true if greated

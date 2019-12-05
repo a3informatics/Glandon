@@ -110,6 +110,12 @@ describe SemanticVersion do
     expect(result.patch).to eq(2)
   end
 
+
+  it "outputs the next versions" do
+    sv = SemanticVersion.from_s("1.1.1")
+    expect(sv.next_versions).to eq({major: "2.0.0", minor:"1.2.0", patch:"1.1.2"})
+  end
+
   it "outputs as a string" do
     result = SemanticVersion.from_s("1.2.3")
     expect(result.to_s).to eq("1.2.3")

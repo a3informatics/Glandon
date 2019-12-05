@@ -982,9 +982,7 @@ describe "IsoManagedV2" do
       expect(item.errors.count).to eq(0)
       expect(item.semantic_version).to eq("5.0.1")
     end
-
-
-
+    
   end
 
   describe "Tag Methods" do
