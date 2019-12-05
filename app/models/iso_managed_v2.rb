@@ -206,23 +206,22 @@ class IsoManagedV2 < IsoConceptV2
   # Release
   # @param [Symbol] release, :major, :minor, :patch
   # @return 
-  def release (release) 
+  def release (release)
     return if !self.has_state.update_release?
     results = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
     return if results.length == 1
     item = self.class.find_minimum(results[1])
-    #self.has_identifier.semantic_version = item.semantic_version
-      sm = SemanticVersion.from_s(self.semantic_version.to_s)
+    sv = SemanticVersion.from_s(item.semantic_version.to_s)
       case release
       when :major
-        sm.increment_major
-        self.has_identifier.semantic_version = sm.to_s
+        sv.increment_major
+        self.has_identifier.semantic_version = sv.to_s
       when :minor
-        sm.increment_minor  
-        self.has_identifier.semantic_version = sm.to_s
+        sv.increment_minor  
+        self.has_identifier.semantic_version = sv.to_s
       when :patch
-        sm.increment_patch
-        self.has_identifier.semantic_version = sm.to_s
+        sv.increment_patch
+        self.has_identifier.semantic_version = sv.to_s
       else
         "Error:  "
       end
