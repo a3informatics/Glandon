@@ -221,6 +221,13 @@ describe "IsoRegistrationStateV2" do
     result = IsoRegistrationStateV2.find(uri)
     expect(result.update_release?).to eq(false)
   end
+
+  it "determines if the release can be updated, Qualified" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+    result = IsoRegistrationStateV2.find(uri)
+    result.registration_status = "Qualified"
+    expect(result.update_release?).to eq(true)
+  end
   
   it "determines if the item can be current" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
