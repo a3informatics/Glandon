@@ -81,6 +81,7 @@ describe Fuseki::Persistence do
     expect(result.has_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1")
     expect(result.has_identifier_links?).to eq(true)
     expect(result.has_identifier_objects?).to eq(false)
+byebug
     result.has_identifier_objects
     expect(result.has_identifier_links?).to eq(true)
     expect(result.has_identifier_objects?).to eq(true)
@@ -273,6 +274,31 @@ describe Fuseki::Persistence do
     expect(item_1_c.has_identifier.count).to eq(1)
     item_2.delete_with_links    
     expect{TestFPe3.find(uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/FP3#2 in TestFPe3.")
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(0)
+  end
+
+  it "add, remove and replace link" do
+    uri_1 = Uri.new(uri: "http://www.assero.co.uk/FP3#1")
+    uri_2 = Uri.new(uri: "http://www.assero.co.uk/FP3#2")
+    uri_3 = Uri.new(uri: "http://www.assero.co.uk/FP3#2")
+    item_1 = TestFPe3.create(uri: uri_1)
+    item_2 = TestFPe3.create(uri: uri_2)
+    item_3 = TestFPe3.create(uri: uri_3)
+    item_1_c = TestFPe3.find(uri_1)
+    item_2_c = TestFPe3.find(uri_2)    
+    item_3_c = TestFPe3.find(uri_3)    
+    expect(item_1_c.has_identifier.count).to eq(0)
+    expect(item_2_c.has_identifier.count).to eq(0)
+    item_1.add_link(:has_identifier, uri_2)
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(1)
+    expect(item_1_c.has_identifier).to eq([uri_2])
+    item_1.replace_link(:has_identifier, uri_2, uri_3)
+    item_1_c = TestFPe3.find(uri_1)
+    expect(item_1_c.has_identifier.count).to eq(1)
+    expect(item_1_c.has_identifier).to eq([uri_3])
+    item_1.delete_link(:has_identifier, uri_3)
     item_1_c = TestFPe3.find(uri_1)
     expect(item_1_c.has_identifier.count).to eq(0)
   end

@@ -513,7 +513,6 @@ class IsoManagedV2 < IsoConceptV2
     object.last_change_date = Time.now
     object.set_uris(ra)
     object.create_or_update(:create, true) if object.valid?(:create) && object.create_permitted?
-byebug if object.errors.any?
     object
   end
 

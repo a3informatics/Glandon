@@ -590,6 +590,7 @@ describe Thesaurus do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
     end
 
     before :each do
@@ -610,7 +611,7 @@ describe Thesaurus do
     it "create next thesaurus" do
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       actual = thesaurus.create_next_version
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")
     end
 
   end

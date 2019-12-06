@@ -121,9 +121,9 @@ module Fuseki
       #
       # @param [Object] value the property value, might be an array
       # @return [Void] no return
-      def set_default(value)
-        object? ? set_the_property(value) : set(value)
-      end
+      # def set_default(value)
+      #   object? ? set_the_property(value) : set(value)
+      # end
 
       # Set URI. Sets the named property with the specified URI. Converts from stroing if necessary to URI object
       #
@@ -155,6 +155,19 @@ module Fuseki
           value.delete_if {|x| x.is_a?(Uri) && x == uri}
         end
         set(object)
+      end
+
+      # Clear
+      #
+      # @return [Void] no return
+      def clear
+        if array?
+          set_the_property([]) 
+        elsif object?
+          set_the_property(nil)
+        else
+          set_the_property("")
+        end
       end
 
       # Set

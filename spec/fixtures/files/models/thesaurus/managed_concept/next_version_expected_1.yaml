@@ -1,14 +1,14 @@
 ---
-:id: 
-:uri: {}
-:rdf_type: http://www.assero.co.uk/Thesaurus#Thesaurus
-:label: ''
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YyI0EwMDAwMQ==
+:uri: http://www.acme-pharma.com/A00001/V2#A00001
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: London Heathrow
 :tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfUlM=
-  :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_RS
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YyI0EwMDAwMV9SUw==
+  :uri: http://www.acme-pharma.com/A00001/V2#A00001_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-  :registration_status: Standard
+  :registration_status: Incomplete
   :administrative_note: ''
   :effective_date: '2016-01-01T00:00:00+00:00'
   :until_date: '2016-01-01T00:00:00+00:00'
@@ -30,13 +30,13 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfU0k=
-  :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_SI
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YyI0EwMDAwMV9TSQ==
+  :uri: http://www.acme-pharma.com/A00001/V2#A00001_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: AIRPORTS
+  :identifier: A00001
   :version_label: ''
-  :version: 1
-  :semantic_version: 0.0.1
+  :version: 2
+  :semantic_version: 0.1.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
@@ -46,32 +46,20 @@
     :authority: www.acme-pharma.com
 :origin: ''
 :change_description: ''
-:creation_date: '2016-01-01T00:00:00+00:00'
-:last_change_date: '2019-08-29T09:34:40+02:00'
+:creation_date: '2019-12-06T16:30:09+01:00'
+:last_change_date: '2019-12-06T16:30:09+01:00'
 :explanatory_comment: ''
-:is_top_concept_reference:
-- :id: 
-  :uri: {}
-  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
-  :label: ''
-  :tagged: []
-  :enabled: true
-  :optional: true
-  :ordinal: 2
-  :reference: http://www.acme-pharma.com/A00002/V1#A00002
-  :context: 
-  :local_label: ''
-- :id: 
-  :uri: {}
-  :rdf_type: http://www.assero.co.uk/BusinessOperational#TcReference
-  :label: ''
-  :tagged: []
-  :enabled: true
-  :optional: true
-  :ordinal: 1
-  :reference: http://www.acme-pharma.com/A00001/V1#A00001
-  :context: 
-  :local_label: ''
-:is_top_concept:
-- http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002
-- http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001
+:identifier: A00001
+:notation: LHR
+:definition: A definition
+:extensible: false
+:narrower:
+- http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000012
+- http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011
+:extends: 
+:subsets: 
+:preferred_term: http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a
+:synonym:
+- http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472
+- http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3
+:is_ordered: 

@@ -15,7 +15,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  validates_with Validator::Uniqueness, attribute: :identifier, on: :create
+  #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
   include Thesaurus::BaseConcept
   include Thesaurus::Identifiers
@@ -28,6 +28,34 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
     object
   end
   
+  def delete_or_unlink(parent_object)
+    if multiple_parents?
+      parent_object.delete_link(:narrower, self.uri)
+      1
+    else
+      self.delete
+    end
+  end
+
+  # Update With Clone. Update the object. Clone if there are multiple parents,
+  #
+  # @param [Hash] params the parameters to be updated
+  # @param [Object] parent_object the parent object
+  # @return [Thesarus::UnmanagedConcept] the object, either new or the cloned new object with updates
+  def update_with_clone(params, parent_object)
+    if multiple_parents?
+      object = self.clone
+      object.uri = object.create_uri(parent_object.uri)
+      transaction_begin
+      object.update(params)
+      parent.replace_link(:narrower, self.uri, object.uri)
+      transaction_execute
+      object
+    else
+      self.update(params)
+    end
+  end
+
   # Changes Count
   #
   # @param [Integer] window_size the required window size for changes
@@ -161,6 +189,20 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     return if previous.nil?
     missing =  previous.tagged.map{|x| x.uri.to_s} - self.tagged.map{|x| x.uri.to_s}
     missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
+  end
+
+  # Multiple Parents. Check if concept has multiple parents (used in multiple collections)
+  #
+  # @return [Boolean] true if used multiple times, false otherwise
+  def multiple_parents?
+    query_string = %Q{
+      SELECT ?o WHERE
+      {
+        #{self.uri.to_ref} ^th:narrower ?o .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, :th, [:th])
+    query_results.by_object(:o).count > 1
   end
 
   # To CSV No Header. A CSV record with no header

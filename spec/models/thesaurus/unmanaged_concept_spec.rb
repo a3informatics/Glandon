@@ -72,9 +72,7 @@ describe "Thesaurus::UnmanagedConcept" do
     	results = Thesaurus::UnmanagedConcept.where({notation: "T1", label: "Terminal 1"})
     	expect(results.count).to eq(1)
   	end
-
-
-    
+ 
     it "allows to determine if TCs different" do
       tc1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       tc2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000012"))
@@ -730,6 +728,86 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(set.count).to eq(2)
       expect(set.last[:subject].to_s).to eq("http://www.cdisc.org/C66788/V2#C66788_C43820")
       expect(set.last[:object].to_s).to eq("http://www.example.com/path#a")
+    end
+
+  end
+
+  describe "update and delete tests" do
+  
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :each do
+    end
+
+    it "multiple parents, I" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      expect(tc.narrower.count).to eq(2)
+      expect(tc.narrower.first.multiple_parents?).to eq(false)
+      expect(tc.narrower.last.multiple_parents?).to eq(false)      
+    end 
+
+    it "multiple parents, II" do
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      expect(tc.narrower.count).to eq(2)
+      expect(tc.narrower.first.multiple_parents?).to eq(false)
+      expect(tc.narrower.last.multiple_parents?).to eq(false) 
+      tc_v2 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow V2",
+          identifier: "A0000X",
+          definition: "A definition V2",
+          notation: "LHR V2"
+        })
+      tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      tc_v2.narrower = tc.narrower
+      tc_v2.set_initial(tc_v2.identifier)
+      tc_v2.save
+      expect(tc.narrower.count).to eq(2)
+      expect(tc.narrower.first.multiple_parents?).to eq(true)
+      expect(tc.narrower.last.multiple_parents?).to eq(true) 
+      expect(tc_v2.narrower.count).to eq(2)
+      expect(tc_v2.narrower.first.multiple_parents?).to eq(true)
+      expect(tc_v2.narrower.last.multiple_parents?).to eq(true) 
+    end 
+
+    it "update single parent" do
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
+      expect(new_tc.uri).to eq(old_tc.uri)
+      expect(old_tc.label).to eq("New Airport")
+      expect(old_tc.definition).to eq("A new definition")
+      expect(old_tc.notation).to eq("T5")
+    end 
+
+    it "update multiple parent" do
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      tc_v2 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow V2",
+          identifier: "A0000X",
+          definition: "A definition V2",
+          notation: "LHR V2"
+        })
+      tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      tc_v2.narrower = parent.narrower
+      tc_v2.set_initial(tc_v2.identifier)
+      tc_v2.save
+      new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, tc_v2)
+      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      expect(new_tc.uri).to_not eq(old_tc.uri)
+      expect(old_tc.label).to eq("Terminal 5")
+      expect(old_tc.definition).to eq("The 5th LHR Terminal")
+      expect(old_tc.notation).to eq("T5")
+      expect(new_tc.label).to eq("New Airport")
+      expect(new_tc.definition).to eq("A new definition")
+      expect(new_tc.notation).to eq("T5")
     end
 
   end

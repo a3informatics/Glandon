@@ -305,12 +305,12 @@ module Fuseki
     # @param name [Symbol] the property name
     # @return [URI|Array] single or array of URIs
     def generic_links(name)
-      objects = []
       property = self.properties.property(name)
+      property.clear
       query_string = "SELECT ?s ?p ?o WHERE { #{uri.to_ref} #{property.predicate.to_ref} ?s }"
       query_results = Sparql::Query.new.query(query_string, "", [])
-      query_results.by_object_set([:s]).each do |entry|
-        property.replace_with_object(entry[:s])
+      query_results.by_object(:s).each do |link|
+        property.set(link)
       end
       property.get
     end
@@ -330,10 +330,11 @@ module Fuseki
     # @return [Object|Array] single or array of objects
     def generic_objects(name)
       property = self.properties.property(name)
+      property.clear
       query_string = "SELECT ?s ?p ?o WHERE { #{uri.to_ref} #{property.predicate.to_ref} ?s .\n ?s ?p ?o }"
       results = Sparql::Query.new.query(query_string, "", [])
       results.by_subject.each do |subject, triples|
-        property.replace_with_object(property.klass.from_results(Uri.new(uri: subject), triples))
+        property.set(property.klass.from_results(Uri.new(uri: subject), triples))
       end
       property.get
     end
@@ -350,7 +351,7 @@ module Fuseki
     # Add Link. Add a object to a collection
     #
     # @param [Symbol] name the name of the property holding the collection
-    # @param [Uri] the uri of the object to be linked. Does not delete the object
+    # @param [Uri] uri the uri of the object to be linked. 
     # @return [Void] no return
     def add_link(name, uri)
       predicate = self.properties.property(name).predicate
@@ -361,11 +362,30 @@ module Fuseki
     # Delete Link. Delete an object from the collection. Does not delete the object.
     #
     # @param [Symbol] name the name of the property holding the collection
-    # @param [Uri] the uri of the object to be unlinked. Does not delete the object
+    # @param [Uri] uri the uri of the object to be unlinked. Does not delete the object
     # @return [Void] no return
     def delete_link(name, uri)
       predicate = self.properties.property(name).predicate
       update_query = %Q{ DELETE WHERE { #{self.uri.to_ref} #{predicate.to_ref} #{uri.to_ref} . }}
+      partial_update(update_query, [])
+    end
+  
+    # Replace Link. Replace an object in the collection. Does not delete any object.
+    #
+    # @param [Symbol] name the name of the property holding the collection
+    # @param [Uri] old_uri the uri of the object to be unlinked. Does not delete the object
+    # @param [Uri] new_uri the uri of the object to be unlinked. Does not delete the object
+    # @return [Void] no return
+    def replace_link(name, old_uri, new_uri)
+      predicate = self.properties.property(name).predicate
+      update_query = %Q{ 
+        DELETE 
+          { #{self.uri.to_ref} #{predicate.to_ref} #{old_uri.to_ref} . }
+        INSERT
+          { #{self.uri.to_ref} #{predicate.to_ref} #{new_uri.to_ref} . }
+        WHERE 
+          { #{self.uri.to_ref} #{predicate.to_ref} #{old_uri.to_ref} . }
+      }
       partial_update(update_query, [])
     end
   

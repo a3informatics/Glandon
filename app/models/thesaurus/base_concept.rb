@@ -156,7 +156,7 @@ class Thesaurus
       return 0
     end
 
-    # Update. Specific update to control synonyms, PT and prevent identifier being updatedf.
+    # Update. Specific update to control synonyms, PT and prevent identifier being updated.
     #
     # @param params [Hash] the new properties
     # @return [Object] the updated object

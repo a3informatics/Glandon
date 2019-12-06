@@ -28,6 +28,21 @@ describe Fuseki::Resource::Property do
   end
 
   it "allows for simple update" do
+    ref_0 = TestFRP.new
+    item = Fuseki::Resource::Property.new(ref_0, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :property, default: "1", base_type: "string"})
+    expect(item.name).to eq(:fred)
+    expect(item.instance_name).to eq(:@fred)
+    expect(item.klass).to eq(TestFRP)
+    expect(item.cardinality).to eq(:one)
+    expect(item.predicate).to eq("XXX")
+    expect(item.object?).to eq(false)
+    expect(item.array?).to eq(false)
+    expect(item.default_value).to eq("1")
+    item.set_value("XXX")
+    expect(item.get).to eq("XXX")
+    item.clear
+    expect(item.get).to eq("")
+    
     ref_1 = TestFRP.new
     item = Fuseki::Resource::Property.new(ref_1, :fred, {model_class: TestFRP, cardinality: :one, predicate: "XXX", type: :object, default: true, base_type: ""})
     expect(item.name).to eq(:fred)

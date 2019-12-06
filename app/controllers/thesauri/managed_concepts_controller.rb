@@ -34,18 +34,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit
     authorize Thesaurus
-    @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
+    @thesaurus_concept = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+byebug
+    @thesaurus_concept = edit_item(@thesaurus_concept)
     @thesaurus_concept.synonyms_and_preferred_terms
-    @thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
+    #@thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
     @token = get_token(@thesaurus_concept)
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(@thesaurus)
+      redirect_to edit_lock_lost_link(@thesaurus_concept)
     elsif @thesaurus_concept.subset?
       flash[:error] = "You cannot directly edit the children of a subset."
-      redirect_to edit_lock_lost_link(@thesaurus)
+      redirect_to edit_lock_lost_link(@thesaurus_concept)
     else
-      @close_path = edit_lock_lost_link(@thesaurus)
+      @close_path = edit_lock_lost_link(@thesaurus_concept)
       @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     end
   end
@@ -154,35 +156,35 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def show
     authorize Thesaurus
-    @context_id = the_params[:context_id]
-    @ct = Thesaurus.find_minimum(@context_id)
     @tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @tc.synonym_objects
     @tc.preferred_term_objects
-    # @context_id = the_params[:context_id]
-    # if !@tc.extended_by.nil?
-    #   results = Thesaurus.history_uris(identifier: @ct.has_identifier.identifier, scope: IsoNamespace.find(@ct.scope.id))
-    #   thesaurus = Thesaurus.find_minimum(results.first)
-    #   @reference_ct_id = thesaurus.uri.to_id
-    # end
     @can_be_extended = @tc.extensible && !@tc.extended?
     extended_by_uri = @tc.extended_by
     @is_extended = !extended_by_uri.nil?
-    #@is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
-    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
     extension_of_uri = @tc.extension_of
     @is_extending = !extension_of_uri.nil?
-    #@is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id, reference_ct_id: @reference_ct_id}})
+    @context_id = the_params[:context_id]
+    if @context_id.blank?
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+    else
+      @ct = Thesaurus.find_minimum(@context_id)
+      @close_path = thesauri_path(@ct)
+    end
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-    @close_path = thesauri_path(@ct)
+    @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
   end
 
   def show_data
     authorize Thesaurus, :show?
     context_id = the_params[:context_id]
-    ct = Thesaurus.find_minimum(context_id)
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
+    if !context_id.blank?
+      ct = Thesaurus.find_minimum(context_id)
+      params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
+    else
+      params[:tags] = []
+    end
     children = tc.children_pagination(params)
     children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id, context_id: context_id}})})}
     results = children.map{|x| x.reverse_merge!({delete_path: x[:delete] ? thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {parent_id: tc.id}}) : "" })}
@@ -348,16 +350,22 @@ private
   def path_for(action, object)
     case action
       when :show
-        return thesauri_managed_concept_path({id: object.id, managed_concept: {context_id: object.current_and_latest_parent.last[:uri].to_id}})
+        return thesauri_managed_concept_path({id: object.id, managed_concept: {context_id: latest_parent(object)}})
       when :search
         return ""
       when :edit
-        return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: object.current_and_latest_parent.last[:uri].to_id}})
+        return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
       when :destroy
         return thesauri_managed_concept_path(object)
       else
         return ""
     end
+  end
+
+  def latest_parent(object)
+    object.current_and_latest_parent.last[:uri].to_id
+  rescue => e
+    return ""
   end
 
   # Set the history path

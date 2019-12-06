@@ -1,0 +1,71 @@
+---
+:id: 
+:uri: {}
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Outcome of Event
+:tagged:
+- http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+:has_state:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9SUw==
+  :uri: http://www.cdisc.org/C66768/V2#C66768_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9TSQ==
+  :uri: http://www.cdisc.org/C66768/V2#C66768_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: C66768
+  :version_label: 2007-04-20 Release
+  :version: 2
+  :semantic_version: 2.0.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:origin: ''
+:change_description: ''
+:creation_date: '2007-04-20T00:00:00+00:00'
+:last_change_date: '2007-04-20T00:00:00+00:00'
+:explanatory_comment: ''
+:identifier: C66768
+:notation: OUT
+:definition: A condition or event that is attributed to the adverse event and is the
+  result or conclusion of the adverse event. (NCI)
+:extensible: false
+:narrower:
+- http://www.cdisc.org/C66768/V2#C66768_C49494
+- http://www.cdisc.org/C66768/V2#C66768_C48275
+- http://www.cdisc.org/C66768/V2#C66768_C49498
+- http://www.cdisc.org/C66768/V2#C66768_C17998
+- http://www.cdisc.org/C66768/V2#C66768_C49496
+- http://www.cdisc.org/C66768/V2#C66768_C49495
+:extends: 
+:subsets: 
+:preferred_term: http://www.assero.co.uk/PT#d60d08c1aaca92fc9aa7ccc4b9b2185cfc831895
+:synonym:
+- http://www.assero.co.uk/SYN#5b469418e7549e77ea6e369f4d7406933c771b1e
+- http://www.assero.co.uk/SYN#5d84eb9e92dc661a577d3adfba33f1d74c56b13f
+:is_ordered: 

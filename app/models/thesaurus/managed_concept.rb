@@ -18,7 +18,7 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   validates_with Validator::Field, attribute: :identifier, method: :valid_tc_identifier?
   validates_with Validator::Field, attribute: :notation, method: :valid_submission_value?
   validates_with Validator::Field, attribute: :definition, method: :valid_terminology_property?
-  validates_with Validator::Uniqueness, attribute: :identifier, on: :create
+  #validates_with Validator::Uniqueness, attribute: :identifier, on: :create
 
   # config =
   # {
@@ -67,9 +67,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     query_results = Sparql::Query.new.query(query_string, "", [:th])
     return query_results.empty? ? nil : query_results.by_object_set([:s]).first[:s]
   end
-
-
-  #Subsets
 
   # Subset? Is this item subsetting another managed concept
   #
@@ -445,6 +442,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction = transaction_begin
     uris.each {|x| delete_link(:narrower, x)}
     transaction_execute
+  end
+
+  # Clone. Clone the object taking care over the links
+  #
+  # @return [Thesaurus::ManagedConcept] a clone of the object
+  def clone
+    self.narrower_links
+    #self.extends_links
+    #self.subset_links
+    self.preferred_term_links
+    self.synonym_links
+    #object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+    object = super
   end
 
   # To CSV. The code list as a set of CSV record with a header.

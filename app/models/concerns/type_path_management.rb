@@ -22,6 +22,7 @@ module TypePathManagement
 
   @@mi_history_path = 
     { Thesaurus.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_index_path, strong: "thesauri" },
+      Thesaurus::ManagedConcept.rdf_type.to_s => { path: Rails.application.routes.url_helpers.history_thesauri_managed_concepts_path, strong: "managed_concept" },
       BiomedicalConceptTemplate::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_biomedical_concept_templates_path, strong: "biomedical_concept_template" },
       BiomedicalConcept::C_RDF_TYPE_URI.to_s =>  { path: Rails.application.routes.url_helpers.history_biomedical_concepts_path, strong: "biomedical_concept" },
       Form::C_RDF_TYPE_URI.to_s => { path: Rails.application.routes.url_helpers.history_forms_path, strong: "" },

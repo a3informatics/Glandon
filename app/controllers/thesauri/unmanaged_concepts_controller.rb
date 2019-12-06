@@ -44,7 +44,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     parent = Thesaurus::ManagedConcept.find_minimum(edit_params[:parent_id])
     token = Token.find_token(parent, current_user)
     if !token.nil?
-      tc = tc.update(edit_params)
+      tc = tc.update_with_clone(edit_params, parent)
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, parent, "Code list updated.") if token.refresh == 1
         result = tc.simple_to_h
@@ -94,24 +94,22 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     authorize Thesaurus
     tc = Thesaurus::UnmanagedConcept.find(params[:id])
     parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
-    # token = Token.find_token(thesaurus, current_user)
-    # if !token.nil?
-      tc.delete
-      if tc.errors.empty?
-  #     AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
-        render :json => {:data => []}, :status => 200
-      else
-        render :json => {:errors => tc.errors.full_messages}, :status => 422
-      end
-    #else
-    #  render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
-    #end
+    token = Token.find_token(parent, current_user)
+    if !token.nil?
+      tc.delete_or_unlink(parent)
+      AuditTrail.update_item_event(current_user, parent, "Code list updated, item #{tc.identifier} deleted.") if token.refresh == 1
+      render :json => {:data => []}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+    end
   end
 
   def show
     authorize Thesaurus
     @context_id = the_params[:context_id]
-    @ct = Thesaurus.find_minimum(@context_id)
+    if !@context_id.blank?
+      @ct = Thesaurus.find_minimum(@context_id)
+    end
     @tc = Thesaurus::UnmanagedConcept.find(params[:id])
     @parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
     @tc.synonym_objects
@@ -122,9 +120,13 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
   def show_data
     authorize Thesaurus, :show?
     context_id = the_params[:context_id]
-    ct = Thesaurus.find_minimum(context_id)
+    if !context_id.blank?
+      ct = Thesaurus.find_minimum(context_id)
+      params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
+    else
+      params[:tags] = []
+    end
     tc = Thesaurus::UnmanagedConcept.find(params[:id])
-    params[:tags] = ct.is_owned_by_cdisc? ? ct.tag_labels : []
     children = tc.children_pagination(params)
     results = children.map{|x| x.reverse_merge!({show_path: thesauri_unmanaged_concept_path({id: x[:id], unmanaged_concept: {context_id: context_id}})})}
     render json: {data: results, offset: params[:offset], count: results.count}, status: 200

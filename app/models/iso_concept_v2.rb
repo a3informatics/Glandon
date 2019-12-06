@@ -121,4 +121,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
     query_results.by_object(:s)
   end
 
+  def clone
+    self.tagged_links
+    super
+  end
+  
 end
