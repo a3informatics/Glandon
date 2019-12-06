@@ -174,14 +174,15 @@ TimelineSlider.prototype.moveSliderTo = function(slider, target){
 TimelineSlider.prototype.handleResponsiveness = function(){
   var _this = this;
   $(window).resize(function() {
+    if(_this.l_slider.is(":visible")){
+      var highlightedPoints = $("."+_this.highlight_class);
 
-    var highlightedPoints = $("."+_this.highlight_class);
+      _this.updateContainmentCoords(_this.l_slider);
+      _this.updateContainmentCoords(_this.r_slider);
 
-    _this.updateContainmentCoords(_this.l_slider);
-    _this.updateContainmentCoords(_this.r_slider);
-
-    _this.moveSliderTo(_this.l_slider, highlightedPoints.eq(0));
-    _this.moveSliderTo(_this.r_slider, highlightedPoints.eq(1));
+      _this.moveSliderTo(_this.l_slider, highlightedPoints.eq(0));
+      _this.moveSliderTo(_this.r_slider, highlightedPoints.eq(1));
+    }
   });
 }
 

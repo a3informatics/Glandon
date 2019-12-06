@@ -1,31 +1,112 @@
-var tl_slider;
+/*
+* Release Select page
+*
+*
+*/
+$(document).ready(function(){
+  new ReleaseSelect();
+});
 
-var tabSwitchCallback = function(tab){
-  switch($(tab).attr("id")){
-    case "tab-cdisc-cls":
+/**
+ * Release Select Constructor
+ *
+ * @return [void]
+ */
+function ReleaseSelect(){
+  this.timeline = this.initTS();
+  this.cdiscCT = this.initCdiscCt();
 
-      break;
-    default:
-      break;
-  }
+  this.tabs = this.initTabs();
+
+  if(this.cdiscCT.versionId != null)
+    this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+
+  this.setEventListeners();
 }
 
-$(document).ready(function(){
+/**
+ * Initializes TimelineSlider
+ *
+ * @return [TimelineSlider]
+ */
+ReleaseSelect.prototype.initTS = function(){
+  return new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+}
 
-  $(".card-with-tabs").find(".show-more-btn").on("change", function(){
-    if(tl_slider == null){
-      tl_slider = new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
-      var newest_date = tl_slider.tl_points.eq(-1).children().first().html();
-      tl_slider.moveToDate(tl_slider.l_slider, newest_date);
-    }
-  });
+/**
+ * Initializes CDISC CT information. If none, defaults
+ *
+ * @return [Object] {version, versionId}
+ */
+ReleaseSelect.prototype.initCdiscCt = function(){
+  var cdiscVer = $("#cdisc-version-label").text() == "None" ? null : $("#cdisc-version-label").text();
+  var cdiscVerId = cdiscVer == null ? null : $(".timeline-point:contains("+cdiscVer+") span").attr("data-index");
 
+  if (cdiscVer == null)
+    cdiscVer = this.timeline.tl_points.eq(-1).children().first().html();
+
+  return {version: cdiscVer, versionId: cdiscVerId};
+}
+
+/**
+ * Generates URL string for CDISC data fetching based on CT id
+ * @param [String] terminology ID
+ *
+ * @return [String] URL to fetch CDISC CT version children
+ */
+ReleaseSelect.prototype.makeCdiscUrl = function(id){
+  return cdiscCLUrl.substring(0, cdiscCLUrl.lastIndexOf('/')+1)+id;
+}
+
+/**
+ * Initializes all the tabs on the page
+ *
+ * @return [Object] of tab references {cdiscTab, ...}
+ */
+ReleaseSelect.prototype.initTabs = function(){
   var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList")
 
-  $("#select-cdisc-ver-button").on("click", function(){
-    var th_id = $(".timeline-point.point-highlight").find("span").attr("data-index");
-    cdiscCLUrl = cdiscCLUrl.substring(0, cdiscCLUrl.lastIndexOf('/') + 1) + th_id;
-    cdiscCls.refresh(cdiscCLUrl);
+  return {cdiscTab: cdiscCls}
+}
+
+/**
+ * Changes CDISC version, reloads data, updates UI
+ *
+ * @return [void]
+ * TODO: Make call to save CT change, clear CDISC data from selection tab
+ */
+ReleaseSelect.prototype.changeCdiscVer = function(){
+  this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
+  this.cdiscCT.version = $(".timeline-point.point-highlight span").text();
+
+  this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+  $("#cdisc-version-label").html(this.cdiscCT.version);
+}
+
+/**
+ * Sets various event handlers on the page
+ *
+ * @return [void]
+ */
+ReleaseSelect.prototype.setEventListeners = function(){
+  var _this = this;
+
+  $(".card-with-tabs .show-more-btn").on("change", function(){
+    _this.timeline.moveToDate(_this.timeline.l_slider, _this.cdiscCT.version);
   });
 
-});
+  $("#select-cdisc-ver-button").on("click", function(){
+    new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
+      {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true}).show();
+  });
+}
+
+// var tabSwitchCallback = function(tab){
+//   switch($(tab).attr("id")){
+//     case "tab-cdisc-cls":
+//
+//       break;
+//     default:
+//       break;
+//   }
+// }

@@ -394,6 +394,24 @@
   }
 }
 
+// indicators
+
+.indicator{
+  display: inline-block;
+  margin: 0px 5px;
+  color: $primary-color-bright;
+  font-size: $font-normal;
+}
+
+.indicator .ttip-text{
+  color: $grey-medium;
+  font-size: $font-small;
+}
+
+.indicator.icon-current{
+  color: $secondary-color-medium;
+}
+
 // ALERTS
 
 .alert{

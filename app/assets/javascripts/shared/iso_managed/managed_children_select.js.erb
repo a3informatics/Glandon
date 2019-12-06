@@ -68,8 +68,7 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
       for (i=0; i<result.data.length; i++) {
         _this.table.row.add(result.data[i]);
       }
-      _this.table.columns.adjust()
-      _this.table.draw();
+      _this.drawUI();
 
       if (result.count >= _this.count)
         _this.loadData(result.offset + _this.count)
@@ -81,6 +80,12 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
       _this.processing(false);
     }
   });
+}
+
+ManagedChildrenSelect.prototype.drawUI = function(){
+  var _this = this;
+  _this.table.columns.adjust()
+  _this.table.draw();
 }
 
 /**
@@ -124,8 +129,9 @@ ManagedChildrenSelect.prototype.columns = function() {
         {"data" : "notation", "width": "10%"},
         {"data" : "preferred_term", "width": "20%"},
         {"data" : "synonym", "width": "15%"},
-        {"data" : "definition", "width": "38%"},
-        {"data" : "tags", "width": "10%"},
+        {"data" : "definition", "width": "32%"},
+        {"data" : "tags", "width": "10%", "render": function (data, type, row, meta) {return colorCodeTagsBadge(data); }},
+        {"width": "6%", "render" : function (data, type, row, meta) {return formatIndicators({"current": false, "extended": false, "extends": false, "version_count": 1, "subset": false, "subsetted": true })}}
         // {"data" : "indicators"}
       ];
       break;

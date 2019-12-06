@@ -37,12 +37,12 @@
 
         <div class="tab-wrap" data-tab="tab-cdisc-cls">
           <%= render layout: "shared/thesauri/release_select_general_tab", :locals => {id: "table-cdisc-cls"} do %>
-            <div class="text-centered"> Currently using: <span id="cdisc-version-label" class="font-light">2019-10-02 Release</span></div><br/>
+            <div class="text-centered font-light"> CDISC version used: <span id="cdisc-version-label" class="bg-label">2019-06-28</span></div><br/>
             <%= render layout: "shared/show_more", :locals => {:size => "small", :show_text => show_text, :centered => "centered"} do %>
               <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
                 title_text: "Select CDISC Terminology version by dragging the slider:",
                 start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
-                button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit selection</button>".html_safe }%>
+                button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit version change</button>".html_safe }%>
             <% end %>
           <% end %>
         </div>

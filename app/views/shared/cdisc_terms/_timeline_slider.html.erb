@@ -7,7 +7,7 @@
       <div class="timeline"></div>
 
       <% versions_normalized.each_with_index do |x, index| %>
-        <div class="timeline-point bg-prim-bright shadow-small <%= if index == 0 || index == versions_normalized.length-1 then 'point-highlight' end %> ttip"
+        <div class="timeline-point bg-prim-bright shadow-small ttip"
              style="left: <%= x %>%;">
           <span class="ttip-text text-small text-light shadow-small" data-index="<%= versions[index][:id] %>"><%= versions[index][:date] %></span>
         </div>
