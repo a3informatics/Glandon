@@ -68,6 +68,18 @@
   background: $secondary-color-dark !important;
 }
 
+.btn.light{
+  background: $primary-color-light;
+}
+
+.btn.light:hover{
+  background: $primary-color-medium;
+}
+
+.btn.light:active{
+  background: $primary-color-medium !important;
+}
+
 .btn:focus{
   color: white;
 }

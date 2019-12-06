@@ -18,6 +18,7 @@ function ManagedChildrenSelect(dataUrl, tableId, count, target, type) {
   this.target = target;
   this.type = type;
   this.loading = false;
+  this.dataLoaded = false;
 
   this.init();
 }
@@ -47,6 +48,8 @@ ManagedChildrenSelect.prototype.init = function(){
 
   _this.table.on('select', function(e, dt, type, indexes){ console.log("add") });
   _this.table.on('deselect', function(e, dt, type, indexes){ console.log("remove") });
+  $(_this.tableId+"-bulk-select").on("click", function(){ _this.table.rows({search: 'applied', selected: false }).select() });
+  $(_this.tableId+"-bulk-deselect").on("click", function(){ new ConfirmationDialog(function(){_this.table.rows({search: 'applied', selected: true}).deselect() }).show()});
 }
 
 /**
@@ -72,8 +75,10 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
 
       if (result.count >= _this.count)
         _this.loadData(result.offset + _this.count)
-      else
+      else{
         _this.processing(false);
+        _this.dataLoaded = true;
+      }
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);

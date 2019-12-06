@@ -38,6 +38,11 @@
   padding-top: 6px;
 }
 
+.tab-option.disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+
 .tab-wrap{
   width: 100%;
   transition: opacity .2s, transform .2s;

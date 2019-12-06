@@ -3,7 +3,7 @@
 
 <% show_text, hide_text =  "Show CDISC version selector", "Hide CDISC version selector" %>
 <%= javascript_tag "var showHideTexts = ['#{show_text}', '#{hide_text}'];" %>
-<%= javascript_tag "var cdiscCLUrl = '#{thesauri_path("th_id")}'" %>
+<%= javascript_tag "var cdiscCLUrl = '#{thesauri_path("th_id")}', sponsorCLUrl ='#{thesauri_path(@thesaurus)}';" %>
 
 <%= stylesheet_link_tag 'custom/tabs_layout', 'shared/datatables_loading', 'shared/managed_children_select', 'custom/show_more', 'custom/dates_selector' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
@@ -29,9 +29,9 @@
 
         <div class="tabs-sel">
           <div class="tab-option active" id="tab-cdisc-cls"><div>CDISC CLs</div></div>
-          <div class="tab-option" id="tab-sponsor-cls"><div>Sponsor CLs</div></div>
-          <div class="tab-option" id="tab-sponsor-subsets"><div>Sponsor Subsets</div></div>
-          <div class="tab-option" id="tab-sponsor-extensions"><div>Sponsor Extensions</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-cls"><div>Sponsor CLs</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-subsets"><div>Sponsor Subsets</div></div>
+          <div class="tab-option disabled" id="tab-sponsor-extensions"><div>Sponsor Extensions</div></div>
           <div class="tab-option" id="tab-selection-overview"><div><%=@thesaurus.label %></div></div>
         </div>
 

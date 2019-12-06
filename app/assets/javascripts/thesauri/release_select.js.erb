@@ -18,8 +18,10 @@ function ReleaseSelect(){
 
   this.tabs = this.initTabs();
 
-  if(this.cdiscCT.versionId != null)
+  if(this.cdiscCT.versionId != null){
     this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+    $(".tab-option.disabled").removeClass("disabled");
+  }
 
   this.setEventListeners();
 }
@@ -64,9 +66,10 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList")
+  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList");
+  var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, null, "thCodeList");
 
-  return {cdiscTab: cdiscCls}
+  return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls};
 }
 
 /**
@@ -81,6 +84,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
 
   this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
   $("#cdisc-version-label").html(this.cdiscCT.version);
+  $(".tab-option.disabled").removeClass("disabled");
 }
 
 /**
@@ -99,14 +103,15 @@ ReleaseSelect.prototype.setEventListeners = function(){
     new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
       {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true}).show();
   });
-}
 
-// var tabSwitchCallback = function(tab){
-//   switch($(tab).attr("id")){
-//     case "tab-cdisc-cls":
-//
-//       break;
-//     default:
-//       break;
-//   }
-// }
+  tabSwitchCallback = function(tab){
+   switch($(tab).attr("id")){
+     case "tab-sponsor-cls":
+      if(!_this.tabs.sponsorClTab.dataLoaded)
+         _this.tabs.sponsorClTab.loadData(0);
+       break;
+     default:
+       break;
+   }
+  }
+}
