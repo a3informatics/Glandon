@@ -62,6 +62,12 @@ describe TypePathManagement do
       expect(TypePathManagement.history_url_v2(model)).to eq("/thesauri/history/?thesauri[identifier]=XXX&thesauri[scope_id]=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==")
     end
 
+    it "returns a valid path, Thesaurus::ManagedConcept Model" do
+      model = Thesaurus::ManagedConcept.new
+      model.set_initial("XXX")
+      expect(TypePathManagement.history_url_v2(model)).to eq("/thesauri/managed_concepts/history/?managed_concept[identifier]=XXX&managed_concept[scope_id]=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==")
+    end
+
     it "returns valid path with checking of type" do
       ct = IsoManagedV2.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")) # Read as IsoManaged, should still get right path
       expect(TypePathManagement.history_url_v2(ct, true)).to eq("/thesauri/history/?thesauri[identifier]=CT&thesauri[scope_id]=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=")
