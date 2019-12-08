@@ -19,6 +19,7 @@ module Fuseki
     attr_accessor :uri
 
     validates :uri, presence: true
+    validates_with Validator::UniqueUri, attribute: :uri, on: :create
 
     extend Schema
     extend Resource

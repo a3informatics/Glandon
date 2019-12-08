@@ -10,7 +10,6 @@ describe Fuseki::Base do
   end
 
   before :all do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl"]
     data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
     load_files(schema_files, data_files)
   end

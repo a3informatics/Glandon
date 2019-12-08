@@ -214,7 +214,7 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")) # Need a parent
       tc_current = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
       tc_previous = Thesaurus::UnmanagedConcept.create({:label=>"A label", :identifier=>"A00021", :notation=>"NOTATION1", :definition=>"The definition."}, tc)
-      tc_previous.update(notation: "SSSSSS")
+      tc_previous.notation = "SSSSSS"
       expect(tc_current.replace_if_no_change(tc_previous).uri).to eq(tc_current.uri)
       expect(tc_current.narrower.count).to eq(0)
     end
@@ -283,7 +283,7 @@ describe "Thesaurus::UnmanagedConcept" do
       tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_object = tc.add_child(params)
       expect(new_object.errors.count).to eq(1)
-      expect(new_object.errors.full_messages[0]).to eq("An existing record exisits in the database")
+      expect(new_object.errors.full_messages[0]).to eq("http://www.acme-pharma.com/A00001/V1#A00001_A000011_A00004 already exists in the database")
     end
 
     it "prevents a TC being added with invalid identifier" do
@@ -808,6 +808,31 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(new_tc.label).to eq("New Airport")
       expect(new_tc.definition).to eq("A new definition")
       expect(new_tc.notation).to eq("T5")
+    end
+
+  end
+
+  describe "Clone" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone thesaurus concept I" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768_C48275"))
+      actual = tc.clone
+      expect(actual.identifier).to eq("C48275")
+      expect(actual.notation).to eq("FATAL")
+      expect(actual.definition).to eq("The termination of life as a result of an adverse event. (NCI)")
+      expect(actual.extensible).to eq(false)
+      expect(actual.synonym).to match_array(tc.synonym)
+      check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
     end
 
   end

@@ -17,8 +17,6 @@ class IsoNamespace < Fuseki::Base
   validates :authority, presence: true
   validates_with Validator::Uniqueness, attribute: :short_name, on: :create
 
-  C_CLASS_NAME = self.name
-  
   # Find namespace by the short name.
   #
   # @param name [String] The short name of the namespace to be found

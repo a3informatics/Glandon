@@ -11,11 +11,10 @@ describe Fuseki::Persistence do
   end
 
   before :all do
-    IsoHelpers.clear_cache
+    #IsoHelpers.clear_cache
   end
 
   before :each do
-    schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
     data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl", "iso_managed_data_4.ttl"]
     load_files(schema_files, data_files)
   end
@@ -50,6 +49,15 @@ describe Fuseki::Persistence do
 
   end
 
+  it "check validation, uri" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/XXX/V1#A")
+    result = TestFPe1.create(uri: uri)
+    expect(result.errors.count).to eq(0)
+    result = TestFPe1.create(uri: uri)
+    expect(result.errors.count).to eq(1)
+    expect(result.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/XXX/V1#A already exists in the database")
+  end
+
   it "find, simple case" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_TEST")
     result = TestFPe1.find(uri)
@@ -81,7 +89,6 @@ describe Fuseki::Persistence do
     expect(result.has_identifier.to_s).to eq("http://www.assero.co.uk/MDRItems#SI-ACME_TEST-1")
     expect(result.has_identifier_links?).to eq(true)
     expect(result.has_identifier_objects?).to eq(false)
-byebug
     result.has_identifier_objects
     expect(result.has_identifier_links?).to eq(true)
     expect(result.has_identifier_objects?).to eq(true)
@@ -178,6 +185,7 @@ byebug
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
   puts "ERROR START"
+    item.errors.clear
     item.name = "Updated Name Property, a further update±±±±±"
     result = item.update
   puts "ERROR END"
@@ -227,10 +235,11 @@ byebug
     expect(result.errors.count).to eq(1)
     expect(result.errors.full_messages.to_sentence).to eq("Short name contains invalid characters")
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item.errors.clear
     item = IsoNamespace.new(uri: uri, name: "A name", short_name: "SaveTest", authority: "www.a3.com") # Try to create same short_name, should fail.
     result = item.save
-    expect(result.errors.count).to eq(1)
-    expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
+    expect(result.errors.count).to eq(2)
+    expect(result.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/NS#AAA already exists in the database and An existing record exisits in the database")
   end
 
   it "id and uuid" do
@@ -246,7 +255,7 @@ byebug
     expect(item.persisted?).to eq(false)
     expect(item.new_record?).to eq(true)
     expect(item.destroyed?).to eq(false)
-    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAAPer")
     item = IsoNamespace.new(uri: uri, name: "A name", short_name: "SaveTest", authority: "www.a3.com") # Try to create same short_name, should fail.
     item = item.save
     expect(item.inspect_persistence).to eq({new: false, destroyed: false})

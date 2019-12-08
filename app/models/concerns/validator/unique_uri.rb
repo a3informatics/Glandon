@@ -2,15 +2,15 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class Validator::Uniqueness < ActiveModel::Validator
+class Validator::UniqueUri < ActiveModel::Validator
   
   # Validate
   #
   # @param record [Object] the rails object containing the field/attribute to be validated
   # @returns [Boolean] true if valid, false others. Errors set in record.
   def validate(record)
-    return true if record.class.where({options[:attribute] => record.send(options[:attribute])}).empty?
-    record.errors.add :base, "an existing record (#{options[:attribute]}: #{record.send(options[:attribute])}) exisits in the database"
+    return true if record.class.uri_unique(record.uri)
+    record.errors.add :base, "#{record.uri} already exists in the database"
     return false
   end
   

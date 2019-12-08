@@ -128,8 +128,8 @@ puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sen
     it "does not create a namespace that already exists - WILL CURRENTLY FAIL - Strange error, echoing error message, passing in isolation." do
       result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "CCC111", short_name: "AAA", authority: "www.ccc111.com")
 puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sentence} *****", "red")
-      expect(result.errors.count).to eq(1)
-      expect(result.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
+      expect(result.errors.count).to eq(2)
+      expect(result.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/NS#AAA already exists in the database and an existing record (short_name: AAA) exisits in the database")
     end
       
     it "destroy a namespace" do

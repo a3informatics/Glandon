@@ -485,6 +485,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     return results
   end
 
+  def valid_collection?
+    notations = self.narrower.map{|x| x.notations}
+    notations.uniq.length == notations.length
+  end
+
 private
 
   # Class for a difference result

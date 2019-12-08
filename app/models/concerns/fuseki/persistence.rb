@@ -162,6 +162,16 @@ module Fuseki
         results.map{|x| x.to_s}.uniq.count == 1 && results.first == rdf_type
       end
 
+      # URI Unique
+      # 
+      # @params [Uri] the_uri the uri
+      # @return [Boolean] true if URI unique
+      def uri_unique(the_uri)
+        query_string = "SELECT ?p WHERE { #{the_uri.to_ref} ?p ?o }"
+        query_results = Sparql::Query.new.query(query_string, "", [])
+        query_results.empty?
+      end
+
       # -----------------
       # Test Only Methods
       # -----------------
