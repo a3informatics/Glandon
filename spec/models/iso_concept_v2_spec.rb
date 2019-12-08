@@ -264,4 +264,29 @@ describe "IsoConceptV2" do
 
   end
 
+  describe "Clone" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    it "clone" do
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3456")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
+      uri_1 = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item_1 = IsoConceptV2.create(uri: uri_1, label: "1")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-0000")
+      allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2001"))
+      item_2 = item_1.clone
+      expect(item_1.label).to eq(item_2.label)
+      check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_1b.yaml", write_file: true)
+    end
+
+  end
+
 end
