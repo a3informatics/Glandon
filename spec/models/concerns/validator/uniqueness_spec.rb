@@ -34,7 +34,7 @@ describe Validator::Uniqueness do
     expect(TestVU).to receive(:where).with({:identifier=>"SSS2"}).and_return(["something"])
     x.valid?
     expect(x.errors.count).to eq(1)
-    expect(x.errors.full_messages.to_sentence).to eq("An existing record exisits in the database")
+    expect(x.errors.full_messages.to_sentence).to eq("an existing record (identifier: SSS2) exisits in the database")
   end
 
 end
