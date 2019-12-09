@@ -39,13 +39,16 @@ class IsoManagedV2Controller < ApplicationController
 
   def update_semantic_version
     authorize IsoManaged, :update?
-    # referer = request.referer
-    @managed_item = IsoManagedV2.find_minimum(params[:id])
-    # @next_versions = SemanticVersion.from_s(@managed_item.semantic_version.to_s).next_versions
-    @managed_item.release(the_params[:sv_type].downcase.to_s)
-    # flash[:error] = @managed_item.errors.full_messages.to_sentence if !@managed_item.errors.empty?
-    # redirect_to referer
-    render json: {data: " ", error: "Error: "}, status: 200
+    uri = Uri.new(id: params[:id])
+    rdf_type = IsoManagedV2.the_type(uri)
+    klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
+    @managed_item = klass.find_minimum(params[:id])
+    @managed_item.release(the_params[:sv_type].downcase.to_sym)
+    if @managed_item.errors.empty?
+        render :json => { :data => @managed_item.semantic_version}, :status => 200
+      else
+        render :json => { :errors => @managed_item.errors.full_messages}, :status => 422
+    end
   end
 
   def find_by_tag

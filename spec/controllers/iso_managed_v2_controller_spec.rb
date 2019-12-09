@@ -14,6 +14,10 @@ describe IsoManagedV2Controller do
       return "controllers/iso_managed_v2"
     end
 
+    before :all do
+      x = Thesaurus.new
+    end
+
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -70,12 +74,12 @@ describe IsoManagedV2Controller do
     end
 
     it 'updates the semantic version' do
-      @request.env['HTTP_REFERER'] = 'http://test.host/registration_states'
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
-      put :update_semantic_version, { id: mi.id, iso_managed: { registration_status: "Qualified", previous_state: "Recorded", 
-        administrative_note: "X1", unresolved_issue: "X2", sv_type: :major }}
-      expect(response).to redirect_to("/registration_states")
+      put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
     end
 
   end
@@ -94,6 +98,11 @@ describe IsoManagedV2Controller do
 
     it "update_status" do
       post :update_status, { id: "F-ACME_TEST"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "update_semantic_version" do
+      put :update_semantic_version, { id: "F-ACME_TEST"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
