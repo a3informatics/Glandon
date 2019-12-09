@@ -102,7 +102,7 @@ class SdtmModelClassification < EnumeratedLabel
       "  :#{id} bd:childClassification ?a . \n" +
       "  ?a rdfs:label ?b . \n" +
       "  FILTER(STRSTARTS(STR(?a), \"" + namespace + "\")) \n" +
-      "}"
+      "} ORDER BY ?b"
     response = CRUD.query(query)
     xmlDoc = Nokogiri::XML(response.body)
     xmlDoc.remove_namespaces!

@@ -82,33 +82,55 @@ class Thesaurus
         columns = params[:columns]
         variable = get_order_variable(params[:order]["0"][:column])
         order = get_order(params[:order]["0"][:dir])
+
+        # Search Clauses
+        # 1. Column Filters
+        # 2. Overall Filter
+        search_clauses = ""
+        columns.each do |column|
+          next if column[1][:search][:value].blank?
+          if column[0] == "7"
+            search_clauses += "  FILTER(UCASE(#{get_order_variable(column[0])}) IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
+          else
+            search_clauses += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
+          end
+        end
+        search_clauses += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
+
+        # Main SPARQL
         main_part = %Q{
-          VALUES ?e { #{uris.map{|x| x.to_ref}.join(" ")} }
-          ?e th:isTopConceptReference/bo:reference ?mc .
           {
+            SELECT DISTINCT ?pi ?pl ?i ?n ?d ?pt ?uri ?t ?sy
+            {
+              VALUES ?e { #{uris.map{|x| x.to_ref}.join(" ")} }
+              ?e th:isTopConceptReference/bo:reference ?mc .
               {
-                ?mc th:narrower+ ?uc .
-                ?mc th:identifier ?pi .
-                ?mc isoC:label ?pl .
-                ?uc th:identifier ?i .
-                ?uc th:notation ?n .
-                ?uc th:definition ?d .
-                ?uc th:preferredTerm/isoC:label ?pt .
-                OPTIONAL {?uc th:synonym/isoC:label ?sy .}
-                OPTIONAL {?uc isoC:tagged/isoC:prefLabel ?t .}
-                BIND (?uc as ?uri)
-              } UNION
-              {
-                ?mc th:identifier ?pi .
-                ?mc th:identifier ?i .
-                ?mc isoC:label ?pl .
-                ?mc th:notation ?n .
-                ?mc th:definition ?d .    
-                ?mc th:preferredTerm/isoC:label ?pt .
-                OPTIONAL {?mc th:synonym/isoC:label ?sy .}
-                OPTIONAL {?mc isoC:tagged/isoC:prefLabel ?t .}
-                BIND (?mc as ?uri)
+                {
+                  ?mc th:narrower+ ?uc .
+                  ?mc th:identifier ?pi .
+                  ?mc isoC:label ?pl .
+                  ?uc th:identifier ?i .
+                  ?uc th:notation ?n .
+                  ?uc th:definition ?d .
+                  ?uc th:preferredTerm/isoC:label ?pt .
+                  OPTIONAL {?uc th:synonym/isoC:label ?sy .}
+                  OPTIONAL {?uc isoC:tagged/isoC:prefLabel ?t .}
+                  BIND (?uc as ?uri)
+                } UNION
+                {
+                  ?mc th:identifier ?pi .
+                  ?mc th:identifier ?i .
+                  ?mc isoC:label ?pl .
+                  ?mc th:notation ?n .
+                  ?mc th:definition ?d .    
+                  ?mc th:preferredTerm/isoC:label ?pt .
+                  OPTIONAL {?mc th:synonym/isoC:label ?sy .}
+                  OPTIONAL {?mc isoC:tagged/isoC:prefLabel ?t .}
+                  BIND (?mc as ?uri)
+                }
               }
+              #{search_clauses}
+            } ORDER BY ?sy ?t  
           }
         }
         tag_grp = %Q{(GROUP_CONCAT(DISTINCT ?t;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt)}
@@ -116,21 +138,6 @@ class Thesaurus
         query = "SELECT DISTINCT ?pi ?pl ?i ?n ?d ?pt ?uri #{synonym_grp} #{tag_grp} WHERE\n"
         query += "{\n"
         query += "  #{main_part}"
-        
-        # Filter by columns
-        columns.each do |column|
-          next if column[1][:search][:value].blank?
-          if column[0] == "7"
-            query += "  FILTER(UCASE(#{get_order_variable(column[0])}) IN (  #{get_tags_filter(column[1][:search][:value])}  )  ) .\n"
-          else
-            query += "  FILTER regex(#{get_order_variable(column[0])}, \"#{column[1][:search][:value]}\", 'i') .\n" 
-          end
-        end
-        
-        # Overall search
-        query += "  ?uri (th:identifier|th:notation|th:preferredTerm/isoC:label|th:synonym/isoC:label|th:definition|isoC:tagged/isoC:prefLabel) ?x . FILTER regex(?x, \"" + search[:value] + "\", 'i') . \n" if !search[:value].blank?
-
-        # And close it all
         query += "}" 
         query += " GROUP BY ?pi ?pl ?i ?n ?d ?pt ?uri"
         query += " ORDER BY #{order} (#{variable}) OFFSET #{params[:start]} LIMIT #{params[:length]}" if limit

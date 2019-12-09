@@ -111,14 +111,14 @@ describe SdtmModelClassification do
     expected = 
     {
       :type => "http://www.assero.co.uk/BusinessDomain#VariableClassification", 
-      :id => "M-CDISC_SDTMMODEL_C_QUALIFIER_SC_RECORDQUALIFIER", 
+      :id => "M-CDISC_SDTMMODEL_C_QUALIFIER_SC_GROUPINGQUALIFIER", 
       :namespace => "http://www.assero.co.uk/MDRSdtmM/CDISC/V3", 
-      :label => "Record Qualifier", 
+      :label => "Grouping Qualifier", 
       :extension_properties => []
     }
     result = SdtmModelClassification.all_children("M-CDISC_SDTMMODEL_C_QUALIFIER", "http://www.assero.co.uk/MDRSdtmM/CDISC/V3")
     default = SdtmModelClassification.default_child(result)
-    expect(default.to_json).to eq(expected)
+    expect(default.to_json).to hash_equal(expected)
   end
 
   it "allows addition of parent" do
