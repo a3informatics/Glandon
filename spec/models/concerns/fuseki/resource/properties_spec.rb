@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'iso_namespace'
 
 describe Fuseki::Resource::Properties do
   

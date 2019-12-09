@@ -110,7 +110,9 @@ describe IsoNamespace do
     end
 
     it "does not create a namespace with an invalid short name - WILL CURRENTLY FAIL - Strange error, echoing error message, passing in isolation." do
+puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
       result = IsoNamespace.create(uri: Uri.new(uri: "http://www.assero.co.uk/NS#DDD"), name: "DDD", short_name: "DDD%$£@", authority: "www.ddd.com")
+puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
 puts colourize("***** ISO Namespace errors: #{result.errors.full_messages.to_sentence} *****", "red")
       #expect(result.valid?).to be(false)
       expect(result.errors.count).to eq(1)

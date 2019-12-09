@@ -11,7 +11,8 @@ describe Fuseki::Persistence do
   end
 
   before :all do
-    #IsoHelpers.clear_cache
+    IsoHelpers.clear_cache
+    puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
   end
 
   before :each do
@@ -202,6 +203,7 @@ describe Fuseki::Persistence do
   end
 
   it "performs save - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
+puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
@@ -239,7 +241,7 @@ describe Fuseki::Persistence do
     item = IsoNamespace.new(uri: uri, name: "A name", short_name: "SaveTest", authority: "www.a3.com") # Try to create same short_name, should fail.
     result = item.save
     expect(result.errors.count).to eq(2)
-    expect(result.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/NS#AAA already exists in the database and An existing record exisits in the database")
+    expect(result.errors.full_messages.to_sentence).to eq("http://www.assero.co.uk/NS#AAA already exists in the database and an existing record (short_name: SaveTest) exisits in the database")
   end
 
   it "id and uuid" do
