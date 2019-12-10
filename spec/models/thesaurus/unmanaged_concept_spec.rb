@@ -810,6 +810,39 @@ describe "Thesaurus::UnmanagedConcept" do
       expect(new_tc.notation).to eq("T5")
     end
 
+    it "delete single parent" do
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
+      expect(new_tc.uri).to eq(old_tc.uri)
+      expect(parent.narrower.count).to eq(2)
+      expect(new_tc.delete_or_unlink(parent)).to eq(1)
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      expect(parent.narrower.count).to eq(1)
+    end 
+
+    it "delete multiple parent" do
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      tc_v2 = Thesaurus::ManagedConcept.from_h({
+          label: "London Heathrow V2",
+          identifier: "A0000X",
+          definition: "A definition V2",
+          notation: "LHR V2"
+        })
+      tc_v2.preferred_term = Thesaurus::PreferredTerm.where_only_or_create("London Heathrow")
+      tc_v2.narrower = parent.narrower
+      tc_v2.set_initial(tc_v2.identifier)
+      tc_v2.save
+      expect(parent.narrower.count).to eq(2)
+      expect(tc_v2.narrower.count).to eq(2)
+      old_tc.delete_or_unlink(tc_v2) # Remove the common item from the new code list
+      expect(old_tc.delete_or_unlink(parent)).to eq(1)
+      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
+      expect(parent.narrower.count).to eq(2)
+      expect(tc_v2.narrower.count).to eq(1)
+    end
+
   end
 
   describe "Clone" do

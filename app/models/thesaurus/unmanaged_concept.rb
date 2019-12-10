@@ -33,7 +33,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
       parent_object.delete_link(:narrower, self.uri)
       1
     else
-      self.delete
+      self.delete_with_links
     end
   end
 
@@ -48,7 +48,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
       object.uri = object.create_uri(parent_object.uri)
       transaction_begin
       object.update(params)
-      parent.replace_link(:narrower, self.uri, object.uri)
+      parent_object.replace_link(:narrower, self.uri, object.uri)
       transaction_execute
       object
     else

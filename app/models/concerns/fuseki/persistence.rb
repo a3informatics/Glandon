@@ -401,7 +401,7 @@ module Fuseki
   
     # Delete With Links. Delete the object and any links to the object
     #
-    # @return [Void] no return
+    # @return [Integer] Number of records deleted
     def delete_with_links
       update_query = %Q{ 
         DELETE {
@@ -415,6 +415,7 @@ module Fuseki
         }
       }
       partial_update(update_query, [])
+      1
     end
 
     def not_used?

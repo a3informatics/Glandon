@@ -163,7 +163,7 @@ describe Fuseki::Persistence do
     check_file_actual_expected(result.to_h, sub_dir, "selective_update_expected_2.yaml", equate_method: :hash_equal)
   end
 
-  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
+  it "performs update" do
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
     item.name = "Updated Name Property"
@@ -171,38 +171,31 @@ describe Fuseki::Persistence do
     expect(result.errors.count).to eq(0)
     result = IsoNamespace.find(uri)
     check_file_actual_expected(result.to_h, sub_dir, "update_expected_1.yaml", equate_method: :hash_equal)
-  # puts "ERROR START"
-  #   item.name = "Updated Name Property, a further update±±±±±"
-  #   result = item.update
-  # puts "ERROR END"
-  #   expect(result.errors.count).to eq(1)
-  #   item.name = "Updated Name Property, a further update"
-  #   item.short_name = "ShortName"
-  #   result = item.update
-  #   expect(result.errors.count).to eq(0)
-  end
-
-  it "performs update - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
-    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
-    item = IsoNamespace.find(uri)
-  puts "ERROR START"
-    item.errors.clear
     item.name = "Updated Name Property, a further update±±±±±"
     result = item.update
-  puts "ERROR END"
     expect(result.errors.count).to eq(1)
     item.name = "Updated Name Property, a further update"
     item.short_name = "ShortName"
     result = item.update
     expect(result.errors.count).to eq(0)
-  puts "ERROR START"
+  end
+
+  it "performs update" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
+    item = IsoNamespace.find(uri)
     item.name = "Updated Name Property, a further update±±±±±"
     result = item.update
-  puts "ERROR END"
+    expect(result.errors.count).to eq(1)
+    item.name = "Updated Name Property, a further update"
+    item.short_name = "ShortName"
+    result = item.update
+    expect(result.errors.count).to eq(0)
+    item.name = "Updated Name Property, a further update±±±±±"
+    result = item.update
     expect(result.errors.count).to eq(1)
   end
 
-  it "performs save - WILL CURRENTLY FAIL - Fails in main test, passes in isolation." do
+  it "performs save" do
 puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
     uri = Uri.new(uri: "http://www.assero.co.uk/NS#AAA")
     item = IsoNamespace.find(uri)
@@ -283,7 +276,7 @@ puts colourize("+++++ \n#{IsoNamespace.validators}\n +++++", "blue")
     item_1.add_link(:has_identifier, item_2.uri)
     item_1_c = TestFPe3.find(uri_1)
     expect(item_1_c.has_identifier.count).to eq(1)
-    item_2.delete_with_links    
+    expect(item_2.delete_with_links).to eq(1)
     expect{TestFPe3.find(uri_2)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/FP3#2 in TestFPe3.")
     item_1_c = TestFPe3.find(uri_1)
     expect(item_1_c.has_identifier.count).to eq(0)
