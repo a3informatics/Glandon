@@ -35,23 +35,23 @@
 						    	<% if md[:type] == "enum" %>
 							    		<% md[:values].each do |option| %>
 							    			<% if option == @settings[key] %>
-							    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+							    			 		<%= link_to @settings[key], user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium light sm-margin" %>
 							    			<% end %>
 							    		<% end %>
 									  		<% md[:values].each do |option| %>
 									  			<% if option != @settings[key] %>
-									  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+									  			 	<%= link_to option, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium grey sm-margin" %>
 									  			<% end %>
 									  		<% end %>
 						    	<% elsif md[:type] == "coded" %>
 						    		<% md[:values].each do |value_key, option| %>
 						    			<% if option.to_s == @settings[key] %>
-						    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-prim-bright" %>
+						    					<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium light sm-margin bg-prim-bright" %>
 						    			<% end %>
 						    		<% end %>
 								  		<% md[:values].each do |value_key, option| %>
 								  			<% if option.to_s != @settings[key] %>
-								  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium sm-margin bg-grey-light" %>
+								  			 		<%= link_to value_key, user_setting_path(:id => current_user.id, :user_settings => {:name => key, :value => option}), :method => :put, :class => "btn medium grey sm-margin" %>
 								  			<% end %>
 								  		<% end %>
 						    	<% end %>

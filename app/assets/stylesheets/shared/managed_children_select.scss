@@ -6,16 +6,16 @@
   cursor: pointer;
 }
 
-.table-row-clickable .selected td:last-of-type{
+.table-row-clickable .selected td:first-of-type{
   position: relative;
 }
 
-.table-row-clickable .selected td:last-of-type::after{
+.table-row-clickable .selected td:first-of-type::before{
   font-family: 'icomoon';
   display: block;
   color: $secondary-color-light;
   position: absolute;
-  right: -20px;
+  left: -20px;
   font-size: $font-tiny;
   top: calc(50% - 5pt);
   content: "\e944";

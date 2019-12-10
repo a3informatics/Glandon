@@ -80,6 +80,18 @@
   background: $primary-color-medium !important;
 }
 
+.btn.grey{
+  background: $grey-light;
+}
+
+.btn.grey:hover{
+  background: $grey-medium;
+}
+
+.btn.grey:active{
+  background: $grey-medium !important;
+}
+
 .btn:focus{
   color: white;
 }
