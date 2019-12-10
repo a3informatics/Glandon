@@ -909,7 +909,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("3.0.0")
+      expect(actual.semantic_version).to eq("2.0.0")
     end
 
     it "allows the item release to be incremented, two versions, increment minor" do
@@ -922,7 +922,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("2.1.0")
+      expect(actual.semantic_version).to eq("1.1.0")
     end
 
     it "allows the item release to be incremented, two versions, increment patch" do
@@ -935,7 +935,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("2.0.1")
+      expect(actual.semantic_version).to eq("1.0.1")
     end
 
     it "allows the item release to be incremented, two versions, increment empty, error" do
@@ -957,7 +957,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("6.0.0")
+      expect(actual.semantic_version).to eq("5.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment minor" do
@@ -970,7 +970,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("5.1.0")
+      expect(actual.semantic_version).to eq("4.1.0")
     end
 
     it "allows the item release to be incremented, five versions, increment patch" do
@@ -983,7 +983,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("5.0.1")
+      expect(actual.semantic_version).to eq("4.0.1")
     end
     
   end
