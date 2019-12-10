@@ -101,6 +101,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
   $("#cdisc-version-label").html(this.cdiscCT.version);
   $(".tab-option.disabled").removeClass("disabled");
+  $(".show-more-btn").click();
 }
 
 /**
@@ -116,6 +117,8 @@ ReleaseSelect.prototype.setEventListeners = function(){
   });
 
   $("#select-cdisc-ver-button").on("click", function(){
+    if ($(".timeline-point.point-highlight span").text() == $("#cdisc-version-label").html())
+      return;
     new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
       {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true}).show();
   });
