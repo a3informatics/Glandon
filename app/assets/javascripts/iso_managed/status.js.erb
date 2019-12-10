@@ -1,8 +1,9 @@
 $(document).ready(function() {
   
-$('#select_release').on('change', function() {
-  var value = $(this).val();
+$("#version-edit-submit").on("click", function() {
+  var value = $("#select-release option:selected").val();
   var data = { "iso_managed": { "sv_type": value } };
+  console.log(data);
   $.ajax({
     url: url_release,
     type: 'PUT',
@@ -17,7 +18,11 @@ $('#select_release').on('change', function() {
       location.reload();
     }
   });
+});
 
+$(".content-editable").on("click", function(){
+  $("#"+$(this).attr("id")+"-after").css("display", "inline-block");
+  $(this).css("display", "none");
 });
 
 });

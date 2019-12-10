@@ -61,7 +61,7 @@
       <div class="col-md-4 card narrow">
 		<div class="card-header">	Version Control	</div>
 		<div class="card-content">
-			<span class="text-normal font-light"> Make item current: </span>
+			<span class="text-small font-light"> Make item current: </span>
 			<% if @managed_item.has_state.released_state? %>
 				<% if @managed_item.current? %>
 					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "", id: "make_current",
@@ -75,39 +75,30 @@
 					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'") , dt_toggle: "", disabled: true } %>
 			<% end %>
       <hr>
-			<div class="text-normal font-light"> Version information: </div>
-			<table class="table table-striped table-bordered table-condensed font-light text-small">
-				<thead>
-					<tr>
-            <th>Version</th>
-            <th>Version Label</th>
-          </tr>
-				</thead>
-        <tbody>
-          <tr>
-            <td> <%= @managed_item.semantic_version%> </td>
-            <td> <%= @managed_item.version_label%> </td>
-          </tr>
-        </tbody>
-			</table>
+	    <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "content-editable font-light bg-label"><%=@managed_item.semantic_version %></span>
+      <span id= "version-edit-after" class="form-wrap">
+        <select id="select-release">
+          <option value="major" selected>Major: <%= @next_versions[:major] %> </option>
+          <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
+          <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
+        </select>
+        <button id= "version-edit-submit" class="btn btn-xs">Update Version</button>
+      </span>
+      <br/>
+			<span class="text-small font-light">Version Label: </span><span id= "version-label-edit" class= "content-editable font-light bg-label">
+        <%= @managed_item.version_label.empty? ? "None" : @managed_item.version_label %></span>
+        <span id= "version-label-edit-after">
+          <form action="<%= iso_scoped_identifiers_v2_path(@managed_item.has_identifier.id) %>" method="post">
+            <span class="form-wrap">
+              <input name="iso_scoped_identifier[version_label]" id="iso_scoped_identifier[version_label]" type="text" placeholder="Version label" value="<%= @managed_item.version_label %>" autofocus class="font-light"/>
+            </span>
+            <%= hidden_field_tag "_method", "put" %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    				<%= submit_tag "Update Version Label", class: "btn btn-xs", id: 'version-label-submit' %>
+  			 </form>
+        </span>
 
-			<form action="<%= iso_scoped_identifiers_v2_path(@managed_item.has_identifier.id) %>" method="post">
-				<span class="form-group" style="display: inline-block;">
-					<div class="text-small font-light">Version Label: </div>
-          <input name="iso_scoped_identifier[version_label]" id="iso_scoped_identifier[version_label]" type="text" autofocus class="form-control font-light">
-				</span>
-        <%= hidden_field_tag "_method", "put" %>
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-				<%= submit_tag "Update version label", class: "btn medium", id: 'version_submit' %>
-			</form>
-
-      <div class="form-wrap">
-              <select id="select_release">
-                <option value="major">Major: <%= @next_versions[:major] %> </option>
-                <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
-                <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
-              </select>
-      </div>
+      
 		</div>
 	</div>
 </div>
