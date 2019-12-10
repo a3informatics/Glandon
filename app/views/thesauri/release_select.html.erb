@@ -7,7 +7,8 @@
 
 <%= stylesheet_link_tag 'custom/tabs_layout', 'shared/datatables_loading', 'shared/managed_children_select', 'custom/show_more', 'custom/dates_selector' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
-<%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_slider', 'shared/iso_managed/managed_children_select', 'shared/show_more_js', 'thesauri/release_select' %>
+<%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_slider', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
+'shared/show_more_js', 'thesauri/release_select' %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
@@ -32,7 +33,7 @@
           <div class="tab-option disabled" id="tab-sponsor-cls"><div>Sponsor CLs</div></div>
           <div class="tab-option disabled" id="tab-sponsor-subsets"><div>Sponsor Subsets</div></div>
           <div class="tab-option disabled" id="tab-sponsor-extensions"><div>Sponsor Extensions</div></div>
-          <div class="tab-option" id="tab-selection-overview"><div><%=@thesaurus.label %></div></div>
+          <div class="tab-option disabled" id="tab-selection-overview"><div><%=@thesaurus.label %></div></div>
         </div>
 
         <div class="tab-wrap" data-tab="tab-cdisc-cls">
@@ -42,7 +43,7 @@
               <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
                 title_text: "Select CDISC Terminology version by dragging the slider:",
                 start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["ver.", ""],
-                button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit version change</button>".html_safe }%>
+                button: "<button id='select-cdisc-ver-button' class='btn medium red'>Submit selected version</button>".html_safe }%>
             <% end %>
           <% end %>
         </div>
@@ -60,9 +61,9 @@
         </div>
 
         <div class="tab-wrap closed" data-tab="tab-selection-overview">
-          <%= render layout: "shared/thesauri/release_select_overview_tab" do %>
+          <%= render layout: "shared/thesauri/release_select_overview_tab", :locals => {id: "table-selection-overview"} do %>
             <div class="font-light">This is the overview of the selection of code lists you have made so far. <br/>
-            Click the <span class="icon-times text-accent-2 text-small"></span> icon to remove an item from your thesaurus.</div>
+            Click the <span class="icon-times text-accent-2 text-tiny"></span> icon to remove an item from your thesaurus.</div>
           <% end %>
         </div>
 

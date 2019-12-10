@@ -1,0 +1,130 @@
+/*
+ * Selection Overview Table
+ *
+ * Requires:
+ * children_select [Table] the item table
+ * children_overview [Table] this table
+ */
+
+/**
+ * Managed Children Selection Overview Table
+ * @param [String] url of the data source, must match columns format on the bottom
+ * @param [String] id of the table
+ * @param [Integer] Number of items fetched in one request
+ * @param [Object Instance] reference to the table object instance
+ *
+ * @return [void]
+ */
+function ManagedChildrenSelectOverview(dataUrl, tableId, count, context) {
+	this.mcs = new ManagedChildrenSelect(dataUrl, tableId, count, null, "thOverview").init();
+	this.table = this.mcs.table;
+	this.context = context;
+	this.table.select.style('api');
+
+	this.setListeners();
+}
+
+/**
+ * Update items in the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ * @param [String] update action, can be: "add" or "remove"
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, action) {
+	this.mcs.processing(true);
+
+	setTimeout(function () {
+		switch (action) {
+		case "add":
+			this.addItems(data, context);
+			break;
+		case "remove":
+			this.removeItems(data, context);
+			break;
+		}
+		this.mcs.processing(false);
+		context.processing(false);
+	}.bind(this), 0)
+}
+
+/**
+ * Adds item(s) to the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
+	$.each(data, function (i, e) {
+		e["version"] = "Ver 1.2.3.";
+		e["context"] = {
+			index: context.findRowsByParam("id", [e]).indexes()[0],
+			source: context.tableId
+		};
+	});
+	this.table.rows.add(data);
+	this.redraw();
+}
+
+/**
+ * Removed item(s) to the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
+	this.mcs.findRowsByParam("id", data).remove();
+	this.table.draw();
+}
+
+/**
+ * Redraws the table, re-sets the listeners
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.redraw = function () {
+	this.mcs.redraw();
+	this.setListeners();
+}
+
+/**
+ * Sets the event listeners for: bulk-deselect, exclude buttons
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.setListeners = function () {
+	var _this = this;
+
+	$(_this.mcs.tableId + "-bulk-deselect").off("click").on("click", function () {
+		new ConfirmationDialog(function () {
+			_this.mcs.processing(true);
+			setTimeout(function () {
+				_this.bulkRemove()
+			}, 0);
+		}, {dangerous: true}).show()
+	});
+
+	$(_this.mcs.tableId).find(".exclude").off("click").on("click", function ()  {
+		var context = _this.table.row($(this).parents("tr:first")).data().context;
+		if (context != null)
+			$(context.source).DataTable().row(context.index).deselect();
+		else
+			_this.context.autoDeselectAllTabs({id: $(this).attr("data-id")});
+	});
+}
+
+/**
+ * Removes all items filtered by the table search in bulk
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
+	this.table.rows({ search: 'applied' }).remove();
+	this.context.autoDeselectAllTabs();
+
+	this.table.draw();
+	this.mcs.processing(false);
+}

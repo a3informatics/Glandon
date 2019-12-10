@@ -9,6 +9,7 @@ $(document).ready(function(){
 
 /**
  * Release Select Constructor
+ * This class is only a wrapper for code organization. It is page specific and should not be used elsewhere.
  *
  * @return [void]
  */
@@ -66,11 +67,26 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, null, "thCodeList");
-  var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, null, "thCodeList");
+  var overview = new ManagedChildrenSelectOverview(sponsorCLUrl, "#table-selection-overview", 1000, this);
+  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
+  var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
 
-  return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls};
+  return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls, target: overview};
 }
+
+/**
+ * Calls auto select on each tab
+ *
+ * @return [void]
+ */
+ReleaseSelect.prototype.autoDeselectAllTabs = function(data){
+  var _this = this;
+  $.each(_this.tabs, function(k,v){
+    if(k != "target")
+      v.autoDeselect(data);
+  });
+}
+
 
 /**
  * Changes CDISC version, reloads data, updates UI
