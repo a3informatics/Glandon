@@ -75,15 +75,19 @@
 					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'") , dt_toggle: "", disabled: true } %>
 			<% end %>
       <hr>
-	    <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "content-editable font-light bg-label"><%=@managed_item.semantic_version %></span>
-      <span id= "version-edit-after" class="form-wrap">
-        <select id="select-release">
-          <option value="major" selected>Major: <%= @next_versions[:major] %> </option>
-          <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
-          <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
-        </select>
+      <% if @managed_item.latest? %>
+      <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "content-editable font-light bg-label"><%=@managed_item.semantic_version %></span>
+        <span id= "version-edit-after" class="form-wrap">
+          <select id="select-release">
+            <option value="major" selected>Major: <%= @next_versions[:major] %> </option>
+            <option value="minor">Minor: <%= @next_versions[:minor] %> </option>
+            <option value="patch">Patch: <%= @next_versions[:patch] %> </option>
+          </select>
         <button id= "version-edit-submit" class="btn btn-xs">Update Version</button>
       </span>
+      <% else %>
+        <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "font-light bg-label"><%=@managed_item.semantic_version %></span>
+      <% end %>
       <br/>
 			<span class="text-small font-light">Version Label: </span><span id= "version-label-edit" class= "content-editable font-light bg-label">
         <%= @managed_item.version_label.empty? ? "None" : @managed_item.version_label %></span>
