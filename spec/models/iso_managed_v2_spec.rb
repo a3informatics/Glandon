@@ -884,7 +884,6 @@ describe "IsoManagedV2" do
       IsoHelpers.clear_cache
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
       load_files(schema_files, data_files)
-      # load_cdisc_term_versions(1..5)
     end
 
     it "allows the item release to be incremented, one version, no changes" do
@@ -896,7 +895,8 @@ describe "IsoManagedV2" do
       item.release(:major)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("1.0.0")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.0.0")
     end
 
     it "allows the item release to be incremented, two versions, increment major" do
@@ -908,7 +908,8 @@ describe "IsoManagedV2" do
       item.release(:major)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("3.0.0")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("3.0.0")
     end
 
     it "allows the item release to be incremented, two versions, increment minor" do
@@ -920,7 +921,8 @@ describe "IsoManagedV2" do
       item.release(:minor)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("2.1.0")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("2.1.0")
     end
 
     it "allows the item release to be incremented, two versions, increment patch" do
@@ -932,7 +934,8 @@ describe "IsoManagedV2" do
       item.release(:patch)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("2.0.1")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("2.0.1")
     end
 
     it "allows the item release to be incremented, two versions, increment empty, error" do
@@ -941,10 +944,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       item.has_state.registration_status = "Qualified"
       expect(item.semantic_version).to eq("2.0.0")
-      item.release(:asd)
-      expect(item.errors.full_messages.to_sentence).to eq("")
-      expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("2.0.0")
+      expect{item.release(:asd)}.to raise_error(Exceptions::ApplicationLogicError)
     end
 
     it "allows the item release to be incremented, five versions, increment major" do
@@ -956,7 +956,8 @@ describe "IsoManagedV2" do
       item.release(:major)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("6.0.0")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("6.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment minor" do
@@ -968,7 +969,8 @@ describe "IsoManagedV2" do
       item.release(:minor)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("5.1.0")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("5.1.0")
     end
 
     it "allows the item release to be incremented, five versions, increment patch" do
@@ -980,7 +982,8 @@ describe "IsoManagedV2" do
       item.release(:patch)
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
-      expect(item.semantic_version).to eq("5.0.1")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("5.0.1")
     end
     
   end

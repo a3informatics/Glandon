@@ -213,18 +213,19 @@ class IsoManagedV2 < IsoConceptV2
     item = self.class.find_minimum(results.first)
     sv = SemanticVersion.from_s(item.semantic_version.to_s)
       case release
-      when :major
-        sv.increment_major
-        self.has_identifier.semantic_version = sv.to_s
-      when :minor
-        sv.increment_minor  
-        self.has_identifier.semantic_version = sv.to_s
-      when :patch
-        sv.increment_patch
-        self.has_identifier.semantic_version = sv.to_s
-      else
-        "Error: the release param is not valid  "
+        when :major
+          sv.increment_major
+        when :minor
+          sv.increment_minor  
+        when :patch
+          sv.increment_patch
+        else
+          raise Exceptions::ApplicationLogicError.new(message: "The release param is not valid")
       end
+      si = self.has_identifier
+      si.update(semantic_version: sv.to_s)
+      si.save
+      self
   end
 
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
@@ -531,7 +532,7 @@ class IsoManagedV2 < IsoConceptV2
     return self if !self.new_version?
     ra = IsoRegistrationAuthority.owner
     object = self.clone
-    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.next_semantic_version.to_s, has_scope: ra.ra_namespace)
+    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.semantic_version.to_s, has_scope: ra.ra_namespace)
     object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
     object.creation_date = Time.now
     object.last_change_date = Time.now
