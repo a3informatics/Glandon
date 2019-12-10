@@ -43,7 +43,9 @@ class IsoManagedV2Controller < ApplicationController
     rdf_type = IsoManagedV2.the_type(uri)
     klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
     @managed_item = klass.find_minimum(params[:id])
-    @managed_item.release(the_params[:sv_type].downcase.to_sym)
+    if @managed_item.latest?
+      @managed_item.release(the_params[:sv_type].downcase.to_sym)
+    end
     if @managed_item.errors.empty?
         render :json => { :data => @managed_item.semantic_version}, :status => 200
       else
