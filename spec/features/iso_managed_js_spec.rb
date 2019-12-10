@@ -205,6 +205,36 @@ describe "ISO Managed JS", :type => :feature do
       ui_check_table_row("version_info", 3, ["Internal Version:", "1"])
     end
 
+    it "allows the semantic version to be updated", js: true do
+      ua_curator_login
+      click_navbar_terminology
+      click_link 'New Terminology'
+      fill_in 'thesauri_identifier', with: 'TEST test'
+      fill_in 'thesauri_label', with: 'Test Terminology'
+      click_button 'Submit'
+      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
+      wait_for_ajax(10)
+      # context_menu_element('history', 4, 'Test Terminology', :edit)
+      # wait_for_ajax(10)
+      # click_link 'Return'
+      context_menu_element('history', 4, 'Test Terminology', :document_control)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content 'Version Control'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Incomplete")
+      click_button "state_submit"
+      expect(page).to have_content("Candidate")
+      click_button "state_submit"
+      expect(page).to have_content("Recorded")
+      click_button "state_submit"
+      expect(page).to have_content("Qualified")
+      find(:xpath, "//*[@id='version-edit']").click
+      find(:xpath, "//*[@id='select-release']/option[3]").click
+      find(:xpath, "//*[@id='version-edit-submit']").click
+      ui_check_table_row("version_info", 1, ["Version:", "0.1.0"])
+    end
+
     it "allows items to be exported" #, js: true do
     #   ua_content_admin_login
     #   click_navbar_export
