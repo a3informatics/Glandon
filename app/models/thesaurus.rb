@@ -405,6 +405,31 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     results
   end
 
+  # Referenced Thesauri. Find the referenced thesauri
+  #
+  # @return [Array] array of uris of the referenced thesauri
+  def referenced_thesauri
+    query_string = %Q{
+      SELECT DISTINCT ?s WHERE
+      { 
+        #{self.uri.to_ref} th:isTopConceptReference ?ref .
+        ?ref bo:context ?s .
+      }
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    query_results.by_object(:s)
+  end
+
+  # Referenced Thesaurus. Find the single referenced thesaurus
+  #
+  # @return [Uri] the uri of the singfle reference thesaurus
+  def referenced_thesaurus
+    results = referenced_thesauri
+    return nil if results.count == 0
+    return results.first if results.count == 1
+    Errors.application_error(self.class.name, __method__.to_s, "Found multiple referenced versions for thesaurus #{self.scoped_identifier}.")
+  end    
+  
   # Add Child. Adds a child item that is itself managed
   #
   # @params [Hash] params the parameters, can be empty for auto-generated identifier

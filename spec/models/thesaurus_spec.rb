@@ -608,4 +608,39 @@ describe Thesaurus do
 
   end
 
+  describe "Referenced Versions" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    before :each do
+    end
+
+    it "no reference thesaurus" do
+      s_th = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      expect(s_th.referenced_thesauri).to eq([])
+      expect(s_th.referenced_thesaurus).to eq(nil)
+    end
+
+    it "reference thesauri" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      expect(s_th.referenced_thesauri).to eq([])
+      expect(s_th.referenced_thesaurus).to eq(nil)
+      ref = OperationalReferenceV3::TcReference.create({reference: r_th_1, context: r_th_1}, s_th)
+      s_th.add_link(:is_top_concept_reference, ref.uri)
+      expect(s_th.referenced_thesauri).to eq([r_th_1.uri])
+      expect(s_th.referenced_thesaurus).to eq(r_th_1.uri)
+      ref = OperationalReferenceV3::TcReference.create({reference: r_th_2, context: r_th_2}, s_th)
+      s_th.add_link(:is_top_concept_reference, ref.uri)
+      expect(s_th.referenced_thesauri).to match_array([r_th_1.uri, r_th_2.uri])
+      expect{s_th.referenced_thesaurus}.to raise_error(Errors::ApplicationLogicError, "Found multiple referenced versions for thesaurus TEST.")
+    end
+
+  end
+
 end
