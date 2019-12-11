@@ -174,13 +174,14 @@
   height: 100%;
   position: absolute;
   display: block;
+  left: 0;
 }
 
 .list-card .text{
   color: $grey-medium;
   font-size: $font-small;
   font-family: $font-normal;
-  margin-left: 20px;
+  margin-left: 15px;
   white-space: normal;
   transition: transform .3s;
 }
