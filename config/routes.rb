@@ -116,6 +116,11 @@ Rails.application.routes.draw do
       get :find_by_tag
     end
   end
+  resources :iso_registration_states_v2, only: [] do
+    member do
+      put :update
+    end
+  end
   resources :dashboard, only: [:index] do
     collection do
       get :view
