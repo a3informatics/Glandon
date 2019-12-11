@@ -303,7 +303,6 @@ ManagedChildrenSelect.prototype.columns = function () {
   					else return data
   				}},
   			{"data": "indicators", "render": function (data, type, row, meta) {
-					console.log(formatIndicatorsString(data));
   					if (type == "display") return formatIndicators(data);
   					else return formatIndicatorsString(data);
   				}, "width": "80px"}
