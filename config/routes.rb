@@ -167,6 +167,7 @@ Rails.application.routes.draw do
     resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
       member do
         get :children
+        get :children_with_indicators
         post :add_child
         get :show_data
         get :changes
