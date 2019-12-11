@@ -14,16 +14,18 @@
 }
 
 .tab-option{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: $grey-bright;
   color: $grey-medium;
   font-family: $font-light;
-  min-width: 70px;
+  min-width: 100px;
   padding: 6px 14px;
   text-align: center;
   position: relative;
   border: 1px solid $grey-bright;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .tab-option:hover {
