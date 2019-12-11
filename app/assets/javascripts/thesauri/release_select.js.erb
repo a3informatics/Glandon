@@ -103,7 +103,8 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   $(".tab-option.disabled").removeClass("disabled");
   $(".show-more-btn").click();
 
-  this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}).remove().draw();
+  this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}).remove();
+  this.tabs.target.redraw();
 }
 
 /**
