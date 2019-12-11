@@ -192,6 +192,16 @@ describe ThesauriController do
       check_file_actual_expected(actual, sub_dir, "children_expected_1.yaml", equate_method: :hash_equal)
     end
 
+    it "children with indicators" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :children_with_indicators, {id: ct.id, thesauri: {offset: 0, count: 10}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "children_indicators_expected_1.yaml", equate_method: :hash_equal)
+    end
+
     it "children, subsets" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/CT/SUBSETPK#TH123"))
       request.env['HTTP_ACCEPT'] = "application/json"
