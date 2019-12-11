@@ -359,6 +359,52 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaur
     results
   end
 
+  # Managed Children Indicators Paginated. Get the children in pagination manner
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @option params [Array] :tags the tag to be displayed
+  # @return [Array] array of hashes containing the child data
+  def managed_children_indicators_paginated(params)
+    results =[]
+    tags = params.key?(:tags) ? params[:tags] : []
+
+    # Get set of URIs
+    uris = child_uri_set(params)
+
+    # Get the final result
+    tag_clause = tags.empty? ? "" : "VALUES ?t { '#{tags.join("' '")}' } "
+    query_string = %Q{
+SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{Thesaurus::ManagedConcept.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) ?s WHERE\n
+{
+  SELECT DISTINCT ?i ?n ?d ?pt ?e ?del ?s ?sy ?t ?o ?ext ?sub WHERE
+  {
+    VALUES ?s { #{uris.map{|x| x.to_ref}.join(" ")} }
+    {
+      ?s th:identifier ?i .
+      ?s th:notation ?n .
+      ?s th:definition ?d .
+      ?s th:extensible ?e .
+      ?s th:preferredTerm/isoC:label ?pt .
+      ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o
+      OPTIONAL {?s th:synonym/isoC:label ?sy .}
+      OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t . #{tag_clause}}
+      BIND ( EXISTS {?s ^th:extends ?x } AS ?ext )         
+      BIND ( EXISTS {?s ^th:subsets ?x } AS ?sub )   
+    }
+  } ORDER BY ?i ?sy ?t
+} GROUP BY ?i ?n ?d ?pt ?e ?s ?o ?ext ?sub ORDER BY ?i
+}
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
+    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :ext, :sub]).each do |x|
+      indicators = {current: false, extended: x[:ext].to_bool, extends: false, version_count: 0, subset: false, subsetted: x[:sub].to_bool}
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
+        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
+    end
+    results
+  end
+
   # Add Child. Adds a child item that is itself managed
   #
   # @params [Hash] params the parameters, can be empty for auto-generated identifier
@@ -418,6 +464,22 @@ def add_subset(mc_id)
 end
 
 private
+
+  # Get the set of URIs for each child
+  def child_uri_set(params)
+    count = params[:count].to_i
+    offset = params[:offset].to_i
+    query_string = %Q{
+      SELECT ?e WHERE
+      {
+        #{self.uri.to_ref} th:isTopConceptReference ?r .
+        ?r bo:reference ?e .
+        ?r bo:ordinal ?v
+      } ORDER BY (?v) LIMIT #{count} OFFSET #{offset}
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
+    query_results.by_object_set([:e]).map{|x| x[:e]}
+  end
 
   # Changes result comparison class
   class DiffResult < Hash

@@ -62,4 +62,13 @@ private
     end
   end
 
+  def self.fake_extended(uri, ext_id)
+    sparql = %Q{INSERT DATA
+      { 
+        <http://example/book1> <http://example/is> #{uri.to_ref} .
+      }
+    }
+    Sparql::Update.new.sparql_update(sparql, "", []) 
+  end
+  
 end

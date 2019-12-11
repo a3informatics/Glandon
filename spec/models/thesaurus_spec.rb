@@ -379,13 +379,27 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       timer_start
       (1..100).each {|x| actual = ct.managed_children_pagination(offset: 0, count: 10)}
-      timer_stop("100 searches")
+      timer_stop("100 searches [2.55s]")
     end
 
     it "get children, tag filter" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.managed_children_pagination(offset: 0, count: 10, tags: ["SDTM"])
       check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
+    end
+
+    it "get children, V1 all items" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(32)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_1.yaml", write_file: true)
+    end
+
+    it "get children, speed" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      timer_start
+      (1..100).each {|x| actual = ct.managed_children_indicators_paginated(offset: 0, count: 10)}
+      timer_stop("100 searches [79.95s]")
     end
 
   end
