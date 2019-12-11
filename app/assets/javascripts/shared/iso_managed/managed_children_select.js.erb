@@ -92,10 +92,10 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
 
 	$.ajax({
 		url: _this.dataUrl,
-		data: {
-			"count": _this.count,
-			"offset": offset
-		},
+		data:
+		{ "thesauri":
+			{	"count": _this.count,
+				"offset": offset} },
 		type: 'GET',
 		dataType: 'json',
 		success: function (result) {
@@ -302,18 +302,10 @@ ManagedChildrenSelect.prototype.columns = function () {
   					if (type == "display") return colorCodeTagsBadge(data);
   					else return data
   				}},
-  			{"render": function (data, type, row, meta) {
-  					if (type == "display") return formatIndicators({
-  						"current": false,
-  						"extended": true,
-  						"extends": false,
-  						"version_count": 1,
-  						"subset": false,
-  						"subsetted": true
-  					});
-  					else return "subsetted"
-  				},
-          "width": "80px"}
+  			{"data": "indicators", "render": function (data, type, row, meta) {
+  					if (type == "display") return formatIndicators(data);
+  					else return formatIndicatorsString(data);
+  				}, "width": "80px"}
   		];
   		break;
   	case "thOverview":
@@ -327,22 +319,14 @@ ManagedChildrenSelect.prototype.columns = function () {
   					return colorCodeTagsBadge(data);
   				}},
   			{"data": "version"},
-  			{"render": function (data, type, row, meta) {
-  					if (type == "display") return formatIndicators({
-  						"current": false,
-  						"extended": true,
-  						"extends": false,
-  						"version_count": 2,
-  						"subset": false,
-  						"subsetted": true
-  					});
-  					else return "subsetted";
-  				},
-          "width": "80px"},
+				{"data": "indicators", "render": function (data, type, row, meta) {
+						if (type == "display") return formatIndicators(data);
+						else return formatIndicatorsString(data);
+					}, "width": "80px"},
   			{"render": function (data, type, row, meta) {
   					if (type == "display") return _this.excludeBtnHTML(row);
   					else return "";
-  				}}
+				}}
   		];
   		break;
 	}

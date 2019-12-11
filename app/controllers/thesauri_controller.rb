@@ -123,10 +123,9 @@ class ThesauriController < ApplicationController
 
   def children_with_indicators
     authorize Thesaurus, :show?
-    results = []
     ct = Thesaurus.find_minimum(params[:id])
     children = ct.managed_children_indicators_paginated(the_params)
-    render :json => { data: results }, :status => 200
+    render :json => { data: children }, :status => 200
   end
 
   def add_child
