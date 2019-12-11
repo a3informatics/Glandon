@@ -59,3 +59,16 @@ function formatIndicators(data){
   });
   return indicatorsHtml;
 }
+
+function formatIndicatorsString(data){
+  var output = "";
+
+  $.each(data, function(k, v){
+    if (k == "version_count")
+      output += "version count: " + v + ", ";
+    else if(v == true)
+      output += k + ", ";
+  });
+
+  return output;
+}
