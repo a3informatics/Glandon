@@ -1125,4 +1125,19 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "sets" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..20)
+    end
+
+    it "determines if an item is subsetted" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml", write_file: true)
+    end
+
+  end
+
 end
