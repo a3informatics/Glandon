@@ -19,6 +19,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   data_property :unresolved_issue
   data_property :administrative_status
   data_property :previous_state, default: C_NOT_SET
+  data_property :multiple_edit, default: false
   object_property :by_authority, cardinality: :one, model_class: "IsoRegistrationAuthority", delete_exclude: true
 
   validates_with Validator::Field, attribute: :registration_status, method: :valid_registration_state?
@@ -27,9 +28,9 @@ class IsoRegistrationStateV2 < Fuseki::Base
   validates_with Validator::Field, attribute: :unresolved_issue, method: :valid_label?
   validates_with Validator::Klass, property: :by_authority, level: :uri
 
-  def initialize(attributes = {})
-    super
-  end
+  # def initialize(attributes = {})
+  #   super
+  # end
 
   # Current?
   # 
@@ -192,6 +193,12 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return results
   end
   
+  def to_h
+    new_hash = super
+    new_hash.delete(:multiple_edit)
+    new_hash
+  end
+
 private
 
   def self.count_query

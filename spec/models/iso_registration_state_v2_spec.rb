@@ -40,6 +40,7 @@ describe "IsoRegistrationStateV2" do
     expect(object.unresolved_issue).to eq("")
     expect(object.administrative_status).to eq("")
     expect(object.previous_state).to eq("Not_Set")
+    expect(object.multiple_edit).to eq(false)
   end
 
   it "validates a valid object" do
@@ -261,6 +262,26 @@ describe "IsoRegistrationStateV2" do
     expect(result.to_h).to eq(expected)
   end
 
+  it "allows to delete multiple_edit flag property from hash " do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+        expected = 
+    {
+      :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
+      :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
+      :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
+      :registration_status => "Standard",
+      :administrative_note => "", 
+      :effective_date=> "2016-01-01T00:00:00+00:00",
+      :until_date => "2016-01-01T00:00:00+00:00",
+      :unresolved_issue => "", 
+      :administrative_status => "", 
+      :previous_state => "Qualified",
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+    }
+    result = IsoRegistrationStateV2.find(uri)
+    expect(result.to_h).to eq(expected)
+  end
+
   it "does not find an unknown id" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1x")
     expect{IsoRegistrationStateV2.find(uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/MDRItems#RS-TEST_1-1x in IsoRegistrationStateV2.")
@@ -418,6 +439,14 @@ describe "IsoRegistrationStateV2" do
     object.update
     object = IsoRegistrationStateV2.find(uri)
     expect(object.administrative_note).to eq("X1")
+  end
+
+  it "allows for an object to update multiple edit flag" do
+    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_3-4")
+    object = IsoRegistrationStateV2.find_children(uri)
+    object.update(multiple_edit: true)
+    object = IsoRegistrationStateV2.find(uri)
+    expect(object.multiple_edit).to eq(true)
   end
   
   it "allows for an object to be updated, effective date unchanged"
