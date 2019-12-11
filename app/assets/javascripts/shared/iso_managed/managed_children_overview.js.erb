@@ -60,7 +60,7 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
 	$.each(data, function (i, e) {
 		e["version"] = "Ver 1.2.3.";
 		e["context"] = {
-			index: context.findRowsByParam("id", [e]).indexes()[0],
+			index: context.findRowByParam("id", e).index(),
 			source: context.tableId
 		};
 	});
@@ -76,7 +76,7 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
-	this.mcs.findRowsByParam("id", data).remove();
+	this.mcs.findRowsByData("id", data).remove();
 	this.table.draw();
 }
 

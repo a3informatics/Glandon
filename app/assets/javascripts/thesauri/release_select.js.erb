@@ -102,6 +102,9 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   $("#cdisc-version-label").html(this.cdiscCT.version);
   $(".tab-option.disabled").removeClass("disabled");
   $(".show-more-btn").click();
+
+  this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}).remove();
+  this.tabs.target.redraw();
 }
 
 /**

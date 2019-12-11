@@ -145,17 +145,6 @@ ManagedChildrenSelect.prototype.redraw = function () {
 }
 
 /**
- * Finds whether the instance datatable has a row from another datatable, comparison based on data 'id'
- * @param [Datatable Row] row whose data is to be searched for
- *
- * @return [DatatTable Row] Resulting row. If none found, row.length is 0
- */
-ManagedChildrenSelect.prototype.hasRow = function (row) {
-	var row = this.table.row(this.findRowsByParam("id", [row.data()]));
-	return row;
-}
-
-/**
  * Iterates through target table rows and selects - marks those that are contained in this table
  *
  * @return [void]
@@ -244,21 +233,35 @@ ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
 }
 
 /**
- * Finds rows in a DataTable based on data
+ * Finds rows in a DataTable based on a single data parameter
  *
  * @param [String] DataType by which to search, e.g. identifier
- * @param [Data Array] Values which to compare
- * @return [Array] array of row indexes
+ * @param [Object] Single data object
+ * @return [DataTable Rows] 1 or more rowws
  */
 ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 	var _this = this;
+
+	return _this.table.rows(function (idx, dt, node) {return dt[dataType] == data[dataType] ? true : false;})
+}
+
+/**
+ * Finds rows in a DataTable based on data
+ *
+ * @param [String] DataType by which to search, e.g. identifier
+ * @param [Object Array] Object which to find based on dataType
+ * @return [DataTable Rows] 1 or more rowws
+ */
+ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
+	var _this = this;
+
 	var indexes = [];
+
 	$.each(data, function (i, e) {
-		var rowIndex = _this.table.row(function (idx, dt, node) {
-			return dt[dataType] == e[dataType] ? true : false;
-		}).index();
-		indexes.push(rowIndex);
+		var rowIndexes = _this.table.rows(function (idx, dt, node) { return dt[dataType] == e[dataType] ? true : false; }).indexes().toArray();
+		indexes = indexes.concat(rowIndexes);
 	});
+
 	return _this.table.rows(indexes);
 }
 
