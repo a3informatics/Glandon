@@ -53,7 +53,7 @@ describe "Thesauri", :type => :feature do
       wait_for_ajax(120)
       expect(page).to have_content("CDISC SDTM Pharmaceutical Dosage Form Terminology")
       context_menu_element_header(:subsets)
-      wait_for_ajax(120)
+      sleep 1
       ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
       ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
       click_button "Close"
@@ -208,6 +208,7 @@ describe "Thesauri", :type => :feature do
       click_link "Edit properties"
       fill_in "edit_preferred_term", with: "Term 1"
       click_button "Submit"
+      wait_for_ajax(120)
       expect(page).to have_content("Preferred term: Term 1")
       expect(AuditTrail.count).to eq(audit_count+2)
     end

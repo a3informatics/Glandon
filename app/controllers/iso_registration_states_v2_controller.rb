@@ -15,7 +15,6 @@ class IsoRegistrationStatesV2Controller < ApplicationController
   def update
     authorize IsoRegistrationState, :update?
     @managed_item = IsoManagedV2.find_minimum(params[:id])
-  byebug
       @managed_item.has_state.update(multiple_edit: the_params[:multiple_edit])
     if @managed_item.errors.empty?
         render :json => { :data => ""}, :status => 200
