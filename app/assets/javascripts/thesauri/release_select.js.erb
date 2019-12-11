@@ -58,7 +58,7 @@ ReleaseSelect.prototype.initCdiscCt = function(){
  * @return [String] URL to fetch CDISC CT version children
  */
 ReleaseSelect.prototype.makeCdiscUrl = function(id){
-  return cdiscCLUrl.substring(0, cdiscCLUrl.lastIndexOf('/')+1)+id;
+  return cdiscCLUrl.replace("th_id", id)
 }
 
 /**

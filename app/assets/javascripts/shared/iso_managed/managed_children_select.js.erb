@@ -92,10 +92,10 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
 
 	$.ajax({
 		url: _this.dataUrl,
-		data: {
-			"count": _this.count,
-			"offset": offset
-		},
+		data:
+		{ "thesauri":
+			{	"count": _this.count,
+				"offset": offset} },
 		type: 'GET',
 		dataType: 'json',
 		success: function (result) {
