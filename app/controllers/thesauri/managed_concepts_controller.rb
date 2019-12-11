@@ -35,7 +35,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-byebug
     @thesaurus_concept = edit_item(@thesaurus_concept)
     @thesaurus_concept.synonyms_and_preferred_terms
     #@thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
