@@ -7,6 +7,7 @@ describe Thesaurus do
   include TimeHelpers
   include PublicFileHelpers
   include CdiscCtHelpers
+  include ThesauriHelpers
 
   def sub_dir
     return "models/thesaurus"
@@ -388,14 +389,23 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
     end
 
-    it "get children, V1 all items" do
+    it "get children with indicators, V1 all items" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
       actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
       expect(actual.count).to eq(32)
-      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_1.yaml", write_file: true)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_1.yaml")
     end
 
-    it "get children, speed" do
+    it "get children with indicators extend and subset, V1 all items" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), "1")
+      ThesauriHelpers.fake_subsetted(Uri.new(uri: "http://www.cdisc.org/C49638/V1#C49638"), "1")
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(32)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_2.yaml")
+    end
+
+    it "get children with indicators, speed" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       timer_start
       (1..100).each {|x| actual = ct.managed_children_indicators_paginated(offset: 0, count: 10)}
