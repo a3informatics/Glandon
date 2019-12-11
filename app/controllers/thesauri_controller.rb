@@ -128,6 +128,16 @@ class ThesauriController < ApplicationController
     render :json => { data: children }, :status => 200
   end
 
+  def referenced_thesaurus
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    ref_uri = ct.refererenced_thesaurus
+    result = ref_uri.nil? ? {} : Thesaurus.find_minimum(ref_uri).to_h
+    render :json => { data: result }, :status => 200
+  rescue => e
+    render :json => { data: {}, errors: [e.message] }, :status => 404
+  end
+
   def add_child
     authorize Thesaurus, :create?
     ct = Thesaurus.find_minimum(params[:id])
