@@ -234,8 +234,8 @@ Rails.application.routes.draw do
       get :export_csv
       post :add_subset
       get :release_select
-      put :reference, action: :set_referenced
-      get :reference, action: :put_referenced
+      put :reference, action: :set_reference
+      get :reference, action: :get_reference
       post :select_children
       put :deselect_children
       put :deselect_all_children
