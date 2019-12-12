@@ -101,9 +101,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
   this.cdiscCT.version = $(".timeline-point.point-highlight span").text();
 
-  var newContext = $.extend({}, this.tabs.cdiscTab);
-  newContext.byParam = true;
-  this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, newContext, "remove");
+  this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
 
   this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
   $("#cdisc-version-label").html(this.cdiscCT.version);
@@ -131,13 +129,11 @@ ReleaseSelect.prototype.setEventListeners = function(){
   });
 
   tabSwitchCallback = function(tab){
-   switch($(tab).attr("id")){
-     case "tab-sponsor-cls":
-      if(!_this.tabs.sponsorClTab.dataLoaded)
-         _this.tabs.sponsorClTab.loadData(0);
-       break;
-     default:
-       break;
-   }
+    switch($(tab).attr("id")){
+      case "tab-sponsor-cls":
+        if(!_this.tabs.sponsorClTab.dataLoaded)
+          _this.tabs.sponsorClTab.loadData(0);
+          break;
+    }
   }
 }

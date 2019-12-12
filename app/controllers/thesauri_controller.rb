@@ -107,6 +107,8 @@ class ThesauriController < ApplicationController
     @versions = CdiscTerm.version_dates
     @versions_normalized = normalize_versions(@versions)
     @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
+    @ref_thesaurus = @thesaurus.referenced_thesaurus
+    @cdisc_date =  @ref_thesaurus == nil ? "None" : @versions.find{|x| x[:id] == @ref_thesaurus.to_id}[:date]
   end
 
   def children
