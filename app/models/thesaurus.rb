@@ -7,8 +7,9 @@ class Thesaurus <  IsoManagedV2
   configure rdf_type: "http://www.assero.co.uk/Thesaurus#Thesaurus",
             uri_suffix: "TH"
 
-  object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TcReference", children: true
+  object_property :is_top_concept_reference, cardinality: :many, model_class: "OperationalReferenceV3::TmcReference", children: true
   object_property :is_top_concept, cardinality: :many, model_class: "Thesaurus::ManagedConcept", delete_exclude: true, read_exclude: true
+  object_property :reference, cardinality: :one, model_class: "OperationalReferenceV3", delete_exclude: true, read_exclude: true
 
   include Thesaurus::Search
   include Thesaurus::Where
@@ -405,29 +406,25 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     results
   end
 
-  # Referenced Thesauri. Find the referenced thesauri
+  # Set Referenced Thesaurus. Set the referenced thesaurus
   #
-  # @return [Array] array of uris of the referenced thesauri
-  def referenced_thesauri
-    query_string = %Q{
-      SELECT DISTINCT ?s WHERE
-      { 
-        #{self.uri.to_ref} th:isTopConceptReference ?ref .
-        ?ref bo:context ?s .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo])
-    query_results.by_object(:s)
+  # @param [Thesaurus] object the thesaurus object
+  # @return [Void] no return
+  def set_referenced_thesaurus(object)
+    transaction_begin
+    ref = OperationalReferenceV3.create({reference: object}, self)
+    self.reference = ref
+    self.save
+    transaction_execute
   end
 
   # Referenced Thesaurus. Find the single referenced thesaurus
   #
   # @return [Uri] the uri of the singfle reference thesaurus
-  def referenced_thesaurus
-    results = referenced_thesauri
-    return nil if results.count == 0
-    return results.first if results.count == 1
-    Errors.application_error(self.class.name, __method__.to_s, "Found multiple referenced versions for thesaurus #{self.scoped_identifier}.")
+  def get_referenced_thesaurus
+    ref = self.reference_objects
+    return nil if ref.nil?
+    return Thesaurus.find_minimum(ref.reference)
   end    
   
   # Add Child. Adds a child item that is itself managed
@@ -442,11 +439,97 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     transaction_begin
     child = Thesaurus::ManagedConcept.create(child)
     return child if child.errors.any?
-    ref = OperationalReferenceV3::TcReference.create({reference: child, ordinal: ordinal}, self)
+    ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal}, self)
     self.add_link(:is_top_concept, child.uri)
     self.add_link(:is_top_concept_reference, ref.uri)
     transaction_execute
     child
+  end
+
+  # Select Children. Select 1 or more child items that are managed
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :id_set the array of ids to be added
+  # @return [Void] the created object. May contain errors if unsuccesful.
+  def select_children(params)
+    ordinal = next_ordinal(:is_top_concept_reference)
+    transaction_begin
+    params[:id_set].each do |id|
+      uri = Uri.new(id: id)
+      refs = OperationalReferenceV3::TmcReference.where(reference: uri)
+      ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal}, self)
+      self.add_link(:is_top_concept, uri)
+      self.add_link(:is_top_concept_reference, ref.uri)
+      ordinal += 1
+    end
+    transaction_execute
+  end
+
+  # Deselect Children. Select 1 or more child items that are managed
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :id_set the array of ids to be added
+  # @return [Void] the created object. May contain errors if unsuccesful.
+  def deselect_children(params)
+    query_string = %Q{
+      DELETE 
+      { 
+        ?s ?p ?o 
+      } 
+      WHERE 
+      {
+        VALUES ?x { #{params[:id_set].map {|x| Uri.new(id: x).to_ref}.join(" ")} }
+        { 
+          #{self.uri.to_ref} th:isTopConceptReference ?s .
+          ?s bo:reference ?x .
+          ?s ?p ?o
+        } UNION
+        { 
+          BIND ( #{self.uri.to_ref} as ?s )
+          BIND ( th:isTopConceptReference as ?p ) .
+          #{self.uri.to_ref} th:isTopConceptReference ?o .
+          ?o bo:reference ?x .
+        } UNION
+        { 
+          BIND ( #{self.uri.to_ref} as ?s )
+          BIND ( th:isTopConcept as ?p ) .
+          BIND ( ?x as ?o)
+        }
+      }
+    }
+    partial_update(query_string, [:th, :bo])
+  end
+
+  # Deselect All Children. Deselect all child items
+  #
+  # @params [Hash] params the parameters
+  # @option params [String] :id_set the array of ids to be added
+  # @return [Void] the created object. May contain errors if unsuccesful.
+  def deselect_all_children
+    query_string = %Q{
+      DELETE 
+      { 
+        ?s ?p ?o 
+      } 
+      WHERE 
+      {
+        { 
+          #{self.uri.to_ref} th:isTopConceptReference ?s .
+          ?s ?p ?o
+        } UNION
+        { 
+          BIND ( #{self.uri.to_ref} as ?s )
+          BIND ( th:isTopConceptReference as ?p ) .
+          #{self.uri.to_ref} th:isTopConceptReference ?o .
+        } UNION
+        { 
+          BIND ( #{self.uri.to_ref} as ?s )
+          BIND ( th:isTopConcept as ?p ) .
+          #{self.uri.to_ref} th:isTopConcept ?o .
+        }
+      }
+    }
+    partial_update(query_string, [:th])
   end
 
   # Add Extension. Adds an extension code list to the thresaurus
