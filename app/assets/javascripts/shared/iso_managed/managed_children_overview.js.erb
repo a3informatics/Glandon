@@ -24,6 +24,30 @@ function ManagedChildrenSelectOverview(dataUrl, tableId, count, context) {
 	this.setListeners();
 }
 
+
+/**
+ * Posts data to server, runs callbacks
+ * @param
+ * @param 
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.postData = function (data, context, action) {
+	$.ajax({
+		url: this.updateUrl,
+		data: data,
+		type: 'GET',
+		dataType: 'json',
+		success: function(result){
+
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			_this.processing(false);
+		}
+	})
+}
+
 /**
  * Update items in the Thesaurus selection
  * @param [Object] array of 1 or more data object(s) of the updated item(s)

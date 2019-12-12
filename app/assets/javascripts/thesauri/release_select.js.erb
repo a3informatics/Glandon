@@ -4,7 +4,7 @@
 *
 */
 $(document).ready(function(){
-  new ReleaseSelect();
+  var releaseSelect = new ReleaseSelect();
   var unload = new Unload(false);
 });
 
@@ -19,14 +19,12 @@ function ReleaseSelect(){
   this.cdiscCT = this.initCdiscCt();
   this.timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
 
-
   this.tabs = this.initTabs();
 
   if(this.cdiscCT.versionId != null){
     this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
     $(".tab-option.disabled").removeClass("disabled");
   }
-
   this.setEventListeners();
 }
 
@@ -99,7 +97,7 @@ ReleaseSelect.prototype.autoDeselectAllTabs = function(data){
  */
 ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
-  this.cdiscCT.version = $(".timeline-point.point-highlight span").text();
+  this.cdiscCT.version = $(".timeline-point.point-highlight span").first().text();
 
   this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
 
@@ -117,15 +115,21 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
 ReleaseSelect.prototype.setEventListeners = function(){
   var _this = this;
 
-  $(".card-with-tabs .show-more-btn").on("change", function(){
+  $(".card-with-tabs .show-more-btn").one("change", function(){
     _this.timeline.moveToDate(_this.timeline.l_slider, _this.cdiscCT.version);
+    $(".timeline-container").data(_this.timeline);
   });
 
   $("#select-cdisc-ver-button").on("click", function(){
     if ($(".timeline-point.point-highlight span").text() == $("#cdisc-version-label").html())
       return;
-    new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
-      {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true}).show();
+    else if (_this.cdiscCT.versionId == null)
+      _this.changeCdiscVer();
+    else
+      new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
+        {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.",
+        dangerous: true})
+      .show();
   });
 
   tabSwitchCallback = function(tab){
