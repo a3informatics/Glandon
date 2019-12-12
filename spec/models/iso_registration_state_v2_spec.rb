@@ -256,7 +256,8 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Qualified",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     result = IsoRegistrationStateV2.find(uri)
     expect(result.to_h).to eq(expected)
@@ -303,7 +304,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-3", 
@@ -316,7 +318,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_2-2", 
@@ -329,7 +332,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-5", 
@@ -342,7 +346,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri=>"http://www.assero.co.uk/MDRItems#RS-TEST_3-4", 
@@ -355,7 +360,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV1-5",
@@ -368,7 +374,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       },
       {
         :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_SV2-5",
@@ -381,7 +388,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "",
         :administrative_status => "",
         :previous_state => "Qualified",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       }
     ]
     results = IsoRegistrationStateV2.all
@@ -407,7 +415,8 @@ describe "IsoRegistrationStateV2" do
         :unresolved_issue => "", 
         :administrative_status => "", 
         :previous_state => "Incomplete",
-        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+        :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+        :multiple_edit => false
       }
     result = IsoRegistrationStateV2.create(identifier: "NEW", registration_status: "Incomplete", previous_state: "Incomplete", by_authority: ra)
     expect(result.to_h).to eq(expected)
@@ -508,7 +517,8 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Incomplete",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     expected = input.except(:identifier)
     expected[:uri] = {} # Will be empty until saved.
@@ -532,7 +542,8 @@ describe "IsoRegistrationStateV2" do
       :unresolved_issue => "", 
       :administrative_status => "", 
       :previous_state => "Qualified",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState",
+      :multiple_edit => false
     }
     expect(object.to_h).to eq(expected)
   end
