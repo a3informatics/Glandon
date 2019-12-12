@@ -5,6 +5,7 @@
 */
 $(document).ready(function(){
   new ReleaseSelect();
+  var unload = new Unload(false);
 });
 
 /**
@@ -16,6 +17,8 @@ $(document).ready(function(){
 function ReleaseSelect(){
   this.timeline = this.initTS();
   this.cdiscCT = this.initCdiscCt();
+  this.timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
+
 
   this.tabs = this.initTabs();
 
@@ -98,13 +101,12 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
   this.cdiscCT.version = $(".timeline-point.point-highlight span").text();
 
+  this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
+
   this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
   $("#cdisc-version-label").html(this.cdiscCT.version);
   $(".tab-option.disabled").removeClass("disabled");
   $(".show-more-btn").click();
-
-  this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}).remove();
-  this.tabs.target.redraw();
 }
 
 /**
@@ -127,13 +129,11 @@ ReleaseSelect.prototype.setEventListeners = function(){
   });
 
   tabSwitchCallback = function(tab){
-   switch($(tab).attr("id")){
-     case "tab-sponsor-cls":
-      if(!_this.tabs.sponsorClTab.dataLoaded)
-         _this.tabs.sponsorClTab.loadData(0);
-       break;
-     default:
-       break;
-   }
+    switch($(tab).attr("id")){
+      case "tab-sponsor-cls":
+        if(!_this.tabs.sponsorClTab.dataLoaded)
+          _this.tabs.sponsorClTab.loadData(0);
+          break;
+    }
   }
 }

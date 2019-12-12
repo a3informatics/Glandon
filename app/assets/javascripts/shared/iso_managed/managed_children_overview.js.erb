@@ -33,6 +33,9 @@ function ManagedChildrenSelectOverview(dataUrl, tableId, count, context) {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, action) {
+	if(!this.context.timer.expired)
+		this.context.timer.extendLock();
+
 	this.mcs.processing(true);
 
 	setTimeout(function () {
@@ -45,7 +48,7 @@ ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, a
 			break;
 		}
 		this.mcs.processing(false);
-		context.processing(false);
+		context.processing != null ? context.processing(false) : "";
 	}.bind(this), 0)
 }
 
@@ -76,7 +79,12 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
-	this.mcs.findRowsByData("id", data).remove();
+	if(context.byParam == true)
+		this.mcs.findRowsByParam(data.param, data.data).remove();
+	else
+		this.mcs.findRowsByData("id", data).remove();
+
+	context.autoDeselect ? this.context.autoDeselectAllTabs() : "";
 	this.table.draw();
 }
 
@@ -100,10 +108,7 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 
 	$(_this.mcs.tableId + "-bulk-deselect").off("click").on("click", function () {
 		new ConfirmationDialog(function () {
-			_this.mcs.processing(true);
-			setTimeout(function () {
-				_this.bulkRemove()
-			}, 0);
+			setTimeout(function () { _this.bulkRemove()	}, 0);
 		}, {dangerous: true}).show()
 	});
 
@@ -122,9 +127,7 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
-	this.table.rows({ search: 'applied' }).remove();
-	this.context.autoDeselectAllTabs();
-
-	this.table.draw();
-	this.mcs.processing(false);
+	var updateData = {param: "rows_filter", data: {search: 'applied'}};
+	var contextData = {byParam: true, autoDeselect: true}
+	this.updateItems(updateData, contextData, "remove");
 }

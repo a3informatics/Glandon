@@ -241,8 +241,10 @@ ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
  */
 ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 	var _this = this;
-
-	return _this.table.rows(function (idx, dt, node) {return dt[dataType] == data[dataType] ? true : false;})
+	if(dataType == "rows_filter")
+		return _this.table.rows(data);
+	else
+		return _this.table.rows(function (idx, dt, node) {return dt[dataType] == data[dataType] ? true : false;})
 }
 
 /**
