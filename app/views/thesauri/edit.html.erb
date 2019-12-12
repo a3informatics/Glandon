@@ -11,6 +11,8 @@
       <!-- TIMER BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
         icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: release_select_thesauri_path(@thesaurus), id: "rel-sel",
+        icon: "icon-list-ul", btn_text: "Release select", dt_toggle: "", disabled: false } %>
       <!-- RETURN BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
