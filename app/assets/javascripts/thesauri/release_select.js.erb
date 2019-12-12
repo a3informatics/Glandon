@@ -5,6 +5,7 @@
 */
 $(document).ready(function(){
   new ReleaseSelect();
+  var unload = new Unload(false);
 });
 
 /**
@@ -16,6 +17,8 @@ $(document).ready(function(){
 function ReleaseSelect(){
   this.timeline = this.initTS();
   this.cdiscCT = this.initCdiscCt();
+  this.timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
+
 
   this.tabs = this.initTabs();
 
@@ -98,13 +101,14 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
   this.cdiscCT.version = $(".timeline-point.point-highlight span").text();
 
+  var newContext = $.extend({}, this.tabs.cdiscTab);
+  newContext.byParam = true;
+  this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, newContext, "remove");
+
   this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
   $("#cdisc-version-label").html(this.cdiscCT.version);
   $(".tab-option.disabled").removeClass("disabled");
   $(".show-more-btn").click();
-
-  this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}).remove();
-  this.tabs.target.redraw();
 }
 
 /**

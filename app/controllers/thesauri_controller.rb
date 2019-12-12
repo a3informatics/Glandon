@@ -102,6 +102,7 @@ class ThesauriController < ApplicationController
   def release_select
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
+    @token = get_token(@thesaurus)
     @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
     @versions = CdiscTerm.version_dates
     @versions_normalized = normalize_versions(@versions)
