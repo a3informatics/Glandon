@@ -193,11 +193,11 @@ class IsoRegistrationStateV2 < Fuseki::Base
     return results
   end
   
-  def to_h
-    new_hash = super
-    new_hash.delete(:multiple_edit)
-    new_hash
-  end
+  # def to_h
+  #   new_hash = super
+  #   new_hash.delete(:multiple_edit)
+  #   new_hash
+  # end
 
 private
 

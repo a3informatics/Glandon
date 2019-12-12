@@ -13,10 +13,11 @@ describe IsoRegistrationStatesV2Controller do
       load_files(schema_files, data_files)
     end
 
-    it 'updates an item' do
+    it 'updates multiple_edit flag' do
       request.env['HTTP_ACCEPT'] = "application/json"
       uri_1 = Uri.new(uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_T2")
       mi = IsoManagedV2.find_minimum(uri_1)
+      expect(mi.has_state.multiple_edit).to eq(false)
       put :update, { id: mi.id, iso_registration_state: { multiple_edit: true }}  
       mi = IsoManagedV2.find_minimum(uri_1)
       expect(mi.has_state.multiple_edit).to eq(true)

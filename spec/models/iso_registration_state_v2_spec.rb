@@ -262,25 +262,25 @@ describe "IsoRegistrationStateV2" do
     expect(result.to_h).to eq(expected)
   end
 
-  it "allows to delete multiple_edit flag property from hash " do
-    uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
-        expected = 
-    {
-      :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
-      :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
-      :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
-      :registration_status => "Standard",
-      :administrative_note => "", 
-      :effective_date=> "2016-01-01T00:00:00+00:00",
-      :until_date => "2016-01-01T00:00:00+00:00",
-      :unresolved_issue => "", 
-      :administrative_status => "", 
-      :previous_state => "Qualified",
-      :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
-    }
-    result = IsoRegistrationStateV2.find(uri)
-    expect(result.to_h).to eq(expected)
-  end
+  # it "allows to delete multiple_edit flag property from hash " do
+  #   uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1")
+  #       expected = 
+  #   {
+  #     :uri => "http://www.assero.co.uk/MDRItems#RS-TEST_1-1",
+  #     :id => "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtVEVTVF8xLTE=",
+  #     :by_authority => "http://www.assero.co.uk/RA#DUNS123456789", 
+  #     :registration_status => "Standard",
+  #     :administrative_note => "", 
+  #     :effective_date=> "2016-01-01T00:00:00+00:00",
+  #     :until_date => "2016-01-01T00:00:00+00:00",
+  #     :unresolved_issue => "", 
+  #     :administrative_status => "", 
+  #     :previous_state => "Qualified",
+  #     :rdf_type => "http://www.assero.co.uk/ISO11179Registration#RegistrationState"
+  #   }
+  #   result = IsoRegistrationStateV2.find(uri)
+  #   expect(result.to_h).to eq(expected)
+  # end
 
   it "does not find an unknown id" do
     uri = Uri.new(uri: "http://www.assero.co.uk/MDRItems#RS-TEST_1-1x")
