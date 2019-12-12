@@ -131,16 +131,6 @@ class ThesauriController < ApplicationController
     render :json => { data: children }, :status => 200
   end
 
-  def referenced_thesaurus
-    authorize Thesaurus, :show?
-    ct = Thesaurus.find_minimum(params[:id])
-    ref_uri = ct.refererenced_thesaurus
-    result = ref_uri.nil? ? {} : Thesaurus.find_minimum(ref_uri).to_h
-    render :json => { data: result }, :status => 200
-  rescue => e
-    render :json => { data: {}, errors: [e.message] }, :status => 404
-  end
-
   def add_child
     authorize Thesaurus, :create?
     ct = Thesaurus.find_minimum(params[:id])
@@ -332,6 +322,67 @@ class ThesauriController < ApplicationController
     render json: { redirect_path: path, }, :status => 200
   end
 
+  def set_referenced
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ref_ct = Thesaurus.find_minimum(the_params[:thesaurus_id])
+      ct.set_referenced_thesaurus(ref_ct)
+      render :json => {}, :status => 200      
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def get_referenced
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ref_ct = ct.get_referenced_thesaurus
+      render json: { data: ref_ct.nil? ? {} : ref_ct.to_h }, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def select_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.select_children(the_params)
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def deselect_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.deselect_children(the_params)
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def deselect_all_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.deselect_all_children
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
 private
 
 	def impact_report_start(thesaurus)
@@ -381,7 +432,7 @@ private
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set)
   end
 
 end

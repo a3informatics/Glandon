@@ -165,6 +165,9 @@ Rails.application.routes.draw do
   # Thesauri
   namespace :thesauri do
     resources :managed_concepts, only: [:show, :edit, :update, :destroy] do
+      collection do
+        get :set_with_indicators
+      end
       member do
         get :children
         post :add_child
@@ -231,6 +234,11 @@ Rails.application.routes.draw do
       get :export_csv
       post :add_subset
       get :release_select
+      put :reference, action: :set_referenced
+      get :reference, action: :put_referenced
+      post :select_children
+      put :deselect_children
+      put :deselect_all_children
     end
   end
 
