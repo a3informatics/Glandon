@@ -4,6 +4,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   C_CLASS_NAME = "ThesaurusConceptsController"
 
+  def set_with_indicators
+    authorize Thesaurus, :show?
+    results = Thesaurus::ManagedConcept.set_with_indicators_paginated(the_params)
+    render :json => { data: results }, :status => 200
+  end
+
   def edit
     authorize Thesaurus
     @thesaurus_concept = Thesaurus::ManagedConcept.find_minimum(params[:id])
