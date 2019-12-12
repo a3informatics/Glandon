@@ -641,6 +641,9 @@ describe Thesaurus do
       s_th.select_children({id_set: [uri_2.to_id, uri_3.to_id]})
       s_th = Thesaurus.find_minimum(s_th.uri)
       expect(s_th.is_top_concept_reference_objects.count).to eq(3)
+      s_th.select_children({id_set: [uri_2.to_id]}) # Duplicate
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(3)
       actual = s_th.managed_children_pagination(offset: 0, count: 10)
       check_file_actual_expected(actual, sub_dir, "select_children_expected_1.yaml", equate_method: :hash_equal)
       tc = Thesaurus::ManagedConcept.find_minimum(uri_1) # MAke sure code lists still present

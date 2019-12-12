@@ -453,10 +453,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @return [Void] the created object. May contain errors if unsuccesful.
   def select_children(params)
     ordinal = next_ordinal(:is_top_concept_reference)
+    self.is_top_concept_reference_objects
     transaction_begin
     params[:id_set].each do |id|
       uri = Uri.new(id: id)
-      refs = OperationalReferenceV3::TmcReference.where(reference: uri)
+      refs = self.is_top_concept_reference.select {|x| x.reference == uri}
+      next if refs.any?
       ref = OperationalReferenceV3::TmcReference.create({reference: uri, ordinal: ordinal}, self)
       self.add_link(:is_top_concept, uri)
       self.add_link(:is_top_concept_reference, ref.uri)
@@ -465,11 +467,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     transaction_execute
   end
 
-  # Deselect Children. Select 1 or more child items that are managed
+  # Deselect Children. Deselect 1 or more child items. The child items are not deleted only the references.
   #
   # @params [Hash] params the parameters
   # @option params [String] :id_set the array of ids to be added
-  # @return [Void] the created object. May contain errors if unsuccesful.
+  # @return [Void] no return
   def deselect_children(params)
     query_string = %Q{
       DELETE 
@@ -500,11 +502,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
     partial_update(query_string, [:th, :bo])
   end
 
-  # Deselect All Children. Deselect all child items
+  # Deselect All Children. Deselect all child items. The child items are not deleted only the references.
   #
-  # @params [Hash] params the parameters
-  # @option params [String] :id_set the array of ids to be added
-  # @return [Void] the created object. May contain errors if unsuccesful.
+  # @return [Void] no return
   def deselect_all_children
     query_string = %Q{
       DELETE 
