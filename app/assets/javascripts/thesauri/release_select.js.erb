@@ -69,7 +69,7 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var overviewUrls = {dataUrl: sponsorCLUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl};
+  var overviewUrls = {dataUrl: sponsorCLUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl, deselectAllUrl: deselectAllChildrenUrl};
   var overview = new ManagedChildrenSelectOverview(overviewUrls, "#table-selection-overview", 1000, this);
   var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
   var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
@@ -121,7 +121,7 @@ ReleaseSelect.prototype.refThUpdate = function(){
       this.tabs.cdiscTab.processing(false);
 
       $("#cdisc-version-label").html(this.cdiscCT.version);
-      this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
+      this.tabs.target.updateItems(this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}), {thisTable: true}, "remove");
       this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
       $(".tab-option.disabled").removeClass("disabled");
       $(".show-more-btn").click();
@@ -161,8 +161,10 @@ ReleaseSelect.prototype.setEventListeners = function(){
   tabSwitchCallback = function(tab){
     switch($(tab).attr("id")){
       case "tab-sponsor-cls":
-        if(!_this.tabs.sponsorClTab.dataLoaded)
-          _this.tabs.sponsorClTab.loadData(0);
+        if(!_this.tabs.sponsorClTab.dataLoaded){
+          var loadCallback = function(){_this.tabs.sponsorClTab.autoSelect.bind(_this.tabs.sponsorClTab)()};
+          _this.tabs.sponsorClTab.loadData(0, loadCallback);
+        }
           break;
     }
   }

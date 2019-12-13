@@ -16,16 +16,19 @@
  * @return [void]
  */
 function ManagedChildrenSelectOverview(urls, tableId, count, context) {
+	var _this = this;
+
 	this.mcs = new ManagedChildrenSelect(urls.dataUrl, tableId, count, null, "thOverview").init();
 	this.selUrl = urls.selectUrl;
 	this.deselUrl = urls.deselectUrl;
+	this.deselAllUrl = urls.deselectAllUrl;
 	this.table = this.mcs.table;
 	this.context = context;
 	this.table.select.style('api');
 
-	this.setListeners();
+	var loadCallback = function(){ _this.setListeners.bind(_this)();};
+	this.mcs.loadData(0, loadCallback);
 }
-
 
 /**
  * Posts data to server, runs callbacks
@@ -35,17 +38,30 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.postData = function (url, data, context, action) {
+	var requestData = this.encodeIdsToData(data, context);
+
 	$.ajax({
 		url: url,
-		data: data,
+		data: requestData,
 		type: action,
 		dataType: 'json',
+		context: this,
 		success: function(result){
-
+			switch (action) {
+				case "POST":
+					this.addItems(data, context);
+					break;
+				case "PUT":
+					this.removeItems(data, context);
+					break;
+			}
+			this.mcs.processing(false);
+			try { context.processing(false) } catch(exc) {};
 		},
 		error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
-			_this.processing(false);
+			this.mcs.processing(false);
+			try { context.processing(false) } catch(exc) {};
 		}
 	})
 }
@@ -67,24 +83,33 @@ ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, a
 	setTimeout(function () {
 		switch (action) {
 		case "add":
-			this.postData(this.selUrl, )
-			this.addItems(data, context);
+			this.postData(this.selUrl, data, context, "POST");
 			break;
 		case "remove":
-			this.removeItems(data, context);
+			if (data.count() == this.mcs.table.page.info().recordsTotal)
+				this.postData(this.deselAllUrl, data, context, "PUT");
+			else
+				this.postData(this.deselUrl, data, context, "PUT");
 			break;
 		}
-		this.mcs.processing(false);
-		try { context.processing(false) } catch(exc) {};
 	}.bind(this), 0)
 }
 
-ManagedChildrenSelectOverview.prototype.encodeIdsToData = function (data) {
+ManagedChildrenSelectOverview.prototype.encodeIdsToData = function (data, context) {
 	var idArray = [];
-	data.every(function (rowIdx, tableLoop, rowLoop){
-		idArray.push(this.data().id);
-	})
-	return {thesari: {id_set: idArray.join()}};
+
+	if(context.thisTable == true){
+		data.every(function(idx, r, c){
+			idArray.push(this.data().id);
+		});
+	}
+	else {
+		$.each(data, function(i, item){
+			idArray.push(item.id);
+		});
+	}
+
+	return {thesauri: {id_set: idArray}};
 }
 
 /**
@@ -114,8 +139,8 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
-	if(context.byParam == true)
-		this.mcs.findRowsByParam(data.param, data.data).remove();
+	if(context.thisTable == true)
+		data.remove();
 	else
 		this.mcs.findRowsByData("id", data).remove();
 
@@ -148,11 +173,14 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 	});
 
 	$(_this.mcs.tableId).find(".exclude").off("click").on("click", function ()  {
-		var context = _this.table.row($(this).parents("tr:first")).data().context;
+		var row = _this.table.row($(this).parents("tr:first"));
+		var context = row.data().context;
 		if (context != null)
 			$(context.source).DataTable().row(context.index).deselect();
-		else
+		else{
+			_this.updateItems([row.data()], this, "remove");
 			_this.context.autoDeselectAllTabs({id: $(this).attr("data-id")});
+		}
 	});
 }
 
@@ -162,7 +190,7 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
-	var updateData = {param: "rows_filter", data: {search: 'applied'}};
-	var contextData = {byParam: true, autoDeselect: true}
-	this.updateItems(updateData, contextData, "remove");
+	var data = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
+	var contextData = {thisTable: true, autoDeselect: true}
+	this.updateItems(data, contextData, "remove");
 }

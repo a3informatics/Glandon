@@ -432,7 +432,7 @@ private
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set => [])
   end
 
 end

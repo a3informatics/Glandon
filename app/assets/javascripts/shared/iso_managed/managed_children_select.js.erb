@@ -86,7 +86,7 @@ ManagedChildrenSelect.prototype.setListeners = function () {
  *
  * @return [void]
  */
-ManagedChildrenSelect.prototype.loadData = function (offset) {
+ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 	var _this = this;
 	_this.processing(true);
 
@@ -100,16 +100,19 @@ ManagedChildrenSelect.prototype.loadData = function (offset) {
 		dataType: 'json',
 		success: function (result) {
 			for (i = 0; i < result.data.length; i++) {
+				result.data[i]["version"] = "12345";
 				_this.table.row.add(result.data[i]);
 			}
 			_this.redraw();
 
 			if (result.count >= _this.count)
-				_this.loadData(result.offset + _this.count)
+				_this.loadData(result.offset + _this.count, callback)
 			else {
 				_this.processing(false);
 				_this.dataLoaded = true;
-				_this.autoSelect();
+				try { callback() } catch(e){console.log(e)}
+				// if(_this.target != null)
+				// 	_this.autoSelect();
 			}
 		},
 		error: function (xhr, status, error) {
@@ -151,20 +154,25 @@ ManagedChildrenSelect.prototype.redraw = function () {
  */
 ManagedChildrenSelect.prototype.autoSelect = function () {
 	var _this = this;
-	this.processing(true);
+	if(this.target.mcs.loading){
+		setTimeout(function(){_this.autoSelect.bind(_this)()}, 200);
+	}
+	else {
+		this.processing(true);
 
-	setTimeout(function () {
-		this.autoSelectMode = true;
-		var indexes = [];
-		this.target.table.rows().every(function (rowIdx, tl, rl) {
-			var rowResult = _this.findRowByParam("id", this.data());
-			rowResult.length != 0 ? indexes.push(rowResult.index()) : "";
-		});
-		this.table.rows(indexes).select();
+		setTimeout(function () {
+			this.autoSelectMode = true;
+			var indexes = [];
+			this.target.table.rows().every(function (rowIdx, tl, rl) {
+				var rowResult = _this.findRowByParam("id", this.data());
+				rowResult.length != 0 ? indexes.push(rowResult.index()) : "";
+			});
+			this.table.rows(indexes).select();
 
-		this.autoSelectMode = false;
-		this.processing(false);
-	}.bind(this), 0)
+			this.autoSelectMode = false;
+			this.processing(false);
+		}.bind(this), 0)
+	}
 }
 
 /**
@@ -174,25 +182,30 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
  */
 ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 	var _this = this;
-	this.processing(true);
 
-	setTimeout(function () {
-		this.autoSelectMode = true;
+	if(this.target.mcs.loading){
+		setTimeout(function(){_this.autoDeselect.bind(_this)(data)}, 200);
+	}
+	else {
+		setTimeout(function () {
+			this.processing(true);
+			this.autoSelectMode = true;
 
-    if(data == null){
-  		var indexes = [];
-  		this.table.rows({	selected: true }).every(function (rowIdx, tl, rl) {
-  			_this.target.mcs.findRowByParam("id", this.data()).length == 0 ? indexes.push(this.index()) : "";
-  		});
-  		this.table.rows(indexes).deselect();
-    }
-    else{
-      this.findRowByParam("id", data).deselect();
-    }
+	    if(data == null){
+	  		var indexes = [];
+	  		this.table.rows({	selected: true }).every(function (rowIdx, tl, rl) {
+	  			_this.target.mcs.findRowByParam("id", this.data()).length == 0 ? indexes.push(this.index()) : "";
+	  		});
+	  		this.table.rows(indexes).deselect();
+	    }
+	    else{
+	      this.findRowByParam("id", data).deselect();
+	    }
 
-		this.autoSelectMode = false;
-		this.processing(false);
-	}.bind(this), 0)
+			this.autoSelectMode = false;
+			this.processing(false);
+		}.bind(this), 0)
+	}
 }
 
 /**
@@ -202,9 +215,11 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
  * @return [void]
  */
 ManagedChildrenSelect.prototype.refresh = function (newDataUrl) {
+	var _this = this;
 	this.dataUrl = newDataUrl != null ? newDataUrl : this.dataUrl;
 	this.table.rows().remove().draw();
-	this.loadData(0);
+	var loadCallback = function(){_this.autoSelect.bind(_this)()};
+	this.loadData(0, loadCallback);
 }
 
 /**
