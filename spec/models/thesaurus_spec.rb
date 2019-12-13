@@ -7,6 +7,7 @@ describe Thesaurus do
   include TimeHelpers
   include PublicFileHelpers
   include CdiscCtHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/thesaurus"
@@ -477,6 +478,7 @@ describe Thesaurus do
     it "allows a child TC to be added - error, invalid identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+byebug
       item = ct.add_child(identifier: "S123£%^@")
       expect(item.errors.count).to eq(2)
       expect(item.errors.full_messages.to_sentence).to eq("Has identifier: Identifier contains invalid characters and Identifier contains a part with invalid characters")
@@ -609,9 +611,11 @@ describe Thesaurus do
     end
 
     it "create next thesaurus" do
+      file = "next_version_expected_1.yaml"
       thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       actual = thesaurus.create_next_version
-      check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")
+      check_dates(actual, sub_dir, file, :creation_date, :last_change_date)
+      check_file_actual_expected(actual.to_h, sub_dir, file)
     end
 
   end
