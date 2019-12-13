@@ -531,8 +531,9 @@ class IsoManagedV2 < IsoConceptV2
   def create_next_version
     return self if !self.new_version?
     ra = IsoRegistrationAuthority.owner
+    sv = in_released_state? ? self.next_semantic_version.to_s : self.semantic_version
     object = self.clone
-    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.semantic_version.to_s, has_scope: ra.ra_namespace)
+    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: sv, has_scope: ra.ra_namespace)
     object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
     object.creation_date = Time.now
     object.last_change_date = Time.now
@@ -849,6 +850,11 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
   end
 
 private
+
+  # In released state
+  def in_released_state?
+    self.has_state.registration_status == IsoRegistrationStateV2.released_state
+  end
 
   # History previous / next
   def history_previous_next(step)

@@ -597,18 +597,32 @@ describe "IsoManagedV2" do
       expected[:creation_date] = date_check_now(object.creation_date).iso8601
       expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
       expect(actual).to hash_equal(expected)
-      result = object.create_next_version
-      expect(object.uri).to eq(result.uri) # Same item
+      
+      object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V1#TH"))
       object.has_state.registration_status = IsoRegistrationStateV2.released_state
       object.explanatory_comment = "A comment"
       object.change_description = "A description"
       object.origin = "A ref"
       result = object.create_next_version
+      actual = result.to_h
       expect(object.uri).to_not eq(result.uri) # New item
     #Xwrite_yaml_file(result.to_h, sub_dir, "create_next_version_2.yaml")
       expected = read_yaml_file(sub_dir, "create_next_version_2.yaml")
       expected[:creation_date] = date_check_now(object.creation_date).iso8601
       expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
+      expect(actual).to hash_equal(expected)
+      
+      object = Thesaurus.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/NEW1/V2#TH"))
+      object.has_state.registration_status = "Qualified"
+      object.explanatory_comment = "Another comment"
+      result = object.create_next_version
+      actual = result.to_h
+      expect(object.uri).to_not eq(result.uri) # New item
+    #Xwrite_yaml_file(result.to_h, sub_dir, "create_next_version_3.yaml")
+      expected = read_yaml_file(sub_dir, "create_next_version_3.yaml")
+      expected[:creation_date] = date_check_now(object.creation_date).iso8601
+      expected[:last_change_date] = date_check_now(object.last_change_date).iso8601
+      expect(actual).to hash_equal(expected)
     end
 
   end
