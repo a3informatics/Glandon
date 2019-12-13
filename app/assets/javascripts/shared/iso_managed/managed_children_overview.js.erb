@@ -178,8 +178,8 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 		if (context != null)
 			$(context.source).DataTable().row(context.index).deselect();
 		else{
-			_this.updateItems([row.data()], this, "remove");
-			_this.context.autoDeselectAllTabs({id: $(this).attr("data-id")});
+			var contextData = {thisTable: true, autoDeselect: true}
+			_this.updateItems(row, contextData, "remove");
 		}
 	});
 }
