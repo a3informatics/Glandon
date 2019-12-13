@@ -49,7 +49,8 @@ describe Thesaurus do
           :has_identifier => nil,
           :is_top_concept => [],
           :is_top_concept_reference => [],
-          :tagged => []
+          :tagged => [],
+          :reference => nil,
         }
       expect(th.to_h).to hash_equal(result)
     end
