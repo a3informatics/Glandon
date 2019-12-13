@@ -1,6 +1,7 @@
 <%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
 <%= javascript_include_tag 'thesauri/history' %>
 <%= javascript_tag "var url_path = '#{history_thesauri_index_path}';" %>
+<%= javascript_tag "var url_rs_path = '#{iso_registration_states_v2_path("rs_id")}';" %>
 <%= javascript_tag "var comments_url_path = '#{comments_iso_managed_index_path({iso_managed: {identifier: @identifier, scope_id: @scope_id}})}';" %>
 <%= javascript_tag "var strict_params = 'thesauri';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>

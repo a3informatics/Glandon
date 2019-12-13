@@ -455,6 +455,22 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     self.synonym_links
     #object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
     object = super
+
+  # Delete. Delete the managed concept
+  #
+  # @return [Void] no return
+  def delete
+    if self.extension?
+        self.delete_minimum
+    elsif self.subset?
+      self.is_ordered_objects
+      transaction = transaction_begin
+        self.is_ordered.delete_subset
+        base_delete
+      transaction_execute
+    else
+      super
+    end
   end
 
   # To CSV. The code list as a set of CSV record with a header.

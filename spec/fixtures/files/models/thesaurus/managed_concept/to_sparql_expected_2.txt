@@ -17,7 +17,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:origin ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:changeDescription ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
-<http://www.acme-pharma.com/A00001/V1#A00001> isoT:lastChangeDate "2019-11-30T14:41:58+01:00"^^xsd:dateTime . 
+<http://www.acme-pharma.com/A00001/V1#A00001> isoT:lastChangeDate "2019-12-12T15:36:52+01:00"^^xsd:dateTime . 
 <http://www.acme-pharma.com/A00001/V1#A00001> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:identifier "A00001"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001> th:notation "LHR"^^xsd:string . 
@@ -36,6 +36,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:unresolvedIssue ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:administrativeStatus ""^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:multipleEdit "false"^^xsd:boolean . 
 <http://www.acme-pharma.com/A00001/V1#A00001_RS> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.acme-pharma.com/A00001/V1#A00001_SI> rdf:type isoI:ScopedIdentifier . 
 <http://www.acme-pharma.com/A00001/V1#A00001_SI> isoI:identifier "A00001"^^xsd:string . 

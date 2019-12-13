@@ -279,6 +279,26 @@ describe "Thesaurus::Subset" do
     expect(mc.uri).to eq(expected_mc.uri)
   end
 
+    it "allows delete the subset list" do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    ct = Thesaurus.create({label: "Test Terminology", identifier: "TT"})
+    mc = ct.add_child({})
+    mc = Thesaurus::ManagedConcept.find(mc.id)
+    mc.add_link(:is_ordered, subset.uri)
+    mc.save
+    subset
+    result = subset.delete_subset
+    expect{Thesaurus::Subset.find(subset.uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+  end
+
+  it "delete_subset"  do
+    subset_uri_1 = Uri.new(uri: "http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79")
+    subset = Thesaurus::Subset.find(subset_uri_1)
+    result = subset.delete_subset
+    expect{Thesaurus::Subset.find(subset.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.assero.co.uk/TS#54176c59-b800-43f5-99c3-d129cb563b79 in Thesaurus::Subset.")
+  end
 
   it "validates a valid object" do
     result = Thesaurus::Subset.new

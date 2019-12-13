@@ -42,20 +42,22 @@ describe "Thesauri", :type => :feature do
      #Index subsets
     it "index subsets (REQ-MDR-?????)", js:true do
       click_navbar_cdisc_terminology
-      wait_for_ajax(7)
+      wait_for_ajax(120)
       context_menu_element("history", 5, "2010-03-05 Release", :show)
       wait_for_ajax(120)
       expect(page).to have_content '2010-03-05 Release'
-      wait_for_ajax
       ui_child_search("C66726")
+      wait_for_ajax(120)
       ui_check_table_info('children_table', 1, 1, 1)
       find(:xpath, "//tr[contains(.,'C66726')]/td/a", :text => 'Show').click
       wait_for_ajax(120)
       expect(page).to have_content("CDISC SDTM Pharmaceutical Dosage Form Terminology")
       context_menu_element_header(:subsets)
+      sleep 1
       ui_check_table_cell("ssIndexTable", 1, 2, "S000001")
       ui_check_table_cell("ssIndexTable", 2, 2, "S000002")
       click_button "Close"
+      sleep 1
     end
 
     it "adds a new subset (REQ-MDR-?????)", js:true do
@@ -94,6 +96,7 @@ describe "Thesauri", :type => :feature do
       sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
       page.find("#imh_header")[:class].include?("warning")
       page.find("#timeout").click
+      wait_for_ajax(120)
       expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
       sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
       page.find("#imh_header")[:class].include?("danger")
@@ -189,12 +192,14 @@ describe "Thesauri", :type => :feature do
       click_navbar_cdisc_terminology
       wait_for_ajax(10)
       context_menu_element("history", 5, "2009-10-06 Release", :show)
-      wait_for_ajax(10)
+      wait_for_ajax(120)
       find(:xpath, "//tr[contains(.,'C78737')]/td/a", :text => 'Show').click
-      wait_for_ajax(10)
+      wait_for_ajax(120)
       context_menu_element_header(:subsets)
+      wait_for_ajax(10)
       expect(page).to have_content("No subsets found.")
       click_button "+ New subset"
+      wait_for_ajax(10)
       expect(page).to have_content("Select Terminology")
       find(:xpath, "//*[@id='thTable']/tbody/tr[1]/td[1]").click
       click_button "Select"
@@ -203,6 +208,7 @@ describe "Thesauri", :type => :feature do
       click_link "Edit properties"
       fill_in "edit_preferred_term", with: "Term 1"
       click_button "Submit"
+      wait_for_ajax(120)
       expect(page).to have_content("Preferred term: Term 1")
       expect(AuditTrail.count).to eq(audit_count+2)
     end

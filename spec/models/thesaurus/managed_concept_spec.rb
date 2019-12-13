@@ -1030,6 +1030,66 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "delete" do
+    before :all do
+      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
+        "ISO11179Concepts.ttl", "thesaurus.ttl"]
+      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+      NameValue.destroy_all
+      NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+      NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    end
+
+    it "delete extension" do
+      thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_extension(tc.id)
+      extension = Thesaurus::ManagedConcept.find(item.uri)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(71)
+      sparql = %Q{INSERT DATA { #{extension.uri.to_ref} th:extends #{tc.uri.to_ref} }}
+      Sparql::Update.new.sparql_update(sparql, "", [:th])
+      expect(extension.extension?).to eq(true)
+      expect(tc.extended_by).to eq(extension.uri)
+      expect(extension.extension_of).to eq(tc.uri)
+      result = extension.delete
+      expect(result).to eq(1)
+      expect(tc.extended?).to eq(false)
+      expect(extension.extended?).to eq(false)
+      expect(tc.extension?).to eq(false)
+      expect(extension.extension?).to eq(false) 
+      expect(Thesaurus::ManagedConcept.all.count).to eq(70)
+      expect{Thesaurus::ManagedConcept.find(extension.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/C50399E/V1#C50399E in Thesaurus::ManagedConcept.")
+      expect(Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399")).uri).to eq(tc.uri)
+    end
+
+    it "delete subset" do
+    # cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/S000001/V19#S000001"))
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(71)
+      result = item.delete
+      expect(Thesaurus::ManagedConcept.all.count).to eq(70)
+      expect{Thesaurus::ManagedConcept.find(item.id)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      # thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      # subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
+      # expect(thesaurus.is_top_concept_links.count).to eq(2)
+      # new_mc = thesaurus.add_subset(subsetted_mc_id)
+      # expect(thesaurus.is_top_concept_links.count).to eq(3)
+      # actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
+      # expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66781/V2#C66781")
+      # expect(actual.is_ordered_objects).not_to be(nil)
+      # expect(actual.is_ordered_objects.members).to be(nil)  
+    end
+    
+  end
+
   describe "subsets" do
 
     before :all do

@@ -303,12 +303,17 @@ module Fuseki
       self
     end
 
+    # Delete.
+    #
+    # @return [integer] the number of objects deleted (always 1 if no exception)
     def delete
       clear_cache
       Sparql::Update.new.delete(self.uri)
       @destroyed = true
       return 1
     end
+
+    alias :base_delete :delete
 
     # Generic Links. Gets the links for the named property. Gets as URIs
     #

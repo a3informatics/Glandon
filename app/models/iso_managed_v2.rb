@@ -203,6 +203,31 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
+  # Release
+  # @param [Symbol] release (:major, :minor, :patch)
+  # @return 
+  def release (release)
+    return if !self.has_state.update_release?
+    results = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
+    return if results.length == 1
+    item = self.class.find_minimum(results[1])
+    sv = SemanticVersion.from_s(item.semantic_version.to_s)
+      case release
+        when :major
+          sv.increment_major
+        when :minor
+          sv.increment_minor  
+        when :patch
+          sv.increment_patch
+        else
+          raise Exceptions::ApplicationLogicError.new(message: "The release param is not valid")
+      end
+      si = self.has_identifier
+      si.update(semantic_version: sv.to_s)
+      si.save
+      self
+  end
+
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
   #
   # @param [Uri|id] the identifier, either a URI or the id
@@ -507,7 +532,7 @@ class IsoManagedV2 < IsoConceptV2
     return self if !self.new_version?
     ra = IsoRegistrationAuthority.owner
     object = self.clone
-    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.next_semantic_version.to_s, has_scope: ra.ra_namespace)
+    object.has_identifier = IsoScopedIdentifierV2.from_h(identifier: self.scoped_identifier, version: self.next_version, semantic_version: self.semantic_version.to_s, has_scope: ra.ra_namespace)
     object.has_state = IsoRegistrationStateV2.from_h(by_authority: ra, registration_status: self.state_on_edit, previous_state: self.registration_status)
     object.creation_date = Time.now
     object.last_change_date = Time.now
@@ -520,11 +545,24 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [integer] the number of objects deleted (always 1 if no exception)
   def delete
+      parts = []
+      parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }" 
+      self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+      query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+      results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+      1
+  end
+
+  # Delete minimum. Delete the managed item (Scope identifier, Registration State)
+  #
+  # @return [integer] the number of objects deleted (always 1 if no exception)
+  def delete_minimum
     parts = []
-    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }" 
-    self.class.delete_paths.each {|p| parts << "{ #{uri.to_ref} (#{p})+ ?o1 . BIND (?o1 as ?s) . ?s ?p ?o }" }
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [])
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT])
     1
   end
 

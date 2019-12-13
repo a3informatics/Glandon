@@ -15,6 +15,7 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     @managed_item = IsoManagedV2.find_minimum(params[:id])
     @current_id = the_params[:current_id]
+    @next_versions = SemanticVersion.from_s(@managed_item.semantic_version.to_s).next_versions
     @referer = request.referer
     @close_path = TypePathManagement.history_url_v2(@managed_item, true)
   end
@@ -36,6 +37,22 @@ class IsoManagedV2Controller < ApplicationController
     redirect_to referer
   end
 
+  def update_semantic_version
+    authorize IsoManaged, :update?
+    uri = Uri.new(id: params[:id])
+    rdf_type = IsoManagedV2.the_type(uri)
+    klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
+    @managed_item = klass.find_minimum(params[:id])
+    if @managed_item.latest?
+      @managed_item.release(the_params[:sv_type].downcase.to_sym)
+    end
+    if @managed_item.errors.empty?
+        render :json => { :data => @managed_item.semantic_version}, :status => 200
+      else
+        render :json => { :errors => @managed_item.errors.full_messages}, :status => 422
+    end
+  end
+
   def find_by_tag
     authorize IsoManaged, :show?
     render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200
@@ -54,7 +71,7 @@ private
 
   def the_params
     # Strong parameter using iso_managed not V2 version.
-    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue)
+    params.require(:iso_managed).permit(:current_id, :tag_id, :registration_status, :previous_state, :administrative_note, :unresolved_issue, :sv_type)
   end
 
 end

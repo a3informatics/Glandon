@@ -14,6 +14,10 @@ describe IsoManagedV2Controller do
       return "controllers/iso_managed_v2"
     end
 
+    before :all do
+      x = Thesaurus.new
+    end
+
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
@@ -69,6 +73,15 @@ describe IsoManagedV2Controller do
       expect(response).to redirect_to("/registration_states")
     end
 
+    it 'updates the semantic version' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+    end
+
   end
 
   describe "Unauthorized User" do
@@ -85,6 +98,11 @@ describe IsoManagedV2Controller do
 
     it "update_status" do
       post :update_status, { id: "F-ACME_TEST"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "update_semantic_version" do
+      put :update_semantic_version, { id: "F-ACME_TEST"}
       expect(response).to redirect_to("/users/sign_in")
     end
 

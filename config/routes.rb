@@ -110,9 +110,15 @@ Rails.application.routes.draw do
       get :status
       get :make_current
       post :update_status
+      put :update_semantic_version
     end
     collection do
       get :find_by_tag
+    end
+  end
+  resources :iso_registration_states_v2, only: [] do
+    member do
+      put :update
     end
   end
   resources :dashboard, only: [:index] do

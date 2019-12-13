@@ -36,7 +36,11 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
       {"data" : "has_identifier.version_label"},
-      {"data" : "has_state.registration_status"},
+      {"data" : "has_state.registration_status", "render": function (data, type, row, meta){
+        if (type == "display") 
+          return _this.registrationStatesHTML(row);
+        else return data;
+      }},
       {className: "text-right", "render" : function (data, type, row, meta) {
         var id = "con-menu-" + counter;
 
@@ -103,6 +107,7 @@ HistoryPanel.prototype.add = function (offset) {
        _this.add(result.offset + _this.count)
       } else {
         _this.historyTable.processing(false);
+        _this.setListeners();
       }
 
 
@@ -110,6 +115,50 @@ HistoryPanel.prototype.add = function (offset) {
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
       _this.historyTable.processing(false);
+    }
+  });
+}
+
+HistoryPanel.prototype.registrationStatesHTML = function (data) {
+  var lstate = data.has_state.registration_status.toLowerCase();
+  if (lstate == "not_set" || lstate == "recorded" || lstate == "qualified" || lstate == "standard") {
+    if (data.has_state.multiple_edit)
+    return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
+    else
+    return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
+  }
+  else return data.has_state.registration_status;
+}
+
+HistoryPanel.prototype.setListeners = function () {
+  var _this = this;
+
+  $(".registration-state").on("click", function(){
+    var data = _this.historyTable.row($(this).parents("tr:first")).data();
+    _this.updateRegistrationState(data);
+
+  })
+}
+
+HistoryPanel.prototype.updateRegistrationState = function (data) {
+  var _this = this;
+  url_rs_path = url_rs_path.replace("rs_id", data.id);
+  // var current_status = data.has_state.multiple_edit == "true";
+  var current_status = data.has_state.multiple_edit;
+
+  var requestData = { "iso_registration_state": { "multiple_edit": !current_status} };
+  $.ajax({
+    url: url_rs_path,
+    type: 'PUT',
+    dataType: 'json',
+    data: JSON.stringify( requestData ),
+    contentType: 'application/json',
+    error: function (xhr, status, error) {
+      var html = alertError("An error has occurred updating multiple edit flag.");
+      displayAlerts(html);
+    },
+    success: function(result){
+      location.reload();
     }
   });
 }

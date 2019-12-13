@@ -97,6 +97,45 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
 
+    it "allows multiple edit", js: true do
+      click_navbar_terminology
+      click_link 'New Terminology'
+      fill_in 'thesauri_identifier', with: 'TEST test'
+      fill_in 'thesauri_label', with: 'Test Terminology'
+      click_button 'Submit'
+      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
+      wait_for_ajax(10)
+      context_menu_element('history', 4, 'Test Terminology', :document_control)
+      wait_for_ajax(10)
+      expect(page).to have_content 'Manage Status'
+      expect(page).to have_content 'Version Control'
+      expect(page).to have_content("Current Status:")
+      expect(page).to have_content("Incomplete")
+      click_button "state_submit"
+      expect(page).to have_content("Candidate")
+      click_button "state_submit"
+      expect(page).to have_content("Recorded")
+      click_button "state_submit"
+      expect(page).to have_content("Qualified")
+      click_link 'Return'
+      wait_for_ajax(120)
+      #history > tbody > tr > td:nth-child(6) > span > span
+      # expect(page).to have_selector :css, '#history > tbody > tr > td:nth-child(6) > span'
+      # click_link('Qualified')
+      # find('span', text: 'Qualified').click
+      # click_link(class: 'clickable registration-state')
+      # find('.registration-state').click
+      # //*[@id="history"]/tbody/tr/td[6]/span/span[2]
+      find(:xpath, "//*[@id='history']/tbody/tr/td[6]/span/span").click
+      # sleep 2
+      wait_for_ajax(120)
+      # expect(page).to have_css('.button')
+      expect(page).to have_css ('.icon-lock-open')
+      # //*[@id="history"]/tbody/tr/td[6]/span/span[2]
+      # <span class="icon-lock-open text-secondary-clr text-small"></span>
+      # expect(page).to have_selector :css, 'icon-lock-open text-secondary-clr text-small'
+    end
+
     it "allows for terminology to be exported as CSV"
     # it "allows for terminology to be exported as CSV", js: true do
     #   clear_downloads

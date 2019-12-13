@@ -41,6 +41,32 @@
   margin-top: 64px;
 }
 
+.content-editable{
+  position: relative;
+  margin: 3px 8px !important;
+  cursor: pointer !important;
+}
+
+.content-editable::after{
+  display: inline-block;
+  font-family: 'icomoon';
+  content: "\e931";
+  color: $grey-light;
+  margin: 0px 5px;
+  font-size: $font-small;
+  position: absolute;
+  right: -25px;
+  top: 10%;
+}
+
+#version-edit-after, #version-label-edit-after{
+  display: none;
+}
+
+#select-release{
+  height: 30px;
+}
+
 @media (max-width: 1410px){
   .status-wrap .status{
     width: 90%;

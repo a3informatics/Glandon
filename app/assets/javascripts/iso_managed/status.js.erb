@@ -1,0 +1,28 @@
+$(document).ready(function() {
+  
+$("#version-edit-submit").on("click", function() {
+  var value = $("#select-release option:selected").val();
+  var data = { "iso_managed": { "sv_type": value } };
+  console.log(data);
+  $.ajax({
+    url: url_release,
+    type: 'PUT',
+    dataType: 'json',
+    data: JSON.stringify( data ),
+    contentType: 'application/json',
+    error: function (xhr, status, error) {
+      var html = alertError("An error has occurred updating release.");
+      displayAlerts(html);
+    },
+    success: function(result){
+      location.reload();
+    }
+  });
+});
+
+$(".content-editable").on("click", function(){
+  $("#"+$(this).attr("id")+"-after").css("display", "inline-block");
+  $(this).css("display", "none");
+});
+
+});

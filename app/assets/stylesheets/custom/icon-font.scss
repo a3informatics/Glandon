@@ -30,6 +30,27 @@
   justify-content: center;
 }
 
+.icon-lock-open:before {
+  content: "\e94b";
+}
+.icon-multi:before {
+  content: "\e94a";
+}
+.icon-current:before {
+  content: "\e946";
+}
+.icon-ok-circle:before {
+  content: "\e949";
+}
+.icon-extension:before {
+  content: "\e945";
+}
+.icon-new-version:before {
+  content: "\e947";
+}
+.icon-subsetted:before {
+  content: "\e948";
+}
 .icon-ok:before {
   content: "\e944";
 }
