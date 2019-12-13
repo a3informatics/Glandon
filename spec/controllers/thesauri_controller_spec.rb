@@ -204,12 +204,19 @@ describe ThesauriController do
 
     it "sets reference, lock" do
       request.env['HTTP_ACCEPT'] = "application/json"
-      ref_ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ref_ct_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ref_ct_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       token = Token.obtain(ct, @user)
-      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct.id}}
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_2.id}}
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      get :get_reference, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "set_reference_expected_1.yaml", equate_method: :hash_equal)
+      put :set_reference, {id: ct.id, thesauri: { thesaurus_id: ref_ct_1.id}}
+      get :get_reference, id: ct.id
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "set_reference_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "sets reference, no lock" do
@@ -218,7 +225,7 @@ describe ThesauriController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       put :set_reference, {id: ct.id, thesaurus: { thesaurus_id: ref_ct.id}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      check_file_actual_expected(actual, sub_dir, "set_reference_expected_2.yaml", equate_method: :hash_equal)
+      check_file_actual_expected(actual, sub_dir, "set_reference_expected_3.yaml", equate_method: :hash_equal)
     end
 
     it "get reference, lock, ref" do
@@ -255,7 +262,7 @@ describe ThesauriController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       get :select_children, {id: ct.id, thesauri: {id_set: []}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      check_file_actual_expected(actual, sub_dir, "selects_children_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "selects_children_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "selects children, lock" do
@@ -267,7 +274,7 @@ describe ThesauriController do
       token = Token.obtain(ct, @lock_user)
       get :select_children, {id: ct.id, thesauri: {id_set: [uri_1.to_id, uri_3.to_id, uri_2.to_id]}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "selects_children_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "selects_children_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "deselects children, no lock" do
@@ -278,7 +285,7 @@ describe ThesauriController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       get :deselect_children, {id: ct.id, thesauri: {id_set: [uri_1.to_id, uri_3.to_id, uri_2.to_id]}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      check_file_actual_expected(actual, sub_dir, "deselects_children_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "deselects_children_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "deselects children, lock" do
@@ -290,7 +297,7 @@ describe ThesauriController do
       token = Token.obtain(ct, @lock_user)
       get :deselect_children, {id: ct.id, thesauri: {id_set: [uri_1.to_id, uri_3.to_id, uri_2.to_id]}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "deselects_children_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "deselects_children_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "deselects all children, no lock" do
@@ -298,7 +305,7 @@ describe ThesauriController do
       ct = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       get :deselect_all_children, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
-      check_file_actual_expected(actual, sub_dir, "deselects_all_children_expected_1.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "deselects_all_children_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "deselects all children, lock" do
@@ -307,7 +314,7 @@ describe ThesauriController do
       token = Token.obtain(ct, @lock_user)
       get :deselect_all_children, id: ct.id
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
-      check_file_actual_expected(actual, sub_dir, "deselects_all_children_expected_2.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "deselects_all_children_expected_2.yaml", equate_method: :hash_equal)
     end
 
     it "children, subsets" do

@@ -623,18 +623,26 @@ describe Thesaurus do
       s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
       r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
       r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      r_th_3 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       expect(s_th.get_referenced_thesaurus).to eq(nil)
       s_th.set_referenced_thesaurus(r_th_1)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
       s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.reference_objects
       same_uri = s_th.reference.uri
+      s_th = Thesaurus.find_minimum(s_th.uri)
       s_th.set_referenced_thesaurus(r_th_2)
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
       s_th = Thesaurus.find_minimum(s_th.uri)
-      s_th.reference_objects
       expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
       expect(s_th.reference.uri).to eq(same_uri) # Make sure op ref is re-used, i.e same one as first one
+      s_th.set_referenced_thesaurus(r_th_3)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_3.uri)
+      s_th.set_referenced_thesaurus(r_th_2)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      ref = OperationalReferenceV3.find(s_th.reference.uri)
     end
 
     it "allows for items to be selected" do
