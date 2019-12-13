@@ -455,6 +455,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     self.synonym_links
     #object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
     object = super
+  end
 
   # Delete. Delete the managed concept
   #
