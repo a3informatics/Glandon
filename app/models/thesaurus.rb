@@ -411,9 +411,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @param [Thesaurus] object the thesaurus object
   # @return [Void] no return
   def set_referenced_thesaurus(object)
-    transaction_begin
+    tx = transaction_begin
     if self.reference.nil? 
-      self.reference = OperationalReferenceV3.create({reference: object}, self)
+      self.reference = OperationalReferenceV3.create({reference: object, transaction: tx}, self)
       self.save
     else
       ref = self.reference
