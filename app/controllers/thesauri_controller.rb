@@ -107,8 +107,8 @@ class ThesauriController < ApplicationController
     @versions = CdiscTerm.version_dates
     @versions_normalized = normalize_versions(@versions)
     @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
-    @ref_thesaurus = @thesaurus.referenced_thesaurus
-    @cdisc_date =  @ref_thesaurus == nil ? "None" : @versions.find{|x| x[:id] == @ref_thesaurus.to_id}[:date]
+    ref_thesaurus = @thesaurus.get_referenced_thesaurus
+    @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
   end
 
   def children
@@ -329,7 +329,7 @@ class ThesauriController < ApplicationController
     if !token.nil?
       ref_ct = Thesaurus.find_minimum(the_params[:thesaurus_id])
       ct.set_referenced_thesaurus(ref_ct)
-      render :json => {}, :status => 200      
+      render :json => {}, :status => 200
     else
       render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
     end

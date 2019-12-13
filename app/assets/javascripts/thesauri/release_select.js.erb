@@ -17,6 +17,7 @@ $(document).ready(function(){
 function ReleaseSelect(){
   this.timeline = this.initTS();
   this.cdiscCT = this.initCdiscCt();
+  this.refThUrl = refThUrl;
   this.timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
 
   this.tabs = this.initTabs();
@@ -68,7 +69,8 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var overview = new ManagedChildrenSelectOverview(sponsorCLUrl, "#table-selection-overview", 1000, this);
+  var overviewUrls = {dataUrl: sponsorCLUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl};
+  var overview = new ManagedChildrenSelectOverview(overviewUrls, "#table-selection-overview", 1000, this);
   var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
   var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
 
@@ -93,18 +95,42 @@ ReleaseSelect.prototype.autoDeselectAllTabs = function(data){
  * Changes CDISC version, reloads data, updates UI
  *
  * @return [void]
- * TODO: Make call to save CT change, clear CDISC data from selection tab
  */
 ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
   this.cdiscCT.version = $(".timeline-point.point-highlight span").first().text();
 
-  this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
+  this.refThUpdate();
+}
 
-  this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
-  $("#cdisc-version-label").html(this.cdiscCT.version);
-  $(".tab-option.disabled").removeClass("disabled");
-  $(".show-more-btn").click();
+/**
+ * Sets the referenced thesaurus to a CDISC version
+ *
+ * @return [void]
+ */
+ReleaseSelect.prototype.refThUpdate = function(){
+  this.tabs.cdiscTab.processing(true);
+
+  $.ajax({
+    url: this.refThUrl,
+    data: {thesauri: {thesaurus_id: this.cdiscCT.versionId}},
+    type: 'PUT',
+    dataType: 'json',
+    context: this,
+    success: function (result) {
+      this.tabs.cdiscTab.processing(false);
+
+      $("#cdisc-version-label").html(this.cdiscCT.version);
+      this.tabs.target.updateItems({param: "owner", data: {owner: "CDISC"}}, {byParam: true}, "remove");
+      this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+      $(".tab-option.disabled").removeClass("disabled");
+      $(".show-more-btn").click();
+    },
+    error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			this.tabs.cdiscTab.processing(false);
+		}
+  })
 }
 
 /**
