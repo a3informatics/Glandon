@@ -7,6 +7,7 @@ describe "Thesaurus::ManagedConcept" do
   include SparqlHelpers
   include PublicFileHelpers
   include ThesauriHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -1152,11 +1153,14 @@ describe "Thesaurus::ManagedConcept" do
     it "create next thesaurus concept" do
       thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
       actual = thesaurus.create_next_version
+      check_dates(actual, sub_dir, "next_version_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")
       actual = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
+      check_dates(actual, sub_dir, "next_version_expected_1b.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1b.yaml")
       actual = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V2#A00001"))
       actual.preferred_term_objects
+      check_dates(actual, sub_dir, "next_version_expected_1c.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1c.yaml")
     end
 

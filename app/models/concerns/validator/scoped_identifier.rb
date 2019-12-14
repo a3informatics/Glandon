@@ -10,8 +10,7 @@ class Validator::ScopedIdentifier < Validator::Base
   # @returns [Boolean] true if valid, false others. Errors set in record.
   def validate(record)
     return true if !record.class.exists?(record.identifier, record.has_scope)
-    record.errors.add :base, 'the scoped identifier is already in use'
-    return false
+    failed(record, 'the scoped identifier is already in use')
   end
   
 end

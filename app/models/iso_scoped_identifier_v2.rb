@@ -114,17 +114,24 @@ class IsoScopedIdentifierV2 < Fuseki::Base
     return results.by_object.first.to_i + 1
   end
 
-  # Create
-  #
-  # @param attributes [Hash] the set of properties
-  # @return [IsoNamespace] the object. Contains errors if it fails
-  def self.create(attributes)
-    identifier = attributes[:identifier].gsub(/[^0-9A-Za-z]/, '-')
-    uri = Uri.new(namespace: base_uri.namespace, fragment: "")
-    uri.extend_path("#{attributes[:has_scope].short_name}/#{identifier}")
-    attributes[:uri] = uri
-    super
-  end 
+  # ---------
+  # Test Only  
+  # ---------
+  if Rails.env.test?
+    
+    # Create
+    #
+    # @param attributes [Hash] the set of properties
+    # @return [IsoNamespace] the object. Contains errors if it fails
+    def self.create(attributes)
+      identifier = attributes[:identifier].gsub(/[^0-9A-Za-z]/, '-')
+      uri = Uri.new(namespace: base_uri.namespace, fragment: "")
+      uri.extend_path("#{attributes[:has_scope].short_name}/#{identifier}")
+      attributes[:uri] = uri
+      super
+    end 
+
+  end
 
   # Update Version
   #
