@@ -46,7 +46,8 @@ class Annotation::ChangeNote < Annotation
   #
   # @return [Integer] count of items deleted
   def delete
-    op_ref = OperationalReferenceV3.find(self.current.first)
+    self.current_objects
+    op_ref = OperationalReferenceV3.find(self.current.first.uri)
     transaction_begin
     op_ref.delete
     super

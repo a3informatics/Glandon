@@ -13,7 +13,7 @@ describe Annotations::ChangeNotesController do
       return "controllers/annotations/change_notes"
     end
 
-    before :all do
+    before :each do
       data_files = ["iso_namespace_fake.ttl", "iso_registration_authority_fake.ttl"]
       load_files(schema_files, data_files)
     end
@@ -58,8 +58,13 @@ describe Annotations::ChangeNotesController do
 
   describe "Unauthorized User" do
 
-    it "add a concept" do
+    it "add a chnage note" do
       put :update, {id: "aaa"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "destroy a change note" do
+      put :destroy, {id: "aaa"}
       expect(response).to redirect_to("/users/sign_in")
     end
 
