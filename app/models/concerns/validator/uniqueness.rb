@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class Validator::Uniqueness < ActiveModel::Validator
+class Validator::Uniqueness < Validator::Base
   
   # Validate
   #
@@ -10,8 +10,7 @@ class Validator::Uniqueness < ActiveModel::Validator
   # @returns [Boolean] true if valid, false others. Errors set in record.
   def validate(record)
     return true if record.class.where({options[:attribute] => record.send(options[:attribute])}).empty?
-    record.errors.add :base, "an existing record (#{options[:attribute]}: #{record.send(options[:attribute])}) exisits in the database"
-    return false
+    failed(record, "an existing record (#{options[:attribute]}: #{record.send(options[:attribute])}) exisits in the database")
   end
   
 end

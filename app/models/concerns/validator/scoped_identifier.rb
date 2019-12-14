@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class Validator::ScopedIdentifier < ActiveModel::Validator
+class Validator::ScopedIdentifier < Validator::Base
   
   # Validate
   #

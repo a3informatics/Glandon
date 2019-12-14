@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.24.0
-class Validator::ManagedConcept < ActiveModel::Validator
+class Validator::ManagedConcept < Validator::Base
   
   # Validate
   #

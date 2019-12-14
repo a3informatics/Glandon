@@ -2,7 +2,7 @@
 #
 # @author Dave Iberson-Hurst
 # @since 2.21.1
-class Validator::Field < ActiveModel::Validator
+class Validator::Field < Validator::Base
   
   # Validate
   #

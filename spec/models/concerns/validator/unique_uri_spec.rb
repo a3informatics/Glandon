@@ -20,6 +20,7 @@ describe Validator::UniqueUri do
     x = TestVUU.new
     x.uri = Uri.new(uri: "http://www.assero.co.uk/A#A")
     x.save
+    expect(x.errors.count).to eq(0)
     x = TestVUU.new
     x.uri = Uri.new(uri: "http://www.assero.co.uk/A#A1")
     x.save
@@ -30,6 +31,7 @@ describe Validator::UniqueUri do
     x = TestVUU.new
     x.uri = Uri.new(uri: "http://www.assero.co.uk/A#A")
     result = x.save
+    expect(x.errors.count).to eq(0)
     y = TestVUU.new
     y.uri = Uri.new(uri: "http://www.assero.co.uk/A#A")
     y.save
