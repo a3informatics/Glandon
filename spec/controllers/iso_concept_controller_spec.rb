@@ -116,14 +116,12 @@ describe IsoConceptController do
 
     it "get change notes" do
       item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
-
-      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3301")
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
       item.add_change_note(description: "desc1", reference: "ref1", user_reference: "a@b.com")
-      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3310")
+      allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3302")
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 13:00:00+01:00 2000"))
       item.add_change_note(description: "desc2", reference: "ref2", user_reference: "a@b.com")
-      
       request.env['HTTP_ACCEPT'] = "application/json"
       get :change_notes, id: item.id
       actual = check_good_json_response(response)
