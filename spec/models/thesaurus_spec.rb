@@ -663,9 +663,9 @@ describe Thesaurus do
         { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
         { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
         { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
-        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002"), present: true},
-        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_RS"), present: true},
-        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_SI"), present: true}
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true}
       ]
       th_uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       expected_uri = Uri.new(uri: "http://www.acme-pharma.com/S123A/V1#S123A")
