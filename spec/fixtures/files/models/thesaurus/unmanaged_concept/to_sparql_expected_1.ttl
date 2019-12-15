@@ -18,7 +18,7 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:origin ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:changeDescription ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:creationDate "2016-01-01T00:00:00+00:00"^^xsd:dateTime . 
-<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2019-11-30T15:26:40+01:00"^^xsd:dateTime . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:lastChangeDate "2019-12-15T21:11:36+01:00"^^xsd:dateTime . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> isoT:explanatoryComment ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR1> . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH> th:isTopConceptReference <http://www.acme-pharma.com/NEW_TH/V1#TH_TCR2> . 
@@ -30,6 +30,7 @@ INSERT DATA
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:unresolvedIssue ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:administrativeStatus ""^^xsd:string . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:previousState "Incomplete"^^xsd:string . 
+<http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:multipleEdit "false"^^xsd:boolean . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_RS> isoR:byAuthority <http://www.assero.co.uk/RA#DUNS123456789> . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> rdf:type isoI:ScopedIdentifier . 
 <http://www.acme-pharma.com/NEW_TH/V1#TH_SI> isoI:identifier "NEW_TH"^^xsd:string . 
@@ -64,7 +65,7 @@ INSERT DATA
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:notation "NOTATION1"^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:definition "The definition."^^xsd:string . 
 <http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:extensible "false"^^xsd:boolean . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#1051e295-5f9d-44e7-a0b0-85d84474b9e0> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#c57887a2-ba3b-4cb1-97a1-5d772b22c1b8> . 
-<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#80d7ed9b-d010-4065-8b1a-67ded10dd356> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:preferredTerm <http://www.assero.co.uk/PT#12d47e4c-cd3f-4838-bcd3-aa050999afc0> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#8e5dab80-3ef3-4c16-a3fa-fbdde0043c99> . 
+<http://www.acme-pharma.com/A00001/V1#A00001_A000011> th:synonym <http://www.assero.co.uk/SYN#41258fa7-f394-432e-9d3b-17a57b2ff8ee> . 
 }

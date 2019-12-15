@@ -457,20 +457,23 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     object = super
   end
 
-  # Delete. Delete the managed concept
+  # Delete or Unlink. Delete the managed concept. Processing depends on the type of the concept.
   #
   # @return [Void] no return
-  def delete
-    if self.extension?
-        self.delete_minimum
-    elsif self.subset?
-      self.is_ordered_objects
-      transaction = transaction_begin
-        self.is_ordered.delete_subset
-        base_delete
-      transaction_execute
+  def delete_or_unlink(parent_object)
+    if parent_object.nil? && no_parents?
+      delete_with
+    elsif parent_object.nil?
+      self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
+      0
+    elsif multiple_parents? 
+      # Deselect from parent
+      1
+    elsif self.children? && !self.extension? && !self.self.subset?
+      self.errors.add(:base, "The code list cannot be deleted as there are children present.") # error, children present for normal code list
+      0
     else
-      super
+      delete_with(parent_object)
     end
   end
 
@@ -526,6 +529,25 @@ private
 
   end
 
+  # Delete with all child items (extensions, subset and child code list items)
+  def delete_with(parent_object=nil)
+    parts = []
+    parts << "{ BIND (#{uri.to_ref} as ?s) . ?s ?p ?o }"
+    parts << "{ #{uri.to_ref} isoT:hasIdentifier ?s . ?s ?p ?o}" 
+    parts << "{ #{uri.to_ref} isoT:hasState ?s . ?s ?p ?o }"
+    parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
+    parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
+    if !parent_object.nil?
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdfs:subClassOf th:Reference . ?s ?p ?o }" 
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
+    end
+    query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
+  #puts "*****\n#{query_string}\n*****"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th])
+    1  
+  end
+
+  # Are children are the same
   def children_are_the_same?(this_child, other_child)
     result = this_child.diff?(other_child, {ignore: [:tagged]})
     return false if result
@@ -533,6 +555,7 @@ private
     return true
   end
 
+  # Was the item deleted from CT version
   def deleted_from_ct_version(last_item)
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
@@ -543,12 +566,14 @@ private
     {deleted: item_was_deleted, ct: ct}
   end
 
+  # Deleted from CT
   def deleted_from_ct?(last_item)
     ct_history = Thesaurus.history_uris(identifier: CdiscTerm::C_IDENTIFIER, scope: IsoRegistrationAuthority.cdisc_scope)
     used_in = thesarus_set(last_item)
     used_in.first != ct_history.first
   end
 
+  # Thesaurus set
   def thesarus_set(last_item)
     query_string = %Q{
       SELECT ?s WHERE {
@@ -561,6 +586,7 @@ private
     query_results.by_object(:s)
   end
 
+  # Different from self
   def diff_self?(other)
     return false if !diff?(other, {ignore: [:has_state, :has_identifier, :origin, :change_description, :creation_date, :last_change_date,
       :explanatory_comment, :narrower, :extends, :subsets, :tagged]})
@@ -579,6 +605,7 @@ private
     end
   end
 
+  # Add additional tags
   def add_child_additional_tags(previous, set)
     self.narrower.each_with_index do |child, index|
       previous_child = previous.narrower.select {|x| x.identifier == child.identifier}
@@ -589,10 +616,9 @@ private
 
   # Find parent query. Used by BaseConcept
   def parent_query
-    "SELECT DISTINCT ?i WHERE \n" +
+    "SELECT DISTINCT ?s WHERE \n" +
     "{ \n" +
-    "  ?s th:narrower #{self.uri.to_ref} .  \n" +
-    "  ?s th:identifier ?i . \n" +
+    "  #{self.uri.to_ref} ^(th:isTopConceptReference/bo:reference) ?s .  \n" +
     "}"
   end
 

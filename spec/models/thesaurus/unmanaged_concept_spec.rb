@@ -19,7 +19,7 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_child_identifier", value: "999")
@@ -148,35 +148,9 @@ describe "Thesaurus::UnmanagedConcept" do
       check_sparql_no_file(sparql.to_create_sparql, "to_sparql_expected_2.ttl") 
     end
     
-    it "allows a TC to be destroyed" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      expect(Thesaurus::UnmanagedConcept.exists?("A000011")).to eq(true)
-      result = tc.delete
-      expect(result).to eq(1)
-      expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError, 
-        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.")  
-    end
-
-    it "does not allow a TC to be destroyed if it has children" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      params = 
-      {
-        uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
-        definition: "Other or mixed race",
-        identifier: "A00004",
-        label: "New",
-        notation: "NEWNEW"
-      }
-      new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
-      result = tc.delete
-      expect(result).to eq(0)
-      expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
-    end
-
     it "returns the parent concept" do
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      parent_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011")
+      tc = Thesaurus::UnmanagedConcept.find(parent_uri)
       params = 
       {
         definition: "Other or mixed race",
@@ -185,8 +159,9 @@ describe "Thesaurus::UnmanagedConcept" do
         notation: "NEWNEW"
       }
       new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C"))
-      expect(tc.parent).to eq("A000011")
+      new_uri = Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011_NC00000999C")
+      tc = Thesaurus::UnmanagedConcept.find(new_uri)
+      expect(tc.parents).to eq([parent_uri])
     end
 
     it "returns the parent concept, none" do
@@ -199,7 +174,7 @@ describe "Thesaurus::UnmanagedConcept" do
         notation: "NEWNEW"
       }
       tc = Thesaurus::UnmanagedConcept.create(params, tc)
-      expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00004.")
+      expect(tc.parents.empty?).to eq(true)
     end
 
     it "replaces with previous if no difference" do
@@ -224,7 +199,7 @@ describe "Thesaurus::UnmanagedConcept" do
   describe "write tests" do
   
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       NameValue.destroy_all
       NameValue.create(name: "thesaurus_child_identifier", value: "999")
@@ -234,7 +209,7 @@ describe "Thesaurus::UnmanagedConcept" do
       NameValue.destroy_all
     end
 
-        it "allows a new child TC to be added, some data" do
+    it "allows a new child TC to be added, some data" do
       params = 
       {
         definition: "Other or mixed race",
@@ -533,7 +508,6 @@ describe "Thesaurus::UnmanagedConcept" do
 
     before :all do
       IsoHelpers.clear_cache
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..60)
@@ -627,7 +601,7 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_1.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
     end
@@ -747,14 +721,14 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "multiple parents, I" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       expect(tc.narrower.first.multiple_parents?).to eq(false)
       expect(tc.narrower.last.multiple_parents?).to eq(false)      
     end 
 
     it "multiple parents, II" do
-      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(tc.narrower.count).to eq(2)
       expect(tc.narrower.first.multiple_parents?).to eq(false)
       expect(tc.narrower.last.multiple_parents?).to eq(false) 
@@ -777,8 +751,8 @@ describe "Thesaurus::UnmanagedConcept" do
     end 
 
     it "update single parent" do
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
-      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
       expect(new_tc.uri).to eq(old_tc.uri)
       expect(old_tc.label).to eq("New Airport")
@@ -787,8 +761,8 @@ describe "Thesaurus::UnmanagedConcept" do
     end 
 
     it "update multiple parent" do
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
-      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       tc_v2 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow V2",
           identifier: "A0000X",
@@ -811,19 +785,71 @@ describe "Thesaurus::UnmanagedConcept" do
     end
 
     it "delete single parent" do
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
-      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      uri_check_set = 
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000012"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true}
+      ]
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       new_tc = old_tc.update_with_clone({label: "New Airport", definition: "A new definition"}, parent)
       expect(new_tc.uri).to eq(old_tc.uri)
       expect(parent.narrower.count).to eq(2)
       expect(new_tc.delete_or_unlink(parent)).to eq(1)
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(parent.narrower.count).to eq(1)
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
     end 
 
     it "delete multiple parent" do
-      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
-      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"))
+      uri_check_set = 
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000012"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"), present: true}
+      ]
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
       tc_v2 = Thesaurus::ManagedConcept.from_h({
           label: "London Heathrow V2",
           identifier: "A0000X",
@@ -834,14 +860,72 @@ describe "Thesaurus::UnmanagedConcept" do
       tc_v2.narrower = parent.narrower
       tc_v2.set_initial(tc_v2.identifier)
       tc_v2.save
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
       expect(parent.narrower.count).to eq(2)
       expect(tc_v2.narrower.count).to eq(2)
-      old_tc.delete_or_unlink(tc_v2) # Remove the common item from the new code list
-      expect(old_tc.delete_or_unlink(parent)).to eq(1)
+      expect(old_tc.delete_or_unlink(tc_v2)).to eq(1) # Remove the common item from the new code list
+      parent = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       tc_v2 = Thesaurus::ManagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A0000X/V1#A0000X"))
       expect(parent.narrower.count).to eq(2)
       expect(tc_v2.narrower.count).to eq(1)
+      old_tc = Thesaurus::UnmanagedConcept.find_children(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
     end
+
+    it "allows a TC to be destroyed" do
+      uri_check_set = 
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000011"), present: false},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001_A000012"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/A00002/V1#A00002_SI"), present: true}
+      ]
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      result = tc.delete_or_unlink(parent)
+      expect(result).to eq(1)
+      parent = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      expect{Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))}.to raise_error(Errors::NotFoundError, 
+        "Failed to find http://www.acme-pharma.com/A00001/V1#A00001_A000011 in Thesaurus::UnmanagedConcept.") 
+      expect(triple_store.check_uris(uri_check_set)).to be(true)
+    end
+
+    it "does not allow a TC to be destroyed if it has children" # do
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    #   params = 
+    #   {
+    #     uri: Uri.new(uri: "http://www.assero.co.uk/TC#OWNER-A00004"),
+    #     definition: "Other or mixed race",
+    #     identifier: "A00004",
+    #     label: "New",
+    #     notation: "NEWNEW"
+    #   }
+    #   new_object = tc.add_child(params)
+    #   tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+    #   result = tc.delete_or_unlink(tc)
+    #   expect(result).to eq(0)
+    #   expect(tc.errors.count).to eq(1)
+    #   expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A000011 due to the concept having children")
+    # end
 
   end
 

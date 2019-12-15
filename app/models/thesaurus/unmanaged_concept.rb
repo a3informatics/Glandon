@@ -29,6 +29,7 @@ class Thesaurus::UnmanagedConcept < IsoConceptV2
   end
   
   def delete_or_unlink(parent_object)
+    #return 0 if self.has_children? # @todo will be required for hierarchical terminologies
     if multiple_parents?
       parent_object.delete_link(:narrower, self.uri)
       1
@@ -191,20 +192,6 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     missing.each {|x| set << {subject: self.uri, object: Uri.new(uri: x)}}
   end
 
-  # Multiple Parents. Check if concept has multiple parents (used in multiple collections)
-  #
-  # @return [Boolean] true if used multiple times, false otherwise
-  def multiple_parents?
-    query_string = %Q{
-      SELECT ?o WHERE
-      {
-        #{self.uri.to_ref} ^th:narrower ?o .
-      }
-    }
-    query_results = Sparql::Query.new.query(query_string, :th, [:th])
-    query_results.by_object(:o).count > 1
-  end
-
   # To CSV No Header. A CSV record with no header
   #
   # @return [Array] array of items
@@ -295,10 +282,9 @@ private
 
   # Find parent query. Used by BaseConcept
   def parent_query
-    "SELECT DISTINCT ?i WHERE \n" +
+    "SELECT DISTINCT ?s WHERE \n" +
     "{ \n" +     
-    "  ?s th:narrower #{self.uri.to_ref} .  \n" +
-    "  ?s th:identifier ?i . \n" +
+    "  #{self.uri.to_ref} ^th:narrower ?s .  \n" +
     "}"
   end
 

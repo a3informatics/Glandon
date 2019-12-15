@@ -63,13 +63,6 @@ class Thesaurus
       self.preferred_term_objects
     end
 
-    # Children?
-    #
-    # @return [Boolean] True if there are children, false otherwise
-    def children?
-      return narrower.any?
-    end
-
     # Add a child concept
     #
     # @params params [Hash] the params hash containing the concept data {:notation. :preferredTerm, :synonym, :definition, :identifier}
@@ -147,15 +140,6 @@ class Thesaurus
       self.tag_labels
     end
 
-    # Delete. Don't allow if children present.
-    #
-    # @return [Integer] the number of rows deleted.
-    def delete
-      return super if !children?
-      self.errors.add(:base, "Cannot delete terminology concept with identifier #{self.identifier} due to the concept having children")
-      return 0
-    end
-
     # Update. Specific update to control synonyms, PT and prevent identifier being updated.
     #
     # @param params [Hash] the new properties
@@ -170,13 +154,26 @@ class Thesaurus
       self.save
     end
 
-    # Parent
+    # Parents
     #
     # @return [Void] no return
-    def parent
-      results = Sparql::Query.new.query(parent_query, "", [:th])
-      Errors.application_error(self.class.name, __method__.to_s, "Failed to find parent for #{identifier}.") if results.empty?
-      return results.by_object(:i).first
+    def parents
+      results = Sparql::Query.new.query(parent_query, "", [:th, :bo])
+      return results.by_object(:s)
+    end
+
+    # Multiple Parents. Check if concept has multiple parents (used in multiple collections)
+    #
+    # @return [Boolean] true if used multiple times, false otherwise
+    def multiple_parents?
+      parents.count > 1
+    end
+
+    # Multiple Parents. Check if concept has multiple parents (used in multiple collections)
+    #
+    # @return [Boolean] true if used multiple times, false otherwise
+    def no_parents?
+      parents.empty?
     end
 
     # To CSV No Header. A CSV record with no header

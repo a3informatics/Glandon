@@ -403,23 +403,6 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.notation).to eq("A")
     end
 
-    it "allows a TC to be destroyed" do
-      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
-      tc = Thesaurus::ManagedConcept.find(object.uri)
-      result = tc.delete
-      expect(result).to eq(1)
-      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
-        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
-    end
-
-    it "does not allow a TC to be destroyed if it has children" do
-      tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      result = tc.delete
-      expect(result).to eq(0)
-      expect(tc.errors.count).to eq(1)
-      expect(tc.errors.full_messages[0]).to eq("Cannot delete terminology concept with identifier A00001 due to the concept having children")
-    end
-
     it "returns the parent concept" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
       params =
@@ -430,13 +413,13 @@ describe "Thesaurus::ManagedConcept" do
         notation: "NEWNEW"
       }
       new_object = tc.add_child(params)
-      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
-      expect(tc.parent).to eq("A00001")
+      tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_NC00000456C"))
+      expect(tc_1.parents).to eq([tc.uri])
     end
 
     it "returns the parent concept, none" do
       tc = Thesaurus::ManagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
-      expect{tc.parent}.to raise_error(Errors::ApplicationLogicError, "Failed to find parent for A00001.")
+      expect(tc.parents.empty?).to eq(true)
     end
 
     it "replaces with previous if no difference" do
@@ -1032,10 +1015,9 @@ describe "Thesaurus::ManagedConcept" do
   end
 
   describe "delete" do
-    before :all do
-      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "thesaurus.ttl"]
-      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+
+    before :each do
+      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
       NameValue.destroy_all
@@ -1044,51 +1026,158 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "delete extension" do
+      uri_check_set_1 = 
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: false}
+      ]      
+      uri_check_set_2 = 
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/XXX/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/C50399E/V1#C50399E"), present: true}
+      ]      
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       thesaurus = Thesaurus.create({identifier: "XXX", label: "YYY"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
       item = thesaurus.add_extension(tc.id)
+      expect(triple_store.check_uris(uri_check_set_2)).to be(true)
       extension = Thesaurus::ManagedConcept.find(item.uri)
-      expect(Thesaurus::ManagedConcept.all.count).to eq(71)
-      sparql = %Q{INSERT DATA { #{extension.uri.to_ref} th:extends #{tc.uri.to_ref} }}
-      Sparql::Update.new.sparql_update(sparql, "", [:th])
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
       expect(extension.extension?).to eq(true)
       expect(tc.extended_by).to eq(extension.uri)
       expect(extension.extension_of).to eq(tc.uri)
-      result = extension.delete
+      result = extension.delete_or_unlink(thesaurus)
       expect(result).to eq(1)
       expect(tc.extended?).to eq(false)
       expect(extension.extended?).to eq(false)
       expect(tc.extension?).to eq(false)
       expect(extension.extension?).to eq(false) 
-      expect(Thesaurus::ManagedConcept.all.count).to eq(70)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       expect{Thesaurus::ManagedConcept.find(extension.uri)}.to raise_error(Errors::NotFoundError,
         "Failed to find http://www.acme-pharma.com/C50399E/V1#C50399E in Thesaurus::ManagedConcept.")
-      expect(Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399")).uri).to eq(tc.uri)
+      Thesaurus::ManagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
     end
 
-    it "delete subset" do
-    # cl = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.s-cubed.dk/S000001/V19#S000001"))
+    it "delete subset with members" do
+      uri_check_set_1 = 
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
+      ]      
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
       thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
       thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
       tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
       item = thesaurus.add_subset(tc.id)
-      expect(Thesaurus::ManagedConcept.all.count).to eq(71)
-      result = item.delete
-      expect(Thesaurus::ManagedConcept.all.count).to eq(70)
+      item.is_ordered_objects
+      subset = item.is_ordered
+      sm_1 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471").to_id)
+      sm_2 = subset.add(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474").to_id)
+      uri_check_set_1[11][:present] = true
+      uri_check_set_1 << { uri: subset.uri, present: true}
+      uri_check_set_1 << { uri: sm_1.uri, present: true}
+      uri_check_set_1 << { uri: sm_2.uri, present: true}
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      result = item.delete_or_unlink(thesaurus)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(72)
       expect{Thesaurus::ManagedConcept.find(item.id)}.to raise_error(Errors::NotFoundError,
         "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
-      # thesaurus = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      # subsetted_mc_id = "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ=="
-      # expect(thesaurus.is_top_concept_links.count).to eq(2)
-      # new_mc = thesaurus.add_subset(subsetted_mc_id)
-      # expect(thesaurus.is_top_concept_links.count).to eq(3)
-      # actual = Thesaurus::ManagedConcept.find_minimum(new_mc.id)
-      # expect(actual.subsets_links.to_s).to eq("http://www.cdisc.org/C66781/V2#C66781")
-      # expect(actual.is_ordered_objects).not_to be(nil)
-      # expect(actual.is_ordered_objects.members).to be(nil)  
+      uri_check_set_1[11][:present] = false
+      uri_check_set_1[12][:present] = false
+      uri_check_set_1[13][:present] = false
+      uri_check_set_1[14][:present] = false
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
     end
     
+    it "delete subset" do
+      uri_check_set_1 = 
+      [
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49471"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49474"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49476"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C43820"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C53489"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49468"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_C49475"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/Test/V1#TH"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/NP000123P/V1#NP000123P"), present: false}
+      ]      
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(72)
+      thesaurus = Thesaurus.create({identifier: "Test", label: "LabelTest"})
+      thesaurus = Thesaurus.find_minimum(thesaurus.uri)
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"))
+      item = thesaurus.add_subset(tc.id)
+      item.is_ordered_objects
+      subset = item.is_ordered
+      uri_check_set_1[11][:present] = true
+      uri_check_set_1 << { uri: subset.uri, present: true}
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+      expect(triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type)).to eq(73)
+      result = item.delete_or_unlink(thesaurus)
+      expect(Thesaurus::ManagedConcept.all.count).to eq(72)
+      expect{Thesaurus::ManagedConcept.find(item.id)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      uri_check_set_1[11][:present] = false
+      uri_check_set_1[12][:present] = false
+      expect(triple_store.check_uris(uri_check_set_1)).to be(true)
+    end
+
+    it "allows a TC to be destroyed" do
+      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
+      tc = Thesaurus::ManagedConcept.find(object.uri)
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(1)
+      expect{Thesaurus::ManagedConcept.find(object.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/AAA/V1#AAA in Thesaurus::ManagedConcept.")
+    end
+
+    it "does not allow a TC to be destroyed if it has children" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001"))
+      result = tc.delete_or_unlink(nil)
+      expect(result).to eq(0)
+      expect(tc.errors.count).to eq(1)
+      expect(tc.errors.full_messages[0]).to eq("The code list cannot be deleted as it is in use.")
+    end
+
   end
 
   describe "subsets" do
@@ -1139,7 +1228,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "clone thesaurus concept I" do
-      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = tc.clone
       check_file_actual_expected(actual.to_h, sub_dir, "clone_expected_1.yaml")
     end
@@ -1151,7 +1240,7 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "create next thesaurus concept" do
-      thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      thesaurus = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       actual = thesaurus.create_next_version
       check_dates(actual, sub_dir, "next_version_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(actual.to_h, sub_dir, "next_version_expected_1.yaml")

@@ -42,6 +42,16 @@ module TripleStoreHelpers
       result
     end
 
+    def check_uris(set)
+      overall_result = true
+      set.each do |entry|
+        result = triple_store.subject_present?(entry[:uri])
+        puts colourize("Present #{entry[:uri]}=#{result}, should be #{entry[:present]}", "red") if result != entry[:present]
+        overall_result = overall_result && result == entry[:present]
+      end
+      overall_result
+    end
+
   end
 
 end

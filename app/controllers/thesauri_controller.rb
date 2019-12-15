@@ -57,6 +57,7 @@ class ThesauriController < ApplicationController
         history_results = Thesaurus.history_pagination(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]), count: the_params[:count], offset: the_params[:offset])
         current = Thesaurus.current(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
         results = add_history_paths(Thesaurus, history_results, current)
+byebug
         render json: {data: results, offset: the_params[:offset].to_i, count: results.count}
       end
     end

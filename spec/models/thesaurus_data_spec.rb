@@ -55,8 +55,8 @@ describe Thesaurus::ManagedConcept do
       @tc_2.set_initial("A00002")
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_1.uri, local_label: "", enabled: true, ordinal: 1, optional: true})
       @th_1.is_top_concept_reference << OperationalReferenceV3::TcReference.from_h({reference: @tc_2.uri, local_label: "", enabled: true, ordinal: 2, optional: true})
-      @th_1.is_top_concept << @tc_1
-      @th_1.is_top_concept << @tc_2
+      @th_1.is_top_concept << @tc_1.uri
+      @th_1.is_top_concept << @tc_2.uri
       @th_1.set_initial("AIRPORTS")
     end
 
@@ -65,7 +65,6 @@ describe Thesaurus::ManagedConcept do
     end
 
     before :each do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "BusinessOperational.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
