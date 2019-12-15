@@ -13,15 +13,7 @@ describe Thesauri::UnmanagedConceptsController do
     login_curator
 
     before :each do
-      schema_files =
-      [
-        "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "BusinessOperational.ttl", "thesaurus.ttl"
-      ]
-      data_files =
-      [
-        "iso_namespace_real.ttl", "iso_registration_authority_real.ttl",
-      ]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
     end
 
@@ -105,11 +97,10 @@ describe Thesauri::UnmanagedConceptsController do
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
       token = Token.obtain(mtc, @user)
       put :update, {id: umtc.id, edit: { parent_id: mtc.id, notation: "NEW NOTATION"}}
-      expected = [{:definition=>"", :extensible=>false, :id=>"aHR0cDovL3d3dy5zLWN1YmVkLmRrL0NUL1YxI2Zha2U=", :identifier=>"", :label=>"", :notation=>"NEW NOTATION", :preferred_term=>"", :synonym=>""}]
-      expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
-      expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
-      #expect(AuditTrail.count).to eq(audit_count + 1)
+      expect(response.content_type).to eq("application/json")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "update_expected_1.yaml")
     end
 
     it "updates concept, token but errors" do
@@ -140,39 +131,33 @@ describe Thesauri::UnmanagedConceptsController do
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
       umtc.set_persisted # Needed for id method to work for paths
-      mtc = Thesaurus::ManagedConcept.new
+      mtc = Thesaurus::ManagedConcept.create({identifier: "Y000001", notation: "Y"})
+      token = Token.obtain(mtc, @user)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
-      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete).and_return(1)
+      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete_or_unlink).and_return(1)
       put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
       expected = []
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:data]).to eq(expected)
-      #token = Token.obtain(th, @user)
-      #expect(AuditTrail.count).to eq(audit_count + 1)
     end
 
-    it "deletes concept, token but errors" do
+    it "deletes concept, no token" do
       umtc = Thesaurus::UnmanagedConcept.new
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
       umtc.set_persisted # Needed for id method to work for paths
       umtc.errors.add(:base, "Destroy error")
-      mtc = Thesaurus::ManagedConcept.new
+      mtc = Thesaurus::ManagedConcept.create({identifier: "Y000001", notation: "Y"})
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
-      expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:delete).and_return(1)
       put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
-      expected = ["Destroy error"]
+      expected = ["The changes were not saved as the edit lock timed out."]
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(expected)
-      #token = Token.obtain(th, @user)
-      #expect(AuditTrail.count).to eq(audit_count + 1)
     end
-
-    it "deletes concept, no token"
 
     it "returns the synonym links, context" do
       expected =
