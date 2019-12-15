@@ -615,4 +615,84 @@ describe Thesaurus do
 
   end
 
+  describe "Further Delete" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    def th_counts
+      { th_count: triple_store.rdf_type_count(Thesaurus.rdf_type),
+        mc_count: triple_store.rdf_type_count(Thesaurus::ManagedConcept.rdf_type),
+        uc_count: triple_store.rdf_type_count(Thesaurus::UnmanagedConcept.rdf_type)
+      }
+    end
+
+    def check_uris(set)
+      set.each do |entry|
+        result = triple_store.subject_present?(entry[:uri])
+        puts colourize("Present #{entry[:uri]}=#{result}, should be #{entry[:present]}", "red") if result != entry[:present]
+        expect(result).to be(entry[:present])
+      end
+    end
+
+    it "deletes thesaurus keeps children" do
+      th_uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
+      check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_1a.yaml")
+      th = Thesaurus.find_minimum(th_uri)
+      th.delete
+      check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_1b.yaml")
+      expect{Thesaurus.find_minimum(th_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/AIRPORTS/V1#TH in Thesaurus.")
+    end
+
+    it "adds a child item then deletes thesaurus" do
+      uri_check_set = 
+      [
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_RS"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_SI"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR1"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_TCR2"), present: false},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/S123A/V1#S123A"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_SI"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000011"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#26357de9280b8b1df0049b6923d1bc19ad3f377c"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#a39d900d25e54ad5f61dfacf23077413ca49cf5d"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af84b37afa3c3d83b068c072d126f7873553306f"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#84951d6f13f0db7aa4b351d1c8afab29a8173201"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#af6cf7cee7960bb1f8e33409ad316508e5b4a166"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001_A000012"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#addfdad3bf63ee038b6f1a4709d275fa30732004"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/PT#811134c7e968fad493503ef4bb858c4677c29f8a"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#79c4ee2a8794ed9263677bae64ea01a6e9bb6472"), present: true},
+        { uri: Uri.new(uri: "http://www.assero.co.uk/SYN#e4626aa737c7a6111b853ba4eaf4ee1599bfb7b3"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_RS"), present: true},
+        { uri: Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00002_SI"), present: true}
+      ]
+      th_uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
+      expected_uri = Uri.new(uri: "http://www.acme-pharma.com/S123A/V1#S123A")
+      check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_2a.yaml")
+      th = Thesaurus.find_minimum(th_uri)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S123A")
+      result = th.add_child(identifier: "S123A")
+      item = Thesaurus::ManagedConcept.find_minimum(expected_uri)
+      check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_2b.yaml")
+      th.delete
+      check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_2c.yaml")
+      expect{Thesaurus.find_minimum(th_uri)}.to raise_error(Errors::NotFoundError, "Failed to find http://www.acme-pharma.com/AIRPORTS/V1#TH in Thesaurus.")
+      item = Thesaurus::ManagedConcept.find_minimum(expected_uri)
+      check_dates(item, sub_dir, "delete_checks_expected_2d.yaml", :creation_date, :last_change_date)
+      check_file_actual_expected(item.to_h, sub_dir, "delete_checks_expected_2d.yaml")
+      check_uris(uri_check_set)
+    end
+
+  end
+
 end

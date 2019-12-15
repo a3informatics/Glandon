@@ -19,29 +19,26 @@ module Sparql
       # @return [SparqlUpdateV2::Statement] the object
       def initialize(body) 
         @results = []
+        @ask = false
         doc = Nokogiri::XML(body)
         doc.remove_namespaces!
         doc.xpath("//result").each do |result|
           next if result.element_children.empty?
           @results << Sparql::Query::Results::Result.new(result)
         end
-        # variables = doc.xpath("//head/variable/@name").map{|x| x.text.to_sym}
-        # doc.xpath("//result").map{|x| x.xpath("binding")}.each do |x|
-        #   row = {}
-        #   x.each_with_index do |y, index|
-        #     value = y.xpath("uri").empty? ? y.xpath("literal").text : Uri.new(uri: y.xpath("uri").text)
-        #     row[variables[index]] = value
-        #   end
-        #   @results << row
-        # end
-#s3 = Time.now
-#puts "S1=#{s2-s1}"
-#puts "S2=#{s3-s2}"
+        @ask = doc.xpath("//boolean/text()").first.to_s.to_bool if doc.xpath("//boolean/text()").any?
       end
 
       # Results
       #
-      # @return [Array] retruns the result array
+      # @return [Boolean] returns the ask result
+      def ask?
+        @ask
+      end
+
+      # Results
+      #
+      # @return [Array] returns the result array
       def results
         @results
       end

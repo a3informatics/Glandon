@@ -24,6 +24,7 @@ describe Sparql::Query::Results do
   #Xwrite_yaml_file(result.to_hash, sub_dir, "new_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "new_expected_1.yaml")
     expect(result.to_hash).to eq(expected)
+    expect(result.ask?).to eq(false)
 	end
 
   it "allows for the results to be presented by subject, default" do
@@ -32,6 +33,7 @@ describe Sparql::Query::Results do
   #Xwrite_yaml_file(result, sub_dir, "by_subject_expected_1.yaml")
     expected = read_yaml_file(sub_dir, "by_subject_expected_1.yaml")
     expect(result).to triples_equal(expected)
+    expect(results.ask?).to eq(false)
   end
 
   it "allows for the results to be presented by subject, string names" do
@@ -39,6 +41,7 @@ describe Sparql::Query::Results do
     result = results.by_subject({subject: "s", predicate: "p", object: "o"})
     expected = read_yaml_file(sub_dir, "by_subject_expected_1.yaml")
     expect(result).to triples_equal(expected)
+    expect(results.ask?).to eq(false)
   end
 
   it "allows for the results to be presented by subject, symbol names" do
@@ -46,6 +49,7 @@ describe Sparql::Query::Results do
     result = results.by_subject({subject: :s, predicate: :p, object: :o})
     expected = read_yaml_file(sub_dir, "by_subject_expected_1.yaml")
     expect(result).to triples_equal(expected)
+    expect(results.ask?).to eq(false)
   end
 
   it "determines if results empty" do
@@ -53,11 +57,13 @@ describe Sparql::Query::Results do
     expect(results.empty?).to eq(true)
     results = Sparql::Query::Results.new(@xml)
     expect(results.empty?).to eq(false)
+    expect(results.ask?).to eq(false)
   end
 
   it "returns results" do
     results = Sparql::Query::Results.new("")
     expect(results.results).to eq([])
+    expect(results.ask?).to eq(false)
   end
 
   it "allows for the results to be presented by row and column" do
@@ -85,4 +91,11 @@ describe Sparql::Query::Results do
     result = Sparql::Query::Results.new(xml)
     timer_stop("XML 3 call")
   end
+
+  it "ask" do
+    xml = read_text_file_2(sub_dir, "xml_4.xml")
+    result = Sparql::Query::Results.new(xml)
+    expect(result.ask?).to eq(true)
+  end
+
 end
