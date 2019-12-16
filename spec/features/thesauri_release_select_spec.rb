@@ -53,7 +53,6 @@ describe "Thesauri Release Select", :type => :feature do
       expect(page).to have_css(".tab-option.disabled", count: 4)
       page.find(".card-with-tabs .show-more-btn").click
       expect(page).to have_content("Select CDISC Terminology version by dragging the slider")
-      pause
     end
 
     it "select a CDISC version", :type => :feature do

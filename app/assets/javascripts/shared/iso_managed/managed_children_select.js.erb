@@ -88,14 +88,14 @@ ManagedChildrenSelect.prototype.setListeners = function () {
  */
 ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 	var _this = this;
+	var data = {};
+	var strong_param = _this.dataUrl.indexOf("managed_concept") != -1 ? "managed_concept" : "thesauri";
+	data[strong_param] = { "count": _this.count, "offset": offset };
 	_this.processing(true);
 
 	$.ajax({
 		url: _this.dataUrl,
-		data:
-		{ "thesauri":
-			{	"count": _this.count,
-				"offset": offset} },
+		data: data,
 		type: 'GET',
 		dataType: 'json',
 		success: function (result) {
@@ -111,8 +111,6 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 				_this.processing(false);
 				_this.dataLoaded = true;
 				try { callback() } catch(e){console.log(e)}
-				// if(_this.target != null)
-				// 	_this.autoSelect();
 			}
 		},
 		error: function (xhr, status, error) {
