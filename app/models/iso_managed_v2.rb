@@ -217,10 +217,10 @@ class IsoManagedV2 < IsoConceptV2
   # Release
   #
   # @param [Symbol] release (:major, :minor, :patch)
-  # @return 
+  # @return []
   def release(release)
     return if !self.has_state.update_release?
-    sv = previous_release
+    sv = SemanticVersion.from_s(previous_release)
     case release
       when :major
         sv.increment_major
@@ -935,10 +935,10 @@ private
           ?si isoI:version ?v .
           ?si isoI:semanticVersion ?sv .
           ?si isoI:hasScope #{params[:scope].uri.to_ref} .
-          ?si isoT:hasState/isoT:registrationStatus ?st
+          ?s isoT:hasState/isoR:registrationStatus ?st
         } ORDER BY DESC (?v)
     }
-    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT, :isoR])
     query_results.by_object_set([:s, :sv, :st]).each do |x| 
       results << {uri: x[:s], semantic_version: x[:sv], state: x[:st]}
     end

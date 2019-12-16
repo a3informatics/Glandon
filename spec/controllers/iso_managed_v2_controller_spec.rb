@@ -27,7 +27,7 @@ describe IsoManagedV2Controller do
     it "status" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      managed_item = IsoManagedV2.find_minimum(uri.to_id)
+      managed_item = CdiscTerm.find_minimum(uri.to_id)
       get :status, {id: uri.to_id, iso_managed: { current_id: "test" }}
       expect(assigns(:managed_item).to_h).to eq(managed_item.to_h)
       expect(assigns(:current_id)).to eq("test")

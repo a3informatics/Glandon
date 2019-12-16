@@ -74,7 +74,7 @@ class SemanticVersion
     minor_sv = self.dup
     patch_sv = self.dup
     major_sv.increment_major
-    minor_sv.increment_minor
+    #minor_sv.increment_minor
     patch_sv.increment_patch
     # result = {major: "#{@major+= 1}.#{@minor}.#{@patch}", minor: "#{@major}.#{@minor+= 1}.#{@patch}", patch: "#{@major}.#{@minor}.#{@patch+= 1}"}
     result = {major: major_sv.to_s, minor: minor_sv.to_s, patch: patch_sv.to_s}

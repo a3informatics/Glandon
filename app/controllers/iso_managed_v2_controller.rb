@@ -13,7 +13,7 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    @managed_item = IsoManagedV2.find_minimum(params[:id])
+    @managed_item = get_item(params)
     @current_id = the_params[:current_id]
     @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
     @referer = request.referer
@@ -39,10 +39,7 @@ class IsoManagedV2Controller < ApplicationController
 
   def update_semantic_version
     authorize IsoManaged, :update?
-    uri = Uri.new(id: params[:id])
-    rdf_type = IsoManagedV2.the_type(uri)
-    klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
-    @managed_item = klass.find_minimum(params[:id])
+    @managed_item = get_item(params)
     if @managed_item.latest?
       @managed_item.release(the_params[:sv_type].downcase.to_sym)
       status = @managed_item.errors.empty? ? 200 : 422
@@ -58,6 +55,13 @@ class IsoManagedV2Controller < ApplicationController
   end
     
 private
+
+  def get_item(params)
+    uri = Uri.new(id: params[:id])
+    rdf_type = IsoManagedV2.the_type(uri)
+    klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
+    klass.find_minimum(params[:id])
+  end
 
   def clear_current(current_id)
     return false if current_id.blank?
