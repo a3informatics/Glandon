@@ -70,9 +70,9 @@ class SemanticVersion
   #
   # @return [String] The next versions hash
   def next_versions
-    major_sv = self.clone
-    minor_sv = self.clone
-    patch_sv = self.clone
+    major_sv = self.dup
+    minor_sv = self.dup
+    patch_sv = self.dup
     major_sv.increment_major
     minor_sv.increment_minor
     patch_sv.increment_patch

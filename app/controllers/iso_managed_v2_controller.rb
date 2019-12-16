@@ -15,7 +15,7 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     @managed_item = IsoManagedV2.find_minimum(params[:id])
     @current_id = the_params[:current_id]
-    @next_versions = SemanticVersion.from_s(@managed_item.semantic_version.to_s).next_versions
+    @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
     @referer = request.referer
     @close_path = TypePathManagement.history_url_v2(@managed_item, true)
   end
@@ -45,11 +45,10 @@ class IsoManagedV2Controller < ApplicationController
     @managed_item = klass.find_minimum(params[:id])
     if @managed_item.latest?
       @managed_item.release(the_params[:sv_type].downcase.to_sym)
-    end
-    if @managed_item.errors.empty?
-        render :json => { :data => @managed_item.semantic_version}, :status => 200
-      else
-        render :json => { :errors => @managed_item.errors.full_messages}, :status => 422
+      status = @managed_item.errors.empty? ? 200 : 422
+      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
+    else
+      render :json => { :errors => ["Can only modify the latest release"]}, :status => 422
     end
   end
 

@@ -203,29 +203,38 @@ class IsoManagedV2 < IsoConceptV2
     return self.has_state.current?
   end
 
-  # Release
+  # Previous Release
+  #
   # @param [Symbol] release (:major, :minor, :patch)
   # @return 
-  def release (release)
+  def previous_release
+    results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
+    raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
+    item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
+    item.nil? ? results.last[:semantic_version] : item[:semantic_version]
+  end
+
+  # Release
+  #
+  # @param [Symbol] release (:major, :minor, :patch)
+  # @return 
+  def release(release)
     return if !self.has_state.update_release?
-    results = self.class.history_uris(identifier: self.has_identifier.identifier, scope: self.scope)
-    return if results.length == 1
-    item = self.class.find_minimum(results[1])
-    sv = SemanticVersion.from_s(item.semantic_version.to_s)
-      case release
-        when :major
-          sv.increment_major
-        when :minor
-          sv.increment_minor  
-        when :patch
-          sv.increment_patch
-        else
-          raise Exceptions::ApplicationLogicError.new(message: "The release param is not valid")
-      end
-      si = self.has_identifier
-      si.update(semantic_version: sv.to_s)
-      si.save
-      self
+    sv = previous_release
+    case release
+      when :major
+        sv.increment_major
+      when :minor
+        sv.increment_minor  
+      when :patch
+        sv.increment_patch
+      else
+        raise Exceptions::ApplicationLogicError.new(message: "The release param is not valid")
+    end
+    si = self.has_identifier
+    si.update(semantic_version: sv.to_s)
+    si.save
+    self
   end
 
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
@@ -912,6 +921,28 @@ private
   BIND (?e as ?s)
 } 
 }
+  end
+
+  # Mini history with state and semancti version
+  def state_and_semantic_version(params)
+    results = []
+    query_string = %Q{
+      SELECT ?s ?sv ?st WHERE 
+        {
+          ?s rdf:type #{self.rdf_type.to_ref} .
+          ?s isoT:hasIdentifier ?si .
+          ?si isoI:identifier "#{params[:identifier]}" .
+          ?si isoI:version ?v .
+          ?si isoI:semanticVersion ?sv .
+          ?si isoI:hasScope #{params[:scope].uri.to_ref} .
+          ?si isoT:hasState/isoT:registrationStatus ?st
+        } ORDER BY DESC (?v)
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:isoI, :isoT])
+    query_results.by_object_set([:s, :sv, :st]).each do |x| 
+      results << {uri: x[:s], semantic_version: x[:sv], state: x[:st]}
+    end
+    results
   end
 
   def forward(current, step, end_stop)
