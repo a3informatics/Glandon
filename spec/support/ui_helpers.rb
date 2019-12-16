@@ -515,9 +515,9 @@ module UiHelpers
 	end
 
   #Context Menu
-  def context_menu_element (table_id, column_nr, text, action )
+  def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
     option = context_menu_actions_map[action]
-    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}'); "
+    js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "
     js_code += "if (el != null) { $(el)[0].click(); } else { console.log('No match found'); } "
     page.execute_script(js_code)
   end
