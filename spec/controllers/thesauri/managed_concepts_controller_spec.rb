@@ -223,10 +223,10 @@ describe Thesauri::ManagedConceptsController do
 
     it "update" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(ct, @user)
       put :update, {id: mc.id, edit: {notation: "AAAAA", parent_id: ct.id }}
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
@@ -236,7 +236,7 @@ describe Thesauri::ManagedConceptsController do
     it "update properties" do
       request.env["HTTP_REFERER"] = "path"
       audit_count = AuditTrail.count
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       token = Token.obtain(mc, @user)
       put :update_properties, {id: mc.id, edit: {synonym: "syn1; syn2"}}
       expect(response).to redirect_to("path")
@@ -245,7 +245,7 @@ describe Thesauri::ManagedConceptsController do
 
     it 'adds a child thesaurus concept' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       new_um = Thesaurus::ManagedConcept.new
       new_um.identifier = "A12345"
       new_um.definition = "A def"
@@ -266,7 +266,7 @@ describe Thesauri::ManagedConceptsController do
 
     it 'adds a child thesaurus concept, no audit' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       new_um = Thesaurus::ManagedConcept.new
       new_um.identifier = "A12345"
       new_um.definition = "A def"
@@ -287,7 +287,7 @@ describe Thesauri::ManagedConceptsController do
 
     it 'adds a child thesaurus concept, error' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       new_um = Thesaurus::ManagedConcept.new
       new_um.identifier = "A12345"
       new_um.uri = Uri.new(uri: "http://www.cdisc.org/CT/V1/A12345#fake")
@@ -307,7 +307,7 @@ describe Thesauri::ManagedConceptsController do
 
     it 'adds a child thesaurus concept, error' do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
-      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH_A00001"))
+      mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
       request.env['HTTP_ACCEPT'] = "application/json"
       expect(Token).to receive(:find_token).with(instance_of(Thesaurus::ManagedConcept), @user).and_return(nil)
       post :add_child, {id: mc.id, managed_concept: {identifier: "A12345"}}
