@@ -529,7 +529,7 @@ class IsoManagedV2 < IsoConceptV2
   #
   # @return [Object] the resulting object. Fail is there are errors.
   def create_next_version
-    return self if !self.new_version?
+    return self if !self.new_version? || self.has_state.multiple_edit
     ra = IsoRegistrationAuthority.owner
     sv = in_released_state? ? self.next_semantic_version.to_s : self.semantic_version
     object = self.clone
