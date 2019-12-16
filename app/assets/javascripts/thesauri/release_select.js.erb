@@ -69,7 +69,7 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var overviewUrls = {dataUrl: sponsorCLUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl, deselectAllUrl: deselectAllChildrenUrl};
+  var overviewUrls = {dataUrl: overviewUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl, deselectAllUrl: deselectAllChildrenUrl};
   var overview = new ManagedChildrenSelectOverview(overviewUrls, "#table-selection-overview", 1000, this);
   var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
   var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
