@@ -135,8 +135,11 @@ function rhDblClickNodeByKey(nodeKey) {
   }
 }
 
-function contextMenuElement(tableId, columnNr, matchText, targetBtnText){
+function contextMenuElement(tableId, columnNr, matchText, targetBtnText, rowNr){
   var rows = $("#"+tableId).find("tr");
+  if (rowNr != null) {
+    rows = rows.eq(rowNr);
+  }
   var element;
 
   $.each(rows, function(i, e){ // Take each row in table
