@@ -225,7 +225,7 @@ class IsoManagedV2 < IsoConceptV2
       when :major
         sv.increment_major
       when :minor
-        sv.increment_minor  
+        #sv.increment_minor  
       when :patch
         sv.increment_patch
       else
