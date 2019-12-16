@@ -21,7 +21,7 @@ function generateContextMenu(id, items, color, side){
 function generateContextItem(link_path, disabled, icon, text, dt_toggle, id){
   var item_html = '';
   id = (id != null ? "id='"+id+"'" : "");
-  item_html += '<a href="' + link_path + '" '+id+' class="option ' + (disabled === 'true' ? 'disabled' : '')  + '" ' + (dt_toggle != null ? 'data-toggle="'+dt_toggle+'"' : '') + '>';
+  item_html += '<a href="' + link_path + '" '+id+' class="option ' + (disabled === 'true' ? 'disabled' : '')  + '" ' + (dt_toggle != null ? 'data-toggle="'+dt_toggle+'"' : '') + ' >';
   item_html +=  '<span class="' + icon + ' text-small"></span>';
   item_html +=  '<span class="text-small">' + text + '</span>';
   item_html += '</a>';

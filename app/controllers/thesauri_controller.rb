@@ -159,9 +159,9 @@ class ThesauriController < ApplicationController
       AuditTrail.delete_item_event(current_user, thesaurus, "Terminology deleted.")
       token.release
     else
-      flash[:error] = "The item is locked for editing by another user."
+      render :json => {errors: "The item is locked for editing by another user."}, :status => 422 and return
     end
-    redirect_to request.referer
+    render :json => {}, :status => 200
   end
 
   # Removed.

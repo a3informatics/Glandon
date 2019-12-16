@@ -597,6 +597,19 @@ module UiHelpers
   	page.execute_script("document.getElementById('#{id}').scrollIntoView(false);")
   end
 
+	# Confirmation Dialog
+
+	def ui_confirmation_dialog(confirm)
+		sleep 0.5
+		expect(page).to have_content("Are you sure you want to proceed?")
+		if confirm
+			click_button "Yes"
+		else
+			click_button "No"
+		end
+		sleep 0.5
+	end
+
   # D3 Tree Functions
   # =================
 
