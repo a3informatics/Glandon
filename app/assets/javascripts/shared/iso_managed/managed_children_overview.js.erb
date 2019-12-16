@@ -11,7 +11,7 @@
  * @param [String] url of the data source, must match columns format on the bottom
  * @param [String] id of the table
  * @param [Integer] Number of items fetched in one request
- * @param [Object Instance] reference to the table object instance
+ * @param [Object Instance] reference to the parent (context) object instance
  *
  * @return [void]
  */
@@ -19,15 +19,12 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
 	var _this = this;
 
 	this.mcs = new ManagedChildrenSelect(urls.dataUrl, tableId, count, null, "thOverview").init();
-	this.selUrl = urls.selectUrl;
-	this.deselUrl = urls.deselectUrl;
-	this.deselAllUrl = urls.deselectAllUrl;
+	this.urls = urls;
 	this.table = this.mcs.table;
 	this.context = context;
-	this.table.select.style('api');
 
-	var loadCallback = function(){ _this.setListeners.bind(_this)();};
-	this.mcs.loadData(0, loadCallback);
+	this.table.select.style('api'); // Disable row selection
+	this.mcs.loadData(0, this.setListeners.bind(this) );
 }
 
 /**
@@ -37,79 +34,111 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.postData = function (url, data, context, action) {
-	var requestData = this.encodeIdsToData(data, context);
-
+ManagedChildrenSelectOverview.prototype.executeRequest = function (requestParams, callback) {
 	$.ajax({
-		url: url,
-		data: requestData,
-		type: action,
+		url: requestParams.url,
+		data: requestParams.data,
+		type: requestParams.type,
 		dataType: 'json',
 		context: this,
 		success: function(result){
-			switch (action) {
-				case "POST":
-					this.addItems(data, context);
-					break;
-				case "PUT":
-					this.removeItems(data, context);
-					break;
-			}
 			this.mcs.processing(false);
-			try { context.processing(false) } catch(exc) {};
+			try { callback() } catch(exc) {};
+			try { requestParams.context.processing(false) } catch(exc) {};
 		},
 		error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
 			this.mcs.processing(false);
-			try { context.processing(false) } catch(exc) {};
+			try { callback() } catch(exc) {};
+			try { requestParams.context.processing(false) } catch(exc) {};
 		}
 	})
 }
 
 /**
  * Update items in the Thesaurus selection
- * @param [Object] array of 1 or more data object(s) of the updated item(s)
- * @param [Object Reference] context from which the function was called
- * @param [String] update action, can be: "add" or "remove"
+ * @param [Object] has properties: 'action' (add/remove), 'context' (calling object reference)
+ * @param [DataTable Row(s) Data] data source
+ * @param [Function] callback executed on request success
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, action) {
-	if(!this.context.timer.expired)
-		this.context.timer.extendLock();
-
+ ManagedChildrenSelectOverview.prototype.updateSelection = function (params, data, callback) {
+	this.extendLock();
 	this.mcs.processing(true);
 
-	setTimeout(function () {
-		switch (action) {
-		case "add":
-			this.postData(this.selUrl, data, context, "POST");
-			break;
-		case "remove":
-			if (data.count() == this.mcs.table.page.info().recordsTotal)
-				this.postData(this.deselAllUrl, data, context, "PUT");
-			else
-				this.postData(this.deselUrl, data, context, "PUT");
-			break;
-		}
-	}.bind(this), 0)
+	setTimeout(function(){ this.executeRequest(this.buildRequestParams(params, data), callback) }.bind(this), 0);
 }
 
-ManagedChildrenSelectOverview.prototype.encodeIdsToData = function (data, context) {
+/**
+ * Builds ajax request parameters
+ * @param [String] action 'add' or 'remove'
+ * @param [DataTable Rows Data] 1 or more rows of data to be transferred
+ *
+ * @return [Object] formatted ajax request parameters
+ */
+ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, data) {
+	var requestData = {
+		"data": this.encodeRequestData(data),
+		"context": params.context,
+	};
+
+	switch(params.action) {
+		case "add":
+			requestData["type"] = "POST";
+			requestData["url"] = this.urls.selectChildrenURL;
+			break;
+		case "remove":
+			requestData["type"] = "PUT";
+
+			if(data.count() == this.mcs.table.page.info().recordsTotal) {
+				requestData["url"] = this.urls.deselectAllChildrenUrl;
+				requestData["data"] = "";
+			}
+			else
+				requestData["url"] = this.urls.deselectChildrenUrl;
+			break;
+	}
+
+	return requestData;
+}
+
+/**
+ * Initiates extend lock call
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.extendLock = function () {
+ if(!this.context.timer.expired)
+	 this.context.timer.extendLock();
+}
+
+/**
+ * Encodes DataTables Row(s) Data API to correct data structure to be sent to the server
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data) {
 	var idArray = [];
 
-	if(context.thisTable == true){
-		data.every(function(idx, r, c){
-			idArray.push(this.data().id);
-		});
-	}
-	else {
-		$.each(data, function(i, item){
-			idArray.push(item.id);
-		});
-	}
+	$.each(data, function(i, item){
+		idArray.push(item.id);
+	});
 
 	return {thesauri: {id_set: idArray}};
+}
+
+/**
+ */
+ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data, params) {
+	switch(params.action){
+		case "add":
+			this.addItems(data, params);
+			break;
+		case "remove":
+			this.removeItems(data, params);
+			break;
+	}
 }
 
 /**
@@ -119,14 +148,13 @@ ManagedChildrenSelectOverview.prototype.encodeIdsToData = function (data, contex
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
+ManagedChildrenSelectOverview.prototype.addItems = function (data, params) {
 	$.each(data, function (i, e) {
 		e["version"] = "Ver 1.2.3.";
-		e["context"] = {
-			index: context.findRowByParam("id", e).index(),
-			source: context.tableId
-		};
+		// Attach origin information for performance
+		e["sourceInfo"] = {index: params.context.findRowByParam("id", e).index(), tableId: params.context.tableId};
 	});
+
 	this.table.rows.add(data);
 	this.redraw();
 }
@@ -138,13 +166,15 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
-	if(context.thisTable == true)
-		data.remove();
+ManagedChildrenSelectOverview.prototype.removeItems = function (data, params) {
+	if (params.thisTable)
+		params.rows.remove();
 	else
 		this.mcs.findRowsByData("id", data).remove();
 
-	context.autoDeselect ? this.context.autoDeselectAllTabs() : "";
+	if (params.autoDeselect)
+		this.context.autoDeselectAllTabs(data);
+
 	this.table.draw();
 }
 
@@ -166,20 +196,26 @@ ManagedChildrenSelectOverview.prototype.redraw = function () {
 ManagedChildrenSelectOverview.prototype.setListeners = function () {
 	var _this = this;
 
+	// Exclude all click event handler
 	$(_this.mcs.tableId + "-bulk-deselect").off("click").on("click", function () {
-		new ConfirmationDialog(function () {
-			setTimeout(function () { _this.bulkRemove()	}, 0);
-		}, {dangerous: true}).show()
+		new ConfirmationDialog(_this.bulkRemove.bind(_this), {dangerous: true}).show();
 	});
 
+	// Exclude item button click event handler
 	$(_this.mcs.tableId).find(".exclude").off("click").on("click", function ()  {
-		var row = _this.table.row($(this).parents("tr:first"));
-		var context = row.data().context;
-		if (context != null)
-			$(context.source).DataTable().row(context.index).deselect();
-		else{
-			var contextData = {thisTable: true, autoDeselect: true}
-			_this.updateItems(row, contextData, "remove");
+		var item = _this.table.rows($(this).parents("tr:first")).data();
+		var origin = item[0].sourceInfo;
+
+		// Saved origin information - more efficient access to the original row
+		if (origin != null){
+			$(origin.tableId).DataTable().row(origin.index).deselect();
+		}
+
+		// No origin information - have to automatically find and deselect origin row by id
+		else {
+			var params = { action: "remove", context: _this, autoDeselect: true };
+			var callback = _this.updateSelectionCallback.bind(_this, item, params);
+			_this.updateSelection(params, item, callback);
 		}
 	});
 }
@@ -190,7 +226,11 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
  * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
-	var data = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
-	var contextData = {thisTable: true, autoDeselect: true}
-	this.updateItems(data, contextData, "remove");
+	setTimeout(function () {
+		var rows = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
+		var params = { context: this, action: "remove", autoDeselect: true, thisTable: true, rows: rows };
+		var data = rows.data();
+		var callback = this.updateSelectionCallback.bind(this, data, params);
+		this.updateSelection(params, data, callback);
+	}.bind(this), 0);
 }

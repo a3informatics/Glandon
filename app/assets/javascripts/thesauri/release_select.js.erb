@@ -15,18 +15,19 @@ $(document).ready(function(){
  * @return [void]
  */
 function ReleaseSelect(){
-  this.timeline = this.initTS();
+  this.referenceThUrl = referenceThUrl;
+
+  this.timeline = this.initTimelineSlider();
   this.cdiscCT = this.initCdiscCt();
-  this.refThUrl = refThUrl;
-  this.timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
-
+  this.timer = this.initTimer();
   this.tabs = this.initTabs();
+  this.setEventListeners();
 
+  // Load CDISC code lists if a version had been selected previously
   if(this.cdiscCT.versionId != null){
     this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
     $(".tab-option.disabled").removeClass("disabled");
   }
-  this.setEventListeners();
 }
 
 /**
@@ -34,8 +35,17 @@ function ReleaseSelect(){
  *
  * @return [TimelineSlider]
  */
-ReleaseSelect.prototype.initTS = function(){
+ReleaseSelect.prototype.initTimelineSlider = function(){
   return new TimelineSlider($(".timeline-container"), $("#timeline-start-btn"), null, $(".timeline-point"));
+}
+
+/**
+ * Initializes edit lock timer
+ *
+ * @return [Timer]
+ */
+ReleaseSelect.prototype.initTimer = function(){
+  return new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
 }
 
 /**
@@ -47,6 +57,7 @@ ReleaseSelect.prototype.initCdiscCt = function(){
   var cdiscVer = $("#cdisc-version-label").text() == "None" ? null : $("#cdisc-version-label").text();
   var cdiscVerId = cdiscVer == null ? null : $(".timeline-point:contains("+cdiscVer+") span").attr("data-index");
 
+  // Set slider to latest version as default if CDISC version hadn't been previously selected
   if (cdiscVer == null)
     cdiscVer = this.timeline.tl_points.eq(-1).children().first().html();
 
@@ -69,9 +80,8 @@ ReleaseSelect.prototype.makeCdiscUrl = function(id){
  * @return [Object] of tab references {cdiscTab, ...}
  */
 ReleaseSelect.prototype.initTabs = function(){
-  var overviewUrls = {dataUrl: overviewUrl, selectUrl: selectChildrenURL, deselectUrl: deselectChildrenUrl, deselectAllUrl: deselectAllChildrenUrl};
   var overview = new ManagedChildrenSelectOverview(overviewUrls, "#table-selection-overview", 1000, this);
-  var cdiscCls = new ManagedChildrenSelect("", "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
+  var cdiscCls = new ManagedChildrenSelect(cdiscCLUrl, "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
   var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
 
   return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls, target: overview};
@@ -100,7 +110,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
   this.cdiscCT.versionId = $(".timeline-point.point-highlight span").attr("data-index");
   this.cdiscCT.version = $(".timeline-point.point-highlight span").first().text();
 
-  this.refThUpdate();
+  this.referenceThUpdate();
 }
 
 /**
@@ -108,23 +118,33 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
  *
  * @return [void]
  */
-ReleaseSelect.prototype.refThUpdate = function(){
+ReleaseSelect.prototype.referenceThUpdate = function(){
   this.tabs.cdiscTab.processing(true);
 
   $.ajax({
-    url: this.refThUrl,
+    url: this.referenceThUrl,
     data: {thesauri: {thesaurus_id: this.cdiscCT.versionId}},
     type: 'PUT',
     dataType: 'json',
     context: this,
     success: function (result) {
-      this.tabs.cdiscTab.processing(false);
-
+      // Update CDISC ver UI
       $("#cdisc-version-label").html(this.cdiscCT.version);
-      this.tabs.target.updateItems(this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"}), {thisTable: true}, "remove");
-      this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
       $(".tab-option.disabled").removeClass("disabled");
       $(".show-more-btn").click();
+
+      // Remove selection of all CDISC items
+      var rows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
+      var data = rows.data();
+      var params = { action: "remove", autoDeselect: false, thisTable: true, rows: rows}
+      var callback = function() {
+        this.tabs.target.updateSelectionCallback(data, params)
+        this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+      }.bind(this);
+
+      this.tabs.target.updateSelection(params, data, callback);
+
+
     },
     error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
@@ -141,31 +161,34 @@ ReleaseSelect.prototype.refThUpdate = function(){
 ReleaseSelect.prototype.setEventListeners = function(){
   var _this = this;
 
+  // Timeline Slider displayed event handler
   $(".card-with-tabs .show-more-btn").one("change", function(){
     _this.timeline.moveToDate(_this.timeline.l_slider, _this.cdiscCT.version);
     $(".timeline-container").data(_this.timeline);
   });
 
+  // Submit version change event handler
   $("#select-cdisc-ver-button").on("click", function(){
     if ($(".timeline-point.point-highlight span").text() == $("#cdisc-version-label").html())
       return;
     else if (_this.cdiscCT.versionId == null)
       _this.changeCdiscVer();
     else
-      new ConfirmationDialog(function(){ _this.changeCdiscVer(); },
-        {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.",
-        dangerous: true})
-      .show();
+      new ConfirmationDialog(function() { _this.changeCdiscVer() },
+        {subtitle: "If you change CDISC version, all CDISC codelists will be cleared from your thesaurus. This operation cannot be undone.", dangerous: true})
+        .show();
   });
 
+  // Define handlers for tabs switched
   tabSwitchCallback = function(tab){
     switch($(tab).attr("id")){
       case "tab-sponsor-cls":
-        if(!_this.tabs.sponsorClTab.dataLoaded){
-          var loadCallback = function(){_this.tabs.sponsorClTab.autoSelect.bind(_this.tabs.sponsorClTab)()};
-          _this.tabs.sponsorClTab.loadData(0, loadCallback);
-        }
-          break;
+        var thisTab = _this.tabs.sponsorClTab;
+
+        // Start loading data into table when tab switched to Sponsor CLs
+        if(!thisTab.dataLoaded)
+          thisTab.loadData(0, thisTab.autoselect.bind(thisTab) );
+        break;
     }
   }
 }

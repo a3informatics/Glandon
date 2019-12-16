@@ -3,14 +3,20 @@
 
 <% show_text, hide_text =  "Show CDISC version selector", "Hide CDISC version selector" %>
 <%= javascript_tag "var showHideTexts = ['#{show_text}', '#{hide_text}'];" %>
-<%= javascript_tag "var cdiscCLUrl = '#{children_with_indicators_thesauri_path("th_id")}', overviewUrl = '#{children_with_indicators_thesauri_path(@thesaurus)}', sponsorCLUrl ='#{set_with_indicators_thesauri_managed_concepts_path}';" %>
-<%= javascript_tag "var refThUrl = '#{reference_thesauri_path(@thesaurus)}', selectChildrenURL = '#{select_children_thesauri_path(@thesaurus)}',
-                      deselectChildrenUrl = '#{deselect_children_thesauri_path(@thesaurus)}', deselectAllChildrenUrl='#{deselect_all_children_thesauri_path(@thesaurus)}'" %>
+
+<%= javascript_tag "var cdiscCLUrl = '#{children_with_indicators_thesauri_path("th_id")}',
+                        sponsorCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}',
+                        referenceThUrl = '#{reference_thesauri_path(@thesaurus)}';
+                    var overviewUrls = {
+                      dataUrl: '#{children_with_indicators_thesauri_path(@thesaurus)}',
+                      selectChildrenURL: '#{select_children_thesauri_path(@thesaurus)}',
+                      deselectChildrenUrl: '#{deselect_children_thesauri_path(@thesaurus)}',
+                      deselectAllChildrenUrl: '#{deselect_all_children_thesauri_path(@thesaurus)}' };" %>
 
 <%= stylesheet_link_tag 'custom/tabs_layout', 'shared/datatables_loading', 'shared/managed_children_select', 'custom/show_more', 'custom/dates_selector' %>
 <%= javascript_include_tag 'jquery-ui.min.js', 'jquery.ui.touch-punch.min.js' %>
 <%= javascript_include_tag 'shared/tabs_layout', 'shared/timeline_slider', 'shared/iso_managed/managed_children_select', 'shared/iso_managed/managed_children_overview',
-'shared/show_more_js', 'thesauri/release_select', 'shared/timer', 'unload'%>
+                           'shared/show_more_js', 'thesauri/release_select', 'shared/timer', 'unload' %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @thesaurus, :badge => "icon-terminology"} do %>
@@ -22,6 +28,7 @@
     </div>
   <% end %>
 </div>
+
 <div class="row">
   <div class="col-md-12 card wide">
     <div class="card-header">
