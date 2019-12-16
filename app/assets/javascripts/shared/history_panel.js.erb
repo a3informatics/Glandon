@@ -37,7 +37,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       {"data" : "label"},
       {"data" : "has_identifier.version_label"},
       {"data" : "has_state.registration_status", "render": function (data, type, row, meta){
-        if (type == "display") 
+        if (type == "display")
           return _this.registrationStatesHTML(row);
         else return data;
       }},
@@ -45,11 +45,11 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
         var id = "con-menu-" + counter;
 
         var menu_items =
-        [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show", },
-          { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search", },
-          { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit", },
-          { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control", },
-          { link_path: row.delete_path, disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete", }, ];
+        [ { link_path: row.show_path, disabled: row.show_path == "" ? "true":"false", icon: "icon-view", text: "Show"},
+          { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},
+          { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
+          { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
+          { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
         counter ++;
 
         return generateContextMenu(id, menu_items);
@@ -65,7 +65,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
       "processing": loading_html
     },
     "drawCallback": function(){
-      // THIS WILL OPEN THE CONTEXT MENU ON THE LEFT SIDE IF THERE IS NOT ENOUGH SPACE ON THE RIGHT
+      // Context menu on the left if not enough space to be on the right
       if($('#history').offset().left + $('#history').outerWidth() + $('#history').find(".context-menu").outerWidth() > $(document).width()-100){
         $('#history').find(".context-menu").addClass("left");
       }
@@ -109,8 +109,6 @@ HistoryPanel.prototype.add = function (offset) {
         _this.historyTable.processing(false);
         _this.setListeners();
       }
-
-
     },
     error: function(xhr,status,error){
       handleAjaxError(xhr, status, error);
@@ -119,31 +117,51 @@ HistoryPanel.prototype.add = function (offset) {
   });
 }
 
+/**
+ * Generates HTML for registration state
+ * @param [Object] row item data
+ *
+ * @return [String] HTML of the item to be displayed in the table
+ */
 HistoryPanel.prototype.registrationStatesHTML = function (data) {
-  var lstate = data.has_state.registration_status.toLowerCase();
-  if (lstate == "not_set" || lstate == "recorded" || lstate == "qualified" || lstate == "standard") {
+  var state = data.has_state.registration_status.toLowerCase();
+  if ((state == "not_set" || state == "recorded" || state == "qualified" || state == "standard") && data.edit_path != "") {
     if (data.has_state.multiple_edit)
-    return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
+      return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
     else
-    return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
+      return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
   }
   else return data.has_state.registration_status;
 }
 
+/**
+ * Sets event listeners for table items - multi-edit lock update, remove item
+ *
+ * @return [void]
+ */
 HistoryPanel.prototype.setListeners = function () {
   var _this = this;
 
-  $(".registration-state").on("click", function(){
+  $(".registration-state").off("click").on("click", function(){
     var data = _this.historyTable.row($(this).parents("tr:first")).data();
     _this.updateRegistrationState(data);
-
   })
+
+  $(".context-menu").find("a:contains('Delete')").each(function(){
+    var data = _this.historyTable.row($(this).parents("tr:first")).data();
+    $(this).off("click").on("click", function() { _this.removeItem(data) });
+  });
 }
 
+/**
+ * Ajax call to update the multiple edit lock
+ * @param [Object] row item data
+ *
+ * @return [void]
+ */
 HistoryPanel.prototype.updateRegistrationState = function (data) {
   var _this = this;
   url_rs_path = url_rs_path.replace("rs_id", data.id);
-  // var current_status = data.has_state.multiple_edit == "true";
   var current_status = data.has_state.multiple_edit;
 
   var requestData = { "iso_registration_state": { "multiple_edit": !current_status} };
@@ -162,6 +180,30 @@ HistoryPanel.prototype.updateRegistrationState = function (data) {
     }
   });
 }
+
+/**
+ * Opens a confirmation dialog, makes ajax call to remove item when user confirms
+ * @param [Object] row item data
+ *
+ * @return [void]
+ */
+HistoryPanel.prototype.removeItem = function (data) {
+  new ConfirmationDialog(function(){
+    var _this = this;
+    $.ajax({
+      url: data.delete_path,
+      type: "DELETE",
+      success: function(result){
+        location.reload();
+      },
+      error: function (xhr, status, error) {
+        var html = alertError("An error has occurred deleting the item.");
+        displayAlerts(html);
+      },
+    })
+  }, {dangerous: true}).show();
+}
+
 
 // HistoryPanel.prototype.linkButton = function (path, text) {
 //   _this = this;

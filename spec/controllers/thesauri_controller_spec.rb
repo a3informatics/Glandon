@@ -6,24 +6,24 @@ describe ThesauriController do
   include UserAccountHelpers
 
   def standard_params
-    params = 
+    params =
     {
-      :draw => "1", 
+      :draw => "1",
       :columns =>
       {
-        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "1" => {:data  => "parentLabel", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "2" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "3" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "4" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
-        "5" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }}, 
+        "0" => {:data  => "parentIdentifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "1" => {:data  => "parentLabel", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "2" => {:data  => "identifier", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "3" => {:data  => "notation", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "4" => {:data  => "preferredTerm", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
+        "5" => {:data  => "synonym", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false" }},
         "6" => {:data  => "definition", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}},
         "7" => {:data  => "tags", :name => "", :searchable => "true", :orderable => "true", :search => { :value => "", :regex => "false"}}
-      }, 
-      :order => { "0" => { :column => "0", :dir => "asc" }}, 
-      :start => "0", 
-      :length => "15", 
-      :search => { :value => "", :regex => "false" }, 
+      },
+      :order => { "0" => { :column => "0", :dir => "asc" }},
+      :start => "0",
+      :length => "15",
+      :search => { :value => "", :regex => "false" },
     }
     return params
   end
@@ -400,8 +400,9 @@ describe ThesauriController do
       delete :destroy, id: th.id
       expect(Thesaurus.all.count).to eq(th_count)
       expect(AuditTrail.count).to eq(audit_count)
-      expect(response).to redirect_to("/thesauri")
-      expect(flash[:error]).to be_present
+      expect(response.code).to eq("422")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:errors]
+      expect(actual).to eq("The item is locked for editing by another user.")
     end
 
     it 'deletes thesaurus' do
@@ -414,6 +415,7 @@ describe ThesauriController do
       expect(Thesaurus.all.count).to eq(th_count - 1)
       expect(AuditTrail.count).to eq(audit_count + 1)
       expect(Token.count).to eq(token_count)
+      expect(response.code).to eq("200")
     end
 
     it "show" do

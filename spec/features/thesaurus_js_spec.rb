@@ -20,9 +20,9 @@ describe "Thesaurus", :type => :feature do
   end
 
   def new_term_modal(identifier, label)
-    # Leave this sleep here. Seems there is an issue with the modal and fade 
+    # Leave this sleep here. Seems there is an issue with the modal and fade
     # that causes inconsistent entry of text using fill_in.
-    sleep 2 
+    sleep 2
     fill_in 'thesauri_identifier', with: identifier
     fill_in 'thesauri_label', with: label
     click_button 'Submit'
@@ -59,7 +59,7 @@ describe "Thesaurus", :type => :feature do
     end
 
     after :each do
-      wait_for_ajax_long
+      # wait_for_ajax_long
       ua_logoff
     end
 
@@ -294,7 +294,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'CDISC EXT'
       click_button 'New'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000011P' 
+      expect(page).to have_content 'NP000011P'
       click_link 'Return'
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
@@ -334,7 +334,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content "Nice Label"
     end
 
-    it "allows a code list to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040) - WILL CURRENTLY FAIL", js: true do
+    it "allows a thesaurus to be deleted (REQ-MDR-ST-015, REQ-MDR-MIT-030, REQ-MDR-MIT-040)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
       click_link 'New Terminology'
@@ -345,12 +345,10 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Item History'
       expect(page).to have_content 'Identifier: TT'
       context_menu_element("history", 4, 'TestTerminology', :delete)
-  # ALERT NOT SHOWN, FAILS
-  #ui_click_cancel("Are you sure?")
+      ui_confirmation_dialog false
       expect(page).to have_content 'Item History'
       context_menu_element("history", 4, 'TestTerminology', :delete)
-      #pause
-      ui_click_ok("Are you sure?")
+      ui_confirmation_dialog true
       expect(page).to have_content 'Index: Terminology'
     end
 
