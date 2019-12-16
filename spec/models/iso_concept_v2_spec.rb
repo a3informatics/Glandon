@@ -284,7 +284,7 @@ describe "IsoConceptV2" do
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2001"))
       item_2 = item_1.clone
       expect(item_1.label).to eq(item_2.label)
-      check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_1b.yaml", write_file: true)
+      check_file_actual_expected(item_2.to_h, sub_dir, "clone_expected_1b.yaml")
     end
 
   end
