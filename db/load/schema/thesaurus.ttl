@@ -69,7 +69,7 @@
   rdfs:subPropertyOf isoC:link ;
   rdfs:label "Top concept reference relationship"^^xsd:string ;
   rdfs:domain :Thesaurus ;
-  rdfs:range bo:TcReference ;
+  rdfs:range bo:TMcReference ;
   skos:definition "Relationship linking a thesaurus to concepts that are themseleves version managed."^^xsd:string ;
 .
 :isTopConcept
@@ -117,6 +117,14 @@
   rdfs:domain :ManagedConcept ;
   rdfs:range :ManagedConcept ;
   skos:definition "A relationship linking the concept with the one being subsetted."^^xsd:string ;
+.
+:reference
+  rdf:type owl:ObjectProperty ;
+  rdfs:subPropertyOf isoC:link ;
+  rdfs:label "Reference relationship"^^xsd:string ;
+  rdfs:domain :Thesaurus ;
+  rdfs:range bo:Reference  ;
+  skos:definition "A relationship linking a thesaurus with a reference thesaurus."^^xsd:string ;
 .
 :definition
   rdf:type owl:DatatypeProperty ;

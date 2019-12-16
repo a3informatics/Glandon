@@ -1,0 +1,22 @@
+@import "custom/vars.scss";
+
+.table-row-clickable tbody tr:hover{
+  color: $secondary-color-medium;
+  background: $row-highlight-background !important;
+  cursor: pointer;
+}
+
+.table-row-clickable .selected td:first-of-type{
+  position: relative;
+}
+
+.table-row-clickable .selected td:first-of-type::before{
+  font-family: 'icomoon';
+  display: block;
+  color: $secondary-color-light;
+  position: absolute;
+  left: -20px;
+  font-size: $font-tiny;
+  top: calc(50% - 5pt);
+  content: "\e944";
+}

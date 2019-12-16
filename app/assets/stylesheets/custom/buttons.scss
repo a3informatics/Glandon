@@ -68,6 +68,30 @@
   background: $secondary-color-dark !important;
 }
 
+.btn.light{
+  background: $primary-color-light;
+}
+
+.btn.light:hover{
+  background: $primary-color-medium;
+}
+
+.btn.light:active{
+  background: $primary-color-medium !important;
+}
+
+.btn.grey{
+  background: $grey-light;
+}
+
+.btn.grey:hover{
+  background: $grey-medium;
+}
+
+.btn.grey:active{
+  background: $grey-medium !important;
+}
+
 .btn:focus{
   color: white;
 }
@@ -129,6 +153,7 @@
 
 .ico-btn.light{
   color: $primary-color-bright;
+  background: $grey-white;
 }
 
 .ico-btn.light:hover{

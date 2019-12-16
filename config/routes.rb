@@ -173,6 +173,7 @@ Rails.application.routes.draw do
     resources :managed_concepts, only: [:index, :show, :edit, :update, :destroy] do
       collection do
         get :history
+        get :set_with_indicators
       end
       member do
         get :children
@@ -228,6 +229,7 @@ Rails.application.routes.draw do
     end
     member do
       get :children
+      get :children_with_indicators
       post :add_child
       get :changes
       get :changes_data
@@ -238,6 +240,12 @@ Rails.application.routes.draw do
       get :search
       get :export_csv
       post :add_subset
+      get :release_select
+      put :reference, action: :set_reference
+      get :reference, action: :get_reference
+      post :select_children
+      put :deselect_children
+      put :deselect_all_children
     end
   end
 

@@ -1,0 +1,355 @@
+/*
+ * Select Table
+ *
+ * Requires:
+ * children_select [Table] the item table
+ * children_overview [Table] the target table
+ */
+
+/**
+ * Managed Children Select Table
+ * @param [String] url of the data source, must match columns format on the bottom
+ * @param [String] id of the table
+ * @param [Integer] Number of items fetched in one request
+ * @param [Object Instance] reference to the table object instance
+ * @param [String] type of the data and columns format, can be: "thCodeList", ...
+ *
+ * @return [void]
+ */
+function ManagedChildrenSelect(dataUrl, tableId, count, target, type) {
+	this.dataUrl = dataUrl;
+	this.tableId = tableId;
+	this.count = count;
+	this.target = target;
+	this.type = type;
+	this.loading = false;
+	this.dataLoaded = false;
+	this.autoSelectMode = false;
+}
+
+/**
+ * Initializes the DataTable, adds on select/deselect events
+ *
+ * @return [Object Instance] this instance
+ */
+ManagedChildrenSelect.prototype.init = function () {
+	this.table = $(this.tableId).DataTable({
+		"order": [[0, "desc"]],
+		"columns": this.columns(),
+		"pageLength": pageLength,
+		"lengthMenu": pageSettings,
+		"processing": true,
+		"paging": true,
+		"select": "multi",
+		"language": {
+			"infoFiltered": "",
+			"emptyTable": "No items were found.",
+			"processing": generateSpinner("medium")
+		}
+	});
+
+	return this;
+}
+
+/**
+ * Sets the event listeners for select, deselect, bulk select, bulk deselect actions
+ *
+ * @return [Object Instance] this instance
+ */
+ManagedChildrenSelect.prototype.setListeners = function () {
+	var _this = this;
+
+	this.table.on('select', function (e, dt, type, indexes) { _this.addOrRemoveItems(_this.table.rows(indexes), "add") });
+	this.table.on('deselect', function (e, dt, type, indexes) {	_this.addOrRemoveItems(_this.table.rows(indexes), "remove") });
+
+	$(this.tableId + "-bulk-select").on("click", function () {
+		_this.table.rows({
+			search: 'applied',
+			selected: false
+		}).select()
+	});
+	$(this.tableId + "-bulk-deselect").on("click", function () {
+		new ConfirmationDialog(function () {
+			_this.table.rows({
+				search: 'applied',
+				selected: true
+			}).deselect()
+		}).show()
+	});
+
+	return this;
+}
+
+/**
+ * Loads data into table based on offset
+ * @param [Integer] offset of data index
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
+	var _this = this;
+	_this.processing(true);
+
+	$.ajax({
+		url: _this.dataUrl,
+		data:
+		{ "thesauri":
+			{	"count": _this.count,
+				"offset": offset} },
+		type: 'GET',
+		dataType: 'json',
+		success: function (result) {
+			for (i = 0; i < result.data.length; i++) {
+				result.data[i]["version"] = "12345";
+				_this.table.row.add(result.data[i]);
+			}
+			_this.redraw();
+
+			if (result.count >= _this.count)
+				_this.loadData(result.offset + _this.count, callback)
+			else {
+				_this.processing(false);
+				_this.dataLoaded = true;
+				try { callback() } catch(e){console.log(e)}
+				// if(_this.target != null)
+				// 	_this.autoSelect();
+			}
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			_this.processing(false);
+		}
+	});
+}
+
+/**
+ * Add or remove items. Passes the selected item(s) to the target
+ * @param [DataTable Rows] 1 or more rows that were selected
+ * @param [String] action, can be "add" or "remove"
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.addOrRemoveItems = function (items, action) {
+	if (!this.autoSelectMode) {
+		this.processing(true);
+		this.target.updateItems(items.data(), this, action);
+	}
+}
+
+/**
+ * Re-draws the table
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.redraw = function () {
+	var _this = this;
+	_this.table.columns.adjust();
+	_this.table.draw();
+}
+
+/**
+ * Iterates through target table rows and selects - marks those that are contained in this table
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.autoSelect = function () {
+	var _this = this;
+	if(this.target.mcs.loading){
+		setTimeout(function(){_this.autoSelect.bind(_this)()}, 200);
+	}
+	else {
+		this.processing(true);
+
+		setTimeout(function () {
+			this.autoSelectMode = true;
+			var indexes = [];
+			this.target.table.rows().every(function (rowIdx, tl, rl) {
+				var rowResult = _this.findRowByParam("id", this.data());
+				rowResult.length != 0 ? indexes.push(rowResult.index()) : "";
+			});
+			this.table.rows(indexes).select();
+
+			this.autoSelectMode = false;
+			this.processing(false);
+		}.bind(this), 0)
+	}
+}
+
+/**
+ * Iterates through this table rows and deselects - marks those that are not contained in target table
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.autoDeselect = function (data) {
+	var _this = this;
+
+	if(this.target.mcs.loading){
+		setTimeout(function(){_this.autoDeselect.bind(_this)(data)}, 200);
+	}
+	else {
+		setTimeout(function () {
+			this.processing(true);
+			this.autoSelectMode = true;
+
+	    if(data == null){
+	  		var indexes = [];
+	  		this.table.rows({	selected: true }).every(function (rowIdx, tl, rl) {
+	  			_this.target.mcs.findRowByParam("id", this.data()).length == 0 ? indexes.push(this.index()) : "";
+	  		});
+	  		this.table.rows(indexes).deselect();
+	    }
+	    else{
+	      this.findRowByParam("id", data).deselect();
+	    }
+
+			this.autoSelectMode = false;
+			this.processing(false);
+		}.bind(this), 0)
+	}
+}
+
+/**
+ * Refreshes the table and data
+ * @param [String] newDataUrl (optional) only if source url changes
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.refresh = function (newDataUrl) {
+	var _this = this;
+	this.dataUrl = newDataUrl != null ? newDataUrl : this.dataUrl;
+	this.table.rows().remove().draw();
+	var loadCallback = function(){_this.autoSelect.bind(_this)()};
+	this.loadData(0, loadCallback);
+}
+
+/**
+ * Toggles the processing state of the table and the object instance
+ * @param [Boolean] true if should enable processing, false if should disable processing
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.processing = function (enable) {
+	this.loading = enable;
+	this.table.processing(enable);
+	toggleTableActive("#children-select-table", !enable);
+}
+
+/**
+ * Finds a row in a DataTable based on data
+ *
+ * @param [String] DataType by which to search, e.g. identifier
+ * @param [Object] Data values object which to compare
+ * @return [DatatTable Row] Row result
+ */
+ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
+	return this.table.row(function (idx, dt, node) {
+		return dt[dataType] == data[dataType] ? true : false;
+	});
+}
+
+/**
+ * Finds rows in a DataTable based on a single data parameter
+ *
+ * @param [String] DataType by which to search, e.g. identifier
+ * @param [Object] Single data object
+ * @return [DataTable Rows] 1 or more rowws
+ */
+ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
+	var _this = this;
+	if(dataType == "rows_filter")
+		return _this.table.rows(data);
+	else
+		return _this.table.rows(function (idx, dt, node) {return dt[dataType] == data[dataType] ? true : false;})
+}
+
+/**
+ * Finds rows in a DataTable based on data
+ *
+ * @param [String] DataType by which to search, e.g. identifier
+ * @param [Object Array] Object which to find based on dataType
+ * @return [DataTable Rows] 1 or more rowws
+ */
+ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
+	var _this = this;
+
+	var indexes = [];
+
+	$.each(data, function (i, e) {
+		var rowIndexes = _this.table.rows(function (idx, dt, node) { return dt[dataType] == e[dataType] ? true : false; }).indexes().toArray();
+		indexes = indexes.concat(rowIndexes);
+	});
+
+	return _this.table.rows(indexes);
+}
+
+/**
+ * Finds rows in a DataTable based on data
+ *
+ * @param [String] DataType by which to search, e.g. identifier
+ * @param [Data Array] Values which to compare
+ * @return [Array] array of row indexes
+ */
+ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
+	return "<span class='icon-times text-accent-2 clickable text-tiny exclude ttip' data-id='"+data.id+"'>"+
+            "<span class='ttip-text ttip-left shadow-small text-small text-medium'>"+
+              "Exclude item"+
+            "</span>"+
+          "</span>";
+}
+
+/**
+ * Generates column layout for different types of items
+ * "thCodeList":  Code lists
+ * "thOverview": Code lists selection overview
+ * add more if needed
+ *
+ * @return [Array] of column-data relations for the DataTable
+ */
+ManagedChildrenSelect.prototype.columns = function () {
+  var _this = this;
+	var columns;
+
+	switch (this.type) {
+  	case "thCodeList":
+  		columns = [
+        {"data": "identifier"},
+  			{"data": "notation"},
+  			{"data": "preferred_term"},
+  			{"data": "synonym"},
+  			{"data": "definition"},
+  			{"data": "tags",
+  				"render": function (data, type, row, meta) {
+  					if (type == "display") return colorCodeTagsBadge(data);
+  					else return data
+  				}},
+  			{"data": "indicators", "render": function (data, type, row, meta) {
+  					if (type == "display") return formatIndicators(data);
+  					else return formatIndicatorsString(data);
+  				}, "width": "80px"}
+  		];
+  		break;
+  	case "thOverview":
+  		columns = [
+        {"data": "identifier"},
+        {"data": "notation"},
+        {"data": "preferred_term"},
+        {"data": "synonym"},
+  			{"data": "tags",
+  				"render": function (data, type, row, meta) {
+  					return colorCodeTagsBadge(data);
+  				}},
+  			{"data": "version"},
+				{"data": "indicators", "render": function (data, type, row, meta) {
+						if (type == "display") return formatIndicators(data);
+						else return formatIndicatorsString(data);
+					}, "width": "80px"},
+  			{"render": function (data, type, row, meta) {
+  					if (type == "display") return _this.excludeBtnHTML(row);
+  					else return "";
+				}}
+  		];
+  		break;
+	}
+
+	return columns;
+}

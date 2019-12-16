@@ -477,7 +477,53 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
   end
 
-  # To CSV. The code list as a set of CSV record with a header.
+  # Set With Indicators Paginated
+  #
+  # @params [Hash] params the params hash
+  # @option params [String] :offset the offset to be obtained
+  # @option params [String] :count the count to be obtained
+  # @option params [Array] :tags the tag to be displayed
+  # @return [Array] array of hashes containing the child data
+  def self.set_with_indicators_paginated(params)
+    results =[]
+    query_string = %Q{
+      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
+      {
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v WHERE
+        {
+            ?s rdf:type th:ManagedConcept .
+            ?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.cdisc_scope.uri.to_ref} .
+            BIND (EXISTS {?s th:extends ?xe1} as ?eo)
+            BIND (EXISTS {?s th:subsets ?xs1} as ?so)
+            BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
+            BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+            ?s th:identifier ?i .
+            ?s th:notation ?n .
+            ?s th:definition ?d .
+            ?s th:extensible ?e .
+            ?s th:preferredTerm/isoC:label ?pt .
+            ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+            OPTIONAL {?s th:synonym/isoC:label ?sy }
+            OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
+            {  
+              SELECT ?s (max(?lv) AS ?v) WHERE 
+              {
+                ?s isoT:hasIdentifier/isoI:version ?lv .
+              } GROUP BY ?s
+            }
+        } ORDER BY ?i ?sy ?t
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
+    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si]).each do |x|
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:v].to_i, subset: x[:eo].to_bool, subsetted: x[:ei].to_bool}
+      results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
+        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
+    end
+    results
+  end
+
+# To CSV. The code list as a set of CSV record with a header.
   #
   # @return [Array] the set of CSV record, each is an array of stirngs
   def to_csv

@@ -1,5 +1,5 @@
 // Initiates a TimelineSlider
-// c: container div, l, r: left and right slider divs, tl_p: a set of points on the timeline
+// c: container div, l, r: left and right slider divs, tl_p: a set of points on the timeline. slider 'r' is optional, pass null if only one slider used.
 function TimelineSlider(c, l, r, tl_p){
   var _this = this;
 
@@ -13,7 +13,9 @@ function TimelineSlider(c, l, r, tl_p){
   this.is_ie = isIE();
 
   _this.initDraggable(_this.l_slider);
-  _this.initDraggable(_this.r_slider);
+  if(_this.r_slider != null)
+    _this.initDraggable(_this.r_slider);
+
   _this.handleResponsiveness();
 }
 
@@ -47,15 +49,19 @@ TimelineSlider.prototype.initDraggable = function(el){
 // Creates a containment for both the left and right slider, limited by the bounding div and the other slider
 TimelineSlider.prototype.getContainmentCoords = function(el){
   var _this = this;
-  if(el == _this.l_slider)
+  if(_this.r_slider == null && el == _this.l_slider)
+    return [_this.container.offset().left-((el.outerWidth()/2)-4), 0, _this.container.offset().left + _this.container.width() - ((el.outerWidth()/2)-4), 0];
+  else if(el == _this.l_slider)
     return [_this.container.offset().left-((el.outerWidth()/2)-4), 0, _this.r_slider.offset().left - 1, 0];
-  else
+  else if(el == _this.r_slider)
     return [_this.l_slider.offset().left + 1, 0, _this.container.offset().left + _this.container.width() - ((el.outerWidth()/2)-4), 0];
 }
 
 // Updates the containment bounding coords
 TimelineSlider.prototype.updateContainmentCoords = function(el){
   var _this = this;
+  if(el == null)
+    return false;
   el.draggable("option", "containment", _this.getContainmentCoords(el));
 }
 
@@ -136,6 +142,9 @@ TimelineSlider.prototype.findNearestPoint = function(el){
   var start_index = (el == _this.l_slider ? 0 : _this.l_index + 1);
   var end_index = (el == _this.l_slider ? _this.r_index : _this.tl_points.length);
 
+  if(el == _this.l_slider && _this.r_slider == null)
+    end_index = _this.tl_points.length;
+
   for(i = start_index; i < end_index; i++){
     var distance  = _this.calculateDistance(el, _this.tl_points.eq(i));
     if(distance < min_distance){
@@ -153,6 +162,8 @@ TimelineSlider.prototype.calculateDistance = function(el1, el2){
 
 // Moves a slider to match the horizontal location of a target (does not update the target highlights!)
 TimelineSlider.prototype.moveSliderTo = function(slider, target){
+  if(slider == null)
+    return false;
   slider.offset({
     top: slider.offset().top,
     left: target.offset().left + (target.outerWidth()/2.0) - (slider.outerWidth()/2.0)
@@ -163,14 +174,15 @@ TimelineSlider.prototype.moveSliderTo = function(slider, target){
 TimelineSlider.prototype.handleResponsiveness = function(){
   var _this = this;
   $(window).resize(function() {
+    if(_this.l_slider.is(":visible")){
+      var highlightedPoints = $("."+_this.highlight_class);
 
-    var highlightedPoints = $("."+_this.highlight_class);
+      _this.updateContainmentCoords(_this.l_slider);
+      _this.updateContainmentCoords(_this.r_slider);
 
-    _this.updateContainmentCoords(_this.l_slider);
-    _this.updateContainmentCoords(_this.r_slider);
-
-    _this.moveSliderTo(_this.l_slider, highlightedPoints.eq(0));
-    _this.moveSliderTo(_this.r_slider, highlightedPoints.eq(1));
+      _this.moveSliderTo(_this.l_slider, highlightedPoints.eq(0));
+      _this.moveSliderTo(_this.r_slider, highlightedPoints.eq(1));
+    }
   });
 }
 

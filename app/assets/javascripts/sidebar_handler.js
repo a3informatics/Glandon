@@ -36,6 +36,8 @@ function toggleSidebar(){
     closeSidebar();
   else
     openSidebar();
+
+  setTimeout(function(){$(window).trigger('resize');}, 500);  
 }
 
 function getArrow(){

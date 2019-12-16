@@ -113,21 +113,4 @@ private
     authorize CdiscTerm
   end
 
-  def normalize_versions(versions)
-    @normalized = Array.new
-    min_i = strdate_to_f(versions[0])
-    max_i = strdate_to_f(versions[-1])
-
-    versions.each do |x|
-      i = strdate_to_f(x[:date])
-      normalized_i = (100)*(i - min_i) / (max_i - min_i) + 0
-      @normalized.push(normalized_i)
-    end
-    return @normalized
-  end
-
-  def strdate_to_f(d)
-    return Date.parse(d.to_s).strftime('%Q').to_f
-  end
-
 end

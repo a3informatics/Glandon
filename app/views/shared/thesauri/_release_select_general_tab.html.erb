@@ -1,0 +1,28 @@
+<div class="col-sm-12 table-cardstyle">
+  <br/>
+  <%= yield %>
+  <br/>
+
+  <table style="width: 100%;" id="<%= id %>" class="table table-condensed table-row-clickable">
+    <thead>
+      <tr>
+        <th>Identifier</th>
+        <th class="th-small">Submission Value</th>
+        <th>Preferred Term</th>
+        <th>Synonym(s)</th>
+        <th>Definition</th>
+        <th class="th-small">Tags</th>
+        <th class="ignore fit"></th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  <br/>
+  <button id="<%=id%>-bulk-select" class="btn light medium ttip">
+    <span class="icon-ok text-tiny"></span> Select all <span class="ttip-text ttip-top shadow-small text-medium text-small">This will only affect items filtered by search.</span>
+  </button>
+  <button id="<%=id%>-bulk-deselect" class="btn light medium ttip">
+    <span class="icon-times text-tiny"></span> Deselect all <span class="ttip-text ttip-top shadow-small text-medium text-small">This will only affect items filtered by search.</span>
+  </button>
+</div>

@@ -1,0 +1,196 @@
+/*
+ * Selection Overview Table
+ *
+ * Requires:
+ * children_select [Table] the item table
+ * children_overview [Table] this table
+ */
+
+/**
+ * Managed Children Selection Overview Table
+ * @param [String] url of the data source, must match columns format on the bottom
+ * @param [String] id of the table
+ * @param [Integer] Number of items fetched in one request
+ * @param [Object Instance] reference to the table object instance
+ *
+ * @return [void]
+ */
+function ManagedChildrenSelectOverview(urls, tableId, count, context) {
+	var _this = this;
+
+	this.mcs = new ManagedChildrenSelect(urls.dataUrl, tableId, count, null, "thOverview").init();
+	this.selUrl = urls.selectUrl;
+	this.deselUrl = urls.deselectUrl;
+	this.deselAllUrl = urls.deselectAllUrl;
+	this.table = this.mcs.table;
+	this.context = context;
+	this.table.select.style('api');
+
+	var loadCallback = function(){ _this.setListeners.bind(_this)();};
+	this.mcs.loadData(0, loadCallback);
+}
+
+/**
+ * Posts data to server, runs callbacks
+ * @param
+ * @param
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.postData = function (url, data, context, action) {
+	var requestData = this.encodeIdsToData(data, context);
+
+	$.ajax({
+		url: url,
+		data: requestData,
+		type: action,
+		dataType: 'json',
+		context: this,
+		success: function(result){
+			switch (action) {
+				case "POST":
+					this.addItems(data, context);
+					break;
+				case "PUT":
+					this.removeItems(data, context);
+					break;
+			}
+			this.mcs.processing(false);
+			try { context.processing(false) } catch(exc) {};
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			this.mcs.processing(false);
+			try { context.processing(false) } catch(exc) {};
+		}
+	})
+}
+
+/**
+ * Update items in the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ * @param [String] update action, can be: "add" or "remove"
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.updateItems = function (data, context, action) {
+	if(!this.context.timer.expired)
+		this.context.timer.extendLock();
+
+	this.mcs.processing(true);
+
+	setTimeout(function () {
+		switch (action) {
+		case "add":
+			this.postData(this.selUrl, data, context, "POST");
+			break;
+		case "remove":
+			if (data.count() == this.mcs.table.page.info().recordsTotal)
+				this.postData(this.deselAllUrl, data, context, "PUT");
+			else
+				this.postData(this.deselUrl, data, context, "PUT");
+			break;
+		}
+	}.bind(this), 0)
+}
+
+ManagedChildrenSelectOverview.prototype.encodeIdsToData = function (data, context) {
+	var idArray = [];
+
+	if(context.thisTable == true){
+		data.every(function(idx, r, c){
+			idArray.push(this.data().id);
+		});
+	}
+	else {
+		$.each(data, function(i, item){
+			idArray.push(item.id);
+		});
+	}
+
+	return {thesauri: {id_set: idArray}};
+}
+
+/**
+ * Adds item(s) to the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.addItems = function (data, context) {
+	$.each(data, function (i, e) {
+		e["version"] = "Ver 1.2.3.";
+		e["context"] = {
+			index: context.findRowByParam("id", e).index(),
+			source: context.tableId
+		};
+	});
+	this.table.rows.add(data);
+	this.redraw();
+}
+
+/**
+ * Removed item(s) to the Thesaurus selection
+ * @param [Object] array of 1 or more data object(s) of the updated item(s)
+ * @param [Object Reference] context from which the function was called
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.removeItems = function (data, context) {
+	if(context.thisTable == true)
+		data.remove();
+	else
+		this.mcs.findRowsByData("id", data).remove();
+
+	context.autoDeselect ? this.context.autoDeselectAllTabs() : "";
+	this.table.draw();
+}
+
+/**
+ * Redraws the table, re-sets the listeners
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.redraw = function () {
+	this.mcs.redraw();
+	this.setListeners();
+}
+
+/**
+ * Sets the event listeners for: bulk-deselect, exclude buttons
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.setListeners = function () {
+	var _this = this;
+
+	$(_this.mcs.tableId + "-bulk-deselect").off("click").on("click", function () {
+		new ConfirmationDialog(function () {
+			setTimeout(function () { _this.bulkRemove()	}, 0);
+		}, {dangerous: true}).show()
+	});
+
+	$(_this.mcs.tableId).find(".exclude").off("click").on("click", function ()  {
+		var row = _this.table.row($(this).parents("tr:first"));
+		var context = row.data().context;
+		if (context != null)
+			$(context.source).DataTable().row(context.index).deselect();
+		else{
+			var contextData = {thisTable: true, autoDeselect: true}
+			_this.updateItems(row, contextData, "remove");
+		}
+	});
+}
+
+/**
+ * Removes all items filtered by the table search in bulk
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
+	var data = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
+	var contextData = {thisTable: true, autoDeselect: true}
+	this.updateItems(data, contextData, "remove");
+}

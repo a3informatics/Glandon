@@ -14,40 +14,49 @@
 }
 
 .tab-option{
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   background: $grey-bright;
   color: $grey-medium;
   font-family: $font-light;
-  min-width: 70px;
+  min-width: 100px;
   padding: 6px 14px;
-  padding-top: 8px;
   text-align: center;
   position: relative;
+  border: 1px solid $grey-bright;
   cursor: pointer;
+  overflow: hidden;
 }
 
-.tab-option div{
-  transition: transform .3s;
-}
-
-.tab-option:hover div{
-  transform: translateY(-3px);
+.tab-option:hover {
+  background: $grey-white;
+  color: $primary-color-light;
 }
 
 .tab-option.active{
   background: white;
-  border: 1px solid $grey-bright;
   border-bottom: 3px solid $secondary-color-light;
   color: $primary-color-light;
   padding-top: 6px;
 }
 
+.tab-option.disabled{
+  opacity: .5;
+  pointer-events: none;
+}
+
 .tab-wrap{
   width: 100%;
-  display: block;
+  transition: opacity .2s, transform .2s;
+  visibility: visible;
   padding: 10px;
+  transform: translateY(0px);
 }
 
 .tab-wrap.closed{
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  position: absolute;
+  left: 50px;
 }

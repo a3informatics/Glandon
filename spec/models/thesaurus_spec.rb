@@ -8,6 +8,7 @@ describe Thesaurus do
   include PublicFileHelpers
   include CdiscCtHelpers
   include IsoManagedHelpers
+  include ThesauriHelpers
 
   def sub_dir
     return "models/thesaurus"
@@ -49,7 +50,8 @@ describe Thesaurus do
           :has_identifier => nil,
           :is_top_concept => [],
           :is_top_concept_reference => [],
-          :tagged => []
+          :tagged => [],
+          :reference => nil,
         }
       expect(th.to_h).to hash_equal(result)
     end
@@ -376,13 +378,36 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
       timer_start
       (1..100).each {|x| actual = ct.managed_children_pagination(offset: 0, count: 10)}
-      timer_stop("100 searches")
+      timer_stop("100 searches [2.55s]")
     end
 
     it "get children, tag filter" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V60#TH"))
       actual = ct.managed_children_pagination(offset: 0, count: 10, tags: ["SDTM"])
       check_file_actual_expected(actual, sub_dir, "managed_child_pagination_expected_3.yaml")
+    end
+
+    it "get children with indicators, V1 all items" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(32)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_1.yaml")
+    end
+
+    it "get children with indicators extend and subset, V1 all items" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ThesauriHelpers.fake_extended(Uri.new(uri: "http://www.cdisc.org/C50399/V1#C50399"), "1")
+      ThesauriHelpers.fake_subsetted(Uri.new(uri: "http://www.cdisc.org/C49638/V1#C49638"), "1")
+      actual = ct.managed_children_indicators_paginated(offset: 0, count: 100)
+      expect(actual.count).to eq(32)
+      check_file_actual_expected(actual, sub_dir, "managed_child_indicators_pagination_expected_2.yaml")
+    end
+
+    it "get children with indicators, speed" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V59#TH"))
+      timer_start
+      (1..100).each {|x| actual = ct.managed_children_indicators_paginated(offset: 0, count: 10)}
+      timer_stop("100 searches [79.95s]")
     end
 
   end
@@ -683,6 +708,106 @@ describe Thesaurus do
       check_dates(item, sub_dir, "delete_checks_expected_2d.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(item.to_h, sub_dir, "delete_checks_expected_2d.yaml")
       expect(triple_store.check_uris(uri_check_set)).to be(true)
+
+    end
+
+  end
+
+  describe "Referenced Versions and selection" do
+
+    before :each do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+    end
+
+    it "get and set reference thesauri" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      r_th_1 = Thesaurus.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH"))
+      r_th_2 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      r_th_3 = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      expect(s_th.get_referenced_thesaurus).to eq(nil)
+      s_th.set_referenced_thesaurus(r_th_1)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_1.uri)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.reference_objects
+      same_uri = s_th.reference.uri
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.set_referenced_thesaurus(r_th_2)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      expect(s_th.reference.uri).to eq(same_uri) # Make sure op ref is re-used, i.e same one as first one
+      s_th.set_referenced_thesaurus(r_th_3)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_3.uri)
+      s_th.set_referenced_thesaurus(r_th_2)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.get_referenced_thesaurus.uri).to eq(r_th_2.uri)
+      ref = OperationalReferenceV3.find(s_th.reference.uri)
+    end
+
+    it "allows for items to be selected" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C67152/V2#C67152")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C66739/V2#C66739")
+      uri_3 = Uri.new(uri: "http://www.cdisc.org/C66770/V2#C66770")
+      s_th.select_children({id_set: [uri_1.to_id]})
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(1)
+      s_th.select_children({id_set: [uri_2.to_id, uri_3.to_id]})
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(3)
+      s_th.select_children({id_set: [uri_2.to_id]}) # Duplicate
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(3)
+      actual = s_th.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "select_children_expected_1.yaml", equate_method: :hash_equal)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_1) # MAke sure code lists still present
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_2)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_3)
+    end
+
+    it "allows for items to be deselected" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C67152/V2#C67152")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C66739/V2#C66739")
+      uri_3 = Uri.new(uri: "http://www.cdisc.org/C66770/V2#C66770")
+      s_th.select_children({id_set: [uri_1.to_id, uri_2.to_id, uri_3.to_id]})
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      actual = s_th.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "deselect_children_expected_1.yaml", equate_method: :hash_equal)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(3)
+      s_th.deselect_children({id_set: [uri_1.to_id]})
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      expect(s_th.is_top_concept_reference_objects.count).to eq(2)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      actual = s_th.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "deselect_children_expected_2.yaml", equate_method: :hash_equal)
+      s_th.deselect_children({id_set: [uri_2.to_id, uri_3.to_id]})
+      expect(s_th.is_top_concept_reference_objects.count).to eq(0)
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      actual = s_th.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "deselect_children_expected_3.yaml", equate_method: :hash_equal)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_1) # MAke sure code lists still present
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_2)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_3)
+    end
+
+    it "allows for all items to be deselected" do
+      s_th = Thesaurus.create({:identifier => "TEST", :label => "Test Thesaurus"})
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/C67152/V2#C67152")
+      uri_2 = Uri.new(uri: "http://www.cdisc.org/C66739/V2#C66739")
+      uri_3 = Uri.new(uri: "http://www.cdisc.org/C66770/V2#C66770")
+      s_th.select_children({id_set: [uri_1.to_id, uri_2.to_id, uri_3.to_id]})
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      s_th.deselect_all_children
+      s_th = Thesaurus.find_minimum(s_th.uri)
+      actual = s_th.managed_children_pagination(offset: 0, count: 10)
+      check_file_actual_expected(actual, sub_dir, "deselect_all_children_expected_1.yaml", equate_method: :hash_equal)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_1) # MAke sure code lists still present
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_2)
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_3)
     end
 
   end

@@ -32,6 +32,24 @@ puts "Previous URI: #{uri_s} translated to Current URI: #{result}"
     result
   end
 
+  def self.fake_extended(uri, ext_id)
+    sparql = %Q{INSERT DATA
+      { 
+        <http://example/extended-#{ext_id}> <http://www.assero.co.uk/Thesaurus#extends> #{uri.to_ref} .
+      }
+    }
+    Sparql::Update.new.sparql_update(sparql, "", []) 
+  end
+
+  def self.fake_subsetted(uri, ext_id)
+    sparql = %Q{INSERT DATA
+      { 
+        <http://example/extended-#{ext_id}> <http://www.assero.co.uk/Thesaurus#subsets> #{uri.to_ref} .
+      }
+    }
+    Sparql::Update.new.sparql_update(sparql, "", []) 
+  end
+  
 private
 
   def fill_out(item)

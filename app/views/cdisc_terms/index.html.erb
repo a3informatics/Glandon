@@ -20,6 +20,10 @@
 
   #results_div .icon-filter{  margin-left:4px; }
 
+  .timeline-outer-container{
+    max-width: 90%;
+  }
+
 
 </style>
 <div class="row rowpad">
@@ -45,34 +49,10 @@
     <div class="card-header">Changes between two CDISC Terminology versions</div>
       <div class="card-content">
         <div class="row">
-          <center>
-            <span class="text-medium text-small font-light">Select versions by dragging the sliders and click Display to display changes:</span><br><br>
-            <!-- TIMELINE SELECTOR START -->
-            <div class="timeline-outer-container">
-              <div class="timeline-container">
-                <div class="timeline-start-end"><%= @versions_yr_span[0] %></div>
-                <div class="timeline"></div>
-                <!-- RENDER POINTS ON TIMELINE  -->
-                <% @versions_normalized.each_with_index do |x, index| %>
-                  <div class="timeline-point bg-prim-bright shadow-small <%= if index == 0 || index == @versions_normalized.length-1 then 'point-highlight' end %> ttip"
-                       style="left: <%= x %>%;">
-                    <span class="ttip-text text-small text-light shadow-small" data-index="<%= @versions[index][:id] %>"><%= @versions[index][:date] %></span>
-                  </div>
-                <% end %>
-                <div class="timeline-start-end"><%= @versions_yr_span[1] %></div>
-              </div>
-              <!-- TIMELINE CONTROLS -->
-              <div class="timeline-container timeline-controls">
-                <div id="timeline-start-btn" class="timeline-date-btn" style="left: -51px;">
-                  from <span class="date-txt" id="start-date-txt"><%= @versions[0][:date] %></span></div>
-                <div id="timeline-end-btn" class="timeline-date-btn" style="right: -51px;">
-                  to <span class="date-txt" id="end-date-txt"><%= @versions[-1][:date] %></span></div>
-              </div>
-            </div>
-            <!-- TIMELINE SELECTOR END -->
-            <%= render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button",
-              icon: "icon-browse-all", btn_text: "Display", btn_class: "highlight"} %>
-          </center>
+          <%= render partial: "shared/cdisc_terms/timeline_slider", :locals => {
+            title_text: "Select versions by dragging the sliders and click Display to display changes:",
+            start_year: @versions_yr_span[0], end_year: @versions_yr_span[1], versions_normalized: @versions_normalized, versions: @versions, slider_pretexts: ["from", "to"],
+            button: (render partial: "shared/buttons/ico_btn", :locals => {link_path: "#", id: "go_button", icon: "icon-browse-all", btn_text: "Display", btn_class: "highlight"}).html_safe }%>
         </div>
         <div class="row rowpad">
           <div class="col-md-12">

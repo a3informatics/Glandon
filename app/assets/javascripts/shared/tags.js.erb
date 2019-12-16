@@ -40,3 +40,35 @@ function colorCodeTagsBadge(tags){
   });
   return html;
 }
+
+var indicatorMap =
+  {"current": {icon: "icon-current", ttip: "Current version"},
+  "extended": {icon: "icon-extend", ttip: "Item is extended"},
+  "extends": {icon: "icon-extension", ttip: "Item is an extension"},
+  "version_count": {icon: "icon-multi", ttip: "Item has %n% versions"},
+  "subset": {icon: "icon-subset", ttip: "Item is a subset"},
+  "subsetted": {icon: "icon-subsetted", ttip: "Item is subsetted"}};
+
+function formatIndicators(data){
+  var indicatorsHtml = "";
+  $.each(data, function(k, v){
+    if(v == true && k != "version_count")
+      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-left shadow-small'>"+indicatorMap[k].ttip+"</span></span>"
+    else if (v > 1)
+      indicatorsHtml += "<span class='"+indicatorMap[k].icon+" indicator ttip'><span class='ttip-text ttip-left shadow-small'>"+indicatorMap[k].ttip.replace("%n%", v)+"</span></span>"
+  });
+  return indicatorsHtml;
+}
+
+function formatIndicatorsString(data){
+  var output = "";
+
+  $.each(data, function(k, v){
+    if (k == "version_count")
+      output += "version count: " + v + ", ";
+    else if(v == true)
+      output += k + ", ";
+  });
+
+  return output;
+}

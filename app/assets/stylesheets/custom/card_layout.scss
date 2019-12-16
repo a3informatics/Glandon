@@ -111,6 +111,8 @@ a.card-item:hover, a.card-item:focus{
 
 .table-cardstyle th{
   vertical-align: middle;
+  color: $grey-medium;
+  font-size: $font-small;
 }
 
 .table-cardstyle th:last-child, th.ignore{
@@ -174,6 +176,14 @@ a.card-item:hover, a.card-item:focus{
 
 .table-invisible .dataTables_scrollBody{
   padding: 0 6px;
+}
+
+table th.th-small{
+  min-width: 120px;
+}
+
+.table-cardstyle .col-sm-12{
+  width: 100%;
 }
 
 // SCALING

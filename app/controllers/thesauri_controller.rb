@@ -99,6 +99,18 @@ class ThesauriController < ApplicationController
     @parent_identifier = ""
   end
 
+  def release_select
+    authorize Thesaurus, :edit?
+    @thesaurus = Thesaurus.find_minimum(params[:id])
+    @token = get_token(@thesaurus)
+    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+    @versions = CdiscTerm.version_dates
+    @versions_normalized = normalize_versions(@versions)
+    @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
+    ref_thesaurus = @thesaurus.get_referenced_thesaurus
+    @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+  end
+
   def children
     authorize Thesaurus, :edit?
     results = []
@@ -110,6 +122,13 @@ class ThesauriController < ApplicationController
       delete_path: thesauri_managed_concept_path({id: c[:id], managed_concept: {parent_id: ct.id}})})
     }
     render :json => { data: results }, :status => 200
+  end
+
+  def children_with_indicators
+    authorize Thesaurus, :show?
+    ct = Thesaurus.find_minimum(params[:id])
+    children = ct.managed_children_indicators_paginated(the_params)
+    render :json => { data: children }, :status => 200
   end
 
   def add_child
@@ -260,37 +279,37 @@ class ThesauriController < ApplicationController
     render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
   end
 
-   def export_ttl
-    authorize Thesaurus
-    item = IsoManaged::find(params[:id], params[:namespace])
-    send_data to_turtle(item.triples), filename: "#{item.owner_short_name}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
-  end
+  #  def export_ttl
+  #   authorize Thesaurus
+  #   item = IsoManaged::find(params[:id], params[:namespace])
+  #   send_data to_turtle(item.triples), filename: "#{item.owner_short_name}_#{item.identifier}.ttl", type: 'application/x-turtle', disposition: 'inline'
+  # end
 
-  def impact
-  	authorize Thesaurus
-  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
-  	@start_path = impact_start_thesauri_index_path
-  end
+  # def impact
+  # 	authorize Thesaurus
+  # 	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  # 	@start_path = impact_start_thesauri_index_path
+  # end
 
-  def impact_start
-  	authorize Thesaurus, :impact?
-  	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
-  	render json: @thesaurus.impact
-  end
+  # def impact_start
+  # 	authorize Thesaurus, :impact?
+  # 	@thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  # 	render json: @thesaurus.impact
+  # end
 
-  def impact_report
-  	authorize Thesaurus, :impact?
-  	results = []
-  	thesaurus = Thesaurus.find(params[:id], params[:namespace])
-  	results = impact_report_start(thesaurus)
-  	respond_to do |format|
-      format.pdf do
-        @html =Reports::ThesaurusImpactReport.new.create(thesaurus, results, current_user)
-        @render_args = {pdf: 'impact_analysis', page_size: current_user.paper_size, lowquality: true}
-        render @render_args
-      end
-    end
-  end
+  # def impact_report
+  # 	authorize Thesaurus, :impact?
+  # 	results = []
+  # 	thesaurus = Thesaurus.find(params[:id], params[:namespace])
+  # 	results = impact_report_start(thesaurus)
+  # 	respond_to do |format|
+  #     format.pdf do
+  #       @html =Reports::ThesaurusImpactReport.new.create(thesaurus, results, current_user)
+  #       @render_args = {pdf: 'impact_analysis', page_size: current_user.paper_size, lowquality: true}
+  #       render @render_args
+  #     end
+  #   end
+  # end
 
   def add_subset
     authorize Thesaurus, :edit?
@@ -303,7 +322,18 @@ class ThesauriController < ApplicationController
     render json: { redirect_path: path, }, :status => 200
   end
 
-private
+  def set_reference
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ref_ct = Thesaurus.find_minimum(the_params[:thesaurus_id])
+      ct.set_referenced_thesaurus(ref_ct)
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
 
 	 def path_for(action, object)
     case action
@@ -346,28 +376,104 @@ private
   	return results
   end
 
-	def impact_report_node(id, namespace)
-	  results = []
-	  result = {}
-	  item = yield(id, namespace)
-	  result[:root] = item
-	  result[:children] = []
-	  results << result
-    concepts = IsoConcept.links_to(id, namespace)
-    concepts.each do |concept|
-      managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
-		  result[:children] << managed_item
-		  uri_s = managed_item[:uri].to_s
-      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b|
-      	item = IsoManaged.find(a, b, false)
-      }
+  def get_reference
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ref_ct = ct.get_referenced_thesaurus
+      render json: { data: ref_ct.nil? ? {} : ref_ct.to_h }, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
     end
-    return results
-	end
+  end
+
+  def select_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.select_children(the_params)
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def deselect_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.deselect_children(the_params)
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+  def deselect_all_children
+    authorize Thesaurus, :edit?
+    ct = Thesaurus.find_minimum(params[:id])
+    token = Token.find_token(ct, current_user)
+    if !token.nil?
+      ct.deselect_all_children
+      render :json => {}, :status => 200
+    else
+      render :json => {:errors => ["The changes were not saved as the edit lock has timed out."]}, :status => 422
+    end
+  end
+
+private
+
+	# def impact_report_start(thesaurus)
+	# 	initial_results = []
+	# 	results = {}
+	# 	thesaurus.impact.each do |x|
+ #  		uri = UriV2.new({uri: x})
+	#   	initial_results += impact_report_node(uri.id, uri.namespace) { |a,b|
+ #  			item = ThesaurusConcept.find(a, b)
+ #  			item.set_parent
+ #  			item
+ #  		}
+ #  	end
+ #  	initial_results.each do |result|
+ #  		if results.has_key?(result[:root].uri)
+ #  			results[result[:root].uri.to_s][:children] += result[:children]
+ #  		else
+ #  			results[result[:root].uri.to_s] = { root: result[:root].to_json, children: result[:children] }
+ #  		end
+ #  	end
+ #  	results.each do |k,v|
+ #  		v[:children] = v[:children].inject([]) do |new_children, item|
+ #  			new_children << { uri: item[:uri].to_s }
+ #  		end
+ #  	end
+ #  	return results
+ #  end
+
+	# def impact_report_node(id, namespace)
+	#   results = []
+	#   result = {}
+	#   item = yield(id, namespace)
+	#   result[:root] = item
+	#   result[:children] = []
+	#   results << result
+ #    concepts = IsoConcept.links_to(id, namespace)
+ #    concepts.each do |concept|
+ #      managed_item = IsoManaged.find_managed(concept[:uri].id, concept[:uri].namespace)
+	# 	  result[:children] << managed_item
+	# 	  uri_s = managed_item[:uri].to_s
+ #      results += impact_report_node(managed_item[:uri].id, managed_item[:uri].namespace) { |a,b|
+ #      	item = IsoManaged.find(a, b, false)
+ #      }
+ #    end
+ #    return results
+	# end
 
   def the_params
     #params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :reference_ct_id)
-    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id)
+    params.require(:thesauri).permit(:identifier, :scope_id, :offset, :count, :label, :concept_id, :thesaurus_id, :id_set => [])
   end
 
 end
