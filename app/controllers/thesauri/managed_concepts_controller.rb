@@ -17,10 +17,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.html do
         # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-          @thesauri_id = results.first.to_id
-          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
-          @identifier = the_params[:identifier]
-          @scope_id = the_params[:scope_id]
+        @thesauri_id = results.first.to_id
+        @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
       end
       format.json do
         results = []
@@ -34,7 +34,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   
   def set_with_indicators
     authorize Thesaurus, :show?
-    results = Thesaurus::ManagedConcept.set_with_indicators_paginated(the_params)
+    results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
     render :json => { data: results }, :status => 200
   end
 
@@ -146,7 +146,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     th = Thesaurus.find_minimum(the_params[:parent_id])
     token = Token.find_token(th, current_user)
     if !token.nil?
-      tc.delete
+      tc.delete_or_unlink(th)
       audit_and_respond(th, tc, token)
     else
       render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
@@ -411,6 +411,10 @@ private
   def the_params
     #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :extension_ids => [])
+  end
+
+  def set_params
+    params.require(:managed_concept).permit(:type, :offset, :count)
   end
 
   def edit_params

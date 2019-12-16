@@ -1178,6 +1178,24 @@ describe "Thesaurus::ManagedConcept" do
       expect(tc.errors.full_messages[0]).to eq("The code list cannot be deleted as it is in use.")
     end
 
+    it "allows a TC to be destroyed, keeps other" do
+      th = Thesaurus.create({identifier: "AAA", notation: "A"})
+      tc_1 = th.add_child 
+      tc_2 = th.add_child
+      result = tc_1.delete_or_unlink(th)
+      expect(result).to eq(1)
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.uri)
+      expect{Thesaurus::ManagedConcept.find_minimum(tc_1.uri)}.to raise_error(Errors::NotFoundError,
+        "Failed to find http://www.acme-pharma.com/NP000123P/V1#NP000123P in Thesaurus::ManagedConcept.")
+      th = Thesaurus.find_minimum(th.uri)
+      th.is_top_concept_reference_objects
+      expect(th.is_top_concept_reference.count).to eq(1)
+      expect(th.is_top_concept_reference.first.reference).to eq(tc_2.uri)
+      th.is_top_concept_objects
+      expect(th.is_top_concept.count).to eq(1)
+      expect(th.is_top_concept.first.uri).to eq(tc_2.uri)
+    end
+
   end
 
   describe "subsets" do
@@ -1263,9 +1281,16 @@ describe "Thesaurus::ManagedConcept" do
       load_cdisc_term_versions(1..20)
     end
 
-    it "determines if an item is subsetted" do
-      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml", write_file: true)
+    it "determines if an item is subsetted, faked CDISC" do
+      cdisc = IsoNamespace.find_by_short_name("CDISC")
+      expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(cdisc)
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "1000"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml")
+    end
+
+    it "determines if an item is subsetted, normal" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_2.yaml")
     end
 
   end

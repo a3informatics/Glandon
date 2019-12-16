@@ -140,7 +140,8 @@ class ThesauriController < ApplicationController
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, ct, "Terminology updated.") if token.refresh == 1
         result = tc.simple_to_h
-        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), delete_path: thesauri_managed_concept_path(tc)})
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), 
+          delete_path: thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}})})
         render :json => {data: result}, :status => 200
       else
         render :json => {:errors => tc.errors.full_messages}, :status => 422

@@ -461,6 +461,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   #
   # @return [Void] no return
   def delete_or_unlink(parent_object)
+    self.children_objects
     if parent_object.nil? && no_parents?
       delete_with
     elsif parent_object.nil?
@@ -469,7 +470,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     elsif multiple_parents? 
       # Deselect from parent
       1
-    elsif self.children? && !self.extension? && !self.self.subset?
+    elsif self.children? && !self.extension? && !self.subset?
       self.errors.add(:base, "The code list cannot be deleted as there are children present.") # error, children present for normal code list
       0
     else
@@ -484,7 +485,18 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # @option params [String] :count the count to be obtained
   # @option params [Array] :tags the tag to be displayed
   # @return [Array] array of hashes containing the child data
-  def self.set_with_indicators_paginated(params)
+  def self.set_with_indicators_paginated(params) 
+    filter_clause = "FILTER (?so = false && ?so = false)"
+    case params[:type].to_sym
+      when :normal
+        # default
+      when :subsets
+        filter_clause = "FILTER (?so = true)"
+      when :extensions
+        filter_clause = "FILTER (?eo = true)"
+      else
+        # default
+    end
     results =[]
     query_string = %Q{
       SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
@@ -492,11 +504,12 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v WHERE
         {
             ?s rdf:type th:ManagedConcept .
-            ?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.cdisc_scope.uri.to_ref} .
+            ?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.repository_scope.uri.to_ref} .
             BIND (EXISTS {?s th:extends ?xe1} as ?eo)
             BIND (EXISTS {?s th:subsets ?xs1} as ?so)
             BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
             BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+            #{filter_clause}
             ?s th:identifier ?i .
             ?s th:notation ?n .
             ?s th:definition ?d .
@@ -512,7 +525,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
               } GROUP BY ?s
             }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
     query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si]).each do |x|
@@ -584,12 +597,14 @@ private
     parts << "{ #{self.uri.to_ref} (th:isOrdered*/th:members*/th:memberNext*) ?s . ?s ?p ?o }"
     parts << "{ #{self.uri.to_ref} th:narrower ?s . ?s ?p ?o . FILTER NOT EXISTS { ?e th:narrower ?s . }}"
     if !parent_object.nil?
-      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdfs:subClassOf th:Reference . ?s ?p ?o }" 
-      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?s . ?s rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?s bo:reference #{uri.to_ref} . ?s ?p ?o }" 
+      parts << "{ #{parent_object.uri.to_ref} th:isTopConceptReference ?o . ?o rdf:type ?t . ?t rdfs:subClassOf bo:Reference . ?o bo:reference #{uri.to_ref} . 
+        BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) .}"
+      parts << "{ BIND (#{parent_object.uri.to_ref} as ?s) . BIND (th:isTopConceptReference as ?p) . BIND (#{uri.to_ref} as ?o) }" 
     end
     query_string = "DELETE { ?s ?p ?o } WHERE {{ #{parts.join(" UNION\n")} }}"
-  #puts "*****\n#{query_string}\n*****"
-    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th])
+  puts "*****\n#{query_string}\n*****"
+    results = Sparql::Update.new.sparql_update(query_string, uri.namespace, [:isoT, :th, :bo])
     1  
   end
 

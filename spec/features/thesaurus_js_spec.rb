@@ -108,7 +108,6 @@ describe "Thesaurus", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :document_control)
       wait_for_ajax(10)
       expect(page).to have_content 'Manage Status'
-      expect(page).to have_content 'Version Control'
       expect(page).to have_content("Current Status:")
       expect(page).to have_content("Incomplete")
       click_button "state_submit"
@@ -119,21 +118,29 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax(120)
-      #history > tbody > tr > td:nth-child(6) > span > span
-      # expect(page).to have_selector :css, '#history > tbody > tr > td:nth-child(6) > span'
-      # click_link('Qualified')
-      # find('span', text: 'Qualified').click
-      # click_link(class: 'clickable registration-state')
-      # find('.registration-state').click
-      # //*[@id="history"]/tbody/tr/td[6]/span/span[2]
       find(:xpath, "//*[@id='history']/tbody/tr/td[6]/span/span").click
-      # sleep 2
       wait_for_ajax(120)
-      # expect(page).to have_css('.button')
       expect(page).to have_css ('.icon-lock-open')
-      # //*[@id="history"]/tbody/tr/td[6]/span/span[2]
+      ui_check_table_info("history", 1, 1, 1)
+      context_menu_element('history', 4, 'Test Terminology', :edit)
+      wait_for_ajax(120)
+      click_link 'Return'
+      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[6]/span/span").click
+      expect(page).to have_css ('.icon-lock')
+      find(:xpath, "//*[@id='version-edit']").click
+      context_menu_element('history', 4, 'Test Terminology', :edit)
+      wait_for_ajax(120)
+      click_link 'Return'
+      ui_check_table_info("history", 1, 2, 2)
+      context_menu_element('history', 4, 'Test Terminology', :document_control)
+      wait_for_ajax(120)
+      expect(page).to have_content 'Version Control'
+      find(:xpath, "//*[@id='select-release']/option[2]").click
+      find(:xpath, "//*[@id='version-edit-submit']").click
+      wait_for_ajax(120)
+      ui_check_table_row("version_info", 1, ["Version:", "0.2.0"])
+      click_link 'Return'
       # <span class="icon-lock-open text-secondary-clr text-small"></span>
-      # expect(page).to have_selector :css, 'icon-lock-open text-secondary-clr text-small'
     end
 
     it "allows for terminology to be exported as CSV"
