@@ -204,6 +204,16 @@ describe Thesauri::ManagedConceptsController do
       expect(response.header["Content-Disposition"]).to eq("inline; filename=\"CDISC_CL_C12345.pdf\"")
     end
 
+    it "set with indicators" do
+      expect(Thesaurus::ManagedConcept).to receive(:set_with_indicators_paginated).with({"count"=>"10", "offset"=>"10", "type"=>"subsets"}).and_return([{x: 1}, {x: 2}])
+      request.env['HTTP_ACCEPT'] = "application/pdf"
+      get :set_with_indicators, {managed_concept: {offset: "10", count: "10", type: "subsets"}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_expected_1.yaml", equate_method: :hash_equal)
+    end
+
   end
 
   describe "Authorized User - Edit" do
@@ -388,7 +398,7 @@ describe Thesauri::ManagedConceptsController do
     it "prevents access to a reader, destroy" do
       delete :destroy, id: 10 # id required to be there for routing, can be anything
       expect(response).to redirect_to("/")
-    end
+    end      
 
   end
 
