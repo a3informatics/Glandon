@@ -1,3 +1,7 @@
 <% if policy(klass).index? %>
+	<% if (link_path.eql? "/thesauri/managed_concepts") && (current_link.eql? "thesauri") %>
+		<li><a id="<%= link_id %>" class="text-medium" href="<%= link_path %>"><%= link_text %></a></li>
+	<% else %>
 		<li><a id="<%= link_id %>" class="text-medium <%= if link_path.include? current_link then "text-link" end %>"  href="<%= link_path %>"><%= link_text %></a></li>
+	<% end %>
 <% end %>
