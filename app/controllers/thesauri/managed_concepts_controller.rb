@@ -17,10 +17,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.html do
         # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-          @thesauri_id = results.first.to_id
-          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
-          @identifier = the_params[:identifier]
-          @scope_id = the_params[:scope_id]
+        @thesauri_id = results.first.to_id
+        @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+        @identifier = the_params[:identifier]
+        @scope_id = the_params[:scope_id]
       end
       format.json do
         results = []
