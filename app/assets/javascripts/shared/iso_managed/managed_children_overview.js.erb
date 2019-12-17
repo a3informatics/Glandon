@@ -2,8 +2,8 @@
  * Selection Overview Table
  *
  * Requires:
- * children_select [Table] the item table
- * children_overview [Table] this table
+ * 1 or more children tables [Table]
+ * 1 overview table [Table] this table
  */
 
 /**
@@ -28,9 +28,32 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
 }
 
 /**
+ * Update the Thesaurus selection, extends edit lock
+ * @param [Object] has properties:
+ 		'action' [String] (add/remove),
+		'context' [Instance] (calling object reference)
+		'autoDeselect' [Boolean] optional
+		'thisTable' [Boolean] optional
+ * @param [DataTable Row(s) Data] data source
+ * @param [Function] callback executed on request success
+ *
+ * @return [void]
+ */
+ ManagedChildrenSelectOverview.prototype.updateSelection = function (params, data, callback) {
+	this.extendLock();
+	this.mcs.processing(true);
+
+	setTimeout(function(){ this.executeRequest(this.buildRequestParams(params, data), callback) }.bind(this), 0);
+}
+
+/**
  * Posts data to server, runs callbacks
- * @param
- * @param
+ * @param [Object] request parameters, must contain:
+ 		url [String],
+		data [Object] formatted for the request,
+		request type [String]
+		context [Instance] calling instance (optional)
+ * @param [Function] callback executed on request success
  *
  * @return [void]
  */
@@ -56,26 +79,15 @@ ManagedChildrenSelectOverview.prototype.executeRequest = function (requestParams
 }
 
 /**
- * Update items in the Thesaurus selection
- * @param [Object] has properties: 'action' (add/remove), 'context' (calling object reference)
- * @param [DataTable Row(s) Data] data source
- * @param [Function] callback executed on request success
- *
- * @return [void]
- */
- ManagedChildrenSelectOverview.prototype.updateSelection = function (params, data, callback) {
-	this.extendLock();
-	this.mcs.processing(true);
-
-	setTimeout(function(){ this.executeRequest(this.buildRequestParams(params, data), callback) }.bind(this), 0);
-}
-
-/**
  * Builds ajax request parameters
- * @param [String] action 'add' or 'remove'
- * @param [DataTable Rows Data] 1 or more rows of data to be transferred
+ * @param [Object] has properties:
+ 		'action' [String] (add/remove),
+		'context' [Instance] (calling object reference)
+		'autoDeselect' [Boolean] optional
+		'thisTable' [Boolean] optional
+ * @param [DataTable Row(s) Data] data source
  *
- * @return [Object] formatted ajax request parameters
+ * @return [Object] formatted ajax request parameters required for the executeRequest function
  */
 ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, data) {
 	var requestData = {
@@ -104,19 +116,9 @@ ManagedChildrenSelectOverview.prototype.buildRequestParams = function (params, d
 }
 
 /**
- * Initiates extend lock call
- *
- * @return [void]
- */
-ManagedChildrenSelectOverview.prototype.extendLock = function () {
- if(!this.context.timer.expired)
-	 this.context.timer.extendLock();
-}
-
-/**
  * Encodes DataTables Row(s) Data API to correct data structure to be sent to the server
  *
- * @return [void]
+ * @return [Object] formatted data structure (array of item ids)
  */
 ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data) {
 	var idArray = [];
@@ -129,6 +131,11 @@ ManagedChildrenSelectOverview.prototype.encodeRequestData = function (data) {
 }
 
 /**
+ * Callback to successful server data selection update - updates the local UI
+ * @param [Rows Data] original data from request
+ * @param [Object] original request params
+ *
+ * @return [void]
  */
 ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data, params) {
 	switch(params.action){
@@ -142,9 +149,9 @@ ManagedChildrenSelectOverview.prototype.updateSelectionCallback = function (data
 }
 
 /**
- * Adds item(s) to the Thesaurus selection
- * @param [Object] array of 1 or more data object(s) of the updated item(s)
- * @param [Object Reference] context from which the function was called
+ * Adds item(s) to the Thesaurus selection (local UI callback)
+ * @param [Rows Data] original data from request
+ * @param [Object] original request params
  *
  * @return [void]
  */
@@ -160,9 +167,9 @@ ManagedChildrenSelectOverview.prototype.addItems = function (data, params) {
 }
 
 /**
- * Removed item(s) to the Thesaurus selection
- * @param [Object] array of 1 or more data object(s) of the updated item(s)
- * @param [Object Reference] context from which the function was called
+ * Removes item(s) to the Thesaurus selection (local UI callback)
+ * @param [Rows Data] original data from request
+ * @param [Object] original request params
  *
  * @return [void]
  */
@@ -179,13 +186,18 @@ ManagedChildrenSelectOverview.prototype.removeItems = function (data, params) {
 }
 
 /**
- * Redraws the table, re-sets the listeners
+ * Removes (excludes) all items filtered by the table search in bulk, updates UI
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.redraw = function () {
-	this.mcs.redraw();
-	this.setListeners();
+ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
+	setTimeout(function () {
+		var rows = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
+		var params = { context: this, action: "remove", autoDeselect: true, thisTable: true, rows: rows };
+		var data = rows.data();
+		var callback = this.updateSelectionCallback.bind(this, data, params);
+		this.updateSelection(params, data, callback);
+	}.bind(this), 0);
 }
 
 /**
@@ -221,16 +233,21 @@ ManagedChildrenSelectOverview.prototype.setListeners = function () {
 }
 
 /**
- * Removes all items filtered by the table search in bulk
+ * Redraws the table, re-sets the listeners
  *
  * @return [void]
  */
-ManagedChildrenSelectOverview.prototype.bulkRemove = function () {
-	setTimeout(function () {
-		var rows = this.mcs.findRowsByParam("rows_filter", {search: 'applied'});
-		var params = { context: this, action: "remove", autoDeselect: true, thisTable: true, rows: rows };
-		var data = rows.data();
-		var callback = this.updateSelectionCallback.bind(this, data, params);
-		this.updateSelection(params, data, callback);
-	}.bind(this), 0);
+ManagedChildrenSelectOverview.prototype.redraw = function () {
+	this.mcs.redraw();
+	this.setListeners();
+}
+
+/**
+ * Extend lock call
+ *
+ * @return [void]
+ */
+ManagedChildrenSelectOverview.prototype.extendLock = function () {
+ if(!this.context.timer.expired)
+	 this.context.timer.extendLock();
 }
