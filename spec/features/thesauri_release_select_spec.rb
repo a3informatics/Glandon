@@ -9,18 +9,6 @@ describe "Thesauri Release Select", :type => :feature do
   include WaitForAjaxHelper
   include TimeHelpers
 
-  before :each do
-    ua_curator_login
-  end
-
-  after :each do
-    ua_logoff
-  end
-
-  after :all do
-    ua_destroy
-  end
-
   describe "The Curator User, initial state", :type => :feature, js:true do
 
     before :all do
@@ -30,6 +18,18 @@ describe "Thesauri Release Select", :type => :feature do
       load_cdisc_term_versions(1..46)
       Token.delete_all
       ua_create
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
     end
 
     it "display the release select page, initial state", :type => :feature do
@@ -60,6 +60,18 @@ describe "Thesauri Release Select", :type => :feature do
       load_test_file_into_triple_store("test_db_1.nq.gz")
       timer_stop("Triple store loaded")
       ua_create
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
     end
 
     def navigate_to_release_sel
