@@ -222,6 +222,16 @@ module UiHelpers
     expect(page).to have_css("##{table_id}_info", text: "Showing #{first} to #{last} of #{total} entries")
   end
 
+	# check table cell, start with text
+  def ui_check_table_row_indicators(table_id, row, col, indicators)
+		Capybara.ignore_hidden_elements = false
+		indicators.each do |i|
+			expect(page).to have_xpath("//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span", count: indicators.length())
+			expect(page).to have_xpath("//table[@id='#{table_id}']/tbody/tr[#{row}]/td[#{col}]/span", text: "#{i}", count: 1)
+		end
+		Capybara.ignore_hidden_elements = true
+  end
+
   # Flash
   def ui_check_no_flash_message_present
     expect(page).not_to have_selector(:css, ".alert")
@@ -567,10 +577,11 @@ module UiHelpers
 
   def ui_create_terminology(id, label)
       click_navbar_terminology
-      sleep 5
+			click_link 'New Terminology'
+      sleep 1
       fill_in "thesauri_identifier", with: id
       fill_in "thesauri_label", with: label
-      click_button 'Create'
+      click_button 'Submit'
       expect(page).to have_content 'Terminology was successfully created.'
   end
 
@@ -608,6 +619,12 @@ module UiHelpers
 			click_button "No"
 		end
 		sleep 0.5
+	end
+
+	# Tabs
+
+	def ui_click_tab (name)
+		page.find(".tab-option", :text => "#{name}").click
 	end
 
   # D3 Tree Functions
