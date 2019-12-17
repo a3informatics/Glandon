@@ -97,7 +97,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
  * @return [void]
  */
 ReleaseSelect.prototype.referenceThUpdate = function(){
-  this.tabs.cdiscTab.processing(true);
+  this.tabs.cdiscTab.processing(true, "Clearing CDISC items form the selection...");
 
   $.ajax({
     url: this.referenceThUrl,
@@ -113,14 +113,19 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
 
       // Remove selection of all CDISC items
       var rows = this.tabs.target.mcs.findRowsByParam("owner", {owner: "CDISC"});
-      var data = rows.data();
-      var params = { action: "remove", autoDeselect: false, thisTable: true, rows: rows}
-      var callback = function() {
-        this.tabs.target.updateSelectionCallback(data, params)
-        this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
-      }.bind(this);
+      if(rows.count() > 0){
+        var data = rows.data();
+        var params = { action: "remove", autoDeselect: false, thisTable: true, rows: rows}
+        var callback = function() {
+          this.tabs.target.updateSelectionCallback(data, params)
+          this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+        }.bind(this);
 
-      this.tabs.target.updateSelection(params, data, callback);
+        this.tabs.target.updateSelection(params, data, callback);
+      }
+      else {
+        this.tabs.cdiscTab.refresh(this.makeCdiscUrl(this.cdiscCT.versionId));
+      }
     },
     error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);

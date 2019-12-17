@@ -41,7 +41,7 @@ function ManagedChildrenSelectOverview(urls, tableId, count, context) {
  */
  ManagedChildrenSelectOverview.prototype.updateSelection = function (params, data, callback) {
 	this.extendLock();
-	this.mcs.processing(true);
+	this.mcs.processing(true, "Updating selection...");
 
 	setTimeout(function(){ this.executeRequest(this.buildRequestParams(params, data), callback) }.bind(this), 0);
 }
