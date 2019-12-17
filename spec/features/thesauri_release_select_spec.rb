@@ -83,6 +83,7 @@ describe "Thesauri Release Select", :type => :feature do
       context_menu_element('history', 4, 'Test Terminology', :edit)
       click_link 'Release select'
       expect(page).to have_content 'Find & Select Code Lists'
+      wait_for_ajax 50
     end
 
     it "select a CDISC version", :type => :feature do
@@ -129,6 +130,20 @@ describe "Thesauri Release Select", :type => :feature do
     end
 
     it "select CLs for the thesaurus, single or bulk", :type => :feature do
+      navigate_to_release_sel
+      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]').click
+      wait_for_ajax 10
+      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]')[:class].include? "selected"
+      ui_click_tab "Test Terminology"
+      ui_check_table_cell("table-selection-overview", 1, 1, "C99079")
+      ui_click_tab "CDISC CLs"
+      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]').click
+      wait_for_ajax 10
+      ui_click_tab "Test Terminology"
+      expect(page).to_not have_xpath('//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]')
+      ui_click_tab "CDISC CLs"
+      page.find("#table-cdisc-cls-bulk-select").click
+      wait_for_ajax 100
 
     end
 

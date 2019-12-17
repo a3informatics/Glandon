@@ -576,13 +576,13 @@ module UiHelpers
 
 
   def ui_create_terminology(id, label)
-      click_navbar_terminology
-			click_link 'New Terminology'
-      sleep 1
-      fill_in "thesauri_identifier", with: id
-      fill_in "thesauri_label", with: label
-      click_button 'Submit'
-      expect(page).to have_content 'Terminology was successfully created.'
+    click_navbar_terminology
+		click_link 'New Terminology'
+    sleep 1
+    fill_in "thesauri_identifier", with: id
+    fill_in "thesauri_label", with: label
+    click_button 'Submit'
+    expect(page).to have_content 'Terminology was successfully created.'
   end
 
   # Return
