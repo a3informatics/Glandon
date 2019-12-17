@@ -42,7 +42,7 @@ ReleaseSelect.prototype.initTimelineSlider = function(){
 /**
  * Initializes edit lock timer
  *
- * @return [Timer]
+ * @return [Timer instance]
  */
 ReleaseSelect.prototype.initTimer = function(){
   return new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
@@ -65,41 +65,19 @@ ReleaseSelect.prototype.initCdiscCt = function(){
 }
 
 /**
- * Generates URL string for CDISC data fetching based on CT id
- * @param [String] terminology ID
- *
- * @return [String] URL to fetch CDISC CT version children
- */
-ReleaseSelect.prototype.makeCdiscUrl = function(id){
-  return cdiscCLUrl.replace("th_id", id)
-}
-
-/**
  * Initializes all the tabs on the page
  *
- * @return [Object] of tab references {cdiscTab, ...}
+ * @return [Object] of tab references {cdiscTab, sponsorClTab, sponsorSubsetsTab, sponsorExtensionsTab, target}
  */
 ReleaseSelect.prototype.initTabs = function(){
   var overview = new ManagedChildrenSelectOverview(overviewUrls, "#table-selection-overview", 1000, this);
   var cdiscCls = new ManagedChildrenSelect(cdiscCLUrl, "#table-cdisc-cls", 1000, overview, "thCodeList").init().setListeners();
-  var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList").init().setListeners();
+  var sponsorCls = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-cls", 1000, overview, "thCodeList", "normal").init().setListeners();
+  var sponsorSubsets = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-subsets", 1000, overview, "thCodeList", "subsets").init().setListeners();
+  var sponsorExtensions = new ManagedChildrenSelect(sponsorCLUrl, "#table-sponsor-extensions", 1000, overview, "thCodeList", "extensions").init().setListeners();
 
-  return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls, target: overview};
+  return {cdiscTab: cdiscCls, sponsorClTab: sponsorCls, sponsorSubsetsTab: sponsorSubsets, sponsorExtensionsTab: sponsorExtensions, target: overview};
 }
-
-/**
- * Calls auto select on each tab
- *
- * @return [void]
- */
-ReleaseSelect.prototype.autoDeselectAllTabs = function(data){
-  var _this = this;
-  $.each(_this.tabs, function(k,v){
-    if(k != "target")
-      v.autoDeselect(data);
-  });
-}
-
 
 /**
  * Changes CDISC version, reloads data, updates UI
@@ -114,7 +92,7 @@ ReleaseSelect.prototype.changeCdiscVer = function(){
 }
 
 /**
- * Sets the referenced thesaurus to a CDISC version
+ * Sets the referenced thesaurus to a CDISC version via ajax, clears all CDISC data from the thesaurus, reloads new version data
  *
  * @return [void]
  */
@@ -143,8 +121,6 @@ ReleaseSelect.prototype.referenceThUpdate = function(){
       }.bind(this);
 
       this.tabs.target.updateSelection(params, data, callback);
-
-
     },
     error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
@@ -183,12 +159,47 @@ ReleaseSelect.prototype.setEventListeners = function(){
   tabSwitchCallback = function(tab){
     switch($(tab).attr("id")){
       case "tab-sponsor-cls":
-        var thisTab = _this.tabs.sponsorClTab;
-
-        // Start loading data into table when tab switched to Sponsor CLs
-        if(!thisTab.dataLoaded)
-          thisTab.loadData(0, thisTab.autoselect.bind(thisTab) );
+        _this.loadTab(_this.tabs.sponsorClTab);
+        break;
+      case "tab-sponsor-subsets":
+        _this.loadTab(_this.tabs.sponsorSubsetsTab);
+        break;
+      case "tab-sponsor-extensions":
+        _this.loadTab(_this.tabs.sponsorExtensionsTab);
         break;
     }
   }
+}
+
+/**
+ * Calls auto deselect on each tab instance (except for the overview tab)
+ *
+ * @return [void]
+ */
+ReleaseSelect.prototype.autoDeselectAllTabs = function(data){
+  $.each(this.tabs, function(k,v){
+    if(k != "target")
+      v.autoDeselect(data);
+  });
+}
+
+/**
+ * Loads data into tab reference if not done yet
+ * @param [Instance reference] tab to be loaded
+ *
+ * @return [void]
+ */
+ReleaseSelect.prototype.loadTab = function(tab){
+  if(!tab.dataLoaded)
+    tab.loadData(0, tab.autoSelect.bind(tab) );
+}
+
+/**
+ * Generates URL string for CDISC data fetching based on CT id
+ * @param [String] terminology ID
+ *
+ * @return [String] URL to fetch CDISC CT children
+ */
+ReleaseSelect.prototype.makeCdiscUrl = function(id){
+  return cdiscCLUrl.replace("th_id", id)
 }

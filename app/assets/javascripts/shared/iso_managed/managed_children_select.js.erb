@@ -2,8 +2,8 @@
  * Select Table
  *
  * Requires:
- * children_select [Table] the item table
- * children_overview [Table] the target table
+ * 1 or more children tables [Table]
+ * 1 overview table [Table] target
  */
 
 /**
@@ -12,23 +12,25 @@
  * @param [String] id of the table
  * @param [Integer] Number of items fetched in one request
  * @param [Object Instance] reference to the table object instance
- * @param [String] type of the data and columns format, can be: "thCodeList", ...
+ * @param [String] type of the data and columns format, can be: "thCodeList", "thOverview" ...
+ * @param [String] kind of tab data, optional ("normal", "subsets", "extensions")
  *
  * @return [void]
  */
-function ManagedChildrenSelect(dataUrl, tableId, count, target, type) {
+function ManagedChildrenSelect(dataUrl, tableId, count, target, type, kind) {
 	this.dataUrl = dataUrl;
 	this.tableId = tableId;
 	this.count = count;
 	this.target = target;
 	this.type = type;
+	this.kind = kind;
 	this.loading = false;
 	this.dataLoaded = false;
 	this.autoSelectMode = false;
 }
 
 /**
- * Initializes the DataTable, adds on select/deselect events
+ * Initializes the DataTable
  *
  * @return [Object Instance] this instance
  */
@@ -52,43 +54,9 @@ ManagedChildrenSelect.prototype.init = function () {
 }
 
 /**
- * Sets the event handlers
- *
- * @return [Object Instance] this instance
- */
-ManagedChildrenSelect.prototype.setListeners = function () {
-	var _this = this;
-
-	// On item (row) select event handler
-	this.table.on('select', function (e, dt, type, indexes) { _this.addOrRemoveItems(indexes, "add") });
-
-	// On item (row) deselect event handler
-	this.table.on('deselect', function (e, dt, type, indexes) {	_this.addOrRemoveItems(indexes, "remove") });
-
-	// Select all click event handler
-	$(this.tableId + "-bulk-select").on("click", function () {
-		_this.table.rows({
-			search: 'applied',
-			selected: false
-		}).select()
-	});
-
-	// Deselect all click event handler
-	$(this.tableId + "-bulk-deselect").on("click", function () {
-		new ConfirmationDialog(function () {
-			_this.table.rows({
-				search: 'applied',
-				selected: true
-			}).deselect()
-		}).show()
-	});
-
-	return this;
-}
-
-/**
- * Loads data into table based on offset
+ * Loads data into table based on offset, executes callback when finished
  * @param [Integer] offset of data index
+ * @param [Function] callback on success
  *
  * @return [void]
  */
@@ -127,22 +95,43 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 }
 
 /**
- * Generates parameters for request for fetching data
- * @param [Int] Data Count
- * @param [Int] Data Offset
+ * Sets the event handlers: row select, deselect, bulk select, bulk deselect
  *
- * @return [Object] formatted data object
+ * @return [Object Instance] this instance
  */
-ManagedChildrenSelect.prototype.loadDataParams = function(c, o){
-	var data = {};
-	var param = this.dataUrl.indexOf("managed_concept") != -1 ? "managed_concept" : "thesauri";
-	data[param] = { count: c, offset: o}
-	return data;
+ManagedChildrenSelect.prototype.setListeners = function () {
+	var _this = this;
+
+	// On item (row) select event handler
+	this.table.on('select', function (e, dt, type, indexes) { _this.addOrRemoveItems(indexes, "add") });
+
+	// On item (row) deselect event handler
+	this.table.on('deselect', function (e, dt, type, indexes) {	_this.addOrRemoveItems(indexes, "remove") });
+
+	// Select all click event handler
+	$(this.tableId + "-bulk-select").on("click", function () {
+		_this.table.rows({
+			search: 'applied',
+			selected: false
+		}).select()
+	});
+
+	// Deselect all click event handler
+	$(this.tableId + "-bulk-deselect").on("click", function () {
+		new ConfirmationDialog(function () {
+			_this.table.rows({
+				search: 'applied',
+				selected: true
+			}).deselect()
+		}).show()
+	});
+
+	return this;
 }
 
 /**
  * Add or remove items. Passes the selected item(s) to the target
- * @param [Array Int] Row indexes selected/deselected
+ * @param [Array Int] Indexes of rows that were selected/deselected
  * @param [String] action, can be "add" or "remove"
  *
  * @return [void]
@@ -157,17 +146,6 @@ ManagedChildrenSelect.prototype.addOrRemoveItems = function (indexes, action) {
 
 		this.target.updateSelection(params, items, callback);
 	}
-}
-
-/**
- * Re-draws the table
- *
- * @return [void]
- */
-ManagedChildrenSelect.prototype.redraw = function () {
-	var _this = this;
-	_this.table.columns.adjust();
-	_this.table.draw();
 }
 
 /**
@@ -203,7 +181,8 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
 }
 
 /**
- * Iterates through this table rows and deselects - marks those that are not contained in target table
+ * Auto - Deselects items by argument data based on ids
+ * @param [DataTable Row Data] data from another table to be found and deselected in this one
  *
  * @return [void]
  */
@@ -227,7 +206,7 @@ ManagedChildrenSelect.prototype.autoDeselect = function (data) {
 }
 
 /**
- * Refreshes the table and data
+ * Refreshes the table and reloads data
  * @param [String] newUrl (optional) only if source url changes
  *
  * @return [void]
@@ -241,8 +220,18 @@ ManagedChildrenSelect.prototype.refresh = function (newUrl) {
 }
 
 /**
- * Toggles the processing state of the table and the object instance
- * @param [Boolean] true if should enable processing, false if should disable processing
+ * Re-draws the table
+ *
+ * @return [void]
+ */
+ManagedChildrenSelect.prototype.redraw = function () {
+	this.table.columns.adjust();
+	this.table.draw();
+}
+
+/**
+ * Toggles the processing state of the table on/off
+ * @param [Boolean] true if should start processing, false if should stop processing
  *
  * @return [void]
  */
@@ -253,11 +242,29 @@ ManagedChildrenSelect.prototype.processing = function (enable) {
 }
 
 /**
- * Finds a row in a DataTable based on data
+ * Generates parameters for request for fetching data
+ * @param [Int] Data Count
+ * @param [Int] Data Offset
  *
- * @param [String] DataType by which to search, e.g. identifier
- * @param [Object] Data values object which to compare
- * @return [DatatTable Row] Row result
+ * @return [Object] formatted data object
+ */
+ManagedChildrenSelect.prototype.loadDataParams = function(c, o){
+	var data = {};
+
+	var param = this.dataUrl.indexOf("managed_concept") != -1 ? "managed_concept" : "thesauri";
+	data[param] = { count: c, offset: o }
+	if(this.kind != null)
+		data[param].type = this.kind;
+
+	return data;
+}
+
+/**
+ * Finds a row in a DataTable based on data
+ * @param [String] DataType by which to search, e.g. id
+ * @param [Object] Data value object which to compare
+ *
+ * @return [DatatTable Row] DataTable Row result api instance (can be empty)
  */
 ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
 	return this.table.row(function (idx, dt, node) {
@@ -267,10 +274,10 @@ ManagedChildrenSelect.prototype.findRowByParam = function (dataType, data) {
 
 /**
  * Finds rows in a DataTable based on a single data parameter
- *
- * @param [String] DataType by which to search, e.g. identifier
+ * @param [String] DataType by which to search, e.g. id
  * @param [Object] Single data object
- * @return [DataTable Rows] 1 or more rowws
+ *
+ * @return [DataTable Rows] DataTable Row result api instance of 1 or more rows (can be empty)
  */
 ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 	var _this = this;
@@ -281,11 +288,11 @@ ManagedChildrenSelect.prototype.findRowsByParam = function (dataType, data) {
 }
 
 /**
- * Finds rows in a DataTable based on data
+ * Finds rows in a DataTable based on multiple data
+ * @param [String] DataType by which to search, e.g. id
+ * @param [Data Array] Multiple Data which to find based on dataType
  *
- * @param [String] DataType by which to search, e.g. identifier
- * @param [Object Array] Object which to find based on dataType
- * @return [DataTable Rows] 1 or more rowws
+ * @return [DataTable Rows] DataTable Row result api instance of 1 or more rows (can be empty)
  */
 ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
 	var _this = this;
@@ -300,11 +307,10 @@ ManagedChildrenSelect.prototype.findRowsByData = function (dataType, data) {
 }
 
 /**
- * Finds rows in a DataTable based on data
+ * Generates exclude button HTML
+ * @param [Object] data object which contains the id property
  *
- * @param [String] DataType by which to search, e.g. identifier
- * @param [Data Array] Values which to compare
- * @return [Array] array of row indexes
+ * @return [String] styled button HTML
  */
 ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
 	return "<span class='icon-times text-accent-2 clickable text-tiny exclude ttip' data-id='"+data.id+"'>"+
@@ -320,7 +326,7 @@ ManagedChildrenSelect.prototype.excludeBtnHTML = function (data) {
  * "thOverview": Code lists selection overview
  * add more if needed
  *
- * @return [Array] of column-data relations for the DataTable
+ * @return [Array] of column-data objects for the DataTable
  */
 ManagedChildrenSelect.prototype.columns = function () {
   var _this = this;
