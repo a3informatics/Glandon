@@ -1306,17 +1306,17 @@ describe "Thesaurus::ManagedConcept" do
 
     it "determines if an item is subsetted, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml")
     end
 
     it "determines if an item is subsetted, subsets" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "subsets", offset: "0", count: "100"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml")
     end
 
-    it "determines if an item is subsetted, extensioins" do
+    it "determines if an item is subsetted, extensions" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "extensions", offset: "0", count: "100"})
-      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml", write_file: true)
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml")
     end
 
   end
