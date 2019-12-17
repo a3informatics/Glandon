@@ -210,6 +210,7 @@ class IsoManagedV2 < IsoConceptV2
   def previous_release
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
+    return SemanticVersion.first.to_s if results.count == 1 # If only one item force to base (first) version
     item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
     item.nil? ? results.last[:semantic_version] : item[:semantic_version]
   end
@@ -217,24 +218,29 @@ class IsoManagedV2 < IsoConceptV2
   # Release
   #
   # @param [Symbol] release (:major, :minor, :patch)
-  # @return []
+  # @return [Boolean] true if update was made.
   def release(release)
-    return if !self.has_state.update_release?
-    sv = SemanticVersion.from_s(previous_release)
-    case release
-      when :major
-        sv.increment_major
-      when :minor
-        #sv.increment_minor  
-      when :patch
-        sv.increment_patch
-      else
-        raise Exceptions::ApplicationLogicError.new(message: "The release param is not valid")
+    if !self.has_state.update_release?
+      self.errors.add(:base, "The release cannot be updated in the current state")
+      return false
+    else
+      sv = SemanticVersion.from_s(previous_release)
+      case release
+        when :major
+          sv.increment_major
+        when :minor
+          #sv.increment_minor  
+        when :patch
+          sv.increment_patch
+        else
+          self.errors.add(:base, "The release request type was invalid")
+          return false
+      end
+      si = self.has_identifier
+      si.update(semantic_version: sv.to_s)
+      si.save
     end
-    si = self.has_identifier
-    si.update(semantic_version: sv.to_s)
-    si.save
-    self
+    true
   end
 
   # Find With Properties. Finds the version management info and data properties for the item. Does not fill in the object properties.
