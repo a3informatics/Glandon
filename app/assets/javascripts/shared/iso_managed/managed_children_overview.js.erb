@@ -72,7 +72,6 @@ ManagedChildrenSelectOverview.prototype.executeRequest = function (requestParams
 		error: function (xhr, status, error) {
 			handleAjaxError(xhr, status, error);
 			this.mcs.processing(false);
-			try { callback() } catch(exc) {};
 			try { requestParams.context.processing(false) } catch(exc) {};
 		}
 	})
