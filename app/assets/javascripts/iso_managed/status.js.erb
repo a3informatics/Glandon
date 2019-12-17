@@ -11,8 +11,7 @@ $("#version-edit-submit").on("click", function() {
     data: JSON.stringify( data ),
     contentType: 'application/json',
     error: function (xhr, status, error) {
-      var html = alertError("An error has occurred updating release.");
-      displayAlerts(html);
+      handleAjaxError(xhr, status, error);
     },
     success: function(result){
       location.reload();

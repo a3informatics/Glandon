@@ -26,7 +26,7 @@ defaults: &defaults
       registration levels.
     :delete_enabled: false
     :edit_enabled: true
-    :update_release: false
+    :update_release: true
     :edit_up_version: false
     :state_on_edit: Candidate
     :can_be_current: false

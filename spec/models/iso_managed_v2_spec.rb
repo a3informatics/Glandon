@@ -961,6 +961,37 @@ describe "IsoManagedV2" do
       expect(result).to eq("5.1.0")
     end
 
+    it "find the previous_release, only one item" do
+      uris = []
+      (1..1).each do |index|
+        item = CdiscTerm.new
+        item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+        uris[index-1] = item.uri
+      end 
+      item = Thesaurus.find_minimum(uris[0])
+      set_state(item,"Incomplete")
+      result = item.previous_release
+      expect(result).to eq("0.1.0")
+    end
+
+    it "allows the item release to be incremented, one version, no changes" do
+      load_cdisc_term_versions(1..1)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.has_state.registration_status = "Incomplete"
+      expect(item.semantic_version).to eq("1.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("The release cannot be updated in the current state")
+      expect(item.errors.count).to eq(1)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.0.0")
+    end
+
     it "allows the item release to be incremented, one version, no changes" do
       load_cdisc_term_versions(1..1)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
@@ -971,7 +1002,7 @@ describe "IsoManagedV2" do
       expect(item.errors.full_messages.to_sentence).to eq("")
       expect(item.errors.count).to eq(0)
       actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("2.0.0")
+      expect(actual.semantic_version).to eq("1.0.0")
     end
 
     it "allows the item release to be incremented, two versions, increment major" do
@@ -1025,7 +1056,9 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uri)
       item.has_state.registration_status = "Qualified"
       expect(item.semantic_version).to eq("2.0.0")
-      expect{item.release(:asd)}.to raise_error(Exceptions::ApplicationLogicError)
+      item.release(:asd)
+      expect(item.errors.count).to eq(1)
+      expect(item.errors.full_messages.to_sentence).to eq("The release request type was invalid")
     end
 
     it "allows the item release to be incremented, five versions, increment major" do
