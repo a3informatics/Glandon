@@ -97,16 +97,14 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Version History of \'CDISC EXT\''
     end
 
-    it "allows multiple edit", js: true do
+    it "allows for multiple edit lock and unlock", js: true do
       click_navbar_terminology
       click_link 'New Terminology'
-      fill_in 'thesauri_identifier', with: 'TEST test'
-      fill_in 'thesauri_label', with: 'Test Terminology'
-      click_button 'Submit'
-      find(:xpath, "//tr[contains(.,'Test Terminology')]/td/a").click
-      wait_for_ajax(10)
-      context_menu_element('history', 4, 'Test Terminology', :document_control)
-      wait_for_ajax(10)
+      new_term_modal('TEST ME', 'Test Multiple Edit Terminology')
+      find(:xpath, "//tr[contains(.,'Test Multiple Edit Terminology')]/td/a").click
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control)
+      wait_for_ajax_long
       expect(page).to have_content 'Manage Status'
       expect(page).to have_content("Current Status:")
       expect(page).to have_content("Incomplete")
@@ -117,30 +115,30 @@ describe "Thesaurus", :type => :feature do
       click_button "state_submit"
       expect(page).to have_content("Qualified")
       click_link 'Return'
-      wait_for_ajax(120)
+      wait_for_ajax_long
       find(:xpath, "//*[@id='history']/tbody/tr/td[6]/span/span").click
-      wait_for_ajax(120)
+      wait_for_ajax_long
       expect(page).to have_css ('.icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
-      context_menu_element('history', 4, 'Test Terminology', :edit)
-      wait_for_ajax(120)
+      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      wait_for_ajax_long
       click_link 'Return'
       find(:xpath, "//*[@id='history']/tbody/tr[1]/td[6]/span/span").click
       expect(page).to have_css ('.icon-lock')
-      find(:xpath, "//*[@id='version-edit']").click
-      context_menu_element('history', 4, 'Test Terminology', :edit)
-      wait_for_ajax(120)
+      wait_for_ajax_long
+      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
+      wait_for_ajax_long
       click_link 'Return'
       ui_check_table_info("history", 1, 2, 2)
-      context_menu_element('history', 4, 'Test Terminology', :document_control)
-      wait_for_ajax(120)
+      context_menu_element('history', 4, 'Test Multiple Edit Terminology', :document_control, 1)
+      wait_for_ajax_long
       expect(page).to have_content 'Version Control'
-      find(:xpath, "//*[@id='select-release']/option[2]").click
+      find(:xpath, "//*[@id='version-edit']").click
+      find(:xpath, "//*[@id='select-release']/option[1]").click
       find(:xpath, "//*[@id='version-edit-submit']").click
-      wait_for_ajax(120)
-      ui_check_table_row("version_info", 1, ["Version:", "0.2.0"])
+      wait_for_ajax_long
+      ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
       click_link 'Return'
-      # <span class="icon-lock-open text-secondary-clr text-small"></span>
     end
 
     it "allows for terminology to be exported as CSV"

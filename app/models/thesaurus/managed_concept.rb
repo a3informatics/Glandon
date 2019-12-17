@@ -463,14 +463,15 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def delete_or_unlink(parent_object)
     self.children_objects
     if parent_object.nil? && no_parents?
-      # No parent specified and no paraents linked to this item, can be deleted
+      # No parent specified and no parents linked to this item, delete
       delete_with
     elsif parent_object.nil?
       # No parent specified and paraents, do nothing, as we cannot 
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
       0
     elsif multiple_parents? 
-      # Deselect from parent
+      # Deselect from quoted parent
+      parent_object.deselect_children({id_set: [self.uri.to_id]})
       1
     elsif self.children? && !self.extension? && !self.subset?
       # Parent specified, not extension or subset but children present. Dont delete.

@@ -1197,6 +1197,34 @@ describe "Thesaurus::ManagedConcept" do
       expect(th.is_top_concept.first.uri).to eq(tc_2.uri)
     end
 
+    it "allows a TC to be unlinked, multiple parents" do
+      th_1 = Thesaurus.create({identifier: "AAA1", notation: "A1"})
+      th_2 = Thesaurus.create({identifier: "AAA2", notation: "A2"})
+      tc_1 = th_1.add_child 
+      tc_2 = th_1.add_child
+      th_2.select_children({id_set: [tc_1.uri.to_id, tc_2.uri.to_id]})
+      th_1 = Thesaurus.find_minimum(th_1.uri)
+      expect(th_1.is_top_concept_reference_objects.count).to eq(2)
+      th_2 = Thesaurus.find_minimum(th_2.uri)
+      expect(th_2.is_top_concept_reference_objects.count).to eq(2)
+      result = tc_1.delete_or_unlink(th_1)
+      expect(result).to eq(1)
+      tc_1 = Thesaurus::ManagedConcept.find_minimum(tc_1.uri)
+      tc_2 = Thesaurus::ManagedConcept.find_minimum(tc_2.uri)
+      th_1 = Thesaurus.find_minimum(th_1.uri)
+      expect(th_1.is_top_concept_reference_objects.count).to eq(1)
+      th_2 = Thesaurus.find_minimum(th_2.uri)
+      expect(th_2.is_top_concept_reference_objects.count).to eq(2)
+      expect(th_1.is_top_concept_reference.first.reference).to eq(tc_2.uri)
+      th_1.is_top_concept_objects
+      expect(th_1.is_top_concept.count).to eq(1)
+      expect(th_1.is_top_concept.first.uri).to eq(tc_2.uri)
+      th_2.is_top_concept_objects
+      expect(th_2.is_top_concept.count).to eq(2)
+      expect(th_2.is_top_concept.first.uri).to eq(tc_1.uri)
+      expect(th_2.is_top_concept.last.uri).to eq(tc_2.uri)
+    end
+
   end
 
   describe "subsets" do
