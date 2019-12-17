@@ -66,7 +66,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='select-release']/option[1]").click #Major release
       find(:xpath, "//*[@id='version-edit-submit']").click
       wait_for_ajax(120)
-      ui_check_table_row("version_info", 1, ["Version:", "0.1.0"]) #The release cannot be updated in the current state
+      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '0.1.0') #The release cannot be updated in the current state
 
       fill_in '[iso_managed]administrative_note', with: 'First step in the lifecyle.'
       fill_in '[iso_managed]unresolved_issue', with: 'None that we know of.'
@@ -112,7 +112,8 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='select-release']/option[1]").click #Major release
       find(:xpath, "//*[@id='version-edit-submit']").click
       wait_for_ajax(120)
-      ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
+      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '1.0.0')
+
       click_link 'Return'
       wait_for_ajax(120)
 
@@ -129,7 +130,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='select-release']/option[2]").click #Minor release
       find(:xpath, "//*[@id='version-edit-submit']").click
       wait_for_ajax(120)
-      ui_check_table_row("version_info", 1, ["Version:", "1.1.0"])
+      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '0.1.0')
       click_link 'Return'
       wait_for_ajax(120)
       ui_check_table_info("history", 1, 3, 3)
@@ -170,7 +171,8 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       find(:xpath, "//*[@id='select-release']/option[1]").click #Major release
       find(:xpath, "//*[@id='version-edit-submit']").click
       wait_for_ajax(120)
-      ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
+      expect(page).to have_xpath('//*[@id="imh_header"]/div/div/div[2]/div[3]/span[4]', text: '1.0.0')
+
       click_link 'Return'
       wait_for_ajax(120)
 
