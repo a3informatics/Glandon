@@ -8,6 +8,7 @@ describe "Thesaurus::ManagedConcept" do
   include PublicFileHelpers
   include ThesauriHelpers
   include IsoManagedHelpers
+  include TimeHelpers
 
   def sub_dir
     return "models/thesaurus/managed_concept"
@@ -1291,6 +1292,31 @@ describe "Thesaurus::ManagedConcept" do
     it "determines if an item is subsetted, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_2.yaml")
+    end
+
+  end
+
+  describe "sets test database" do
+
+    before :all do
+      timer_start
+      load_test_file_into_triple_store("test_db_1.nq.gz")
+      timer_stop("Triple store loaded")
+    end
+
+    it "determines if an item is subsetted, normal" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml", write_file: true)
+    end
+
+    it "determines if an item is subsetted, subsets" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "subsets", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml", write_file: true)
+    end
+
+    it "determines if an item is subsetted, extensioins" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "extensions", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml", write_file: true)
     end
 
   end

@@ -463,17 +463,21 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def delete_or_unlink(parent_object)
     self.children_objects
     if parent_object.nil? && no_parents?
+      # No parent specified and no paraents linked to this item, can be deleted
       delete_with
     elsif parent_object.nil?
+      # No parent specified and paraents, do nothing, as we cannot 
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
       0
     elsif multiple_parents? 
       # Deselect from parent
       1
     elsif self.children? && !self.extension? && !self.subset?
+      # Parent specified, not extension or subset but children present. Dont delete.
       self.errors.add(:base, "The code list cannot be deleted as there are children present.") # error, children present for normal code list
       0
     else
+      # Parent specified, no children, delete
       delete_with(parent_object)
     end
   end
@@ -486,14 +490,14 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # @option params [Array] :tags the tag to be displayed
   # @return [Array] array of hashes containing the child data
   def self.set_with_indicators_paginated(params) 
-    filter_clause = "FILTER (?so = false && ?so = false)"
+    filter_clause = "FILTER (?so = false && ?eo = false)"
     case params[:type].to_sym
       when :normal
         # default
       when :subsets
-        filter_clause = "FILTER (?so = true)"
+        filter_clause = "FILTER (?so = true && ?eo = false)"
       when :extensions
-        filter_clause = "FILTER (?eo = true)"
+        filter_clause = "FILTER (?eo = true && ?so = false)"
       else
         # default
     end
@@ -528,8 +532,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
+byebug
     query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si]).each do |x|
-      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:v].to_i, subset: x[:eo].to_bool, subsetted: x[:ei].to_bool}
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:v].to_i, subset: x[:so].to_bool, subsetted: x[:si].to_bool}
       results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
         definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
     end
