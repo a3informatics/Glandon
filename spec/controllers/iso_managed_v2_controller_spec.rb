@@ -77,9 +77,21 @@ describe IsoManagedV2Controller do
       request.env['HTTP_ACCEPT'] = "application/json"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
+      mi.has_state.registration_status = "Qualified"
+      mi.has_state.save
       put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
+    end
+
+    
+    it 'updates the semantic version, The release cannot be updated in the current state' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
     end
 
   end
