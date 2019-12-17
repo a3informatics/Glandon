@@ -154,6 +154,7 @@ ManagedChildrenSelect.prototype.addOrRemoveItems = function (indexes, action) {
  * @return [void]
  */
 ManagedChildrenSelect.prototype.autoSelect = function () {
+	this.processing(true);
 
 	// Checks if overview table is loading, retries in 200 ms
 	if(this.target.mcs.loading)
@@ -162,7 +163,6 @@ ManagedChildrenSelect.prototype.autoSelect = function () {
 	// Overview table done loading
 	else {
 		var _this = this;
-		this.processing(true);
 		this.autoSelectMode = true;
 
 		setTimeout(function () {
