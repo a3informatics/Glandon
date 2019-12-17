@@ -122,8 +122,6 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_link 'Return'
       ui_check_table_info("history", 1, 3, 3)
 
- 
-byebug
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
       wait_for_ajax(120)
       expect(page).to have_content 'Version Control'
@@ -135,8 +133,7 @@ byebug
       click_link 'Return'
       wait_for_ajax(120)
       ui_check_table_info("history", 1, 3, 3)
-  byebug
-   
+
       context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
       wait_for_ajax(120)
       click_button "state_submit"
@@ -144,7 +141,46 @@ byebug
       click_link 'Return'
       wait_for_ajax(120)
 
-    byebug
+      context_menu_element('history', 4, 'Test Terminology', :edit, 1)
+      wait_for_ajax(120)
+      click_link 'Return'
+      ui_check_table_info("history", 1, 4, 4)
+
+      context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
+      wait_for_ajax(120)
+      click_button "state_submit"
+      expect(page).to have_content("Candidate")
+
+      find(:xpath, "//*[@id='version-label-edit']").click
+      fill_in 'iso_scoped_identifier[version_label]', with: '2nd Draft.'
+      find(:xpath, "//*[@id='version-label-submit']").click
+
+      click_button "state_submit"
+      expect(page).to have_content("Recorded")
+
+      click_button "state_submit"
+      expect(page).to have_content("Qualified")
+      click_link 'Return'
+      wait_for_ajax(120)
+
+      context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
+      wait_for_ajax(120)
+      expect(page).to have_content 'Version Control'
+      find(:xpath, "//*[@id='version-edit']").click
+      find(:xpath, "//*[@id='select-release']/option[1]").click #Major release
+      find(:xpath, "//*[@id='version-edit-submit']").click
+      wait_for_ajax(120)
+      ui_check_table_row("version_info", 1, ["Version:", "1.0.0"])
+      click_link 'Return'
+      wait_for_ajax(120)
+
+      context_menu_element('history', 4, 'Test Terminology', :document_control, 1)
+      wait_for_ajax(120)
+      click_button "state_submit"
+      expect(page).to have_content("Standard")
+      click_link 'Return'
+      wait_for_ajax(120)
+
     #   click_navbar_terminology
     #   expect_page 'Index: Terminology'
     #   click_table_link 'QS TERM', 'History'
