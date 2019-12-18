@@ -9,56 +9,13 @@ describe "Thesauri Release Select", :type => :feature do
   include WaitForAjaxHelper
   include TimeHelpers
 
-  describe "The Curator User, initial state", :type => :feature, js:true do
-
-    before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
-      load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..46)
-      Token.delete_all
-      ua_create
-    end
-
-    before :each do
-      ua_curator_login
-    end
-
-    after :each do
-      ua_logoff
-    end
-
-    after :all do
-      ua_destroy
-    end
-
-    it "display the release select page, initial state", :type => :feature do
-      ui_create_terminology("TST0", "Test Thesaurus")
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, "//tr[contains(.,'TST0')]/td/a").click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'TST0\''
-      context_menu_element('history', 4, 'Test Thesaurus', :edit)
-      wait_for_ajax 10
-      click_link 'Release select'
-      expect(page).to have_content("Find & Select Code Lists")
-      expect(page).to have_content("CDISC version used: None")
-      expect(page).to have_content("No items were found.")
-      expect(page).to have_css(".tab-option.disabled", count: 4)
-      page.find(".card-with-tabs .show-more-btn").click
-      expect(page).to have_content("Select CDISC Terminology version by dragging the slider")
-      expect(page).to have_content("ver. 2015-12-18")
-    end
-
-  end
-
   describe "The Curator User can", :type => :feature, js:true do
 
     before :all do
       timer_start
       load_test_file_into_triple_store("test_db_1.nq.gz")
       timer_stop("Triple store loaded")
+      Token.delete_all
       ua_create
     end
 
@@ -249,5 +206,51 @@ describe "Thesauri Release Select", :type => :feature do
     end
 
   end
+
+
+  describe "The Curator User, initial state", :type => :feature, js:true do
+
+    before :all do
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..46)
+      Token.delete_all
+      ua_create
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    after :each do
+      ua_logoff
+    end
+
+    after :all do
+      ua_destroy
+    end
+
+    it "display the release select page, initial state", :type => :feature do
+      ui_create_terminology("TST0", "Test Thesaurus")
+      click_navbar_terminology
+      expect(page).to have_content 'Index: Terminology'
+      find(:xpath, "//tr[contains(.,'TST0')]/td/a").click
+      wait_for_ajax 10
+      expect(page).to have_content 'Version History of \'TST0\''
+      context_menu_element('history', 4, 'Test Thesaurus', :edit)
+      wait_for_ajax 10
+      click_link 'Release select'
+      expect(page).to have_content("Find & Select Code Lists")
+      expect(page).to have_content("CDISC version used: None")
+      expect(page).to have_content("No items were found.")
+      expect(page).to have_css(".tab-option.disabled", count: 4)
+      page.find(".card-with-tabs .show-more-btn").click
+      expect(page).to have_content("Select CDISC Terminology version by dragging the slider")
+      expect(page).to have_content("ver. 2015-12-18")
+    end
+
+  end
+
 
 end
