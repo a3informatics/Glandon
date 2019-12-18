@@ -1,20 +1,20 @@
 ---
-:id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSVGhlc2F1cnVzL0FDTUUvVjEjVEgtU1BPTlNPUl9DVC0x
-:uri: http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEg=
+:uri: http://www.acme-pharma.com/AIRPORTS/V1#TH
 :rdf_type: http://www.assero.co.uk/ISO11179Types#AdministeredItem
-:label: CDISC Extensions
+:label: ''
 :tagged: []
 :has_state:
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjUlMtU1BPTlNPUl9DVA==
-  :uri: http://www.assero.co.uk/MDRItems#RS-SPONSOR_CT
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfUlM=
+  :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_RS
   :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
-  :registration_status: Standard
+  :registration_status: Incomplete
   :administrative_note: ''
-  :effective_date: '2016-01-01T00:00:00Z'
-  :until_date: '2100-01-01T00:00:00Z'
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
   :unresolved_issue: ''
   :administrative_status: ''
-  :previous_state: Qualified
+  :previous_state: Incomplete
   :multiple_edit: false
   :by_authority:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
@@ -31,13 +31,13 @@
       :name: ACME Pharma
       :authority: www.acme-pharma.com
 :has_identifier:
-  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTURSSXRlbXMjU0ktU1BPTlNPUl9DVC0x
-  :uri: http://www.assero.co.uk/MDRItems#SI-SPONSOR_CT-1
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQUlSUE9SVFMvVjEjVEhfU0k=
+  :uri: http://www.acme-pharma.com/AIRPORTS/V1#TH_SI
   :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-  :identifier: CDISC EXT
-  :version_label: '0.1'
+  :identifier: AIRPORTS
+  :version_label: ''
   :version: 1
-  :semantic_version: ''
+  :semantic_version: 0.1.0
   :has_scope:
     :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
     :uri: http://www.assero.co.uk/NS#ACME
@@ -46,7 +46,7 @@
     :name: ACME Pharma
     :authority: www.acme-pharma.com
 :origin: ''
-:change_description: Creation
-:creation_date: '2015-11-22T00:00:00+00:00'
-:last_change_date: '2016-01-01T00:00:00+00:00'
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-12-15T20:50:53+01:00'
 :explanatory_comment: ''

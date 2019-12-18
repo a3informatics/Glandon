@@ -853,12 +853,12 @@ describe "IsoManagedV2" do
 
     before :each do
       IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
     end
 
     it "allows the item status to be updated, not standard" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       params = {}
       params[:registration_status] = "Qualified"
@@ -873,7 +873,7 @@ describe "IsoManagedV2" do
     end
 
     it "allows the item status to be updated, error" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       params = {}
       params[:registration_status] = "SomethingNew"
@@ -888,13 +888,13 @@ describe "IsoManagedV2" do
     end
 
     it "allows the item status to be updated, standard" do
-      uri = Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/AIRPORTS/V1#TH")
       item = IsoManagedV2.find_minimum(uri)
       params = {}
-      params[:registrationStatus] = "Standard"
-      params[:previousState] = "Qualified"
-      params[:administrativeNote] = "New note"
-      params[:unresolvedIssue] = "Unresolved issues"
+      params[:registration_status] = "Standard"
+      params[:previous_state] = "Qualified"
+      params[:administrative_note] = "New note"
+      params[:unresolved_issue] = "Unresolved issues"
       item.update_status(params)
       actual = IsoManagedV2.find_minimum(uri)
       check_file_actual_expected(actual.to_h, sub_dir, "update_status_expected_3.yaml", equate_method: :hash_equal)
@@ -987,6 +987,19 @@ describe "IsoManagedV2" do
       expect(item.semantic_version).to eq("1.0.0")
       item.release(:major)
       expect(item.errors.full_messages.to_sentence).to eq("The release cannot be updated in the current state")
+      expect(item.errors.count).to eq(1)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.0.0")
+    end
+
+    it "not allows the item release to be incremented, two versions, no latest" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.has_state.registration_status = "Qualified"
+      expect(item.semantic_version).to eq("1.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("Can only modify the latest release")
       expect(item.errors.count).to eq(1)
       actual = Thesaurus.find_minimum(uri)
       expect(actual.semantic_version).to eq("1.0.0")
