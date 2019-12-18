@@ -26,12 +26,23 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "order": [[ 0, "desc" ]],
     "columns": [
       {"render" : function (data, type, row, meta) {
+        var date = new Date(row.last_change_date);
         if (type == 'display') {
-          return row.has_identifier.semantic_version;
+          return "<span class='text-normal'>"+row.has_identifier.semantic_version+"</span><br/>"+" ("+"<span class='text-small'>"+date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19)+"</span>"+")"
+                  ;
+          // row.has_identifier.semantic_version + date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
         } else {
           return row.has_identifier.version;
         }}
       },
+      // {"render" : function (data, type, row, meta) {
+      //   var date = new Date(row.last_change_date);
+      //   if (type == 'display') {
+      //     return date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
+      //   } else {
+      //     return date.getTime();
+      //   }}
+      // },
       {"data" : "has_identifier.has_scope.short_name"},
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
