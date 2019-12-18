@@ -59,7 +59,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       flash[:error] = "You cannot directly edit the children of a subset."
       redirect_to edit_lock_lost_link(@thesaurus_concept)
     else
-      @close_path = edit_lock_lost_link(@thesaurus_concept)
+      @close_path = request.referrer
       @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
     end
   end
@@ -381,10 +381,11 @@ private
   end
 
   # Set the history path
-  def edit_lock_lost_link(thesaurus)
-    return history_thesauri_index_path({thesauri: {identifier: thesaurus.scoped_identifier, scope_id: thesaurus.scope.id}})
+  def edit_lock_lost_link(object)
+    return history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope.id}})
   end
 
+  # Audit and respond
   def audit_and_respond(thesaurus, thesaurus_concept, token)
     if thesaurus_concept.errors.empty?
       AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1

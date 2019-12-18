@@ -73,6 +73,10 @@ module ScenarioHelpers
     input.native.send_keys(:return)
   end
 
+  def term_editor_table_click(row, col)
+    find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[#{col}]").click
+  end
+
   def term_editor_row_label(row, text, exit_key)
     find(:xpath, "//table[@id='editor_table']/tbody/tr[#{row}]/td[2]").click
     term_editor_field("label", text, exit_key)
@@ -89,7 +93,7 @@ module ScenarioHelpers
   end
 
   def term_editor_preferred_term(text, exit_key)
-    term_editor_field("preferredTerm", text, exit_key)
+    term_editor_field("preferred_term", text, exit_key)
   end
 
   def term_editor_synonym(text, exit_key)
@@ -123,12 +127,26 @@ module ScenarioHelpers
     term_editor_definition(definition, :return)
   end
 
+  def term_editor_concept_auto(notation, preferred_term, synonym, definition, type=:parent)
+    identifier = type == :parent ? nv_predict_parent : nv_predict_child
+    click_button 'New'
+    wait_for_ajax(10)
+    expect(page).to have_xpath("//table[@id='editor_table']/tbody/tr/td[contains(.,'000#{identifier}')]", wait: 5)
+    row = editor_get_row("000#{identifier}")
+    term_editor_table_click(row, 2)
+    term_editor_notation(notation, :tab)
+    term_editor_preferred_term(preferred_term, :tab)
+    term_editor_synonym(synonym, :tab)
+    term_editor_definition(definition, :return)
+    identifier
+  end
+
   def editor_get_row(identifier)
     row = 0
     page.all('#editor_table tbody tr').each do |tr|
       row += 1
       cell_text = find(:xpath, "//*[@id=\"editor_table\"]/tbody/tr[#{row}]/td[1]").text
-      return row if cell_text == identifier
+      return row if cell_text.include? identifier
     end
     return -1
   end
