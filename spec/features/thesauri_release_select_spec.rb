@@ -197,11 +197,56 @@ describe "Thesauri Release Select", :type => :feature do
       expect(page).to have_content("773 rows selected")
     end
 
+    it "change the CDISC version, clears selection", :type => :feature do
+      navigate_to_release_sel
+      page.find('.card-with-tabs .show-more-btn').click
+      sleep 0.2
+      ui_dashboard_single_slider '2018-03-30'
+      click_button 'Submit selected version'
+      ui_confirmation_dialog true
+      wait_for_ajax 50
+      expect(page).to_not have_content ("rows selected")
+      page.evaluate_script 'window.location.reload()'
+      wait_for_ajax 10
+      ui_click_tab "Test Terminology"
+      ui_check_table_info("table-selection-overview", 1, 2, 2)
+      ui_check_table_cell("table-selection-overview", 2, 1, "C96783E")
+    end
 
-    it "change the CDISC version, clears selection"
-    it "edit lock, extend"
-    it "expires edit lock, prevents additional changes"
-    it "clears token when leaving page"
+    it "edit lock, extend", :type => :feature do
+      Token.set_timeout(@user_c.edit_lock_warning.to_i + 10)
+      navigate_to_release_sel
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#imh_header")[:class].include?("warning")
+      page.find("#timeout").click
+      wait_for_ajax(120)
+      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      page.find("#imh_header")[:class].include?("danger")
+      sleep 28
+      page.find("#timeout")[:class].include?("disabled")
+      page.find("#imh_header")[:class].include?("danger")
+      Token.restore_timeout
+    end
+
+    it "expires edit lock, prevents additional changes", :type => :feature do
+      Token.set_timeout(10)
+      navigate_to_release_sel
+      sleep 12
+      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99078")]').click
+      wait_for_ajax 10
+      expect(page).to have_content("The changes were not saved as the edit lock has timed out")
+      Token.restore_timeout
+    end
+
+    it "clears token when leaving page", :type => :feature do
+      navigate_to_release_sel
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
+      token = tokens[0]
+      click_link 'Return'
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/TST/V1#TH")
+      expect(tokens).to match_array([])
+    end
 
   end
 
