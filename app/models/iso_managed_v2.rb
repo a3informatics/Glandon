@@ -632,16 +632,16 @@ class IsoManagedV2 < IsoConceptV2
     partial_update(update_query(params), [:isoT])
   end
 
-  # Update Status. Update the status. If we are moving to a released state then
-  #   update the semantic version
+  # Update Status. Update the status.
   #
   # @params [Hash] params the parameters
-  # @option params [] :
+  # @option params [String] Registration Status, the new state
   # @return [Null] errors are in the error object, if any 
   def update_status(params)  
     self.has_state.update(params)
     return if merge_errors(self.has_state, "Registration Status")
-    self.has_identifier.update(semantic_version: :major) if self.has_state.released_state?
+    sv = SemanticVersion.from_s(self.semantic_version)
+    self.has_identifier.update(semantic_version: sv.to_s) if self.has_state.released_state?
     merge_errors(self.has_identifier, "Scoped Identifier")
   end
 
