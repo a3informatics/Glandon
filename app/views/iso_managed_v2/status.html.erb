@@ -2,8 +2,9 @@
 <%= javascript_tag "var url_release = '#{update_semantic_version_iso_managed_v2_path(@managed_item)}' " %>
 <%= javascript_include_tag 'iso_managed/status' %>
 <%= stylesheet_link_tag "custom/status_page" %>
-<% state = @managed_item.has_state.registration_status %>
-<% next_state = IsoRegistrationStateV2.next_state(@managed_item.has_state.registration_status) %>
+<% has_state = @managed_item.has_state %>
+<% state = has_state.registration_status %>
+<% next_state = IsoRegistrationStateV2.next_state(state) %>
 
 <div class="row">
   <%= render layout: "shared/iso_managed/managed_header_card", :locals => {:item => @managed_item, :badge => get_iso_managed_icon(@managed_item),
@@ -75,7 +76,7 @@
 					icon: "icon-new", btn_text: "Item status is not '".concat(IsoRegistrationStateV2.released_state, "'") , dt_toggle: "", disabled: true } %>
 			<% end %>
       <hr>
-      <% if @managed_item.latest? %>
+      <% if @managed_item.latest? && has_state.update_release? %>
       <span class="text-small font-light">Version: </span> <span id= "version-edit" class= "content-editable font-light bg-label"><%=@managed_item.semantic_version %></span>
         <span id= "version-edit-after" class="form-wrap">
           <select id="select-release">

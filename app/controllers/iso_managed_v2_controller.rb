@@ -40,13 +40,9 @@ class IsoManagedV2Controller < ApplicationController
   def update_semantic_version
     authorize IsoManaged, :update?
     @managed_item = get_item(params)
-    if @managed_item.latest?
-      @managed_item.release(the_params[:sv_type].downcase.to_sym)
-      status = @managed_item.errors.empty? ? 200 : 422
-      render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
-    else
-      render :json => { :errors => ["Can only modify the latest release"]}, :status => 422
-    end
+    @managed_item.release(the_params[:sv_type].downcase.to_sym)
+    status = @managed_item.errors.empty? ? 200 : 422
+    render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
   end
 
   def find_by_tag

@@ -992,6 +992,19 @@ describe "IsoManagedV2" do
       expect(actual.semantic_version).to eq("1.0.0")
     end
 
+    it "not allows the item release to be incremented, two versions, no latest" do
+      load_cdisc_term_versions(1..2)
+      uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      item = Thesaurus.find_minimum(uri)
+      item.has_state.registration_status = "Qualified"
+      expect(item.semantic_version).to eq("1.0.0")
+      item.release(:major)
+      expect(item.errors.full_messages.to_sentence).to eq("Can only modify the latest release")
+      expect(item.errors.count).to eq(1)
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("1.0.0")
+    end
+
     it "allows the item release to be incremented, one version, no changes" do
       load_cdisc_term_versions(1..1)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")

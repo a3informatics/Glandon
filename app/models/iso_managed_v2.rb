@@ -223,6 +223,9 @@ class IsoManagedV2 < IsoConceptV2
     if !self.has_state.update_release?
       self.errors.add(:base, "The release cannot be updated in the current state")
       return false
+    elsif !self.latest?
+      self.errors.add(:base, "Can only modify the latest release")
+      return false  
     else
       sv = SemanticVersion.from_s(previous_release)
       case release
