@@ -125,7 +125,7 @@ HistoryPanel.prototype.add = function (offset) {
  */
 HistoryPanel.prototype.registrationStatesHTML = function (data) {
   var state = data.has_state.registration_status.toLowerCase();
-  if ((state == "not_set" || state == "recorded" || state == "qualified" || state == "standard") && data.edit_path != "") {
+  if ((state == "not_set" || state == "recorded" || state == "qualified") && data.edit_path != "") {
     if (data.has_state.multiple_edit)
       return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
     else

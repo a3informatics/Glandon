@@ -146,7 +146,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       expect(page).to have_content("Candidate")
 
       find(:xpath, "//*[@id='version-label-edit']").click
-      fill_in 'iso_scoped_identifier[version_label]', with: '2nd Draft.'
+      fill_in 'iso_scoped_identifier[version_label]', with: 'Standard'
       find(:xpath, "//*[@id='version-label-submit']").click
 
       click_button "state_submit"
