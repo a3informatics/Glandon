@@ -1,3 +1,10 @@
+# Thesauri Manged Concepts Controller
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.0
+
+require 'controller_helpers.rb'
+
 class Thesauri::ManagedConceptsController < ApplicationController
 
   include ControllerHelpers
@@ -410,7 +417,7 @@ private
 
   def the_params
     #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
-    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :extension_ids => [])
+    params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :extension_ids => [])
   end
 
   def set_params
