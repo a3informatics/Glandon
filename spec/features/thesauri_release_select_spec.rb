@@ -75,13 +75,7 @@ describe "Thesauri Release Select", :type => :feature do
     end
 
     def navigate_to_release_sel
-      click_navbar_terminology
-      expect(page).to have_content 'Index: Terminology'
-      find(:xpath, '//tr[contains(.,"Test Terminology")]/td/a').click
-      wait_for_ajax 10
-      expect(page).to have_content 'Version History of \'TST\''
-      context_menu_element('history', 4, 'Test Terminology', :edit)
-      click_link 'Release select'
+      visit '/thesauri/aHR0cDovL3d3dy5zLWN1YmVkLmRrL1RTVC9WMSNUSA==/release_select'
       expect(page).to have_content 'Find & Select Code Lists'
       wait_for_ajax 50
     end
@@ -140,7 +134,7 @@ describe "Thesauri Release Select", :type => :feature do
       find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]').click
       wait_for_ajax 10
       ui_click_tab "Test Terminology"
-      expect(page).to_not have_xpath('//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]')
+      expect(page).to_not have_xpath('//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C99079")]')
       ui_click_tab "CDISC CLs"
       page.find("#table-cdisc-cls-bulk-select").click
       wait_for_ajax 100
@@ -163,9 +157,46 @@ describe "Thesauri Release Select", :type => :feature do
       ui_check_table_cell("table-selection-overview", 5, 1, "C99076E")
     end
 
-    it "deselect CLs from the thesaurus, single or bulk"
-    it "exclude CLs from the thesaurus, single or bulk"
-    it "initializes saved thesauri selection state correctly"
+    it "deselect CLs from the thesaurus, single or bulk", :type => :feature do
+      navigate_to_release_sel
+      ui_table_search("table-cdisc-cls", "Protocol")
+      page.find("#table-cdisc-cls-bulk-deselect").click
+      ui_confirmation_dialog true
+      wait_for_ajax 50
+      ui_check_table_info("table-cdisc-cls", 1, 10, 20)
+      expect(page).to have_content ("891 rows selected")
+      ui_click_tab "Test Terminology"
+      ui_table_search("table-selection-overview", "Protocol")
+      ui_check_table_info("table-selection-overview", 1, 1, 1)
+      ui_table_search("table-selection-overview", "")
+      ui_click_tab "Sponsor CLs"
+      wait_for_ajax 10
+      find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"NP000136P")]').click
+      wait_for_ajax 10
+      find(:xpath, '//*[@id="table-sponsor-cls"]/tbody/tr[contains(.,"NP000136P")]')[:class].exclude? "selected"
+      ui_click_tab "Test Terminology"
+      ui_table_search("table-selection-overview", "NP000136P")
+      ui_check_table_info("table-selection-overview", 0, 0, 0)
+    end
+
+    it "exclude CLs from the thesaurus, single or bulk", :type => :feature do
+      navigate_to_release_sel
+      ui_click_tab "Test Terminology"
+      find(:xpath, '//*[@id="table-selection-overview"]/tbody/tr[contains(.,"C99079")]/td[8]/span').click
+      wait_for_ajax 10
+      ui_click_tab "CDISC CLs"
+      find(:xpath, '//*[@id="table-cdisc-cls"]/tbody/tr[contains(.,"C99079")]')[:class].exclude? "selected"
+      ui_click_tab "Test Terminology"
+      ui_table_search("table-selection-overview", "SEND")
+      page.find("#table-selection-overview-bulk-deselect").click
+      ui_confirmation_dialog true
+      wait_for_ajax 50
+      ui_table_search("table-selection-overview", "")
+      ui_check_table_info("table-selection-overview", 1, 10, 775)
+      ui_click_tab "CDISC CLs"
+      expect(page).to have_content("773 rows selected")
+    end
+
 
     it "change the CDISC version, clears selection"
     it "edit lock, extend"
