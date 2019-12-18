@@ -216,6 +216,49 @@ describe Thesauri::ManagedConceptsController do
 
   end
 
+  describe "Authorized User - History" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..61)
+    end
+
+    after :all do
+      #
+    end
+
+    it "shows the history, initial view" do
+      params = {}
+      get :history, {managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id}}
+      expect(assigns(:thesauri_id)).to eq("aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2Nzg2L1Y2MCNDNjY3ODY=")
+      expect(assigns(:identifier)).to eq("C66786")
+      expect(assigns(:scope_id)).to eq(IsoRegistrationAuthority.cdisc_scope.id)
+      expect(response).to render_template("history")
+    end
+
+    it "shows the history, page, bug GLAN-1107" do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 0}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1a.yaml", equate_method: :hash_equal)
+      offset = JSON.parse(response.body).deep_symbolize_keys[:offset]
+      count = JSON.parse(response.body).deep_symbolize_keys[:count]
+      get :history, {managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("200")
+      actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      check_file_actual_expected(actual, sub_dir, "history_expected_1b.yaml", equate_method: :hash_equal)
+      offset = JSON.parse(response.body).deep_symbolize_keys[:offset]
+      count = JSON.parse(response.body).deep_symbolize_keys[:count]
+    end
+
+  end
+
   describe "Authorized User - Edit" do
 
     login_curator
