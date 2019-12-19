@@ -508,6 +508,8 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
+	#Context Menu
+
 	def context_menu_actions_map
 	 {
       show: "Show",
@@ -524,7 +526,6 @@ module UiHelpers
     }
 	end
 
-  #Context Menu
   def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
     option = context_menu_actions_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "

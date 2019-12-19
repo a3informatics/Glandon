@@ -26,23 +26,20 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "order": [[ 0, "desc" ]],
     "columns": [
       {"render" : function (data, type, row, meta) {
+        if (type == 'display')
+          return row.has_identifier.semantic_version;
+        else
+          return row.has_identifier.version;
+        }
+      },
+      {"render" : function (data, type, row, meta) {
         var date = new Date(row.last_change_date);
         if (type == 'display') {
-          return "<span class='text-normal'>"+row.has_identifier.semantic_version+"</span><br/>"+" ("+"<span class='text-small'>"+date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19)+"</span>"+")"
-                  ;
-          // row.has_identifier.semantic_version + date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
+          return _this.dateTimeHTML(date);
         } else {
-          return row.has_identifier.version;
+          return date.getTime();
         }}
       },
-      // {"render" : function (data, type, row, meta) {
-      //   var date = new Date(row.last_change_date);
-      //   if (type == 'display') {
-      //     return date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
-      //   } else {
-      //     return date.getTime();
-      //   }}
-      // },
       {"data" : "has_identifier.has_scope.short_name"},
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
@@ -214,6 +211,22 @@ HistoryPanel.prototype.removeItem = function (data) {
     })
   }, {dangerous: true}).show();
 }
+
+
+/**
+ * Generates HTML for datetime
+ * @param [Date] Javascript date
+ *
+ * @return [String] formatted html
+ */
+HistoryPanel.prototype.dateTimeHTML = function (date) {
+  return '<span class="icon-date text-link"></span> ' +
+          $.format.date(date, 'dd-MM-yyyy') +
+          '<br/>' +
+          '<span class="icon-time text-link"></span> ' +
+          '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
+}
+
 
 
 // HistoryPanel.prototype.linkButton = function (path, text) {
