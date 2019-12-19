@@ -211,6 +211,8 @@ describe Thesauri::ManagedConceptsController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       results = JSON.parse(response.body).deep_symbolize_keys[:data]
+      expect(JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(2)
+      expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(10)
       check_file_actual_expected(results, sub_dir, "set_with_indicators_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -246,15 +248,15 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_expected_1a.yaml", equate_method: :hash_equal)
-      offset = JSON.parse(response.body).deep_symbolize_keys[:offset]
-      count = JSON.parse(response.body).deep_symbolize_keys[:count]
+      expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(0)
+      expect(count = JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(20)
       get :history, {managed_concept: {identifier: "C66786", scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_expected_1b.yaml", equate_method: :hash_equal)
-      offset = JSON.parse(response.body).deep_symbolize_keys[:offset]
-      count = JSON.parse(response.body).deep_symbolize_keys[:count]
+      expect(JSON.parse(response.body).deep_symbolize_keys[:offset]).to eq(20)
+      expect(count = JSON.parse(response.body).deep_symbolize_keys[:count]).to eq(0)
     end
 
   end

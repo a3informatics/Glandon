@@ -42,7 +42,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
-    render :json => { data: results, offset: set_params[:offset], count: results.count }, :status => 200
+    render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
   end
 
   def edit
