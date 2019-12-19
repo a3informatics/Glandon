@@ -492,9 +492,11 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # @return [Array] array of hashes containing the child data
   def self.set_with_indicators_paginated(params) 
     filter_clause = "FILTER (?so = false && ?eo = false)"
+    owner_clause = "?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.repository_scope.uri.to_ref} ."
     case params[:type].to_sym
       when :all
         filter_clause = ""
+        owner_clause = ""
       when :normal
         # default
       when :subsets
@@ -511,7 +513,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
         SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v WHERE
         {
             ?s rdf:type th:ManagedConcept .
-            ?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.repository_scope.uri.to_ref} .
+            #{owner_clause}
             BIND (EXISTS {?s th:extends ?xe1} as ?eo)
             BIND (EXISTS {?s th:subsets ?xs1} as ?so)
             BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
