@@ -42,6 +42,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
+    results.each do |x|
+      x.reverse_merge!({history_path: history_thesauri_managed_concepts_path({id: x[:id], 
+        managed_concept: {identifier: x[:scoped_identifier], scope_id: x[:scope_id]}})})
+    end
     render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
   end
 

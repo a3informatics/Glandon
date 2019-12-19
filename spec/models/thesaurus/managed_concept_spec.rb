@@ -1310,19 +1310,19 @@ describe "Thesaurus::ManagedConcept" do
       load_cdisc_term_versions(1..20)
     end
 
-    it "determines if an item is subsetted, faked CDISC" do
+    it "set with indicators, faked CDISC" do
       cdisc = IsoNamespace.find_by_short_name("CDISC")
       expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(cdisc)
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "1000"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml")
     end
 
-    it "determines if an item is subsetted, normal" do
+    it "set with indicators, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_2.yaml")
     end
 
-    it "determines if an item is subsetted, all" do
+    it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
     end
@@ -1338,22 +1338,22 @@ describe "Thesaurus::ManagedConcept" do
       timer_stop("Triple store loaded")
     end
 
-    it "determines if an item is subsetted, normal" do
+    it "set with indicators, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml")
     end
 
-    it "determines if an item is subsetted, subsets" do
+    it "set with indicators, subsets" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "subsets", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml")
     end
 
-    it "determines if an item is subsetted, extensions" do
+    it "set with indicators, extensions" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "extensions", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml")
     end
 
-    it "determines if an item is subsetted, all" do
+    it "set with indicators, all" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_4.yaml")
     end

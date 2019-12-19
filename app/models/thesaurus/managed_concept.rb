@@ -492,12 +492,13 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # @option params [String] :count the count to be obtained
   # @return [Array] array of hashes containing the child data
   def self.set_with_indicators_paginated(params) 
+    owner = ::IsoRegistrationAuthority.repository_scope.uri.to_ref
     filter_clause = "FILTER (?so = false && ?eo = false)"
-    owner_clause = "?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.repository_scope.uri.to_ref} ."
+    owner_clause = "?x isoT:hasIdentifier/isoI:hasScope #{owner} . BIND (#{owner} as ?ns)"
     case params[:type].to_sym
       when :all
         filter_clause = ""
-        owner_clause = ""
+        owner_clause = "?x isoT:hasIdentifier/isoI:hasScope ?ns ."
       when :normal
         # default
       when :subsets
@@ -509,39 +510,45 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
     results =[]
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
+      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns
+        (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) 
+        (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v WHERE
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns WHERE
         {
-            ?s rdf:type th:ManagedConcept .
-            #{owner_clause}
-            BIND (EXISTS {?s th:extends ?xe1} as ?eo)
-            BIND (EXISTS {?s th:subsets ?xs1} as ?so)
-            BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
-            BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
-            #{filter_clause}
-            ?s th:identifier ?i .
-            ?s th:notation ?n .
-            ?s th:definition ?d .
-            ?s th:extensible ?e .
-            ?s th:preferredTerm/isoC:label ?pt .
-            ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
-            OPTIONAL {?s th:synonym/isoC:label ?sy }
-            OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
-            {  
-              SELECT ?s (max(?lv) AS ?v) WHERE 
-              {
-                ?s isoT:hasIdentifier/isoI:version ?lv .
-              } GROUP BY ?s
-            }
+          ?s rdf:type th:ManagedConcept .
+          ?s isoT:hasIdentifier/isoI:version ?v .
+          ?s isoT:hasIdentifier/isoI:identifier ?sci .
+          {               
+            SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) WHERE              
+            {               
+              ?x rdf:type th:ManagedConcept .           
+              ?x isoT:hasIdentifier/isoI:version ?lv . 
+              ?x isoT:hasIdentifier/isoI:identifier ?sci . 
+              #{owner_clause}
+            } group by ?sci ?ns    
+          }           
+          BIND (EXISTS {?s th:extends ?xe1} as ?eo)
+          BIND (EXISTS {?s th:subsets ?xs1} as ?so)
+          BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
+          BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+          #{filter_clause}
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?s th:definition ?d .
+          ?s th:extensible ?e .
+          ?s th:preferredTerm/isoC:label ?pt .
+          ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+          OPTIONAL {?s th:synonym/isoC:label ?sy }
+          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
-    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si]).each do |x|
+    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns]).each do |x|
       indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:v].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
       results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
-        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
+        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
     end
     results
   end

@@ -101,7 +101,7 @@ IndexPanel.prototype.initColumns = function(columns){
     }},
     { "className": "text-right",
       "render" : function (data, type, row, meta) {
-        return _this.historyButtonHTML("");
+        return _this.historyButtonHTML(row.history_path);
     }}
     );
 
