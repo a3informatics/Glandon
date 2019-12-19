@@ -486,9 +486,10 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Set With Indicators Paginated
   #
   # @params [Hash] params the params hash
+  # @option params [String] :type the type, either :all, :normal, :subsets, :extensions. 
+  #   note that :all does not filter on owner while the others filter on the repository owner.
   # @option params [String] :offset the offset to be obtained
   # @option params [String] :count the count to be obtained
-  # @option params [Array] :tags the tag to be displayed
   # @return [Array] array of hashes containing the child data
   def self.set_with_indicators_paginated(params) 
     filter_clause = "FILTER (?so = false && ?eo = false)"
