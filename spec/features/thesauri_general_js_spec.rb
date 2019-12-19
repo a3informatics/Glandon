@@ -116,14 +116,14 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content("Qualified")
       click_link 'Return'
       wait_for_ajax_long
-      find(:xpath, "//*[@id='history']/tbody/tr/td[6]/span/span").click
+      find(:xpath, "//*[@id='history']/tbody/tr/td[7]/span/span").click
       wait_for_ajax_long
       expect(page).to have_css ('.icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
       context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)
       wait_for_ajax_long
       click_link 'Return'
-      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[6]/span/span").click
+      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click
       expect(page).to have_css ('.icon-lock')
       wait_for_ajax_long
       context_menu_element('history', 4, 'Test Multiple Edit Terminology', :edit)

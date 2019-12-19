@@ -80,7 +80,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_link 'Return'
       wait_for_ajax(120)
 
-      find(:xpath, "//*[@id='history']/tbody/tr/td[6]/span/span").click
+      find(:xpath, "//*[@id='history']/tbody/tr/td[7]/span/span").click
       wait_for_ajax(120)
       expect(page).to have_css ('.icon-lock-open')
       ui_check_table_info("history", 1, 1, 1)
@@ -90,7 +90,7 @@ describe "Scenario 2 - Life Cycle", :type => :feature do
       click_link 'Return'
 
       ui_check_table_info("history", 1, 1, 1)
-      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[6]/span/span").click
+      find(:xpath, "//*[@id='history']/tbody/tr[1]/td[7]/span/span").click
       expect(page).to have_css ('.icon-lock')
 
       context_menu_element('history', 4, 'Test Terminology', :edit)

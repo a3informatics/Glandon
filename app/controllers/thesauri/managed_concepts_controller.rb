@@ -15,7 +15,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def index
     authorize Thesaurus
-    @tcs = Thesaurus::ManagedConcept.unique
+    # @tcs = Thesaurus::ManagedConcept.unique
   end
 
   def history
@@ -38,7 +38,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       end
     end
   end
-  
+
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
@@ -69,7 +69,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(ct, current_user) 
+    token = Token.find_token(ct, current_user)
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
@@ -118,7 +118,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     results = []
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     children = tc.children_pagination({offset: "0", count: "10000"})
-    children.each do |c| 
+    children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path})

@@ -148,6 +148,30 @@ a.card-item:hover, a.card-item:focus{
   color: $secondary-color-medium !important;
 }
 
+.table-cardstyle .row-sponsor td:first-of-type, .table-cardstyle .row-cdisc td:first-of-type{
+  position: relative;
+  padding-left: 16px;
+}
+
+.table-cardstyle .row-sponsor td:first-of-type::before, .table-cardstyle .row-cdisc td:first-of-type::before{
+  position: absolute;
+  display: block;
+  content: " ";
+  width: 7px;
+  height: 7px;
+  left: 3px;
+  top: calc(50% - 4px);
+  border-radius: 50%;
+}
+
+.table-cardstyle .row-sponsor td:first-of-type::before{
+  background: $primary-color-light;
+}
+
+.table-cardstyle .row-cdisc td:first-of-type::before{
+  background: $accent-color-1;
+}
+
 .table-cardstyle .dataTables_info, .table-cardstyle .dataTables_paginate,
   .table-cardstyle .dataTables_length, .table-cardstyle .dataTables_filter{
   font-family: $font-light;
@@ -180,6 +204,10 @@ a.card-item:hover, a.card-item:focus{
 
 table th.th-small{
   min-width: 120px;
+}
+
+table th.th-xsmall{
+  min-width: 80px;
 }
 
 .table-cardstyle .col-sm-12{
