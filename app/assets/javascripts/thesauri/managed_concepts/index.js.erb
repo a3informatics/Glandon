@@ -1,0 +1,9 @@
+$(document).ready( function() {
+  var columns = [
+    {"data" : "owner"},
+    {"data" : "identifier"},
+    {"data" : "preferred_term"}
+  ];
+
+  var ip = new IndexPanel(indexCLUrl, "managed_concept", columns, 500, "normal");
+});

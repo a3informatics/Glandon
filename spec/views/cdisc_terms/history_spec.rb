@@ -36,10 +36,11 @@ describe 'cdisc_terms/history.html.erb', :type => :view do
     expect(rendered).to have_content("Item History")
     expect(rendered).to have_content("Controlled Terminology")
     expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(1)", text: 'Version')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Owner')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(3)", text: 'Identifier')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(4)", text: 'Label')
-    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(5)", text: 'Version Label')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(2)", text: 'Last Change Date')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(3)", text: 'Owner')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(4)", text: 'Identifier')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(5)", text: 'Label')
+    expect(rendered).to have_selector("table#history thead tr:nth-of-type(1) th:nth-of-type(6)", text: 'Version Label')
 
     expect(rendered).to have_link "View Changes"
     expect(rendered).to have_link "View Submission value changes"
