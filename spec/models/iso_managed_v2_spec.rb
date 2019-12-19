@@ -1113,17 +1113,25 @@ describe "IsoManagedV2" do
     end
 
     it "allows the item release to be incremented, five versions, increment major" do
-      load_cdisc_term_versions(1..5)
-      (1..5).each do |ver|
-        uri = Uri.new(uri: "http://www.cdisc.org/CT/V#{ver}#TH")
-        item = Thesaurus.find_minimum(uri)
-        item.has_state.registration_status = "Qualified"
-        item.has_state.save
+      uris = []
+      (1..5).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+        uris[index-1] = item.uri
+      end 
+      uris.each_with_index do |x, index| 
+        item = Thesaurus.find_minimum(x)
+        set_state(item, "Qualified" )
+        set_semantic_version(item, "#{index + 1}.0.0" )
       end
-      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
-      item = Thesaurus.find_minimum(uri)
+      item = Thesaurus.find_minimum(uris[4])
       item.release(:major)
-      actual = Thesaurus.find_minimum(uri)
+      actual = Thesaurus.find_minimum(uris[4])
       expect(actual.semantic_version).to eq("2.0.0")
     end
 

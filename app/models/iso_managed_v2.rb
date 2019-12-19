@@ -247,10 +247,7 @@ class IsoManagedV2 < IsoConceptV2
           self.errors.add(:base, "The release request type was invalid")
           return false
       end
-      # si = self.has_identifier
-      # si.update(semantic_version: sv.to_s)
-      # si.save
-      update_previous_release(uris: previous_release[:uris], semantic_version: sv.to_s)
+      update_previous_releases(uris: previous_release[:uris], semantic_version: sv.to_s)
     end
     true
   end
@@ -941,7 +938,7 @@ private
 }
   end
 
-  # Mini history with state and semancti version
+  # Mini history with state and semantic version
   def state_and_semantic_version(params)
     results = []
     query_string = %Q{
@@ -964,22 +961,26 @@ private
   end
 
   # The update previous release query
-  def update_previous_release(uris)
-    %Q{
+  def update_previous_releases(params)
+    uris = params[:uris].map{|x| x.to_ref}.join(" ")
+    query_string= %Q{
       DELETE
       {
-       #{uris} isoI:semanticVersion ?b .
+        ?s ?p ?o
       }
       INSERT
       {
-       #{uris} isoI:semanticVersion \"#{self.semantic_version}\"^^xsd:string .
+       ?s ?p \"#{params[:semantic_version]}\"^^xsd:string .
       }
       WHERE
       { 
-        VALUES ?e { #{uris} }
-       #{self.uri.to_ref} isoI:semanticVersion ?b .
+        VALUES ?x {#{uris}} 
+        ?x isoT:hasIdentifier ?s .
+        ?s isoI:semanticVersion ?o .
+        BIND (isoI:semanticVersion as ?p)
       }
     }
+    partial_update(query_string, [:isoI, :isoT])
   end
 
   def forward(current, step, end_stop)
