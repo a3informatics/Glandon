@@ -493,6 +493,8 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   def self.set_with_indicators_paginated(params) 
     filter_clause = "FILTER (?so = false && ?eo = false)"
     case params[:type].to_sym
+      when :all
+        filter_clause = ""
       when :normal
         # default
       when :subsets
