@@ -80,7 +80,7 @@ ManagedChildrenSelect.prototype.loadData = function (offset, callback) {
 			this.redraw();
 
 			if (result.count >= this.count)
-				this.loadData(result.offset + this.count, callback)
+				this.loadData(parseInt(result.offset) + this.count, callback)
 			else {
 				this.processing(false);
 				this.dataLoaded = true;
