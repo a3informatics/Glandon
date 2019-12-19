@@ -15,7 +15,7 @@ class IsoManagedV2Controller < ApplicationController
     authorize IsoManaged, :status?
     @managed_item = get_item(params)
     @current_id = the_params[:current_id]
-    @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions
+    @next_versions = SemanticVersion.from_s(@managed_item.previous_release[:semantic_version]).next_versions
     @referer = request.referer
     @close_path = TypePathManagement.history_url_v2(@managed_item, true)
   end
