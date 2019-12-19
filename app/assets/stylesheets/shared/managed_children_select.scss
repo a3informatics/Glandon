@@ -20,3 +20,10 @@
   top: calc(50% - 5pt);
   content: "\e944";
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  .table-row-clickable .selected td:first-of-type::before{
+    top: 75% !important;
+  }
+}

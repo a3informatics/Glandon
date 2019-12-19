@@ -282,3 +282,10 @@ table th.th-xsmall{
     padding: 10px 10px;
   }
 }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  .table-cardstyle .row-sponsor td:first-of-type::before, .table-cardstyle .row-cdisc td:first-of-type::before{
+    top: 75% !important;
+  }
+}
