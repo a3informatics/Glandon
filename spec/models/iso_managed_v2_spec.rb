@@ -1129,10 +1129,18 @@ describe "IsoManagedV2" do
         set_state(item, "Qualified" )
         set_semantic_version(item, "#{index + 1}.0.0" )
       end
-      item = Thesaurus.find_minimum(uris[4])
-      item.release(:major)
-      actual = Thesaurus.find_minimum(uris[4])
-      expect(actual.semantic_version).to eq("2.0.0")
+      item5 = Thesaurus.find_minimum(uris[4])
+      item5.release(:major)
+      actual5 = Thesaurus.find_minimum(uris[4])
+      actual4 = Thesaurus.find_minimum(uris[3])
+      actual3 = Thesaurus.find_minimum(uris[2])
+      actual2 = Thesaurus.find_minimum(uris[1])
+      actual1 = Thesaurus.find_minimum(uris[0])
+      expect(actual5.semantic_version).to eq("2.0.0")
+      expect(actual4.semantic_version).to eq("2.0.0")
+      expect(actual3.semantic_version).to eq("2.0.0")
+      expect(actual2.semantic_version).to eq("2.0.0")
+      expect(actual1.semantic_version).to eq("1.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment minor" do
