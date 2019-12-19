@@ -208,11 +208,19 @@ class IsoManagedV2 < IsoConceptV2
   # @param [Symbol] release (:major, :minor, :patch)
   # @return 
   def previous_release
+    uris = {uris: []}
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
     return SemanticVersion.first.to_s if results.count == 1 # If only one item force to base (first) version
-    item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
-    item.nil? ? results.last[:semantic_version] : item[:semantic_version]
+    item_index = results.index {|x| x[:state] == IsoRegistrationStateV2.released_state}
+    if item_index.nil? 
+      results[0..-2].each{|hash| uris[:uris].push(hash[:uri]) }
+      uris[:semantic_version] = results.last[:semantic_version]
+    else 
+      results[0..item_index-1].each{|hash| uris[:uris].push(hash[:uri]) }
+      uris[:semantic_version] = results[item_index][:semantic_version]  
+    end
+    uris
   end
 
   # Release
@@ -227,7 +235,7 @@ class IsoManagedV2 < IsoConceptV2
       self.errors.add(:base, "Can only modify the latest release")
       return false  
     else
-      sv = SemanticVersion.from_s(previous_release)
+      sv = SemanticVersion.from_s(previous_release[:semantic_version])
       case release
         when :major
           sv.increment_major
@@ -239,9 +247,10 @@ class IsoManagedV2 < IsoConceptV2
           self.errors.add(:base, "The release request type was invalid")
           return false
       end
-      si = self.has_identifier
-      si.update(semantic_version: sv.to_s)
-      si.save
+      # si = self.has_identifier
+      # si.update(semantic_version: sv.to_s)
+      # si.save
+      update_previous_release(uris: previous_release[:uris], semantic_version: sv.to_s)
     end
     true
   end
@@ -952,6 +961,25 @@ private
       results << {uri: x[:s], semantic_version: x[:sv], state: x[:st]}
     end
     results
+  end
+
+  # The update previous release query
+  def update_previous_release(uris)
+    %Q{
+      DELETE
+      {
+       #{uris} isoI:semanticVersion ?b .
+      }
+      INSERT
+      {
+       #{uris} isoI:semanticVersion \"#{self.semantic_version}\"^^xsd:string .
+      }
+      WHERE
+      { 
+        VALUES ?e { #{uris} }
+       #{self.uri.to_ref} isoI:semanticVersion ?b .
+      }
+    }
   end
 
   def forward(current, step, end_stop)

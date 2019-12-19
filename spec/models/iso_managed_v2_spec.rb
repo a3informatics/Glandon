@@ -929,6 +929,38 @@ describe "IsoManagedV2" do
       set_state(object, state)
     end
 
+    # it "find the previous release at standard" do
+    #   uris = []
+    #   (1..10).each do |index|
+    #     item = CdiscTerm.new
+    #     item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+    #     item.label = "Item #{index}"
+    #     item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+    #     sparql = Sparql::Update.new  
+    #     item.to_sparql(sparql, true)
+    #     sparql.upload
+    #     uris[index-1] = item.uri
+    #   end 
+    #   last_item = Thesaurus.find_minimum(uris[9])
+    #   uris.each_with_index do |x, index| 
+    #     item = Thesaurus.find_minimum(x)
+    #     set_state(item, "Qualified" )
+    #     set_semantic_version(item, "#{index + 1}.0.0" )
+    #   end
+    #   result = last_item.previous_release
+    #   expect(result).to eq("1.0.0")
+
+    #   item = Thesaurus.find_minimum(uris[0])
+    #   set_semantic_version_and_state(item, "0.1.0", "Incomplete")
+    #   result = item.previous_release
+    #   expect(result).to eq("0.1.0")
+
+    #   item = Thesaurus.find_minimum(uris[4])
+    #   set_semantic_version_and_state(item, "5.1.0", "Standard")
+    #   result = item.previous_release
+    #   expect(result).to eq("5.1.0")
+    # end
+
     it "find the previous release at standard" do
       uris = []
       (1..10).each do |index|
@@ -948,17 +980,23 @@ describe "IsoManagedV2" do
         set_semantic_version(item, "#{index + 1}.0.0" )
       end
       result = last_item.previous_release
-      expect(result).to eq("1.0.0")
-
+      expect(result[:semantic_version]).to eq("1.0.0")
+   
       item = Thesaurus.find_minimum(uris[0])
       set_semantic_version_and_state(item, "0.1.0", "Incomplete")
       result = item.previous_release
-      expect(result).to eq("0.1.0")
-
+      expect(result[:semantic_version]).to eq("0.1.0")
+     
       item = Thesaurus.find_minimum(uris[4])
       set_semantic_version_and_state(item, "5.1.0", "Standard")
       result = item.previous_release
-      expect(result).to eq("5.1.0")
+      expect(result[:semantic_version]).to eq("5.1.0")
+  
+      item = Thesaurus.find_minimum(uris[9])
+      # set_semantic_version_and_state(item, "5.1.0", "Standard")
+      result = item.previous_release
+      expect(result[:semantic_version]).to eq("5.1.0")
+      # expect(result[:uris]).to eq("")
     end
 
     it "find the previous_release, only one item" do
@@ -976,7 +1014,7 @@ describe "IsoManagedV2" do
       item = Thesaurus.find_minimum(uris[0])
       set_state(item,"Incomplete")
       result = item.previous_release
-      expect(result).to eq("0.1.0")
+      expect(result[:semantic_version]).to eq("0.1.0")
     end
 
     it "allows the item release to be incremented, one version, no changes" do
