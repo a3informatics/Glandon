@@ -72,7 +72,7 @@ IndexPanel.prototype.loadData = function (offset) {
       this.indexTable.draw();
 
       if (result.count >= this.count)
-        this.add(result.offset + this.count)
+        this.loadData(parseInt(result.offset) + this.count)
       else
         this.indexTable.processing(false);
     },
