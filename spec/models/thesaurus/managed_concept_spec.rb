@@ -1328,6 +1328,7 @@ describe "Thesaurus::ManagedConcept" do
 
     before :all do
       timer_start
+      load_files(schema_files, [])
       load_test_file_into_triple_store("test_db_1.nq.gz")
       timer_stop("Triple store loaded")
     end
