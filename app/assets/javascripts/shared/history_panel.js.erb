@@ -221,7 +221,7 @@ HistoryPanel.prototype.removeItem = function (data) {
  */
 HistoryPanel.prototype.dateTimeHTML = function (date) {
   return '<span class="icon-date text-link"></span> ' +
-          $.format.date(date, 'dd-MM-yyyy') +
+          $.format.date(date, 'yyyy-MM-dd') +
           '<br/>' +
           '<span class="icon-time text-link"></span> ' +
           '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
