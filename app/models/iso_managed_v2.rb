@@ -205,22 +205,13 @@ class IsoManagedV2 < IsoConceptV2
 
   # Previous Release
   #
-  # @param [Symbol] release (:major, :minor, :patch)
   # @return 
   def previous_release
-    uris = {uris: []}
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
     raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
     return SemanticVersion.first.to_s if results.count == 1 # If only one item force to base (first) version
-    item_index = results.index {|x| x[:state] == IsoRegistrationStateV2.released_state}
-    if item_index.nil? 
-      results[0..-2].each{|hash| uris[:uris].push(hash[:uri]) }
-      uris[:semantic_version] = results.last[:semantic_version]
-    else 
-      results[0..item_index-1].each{|hash| uris[:uris].push(hash[:uri]) }
-      uris[:semantic_version] = results[item_index][:semantic_version]  
-    end
-    uris
+    item = results.find {|x| x[:state] == IsoRegistrationStateV2.released_state}
+    item.nil? ? results.last[:semantic_version] : item[:semantic_version]
   end
 
   # Release
@@ -235,7 +226,7 @@ class IsoManagedV2 < IsoConceptV2
       self.errors.add(:base, "Can only modify the latest release")
       return false  
     else
-      sv = SemanticVersion.from_s(previous_release[:semantic_version])
+      sv = SemanticVersion.from_s(previous_release)
       case release
         when :major
           sv.increment_major
@@ -247,7 +238,13 @@ class IsoManagedV2 < IsoConceptV2
           self.errors.add(:base, "The release request type was invalid")
           return false
       end
-      update_previous_releases(uris: previous_release[:uris], semantic_version: sv.to_s)
+      if uris[:uris].length == 1
+        si = self.has_identifier
+        si.update(semantic_version: sv.to_s)
+        si.save
+      else
+        update_previous_releases(uris: uris[:uris], semantic_version: sv.to_s)
+      end
     end
     true
   end
@@ -981,6 +978,15 @@ private
       }
     }
     partial_update(query_string, [:isoI, :isoT])
+  end
+
+  def uris
+    uris = {uris: []}
+    results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
+    raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
+    item_index = results.index {|x| x[:state] == IsoRegistrationStateV2.released_state}
+    item_index.nil? ? results[0..-2].each{|hash| uris[:uris].push(hash[:uri]) } : results[0..item_index-1].each{|hash| uris[:uris].push(hash[:uri]) }
+    uris
   end
 
   def forward(current, step, end_stop)
