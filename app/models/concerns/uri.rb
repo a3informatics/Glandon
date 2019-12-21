@@ -44,7 +44,7 @@ class Uri
     @fragment = ""
     return if args.blank?
     if args.has_key?(:id)
-      from_uri(Base64.strict_decode64(args[:id]))
+      from_uri(self.class.decode_id(args[:id]))
     elsif args.has_key?(:uri)
       return if args[:uri].blank?
       prefixed?(args[:uri]) ? from_prefixed(args[:uri]) : from_uri(args[:uri])
@@ -97,7 +97,7 @@ class Uri
   # @return [String] The uri as a unique identifier
   def to_id
     return nil if @authority.blank?
-    return Base64.strict_encode64(self.to_s)
+    return encode_id(self.to_s)
   end
 
   # To String
@@ -187,7 +187,31 @@ class Uri
     UriV2.new(uri: self.to_s)
   end
 
+  # Safe Id? Perform a quick check to protect against ids that might be a threat to the system
+  #
+  # @return [Boolean] true if the URI is safe, false otherwise.
+  def self.safe_id?(id)
+    return false if id.blank?
+    value = decode_id(id)
+    uri = URI.parse(value)
+    return true if uri.is_a?(URI::HTTP) && !uri.host.nil?
+    false
+  rescue ArgumentError => e
+    # Will catch errors from decode call
+    false
+  end
+
 private
+
+  # Decode the id
+  def self.decode_id(id)
+    Base64.strict_decode64(id)
+  end
+
+  # Encode the id
+  def encode_id(id)
+    Base64.strict_encode64(id)
+  end
 
   # Prefixed?  
   def prefixed?(uri)
