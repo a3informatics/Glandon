@@ -60,11 +60,4 @@ private
     return result
   end
 
-  # Get the path for a controller action pair
-  def path_for(controller, action, id)
-    Rails.application.routes.url_for controller: controller, action: action, only_path: true, id: id
-  rescue => e
-    ""
-  end
-
 end
