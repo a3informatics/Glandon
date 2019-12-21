@@ -1,3 +1,7 @@
+# Application Controller. Base controller
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.1
 class ApplicationController < ActionController::Base
 
   include Pundit
@@ -15,6 +19,7 @@ class ApplicationController < ActionController::Base
   # Pundit exception for not authorized
   rescue_from Pundit::NotAuthorizedError, :with => :not_authorized_method
 
+  # Rescue frm not authorized method
   def not_authorized_method
     flash[:error] = 'You do not have the access rights to that operation.'
     redirect_to root_path
@@ -33,6 +38,24 @@ class ApplicationController < ActionController::Base
     flash[:error] = 'A database operation failed. ' + exception.message[:message].to_s
     redirect_to root_path
     true
+  end
+
+  # Path For. Default path for a controller action pair. Individual controllers should overload.
+  #
+  # @param [Symbol] the action
+  # @param [Object] the object
+  # @raise [Errors::ApplicationLogicError] raised if method called.
+  def path_for(action, object)
+    Errors.application_error(self.class.name, __method__.to_s, "Generic path_for method called. Controllers should overload.")
+  end
+
+  # Protect From Bad Id. Check params[:id] to protect us from anything nasty, should be a uri.
+  #
+  # @raise [Errors::ApplicationLogicError] raised if a bad id detected.
+  # @return [String] the id of anythign ok.
+  def protect_from_bad_id(params)
+    Errors.application_error(self.class.name, __method__.to_s, "Possible threat from bad id detected #{params[:id]}.") unless Uri.safe_id?(params[:id])
+    params[:id]
   end
 
   # Convert triples to a string
@@ -99,7 +122,7 @@ class ApplicationController < ActionController::Base
     return @normalized
   end
 
-
+  # Date to floating point.
   def strdate_to_f(d)
     return Date.parse(d.to_s).strftime('%Q').to_f
   end
