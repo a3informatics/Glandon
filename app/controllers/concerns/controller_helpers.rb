@@ -34,7 +34,7 @@ module ControllerHelpers
 
 private
 
-  # Build a set of paths for a single object
+  # Build a set of paths for a single object. Note expects controllers to provide 
   def add_history_path(object, edit, delete, current)
     result = {}
     result[:show_path] = path_for(:show, object)

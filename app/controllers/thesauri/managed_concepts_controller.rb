@@ -51,20 +51,35 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit
     authorize Thesaurus
-    @thesaurus_concept = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    @thesaurus_concept = edit_item(@thesaurus_concept)
-    @thesaurus_concept.synonyms_and_preferred_terms
-    #@thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
+    @thesaurus_concept = read_concept(params[:id])
     @token = get_token(@thesaurus_concept)
+    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
+    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+  end
+
+  def edit_extension
+    authorize Thesaurus, :edit?
+    @tc = read_concept(protect_from_bad_id(params))
+    @token = get_token(@tc)
+    extension_of_uri = @tc.extension_of
+    @is_extending = !extension_of_uri.nil?
+    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+  end
+
+  def edit_subset
+    authorize Thesaurus, :edit?
+    @context_id = params[:context_id]
+    @ct = Thesaurus.find_minimum(@context_id)
+    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
+    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
+    @token = get_token(@subset_mc)
+    @subset_mc.synonyms_and_preferred_terms
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(@thesaurus_concept)
-    elsif @thesaurus_concept.subset?
-      flash[:error] = "You cannot directly edit the children of a subset."
-      redirect_to edit_lock_lost_link(@thesaurus_concept)
+      redirect_to edit_lock_lost_link(@subset_mc)
     else
-      @close_path = request.referrer
-      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+      @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
     end
   end
 
@@ -324,17 +339,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: subset_tcs}
   end
 
-  def edit_subset
-    authorize Thesaurus, :edit?
-    @context_id = params[:context_id]
-    @ct = Thesaurus.find_minimum(@context_id)
-    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
-    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    @subset_mc.synonyms_and_preferred_terms
-    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
-    @token = get_token(@subset_mc)
-  end
-
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -363,6 +367,13 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
 private
 
+  def read_concept(id)
+    tc = Thesaurus::ManagedConcept.find_with_properties(id)
+    tc = edit_item(tc)
+    tc.synonyms_and_preferred_terms
+    tc
+  end
+
   def path_for(action, object)
     case action
       when :show
@@ -370,7 +381,13 @@ private
       when :search
         return ""
       when :edit
-        return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        if object.extension?
+          return edit_extension_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        elsif object.subset?
+          return edit_subset_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        else
+          return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        end
       when :destroy
         return thesauri_managed_concept_path(object)
       else

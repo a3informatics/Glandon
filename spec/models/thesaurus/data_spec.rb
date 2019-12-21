@@ -9,7 +9,7 @@ describe Thesaurus::ManagedConcept do
   include ThesauriHelpers
   
   def sub_dir
-    return "models/thesaurus"
+    return "models/thesaurus/data"
   end
 
   describe "general tests" do
@@ -76,8 +76,60 @@ describe Thesaurus::ManagedConcept do
       @th_1.to_sparql(sparql, true)
       @tc_1.to_sparql(sparql, true)
       @tc_2.to_sparql(sparql, true)
-      file = sparql.to_file
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_airport.ttl")
     end 
+
+  end
+
+  describe "generate extension code list" do
+
+    def build
+      @ra = IsoRegistrationAuthority.find_children(Uri.new(uri: "http://www.assero.co.uk/RA#DUNS123456789"))
+      @tc_1 = Thesaurus::ManagedConcept.from_h({
+          label: "Epoch Extension",
+          identifier: "A00001",
+          definition: "Extends Epoch",
+          notation: "EPOCH"
+        })
+      @tc_1.preferred_term = Thesaurus::PreferredTerm.new(label: "Epoch Extension")
+      @tc_1a = Thesaurus::UnmanagedConcept.from_h({
+          label: "So late after anything else",
+          identifier: "A00002",
+          definition: "So so late",
+          notation: "SO SO LATE"
+        })
+      @tc_1.narrower << @tc_1a
+      @tc_1.extends = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079")
+      @tc_1.set_initial(@tc_1.identifier)
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+    end
+
+    after :all do
+      delete_all_public_test_files
+    end
+
+    it "allows a TC to be exported as SPARQL" do
+      sparql = Sparql::Update.new
+      build
+      sparql.default_namespace(@tc_1.uri.namespace)
+      @tc_1.to_sparql(sparql, true)
+      full_path = sparql.to_file
+    #Xcopy_file_from_public_files_rename("test", File.basename(full_path), sub_dir, "thesaurus_extension.ttl")
+    end
+
+    it "check for loading" do
+      load_local_file_into_triple_store(sub_dir, "thesaurus_extension.ttl")
+      uri = Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001")
+      tc = Thesaurus::ManagedConcept.find_with_properties(uri)
+      tc.extends_links
+      expect(tc.identifier).to eq("A00001")
+      expect(tc.extends.to_s).to eq("http://www.cdisc.org/C99079/V28#C99079")
+    end
 
   end
 

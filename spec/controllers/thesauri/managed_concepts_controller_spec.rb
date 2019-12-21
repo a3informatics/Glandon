@@ -268,6 +268,7 @@ describe Thesauri::ManagedConceptsController do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
       @lock_user = ua_add_user(email: "lock@example.com")
       Token.delete_all
     end
@@ -372,15 +373,14 @@ describe Thesauri::ManagedConceptsController do
       check_file_actual_expected(actual, sub_dir, "add_child_expected_4.yaml", equate_method: :hash_equal)
     end
 
-    # it "edit" do
-    #   uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-    #   uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
-    #   get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
-    #   expect(assigns(:close_path)).to eq("")
-    #   expect(assigns(:referrer_path)).to eq("")
-    #   expect(assigns(:tc_identifier_prefix)).to eq("XXX")
-    #   expect(response).to render_template("edit")
-    # end
+    it "edit" do
+      uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
+      get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
+      expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=C49489&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
+      expect(assigns(:tc_identifier_prefix)).to eq("XXX")
+      expect(response).to render_template("edit")
+    end
 
   end
 
@@ -389,8 +389,6 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :all do
-      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "thesaurus.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
@@ -422,6 +420,28 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:source_mc).id).to eq(src_mc.id)
       expect(assigns(:subset)).to eq(sub_mc.is_ordered)
       expect(response).to render_template("edit_subset")
+    end
+
+  end
+
+  describe "extensions" do
+
+    login_curator
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..28)
+    end
+
+    it "edit extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
+      get :edit_extension, {id: tc.id}
+      expect(assigns(:is_extending)).to eq(true)
+      expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzk=?managed_concept%5Bcontext_id%5D=")
+      expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=A00001&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
+      expect(response).to render_template("edit_extension")
     end
 
   end
