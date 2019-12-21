@@ -1,5 +1,6 @@
 <%= javascript_tag 'setPageTitle("Edit: '+@tc.notation+' ('+@tc.has_identifier.identifier+')")' %>
-<%= javascript_include_tag 'thesauri/managed_concepts/show', 'shared/thesauri/thesauri_select', 'shared/term_search_panel', 'shared/thesauri/managed_concepts/show_header_panel' %>
+<%= javascript_include_tag 'thesauri/managed_concepts/edit_extension', 'shared/thesauri/thesauri_select', 'shared/term_search_panel' %>
+<%= javascript_include_tag 'shared/thesauri/managed_concepts/show_header_panel', 'shared/timer', 'unload_v2' %>
 <%= stylesheet_link_tag 'custom/context_menu' %>
 <%= javascript_include_tag 'shared/context_menu' %>
 <%= javascript_tag "var url_path = '#{show_data_thesauri_managed_concept_path({id: @tc, managed_concept: {context_id: @context_id}})}';" %>
@@ -22,8 +23,13 @@
   <%= render layout: "shared/iso_managed/managed_header_card_cl", :locals => {:item => @tc, :context => @ct, :badge => "CL"} do %>
     <!-- BUTTONS WRAP -->
     <div class="actions-wrap">
+      <!-- TIMER BUTTON -->
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#", id: "timeout",
+        icon: "icon-lock", btn_text: "", dt_toggle: "", disabled: false } %>
+      <!-- CHANGES BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: changes_thesauri_managed_concept_path(@tc), icon: "icon-history",
         id: "btn-version-history", btn_text: "Changes", dt_toggle: "", disabled: false}  %>
+      <!-- RETURN BUTTON -->
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
 
@@ -47,3 +53,5 @@
     <%= render partial: "shared/iso_managed/children_panel", :locals => {:title => "Code Lists Items"} %>
   </div>
 </div>
+<input type="hidden" id="edit_lock_token" value="<%= @token.id %>">
+<input type="hidden" id="warning_timeout" value="<%= current_user.edit_lock_warning %>">

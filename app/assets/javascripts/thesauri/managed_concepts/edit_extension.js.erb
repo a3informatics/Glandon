@@ -12,15 +12,16 @@ $(document).ready( function() {
   ];
   var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled, editCallback);
   var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
+  var timer = new Timer($('#edit_lock_token').val(), "imh_header", $('#warning_timeout').val());
+  var unload = new UnloadV2($('#edit_lock_token').val(), false, unloadCallback);
 
-  function editCallback() {
+  function unloadCallback() {
+    timer.unload();
   }
 
-
-  $("#extend").click(function(){
-    modalTS.setCallback(shp.callback);
-    modalTS.resetUi();
-  });
+  function editCallback() {
+    timer.extendLock();
+  }
 
   $("#new_subset").click(function(){
     modalTS.setCallback(modalSubsets.tsCallback);

@@ -378,7 +378,7 @@ describe Thesauri::ManagedConceptsController do
       uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
       get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
       expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=C49489&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
-      expect(assigns(:tc_identifier_prefix)).to eq("XXX")
+      expect(assigns(:tc_identifier_prefix)).to eq("C49489.")
       expect(response).to render_template("edit")
     end
 
