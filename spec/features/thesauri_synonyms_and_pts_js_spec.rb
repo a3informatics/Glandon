@@ -129,7 +129,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     it "allows to assign a synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM", "New Terminology")
       wait_for_ajax
       expect(page).to have_content 'Terminology was successfully created.'
@@ -154,7 +154,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     it "allows to assign more synonyms on a code list (REQ-MDR-SY-030)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V2", "New Terminology V2")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -180,7 +180,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V3", "New Terminology V3")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -216,7 +216,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V4", "New Terminology V4")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -251,7 +251,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V5", "New Terminology V5")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -281,7 +281,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V6", "New Terminology V6")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -318,7 +318,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V7", "New Terminology V7")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -343,7 +343,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V8", "New Terminology V8")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -376,7 +376,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
     it "allows to assign a preferred term on a code list (REQ-MDR-PT-030)", js: true do
       click_navbar_terminology
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V9", "New Terminology V9")
       expect(page).to have_content 'Terminology was successfully created.'
       find(:xpath, "//tr[contains(.,'NEW TERM V9')]/td/a").click
@@ -397,7 +397,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V10", "New Terminology V10")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -426,7 +426,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V11", "New Terminology V11")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
@@ -451,7 +451,7 @@ describe "Thesauri Synonyms and Prefered Terms", :type => :feature do
       click_navbar_terminology
       wait_for_ajax_long
       expect(page).to have_content 'Index: Terminology'
-      click_link 'New Terminology'
+      click_link 'new_terminology'
       new_term_modal("NEW TERM V12", "New Terminology V12")
       wait_for_ajax_long
       expect(page).to have_content 'Terminology was successfully created.'
