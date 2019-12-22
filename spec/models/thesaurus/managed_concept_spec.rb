@@ -1345,6 +1345,11 @@ describe "Thesaurus::ManagedConcept" do
       load_files(schema_files, [])
       load_test_file_into_triple_store("test_db_1.nq.gz")
       timer_stop("Triple store loaded")
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    after :all do
+      IsoRegistrationAuthority.clear_scopes
     end
 
     it "set with indicators, normal" do

@@ -18,6 +18,7 @@ describe "Thesauri Release Select", :type => :feature do
       timer_stop("Triple store loaded")
       Token.delete_all
       ua_create
+      IsoRegistrationAuthority.clear_scopes
     end
 
     before :each do
@@ -30,6 +31,7 @@ describe "Thesauri Release Select", :type => :feature do
 
     after :all do
       ua_destroy
+      IsoRegistrationAuthority.clear_scopes
     end
 
     def navigate_to_release_sel
@@ -212,7 +214,6 @@ describe "Thesauri Release Select", :type => :feature do
   describe "The Curator User, initial state", :type => :feature, js:true do
 
     before :all do
-      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl", "thesaurus.ttl", "CDISCTerm.ttl"]
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..46)
@@ -241,7 +242,7 @@ describe "Thesauri Release Select", :type => :feature do
       expect(page).to have_content 'Version History of \'TST0\''
       context_menu_element('history', 4, 'Test Thesaurus', :edit)
       wait_for_ajax 10
-      click_link 'Release select'
+      #click_link 'Release select'
       expect(page).to have_content("Find & Select Code Lists")
       expect(page).to have_content("CDISC version used: None")
       expect(page).to have_content("No items were found.")
