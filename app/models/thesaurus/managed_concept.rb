@@ -471,7 +471,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Delete or Unlink. Delete the managed concept. Processing depends on the type of the concept.
   #
   # @return [Void] no return
-  def delete_or_unlink(parent_object)
+  def delete_or_unlink(parent_object=nil)
     self.children_objects
     if parent_object.nil? && no_parents?
       # No parent specified and no parents linked to this item, delete

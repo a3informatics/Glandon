@@ -24,10 +24,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.html do
         # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        @thesauri_id = results.first.to_id
-        @thesaurus = Thesaurus.find_minimum(@thesauri_id)
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
+        if results.empty?
+          redirect_to thesauri_managed_concepts_path
+        else
+          @thesauri_id = results.first.to_id
+          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @identifier = the_params[:identifier]
+          @scope_id = the_params[:scope_id]
+        end
       end
       format.json do
         results = []
@@ -182,13 +186,17 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def destroy
     authorize Thesaurus
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    token = get_token(@thesaurus_concept)
-    if tc.delete_or_unlink == 1
-      AuditTrail.update_item_event(current_user, tc, "Code list sucessfully deleted.")
-      render :json => {:data => results}, :status => 200
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    token = get_token(tc)
+    if !token.nil?
+      if tc.delete_or_unlink == 1
+        AuditTrail.update_item_event(current_user, tc, "Code list sucessfully deleted.")
+        render :json => {}, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
+      end
     else
-      render :json => {:errors => tc.errors.full_messages}, :status => 422
+      render :json => {:errors => ["The code list cannot be deleted as it is being edited by another user."]}, :status => 422
     end
   end
 

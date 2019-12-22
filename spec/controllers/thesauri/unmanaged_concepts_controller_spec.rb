@@ -91,7 +91,9 @@ describe Thesauri::UnmanagedConceptsController do
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
       umtc.set_persisted # Needed for id method to work for paths
-      mtc = Thesaurus::ManagedConcept.create({identifier: "X000001", notation: "X"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("X000001")
+      mtc = Thesaurus::ManagedConcept.create
       expect(Thesaurus::UnmanagedConcept).to receive(:find_children).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
       expect_any_instance_of(Thesaurus::UnmanagedConcept).to receive(:update).and_return(umtc)
@@ -110,7 +112,9 @@ describe Thesauri::UnmanagedConceptsController do
       umtc.errors.add(:notation, "Notation fake error")
       umtc.errors.add(:identifier, "Identifier fake error")
       umtc.set_persisted # Needed for id method to work for paths
-      mtc = Thesaurus::ManagedConcept.create({identifier: "Y000001", notation: "Y"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("Y000001")
+      mtc = Thesaurus::ManagedConcept.create
       token = Token.obtain(mtc, @user)
       expect(Thesaurus::UnmanagedConcept).to receive(:find_children).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
@@ -131,7 +135,9 @@ describe Thesauri::UnmanagedConceptsController do
       umtc.notation = "NEW NOTATION"
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
       umtc.set_persisted # Needed for id method to work for paths
-      mtc = Thesaurus::ManagedConcept.create({identifier: "Y000001", notation: "Y"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("Y000001")
+      mtc = Thesaurus::ManagedConcept.create
       token = Token.obtain(mtc, @user)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
@@ -149,7 +155,9 @@ describe Thesauri::UnmanagedConceptsController do
       umtc.uri = Uri.new(uri: "http://www.s-cubed.dk/CT/V1#fake")
       umtc.set_persisted # Needed for id method to work for paths
       umtc.errors.add(:base, "Destroy error")
-      mtc = Thesaurus::ManagedConcept.create({identifier: "Y000001", notation: "Y"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("Y000001")
+      mtc = Thesaurus::ManagedConcept.create
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(umtc)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(mtc)
       put :destroy, {id: umtc.id, unmanaged_concept: { parent_id: mtc.id}}
