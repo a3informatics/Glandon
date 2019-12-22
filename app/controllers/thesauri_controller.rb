@@ -343,7 +343,8 @@ class ThesauriController < ApplicationController
       when :search
         return search_thesauri_path(object)
       when :edit
-        return edit_thesauri_path(object)
+        #return edit_thesauri_path(object)          # Edit view
+        return release_select_thesauri_path(object) # Select view
       when :destroy
         return thesauri_path(object)
       else

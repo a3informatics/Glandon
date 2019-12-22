@@ -231,7 +231,7 @@ Rails.application.routes.draw do
     member do
       get :children
       get :children_with_indicators
-      #post :add_child
+      post :add_child
       get :changes
       get :changes_data
       get :changes_report
