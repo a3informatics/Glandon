@@ -466,7 +466,7 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
       # No parent specified and no parents linked to this item, delete
       delete_with
     elsif parent_object.nil?
-      # No parent specified and paraents, do nothing, as we cannot 
+      # No parent specified and parents, do nothing, as we cannot 
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
       0
     elsif multiple_parents? 

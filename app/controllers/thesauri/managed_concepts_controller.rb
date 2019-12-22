@@ -169,13 +169,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
   def destroy
     authorize Thesaurus
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    th = Thesaurus.find_minimum(the_params[:parent_id])
-    token = Token.find_token(th, current_user)
-    if !token.nil?
-      tc.delete_or_unlink(th)
-      audit_and_respond(th, tc, token)
+    token = get_token(@thesaurus_concept)
+    if tc.delete_or_unlink == 1
+      AuditTrail.update_item_event(current_user, tc, "Code list sucessfully deleted.")
+      render :json => {:data => results}, :status => 200
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+      render :json => {:errors => tc.errors.full_messages}, :status => 422
     end
   end
 
