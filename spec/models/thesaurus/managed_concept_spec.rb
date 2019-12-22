@@ -397,11 +397,18 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "allows a TC to be created" do
-      object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA333")
+      object = Thesaurus::ManagedConcept.create
       tc = Thesaurus::ManagedConcept.find_full(object.uri)
-      expect(tc.scoped_identifier).to eq("A000001")
-      expect(tc.identifier).to eq("A000001")
-      expect(tc.notation).to eq("A")
+      expect(tc.scoped_identifier).to eq("AA333")
+      expect(tc.identifier).to eq("AA333")
+      expect(tc.notation).to eq("Not Set")
+    end
+
+    it "allows a TC to be created, error not generated identifier" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+      expect{Thesaurus::ManagedConcept.create}.to raise_error(Errors::ApplicationLogicError, "Not configured to generate a code list identifier.")
     end
 
     it "returns the parent concept" do
@@ -1163,7 +1170,9 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "allows a TC to be destroyed" do
-      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
       tc = Thesaurus::ManagedConcept.find(object.uri)
       result = tc.delete_or_unlink(nil)
       expect(result).to eq(1)

@@ -444,6 +444,17 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
+  # Create. Create a managed concept
+  #
+  # @return [Object] the created object. May contain errors if unsuccesful.
+  def self.create
+    child = Thesaurus::ManagedConcept.empty_concept
+    # Following is a check to ensure only generated identifiers for the current implementation.
+    Errors.application_error(self.name, "create", "Not configured to generate a code list identifier.") unless Thesaurus::ManagedConcept.generated_identifier?
+    child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
+    super(child)
+  end
+
   # Clone. Clone the object taking care over the links
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object

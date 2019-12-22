@@ -170,7 +170,7 @@ Rails.application.routes.draw do
 
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts, only: [:index, :show, :edit, :update, :destroy] do
+    resources :managed_concepts, only: [:index, :show, :edit, :update, :create, :destroy] do
       collection do
         get :history
         get :set_with_indicators
@@ -231,7 +231,7 @@ Rails.application.routes.draw do
     member do
       get :children
       get :children_with_indicators
-      post :add_child
+      #post :add_child
       get :changes
       get :changes_data
       get :changes_report

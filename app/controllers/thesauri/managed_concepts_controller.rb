@@ -39,6 +39,20 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
   end
 
+  def create
+    authorize Thesaurus
+    object = Thesaurus::ManagedConcept.create
+    if object.errors.empty?
+      result = object.to_h
+      result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
+      render :json => { data: result}, :status => 200
+    else
+      render :json => {:errors => tc.errors.full_messages}, :status => 422
+    end
+  rescue => e
+      render :json => {:errors => [e.message]}, :status => 422
+  end
+    
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
@@ -417,27 +431,7 @@ private
     end
   end
 
-  # def get_thesaurus(thesaurus_concept)
-  #   info = IsoManaged.find_managed(thesaurus_concept.id, thesaurus_concept.namespace)
-  #   thesaurus = Thesaurus.find(info[:uri].id, info[:uri].namespace)
-  #   return thesaurus
-  # end
-
-  # def get_parent_link(thesaurus_concept)
-  #   link = ""
-  #   info = IsoConcept.find_parent(thesaurus_concept.uri)
-  #   if !info.nil?
-  #     if info[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s
-  #       link = edit_thesauri_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     else
-  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     end
-  #   end
-  #   return link
-  # end
-
   def the_params
-    #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :extension_ids => [])
   end
 
@@ -447,6 +441,11 @@ private
 
   def edit_params
     params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
+  end
+
+  # Not required currently, will be for user-defined identifiers
+  def create_params
+    params.require(:edit).permit(:identifier)
   end
 
 end
