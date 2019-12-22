@@ -619,6 +619,10 @@ describe ThesauriController do
       expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
+    it "edits release"
+
+    it "edits release, new version"
+    
   end
 
   describe "Community Reader" do
