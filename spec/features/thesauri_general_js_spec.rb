@@ -168,7 +168,7 @@ describe "Thesaurus", :type => :feature do
       expect(page).to have_content 'Index: Code Lists'
       click_link 'New Code List'
       wait_for_ajax_long
-      expect(page).to have_content 'NP000010P' # Note up version
+      expect(page).to have_content 'NP000010P' 
       context_menu_element('history', 4, 'NP000010P', :edit)
       wait_for_ajax_long
       click_button 'New'
