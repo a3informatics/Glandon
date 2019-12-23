@@ -285,7 +285,9 @@ class ThesauriController < ApplicationController
     th = edit_item(th)
     if !th.nil?
       new_object = th.add_extension(the_params[:concept_id])
-      render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})}, :status => 200
+      show_path = thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})
+      edit_path = edit_extension_thesauri_managed_concept_path(new_object)
+      render json: {show_path: show_path, edit_path: edit_path}, :status => 200
     else
       render json: {errors: [flash[:error]]}, :status => 422
     end

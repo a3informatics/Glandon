@@ -31,7 +31,7 @@ ShowHeaderPanel.prototype.callback = function(data) {
           displayError("An error has occurred.");
         },
         success: function(result) {
-          $("#extension").attr("href", result.show_path);
+          $("#extension").attr("href", result.edit_path);
           $('#extend').addClass('disabled').attr("disabled","disabled");
           $("#extension").show();
         }
