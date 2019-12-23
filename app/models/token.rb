@@ -66,6 +66,18 @@ class Token < ActiveRecord::Base
 		return nil
 	end
 
+  # Find Token For Item. Get the lock token for an item
+  #
+  # @param managed_item [Object] The managed item being locked
+  # @return [Token] the token if locked, otherwise nil
+  def self.find_token_for_item(managed_item)
+    tokens = self.where(item_uri: managed_item.uri.to_s)
+    Errors.application_error(self.name, "token", "Multiple tokens detected.") if tokens.length > 1
+    return nil if tokens.empty?
+    return nil if tokens.first.timed_out?
+    return tokens.first
+  end
+
 	# Expire all tokens that have passed the time limit
 	#
 	# @return null

@@ -95,21 +95,28 @@ class ThesauriController < ApplicationController
     authorize Thesaurus
     @thesaurus = Thesaurus.find_minimum(params[:id])
     @thesaurus = edit_item(@thesaurus)
-    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
-    @parent_identifier = ""
+    if !@thesaurus.nil?
+      @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+      @parent_identifier = ""
+    else
+      redirect_to request.referrer
+    end
   end
 
   def release_select
     authorize Thesaurus, :edit?
     @thesaurus = Thesaurus.find_minimum(params[:id])
     @thesaurus = edit_item(@thesaurus)
-    @token = get_token(@thesaurus)
-    @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
-    @versions = CdiscTerm.version_dates
-    @versions_normalized = normalize_versions(@versions)
-    @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
-    ref_thesaurus = @thesaurus.get_referenced_thesaurus
-    @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+    if !@thesaurus.nil?
+      @close_path = history_thesauri_index_path({thesauri: {identifier: @thesaurus.scoped_identifier, scope_id: @thesaurus.scope}})
+      @versions = CdiscTerm.version_dates
+      @versions_normalized = normalize_versions(@versions)
+      @versions_yr_span = [ @versions[0][:date].split('-')[0], @versions[-1][:date].split('-')[0] ]
+      ref_thesaurus = @thesaurus.get_referenced_thesaurus
+      @cdisc_date =  ref_thesaurus == nil ? "None" : ref_thesaurus.version_label.split(' ')[0]
+    else
+      redirect_to request.referrer
+    end
   end
 
   def children
@@ -274,11 +281,14 @@ class ThesauriController < ApplicationController
   def extension
     authorize Thesaurus, :edit?
     results = Thesaurus.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-    thesaurus = Thesaurus.find_minimum(results.first)
-    thesaurus = edit_item(thesaurus)
-    new_object = thesaurus.add_extension(the_params[:concept_id])
-    #render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id, reference_ct_id: the_params[:reference_ct_id]}})}, :status => 200
-    render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: thesaurus.id}})}, :status => 200
+    th = Thesaurus.find_minimum(results.first)
+    th = edit_item(th)
+    if !th.nil?
+      new_object = th.add_extension(the_params[:concept_id])
+      render json: {show_path: thesauri_managed_concept_path({id: new_object.id, managed_concept: {context_id: th.id}})}, :status => 200
+    else
+      render json: {errors: [flash[:error]]}, :status => 422
+    end
   end
 
   #  def export_ttl

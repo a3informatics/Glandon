@@ -119,7 +119,7 @@ module UserAccountHelpers
 		args[:password] = C_PASSWORD if !args.key?(:password)
 		args[:role] = :reader if !args.key?(:role)
 		@usr = User.create :email => args[:email], :password => args[:password]
-  puts colourize("***** User create error: #{@usr.errors.full_messages.to_sentence} *****", "red") if @usr.errors.any?
+  puts colourize("***** User create error: #{@usr.errors.full_messages.to_sentence}. Args: #{args} *****", "red") if @usr.errors.any?
 		@usr.add_role args[:role]
 		unforce_first_pass_change @usr
 		return @usr

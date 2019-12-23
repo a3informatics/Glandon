@@ -84,23 +84,34 @@ class ApplicationController < ActionController::Base
     session[:breadcrumbs] = ""
   end
 
-  # Get Token for a Managed Item.
+  # Get Token. Get the token for a Managed Item.
+  #
+  # @param [Object] mi the managed item object
+  # @return [Token] the token or nil if not found. Flash error set to standard error in not found. 
   def get_token(mi)
     token = Token.obtain(mi, current_user)
-    if token.nil?
-      flash[:error] = "The item is locked for editing by another user."
-      redirect_to request.referer
-    end
-    return token
+    return token if !token.nil?
+    token = Token.find_token_for_item(mi)
+    user = token.nil? ? "<unknown>" : User.find(token.user_id).email
+    flash[:error] = "The item is locked for editing by user: #{user}."
+    nil
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:error] = "The item is locked for editing by user: <unknown>."
+    nil
   end
 
-  # Edit an item
+  # Edit Item. Edit a managed item helper
+  #
+  # @param [Object] item the managed item
+  # @return [Object] the new item. It may be the same item. Will be nil if cannot be locked. Token set in controller
   def edit_item(item)
     @token = get_token(item)
+    return nil if @token.nil?
     new_item = item.create_next_version
     return item if new_item.uri == item.uri
     @token.release
     @token = get_token(new_item)
+    return nil if @token.nil?
     return new_item
   end
 

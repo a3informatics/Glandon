@@ -166,7 +166,7 @@ describe ThesauriController do
       token = Token.obtain(ct, @lock_user)
       get :edit, id: ct.id
       expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by another user./)
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
       expect(response).to redirect_to("/thesauri")
     end
 
@@ -178,7 +178,7 @@ describe ThesauriController do
       token = Token.obtain(new_ct, @lock_user)
       get :edit, id: ct.id
       expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by another user./)
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
       expect(response).to redirect_to("/thesauri")
     end
 
@@ -609,6 +609,21 @@ describe ThesauriController do
       expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
     end
 
+    it "extension, locked" do
+      th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
+      token = Token.obtain(th, @lock_user)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extension, {thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
+                                    identifier: th.scoped_identifier,
+                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
+                                  }
+                        }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The item is locked for editing by user: lock@example.com."])
+      token.release
+    end
+
     it "add subset" do
       request.env['HTTP_ACCEPT'] = "application/json"
       post :add_subset, {id: "aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==",
@@ -622,6 +637,8 @@ describe ThesauriController do
     it "edits release"
 
     it "edits release, new version"
+
+    it "edits release, locked"
     
   end
 
