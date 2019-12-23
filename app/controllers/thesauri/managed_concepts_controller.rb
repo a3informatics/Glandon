@@ -87,16 +87,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit_subset
     authorize Thesaurus, :edit?
-    @context_id = params[:context_id]
-    @ct = Thesaurus.find_minimum(@context_id)
-    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
     @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     @token = get_token(@subset_mc)
-    @subset_mc.synonyms_and_preferred_terms
     if @token.nil?
       flash[:error] = "The edit lock has timed out."
       redirect_to edit_lock_lost_link(@subset_mc)
     else
+      @subset_mc.subsets_links
+      @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
+      @subset_mc.synonyms_and_preferred_terms
       @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
     end
   end
@@ -388,9 +387,11 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
 private
 
+  # Read a Thesaurus Concept
   def read_concept(id)
     tc = Thesaurus::ManagedConcept.find_with_properties(id)
     tc = edit_item(tc)
+    return nil if tc.nil?
     tc.synonyms_and_preferred_terms
     tc
   end

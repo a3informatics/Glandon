@@ -4,6 +4,7 @@ describe Thesauri::ManagedConceptsController do
 
   include DataHelpers
   include UserAccountHelpers
+  include IsoManagedHelpers
 
   def sub_dir
     return "controllers/thesauri/managed_concept"
@@ -286,6 +287,8 @@ describe Thesauri::ManagedConceptsController do
       expect(response.code).to eq("200")
       expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(nil)
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
+      # @todo really should check actual but issue with dates
+      check_dates(mc, sub_dir, "create_expected_1.yaml", :creation_date, :last_change_date)
       check_file_actual_expected(mc.to_h, sub_dir, "create_expected_1.yaml", equate_method: :hash_equal)
     end
 
@@ -432,15 +435,12 @@ describe Thesauri::ManagedConceptsController do
 
     it "edit subset" do
       ct = Uri.new(uri: "http://www.cdisc.org/CT/V19#TH")
-      src_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C81226/V19#C81226"))
-      sub_mc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
-      sub_mc.is_ordered = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(sub_mc.uri))
-      expect_any_instance_of(Thesaurus::ManagedConcept).to receive(:is_ordered_links).and_return(sub_mc.is_ordered.uri)
-      expect(Thesaurus::Subset).to receive(:find).and_return(sub_mc.is_ordered)
-      get :edit_subset, {id: sub_mc.id, context_id: ct.to_id, source_mc: src_mc.id}
+      sub_mc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
+      sub_mc.update(is_ordered: Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(sub_mc.uri)))
+      get :edit_subset, id: sub_mc.id
       expect(assigns(:subset_mc).id).to eq(sub_mc.id)
-      expect(assigns(:source_mc).id).to eq(src_mc.id)
-      expect(assigns(:subset)).to eq(sub_mc.is_ordered)
+      expect(assigns(:source_mc).id).to eq(sub_mc.subsets_links.to_id)
+      expect(assigns(:subset).uri.to_id).to eq(sub_mc.is_ordered.uri.to_id)
       expect(response).to render_template("edit_subset")
     end
 
