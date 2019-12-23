@@ -269,7 +269,9 @@ describe "Thesaurus::Subset" do
   end
 
   it "find_mc"  do
-    expected_mc = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+    expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+    expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("A000001")
+    expected_mc = Thesaurus::ManagedConcept.create
     subset = Thesaurus::Subset.create(uri: Thesaurus::Subset.create_uri(expected_mc.uri))
     expected_mc.is_ordered = subset
     expected_mc = Thesaurus::ManagedConcept.find(expected_mc.uri)
