@@ -69,34 +69,38 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def edit
     authorize Thesaurus
-    @thesaurus_concept = read_concept(params[:id])
-    @token = get_token(@thesaurus_concept)
-    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
-    @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    @thesaurus_concept = read_concept(protect_from_bad_id(params))
+    if !@thesaurus_concept.nil?
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
+      @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    else
+      redirect_to request.referrer
+    end
   end
 
   def edit_extension
     authorize Thesaurus, :edit?
     @tc = read_concept(protect_from_bad_id(params))
-    @token = get_token(@tc)
-    extension_of_uri = @tc.extension_of
-    @is_extending = !extension_of_uri.nil?
-    @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
-    @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+    if !@tc.nil?
+      extension_of_uri = @tc.extension_of
+      @is_extending = !extension_of_uri.nil?
+      @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+    else
+      redirect_to request.referrer
+    end
   end
 
   def edit_subset
     authorize Thesaurus, :edit?
-    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    @token = get_token(@subset_mc)
-    if @token.nil?
-      flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(@subset_mc)
-    else
+    @subset_mc = read_concept(protect_from_bad_id(params))
+    if !@subset_mc.nil?
       @subset_mc.subsets_links
       @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
       @subset_mc.synonyms_and_preferred_terms
       @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
+    else
+      redirect_to request.referrer
     end
   end
 

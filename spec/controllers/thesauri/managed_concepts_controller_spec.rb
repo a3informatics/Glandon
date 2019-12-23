@@ -404,7 +404,20 @@ describe Thesauri::ManagedConceptsController do
       get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
       expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=C49489&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
       expect(assigns(:tc_identifier_prefix)).to eq("C49489.")
+      expect(assigns(:token)).to_not eq(nil)
       expect(response).to render_template("edit")
+    end
+
+    it "edit, locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/referrer'
+      uri_th = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      uri_tc = Uri.new(uri: "http://www.cdisc.org/C49489/V1#C49489")
+      tc = Thesaurus::ManagedConcept.find_minimum(uri_tc)
+      token = Token.obtain(tc, @lock_user)
+      get :edit, {id: uri_tc.to_id, thesaurus_concept: {parent_id: uri_th.to_id}}
+      expect(assigns(:token)).to eq(nil)
+      expect(response).to redirect_to("/referrer")
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
   end
@@ -414,9 +427,15 @@ describe Thesauri::ManagedConceptsController do
     login_curator
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
     end
 
     it "find subsets" do
@@ -441,7 +460,18 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:subset_mc).id).to eq(sub_mc.id)
       expect(assigns(:source_mc).id).to eq(sub_mc.subsets_links.to_id)
       expect(assigns(:subset).uri.to_id).to eq(sub_mc.is_ordered.uri.to_id)
+      expect(assigns(:token)).to_not eq(nil)
       expect(response).to render_template("edit_subset")
+    end
+
+    it "edit subset, locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/referrer'
+      tc = Thesaurus::ManagedConcept.find_with_properties(Uri.new(uri: "http://www.s-cubed.dk/S000001/V19#S000001"))
+      token = Token.obtain(tc, @lock_user)
+      get :edit_subset, id: tc.id
+      expect(assigns(:token)).to eq(nil)
+      expect(response).to redirect_to("/referrer")
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
   end
@@ -454,6 +484,12 @@ describe Thesauri::ManagedConceptsController do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..28)
+      @lock_user = ua_add_user(email: "lock@example.com")
+      Token.delete_all
+    end
+
+    after :all do
+      ua_remove_user("lock@example.com")
     end
 
     it "edit extension" do
@@ -463,7 +499,19 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:is_extending)).to eq(true)
       expect(assigns(:is_extending_path)).to eq("/thesauri/managed_concepts/aHR0cDovL3d3dy5jZGlzYy5vcmcvQzk5MDc5L1YyOCNDOTkwNzk=?managed_concept%5Bcontext_id%5D=")
       expect(assigns(:close_path)).to eq("/thesauri/managed_concepts/history?managed_concept%5Bidentifier%5D=A00001&managed_concept%5Bscope_id%5D=aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ%3D%3D")
+      expect(assigns(:token)).to_not eq(nil)
       expect(response).to render_template("edit_extension")
+    end
+
+    it "edit extension, locked" do
+      @request.env['HTTP_REFERER'] = 'http://test.host/referrer'
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      extended_tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079"))
+      token = Token.obtain(tc, @lock_user)
+      get :edit_extension, {id: tc.id}
+      expect(assigns(:token)).to eq(nil)
+      expect(response).to redirect_to("/referrer")
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com.*/)
     end
 
   end
