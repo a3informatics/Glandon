@@ -10,22 +10,10 @@ describe "Tokens", :type => :feature do
   include WaitForAjaxHelper
 
   before :all do
-    schema_files =
-    [
-      "ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl",
-      "thesaurus.ttl", "BusinessOperational.ttl", "CDISCBiomedicalConcept.ttl", "BusinessForm.ttl", "BusinessDomain.ttl"
-    ]
     data_files =
-    [
-      "iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_concept_new_2.ttl", "form_crf_test_1.ttl",
-      "sdtm_user_domain_ds.ttl", "sdtm_model_and_ig.ttl", "CT_SUBSETS_new.ttl"
-    ]
+    ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_1.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))
-    clear_iso_concept_object
-    clear_iso_namespace_object
-    clear_iso_registration_authority_object
-    clear_iso_registration_state_object
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")
     Token.delete_all
     ua_add_user email: "token_user_1@example.com", role: :curator
@@ -44,21 +32,21 @@ describe "Tokens", :type => :feature do
       in_browser(:one) do
         ua_generic_login 'token_user_1@example.com'
         click_navbar_terminology
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-        expect(page).to have_content 'Version History of \'CDISC EXT\''
+        find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
+        expect(page).to have_content 'Version History of \'AIRPORTS\''
         wait_for_ajax
-        context_menu_element('history', 4, 'CDISC Extensions', :edit)
-        expect(page).to have_content 'New Code List'
+        context_menu_element('history', 4, '0.1.0', :edit)
+        expect(page).to have_content 'Find & Select Code Lists'
       end
 
       in_browser(:two) do
         ua_generic_login 'token_user_2@example.com'
         click_navbar_terminology
-        find(:xpath, "//tr[contains(.,'CDISC EXT')]/td/a").click
-        expect(page).to have_content 'Version History of \'CDISC EXT\''
+        find(:xpath, "//tr[contains(.,'AIRPORTS')]/td/a").click
+        expect(page).to have_content 'Version History of \'AIRPORTS\''
         wait_for_ajax
-        context_menu_element('history', 4, 'CDISC Extensions', :edit)
-        expect(page).to have_content 'The item is locked for editing by another user.'
+        context_menu_element('history', 4, '0.1.0', :edit)
+        expect(page).to have_content 'The item is locked for editing by user: token_user_1@example.com.'
       end
 
     end
