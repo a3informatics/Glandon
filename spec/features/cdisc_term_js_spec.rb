@@ -171,7 +171,7 @@ describe "CDISC Term", :type => :feature do
       expect(page).to have_content 'History'
     end
 
-    it "history allows the status page to be viewed (REQ-MDR-CT-NONE).", js:true do
+    it "history allows the status page to be viewed (REQ-MDR-CT-NONE). - WILL CURRENTLY FAIL - Setting of current needs updatting", js:true do
        click_navbar_cdisc_terminology
        wait_for_ajax(10)
        expect(page).to have_content 'History'
