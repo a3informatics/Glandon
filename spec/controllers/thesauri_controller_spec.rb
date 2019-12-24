@@ -606,7 +606,7 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "extension_expected_1.yaml", equate_method: :hash_equal)
     end
 
     it "extension, locked" do

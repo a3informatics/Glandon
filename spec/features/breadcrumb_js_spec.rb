@@ -138,7 +138,7 @@ describe "Breadcrumb", :type => :feature do
       wait_for_ajax(120)
       ui_check_breadcrumb("Terminology", "CDISC, CT", "V43.0.0", "")
       next_link_table("C99079", "Show", "Code Lists Items", "Terminology", "CDISC, C99079", "V38.0.0")
-      next_link_crumb(2, "Version History of 'CT'", "Terminology", "CDISC, CT", "")
+      next_link_crumb(2, "Item History", "Terminology", "CDISC, C99079", "")
     end
 
     it "has Code list Item breadcrumbs", js:true  do
