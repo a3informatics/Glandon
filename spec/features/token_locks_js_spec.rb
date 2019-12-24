@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Tokens", :type => :feature do
+describe "Token Locks", :type => :feature do
 
   include PauseHelpers
   include DataHelpers
@@ -11,7 +11,7 @@ describe "Tokens", :type => :feature do
 
   before :all do
     data_files =
-    ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_1.ttl"]
+    ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions((1..59))
     load_local_file_into_triple_store("features/thesaurus/subset", "subsets_input_4.ttl")

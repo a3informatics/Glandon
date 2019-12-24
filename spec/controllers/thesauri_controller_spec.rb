@@ -37,7 +37,7 @@ describe ThesauriController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_new.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_3.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_cdisc_term_versions(1..2)

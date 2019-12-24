@@ -102,6 +102,10 @@ class Thesauri::ManagedConceptsController < ApplicationController
     else
       redirect_to request.referrer
     end
+  rescue => e
+    # @todo Temporary fix.
+    flash[:warning] = "Error raised editting a subset. Can only handle draft versions in this release."
+    redirect_to request.referrer    
   end
 
   def update

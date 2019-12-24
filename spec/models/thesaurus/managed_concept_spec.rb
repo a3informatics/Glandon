@@ -1025,7 +1025,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "delete" do
 
     before :each do
-      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl",]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
       NameValue.destroy_all
@@ -1239,9 +1239,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "subsets" do
 
     before :all do
-      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "thesaurus.ttl"]
-      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
     end

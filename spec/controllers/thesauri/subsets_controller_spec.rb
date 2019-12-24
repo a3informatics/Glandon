@@ -22,7 +22,7 @@ describe Thesauri::SubsetsController do
   end
 
   before :all do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "CT_SUBSETS.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..20)
     NameValue.destroy_all
