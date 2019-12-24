@@ -512,8 +512,7 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
-	#Context Menu
-
+	# Context Menu
 	def context_menu_actions_map
 	 {
       show: "Show",
@@ -614,7 +613,6 @@ module UiHelpers
   end
 
 	# Confirmation Dialog
-
 	def ui_confirmation_dialog(confirm)
 		sleep 0.5
 		expect(page).to have_content("Are you sure you want to proceed?")
@@ -627,14 +625,11 @@ module UiHelpers
 	end
 
 	# Tabs
-
 	def ui_click_tab (name)
 		page.find(".tab-option", :text => "#{name}").click
 	end
 
   # D3 Tree Functions
-  # =================
-
   def ui_click_node_name(text)
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
   end
@@ -694,6 +689,25 @@ module UiHelpers
     ui_click_node_key(to_key)
     #wait_for_ajax
     expect(ui_get_current_key).to eq(to_key)
+  end
+
+  # Thesaurus
+  def ui_new_code_list
+    identifier = ui_next_parent_identifier
+    click_link 'New Code List'
+    wait_for_ajax_long
+    expect(page).to have_content identifier
+    wait_for_ajax_long
+    identifier
+  end
+
+private
+
+  def ui_next_parent_identifier
+    configuration = Rails.configuration.thesauri[:identifiers][:parent][:generated]
+    value = nv_predict_parent
+    pattern = configuration[:pattern].dup
+    pattern.sub!("[identifier]", '%0*d' % [configuration[:width].to_i, value])
   end
 
 end

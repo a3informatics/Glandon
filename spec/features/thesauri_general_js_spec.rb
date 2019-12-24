@@ -166,10 +166,12 @@ describe "Thesaurus", :type => :feature do
     it "allows terminology to be edited, auto-identifier (REQ-MDR-ST-015)", js: true do
       click_navbar_code_lists
       expect(page).to have_content 'Index: Code Lists'
-      click_link 'New Code List'
-      wait_for_ajax_long
-      expect(page).to have_content 'NP000010P' 
-      context_menu_element('history', 4, 'NP000010P', :edit)
+      cl_identifier = ui_new_code_list
+      #click_link 'New Code List'
+      #wait_for_ajax_long
+      #expect(page).to have_content 'NP000010P' 
+      #wait_for_ajax_long
+      context_menu_element('history', 4, cl_identifier, :edit)
       wait_for_ajax_long
       click_button 'New'
       wait_for_ajax_long
