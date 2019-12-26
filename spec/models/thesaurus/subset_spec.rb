@@ -414,7 +414,7 @@ describe "Thesaurus Subset Item List and Clone" do
     sm_2.to_sparql(sparql)
     sm_3.to_sparql(sparql)
     file = sparql.to_file
-    copy_file_from_public_files_rename("test", file.basename, sub_dir, "subsets_clone_1.ttl")
+  #Xcopy_file_from_public_files_rename("test", file.basename, sub_dir, "subsets_clone_1.ttl")
   end
 
   it "returns list of URIs" do

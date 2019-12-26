@@ -1332,6 +1332,29 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "Clone Extension" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension_2.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1a.yaml")
+      actual = tc.create_next_version
+      #check_dates(actual, sub_dir, "clone_extension_expected_1b.yaml", :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml")
+    end
+
+  end
+
   describe "sets" do
 
     before :all do

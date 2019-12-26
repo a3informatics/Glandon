@@ -86,6 +86,8 @@ RSpec::Matchers.define :thesauri_concept_equal do |expected|
   end
 
   def rdf_type_match?(actual, expected)
+    return true if actual.nil? && expected.nil?
+    return false if actual.nil? || expected.nil?
     @actual = actual
     @expected = expected
     actual[:rdf_type] == expected[:rdf_type] # nothing to really check
