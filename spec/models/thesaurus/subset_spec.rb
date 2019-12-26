@@ -341,7 +341,7 @@ describe "Thesaurus Subset General" do
 
 end
 
-describe "Thesaurus Subset Item List" do
+describe "Thesaurus Subset Item List and Clone" do
 
   include DataHelpers
   include SparqlHelpers
@@ -351,7 +351,7 @@ describe "Thesaurus Subset Item List" do
     return "models/thesaurus/subset"
   end
 
-  before :all do
+  before :all do    
     NameValue.destroy_all
     NameValue.create(name: "thesaurus_parent_identifier", value: "123")
     NameValue.create(name: "thesaurus_child_identifier", value: "456")
@@ -362,6 +362,11 @@ describe "Thesaurus Subset Item List" do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..2)
+    @tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
+    @tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    @tc_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29846"))
+    @tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    @tc_5 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29848"))
   end
 
   after :all do
@@ -370,11 +375,6 @@ describe "Thesaurus Subset Item List" do
 
   it "returns list of URIs" do
     base_uri = Uri.new(uri: "http://www.example.com/a#b")
-    tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
-    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
-    tc_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29846"))
-    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
-    tc_5 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29848"))
     subset = Thesaurus::Subset.new
     subset.uri = subset.create_uri(base_uri)
     subset.save
@@ -386,7 +386,7 @@ describe "Thesaurus Subset Item List" do
     
     # 1 item
     sm_1 = Thesaurus::SubsetMember.new
-    sm_1.item = tc_1
+    sm_1.item = @tc_1
     sm_1.uri = sm_1.create_uri(base_uri)
     sm_1.save
     subset.members = sm_1
@@ -397,7 +397,7 @@ describe "Thesaurus Subset Item List" do
     
     # 2 items
     sm_2 = Thesaurus::SubsetMember.new
-    sm_2.item = tc_2
+    sm_2.item = @tc_2
     sm_2.uri = sm_2.create_uri(base_uri)
     sm_2.save
     sm_1.member_next = sm_2
@@ -408,7 +408,7 @@ describe "Thesaurus Subset Item List" do
 
     # 3 items
     sm_3 = Thesaurus::SubsetMember.new
-    sm_3.item = tc_3
+    sm_3.item = @tc_3
     sm_3.uri = sm_3.create_uri(base_uri)
     sm_3.save
     sm_2.member_next = sm_3
@@ -416,6 +416,93 @@ describe "Thesaurus Subset Item List" do
     actual = subset.list_uris
     expect(actual.count).to eq(3)
     check_file_actual_expected(actual, sub_dir, "list_uris_expected_4.yaml", equate_method: :hash_equal)
+  end
+
+  def check_members(a, e, count)
+    actual = a.list_uris.map{|x| x[:uri].to_s}
+    expected = e.list_uris.map{|x| x[:uri].to_s}
+    expect(actual.count).to eq(count)
+    expect(actual).to match_array(expected)
+  end
+
+  it "clone, empty" do
+    base_uri = Uri.new(uri: "http://www.example.com/a#b0")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    cloned = subset.clone
+    cloned.uri = Uri.new(uri: "http://www.example.com/a#c0")
+    cloned.create_or_update(:create, true)
+    check_members(subset, cloned, 0)
+  end
+
+  it "clone, 1 item" do
+    base_uri = Uri.new(uri: "http://www.example.com/a#b1")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = @tc_1
+    sm_1.uri = sm_1.create_uri(base_uri)
+    sm_1.save
+    subset.members = sm_1
+    subset.save
+    cloned = subset.clone
+    cloned.uri = Uri.new(uri: "http://www.example.com/a#c1")
+    cloned.create_or_update(:create, true)
+    check_members(subset, cloned, 1)
+  end
+
+  it "clone, 2 items" do
+    base_uri = Uri.new(uri: "http://www.example.com/a#b2")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = @tc_1
+    sm_1.uri = sm_1.create_uri(base_uri)
+    sm_1.save
+    sm_2 = Thesaurus::SubsetMember.new
+    sm_2.item = @tc_2
+    sm_2.uri = sm_2.create_uri(base_uri)
+    sm_2.save
+    sm_1.member_next = sm_2
+    sm_1.save
+    subset.members = sm_1
+    subset.save
+    cloned = subset.clone
+    cloned.uri = Uri.new(uri: "http://www.example.com/a#c2")
+    cloned.create_or_update(:create, true)
+    check_members(subset, cloned, 2)
+  end
+
+  it "clone, 3 items" do    
+    base_uri = Uri.new(uri: "http://www.example.com/a#b3")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = @tc_1
+    sm_1.uri = sm_1.create_uri(base_uri)
+    sm_1.save
+    sm_2 = Thesaurus::SubsetMember.new
+    sm_2.item = @tc_2
+    sm_2.uri = sm_2.create_uri(base_uri)
+    sm_2.save
+    sm_3 = Thesaurus::SubsetMember.new
+    sm_3.item = @tc_3
+    sm_3.uri = sm_3.create_uri(base_uri)
+    sm_3.save
+    sm_1.member_next = sm_2
+    sm_1.save
+    sm_2.member_next = sm_3
+    sm_2.save
+    subset.members = sm_1
+    subset.save
+    cloned = subset.clone
+    cloned.uri = Uri.new(uri: "http://www.example.com/a#c3")
+    cloned.create_or_update(:create, true)
+    check_members(subset, cloned, 3)    
   end
 
 end
