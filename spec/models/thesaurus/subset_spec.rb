@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Thesaurus::Subset" do
+describe "Thesaurus Subset General" do
 
 	include DataHelpers
   include SparqlHelpers
@@ -337,6 +337,85 @@ describe "Thesaurus::Subset" do
     item.to_sparql(sparql)
   #Xwrite_text_file_2(sparql.to_create_sparql, sub_dir, "to_create_sparql_expected.txt")
     check_sparql_no_file(sparql.to_create_sparql, "to_create_sparql_expected.txt")
+  end
+
+end
+
+describe "Thesaurus Subset Item List" do
+
+  include DataHelpers
+  include SparqlHelpers
+  include PublicFileHelpers
+
+  def sub_dir
+    return "models/thesaurus/subset"
+  end
+
+  before :all do
+    NameValue.destroy_all
+    NameValue.create(name: "thesaurus_parent_identifier", value: "123")
+    NameValue.create(name: "thesaurus_child_identifier", value: "456")
+    IsoHelpers.clear_cache
+  end
+
+  before :each do
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+    load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..2)
+  end
+
+  after :all do
+    delete_all_public_test_files
+  end
+
+  it "returns list of URIs" do
+    base_uri = Uri.new(uri: "http://www.example.com/a#b")
+    tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
+    tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
+    tc_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29846"))
+    tc_4 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29844"))
+    tc_5 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29848"))
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(base_uri)
+    subset.save
+    
+    # Empty
+    actual = subset.list_uris
+    expect(actual.count).to eq(0)
+    check_file_actual_expected(actual, sub_dir, "list_uris_expected_1.yaml", equate_method: :hash_equal)
+    
+    # 1 item
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = tc_1
+    sm_1.uri = sm_1.create_uri(base_uri)
+    sm_1.save
+    subset.members = sm_1
+    subset.save
+    actual = subset.list_uris
+    expect(actual.count).to eq(1)
+    check_file_actual_expected(actual, sub_dir, "list_uris_expected_2.yaml", equate_method: :hash_equal)
+    
+    # 2 items
+    sm_2 = Thesaurus::SubsetMember.new
+    sm_2.item = tc_2
+    sm_2.uri = sm_2.create_uri(base_uri)
+    sm_2.save
+    sm_1.member_next = sm_2
+    sm_1.save
+    actual = subset.list_uris
+    expect(actual.count).to eq(2)
+    check_file_actual_expected(actual, sub_dir, "list_uris_expected_3.yaml", equate_method: :hash_equal)
+
+    # 3 items
+    sm_3 = Thesaurus::SubsetMember.new
+    sm_3.item = tc_3
+    sm_3.uri = sm_3.create_uri(base_uri)
+    sm_3.save
+    sm_2.member_next = sm_3
+    sm_2.save
+    actual = subset.list_uris
+    expect(actual.count).to eq(3)
+    check_file_actual_expected(actual, sub_dir, "list_uris_expected_4.yaml", equate_method: :hash_equal)
   end
 
 end
