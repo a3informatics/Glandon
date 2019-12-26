@@ -362,6 +362,7 @@ describe "Thesaurus Subset Item List and Clone" do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
     load_files(schema_files, data_files)
     load_cdisc_term_versions(1..2)
+    @cl_1 = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781"))
     @tc_1 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25301"))
     @tc_2 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C25529"))
     @tc_3 = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.cdisc.org/C66781/V2#C66781_C29846"))
@@ -371,6 +372,49 @@ describe "Thesaurus Subset Item List and Clone" do
 
   after :all do
     delete_all_public_test_files
+  end
+
+  it "creates some test data" do
+    tc_1 = Thesaurus::ManagedConcept.from_h({
+      label: "A subset",
+      identifier: "C66781S",
+      definition: "A definition",
+      notation: "SUB"
+    })
+    tc_1.preferred_term = Thesaurus::PreferredTerm.new(label:"A subset")
+    subset = Thesaurus::Subset.new
+    subset.uri = subset.create_uri(tc_1.uri)
+    sm_1 = Thesaurus::SubsetMember.new
+    sm_1.item = @tc_1
+    sm_1.uri = sm_1.create_uri(subset.uri)
+    sm_2 = Thesaurus::SubsetMember.new
+    sm_2.item = @tc_3
+    sm_2.uri = sm_2.create_uri(subset.uri)
+    sm_3 = Thesaurus::SubsetMember.new
+    sm_3.item = @tc_5
+    sm_3.uri = sm_3.create_uri(subset.uri)
+    sm_1.member_next = sm_2
+    sm_2.member_next = sm_3
+    subset.members = sm_1
+    sm_1.save
+    sm_2.save
+    sm_3.save
+    subset.save
+    tc_1.subsets = @cl_1
+    tc_1.is_ordered = subset
+    tc_1.narrower << @tc_1
+    tc_1.narrower << @tc_3
+    tc_1.narrower << @tc_5
+    tc_1.set_initial("C66781S")
+    sparql = Sparql::Update.new
+    sparql.default_namespace(tc_1.uri.namespace)
+    tc_1.to_sparql(sparql, true)
+    subset.to_sparql(sparql)
+    sm_1.to_sparql(sparql)
+    sm_2.to_sparql(sparql)
+    sm_3.to_sparql(sparql)
+    file = sparql.to_file
+    copy_file_from_public_files_rename("test", file.basename, sub_dir, "subsets_clone_1.ttl")
   end
 
   it "returns list of URIs" do

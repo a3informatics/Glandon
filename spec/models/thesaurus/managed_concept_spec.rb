@@ -1309,6 +1309,29 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "Clone Subset" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_4.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone subset" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1a.yaml")
+      actual = tc.create_next_version
+      check_dates(actual, sub_dir, "clone_subset_expected_1b.yaml", :creation_date, :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1b.yaml")
+    end
+
+  end
+
   describe "sets" do
 
     before :all do

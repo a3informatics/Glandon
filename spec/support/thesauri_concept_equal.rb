@@ -62,6 +62,10 @@ RSpec::Matchers.define :thesauri_concept_equal do |expected|
         return false unless pt_match? value, expected[key]
       elsif key == :synonym 
         return false unless s_match? value, expected[key]
+      elsif key == :is_ordered
+        return false unless rdf_type_match? value, expected[key]
+      elsif key == :members 
+        return false unless rdf_type_match? value, expected[key]
       else
         return false unless match? value, expected[key]
       end
@@ -76,10 +80,20 @@ RSpec::Matchers.define :thesauri_concept_equal do |expected|
   end
 
   def pt_match?(actual, expected)
+    @actual = actual
+    @expected = expected
     actual[:label] == expected[:label] #&& actual[:uri] == expected[:uri]
   end
 
+  def rdf_type_match?(actual, expected)
+    @actual = actual
+    @expected = expected
+    actual[:rdf_type] == expected[:rdf_type] # nothing to really check
+  end
+
   def s_match?(actual, expected)
+    @actual = actual
+    @expected = expected
     synonyms = []
     return false if actual.count != expected.count
     expected.map{|x| synonyms << x[:label]}
