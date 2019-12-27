@@ -179,7 +179,7 @@ class IsoRegistrationStateV2 < Fuseki::Base
   # Make not current
   #
   # @return [Void] no return
-  def make_not_current  
+  def make_not_current 
     Sparql::Update.new.sparql_update(make_not_current_query, self.rdf_type.namespace, [:isoR])
   end
 
@@ -229,15 +229,18 @@ private
   def make_not_current_query
     "DELETE \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
     "} \n" +
     "INSERT \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate \"#{Time.now.iso8601}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime . \n" +
+    " #{self.uri.to_ref} isoR:untilDate \"#{String::C_DEFAULT_DATETIME}\"^^xsd:dateTime . \n" +
     "} \n" +
     "WHERE \n" +
     "{ \n" +
-    " #{self.uri.to_ref} isoR:untilDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:effectiveDate ?a . \n" +
+    " #{self.uri.to_ref} isoR:untilDate ?b . \n" +
     "}"
   end
 

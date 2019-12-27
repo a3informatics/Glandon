@@ -822,6 +822,7 @@ class IsoManagedV2 < IsoConceptV2
   # @params [Hash] params
   # @params params [String] :identifier the identifier
   # @params params [IsoNamespace] :scope the scope namespace
+  # @raise [Errors::ApplicationLogicError] raised if mutliple items found
   # @return [object] the current item if found, nil otherwise
   def self.current(params)
     date_time = Time.now.iso8601
@@ -841,7 +842,9 @@ class IsoManagedV2 < IsoConceptV2
     }
     query_results = Sparql::Query.new.query(query_string, "", [:isoT, :isoR, :isoI])
     return nil if query_results.empty?
-    query_results.by_object(:s).first
+    results = query_results.by_object(:s)
+    Errors.application_error(self.class.name, __method__.to_s, "Multiple current items found for identifier '#{params[:identifier]}' within scope '#{params[:scope].uri}'.") if results.count > 1
+    results.first
   end
 
   # Find By Tag. Find all managed items based on a tag.
@@ -867,7 +870,27 @@ SELECT ?s ?l ?v ?i ?vl WHERE {
     results
   end
 
+  # Make Current. Make the item current
+  #
+  # @return [Boolean] always returns true.
+  def make_current
+    transaction_begin
+    clear_current
+    self.has_state.make_current
+    transaction_execute
+    true
+  end
+
 private
+
+  # Clear Current, if any
+  def clear_current
+    current_uri = self.class.current(identifier: self.scoped_identifier, scope: self.scope)
+    return false if current_uri.nil?
+    current_item = IsoManagedV2.find_minimum(current_uri)
+    current_item.has_state.make_not_current
+    true
+  end
 
   # In released state
   def in_released_state?
