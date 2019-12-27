@@ -27,7 +27,11 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "columns": [
       {"render" : function (data, type, row, meta) {
         if (type == 'display')
-          return row.has_identifier.semantic_version;
+          if (row.current) {
+            return row.has_identifier.semantic_version + " ***";
+          } else {
+            return row.has_identifier.semantic_version;
+          }
         else
           return row.has_identifier.version;
         }
@@ -57,6 +61,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
           { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},
           { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
           { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
+          { link_path: row.current_path, disabled: row.current_path == "" ? "true":"false", icon: "icon-document", text: "Make current"},
           { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
         counter ++;
 
