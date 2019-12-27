@@ -14,6 +14,11 @@ describe IsoManagedV2Controller do
       return "controllers/iso_managed_v2"
     end
 
+    def current_status
+      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      puts colourize("Current: #{current_uri}\n+++++", "blue")
+    end
+
     before :all do
       x = Thesaurus.new
     end
@@ -21,7 +26,7 @@ describe IsoManagedV2Controller do
     before :each do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
-      load_cdisc_term_versions(1..2)
+      load_cdisc_term_versions(1..10)
     end
 
     it "status" do
@@ -36,15 +41,18 @@ describe IsoManagedV2Controller do
     end
 
     it "make current" do
+      current_status 
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       uri_2 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
-      get :make_current, {id: uri_1.to_id, iso_managed: { current_id: "test" }}
+      get :make_current, {id: uri_1.to_id}
+      current_status 
       mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
-      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)      
+      mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)    
       expect(mi_1.current?).to eq(true)
       expect(mi_2.current?).to eq(false)
-      get :make_current, {id: uri_2.to_id, iso_managed: { current_id: uri_1.to_id }}
+      get :make_current, {id: uri_2.to_id}
+      current_status 
       mi_1 = IsoManagedV2.find_minimum(uri_1.to_id)
       mi_2 = IsoManagedV2.find_minimum(uri_2.to_id)      
       expect(mi_1.current?).to eq(false)
@@ -75,7 +83,7 @@ describe IsoManagedV2Controller do
 
     it 'updates the semantic version' do
       request.env['HTTP_ACCEPT'] = "application/json"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
       mi.has_state.registration_status = "Qualified"
       mi.has_state.save
@@ -83,15 +91,27 @@ describe IsoManagedV2Controller do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
     end
-
     
-    it 'updates the semantic version, The release cannot be updated in the current state' do
+    it 'updates the semantic version, error, has to be latest' do
+      request.env['HTTP_ACCEPT'] = "application/json"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
+      mi = IsoManagedV2.find_minimum(uri_1)
+      mi.has_state.registration_status = "Qualified"
+      mi.has_state.save
+      put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["Can only modify the latest release"])
+    end
+    
+    it 'updates the semantic version, error, release cannot be updated in the current state' do
       request.env['HTTP_ACCEPT'] = "application/json"
       uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       mi = IsoManagedV2.find_minimum(uri_1)
       put :update_semantic_version , { id: mi.id, iso_managed: { sv_type: "major" }}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The release cannot be updated in the current state"])
     end
 
   end
