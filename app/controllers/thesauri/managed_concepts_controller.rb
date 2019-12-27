@@ -99,6 +99,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
       @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
       @subset_mc.synonyms_and_preferred_terms
       @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope}})
     else
       redirect_to request.referrer
     end
