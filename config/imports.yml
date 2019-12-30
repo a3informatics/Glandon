@@ -48,6 +48,26 @@ defaults: &defaults
         main:
           selection:
             first: true
+          sheet:
+            actions: []
+            header_row:
+              - "Release Date"
+              - "Request Code"
+              - "Change Type"
+              - "NCI Code"
+              - "CDISC Term Type"
+              - "CDISC Codelist (Short Name)"
+              - "CDISC Codelist (Long Name)"
+              - "Change Summary"
+              - "Original"
+              - "New"
+              - "Change Implementation Instructions"
+              - "Use"
+              - "Prev Codelist"
+              - "Prev Term"
+              - "New Codelists"
+              - "New Terms"
+              - "Comment"
           row:
             condition:
               method: column_affirmative?
@@ -183,6 +203,16 @@ defaults: &defaults
             label: ADaM-IG
           sheet:
             actions: []
+            header_row: 
+              - "Data Structure Name"
+              - "Dataset Name"
+              - "Variable Group"
+              - "Variable Name" 
+              - "Variable Label"
+              - "Type"
+              - "Codelist/Controlled Terms"
+              - "Core"
+              - "CDISC Notes"
           columns: 
           - 
             label: "Data Structure Name"
@@ -307,6 +337,16 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Value" 
+              - "NCI Preferred Term"
+              - "CDISC Definition"
+              - "CDISC Synonym(s) (where applicable)"
+              - "Pre-release/ Production"
           columns: 
           - 
             label: "Code"
@@ -518,6 +558,16 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Value"
+              - "NCI Preferred Term"
+              - "CDISC Definition"
+              - "CDISC Synonym(s) (where applicable)"
+              - Pre-release/ Production
           columns: 
           - 
             label: "Code"
@@ -735,6 +785,18 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
           columns: 
           - 
             label: "Code"
@@ -955,6 +1017,16 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
           columns: 
           - 
             label: "Code"
@@ -1169,6 +1241,15 @@ defaults: &defaults
                   QRS: 
                     - QRS
                     - SDTM
+            header_row:
+              - "Code"
+              - "Codelist Code"
+              - "Codelist Extensible (Yes/No)"
+              - "Codelist Name" 
+              - "CDISC Submission Value"
+              - "CDISC Synonym(s)"
+              - "CDISC Definition"
+              - "NCI Preferred Term"
           columns: 
           - 
             label: "Code"
@@ -1379,6 +1460,13 @@ test:
         sheet_1:
           selection:
             label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"
@@ -1454,6 +1542,13 @@ test:
         sheet_1:
           selection:
             label: Sheet1
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"
@@ -1529,6 +1624,13 @@ test:
         sheet_1:
           selection:
             label: hee # Note short name
+          sheet:
+            header_row:
+              - "PARENT"
+              - "CHILD"
+              - "CT"
+              - "DATATYPE"
+              - "CORE"
           columns: 
           - 
             label: "PARENT"

@@ -38,8 +38,8 @@ class Excel::Engine
     process_sheet(sheet_logic)  
     ((@workbook.first_row + 1) .. @workbook.last_row).each do |row|
       next unless process_row?(sheet_logic, row)
-      sheet_logic[:columns].each_with_index do |column, col_index|
-        col = col_index + 1
+      sheet_logic[:columns].each do |column|
+        col = find_column(column, sheet_logic)
         column[:actions].each do |action| 
           begin
             next unless process_action?(action[:condition], row)
@@ -131,17 +131,6 @@ class Excel::Engine
   # @option params [Integer] row the cell row
   # @option params [Integer] col the cell column
   # @return [Boolean] true if affirmative (boolean true), false otherwise
-  def column_affirmative?(params)
-    check_params(__method__.to_s, params, [:row, :col])
-    return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
-  end
-
-  # Valid?
-  #
-  # @param [Hash] params the parameters
-  # @option params [Integer] row the cell row
-  # @option params [Integer] col the cell column
-  # @return [String] true if affirmative (boolean true), false otherwise
   def column_affirmative?(params)
     check_params(__method__.to_s, params, [:row, :col])
     return check_value(params[:row], params[:col], true).to_bool # Can be empty, convert to boolean
@@ -412,6 +401,14 @@ class Excel::Engine
  
 private
 
+  # Find Columns
+  def find_column(column, sheet)
+    header_row = sheet.dig(:sheet, :header_row)
+    index = header_row.index(column[:label])
+    return index + 1 if !index.nil?
+    raise Errors::ApplicationLogicError.new("Failed to find column #{column[:label]} in header row definition.")
+  end
+ 
   # Remove smart quotes
   def remove_unicode_chars(text)
     text = text.gsub(/[\u2013]/, "-")
@@ -436,7 +433,7 @@ private
       @errors.add(:base, "Argument '#{a}' missing from method #{method} and is required.")
       missing = true
     end
-    raise Errors::ApplicationLogicError.new(message) if missing
+    raise Errors::ApplicationLogicError.new("Missing arguments detected.") if missing
   end
 
   # Check CT cell
