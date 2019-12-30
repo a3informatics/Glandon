@@ -1,6 +1,7 @@
 <%= javascript_include_tag 'thesauri/managed_concepts/history' %>
 <%= javascript_tag 'setPageTitle("History: '+@identifier+'")' %>
 <%= javascript_tag "var url_path = '#{history_thesauri_managed_concepts_path}';" %>
+<%= javascript_tag "var url_rs_path = '#{iso_registration_states_v2_path("rs_id")}';" %>
 <%= javascript_tag "var strict_params = 'managed_concept';" %>
 <%= javascript_tag "var identifier = '#{@identifier}';" %>
 <%= javascript_tag "var scope_id = '#{@scope_id}';" %>
