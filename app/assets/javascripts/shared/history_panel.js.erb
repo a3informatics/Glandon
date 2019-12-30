@@ -27,11 +27,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "columns": [
       {"render" : function (data, type, row, meta) {
         if (type == 'display')
-          if (row.current) {
-            return row.has_identifier.semantic_version + " ***";
-          } else {
-            return row.has_identifier.semantic_version;
-          }
+          return row.has_identifier.semantic_version;
         else
           return row.has_identifier.version;
         }
@@ -52,6 +48,10 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
         if (type == "display")
           return _this.registrationStatesHTML(row);
         else return data;
+      }},
+      {"data" : "indicators", "render": function (data, type, row, meta) {
+        if (type == "display") return formatIndicators(data);
+        else return formatIndicatorsString(data);
       }},
       {className: "text-right", "render" : function (data, type, row, meta) {
         var id = "con-menu-" + counter;
@@ -110,9 +110,6 @@ HistoryPanel.prototype.add = function (offset) {
     success: function(result) {
     	for (i=0; i<result.data.length; i++) {
         var row = _this.historyTable.row.add(result.data[i]);
-        if (result.data[i].current) {
-          $(row).toggleClass('success');
-        }
       }
       _this.historyTable.draw();
       if (result.count >= _this.count) {
