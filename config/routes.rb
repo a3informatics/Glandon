@@ -111,6 +111,7 @@ Rails.application.routes.draw do
       get :make_current
       post :update_status
       put :update_semantic_version
+      get :edit_tags
     end
     collection do
       get :find_by_tag

@@ -32,7 +32,7 @@ module ControllerHelpers
 
 private
 
-  # Build a set of paths for a single object. Note expects controllers to provide 
+  # Build a set of paths for a single object. Note expects controllers to provide
   def add_history_path(object, edit, delete, current)
     result = {}
     latest = object.latest?
@@ -41,11 +41,11 @@ private
     result[:search_path] = path_for(:search, object)
     if edit && object.edit? && latest
       result[:edit_path] = path_for(:edit, object)
-      result[:tags_path] = edit_tags_iso_managed_index_path(:id => object.uri.fragment, :namespace => object.uri.namespace)
+      result[:tags_path] = path_for(:edit_tags, object)
     else
       result[:edit_path] = ""
       result[:tags_path] = ""
-    end      
+    end
     if object.registered? && object.owned? && latest && edit
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})
     else
