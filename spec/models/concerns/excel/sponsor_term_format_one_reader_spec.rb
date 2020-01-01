@@ -9,7 +9,7 @@ describe Excel::SponsorTermFormatOneReader do
   end
 
 	before :each do
-    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl"]
+    data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl", "iso_concept_systems_process.ttl"]
     load_files(schema_files, data_files)
   end
 

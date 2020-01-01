@@ -1,0 +1,43 @@
+@prefix : <http://www.assero.co.uk/CSN#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.assero.co.uk/CSN>
+	rdf:type owl:Ontology ;
+.
+:359a3f39-0920-44cb-b13c-e8bdf5fbd4b8
+	isoC:isTopConcept :0cf70d94-0f4e-4024-aa88-d0ccb921345f ;
+.
+:0cf70d94-0f4e-4024-aa88-d0ccb921345f
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Process"^^xsd:string ;
+	isoC:description "Process related tags"^^xsd:string ;
+	isoC:narrower :fcd09b53-5c89-4089-8428-77d91c67d6e1 ;
+.
+:fcd09b53-5c89-4089-8428-77d91c67d6e1
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Stage"^^xsd:string ;
+	isoC:description "Stage related tags"^^xsd:string ;
+	isoC:narrower :d79061e3-d3f8-4979-ba08-80f636f2e77d ;
+	isoC:narrower :4f800764-0c6f-4aaf-aca3-50bac7958b5e ;
+	isoC:narrower :3d15f449-cb0a-4933-adce-a75c7c2a633a ;
+.
+:d79061e3-d3f8-4979-ba08-80f636f2e77d
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "DC Stage"^^xsd:string ;
+	isoC:description "Data capture stage"^^xsd:string ;
+.
+:4f800764-0c6f-4aaf-aca3-50bac7958b5e
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "SDTM Stage"^^xsd:string ;
+	isoC:description "SDTM stage"^^xsd:string ;
+.
+:3d15f449-cb0a-4933-adce-a75c7c2a633a
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "ADaM Stage"^^xsd:string ;
+	isoC:description "ADaM stage"^^xsd:string ;
+.

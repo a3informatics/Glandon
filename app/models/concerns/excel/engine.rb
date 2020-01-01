@@ -24,6 +24,7 @@ class Excel::Engine
     @parent_set = {}
     @classifications = {}
     @tags = []
+    @tag_set = {}
   end
 
   # Process. Process a sheet according to the configuration
@@ -204,7 +205,7 @@ class Excel::Engine
   # Check Valid. Checks if the object is valid. 
   #
   # @param [Hash] params the parameters hash
-  # @option params [Object] :object the object tocheck for validity
+  # @option params [Object] :object the object to check for validity
   # @return [Void] no return
   def check_valid(params)
     check_params(__method__.to_s, params, [:object])
@@ -214,11 +215,24 @@ class Excel::Engine
   # Set Tags
   #
   # @param [Hash] params the parameters hash
-  # @option params [Object] :object the object tocheck for validity
+  # @option params [Object] :object the object to tag
   # @return [Void] no return
   def set_tags(params)
     check_params(__method__.to_s, params, [:object])
     params[:object].tagged = @tags
+  end
+
+  # Set Column Tag
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Object] :object the object to tag
+  # @return [Void] no return
+  def set_column_tag(params)
+    check_params(__method__.to_s, params, [:row, :col, :map, :object, :can_be_empty])
+    value = check_mapped(params[:row], params[:col], params[:map])
+    return if value.blank?
+    tag = find_tag(params[:additional][:path], value)
+    params[:object].tagged << tag if !tag.nil?
   end
 
   # Set Property
@@ -417,6 +431,17 @@ class Excel::Engine
   end
  
 private
+
+  # Find Tag From Path
+  def find_tag(path, tag)
+    key = "#{path.join(".")}.#{tag}"
+    return @tag_set[key] if @tag_set.key?(key)
+    tag = IsoConceptSystem.path(path + [tag])
+    @tag_set[key] = tag
+    tag
+  rescue Errors::ApplicationLogicError => e
+    return nil
+  end
 
   # Find Columns
   def find_column(column, sheet)

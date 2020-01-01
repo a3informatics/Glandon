@@ -22,7 +22,7 @@ describe IsoConceptSystem do
       delete_all_public_test_files
     end
 
-    it "allows a child object to be added" do
+    it "create base concept system" do
       cs = IsoConceptSystem.root
       cdisc = cs.add({label: "CDISC", description: "CDISC related tags"})
       sdtm = cdisc.add({label: "SDTM", description: "SDTM related information."})

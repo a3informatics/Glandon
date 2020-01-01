@@ -1576,9 +1576,25 @@ defaults: &defaults
             label: "DC_STAGE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "DC Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "DC Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
           - 
             label: "SDTM_STAGE"
             actions: 

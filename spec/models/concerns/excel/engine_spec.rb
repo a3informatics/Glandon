@@ -70,6 +70,7 @@ describe Excel::Engine do
     attr_accessor :ct_notes
     attr_accessor :label
     attr_accessor :ordinal
+    attr_accessor :tagged
 
     def initialize
       @ct = ""
@@ -77,6 +78,7 @@ describe Excel::Engine do
       @label = ""
       @ordinal = 0
       @children = []
+      @tagged = []
       super
     end
 
@@ -366,6 +368,27 @@ describe Excel::Engine do
     expect(result).to eq([{:tag=>"A"}])
     result = object.set_tags({object: parent})
     expect(parent.tagged).to eq([{:tag=>"A"}])
+  end
+
+  it "set column tag" do
+    full_path = test_file_path(sub_dir, "set_column_tag_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
+    expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return(nil)
+    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(child.tagged).to eq([{:tag=>"A"}])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(child.tagged).to eq([])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(child.tagged).to eq([])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    expect(child.tagged).to eq([])
   end
 
   it "creates parent" do
