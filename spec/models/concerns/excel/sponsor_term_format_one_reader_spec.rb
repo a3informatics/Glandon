@@ -34,7 +34,7 @@ describe Excel::SponsorTermFormatOneReader do
     object = Excel::SponsorTermFormatOneReader.new(full_path) 
     object.check_and_process_sheet(:sponsor_term_format_one, :version_2)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(11)
+    expect(object.errors.count).to eq(23)
     check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_1.yaml", equate_method: :hash_equal)
   end
 
