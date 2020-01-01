@@ -1599,23 +1599,51 @@ defaults: &defaults
             label: "SDTM_STAGE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "SDTM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "SDTM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage          
           - 
             label: "ADAM_STAGE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "ADaM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "ADaM Stage"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Stage       
           - 
             label: "INACTIVE_F"
-            actions: 
-              -
-                method: set_tags
-                object: child
-                map: {}
+            actions: []
         version_3:
           selection:
             label: Harmonized_Terminology_Listing

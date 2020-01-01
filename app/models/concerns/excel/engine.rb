@@ -232,7 +232,9 @@ class Excel::Engine
     value = check_mapped(params[:row], params[:col], params[:map])
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
-    params[:object].tagged << tag if !tag.nil?
+    return if tag.nil?
+#byebug if params[:object].class.to_s=="Thesaurus::UnmanagedConcept"
+    params[:object].add_tag(tag)
   end
 
   # Set Property
