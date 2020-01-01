@@ -1,0 +1,1538 @@
+---
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Analysis Action Taken with Study Treatment
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SN000001
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000001
+  :notation: AACN
+  :definition: Analysis - Terminology specifying changes to the study treatment as
+    a result of an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE DELAYED AND REDUCED
+    :definition: An indication that a medication schedule was postponed and modified
+      by subtraction by strength or amount.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE DELAYED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 03
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C66767
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_03
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE INCREASED
+    :definition: An indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE NOT CHANGED
+    :definition: An indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOSE REDUCED
+    :definition: An indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG INTERRUPTED
+    :definition: An indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DRUG WITHDRAWN
+    :definition: An indication that a medication schedule was modified through termination
+      of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Numeric
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SN000005
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000005
+  :notation: ACNN
+  :definition: Numeric - Terminology specifying changes to the study treatment as
+    a result of an adverse event.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '9'
+    :definition: A numeric value, nine, that indicate not known, not observed, not
+      recorded, or refused. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Unknown
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '8'
+    :definition: A numeric that indicate more than one. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Multiple
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '7'
+    :definition: A numeric value of 7 indicating a dose delayed and reduced.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Dose Delayed and Reduced
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '6'
+    :definition: A numeric value of 6 indicating a dose delayed.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Dose Delayed
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '5'
+    :definition: A numeric indication that a medication schedule was modified by addition;
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Dose Increased
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '4'
+    :definition: A numeric indication that a medication schedule was modified through
+      termination of a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Drug Withdrawn
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '3'
+    :definition: A numeric indication that a medication schedule was modified by temporarily
+      terminating a prescribed regimen of medication. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Drug Interrupted
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '2'
+    :definition: A numeric indication that a medication schedule was modified by subtraction,
+      either by changing the frequency, strength or amount. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Dose Reduced
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '1'
+    :definition: A numeric indication that a medication schedule was maintained. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Dose Not Changed
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: '10'
+    :definition: A numeric value, ten, that indicate determination of a value is not
+      relevant in the current context. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Not Applicable
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Acute Coronary Syndrome Presentation Category
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C101865
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C101865
+  :notation: ACSPCAT
+  :definition: A classification of the presentation of acute coronary syndrome.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: UNSTABLE ANGINA
+    :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
+      has recently changed in frequency, duration, intensity, or occurs at rest.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Unstable Angina
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: STABLE ANGINA
+    :definition: Angina pectoris which has not recently changed in frequency, duration
+      or intensity. Stable angina pectoris is relieved by rest or administration of
+      oral, sublingual or transdermal antianginal medications.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Stable Angina
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Category of Adverse Event
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SN000008
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000008
+  :notation: AECATEG
+  :definition: Used to determine the category of adverse event.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: UNSTABLE ANGINA
+    :definition: Angina pectoris (or equivalent type of ischemic discomfort) which
+      has recently changed in frequency, duration, intensity, or occurs at rest.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Unstable Angina
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: HEART FAILURE
+    :definition: 'Inability of the heart to pump blood at an adequate rate to meet
+      tissue metabolic requirements. Clinical symptoms of heart failure include: unusual
+      dyspnea on light exertion, recurrent dyspnea occurring in the supine position,
+      fluid retention; or rales, jugular venous distension, pulmonary edema on physical
+      exam, or pulmonary edema on chest x-ray presumed to be cardiac dysfunction.'
+    :extensible: false
+    :narrower: []
+    :preferred_term: Heart Failure
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: ADVERSE EVENT
+    :definition: 'Any untoward medical occurrence in a patient or clinical investigation
+      subject administered a pharmaceutical product and which does not necessarily
+      have a causal relationship with this treatment. An adverse event (AE) can therefore
+      be any unintended sign (including an abnormal laboratory finding), symptom,
+      or disease temporally associated with the use of a medicinal (investigational)
+      product, whether or not related to the medicinal (investigational) product.
+      NOTE: For further information, see the ICH Guideline for Clinical Safety Data
+      Management: Definitions and Standards for Expedited Reporting. [Modified from
+      ICH E2A] Synonyms: side effect, adverse experience. See also serious adverse
+      event, serious adverse experience. (CDISC glossary)'
+    :extensible: false
+    :narrower: []
+    :preferred_term: Adverse Event
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: PREGNANCY
+    :definition: Pregnancy is the state or condition of having a developing embryo
+      or fetus in the body (uterus), after union of an ovum and spermatozoon, during
+      the period from conception to birth. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Pregnancy
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SYSTEMIC
+    :definition: Affecting an entire system.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Systemic
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SEVERE INFECTION / PARASITIC INFECTION / OPPORTUNISTIC INFECTION
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Severe Infection / Parasitic Infection / Opportunistic Infection
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: OVERDOSE
+    :definition: Exposure to, or intake of, an excessive amount of a substance. (NCI)
+    :extensible: false
+    :narrower: []
+    :preferred_term: Overdose
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: INJECTION SITE REACTION
+    :definition: A disorder characterized by an intense adverse reaction (usually
+      immunologic) developing at the site of an injection.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Injection Site Reaction
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: INCREASED LIPASE/AMYLASE
+    :definition: Category indicating an increased concentration of lipase/amylase
+      in the blood serum.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Increased Lipase/Amylase
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: HYPOGLYCEMIA
+    :definition: A disorder characterized by laboratory test results that indicate
+      a low concentration of glucose in the blood.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Hypoglycemia
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: CEREBROVASCULAR EVENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Cerebrovascular Event
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: BLEEDING EVENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Bleeding Event
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: ALT INCREASE
+    :definition: Alanine Aminotransferase increased in blood.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ALT Increase
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: ALLERGY
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Allergy
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: ADMINISTRATION SITE
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Administration Site
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Event Dictionary Version
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SN000011
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000011
+  :notation: AEDICTV
+  :definition: MedDRA dictionary version used for coding events.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 10.1
+    :definition: Version 10.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '10.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 10.0
+    :definition: Version 10.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '10.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 9.1
+    :definition: Version 9.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '9.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 9.0
+    :definition: Version 9.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '9.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 16.0
+    :definition: Version 16.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '14.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 15.1
+    :definition: Version 15.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '15.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 15.0
+    :definition: Version 15.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '15.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 14.1
+    :definition: Version 14.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '14.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 14.0
+    :definition: Version 14.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '14.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 13.1
+    :definition: Version 13.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '13.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 13.0
+    :definition: Version 13.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '13.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 12.1
+    :definition: Version 12.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '12.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 12.0
+    :definition: Version 12.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '12.0'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 11.1
+    :definition: Version 11.1 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '11.1'
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: MEDDRA 11.0
+    :definition: Version 11.0 of MedDRA.  Code_value is for define.xml purposes.
+    :extensible: false
+    :narrower: []
+    :preferred_term: '11.0'
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Relationship to Study Treatment Subset 01
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: SN000012
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000012
+  :notation: AERELA_01
+  :definition: Used to determine the relationship of Adverse Event to study treatment.
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: UNLIKELY RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: POSSIBLY RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: NOT RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: NOT RELATED
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Date Imputation Flag
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C81223
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C81223
+  :notation: DATEFL
+  :definition: 'Date Imputation Flag: Indicates the level of imputation reflected
+    in a date value.'
+  :extensible: false
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: Y
+    :definition: 'Year Imputed: Entire date (year, month and day) is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: M
+    :definition: 'Month Imputed: Month and day are imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: D
+    :definition: 'Day Imputed: Day is imputed.'
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Epoch
+  :tagged: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: C99079
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C99079
+  :notation: EPOCH
+  :definition: The name of the EPOCH.
+  :extensible: true
+  :narrower:
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: BLINDED TREATMENT
+    :definition: A period in a clinical study during which subjects receive blinded
+      therapeutic treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FOLLOW-UP
+    :definition: A period in a clinical study during which information about the health
+      status of an individual is obtained after study procedures and treatments have
+      concluded.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: LONG-TERM FOLLOW-UP
+    :definition: A period in a clinical study during which information about the health
+      status of an individual is obtained long after study procedures and treatments
+      have concluded.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: OPEN LABEL TREATMENT
+    :definition: A period in a clinical study during which subjects receive open label
+      therapeutic treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: RUN-IN
+    :definition: A period in a clinical study that occurs before the commencement
+      of the primary clinical study investigation, during which subjects may be assessed
+      for suitability in the clinical study, withdrawn from existing therapy, trained
+      in study methodology or evaluated for any other protocol-specified reason.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SCREENING
+    :definition: A period in a clinical study during which subjects are evaluated
+      for participation in the study.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: TREATMENT
+    :definition: A period in a clinical study during which subjects receive therapeutic
+      treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: WASHOUT
+    :definition: A period of time during a clinical study when a participant is taken
+      off of a study drug or other medication in order to eliminate the effects of
+      the treatment.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SECOND WASH-OUT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SECOND TREATMENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SECOND SCREENING
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SECOND RUN-IN
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SECOND FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SAFETY FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: PRIMARY SERIES
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: IMMUNOGENICITY FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FIRST WASH-OUT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FIRST TREATMENT
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FIRST SCREENING
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FIRST RUN-IN
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: FIRST FOLLOW-UP
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: COMPLETION
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: BOOSTER PHASE
+    :definition: A distinguishable part, a stage in a series of events or in a process
+      of development, e.g. any of the varying aspects or stages in course of a disease;
+      a fraction of a cycle that maintain, extend or increase the immune response.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: SINGLE BLIND
+    :definition: Not defined.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: EXTENSION PHASE
+    :definition: The extension of a distinguishable part, a stage in a series of events
+      or in a process of development, e.g. any of the varying aspects or stages in
+      course of a disease; a fraction of a cycle.
+    :extensible: false
+    :narrower: []
+    :preferred_term: Extension Phase
+    :synonym: []
+  - :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+    :label: ''
+    :tagged: []
+    :identifier: ''
+    :notation: DOUBLE BLIND
+    :definition: The baseline for the double blind period.
+    :extensible: false
+    :narrower: []
+    :preferred_term: ''
+    :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 

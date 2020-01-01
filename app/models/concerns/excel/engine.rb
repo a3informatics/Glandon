@@ -236,6 +236,24 @@ class Excel::Engine
     params[:object].instance_variable_set("@#{params[:property]}", x)
   end
 
+  # Set Property With Default
+  #
+  # @param [Integer] :row the cell row
+  # @param [Integer] :col the cell column
+  # @param [Object] :object the object in which the property is being set
+  # @param [Hash] :map the mapping from spreadsheet values to internal values
+  # @param [String] :property the name of the property
+  # @param [Boolean] :can_be_empty if true property can be blank
+  # @param [Hash] :additional a hash containing additional parameters, in this case the default string
+  # @return [Void] no return
+  def set_property_with_default(params)
+    params[:can_be_empty] = true
+    check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty, :additional])
+    x = params[:map].empty? ? check_value(params[:row], params[:col], params[:can_be_empty]) : check_mapped(params[:row], params[:col], params[:map])
+    x = x.blank? ? params[:additional][:default] : x
+    params[:object].instance_variable_set("@#{params[:property]}", x)
+  end
+
   # Tokenize And Set Property
   #
   # @param [Hash] params the parameters hash
@@ -394,9 +412,8 @@ class Excel::Engine
   # @param [Symbol] sheet the import sheet
   # @return [Hash] the sheet info in a hash
   def sheet_info(import, sheet)
-    result = {selection: Rails.configuration.imports[:processing][import][:sheets][sheet][:selection], columns: []}
-    result[:columns] = Rails.configuration.imports[:processing][import][:sheets][sheet][:columns].map {|x| x[:label]}
-    return result
+    info = Rails.configuration.imports[:processing][import][:sheets][sheet]
+    {selection: info[:selection], columns: info[:sheet][:header_row]}
   end
  
 private

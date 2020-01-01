@@ -1432,6 +1432,356 @@ defaults: &defaults
                 condition: 
                   method: column_not_blank?
                   column: 2
+    sponsor_term_format_one: 
+      sheets: 
+        version_2:
+          selection:
+            label: Harmonized_Terminology_Listing
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "DC_STAGE"
+              - "SDTM_STAGE"
+              - "ADAM_STAGE"
+              - "INACTIVE_F"
+          columns: 
+          - 
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Thesaurus::ManagedConcept
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+          - 
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+          - 
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+          - 
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          - 
+            label: "CODE"
+            actions: 
+              -
+                method: create_child
+                object: child
+                klass: Thesaurus::UnmanagedConcept
+                map: {}
+          - 
+            label: "SUBMISSION_VALUE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
+          - 
+            label: "DECODE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          - 
+            label: "SYNONYM"
+            actions: 
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+          - 
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          - 
+            label: "DATA_TYPE"
+            actions: []
+          - 
+            label: "CRF_DISPLAY_VALUE"
+            actions: []
+          - 
+            label: "DISPLAY_ORDER"
+            actions:  []
+          - 
+            label: "RANK"
+            actions: []
+          - 
+            label: "DC_STAGE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "SDTM_STAGE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "ADAM_STAGE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "INACTIVE_F"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+        version_3:
+          selection:
+            label: Harmonized_Terminology_Listing
+          sheet:
+            actions: []
+            header_row:
+              - "CODELIST_LONG_NAME"
+              - "CODELIST_SHORT_NAME"
+              - "CODELIST_EXTENSIBLE"
+              - "CODELIST_DEFINITION"
+              - "CODELIST_CODE"
+              - "CODE"
+              - "SUBMISSION_VALUE"
+              - "DECODE"
+              - "SYNONYM"
+              - "CODE_DEFINITION"
+              - "DATA_TYPE"
+              - "CRF_DISPLAY_VALUE"
+              - "DISPLAY_ORDER"
+              - "RANK"
+              - "CRFGL_USE"
+              - "SDTM_USE"
+              - "ADAM_USE"
+              - "ED_USE"
+              - "STUDY_USE"
+              - "INACTIVE_F"
+          columns: 
+          - 
+            label: "CODELIST_CODE"
+            actions:
+              -
+                method: create_parent
+                object: parent
+                klass: Thesaurus::ManagedConcept
+                map: {}
+              -
+                method: set_property
+                object: parent
+                property: identifier
+                map: {}
+          - 
+            label: "CODELIST_LONG_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: label
+                map: {}
+          - 
+            label: "CODELIST_SHORT_NAME"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          -
+            label: "CODELIST_EXTENSIBLE"
+            actions: 
+              -
+                method: set_property
+                object: parent
+                property: extensible
+                map: 
+                  "Yes": true
+                  "No": false
+          - 
+            label: "CODELIST_DEFINITION"
+            actions:
+              -
+                method: set_property
+                object: parent
+                property: definition
+                map: {}
+          - 
+            label: "CODE"
+            actions: 
+              -
+                method: create_child
+                object: child
+                klass: Thesaurus::UnmanagedConcept
+                map: {}
+          - 
+            label: "SUBMISSION_VALUE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: notation
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
+          - 
+            label: "DECODE"
+            actions: 
+              -
+                method: set_property
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+          - 
+            label: "SYNONYM"
+            actions: 
+              -
+                method: tokenize_and_create_shared
+                object: child
+                property: synonym
+                can_be_empty: true
+                map: {}
+                additional: 
+                  token: ";"
+          - 
+            label: "CODE_DEFINITION"
+            actions:
+              -
+                method: set_property_with_default
+                object: child
+                property: definition
+                map: {}
+                additional:
+                  default: "Not defined."
+          - 
+            label: "DATA_TYPE"
+            actions: []
+          - 
+            label: "CRF_DISPLAY_VALUE"
+            actions: []
+          - 
+            label: "DISPLAY_ORDER"
+            actions: []
+          - 
+            label: "RANK"
+            actions: []
+          - 
+            label: "CRFGL_USE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "SDTM_USE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "ADAM_USE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "ED_USE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "STUDY_USE"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
+          - 
+            label: "INACTIVE_F"
+            actions: 
+              -
+                method: set_tags
+                object: child
+                map: {}
 development:
   <<: *defaults
 

@@ -47,7 +47,7 @@ private
       reader = configuration[:reader_klass].new(file)
       merge_errors(reader, self)
       next if !reader.errors.empty?
-      reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:sheet_name], params))
+      reader.check_and_process_sheet(configuration[:import_type], self.send(configuration[:format], params))
       merge_errors(reader, self)
       next if !reader.errors.empty?
       merge_parent_set(reader)

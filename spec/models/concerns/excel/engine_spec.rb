@@ -544,6 +544,18 @@ describe Excel::Engine do
     expect(parent.collection[6]).to eq("C124456")
   end
 
+  it "property with default" do
+    full_path = test_file_path(sub_dir, "property_with_default_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET2Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    child = ChildClass.new
+    object.set_property_with_default({row: 2, col: 1, object: child, map: {}, property: "label", additional: {default: "default"}})
+    expect(child.label).to eq("A set string")
+    object.set_property_with_default({row: 3, col: 1, object: child, map: {}, property: "label", additional: {default: "default"}})
+    expect(child.label).to eq("default")
+  end
+
   it "checks valid" do
     full_path = test_file_path(sub_dir, "tokenize_input_2.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
@@ -710,15 +722,31 @@ describe Excel::Engine do
     expect(@child_object.ct_notes).to eq("X1")
   end
 
-  it "returns the sheet info" do
+  it "returns the sheet info, I" do
     full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
     result = object.sheet_info(:cdisc_adam_ig, :main)
-  #Xwrite_yaml_file(result, sub_dir, "sheet_info_expected_1.yaml")
-    expected = read_yaml_file(sub_dir, "sheet_info_expected_1.yaml")
-    expect(result).to eq(expected)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "returns the sheet info, II" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.sheet_info(:sponsor_term_format_one, :version_2)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_2.yaml", equate_method: :hash_equal)
+  end
+
+  it "returns the sheet info, III" do
+    full_path = test_file_path(sub_dir, "datatypes_input_1.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    result = object.sheet_info(:sponsor_term_format_one, :version_3)
+    check_file_actual_expected(result, sub_dir, "sheet_info_expected_3.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, no errors" do
