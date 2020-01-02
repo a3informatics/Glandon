@@ -15,7 +15,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000001
+    :identifier: AACN
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -205,7 +205,7 @@
 - :id: 
   :uri: {}
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-  :label: Action Taken with Study Treatment Subset 03
+  :label: Action Taken with Study Treatment
   :tagged:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
     :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
@@ -230,7 +230,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C66767
+    :identifier: ACN
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -241,7 +241,7 @@
   :last_change_date: '2016-01-01T00:00:00+00:00'
   :explanatory_comment: ''
   :identifier: C66767
-  :notation: ACN_03
+  :notation: ACN
   :definition: Terminology specifying changes to the study treatment as a result of
     an adverse event.
   :extensible: false
@@ -425,6 +425,43 @@
       :label: Dose Increased
       :tagged: []
     :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 01
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_01
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_01
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -544,6 +581,43 @@
       :label: Drug Withdrawn
       :tagged: []
     :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 02
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_02
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_02
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -663,6 +737,43 @@
       :label: Drug Withdrawn
       :tagged: []
     :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 03
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_03
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_03
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -708,7 +819,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000005
+    :identifier: ACNN
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -993,7 +1104,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C101865
+    :identifier: ACSPCAT
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -1114,7 +1225,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000008
+    :identifier: AECATEG
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -1700,7 +1811,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000011
+    :identifier: AEDICTV
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -2158,7 +2269,7 @@
 - :id: 
   :uri: {}
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-  :label: Relationship to Study Treatment Subset 01
+  :label: Relationship to Study Treatment
   :tagged:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
     :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
@@ -2183,7 +2294,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000012
+    :identifier: AERELA
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -2194,7 +2305,7 @@
   :last_change_date: '2016-01-01T00:00:00+00:00'
   :explanatory_comment: ''
   :identifier: SN000012
-  :notation: AERELA_01
+  :notation: AERELA
   :definition: Used to determine the relationship of Adverse Event to study treatment.
   :extensible: false
   :narrower:
@@ -2338,6 +2449,42 @@
       :label: Not Related
       :tagged: []
     :synonym: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Relationship to Study Treatment Subset 01
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzNiYTdkMWNjLTczMTgtNDYwMS1iNjVjLTY5MDU0YzRjNGQ4ZA==
+    :uri: http://www.assero.co.uk/CSN#3ba7d1cc-7318-4601-b65c-69054c4c4d8d
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: DC Stage
+    :description: Data capture stage
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: AERELA_01
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: SN000012
+  :notation: AERELA_01
+  :definition: Used to determine the relationship of Adverse Event to study treatment.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -2417,7 +2564,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C81223
+    :identifier: DATEFL
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -2571,7 +2718,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C99079
+    :identifier: EPOCH
     :version_label: ''
     :version: 1
     :semantic_version: ''

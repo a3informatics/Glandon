@@ -27,7 +27,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000116
+    :identifier: ABSCAT
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -178,7 +178,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000003
+    :identifier: ABTEST
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -1599,7 +1599,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000004
+    :identifier: ABTESTCD
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -3027,7 +3027,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C103459
+    :identifier: ACGC01TC
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -3118,7 +3118,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C103458
+    :identifier: ACGC01TN
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -3183,7 +3183,7 @@
 - :id: 
   :uri: {}
   :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
-  :label: Action Taken with Study Treatment Subset 03
+  :label: Action Taken with Study Treatment
   :tagged:
   - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QzODAxY2JiLTQ1YTEtNDk3OC04ZjBjLWEyNjQ3N2Y3MTk5Mg==
     :uri: http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992
@@ -3208,7 +3208,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: C66767
+    :identifier: ACN
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -3219,7 +3219,7 @@
   :last_change_date: '2016-01-01T00:00:00+00:00'
   :explanatory_comment: ''
   :identifier: C66767
-  :notation: ACN_03
+  :notation: ACN
   :definition: Terminology specifying changes to the study treatment as a result of
     an adverse event.
   :extensible: false
@@ -3533,6 +3533,43 @@
       :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
       :label: Unknown
       :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 01
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QzODAxY2JiLTQ1YTEtNDk3OC04ZjBjLWEyNjQ3N2Y3MTk5Mg==
+    :uri: http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: CRF GL Use
+    :description: CRF GL use
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_01
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_01
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -3686,6 +3723,43 @@
       :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
       :label: Not Applicable
       :tagged: []
+  :extends: 
+  :subsets: 
+  :preferred_term: 
+  :synonym: []
+  :is_ordered: 
+- :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+  :label: Action Taken with Study Treatment Subset 03
+  :tagged:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOI2QzODAxY2JiLTQ1YTEtNDk3OC04ZjBjLWEyNjQ3N2Y3MTk5Mg==
+    :uri: http://www.assero.co.uk/CSN#d3801cbb-45a1-4978-8f0c-a26477f71992
+    :rdf_type: http://www.assero.co.uk/ISO11179Concepts#ConceptSystemNode
+    :pref_label: CRF GL Use
+    :description: CRF GL use
+    :narrower: []
+  :has_state: 
+  :has_identifier:
+    :id: 
+    :uri: {}
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+    :identifier: ACN_03
+    :version_label: ''
+    :version: 1
+    :semantic_version: ''
+    :has_scope: 
+  :origin: ''
+  :change_description: ''
+  :creation_date: '2016-01-01T00:00:00+00:00'
+  :last_change_date: '2016-01-01T00:00:00+00:00'
+  :explanatory_comment: ''
+  :identifier: C66767
+  :notation: ACN_03
+  :definition: Terminology specifying changes to the study treatment as a result of
+    an adverse event.
+  :extensible: false
+  :narrower:
   - :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
@@ -3777,7 +3851,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000730
+    :identifier: ACNC
     :version_label: ''
     :version: 1
     :semantic_version: ''
@@ -4110,7 +4184,7 @@
     :id: 
     :uri: {}
     :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
-    :identifier: SN000005
+    :identifier: ACNN
     :version_label: ''
     :version: 1
     :semantic_version: ''

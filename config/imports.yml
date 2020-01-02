@@ -1460,13 +1460,21 @@ defaults: &defaults
               - "INACTIVE_F"
           columns: 
           - 
-            label: "CODELIST_CODE"
+            label: "CODELIST_SHORT_NAME"
             actions:
               -
                 method: create_parent
                 object: parent
                 klass: Thesaurus::ManagedConcept
                 map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          - 
+            label: "CODELIST_CODE"
+            actions:
               -
                 method: set_property
                 object: parent
@@ -1479,14 +1487,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
-          - 
-            label: "CODELIST_SHORT_NAME"
-            actions:
-              -
-                method: set_property
-                object: parent
-                property: notation
                 map: {}
           -
             label: "CODELIST_EXTENSIBLE"
@@ -1683,13 +1683,21 @@ defaults: &defaults
               - "INACTIVE_F"
           columns: 
           - 
-            label: "CODELIST_CODE"
+            label: "CODELIST_SHORT_NAME"
             actions:
               -
                 method: create_parent
                 object: parent
                 klass: Thesaurus::ManagedConcept
                 map: {}
+              -
+                method: set_property
+                object: parent
+                property: notation
+                map: {}
+          - 
+            label: "CODELIST_CODE"
+            actions:
               -
                 method: set_property
                 object: parent
@@ -1702,14 +1710,6 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
-                map: {}
-          - 
-            label: "CODELIST_SHORT_NAME"
-            actions:
-              -
-                method: set_property
-                object: parent
-                property: notation
                 map: {}
           -
             label: "CODELIST_EXTENSIBLE"
