@@ -19,7 +19,7 @@ describe Excel::SponsorTermFormatOneReader do
     expect(object.errors.count).to eq(0)
   end
 
-  it "process engine, no errors" do
+  it "process engine, version 2 no errors" do
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel::SponsorTermFormatOneReader.new(full_path) 
     object.check_and_process_sheet(:sponsor_term_format_one, :version_2)
@@ -27,6 +27,16 @@ describe Excel::SponsorTermFormatOneReader do
     expect(object.errors.count).to eq(0)
     result = object.engine.parent_set.map{|k,v| v.to_h}
     check_file_actual_expected(result, sub_dir, "check_and_process_sheet_expected_1.yaml", equate_method: :hash_equal)
+  end
+
+  it "process engine, version 3 no errors" do
+    full_path = test_file_path(sub_dir, "read_input_5.xlsx")
+    object = Excel::SponsorTermFormatOneReader.new(full_path) 
+    object.check_and_process_sheet(:sponsor_term_format_one, :version_3)
+    result = object.engine.parent_set
+    expect(object.errors.count).to eq(0)
+    result = object.engine.parent_set.map{|k,v| v.to_h}
+    check_file_actual_expected(result, sub_dir, "check_and_process_sheet_expected_2.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, various errors, version 2" do
@@ -43,7 +53,7 @@ describe Excel::SponsorTermFormatOneReader do
     object = Excel::SponsorTermFormatOneReader.new(full_path) 
     object.check_and_process_sheet(:sponsor_term_format_one, :version_3)
     result = object.engine.parent_set
-    expect(object.errors.count).to eq(17)
+    expect(object.errors.count).to eq(37)
     check_file_actual_expected(object.errors.full_messages, sub_dir, "read_errors_2.yaml", equate_method: :hash_equal)
   end
 

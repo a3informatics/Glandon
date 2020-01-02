@@ -123,8 +123,9 @@ class Excel::Engine
 
   # Column Not Blank?
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
+  # @param [Hash] params the parameters
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
   # @return [Boolean] true if not blank/empty, false otherwise
   def column_not_blank?(params)
     check_params(__method__.to_s, params, [:row, :col])
@@ -134,8 +135,8 @@ class Excel::Engine
   # Column Affirmative?
   #
   # @param [Hash] params the parameters
-  # @option params [Integer] row the cell row
-  # @option params [Integer] col the cell column
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
   # @return [Boolean] true if affirmative (boolean true), false otherwise
   def column_affirmative?(params)
     check_params(__method__.to_s, params, [:row, :col])
@@ -144,8 +145,8 @@ class Excel::Engine
 
   # Tag From Sheet Name
   #
-  # @param [Hash] params the parameters
-  # @option params [map] :map the mapping
+  # @param [Hash] params the parameters hash
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
   # @return [Array] the tags, an array of tags
   def tag_from_sheet_name(params)
     @tags = []
@@ -164,11 +165,12 @@ class Excel::Engine
     
   # Create Parent
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object. Not used 
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] klass the class name for the object being created
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :klass the class name for the object being created
   # @return [Void] no return
   def create_parent(params)
     check_params(__method__.to_s, params, [:row, :col, :map, :klass])
@@ -180,11 +182,12 @@ class Excel::Engine
 
   # Create Child
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object. Not used 
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] klass the class name for the object being created
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :klass the class name for the object being created
   # @return [Void] no return
   def create_child(params)
     check_params(__method__.to_s, params, [:row, :col, :klass])
@@ -194,11 +197,12 @@ class Excel::Engine
 
   # Create Item. Create an item identifier by the row number
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object. Not used 
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] klass the class name for the object being created
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :klass the class name for the object being created
   # @return [Void] no return
   def create_item(params)
     check_params(__method__.to_s, params, [:row, :col, :map, :klass])
@@ -230,10 +234,16 @@ class Excel::Engine
   # Set Column Tag
   #
   # @param [Hash] params the parameters hash
-  # @option params [Object] :object the object to tag
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [Hash] :additonal hash containing the tag path
   # @return [Void] no return
   def set_column_tag(params)
-    check_params(__method__.to_s, params, [:row, :col, :map, :object, :can_be_empty])
+    check_params(__method__.to_s, params, [:row, :col, :map, :object, :can_be_empty, :additional])
+    value = check_value(params[:row], params[:col], params[:can_be_empty])
+    return if value.blank? && params[:can_be_empty]
     value = check_mapped(params[:row], params[:col], params[:map])
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
@@ -243,12 +253,13 @@ class Excel::Engine
 
   # Set Property
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
-  # @param [Boolean] can_be_empty if true property can be blank.
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] o"bject the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank.
   # @return [Void] no return
   def set_property(params)
     check_params(__method__.to_s, params, [:row, :col, :object, :map, :property, :can_be_empty])
@@ -258,13 +269,14 @@ class Excel::Engine
 
   # Set Property With Default
   #
-  # @param [Integer] :row the cell row
-  # @param [Integer] :col the cell column
-  # @param [Object] :object the object in which the property is being set
-  # @param [Hash] :map the mapping from spreadsheet values to internal values
-  # @param [String] :property the name of the property
-  # @param [Boolean] :can_be_empty if true property can be blank
-  # @param [Hash] :additional a hash containing additional parameters, in this case the default string
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property
+  # @option params [Boolean] :can_be_empty if true property can be blank
+  # @option params [Hash] :additional a hash containing additional parameters, in this case the default string
   # @return [Void] no return
   def set_property_with_default(params)
     params[:can_be_empty] = true
@@ -350,11 +362,12 @@ class Excel::Engine
 
   # Create Classification
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property to be set
   # @return [Void] no return
   def create_classification(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object, :map])
@@ -379,11 +392,12 @@ class Excel::Engine
 
   # CT Reference. This takes the form '(NAME)'. The parethesis are stripped
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property to be set
   # @return [Void] no return
   def ct_reference(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])
@@ -392,11 +406,12 @@ class Excel::Engine
 
   # CT Other. Return text that is not a CT reference
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
-  # @param [Object] object the object in which the property is being set
-  # @param [Hash] map the mapping from spreadsheet values to internal values
-  # @param [String] property the name of the property
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Object] :object the object in which the property is being set
+  # @option params [Hash] :map the mapping from spreadsheet values to internal values
+  # @option params [String] :property the name of the property to be set
   # @return [Void] no return
   def ct_other(params)
     check_params(__method__.to_s, params, [:row, :col, :property, :object])

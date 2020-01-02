@@ -92,7 +92,7 @@ describe Excel::Engine do
     def add_tag(tag)
       @tagged << tag
     end
-    
+
   end
 
   class ParentClass < IsoManagedV2
@@ -392,15 +392,27 @@ describe Excel::Engine do
     expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_1"]).and_return({tag: "A"})
     expect(IsoConceptSystem).to receive(:path).with(["X", "Y", "tag_2"]).and_return(nil)
     result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
     expect(child.tagged).to eq([{:tag=>"A"}])
     child = ChildClass.new
-    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
     expect(child.tagged).to eq([])
+    child = ChildClass.new
+    result = object.set_column_tag({row: 3, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("Mapping of 'Yes' error detected in row 3 column 1.")
+    expect(child.tagged).to eq([])
+    parent.errors.clear
     child = ChildClass.new
     result = object.set_column_tag({row: 4, col: 1, object: child, map: {Y: "tag_1"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(3)
+    expect(parent.errors.full_messages.to_sentence).to eq("Empty cell detected in row 4 column 1., Empty cell detected in row 4 column 1., and Mapping of '' error detected in row 4 column 1.")
     expect(child.tagged).to eq([])
+    parent.errors.clear
     child = ChildClass.new
-    result = object.set_column_tag({row: 2, col: 1, object: child, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    result = object.set_column_tag({row: 4, col: 1, object: child, can_be_empty: true, map: {Y: "tag_2"}, additional: {path: ["X", "Y"]}})
+    expect(parent.errors.count).to eq(0)
     expect(child.tagged).to eq([])
   end
 

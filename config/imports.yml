@@ -1795,6 +1795,7 @@ defaults: &defaults
                 method: create_shared
                 object: child
                 property: preferred_term
+                can_be_empty: true
                 map: {}
                 condition: 
                   method: column_blank?
@@ -1809,44 +1810,124 @@ defaults: &defaults
             label: "CRFGL_USE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "CRF GL Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "CRF GL Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
           - 
             label: "SDTM_USE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "SDTM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "SDTM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
           - 
             label: "ADAM_USE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                map:
+                  "Y": "ADaM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                map:
+                  "Y": "ADaM Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
           - 
             label: "ED_USE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                can_be_empty: true
+                map:
+                  "Y": "ED Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                can_be_empty: true
+                map:
+                  "Y": "ED Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
           - 
             label: "STUDY_USE"
             actions: 
               -
-                method: set_tags
+                method: set_column_tag
+                object: parent
+                can_be_empty: true
+                map:
+                  "Y": "Study Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
+              -
+                method: set_column_tag
                 object: child
-                map: {}
+                can_be_empty: true
+                map:
+                  "Y": "Study Use"
+                  "N": ""
+                additional:
+                  path:
+                    - Process 
+                    - Use
           - 
             label: "INACTIVE_F"
-            actions: 
-              -
-                method: set_tags
-                object: child
-                map: {}
+            actions: []
 development:
   <<: *defaults
 

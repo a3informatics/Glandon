@@ -10,34 +10,70 @@
 	rdf:type owl:Ontology ;
 .
 :359a3f39-0920-44cb-b13c-e8bdf5fbd4b8
-	isoC:isTopConcept :0cf70d94-0f4e-4024-aa88-d0ccb921345f ;
+	isoC:isTopConcept :93cb31cf-7069-405c-903b-7c173b71444b ;
 .
-:0cf70d94-0f4e-4024-aa88-d0ccb921345f
+:93cb31cf-7069-405c-903b-7c173b71444b
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Process"^^xsd:string ;
 	isoC:description "Process related tags"^^xsd:string ;
-	isoC:narrower :fcd09b53-5c89-4089-8428-77d91c67d6e1 ;
+	isoC:narrower :f87b9fd6-e968-4d6d-9d6d-006feada747e ;
+	isoC:narrower :10f78422-be35-486b-94b5-d7ba7e107ff8 ;
 .
-:fcd09b53-5c89-4089-8428-77d91c67d6e1
+:f87b9fd6-e968-4d6d-9d6d-006feada747e
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "Stage"^^xsd:string ;
 	isoC:description "Stage related tags"^^xsd:string ;
-	isoC:narrower :d79061e3-d3f8-4979-ba08-80f636f2e77d ;
-	isoC:narrower :4f800764-0c6f-4aaf-aca3-50bac7958b5e ;
-	isoC:narrower :3d15f449-cb0a-4933-adce-a75c7c2a633a ;
+	isoC:narrower :3ba7d1cc-7318-4601-b65c-69054c4c4d8d ;
+	isoC:narrower :e98028d6-43d6-4d76-afcf-2f4ac831c59c ;
+	isoC:narrower :e6947095-2d9c-483d-ae19-3031ea066e00 ;
 .
-:d79061e3-d3f8-4979-ba08-80f636f2e77d
+:3ba7d1cc-7318-4601-b65c-69054c4c4d8d
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "DC Stage"^^xsd:string ;
 	isoC:description "Data capture stage"^^xsd:string ;
 .
-:4f800764-0c6f-4aaf-aca3-50bac7958b5e
+:e98028d6-43d6-4d76-afcf-2f4ac831c59c
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "SDTM Stage"^^xsd:string ;
 	isoC:description "SDTM stage"^^xsd:string ;
 .
-:3d15f449-cb0a-4933-adce-a75c7c2a633a
+:e6947095-2d9c-483d-ae19-3031ea066e00
 	rdf:type isoC:ConceptSystemNode ;
 	isoC:prefLabel "ADaM Stage"^^xsd:string ;
 	isoC:description "ADaM stage"^^xsd:string ;
+.
+:10f78422-be35-486b-94b5-d7ba7e107ff8
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Use"^^xsd:string ;
+	isoC:description "Use related tags"^^xsd:string ;
+	isoC:narrower :d3801cbb-45a1-4978-8f0c-a26477f71992 ;
+	isoC:narrower :fa6e9a48-c6cd-4f67-8501-bc88929c1c7e ;
+	isoC:narrower :b034af8f-ea43-4881-be4c-dbdf52f85771 ;
+	isoC:narrower :66cd369d-8f16-4b7e-82d2-fff19d30f719 ;
+	isoC:narrower :1647aa6d-8e46-4901-8632-dd5c8f779901 ;
+.
+:d3801cbb-45a1-4978-8f0c-a26477f71992
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "CRF GL Use"^^xsd:string ;
+	isoC:description "CRF GL use"^^xsd:string ;
+.
+:fa6e9a48-c6cd-4f67-8501-bc88929c1c7e
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "SDTM Use"^^xsd:string ;
+	isoC:description "SDTM use"^^xsd:string ;
+.
+:b034af8f-ea43-4881-be4c-dbdf52f85771
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "ADaM Use"^^xsd:string ;
+	isoC:description "ADaM use"^^xsd:string ;
+.
+:66cd369d-8f16-4b7e-82d2-fff19d30f719
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "ED Use"^^xsd:string ;
+	isoC:description "ED use"^^xsd:string ;
+.
+:1647aa6d-8e46-4901-8632-dd5c8f779901
+	rdf:type isoC:ConceptSystemNode ;
+	isoC:prefLabel "Study Use"^^xsd:string ;
+	isoC:description "Study use"^^xsd:string ;
 .
