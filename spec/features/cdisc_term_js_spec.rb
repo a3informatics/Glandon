@@ -56,6 +56,7 @@ describe "CDISC Term", :type => :feature do
     it "allows for several versions of CDISC Terminology (REQ-MDR-CT-010)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
+      wait_for_ajax(10)
       expect(page).to have_content '2015-12-18 Release'
       expect(page).to have_content '2015-09-25 Release'
       expect(page).to have_content '2015-06-26 Release'
@@ -65,7 +66,7 @@ describe "CDISC Term", :type => :feature do
     it "allows a CDISC Terminology version to be viewed (REQ-MDR-CT-031)", js:true do
       click_navbar_cdisc_terminology
       expect(page).to have_content 'History'
-      wait_for_ajax(7)
+      wait_for_ajax(10)
       context_menu_element("history", 5, "2015-06-26 Release", :show)
       expect(page).to have_content '2015-06-26 Release'
       ui_check_table_info("children_table", 1, 10, 504)
