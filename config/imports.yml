@@ -1523,18 +1523,20 @@ defaults: &defaults
                 property: notation
                 map: {}
               -
-                method: set_property
+                method: create_shared
                 object: child
                 property: preferred_term
                 map: {}
                 condition: 
                   method: column_blank?
-                  column: 8
+                  column: 
+                    - 8
+                    - 12
           - 
             label: "DECODE"
             actions: 
               -
-                method: set_property
+                method: create_shared
                 object: child
                 property: preferred_term
                 can_be_empty: true
@@ -1565,7 +1567,16 @@ defaults: &defaults
             actions: []
           - 
             label: "CRF_DISPLAY_VALUE"
-            actions: []
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                can_be_empty: true
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
           - 
             label: "DISPLAY_ORDER"
             actions:  []
@@ -1735,18 +1746,20 @@ defaults: &defaults
                 property: notation
                 map: {}
               -
-                method: set_property
+                method: create_shared
                 object: child
                 property: preferred_term
                 map: {}
                 condition: 
                   method: column_blank?
-                  column: 8
+                  column: 
+                    - 8
+                    - 12
           - 
             label: "DECODE"
             actions: 
               -
-                method: set_property
+                method: create_shared
                 object: child
                 property: preferred_term
                 can_be_empty: true
@@ -1777,7 +1790,15 @@ defaults: &defaults
             actions: []
           - 
             label: "CRF_DISPLAY_VALUE"
-            actions: []
+            actions:
+              -
+                method: create_shared
+                object: child
+                property: preferred_term
+                map: {}
+                condition: 
+                  method: column_blank?
+                  column: 8
           - 
             label: "DISPLAY_ORDER"
             actions: []

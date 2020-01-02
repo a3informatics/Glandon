@@ -89,6 +89,10 @@ describe Excel::Engine do
       return result
     end
 
+    def add_tag(tag)
+      @tagged << tag
+    end
+    
   end
 
   class ParentClass < IsoManagedV2
@@ -186,7 +190,7 @@ describe Excel::Engine do
   end
 
   it "checks a cell for blank and not blank" do
-    full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
+    full_path = test_file_path(sub_dir, "check_values_input_4.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
@@ -201,6 +205,15 @@ describe Excel::Engine do
     expect(parent.errors.count).to eq(0)
     result = object.column_not_blank?({row: 4, col: 2})
     expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 2, col: [2, 3]})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 3, col: [2, 3]})
+    expect(result).to eq(false)
+    expect(parent.errors.count).to eq(0)
+    result = object.column_blank?({row: 4, col: [2, 3]})
+    expect(result).to eq(true)
     expect(parent.errors.count).to eq(0)
   end
 

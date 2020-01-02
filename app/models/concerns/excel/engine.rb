@@ -108,12 +108,17 @@ class Excel::Engine
 
   # Column Blank?
   #
-  # @param [Integer] row the cell row
-  # @param [Integer] col the cell column
+  # @param [Hash] params the params hash
+  # @param params [Integer] :row row the cell row
+  # @param params [Integer|Array] :col the cell column(s), can be single or an array
   # @return [Boolean] true if blank/empty, false otherwise
   def column_blank?(params)
     check_params(__method__.to_s, params, [:row, :col])
-    return cell_empty?(params[:row], params[:col])
+    cols = params[:col].is_a?(Array) ? params[:col] : [params[:col]]
+    cols.each do |col|
+      return false if !cell_empty?(params[:row], col)
+    end
+    true
   end
 
   # Column Not Blank?
@@ -233,7 +238,6 @@ class Excel::Engine
     return if value.blank?
     tag = find_tag(params[:additional][:path], value)
     return if tag.nil?
-#byebug if params[:object].class.to_s=="Thesaurus::UnmanagedConcept"
     params[:object].add_tag(tag)
   end
 
