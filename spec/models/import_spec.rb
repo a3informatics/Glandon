@@ -56,7 +56,7 @@ describe Import do
       {
         description: "Import of Something",
         parent_klass: Other,
-        reader_klass: Excel::AdamIgReader,
+        reader_klass: Excel,
         import_type: :TYPE,
         sheet_name: :main,
         version_label: :semantic_version,
@@ -79,7 +79,7 @@ describe Import do
       {
         description: "Import of Something",
         parent_klass: Other,
-        reader_klass: Excel::AdamIgReader,
+        reader_klass: Excel,
         import_type: :TYPE,
         sheet_name: :main,
         version_label: :date,
@@ -117,6 +117,11 @@ describe Import do
     delete_all_public_test_files
   end
 
+  it "returns configuration" do
+    expect(Import.configuration).to eq({})
+    expect(Import.new.configuration).to eq({})
+  end
+  
   it "generates the import list" do
     results = Import.list
   #Xwrite_yaml_file(results, sub_dir, "import_list_1.yaml")

@@ -123,7 +123,7 @@ class Import < ActiveRecord::Base
   def save_exception(e, msg)
     text = "#{msg}\n#{e}\n#{e.backtrace}"
     self.update(output_file: "", error_file: ImportFileHelpers.save_errors([text], "#{configuration[:import_type]}_#{self.id}_errors.yml"), success: false)
-    ConsoleLogger::log(self.class::C_CLASS_NAME, __method__.to_s, text)
+    ConsoleLogger::log(self.class.name, __method__.to_s, text)
   end
 
   # Description. Formatted description of the import
@@ -158,6 +158,20 @@ class Import < ActiveRecord::Base
   # @return [String] file type as a string
   def self.file_type_humanize(value)
     return %W(Excel ODM ALS)[value]
+  end
+
+  # Configuration. Sets the parameters for the import, class version
+  # 
+  # @return [Hash] the configuration hash
+  def self.configuration
+    {}
+  end
+
+  # Configuration. Sets the parameters for the import, instance version
+  # 
+  # @return [Hash] the configuration hash
+  def configuration
+    self.class.configuration
   end
 
 private

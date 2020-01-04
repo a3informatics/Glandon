@@ -33,41 +33,39 @@ describe "Import::CdiscTerm" do
     delete_all_public_test_files
   end
 
-  it "returns the configuation" do
+  it "returns the configuration" do
     expected =
     {
       description: "Import of CDISC Terminology",
       parent_klass: ::CdiscTerm,
-      reader_klass: Excel::CdiscTermReader,
+      reader_klass: Excel,
       import_type: :cdisc_term,
-      sheet_name: :sheet,
       version_label: :date,
-      label: "Controlled Terminology"
+      label: "Controlled Terminology",
+      format: :format
     }
     expect(Import::CdiscTerm.configuration).to eq(expected)
+    expect(Import::CdiscTerm.new.configuration).to eq(expected)
   end
 
   it "sets the correct format" do
     object = Import::CdiscTerm.new
-    expect(object.sheet({date: "01/01/2000"})).to eq(:version_1)
-    expect(object.sheet({date: "30/04/2007"})).to eq(:version_1)
-    expect(object.sheet({date: "01/05/2007"})).to eq(:version_2)
-    expect(object.sheet({date: "31/08/2008"})).to eq(:version_2)
-    expect(object.sheet({date: "01/09/2008"})).to eq(:version_3)
-    expect(object.sheet({date: "30/04/2009"})).to eq(:version_3)
-    expect(object.sheet({date: "01/05/2009"})).to eq(:version_4)
-    expect(object.sheet({date: "31/03/2010"})).to eq(:version_4)
-    expect(object.sheet({date: "01/04/2010"})).to eq(:version_5)
-    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_5)
-    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_5) # Future date
+    expect(object.format({date: "01/01/2000"})).to eq(:version_1)
+    expect(object.format({date: "30/04/2007"})).to eq(:version_1)
+    expect(object.format({date: "01/05/2007"})).to eq(:version_2)
+    expect(object.format({date: "31/08/2008"})).to eq(:version_2)
+    expect(object.format({date: "01/09/2008"})).to eq(:version_3)
+    expect(object.format({date: "30/04/2009"})).to eq(:version_3)
+    expect(object.format({date: "01/05/2009"})).to eq(:version_4)
+    expect(object.format({date: "31/03/2010"})).to eq(:version_4)
+    expect(object.format({date: "01/04/2010"})).to eq(:version_5)
+    expect(object.format({date: DateTime.now.to_date})).to eq(:version_5)
+    expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_5) # Future date
   end
 
   it "import, no errors" do
     full_path = test_file_path(sub_dir, "import_input_1a.xlsx")
-    params = 
-    {
-      version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job
-    }
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "CDASH Test", semantic_version: "1.1.1", job: @job}
     result = @object.import(params)
     filename = "cdisc_term_#{@object.id}_errors.yml"
     expect(public_file_does_not_exist?("test", filename)).to eq(true)

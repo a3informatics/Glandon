@@ -21,32 +21,11 @@ class CdiscTerm < Thesaurus
     ::CdiscCl
   end
 
-  # Configuration
+  # Identifier
   #
   # @return [Hash] the configuration hash
-  def self.configuration
-    #schema_namespace = Namespaces.namespace(:iso25964)
-    { 
-      #schema_namespace: schema_namespace,
-      #instance_namespace: Namespaces.namespace(:mdrTH),
-      #cid_prefix: "TH",
-      #rdf_type: Uri.new({namespace: schema_namespace, fragment: "Thesaurus"})
-      identifier: C_IDENTIFIER
-    }
-  end
-
-  # Configuration
-  #
-  # @return [Hash] the configuration hash
-  def configuration
-    self.class.configuration
-  end
-
-  def add(item, ordinal)
-    ref = OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
-    ref.uri = ref.create_uri(self.uri)
-    self.is_top_concept_reference << ref
-    self.is_top_concept << item.uri
+  def self.identifier
+    C_IDENTIFIER
   end
 
   # Version Dates. Get set of version dates

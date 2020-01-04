@@ -14,6 +14,28 @@ class Thesaurus <  IsoManagedV2
   include Thesaurus::Search
   include Thesaurus::Where
 
+  @@owner_ra = nil
+
+  # Owner
+  #
+  # @return [IsoRegistrationAuthority] the owner
+  def self.owner
+    return @@owner_ra if !@@owner_ra.nil?
+    @@owner_ra = IsoRegistrationAuthority.owner
+    @@owner_ra.freeze
+  end
+
+  def self.child_klass
+    Thesaurus::ManagedConcept
+  end
+
+  def add(item, ordinal)
+    ref = OperationalReferenceV3::TcReference.new(ordinal: ordinal, reference: item.uri)
+    ref.uri = ref.create_uri(self.uri)
+    self.is_top_concept_reference << ref
+    self.is_top_concept << item.uri
+  end
+
   # Where Full. Full where search of the managed item. Will find within children via paths that are not excluded.
   #
   # @return [Array] Array of URIs

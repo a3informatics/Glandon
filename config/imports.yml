@@ -562,12 +562,14 @@ defaults: &defaults
               - "Code"
               - "Codelist Code"
               - "Codelist Extensible (Yes/No)"
-              - "Codelist Name" 
-              - "CDISC Value"
-              - "NCI Preferred Term"
+              - "Codelist Name"
+              - "CDISC Submission Value" 
+              - "CDISC Preferred Term"
+              - "CDISC Synonym(s)"
               - "CDISC Definition"
-              - "CDISC Synonym(s) (where applicable)"
-              - Pre-release/ Production
+              - "NCI Preferred Term"
+              - "Pre-release/ Production"
+              - "Notes (Reference for CDISC PT)"
           columns: 
           - 
             label: "Code"
@@ -750,10 +752,10 @@ defaults: &defaults
                   method: column_blank?
                   column: 3
           -
-            label: Pre-release/ Production
+            label: "Pre-release/ Production"
             actions: []
           -
-            label: Notes (Reference for CDISC PT)
+            label: "Notes (Reference for CDISC PT)"
             actions: []
         version_3:
           selection:
