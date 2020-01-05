@@ -256,23 +256,41 @@ describe Excel::Engine do
     expect(result).to eq("2")
   end
 
-  it "checks a condition" do
+  it "checks a cell, empty, permitted to be empty" do
     full_path = test_file_path(sub_dir, "check_values_input_1.xlsx")
     workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
     parent = EET1Class.new
     object = Excel::Engine.new(parent, workbook) 
-    result = object.process_action?({method: :column_blank?, column: 1}, 4)
-    expect(result).to eq(false)
+    result = object.check_value(4, 2, true)
+    expect(result).to eq("")
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_not_blank?, column: 1}, 4)
-    expect(result).to eq(true)
+  end
+
+  it "checks a C code" do
+    full_path = test_file_path(sub_dir, "check_values_input_5.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(object.c_code?(row: 2, col: 1)).to eq(true)
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_blank?, column: 2}, 4)
-    expect(result).to eq(true)
+    expect(object.c_code?(row: 11, col: 1)).to eq(false)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages.to_sentence).to eq("C Code 'C12X' error detected in row 11 column 1.")
+  end
+
+  it "checks regex" do
+    full_path = test_file_path(sub_dir, "check_values_input_5.xlsx")
+    workbook = Roo::Spreadsheet.open(full_path.to_s, extension: :xlsx) 
+    parent = EET1Class.new
+    object = Excel::Engine.new(parent, workbook) 
+    expect(object.regex?(row: 2, col: 1, additional: {regex: "\\AC[0-9]{3,6}\\z"})).to eq(true)
     expect(parent.errors.count).to eq(0)
-    result = object.process_action?({method: :column_not_blank?, column: 2}, 4)
-    expect(result).to eq(false)
-    expect(parent.errors.count).to eq(0)
+    expect(object.regex?(row: 11, col: 1, additional: {regex: "\\AC[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(1)
+    expect(parent.errors.full_messages[0]).to eq("Format of 'C12X' error detected in row 11 column 1.")
+    expect(object.regex?(row: 9, col: 1, additional: {regex: "\\AS[0-9]{6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(2)
+    expect(parent.errors.full_messages[1]).to eq("Format of 'S1234567' error detected in row 9 column 1.")
   end
 
   it "checks row condition" do

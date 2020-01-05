@@ -57,8 +57,6 @@ class Excel::Engine
               create_item(params) {|result| parent = result}
             elsif action_method == :ordinal
               params[:object].send("#{action[:property]}=", parent.children.count)
-            elsif action_method == :c_code?
-              c_code?(row, col)
             else
               self.send(action[:method], params)
             end
@@ -419,6 +417,37 @@ class Excel::Engine
     params[:object].instance_variable_set("@#{params[:property]}", value)
   end
 
+  # C Code? Valid C Code?
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @return [boolean] true if valid, false otherwise
+  def c_code?(params)
+    check_params(__method__.to_s, params, [:row, :col])
+    value = check_value(params[:row], params[:col])
+    return true if NciThesaurusUtility.c_code?(value)
+    @errors.add(:base, "C Code '#{value}' error detected in row #{params[:row]} column #{params[:col]}.")
+    false
+  end
+
+  # Regex? Valid Regular expression?
+  #
+  # @param [Hash] params the parameters hash
+  # @option params [Integer] :row the cell row
+  # @option params [Integer] :col the cell column
+  # @option params [Hash] :additonal hash containing the regular expression
+  # @return [boolean] true if valid, false otherwise
+  def regex?(params)
+    check_params(__method__.to_s, params, [:row, :col, :additional])
+    regex = Regexp.new(params[:additional][:regex])
+    value = check_value(params[:row], params[:col])
+    result = regex.match value
+    return true if !result.nil?
+    @errors.add(:base, "Format of '#{value}' error detected in row #{params[:row]} column #{params[:col]}.")
+    false
+  end
+
   # Check Value
   #
   # @param [Integer] row the cell row
@@ -508,13 +537,6 @@ private
     return temp
   rescue => e 
     return ""
-  end
-
-  # Check C Code
-  def c_code?(row, col)
-    value = check_value(row, col)
-    return if NciThesaurusUtility.c_code?(value)
-    @errors.add(:base, "C Code '#{value}' error detected in row #{row} column #{col}.")
   end
 
   # Check mapped cell
