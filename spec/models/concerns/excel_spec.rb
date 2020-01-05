@@ -9,27 +9,27 @@ describe Excel do
   end
 
   def sheet_definition_1
-    {sheet: {actions: [], header_row: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}, selection: {label: "First"}, columns: []}
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}
   end
 
   def sheet_definition_2
-    {sheet: {actions: [], header_row: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}, selection: {label: "irs"}, columns: []}
+    {selection: {label: "irs"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}
   end
 
   def sheet_definition_error_1
-    {sheet: {actions: [] }, selection: {label: "First"}, columns: []}
+    {selection: {label: "First"}}
   end
 
   def sheet_definition_error_2
-    {sheet: {actions: [], header_row: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]}, selection: {label: "First"}, columns: []}
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN", "EXTRA"]}
   end
 
   def sheet_definition_error_3
-    {sheet: {actions: [], header_row: ["NOT EMPTY", "CAN BE EMPTY"]}, selection: {label: "First"}, columns: []}
+    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY"]}
   end
 
   def sheet_definition_error_4
-    {sheet: {actions: [], header_row: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]}, selection: {label: "First"}, columns: []}
+    {selection: {label: "First"}, columns: ["NOT EMPTYXXX", "CAN BE EMPTY", "THIRD COLUMN"]}
   end
 
   before :each do
@@ -64,6 +64,7 @@ describe Excel do
     expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_1)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
+byebug
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)

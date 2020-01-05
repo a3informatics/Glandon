@@ -1478,6 +1478,11 @@ defaults: &defaults
             label: "CODELIST_CODE"
             actions:
               -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
                 method: set_property
                 object: parent
                 property: identifier
@@ -1511,6 +1516,11 @@ defaults: &defaults
           - 
             label: "CODE"
             actions: 
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
               -
                 method: create_child
                 object: child
@@ -1701,6 +1711,11 @@ defaults: &defaults
             label: "CODELIST_CODE"
             actions:
               -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"
+              -
                 method: set_property
                 object: parent
                 property: identifier
@@ -1734,6 +1749,11 @@ defaults: &defaults
           - 
             label: "CODE"
             actions: 
+              -
+                method: regex?
+                object: NA
+                additional: 
+                  regex: "\\AS[0-9]{6}|SC[0-9]{3,6}|C[0-9]{3,6}\\z"
               -
                 method: create_child
                 object: child

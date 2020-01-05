@@ -291,6 +291,14 @@ describe Excel::Engine do
     expect(object.regex?(row: 9, col: 1, additional: {regex: "\\AS[0-9]{6}\\z"})).to eq(false)
     expect(parent.errors.count).to eq(2)
     expect(parent.errors.full_messages[1]).to eq("Format of 'S1234567' error detected in row 9 column 1.")
+    expect(object.regex?(row: 3, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(true)
+    expect(object.regex?(row: 5, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(true)
+    expect(object.regex?(row: 10, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(3)
+    expect(parent.errors.full_messages[2]).to eq("Format of 'SN123' error detected in row 10 column 1.")
+    expect(object.regex?(row: 11, col: 1, additional: {regex: "\\ASN[0-9]{6}|C[0-9]{3,6}\\z"})).to eq(false)
+    expect(parent.errors.count).to eq(4)
+    expect(parent.errors.full_messages[3]).to eq("Format of 'C12X' error detected in row 11 column 1.")
   end
 
   it "checks row condition" do

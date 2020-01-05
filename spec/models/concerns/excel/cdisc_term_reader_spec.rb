@@ -23,8 +23,9 @@ describe "Cdisc Term Reader" do
     full_path = test_file_path(sub_dir, "read_input_1.xlsx")
     object = Excel.new(full_path) 
     object.check_and_process_sheet(:cdisc_term, :version_5)
-    result = object.engine.parent_set
     expect(object.errors.count).to eq(0)
+    result = object.engine.parent_set.map{|k,v| v.to_h}
+    check_file_actual_expected(result, sub_dir, "check_and_process_sheet_expected_1.yaml", equate_method: :hash_equal)
   end
 
   it "process engine, various errors" do
