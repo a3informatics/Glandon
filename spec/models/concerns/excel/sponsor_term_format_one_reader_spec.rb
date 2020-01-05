@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Excel::SponsorTermFormatOneReader do
+describe "Sponsor Term Format One Reader" do
 	
 	include DataHelpers
 

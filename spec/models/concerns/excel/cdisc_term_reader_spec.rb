@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Excel::CdiscTermReader do
+describe "Cdisc Term Reader" do
 	
 	include DataHelpers
 
