@@ -17,7 +17,7 @@ describe Excel do
   end
 
   def sheet_definition_error_1
-    {selection: {label: "First"}, columns: ["NOT EMPTY", "CAN BE EMPTY", "THIRD COLUMN"]}
+    {sheet: {actions: [] }, selection: {label: "First"}, columns: []}
   end
 
   def sheet_definition_error_2

@@ -50,7 +50,7 @@ class Excel
   def check_sheet(import, sheet)
     headers = []
     info = select_sheet(import, sheet)
-    columns = info.dig(:columns)
+    columns = info.dig(:sheet, :header_row)
     if columns.nil?
       @errors.add(:base, 
         "#{info[:selection][:label]} sheet in the excel file, no column list found.")

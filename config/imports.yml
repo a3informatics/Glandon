@@ -2207,24 +2207,32 @@ test:
         sheet_1:
           selection:
             label: hee # Note short name
+          sheet: 
+            header_row: []
           columns: [] 
     test_5:
       sheets: 
         sheet_1:
           selection:
             date: true
+          sheet: 
+            header_row: []
           columns: [] 
     test_6:
       sheets: 
         sheet_1:
           selection:
             first: true
+          sheet: 
+            header_row: []
           columns: [] 
     test_7:
       sheets: 
         sheet_1:
           selection:
             wrong: method
+          sheet: 
+            header_row: []
           columns: [] 
     test_8:
       sheets: 
@@ -2235,4 +2243,6 @@ test:
             condition:
               method: column_affirmative?
               column: 3 
+          sheet: 
+            header_row: []
           columns: [] 
