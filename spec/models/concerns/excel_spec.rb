@@ -64,7 +64,6 @@ describe Excel do
     expect_any_instance_of(Excel::Engine).to receive(:sheet_info).with(:test, :something).and_return(sheet_definition_error_1)
     full_path = test_file_path(sub_dir, "check_sheets_input_1.xlsx")
     object = Excel.new(full_path)
-byebug
     result = object.check_sheet(:test, :something)
     expect(result).to eq(false)
     expect(object.errors.count).to eq(1)
