@@ -2,11 +2,11 @@ $(document).ready(function() {
 
   var csvp = new ConceptSystemViewPanel(conceptSystemId, 100, nodeSelected);
   var imtlp = new IsoManagedTagListPanel(isoManagedId, isoManagedNamespace);
-  var imlop = new IsoManagedListOldPanel();
+  var icl = new IsoConceptList();
 
   function nodeSelected(data) {
     imtlp.selected(data);
-    imlop.refresh(data.id, data.namespace);
+    icl.refresh(data.id);
   }
 
   // Set window resize.

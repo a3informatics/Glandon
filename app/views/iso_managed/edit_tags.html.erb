@@ -1,4 +1,6 @@
-<%= stylesheet_link_tag    'd3_tree_rect_v2', 'custom/tags_v2' %>
+<%= javascript_tag 'setPageTitle("Edit tags")' %>
+
+<%= stylesheet_link_tag    'd3_tree_rect_v2', 'custom/tags_v2', 'shared/datatables_loading' %>
 <%= javascript_include_tag 'shared/tags', 'd3_tree_rect_v2', 'd3_editor_new', 'shared/iso_concept_systems/concept_system_view_panel_v2', 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
@@ -44,19 +46,7 @@
         Item List
       </div>
       <div class="card-content">
-        <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-          <thead>
-              <tr>
-                  <th>Identifier</th>
-                  <th>Label</th>
-                  <th>Version</th>
-                  <th>Version Label</th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>
       </div>
     </div>
   </div>

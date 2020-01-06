@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Tags")' %>
 <%= stylesheet_link_tag    'd3_tree_rect_v2', 'custom/tags_v2', 'shared/datatables_loading', 'custom/wide_header_card'%>
 <%= javascript_include_tag 'shared/tags', 'd3_tree_rect_v2', 'd3_editor_new', 'iso_concept_systems/index', 'shared/iso_concept_systems/concept_system_view_panel_v2',
-                           'iso_managed_list_v2', 'managed_tags_panel_v2' %>
+                           'managed_tags_panel_v2' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -50,20 +50,8 @@
       <% end %>
       <div id="iso_managed_panel" class="col-md-12 card wide">
             <div class="card-header">Item List</div>
-        <div class="card-content table-cardstyle">
-          <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th class="fit">Identifier</th>
-                    <th>Label</th>
-                    <th class="fit">Version</th>
-                    <th class="fit">Version Label</th>
-                    <th class="fit"></th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+        <div class="card-content">
+          <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>
         </div>
       </div>
     </div>

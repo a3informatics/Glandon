@@ -2,11 +2,11 @@ $(document).ready(function() {
 
   var csvp = new ConceptSystemViewPanel(conceptSystemId, 100, nodeSelected);
   var mtp = new ManagedTagsPanel(nodeAction);
-  var imlop = new IsoManagedListOldPanel();
+  var icl = new IsoConceptList();
 
   function nodeSelected(data) {
     mtp.show(data);
-    imlop.refresh(data.id);
+    icl.refresh(data.id);
   }
 
   function nodeAction(data) {
