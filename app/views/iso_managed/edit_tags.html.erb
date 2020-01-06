@@ -41,14 +41,6 @@
         </div>
       </div>
     </div>
-    <div id="iso_managed_panel" class="col-md-12 card narrow">
-      <div class="card-header">
-        Tagged Items List
-      </div>
-      <div class="card-content">
-        <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>
-      </div>
-    </div>
   </div>
   <input type="hidden" id="id" value="<%= @iso_managed.id %>">
   <input type="hidden" id="namespace" value="<%= @iso_managed.uri.namespace %>" %>
