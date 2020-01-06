@@ -23,9 +23,8 @@ class IsoManagedV2Controller < ApplicationController
 
   def make_current
     authorize IsoManaged, :update?
-    managed_item = IsoManagedV2.find_minimum(params[:id])
-    clear_current(the_params[:current_id])
-    managed_item.has_state.make_current
+    managed_item = get_item(params)
+    managed_item.make_current
     redirect_to request.referer
   end
 
@@ -65,15 +64,6 @@ private
     rdf_type = IsoManagedV2.the_type(uri)
     klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
     klass.find_minimum(params[:id])
-  end
-
-  def clear_current(current_id)
-    return false if current_id.blank?
-    current_item = IsoManagedV2.find_minimum(current_id)
-    current_item.has_state.make_not_current
-    true
-  rescue Errors::NotFoundError => e
-    false
   end
 
   def the_params

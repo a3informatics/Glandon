@@ -282,7 +282,7 @@ module Fuseki
         return object if object.is_a? Uri
         result = object.uri if object.respond_to?(:uri)
         return result if !result.nil?
-        Errors.application_error(self.class.name, __method__.to_s, "The URI for an object has not been set or cannot be accessed: #{object.to_h}")
+        Errors.application_error(self.class.name, __method__.to_s, "The URI for an object for property #{@name} has not been set or cannot be accessed: #{object.to_h}")
       end
 
     end

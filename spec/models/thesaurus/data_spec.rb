@@ -99,14 +99,20 @@ describe Thesaurus::ManagedConcept do
           definition: "So so late",
           notation: "SO SO LATE"
         })
+      @tc_1a.preferred_term = Thesaurus::PreferredTerm.new(label: "Very very late")
+      cdisc_uri = Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768")
+      cdisc = Thesaurus::ManagedConcept.find_with_properties(cdisc_uri)
+      cdisc.narrower_objects
+      @tc_1.narrower = cdisc.narrower
       @tc_1.narrower << @tc_1a
-      @tc_1.extends = Uri.new(uri: "http://www.cdisc.org/C99079/V28#C99079")
+      @tc_1.extends = cdisc_uri
       @tc_1.set_initial(@tc_1.identifier)
     end
 
     before :all do
       data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
       load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
     end
 
     after :all do
@@ -128,7 +134,7 @@ describe Thesaurus::ManagedConcept do
       tc = Thesaurus::ManagedConcept.find_with_properties(uri)
       tc.extends_links
       expect(tc.identifier).to eq("A00001")
-      expect(tc.extends.to_s).to eq("http://www.cdisc.org/C99079/V28#C99079")
+      expect(tc.extends.to_s).to eq("http://www.cdisc.org/C66768/V2#C66768")
     end
 
   end

@@ -460,6 +460,7 @@ describe Thesauri::ManagedConceptsController do
       expect(assigns(:subset_mc).id).to eq(sub_mc.id)
       expect(assigns(:source_mc).id).to eq(sub_mc.subsets_links.to_id)
       expect(assigns(:subset).uri.to_id).to eq(sub_mc.is_ordered.uri.to_id)
+      expect(assigns(:close_path)).to eq(history_thesauri_managed_concepts_path({managed_concept: {identifier: sub_mc.scoped_identifier, scope_id: sub_mc.scope}}))
       expect(assigns(:token)).to_not eq(nil)
       expect(response).to render_template("edit_subset")
     end

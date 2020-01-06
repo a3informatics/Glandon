@@ -117,6 +117,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 :TH_SI
@@ -533,6 +534,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C71148/V7#C71148_SI>

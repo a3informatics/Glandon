@@ -213,14 +213,14 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2009
       { size: -1 }, { size: -1 }, { size: 4190+134+26 }, { size: -1 }, { size: -1 },                                    # 2010
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                             # 2011
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: 6781+28+134+2305}, { size: -1 },                                # 2012
-      { size: -1 }, { size: -1 }, { size: 7334+3689+134+28 }, { size: -1 },                                             # 2013
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 9524+5921+134+37 },                               # 2014
-      { size: -1 }, { size: -1 }, { size: -1 }, { size: 17356+134+40 },                                                 # 2015
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: 10142}, { size: -1 },                                           # 2012
+      { size: -1 }, { size: -1 }, { size: 12963 }, { size: -1 },                                                        # 2013
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 }, { size: 16593 },                                          # 2014
+      { size: -1 }, { size: -1 }, { size: -1 }, { size: 19065 },                                                        # 2015
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2016
-      { size: -1 }, { size: 21977+223+45-87 }, { size: -1 }, { size: -1 },                                              # 2017
+      { size: -1 }, { size: 24291 }, { size: -1 }, { size: -1 },                                                        # 2017
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2018
-      { size: 28590+289+50-155 }, { size: 29095+293+50-159 }, { size: -1 }                                              # 2019
+      { size: 31267 }, { size: 31934 }, { size: -1 }                                                                    # 2019
     ]
   
     @version_to_tags_map =

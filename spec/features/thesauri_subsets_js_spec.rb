@@ -250,19 +250,17 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
 
-      expect(page).to have_content 'Error raised editting a subset. Can only handle draft versions in this release.'
-
-      # wait_for_ajax(10)
-      # sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
-      # page.find("#imh_header")[:class].include?("warning")
-      # page.find("#timeout").click
-      # wait_for_ajax(120)
-      # expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
-      # sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
-      # page.find("#imh_header")[:class].include?("danger")
-      # sleep 28
-      # page.find("#timeout")[:class].include?("disabled")
-      # page.find("#imh_header")[:class].include?("danger")
+      wait_for_ajax(10)
+      sleep Token.get_timeout - @user_c.edit_lock_warning.to_i + 2
+      page.find("#imh_header")[:class].include?("warning")
+      page.find("#timeout").click
+      wait_for_ajax(120)
+      expect(page.find("#imh_header")[:class]).to eq("col-md-12 card")
+      sleep Token.get_timeout - (@user_c.edit_lock_warning.to_i / 2) + 2
+      page.find("#imh_header")[:class].include?("danger")
+      sleep 28
+      page.find("#timeout")[:class].include?("disabled")
+      page.find("#imh_header")[:class].include?("danger")
     end
 
     it "allows to edit a subset, add, remove and move_after item", js:true do
@@ -278,22 +276,21 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
 
-      expect(page).to have_content 'Error raised editting a subset. Can only handle draft versions in this release.'
-
-      # wait_for_ajax(120)
-      # find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
-      # wait_for_ajax(120)
-      # ui_check_table_cell("subset_children_table", 4, 2, "Day Times Femtogram per Milliliter\nday*fg/mL (C85583)")
-      # ui_check_table_cell("subset_children_table", 3, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
-      # source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[1]")
-      # target = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[2]")
-      # source.drag_to(target)
-      # wait_for_ajax(10)
-      # ui_check_table_cell("subset_children_table", 2, 2, "Day Times Gram per Milliliter\nday*g/mL (C85584)")
-      # find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
-      # find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
-      # wait_for_ajax(10)
-      # ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
+      wait_for_ajax(120)
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      wait_for_ajax(120)
+      ui_check_table_cell("subset_children_table", 3, 2, "Day Times Mole per Milliliter\nday*mol/mL (C85590)")
+      ui_check_table_cell("subset_children_table", 4, 2, "Day Times Femtogram per Milliliter\nday*fg/mL (C85583)")
+      source = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[1]")
+      target = page.find(:xpath, "//*[@id='subset_children_table']/tbody/tr[2]")
+      source.drag_to(target)
+      wait_for_ajax(10)
+      ui_check_table_cell("subset_children_table", 1, 2, "Day Times Gram per Milliliter\nday*g/mL (C85584)")
+      ui_check_table_cell("subset_children_table", 2, 2, "Day Times Kilogram per Milliliter\nday*kg/mL (C85585)")
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[4]/td").click
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      wait_for_ajax(10)
+      ui_check_table_cell("subset_children_table", 4, 2, "Day Times Microgram per Milliliter\nday*ug/mL (C85586)")
     end
 
     it "prevents add, remove and move item in subset, when token expires", js:true do
@@ -309,11 +306,9 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
       
-      expect(page).to have_content 'Error raised editting a subset. Can only handle draft versions in this release.'
-
-      # sleep 13
-      # find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
-      # expect(page).to have_content("The edit lock has timed out.")
+      sleep 13
+      find(:xpath, "//*[@id='source_children_table']/tbody/tr[1]/td").click
+      expect(page).to have_content("The edit lock has timed out.")
     end
 
     it "clears token when leaving page", js:true do
@@ -329,14 +324,12 @@ describe "Thesauri Subsets", :type => :feature do
       context_menu_element_header(:subsets)
       context_menu_element("ssIndexTable", 3, "PK Parameter Units of Measure", :edit)
 
-      expect(page).to have_content 'Error raised editting a subset. Can only handle draft versions in this release.'
-
-      # expect(page).to have_content 'Edit Subset'
-      # tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
-      # token = tokens[0]
-      # click_link 'Return'
-      # tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
-      # expect(tokens).to match_array([])
+      expect(page).to have_content 'Edit Subset'
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
+      token = tokens[0]
+      click_link 'Return'
+      tokens = Token.where(item_uri: "http://www.s-cubed.dk/S123/V19#S123")
+      expect(tokens).to match_array([])
     end
 
   end

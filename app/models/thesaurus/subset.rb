@@ -90,6 +90,44 @@ class Thesaurus::Subset < IsoConceptV2
     transaction_execute
   end
 
+  # List URIs. Get the complete subset list as a set of ordered URIs
+  #
+  # @return [Array] array of hashes, each hash the uri and ordinal of the list members.
+  def list_uris
+    objects = []
+    query_string = %Q{
+      SELECT ?uri ?ordinal
+      {
+        ?m th:item ?uri
+        {
+          SELECT ?m (COUNT(?mid) as ?ordinal) WHERE {
+            #{self.uri.to_ref} th:members/th:memberNext* ?mid . 
+            ?mid th:memberNext* ?m .
+          } 
+          GROUP BY ?m
+        }
+      } ORDER BY ?ordinal 
+    }
+    query_results = Sparql::Query.new.query(query_string, "", [:th])
+    query_results.by_object_set([:uri, :ordinal])
+  end
+
+  # Clone. Clone the subset
+  #
+  # @return [Thesarus::Subset] the cloned object. Included clone of the members
+  def clone
+    cloned_members = []
+    object = super
+    list_uris.each {|items| cloned_members << Thesaurus::SubsetMember.new({item: items[:uri], uri: Thesaurus::SubsetMember.create_uri(self.uri)})}
+    return object if cloned_members.empty?
+    cloned_members.each_with_index do |cloned_member, index|
+      next_item = ordinal = index + 1
+      cloned_member.member_next = ordinal == cloned_members.count ? nil : cloned_members[next_item]
+    end
+    object.members = cloned_members.first
+    object
+  end
+
   #----------
   # Test Only
   #----------
@@ -165,7 +203,7 @@ class Thesaurus::Subset < IsoConceptV2
         object[:member_id] = uri_map[object[:uri]][:m].to_id
       end
     end
-      objects
+    objects
   end
 
   # Move After. Move an subset member after another subset member given
