@@ -1,14 +1,15 @@
 <%= javascript_tag 'setPageTitle("Edit tags")' %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
+<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.uri.namespace}\";" %>
-<%= javascript_tag "var isoManagedId = \"#{@iso_managed.id}\";" %>
-<%= javascript_tag "var isoManagedNamespace = \"#{@iso_managed.uri.namespace}\";" %>
+<%= javascript_tag "var isoManagedId = \"#{@iso_concept.id}\";" %>
+<%= javascript_tag "var isoManagedNamespace = \"#{@iso_concept.uri.namespace}\";" %>
+<% third_level_breadcrumb(@type, @item, @close_path) %>
 <div class="row">
   <div class="col-md-7 card wide">
     <div class="card-header">
@@ -19,7 +20,6 @@
     </div>
   </div>
   <div class="col-md-5" style="padding: 0;">
-    <%= render partial: "shared/isoManagedInfo"%>
     <div id="iso_managed_tag_panel" class="col-md-12 card narrow">
       <div class="card-header">
         Item Tags
@@ -42,6 +42,6 @@
       </div>
     </div>
   </div>
-  <input type="hidden" id="id" value="<%= @iso_managed.id %>">
-  <input type="hidden" id="namespace" value="<%= @iso_managed.uri.namespace %>" %>
+  <input type="hidden" id="id" value="<%= @iso_concept.id %>">
+  <input type="hidden" id="namespace" value="<%= @iso_concept.uri.namespace %>" %>
 </div>
