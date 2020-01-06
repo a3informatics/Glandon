@@ -5,7 +5,7 @@ describe IsoConceptController do
   include DataHelpers
   include ControllerHelpers
   
-  describe "Authrorized User" do
+  describe "Authrorized User, Reader" do
   	
     login_reader
 
@@ -130,10 +130,64 @@ describe IsoConceptController do
 
   end
 
+  describe "Authrorized User, Curator" do
+    
+    login_curator
+
+    def sub_dir
+      return "controllers/iso_concept"
+    end
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", 
+        "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    it "allows a tag to be added" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item = IsoConceptV2.new
+      item.uri = uri
+      item.save      
+      tag = IsoConceptSystem.path(["CDISC", "SDTM"])
+      request.env['HTTP_ACCEPT'] = "application/json"
+      put :add_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
+      actual = check_good_json_response(response)      
+    end
+
+    it "allows a tag to be added, error"
+    
+    it "allows a tag to be deleted" do
+      uri = Uri.new(uri: "http://www.assero.co.uk/C1")
+      item = IsoConceptV2.new
+      item.uri = uri
+      item.save      
+      tag = IsoConceptSystem.path(["CDISC", "SDTM"])
+      request.env['HTTP_ACCEPT'] = "application/json"
+      put :remove_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
+      actual = check_good_json_response(response)      
+    end
+    
+    it "allows a tag to be deleted, error"
+
+  end
+
   describe "Unauthorized User" do
     
     it "show a concept" do
       get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "add a tag" do
+      put :add_tag, id: "AAA"
+      expect(response).to redirect_to("/users/sign_in")
+    end
+
+    it "delete a tag" do
+      put :remove_tag, id: "AAA"
       expect(response).to redirect_to("/users/sign_in")
     end
 

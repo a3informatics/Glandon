@@ -21,23 +21,57 @@ class IsoConceptV2 < Fuseki::Base
     super({label: label}, {uri: create_uri(base_uri), label: label})
   end
 
-  # Add Tags. Add tags if not already present
+  # Add Tags No Save. Add tags if not already present, dont save
   #
   # @param tags [Array] array of IsoConceptSystem::Node items
   # @return [Void] no return
-  def add_tags(tags)
+  def add_tags_no_save(tags)
     uris = self.tagged.map{|x| x.uri}
     tags.each do |tag|
       self.tagged << tag if !uris.include?(tag.uri)
     end
   end
 
-  # Add Tag. Add a tag if not already present
+  # Add Tag No Save. Add a tag if not already present, dont dave
   #
   # @param tag [IsoConceptSystem] a single IsoConceptSystem::Node item
   # @return [Void] no return
-  def add_tag(tag)
+  def add_tag_no_save(tag)
     self.tagged << tag if !self.tagged.map{|x| x.uri}.include?(tag.uri)
+  end
+
+  # Add a tag
+  #
+  # @param uri_or_id [String|URI] The id or URI of the tag
+  # @return [Void] no return
+  def add_tag(uri_or_id)
+    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    update_string = %Q{
+      INSERT DATA
+      {
+        #{self.uri.to_ref} isoC:tagged #{uri.to_ref} . \n
+      }
+    }
+    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
+  end
+
+  # Remove a tag
+  #
+  # @param uri_or_id [String|URI] The id or URI of the tag
+  # @return [Void] no return
+  def remove_tag(uri_or_id)
+    uri = uri_or_id.is_a?(Uri) ? uri_or_id : Uri.new(id: uri_or_id)
+    update_string = %Q{
+      DELETE
+      {
+       #{self.uri.to_ref} isoC:tagged #{uri.to_ref}
+      }
+      WHERE
+      {
+       #{self.uri.to_ref} isoC:tagged #{uri.to_ref}
+      }
+    }
+    Sparql::Update.new.sparql_update(update_string, self.uri.namespace, [:isoC])
   end
 
   # Add Change Note

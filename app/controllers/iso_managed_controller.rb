@@ -78,27 +78,27 @@ class IsoManagedController < ApplicationController
     end
   end
 
-  def add_tag
-    authorize IsoManaged, :edit?
-    item = IsoManaged.find(params[:id], params[:namespace])
-    item.add_tag(params[:tag_id], params[:tag_namespace])
-    if item.errors.empty?
-      render :json => {}, :status => 200
-    else
-      render :json => {:errors => item.errors.full_messages}, :status => 422
-    end
-  end
+  # def add_tag
+  #   authorize IsoManaged, :edit?
+  #   item = IsoManaged.find(params[:id], params[:namespace])
+  #   item.add_tag(params[:tag_id], params[:tag_namespace])
+  #   if item.errors.empty?
+  #     render :json => {}, :status => 200
+  #   else
+  #     render :json => {:errors => item.errors.full_messages}, :status => 422
+  #   end
+  # end
 
-  def delete_tag
-    authorize IsoManaged, :edit?
-    item = IsoManaged.find(params[:id], params[:namespace])
-    item.delete_tag(params[:tag_id], params[:tag_namespace])
-    if item.errors.empty?
-      render :json => {}, :status => 200
-    else
-      render :json => {:errors => item.errors.full_messages}, :status => 422
-    end
-  end
+  # def delete_tag
+  #   authorize IsoManaged, :edit?
+  #   item = IsoManaged.find(params[:id], params[:namespace])
+  #   item.delete_tag(params[:tag_id], params[:tag_namespace])
+  #   if item.errors.empty?
+  #     render :json => {}, :status => 200
+  #   else
+  #     render :json => {:errors => item.errors.full_messages}, :status => 422
+  #   end
+  # end
 
   def tags
     authorize IsoManaged, :edit?

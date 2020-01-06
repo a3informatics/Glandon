@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     end
     member do
       get :tags
+      put :add_tag
+      put :remove_tag
       get :change_notes
       post :change_note, action: :add_change_note
     end
@@ -89,8 +91,6 @@ Rails.application.routes.draw do
       get :status
       get :edit_tags
       get :find_by_tag
-      post :add_tag
-      post :delete_tag
       get :tags
       get :graph
       get :graph_links

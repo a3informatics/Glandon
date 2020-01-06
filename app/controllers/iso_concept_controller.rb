@@ -16,6 +16,20 @@ class IsoConceptController < ApplicationController
     render :json => concept.tags.map{|x| x.pref_label}, :status => 200
   end
 
+  def add_tag
+    authorize IsoConcept, :edit?
+    item = IsoConceptV2.find(protect_from_bad_id(params))
+    item.add_tag(the_params[:tag_id])
+    render :json => {}, :status => 200
+  end
+
+  def remove_tag
+    authorize IsoConcept, :edit?
+    item = IsoConceptV2.find(protect_from_bad_id(params))
+    item.remove_tag(the_params[:tag_id])
+    render :json => {}, :status => 200
+  end
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
@@ -99,6 +113,10 @@ private
 
   def cn_params
     params.require(:iso_concept).permit(:reference, :description).merge!(user_reference: current_user.email)
+  end
+
+  def the_params
+    params.require(:iso_concept).permit(:tag_id)
   end
 
 end
