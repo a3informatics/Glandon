@@ -26,45 +26,33 @@ module ControllerHelpers
     policy = policy(klass)
     edit = policy.edit?
     delete = policy.destroy?
-    set.each do |object|
-      results << object.to_h.reverse_merge!(add_history_path(object, edit, delete, current))
-    end
+    set.each { |object| results << object.to_h.reverse_merge!(add_history_path(object, edit, delete, current)) }
     results
   end
 
 private
 
-  # Build a set of paths for a single object
+  # Build a set of paths for a single object. Note expects controllers to provide 
   def add_history_path(object, edit, delete, current)
-    result = {}
+    latest = object.latest?
+    indicators = {current: object.current?, extended: false, extends: false, version_count: 0, subset: false, subsetted: false}
+    result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "", indicators: indicators}
     result[:show_path] = path_for(:show, object)
-    #result[:view_path] = path_for(controller, :view, object) <<< Removed
     result[:search_path] = path_for(:search, object)
-    if edit && object.edit? && object.latest?
+    if edit && object.edit? && latest
       result[:edit_path] = path_for(:edit, object)
       result[:tags_path] = edit_tags_iso_managed_index_path(:id => object.uri.fragment, :namespace => object.uri.namespace)
-    else
-      result[:edit_path] = ""
-      result[:tags_path] = ""
     end      
-    if object.registered? && edit
+    if object.registered? && object.owned? && latest && edit
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})
-    else
-      result[:status_path] = ""
+    end
+    if object.registered? && object.can_be_current?
+      result[:current_path] = make_current_iso_managed_v2_path(:id => object.id)
     end
     if delete && object.delete?
       result[:delete_path] = path_for(:destroy, object)
-    else
-      result[:delete_path] = ""
     end
     return result
-  end
-
-  # Get the path for a controller action pair
-  def path_for(controller, action, id)
-    Rails.application.routes.url_for controller: controller, action: action, only_path: true, id: id
-  rescue => e
-    ""
   end
 
 end

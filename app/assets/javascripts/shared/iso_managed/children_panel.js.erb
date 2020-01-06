@@ -10,8 +10,9 @@
  *
  * @return [void]
  */
-function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable) {
+function ChildrenPanel(url, count, columns, tc_id, policy_edit, edit_enable, callback) {
   var _this = this;
+  this.callback = callback;
   this.policy_edit = policy_edit;
   this.edit_enable = edit_enable;
   this.url = url;
@@ -99,6 +100,7 @@ ChildrenPanel.prototype.refresh = function() {
   var _this = this;
   _this.childrenTable.clear();
   _this.add(0);
+  _this.callback();
 }
 
 /**

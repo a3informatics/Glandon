@@ -26,23 +26,20 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
     "order": [[ 0, "desc" ]],
     "columns": [
       {"render" : function (data, type, row, meta) {
+        if (type == 'display')
+          return row.has_identifier.semantic_version;
+        else
+          return row.has_identifier.version;
+        }
+      },
+      {"render" : function (data, type, row, meta) {
         var date = new Date(row.last_change_date);
         if (type == 'display') {
-          return "<span class='text-normal'>"+row.has_identifier.semantic_version+"</span><br/>"+" ("+"<span class='text-small'>"+date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19)+"</span>"+")"
-                  ;
-          // row.has_identifier.semantic_version + date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
+          return _this.dateTimeHTML(date);
         } else {
-          return row.has_identifier.version;
+          return date.getTime();
         }}
       },
-      // {"render" : function (data, type, row, meta) {
-      //   var date = new Date(row.last_change_date);
-      //   if (type == 'display') {
-      //     return date.toISOString().substring(0, 10) +" "+ date.toISOString().substring(11, 19) ;
-      //   } else {
-      //     return date.getTime();
-      //   }}
-      // },
       {"data" : "has_identifier.has_scope.short_name"},
       {"data" : "has_identifier.identifier"},
       {"data" : "label"},
@@ -52,6 +49,10 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
           return _this.registrationStatesHTML(row);
         else return data;
       }},
+      {"data" : "indicators", "render": function (data, type, row, meta) {
+        if (type == "display") return formatIndicators(data);
+        else return formatIndicatorsString(data);
+      }},
       {className: "text-right", "render" : function (data, type, row, meta) {
         var id = "con-menu-" + counter;
 
@@ -60,6 +61,7 @@ function HistoryPanel(url, strict_params, identifier, scope_id, count) {
           { link_path: row.search_path, disabled: row.search_path == "" ? "true":"false", icon: "icon-search", text: "Search"},
           { link_path: row.edit_path, disabled: row.edit_path == "" ? "true":"false", icon: "icon-edit", text: "Edit"},
           { link_path: row.status_path, disabled: row.status_path == "" ? "true":"false", icon: "icon-document", text: "Document control"},
+          { link_path: row.current_path, disabled: (row.current_path == "" || row.indicators.current == true) ? "true":"false", icon: "icon-current", text: "Make current"},
           { link_path: "#", disabled: row.delete_path == "" ? "true":"false", icon: "icon-trash", text: "Delete"}];
         counter ++;
 
@@ -108,9 +110,6 @@ HistoryPanel.prototype.add = function (offset) {
     success: function(result) {
     	for (i=0; i<result.data.length; i++) {
         var row = _this.historyTable.row.add(result.data[i]);
-        if (result.data[i].current) {
-          $(row).toggleClass('success');
-        }
       }
       _this.historyTable.draw();
       if (result.count >= _this.count) {
@@ -138,9 +137,9 @@ HistoryPanel.prototype.registrationStatesHTML = function (data) {
   var state = data.has_state.registration_status.toLowerCase();
   if ((state == "not_set" || state == "recorded" || state == "qualified") && data.edit_path != "") {
     if (data.has_state.multiple_edit)
-      return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
+      return "<span class='clickable registration-state ttip'><span class='ttip-text ttip-left text-small shadow-small'>Disable multiple edits</span><span class='icon-lock-open text-secondary-clr text-small'></span> "+ data.has_state.registration_status +"</span>";
     else
-      return "<span class='clickable registration-state ttip'><span class='ttip-text text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
+      return "<span class='clickable registration-state ttip'><span class='ttip-text ttip-left text-small shadow-small'>Enable multiple edits</span><span class='icon-lock text-accent-2 text-small'></span> "+ data.has_state.registration_status +"</span>";
   }
   else return data.has_state.registration_status;
 }
@@ -214,6 +213,22 @@ HistoryPanel.prototype.removeItem = function (data) {
     })
   }, {dangerous: true}).show();
 }
+
+
+/**
+ * Generates HTML for datetime
+ * @param [Date] Javascript date
+ *
+ * @return [String] formatted html
+ */
+HistoryPanel.prototype.dateTimeHTML = function (date) {
+  return '<span class="icon-date text-link"></span> ' +
+          $.format.date(date, 'yyyy-MM-dd') +
+          '<br/>' +
+          '<span class="icon-time text-link"></span> ' +
+          '<span class="text-small">' + $.format.date(date, 'HH:mm') + '</span>';
+}
+
 
 
 // HistoryPanel.prototype.linkButton = function (path, text) {

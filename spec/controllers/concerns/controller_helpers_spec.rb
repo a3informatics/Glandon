@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'controller_helpers'
 
 describe ControllerHelpers do
 	

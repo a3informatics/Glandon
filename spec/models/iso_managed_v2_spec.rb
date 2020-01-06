@@ -774,21 +774,6 @@ describe "IsoManagedV2" do
       expect(CdiscTerm.current_set.count).to eq(4)
     end
 
-    it "allows the current item to be found" do
-      (1..10).each do |index|
-        item = CdiscTerm.new
-        #item.uri = Uri.new(uri: "http://www.assero.co.uk/X#{index}/V1")
-        item.label = "Item #{index}"
-        item.set_import(identifier: "ITEM#{index}", version_label: "1", semantic_version: "1.0.0", version: "1", date: "2019-01-01", ordinal: 1)
-        sparql = Sparql::Update.new  
-        item.to_sparql(sparql, true)
-        sparql.upload
-      end 
-      item = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/ITEM1/V1#TH"))
-      item.has_state.make_current
-      expect(CdiscTerm.current(identifier: "ITEM1", scope: IsoRegistrationAuthority.cdisc_scope)).to eq(item.uri)
-    end
-
     it "finds lastest and current parent" do
       uri_v7 = Uri.new(uri: "http://www.cdisc.org/CT/V7#TH")
       uri_v10 = Uri.new(uri: "http://www.cdisc.org/CT/V10#TH")
@@ -1194,6 +1179,39 @@ describe "IsoManagedV2" do
       tag = IsoConceptSystem.path(["CDISC", "SDTM"])
       result = IsoManagedV2.find_by_tag(tag.id)
       check_file_actual_expected(result, sub_dir, "find_by_tag_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+  end
+
+  describe "Current Methods" do
+
+    before :all  do
+      IsoHelpers.clear_cache
+    end
+
+    before :each do
+      IsoHelpers.clear_cache
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..10)
+    end
+
+    def change_current(uri)
+      item = CdiscTerm.find_minimum(uri)
+    puts colourize("+++++ Set +++++\nSet: #{uri}", "blue")
+      item.make_current
+      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+    puts colourize("Current: #{current_uri}\n+++++", "blue")
+      expect(current_uri).to eq(item.uri)
+    end
+      
+    it "allows the current item to be found and to be made current" do
+      current_uri = CdiscTerm.current(identifier: "CT", scope: IsoRegistrationAuthority.cdisc_scope)
+      expect(current_uri).to eq(nil)
+      change_current(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      change_current(Uri.new(uri: "http://www.cdisc.org/CT/V5#TH"))
+      change_current(Uri.new(uri: "http://www.cdisc.org/CT/V7#TH"))
+      change_current(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
     end
 
   end

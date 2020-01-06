@@ -321,6 +321,7 @@ describe "Thesauri Extensions", :type => :feature do
       find(:xpath, "//*[@id='searchTable']/tbody/tr[4]").click
       find(:xpath, "//*[@id='searchTable']/tbody/tr[5]").click
       click_button 'Add terms'
+      wait_for_ajax(10)
       ui_check_table_info("children_table", 1, 6, 6)
       find(:xpath, "//*[@id='children_table']/tbody/tr[6]/td[8]/button", :text => 'Delete').click
       wait_for_ajax(10)

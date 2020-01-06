@@ -108,4 +108,18 @@ class IsoRegistrationAuthority < Fuseki::Base
   # To JSON. Alias to to_h
   alias :to_json :to_h
 
+  # -----------------
+  # Test Only Methods
+  # -----------------
+
+  if Rails.env.test?
+
+    # Clear the scopes
+    def self.clear_scopes
+      @@repository_scope = nil
+      @@cdisc_scope = nil
+    end
+
+  end
+
 end

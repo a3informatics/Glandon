@@ -439,11 +439,9 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?o ?ext ?sub (GROUP_CONCAT(DISTINCT ?sy;separato
   # @option params [String] :identifier the identifer
   # @return [Object] the created object. May contain errors if unsuccesful.
   def add_child(params={})
-    child = Thesaurus::ManagedConcept.empty_concept
-    child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
     ordinal = next_ordinal(:is_top_concept_reference)
     transaction_begin
-    child = Thesaurus::ManagedConcept.create(child)
+    child = Thesaurus::ManagedConcept.create
     return child if child.errors.any?
     ref = OperationalReferenceV3::TmcReference.create({reference: child, ordinal: ordinal}, self)
     self.add_link(:is_top_concept, child.uri)

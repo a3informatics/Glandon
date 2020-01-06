@@ -444,29 +444,44 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     transaction_execute
   end
 
-  # Clone. Clone the object taking care over the links
+  # Create. Create a managed concept
+  #
+  # @return [Object] the created object. May contain errors if unsuccesful.
+  def self.create
+    child = Thesaurus::ManagedConcept.empty_concept
+    # Following is a check to ensure only generated identifiers for the current implementation.
+    Errors.application_error(self.name, "create", "Not configured to generate a code list identifier.") unless Thesaurus::ManagedConcept.generated_identifier?
+    child[:identifier] = Thesaurus::ManagedConcept.generated_identifier? ? Thesaurus::ManagedConcept.new_identifier : params[:identifier]
+    super(child)
+  end
+
+  # Clone. Clone the object taking care over the type of concept
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object
   def clone
     self.narrower_links
-    #self.extends_links
-    #self.subset_links
     self.preferred_term_links
     self.synonym_links
-    #object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+    if self.subset?
+      self.is_ordered_objects
+      self.is_ordered = self.is_ordered.clone
+      self.subsets_links
+    elsif self.extension?
+      self.extends_links
+    end
     object = super
   end
 
   # Delete or Unlink. Delete the managed concept. Processing depends on the type of the concept.
   #
   # @return [Void] no return
-  def delete_or_unlink(parent_object)
+  def delete_or_unlink(parent_object=nil)
     self.children_objects
     if parent_object.nil? && no_parents?
       # No parent specified and no parents linked to this item, delete
       delete_with
     elsif parent_object.nil?
-      # No parent specified and paraents, do nothing, as we cannot 
+      # No parent specified and parents, do nothing, as we cannot 
       self.errors.add(:base, "The code list cannot be deleted as it is in use.") # error, in use
       0
     elsif multiple_parents? 
@@ -486,13 +501,19 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
   # Set With Indicators Paginated
   #
   # @params [Hash] params the params hash
+  # @option params [String] :type the type, either :all, :normal, :subsets, :extensions. 
+  #   note that :all does not filter on owner while the others filter on the repository owner.
   # @option params [String] :offset the offset to be obtained
   # @option params [String] :count the count to be obtained
-  # @option params [Array] :tags the tag to be displayed
   # @return [Array] array of hashes containing the child data
   def self.set_with_indicators_paginated(params) 
+    owner = ::IsoRegistrationAuthority.repository_scope.uri.to_ref
     filter_clause = "FILTER (?so = false && ?eo = false)"
+    owner_clause = "?x isoT:hasIdentifier/isoI:hasScope #{owner} . BIND (#{owner} as ?ns)"
     case params[:type].to_sym
+      when :all
+        filter_clause = ""
+        owner_clause = "?x isoT:hasIdentifier/isoI:hasScope ?ns ."
       when :normal
         # default
       when :subsets
@@ -504,39 +525,50 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     end
     results =[]
     query_string = %Q{
-      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
+      SELECT DISTINCT ?s ?i ?n ?d ?pt ?e ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count
+        (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{self.synonym_separator} \") as ?sys) 
+        (GROUP_CONCAT(DISTINCT ?t ;separator=\"#{IsoConceptSystem.tag_separator} \") as ?gt) WHERE
       {
-        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v WHERE
+        SELECT DISTINCT ?i ?n ?d ?pt ?e ?s ?sy ?t ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count WHERE
         {
-            ?s rdf:type th:ManagedConcept .
-            ?s isoT:hasIdentifier/isoI:hasScope #{::IsoRegistrationAuthority.repository_scope.uri.to_ref} .
-            BIND (EXISTS {?s th:extends ?xe1} as ?eo)
-            BIND (EXISTS {?s th:subsets ?xs1} as ?so)
-            BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
-            BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
-            #{filter_clause}
-            ?s th:identifier ?i .
-            ?s th:notation ?n .
-            ?s th:definition ?d .
-            ?s th:extensible ?e .
-            ?s th:preferredTerm/isoC:label ?pt .
-            ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
-            OPTIONAL {?s th:synonym/isoC:label ?sy }
-            OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
-            {  
-              SELECT ?s (max(?lv) AS ?v) WHERE 
-              {
-                ?s isoT:hasIdentifier/isoI:version ?lv .
-              } GROUP BY ?s
-            }
+          ?s rdf:type th:ManagedConcept .
+          ?s isoT:hasIdentifier/isoI:version ?v .
+          ?s isoT:hasIdentifier/isoI:identifier ?sci .
+          {               
+            SELECT DISTINCT ?sci ?ns (max(?lv) AS ?v) (count(?lv) AS ?count) WHERE              
+            {               
+              ?x rdf:type th:ManagedConcept .           
+              ?x isoT:hasIdentifier/isoI:version ?lv . 
+              ?x isoT:hasIdentifier/isoI:identifier ?sci . 
+              #{owner_clause}
+            } group by ?sci ?ns    
+          }           
+          BIND (EXISTS {?s th:extends ?xe1} as ?eo)
+          BIND (EXISTS {?s th:subsets ?xs1} as ?so)
+          BIND (EXISTS {?s ^th:extends ?xe2} as ?ei)
+          BIND (EXISTS {?s ^th:subsets ?xs2} as ?si)
+          #{filter_clause}
+          ?s th:identifier ?i .
+          ?s th:notation ?n .
+          ?s th:definition ?d .
+          ?s th:extensible ?e .
+          ?s th:preferredTerm/isoC:label ?pt .
+          ?s isoT:hasIdentifier/isoI:hasScope/isoI:shortName ?o .
+          OPTIONAL {?s th:synonym/isoC:label ?sy }
+          OPTIONAL {?s isoC:tagged/isoC:prefLabel ?t }
         } ORDER BY ?i ?sy ?t
-      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
+      } GROUP BY ?i ?n ?d ?pt ?e ?s ?eo ?ei ?so ?si ?o ?v ?sci ?ns ?count ORDER BY ?i OFFSET #{params[:offset].to_i} LIMIT #{params[:count].to_i}
     }
     query_results = Sparql::Query.new.query(query_string, "", [:th, :bo, :isoC, :isoT, :isoI])
-    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si]).each do |x|
-      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:v].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
+    query_results.by_object_set([:i, :n, :d, :e, :pt, :sys, :gt, :s, :o, :eo, :ei, :so, :si, :sci, :ns, :count]).each do |x|
+  begin
+      indicators = {current: false, extended: x[:ei].to_bool, extends: x[:eo].to_bool, version_count: x[:count].to_i, subsetted: x[:si].to_bool, subset: x[:so].to_bool}
       results << {identifier: x[:i], notation: x[:n], preferred_term: x[:pt], synonym: x[:sys], extensible: x[:e].to_bool, 
-        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o]}
+        definition: x[:d], id: x[:s].to_id, tags: x[:gt], indicators: indicators, owner: x[:o], scoped_identifier: x[:sci], scope_id: x[:ns].to_id}
+  rescue => e
+    #byebug
+puts colourize("+++++ Selection Query Exception +++++\n#{x}\n+++++", "red")
+  end
     end
     results
   end

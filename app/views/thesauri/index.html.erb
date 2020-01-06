@@ -12,11 +12,15 @@
 					To see Terminology's respective History page, click on it.
 				</div>
 				<div class="actions-wrap half-block">
-					<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: search_current_thesauri_index_path, id: "search_current",
-						icon: "icon-search", btn_text: "Search across all current versions", dt_toggle: "", disabled: false } %>
+					<a href="<%= search_current_thesauri_index_path %>" class="btn medium light" id="search_current">
+						<span class="icon-search text-small"></span>&nbsp;
+						Search across all current versions
+					</a>
 					<% if policy(Thesaurus).new? %>
-						<%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: "#newTerminologyModal", id: "new_terminology",
-							icon: "icon-plus", btn_text: "New Terminology", dt_toggle: "modal", disabled: false } %>
+						<a href="#newTerminologyModal" class="btn medium green" id="new_terminology" data-toggle="modal">
+							<span class="icon-plus text-tiny"></span>&nbsp;
+							New Terminology
+						</a>
 						<%= render partial: "shared/thesauri/new_terminology" %>
 					<% end %>
 				</div>

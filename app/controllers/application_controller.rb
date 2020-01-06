@@ -1,3 +1,7 @@
+# Application Controller. Base controller
+#
+# @author Dave Iberson-Hurst
+# @since 0.0.1
 class ApplicationController < ActionController::Base
 
   include Pundit
@@ -15,6 +19,7 @@ class ApplicationController < ActionController::Base
   # Pundit exception for not authorized
   rescue_from Pundit::NotAuthorizedError, :with => :not_authorized_method
 
+  # Rescue frm not authorized method
   def not_authorized_method
     flash[:error] = 'You do not have the access rights to that operation.'
     redirect_to root_path
@@ -33,6 +38,24 @@ class ApplicationController < ActionController::Base
     flash[:error] = 'A database operation failed. ' + exception.message[:message].to_s
     redirect_to root_path
     true
+  end
+
+  # Path For. Default path for a controller action pair. Individual controllers should overload.
+  #
+  # @param [Symbol] the action
+  # @param [Object] the object
+  # @raise [Errors::ApplicationLogicError] raised if method called.
+  def path_for(action, object)
+    Errors.application_error(self.class.name, __method__.to_s, "Generic path_for method called. Controllers should overload.")
+  end
+
+  # Protect From Bad Id. Check params[:id] to protect us from anything nasty, should be a uri.
+  #
+  # @raise [Errors::ApplicationLogicError] raised if a bad id detected.
+  # @return [String] the id of anythign ok.
+  def protect_from_bad_id(params)
+    Errors.application_error(self.class.name, __method__.to_s, "Possible threat from bad id detected #{params[:id]}.") unless Uri.safe_id?(params[:id])
+    params[:id]
   end
 
   # Convert triples to a string
@@ -61,23 +84,34 @@ class ApplicationController < ActionController::Base
     session[:breadcrumbs] = ""
   end
 
-  # Get Token for a Managed Item.
+  # Get Token. Get the token for a Managed Item.
+  #
+  # @param [Object] mi the managed item object
+  # @return [Token] the token or nil if not found. Flash error set to standard error in not found. 
   def get_token(mi)
     token = Token.obtain(mi, current_user)
-    if token.nil?
-      flash[:error] = "The item is locked for editing by another user."
-      redirect_to request.referer
-    end
-    return token
+    return token if !token.nil?
+    token = Token.find_token_for_item(mi)
+    user = token.nil? ? "<unknown>" : User.find(token.user_id).email
+    flash[:error] = "The item is locked for editing by user: #{user}."
+    nil
+  rescue ActiveRecord::RecordNotFound => e
+    flash[:error] = "The item is locked for editing by user: <unknown>."
+    nil
   end
 
-  # Edit an item
+  # Edit Item. Edit a managed item helper
+  #
+  # @param [Object] item the managed item
+  # @return [Object] the new item. It may be the same item. Will be nil if cannot be locked. Token set in controller
   def edit_item(item)
     @token = get_token(item)
+    return nil if @token.nil?
     new_item = item.create_next_version
     return item if new_item.uri == item.uri
     @token.release
     @token = get_token(new_item)
+    return nil if @token.nil?
     return new_item
   end
 
@@ -99,7 +133,7 @@ class ApplicationController < ActionController::Base
     return @normalized
   end
 
-
+  # Date to floating point.
   def strdate_to_f(d)
     return Date.parse(d.to_s).strftime('%Q').to_f
   end

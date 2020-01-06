@@ -1,31 +1,42 @@
 <%= javascript_tag 'setPageTitle("Code Lists")' %>
-<%= javascript_include_tag 'standard_datatable' %>
-<% first_level_breadcrumb (:thesauri) %>
+
+<%= javascript_tag "var indexCLUrl = '#{set_with_indicators_thesauri_managed_concepts_path}'" %>
+<%= javascript_tag "var createCLUrl = '#{thesauri_managed_concepts_path}'" %>
+<%= javascript_include_tag 'thesauri/managed_concepts/index', 'shared/tags', 'shared/index_panel', 'shared/thesauri/managed_concepts/new_button' %>
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+
+<% first_level_breadcrumb (:code_lists) %>
 <div class="row">
 	<div class="col-md-12 card wide">
       <div class="card-header">Index: Code Lists</div>
-    <div class="card-content table-invisible">
+    <div class="card-content table-cardstyle">
 			<div class="half-blocks-wrap">
 				<div class="font-light half-block">
 					Below is the list of all <span class="text-accent-1-dark font-regular">standardized</span> and <span class="text-link font-regular">sponsor</span> Code Lists.
-					Use the Search bar to find the Code List you are looking for.
-					To see Code Lists's respective History page, click on it.
+					Use the Search bar to find the Code List you are looking for. To see Code List's respective History page, click on 'History'.
+				</div>
+				<div class="actions-wrap half-block">
+					<% if policy(Thesaurus::ManagedConcept).new? %>
+						<a href="#" class="btn medium green ttip" id="tnb_new_button">
+							<span class="ttip-text ttip-left shadow-small text-medium text-small">An identifier will be automatically generated</span>
+							<span class="icon-plus text-tiny"></span> New Code List
+						</a>
+					<% end %>
 				</div>
 			</div>
 			<hr>
-			<div class="table-width-wrapper narrow">
-	      <table id="main" class="table table-striped table-bordered table-condensed">
+			<div class="table-width-wrapper">
+	      <table id="index" class="table table-striped table-bordered table-condensed">
 	        <thead>
 	          <tr>
-	            <th class="ignore"></th>
+	            <th class="th-xsmall fit">Owner</th>
+							<th class="th-xsmall fit">Identifier</th>
+							<th>Label</th>
+							<th class="ignore fit"></th>
+							<th class="fit"></th>
 	          </tr>
 	        </thead>
 	        <tbody>
-	          <% @tcs.each do |item| %>
-	            <tr><td>
-								<%= render partial: 'shared/iso_managed/managed_item_card_list', :locals => {item: item, path: history_thesauri_managed_concepts_path(managed_concept: {:identifier => item[:identifier], :scope_id => item[:scope_id]})} %>
-	            </td></tr>
-	          <% end %>
 	        </tbody>
 	      </table>
 			</div>

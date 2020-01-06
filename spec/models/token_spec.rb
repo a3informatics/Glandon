@@ -80,18 +80,38 @@ describe "Token" do
     expect(token.locked_at).to be_within(1.second).of Time.now
   end
 
-  it "finds token" do
+  it "find token" do
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
     expect(Token.find_token(item, @user).to_json).to eq(token.to_json)
   end
 
-  it "determines if user does not own lock, released" do
+  it "find token, released" do
     Token.set_timeout(5)
     item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
     token = Token.obtain(item, @user)
     sleep 6
     expect(Token.find_token(item, @user)).to eq(nil)
+  end
+
+  it "find token for item" do
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    expect(Token.find_token_for_item(item).to_json).to eq(token.to_json)
+  end
+
+  it "find token for item, released" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    token = Token.obtain(item, @user)
+    sleep 6
+    expect(Token.find_token_for_item(item)).to eq(nil)
+  end
+
+  it "find token for item, no token" do
+    Token.set_timeout(5)
+    item = IsoManaged.find("F-ACME_VSBASELINE1", "http://www.assero.co.uk/MDRForms/ACME/V1")
+    expect(Token.find_token_for_item(item)).to eq(nil)
   end
 
   it "determines if user does not own lock, never locked" do

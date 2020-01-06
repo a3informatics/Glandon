@@ -15,7 +15,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def index
     authorize Thesaurus
-    @tcs = Thesaurus::ManagedConcept.unique
+    # @tcs = Thesaurus::ManagedConcept.unique
   end
 
   def history
@@ -24,10 +24,14 @@ class Thesauri::ManagedConceptsController < ApplicationController
       format.html do
         # @todo This is a bit evil but short term solution. Think fo a more elgant fix.
         results = Thesaurus::ManagedConcept.history_uris(identifier: the_params[:identifier], scope: IsoNamespace.find(the_params[:scope_id]))
-        @thesauri_id = results.first.to_id
-        @thesaurus = Thesaurus.find_minimum(@thesauri_id)
-        @identifier = the_params[:identifier]
-        @scope_id = the_params[:scope_id]
+        if results.empty?
+          redirect_to thesauri_managed_concepts_path
+        else
+          @thesauri_id = results.first.to_id
+          @thesaurus = Thesaurus.find_minimum(@thesauri_id)
+          @identifier = the_params[:identifier]
+          @scope_id = the_params[:scope_id]
+        end
       end
       format.json do
         results = []
@@ -38,29 +42,66 @@ class Thesauri::ManagedConceptsController < ApplicationController
       end
     end
   end
-  
+
+  def create
+    authorize Thesaurus
+    object = Thesaurus::ManagedConcept.create
+    if object.errors.empty?
+      result = object.to_h
+      result[:history_path] = history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope}})
+      render :json => { data: result}, :status => 200
+    else
+      render :json => {:errors => tc.errors.full_messages}, :status => 422
+    end
+  rescue => e
+      render :json => {:errors => [e.message]}, :status => 422
+  end
+    
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
-    render :json => { data: results }, :status => 200
+    results.each do |x|
+      x.reverse_merge!({history_path: history_thesauri_managed_concepts_path({id: x[:id], 
+        managed_concept: {identifier: x[:scoped_identifier], scope_id: x[:scope_id]}})})
+    end
+    render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
   end
 
   def edit
     authorize Thesaurus
-    @thesaurus_concept = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    @thesaurus_concept = edit_item(@thesaurus_concept)
-    @thesaurus_concept.synonyms_and_preferred_terms
-    #@thesaurus = Thesaurus.find_minimum(the_params[:parent_id])
-    @token = get_token(@thesaurus_concept)
-    if @token.nil?
-      flash[:error] = "The edit lock has timed out."
-      redirect_to edit_lock_lost_link(@thesaurus_concept)
-    elsif @thesaurus_concept.subset?
-      flash[:error] = "You cannot directly edit the children of a subset."
-      redirect_to edit_lock_lost_link(@thesaurus_concept)
-    else
-      @close_path = edit_lock_lost_link(@thesaurus_concept)
+    @thesaurus_concept = read_concept(protect_from_bad_id(params))
+    if !@thesaurus_concept.nil?
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @thesaurus_concept.scoped_identifier, scope_id: @thesaurus_concept.scope}})
       @tc_identifier_prefix = "#{@thesaurus_concept.identifier}."
+    else
+      redirect_to request.referrer
+    end
+  end
+
+  def edit_extension
+    authorize Thesaurus, :edit?
+    @tc = read_concept(protect_from_bad_id(params))
+    if !@tc.nil?
+      extension_of_uri = @tc.extension_of
+      @is_extending = !extension_of_uri.nil?
+      @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @tc.scoped_identifier, scope_id: @tc.scope}})
+    else
+      redirect_to request.referrer
+    end
+  end
+
+  def edit_subset
+    authorize Thesaurus, :edit?
+    @subset_mc = read_concept(protect_from_bad_id(params))
+    if !@subset_mc.nil?
+      @subset_mc.subsets_links
+      @source_mc = Thesaurus::ManagedConcept.find_with_properties(@subset_mc.subsets)
+      @subset_mc.synonyms_and_preferred_terms
+      @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
+      @close_path = history_thesauri_managed_concepts_path({managed_concept: {identifier: @subset_mc.scoped_identifier, scope_id: @subset_mc.scope}})
+    else
+      redirect_to request.referrer
     end
   end
 
@@ -69,7 +110,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     tc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
     tc.synonyms_and_preferred_terms
     ct = Thesaurus.find_minimum(edit_params[:parent_id])
-    token = Token.find_token(ct, current_user) 
+    token = Token.find_token(ct, current_user)
     if !token.nil?
       tc = tc.update(edit_params)
       if tc.errors.empty?
@@ -118,7 +159,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     results = []
     tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
     children = tc.children_pagination({offset: "0", count: "10000"})
-    children.each do |c| 
+    children.each do |c|
       edit_path = Thesaurus::ManagedConcept.identifier_scheme_flat? ? "" : edit_thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       delete_path = thesauri_unmanaged_concept_path({id: c[:id], unmanaged_concept: {parent_id: tc.id}})
       results << c.reverse_merge!({edit_path: edit_path, delete_path: delete_path})
@@ -149,14 +190,17 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
   def destroy
     authorize Thesaurus
-    tc = Thesaurus::ManagedConcept.find_minimum(params[:id])
-    th = Thesaurus.find_minimum(the_params[:parent_id])
-    token = Token.find_token(th, current_user)
+    tc = Thesaurus::ManagedConcept.find_minimum(protect_from_bad_id(params))
+    token = get_token(tc)
     if !token.nil?
-      tc.delete_or_unlink(th)
-      audit_and_respond(th, tc, token)
+      if tc.delete_or_unlink == 1
+        AuditTrail.update_item_event(current_user, tc, "Code list sucessfully deleted.")
+        render :json => {}, :status => 200
+      else
+        render :json => {:errors => tc.errors.full_messages}, :status => 422
+      end
     else
-      render :json => {:errors => ["The changes were not saved as the edit lock timed out."]}, :status => 422
+      render :json => {:errors => ["The code list cannot be deleted as it is being edited by another user."]}, :status => 422
     end
   end
 
@@ -320,17 +364,6 @@ class Thesauri::ManagedConceptsController < ApplicationController
     render json: {data: subset_tcs}
   end
 
-  def edit_subset
-    authorize Thesaurus, :edit?
-    @context_id = params[:context_id]
-    @ct = Thesaurus.find_minimum(@context_id)
-    @source_mc = Thesaurus::ManagedConcept.find_with_properties(params[:source_mc])
-    @subset_mc = Thesaurus::ManagedConcept.find_with_properties(params[:id])
-    @subset_mc.synonyms_and_preferred_terms
-    @subset = Thesaurus::Subset.find(@subset_mc.is_ordered_links)
-    @token = get_token(@subset_mc)
-  end
-
 # def cross_reference_start
   # 	authorize ThesaurusConcept, :show?
   # 	results = []
@@ -359,6 +392,15 @@ class Thesauri::ManagedConceptsController < ApplicationController
 
 private
 
+  # Read a Thesaurus Concept
+  def read_concept(id)
+    tc = Thesaurus::ManagedConcept.find_with_properties(id)
+    tc = edit_item(tc)
+    return nil if tc.nil?
+    tc.synonyms_and_preferred_terms
+    tc
+  end
+
   def path_for(action, object)
     case action
       when :show
@@ -366,7 +408,13 @@ private
       when :search
         return ""
       when :edit
-        return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        if object.extension?
+          return edit_extension_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        elsif object.subset?
+          return edit_subset_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        else
+          return edit_thesauri_managed_concept_path({id: object.id, managed_concept: {parent_id: latest_parent(object)}})
+        end
       when :destroy
         return thesauri_managed_concept_path(object)
       else
@@ -381,10 +429,11 @@ private
   end
 
   # Set the history path
-  def edit_lock_lost_link(thesaurus)
-    return history_thesauri_index_path({thesauri: {identifier: thesaurus.scoped_identifier, scope_id: thesaurus.scope.id}})
+  def edit_lock_lost_link(object)
+    return history_thesauri_managed_concepts_path({managed_concept: {identifier: object.scoped_identifier, scope_id: object.scope.id}})
   end
 
+  # Audit and respond
   def audit_and_respond(thesaurus, thesaurus_concept, token)
     if thesaurus_concept.errors.empty?
       AuditTrail.update_item_event(current_user, thesaurus, "Terminology updated.") if token.refresh == 1
@@ -396,27 +445,7 @@ private
     end
   end
 
-  # def get_thesaurus(thesaurus_concept)
-  #   info = IsoManaged.find_managed(thesaurus_concept.id, thesaurus_concept.namespace)
-  #   thesaurus = Thesaurus.find(info[:uri].id, info[:uri].namespace)
-  #   return thesaurus
-  # end
-
-  # def get_parent_link(thesaurus_concept)
-  #   link = ""
-  #   info = IsoConcept.find_parent(thesaurus_concept.uri)
-  #   if !info.nil?
-  #     if info[:rdf_type] == Thesaurus::C_RDF_TYPE_URI.to_s
-  #       link = edit_thesauri_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     else
-  #       link = edit_thesaurus_concept_path(id: info[:uri].id, namespace: info[:uri].namespace)
-  #     end
-  #   end
-  #   return link
-  # end
-
   def the_params
-    #params.require(:managed_concept).permit(:parent_id, :identifier, :context_id, :reference_ct_id, :extension_ids => [])
     params.require(:managed_concept).permit(:parent_id, :identifier, :scope_id, :context_id, :offset, :count, :extension_ids => [])
   end
 
@@ -426,6 +455,11 @@ private
 
   def edit_params
     params.require(:edit).permit(:notation, :synonym, :definition, :preferred_term, :label, :parent_id)
+  end
+
+  # Not required currently, will be for user-defined identifiers
+  def create_params
+    params.require(:edit).permit(:identifier)
   end
 
 end

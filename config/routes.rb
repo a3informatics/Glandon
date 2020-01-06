@@ -170,12 +170,15 @@ Rails.application.routes.draw do
 
   # Thesauri
   namespace :thesauri do
-    resources :managed_concepts, only: [:index, :show, :edit, :update, :destroy] do
+    resources :managed_concepts, only: [:index, :show, :edit, :update, :create, :destroy] do
       collection do
         get :history
         get :set_with_indicators
       end
       member do
+        get :edit_extension
+        get :edit_subset
+        get :find_subsets
         get :children
         post :add_child
         get :show_data
@@ -194,8 +197,6 @@ Rails.application.routes.draw do
         get :changes_summary
         get :changes_summary_data
         get :differences_summary
-        get :find_subsets
-        get :edit_subset
         patch :update_properties
       end
     end

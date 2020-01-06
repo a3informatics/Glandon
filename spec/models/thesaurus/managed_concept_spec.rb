@@ -397,11 +397,18 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "allows a TC to be created" do
-      object = Thesaurus::ManagedConcept.create({identifier: "A000001", notation: "A"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AA333")
+      object = Thesaurus::ManagedConcept.create
       tc = Thesaurus::ManagedConcept.find_full(object.uri)
-      expect(tc.scoped_identifier).to eq("A000001")
-      expect(tc.identifier).to eq("A000001")
-      expect(tc.notation).to eq("A")
+      expect(tc.scoped_identifier).to eq("AA333")
+      expect(tc.identifier).to eq("AA333")
+      expect(tc.notation).to eq("Not Set")
+    end
+
+    it "allows a TC to be created, error not generated identifier" do
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+      expect{Thesaurus::ManagedConcept.create}.to raise_error(Errors::ApplicationLogicError, "Not configured to generate a code list identifier.")
     end
 
     it "returns the parent concept" do
@@ -1018,7 +1025,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "delete" do
 
     before :each do
-      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_1.ttl",]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..3)
       NameValue.destroy_all
@@ -1163,7 +1170,9 @@ describe "Thesaurus::ManagedConcept" do
     end
 
     it "allows a TC to be destroyed" do
-      object = Thesaurus::ManagedConcept.create({identifier: "AAA", notation: "A"})
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("AAA")
+      object = Thesaurus::ManagedConcept.create()
       tc = Thesaurus::ManagedConcept.find(object.uri)
       result = tc.delete_or_unlink(nil)
       expect(result).to eq(1)
@@ -1230,9 +1239,7 @@ describe "Thesaurus::ManagedConcept" do
   describe "subsets" do
 
     before :all do
-      schema_files =["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl",
-        "ISO11179Concepts.ttl", "thesaurus.ttl"]
-      data_files = ["CT_SUBSETS.ttl","iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_1.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..20)
     end
@@ -1302,6 +1309,52 @@ describe "Thesaurus::ManagedConcept" do
 
   end
 
+  describe "Clone Subset" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_subsets_4.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone subset" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/C66781S/V1#C66781S"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1a.yaml")
+      actual = tc.create_next_version
+      check_dates(actual, sub_dir, "clone_subset_expected_1b.yaml", :creation_date, :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_subset_expected_1b.yaml")
+    end
+
+  end
+
+  describe "Clone Extension" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_extension_2.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "clone extension" do
+      tc = Thesaurus::ManagedConcept.find_minimum(Uri.new(uri: "http://www.acme-pharma.com/A00001/V1#A00001"))
+      actual = tc.clone
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1a.yaml")
+      actual = tc.create_next_version
+      #check_dates(actual, sub_dir, "clone_extension_expected_1b.yaml", :last_change_date)
+      check_thesaurus_concept_actual_expected(actual.to_h, sub_dir, "clone_extension_expected_1b.yaml")
+    end
+
+  end
+
   describe "sets" do
 
     before :all do
@@ -1310,16 +1363,21 @@ describe "Thesaurus::ManagedConcept" do
       load_cdisc_term_versions(1..20)
     end
 
-    it "determines if an item is subsetted, faked CDISC" do
+    it "set with indicators, faked CDISC" do
       cdisc = IsoNamespace.find_by_short_name("CDISC")
       expect(IsoRegistrationAuthority).to receive(:repository_scope).and_return(cdisc)
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "1000"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_1.yaml")
     end
 
-    it "determines if an item is subsetted, normal" do
+    it "set with indicators, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_2.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_expected_3.yaml")
     end
 
   end
@@ -1328,23 +1386,34 @@ describe "Thesaurus::ManagedConcept" do
 
     before :all do
       timer_start
+      load_files(schema_files, [])
       load_test_file_into_triple_store("test_db_1.nq.gz")
       timer_stop("Triple store loaded")
+      IsoRegistrationAuthority.clear_scopes
     end
 
-    it "determines if an item is subsetted, normal" do
+    after :all do
+      IsoRegistrationAuthority.clear_scopes
+    end
+
+    it "set with indicators, normal" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "normal", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_1.yaml")
     end
 
-    it "determines if an item is subsetted, subsets" do
+    it "set with indicators, subsets" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "subsets", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_2.yaml")
     end
 
-    it "determines if an item is subsetted, extensions" do
+    it "set with indicators, extensions" do
       results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "extensions", offset: "0", count: "100"})
       check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_3.yaml")
+    end
+
+    it "set with indicators, all" do
+      results = Thesaurus::ManagedConcept.set_with_indicators_paginated({type: "all", offset: "0", count: "100"})
+      check_file_actual_expected(results, sub_dir, "set_with_indicators_paginated_db_expected_4.yaml")
     end
 
   end

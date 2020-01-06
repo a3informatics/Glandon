@@ -136,23 +136,27 @@ function rhDblClickNodeByKey(nodeKey) {
 }
 
 function contextMenuElement(tableId, columnNr, matchText, targetBtnText, rowNr){
-  var rows = $("#"+tableId).find("tr");
-  if (rowNr != null) {
-    rows = rows.eq(rowNr);
-  }
-  var element;
+  // var rows = $("#"+tableId).find("tr");
+  // if (rowNr != null) {
+  //   rows = rows.eq(rowNr);
+  // }
+  // var element;
+  //
+  // $.each(rows, function(i, e){ // Take each row in table
+  //   var targetColumn = $(e).children()[columnNr-1]; // Find correct column nr
+  //   if($(targetColumn).html() == matchText){ // Find column that matches the text
+  //     var contextMenuIcon = $(e).children().eq(-1).find(".icon-context-menu"); // Find context menu icon (last col)
+  //     $.each($(contextMenuIcon).find("a"), function (i, e){ // Go through each menu option
+  //       if($(e).html().indexOf(targetBtnText) != -1){ // Find matching targetBtnText
+  //         element = e;
+  //       }
+  //     });
+  //   }
+  // });
 
-  $.each(rows, function(i, e){ // Take each row in table
-    var targetColumn = $(e).children()[columnNr-1]; // Find correct column nr
-    if($(targetColumn).html() == matchText){ // Find column that matches the text
-      var contextMenuIcon = $(e).children().eq(-1).find(".icon-context-menu"); // Find context menu icon (last col)
-      $.each($(contextMenuIcon).find("a"), function (i, e){ // Go through each menu option
-        if($(e).html().indexOf(targetBtnText) != -1){ // Find matching targetBtnText
-          element = e;
-        }
-      });
-    }
-  });
+  return contextMenuElementV2(tableId, matchText, targetBtnText);
+}
 
-  return element;
+function contextMenuElementV2(tableId, matchText, targetBtnText){
+  return $("#"+tableId+" tr:contains('"+matchText+"')").find(".icon-context-menu a:contains('"+targetBtnText+"')");
 }

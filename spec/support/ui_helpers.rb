@@ -340,7 +340,7 @@ module UiHelpers
 			main_nav_in: "main_nav_sysadmin", main_nav_ira: "main_nav_sysadmin", main_nav_im: "main_nav_sysadmin", main_nav_at: "main_nav_sysadmin", main_nav_el: "main_nav_sysadmin",
 			main_nav_u: "main_nav_impexp", main_nav_i: "main_nav_impexp", main_nav_e: "main_nav_impexp", main_nav_bj: "main_nav_impexp",
 			main_nav_ics: "main_nav_util", main_nav_ma: "main_nav_util", main_nav_ahr: "main_nav_util",
-			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term",
+			main_nav_te: "main_nav_term", main_nav_ct: "main_nav_term", main_nav_cl: "main_nav_term",
 			main_nav_bc: "main_nav_biocon", main_nav_bct: "main_nav_biocon",
 			main_nav_f: "main_nav_forms",
 			main_nav_sig: "main_nav_sdtm", main_nav_sm: "main_nav_sdtm", main_nav_sd: "main_nav_sdtm",
@@ -369,7 +369,7 @@ module UiHelpers
     page.execute_script("$('##{section}').addClass('collapsed')")
   end
 
-  def ui_navbar_click (id)
+  def ui_navbar_click(id)
     section = id_to_section_map[id.to_sym]
     ui_expand_section(section) if !ui_section_expanded?(section)
     click_link "#{id}"
@@ -449,6 +449,10 @@ module UiHelpers
     ui_navbar_click('main_nav_ct')
   end
 
+  def click_navbar_code_lists
+    ui_navbar_click('main_nav_cl')
+  end
+
   #Biomedical Concepts
 	def click_navbar_bct
     ui_navbar_click('main_nav_bct')
@@ -508,6 +512,7 @@ module UiHelpers
     expect(cell).to eq(text)
   end
 
+	# Context Menu
 	def context_menu_actions_map
 	 {
       show: "Show",
@@ -524,7 +529,6 @@ module UiHelpers
     }
 	end
 
-  #Context Menu
   def context_menu_element (table_id, column_nr, text, action, row_nr = 'null' )
     option = context_menu_actions_map[action]
     js_code = "var el = contextMenuElement('#{table_id}', #{column_nr}, '#{text}', '#{option}', #{row_nr}); "
@@ -609,7 +613,6 @@ module UiHelpers
   end
 
 	# Confirmation Dialog
-
 	def ui_confirmation_dialog(confirm)
 		sleep 0.5
 		expect(page).to have_content("Are you sure you want to proceed?")
@@ -622,14 +625,11 @@ module UiHelpers
 	end
 
 	# Tabs
-
 	def ui_click_tab (name)
 		page.find(".tab-option", :text => "#{name}").click
 	end
 
   # D3 Tree Functions
-  # =================
-
   def ui_click_node_name(text)
     page.evaluate_script("rhClickNodeByName(\"#{text}\")")
   end
@@ -689,6 +689,25 @@ module UiHelpers
     ui_click_node_key(to_key)
     #wait_for_ajax
     expect(ui_get_current_key).to eq(to_key)
+  end
+
+  # Thesaurus
+  def ui_new_code_list
+    identifier = ui_next_parent_identifier
+    click_link 'New Code List'
+    wait_for_ajax_long
+    expect(page).to have_content identifier
+    wait_for_ajax_long
+    identifier
+  end
+
+private
+
+  def ui_next_parent_identifier
+    configuration = Rails.configuration.thesauri[:identifiers][:parent][:generated]
+    value = nv_predict_parent
+    pattern = configuration[:pattern].dup
+    pattern.sub!("[identifier]", '%0*d' % [configuration[:width].to_i, value])
   end
 
 end

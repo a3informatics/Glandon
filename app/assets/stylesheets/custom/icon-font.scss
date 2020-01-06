@@ -30,6 +30,12 @@
   justify-content: center;
 }
 
+.icon-date:before {
+  content: "\e94c";
+}
+.icon-time:before {
+  content: "\e94d";
+}
 .icon-lock-open:before {
   content: "\e94b";
 }

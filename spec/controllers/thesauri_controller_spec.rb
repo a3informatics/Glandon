@@ -37,7 +37,7 @@ describe ThesauriController do
     login_curator
 
     before :each do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "CT_SUBSETS_new.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl", "thesaurus_subsets_3.ttl"]
       load_files(schema_files, data_files)
       load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
       load_cdisc_term_versions(1..2)
@@ -96,10 +96,10 @@ describe ThesauriController do
     end
 
     it "shows the history, page" do
-      CT1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
-      CT2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
+      ct_1 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      ct_2 = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V2#TH"))
       request.env['HTTP_ACCEPT'] = "application/json"
-      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([CT1, CT2])
+      expect(Thesaurus).to receive(:history_pagination).with({identifier: CdiscTerm::C_IDENTIFIER, scope: an_instance_of(IsoNamespace), offset: "20", count: "20"}).and_return([ct_1, ct_2])
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 20, offset: 20}}
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
@@ -166,7 +166,7 @@ describe ThesauriController do
       token = Token.obtain(ct, @lock_user)
       get :edit, id: ct.id
       expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by another user./)
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
       expect(response).to redirect_to("/thesauri")
     end
 
@@ -178,7 +178,7 @@ describe ThesauriController do
       token = Token.obtain(new_ct, @lock_user)
       get :edit, id: ct.id
       expect(flash[:error]).to be_present
-      expect(flash[:error]).to match(/The item is locked for editing by another user./)
+      expect(flash[:error]).to match(/The item is locked for editing by user: lock@example.com./)
       expect(response).to redirect_to("/thesauri")
     end
 
@@ -606,7 +606,22 @@ describe ThesauriController do
       expect(response.content_type).to eq("application/json")
       expect(response.code).to eq("200")
       x = JSON.parse(response.body).deep_symbolize_keys
-      expect(x).to hash_equal({:show_path=>"/thesauri/managed_concepts/aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY3MTU0RS9WMSNDNjcxNTRF?managed_concept%5Bcontext_id%5D=#{IsoHelpers.escape_id(th.uri.to_id)}"})
+      check_file_actual_expected(JSON.parse(response.body).deep_symbolize_keys, sub_dir, "extension_expected_1.yaml", equate_method: :hash_equal)
+    end
+
+    it "extension, locked" do
+      th = Thesaurus.create(identifier: "XXX", label: "xxxx term")
+      token = Token.obtain(th, @lock_user)
+      request.env['HTTP_ACCEPT'] = "application/json"
+      post :extension, {thesauri: { scope_id: IsoRegistrationAuthority.repository_scope.id,
+                                    identifier: th.scoped_identifier,
+                                    concept_id: "aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY3MTU0L1YyI0M2NzE1NA=="
+                                  }
+                        }
+      expect(response.content_type).to eq("application/json")
+      expect(response.code).to eq("422")
+      expect(JSON.parse(response.body).deep_symbolize_keys[:errors]).to eq(["The item is locked for editing by user: lock@example.com."])
+      token.release
     end
 
     it "add subset" do
@@ -619,6 +634,12 @@ describe ThesauriController do
       expect(redirect_path).to include("edit_subset?source_mc=aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MQ")
     end
 
+    it "edits release"
+
+    it "edits release, new version"
+
+    it "edits release, locked"
+    
   end
 
   describe "Community Reader" do
@@ -691,26 +712,38 @@ describe ThesauriController do
 
     before :all do
       IsoHelpers.clear_cache
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..5)
     end
 
+    def map_results(results)
+      results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
+        tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
+    end
+
     it "adds history paths, status path" do
+      
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_1.yaml", equate_method: :hash_equal)
+      
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
-      results = JSON.parse(response.body).deep_symbolize_keys[:data]
-      actual = results.map{|x| {id: x[:id], show_path: x[:show_path], search_path: x[:search_path], edit_path: x[:edit_path],
-        tags_path: x[:tags_path], status_path: x[:status_path], delete_path: x[:delete_path]}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_2.yaml", equate_method: :hash_equal)
+
+      # Sponsor
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :history, {thesauri: {identifier: "AIRPORTS", scope_id: IsoRegistrationAuthority.repository_scope.id, count: 10, offset: 0}}
+      actual = map_results(JSON.parse(response.body).deep_symbolize_keys[:data])
+      check_file_actual_expected(actual, sub_dir, "history_paths_expected_3.yaml", equate_method: :hash_equal)
+
     end
 
   end

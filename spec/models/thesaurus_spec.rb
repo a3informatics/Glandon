@@ -429,26 +429,27 @@ describe Thesaurus do
       #
     end
 
-    it "add child, manual entry" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
-      ct.add_child(identifier: "S123")
-      actual = ct.managed_children_pagination(count: 100, offset: 0)
-      check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
-      item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
-      actual = item.to_h
-    #Xwrite_yaml_file(item.to_h, sub_dir, "add_child_expected_2.yaml")
-      expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
-      expect(actual[:preferred_term][:label]).to eq(expected[:preferred_term][:label])
-      expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
-      expected[:creation_date] = date_check_now(item.creation_date).iso8601
-      expected[:last_change_date] = date_check_now(item.last_change_date).iso8601
-      expect(actual).to hash_equal(expected)
-    end
+    # Required for manul identifiers
+    # it "add child, manual entry" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+    #   expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+    #   ct.add_child(identifier: "S123")
+    #   actual = ct.managed_children_pagination(count: 100, offset: 0)
+    #   check_file_actual_expected(actual, sub_dir, "add_child_expected_1.yaml", equate_method: :hash_equal)
+    #   item = Thesaurus::ManagedConcept.find_full(Uri.new(uri: "http://www.acme-pharma.com/S123/V1#S123"))
+    #   actual = item.to_h
+    # #Xwrite_yaml_file(item.to_h, sub_dir, "add_child_expected_2.yaml")
+    #   expected = read_yaml_file(sub_dir, "add_child_expected_2.yaml")
+    #   expect(actual[:preferred_term][:label]).to eq(expected[:preferred_term][:label])
+    #   expected[:preferred_term] = actual[:preferred_term] # Cannot predict URI for the created PT Not_Set
+    #   expected[:creation_date] = date_check_now(item.creation_date).iso8601
+    #   expected[:last_change_date] = date_check_now(item.last_change_date).iso8601
+    #   expect(actual).to hash_equal(expected)
+    # end
 
     it "add child, generated identifier" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0)
@@ -468,7 +469,7 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       actual = ct.managed_children_pagination(count: 100, offset: 0)
       count = actual.count
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
       ct.add_child(identifier: "S123")
       actual = ct.managed_children_pagination(count: 100, offset: 0)
@@ -483,7 +484,7 @@ describe Thesaurus do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
       actual = ct.managed_children_pagination(count: 100, offset: 0)
       count = actual.count
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S12345X")
       ct.add_child
       actual = ct.managed_children_pagination(count: 100, offset: 0)
@@ -496,15 +497,16 @@ describe Thesaurus do
       expect(item.to_h[:preferred_term][:label]).to eq("updated pt")
     end
 
-    it "allows a child TC to be added - error, invalid identifier" do
-      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
-      item = ct.add_child(identifier: "S123£%^@")
-      expect(item.errors.count).to eq(3)
-      expect(item.errors.full_messages.to_sentence).to eq("Uri is invalid, Has identifier: Identifier contains invalid characters, and Identifier contains a part with invalid characters")
-      actual = ct.managed_children_pagination(count: 100, offset: 0)
-      check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
-    end
+    # Required for manul identifiers
+    # it "allows a child TC to be added - error, invalid identifier" do
+    #   ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.assero.co.uk/MDRThesaurus/ACME/V1#TH-SPONSOR_CT-1"))
+    #   expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(false)
+    #   item = ct.add_child(identifier: "S123£%^@")
+    #   expect(item.errors.count).to eq(3)
+    #   expect(item.errors.full_messages.to_sentence).to eq("Uri is invalid, Has identifier: Identifier contains invalid characters, and Identifier contains a part with invalid characters")
+    #   actual = ct.managed_children_pagination(count: 100, offset: 0)
+    #   check_file_actual_expected(actual, sub_dir, "add_child_expected_5.yaml", equate_method: :hash_equal)
+    # end
 
   end
 
@@ -696,7 +698,7 @@ describe Thesaurus do
       expected_uri = Uri.new(uri: "http://www.acme-pharma.com/S123A/V1#S123A")
       check_file_actual_expected(th_counts, sub_dir, "delete_checks_expected_2a.yaml")
       th = Thesaurus.find_minimum(th_uri)
-      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).and_return(true)
+      expect(Thesaurus::ManagedConcept).to receive(:generated_identifier?).twice.and_return(true)
       expect(Thesaurus::ManagedConcept).to receive(:new_identifier).and_return("S123A")
       result = th.add_child(identifier: "S123A")
       item = Thesaurus::ManagedConcept.find_minimum(expected_uri)

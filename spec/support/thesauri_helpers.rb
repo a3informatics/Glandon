@@ -53,16 +53,18 @@ puts "Previous URI: #{uri_s} translated to Current URI: #{result}"
 private
 
   def fill_out(item)
-    no_action = [:uri, :id, :notation, :identifier, :label, :rdf_type, :definition, :extensible, :extended_with, :is_subset]
+    no_action = [:uri, :id, :notation, :identifier, :label, :rdf_type, :definition, :extensible, :item]
     item.each do |key, value|
       next if no_action.include? key
       if key == :synonym
         synonyms = []
         value.each do |synonym|
-          synonyms << synonym
-          next if synonym.is_a?(Hash)
-          uri = Uri.from_uri_or_string(synonym)
-          synonyms << Thesaurus::Synonym.find(uri).to_h
+          if synonym.is_a?(Hash)
+            synonyms << synonym
+          else
+            uri = Uri.from_uri_or_string(synonym)
+            synonyms << Thesaurus::Synonym.find(uri).to_h
+          end
           puts colourize("***** Aligning Synonym #{synonyms.last[:label]} *****", "green")
         end
         item[key] = synonyms
@@ -74,7 +76,14 @@ private
         end
       elsif key == :narrower
         narrower = []
-        value.each {|x| narrower << fill_out(x)}
+        value.each do |x| 
+          if !x.is_a?(Hash)
+            uri = Uri.from_uri_or_string(x)
+            narrower << fill_out(Thesaurus::UnmanagedConcept.find(uri).to_h)
+          else
+            narrower << fill_out(x)
+          end
+        end
         item[key] = narrower
       end
     end

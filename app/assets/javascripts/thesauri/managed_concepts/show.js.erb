@@ -10,9 +10,11 @@ $(document).ready( function() {
     {"data" : "definition"},
     {"data" : "tags"}
   ];
-  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled);
-  //var searchModal = new TermSearch(context_id, reference_ct_id, cp.addNew.bind(cp));
+  var cp = new ChildrenPanel(url_path, 1000, columns, tc_id, policy_edit, edit_enabled, editCallback);
   var searchModal = new TermSearch(context_id, cp.addNew.bind(cp));
+
+  function editCallback() {
+  }
 
   $("#extend").click(function(){
     modalTS.setCallback(shp.callback);
