@@ -1252,6 +1252,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 :TH_SI
@@ -6758,6 +6759,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66781/V49#C66781_SI>
@@ -7655,6 +7657,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C74456/V49#C74456_SI>
@@ -7862,6 +7865,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C125741/V49#C125741_SI>
@@ -7924,6 +7928,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C125740/V49#C125740_SI>
@@ -7978,6 +7983,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C125743/V49#C125743_SI>
@@ -8040,6 +8046,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C125742/V49#C125742_SI>
@@ -8101,6 +8108,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C124300/V49#C124300_SI>
@@ -8267,6 +8275,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C124299/V49#C124299_SI>
@@ -8429,6 +8438,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C124297/V49#C124297_SI>
@@ -8586,6 +8596,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C101847/V49#C101847_SI>
@@ -8981,6 +8992,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C101846/V49#C101846_SI>
@@ -9294,6 +9306,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C124298/V49#C124298_SI>
@@ -9493,8 +9506,8 @@
 	th:narrower <http://www.cdisc.org/C100129/V31#C100129_C102124> ;
 	th:preferredTerm <http://www.assero.co.uk/PT#e6c221adea5e7b5d9f8c5d67e7b6606f10940d7f> ;
 	th:synonym <http://www.assero.co.uk/SYN#a4a7969524ee10e2d15639af89b64dd19c212556> ;
-	isoC:tagged <http://www.assero.co.uk/CSN#94245875-eb5e-4d82-b76d-b0b45ba68473> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#fea5570f-a063-4db5-91a6-14138a31a5bb> ;
+	isoC:tagged <http://www.assero.co.uk/CSN#94245875-eb5e-4d82-b76d-b0b45ba68473> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#b77e8d97-e5d5-4536-b18a-352c5848d20d> ;
 	isoC:tagged <http://www.assero.co.uk/CSN#8e9c6148-1845-4555-8218-2f3c0a013fd5> ;
 .
@@ -9507,6 +9520,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C100129/V49#C100129_SI>
@@ -9678,6 +9692,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66727/V49#C66727_SI>
@@ -9735,6 +9750,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66785/V49#C66785_SI>
@@ -9786,6 +9802,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C127264/V49#C127264_SI>
@@ -9865,6 +9882,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128690/V49#C128690_SI>
@@ -10103,6 +10121,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C76351/V49#C76351_SI>
@@ -10217,6 +10236,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C71113/V49#C71113_SI>
@@ -10303,6 +10323,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129094/V49#C129094_SI>
@@ -11088,6 +11109,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129093/V49#C129093_SI>
@@ -11548,6 +11570,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129096/V49#C129096_SI>
@@ -11753,6 +11776,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129095/V49#C129095_SI>
@@ -11926,6 +11950,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129088/V49#C129088_SI>
@@ -12771,6 +12796,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129087/V49#C129087_SI>
@@ -13257,6 +13283,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128682/V49#C128682_SI>
@@ -13314,6 +13341,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128681/V49#C128681_SI>
@@ -13374,6 +13402,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C99076/V49#C99076_SI>
@@ -13424,6 +13453,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C99078/V49#C99078_SI>
@@ -14869,6 +14899,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C65047/V49#C65047_SI>
@@ -17035,6 +17066,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C67154/V49#C67154_SI>
@@ -17598,6 +17630,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C76348/V49#C76348_SI>
@@ -17889,6 +17922,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C85492/V49#C85492_SI>
@@ -17990,6 +18024,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128688/V49#C128688_SI>
@@ -18173,6 +18208,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128687/V49#C128687_SI>
@@ -18344,6 +18380,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C120527/V49#C120527_SI>
@@ -18430,6 +18467,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C120528/V49#C120528_SI>
@@ -19990,6 +20028,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C85491/V49#C85491_SI>
@@ -20351,6 +20390,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C127269/V49#C127269_SI>
@@ -20450,6 +20490,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C127270/V49#C127270_SI>
@@ -20545,6 +20586,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129092/V49#C129092_SI>
@@ -20950,6 +20992,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129091/V49#C129091_SI>
@@ -21212,6 +21255,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129090/V49#C129090_SI>
@@ -21637,6 +21681,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129089/V49#C129089_SI>
@@ -21909,6 +21954,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129098/V49#C129098_SI>
@@ -22314,6 +22360,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C129097/V49#C129097_SI>
@@ -22564,6 +22611,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C116104/V49#C116104_SI>
@@ -22641,6 +22689,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C116103/V49#C116103_SI>
@@ -22780,6 +22829,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C96785/V49#C96785_SI>
@@ -22890,6 +22940,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C117743/V49#C117743_SI>
@@ -23162,6 +23213,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C117742/V49#C117742_SI>
@@ -23409,6 +23461,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C116106/V49#C116106_SI>
@@ -23458,6 +23511,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C116105/V49#C116105_SI>
@@ -23799,6 +23853,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C85494/V49#C85494_SI>
@@ -24205,6 +24260,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128685/V49#C128685_SI>
@@ -26998,6 +27054,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128686/V49#C128686_SI>
@@ -28682,6 +28739,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128684/V49#C128684_SI>
@@ -29751,6 +29809,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128683/V49#C128683_SI>
@@ -30506,6 +30565,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C74457/V49#C74457_SI>
@@ -30632,6 +30692,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C128689/V49#C128689_SI>
@@ -31827,6 +31888,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C111106/V49#C111106_SI>
@@ -31939,6 +32001,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C111107/V49#C111107_SI>
@@ -32117,6 +32180,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66729/V49#C66729_SI>
@@ -32344,6 +32408,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66734/V49#C66734_SI>
@@ -32413,6 +32478,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66732/V49#C66732_SI>
@@ -32457,6 +32523,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66733/V49#C66733_SI>
@@ -32501,6 +32568,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C74561/V49#C74561_SI>
@@ -32556,6 +32624,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78733/V49#C78733_SI>
@@ -32616,6 +32685,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C99077/V49#C99077_SI>
@@ -32696,6 +32766,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C74559/V49#C74559_SI>
@@ -32774,6 +32845,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C103330/V49#C103330_SI>
@@ -32826,6 +32898,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66735/V49#C66735_SI>
@@ -32872,6 +32945,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66736/V49#C66736_SI>
@@ -32936,6 +33010,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66737/V49#C66737_SI>
@@ -33077,6 +33152,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66738/V49#C66738_SI>
@@ -33280,6 +33356,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C67152/V49#C67152_SI>
@@ -33399,6 +33476,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66739/V49#C66739_SI>
@@ -33483,6 +33561,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C96784/V49#C96784_SI>
@@ -33532,6 +33611,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C96783/V49#C96783_SI>
@@ -33587,6 +33667,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C123650/V49#C123650_SI>
@@ -34267,6 +34348,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C71620/V49#C71620_SI>
@@ -34664,6 +34746,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66770/V49#C66770_SI>
@@ -34768,6 +34851,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C66741/V49#C66741_SI>
@@ -34860,6 +34944,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C67153/V49#C67153_SI>
@@ -34929,6 +35014,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78417/V49#C78417_SI>
@@ -34996,6 +35082,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78419/V49#C78419_SI>
@@ -35047,6 +35134,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78422/V49#C78422_SI>
@@ -35103,6 +35191,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78745/V49#C78745_SI>
@@ -35154,6 +35243,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78428/V49#C78428_SI>
@@ -35205,6 +35295,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78427/V49#C78427_SI>
@@ -35282,6 +35373,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78429/V49#C78429_SI>
@@ -35358,6 +35450,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78423/V49#C78423_SI>
@@ -35424,6 +35517,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C78430/V49#C78430_SI>
@@ -35501,6 +35595,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C81224/V49#C81224_SI>
@@ -35553,6 +35648,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C89963/V49#C89963_SI>
@@ -35786,6 +35882,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C124310/V49#C124310_SI>
@@ -36137,6 +36234,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C88025/V49#C88025_SI>
@@ -36434,6 +36532,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C120531/V49#C120531_SI>
@@ -36504,6 +36603,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C120532/V49#C120532_SI>
@@ -36582,6 +36682,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C120533/V49#C120533_SI>
@@ -36717,6 +36818,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C90009/V49#C90009_SI>
@@ -36852,6 +36954,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C90007/V49#C90007_SI>
@@ -37393,6 +37496,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C77529/V49#C77529_SI>
@@ -37555,6 +37659,7 @@
 	isoR:unresolvedIssue ""^^xsd:string ;
 	isoR:administrativeStatus ""^^xsd:string ;
 	isoR:previousState "Standard"^^xsd:string ;
+	isoR:multipleEdit "false"^^xsd:boolean ;
 	isoR:byAuthority <http://www.assero.co.uk/RA#DUNS084433759> ;
 .
 <http://www.cdisc.org/C77530/V49#C77530_SI>

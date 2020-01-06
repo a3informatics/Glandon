@@ -23,9 +23,8 @@ class IsoManagedV2Controller < ApplicationController
 
   def make_current
     authorize IsoManaged, :update?
-    managed_item = IsoManagedV2.find_minimum(params[:id])
-    clear_current(the_params[:current_id])
-    managed_item.has_state.make_current
+    managed_item = get_item(params)
+    managed_item.make_current
     redirect_to request.referer
   end
 
@@ -46,13 +45,6 @@ class IsoManagedV2Controller < ApplicationController
     render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
   end
 
-  def edit_tags
-    authorize IsoManaged, :edit?
-    # @managed_item = get_item(params)
-    # @concept_system = IsoConceptSystem.root
-    # @referer = request.referer
-  end
-
   def find_by_tag
     authorize IsoManaged, :show?
     render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200
@@ -65,15 +57,6 @@ private
     rdf_type = IsoManagedV2.the_type(uri)
     klass = IsoManagedV2.rdf_type_to_klass(rdf_type.to_s)
     klass.find_minimum(params[:id])
-  end
-
-  def clear_current(current_id)
-    return false if current_id.blank?
-    current_item = IsoManagedV2.find_minimum(current_id)
-    current_item.has_state.make_not_current
-    true
-  rescue Errors::NotFoundError => e
-    false
   end
 
   def the_params

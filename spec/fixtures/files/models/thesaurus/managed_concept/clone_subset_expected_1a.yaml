@@ -1,0 +1,167 @@
+---
+:id: 
+:uri: {}
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: A subset
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzgxUy9WMSNDNjY3ODFTX1JT
+  :uri: http://www.acme-pharma.com/C66781S/V1#C66781S_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQzY2NzgxUy9WMSNDNjY3ODFTX1NJ
+  :uri: http://www.acme-pharma.com/C66781S/V1#C66781S_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: C66781S
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-12-26T17:49:05+01:00'
+:explanatory_comment: ''
+:identifier: ''
+:notation: ''
+:definition: ''
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjUzMDE=
+  :uri: http://www.cdisc.org/C66781/V2#C66781_C25301
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Day
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C25301
+  :notation: DAYS
+  :definition: The time for Earth to make a complete rotation on its axis; ordinarily
+    divided into twenty-four hours.  This also refers to a specific day. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjOTg3YjljZWQwOGQ0YWM1ZDExZDI4NmNhNGI1NGI5OWE0ZjY5MTY0Yg==
+    :uri: http://www.assero.co.uk/PT#987b9ced08d4ac5d11d286ca4b54b99a4f69164b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Day
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzU1Mjg0Zjc4MDgzNTI0MmZiZWU1ZjE0Yjc3MDVjNzYxMjFiMmMyMGM=
+    :uri: http://www.assero.co.uk/SYN#55284f780835242fbee5f14b7705c76121b2c20c
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: DAYS
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjk4NDg=
+  :uri: http://www.cdisc.org/C66781/V2#C66781_C29848
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Year
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C29848
+  :notation: YEARS
+  :definition: The period of time that it takes for Earth to make a complete revolution
+    around the sun, approximately 365 days; a specific one year period. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjODc5ZTMyMzI2YzUyMTc5NjhhYzhlM2ExNGU0YThhNTIxNDk1NzI2NA==
+    :uri: http://www.assero.co.uk/PT#879e32326c5217968ac8e3a14e4a8a5214957264
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Year
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzQ4MWE5YzZkMmNhOWM3YzVlYjUwNjBkZDhjYzJiMWNlMDQxMGVmMDc=
+    :uri: http://www.assero.co.uk/SYN#481a9c6d2ca9c7c5eb5060dd8cc2b1ce0410ef07
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: YEARS
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzgxL1YyI0M2Njc4MV9DMjk4NDY=
+  :uri: http://www.cdisc.org/C66781/V2#C66781_C29846
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Month
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C29846
+  :notation: MONTHS
+  :definition: One of the 12 divisions of a year as determined by a calendar.  It
+    corresponds to the unit of time of approximately to one cycle of the moon's phases,
+    about 30 days or 4 weeks. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMDgyYmMzNzhjZDYwZTE3YTM4ZDk5ODk4YjIxOTU1Mjk5YzViNjBjOA==
+    :uri: http://www.assero.co.uk/PT#082bc378cd60e17a38d99898b21955299c5b60c8
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Month
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzA3YTkzYWMyNmQ5ODJhYTFkZjk1NGUwMDNmOGRkYjEzYzdkOGE4MmY=
+    :uri: http://www.assero.co.uk/SYN#07a93ac26d982aa1df954e003f8ddb13c7d8a82f
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: MONTHS
+    :tagged: []
+:extends: 
+:subsets: http://www.cdisc.org/C66781/V2#C66781
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMTQ5ODFjNDBiMDdjMWNjZTRhYzRjODBlYzk4YWFhMzg4Y2Y3MTFjZg==
+  :uri: http://www.assero.co.uk/PT#14981c40b07c1cce4ac4c80ec98aaa388cf711cf
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: A subset
+  :tagged: []
+:synonym: []
+:is_ordered:
+  :id: 
+  :uri: {}
+  :rdf_type: http://www.assero.co.uk/Thesaurus#Subset
+  :label: ''
+  :tagged: []
+  :members:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNIzE4NmQxNGU1LTQ0ODctNGM2My1hNTQ5LTM5M2M5M2Q3YTI4NQ==
+    :uri: http://www.assero.co.uk/TSM#186d14e5-4487-4c63-a549-393c93d7a285
+    :rdf_type: http://www.assero.co.uk/Thesaurus#SubsetMember
+    :label: ''
+    :tagged: []
+    :item: http://www.cdisc.org/C66781/V2#C66781_C25301
+    :member_next:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNIzZmNjFkMzFkLWY3NDAtNGI2Yy05YzcyLWVhYTg4MmY2YjE3Mg==
+      :uri: http://www.assero.co.uk/TSM#6f61d31d-f740-4b6c-9c72-eaa882f6b172
+      :rdf_type: http://www.assero.co.uk/Thesaurus#SubsetMember
+      :label: ''
+      :tagged: []
+      :item: http://www.cdisc.org/C66781/V2#C66781_C29846
+      :member_next:
+        :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvVFNNI2Q5NTY4ZTNmLWMwZWMtNDRjZi1hZTYyLWYyNGVjY2ZkYjMxYw==
+        :uri: http://www.assero.co.uk/TSM#d9568e3f-c0ec-44cf-ae62-f24eccfdb31c
+        :rdf_type: http://www.assero.co.uk/Thesaurus#SubsetMember
+        :label: ''
+        :tagged: []
+        :item: http://www.cdisc.org/C66781/V2#C66781_C29848
+        :member_next: 

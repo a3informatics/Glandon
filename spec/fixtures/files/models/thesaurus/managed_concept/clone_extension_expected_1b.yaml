@@ -1,0 +1,247 @@
+---
+:id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMQ==
+:uri: http://www.acme-pharma.com/A00001/V1#A00001
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Epoch Extension
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9SUw==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Incomplete
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Incomplete
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzEyMzQ1Njc4OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS123456789
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '123456789'
+    :international_code_designator: DUNS
+    :owner: true
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+      :uri: http://www.assero.co.uk/NS#ACME
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: ACME
+      :name: ACME Pharma
+      :authority: www.acme-pharma.com
+:has_identifier:
+  :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9TSQ==
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: A00001
+  :version_label: ''
+  :version: 1
+  :semantic_version: 0.1.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQUNNRQ==
+    :uri: http://www.assero.co.uk/NS#ACME
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: ACME
+    :name: ACME Pharma
+    :authority: www.acme-pharma.com
+:origin: ''
+:change_description: ''
+:creation_date: '2016-01-01T00:00:00+00:00'
+:last_change_date: '2019-12-26T20:47:40+01:00'
+:explanatory_comment: ''
+:identifier: ''
+:notation: ''
+:definition: ''
+:extensible: false
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDk0OTQ=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C49494
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Not Recovered or Not Resolved
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49494
+  :notation: NOT RECOVERED/NOT RESOLVED
+  :definition: One of the possible results of an adverse event outcome that indicates
+    that the event has not improved or recuperated. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMDNiZTBkMzdjMDJiMjlmYTMyYzQ5YTExMTU3ZjI2NjU0MjMxNjdkYg==
+    :uri: http://www.assero.co.uk/PT#03be0d37c02b29fa32c49a11157f2665423167db
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Not Recovered or Not Resolved
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2ViODZhY2UxZDNjOWZkYmQ0NzMwNDA4NWZjMDc5NmY5OGZlZDAyNDE=
+    :uri: http://www.assero.co.uk/SYN#eb86ace1d3c9fdbd47304085fc0796f98fed0241
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: NOT RECOVERED/NOT RESOLVED
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDgyNzU=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C48275
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Death Related to Adverse Event
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C48275
+  :notation: FATAL
+  :definition: The termination of life as a result of an adverse event. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZGNhMzdmNzU3NTMzMGEzZmM4ZWNmYzk0NmM3MGNlMDQ1YmFlZWI4Zg==
+    :uri: http://www.assero.co.uk/PT#dca37f7575330a3fc8ecfc946c70ce045baeeb8f
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Death Related to Adverse Event
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzc1ZmQ2NjVhNmIxNGNmNDU2ZWQ4YjY5NDVkNzE1YzMzMzJjYWNlYTc=
+    :uri: http://www.assero.co.uk/SYN#75fd665a6b14cf456ed8b6945d715c3332cacea7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Grade 5
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzAwZGQ5OWI0YjY5NjNkNTk0MzlkNmQ3ODg5MjhjZWQ2NGMxN2E2Mzk=
+    :uri: http://www.assero.co.uk/SYN#00dd99b4b6963d59439d6d788928ced64c17a639
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: FATAL
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2FjMzQ3OGQ2OWEzYzgxZmE2MmU2MGY1YzM2OTYxNjVhNGU1ZTZhYzQ=
+    :uri: http://www.assero.co.uk/SYN#ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: '5'
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDk0OTg=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C49498
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Recovered or Resolved
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49498
+  :notation: RECOVERED/RESOLVED
+  :definition: One of the possible results of an adverse event outcome that indicates
+    that the event has improved or recuperated. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjZTM1MTRkOWJlOTEwYjlmNTA1MGFhNjdhZmFlN2I3ZmI1MGM3MTk3Yw==
+    :uri: http://www.assero.co.uk/PT#e3514d9be910b9f5050aa67afae7b7fb50c7197c
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Recovered or Resolved
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzI3YThhNGQ0ODczNzk1YmJkYTg1ZDkyNDBmZjBiZGI2NzRiYmUwNjU=
+    :uri: http://www.assero.co.uk/SYN#27a8a4d4873795bbda85d9240ff0bdb674bbe065
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: RECOVERED/RESOLVED
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DMTc5OTg=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C17998
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Unknown
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C17998
+  :notation: UNKNOWN
+  :definition: Not known, not observed, not recorded, or refused. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYmM3ODE5YjM0ZmY4NzU3MDc0NWZiZTQ2MWUzNmExNmY4MGU1NjJjZQ==
+    :uri: http://www.assero.co.uk/PT#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Unknown
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2JjNzgxOWIzNGZmODc1NzA3NDVmYmU0NjFlMzZhMTZmODBlNTYyY2U=
+    :uri: http://www.assero.co.uk/SYN#bc7819b34ff87570745fbe461e36a16f80e562ce
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: Unknown
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzI1YmE0NGVjM2IzOTFiYTRjZTVmYmJkMjk3OTYzNWUyNTQ3NzVlN2Q=
+    :uri: http://www.assero.co.uk/SYN#25ba44ec3b391ba4ce5fbbd2979635e254775e7d
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: UNKNOWN
+    :tagged: []
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOI2IyYzdjMGNhYTEwYTBjY2E1ZWE3ZDY5ZTU0MDE4YWUwYzAzODlkZDY=
+    :uri: http://www.assero.co.uk/SYN#b2c7c0caa10a0cca5ea7d69e54018ae0c0389dd6
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: U
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDk0OTY=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C49496
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Recovering or Resolving
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49496
+  :notation: RECOVERING/RESOLVING
+  :definition: One of the possible results of an adverse event outcome that indicates
+    that the event is improving. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjYjk2ZTc3YTNkODBmNzdlZDcyMGVhOTBiODQxZTllMDExNzUzYmMxYg==
+    :uri: http://www.assero.co.uk/PT#b96e77a3d80f77ed720ea90b841e9e011753bc1b
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Recovering or Resolving
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzVlNTgyYjU5MDgyZjEyYmViNmY0ZWUxNThmOTZlYzE4ODVhM2Y3NTQ=
+    :uri: http://www.assero.co.uk/SYN#5e582b59082f12beb6f4ee158f96ec1885a3f754
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: RECOVERING/RESOLVING
+    :tagged: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzY2NzY4L1YyI0M2Njc2OF9DNDk0OTU=
+  :uri: http://www.cdisc.org/C66768/V2#C66768_C49495
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Recovered or Resolved with Sequelae
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C49495
+  :notation: RECOVERED/RESOLVED WITH SEQUELAE
+  :definition: One of the possible results of an adverse event outcome where the subject
+    recuperated but retained pathological conditions resulting from the prior disease
+    or injury. (NCI)
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNzM1NzEzMTgyYzRkM2FhMzgxMDVlN2YxMzc4ODQ1MzdlMTYyODVlYg==
+    :uri: http://www.assero.co.uk/PT#735713182c4d3aa38105e7f137884537e16285eb
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Recovered or Resolved with Sequelae
+    :tagged: []
+  :synonym:
+  - :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvU1lOIzQ5YzhhMDg3ZmUwOTk0MDY0Zjk5YmYwZDhlNzM4Y2YzZTc4N2Y3NTk=
+    :uri: http://www.assero.co.uk/SYN#49c8a087fe0994064f99bf0d8e738cf3e787f759
+    :rdf_type: http://www.assero.co.uk/Thesaurus#Synonym
+    :label: RECOVERED/RESOLVED WITH SEQUELAE
+    :tagged: []
+- :id: aHR0cDovL3d3dy5hY21lLXBoYXJtYS5jb20vQTAwMDAxL1YxI0EwMDAwMV9BMDAwMDI=
+  :uri: http://www.acme-pharma.com/A00001/V1#A00001_A00002
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: So late after anything else
+  :tagged: []
+  :identifier: A00002
+  :notation: SO SO LATE
+  :definition: So so late
+  :extensible: false
+  :narrower: []
+  :preferred_term:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjNDUyNDQxZjg0ZDM5YmMzZGY2OTAxZDY3MTU2ZmU0ZDZkNzZkMWRlNw==
+    :uri: http://www.assero.co.uk/PT#452441f84d39bc3df6901d67156fe4d6d76d1de7
+    :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+    :label: Very very late
+    :tagged: []
+  :synonym: []
+:extends: http://www.cdisc.org/C66768/V2#C66768
+:subsets: 
+:preferred_term:
+  :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUFQjMzA3MzA3NTcwMmRmNmQwMDZlZWY1ZTEwM2E2NTk4NWNmM2E0MjE3Ng==
+  :uri: http://www.assero.co.uk/PT#3073075702df6d006eef5e103a65985cf3a42176
+  :rdf_type: http://www.assero.co.uk/Thesaurus#PreferredTerm
+  :label: Epoch Extension
+  :tagged: []
+:synonym: []
+:is_ordered: 

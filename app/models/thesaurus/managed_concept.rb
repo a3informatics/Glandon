@@ -455,16 +455,20 @@ SELECT DISTINCT ?i ?n ?d ?pt ?e ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"#{s
     super(child)
   end
 
-  # Clone. Clone the object taking care over the links
+  # Clone. Clone the object taking care over the type of concept
   #
   # @return [Thesaurus::ManagedConcept] a clone of the object
   def clone
     self.narrower_links
-    #self.extends_links
-    #self.subset_links
     self.preferred_term_links
     self.synonym_links
-    #object_property :is_ordered, cardinality: :one, model_class: "Thesaurus::Subset"
+    if self.subset?
+      self.is_ordered_objects
+      self.is_ordered = self.is_ordered.clone
+      self.subsets_links
+    elsif self.extension?
+      self.extends_links
+    end
     object = super
   end
 
