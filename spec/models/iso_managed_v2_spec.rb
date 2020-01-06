@@ -978,10 +978,8 @@ describe "IsoManagedV2" do
       expect(result).to eq("5.1.0")
   
       item = Thesaurus.find_minimum(uris[9])
-      # set_semantic_version_and_state(item, "5.1.0", "Standard")
       result = item.previous_release
       expect(result).to eq("5.1.0")
-      # expect(result[:uris]).to eq("")
     end
 
     it "find the previous_release, only one item" do
@@ -1002,7 +1000,7 @@ describe "IsoManagedV2" do
       expect(result).to eq("0.1.0")
     end
 
-    it "allows the item release to be incremented, one version, no changes" do
+    it "allows the item release to be incremented, one version, state Incomplete" do
       load_cdisc_term_versions(1..1)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1015,7 +1013,7 @@ describe "IsoManagedV2" do
       expect(actual.semantic_version).to eq("1.0.0")
     end
 
-    it "not allows the item release to be incremented, two versions, no latest" do
+    it "not allows the item release to be incremented, two versions, no latest release" do
       load_cdisc_term_versions(1..2)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1086,7 +1084,7 @@ describe "IsoManagedV2" do
       expect(actual.semantic_version).to eq("1.0.1")
     end
 
-    it "allows the item release to be incremented, two versions, increment empty, error" do
+    it "allows the item release to be incremented, two versions, increment request type invalid" do
       load_cdisc_term_versions(1..2)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1095,6 +1093,8 @@ describe "IsoManagedV2" do
       item.release(:asd)
       expect(item.errors.count).to eq(1)
       expect(item.errors.full_messages.to_sentence).to eq("The release request type was invalid")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("2.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment major" do
