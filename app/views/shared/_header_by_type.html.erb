@@ -1,0 +1,18 @@
+<%
+  case type
+    when "Thesaurus"
+      header_path = "shared/iso_managed/managed_header_card"
+      locals = {item: @item, badge: "icon-terminology", with_tags: false}
+    when "Thesaurus::ManagedConcept"
+      header_path = "shared/iso_managed/managed_header_card_cl"
+      @item.synonyms_and_preferred_terms
+      locals = {item: @item, badge: "CL", with_tags: false}
+    when "Thesaurus::UnmanagedConcept"
+      header_path = "shared/thesauri/unmanaged_header_card"
+      @item.synonyms_and_preferred_terms
+      locals = {item: @item, badge: "CI", with_tags: false}
+  end %>
+
+<%= render layout: header_path, :locals => locals do %>
+  <% yield %>
+<% end %>

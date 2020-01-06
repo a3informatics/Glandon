@@ -7,9 +7,16 @@ $(document).ready(function() {
     imtlp.selected(data);
   }
 
+
   // Set window resize.
-  $(window).resize(function() {
+  window.addEventListener("resize", function(event){
     csvp.reDisplay();
+  });
+
+  $("#sidebar-arrow").on("click", function(){
+    window.setTimeout(function(){
+      csvp.reDisplay();
+    }, 300);
   });
 
 });

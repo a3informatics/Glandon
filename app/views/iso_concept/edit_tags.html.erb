@@ -9,7 +9,17 @@
 <%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.uri.namespace}\";" %>
 <%= javascript_tag "var isoManagedId = \"#{@iso_concept.id}\";" %>
 <%= javascript_tag "var isoManagedNamespace = \"#{@iso_concept.uri.namespace}\";" %>
-<% third_level_breadcrumb(@type, @item, @close_path) %>
+<%# third_level_breadcrumb(@type, @item, @close_path) %>
+
+<div class="row">
+    <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s} do %>
+      <div class="actions-wrap">
+      <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
+        icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
+      </div>
+    <% end %>
+</div>
+
 <div class="row">
   <div class="col-md-7 card wide">
     <div class="card-header">
@@ -19,8 +29,8 @@
         <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
     </div>
   </div>
-  <div class="col-md-5" style="padding: 0;">
-    <div id="iso_managed_tag_panel" class="col-md-12 card narrow">
+
+  <div class="col-md-5 card narrow" id="iso_managed_tag_panel">
       <div class="card-header">
         Item Tags
       </div>
@@ -40,8 +50,8 @@
           <button id="tag_add" class="btn tag-add">Add selected tag</button>
         </div>
       </div>
-    </div>
   </div>
-  <input type="hidden" id="id" value="<%= @iso_concept.id %>">
-  <input type="hidden" id="namespace" value="<%= @iso_concept.uri.namespace %>" %>
 </div>
+
+<input type="hidden" id="id" value="<%= @iso_concept.id %>">
+<input type="hidden" id="namespace" value="<%= @iso_concept.uri.namespace %>" %>

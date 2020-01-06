@@ -20,17 +20,24 @@ var rectH = 30;
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select(d3Div).select('svg').remove();
-  var width = d3CalculateWidth(jsonData.data.is_top_concept[0]);
-  // width = width < 600 ? 600 : width;
+  var width = d3Div.clientWidth - 30;
   var height;
   if (d3HeightOverride) {
     height = d3HeightOverrideValue;
   } else {
-    //height = $(window).height() - 200;
     height = d3Div.clientHeight;
   }
   var tree = d3.layout.tree().nodeSize([70, 40])
     .size([height-30, width - 160]);
+
+  var nodes = tree.nodes(jsonData);
+  var links = tree.links(nodes);
+
+  var minWidth = d3CalculateWidth(links);
+
+  tree = d3.layout.tree().nodeSize([70, 40])
+    .size([height-30, minWidth - 160]);
+
   var diagonal = d3.svg.diagonal()
      .projection(function(d) { return [d.y + rectW / 2 - 60, d.x + rectH / 2]; });
   // var diagonal = function link(d) {
@@ -40,7 +47,8 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   //       + " " + d.target.y + "," + (d.target.x + rectH / 2);
   // };
   var svg = d3.select(d3Div).append("svg")
-    .attr("style", "min-width: " + width + "px")
+    .attr("width", width)
+    .attr("style", "min-width: " + minWidth + "px")
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(15,0)");
@@ -287,23 +295,13 @@ function d3AdjustHeight(height) {
 }
 
 /**
- * Updates min width
- *
- * @return [void]
- */
-function updateWidth(node) {
-  var width = d3CalculateWidth(node);
-  $('#d3').css("min-width", width + "px");
-}
-
-/**
  * Calculates the minimum width for the tree view based on data depth
  *
  * @param node [Object] The is_top_concept object
  * @return [Int] the minimum width of the tree viewer
  */
-function d3CalculateWidth(node) {
-  var depth = treeDepth(node) + 1;
+function d3CalculateWidth(links) {
+  var depth = links.reverse()[0].target.depth + 1;
   return (120 + 30) * depth;
 }
 
