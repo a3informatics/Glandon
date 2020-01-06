@@ -1,7 +1,7 @@
 <%= javascript_tag 'setPageTitle("Edit tags")' %>
 
-<%= stylesheet_link_tag    'd3_tree_rect_v2', 'custom/tags_v2', 'shared/datatables_loading' %>
-<%= javascript_include_tag 'shared/tags', 'd3_tree_rect_v2', 'd3_editor_new', 'shared/iso_concept_systems/concept_system_view_panel_v2', 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
+<%= stylesheet_link_tag 'shared/datatables_loading' %>
+<%= javascript_include_tag 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-md-7 card wide">
     <div class="card-header">
-      Edit Tags
+      Tags View
     </div>
     <div class="card-content">
         <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
@@ -22,7 +22,7 @@
     <%= render partial: "shared/isoManagedInfo"%>
     <div id="iso_managed_tag_panel" class="col-md-12 card narrow">
       <div class="card-header">
-        Tag List
+        Item Tags
       </div>
       <div id="tag_panel" class="card-content">
         <div id="tag_panel_spinner" class="loading-overlay">
@@ -43,7 +43,7 @@
     </div>
     <div id="iso_managed_panel" class="col-md-12 card narrow">
       <div class="card-header">
-        Item List
+        Tagged Items List
       </div>
       <div class="card-content">
         <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>

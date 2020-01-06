@@ -10,7 +10,7 @@ $(document).ready(function() {
   }
 
   // Set window resize.
-  window.addEventListener("resize", function(event){
+  $(window).resize(function() {
     csvp.reDisplay();
   });
 

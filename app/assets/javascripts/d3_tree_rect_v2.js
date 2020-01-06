@@ -20,7 +20,8 @@ var rectH = 30;
  */
 function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   d3.select(d3Div).select('svg').remove();
-  var width = d3Div.clientWidth + 30;
+  var width = d3CalculateWidth(jsonData.data.is_top_concept[0]);
+  // width = width < 600 ? 600 : width;
   var height;
   if (d3HeightOverride) {
     height = d3HeightOverrideValue;
@@ -39,7 +40,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   //       + " " + d.target.y + "," + (d.target.x + rectH / 2);
   // };
   var svg = d3.select(d3Div).append("svg")
-    .attr("width", width)
+    .attr("style", "min-width: " + width + "px")
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(15,0)");
@@ -284,6 +285,40 @@ function d3AdjustHeight(height) {
   d3HeightOverrideValue = height;
   $('#d3').css("height",height + "px");
 }
+
+/**
+ * Updates min width
+ *
+ * @return [void]
+ */
+function updateWidth(node) {
+  var width = d3CalculateWidth(node);
+  $('#d3').css("min-width", width + "px");
+}
+
+/**
+ * Calculates the minimum width for the tree view based on data depth
+ *
+ * @param node [Object] The is_top_concept object
+ * @return [Int] the minimum width of the tree viewer
+ */
+function d3CalculateWidth(node) {
+  var depth = treeDepth(node) + 1;
+  return (120 + 30) * depth;
+}
+
+/**
+ * Calculates the depth of the data tree
+ *
+ * @param node [Object] The is_top_concept object
+ * @return [Int] the depth of the tree
+ */
+function treeDepth(node) {
+    return node.narrower.reduce(function (maxHeight, node) {
+        return Math.max(maxHeight, treeDepth(node) + 1);
+    }, 1);
+}
+
 
 /*
  * Get Current Height

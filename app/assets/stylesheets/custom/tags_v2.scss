@@ -84,6 +84,11 @@
   fill: white!important;
 }
 
+.d3-tree {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
 .d3-tree svg{
   margin: -10px;
 }
