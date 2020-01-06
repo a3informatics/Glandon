@@ -45,13 +45,6 @@ class IsoManagedV2Controller < ApplicationController
     render :json => { :data => @managed_item.semantic_version, :errors => @managed_item.errors.full_messages}, :status => status
   end
 
-  def edit_tags
-    authorize IsoManaged, :edit?
-    # @managed_item = get_item(params)
-    # @concept_system = IsoConceptSystem.root
-    # @referer = request.referer
-  end
-
   def find_by_tag
     authorize IsoManaged, :show?
     render json: {data: IsoManagedV2.find_by_tag(the_params[:tag_id])}, status: 200

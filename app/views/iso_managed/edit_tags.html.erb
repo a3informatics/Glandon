@@ -1,54 +1,52 @@
-<%= stylesheet_link_tag    'd3_tree_rect', 'tags' %>
-<%= javascript_include_tag 'd3_tree_rect', 'd3_editor_new', 'shared/iso_concept_systems/concept_system_view_panel', 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
+<%= stylesheet_link_tag    'd3_tree_rect_v2', 'custom/tags_v2' %>
+<%= javascript_include_tag 'shared/tags', 'd3_tree_rect_v2', 'd3_editor_new', 'shared/iso_concept_systems/concept_system_view_panel_v2', 'iso_managed/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
-<%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.namespace}\";" %>
+<%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.uri.namespace}\";" %>
 <%= javascript_tag "var isoManagedId = \"#{@iso_managed.id}\";" %>
-<%= javascript_tag "var isoManagedNamespace = \"#{@iso_managed.namespace}\";" %>
+<%= javascript_tag "var isoManagedNamespace = \"#{@iso_managed.uri.namespace}\";" %>
 <div class="row">
-    <div class="col-md-7">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <%= render partial: "shared/stdInstanceTitlePanel", :locals => {:title => "Edit Tags:", :item => @iso_managed} %>
-        </div>
-        <div class="panel-body">
-          <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
-        </div>
-      </div>
+  <div class="col-md-7 card wide">
+    <div class="card-header">
+      Edit Tags
     </div>
+    <div class="card-content">
+        <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
+    </div>
+  </div>
   <div class="col-md-5">
     <%= render partial: "shared/isoManagedInfo"%>
-    <div id="iso_managed_tag_panel" class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Tag List</h3>
-        </div>
-        <div id="tag_panel" class="panel-body">
-          <div id="tag_panel_spinner" class="loading-overlay">
-            <div class="spinner-container">
-              <img class="spinner" src="<%= asset_path('processing_medium_2.gif') %>">
-            </div>
-          </div>
-          <div class="tags-container" id="tags_container"></div>
-          
-          <div class="well selected-container">
-            <div class="tag-display">
-              <span><strong>Label: </strong><span id="selected_label" type="text" readonly></span></span>
-              <span class="selected-description"><strong>Description: </strong><span id="selected_description" type="text" readonly></span></span>
-            </div>
-            <button type="button" id="tag_add" class="btn  tag-add">Add selected tag</button>
-          </div>
-        </div>
-    </div>
-    <div id="iso_managed_panel" class="panel panel-default">
-      <div class="panel-heading">
-          <h3 class="panel-title">Item List</h3>
+    <div id="iso_managed_tag_panel" class="col-md-12 card narrow">
+      <div class="card-header">
+        Tag List
       </div>
-      <div class="panel-body">
+      <div id="tag_panel" class="card-content">
+        <div id="tag_panel_spinner" class="loading-overlay">
+          <div class="spinner-container">
+            <img class="spinner" src="<%= asset_path('processing_medium_2.gif') %>">
+          </div>
+        </div>
+        <div class="tags-container" id="tags_container"></div>
+
+        <div class="well selected-container">
+          <div class="tag-display">
+            <span><strong>Label: </strong><span id="selected_label" type="text" readonly></span></span>
+            <span class="selected-description"><strong>Description: </strong><span id="selected_description" type="text" readonly></span></span>
+          </div>
+          <button id="tag_add" class="btn tag-add">Add selected tag</button>
+        </div>
+      </div>
+    </div>
+    <div id="iso_managed_panel" class="col-md-12 card narrow">
+      <div class="card-header">
+        Item List
+      </div>
+      <div class="card-content">
         <table id="iso_managed_table" class="table table-striped table-bordered"  cellspacing="0" width="100%">
           <thead>
-              <tr> 
+              <tr>
                   <th>Identifier</th>
                   <th>Label</th>
                   <th>Version</th>
@@ -63,5 +61,5 @@
     </div>
   </div>
   <input type="hidden" id="id" value="<%= @iso_managed.id %>">
-  <input type="hidden" id="namespace" value="<%= @iso_managed.namespace %>" %> 
+  <input type="hidden" id="namespace" value="<%= @iso_managed.uri.namespace %>" %>
 </div>
