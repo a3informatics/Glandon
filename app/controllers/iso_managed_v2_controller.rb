@@ -13,7 +13,6 @@ class IsoManagedV2Controller < ApplicationController
 
   def status
     authorize IsoManaged, :status?
-    byebug
     @managed_item = get_item(params)
     @current_id = the_params[:current_id]
     @next_versions = SemanticVersion.from_s(@managed_item.previous_release).next_versions

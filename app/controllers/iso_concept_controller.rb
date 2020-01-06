@@ -30,6 +30,16 @@ class IsoConceptController < ApplicationController
     render :json => {}, :status => 200
   end
 
+  def edit_tags
+    authorize IsoConcept, :edit?
+    @iso_concept = IsoConceptV2.find(protect_from_bad_id(params))
+    @concept_klass = get_klass(@iso_concept) 
+    @item = @concept_klass.find_minimum(params[:id])
+    @concept_system = IsoConceptSystem.root
+    @type = this_params[:rdf_type].to_sym
+    @close_path = request.referer
+  end
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
@@ -106,6 +116,15 @@ class IsoConceptController < ApplicationController
   end
 
 private
+
+  def get_klass(item)
+    klass = IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
+    if klass == Thesaurus::UnmanagedConcept
+      return Thesaurus::ManagedConcept
+    else
+      return klass
+    end 
+  end
 
   def this_params
     params.require(:iso_concept).permit(:namespace, :child_property, :rdf_type, :identifier, :concepts => [], :versions => [])

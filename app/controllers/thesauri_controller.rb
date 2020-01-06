@@ -361,7 +361,7 @@ class ThesauriController < ApplicationController
       when :destroy
         return thesauri_path(object)
       when :edit_tags
-        return edit_tags_iso_managed_index_path(:id => object.uri.fragment, :namespace => object.uri.namespace)
+        return edit_tags_iso_concept_path(object.id, iso_concept: {:rdf_type => :thesauri})
       else
         return ""
     end
