@@ -42,7 +42,7 @@ describe Import::AdamIg do
     {
       description: "Import of ADaM Implementation Guide",
       parent_klass: ::AdamIg,
-      reader_klass: Excel::AdamIgReader,
+      reader_klass: Excel,
       import_type: :cdisc_adam_ig,
       format: :format,
       version_label: :semantic_version,

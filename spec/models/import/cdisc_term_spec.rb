@@ -123,7 +123,7 @@ describe "Import::CdiscTerm" do
   end
 
   it "import, exception" do
-    expect_any_instance_of(Excel::CdiscTermReader).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
+    expect_any_instance_of(Excel).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = 
     {

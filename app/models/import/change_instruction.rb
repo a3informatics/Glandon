@@ -17,7 +17,7 @@ class Import::ChangeInstruction < Import
     job = Background.create
     klass = self.configuration[:parent_klass]
     params[:job] = job
-    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: ::CdiscTerm.configuration[:identifier], 
+    self.update(input_file: file_list(params), auto_load: params[:auto_load], identifier: ::CdiscTerm.identifier, 
       owner: owner_short_name(klass), background_id: job.id, file_type: params[:file_type].to_i)
     # @todo We need to lock the import somehow.
     job.start(self.description(params), "Starting ...") {self.import(params)} 

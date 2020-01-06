@@ -49,11 +49,11 @@ describe "Import::SponsorTermFormatOne" do
 
   it "sets the correct format" do
     object = Import::SponsorTermFormatOne.new
-    expect(object.sheet({date: "01/01/2000"})).to eq(:version_2)
-    expect(object.sheet({date: "30/05/2019"})).to eq(:version_2)
-    expect(object.sheet({date: "01/06/2019"})).to eq(:version_3)
-    expect(object.sheet({date: DateTime.now.to_date})).to eq(:version_3)
-    expect(object.sheet({date: DateTime.now.to_date+100})).to eq(:version_3) # Future date
+    expect(object.format({date: "01/01/2000"})).to eq(:version_2)
+    expect(object.format({date: "30/05/2019"})).to eq(:version_2)
+    expect(object.format({date: "01/06/2019"})).to eq(:version_3)
+    expect(object.format({date: DateTime.now.to_date})).to eq(:version_3)
+    expect(object.format({date: DateTime.now.to_date+100})).to eq(:version_3) # Future date
   end
 
   it "import, no errors, version 2" do
@@ -89,7 +89,7 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import, exception" do
-    expect_any_instance_of(Excel::CdiscTermReader).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
+    expect_any_instance_of(Excel).to receive(:check_and_process_sheet).and_raise(StandardError.new("error"))
     full_path = test_file_path(sub_dir, "import_input_2.xlsx")
     params = 
     {
