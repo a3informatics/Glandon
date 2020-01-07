@@ -9,7 +9,6 @@ describe "Tags", :type => :feature do
   include WaitForAjaxHelper
   include UserAccountHelpers
 
-
   before :all do
     ua_create
   end
@@ -425,6 +424,79 @@ describe "Tags", :type => :feature do
       ui_click_node_name ('Protocol')
       wait_for_ajax
       expect(page).to have_content('No items with the selected tag were found.')
+    end
+
+  end
+
+  # All tests here depend on one another
+  describe "The Curator user can (Edit tags of Iso Concept item, interdependent tests) ", :type => :feature do
+
+    def prepare_tags
+      click_navbar_tags
+      fill_in "add_label", with: "Sponsor Tags"
+      fill_in "add_description", with: "Description"
+      click_on "Create tag"
+      wait_for_ajax 10
+      ui_click_node_name ("Sponsor Tags")
+      fill_in "add_label", with: "TAG1"
+      fill_in "add_description", with: "Description"
+      click_on "Create tag"
+      wait_for_ajax 10
+      ui_click_node_name ("Sponsor Tags")
+      fill_in "add_label", with: "TAG2"
+      fill_in "add_description", with: "Description"
+      click_on "Create tag"
+    end
+
+    def check_tags(tags)
+      page.all(:css, ".tag-item").each { |i|
+        expect(tags.include? i)
+      }
+    end
+
+
+    before :all do
+      clear_iso_concept_object
+      clear_iso_namespace_object
+      clear_iso_registration_authority_object
+      clear_iso_registration_state_object
+      schema_files = ["ISO11179Types.ttl", "ISO11179Identification.ttl", "ISO11179Registration.ttl", "ISO11179Concepts.ttl"]
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "BCT.ttl", "thesaurus_concept_new_1.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..3)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+      ua_curator_login
+    end
+
+    it "view and add tags on a Thesaurus", js:true do
+      ui_create_terminology("TST", "Test Term")
+      prepare_tags
+      click_navbar_terminology
+      wait_for_ajax 20
+      find(:xpath, "//tr[contains(.,'Test Term')]/td/a").click
+      wait_for_ajax 20
+      context_menu_element('history', 4, 'TST', :edit_tags)
+      wait_for_ajax 20
+      expect(page).to have_content "0.1.0"
+      expect(page).to have_content "Tags: 'Test Term'"
+      ui_click_node_name ("TAG1")
+      expect(page.find("#add_label").value).to eq("TAG1")
+      click_button "Add Tag"
+      wait_for_ajax 20
+      ui_click_node_name ("TAG2")
+      expect(page.find("#add_label").value).to eq("TAG2")
+      click_button "Add Tag"
+      wait_for_ajax 20
+      ui_click_node_name ("SDTM")
+      expect(page.find("#add_label").value).to eq("SDTM")
+      click_button "Add Tag"
+      wait_for_ajax 20
+      page.evaluate_script 'window.location.reload()'
+      wait_for_ajax 20
+      check_tags(["TAG1", "TAG2", "SDTM"])
     end
 
   end
