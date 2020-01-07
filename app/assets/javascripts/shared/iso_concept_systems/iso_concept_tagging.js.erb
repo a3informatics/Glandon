@@ -1,0 +1,104 @@
+function IsoConceptTagging(urls) {
+  this.urls = urls;
+  this.tagListDiv = $("#tags_container");
+  this.tagSelected = {label: $("#add_label"), description: $("#add_description")};
+
+  this.getTags();
+}
+
+IsoConceptTagging.prototype.getTags = function () {
+  this.tagListDiv.html("");
+  this.loading(true);
+
+  $.ajax({
+    url: this.urls.dataUrl,
+		type: 'GET',
+		dataType: 'json',
+		context: this,
+		success: function (result) {
+      this.tagListDiv.append(this.tagsHTML(result));
+      colorCodeTagsOutline(this.tagListDiv, '.tag-item', '.tag');
+      this.listeners();
+      this.loading(false);
+		},
+		error: function (xhr, status, error) {
+			handleAjaxError(xhr, status, error);
+			this.loading(false);
+		}
+  });
+}
+
+IsoConceptTagging.prototype.loading = function (enable) {
+  if(enable)
+    spinnerInElement(this.tagListDiv, 'small');
+  else
+    removeSpinnerInElement(this.tagListDiv);
+}
+
+IsoConceptTagging.prototype.select = function (item) {
+  this.tagSelected.label.val(item.pref_label);
+  this.tagSelected.label.attr("data-id", item.id);
+  this.tagSelected.description.val(item.description);
+  colorCodeElement(this.tagSelected.description, 'border-bottom', '2px solid '+getColorByTag(item.pref_label));
+  colorCodeTagsOutline('#selected_container', '.bg-label');
+
+  if(item.pref_label == "Tags" || this.tagExists(item.id))
+    $("#add_tag").addClass("disabled");
+  else
+    $("#add_tag").removeClass("disabled");
+}
+
+IsoConceptTagging.prototype.tagUpdate = function (tag, adding) {
+  this.loading(true);
+  $.ajax({
+    url: (adding == true ? this.urls.addTagUrl : this.urls.removeTagUrl),
+    data: {iso_concept: {tag_id: tag.id}},
+    type: 'PUT',
+    dataType: 'json',
+    context: this,
+    success: function (result) {
+      if(adding){
+        this.tagListDiv.append(this.tagsHTML([tag]));
+        colorCodeTagsOutline(this.tagListDiv, '.tag-item', '.tag');
+        this.listeners();
+      }
+      else {
+        this.tagListDiv.find(".tag-item[data-id='"+tag.id+"']").remove();
+      }
+      this.loading(false);
+    },
+    error: function (xhr, status, error) {
+      handleAjaxError(xhr, status, error);
+      this.loading(false);
+    }
+  });
+}
+
+IsoConceptTagging.prototype.tagExists = function(id){
+  return this.tagListDiv.find(".tag-item[data-id='"+id+"']").length > 0;
+}
+
+IsoConceptTagging.prototype.listeners = function (tags) {
+  var _this = this;
+
+  $(".tag-item").off("click").on("click", function(){
+    new ConfirmationDialog(function(){
+      _this.tagUpdate({id: this.attr("data-id"), label: this.text()}, false);
+    }.bind($(this)), {subtitle: "", dangerous: true}).show();
+  });
+
+  $("#add_tag").off("click").on("click", function(){
+    _this.tagUpdate({id: _this.tagSelected.label.attr("data-id"), label: _this.tagSelected.label.val()}, true);
+  });
+}
+
+IsoConceptTagging.prototype.tagsHTML = function (tags) {
+  var html = "";
+  $.each(tags, function(i,e){
+      html +=
+        "<div class='tag-item bg-label removable' data-id='"+e.id+"'>" +
+          e.label +
+        "</div>";
+  });
+  return html;
+}

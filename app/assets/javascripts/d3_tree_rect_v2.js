@@ -27,6 +27,7 @@ function d3TreeNormal(d3Div, jsonData, clickCallBack, dblClickCallBack) {
   } else {
     height = d3Div.clientHeight;
   }
+
   var tree = d3.layout.tree().nodeSize([70, 40])
     .size([height-30, width - 160]);
 
@@ -301,7 +302,7 @@ function d3AdjustHeight(height) {
  * @return [Int] the minimum width of the tree viewer
  */
 function d3CalculateWidth(links) {
-  var depth = links.reverse()[0].target.depth + 1;
+  var depth = links.length == 0 ? 1 : links.reverse()[0].target.depth + 1;
   return (120 + 30) * depth;
 }
 

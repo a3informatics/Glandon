@@ -21,6 +21,14 @@ function generateFullPageSpinner(loadingMessage){
   return html;
 }
 
+function spinnerInElement(element, size){
+  $(element).append(generateSpinnerWText(size, ""));
+}
+
+function removeSpinnerInElement(element){
+  $(element).find(".spinner-container").remove();
+}
+
 function generateNoResultsMsg(message){
   return '<div style="width: 100%; text-align: center;">'+
             '<img src="<%= asset_path("no-results.svg") %>" width="120"/>'+

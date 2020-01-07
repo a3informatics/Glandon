@@ -32,8 +32,6 @@
   width: 100%;
 }
 
-
-
 .card-content table.table-fit{
   width: unset!important;
 }
@@ -63,7 +61,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 .tagItem {
   margin-right: 5px;
@@ -106,6 +104,32 @@
 .tag-display{
   display: flex;
   flex-direction: column;
+}
+
+.tag-item.removable{
+  transition: box-shadow .2s;
+}
+
+.tag-item.removable:hover{
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px $accent-color-2-light !important;
+  position: relative;
+}
+
+.tag-item.removable:hover::after{
+  position: absolute;
+  font-family: 'icomoon';
+  content: "\e932";
+  font-size: 12pt;
+  color: $accent-color-2;
+  top: -11px;
+  right: -9px;
+}
+
+.tag-item.clickable.selected{
+  box-shadow: inset 0 0 0 0px !important;
+  color: white;
+  background: $primary-color-bright !important;
 }
 
 @media (max-width:1330px){

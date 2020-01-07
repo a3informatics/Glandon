@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
   var csvp = new ConceptSystemViewPanel(conceptSystemId, 100, nodeSelected);
-  var imtlp = new IsoManagedTagListPanel(isoManagedId, isoManagedNamespace);
+  var ict = new IsoConceptTagging(tagsUrls);
 
   function nodeSelected(data) {
-    imtlp.selected(data);
+    ict.select(data);
   }
 
 

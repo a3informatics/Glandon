@@ -1,18 +1,18 @@
 <%= javascript_tag 'setPageTitle("Edit tags")' %>
 
 <%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
+<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
-<%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
-<%= javascript_tag "var conceptSystemNamespace = \"#{@concept_system.uri.namespace}\";" %>
-<%= javascript_tag "var isoManagedId = \"#{@iso_concept.id}\";" %>
-<%= javascript_tag "var isoManagedNamespace = \"#{@iso_concept.uri.namespace}\";" %>
+<%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";
+                    var tagsUrls = {dataUrl: '#{tags_full_iso_concept_path(@iso_concept)}',
+                                    addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',
+                                    removeTagUrl: '#{remove_tag_iso_concept_path(@iso_concept)}'}" %>
 <%# third_level_breadcrumb(@type, @item, @close_path) %>
 
 <div class="row">
-    <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s} do %>
+    <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
       <div class="actions-wrap">
       <%= render partial: "shared/buttons/ico_btn_secondary", :locals => {link_path: @close_path, id: "close",
         icon: "icon-long-arrow", btn_text: "Return", dt_toggle: "", disabled: false } %>
@@ -23,7 +23,7 @@
 <div class="row">
   <div class="col-md-7 card wide">
     <div class="card-header">
-      Tags View
+      Tag Viewer
     </div>
     <div class="card-content">
         <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
@@ -32,26 +32,32 @@
 
   <div class="col-md-5 card narrow" id="iso_managed_tag_panel">
       <div class="card-header">
-        Item Tags
+        Tags: '<%= @iso_concept.label %>'
       </div>
-      <div id="tag_panel" class="card-content">
-        <div id="tag_panel_spinner" class="loading-overlay">
-          <div class="spinner-container">
-            <img class="spinner" src="<%= asset_path('processing_medium_2.gif') %>">
-          </div>
-        </div>
-        <div class="tags-container" id="tags_container"></div>
+      <div id="tag_panel" class="card-content font-light">
+        <span class="icon-tag text-link" style="margin-right:6px;"></span> Existing tags (click to remove):
+        <div class="tags-container font-light" id="tags_container"></div>
 
-        <div class="well selected-container">
-          <div class="tag-display">
-            <span><strong>Label: </strong><span id="selected_label" type="text" readonly></span></span>
-            <span class="selected-description"><strong>Description: </strong><span id="selected_description" type="text" readonly></span></span>
+        <hr>
+
+        <span class="icon-plus text-link" style="margin-right:6px;"></span> Add a tag to item
+
+        <div class="form-wrap" id="selected_container">
+          <table class="table-fit">
+            <tr>
+              <td>Label:</td>
+              <td><input class="bg-label text-normal" id="add_label" placeholder="Label" readonly="readonly" data-id=""/></td>
+            </tr>
+            <tr class="upper">
+              <td>Description:</td>
+              <td><textarea class="tag-input" id="add_description" rows="2" type="text" readonly="readonly" placeholder="Tag description" name=""></textarea></td>
+            </tr>
+          </table>
+
+          <div class="handle-tag-buttons">
+            <button class="btn medium green" id="add_tag" type="">Add Tag</button>
           </div>
-          <button id="tag_add" class="btn tag-add">Add selected tag</button>
         </div>
       </div>
   </div>
 </div>
-
-<input type="hidden" id="id" value="<%= @iso_concept.id %>">
-<input type="hidden" id="namespace" value="<%= @iso_concept.uri.namespace %>" %>
