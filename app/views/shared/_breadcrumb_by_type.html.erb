@@ -1,0 +1,10 @@
+<%
+  case type
+    when "Thesaurus"
+      puts third_level_breadcrumb(:thesauri, @item, @close_path) 
+    when "Thesaurus::ManagedConcept"
+      puts third_level_breadcrumb(:code_lists, @item, @close_path) 
+    when "Thesaurus::UnmanagedConcept"
+      puts fourth_level_breadcrumb(:thesauri, @parent, history_thesauri_managed_concepts_path({managed_concept: {identifier: @parent.scoped_identifier, scope_id: @parent.scope}}),thesauri_managed_concept_path({id: @parent, managed_concept: {context_id: @context_id}}), "Show") 
+  end %>
+

@@ -10,6 +10,7 @@
                                     addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',
                                     removeTagUrl: '#{remove_tag_iso_concept_path(@iso_concept)}'}" %>
 <%# third_level_breadcrumb(@type, @item, @close_path) %>
+<%= render partial: "shared/breadcrumb_by_type", :locals => {item: @item, type: @concept_klass.to_s, parent: false}%>
 
 <div class="row">
     <%= render layout: "shared/header_by_type", :locals => {item: @item, type: @concept_klass.to_s, with_tags: false} do %>
