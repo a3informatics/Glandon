@@ -7,51 +7,48 @@
 <% first_level_breadcrumb (:iso_concept_systems) %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";" %>
 <div class="row">
-    <div class="col-md-7 card wide">
-        <div class="card-header">Tag Viewer</div>
-        <div class="card-content" >
-          <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
+  <div class="col-md-7">
+    <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
+  </div>
+  <div class="col-md-5" style="padding: 0;">
+    <% if policy(IsoConceptSystem::Node).new? %>
+      <div class="col-md-12 card wide" id="manage_tags_card">
+        <div class="card-header">Manage Tags</div>
+        <div class="card-content font-light">
+          <div class="handle-selected-tag">
+        	<span class="icon-edit text-link" style="margin-right:6px;"></span> Edit selected tag
+            <div class="form-wrap">
+              <table class="table-fit">
+                <tr><td><span class="text-small text-medium">Label:</span></td><td><input type="text" class="bg-label text-normal" id="edit_label"/></td></tr>
+                <tr class="upper"><td><span class="text-small text-medium">Description:</span></td><td><textarea class="tag-input" id="edit_description" rows="2" type="text" name=""></textarea></td></tr>
+              </table>
+            </div>
+        		<div class="handle-tag-buttons">
+        			<button class="btn medium update-tag" id="update_tag" type="">Update tag</button>
+        			<button class="btn medium red" id="delete_tag" type="">Delete tag</button>
+        		</div>
+        	</div>
+          <hr>
+        	<div class="add-child-tag">
+        		<span class="icon-plus text-link" style="margin-right:6px;"></span> Add a new child to the selected tag
+            <div class="form-wrap">
+              <table class="table-fit">
+                <tr><td><span class="text-small text-medium">Label:</span></td><td><input type="text" class="bg-label text-normal" id="add_label" placeholder="Label"/></td></tr>
+                <tr class="upper"><td><span class="text-small text-medium">Description:</span></td><td><textarea class="tag-input" id="add_description" rows="2" type="text" placeholder="Tag description" name=""></textarea></td></tr>
+              </table>
+              <div class="handle-tag-buttons">
+          		    <button class="btn medium green" id="add_tag" type="">Create tag</button>
+              </div>
+            </div>
+        	</div>
         </div>
       </div>
-    <div class="col-md-5" style="padding: 0;">
-      <% if policy(IsoConceptSystem::Node).new? %>
-        <div class="col-md-12 card wide" id="manage_tags_card">
-          <div class="card-header">Manage Tags</div>
-          <div class="card-content font-light">
-            <div class="handle-selected-tag">
-          	<span class="icon-edit text-link" style="margin-right:6px;"></span> Edit selected tag
-              <div class="form-wrap">
-                <table class="table-fit">
-                  <tr><td><span class="text-small text-medium">Label:</span></td><td><input type="text" class="bg-label text-normal" id="edit_label"/></td></tr>
-                  <tr class="upper"><td><span class="text-small text-medium">Description:</span></td><td><textarea class="tag-input" id="edit_description" rows="2" type="text" name=""></textarea></td></tr>
-                </table>
-              </div>
-          		<div class="handle-tag-buttons">
-          			<button class="btn medium update-tag" id="update_tag" type="">Update tag</button>
-          			<button class="btn medium red" id="delete_tag" type="">Delete tag</button>
-          		</div>
-          	</div>
-            <hr>
-          	<div class="add-child-tag">
-          		<span class="icon-plus text-link" style="margin-right:6px;"></span> Add a new child to the selected tag
-              <div class="form-wrap">
-                <table class="table-fit">
-                  <tr><td><span class="text-small text-medium">Label:</span></td><td><input type="text" class="bg-label text-normal" id="add_label" placeholder="Label"/></td></tr>
-                  <tr class="upper"><td><span class="text-small text-medium">Description:</span></td><td><textarea class="tag-input" id="add_description" rows="2" type="text" placeholder="Tag description" name=""></textarea></td></tr>
-                </table>
-                <div class="handle-tag-buttons">
-            		    <button class="btn medium green" id="add_tag" type="">Create tag</button>
-                </div>
-              </div>
-          	</div>
-          </div>
-        </div>
-      <% end %>
-      <div id="iso_managed_panel" class="col-md-12 card wide">
-            <div class="card-header">Item List</div>
-        <div class="card-content">
-          <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>
-        </div>
+    <% end %>
+    <div id="iso_managed_panel" class="col-md-12 card wide">
+          <div class="card-header">Item List</div>
+      <div class="card-content">
+        <%= render partial: "shared/iso_concept_systems/iso_concept_list" %>
       </div>
     </div>
+  </div>
 </div>

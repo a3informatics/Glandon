@@ -9,7 +9,7 @@
                     var tagsUrls = {dataUrl: '#{tags_full_iso_concept_path(@iso_concept)}',
                                     addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',
                                     removeTagUrl: '#{remove_tag_iso_concept_path(@iso_concept)}'}" %>
-<%# third_level_breadcrumb(@type, @item, @close_path) %>
+
 <%= render partial: "shared/breadcrumb_by_type", :locals => {item: @item, type: @concept_klass.to_s, parent: false}%>
 
 <div class="row">
@@ -22,18 +22,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-7 card wide">
-    <div class="card-header">
-      Tag Viewer
-    </div>
-    <div class="card-content">
-        <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
-    </div>
+  <div class="col-md-7" style="padding: 0;">
+    <%= render partial: "shared/iso_concept_systems/tree_viewer"%>
   </div>
 
   <div class="col-md-5 card narrow">
       <div class="card-header">
-        Tags: '<%= @iso_concept.label %>'
+        Tags: '<%= @iso_concept.label %>
       </div>
       <div id="tag_panel" class="card-content font-light">
         <span class="icon-tag text-link" style="margin-right:6px;"></span> Existing tags (click to remove):
