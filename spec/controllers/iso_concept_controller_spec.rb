@@ -5,7 +5,7 @@ describe IsoConceptController do
   include DataHelpers
   include ControllerHelpers
   
-  describe "Authrorized User, Reader" do
+  describe "Authorized User, Reader" do
   	
     login_reader
 
@@ -104,6 +104,14 @@ describe IsoConceptController do
       expect(actual).to eq(["SDTM"])
     end
 
+    it "gets tags full" do
+      item = IsoConceptV2.find(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
+      request.env['HTTP_ACCEPT'] = "application/json"
+      get :tags_full, id: item.id
+      actual = check_good_json_response(response)
+      expect(actual).to eq([{:id=>"aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvQ1NOIzIwNzBlNzE0LTNmNWItNDVkNC1iMWEzLTVmZjVkNThjYmNlOQ==", :label=>"SDTM"}])
+    end
+
     it "add change note" do
       allow(SecureRandom).to receive(:uuid).and_return("1234-5678-9012-3300")
       allow(Time).to receive(:now).and_return(Time.parse("Jan 1 12:00:00+01:00 2000"))
@@ -130,7 +138,7 @@ describe IsoConceptController do
 
   end
 
-  describe "Authrorized User, Curator" do
+  describe "Authorized User, Curator" do
     
     login_curator
 
@@ -171,6 +179,18 @@ describe IsoConceptController do
     end
     
     it "allows a tag to be deleted, error"
+
+    it "allows edit tags" do
+      @request.env['HTTP_REFERER'] = "http://test.host/xxx"
+      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
+      expect(IsoConceptV2).to receive(:find).and_return(IsoConceptV2.new(uri: uri_1))
+      expect(IsoConceptV2).to receive(:rdf_type_to_klass).and_return(Thesaurus)
+      item = IsoConceptV2.new
+      item.uri = uri_1
+      item.save   
+      get :edit_tags, {id: item.uri.to_id, iso_concept: {rdf_type: "thesauri"}}
+      expect(response).to render_template("edit_tags")             
+    end
 
   end
 
