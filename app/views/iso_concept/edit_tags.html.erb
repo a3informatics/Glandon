@@ -1,10 +1,10 @@
 <%= javascript_tag 'setPageTitle("Edit tags")' %>
 
-<%= stylesheet_link_tag 'shared/datatables_loading' %>
-<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging', 'iso_managed_tag_list', 'iso_managed_list', 'iso_managed_attributes' %>
 <% if Rails.env == "test" || Rails.env == "development" %>
   <%= javascript_include_tag 'rspec_helper' %>
 <% end %>
+
+<%= javascript_include_tag 'iso_concept_systems/edit_tags', 'shared/iso_concept_systems/iso_concept_tagging' %>
 <%= javascript_tag "var conceptSystemId = \"#{@concept_system.id}\";
                     var tagsUrls = {dataUrl: '#{tags_full_iso_concept_path(@iso_concept)}',
                                     addTagUrl: '#{add_tag_iso_concept_path(@iso_concept)}',
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="col-md-5 card narrow" id="iso_managed_tag_panel">
+  <div class="col-md-5 card narrow">
       <div class="card-header">
         Tags: '<%= @iso_concept.label %>'
       </div>

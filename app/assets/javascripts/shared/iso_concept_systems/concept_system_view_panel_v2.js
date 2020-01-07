@@ -59,7 +59,7 @@ ConceptSystemViewPanel.prototype.initNode = function(sourceNode, d3ParentNode) {
   var newNode;
   var child;
   newNode = this.d3Editor.addNode(d3ParentNode, sourceNode.pref_label, sourceNode.type, true, sourceNode, true);
-this.d3Editor.displayTree(this.rootNode.key);
+  this.d3Editor.displayTree(this.rootNode.key);
   if (sourceNode.hasOwnProperty('narrower')) {
     for (var i=0; i<sourceNode.narrower.length; i++) {
       child = sourceNode.narrower[i];
