@@ -90,6 +90,13 @@ class Thesaurus::ManagedConcept < IsoManagedV2
     return query_results.empty? ? nil : query_results.by_object_set([:s])
   end
 
+  # Supporting Edit? Can the item be edited for supporting information, e.g. tags, change notes etc.
+  #
+  # @return [Boolean] true if edit permitted, false otherwise
+  def supporting_edit?
+    self.owned?
+  end
+
   # Replace If No Change. Replace the current with the previous if no differences.
   #
   # @param previous [Thesaurus::UnmanagedConcept] previous item

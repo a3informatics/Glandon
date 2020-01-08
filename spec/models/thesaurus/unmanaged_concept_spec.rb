@@ -954,4 +954,27 @@ describe "Thesaurus::UnmanagedConcept" do
 
   end
 
+  describe "Supporting Edit" do
+
+    before :all do
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "thesaurus_new_airports_std.ttl"]
+      load_files(schema_files, data_files)
+      load_cdisc_term_versions(1..2)
+      load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    end
+
+    before :each do
+    end
+
+    it "supporting edit?" do
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri:"http://www.acme-pharma.com/A00001/V1#A00001_A000011"))
+      expect(tc.supporting_edit?).to eq(true)
+      tc = Thesaurus::UnmanagedConcept.find(Uri.new(uri: "http://www.cdisc.org/C66768/V2#C66768_C48275"))
+      expect(tc.supporting_edit?).to eq(false)
+    end
+
+    it "supporting edit? multiple"
+    
+  end
+
 end
