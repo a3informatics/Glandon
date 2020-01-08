@@ -9,6 +9,7 @@ defaults: &defaults
   export_files: public/exports/  # Exports directory
   import_files: public/imports/  # Exports directory
   upload_files: public/upload/  # Upload directory
+  help_url: "https://www.s-cubed-global.com/products/a3-community-mdr/a3-community-mdr-guides" # Video guides URL for the community version
   max_impact_hops: 3 # Maximum hops for impact assesment
   bridg_path_coded:
    - CD.originalText.ED.value

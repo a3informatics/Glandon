@@ -914,6 +914,38 @@ describe "IsoManagedV2" do
       set_state(object, state)
     end
 
+    # it "find the previous release at standard" do
+    #   uris = []
+    #   (1..10).each do |index|
+    #     item = CdiscTerm.new
+    #     item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+    #     item.label = "Item #{index}"
+    #     item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+    #     sparql = Sparql::Update.new  
+    #     item.to_sparql(sparql, true)
+    #     sparql.upload
+    #     uris[index-1] = item.uri
+    #   end 
+    #   last_item = Thesaurus.find_minimum(uris[9])
+    #   uris.each_with_index do |x, index| 
+    #     item = Thesaurus.find_minimum(x)
+    #     set_state(item, "Qualified" )
+    #     set_semantic_version(item, "#{index + 1}.0.0" )
+    #   end
+    #   result = last_item.previous_release
+    #   expect(result).to eq("1.0.0")
+
+    #   item = Thesaurus.find_minimum(uris[0])
+    #   set_semantic_version_and_state(item, "0.1.0", "Incomplete")
+    #   result = item.previous_release
+    #   expect(result).to eq("0.1.0")
+
+    #   item = Thesaurus.find_minimum(uris[4])
+    #   set_semantic_version_and_state(item, "5.1.0", "Standard")
+    #   result = item.previous_release
+    #   expect(result).to eq("5.1.0")
+    # end
+
     it "find the previous release at standard" do
       uris = []
       (1..10).each do |index|
@@ -934,14 +966,18 @@ describe "IsoManagedV2" do
       end
       result = last_item.previous_release
       expect(result).to eq("1.0.0")
-
+   
       item = Thesaurus.find_minimum(uris[0])
       set_semantic_version_and_state(item, "0.1.0", "Incomplete")
       result = item.previous_release
       expect(result).to eq("0.1.0")
-
+     
       item = Thesaurus.find_minimum(uris[4])
       set_semantic_version_and_state(item, "5.1.0", "Standard")
+      result = item.previous_release
+      expect(result).to eq("5.1.0")
+  
+      item = Thesaurus.find_minimum(uris[9])
       result = item.previous_release
       expect(result).to eq("5.1.0")
     end
@@ -964,7 +1000,7 @@ describe "IsoManagedV2" do
       expect(result).to eq("0.1.0")
     end
 
-    it "allows the item release to be incremented, one version, no changes" do
+    it "allows the item release to be incremented, one version, state Incomplete" do
       load_cdisc_term_versions(1..1)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = Thesaurus.find_minimum(uri)
@@ -977,7 +1013,7 @@ describe "IsoManagedV2" do
       expect(actual.semantic_version).to eq("1.0.0")
     end
 
-    it "not allows the item release to be incremented, two versions, no latest" do
+    it "not allows the item release to be incremented, two versions, no latest release" do
       load_cdisc_term_versions(1..2)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1048,7 +1084,7 @@ describe "IsoManagedV2" do
       expect(actual.semantic_version).to eq("1.0.1")
     end
 
-    it "allows the item release to be incremented, two versions, increment empty, error" do
+    it "allows the item release to be incremented, two versions, increment request type invalid" do
       load_cdisc_term_versions(1..2)
       uri = Uri.new(uri: "http://www.cdisc.org/CT/V2#TH")
       item = Thesaurus.find_minimum(uri)
@@ -1057,21 +1093,72 @@ describe "IsoManagedV2" do
       item.release(:asd)
       expect(item.errors.count).to eq(1)
       expect(item.errors.full_messages.to_sentence).to eq("The release request type was invalid")
+      actual = Thesaurus.find_minimum(uri)
+      expect(actual.semantic_version).to eq("2.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment major" do
-      load_cdisc_term_versions(1..5)
-      (1..5).each do |ver|
-        uri = Uri.new(uri: "http://www.cdisc.org/CT/V#{ver}#TH")
-        item = Thesaurus.find_minimum(uri)
-        item.has_state.registration_status = "Qualified"
-        item.has_state.save
+      uris = []
+      (1..5).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+        uris[index-1] = item.uri
+      end 
+      uris.each_with_index do |x, index| 
+        item = Thesaurus.find_minimum(x)
+        set_state(item, "Qualified" )
+        set_semantic_version(item, "#{index + 1}.0.0" )
       end
-      uri = Uri.new(uri: "http://www.cdisc.org/CT/V5#TH")
-      item = Thesaurus.find_minimum(uri)
-      item.release(:major)
-      actual = Thesaurus.find_minimum(uri)
-      expect(actual.semantic_version).to eq("2.0.0")
+      item5 = Thesaurus.find_minimum(uris[4])
+      item5.release(:major)
+      actual5 = Thesaurus.find_minimum(uris[4])
+      actual4 = Thesaurus.find_minimum(uris[3])
+      actual3 = Thesaurus.find_minimum(uris[2])
+      actual2 = Thesaurus.find_minimum(uris[1])
+      actual1 = Thesaurus.find_minimum(uris[0])
+      expect(actual5.semantic_version).to eq("2.0.0")
+      expect(actual4.semantic_version).to eq("2.0.0")
+      expect(actual3.semantic_version).to eq("2.0.0")
+      expect(actual2.semantic_version).to eq("2.0.0")
+      expect(actual1.semantic_version).to eq("1.0.0")
+    end
+
+    it "allows the item release to be incremented, eight versions, increment major" do
+      uris = []
+      (1..8).each do |index|
+        item = CdiscTerm.new
+        #item.uri = Uri.new(uri: "http://www.assero.co.uk/XXX/ITEM/V#{index}")
+        item.label = "Item #{index}"
+        item.set_import(identifier: "ITEM", version_label: "#{index}", semantic_version: "1.0.0", version: "#{index}", date: "2019-01-01", ordinal: 1)
+        sparql = Sparql::Update.new  
+        item.to_sparql(sparql, true)
+        sparql.upload
+        uris[index-1] = item.uri
+      end 
+      uris.each_with_index do |x, index| 
+        item = Thesaurus.find_minimum(x)
+        set_state(item, "Qualified" )
+        set_semantic_version(item, "#{index + 1}.0.0" )
+      end
+      item4 = Thesaurus.find_minimum(uris[3])
+      set_semantic_version_and_state(item4, "4.0.0", "Standard")
+      item8 = Thesaurus.find_minimum(uris[7])
+      item8.release(:major)
+      actual8 = Thesaurus.find_minimum(uris[7])
+      actual7 = Thesaurus.find_minimum(uris[6])
+      actual6 = Thesaurus.find_minimum(uris[5])
+      actual5 = Thesaurus.find_minimum(uris[4])
+      actual4 = Thesaurus.find_minimum(uris[3])
+      expect(actual8.semantic_version).to eq("5.0.0")
+      expect(actual7.semantic_version).to eq("5.0.0")
+      expect(actual6.semantic_version).to eq("5.0.0")
+      expect(actual5.semantic_version).to eq("5.0.0")
+      expect(actual4.semantic_version).to eq("4.0.0")
     end
 
     it "allows the item release to be incremented, five versions, increment minor" do
