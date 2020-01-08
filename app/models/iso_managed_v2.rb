@@ -205,7 +205,6 @@ class IsoManagedV2 < IsoConceptV2
 
   # Previous Release
   #
-  # @param [Symbol] release (:major, :minor, :patch)
   # @return 
   def previous_release
     results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
@@ -239,9 +238,13 @@ class IsoManagedV2 < IsoConceptV2
           self.errors.add(:base, "The release request type was invalid")
           return false
       end
-      si = self.has_identifier
-      si.update(semantic_version: sv.to_s)
-      si.save
+      if uris[:uris].length == 1
+        si = self.has_identifier
+        si.update(semantic_version: sv.to_s)
+        si.save
+      else
+        update_previous_releases(uris: uris[:uris], semantic_version: sv.to_s)
+      end
     end
     true
   end
@@ -955,7 +958,7 @@ private
 }
   end
 
-  # Mini history with state and semancti version
+  # Mini history with state and semantic version
   def state_and_semantic_version(params)
     results = []
     query_string = %Q{
@@ -975,6 +978,38 @@ private
       results << {uri: x[:s], semantic_version: x[:sv], state: x[:st]}
     end
     results
+  end
+
+  # The update previous release query
+  def update_previous_releases(params)
+    uris = params[:uris].map{|x| x.to_ref}.join(" ")
+    query_string= %Q{
+      DELETE
+      {
+        ?s ?p ?o
+      }
+      INSERT
+      {
+       ?s ?p \"#{params[:semantic_version]}\"^^xsd:string .
+      }
+      WHERE
+      { 
+        VALUES ?x {#{uris}} 
+        ?x isoT:hasIdentifier ?s .
+        ?s isoI:semanticVersion ?o .
+        BIND (isoI:semanticVersion as ?p)
+      }
+    }
+    partial_update(query_string, [:isoI, :isoT])
+  end
+
+  def uris
+    uris = {uris: []}
+    results = state_and_semantic_version(identifier: self.has_identifier.identifier, scope: self.scope)
+    raise Errors::NotFoundError.new("Failed to find previous semantic versions for #{self.uri}.") if results.empty?
+    item_index = results.index {|x| x[:state] == IsoRegistrationStateV2.released_state}
+    item_index.nil? ? results[0..-2].each{|hash| uris[:uris].push(hash[:uri]) } : results[0..item_index-1].each{|hash| uris[:uris].push(hash[:uri]) }
+    uris
   end
 
   def forward(current, step, end_stop)
