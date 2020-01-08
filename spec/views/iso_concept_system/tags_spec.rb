@@ -29,7 +29,7 @@ describe 'iso_concept_systems/index.html.erb', :type => :view do
     expect(rendered).to have_content("Tags")
     expect(rendered).to have_content("Manage Tags")
     expect(rendered).to have_content "Item List"
-    expect(rendered).to have_xpath("//table[@id = 'iso_managed_table']")
+    expect(rendered).to have_xpath("//table[@id = 'iso_concept_table']")
     expect(rendered).to have_xpath("//div[@id = 'd3']")
   end
 
@@ -50,7 +50,7 @@ describe 'iso_concept_systems/index.html.erb', :type => :view do
     expect(rendered).to have_content("Tags")
     expect(rendered).to_not have_content("Manage Tags")
     expect(rendered).to have_content "Item List"
-    expect(rendered).to have_xpath("//table[@id = 'iso_managed_table']")
+    expect(rendered).to have_xpath("//table[@id = 'iso_concept_table']")
     expect(rendered).to have_xpath("//div[@id = 'd3']")
   end
 

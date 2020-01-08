@@ -21,9 +21,16 @@ describe 'thesauri/show.html.erb', :type => :view do
 
   it 'displays the panels' do
 
+    def view.policy(name)
+      # Do nothing
+    end
+
+    allow(view).to receive(:policy).and_return double(edit?: true)
+
     ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V1#TH"))
 
     assign(:ct, ct)
+    assign(:edit_tags_path, "tags_path")
     assign(:close_path, history_cdisc_terms_path)
 
     render
