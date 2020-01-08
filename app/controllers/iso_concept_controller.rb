@@ -129,13 +129,7 @@ class IsoConceptController < ApplicationController
 private
 
   def get_klass(item)
-    klass = IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
-    klass
-    # if klass == Thesaurus::UnmanagedConcept
-    #   return Thesaurus::ManagedConcept
-    # else
-    #   return klass
-    # end
+    IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
   end
 
   def this_params
