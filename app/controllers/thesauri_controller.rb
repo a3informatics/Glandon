@@ -68,7 +68,7 @@ class ThesauriController < ApplicationController
     respond_to do |format|
       format.html do
         @close_path = history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope}})
-        @edit_tags_path = edit_tags_iso_concept_path(@ct)
+        @edit_tags_path = path_for(:edit_tags, @ct)
       end
       format.json do
         results = []
@@ -361,6 +361,8 @@ class ThesauriController < ApplicationController
         return release_select_thesauri_path(object) # Select view
       when :destroy
         return thesauri_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
       else
         return ""
     end
