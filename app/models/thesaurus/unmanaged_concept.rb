@@ -202,6 +202,17 @@ SELECT DISTINCT ?s ?n ?d ?pt ?e ?s ?date (GROUP_CONCAT(DISTINCT ?sy;separator=\"
     data
   end
 
+  # Supporting Edit? Can the item be edited for supporting information, e.g. tags, change notes etc.
+  #
+  # @return [Boolean] true if edit permitted, false otherwise
+  def supporting_edit?
+    parents.each do |uri|
+      parent = Thesaurus::ManagedConcept.find_minimum(uri)
+      return false if !parent.owned?
+    end
+    true
+  end
+
 private
 
   # Class for a difference result
