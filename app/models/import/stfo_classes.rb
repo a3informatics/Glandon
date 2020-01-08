@@ -50,16 +50,42 @@ module Import::STFOClasses
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = ct.find_by_identifiers(self.identifier)
       ref_ct.narrower_objects
-      others = ref_ct.child_identifiers - self.child_identifiers
+      others = self.child_identifiers - ref_ct.child_identifiers
 
     end
 
+    # Subset? Is the entry a subset code list?
+    #
+    # @return [Boolean] true if a subset, false otherwise
     def subset?
-      self.preferred_term.upcase.end_with? "SUBSET"
+      self.preferred_term.label.upcase.include? "SUBSET"
     end
 
+    def to_subset(ct)
+      new_narrower = []
+      if NciThesaurusUtility.c_code?(self.identifier)
+        ref_ct = reference(ct)
+        self.identifier = Thesaurus::ManagedConcept.new_identifier
+        self.has_identifier.identifier = self.identifier
+        self.narrower.each do |child|
+          new_child = ref_ct.narrower.find{|x| x.identifier == child.identifier}
+          if new_child.nil?
+            self.errors.add(:base, "Cannot find a code list item for a subset, identifier '#{child.identifier}'.")
+          else
+            new_narrower << new_child
+          end
+        end
+      else
+        self.errors.add(:base, "Subset for a non-CDISC code list detected, identifier '#{self.identifier}'.")
+      end
+      self
+    end
+
+    # Sponsor? Is this a sponsor code list
+    #
+    # @return [Thesaurus::ManagedConcept] either nil if not found or the Managed Concept found.
     def sponsor?
-      self.sponsor_identifer? && self.sponsor_child_identifers?
+      sponsor_identifier? && sponsor_child_identifiers?
     end
 
     # Sponsor Identifier? Does the identifier match the sponsor format?

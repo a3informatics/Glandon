@@ -198,7 +198,7 @@ private
   
   def merge_all_errors(objects)
     parent = objects[:parent]
-    objects[:children].each {|child| merge_errors(child, parent)}
+    objects[:managed_children].each {|child| merge_errors(child, parent)}
     return parent
   end
 

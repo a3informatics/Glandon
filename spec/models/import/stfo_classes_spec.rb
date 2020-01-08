@@ -20,6 +20,22 @@ describe Import::STFOClasses do
   after :each do
   end
 
+  it "subset" do
+    object = Import::STFOClasses::STFOCodeList.new
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something subset 01")
+    expect(object.subset?).to eq(true)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something subsets")
+    expect(object.subset?).to eq(false)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something SUBSET somthing else")
+    expect(object.subset?).to eq(true)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something SUBset thing")
+    expect(object.subset?).to eq(true)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something SUBset")
+    expect(object.subset?).to eq(true)    
+    object.preferred_term = Thesaurus::PreferredTerm.new(label: "Something SUB set")
+    expect(object.subset?).to eq(false)    
+  end
+
   it "referenced?" do
     object = Import::STFOClasses::STFOCodeList.new
     object.identifier = "C76351"

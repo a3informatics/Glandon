@@ -92,11 +92,20 @@ private
     return results if !managed?(child_klass)
     parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
-      if child.referenced?(@th)
+      # Order of the checks is important
+      if child.subset?
+        ref = child.to_subset(@th)
+        parent.add(ref, index + 1) 
+        filtered << ref
+      # Need extension stuff herec
+      elsif child.sponsor?
+        parent.add(child, index + 1) 
+        filtered << child
+      elsif child.referenced?(@th)
         ref = child.reference(@th)
         parent.add(ref, index + 1) 
       else
-        parent.add(child, index + 1) 
+        child.errors.add(:base, "Code list type not detected, identifier '#{child.identifier}'.")
         filtered << child
       end
     end

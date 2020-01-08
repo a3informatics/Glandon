@@ -151,6 +151,7 @@
 	th:narrower <http://www.acme-pharma.com/SN000001/V1#SN000001_SC49501> ;
 	th:narrower <http://www.acme-pharma.com/SN000001/V1#SN000001_S000011> ;
 	th:narrower <http://www.acme-pharma.com/SN000001/V1#SN000001_S000010> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#86f56ece67ad6dc25743b615cd10ee672436aa12> ;
 .
 <http://www.acme-pharma.com/SN000001/V1#SN000001_RS>
 	rdf:type isoR:RegistrationState ;
@@ -270,6 +271,10 @@
 	rdf:type th:PreferredTerm ;
 	isoC:label "DOSE DELAYED"^^xsd:string ;
 .
+<http://www.assero.co.uk/PT#86f56ece67ad6dc25743b615cd10ee672436aa12>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Analysis Action Taken with Study Treatment"^^xsd:string ;
+.
 <http://www.acme-pharma.com/SN000005/V1#SN000005>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
@@ -295,6 +300,7 @@
 	th:narrower <http://www.acme-pharma.com/SN000005/V1#SN000005_S000030> ;
 	th:narrower <http://www.acme-pharma.com/SN000005/V1#SN000005_S000029> ;
 	th:narrower <http://www.acme-pharma.com/SN000005/V1#SN000005_S000012> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2> ;
 .
 <http://www.acme-pharma.com/SN000005/V1#SN000005_RS>
 	rdf:type isoR:RegistrationState ;
@@ -424,6 +430,10 @@
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#6672b815dc387b62d9d5ec8feba537d77cb2b20e> ;
 .
+<http://www.assero.co.uk/PT#7d612812aa2f4b458d6c0e35f09c636e425137b2>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Action Taken with Study Treatment Numeric"^^xsd:string ;
+.
 <http://www.acme-pharma.com/C71113/V1#C71113>
 	rdf:type th:ManagedConcept ;
 	isoC:label "Frequency"^^xsd:string ;
@@ -445,8 +455,10 @@
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_S001887> ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_S001886> ;
 	th:narrower <http://www.acme-pharma.com/C71113/V1#C71113_C70543> ;
+	th:preferredTerm <http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1> ;
 	isoC:label "Frequency Subset 01"^^xsd:string ;
 	th:notation "FREQ_01"^^xsd:string ;
+	th:preferredTerm <http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0> ;
 .
 <http://www.acme-pharma.com/C71113/V1#C71113_RS>
 	rdf:type isoR:RegistrationState ;
@@ -527,4 +539,12 @@
 	th:definition "Not ever; at no time in the past."^^xsd:string ;
 	th:extensible "false"^^xsd:boolean ;
 	th:preferredTerm <http://www.assero.co.uk/PT#80c3052d33ccdee15ffaaa110c5c39072495fe63> ;
+.
+<http://www.assero.co.uk/PT#89836a870e44fb467d13116254b39e2482f5cdf1>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Frequency"^^xsd:string ;
+.
+<http://www.assero.co.uk/PT#9819e0430302ec43b0989e29d9885fd7240b94e0>
+	rdf:type th:PreferredTerm ;
+	isoC:label "Frequency Subset 01"^^xsd:string ;
 .

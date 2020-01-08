@@ -1495,6 +1495,12 @@ defaults: &defaults
                 object: parent
                 property: label
                 map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
+                can_be_empty: false
+                map: {}
           -
             label: "CODELIST_EXTENSIBLE"
             actions: 
@@ -1732,6 +1738,11 @@ defaults: &defaults
                 method: set_property
                 object: parent
                 property: label
+                map: {}
+              -
+                method: create_shared
+                object: parent
+                property: preferred_term
                 map: {}
           -
             label: "CODELIST_EXTENSIBLE"
