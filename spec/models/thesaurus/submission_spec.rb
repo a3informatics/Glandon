@@ -65,7 +65,7 @@ describe "Thesaurus Submission" do
     expected = read_yaml_file(sub_dir, "submission_expected.yaml")
     result = true
     first = 1
-    last = 61
+    last = 62
     (first..last).each do |version|
       puts "***** V#{version}, #{expected.find{|x| x[:version] == version}[:date]} *****"
       ct = CdiscTerm.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V#{version}#TH"))

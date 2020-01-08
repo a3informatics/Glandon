@@ -203,7 +203,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       "2016-03-25", "2016-06-24", "2016-09-30", "2016-12-16",               # 47
       "2017-03-31", "2017-06-30", "2017-09-29", "2017-12-22",               # 51
       "2018-03-30", "2018-06-29", "2018-09-28", "2018-12-21",               # 55
-      "2019-03-29", "2019-06-28", "2019-09-27"                              # 59
+      "2019-03-29", "2019-06-28", "2019-09-27", "2019-12-20"                # 59
     ]
 
     @version_to_info_map =
@@ -220,7 +220,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2016
       { size: -1 }, { size: 24291 }, { size: -1 }, { size: -1 },                                                        # 2017
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2018
-      { size: 31267 }, { size: 31934 }, { size: -1 }                                                                    # 2019
+      { size: 31267 }, { size: 31934 }, { size: -1 }, { size: 33368 }                                                   # 2019
     ]
   
     @version_to_tags_map =
@@ -285,6 +285,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 59 - 2019
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 60
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}
     ]
 
@@ -1649,6 +1650,40 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C160930, status: :updated},
         {cl: :C163026, status: :created},
         {cl: :C163028, status: :created}
+      ]
+      check_cl_results(results, expected) 
+      check_count(release_date)
+      check_tags(release_date)
+    end
+
+    it "Create 2019-12-20", :speed => 'slow' do
+      release_date = "2019-12-20"
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date}, true)
+      expected = [
+        {cl: :C66737,  status: :no_change},     # TPHASE
+        {cl: :C66738,  status: :no_change},     # TSPARMCD
+        {cl: :C66785,  status: :no_change},     # TCNTRL
+        {cl: :C66790,  status: :no_change},     # ETHNIC
+        {cl: :C67152,  status: :no_change},     # TSPARM
+        {cl: :C67153,  status: :no_change},     # VSTEST
+        {cl: :C67154,  status: :updated},       # LBTEST
+        {cl: :C71153,  status: :no_change},     # EGTESTCD
+        {cl: :C71148,  status: :updated},       # POSITION
+        {cl: :C71620,  status: :updated},       # UNIT
+        {cl: :C74456,  status: :no_change},     # LOC
+        {cl: :C76351,  status: :no_change},     # SKINCLAS
+        {cl: :C78431,  status: :no_change},     # VSPOS
+        {cl: :C78735,  status: :no_change},     # EVAL
+        {cl: :C99079,  status: :no_change},     # EPOCH
+        {cl: :C118971, status: :updated},       # CCCAT
+        {cl: :C128689, status: :no_change},     # RACEC
+        {cl: :C147069, status: :no_change},     # Randomization Type Response
+        {cl: :C160930, status: :no_change},     # CHAGNAMR
+        {cl: :C161625, status: :updated},       # BPR02TC 
+        {cl: :C163026, status: :created},       # Study Monitoring Attribute Terminology
+        {cl: :C163028, status: :no_change},     # D1FATS
+        {cl: :C165641, status: :created},       # 
+        {cl: :C165644, status: :created}        # 
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
