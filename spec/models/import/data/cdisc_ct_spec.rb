@@ -1658,7 +1658,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-12-20", :speed => 'slow' do
       release_date = "2019-12-20"
-      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date}, true)
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date}, set_write_file)
       expected = [
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :no_change},     # TSPARMCD
@@ -1680,10 +1680,10 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C147069, status: :no_change},     # Randomization Type Response
         {cl: :C160930, status: :no_change},     # CHAGNAMR
         {cl: :C161625, status: :updated},       # BPR02TC 
-        {cl: :C163026, status: :created},       # Study Monitoring Attribute Terminology
+        {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
         {cl: :C163028, status: :no_change},     # D1FATS
-        {cl: :C165641, status: :created},       # 
-        {cl: :C165644, status: :created}        # 
+        {cl: :C165641, status: :created},       # Outcome Measure Attribute Terminology
+        {cl: :C165644, status: :created}        # POOLINT
       ]
       check_cl_results(results, expected) 
       check_count(release_date)
