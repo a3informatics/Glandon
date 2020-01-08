@@ -46,10 +46,6 @@ module Import::STFOClasses
       return nil
     end
 
-    def sponsor?
-      sponsor_cl_identifer(self) && sponsor_cli_identifers?(self)
-    end
-
     def extension?
       return nil if !NciThesaurusUtility.c_code?(self.identifier)
       ref_ct = ct.find_by_identifiers(self.identifier)
@@ -66,12 +62,19 @@ module Import::STFOClasses
       self.sponsor_identifer? && self.sponsor_child_identifers?
     end
 
+    # Sponsor Identifier? Does the identifier match the sponsor format?
+    #
+    # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
     def sponsor_identifier?
-      self.identifier =~ /\ASN[0-9]{6}\z/
+      result = self.identifier =~ /\ASN[0-9]{6}\z/
+      !result.nil?
     end
 
+    # Sponsor Child Identifiers? Are the child identifiers all sponsor identifiers?
+    #
+    # @return [Boolean] true if all identifiers match the sponsor format, otherwise false.
     def sponsor_child_identifiers?
-      self.narrower{|x| return false if !x.owned_identifier?}
+      self.narrower.each {|x| return false if !x.sponsor_identifier?}
       true
     end
 
@@ -98,8 +101,12 @@ module Import::STFOClasses
 
   class STFOCodeListItem < Thesaurus::UnmanagedConcept  
 
+    # Sponsor Identifier? Does the identifier match the sponsor format?
+    #
+    # @return [Boolean] true if the identifier matches the sponsor format, otherwise false.
     def sponsor_identifier?
-      identifier =~ /\AS[0-9]{6}\z/
+      result = identifier =~ /\AS[0-9]{6}\z/
+      !result.nil?
     end
 
   end
