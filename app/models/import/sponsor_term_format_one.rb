@@ -95,7 +95,6 @@ private
       if child.referenced?(@th)
         ref = child.reference(@th)
         parent.add(ref, index + 1) 
-        filtered << ref
       else
         parent.add(child, index + 1) 
         filtered << child

@@ -1526,6 +1526,11 @@ defaults: &defaults
                 object: child
                 klass: Import::STFOClasses::STFOCodeListItem
                 map: {}
+              -
+                method: set_property
+                object: child
+                property: identifier
+                map: {}
           - 
             label: "SUBMISSION_VALUE"
             actions: 
@@ -1758,6 +1763,11 @@ defaults: &defaults
                 method: create_child
                 object: child
                 klass: Import::STFOClasses::STFOCodeListItem
+                map: {}
+              -
+                method: set_property
+                object: child
+                property: identifier
                 map: {}
           - 
             label: "SUBMISSION_VALUE"
