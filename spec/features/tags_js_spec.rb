@@ -433,7 +433,7 @@ describe "Tags", :type => :feature do
   end
 
   # All tests here depend on one another
-  describe "The Curator user can (Edit tags of Iso Concept item, interdependent tests) ", :type => :feature do
+  describe "The Curator user can (Edit tags, interdependent tests) ", :type => :feature do
 
     def prepare_tags
       click_navbar_tags
@@ -452,10 +452,34 @@ describe "Tags", :type => :feature do
       click_on "Create tag"
     end
 
+    def prepare_items
+      ui_create_terminology("TST", "Test Term")
+      click_navbar_code_lists
+      wait_for_ajax 120
+      ui_new_code_list
+      context_menu_element('history', 4, 'Not Set', :edit)
+      wait_for_ajax 20
+      find(:xpath, "//*[@id='tnp_new_button']").click
+      wait_for_ajax 20
+    end
+
     def check_tags(tags)
       page.all(:css, ".tag-item").each { |i|
         expect(tags.include? i)
       }
+    end
+
+    def attach_tag(tag)
+      ui_click_node_name (tag)
+      expect(page.find("#add_label").value).to eq(tag)
+      click_button "Add Tag"
+      wait_for_ajax 20
+    end
+
+    def detach_tag(tag)
+      find(:xpath, "//*[@id='tags_container']/div[contains(.,'"+tag+"')]").click
+      ui_confirmation_dialog true
+      wait_for_ajax 20
     end
 
     before :all do
@@ -479,8 +503,8 @@ describe "Tags", :type => :feature do
       nv_destroy
     end
 
-    it "view and add tags on a Thesaurus", js:true do
-      ui_create_terminology("TST", "Test Term")
+    it "view and attach tags on a Thesaurus", js:true do
+      prepare_items
       prepare_tags
       click_navbar_terminology
       wait_for_ajax 20
@@ -489,82 +513,59 @@ describe "Tags", :type => :feature do
       context_menu_element('history', 4, 'TST', :show)
       wait_for_ajax 20
       context_menu_element_header(:edit_tags)
+      wait_for_ajax 20
+      expect(page).to have_content "TST"
       expect(page).to have_content "0.1.0"
-      expect(page).to have_content "Tags: 'Test Term'"
-      ui_click_node_name ("TAG1")
-      expect(page.find("#add_label").value).to eq("TAG1")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("TAG2")
-      expect(page.find("#add_label").value).to eq("TAG2")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("SDTM")
-      expect(page.find("#add_label").value).to eq("SDTM")
-      click_button "Add Tag"
-      wait_for_ajax 20
+      expect(page).to have_content "Attach / Detach Tags"
+      attach_tag "TAG1"
+      attach_tag "TAG2"
+      attach_tag "SDTM"
       page.evaluate_script 'window.location.reload()'
       wait_for_ajax 20
       check_tags(["TAG1", "TAG2", "SDTM"])
     end
 
-    it "view and add tags on a Code List", js:true do
+    it "view and attach tags on a Code List", js:true do
       click_navbar_code_lists
-      ui_new_code_list
-      context_menu_element('history', 4, 'NP', :show)
+      wait_for_ajax 120
+      ui_table_search("index", "Not Set")
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'History').click
       wait_for_ajax 20
-      context_menu_element_header(:edit_tags)
-      expect(page).to have_content "0.1.0"
-      ui_click_node_name ("TAG1")
-      expect(page.find("#add_label").value).to eq("TAG1")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("TAG2")
-      expect(page.find("#add_label").value).to eq("TAG2")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("SDTM")
-      expect(page.find("#add_label").value).to eq("SDTM")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
-      wait_for_ajax 20
-      check_tags(["TAG1", "TAG2", "SDTM"])
-    end
-
-    it "view and add tags on a Code List Item", js:true do
-      click_navbar_code_lists
-      ui_new_code_list
-      context_menu_element('history', 4, 'NP', :edit)
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='tnp_new_button']").click
-      wait_for_ajax 20
-      click_link 'Return'
-      wait_for_ajax 20
-      context_menu_element('history', 4, 'NP', :show)
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='children_table']/tbody/tr[1]/td[7]/a").click
+      context_menu_element('history', 1, '0.1.0', :show)
       wait_for_ajax 20
       context_menu_element_header(:edit_tags)
       wait_for_ajax 20
-      ui_click_node_name ("TAG1")
-      expect(page.find("#add_label").value).to eq("TAG1")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("TAG2")
-      expect(page.find("#add_label").value).to eq("TAG2")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("SDTM")
-      expect(page.find("#add_label").value).to eq("SDTM")
-      click_button "Add Tag"
-      wait_for_ajax 20
+      expect(page).to have_content "Attach / Detach Tags"
+      attach_tag "TAG1"
+      attach_tag "TAG2"
+      attach_tag "SDTM"
       page.evaluate_script 'window.location.reload()'
       wait_for_ajax 20
       check_tags(["TAG1", "TAG2", "SDTM"])
     end
 
-    it "remove tags from a Thesaurus", js:true do
+    it "view and attach tags on a Code List Item", js:true do
+      click_navbar_code_lists
+      wait_for_ajax 120
+      ui_table_search("index", "Not Set")
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'History').click
+      wait_for_ajax 20
+      context_menu_element('history', 1, '0.1.0', :show)
+      wait_for_ajax 20
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'Show').click
+      wait_for_ajax 20
+      context_menu_element_header(:edit_tags)
+      wait_for_ajax 20
+      expect(page).to have_content "Attach / Detach Tags"
+      attach_tag "TAG1"
+      attach_tag "TAG2"
+      attach_tag "SDTM"
+      page.evaluate_script 'window.location.reload()'
+      wait_for_ajax 20
+      check_tags(["TAG1", "TAG2", "SDTM"])
+    end
+
+    it "detach tags from a Thesaurus", js:true do
       click_navbar_terminology
       wait_for_ajax 20
       find(:xpath, "//tr[contains(.,'Test Term')]/td/a").click
@@ -572,94 +573,54 @@ describe "Tags", :type => :feature do
       context_menu_element('history', 4, 'TST', :show)
       wait_for_ajax 20
       context_menu_element_header(:edit_tags)
-      expect(page).to have_content "0.1.0"
-      expect(page).to have_content "Tags: 'Test Term'"
+      wait_for_ajax 20
+      expect(page).to have_content "Test Term"
+      expect(page).to have_content "Attach / Detach Tags"
       expect(page).to have_content "TAG2", count: 2
       expect(page).to have_content "TAG1", count: 2
-      find(:xpath, "//*[@id='tags_container']/div[3]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG2")
       expect(page).to have_content "TAG2", count: 1
-      find(:xpath, "//*[@id='tags_container']/div[2]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG1")
       expect(page).to have_content "TAG1", count: 1
     end
 
-    it "remove tags from a Code List", js:true do
+    it "detach tags from a Code List", js:true do
       click_navbar_code_lists
+      wait_for_ajax 120
+      ui_table_search("index", "Not Set")
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'History').click
       wait_for_ajax 20
-      ui_new_code_list
-      context_menu_element('history', 4, 'NP', :show)
+      context_menu_element('history', 1, '0.1.0', :show)
       wait_for_ajax 20
       context_menu_element_header(:edit_tags)
       wait_for_ajax 20
-      ui_click_node_name ("TAG1")
-      wait_for_ajax 20
-      expect(page.find("#add_label").value).to eq("TAG1")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("TAG2")
-      expect(page.find("#add_label").value).to eq("TAG2")
-      click_button "Add Tag"
-      wait_for_ajax 20
+      expect(page).to have_content "Attach / Detach Tags"
       expect(page).to have_content "TAG2", count: 2
       expect(page).to have_content "TAG1", count: 2
-      find(:xpath, "//*[@id='tags_container']/div[2]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG2")
       expect(page).to have_content "TAG2", count: 1
-      find(:xpath, "//*[@id='tags_container']/div[1]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG1")
       expect(page).to have_content "TAG1", count: 1
     end
 
-    it "remove tags from a Code List Item", js:true do
+    it "detach tags from a Code List Item", js:true do
       click_navbar_code_lists
-      ui_new_code_list
-      context_menu_element('history', 4, 'NP', :edit)
+      wait_for_ajax 120
+      ui_table_search("index", "Not Set")
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'History').click
       wait_for_ajax 20
-      find(:xpath, "//*[@id='tnp_new_button']").click
+      context_menu_element('history', 1, '0.1.0', :show)
       wait_for_ajax 20
-      click_link 'Return'
-      wait_for_ajax 20
-      context_menu_element('history', 4, 'NP', :show)
-      wait_for_ajax 20
-      find(:xpath, "//*[@id='children_table']/tbody/tr[1]/td[7]/a").click
+      find(:xpath, "//tr[contains(.,'Not Set')]/td/a", :text => 'Show').click
       wait_for_ajax 20
       context_menu_element_header(:edit_tags)
       wait_for_ajax 20
-      ui_click_node_name ("TAG1")
-      wait_for_ajax 20
-      expect(page.find("#add_label").value).to eq("TAG1")
-      click_button "Add Tag"
-      wait_for_ajax 20
-      ui_click_node_name ("TAG2")
-      expect(page.find("#add_label").value).to eq("TAG2")
-      click_button "Add Tag"
-      wait_for_ajax 20
+      expect(page).to have_content "Attach / Detach Tags"
       expect(page).to have_content "TAG2", count: 2
       expect(page).to have_content "TAG1", count: 2
-      find(:xpath, "//*[@id='tags_container']/div[2]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG2")
       expect(page).to have_content "TAG2", count: 1
-      find(:xpath, "//*[@id='tags_container']/div[1]").click
-      wait_for_ajax 10
-      find(:xpath, "//*[@id='cd-positive-button']").click
-      wait_for_ajax 20
-      page.evaluate_script 'window.location.reload()'
+      detach_tag("TAG1")
       expect(page).to have_content "TAG1", count: 1
     end
 
