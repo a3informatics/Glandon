@@ -25,7 +25,7 @@ function IsoConceptTagging(urls) {
  * @return [void]
  */
 IsoConceptTagging.prototype.getTags = function () {
-  this.tagListDiv.html("");
+  this.tagListDiv.find(".tag-item").remove();
   this.loading(true);
 
   $.ajax({
@@ -34,7 +34,7 @@ IsoConceptTagging.prototype.getTags = function () {
 		dataType: 'json',
 		context: this,
 		success: function (result) {
-      this.tagListDiv.append(this.tagsHTML(result));
+      this.addTagsUI(result);
       colorCodeTagsOutline(this.tagListDiv, '.tag-item', '.tag');
       this.listeners();
       this.loading(false);
@@ -92,12 +92,12 @@ IsoConceptTagging.prototype.tagUpdate = function (tag, adding) {
     context: this,
     success: function (result) {
       if(adding){
-        this.tagListDiv.append(this.tagsHTML([tag]));
+        this.addTagsUI([tag]);
         colorCodeTagsOutline(this.tagListDiv, '.tag-item', '.tag');
         this.listeners();
       }
       else {
-        this.tagListDiv.find(".tag-item[data-id='"+tag.id+"']").remove();
+        this.removeTagUI(tag.id)
       }
       this.addButtonUI();
       this.loading(false);
@@ -119,6 +119,37 @@ IsoConceptTagging.prototype.addButtonUI = function(){
     $("#add_tag").addClass("disabled");
   else
     $("#add_tag").removeClass("disabled");
+}
+
+/**
+ * Adds a new tag  to the UI
+ * @param [Array] one or more tags to add
+ *
+ * @return [void]
+ */
+IsoConceptTagging.prototype.addTagsUI = function (tags) {
+  var _this = this;
+  if(tags.length > 0)
+    $("#no-tags-msg").hide();
+
+  if(tags.length > 0){
+    $.each(tags, function(i,e){
+      _this.tagListDiv.append(_this.tagHTML(e));
+    });
+  }
+}
+
+/**
+ * Removes a tag from the UI
+ * @param [String] id of the tag to remove
+ *
+ * @return [void]
+ */
+IsoConceptTagging.prototype.removeTagUI = function (id) {
+  this.tagListDiv.find(".tag-item[data-id='"+id+"']").remove();
+
+  if (this.tagListDiv.find(".tag-item").length == 0)
+    $("#no-tags-msg").show();
 }
 
 /**
@@ -153,18 +184,15 @@ IsoConceptTagging.prototype.listeners = function () {
 }
 
 /**
- * Generates HTML code for an array of tag data
- * @param [Object Array] array of formatted objects of tag data containing: id, label
+ * Generates HTML code for tag data
+ * @param [Object] tag object of tag data containing: id, label
  *
  * @return [String] Formatted HTML
  */
-IsoConceptTagging.prototype.tagsHTML = function (tags) {
-  var html = "";
-  $.each(tags, function(i,e){
-      html +=
-        "<div class='tag-item bg-label removable' data-id='"+e.id+"'>" +
-          e.label +
-        "</div>";
-  });
+IsoConceptTagging.prototype.tagHTML = function (tag) {
+  var html =
+    "<div class='tag-item bg-label removable' data-id='"+tag.id+"'>" +
+      tag.label +
+    "</div>";
   return html;
 }
