@@ -153,6 +153,17 @@
                   </a>
                 </li>
               <% end %>
+              <% if current_user.is_only_community? %>
+              <li>
+                <a id="help_button" href="<%= APP_CONFIG['help_url'] %>" target="_blank">
+                  <span class="icon-help text-light ttip">
+                    <span class="ttip-text ttip-right shadow-small text-medium">
+                      Help
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <% end %>
               <!-- USER BADGE -->
               <li>
               <span class="user-badge-wrap">
