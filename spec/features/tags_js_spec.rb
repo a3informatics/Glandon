@@ -419,12 +419,12 @@ describe "Tags", :type => :feature do
       expect(page).to have_content 'Manage Tags'
       ui_click_node_name ('SDTM')
       wait_for_ajax
-      ui_check_table_cell("iso_managed_table", 2, 3, "1")
-      ui_check_table_cell("iso_managed_table", 5, 1, "C25681")
+      ui_check_table_cell("iso_concept_table", 2, 3, "1")
+      ui_check_table_cell("iso_concept_table", 5, 1, "C25681")
       click_link '15'
       click_link '14'
-      ui_check_table_cell("iso_managed_table", 4, 3, "3")
-      ui_check_table_cell("iso_managed_table", 4, 4, "2007-04-26 Release")
+      ui_check_table_cell("iso_concept_table", 4, 3, "3")
+      ui_check_table_cell("iso_concept_table", 4, 4, "2007-04-26 Release")
       ui_click_node_name ('Protocol')
       wait_for_ajax
       expect(page).to have_content('No items with the selected tag were found.')
