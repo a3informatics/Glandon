@@ -367,6 +367,7 @@ describe "Tags", :type => :feature do
   # All tests here depend on one another
   describe "The Curator user can (Edit tags, interdependent tests) ", :type => :feature do
 
+    # These prepare functions should be fixed by having a mock sponsor terminology and tags to load in before :all instead 
     def prepare_tags
       click_navbar_tags
       fill_in "add_label", with: "Sponsor Tags"
