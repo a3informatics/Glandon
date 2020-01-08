@@ -1,0 +1,155 @@
+---
+:id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTE=
+:uri: http://www.cdisc.org/C76351/V10#C76351
+:rdf_type: http://www.assero.co.uk/Thesaurus#ManagedConcept
+:label: Skin Classification
+:tagged: []
+:has_state:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfUlM=
+  :uri: http://www.cdisc.org/C76351/V10#C76351_RS
+  :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationState
+  :registration_status: Standard
+  :administrative_note: ''
+  :effective_date: '2016-01-01T00:00:00+00:00'
+  :until_date: '2016-01-01T00:00:00+00:00'
+  :unresolved_issue: ''
+  :administrative_status: ''
+  :previous_state: Standard
+  :multiple_edit: false
+  :by_authority:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvUkEjRFVOUzA4NDQzMzc1OQ==
+    :uri: http://www.assero.co.uk/RA#DUNS084433759
+    :rdf_type: http://www.assero.co.uk/ISO11179Registration#RegistrationAuthority
+    :organization_identifier: '084433759'
+    :international_code_designator: DUNS
+    :owner: false
+    :ra_namespace:
+      :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+      :uri: http://www.assero.co.uk/NS#CDISC
+      :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+      :short_name: CDISC
+      :name: Clinical Data Interchange Standards Consortium
+      :authority: www.cdisc.org
+:has_identifier:
+  :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfU0k=
+  :uri: http://www.cdisc.org/C76351/V10#C76351_SI
+  :rdf_type: http://www.assero.co.uk/ISO11179Identification#ScopedIdentifier
+  :identifier: C76351
+  :version: 10
+  :semantic_version: 10.0.0
+  :has_scope:
+    :id: aHR0cDovL3d3dy5hc3Nlcm8uY28udWsvTlMjQ0RJU0M=
+    :uri: http://www.assero.co.uk/NS#CDISC
+    :rdf_type: http://www.assero.co.uk/ISO11179Identification#Namespace
+    :short_name: CDISC
+    :name: Clinical Data Interchange Standards Consortium
+    :authority: www.cdisc.org
+:origin: ''
+:change_description: ''
+:creation_date: '2008-09-24T00:00:00+00:00'
+:last_change_date: '2008-09-24T00:00:00+00:00'
+:explanatory_comment: ''
+:identifier: C76351
+:notation: SKINCLAS
+:definition: A classification system used to categorize the sensitivity of a subject's
+  skin to sunlight.
+:extensible: true
+:narrower:
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTY5
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74569
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type I
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74569
+  :notation: TYPE1
+  :definition: 'Individuals who never tan and always sunburn if exposed to any appreciable
+    amount of sunlight, primarily red headed individuals and lightly complected blondes.
+    (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive skin
+    types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#97e5793a68046a2f7b1011302085791d660d136b
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcw
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74570
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type II
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74570
+  :notation: TYPE2
+  :definition: 'Individuals who frequently burn but are able to tan to a small degree
+    after extended sun exposure. (Reference: Fitzpatrick TB: The validity and practicality
+    of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#0500b308f138d762bf885f63b393775daa5078c5
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTc0
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74574
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type VI
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74574
+  :notation: TYPE6
+  :definition: 'Individuals who have the heaviest constitutive pigmentation, especially
+    dark skinned black individuals. (Reference: Fitzpatrick TB: The validity and practicality
+    of sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#b3216592d9c7d566ecc2852dd79c5cdd6f46191e
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcz
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74573
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type V
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74573
+  :notation: TYPE5
+  :definition: 'Individuals who have dark constitutive pigmentation but become noticeably
+    darker with sun exposure, especially light complected black individuals, those
+    of Indian descent. (Reference: Fitzpatrick TB: The validity and practicality of
+    sun-reactive skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#61ab941b6336cedc77a813e19c35f9c0a24108a0
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcx
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74571
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type III
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74571
+  :notation: TYPE3
+  :definition: 'Individuals who burn infrequently and tan readily. (Reference: Fitzpatrick
+    TB: The validity and practicality of sun-reactive skin types I through VI.  Arch.
+    Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#6f2c22646afc7901b6bba34350b332c41a565052
+  :synonym: []
+- :id: aHR0cDovL3d3dy5jZGlzYy5vcmcvQzc2MzUxL1YxMCNDNzYzNTFfQzc0NTcy
+  :uri: http://www.cdisc.org/C76351/V10#C76351_C74572
+  :rdf_type: http://www.assero.co.uk/Thesaurus#UnmanagedConcept
+  :label: Fitzpatrick Skin Type IV
+  :tagged:
+  - http://www.assero.co.uk/CSN#2070e714-3f5b-45d4-b1a3-5ff5d58cbce9
+  :identifier: C74572
+  :notation: TYPE4
+  :definition: 'Individuals who rarely burn and tan heavily with moderate sun exposures,
+    especially individuals of Asian, American Indian, Mediterranean and Latin American
+    descent. (Reference: Fitzpatrick TB: The validity and practicality of sun-reactive
+    skin types I through VI.  Arch. Dermatol. 1998 124: 869-871)'
+  :extensible: false
+  :narrower: []
+  :preferred_term: http://www.assero.co.uk/PT#54d856230e7a778fbfc28d23c2fb7200182b608d
+  :synonym: []
+:extends: 
+:subsets: 
+:preferred_term: 
+:synonym: []
+:is_ordered: 

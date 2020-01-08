@@ -22,6 +22,7 @@ describe "Import::SponsorTermFormatOne" do
 	before :each do
     data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_systems_baseline.ttl", "iso_concept_systems_process.ttl"]
     load_files(schema_files, data_files)
+    load_cdisc_term_versions(1..61)
     Import.destroy_all
     delete_all_public_test_files
     setup
@@ -36,7 +37,7 @@ describe "Import::SponsorTermFormatOne" do
     expected =
     {
       description: "Import of Sponsor Terminology",
-      parent_klass: ::Thesaurus,
+      parent_klass: Import::STFOClasses::STFOThesaurus,
       reader_klass: Excel,
       import_type: :sponsor_term_format_one,
       version_label: :date,
@@ -57,10 +58,12 @@ describe "Import::SponsorTermFormatOne" do
   end
 
   it "import, no errors, version 2" do
+    ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V47#TH"))
     full_path = test_file_path(sub_dir, "import_input_1.xlsx")
-    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job}
+    params = {version: "1", date: "2018-11-22", files: [full_path], version_label: "1.1.1", label: "Version 2 Test", semantic_version: "1.1.1", job: @job, uri: ct.uri}
     result = @object.import(params)
     filename = "sponsor_term_format_one_#{@object.id}_errors.yml"
+byebug
     expect(public_file_does_not_exist?("test", filename)).to eq(true)
     filename = "sponsor_term_format_one_#{@object.id}_load.ttl"
     expect(public_file_exists?("test", filename)).to eq(true)

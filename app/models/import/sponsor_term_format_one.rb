@@ -5,6 +5,7 @@
 class Import::SponsorTermFormatOne < Import
 
   include Import::Rectangular
+  include Import::STFOClasses
 
   C_V2 = "01/01/1900".to_datetime 
   C_V3 = "01/06/2019".to_datetime 
@@ -23,10 +24,12 @@ class Import::SponsorTermFormatOne < Import
   # @option params [String] :date the date of issue
   # @option params [Array] :files
   # @option params [Background] :job the background job
+  # @option params [Uri] :term the uri for the reference term to be used
   # @return [Void] no return value
   def import(params)
     @tags = []
     @parent_set = {}
+    @th = Thesaurus.find_minimum(params[:uri])
     readers = read_all_excel(params)
     merge_reader_data(readers)
     results = add_parent(params)
@@ -48,7 +51,7 @@ class Import::SponsorTermFormatOne < Import
   def self.configuration
     {
       description: "Import of Sponsor Terminology",
-      parent_klass: ::Thesaurus,
+      parent_klass: Import::STFOClasses::STFOThesaurus,
       reader_klass: Excel,
       import_type: :sponsor_term_format_one,
       format: :format,
@@ -89,8 +92,14 @@ private
     return results if !managed?(child_klass)
     parent = results[:parent]
     results[:managed_children].each_with_index do |child, index| 
-      parent.add(child, index + 1) 
-      filtered << child 
+      if child.referenced?(@th)
+        ref = child.reference(@th)
+        parent.add(ref, index + 1) 
+        filtered << ref
+      else
+        parent.add(child, index + 1) 
+        filtered << child
+      end
     end
     return {parent: parent, managed_children: filtered, tags: []}
   end

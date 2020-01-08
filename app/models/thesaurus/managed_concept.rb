@@ -24,14 +24,6 @@ class Thesaurus::ManagedConcept < IsoManagedV2
   include Thesaurus::Identifiers
   include Thesaurus::Synonyms
 
-  def children
-    return self.narrower
-  end
-  
-  def self.owner
-    Thesaurus.owner
-  end
-
   # Extended? Is this item extended
   #
   # @result [Boolean] return true if extended

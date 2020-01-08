@@ -1467,7 +1467,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: Thesaurus::ManagedConcept
+                klass: Import::STFOClasses::STFOCodeList
                 map: {}
               -
                 method: set_property
@@ -1524,7 +1524,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: Thesaurus::UnmanagedConcept
+                klass: Import::STFOClasses::STFOCodeListItem
                 map: {}
           - 
             label: "SUBMISSION_VALUE"
@@ -1700,7 +1700,7 @@ defaults: &defaults
               -
                 method: create_parent
                 object: parent
-                klass: Thesaurus::ManagedConcept
+                klass: Import::STFOClasses::STFOCodeList
                 map: {}
               -
                 method: set_property
@@ -1757,7 +1757,7 @@ defaults: &defaults
               -
                 method: create_child
                 object: child
-                klass: Thesaurus::UnmanagedConcept
+                klass: Import::STFOClasses::STFOCodeListItem
                 map: {}
           - 
             label: "SUBMISSION_VALUE"
