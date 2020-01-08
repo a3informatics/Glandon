@@ -229,6 +229,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
     @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
+    @edit_tags_path = edit_tags_iso_concept_path(@tc)
   end
 
   def show_data
@@ -417,8 +418,6 @@ private
         end
       when :destroy
         return thesauri_managed_concept_path(object)
-      when :edit_tags
-        return edit_tags_iso_concept_path(object.id, iso_concept: {:rdf_type => :code_lists})
       else
         return ""
     end

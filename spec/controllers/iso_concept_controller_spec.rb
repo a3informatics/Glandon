@@ -4,9 +4,9 @@ describe IsoConceptController do
 
   include DataHelpers
   include ControllerHelpers
-  
+
   describe "Authorized User, Reader" do
-  	
+
     login_reader
 
     def sub_dir
@@ -14,7 +14,7 @@ describe IsoConceptController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", 
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl",
         "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..43)
@@ -33,13 +33,13 @@ describe IsoConceptController do
       request.env['HTTP_ACCEPT'] = "application/json"
       get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
       expect(response.content_type).to eq("application/json")
-      expect(response.code).to eq("200")  
+      expect(response.code).to eq("200")
       expect(response.body).to eq(concept.to_json.to_json)
     end
 
     it "displays a graph" do
-      result = 
-      { 
+      result =
+      {
         uri: "http://www.assero.co.uk/MDRForms/ACME/V1#F-ACME_VSBASELINE1_G1_G2",
         rdf_type: "http://www.assero.co.uk/BusinessForm#NormalGroup",
         label: "Height (BC_C25347)"
@@ -139,7 +139,7 @@ describe IsoConceptController do
   end
 
   describe "Authorized User, Curator" do
-    
+
     login_curator
 
     def sub_dir
@@ -147,7 +147,7 @@ describe IsoConceptController do
     end
 
     before :all do
-      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl", 
+      data_files = ["iso_namespace_real.ttl", "iso_registration_authority_real.ttl", "iso_concept_extension.ttl",
         "iso_concept_data.ttl", "BC.ttl", "form_example_vs_baseline.ttl"]
       load_files(schema_files, data_files)
       load_cdisc_term_versions(1..2)
@@ -158,44 +158,56 @@ describe IsoConceptController do
       uri = Uri.new(uri: "http://www.assero.co.uk/C1")
       item = IsoConceptV2.new
       item.uri = uri
-      item.save      
+      item.save
       tag = IsoConceptSystem.path(["CDISC", "SDTM"])
       request.env['HTTP_ACCEPT'] = "application/json"
       put :add_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
-      actual = check_good_json_response(response)      
+      actual = check_good_json_response(response)
     end
 
     it "allows a tag to be added, error"
-    
+
     it "allows a tag to be deleted" do
       uri = Uri.new(uri: "http://www.assero.co.uk/C1")
       item = IsoConceptV2.new
       item.uri = uri
-      item.save      
+      item.save
       tag = IsoConceptSystem.path(["CDISC", "SDTM"])
       request.env['HTTP_ACCEPT'] = "application/json"
       put :remove_tag, {id: item.id, iso_concept: {tag_id: tag.id}}
-      actual = check_good_json_response(response)      
+      actual = check_good_json_response(response)
     end
-    
+
     it "allows a tag to be deleted, error"
 
-    it "allows edit tags" do
+    it "allows edit tags, managed concept" do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
-      uri_1 = Uri.new(uri: "http://www.cdisc.org/CT/V1#TH")
-      expect(IsoConceptV2).to receive(:find).and_return(IsoConceptV2.new(uri: uri_1))
-      expect(IsoConceptV2).to receive(:rdf_type_to_klass).and_return(Thesaurus)
-      item = IsoConceptV2.new
-      item.uri = uri_1
-      item.save   
-      get :edit_tags, {id: item.uri.to_id, iso_concept: {rdf_type: "thesauri"}}
-      expect(response).to render_template("edit_tags")             
+      item = IsoConceptV2.new(uri: Uri.new(uri: "http://www.s-cubed.dk/T/V1#TH"))
+      expect(IsoConceptV2).to receive(:find).and_return(item)
+      expect(item).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#Thesaurus")
+      expect(Thesaurus).to receive(:find_with_properties).and_return(Thesaurus.new)
+      get :edit_tags, {id: item.uri.to_id}
+      expect(response).to render_template("edit_tags")
+    end
+
+    it "allows edit tags, error ownership"
+
+    it "allows edit tags, unmanaged concept" do
+      @request.env['HTTP_REFERER'] = "http://test.host/xxx"
+      item = IsoConceptV2.new(uri: Uri.new(uri: "http://www.s-cubed.dk/SomeUnmanagedConcept"))
+      expect(IsoConceptV2).to receive(:find).and_return(item)
+      expect(item).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
+      expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
+      expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
+      get :edit_tags, {id: item.uri.to_id, iso_concept: {parent_id: "xxx", context_id: "12345"}}
+      expect(assigns(:context_id)).to eq("12345")
+      expect(response).to render_template("edit_tags")
     end
 
   end
 
   describe "Unauthorized User" do
-    
+
     it "show a concept" do
       get :show, {id: "F-AE_G1_I2", namespace: "http://www.assero.co.uk/X/V1"}
       expect(response).to redirect_to("/users/sign_in")

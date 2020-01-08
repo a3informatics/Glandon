@@ -38,11 +38,16 @@ class IsoConceptController < ApplicationController
 
   def edit_tags
     authorize IsoConcept, :edit?
+    @concept_system = IsoConceptSystem.root
     @iso_concept = IsoConceptV2.find(protect_from_bad_id(params))
     @concept_klass = get_klass(@iso_concept)
-    @item = @concept_klass.find_with_properties(params[:id])
-    @concept_system = IsoConceptSystem.root
-    # @type = this_params[:rdf_type].to_sym
+    if @concept_klass == Thesaurus::UnmanagedConcept
+      @item = @concept_klass.find(params[:id])
+      @parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
+      @context_id = the_params[:context_id]
+    else
+      @item = @concept_klass.find_with_properties(params[:id])
+    end
     @close_path = request.referer
   end
 
@@ -142,7 +147,7 @@ private
   end
 
   def the_params
-    params.require(:iso_concept).permit(:tag_id)
+    params.require(:iso_concept).permit(:tag_id, :parent_id, :context_id)
   end
 
 end

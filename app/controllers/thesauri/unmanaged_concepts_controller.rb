@@ -115,6 +115,7 @@ class Thesauri::UnmanagedConceptsController < ApplicationController
     @tc.synonym_objects
     @tc.preferred_term_objects
     @has_children = @tc.children?
+    @edit_tags_path = edit_tags_iso_concept_path(@tc, iso_concept: {context_id: the_params[:context_id], parent_id: the_params[:parent_id]})
   end
 
   def show_data
