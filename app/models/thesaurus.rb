@@ -173,12 +173,16 @@ class Thesaurus <  IsoManagedV2
   # and an array of the versions selected by the user (first and last)
   def changes_cdu (window_size)
     cls = changes(window_size)
+
     # Remove any entries with :deleted followed by :not_present • n
     first_delete_entry = [{status: :deleted}] + [{status: :not_present}] * (window_size - 1)
     cls[:items].delete_if {|k,v| v[:status] == first_delete_entry }
     # Remove any entries with :updated followed by :no_change • n
     no_change_entry = [{status: :updated}] + [{status: :no_change}] * (window_size - 1)
     cls[:items].delete_if {|k,v| v[:status] == no_change_entry }
+    # Remove any entries with :created followed by :no_change • n
+    created_no_change_entry = [{status: :created}] + [{status: :no_change}] * (window_size - 1)
+    cls[:items].delete_if {|k,v| v[:status] == created_no_change_entry }
     # Now summarise
     results = {created: [], deleted: [], updated: [], versions:[]}
     cls[:items].each do |key, value|
