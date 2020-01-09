@@ -21,14 +21,14 @@ class IsoManagedV2Controller < ApplicationController
   end
 
   def make_current
-    authorize IsoManaged, :update?
+    authorize IsoManaged, :status?
     managed_item = get_item(params)
     managed_item.make_current
     redirect_to request.referer
   end
 
   def update_status
-    authorize IsoManaged, :update?
+    authorize IsoManaged, :status?
     referer = request.referer
     @managed_item = IsoManagedV2.find_minimum(params[:id])
     @managed_item.update_status(the_params)
@@ -37,7 +37,7 @@ class IsoManagedV2Controller < ApplicationController
   end
 
   def update_semantic_version
-    authorize IsoManaged, :update?
+    authorize IsoManaged, :status?
     @managed_item = get_item(params)
     @managed_item.release(the_params[:sv_type].downcase.to_sym)
     status = @managed_item.errors.empty? ? 200 : 422

@@ -25,15 +25,16 @@ module ControllerHelpers
     results = []
     policy = policy(klass)
     edit = policy.edit?
+    status = policy(IsoManaged).status?
     delete = policy.destroy?
-    set.each { |object| results << object.to_h.reverse_merge!(add_history_path(object, edit, delete, current)) }
+    set.each { |object| results << object.to_h.reverse_merge!(add_history_path(object, edit, delete, current, status)) }
     results
   end
 
 private
 
   # Build a set of paths for a single object. Note expects controllers to provide 
-  def add_history_path(object, edit, delete, current)
+  def add_history_path(object, edit, delete, current, status)
     latest = object.latest?
     indicators = {current: object.current?, extended: false, extends: false, version_count: 0, subset: false, subsetted: false}
     result = {edit_path: "", tags_path: "", status_path: "", current_path: "", delete_path: "", show_path: "", search_path: "", indicators: indicators}
@@ -46,7 +47,7 @@ private
     if object.registered? && object.owned? && latest && edit
       result[:status_path] = status_iso_managed_v2_path(:id => object.id, :iso_managed => {:current_id => current.nil? ? "" : current.to_id})
     end
-    if object.registered? && object.can_be_current?
+    if object.registered? && object.can_be_current? && status
       result[:current_path] = make_current_iso_managed_v2_path(:id => object.id)
     end
     if delete && object.delete?
