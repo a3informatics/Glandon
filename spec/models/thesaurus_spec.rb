@@ -283,6 +283,11 @@ describe Thesaurus do
       check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_7.yaml", equate_method: :hash_equal)
     end
 
+    it "calculates changes_cdu, window 2" do
+      ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V61#TH"))
+      actual = ct.changes_cdu(2)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_8.yaml", equate_method: :hash_equal)
+    end
   end
 
   describe "Terminology Submission Changes" do
