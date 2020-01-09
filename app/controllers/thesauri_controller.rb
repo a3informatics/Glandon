@@ -68,6 +68,7 @@ class ThesauriController < ApplicationController
     respond_to do |format|
       format.html do
         @close_path = history_thesauri_index_path({thesauri: {identifier: @ct.scoped_identifier, scope_id: @ct.scope}})
+        @edit_tags_path = path_for(:edit_tags, @ct)
       end
       format.json do
         results = []
@@ -148,7 +149,7 @@ class ThesauriController < ApplicationController
       if tc.errors.empty?
         AuditTrail.update_item_event(current_user, ct, "Terminology updated.") if token.refresh == 1
         result = tc.simple_to_h
-        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}), 
+        result.reverse_merge!({edit_path: edit_thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}}),
           delete_path: thesauri_managed_concept_path({id: tc.id, managed_concept: {parent_id: ct.id}})})
         render :json => {data: result}, :status => 200
       else
@@ -360,6 +361,8 @@ class ThesauriController < ApplicationController
         return release_select_thesauri_path(object) # Select view
       when :destroy
         return thesauri_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
       else
         return ""
     end

@@ -56,12 +56,12 @@ class Thesauri::ManagedConceptsController < ApplicationController
   rescue => e
       render :json => {:errors => [e.message]}, :status => 422
   end
-    
+
   def set_with_indicators
     authorize Thesaurus, :show?
     results = Thesaurus::ManagedConcept.set_with_indicators_paginated(set_params)
     results.each do |x|
-      x.reverse_merge!({history_path: history_thesauri_managed_concepts_path({id: x[:id], 
+      x.reverse_merge!({history_path: history_thesauri_managed_concepts_path({id: x[:id],
         managed_concept: {identifier: x[:scoped_identifier], scope_id: x[:scope_id]}})})
     end
     render :json => { data: results, offset: set_params[:offset].to_i, count: results.count }, :status => 200
@@ -229,6 +229,7 @@ class Thesauri::ManagedConceptsController < ApplicationController
     end
     @is_extending_path = extension_of_uri.nil? ? "" : thesauri_managed_concept_path({id: extension_of_uri.to_id, managed_concept: {context_id: @context_id}})
     @is_extended_path = extended_by_uri.nil? ? "" : thesauri_managed_concept_path({id: extended_by_uri.to_id, managed_concept: {context_id: @context_id}})
+    @edit_tags_path = path_for(:edit_tags, @tc)
   end
 
   def show_data
@@ -417,6 +418,8 @@ private
         end
       when :destroy
         return thesauri_managed_concept_path(object)
+      when :edit_tags
+        return object.supporting_edit? ? edit_tags_iso_concept_path(object) : ""
       else
         return ""
     end

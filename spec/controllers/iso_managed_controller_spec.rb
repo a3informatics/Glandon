@@ -73,10 +73,6 @@ describe IsoManagedController do
 
     it "allows a managed item tags to be edited"
     it "allows a managed item to be found by tag"
-    it "allows a tag to be added to a managed item"
-    it "allows a tag to be added to a managed item, error"
-    it "allows a tag to be deleted from a managed item"
-    it "allows a tag to be deleted from a managed item, error"
     it "returns the tags for a managed item"
     
     #it "shows a managed item" do

@@ -639,7 +639,7 @@ describe ThesauriController do
     it "edits release, new version"
 
     it "edits release, locked"
-    
+
   end
 
   describe "Community Reader" do
@@ -723,13 +723,13 @@ describe ThesauriController do
     end
 
     it "adds history paths, status path" do
-      
+
       # No current
       request.env['HTTP_ACCEPT'] = "application/json"
       get :history, {thesauri: {identifier: CdiscTerm::C_IDENTIFIER, scope_id: IsoRegistrationAuthority.cdisc_scope.id, count: 10, offset: 0}}
       actual = JSON.parse(response.body).deep_symbolize_keys[:data]
       check_file_actual_expected(actual, sub_dir, "history_paths_expected_1.yaml", equate_method: :hash_equal)
-      
+
       # With current
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V3#TH"))
       ct.has_state.make_current
