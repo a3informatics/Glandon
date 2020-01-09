@@ -1,0 +1,93 @@
+@prefix : <http://www.assero.co.uk/Test#> .
+@prefix isoC: <http://www.assero.co.uk/ISO11179Concepts#> .
+@prefix bo: <http://www.assero.co.uk/BusinessOperational#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://www.assero.co.uk/Test>
+  rdf:type owl:Ontology ;
+  owl:imports <http://purl.org/dc/elements/1.1/> ;
+  owl:imports <http://purl.org/dc/terms/> ;
+  owl:imports <http://www.assero.co.uk/ISO11179Concepts> ;
+  owl:imports <http://www.w3.org/2004/02/skos/core> ;
+.
+:ManagedConcept
+  rdf:type owl:Class ;
+  rdfs:subClassOf bo:Component ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Concept"^^xsd:string ;
+  skos:definition "A member of a thesaurus, a concept. Version managed."^^xsd:string ;
+.
+:UnmanagedConcept
+  rdf:type owl:Class ;
+  rdfs:subClassOf isoC:Concept ;
+  rdfs:subClassOf skos:Concept ;
+  rdfs:label "Concept System"^^xsd:string ;
+  skos:definition "A member of a thesaurus, a concept. Not version managed."^^xsd:string ;
+.
+:definition
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:subPropertyOf skos:definition ;
+  rdfs:label "Definition"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :TestUnmanagedConcept :TestManagedConcept )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The concept's definition."^^xsd:string ;
+.
+:identifier
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Identifier"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The concept's identifier."^^xsd:string ;
+.
+:notation
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:subPropertyOf skos:notation ;
+  rdfs:label "Notation"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range xsd:string ;
+  skos:definition "The concept's notation (coded value). In the CDISC terminology this is called the submission value."^^xsd:string ;
+.
+:extensible
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Extensible"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range xsd:boolean ;
+  skos:definition "Is the concept extensible. Set to true if the collection can be extended, false otherwise."^^xsd:string ;
+.
+:preferredTerm
+  rdf:type owl:DatatypeProperty ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Preferred Term"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range :PreferredTerm ;
+  skos:definition "Relationship to the preferred term."^^xsd:string ;
+.
+:synonym
+  rdf:type owl:DatatypeProperty  ;
+  rdfs:subPropertyOf isoC:property ;
+  rdfs:label "Synonym"^^xsd:string ;
+  rdfs:domain  [ a owl:Class ;
+    owl:unionOf  ( :UnmanagedConcept :ManagedConcept )
+    ] ;
+  rdfs:range :Synonym ;
+  skos:definition "Relationship to a synonym."^^xsd:string ;
+.
