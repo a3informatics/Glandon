@@ -196,7 +196,8 @@ describe IsoConceptController do
       @request.env['HTTP_REFERER'] = "http://test.host/xxx"
       item = IsoConceptV2.new(uri: Uri.new(uri: "http://www.s-cubed.dk/SomeUnmanagedConcept"))
       expect(IsoConceptV2).to receive(:find).and_return(item)
-      expect(item).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
+      expect_any_instance_of(IsoConceptV2).to receive(:true_type).and_return("http://www.assero.co.uk/Thesaurus#UnmanagedConcept")
+      expect(IsoConceptV2).to receive(:rdf_type_to_klass).and_return(Thesaurus::UnmanagedConcept)
       expect(Thesaurus::UnmanagedConcept).to receive(:find).and_return(Thesaurus::UnmanagedConcept.new)
       expect(Thesaurus::ManagedConcept).to receive(:find_minimum).and_return(Thesaurus::ManagedConcept.new)
       get :edit_tags, {id: item.uri.to_id, iso_concept: {parent_id: "xxx", context_id: "12345"}}
