@@ -46,13 +46,6 @@ class IsoManagedController < ApplicationController
     @close_path = TypePathManagement.history_url(@managed_item.rdf_type, @managed_item.identifier, @managed_item.scopedIdentifier.namespace.id)
   end
 
-  def edit_tags
-    authorize IsoManaged, :edit?
-    @iso_managed = IsoManaged.find(params[:id], params[:namespace], false)
-    @concept_system = IsoConceptSystem.root
-    @referer = request.referer
-  end
-
   def comments
     authorize IsoManaged, :edit?
     comments = IsoManagedV2.comments(identifier: this_params[:identifier], scope: IsoNamespace.find(this_params[:scope_id]))
@@ -78,27 +71,27 @@ class IsoManagedController < ApplicationController
     end
   end
 
-  def add_tag
-    authorize IsoManaged, :edit?
-    item = IsoManaged.find(params[:id], params[:namespace])
-    item.add_tag(params[:tag_id], params[:tag_namespace])
-    if item.errors.empty?
-      render :json => {}, :status => 200
-    else
-      render :json => {:errors => item.errors.full_messages}, :status => 422
-    end
-  end
+  # def add_tag
+  #   authorize IsoManaged, :edit?
+  #   item = IsoManaged.find(params[:id], params[:namespace])
+  #   item.add_tag(params[:tag_id], params[:tag_namespace])
+  #   if item.errors.empty?
+  #     render :json => {}, :status => 200
+  #   else
+  #     render :json => {:errors => item.errors.full_messages}, :status => 422
+  #   end
+  # end
 
-  def delete_tag
-    authorize IsoManaged, :edit?
-    item = IsoManaged.find(params[:id], params[:namespace])
-    item.delete_tag(params[:tag_id], params[:tag_namespace])
-    if item.errors.empty?
-      render :json => {}, :status => 200
-    else
-      render :json => {:errors => item.errors.full_messages}, :status => 422
-    end
-  end
+  # def delete_tag
+  #   authorize IsoManaged, :edit?
+  #   item = IsoManaged.find(params[:id], params[:namespace])
+  #   item.delete_tag(params[:tag_id], params[:tag_namespace])
+  #   if item.errors.empty?
+  #     render :json => {}, :status => 200
+  #   else
+  #     render :json => {:errors => item.errors.full_messages}, :status => 422
+  #   end
+  # end
 
   def tags
     authorize IsoManaged, :edit?

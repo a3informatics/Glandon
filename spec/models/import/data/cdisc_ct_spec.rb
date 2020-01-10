@@ -16,6 +16,7 @@ describe "Import::CdiscTerm CT Data" do
     load_files(schema_files, [])
     load_data_file_into_triple_store("mdr_identification.ttl")
     load_data_file_into_triple_store("mdr_iso_concept_systems.ttl")
+    load_data_file_into_triple_store("mdr_iso_concept_systems_migration_1.ttl")
     create_maps
   end
 
@@ -181,7 +182,8 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       qs: "qs/QS Terminology",
       qsft: "qs-ft/QS-FT Terminology",
       send: "send/SEND Terminology",
-      protocol: "protocol/Protocol Terminology"
+      protocol: "protocol/Protocol Terminology",
+      define: "define-xml/Define-XML Terminology"
     }
     load_versions(1..(current_version-1))
     reqd_files.each {|k,v| files << "#{file_pattern[k]} #{v}.xlsx" if reqd_files.key?(k)}
@@ -220,7 +222,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2016
       { size: -1 }, { size: 24291 }, { size: -1 }, { size: -1 },                                                        # 2017
       { size: -1 }, { size: -1 }, { size: -1 }, { size: -1 },                                                           # 2018
-      { size: 31267 }, { size: 31934 }, { size: -1 }, { size: 33368 }                                                   # 2019
+      { size: 31267 }, { size: 31934 }, { size: -1 }, { size: 33397 }                                                   # 2019
     ]
   
     @version_to_tags_map =
@@ -286,7 +288,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 59 - 2019
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},  # 60
       { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]},
-      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}
+      { th: [:SDTM, :CDASH, :ADaM, :SEND, :Protocol, :"Define-XML"], cl: [ C16564: [:SDTM], C49499: [:SDTM] ]}
     ]
 
   end
@@ -1658,7 +1660,7 @@ SELECT DISTINCT ?s ?p ?o WHERE {
 
     it "Create 2019-12-20", :speed => 'slow' do
       release_date = "2019-12-20"
-      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date}, set_write_file)
+      results = execute_import(release_date, {sdtm: release_date, cdash: release_date, adam: release_date, send: release_date, protocol: release_date, define: release_date}, true)
       expected = [
         {cl: :C66737,  status: :no_change},     # TPHASE
         {cl: :C66738,  status: :no_change},     # TSPARMCD
@@ -1683,7 +1685,9 @@ SELECT DISTINCT ?s ?p ?o WHERE {
         {cl: :C163026, status: :no_change},     # Study Monitoring Attribute Terminology
         {cl: :C163028, status: :no_change},     # D1FATS
         {cl: :C165641, status: :created},       # Outcome Measure Attribute Terminology
-        {cl: :C165644, status: :created}        # POOLINT
+        {cl: :C165644, status: :created},       # POOLINT
+        {cl: :C165635, status: :created},       # BDSSC
+        {cl: :C165636, status: :created}        # BDSISC
       ]
       check_cl_results(results, expected) 
       check_count(release_date)

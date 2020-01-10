@@ -16,6 +16,41 @@ class IsoConceptController < ApplicationController
     render :json => concept.tags.map{|x| x.pref_label}, :status => 200
   end
 
+  def tags_full
+    authorize IsoConcept, :show?
+    concept = IsoConceptV2.find(params[:id])
+    render :json => concept.tags.map{|x| {id: x.id, label: x.pref_label}}, :status => 200
+  end
+
+  def add_tag
+    authorize IsoConcept, :edit?
+    item = IsoConceptV2.find(protect_from_bad_id(params))
+    item.add_tag(the_params[:tag_id])
+    render :json => {}, :status => 200
+  end
+
+  def remove_tag
+    authorize IsoConcept, :edit?
+    item = IsoConceptV2.find(protect_from_bad_id(params))
+    item.remove_tag(the_params[:tag_id])
+    render :json => {}, :status => 200
+  end
+
+  def edit_tags
+    authorize IsoConcept, :edit?
+    @concept_system = IsoConceptSystem.root
+    @iso_concept = IsoConceptV2.find(protect_from_bad_id(params))
+    @concept_klass = get_klass(@iso_concept)
+    if @concept_klass == Thesaurus::UnmanagedConcept
+      @item = @concept_klass.find(params[:id])
+      @parent = Thesaurus::ManagedConcept.find_minimum(the_params[:parent_id])
+      @context_id = the_params[:context_id]
+    else
+      @item = @concept_klass.find_with_properties(params[:id])
+    end
+    @close_path = request.referer
+  end
+
   def change_notes
     authorize IsoConcept, :show?
     concept = IsoConceptV2.find(params[:id])
@@ -93,12 +128,20 @@ class IsoConceptController < ApplicationController
 
 private
 
+  def get_klass(item)
+    IsoConceptV2.rdf_type_to_klass(item.true_type.to_s)
+  end
+
   def this_params
     params.require(:iso_concept).permit(:namespace, :child_property, :rdf_type, :identifier, :concepts => [], :versions => [])
   end
 
   def cn_params
     params.require(:iso_concept).permit(:reference, :description).merge!(user_reference: current_user.email)
+  end
+
+  def the_params
+    params.require(:iso_concept).permit(:tag_id, :parent_id, :context_id)
   end
 
 end

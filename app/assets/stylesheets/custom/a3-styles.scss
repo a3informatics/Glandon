@@ -450,7 +450,7 @@ img.modal-img{
 
 // SCROLLBARS
 .page-scroll-styled::-webkit-scrollbar, .list-wrap::-webkit-scrollbar,
-.card-content::-webkit-scrollbar, .dataTables_scrollBody::-webkit-scrollbar {
+.card-content::-webkit-scrollbar, .dataTables_scrollBody::-webkit-scrollbar, .scroll-styled::-webkit-scrollbar {
   width: 10px;
 }
 
@@ -463,12 +463,12 @@ img.modal-img{
 }
 
 .dataTables_scrollBody::-webkit-scrollbar-track, .list-wrap::-webkit-scrollbar-track,
-.card-content::-webkit-scrollbar-track{
+.card-content::-webkit-scrollbar-track, .scroll-styled::-webkit-scrollbar-track{
   background: white;
 }
 
 .dataTables_scrollBody::-webkit-scrollbar-thumb, .list-wrap::-webkit-scrollbar-thumb,
-.card-content::-webkit-scrollbar-thumb{
+.card-content::-webkit-scrollbar-thumb, .scroll-styled::-webkit-scrollbar-thumb{
   background-color: $grey-bright;
 }
 

@@ -131,6 +131,7 @@ describe "ISO Managed JS", :type => :feature do
       fill_in "iso_managed_explanatoryComment", with: "I am a comment"
       fill_in "iso_managed_origin", with: "I am the origin"
       click_button 'Submit'
+      wait_for_ajax(20)
       expect(page).to have_content 'Hello world. This is a change description.'
       expect(page).to have_content 'I am a comment'
       expect(page).to have_content 'I am the origin'

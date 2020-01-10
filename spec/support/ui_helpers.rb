@@ -526,6 +526,7 @@ module UiHelpers
 			extension: "Extension",
 			extending: "Extending",
 			change_notes: "Change notes",
+			edit_tags: "Edit tags",
     }
 	end
 

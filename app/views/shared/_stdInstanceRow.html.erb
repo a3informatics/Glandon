@@ -21,7 +21,7 @@
 		<td></td>
 	<% end %>
 	<% if policy(mi_class).edit? and editPath != "" and item.edit? and item.latest? %>
-		<td><%= link_to "Update Tags", edit_tags_iso_managed_index_path(:id => item.id, :namespace => item.namespace), :class => "btn  btn-xs" %></td>
+		<td><%= link_to "Update Tags", edit_tags_iso_concept_path(:id => item.id, :namespace => item.namespace), :class => "btn  btn-xs" %></td>
 	<% else %>
 		<td></td>
 	<% end %>
@@ -29,12 +29,12 @@
 		<td><%= item.registrationState.registrationStatus %></td>
 		<% if policy(mi_class).edit? %>
 			<% if current_item != nil %>
-				<td><%= link_to "Status", status_iso_managed_index_path(:id => item.id, :iso_managed => 
-      		{:namespace => item.namespace, :index_label => index_label, :index_path => index_path, :current_id => current_item.registrationState.id}), 
+				<td><%= link_to "Status", status_iso_managed_index_path(:id => item.id, :iso_managed =>
+      		{:namespace => item.namespace, :index_label => index_label, :index_path => index_path, :current_id => current_item.registrationState.id}),
       		:class => "btn  btn-xs" %></td>
 			<% else %>
-				<td><%= link_to "Status", status_iso_managed_index_path(:id => item.id, :iso_managed => 
-      		{:namespace => item.namespace, :index_label => index_label, :index_path => index_path, :current_id => ""}), 
+				<td><%= link_to "Status", status_iso_managed_index_path(:id => item.id, :iso_managed =>
+      		{:namespace => item.namespace, :index_label => index_label, :index_path => index_path, :current_id => ""}),
       		:class => "btn  btn-xs" %></td>
 			<% end %>
 		<% else %>
@@ -61,5 +61,3 @@
 		<%= link_to "Gr+", graph_iso_concept_index_path(:id => item.id, :namespace => item.namespace), :class => "btn btn-warning btn-xs" %>
 	</td>
 </tr>
-
-

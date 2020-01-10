@@ -1,17 +1,12 @@
 $(document).ready(function() {
 
   var csvp = new ConceptSystemViewPanel(conceptSystemId, 100, nodeSelected);
-  var mtp = new ManagedTagsPanel(nodeAction);
-  var icl = new IsoConceptList();
+  var ict = new IsoConceptTagging(tagsUrls);
 
   function nodeSelected(data) {
-    mtp.show(data);
-    icl.refresh(data.id);
+    ict.select(data);
   }
 
-  function nodeAction(data) {
-    csvp.displayTree();
-  }
 
   // Set window resize.
   window.addEventListener("resize", function(event){
