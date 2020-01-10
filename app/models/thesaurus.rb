@@ -182,10 +182,10 @@ class Thesaurus <  IsoManagedV2
     # Remove any entries with :created followed by :no_change • n
     created_no_change_entry = [{status: :created}] + [{status: :no_change}] * (window_size - 1)
     cls[:items].delete_if {|k,v| v[:status] == created_no_change_entry }
-    # # # Remove any entries with :not_present followed by :no_change • n
-    # cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:not_present} }
-    #  # # Remove any entries with :not_present followed by :no_change • n
-    # cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:deleted} }
+    # Remove any entries with :not_present at the beggining and at the end
+    cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:not_present} }
+    # Remove any entries with :not_present at the beggining and deleted at the end
+    cls[:items].delete_if {|k,v| v[:status][0] == {:status=>:not_present} && v[:status][-1] == {:status=>:deleted} }
     # Now summarise
     results = {created: [], deleted: [], updated: [], versions:[]}
     cls[:items].each do |key, value|

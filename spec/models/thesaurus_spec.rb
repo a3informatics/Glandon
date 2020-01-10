@@ -292,7 +292,7 @@ describe Thesaurus do
     it "calculates changes_cdu, window 2" do
       ct = Thesaurus.find_minimum(Uri.new(uri: "http://www.cdisc.org/CT/V39#TH"))
       actual = ct.changes_cdu(8)
-      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_9.yaml", equate_method: :hash_equal, write_file: true)
+      check_file_actual_expected(actual, sub_dir, "changes_cdu_expected_9.yaml", equate_method: :hash_equal)
     end
 
 
