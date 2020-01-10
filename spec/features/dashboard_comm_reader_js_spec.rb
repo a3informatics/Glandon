@@ -87,7 +87,7 @@ describe "Community Dashboard JS", :type => :feature do
       wait_for_ajax
       expect(page).to have_content "Controlled Terminology"
       expect(page).to have_content "62.0.0"
-      ui_check_table_info("children_table", 1, 10, 921)
+      ui_check_table_info("children_table", 1, 10, 926)
       click_link 'Home'
       check_on_commumity_dashboard
     end
